@@ -145,6 +145,17 @@ test('spoken text: units, signs, money and whole decimals as words; the gloss is
   // and deal on its own as "diel" (espeak-ng reads "dee-al"), integriteit stressed on -TEIT (pm.lead.feedback's in-tegriteit)
   assert.equal(speakOf(['De slechtste deal, twee deals. Deal! Veiligheid en integriteit.'], 'nl'), 'De slechtste diel, twee diels. Diel! Veiligheid en in-tegriteit.');
   assert.equal(speakOf(['A package deal, with framing. Coated brackets. The worst deal; integrity.'], 'en'), 'A package deal, with framing. Coated brackets. The worst deal; integrity.');
+  // pm.lead.difficult: the authors and the book's title as English names (espeak-ng reads "stoo-ne", pat-TON and
+  // a Dutch "kon-ver-saa-sjons"); identiteitsgesprek and identiteitsval split at the head (espeak-ng stresses
+  // I-dentiteits), ge-kwetstheid (it stresses GE-), smalltalk as said in Dutch (smoltok), analyse with the
+  // stress on -ly- only in this film's two phrases, and the data compounds split at the head; English keeps them
+  assert.equal(speakOf(['Volgens Stone, Patton en Heen, in Difficult Conversations: het identiteitsgesprek, je identiteitsval, gekwetstheid, smalltalk.'], 'nl'),
+    'Volgens Stoon, Petten en Heen, in Diffikkelt Konver-seesjens: het identiteits-gesprek, je identiteits-val, ge-kwetstheid, smoltok.');
+  assert.equal(speakOf(['Je analyse moet vrijdag af, de analyse vóór vrijdag, de analyse voor juni, nog één analyse.'], 'nl'),
+    'Je analiese moet vrijdag af, de analiese vóór vrijdag, de analyse voor juni, nog één analyse.');
+  assert.equal(speakOf(['De stilstanddata, het stilstandlogboek, zijn lijndata, het matrijslogboek.'], 'nl'),
+    'De stilstand-data, het stilstand-log-boek, zijn lijn-data, het matrijslogboek.');
+  assert.equal(speakOf(['Stone, Patton and Heen, Difficult Conversations, small talk, the analysis.'], 'en'), 'Stone, Patton and Heen, Difficult Conversations, small talk, the analysis.');
 });
 
 // ------------------------------------------------------------ WAV files

@@ -1,0 +1,1658 @@
+<!doctype html><html lang="nl" class="iso film" data-theme="dark"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Drie gesprekken in één</title><script>(function(){var q=new URLSearchParams((location.search.length>1?location.search:(window.name.charAt(0)==="?"?window.name:""))),t=q.get("theme"),d=document.documentElement;
+function apply(){d.setAttribute("data-theme",t==="light"||t==="dark"?t:(matchMedia("(prefers-color-scheme: light)").matches?"light":"dark"));}
+apply();if(t!=="light"&&t!=="dark"){var m=matchMedia("(prefers-color-scheme: light)");m.addEventListener&&m.addEventListener("change",apply);}
+if(q.get("lang")==="en")d.setAttribute("lang","en");})();</script><style>
+.iso{
+  --anatomy-page:#0b0b0b;--anatomy-card:#131313;--anatomy-text:#a3a3a3;--anatomy-strong:#e6e6e6;--anatomy-muted:#6e6e6e;
+  --anatomy-paper:#131313;--anatomy-face:#1b1b1b;--anatomy-top:#1c1c1c;
+  --anatomy-shade-0:#0f0f0f;--anatomy-shade-1:#121212;--anatomy-shade-2:#151515;--anatomy-shade-3:#181818;
+  --anatomy-lit-top:#262626;--anatomy-lit-shade:#1d1d1d;
+  --anatomy-hi:#d4d4d4;--anatomy-mid:#6a6a6a;--anatomy-lo:#3e3e3e;--anatomy-faint:#2a2a2a;--anatomy-lit:#ffffff;
+  --anatomy-halo:#050505;--anatomy-halo-opacity:.9;--anatomy-dot:#e6e6e6;
+  --anatomy-red:#ff6b6b;--anatomy-green:#6be0a0;--anatomy-blue:#6b9bff;
+  --anatomy-weight:.6px;--anatomy-ease:cubic-bezier(.32,.72,0,1);
+  --anatomy-mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+  --anatomy-lift:inset 0 1px 0 0 #ffffff0a,inset 0 0 0 1px #ffffff06,0 0 0 1px #00000026,0 1px 1px -.5px #00000014,0 3px 3px -1.5px #00000014,0 6px 6px -3px #00000014,0 12px 12px -6px #00000014;
+}
+.iso[data-theme="light"]{
+  --anatomy-page:#f2f2ef;--anatomy-card:#fbfbfa;--anatomy-text:#57575a;--anatomy-strong:#18181a;--anatomy-muted:#8c8c90;
+  --anatomy-paper:#fbfbfa;--anatomy-face:#ffffff;--anatomy-top:#ffffff;
+  --anatomy-shade-0:#dcdcd9;--anatomy-shade-1:#e5e5e2;--anatomy-shade-2:#ededea;--anatomy-shade-3:#f4f4f1;
+  --anatomy-lit-top:#ffffff;--anatomy-lit-shade:#eeeeeb;
+  --anatomy-hi:#26262a;--anatomy-mid:#8a8a8f;--anatomy-lo:#b4b4b8;--anatomy-faint:#d4d4d6;--anatomy-lit:#000000;
+  --anatomy-halo:#8a8a80;--anatomy-halo-opacity:.32;--anatomy-dot:#3a3a3e;
+  --anatomy-red:#e5484d;--anatomy-green:#30a46c;--anatomy-blue:#3e63dd;
+  --anatomy-lift:inset 0 1px 0 0 #ffffff,0 0 0 1px #0000000f,0 1px 1px -.5px #0000000a,0 3px 3px -1.5px #0000000a,0 6px 6px -3px #0000000a,0 12px 12px -6px #0000000a;
+}
+.iso-svg{display:block;width:100%;height:auto;overflow:visible}
+.iso-svg path,.iso-svg circle{vector-effect:non-scaling-stroke}
+.iso-fill{fill:var(--anatomy-paper);stroke:none}
+.iso-solid[data-lit]>.iso-fill{fill:var(--anatomy-face)}
+.iso-shade,.iso-top{stroke:none}
+.iso-shade[data-shade="0"]{fill:var(--anatomy-shade-0)}
+.iso-shade[data-shade="1"]{fill:var(--anatomy-shade-1)}
+.iso-shade[data-shade="2"]{fill:var(--anatomy-shade-2)}
+.iso-shade[data-shade="3"]{fill:var(--anatomy-shade-3)}
+.iso-top{fill:var(--anatomy-top)}
+.iso-solid[data-lit]>.iso-top{fill:var(--anatomy-lit-top)}
+.iso-solid[data-lit]>.iso-shade{fill:var(--anatomy-lit-shade)}
+.iso-solid[data-seamless]>.iso-shade,.iso-solid[data-seamless]>.iso-top{stroke-width:.4;stroke-linejoin:round}
+.iso-solid[data-seamless]>.iso-shade[data-shade="0"]{stroke:var(--anatomy-shade-0)}
+.iso-solid[data-seamless]>.iso-shade[data-shade="1"]{stroke:var(--anatomy-shade-1)}
+.iso-solid[data-seamless]>.iso-shade[data-shade="2"]{stroke:var(--anatomy-shade-2)}
+.iso-solid[data-seamless]>.iso-shade[data-shade="3"]{stroke:var(--anatomy-shade-3)}
+.iso-solid[data-seamless]>.iso-top{stroke:var(--anatomy-top)}
+.iso-solid[data-seamless][data-lit]>.iso-top{stroke:var(--anatomy-lit-top)}
+.iso-solid[data-seamless][data-lit]>.iso-shade{stroke:var(--anatomy-lit-shade)}
+.iso-solid[data-lit]>.iso-edge{stroke:var(--anatomy-lit)}
+.iso-halo{fill:var(--anatomy-halo);stroke:none;filter:blur(9px);opacity:var(--anatomy-halo-opacity);transform:translateY(3px)}
+.iso-line{fill:none;stroke:var(--anatomy-lo);stroke-width:var(--anatomy-weight);stroke-linecap:round;stroke-linejoin:round}
+.iso-line[data-tone="hi"]{stroke:var(--anatomy-hi)}
+.iso-line[data-tone="mid"]{stroke:var(--anatomy-mid)}
+.iso-line[data-tone="lo"]{stroke:var(--anatomy-lo)}
+.iso-line[data-tone="faint"]{stroke:var(--anatomy-faint)}
+.iso-line[data-tone="lit"]{stroke:var(--anatomy-lit)}
+.iso-line[data-tone="red"]{stroke:var(--anatomy-red)}
+.iso-line[data-tone="green"]{stroke:var(--anatomy-green)}
+.iso-line[data-tone="blue"]{stroke:var(--anatomy-blue)}
+.iso-line[data-dotted]{stroke-dasharray:.01 3.5;stroke-width:1}
+.iso-line[data-dashed]{stroke-dasharray:3 3}
+.iso-line[data-flow]{stroke-dasharray:2 6}
+.iso-wire-end{fill:var(--anatomy-paper);stroke:var(--anatomy-lo);stroke-width:var(--anatomy-weight)}
+.iso-wire[data-tone="hi"] .iso-wire-end{stroke:var(--anatomy-hi)}
+.iso-wire[data-tone="mid"] .iso-wire-end{stroke:var(--anatomy-mid)}
+.iso-wire[data-tone="faint"] .iso-wire-end{stroke:var(--anatomy-faint)}
+.iso-wire[data-tone="lit"] .iso-wire-end{stroke:var(--anatomy-lit)}
+.iso-dots circle{fill:var(--anatomy-dot);stroke:none;opacity:.32}
+.iso-dots[data-tone="hi"] circle{opacity:.85}
+.iso-dots[data-tone="mid"] circle{opacity:.45}
+.iso-dots[data-tone="lo"] circle{opacity:.22}
+.iso-dots[data-tone="faint"] circle{opacity:.12}
+.iso-face-text{fill:var(--anatomy-mid);font-family:var(--anatomy-mono);letter-spacing:.04em}
+.iso-face-text[data-tone="hi"]{fill:var(--anatomy-hi)}
+.iso-face-text[data-tone="lo"]{fill:var(--anatomy-lo)}
+.iso-face-text[data-tone="faint"]{fill:var(--anatomy-faint)}
+.tb-body{fill:var(--anatomy-shade-2);stroke:none}
+.tb-shine{fill:var(--anatomy-top);stroke:none}
+.tb-shade{fill:var(--anatomy-shade-0);stroke:none}
+.tb-ring{fill:none;stroke:var(--anatomy-lo);stroke-width:.45;stroke-linecap:butt;stroke-linejoin:round}
+.tb-ring[data-tone="mid"]{stroke:var(--anatomy-mid)}
+.tb-ring[data-tone="faint"]{stroke:var(--anatomy-faint)}
+.tb-ring[data-tone="hi"]{stroke:var(--anatomy-hi)}
+@keyframes iso-flow{to{stroke-dashoffset:-32}}
+@keyframes iso-pulse{0%,100%{opacity:.18}12%{opacity:1}40%{opacity:.18}}
+.iso-line[data-flow]{animation:iso-flow 1600ms linear infinite}
+.iso-dots circle[data-pulse]{animation:iso-pulse 1600ms steps(1,end) infinite;animation-delay:var(--pulse-at,0ms)}
+.iso-figure{margin:32px 0 36px}
+.iso-plate{position:relative;padding:52px 24px;border-radius:0;background:var(--anatomy-card);box-shadow:0 0 0 1px var(--anatomy-mid);--anatomy-paper:var(--anatomy-card)}
+.iso-plate-corners{position:absolute;inset:18px 20px;pointer-events:none}
+.iso-plate-corner{position:absolute;color:var(--anatomy-muted);font-family:var(--anatomy-mono);font-size:10.5px;line-height:1;letter-spacing:.04em;white-space:nowrap}
+.iso-plate-corner[data-corner="fig"]{top:0;left:0;color:var(--anatomy-text)}
+.iso-plate-corner[data-corner="title"]{top:0;right:0;text-transform:uppercase;letter-spacing:.1em}
+.iso-plate-corner[data-corner="hint"]{bottom:0;left:0;text-transform:uppercase;letter-spacing:.1em}
+.iso-plate-corner[data-corner="readout"]{right:0;bottom:0;color:var(--anatomy-text);font-variant-numeric:tabular-nums}
+.iso-plate .iso-svg{margin:0 auto}
+.iso-legend{display:grid;gap:8px;margin-top:12px;color:var(--anatomy-muted);font-size:13px;line-height:1.55}
+.iso-keys{display:flex;flex-wrap:wrap;gap:6px 18px}
+.iso-key{display:inline-flex;align-items:center;gap:7px}
+.iso-swatch{width:16px;height:10px;flex:none;overflow:visible}
+.iso-swatch path{fill:none;stroke:var(--anatomy-hi);stroke-width:1;vector-effect:non-scaling-stroke;stroke-linejoin:round;stroke-linecap:round}
+.iso-swatch[data-mark="raised"] path,.iso-swatch[data-mark="flat"] path{stroke:var(--anatomy-mid)}
+.iso-swatch[data-mark="lit"] path{stroke:var(--anatomy-lit)}
+.iso-swatch[data-mark="dim"] path{stroke:var(--anatomy-lo)}
+.iso-swatch[data-mark="dotted"] path{stroke-dasharray:.01 3;stroke-width:1.4}
+.iso-swatch[data-mark="dashed"] path{stroke-dasharray:3 2.5}
+.iso-swatch[data-mark="red"] path{stroke:var(--anatomy-red)}
+.iso-swatch[data-mark="green"] path{stroke:var(--anatomy-green)}
+.iso-swatch[data-mark="blue"] path{stroke:var(--anatomy-blue)}
+.iso-swatch-crease{stroke:var(--anatomy-lo)!important}
+@media (max-width:560px){.iso-plate{padding:48px 12px 70px}.iso-plate-corner[data-corner="hint"]{bottom:18px}}
+@media (prefers-reduced-motion:reduce){.iso-line[data-flow],.iso-dots circle[data-pulse]{animation:none}}
+
+.iso{
+  --anatomy-page:#0B291B;--anatomy-card:#0D252B;--anatomy-text:#DCD8CB;--anatomy-strong:#F0E9DA;--anatomy-muted:#9FB3A6;
+  --anatomy-paper:#0D252B;--anatomy-face:#123039;--anatomy-top:#16353D;
+  --anatomy-shade-0:#0A1E23;--anatomy-shade-1:#0C2228;--anatomy-shade-2:#0F272D;--anatomy-shade-3:#122C33;
+  --anatomy-lit-top:#1D4A55;--anatomy-lit-shade:#173D47;
+  --anatomy-hi:#E4DDCC;--anatomy-mid:#7C9289;--anatomy-lo:#45615D;--anatomy-faint:#26433F;--anatomy-lit:#5C9FAE;
+  --anatomy-halo:#03100F;--anatomy-halo-opacity:.85;--anatomy-dot:#F0E9DA;
+  --fp-hair:rgba(240,233,218,.12);--fp-accent:#5C9FAE;--fp-accent-text:#7DB6C3;--fp-on-accent:#06191E;--fp-scrim:rgba(6,22,26,.62);
+  --fp-focus:#EAF7FF;--fp-focus-glow:#8FD3FF;--fp-focus-top:#2F6A86;--fp-focus-shade:#275A73;--fp-focus-text:#BDE5FF;
+  --anatomy-mono:"JetBrains Mono",ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+  --fp-sans:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+}
+.iso[data-theme="light"]{
+  --anatomy-page:#E8DFCA;--anatomy-card:#F4EFE3;--anatomy-text:#1E3328;--anatomy-strong:#0B291B;--anatomy-muted:#5A6B60;
+  --anatomy-paper:#F4EFE3;--anatomy-face:#FAF7EE;--anatomy-top:#FBF8F1;
+  --anatomy-shade-0:#DDD4BF;--anatomy-shade-1:#E4DCC9;--anatomy-shade-2:#EBE4D4;--anatomy-shade-3:#F0EADD;
+  --anatomy-lit-top:#E2ECEA;--anatomy-lit-shade:#CCDCDB;
+  --anatomy-hi:#1E3328;--anatomy-mid:#7D877A;--anatomy-lo:#A9AE9E;--anatomy-faint:#D0CAB8;--anatomy-lit:#276F81;
+  --anatomy-halo:#5A6B60;--anatomy-halo-opacity:.3;--anatomy-dot:#1E3328;
+  --fp-hair:rgba(11,41,27,.14);--fp-accent:#276F81;--fp-accent-text:#1C5563;--fp-on-accent:#FFFFFF;--fp-scrim:rgba(244,239,227,.7);
+  --fp-focus:#1E88D2;--fp-focus-glow:#4DB0F2;--fp-focus-top:#FFFFFF;--fp-focus-shade:#E2F1FC;--fp-focus-text:#14659E;
+}
+*{box-sizing:border-box}
+html{color-scheme:dark}
+html[data-theme="light"]{color-scheme:light}
+html,body{margin:0;padding:0}
+body{background:var(--anatomy-page);color:var(--anatomy-text);font:16px/1.45 var(--fp-sans);-webkit-font-smoothing:antialiased;-webkit-text-size-adjust:100%;overflow-x:hidden}
+.fp{position:relative;max-width:760px;margin:0 auto;background:var(--anatomy-card);border-radius:12px;box-shadow:inset 0 0 0 1px var(--fp-hair);overflow:hidden}
+.fp-stage{position:relative;aspect-ratio:16/10;width:100%;overflow:hidden}
+.fp-stage>svg{position:absolute;inset:0;width:100%;height:100%;display:block}
+.fp-read{position:absolute;left:8px;top:8px;max-width:calc(100% - 16px);font:600 12.5px/1.35 var(--anatomy-mono);color:var(--anatomy-strong);background:color-mix(in srgb,var(--anatomy-card) 88%,transparent);box-shadow:inset 0 0 0 1px var(--fp-hair);border-radius:6px;padding:4px 8px;pointer-events:none}
+.fp-read[hidden]{display:none}
+.fp-poster,.fp-end{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;background:var(--fp-scrim);text-align:center;padding:16px}
+.fp-poster[hidden]{display:none}
+.fp-end{display:none}
+.fp[data-ended="1"] .fp-end{display:flex}
+.fp-poster-title{margin:0;font:600 20px/1.25 var(--fp-sans);color:var(--anatomy-strong)}
+.fp-go{display:inline-flex;align-items:center;gap:10px;min-height:56px;padding:0 22px 0 14px;border:0;border-radius:999px;background:var(--fp-accent);color:var(--fp-on-accent);font:600 16px/1 var(--fp-sans);cursor:pointer}
+.fp-go .fp-ico{width:30px;height:30px;fill:currentColor;stroke:none}
+.fp-go:focus-visible,.fp-btn:focus-visible,.fp-item:focus-visible{outline:2px solid var(--fp-accent);outline-offset:2px}
+.fp-cap{margin:0;min-height:calc(3 * 1.45em + 20px);padding:10px 14px;font-size:16px;line-height:1.45;color:var(--anatomy-strong)}
+.fp-term{color:var(--fp-accent-text);font-weight:650}
+.fp-en{color:var(--anatomy-muted);font-style:italic}
+.fp-note{margin:-6px 14px 4px;font-size:13px;color:var(--anatomy-muted)}
+.fp-note:empty{display:none}
+.fp-bar{display:flex;align-items:center;gap:4px;padding:0 6px 6px}
+.fp-btn{flex:0 0 auto;width:44px;height:44px;display:inline-flex;align-items:center;justify-content:center;border:0;border-radius:999px;background:transparent;color:var(--anatomy-strong);cursor:pointer;-webkit-tap-highlight-color:transparent}
+.fp-btn .fp-ico{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.fp-btn[data-act="play"]{background:var(--fp-accent);color:var(--fp-on-accent)}
+.fp-btn[data-act="play"] .fp-ico{fill:currentColor;stroke:none}
+.fp-btn[data-act="play"] [data-i]{display:none}
+.fp-btn[data-state="play"] [data-i="play"],.fp-btn[data-state="pause"] [data-i="pause"],.fp-btn[data-state="replay"] [data-i="replay"]{display:block}
+.fp-btn[data-state="replay"] .fp-ico{fill:none;stroke:currentColor;stroke-width:2.2}
+@media (hover:hover){.fp-btn:not([data-act="play"]):hover{background:color-mix(in srgb,var(--anatomy-strong) 8%,transparent)}}
+.fp-btn [data-m]{display:none}
+.fp[data-muted="0"] [data-m="on"],.fp[data-muted="1"] [data-m="off"]{display:block}
+.fp-scrub{position:relative;flex:1 1 auto;min-width:0;height:44px}
+.fp-ticks{position:absolute;left:9px;right:9px;top:20px;height:4px;pointer-events:none}
+.fp-ticks i{position:absolute;top:-3px;width:2px;height:10px;margin-left:-1px;border-radius:1px;background:var(--anatomy-muted);opacity:.7}
+.fp-range{position:absolute;inset:0;width:100%;height:44px;margin:0;background:transparent;-webkit-appearance:none;appearance:none;cursor:pointer;accent-color:var(--fp-accent)}
+.fp-range::-webkit-slider-runnable-track{height:4px;border-radius:2px;background:var(--fp-hair)}
+.fp-range::-moz-range-track{height:4px;border-radius:2px;background:var(--fp-hair)}
+.fp-range::-webkit-slider-thumb{-webkit-appearance:none;width:18px;height:18px;margin-top:-7px;border-radius:50%;background:var(--fp-accent);border:2px solid var(--anatomy-card)}
+.fp-range::-moz-range-thumb{width:18px;height:18px;border-radius:50%;background:var(--fp-accent);border:2px solid var(--anatomy-card)}
+.fp-time{position:absolute;right:2px;bottom:0;font:11px/1 var(--anatomy-mono);color:var(--anatomy-muted);pointer-events:none}
+.fp-step{display:none}
+.fp[data-motion="reduce"] .fp-ticks,.fp[data-motion="reduce"] .fp-range{display:none}
+.fp[data-motion="reduce"] .fp-step{display:inline-flex}
+.fp[data-motion="reduce"] .fp-time{position:static;display:block;text-align:center;line-height:44px;font-size:12px}
+.fp-sheet{position:absolute;inset:0;z-index:5;display:flex;flex-direction:column;background:var(--anatomy-card)}
+.fp-sheet[hidden]{display:none}
+.fp-sheet-head{display:flex;align-items:center;gap:8px;padding:6px 6px 6px 14px;border-bottom:1px solid var(--fp-hair)}
+.fp-sheet-title{flex:1;margin:0;font:600 16px/1.2 var(--fp-sans);color:var(--anatomy-strong)}
+.fp-speed{min-height:44px;padding:0 12px;border:1px solid var(--fp-hair);border-radius:999px;background:transparent;color:var(--anatomy-strong);font:14px/1 var(--fp-sans);cursor:pointer}
+.fp-speed[aria-pressed="true"]{border-color:var(--fp-accent);color:var(--fp-accent-text)}
+.fp-list{flex:1;overflow:auto;padding:4px 0}
+.fp-item{display:flex;align-items:center;gap:12px;width:100%;min-height:48px;padding:6px 14px;border:0;background:transparent;color:var(--anatomy-strong);font:15px/1.3 var(--fp-sans);text-align:left;cursor:pointer}
+.fp-item-n{flex:0 0 26px;height:26px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font:600 12px/1 var(--anatomy-mono);box-shadow:inset 0 0 0 1px var(--fp-hair)}
+.fp-item-t{flex:1}
+.fp-item-d{font:12px/1 var(--anatomy-mono);color:var(--anatomy-muted)}
+@media (hover:hover){.fp-item:hover{background:color-mix(in srgb,var(--anatomy-strong) 6%,transparent)}}
+.fp-sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+@property --fp-fi{syntax:'<number>';inherits:true;initial-value:1}
+.fp[data-focus="a"]{animation:fp-focus-a .4s ease-in}
+.fp[data-focus="b"]{animation:fp-focus-b .4s ease-in}
+@keyframes fp-focus-a{from{--fp-fi:0}to{--fp-fi:1}}
+@keyframes fp-focus-b{from{--fp-fi:0}to{--fp-fi:1}}
+.fp[data-motion="reduce"][data-focus],.fp[data-render="1"][data-focus]{animation:none}
+@media (prefers-reduced-motion:reduce){.fp[data-focus]{animation:none}}
+[data-cue][data-on]{--fp-accent:var(--fp-focus);--fp-accent-text:var(--fp-focus-text);filter:drop-shadow(0 0 calc(var(--fp-fi,1) * 1px) var(--fp-focus-glow)) drop-shadow(0 0 calc(var(--fp-fi,1) * 3.5px) var(--fp-focus-glow))}
+[data-cue][data-on] .iso-edge,[data-cue][data-on] .iso-crease{stroke:var(--fp-focus)!important}
+[data-cue][data-on] .iso-edge{stroke-width:1.6px}
+[data-cue][data-on] .iso-top{fill:var(--fp-focus-top)}
+[data-cue][data-on] .iso-shade{fill:var(--fp-focus-shade)}
+[data-cue][data-on] .iso-line,[data-cue][data-on] .fp-mark{stroke:var(--fp-focus)}
+[data-cue][data-on] .fp-ink{fill:var(--fp-focus)}
+/* render mode (?render=1): one 16:9 video frame, the stage only; subtitles from WebVTT */
+html[data-render="1"],html[data-render="1"] body{width:100%;height:100%;overflow:hidden;background:var(--anatomy-card)}
+.fp[data-render="1"]{position:fixed;inset:0;max-width:none;margin:0;border-radius:0;box-shadow:none;display:flex;flex-direction:column}
+.fp[data-render="1"] .fp-stage{flex:1 1 auto;aspect-ratio:auto;min-height:0}
+.fp[data-render="1"] .fp-cap{flex:0 0 auto;height:calc(3 * 1.25em + 24px);min-height:0;margin:0;padding:12px 48px;font-size:clamp(16px,6.1vh,44px);line-height:1.25;text-align:center;display:flex;align-items:center;justify-content:center;border-top:1px solid var(--fp-hair)}
+.fp[data-render="1"]:not([data-poster="1"]) .fp-cap{display:none}
+.fp[data-render="1"] .fp-cap>span{display:block;max-width:100%}
+.fp[data-render="1"] .fp-read{left:2.4vh;top:2.4vh;font-size:clamp(12px,3.6vh,30px);padding:.3em .6em;border-radius:.4em}
+.fp[data-render="1"] .fp-bar,.fp[data-render="1"] .fp-note,.fp[data-render="1"] .fp-poster,.fp[data-render="1"] .fp-end,.fp[data-render="1"] .fp-sheet{display:none!important}
+.fp-mark{fill:none;stroke:var(--anatomy-mid);stroke-width:1.2;stroke-linecap:round;stroke-linejoin:round;vector-effect:non-scaling-stroke}
+.fp-ink{fill:var(--anatomy-mid)}
+
+.pm-jij>.iso-fill,.pm-jij>.iso-top{fill:color-mix(in srgb,var(--fp-accent) 58%,var(--anatomy-top))}
+.pm-jij>.iso-shade[data-shade="0"]{fill:color-mix(in srgb,var(--fp-accent) 62%,var(--anatomy-shade-0))}
+.pm-jij>.iso-shade[data-shade="1"]{fill:color-mix(in srgb,var(--fp-accent) 56%,var(--anatomy-shade-1))}
+.pm-jij>.iso-shade[data-shade="2"]{fill:color-mix(in srgb,var(--fp-accent) 50%,var(--anatomy-shade-2))}
+.pm-jij>.iso-shade[data-shade="3"]{fill:color-mix(in srgb,var(--fp-accent) 44%,var(--anatomy-shade-3))}
+.pm-paper{fill:var(--anatomy-face);stroke:var(--anatomy-lo);stroke-width:.5;stroke-linejoin:round}
+.pm-board{fill:var(--anatomy-face);stroke:var(--anatomy-mid);stroke-width:.6}
+.pm-rule{fill:none;stroke:var(--anatomy-lo);stroke-width:.5;stroke-linecap:round}
+.pm-cell{fill:var(--anatomy-shade-2);stroke:var(--anatomy-lo);stroke-width:.35}
+.pm-hatch{fill:var(--anatomy-shade-0);stroke:var(--anatomy-lo);stroke-width:.35}
+.pm-pin{fill:var(--anatomy-mid)}
+[data-cue][data-on] .pm-board,[data-cue][data-on] .pm-paper{stroke:var(--fp-accent);stroke-width:1}
+[data-cue][data-on] .pm-cell{stroke:var(--fp-accent)}
+
+.pm-panel{fill:var(--anatomy-shade-0);stroke:var(--fp-hair);stroke-width:1;opacity:.97}
+.pm-card{fill:var(--anatomy-face);stroke:var(--anatomy-mid);stroke-width:1.4;stroke-linejoin:round}
+.pm-hot{fill:color-mix(in srgb,var(--fp-accent) 22%,var(--anatomy-face));stroke:var(--fp-accent);stroke-width:2}
+.pm-top{fill:var(--anatomy-shade-2);stroke:var(--anatomy-mid);stroke-width:1;stroke-linejoin:round}
+.pm-dash{fill:none;stroke:var(--anatomy-mid);stroke-width:1.6;stroke-dasharray:5 4}
+.pm-txt{fill:var(--anatomy-text);font-family:var(--fp-sans);font-weight:600}
+.pm-mute{fill:var(--anatomy-muted);font-family:var(--fp-sans);font-weight:500}
+.pm-big{fill:var(--anatomy-strong);font-family:var(--fp-sans);font-weight:700}
+.pm-on{fill:var(--fp-accent-text);font-family:var(--fp-sans);font-weight:700}
+.pm-line{fill:none;stroke:var(--anatomy-hi);stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.pm-strike{fill:none;stroke:var(--anatomy-hi);stroke-width:2.4;stroke-linecap:round}
+[data-cue][data-on] .pm-card,[data-cue][data-on] .pm-dash{stroke:var(--fp-accent);stroke-width:2}
+[data-cue][data-on] .pm-top{stroke:var(--fp-accent)}
+[data-cue][data-on] .pm-line{stroke:var(--fp-accent)}
+[data-cue][data-on] .pm-txt,[data-cue][data-on] .pm-mute,[data-cue][data-on] .pm-big{fill:var(--fp-focus-text)}
+/* dark theme: faces and hands in a light skin tone, not dark silhouettes (as pm.run.scope) */
+.iso:not([data-theme="light"]) :is([data-cue="jij"],[data-cue="teamlead"]):not([data-on])>:is(.iso-solid:last-child,.iso-solid:nth-last-child(3))>:is(.iso-fill,.iso-top,.iso-shade){fill:#C9B8A3}
+.iso:not([data-theme="light"]) :is([data-cue="jij"],[data-cue="teamlead"]):not([data-on])>:is(.iso-solid:last-child,.iso-solid:nth-last-child(3))>.iso-shade{fill:#A8957F}
+.pm-mini .pm-txt,.pm-mini .pm-mute,.pm-mini .pm-big,.pm-mini .pm-on{display:none}
+.pm-mini *{vector-effect:non-scaling-stroke}
+.pm-mini .pm-card,.pm-mini .pm-hot,.pm-mini .pm-top,.pm-mini .pm-line,.pm-mini .pm-strike{stroke-width:.7px}
+.pm-mini .pm-dash{stroke-width:.4px}
+</style></head><body><main class="fp" data-started="0" data-ended="0" data-playing="0">
+<div class="fp-stage"><svg class="iso-svg fp-svg" viewBox="0 0 640 400" role="img" aria-label=""><g data-k="world"><g class="iso-solid"><path class="iso-fill" d="M6.3 291.5l.1-.3 100.6-65.4 .5-.2 .6 0 203.2 51.7 .4 .2 0 2.9-.1 .3-100.6 65.4-.5 .2-.6 0-203.2-51.7-.4-.2Z"/><path class="iso-shade" data-shade="0" d="M311.7 280.4l-.1 .3 0-3 .1-.2ZM311.6 280.7l-100.6 65.4 0-2.9 100.6-65.5ZM211 346.1l-.5 .2 0-2.9 .5-.2Z"/><path class="iso-shade" data-shade="2" d="M210.5 346.3l-.6 0 0-3 .6 .1Z"/><path class="iso-shade" data-shade="3" d="M209.9 346.3l-203.2-51.7 0-2.9 203.2 51.6ZM6.7 294.6l-.4-.2 0-2.9 .4 .2Z"/><path class="iso-top" d="M311.3 277.3l.4 .2-.1 .2-100.6 65.5-.5 .2-.6-.1-203.2-51.6-.4-.2 .1-.3 100.6-65.4 .5-.2 .6 0Z"/><path class="iso-line iso-crease" data-tone="faint" d="M311.7 277.5l-.1 .2-100.6 65.5-.5 .2-.6-.1-203.2-51.6-.4-.2"/><path class="iso-line iso-edge" data-tone="lo" d="M6.3 291.5l.1-.3 100.6-65.4 .5-.2 .6 0 203.2 51.7 .4 .2M311.7 280.4l-.1 .3-100.6 65.4-.5 .2-.6 0-203.2-51.7-.4-.2M311.7 277.5l0 2.9M6.3 291.5l0 2.9"/></g><path class="iso-line" data-tone="faint" d="M97.2 238.3l197.8 50.3M84.4 246.6l197.8 50.3M71.6 254.9l197.8 50.3M58.8 263.3l197.8 50.2M46.1 271.6l197.7 50.3M33.3 279.9l197.7 50.3M20.5 288.2l197.8 50.3"/><g class="iso-solid"><path class="iso-fill" d="M6.2 122.5l0-.1 101-65.7 .3-.1 .3 0 6.1 1.6 .2 .1 0 168.9-.1 .1-101 65.8-.2 .1-.3-.1-6.2-1.5-.1-.1Z"/><path class="iso-shade" data-shade="0" d="M114.1 227.2l-.1 .1 0-168.9 .1-.1ZM114 227.3l-101 65.8 0-169 101-65.7ZM13 293.1l-.2 .1 0-169 .2-.1Z"/><path class="iso-shade" data-shade="2" d="M12.8 293.2l-.3-.1 0-168.9 .3 0Z"/><path class="iso-shade" data-shade="3" d="M12.5 293.1l-6.2-1.5 0-169 6.2 1.6ZM6.3 291.6l-.1-.1 0-169 .1 .1Z"/><path class="iso-top" d="M113.9 58.2l.2 .1-.1 .1-101 65.7-.2 .1-.3 0-6.2-1.6-.1-.1 0-.1 101-65.7 .3-.1 .3 0Z"/><path class="iso-line iso-crease" data-tone="faint" d="M114.1 58.3l-.1 .1-101 65.7-.2 .1-.3 0-6.2-1.6-.1-.1"/><path class="iso-line iso-edge" data-tone="lo" d="M6.2 122.5l0-.1 101-65.7 .3-.1 .3 0 6.1 1.6 .2 .1M114.1 227.2l-.1 .1-101 65.8-.2 .1-.3-.1-6.2-1.5-.1-.1M114.1 58.3l0 168.9M6.2 122.5l0 169"/></g><g class="iso-solid"><path class="iso-fill" d="M110.1 61l.1-.1 3.8-2.5 .3-.1 .3 0 197.1 50.1 .1 .1 0 169 0 .1-3.8 2.5-.3 .1-.3 0-197.1-50.1-.2-.1Z"/><path class="iso-shade" data-shade="0" d="M311.8 277.5l0 .1 0-169 0-.1ZM311.8 277.6l-3.8 2.5 0-169 3.8-2.5ZM308 280.1l-.3 .1 0-169 .3-.1Z"/><path class="iso-shade" data-shade="2" d="M307.7 280.2l-.3 0 0-169 .3 0Z"/><path class="iso-shade" data-shade="3" d="M307.4 280.2l-197.1-50.1 0-169 197.1 50.1ZM110.3 230.1l-.2-.1 0-169 .2 .1Z"/><path class="iso-top" d="M311.7 108.4l.1 .1 0 .1-3.8 2.5-.3 .1-.3 0-197.1-50.1-.2-.1 .1-.1 3.8-2.5 .3-.1 .3 0Z"/><path class="iso-line iso-crease" data-tone="faint" d="M311.8 108.5l0 .1-3.8 2.5-.3 .1-.3 0-197.1-50.1-.2-.1"/><path class="iso-line iso-edge" data-tone="lo" d="M110.1 61l.1-.1 3.8-2.5 .3-.1 .3 0 197.1 50.1 .1 .1M311.8 277.5l0 .1-3.8 2.5-.3 .1-.3 0-197.1-50.1-.2-.1M311.8 108.5l0 169M110.1 61l0 169"/></g><g class="iso-solid"><path class="iso-fill" d="M12.9 287.3l97-63.1 .2-.1 .7 .2 0 .1 0 5.9-96.9 63.1-.3 0-.6-.1-.1-.1Z"/><path class="iso-shade" data-shade="0" d="M110.8 230.3l-96.9 63.1 0-5.9 96.9-63.1Z"/><path class="iso-shade" data-shade="1" d="M13.9 293.4l-.3 0 0-5.8 .3-.1Z"/><path class="iso-shade" data-shade="3" d="M13.6 293.4l-.6-.1 0-5.9 .6 .2ZM13 293.3l-.1-.1 0-5.9 .1 .1Z"/><path class="iso-top" d="M110.8 224.3l0 .1-96.9 63.1-.3 .1-.6-.2-.1-.1 97-63.1 .2-.1Z"/><path class="iso-line iso-crease" data-tone="faint" d="M110.8 224.4l-96.9 63.1-.3 .1-.6-.2-.1-.1"/><path class="iso-line iso-edge" data-tone="lo" d="M12.9 287.3l97-63.1 .2-.1 .7 .2 0 .1M110.8 230.3l-96.9 63.1-.3 0-.6-.1-.1-.1M110.8 224.4l0 5.9M12.9 287.3l0 5.9"/></g><g class="iso-solid"><path class="iso-fill" d="M109.5 224.4l.4-.2 .2-.1 197.5 50.2 .1 .1 0 5.9-.5 .3-.2 0-197.5-50.2 0-.1Z"/><path class="iso-shade" data-shade="0" d="M307.7 280.3l-.5 .3 0-5.9 .5-.3Z"/><path class="iso-shade" data-shade="1" d="M307.2 280.6l-.2 0 0-5.9 .2 0Z"/><path class="iso-shade" data-shade="3" d="M307 280.6l-197.5-50.2 0-5.9 197.5 50.2ZM109.5 230.4l0-.1 0-5.9 0 .1Z"/><path class="iso-top" d="M307.6 274.3l.1 .1-.5 .3-.2 0-197.5-50.2 0-.1 .4-.2 .2-.1Z"/><path class="iso-line iso-crease" data-tone="faint" d="M307.7 274.4l-.5 .3-.2 0-197.5-50.2 0-.1"/><path class="iso-line iso-edge" data-tone="lo" d="M109.5 224.4l.4-.2 .2-.1 197.5 50.2 .1 .1M307.7 280.3l-.5 .3-.2 0-197.5-50.2 0-.1M307.7 274.4l0 5.9M109.5 224.4l0 5.9"/></g><g class="iso-solid"><path class="iso-fill" d="M109.5 172.2l.4-.2 .2 0 197.5 50.2 .1 .1 0 2.2-.4 .2-.2 0-197.5-50.2-.1-.1Z"/><path class="iso-shade" data-shade="0" d="M307.7 224.5l-.4 .2 0-2.2 .4-.2Z"/><path class="iso-shade" data-shade="1" d="M307.3 224.7l-.2 0 0-2.2 .2 0Z"/><path class="iso-shade" data-shade="3" d="M307.1 224.7l-197.5-50.2 0-2.2 197.5 50.2ZM109.6 174.5l-.1-.1 0-2.2 .1 .1Z"/><path class="iso-top" d="M307.6 222.2l.1 .1-.4 .2-.2 0-197.5-50.2-.1-.1 .4-.2 .2 0Z"/><path class="iso-line iso-crease" data-tone="faint" d="M307.7 222.3l-.4 .2-.2 0-197.5-50.2-.1-.1"/><path class="iso-line iso-edge" data-tone="lo" d="M109.5 172.2l.4-.2 .2 0 197.5 50.2 .1 .1M307.7 224.5l-.4 .2-.2 0-197.5-50.2-.1-.1M307.7 222.3l0 2.2M109.5 172.2l0 2.2"/></g><g class="iso-solid"><path class="iso-fill" d="M272 243.6l0-.1 .3-.1 .4 0 10.1 2.6 .2 .1 0 5.9-.1 .1-.3 .1-.3 0-10.1-2.6-.2-.1Z"/><path class="iso-shade" data-shade="0" d="M283 252l-.1 .1 0-5.8 .1-.2ZM282.9 252.1l-.3 .1 0-5.9 .3 0Z"/><path class="iso-shade" data-shade="2" d="M282.6 252.2l-.3 0 0-5.9 .3 0Z"/><path class="iso-shade" data-shade="3" d="M282.3 252.2l-10.1-2.6 0-5.8 10.1 2.5ZM272.2 249.6l-.2-.1 0-5.9 .2 .2Z"/><path class="iso-top" d="M282.8 246l.2 .1-.1 .2 0 0-.3 0-.3 0-10.1-2.5-.2-.2 0-.1 0 0 .3-.1 .4 0Z"/><path class="iso-line iso-crease" data-tone="faint" d="M283 246.1l-.1 .2M282.9 246.3l-.3 0-.3 0-10.1-2.5-.2-.2"/><path class="iso-line iso-edge" data-tone="mid" d="M282.9 246.3l0 0M272 243.6l0-.1 0 0 .3-.1 .4 0 10.1 2.6 .2 .1M283 252l-.1 .1M282.9 252.1l-.3 .1-.3 0-10.1-2.6-.2-.1M283 246.1l0 5.9M282.9 246.3l0 5.8M282.9 246.3l0 5.8M272 243.6l0 5.9"/></g><g class="iso-dots" data-tone="hi"><circle cx="275.1" cy="247.5" r="0.5"/><circle cx="279.2" cy="248.5" r="0.5"/></g><g class="iso-solid"><path class="iso-fill" d="M280.8 117.1l.1-1.1 .2-1.1 .4-.9 .6-.9 .7-.7 .8-.5 1-.7 .9-.3 1-.2 1.1 0 1 .1 1.1 .4 1.1 .5 .9 .7 1 .9 .8 .9 .7 1.1 .5 1.1 .4 1.2 .3 1.1 .1 1.2-.1 1.1-.3 1.1-.4 1-.5 .8-.7 .7-.8 .5-1.1 .7-.9 .4-1 .2-1 0-1.1-.2-1-.4-1.1-.5-1-.7-.9-.8-.8-1-.7-1-.6-1.2-.4-1.1-.2-1.2Z"/><path class="iso-shade" data-shade="0" d="M291.6 125.8l.8-.5 .7-.7 .6-.9 .4-.9 .3-1.1 0-1.1 0-1.2-.3-1.2-.4-1.1-.6-1.2 1.1-.6 .5 1.1 .4 1.2 .3 1.1 .1 1.2-.1 1.1-.3 1.1-.4 1-.5 .8-.7 .7-.8 .5Z"/><path class="iso-shade" data-shade="1" d="M293.1 115.9l-.7-1 1.1-.7 .7 1.1Z"/><path class="iso-shade" data-shade="2" d="M292.4 114.9l-.8-1-.9-.8 1-.7 1 .9 .8 .9ZM287.6 118.9l0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 6.8 1.7 0 1.1-.3 1.1-.4 .9-.6 .9-.7 .7-.8 .5-.9 .4-1 .2-1 0-1.1-.2-1-.4-1.1-.5-1-.7-.9-.8-.8-1-.7-1-.6-1.2-.4-1.1-.2-1.2-.1-1.2 .1-1.1 .2-1.1 .4-.9 .6-.9 .7-.7 .8-.5 .9-.4 1-.2 1.1 0 1 .2 1.1 .4 1 .5 1 .7 .9 .8 .8 1 .7 1 .6 1.2 .4 1.1 .3 1.2 0 1.2Z"/><path class="iso-shade" data-shade="3" d="M290.7 113.1l-1-.7 1.1-.7 .9 .7Z"/><path class="iso-top" d="M289.7 112.4l-1-.5-1.1-.4-1-.2-1.1 0-1 .2-.9 .4 1-.7 .9-.3 1-.2 1.1 0 1 .1 1.1 .4 1.1 .5Z"/><path class="iso-line iso-crease" data-tone="faint" d="M292 125.6l.9-.7 .7-1 .5-1.1 .3-1.3 0-1.3-.1-1.4-.5-1.4-.6-1.3-.8-1.3-1-1.1-1.1-.9-1.2-.7-1.2-.5-1.3-.3-1.2 0-1.1 .3-1.1 .5"/><path class="iso-line iso-edge" data-tone="mid" d="M280.8 117.1l.1-1.1 .2-1.1 .4-.9 .6-.9 .7-.7 .8-.5 1-.7 .9-.3 1-.2 1.1 0 1 .1 1.1 .4 1.1 .5 .9 .7 1 .9 .8 .9 .7 1.1 .5 1.1 .4 1.2 .3 1.1 .1 1.2-.1 1.1-.3 1.1-.4 1-.5 .8-.7 .7-.8 .5-1.1 .7-.9 .4-1 .2-1 0-1.1-.2-1-.4-1.1-.5-1-.7-.9-.8-.8-1-.7-1-.6-1.2-.4-1.1-.2-1.2Z"/></g><g transform="matrix(0.682 0.173 0 0.735 108.91 230.675)"><path class="pm-rule" d="M262-220.2l0-2M265.6-220.2l.5-.9M268.2-217.6l.9-.5M268.2-214l2 0M268.2-210.4l.9 .5M265.6-207.8l.5 .9M262-207.8l0 2M258.4-207.8l-.5 .9M255.8-210.4l-.9 .5M255.8-214l-2 0M255.8-217.6l-.9-.5M258.4-220.2l-.5-.9"/><path class="pm-rule" style="stroke-width:1.1" d="M262-214l4.5 2M262-214l-1.2-6.2"/><circle class="pm-pin" cx="262" cy="-214" r="1"/></g><g data-cue="board"><g class="iso-solid"><path class="iso-fill" d="M150 97.1l0-.1 .6-.4 .3-.1 .4 0 115.1 29.3 .2 .1 0 76.4 0 .1-.6 .4-.3 .1-.4 0-115.1-29.3-.2-.1Z"/><path class="iso-shade" data-shade="0" d="M266.6 202.3l0 .1 0-76.4 0-.1ZM266.6 202.4l-.6 .4 0-76.4 .6-.4ZM266 202.8l-.3 .1 0-76.4 .3-.1Z"/><path class="iso-shade" data-shade="2" d="M265.7 202.9l-.4 0 0-76.4 .4 0Z"/><path class="iso-shade" data-shade="3" d="M265.3 202.9l-115.1-29.3 0-76.4 115.1 29.3ZM150.2 173.6l-.2-.1 0-76.4 .2 .1Z"/><path class="iso-top" d="M266.4 125.8l.2 .1 0 .1-.6 .4-.3 .1-.4 0-115.1-29.3-.2-.1 0-.1 .6-.4 .3-.1 .4 0Z"/><path class="iso-line iso-crease" data-tone="faint" d="M266.6 125.9l0 .1-.6 .4-.3 .1-.4 0-115.1-29.3-.2-.1"/><path class="iso-line iso-bevel" data-tone="faint" d="M266.6 125.9l-.3 .1-.6 .3-.1 .1-.2 0-115-29.3-.4 0"/><path class="iso-line iso-edge" data-tone="mid" d="M150 97.1l0-.1 .6-.4 .3-.1 .4 0 115.1 29.3 .2 .1M266.6 202.3l0 .1-.6 .4-.3 .1-.4 0-115.1-29.3-.2-.1M266.6 125.9l0 76.4M150 97.1l0 76.4"/></g><g transform="matrix(0.682 0.173 0 0.735 108.847 230.717)"><path class="pm-board" d="M62.4 -193.6H227.6V-94.4H62.4Z"/></g><g class="iso-dots" data-tone="mid"><circle cx="153.1" cy="101.7" r="1.1"/><circle cx="262.2" cy="129.4" r="1.1"/><circle cx="153.1" cy="170.8" r="1.1"/><circle cx="262.2" cy="198.5" r="1.1"/></g><g class="iso-solid"><path class="iso-fill" d="M153.6 177.3l0-.2 2.5-1.6 .3-.1 .4 .1 104.2 26.4 .2 .2 0 1.7-.1 .2-2.5 1.6-.3 .1-.3 0-104.2-26.5-.2-.2Z"/><path class="iso-shade" data-shade="0" d="M261.2 203.8l-.1 .2 0-1.8 .1-.1ZM261.1 204l-2.5 1.6 0-1.8 2.5-1.6ZM258.6 205.6l-.3 .1 0-1.8 .3-.1Z"/><path class="iso-shade" data-shade="2" d="M258.3 205.7l-.3 0 0-1.8 .3 0Z"/><path class="iso-shade" data-shade="3" d="M258 205.7l-104.2-26.5 0-1.8 104.2 26.5ZM153.8 179.2l-.2-.2 0-1.7 .2 .1Z"/><path class="iso-top" d="M261 201.9l.2 .2-.1 .1-2.5 1.6-.3 .1-.3 0-104.2-26.5-.2-.1 0-.2 2.5-1.6 .3-.1 .4 .1Z"/><path class="iso-line iso-crease" data-tone="faint" d="M261.2 202.1l-.1 .1-2.5 1.6-.3 .1-.3 0-104.2-26.5-.2-.1"/><path class="iso-line iso-edge" data-tone="mid" d="M153.6 177.3l0-.2 2.5-1.6 .3-.1 .4 .1 104.2 26.4 .2 .2M261.2 203.8l-.1 .2-2.5 1.6-.3 .1-.3 0-104.2-26.5-.2-.2M261.2 202.1l0 1.7M153.6 177.3l0 1.7"/></g><g class="iso-solid"><path class="iso-fill" d="M154.3 175.9l.4-.3 .3 0 103.3 26.2 0 .1 0 1.5-.4 .3-.3 0-103.3-26.2 0-.2Z"/><path class="iso-shade" data-shade="0" d="M258.3 203.4l-.4 .3 0-1.5 .4-.3Z"/><path class="iso-shade" data-shade="1" d="M257.9 203.7l-.3 0 0-1.5 .3 0Z"/><path class="iso-shade" data-shade="3" d="M257.6 203.7l-103.3-26.2 0-1.5 103.3 26.2ZM154.3 177.5l0-.2 0-1.4 0 .1Z"/><path class="iso-top" d="M258.3 201.8l0 .1-.4 .3-.3 0-103.3-26.2 0-.1 .4-.3 .3 0Z"/><path class="iso-line iso-crease" data-tone="faint" d="M258.3 201.9l-.4 .3-.3 0-103.3-26.2 0-.1"/><path class="iso-line iso-edge" data-tone="mid" d="M154.3 175.9l.4-.3 .3 0 103.3 26.2 0 .1M258.3 203.4l-.4 .3-.3 0-103.3-26.2 0-.2M258.3 201.9l0 1.5M154.3 175.9l0 1.4"/></g><g class="iso-solid"><path class="iso-fill" d="M161.2 177.5l.1-.5 .2-.4 .2-.3 .3 0 8.8 2.3 .2 .1 .1 .4-.1 .4-.2 .5-.2 .2-.3 .1-8.8-2.3-.2-.2Z"/><path class="iso-shade" data-shade="0" d="M161.5 178l-.2-.2 8.9 2.3 .1 .2ZM170.1 179.7l.1-.4 .1-.4 .3-.3 .2 0 .2 .1 .1 .4-.1 .4-.2 .5-.2 .2-.3 .1-.1-.2-.1-.4 .5-.3 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0Z"/><path class="iso-shade" data-shade="1" d="M161.3 177.8l-.1-.3 8.9 2.2 .1 .4Z"/><path class="iso-shade" data-shade="3" d="M161.2 177.5l.1-.5 8.9 2.3-.1 .4Z"/><path class="iso-top" d="M161.3 177l.2-.4 .2-.3 .3 0 8.8 2.3-.2 0-.3 .3-.1 .4Z"/><path class="iso-line iso-edge" data-tone="hi" d="M161.2 177.5l.1-.5 .2-.4 .2-.3 .3 0 8.8 2.3 .2 .1 .1 .4-.1 .4-.2 .5-.2 .2-.3 .1-8.8-2.3-.2-.2Z"/></g><g class="iso-solid"><path class="iso-fill" d="M173.5 180.6l.1-.5 .2-.4 .2-.2 .2-.1 8.9 2.3 .2 .2 0 .3 0 .5-.2 .4-.2 .2-.3 .1-8.8-2.3-.2-.2Z"/><path class="iso-shade" data-shade="0" d="M173.8 181.1l-.2-.2 8.9 2.3 .1 .2ZM182.4 182.8l.1-.4 .1-.4 .3-.3 .2 0 .2 .2 0 .3 0 .5-.2 .4-.2 .2-.3 .1-.1-.2-.1-.4 .5-.3 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0Z"/><path class="iso-shade" data-shade="1" d="M173.6 180.9l-.1-.3 8.9 2.2 .1 .4Z"/><path class="iso-shade" data-shade="3" d="M173.5 180.6l.1-.5 8.9 2.3-.1 .4Z"/><path class="iso-top" d="M173.6 180.1l.2-.4 .2-.2 .2-.1 8.9 2.3-.2 0-.3 .3-.1 .4Z"/><path class="iso-line iso-edge" data-tone="hi" d="M173.5 180.6l.1-.5 .2-.4 .2-.2 .2-.1 8.9 2.3 .2 .2 0 .3 0 .5-.2 .4-.2 .2-.3 .1-8.8-2.3-.2-.2Z"/></g><g class="iso-solid"><path class="iso-fill" d="M184.4 183.4l.1-.5 .2-.4 .2-.3 .2 0 8.2 2.1 .2 .2 .1 .3-.1 .5-.2 .4-.2 .2-.2 .1-8.2-2.1-.2-.2Z"/><path class="iso-shade" data-shade="0" d="M184.7 183.9l-.2-.2 8.2 2.1 .2 .2ZM192.6 185.4l.1-.4 .2-.4 .2-.3 .2 0 .2 .2 .1 .3-.1 .5-.2 .4-.2 .2-.2 .1-.2-.2-.1-.4 .5-.3 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0Z"/><path class="iso-shade" data-shade="1" d="M184.5 183.7l-.1-.3 8.2 2 .1 .4Z"/><path class="iso-shade" data-shade="3" d="M184.4 183.4l.1-.5 8.2 2.1-.1 .4Z"/><path class="iso-top" d="M184.5 182.9l.2-.4 .2-.3 .2 0 8.2 2.1-.2 0-.2 .3-.2 .4Z"/><path class="iso-line iso-edge" data-tone="hi" d="M184.4 183.4l.1-.5 .2-.4 .2-.3 .2 0 8.2 2.1 .2 .2 .1 .3-.1 .5-.2 .4-.2 .2-.2 .1-8.2-2.1-.2-.2Z"/></g><g class="iso-solid"><path class="iso-fill" d="M241.4 196.2l.1-.2 1.3-.8 .4-.2 .5 .1 8.4 2.1 .3 .2 0 2.9-.1 .2-1.2 .9-.4 .1-.5-.1-8.5-2.1-.3-.2Z"/><path class="iso-shade" data-shade="0" d="M252.4 200.3l-.1 .2 0-2.9 .1-.2ZM252.3 200.5l-1.2 .9 0-3 1.2-.8ZM251.1 201.4l-.4 .1 0-3 .4-.1Z"/><path class="iso-shade" data-shade="2" d="M250.7 201.5l-.5-.1 0-2.9 .5 0Z"/><path class="iso-shade" data-shade="3" d="M250.2 201.4l-8.5-2.1 0-2.9 8.5 2.1ZM241.7 199.3l-.3-.2 0-2.9 .3 .2Z"/><path class="iso-top" d="M252.1 197.2l.3 .2-.1 .2-1.2 .8-.4 .1-.5 0-8.5-2.1-.3-.2 .1-.2 1.3-.8 .4-.2 .5 .1Z"/><path class="iso-line iso-crease" data-tone="faint" d="M252.4 197.4l-.1 .2-1.2 .8-.4 .1-.5 0-8.5-2.1-.3-.2"/><path class="iso-line iso-edge" data-tone="lo" d="M241.4 196.2l.1-.2 1.3-.8 .4-.2 .5 .1 8.4 2.1 .3 .2M252.4 200.3l-.1 .2-1.2 .9-.4 .1-.5-.1-8.5-2.1-.3-.2M252.4 197.4l0 2.9M241.4 196.2l0 2.9"/></g><g transform="matrix(0.682 0.173 0 0.735 108.847 230.717)"><g class="pm-mini" transform="translate(102.84 -190.60) scale(0.2774) translate(-324 -52)"><g data-k="bMini"></g></g></g></g><path class="iso-halo" d="M138.8 281.2l.1-.7 .4-.6 .7-.6 10.2-6.6 1-.5 1.2-.4 1.3-.4 1.5-.2 1.6-.1 1.6 .1 1.5 .2 1.4 .2 16.4 4.2 1.2 .4 1.1 .5 .7 .5 .5 .6 .2 .7 0 1.4-.1 .7-.4 .6-.7 .6-10.2 6.6-1 .5-1.2 .5-1.3 .3-1.5 .2-1.6 .1-1.6-.1-1.5-.1-1.4-.3-16.4-4.2-1.2-.4-1-.5-.8-.5-.5-.6-.2-.7Z"/><g class="iso-solid"><path class="iso-fill" d="M153.8 241.5l.1-.3 .7-.2 .8 .1 .4 .2 0 31.6-.1 .3-.6 .2-.8 0-.5-.3Z"/><path class="iso-shade" data-shade="0" d="M155.7 273.2l-.6 .2 0-31.6 .6-.2ZM155.8 272.9l-.1 .3 0-31.6 .1-.3Z"/><path class="iso-shade" data-shade="2" d="M155.1 273.4l-.8 0 0-31.6 .8 0Z"/><path class="iso-shade" data-shade="3" d="M154.3 273.4l-.5-.3 0-31.6 .5 .3Z"/><path class="iso-top" d="M155.7 241.6l-.6 .2-.8 0-.5-.3 .1-.3 .7-.2 .8 .1 .4 .2Z"/><path class="iso-line iso-edge" data-tone="lo" d="M153.8 241.5l.1-.3 .7-.2 .8 .1 .4 .2M155.8 272.9l-.1 .3-.6 .2-.8 0-.5-.3M153.8 241.5l0 31.6M155.8 241.3l0 31.6"/></g><g class="iso-solid"><path class="iso-fill" d="M179.7 248.1l.1-.3 .7-.2 .8 0 .5 .3 0 31.6-.2 .3-.6 .2-.8 0-.5-.3Z"/><path class="iso-shade" data-shade="0" d="M181.6 279.8l-.6 .2 0-31.6 .6-.2ZM181.8 279.5l-.2 .3 0-31.6 .2-.3Z"/><path class="iso-shade" data-shade="2" d="M181 280l-.8 0 0-31.6 .8 0Z"/><path class="iso-shade" data-shade="3" d="M180.2 280l-.5-.3 0-31.6 .5 .3Z"/><path class="iso-top" d="M181.6 248.2l-.6 .2-.8 0-.5-.3 .1-.3 .7-.2 .8 0 .5 .3Z"/><path class="iso-line iso-edge" data-tone="lo" d="M179.7 248.1l.1-.3 .7-.2 .8 0 .5 .3M181.8 279.5l-.2 .3-.6 .2-.8 0-.5-.3M179.7 248.1l0 31.6M181.8 247.9l0 31.6"/></g><g class="iso-solid"><path class="iso-fill" d="M138.5 251.5l.1-.3 .6-.2 .8 0 .5 .3 0 31.6-.1 .3-.7 .2-.8 0-.4-.3Z"/><path class="iso-shade" data-shade="0" d="M140.4 283.2l-.7 .2 0-31.6 .7-.2ZM140.5 282.9l-.1 .3 0-31.6 .1-.3Z"/><path class="iso-shade" data-shade="2" d="M139.7 283.4l-.8 0 0-31.6 .8 0Z"/><path class="iso-shade" data-shade="3" d="M138.9 283.4l-.4-.3 0-31.6 .4 .3Z"/><path class="iso-top" d="M140.4 251.6l-.7 .2-.8 0-.4-.3 .1-.3 .6-.2 .8 0 .5 .3Z"/><path class="iso-line iso-edge" data-tone="lo" d="M138.5 251.5l.1-.3 .6-.2 .8 0 .5 .3M140.5 282.9l-.1 .3-.7 .2-.8 0-.4-.3M138.5 251.5l0 31.6M140.5 251.3l0 31.6"/></g><g class="iso-solid"><path class="iso-fill" d="M164.4 258.1l.1-.3 .7-.2 .7 0 .5 .3 0 31.6-.1 .3-.7 .2-.8-.1-.4-.2Z"/><path class="iso-shade" data-shade="0" d="M166.3 289.8l-.7 .2 0-31.6 .7-.2ZM166.4 289.5l-.1 .3 0-31.6 .1-.3Z"/><path class="iso-shade" data-shade="2" d="M165.6 290l-.8-.1 0-31.6 .8 .1Z"/><path class="iso-shade" data-shade="3" d="M164.8 289.9l-.4-.2 0-31.6 .4 .2Z"/><path class="iso-top" d="M166.3 258.2l-.7 .2-.8-.1-.4-.2 .1-.3 .7-.2 .7 0 .5 .3Z"/><path class="iso-line iso-edge" data-tone="lo" d="M164.4 258.1l.1-.3 .7-.2 .7 0 .5 .3M166.4 289.5l-.1 .3-.7 .2-.8-.1-.4-.2M164.4 258.1l0 31.6M166.4 257.9l0 31.6"/></g><g class="iso-solid"><path class="iso-fill" d="M154.5 209.6l.1-.2 .4-.3 .5-.1 .6 0 25.9 6.6 .4 .2 0 26.4-.1 .3-.5 .3-.5 .1-.6 0-25.9-6.6-.3-.2Z"/><path class="iso-shade" data-shade="0" d="M182.4 242.2l-.1 .3 0-26.5 .1-.2ZM182.3 242.5l-.5 .3 0-26.5 .5-.3ZM181.8 242.8l-.5 .1 0-26.4 .5-.2Z"/><path class="iso-shade" data-shade="2" d="M181.3 242.9l-.6 0 0-26.5 .6 .1Z"/><path class="iso-shade" data-shade="3" d="M180.7 242.9l-25.9-6.6 0-26.5 25.9 6.6ZM154.8 236.3l-.3-.2 0-26.5 .3 .2Z"/><path class="iso-top" d="M182 215.6l.4 .2-.1 .2-.5 .3-.5 .2-.6-.1-25.9-6.6-.3-.2 .1-.2 .4-.3 .5-.1 .6 0Z"/><path class="iso-line iso-crease" data-tone="faint" d="M182.4 215.8l-.1 .2-.5 .3-.5 .2-.6-.1-25.9-6.6-.3-.2"/><path class="iso-line iso-edge" data-tone="mid" d="M154.5 209.6l.1-.2 .4-.3 .5-.1 .6 0 25.9 6.6 .4 .2M182.4 242.2l-.1 .3-.5 .3-.5 .1-.6 0-25.9-6.6-.3-.2M182.4 215.8l0 26.4M154.5 209.6l0 26.5"/></g><g class="iso-solid"><path class="iso-fill" d="M137.1 248.4l.3-.5 15.4-9.9 .9-.4 1.2-.1 1.2 .1 25.9 6.6 .9 .4 .2 .5 0 2.9-.3 .5-15.4 10-.9 .4-1.2 .1-1.2-.2-25.9-6.6-.8-.3-.3-.5Z"/><path class="iso-shade" data-shade="0" d="M183.1 248l-.3 .5 0-2.9 .3-.5ZM182.8 248.5l-15.4 10 0-2.9 15.4-10ZM167.4 258.5l-.9 .4 0-3 .9-.3Z"/><path class="iso-shade" data-shade="1" d="M166.5 258.9l-1.2 .1 0-3 1.2-.1Z"/><path class="iso-shade" data-shade="2" d="M165.3 259l-1.2-.2 0-2.9 1.2 .1Z"/><path class="iso-shade" data-shade="3" d="M164.1 258.8l-25.9-6.6 0-2.9 25.9 6.6ZM138.2 252.2l-.8-.3 0-3 .8 .4ZM137.4 251.9l-.3-.5 0-3 .3 .5Z"/><path class="iso-top" d="M182 244.2l.9 .4 .2 .5-.3 .5-15.4 10-.9 .3-1.2 .1-1.2-.1-25.9-6.6-.8-.4-.3-.5 .3-.5 15.4-9.9 .9-.4 1.2-.1 1.2 .1Z"/><path class="iso-line iso-crease" data-tone="faint" d="M183.1 245.1l-.3 .5-15.4 10-.9 .3-1.2 .1-1.2-.1-25.9-6.6-.8-.4-.3-.5"/><path class="iso-line iso-bevel" data-tone="faint" d="M183.1 245.1l-.6 .4-15.3 10-.8 .3-1.1 .1-1.1-.1-25.8-6.6-.8-.3-.5-.5"/><path class="iso-line iso-edge" data-tone="mid" d="M137.1 248.4l.3-.5 15.4-9.9 .9-.4 1.2-.1 1.2 .1 25.9 6.6 .9 .4 .2 .5M183.1 248l-.3 .5-15.4 10-.9 .4-1.2 .1-1.2-.2-25.9-6.6-.8-.3-.3-.5M183.1 245.1l0 2.9M137.1 248.4l0 3"/></g><path class="iso-halo" d="M186.5 293.3l.1-.6 .4-.7 .7-.5 10.3-6.7 .9-.5 1.2-.4 1.4-.3 1.5-.2 1.5-.1 1.6 0 1.5 .2 1.4 .3 16.4 4.1 1.2 .4 1.1 .5 .8 .6 .5 .6 .2 .6 0 1.5-.1 .6-.4 .6-.7 .6-10.3 6.7-.9 .5-1.2 .4-1.4 .3-1.5 .2-1.5 .1-1.6 0-1.5-.2-1.4-.3-16.4-4.2-1.3-.3-1-.5-.8-.6-.5-.6-.2-.6Z"/><g class="iso-solid"><path class="iso-fill" d="M201.5 253.6l.2-.3 .6-.2 .8 .1 .5 .3 0 31.5-.2 .4-.6 .2-.8-.1-.5-.3Z"/><path class="iso-shade" data-shade="0" d="M203.4 285.4l-.6 .2 0-31.6 .6-.2ZM203.6 285l-.2 .4 0-31.6 .2-.3Z"/><path class="iso-shade" data-shade="2" d="M202.8 285.6l-.8-.1 0-31.6 .8 .1Z"/><path class="iso-shade" data-shade="3" d="M202 285.5l-.5-.3 0-31.6 .5 .3Z"/><path class="iso-top" d="M203.4 253.8l-.6 .2-.8-.1-.5-.3 .2-.3 .6-.2 .8 .1 .5 .3Z"/><path class="iso-line iso-edge" data-tone="lo" d="M201.5 253.6l.2-.3 .6-.2 .8 .1 .5 .3M203.6 285l-.2 .4-.6 .2-.8-.1-.5-.3M201.5 253.6l0 31.6M203.6 253.5l0 31.5"/></g><g class="iso-solid"><path class="iso-fill" d="M227.5 260.2l.1-.3 .6-.2 .8 .1 .5 .2 0 31.6-.1 .3-.7 .2-.8 0-.4-.3Z"/><path class="iso-shade" data-shade="0" d="M229.4 291.9l-.7 .2 0-31.6 .7-.1ZM229.5 291.6l-.1 .3 0-31.5 .1-.4Z"/><path class="iso-shade" data-shade="2" d="M228.7 292.1l-.8 0 0-31.6 .8 0Z"/><path class="iso-shade" data-shade="3" d="M227.9 292.1l-.4-.3 0-31.6 .4 .3Z"/><path class="iso-top" d="M229.4 260.4l-.7 .1-.8 0-.4-.3 .1-.3 .6-.2 .8 .1 .5 .2Z"/><path class="iso-line iso-edge" data-tone="lo" d="M227.5 260.2l.1-.3 .6-.2 .8 .1 .5 .2M229.5 291.6l-.1 .3-.7 .2-.8 0-.4-.3M227.5 260.2l0 31.6M229.5 260l0 31.6"/></g><g class="iso-solid"><path class="iso-fill" d="M186.2 263.6l.1-.3 .7-.2 .8 .1 .4 .2 0 31.6-.1 .3-.6 .2-.8 0-.5-.3Z"/><path class="iso-shade" data-shade="0" d="M188.1 295.3l-.6 .2 0-31.6 .6-.1ZM188.2 295l-.1 .3 0-31.5 .1-.4Z"/><path class="iso-shade" data-shade="2" d="M187.5 295.5l-.8 0 0-31.6 .8 0Z"/><path class="iso-shade" data-shade="3" d="M186.7 295.5l-.5-.3 0-31.6 .5 .3Z"/><path class="iso-top" d="M188.1 263.8l-.6 .1-.8 0-.5-.3 .1-.3 .7-.2 .8 .1 .4 .2Z"/><path class="iso-line iso-edge" data-tone="lo" d="M186.2 263.6l.1-.3 .7-.2 .8 .1 .4 .2M188.2 295l-.1 .3-.6 .2-.8 0-.5-.3M186.2 263.6l0 31.6M188.2 263.4l0 31.6"/></g><g class="iso-solid"><path class="iso-fill" d="M212.1 270.2l.1-.3 .7-.2 .8 .1 .4 .2 0 31.6-.1 .3-.6 .2-.8 0-.5-.3Z"/><path class="iso-shade" data-shade="0" d="M214 301.9l-.6 .2 0-31.6 .6-.2ZM214.1 301.6l-.1 .3 0-31.6 .1-.3Z"/><path class="iso-shade" data-shade="2" d="M213.4 302.1l-.8 0 0-31.6 .8 0Z"/><path class="iso-shade" data-shade="3" d="M212.6 302.1l-.5-.3 0-31.6 .5 .3Z"/><path class="iso-top" d="M214 270.3l-.6 .2-.8 0-.5-.3 .1-.3 .7-.2 .8 .1 .4 .2Z"/><path class="iso-line iso-edge" data-tone="lo" d="M212.1 270.2l.1-.3 .7-.2 .8 .1 .4 .2M214.1 301.6l-.1 .3-.6 .2-.8 0-.5-.3M212.1 270.2l0 31.6M214.1 270l0 31.6"/></g><g class="iso-solid"><path class="iso-fill" d="M202.2 221.8l.1-.3 .4-.3 .5-.1 .6 0 25.9 6.6 .4 .2 0 26.5-.1 .2-.4 .3-.5 .1-.6 0-25.9-6.6-.4-.2Z"/><path class="iso-shade" data-shade="0" d="M230.1 254.4l-.1 .2 0-26.4 .1-.3ZM230 254.6l-.4 .3 0-26.5 .4-.2ZM229.6 254.9l-.5 .1 0-26.4 .5-.2Z"/><path class="iso-shade" data-shade="2" d="M229.1 255l-.6 0 0-26.5 .6 .1Z"/><path class="iso-shade" data-shade="3" d="M228.5 255l-25.9-6.6 0-26.4 25.9 6.5ZM202.6 248.4l-.4-.2 0-26.4 .4 .2Z"/><path class="iso-top" d="M229.7 227.7l.4 .2-.1 .3-.4 .2-.5 .2-.6-.1-25.9-6.5-.4-.2 .1-.3 .4-.3 .5-.1 .6 0Z"/><path class="iso-line iso-crease" data-tone="faint" d="M230.1 227.9l-.1 .3-.4 .2-.5 .2-.6-.1-25.9-6.5-.4-.2"/><path class="iso-line iso-edge" data-tone="mid" d="M202.2 221.8l.1-.3 .4-.3 .5-.1 .6 0 25.9 6.6 .4 .2M230.1 254.4l-.1 .2-.4 .3-.5 .1-.6 0-25.9-6.6-.4-.2M230.1 227.9l0 26.5M202.2 221.8l0 26.4"/></g><g class="iso-solid"><path class="iso-fill" d="M184.8 260.6l.4-.5 15.3-10 .9-.4 1.2-.1 1.2 .2 25.9 6.6 .9 .3 .3 .5 0 3-.4 .5-15.3 9.9-.9 .4-1.3 .1-1.1-.1-26-6.6-.8-.4-.3-.5Z"/><path class="iso-shade" data-shade="0" d="M230.9 260.2l-.4 .5 0-3 .4-.5ZM230.5 260.7l-15.3 9.9 0-2.9 15.3-10ZM215.2 270.6l-.9 .4 0-3 .9-.3Z"/><path class="iso-shade" data-shade="1" d="M214.3 271l-1.3 .1 0-2.9 1.3-.2Z"/><path class="iso-shade" data-shade="2" d="M213 271.1l-1.1-.1 0-3 1.1 .2Z"/><path class="iso-shade" data-shade="3" d="M211.9 271l-26-6.6 0-3 26 6.6ZM185.9 264.4l-.8-.4 0-2.9 .8 .3ZM185.1 264l-.3-.5 0-2.9 .3 .5Z"/><path class="iso-top" d="M229.7 256.4l.9 .3 .3 .5-.4 .5-15.3 10-.9 .3-1.3 .2-1.1-.2-26-6.6-.8-.3-.3-.5 .4-.5 15.3-10 .9-.4 1.2-.1 1.2 .2Z"/><path class="iso-line iso-crease" data-tone="faint" d="M230.9 257.2l-.4 .5-15.3 10-.9 .3-1.3 .2-1.1-.2-26-6.6-.8-.3-.3-.5"/><path class="iso-line iso-bevel" data-tone="faint" d="M230.9 257.2l-.7 .5-15.3 9.9-.8 .3-1 .1-1.1-.1-25.9-6.6-.7-.3-.6-.4"/><path class="iso-line iso-edge" data-tone="mid" d="M184.8 260.6l.4-.5 15.3-10 .9-.4 1.2-.1 1.2 .2 25.9 6.6 .9 .3 .3 .5M230.9 260.2l-.4 .5-15.3 9.9-.9 .4-1.3 .1-1.1-.1-26-6.6-.8-.4-.3-.5M230.9 257.2l0 3M184.8 260.6l0 2.9"/></g><g data-cue="jij"><path class="iso-halo" d="M80.6 285.7l.1-.7 .5-.6 .7-.6 1.7-1.1 .9-.5 1.2-.4 1.4-.3 1.5-.2 1.5-.1 1.6 0 1.5 .2 1.4 .3 8.2 2.1 1.3 .4 1 .5 .8 .5 .5 .6 .2 .6 0 1.5-.1 .7-.4 .6-.7 .6-1.7 1.1-1 .5-1.2 .4-1.3 .3-1.5 .2-1.6 .1-1.6 0-1.5-.2-1.4-.3-8.2-2.1-1.2-.4-1.1-.5-.8-.5-.5-.6-.2-.7Z"/><g class="iso-solid"><path class="iso-fill" d="M91.8 282.7l.3-.6 2.2-1.4 1.2-.4 1.5 .1 6.2 1.6 .9 .5 0 3.3-.2 .6-2.3 1.5-1.2 .3-1.4-.1-6.3-1.6-.9-.5Z"/><path class="iso-shade" data-shade="0" d="M104.1 285.8l-.2 .6 0-3.3 .2-.6ZM103.9 286.4l-2.3 1.5 0-3.3 2.3-1.5ZM101.6 287.9l-1.2 .3 0-3.3 1.2-.3Z"/><path class="iso-shade" data-shade="2" d="M100.4 288.2l-1.4-.1 0-3.3 1.4 .1Z"/><path class="iso-shade" data-shade="3" d="M99 288.1l-6.3-1.6 0-3.3 6.3 1.6ZM92.7 286.5l-.9-.5 0-3.3 .9 .5Z"/><path class="iso-top" d="M103.2 282l.9 .5-.2 .6-2.3 1.5-1.2 .3-1.4-.1-6.3-1.6-.9-.5 .3-.6 2.2-1.4 1.2-.4 1.5 .1Z"/><path class="iso-line iso-crease" data-tone="faint" d="M104.1 282.5l-.2 .6-2.3 1.5-1.2 .3-1.4-.1-6.3-1.6-.9-.5"/><path class="iso-line iso-edge" data-tone="lo" d="M91.8 282.7l.3-.6 2.2-1.4 1.2-.4 1.5 .1 6.2 1.6 .9 .5M104.1 285.8l-.2 .6-2.3 1.5-1.2 .3-1.4-.1-6.3-1.6-.9-.5M104.1 282.5l0 3.3M91.8 282.7l0 3.3"/></g><g class="iso-solid"><path class="iso-fill" d="M91.5 223.7l.7-.9 1.7-.7 2.1-.3 2.3 .1 1.9 .5 1.3 .8 .2 .9 0 58.8-.7 .9-1.6 .6-2.2 .3-2.3-.1-1.9-.5-1.2-.8-.3-.9Z"/><path class="iso-shade" data-shade="0" d="M101 283.8l-1.6 .6 0-58.7 1.6-.7ZM101.7 282.9l-.7 .9 0-58.8 .7-.9Z"/><path class="iso-shade" data-shade="1" d="M99.4 284.4l-2.2 .3 0-58.7 2.2-.3Z"/><path class="iso-shade" data-shade="2" d="M97.2 284.7l-2.3-.1 0-58.7 2.3 .1Z"/><path class="iso-shade" data-shade="3" d="M94.9 284.6l-1.9-.5 0-58.7 1.9 .5ZM93 284.1l-1.2-.8 0-58.7 1.2 .8ZM91.8 283.3l-.3-.9 0-58.7 .3 .9Z"/><path class="iso-top" d="M101 225l-1.6 .7-2.2 .3-2.3-.1-1.9-.5-1.2-.8-.3-.9 .7-.9 1.7-.7 2.1-.3 2.3 .1 1.9 .5 1.3 .8 .2 .9Z"/><path class="iso-line iso-edge" data-tone="lo" d="M91.5 223.7l.7-.9 1.7-.7 2.1-.3 2.3 .1 1.9 .5 1.3 .8 .2 .9M101.7 282.9l-.7 .9-1.6 .6-2.2 .3-2.3-.1-1.9-.5-1.2-.8-.3-.9M91.5 223.7l0 58.7M101.7 224.1l0 58.8"/></g><g class="iso-solid"><path class="iso-fill" d="M85.9 286.6l.2-.6 2.2-1.4 1.2-.4 1.5 .1 6.3 1.6 .8 .5 0 3.3-.2 .6-2.2 1.5-1.2 .3-1.5-.1-6.3-1.6-.8-.5Z"/><path class="iso-shade" data-shade="0" d="M98.1 289.7l-.2 .6 0-3.3 .2-.6ZM97.9 290.3l-2.2 1.5 0-3.3 2.2-1.5ZM95.7 291.8l-1.2 .3 0-3.3 1.2-.3Z"/><path class="iso-shade" data-shade="2" d="M94.5 292.1l-1.5-.1 0-3.3 1.5 .1Z"/><path class="iso-shade" data-shade="3" d="M93 292l-6.3-1.6 0-3.3 6.3 1.6ZM86.7 290.4l-.8-.5 0-3.3 .8 .5Z"/><path class="iso-top" d="M97.3 285.9l.8 .5-.2 .6-2.2 1.5-1.2 .3-1.5-.1-6.3-1.6-.8-.5 .2-.6 2.2-1.4 1.2-.4 1.5 .1Z"/><path class="iso-line iso-crease" data-tone="faint" d="M98.1 286.4l-.2 .6-2.2 1.5-1.2 .3-1.5-.1-6.3-1.6-.8-.5"/><path class="iso-line iso-edge" data-tone="lo" d="M85.9 286.6l.2-.6 2.2-1.4 1.2-.4 1.5 .1 6.3 1.6 .8 .5M98.1 289.7l-.2 .6-2.2 1.5-1.2 .3-1.5-.1-6.3-1.6-.8-.5M98.1 286.4l0 3.3M85.9 286.6l0 3.3"/></g><g class="iso-solid"><path class="iso-fill" d="M85.5 227.5l.8-.8 1.6-.7 2.2-.3 2.2 .1 2 .5 1.2 .8 .3 .9 0 58.8-.8 .8-1.6 .7-2.2 .3-2.2-.1-2-.5-1.2-.8-.3-.9Z"/><path class="iso-shade" data-shade="0" d="M95 287.6l-1.6 .7 0-58.8 1.6-.6ZM95.8 286.8l-.8 .8 0-58.7 .8-.9Z"/><path class="iso-shade" data-shade="1" d="M93.4 288.3l-2.2 .3 0-58.8 2.2-.3Z"/><path class="iso-shade" data-shade="2" d="M91.2 288.6l-2.2-.1 0-58.8 2.2 .1Z"/><path class="iso-shade" data-shade="3" d="M89 288.5l-2-.5 0-58.7 2 .4ZM87 288l-1.2-.8 0-58.7 1.2 .8ZM85.8 287.2l-.3-.9 0-58.8 .3 1Z"/><path class="iso-top" d="M95 228.9l-1.6 .6-2.2 .3-2.2-.1-2-.4-1.2-.8-.3-1 .8-.8 1.6-.7 2.2-.3 2.2 .1 2 .5 1.2 .8 .3 .9Z"/><path class="iso-line iso-edge" data-tone="lo" d="M85.5 227.5l.8-.8 1.6-.7 2.2-.3 2.2 .1 2 .5 1.2 .8 .3 .9M95.8 286.8l-.8 .8-1.6 .7-2.2 .3-2.2-.1-2-.5-1.2-.8-.3-.9M85.5 227.5l0 58.8M95.8 228l0 58.8"/></g><g class="iso-solid pm-jij"><path class="iso-fill" d="M98.9 179.3l.3-.7 .9-.6 1.5-.4 1.8 .1 1.3 .4 1.1 .6 0 36.7-.3 .7-.8 .6-1.5 .4-1.9-.1-1.3-.3-1.1-.6Z"/><path class="iso-shade" data-shade="0" d="M105.8 215.4l-.3 .7 0-36.7 .3-.7ZM105.5 216.1l-.8 .6 0-36.7 .8-.6ZM104.7 216.7l-1.5 .4 0-36.7 1.5-.4Z"/><path class="iso-shade" data-shade="2" d="M103.2 217.1l-1.9-.1 0-36.7 1.9 .1Z"/><path class="iso-shade" data-shade="3" d="M101.3 217l-1.3-.3 0-36.8 1.3 .4ZM100 216.7l-1.1-.6 0-36.8 1.1 .6Z"/><path class="iso-top" d="M104.7 178.1l1.1 .6-.3 .7-.8 .6-1.5 .4-1.9-.1-1.3-.4-1.1-.6 .3-.7 .9-.6 1.5-.4 1.8 .1Z"/><path class="iso-line iso-crease" data-tone="faint" d="M105.8 178.7l-.3 .7-.8 .6-1.5 .4-1.9-.1-1.3-.4-1.1-.6"/><path class="iso-line iso-edge" data-tone="mid" d="M98.9 179.3l.3-.7 .9-.6 1.5-.4 1.8 .1 1.3 .4 1.1 .6M105.8 215.4l-.3 .7-.8 .6-1.5 .4-1.9-.1-1.3-.3-1.1-.6M105.8 178.7l0 36.7M98.9 179.3l0 36.8"/></g><g class="iso-solid pm-jij"><path class="iso-fill" d="M81.7 183.6l.6-.7 9-5.8 1.2-.5 1.5-.3 1.8 0 1.6 .2 6.1 1.6 1.3 .5 .7 .6 0 .7 0 45.6-.6 .6-8.9 5.8-1.2 .6-1.6 .2-1.7 .1-1.6-.3-6.2-1.5-1.2-.5-.7-.7-.1-.7Z"/><path class="iso-shade" data-shade="0" d="M105.5 225.5l-.6 .6 0-45.5 .6-.7ZM104.9 226.1l-8.9 5.8 0-45.5 8.9-5.8ZM96 231.9l-1.2 .6 0-45.6 1.2-.5Z"/><path class="iso-shade" data-shade="1" d="M94.8 232.5l-1.6 .2 0-45.5 1.6-.3ZM93.2 232.7l-1.7 .1 0-45.6 1.7 0Z"/><path class="iso-shade" data-shade="2" d="M91.5 232.8l-1.6-.3 0-45.5 1.6 .2Z"/><path class="iso-shade" data-shade="3" d="M89.9 232.5l-6.2-1.5 0-45.6 6.2 1.6ZM83.7 231l-1.2-.5 0-45.6 1.2 .5ZM82.5 230.5l-.7-.7 0-45.5 .7 .6ZM81.8 229.8l-.1-.7 0-45.5 .1 .7Z"/><path class="iso-top" d="M103.5 178.1l1.3 .5 .7 .6 0 .7-.6 .7-8.9 5.8-1.2 .5-1.6 .3-1.7 0-1.6-.2-6.2-1.6-1.2-.5-.7-.6-.1-.7 .6-.7 9-5.8 1.2-.5 1.5-.3 1.8 0 1.6 .2Z"/><path class="iso-line iso-crease" data-tone="faint" d="M105.5 179.9l-.6 .7-8.9 5.8-1.2 .5-1.6 .3-1.7 0-1.6-.2-6.2-1.6-1.2-.5-.7-.6-.1-.7"/><path class="iso-line iso-bevel" data-tone="faint" d="M105.5 179.9l-1 .6-8.9 5.8-1.1 .4-1.4 .3-1.5 0-1.5-.2-6.1-1.5-1.1-.5-.7-.6-.5-.6"/><path class="iso-line" data-tone="lo" d="M105.5 185.8l-.6 .6-8.9 5.9-1.2 .5-1.6 .3-1.7 0-1.6-.3-6.2-1.5-1.2-.5-.7-.6-.1-.7"/><path class="iso-line iso-edge" data-tone="mid" d="M81.7 183.6l.6-.7 9-5.8 1.2-.5 1.5-.3 1.8 0 1.6 .2 6.1 1.6 1.3 .5 .7 .6 0 .7M105.5 225.5l-.6 .6-8.9 5.8-1.2 .6-1.6 .2-1.7 .1-1.6-.3-6.2-1.5-1.2-.5-.7-.7-.1-.7M105.5 179.9l0 45.6M81.7 183.6l0 45.5"/></g><g class="iso-solid pm-jij"><path class="iso-fill" d="M81.4 190.7l.3-.7 .9-.6 1.5-.4 1.8 .1 1.4 .3 1 .6 0 36.8-.3 .7-.8 .6-1.5 .4-1.8-.1-1.4-.4-1.1-.6Z"/><path class="iso-shade" data-shade="0" d="M88.3 226.8l-.3 .7 0-36.7 .3-.8ZM88 227.5l-.8 .6 0-36.8 .8-.5ZM87.2 228.1l-1.5 .4 0-36.7 1.5-.5Z"/><path class="iso-shade" data-shade="2" d="M85.7 228.5l-1.8-.1 0-36.7 1.8 .1Z"/><path class="iso-shade" data-shade="3" d="M83.9 228.4l-1.4-.4 0-36.7 1.4 .4ZM82.5 228l-1.1-.6 0-36.7 1.1 .6Z"/><path class="iso-top" d="M87.3 189.4l1 .6-.3 .8-.8 .5-1.5 .5-1.8-.1-1.4-.4-1.1-.6 .3-.7 .9-.6 1.5-.4 1.8 .1Z"/><path class="iso-line iso-crease" data-tone="faint" d="M88.3 190l-.3 .8-.8 .5-1.5 .5-1.8-.1-1.4-.4-1.1-.6"/><path class="iso-line iso-edge" data-tone="mid" d="M81.4 190.7l.3-.7 .9-.6 1.5-.4 1.8 .1 1.4 .3 1 .6M88.3 226.8l-.3 .7-.8 .6-1.5 .4-1.8-.1-1.4-.4-1.1-.6M88.3 190l0 36.8M81.4 190.7l0 36.7"/></g><g class="iso-solid"><path class="iso-fill" d="M90.1 177.3l.5-.7 1.4-.5 1.7-.2 1.8 .2 1.2 .6 .5 .7 0 4.4-.6 .7-1.3 .5-1.8 .2-1.8-.2-1.2-.6-.4-.7Z"/><path class="iso-shade" data-shade="0" d="M96.6 182.5l-1.3 .5 0-4.4 1.3-.5ZM97.2 181.8l-.6 .7 0-4.4 .6-.7Z"/><path class="iso-shade" data-shade="1" d="M95.3 183l-1.8 .2 0-4.4 1.8-.2Z"/><path class="iso-shade" data-shade="2" d="M93.5 183.2l-1.8-.2 0-4.4 1.8 .2Z"/><path class="iso-shade" data-shade="3" d="M91.7 183l-1.2-.6 0-4.4 1.2 .6ZM90.5 182.4l-.4-.7 0-4.4 .4 .7Z"/><path class="iso-top" d="M96.6 178.1l-1.3 .5-1.8 .2-1.8-.2-1.2-.6-.4-.7 .5-.7 1.4-.5 1.7-.2 1.8 .2 1.2 .6 .5 .7Z"/><path class="iso-line iso-edge" data-tone="hi" d="M90.1 177.3l.5-.7 1.4-.5 1.7-.2 1.8 .2 1.2 .6 .5 .7M97.2 181.8l-.6 .7-1.3 .5-1.8 .2-1.8-.2-1.2-.6-.4-.7M90.1 177.3l0 4.4M97.2 177.4l0 4.4"/></g><g class="iso-solid" data-seamless=""><path class="iso-fill" d="M83.6 167.2l.3-2.2 .7-2 1.1-1.9 1.5-1.5 1.9-1.1 2-.7 2.2-.3 2.1 .3 2.1 .7 1.8 1.1 1.5 1.5 1.2 1.9 .7 2 .2 2.2-.2 2.1-.7 2-1.2 1.9-1.5 1.5-1.8 1.2-2.1 .7-2.1 .2-2.2-.2-2-.7-1.9-1.2-1.5-1.5-1.1-1.9-.7-2Z"/><path class="iso-shade" data-shade="0" d="M83.6 167.2l.3-2.2 .7-2 1.1-1.9 1.5-1.5 1.9-1.1 2-.7 2.2-.3 2.1 .3 2.1 .7 1.8 1.1 1.5 1.5 1.2 1.9 .7 2 .2 2.2-.2 2.1-.7 2-1.2 1.9-1.5 1.5-1.8 1.2-2.1 .7-2.1 .2-2.2-.2-2-.7-1.9-1.2-1.5-1.5-1.1-1.9-.7-2Z"/><path class="iso-shade" data-shade="1" d="M83.6 167.2l.3-2.2 .7-2 1.1-1.9 1.5-1.5 1.9-1.1 2-.7 2.2-.3 2.1 .3 2.1 .7 1.6 1.1 .2 .7-.2 1-.5 1.2-.9 1.4-1.1 1.5-1.4 1.5-1.6 1.4-1.6 1.4-1.6 1.1-1.5 .9-1.4 .6-1.1 .2-.9 0-.6-.4-.3-.8-.7-2Z"/><path class="iso-shade" data-shade="2" d="M83.6 167.2l.3-2.2 .7-2 1.1-1.9 1.5-1.5 1.9-1.1 2-.7 2.2-.3 2.1 .3 1.8 .7 .2 .7-.2 .9-.5 1.1-.8 1.3-1 1.4-1.3 1.4-1.4 1.3-1.5 1.3-1.5 1-1.4 .8-1.3 .6-1.1 .2-.8 0-.5-.4-.2-.8Z"/><path class="iso-shade" data-shade="3" d="M83.6 167.2l.3-2.2 .7-2 1.1-1.9 1.5-1.5 1.9-1.1 2-.7 2.2-.3 1.4 .1 .4 .4 .2 .5-.2 .8-.4 1-.7 1.1-.9 1.2-1.1 1.2-1.3 1.2-1.3 1-1.3 .9-1.2 .8-1.1 .4-.9 .2-.7 0-.4-.3Z"/><path class="iso-top" d=""/><path class="iso-line iso-edge" data-tone="lo" d="M83.6 167.2l.3-2.2 .7-2 1.1-1.9 1.5-1.5 1.9-1.1 2-.7 2.2-.3 2.1 .3 2.1 .7 1.8 1.1 1.5 1.5 1.2 1.9 .7 2 .2 2.2-.2 2.1-.7 2-1.2 1.9-1.5 1.5-1.8 1.2-2.1 .7-2.1 .2-2.2-.2-2-.7-1.9-1.2-1.5-1.5-1.1-1.9-.7-2Z"/></g><g class="iso-solid" data-seamless=""><path class="iso-fill" d="M84.6 169.9l.2-2.1 .7-1.9 1.1-1.8 1.4-1.4 1.8-1.1 1.9-.7 2.1-.2 2 .2 1.9 .7 1.8 1.1 1.4 1.4 1.1 1.8 .7 1.9 .2 2.1-.2 2-.7 1.9-1.1 1.8-1.4 1.4-1.8 1.1-1.9 .7-2 .2-2.1-.2-1.9-.7-1.8-1.1-1.4-1.4-1.1-1.8-.7-1.9Z"/><path class="iso-shade" data-shade="0" d="M84.6 169.9l.2-2.1 .7-1.9 1.1-1.8 1.4-1.4 1.8-1.1 1.9-.7 2.1-.2 2 .2 1.9 .7 1.8 1.1 1.4 1.4 1.1 1.8 .7 1.9 .2 2.1-.2 2-.7 1.9-1.1 1.8-1.4 1.4-1.8 1.1-1.9 .7-2 .2-2.1-.2-1.9-.7-1.8-1.1-1.4-1.4-1.1-1.8-.7-1.9Z"/><path class="iso-shade" data-shade="1" d="M84.6 169.9l.2-2.1 .7-1.9 1.1-1.8 1.4-1.4 1.8-1.1 1.9-.7 2.1-.2 2 .2 1.9 .7 1.6 1 .2 .7-.2 1-.5 1.1-.8 1.3-1.1 1.4-1.3 1.5-1.5 1.4-1.5 1.2-1.6 1.1-1.4 .8-1.3 .6-1.1 .3-.8-.1-.5-.4-.4-.7-.7-1.9Z"/><path class="iso-shade" data-shade="2" d="M84.6 169.9l.2-2.1 .7-1.9 1.1-1.8 1.4-1.4 1.8-1.1 1.9-.7 2.1-.2 2 .2 1.7 .8 .2 .6-.2 .9-.5 1-.7 1.3-1 1.3-1.2 1.3-1.4 1.3-1.4 1.1-1.4 1-1.4 .8-1.2 .5-1 .3-.8-.1-.4-.4-.3-.7Z"/><path class="iso-shade" data-shade="3" d="M84.6 169.9l.2-2.1 .7-1.9 1.1-1.8 1.4-1.4 1.8-1.1 1.9-.7 2.1-.2 1.3 .1 .4 .3 .1 .6-.1 .7-.4 .9-.7 1.1-.8 1.1-1.1 1.2-1.2 1.1-1.2 1-1.2 .9-1.2 .6-1 .5-.9 .2-.7-.1-.4-.3Z"/><path class="iso-top" d=""/><path class="iso-line iso-edge" data-tone="hi" d="M84.6 169.9l.2-2.1 .7-1.9 1.1-1.8 1.4-1.4 1.8-1.1 1.9-.7 2.1-.2 2 .2 1.9 .7 1.8 1.1 1.4 1.4 1.1 1.8 .7 1.9 .2 2.1-.2 2-.7 1.9-1.1 1.8-1.4 1.4-1.8 1.1-1.9 .7-2 .2-2.1-.2-1.9-.7-1.8-1.1-1.4-1.4-1.1-1.8-.7-1.9Z"/></g></g><path class="iso-halo" d="M91.9 297.7l0-.4 .3-.4 .4-.3 29-18.9 .6-.3 .7-.2 .8-.2 .9-.1 .9-.1 1 0 .9 .1 .8 .2 99.6 25.3 .7 .3 .7 .2 .4 .4 .3 .3 .2 .4 0 1.5-.1 .4-.3 .4-.4 .3-29 18.9-.5 .3-.7 .2-.9 .2-.9 .1-.9 .1-.9 0-1-.1-.8-.2-99.6-25.3-.7-.3-.6-.2-.5-.4-.3-.3-.1-.4Z"/><g class="iso-solid"><path class="iso-fill" d="M124.5 234.1l1.6-1 .6-.1 2.5 .7 .2 .2 0 48.5-1.6 1-.6 .1-2.5-.6-.2-.3Z"/><path class="iso-shade" data-shade="0" d="M129.4 282.4l-1.6 1 0-48.5 1.6-1Z"/><path class="iso-shade" data-shade="1" d="M127.8 283.4l-.6 .1 0-48.5 .6-.1Z"/><path class="iso-shade" data-shade="3" d="M127.2 283.5l-2.5-.6 0-48.5 2.5 .6ZM124.7 282.9l-.2-.3 0-48.5 .2 .3Z"/><path class="iso-top" d="M129.2 233.7l.2 .2-1.6 1-.6 .1-2.5-.6-.2-.3 1.6-1 .6-.1Z"/><path class="iso-line iso-crease" data-tone="faint" d="M129.4 233.9l-1.6 1-.6 .1-2.5-.6-.2-.3"/><path class="iso-line iso-edge" data-tone="lo" d="M124.5 234.1l1.6-1 .6-.1 2.5 .7 .2 .2M129.4 282.4l-1.6 1-.6 .1-2.5-.6-.2-.3M129.4 233.9l0 48.5M124.5 234.1l0 48.5"/></g><g class="iso-solid"><path class="iso-fill" d="M217.3 257.7l1.5-1 .7-.1 2.4 .6 .2 .3 0 48.5-1.5 1-.7 .1-2.5-.7-.1-.2Z"/><path class="iso-shade" data-shade="0" d="M222.1 306l-1.5 1 0-48.5 1.5-1Z"/><path class="iso-shade" data-shade="1" d="M220.6 307l-.7 .1 0-48.5 .7-.1Z"/><path class="iso-shade" data-shade="3" d="M219.9 307.1l-2.5-.7 0-48.5 2.5 .7ZM217.4 306.4l-.1-.2 0-48.5 .1 .2Z"/><path class="iso-top" d="M221.9 257.2l.2 .3-1.5 1-.7 .1-2.5-.7-.1-.2 1.5-1 .7-.1Z"/><path class="iso-line iso-crease" data-tone="faint" d="M222.1 257.5l-1.5 1-.7 .1-2.5-.7-.1-.2"/><path class="iso-line iso-edge" data-tone="lo" d="M217.3 257.7l1.5-1 .7-.1 2.4 .6 .2 .3M222.1 306l-1.5 1-.7 .1-2.5-.7-.1-.2M222.1 257.5l0 48.5M217.3 257.7l0 48.5"/></g><g class="iso-solid"><path class="iso-fill" d="M99.8 250.2l1.6-1 .6-.1 2.5 .7 .1 .2 0 48.5-1.5 1-.7 .1-2.4-.7-.2-.2Z"/><path class="iso-shade" data-shade="0" d="M104.6 298.5l-1.5 1 0-48.5 1.5-1Z"/><path class="iso-shade" data-shade="1" d="M103.1 299.5l-.7 .1 0-48.5 .7-.1Z"/><path class="iso-shade" data-shade="3" d="M102.4 299.6l-2.4-.7 0-48.4 2.4 .6ZM100 298.9l-.2-.2 0-48.5 .2 .3Z"/><path class="iso-top" d="M104.5 249.8l.1 .2-1.5 1-.7 .1-2.4-.6-.2-.3 1.6-1 .6-.1Z"/><path class="iso-line iso-crease" data-tone="faint" d="M104.6 250l-1.5 1-.7 .1-2.4-.6-.2-.3"/><path class="iso-line iso-edge" data-tone="lo" d="M99.8 250.2l1.6-1 .6-.1 2.5 .7 .1 .2M104.6 298.5l-1.5 1-.7 .1-2.4-.7-.2-.2M104.6 250l0 48.5M99.8 250.2l0 48.5"/></g><g class="iso-solid"><path class="iso-fill" d="M192.6 273.8l1.5-1 .7-.1 2.4 .6 .2 .3 0 48.5-1.6 1-.6 0-2.5-.6-.1-.3Z"/><path class="iso-shade" data-shade="0" d="M197.4 322.1l-1.6 1 0-48.5 1.6-1Z"/><path class="iso-shade" data-shade="1" d="M195.8 323.1l-.6 0 0-48.4 .6-.1Z"/><path class="iso-shade" data-shade="3" d="M195.2 323.1l-2.5-.6 0-48.5 2.5 .7ZM192.7 322.5l-.1-.3 0-48.4 .1 .2Z"/><path class="iso-top" d="M197.2 273.3l.2 .3-1.6 1-.6 .1-2.5-.7-.1-.2 1.5-1 .7-.1Z"/><path class="iso-line iso-crease" data-tone="faint" d="M197.4 273.6l-1.6 1-.6 .1-2.5-.7-.1-.2"/><path class="iso-line iso-edge" data-tone="lo" d="M192.6 273.8l1.5-1 .7-.1 2.4 .6 .2 .3M197.4 322.1l-1.6 1-.6 0-2.5-.6-.1-.3M197.4 273.6l0 48.5M192.6 273.8l0 48.4"/></g><g class="iso-solid"><path class="iso-fill" d="M100.4 247.1l25.6-16.6 1.1-.1 94.1 23.9 .3 .4 0 3.7-25.6 16.6-1.1 .1-94.1-23.9-.3-.4Z"/><path class="iso-shade" data-shade="0" d="M221.5 258.4l-25.6 16.6 0-3.6 25.6-16.7Z"/><path class="iso-shade" data-shade="1" d="M195.9 275l-1.1 .1 0-3.6 1.1-.1Z"/><path class="iso-shade" data-shade="3" d="M194.8 275.1l-94.1-23.9 0-3.6 94.1 23.9ZM100.7 251.2l-.3-.4 0-3.7 .3 .5Z"/><path class="iso-top" d="M221.2 254.3l.3 .4-25.6 16.7-1.1 .1-94.1-23.9-.3-.5 25.6-16.6 1.1-.1Z"/><path class="iso-line iso-crease" data-tone="faint" d="M221.5 254.7l-25.6 16.7-1.1 .1-94.1-23.9-.3-.5"/><path class="iso-line iso-edge" data-tone="lo" d="M100.4 247.1l25.6-16.6 1.1-.1 94.1 23.9 .3 .4M221.5 258.4l-25.6 16.6-1.1 .1-94.1-23.9-.3-.4M221.5 254.7l0 3.7M100.4 247.1l0 3.7"/></g><g class="iso-solid"><path class="iso-fill" d="M95.2 244.7l.3-.4 28.6-18.6 .8-.3 1-.1 1 .1 98.8 25.2 .8 .3 .2 .4 0 2.9-.3 .4-28.6 18.6-.7 .3-1 .1-1-.1-98.9-25.2-.7-.3-.3-.4Z"/><path class="iso-shade" data-shade="0" d="M226.7 254.2l-.3 .4 0-2.9 .3-.4ZM226.4 254.6l-28.6 18.6 0-2.9 28.6-18.6ZM197.8 273.2l-.7 .3 0-2.9 .7-.3Z"/><path class="iso-shade" data-shade="1" d="M197.1 273.5l-1 .1 0-3 1 0Z"/><path class="iso-shade" data-shade="2" d="M196.1 273.6l-1-.1 0-3 1 .1Z"/><path class="iso-shade" data-shade="3" d="M195.1 273.5l-98.9-25.2 0-2.9 98.9 25.1ZM96.2 248.3l-.7-.3 0-2.9 .7 .3ZM95.5 248l-.3-.4 0-2.9 .3 .4Z"/><path class="iso-top" d="M225.7 250.6l.8 .3 .2 .4-.3 .4-28.6 18.6-.7 .3-1 0-1-.1-98.9-25.1-.7-.3-.3-.4 .3-.4 28.6-18.6 .8-.3 1-.1 1 .1Z"/><path class="iso-line iso-crease" data-tone="faint" d="M226.7 251.3l-.3 .4-28.6 18.6-.7 .3-1 0-1-.1-98.9-25.1-.7-.3-.3-.4"/><path class="iso-line iso-bevel" data-tone="faint" d="M226.7 251.3l-.8 .3-28.4 18.5-.7 .3-.7 .1-.8-.2-98.8-25.1-.6-.2-.7-.3"/><path class="iso-line iso-edge" data-tone="mid" d="M95.2 244.7l.3-.4 28.6-18.6 .8-.3 1-.1 1 .1 98.8 25.2 .8 .3 .2 .4M226.7 254.2l-.3 .4-28.6 18.6-.7 .3-1 .1-1-.1-98.9-25.2-.7-.3-.3-.4M226.7 251.3l0 2.9M95.2 244.7l0 2.9"/></g><g data-cue="sheet"><g transform="matrix(0.682 0.173 -0.426 0.277 129.595 236.805)"><path class="pm-paper" d="M0 0H21V29.7H0Z"/></g><g transform="matrix(0.682 0.173 -0.426 0.277 129.595 236.805)"><g data-k="sLines"></g></g></g><g data-cue="laptop"><g class="iso-solid"><path class="iso-fill" d="M180.1 227.4l.1-.1 .1 0 .2-.1 .3 0 21.2 5.4 .1 .1 0 15 0 .1-.1 .1-.2 0-.3 0-21.2-5.4-.2-.1Z"/><path class="iso-shade" data-shade="0" d="M202.1 247.7l0 .1 0-15 0-.1ZM202.1 247.8l-.1 .1 0-15 .1-.1ZM202 247.9l-.2 0 0-15 .2 0Z"/><path class="iso-shade" data-shade="2" d="M201.8 247.9l-.3 0 0-15 .3 0Z"/><path class="iso-shade" data-shade="3" d="M201.5 247.9l-21.2-5.4 0-14.9 21.2 5.3ZM180.3 242.5l-.2-.1 0-15 .2 .2Z"/><path class="iso-top" d="M202 232.6l.1 .1 0 .1-.1 .1-.2 0-.3 0-21.2-5.3-.2-.2 .1-.1 .1 0 .2-.1 .3 0Z"/><path class="iso-line iso-crease" data-tone="faint" d="M202.1 232.7l0 .1-.1 .1-.2 0-.3 0-21.2-5.3-.2-.2"/><path class="iso-line iso-edge" data-tone="mid" d="M180.1 227.4l.1-.1 .1 0 .2-.1 .3 0 21.2 5.4 .1 .1M202.1 247.7l0 .1-.1 .1-.2 0-.3 0-21.2-5.4-.2-.1M202.1 232.7l0 15M180.1 227.4l0 15"/></g><g class="iso-solid"><path class="iso-fill" d="M171.4 248.2l.1-.3 8.6-5.5 .5-.2 .6 .1 20.4 5.2 .4 .2 0 1.2-.1 .2-8.5 5.6-.5 .1-.7 0-20.4-5.2-.4-.2Z"/><path class="iso-shade" data-shade="0" d="M202 248.9l-.1 .2 0-1.2 .1-.2ZM201.9 249.1l-8.5 5.6 0-1.2 8.5-5.6ZM193.4 254.7l-.5 .1 0-1.2 .5-.1Z"/><path class="iso-shade" data-shade="2" d="M192.9 254.8l-.7 0 0-1.2 .7 0Z"/><path class="iso-shade" data-shade="3" d="M192.2 254.8l-20.4-5.2 0-1.2 20.4 5.2ZM171.8 249.6l-.4-.2 0-1.2 .4 .2Z"/><path class="iso-top" d="M201.6 247.5l.4 .2-.1 .2-8.5 5.6-.5 .1-.7 0-20.4-5.2-.4-.2 .1-.3 8.6-5.5 .5-.2 .6 .1Z"/><path class="iso-line iso-crease" data-tone="faint" d="M202 247.7l-.1 .2-8.5 5.6-.5 .1-.7 0-20.4-5.2-.4-.2"/><path class="iso-line iso-edge" data-tone="mid" d="M171.4 248.2l.1-.3 8.6-5.5 .5-.2 .6 .1 20.4 5.2 .4 .2M202 248.9l-.1 .2-8.5 5.6-.5 .1-.7 0-20.4-5.2-.4-.2M202 247.7l0 1.2M171.4 248.2l0 1.2"/></g><g class="iso-dots" data-tone="lo"><circle cx="181.1" cy="244.2" r="0.45"/><circle cx="183.1" cy="244.7" r="0.45"/><circle cx="185" cy="245.2" r="0.45"/><circle cx="187" cy="245.7" r="0.45"/><circle cx="189" cy="246.2" r="0.45"/><circle cx="191" cy="246.7" r="0.45"/><circle cx="192.9" cy="247.2" r="0.45"/><circle cx="194.9" cy="247.7" r="0.45"/><circle cx="196.9" cy="248.2" r="0.45"/><circle cx="179.8" cy="245" r="0.45"/><circle cx="181.8" cy="245.5" r="0.45"/><circle cx="183.8" cy="246" r="0.45"/><circle cx="185.8" cy="246.5" r="0.45"/><circle cx="187.8" cy="247" r="0.45"/><circle cx="189.7" cy="247.5" r="0.45"/><circle cx="191.7" cy="248" r="0.45"/><circle cx="193.7" cy="248.5" r="0.45"/><circle cx="195.7" cy="249" r="0.45"/><circle cx="178.6" cy="245.8" r="0.45"/><circle cx="180.6" cy="246.3" r="0.45"/><circle cx="182.6" cy="246.8" r="0.45"/><circle cx="184.5" cy="247.3" r="0.45"/><circle cx="186.5" cy="247.8" r="0.45"/><circle cx="188.5" cy="248.3" r="0.45"/><circle cx="190.5" cy="248.8" r="0.45"/><circle cx="192.5" cy="249.3" r="0.45"/><circle cx="194.4" cy="249.8" r="0.45"/></g></g><g class="iso-solid"><path class="iso-fill" d="M104.9 237.6l0-.4 .4-.4 .7-.3 .9-.2 1 0 1 .1 .8 .2 .6 .3 .3 .4 0 6.2 0 .5-.4 .3-.6 .3-.9 .2-1 .1-1-.1-.9-.2-.6-.3-.3-.4Z"/><path class="iso-shade" data-shade="0" d="M110.2 244.3l-.6 .3 0-6.2 .6-.3ZM110.6 243.5l0 .5 0-6.3 0-.4ZM110.6 244l-.4 .3 0-6.2 .4-.4Z"/><path class="iso-shade" data-shade="1" d="M109.6 244.6l-.9 .2 0-6.2 .9-.2ZM108.7 244.8l-1 .1 0-6.3 1 0Z"/><path class="iso-shade" data-shade="2" d="M107.7 244.9l-1-.1 0-6.2 1 0Z"/><path class="iso-shade" data-shade="3" d="M106.7 244.8l-.9-.2 0-6.3 .9 .3ZM105.8 244.6l-.6-.3 0-6.3 .6 .3ZM105.2 244.3l-.3-.4 0-6.3 .3 .4Z"/><path class="iso-top" d="M110.2 238.1l-.6 .3-.9 .2-1 0-1 0-.9-.3-.6-.3-.3-.4 0-.4 .4-.4 .7-.3 .9-.2 1 0 1 .1 .8 .2 .6 .3 .3 .4 0 .4Z"/><path class="iso-line iso-edge" data-tone="hi" d="M104.9 237.6l0-.4 .4-.4 .7-.3 .9-.2 1 0 1 .1 .8 .2 .6 .3 .3 .4M110.6 243.5l0 .5-.4 .3-.6 .3-.9 .2-1 .1-1-.1-.9-.2-.6-.3-.3-.4M104.9 237.6l0 6.3M110.6 237.3l0 6.2"/></g><path class="pm-rule" d="M109.7 238l-.5 .2-.7 .1-.8 .1-.8-.1-.6-.2-.5-.2-.3-.3 .1-.3 .3-.3 .5-.3 .7-.1 .8 0 .7 0 .7 .2 .5 .2 .2 .3 0 .4Z"/><g class="iso-solid"><path class="iso-fill" d="M109.9 239.5l.1-.1 .5-.1 1.1 .3 .1 .2 0 3.1-.2 .1-.4 0-1.1-.3-.1-.1Z"/><path class="iso-shade" data-shade="0" d="M111.7 242.9l-.2 .1 0-3.1 .2-.1Z"/><path class="iso-shade" data-shade="1" d="M111.5 243l-.4 0 0-3.1 .4 0Z"/><path class="iso-shade" data-shade="3" d="M111.1 243l-1.1-.3 0-3 1.1 .2ZM110 242.7l-.1-.1 0-3.1 .1 .2Z"/><path class="iso-top" d="M111.6 239.6l.1 .2-.2 .1-.4 0-1.1-.2-.1-.2 .1-.1 .5-.1Z"/><path class="iso-line iso-crease" data-tone="faint" d="M111.7 239.8l-.2 .1-.4 0-1.1-.2-.1-.2"/><path class="iso-line iso-edge" data-tone="hi" d="M109.9 239.5l.1-.1 .5-.1 1.1 .3 .1 .2M111.7 242.9l-.2 .1-.4 0-1.1-.3-.1-.1M111.7 239.8l0 3.1M109.9 239.5l0 3.1"/></g><g class="iso-solid"><path class="iso-fill" d="M190.3 258.6l.1-.4 .3-.4 .7-.3 .9-.2 1-.1 1 .1 .8 .2 .6 .4 .4 .3 0 6.3-.1 .4-.4 .4-.6 .3-.9 .2-1 0-1-.1-.8-.2-.7-.3-.3-.4Z"/><path class="iso-shade" data-shade="0" d="M195.6 265.3l-.6 .3 0-6.3 .6-.3ZM196.1 264.5l-.1 .4 0-6.3 .1-.4ZM196 264.9l-.4 .4 0-6.3 .4-.4Z"/><path class="iso-shade" data-shade="1" d="M195 265.6l-.9 .2 0-6.3 .9-.2ZM194.1 265.8l-1 0 0-6.2 1-.1Z"/><path class="iso-shade" data-shade="2" d="M193.1 265.8l-1-.1 0-6.2 1 .1Z"/><path class="iso-shade" data-shade="3" d="M192.1 265.7l-.8-.2 0-6.2 .8 .2ZM191.3 265.5l-.7-.3 0-6.2 .7 .3ZM190.6 265.2l-.3-.4 0-6.2 .3 .4Z"/><path class="iso-top" d="M195.6 259l-.6 .3-.9 .2-1 .1-1-.1-.8-.2-.7-.3-.3-.4 .1-.4 .3-.4 .7-.3 .9-.2 1-.1 1 .1 .8 .2 .6 .4 .4 .3-.1 .4Z"/><path class="iso-line iso-edge" data-tone="hi" d="M190.3 258.6l.1-.4 .3-.4 .7-.3 .9-.2 1-.1 1 .1 .8 .2 .6 .4 .4 .3M196.1 264.5l-.1 .4-.4 .4-.6 .3-.9 .2-1 0-1-.1-.8-.2-.7-.3-.3-.4M190.3 258.6l0 6.2M196.1 258.2l0 6.3"/></g><path class="pm-rule" d="M195.1 258.9l-.5 .2-.7 .2-.8 0-.8 0-.6-.2-.5-.3-.2-.3 0-.3 .3-.3 .5-.2 .7-.2 .8 0 .7 .1 .7 .1 .5 .3 .2 .3 0 .3Z"/><g class="iso-solid"><path class="iso-fill" d="M195.3 260.4l.2-.1 .4 0 1.1 .2 .1 .2 0 3.1-.2 .1-.4 .1-1.1-.3-.1-.2Z"/><path class="iso-shade" data-shade="0" d="M197.1 263.8l-.2 .1 0-3.1 .2-.1Z"/><path class="iso-shade" data-shade="1" d="M196.9 263.9l-.4 .1 0-3.1 .4-.1Z"/><path class="iso-shade" data-shade="3" d="M196.5 264l-1.1-.3 0-3.1 1.1 .3ZM195.4 263.7l-.1-.2 0-3.1 .1 .2Z"/><path class="iso-top" d="M197 260.5l.1 .2-.2 .1-.4 .1-1.1-.3-.1-.2 .2-.1 .4 0Z"/><path class="iso-line iso-crease" data-tone="faint" d="M197.1 260.7l-.2 .1-.4 .1-1.1-.3-.1-.2"/><path class="iso-line iso-edge" data-tone="hi" d="M195.3 260.4l.2-.1 .4 0 1.1 .2 .1 .2M197.1 263.8l-.2 .1-.4 .1-1.1-.3-.1-.2M197.1 260.7l0 3.1M195.3 260.4l0 3.1"/></g><g data-cue="teamlead"><path class="iso-halo" d="M211.9 317.5l.1-.6 .4-.7 .7-.5 1.7-1.1 1-.5 1.2-.5 1.4-.3 1.4-.2 1.6-.1 1.6 .1 1.5 .1 1.4 .3 8.2 2.1 1.3 .4 1 .5 .8 .5 .5 .6 .2 .7 0 1.4-.1 .7-.4 .6-.7 .6-1.7 1.1-1 .5-1.2 .4-1.4 .3-1.5 .2-1.5 .1-1.6 0-1.5-.2-1.4-.3-8.2-2.1-1.3-.3-1-.5-.8-.6-.5-.6-.2-.6Z"/><g class="iso-solid"><path class="iso-fill" d="M223.1 314.6l.3-.6 2.2-1.5 1.2-.3 1.4 .1 6.3 1.6 .9 .5 0 3.3-.3 .6-2.2 1.4-1.2 .3-1.5-.1-6.2-1.6-.9-.4Z"/><path class="iso-shade" data-shade="0" d="M235.4 317.7l-.3 .6 0-3.4 .3-.5ZM235.1 318.3l-2.2 1.4 0-3.3 2.2-1.5ZM232.9 319.7l-1.2 .3 0-3.3 1.2-.3Z"/><path class="iso-shade" data-shade="2" d="M231.7 320l-1.5-.1 0-3.3 1.5 .1Z"/><path class="iso-shade" data-shade="3" d="M230.2 319.9l-6.2-1.6 0-3.3 6.2 1.6ZM224 318.3l-.9-.4 0-3.3 .9 .4Z"/><path class="iso-top" d="M234.5 313.9l.9 .5-.3 .5-2.2 1.5-1.2 .3-1.5-.1-6.2-1.6-.9-.4 .3-.6 2.2-1.5 1.2-.3 1.4 .1Z"/><path class="iso-line iso-crease" data-tone="faint" d="M235.4 314.4l-.3 .5-2.2 1.5-1.2 .3-1.5-.1-6.2-1.6-.9-.4"/><path class="iso-line iso-edge" data-tone="lo" d="M223.1 314.6l.3-.6 2.2-1.5 1.2-.3 1.4 .1 6.3 1.6 .9 .5M235.4 317.7l-.3 .6-2.2 1.4-1.2 .3-1.5-.1-6.2-1.6-.9-.4M235.4 314.4l0 3.3M223.1 314.6l0 3.3"/></g><g class="iso-solid"><path class="iso-fill" d="M222.8 255.5l.7-.9 1.6-.7 2.2-.3 2.3 .1 1.9 .5 1.2 .8 .3 .9 0 58.8-.8 .9-1.6 .6-2.1 .4-2.3-.1-2-.5-1.2-.8-.2-1Z"/><path class="iso-shade" data-shade="0" d="M232.2 315.6l-1.6 .6 0-58.7 1.6-.7ZM233 314.7l-.8 .9 0-58.8 .8-.9Z"/><path class="iso-shade" data-shade="1" d="M230.6 316.2l-2.1 .4 0-58.8 2.1-.3Z"/><path class="iso-shade" data-shade="2" d="M228.5 316.6l-2.3-.1 0-58.8 2.3 .1Z"/><path class="iso-shade" data-shade="3" d="M226.2 316.5l-2-.5 0-58.8 2 .5ZM224.2 316l-1.2-.8 0-58.8 1.2 .8ZM223 315.2l-.2-1 0-58.7 .2 .9Z"/><path class="iso-top" d="M232.2 256.8l-1.6 .7-2.1 .3-2.3-.1-2-.5-1.2-.8-.2-.9 .7-.9 1.6-.7 2.2-.3 2.3 .1 1.9 .5 1.2 .8 .3 .9Z"/><path class="iso-line iso-edge" data-tone="lo" d="M222.8 255.5l.7-.9 1.6-.7 2.2-.3 2.3 .1 1.9 .5 1.2 .8 .3 .9M233 314.7l-.8 .9-1.6 .6-2.1 .4-2.3-.1-2-.5-1.2-.8-.2-1M222.8 255.5l0 58.7M233 255.9l0 58.8"/></g><g class="iso-solid"><path class="iso-fill" d="M217.2 318.4l.2-.6 2.2-1.4 1.2-.3 1.5 .1 6.2 1.5 .9 .5 0 3.3-.2 .6-2.3 1.5-1.2 .3-1.4-.1-6.3-1.6-.8-.5Z"/><path class="iso-shade" data-shade="0" d="M229.4 321.5l-.2 .6 0-3.3 .2-.6ZM229.2 322.1l-2.3 1.5 0-3.3 2.3-1.5ZM226.9 323.6l-1.2 .3 0-3.3 1.2-.3Z"/><path class="iso-shade" data-shade="2" d="M225.7 323.9l-1.4-.1 0-3.3 1.4 .1Z"/><path class="iso-shade" data-shade="3" d="M224.3 323.8l-6.3-1.6 0-3.3 6.3 1.6ZM218 322.2l-.8-.5 0-3.3 .8 .5Z"/><path class="iso-top" d="M228.5 317.7l.9 .5-.2 .6-2.3 1.5-1.2 .3-1.4-.1-6.3-1.6-.8-.5 .2-.6 2.2-1.4 1.2-.3 1.5 .1Z"/><path class="iso-line iso-crease" data-tone="faint" d="M229.4 318.2l-.2 .6-2.3 1.5-1.2 .3-1.4-.1-6.3-1.6-.8-.5"/><path class="iso-line iso-edge" data-tone="lo" d="M217.2 318.4l.2-.6 2.2-1.4 1.2-.3 1.5 .1 6.2 1.5 .9 .5M229.4 321.5l-.2 .6-2.3 1.5-1.2 .3-1.4-.1-6.3-1.6-.8-.5M229.4 318.2l0 3.3M217.2 318.4l0 3.3"/></g><g class="iso-solid"><path class="iso-fill" d="M216.8 259.4l.7-.9 1.7-.7 2.1-.3 2.3 .1 1.9 .5 1.3 .8 .2 .9 0 58.8-.7 .9-1.6 .6-2.2 .3-2.3-.1-1.9-.5-1.2-.7-.3-1Z"/><path class="iso-shade" data-shade="0" d="M226.3 319.5l-1.6 .6 0-58.7 1.6-.7ZM227 318.6l-.7 .9 0-58.8 .7-.9Z"/><path class="iso-shade" data-shade="1" d="M224.7 320.1l-2.2 .3 0-58.7 2.2-.3Z"/><path class="iso-shade" data-shade="2" d="M222.5 320.4l-2.3-.1 0-58.7 2.3 .1Z"/><path class="iso-shade" data-shade="3" d="M220.2 320.3l-1.9-.5 0-58.7 1.9 .5ZM218.3 319.8l-1.2-.7 0-58.8 1.2 .8ZM217.1 319.1l-.3-1 0-58.7 .3 .9Z"/><path class="iso-top" d="M226.3 260.7l-1.6 .7-2.2 .3-2.3-.1-1.9-.5-1.2-.8-.3-.9 .7-.9 1.7-.7 2.1-.3 2.3 .1 1.9 .5 1.3 .8 .2 .9Z"/><path class="iso-line iso-edge" data-tone="lo" d="M216.8 259.4l.7-.9 1.7-.7 2.1-.3 2.3 .1 1.9 .5 1.3 .8 .2 .9M227 318.6l-.7 .9-1.6 .6-2.2 .3-2.3-.1-1.9-.5-1.2-.7-.3-1M216.8 259.4l0 58.7M227 259.8l0 58.8"/></g><g class="iso-solid"><path class="iso-fill" d="M230.2 211.1l.3-.7 .8-.5 1.5-.5 1.9 .1 1.3 .4 1.1 .6 0 36.7-.3 .8-.9 .5-1.5 .5-1.8-.2-1.4-.3-1-.6Z"/><path class="iso-shade" data-shade="0" d="M237.1 247.2l-.3 .8 0-36.8 .3-.7ZM236.8 248l-.9 .5 0-36.7 .9-.6ZM235.9 248.5l-1.5 .5 0-36.8 1.5-.4Z"/><path class="iso-shade" data-shade="2" d="M234.4 249l-1.8-.2 0-36.7 1.8 .1Z"/><path class="iso-shade" data-shade="3" d="M232.6 248.8l-1.4-.3 0-36.7 1.4 .3ZM231.2 248.5l-1-.6 0-36.8 1 .7Z"/><path class="iso-top" d="M236 209.9l1.1 .6-.3 .7-.9 .6-1.5 .4-1.8-.1-1.4-.3-1-.7 .3-.7 .8-.5 1.5-.5 1.9 .1Z"/><path class="iso-line iso-crease" data-tone="faint" d="M237.1 210.5l-.3 .7-.9 .6-1.5 .4-1.8-.1-1.4-.3-1-.7"/><path class="iso-line iso-edge" data-tone="mid" d="M230.2 211.1l.3-.7 .8-.5 1.5-.5 1.9 .1 1.3 .4 1.1 .6M237.1 247.2l-.3 .8-.9 .5-1.5 .5-1.8-.2-1.4-.3-1-.6M237.1 210.5l0 36.7M230.2 211.1l0 36.8"/></g><g class="iso-solid"><path class="iso-fill" d="M213 215.4l.6-.6 9-5.9 1.1-.5 1.6-.3 1.7 0 1.6 .3 6.2 1.5 1.2 .5 .7 .6 .1 .7 0 45.6-.6 .6-9 5.9-1.1 .5-1.6 .3-1.7 0-1.7-.3-6.1-1.5-1.2-.5-.8-.6 0-.7Z"/><path class="iso-shade" data-shade="0" d="M236.8 257.3l-.6 .6 0-45.5 .6-.7ZM236.2 257.9l-9 5.9 0-45.6 9-5.8ZM227.2 263.8l-1.1 .5 0-45.6 1.1-.5Z"/><path class="iso-shade" data-shade="1" d="M226.1 264.3l-1.6 .3 0-45.6 1.6-.3ZM224.5 264.6l-1.7 0 0-45.6 1.7 0Z"/><path class="iso-shade" data-shade="2" d="M222.8 264.6l-1.7-.3 0-45.5 1.7 .2Z"/><path class="iso-shade" data-shade="3" d="M221.1 264.3l-6.1-1.5 0-45.6 6.1 1.6ZM215 262.8l-1.2-.5 0-45.6 1.2 .5ZM213.8 262.3l-.8-.6 0-45.6 .8 .6ZM213 261.7l0-.7 0-45.6 0 .7Z"/><path class="iso-top" d="M234.8 209.9l1.2 .5 .7 .6 .1 .7-.6 .7-9 5.8-1.1 .5-1.6 .3-1.7 0-1.7-.2-6.1-1.6-1.2-.5-.8-.6 0-.7 .6-.6 9-5.9 1.1-.5 1.6-.3 1.7 0 1.6 .3Z"/><path class="iso-line iso-crease" data-tone="faint" d="M236.8 211.7l-.6 .7-9 5.8-1.1 .5-1.6 .3-1.7 0-1.7-.2-6.1-1.6-1.2-.5-.8-.6 0-.7"/><path class="iso-line iso-bevel" data-tone="faint" d="M236.8 211.7l-1 .6-8.9 5.8-1.1 .5-1.4 .2-1.6 0-1.4-.2-6.1-1.5-1.2-.5-.6-.5-.5-.7"/><path class="iso-line" data-tone="lo" d="M236.8 217.6l-.6 .7-9 5.8-1.1 .5-1.6 .3-1.7 0-1.7-.2-6.1-1.6-1.2-.5-.8-.6 0-.7"/><path class="iso-line" data-tone="hi" d="M236.8 241.1l-.6 .7-9 5.8-1.1 .5-1.6 .3-1.7 0-1.7-.2-6.1-1.6-1.2-.5-.8-.6 0-.7M236.8 236.7l-.6 .7-9 5.8-1.1 .5-1.6 .3-1.7 0-1.7-.2-6.1-1.6-1.2-.5-.8-.6 0-.7"/><path class="iso-line iso-edge" data-tone="mid" d="M213 215.4l.6-.6 9-5.9 1.1-.5 1.6-.3 1.7 0 1.6 .3 6.2 1.5 1.2 .5 .7 .6 .1 .7M236.8 257.3l-.6 .6-9 5.9-1.1 .5-1.6 .3-1.7 0-1.7-.3-6.1-1.5-1.2-.5-.8-.6 0-.7M236.8 211.7l0 45.6M213 215.4l0 45.6"/></g><g class="iso-solid"><path class="iso-fill" d="M212.7 222.5l.3-.7 .9-.6 1.5-.4 1.8 .1 1.3 .4 1.1 .6 0 36.7-.3 .7-.8 .6-1.5 .4-1.9-.1-1.3-.3-1.1-.6Z"/><path class="iso-shade" data-shade="0" d="M219.6 258.6l-.3 .7 0-36.7 .3-.7ZM219.3 259.3l-.8 .6 0-36.7 .8-.6ZM218.5 259.9l-1.5 .4 0-36.7 1.5-.4Z"/><path class="iso-shade" data-shade="2" d="M217 260.3l-1.9-.1 0-36.7 1.9 .1Z"/><path class="iso-shade" data-shade="3" d="M215.1 260.2l-1.3-.3 0-36.8 1.3 .4ZM213.8 259.9l-1.1-.6 0-36.8 1.1 .6Z"/><path class="iso-top" d="M218.5 221.3l1.1 .6-.3 .7-.8 .6-1.5 .4-1.9-.1-1.3-.4-1.1-.6 .3-.7 .9-.6 1.5-.4 1.8 .1Z"/><path class="iso-line iso-crease" data-tone="faint" d="M219.6 221.9l-.3 .7-.8 .6-1.5 .4-1.9-.1-1.3-.4-1.1-.6"/><path class="iso-line iso-edge" data-tone="mid" d="M212.7 222.5l.3-.7 .9-.6 1.5-.4 1.8 .1 1.3 .4 1.1 .6M219.6 258.6l-.3 .7-.8 .6-1.5 .4-1.9-.1-1.3-.3-1.1-.6M219.6 221.9l0 36.7M212.7 222.5l0 36.8"/></g><g class="iso-solid"><path class="iso-fill" d="M221.4 209.1l.5-.7 1.3-.5 1.8-.2 1.8 .2 1.2 .6 .4 .7 0 4.4-.5 .7-1.3 .5-1.8 .2-1.8-.2-1.2-.6-.4-.7Z"/><path class="iso-shade" data-shade="0" d="M227.9 214.3l-1.3 .5 0-4.4 1.3-.5ZM228.4 213.6l-.5 .7 0-4.4 .5-.7Z"/><path class="iso-shade" data-shade="1" d="M226.6 214.8l-1.8 .2 0-4.4 1.8-.2Z"/><path class="iso-shade" data-shade="2" d="M224.8 215l-1.8-.2 0-4.4 1.8 .2Z"/><path class="iso-shade" data-shade="3" d="M223 214.8l-1.2-.6 0-4.4 1.2 .6ZM221.8 214.2l-.4-.7 0-4.4 .4 .7Z"/><path class="iso-top" d="M227.9 209.9l-1.3 .5-1.8 .2-1.8-.2-1.2-.6-.4-.7 .5-.7 1.3-.5 1.8-.2 1.8 .2 1.2 .6 .4 .7Z"/><path class="iso-line iso-edge" data-tone="hi" d="M221.4 209.1l.5-.7 1.3-.5 1.8-.2 1.8 .2 1.2 .6 .4 .7M228.4 213.6l-.5 .7-1.3 .5-1.8 .2-1.8-.2-1.2-.6-.4-.7M221.4 209.1l0 4.4M228.4 209.2l0 4.4"/></g><g class="iso-solid" data-seamless=""><path class="iso-fill" d="M214.9 199l.2-2.2 .7-2 1.2-1.8 1.5-1.6 1.9-1.1 2-.7 2.1-.3 2.2 .3 2 .7 1.9 1.1 1.5 1.6 1.1 1.8 .7 2 .3 2.2-.3 2.1-.7 2.1-1.1 1.8-1.5 1.5-1.9 1.2-2 .7-2.2 .2-2.1-.2-2-.7-1.9-1.2-1.5-1.5-1.2-1.8-.7-2.1Z"/><path class="iso-shade" data-shade="0" d="M214.9 199l.2-2.2 .7-2 1.2-1.8 1.5-1.6 1.9-1.1 2-.7 2.1-.3 2.2 .3 2 .7 1.9 1.1 1.5 1.6 1.1 1.8 .7 2 .3 2.2-.3 2.1-.7 2.1-1.1 1.8-1.5 1.5-1.9 1.2-2 .7-2.2 .2-2.1-.2-2-.7-1.9-1.2-1.5-1.5-1.2-1.8-.7-2.1Z"/><path class="iso-shade" data-shade="1" d="M214.9 199l.2-2.2 .7-2 1.2-1.8 1.5-1.6 1.9-1.1 2-.7 2.1-.3 2.2 .3 2 .7 1.7 1.1 .2 .7-.2 1-.6 1.2-.8 1.4-1.2 1.5-1.3 1.5-1.6 1.4-1.6 1.4-1.6 1.1-1.5 .9-1.4 .6-1.2 .2-.8 0-.6-.4-.4-.7-.7-2.1Z"/><path class="iso-shade" data-shade="2" d="M214.9 199l.2-2.2 .7-2 1.2-1.8 1.5-1.6 1.9-1.1 2-.7 2.1-.3 2.2 .3 1.8 .8 .2 .6-.2 .9-.5 1.2-.8 1.3-1.1 1.3-1.2 1.4-1.5 1.4-1.5 1.2-1.5 1.1-1.4 .8-1.3 .5-1 .3-.8-.1-.5-.4-.3-.8Z"/><path class="iso-shade" data-shade="3" d="M214.9 199l.2-2.2 .7-2 1.2-1.8 1.5-1.6 1.9-1.1 2-.7 2.1-.3 1.4 .2 .5 .3 .1 .6-.1 .8-.5 .9-.6 1.1-1 1.2-1.1 1.2-1.2 1.2-1.3 1.1-1.3 .9-1.2 .7-1.1 .5-.9 .2-.7-.1-.5-.3Z"/><path class="iso-top" d=""/><path class="iso-line iso-edge" data-tone="lo" d="M214.9 199l.2-2.2 .7-2 1.2-1.8 1.5-1.6 1.9-1.1 2-.7 2.1-.3 2.2 .3 2 .7 1.9 1.1 1.5 1.6 1.1 1.8 .7 2 .3 2.2-.3 2.1-.7 2.1-1.1 1.8-1.5 1.5-1.9 1.2-2 .7-2.2 .2-2.1-.2-2-.7-1.9-1.2-1.5-1.5-1.2-1.8-.7-2.1Z"/></g><g class="iso-solid" data-seamless=""><path class="iso-fill" d="M215.9 201.7l.2-2.1 .7-1.9 1.1-1.7 1.4-1.5 1.7-1.1 2-.7 2-.2 2.1 .2 1.9 .7 1.7 1.1 1.5 1.5 1.1 1.7 .7 1.9 .2 2.1-.2 2-.7 2-1.1 1.7-1.5 1.4-1.7 1.1-1.9 .7-2.1 .2-2-.2-2-.7-1.7-1.1-1.4-1.4-1.1-1.7-.7-2Z"/><path class="iso-shade" data-shade="0" d="M215.9 201.7l.2-2.1 .7-1.9 1.1-1.7 1.4-1.5 1.7-1.1 2-.7 2-.2 2.1 .2 1.9 .7 1.7 1.1 1.5 1.5 1.1 1.7 .7 1.9 .2 2.1-.2 2-.7 2-1.1 1.7-1.5 1.4-1.7 1.1-1.9 .7-2.1 .2-2-.2-2-.7-1.7-1.1-1.4-1.4-1.1-1.7-.7-2Z"/><path class="iso-shade" data-shade="1" d="M215.9 201.7l.2-2.1 .7-1.9 1.1-1.7 1.4-1.5 1.7-1.1 2-.7 2-.2 2.1 .2 1.9 .7 1.6 1.1 .2 .6-.2 1-.5 1.1-.9 1.4-1 1.4-1.4 1.4-1.4 1.4-1.5 1.2-1.6 1.1-1.4 .9-1.4 .5-1 .3-.9-.1-.5-.4-.3-.6-.7-2Z"/><path class="iso-shade" data-shade="2" d="M215.9 201.7l.2-2.1 .7-1.9 1.1-1.7 1.4-1.5 1.7-1.1 2-.7 2-.2 2.1 .2 1.7 .8 .2 .6-.2 .9-.5 1.1-.7 1.2-1.1 1.3-1.2 1.3-1.3 1.3-1.4 1.2-1.5 1-1.3 .7-1.2 .6-1 .2-.8-.1-.5-.3-.2-.8Z"/><path class="iso-shade" data-shade="3" d="M215.9 201.7l.2-2.1 .7-1.9 1.1-1.7 1.4-1.5 1.7-1.1 2-.7 2-.2 1.4 .1 .4 .3 .1 .6-.1 .7-.4 1-.7 1-.9 1.2-1 1.1-1.2 1.1-1.2 1-1.2 .9-1.2 .6-1.1 .5-.8 .2-.7-.1-.4-.3Z"/><path class="iso-top" d=""/><path class="iso-line iso-edge" data-tone="hi" d="M215.9 201.7l.2-2.1 .7-1.9 1.1-1.7 1.4-1.5 1.7-1.1 2-.7 2-.2 2.1 .2 1.9 .7 1.7 1.1 1.5 1.5 1.1 1.7 .7 1.9 .2 2.1-.2 2-.7 2-1.1 1.7-1.5 1.4-1.7 1.1-1.9 .7-2.1 .2-2-.2-2-.7-1.7-1.1-1.4-1.4-1.1-1.7-.7-2Z"/></g></g></g><g data-k="hud"><g data-k="panel"><rect class="pm-panel" x="322" y="12" width="308" height="376" rx="10"/><g data-k="pHead"></g><g data-cue="three"><g data-k="p_three"></g></g><g data-cue="what"><g data-k="p_what"></g></g><g data-cue="feel"><g data-k="p_feel"></g></g><g data-cue="ident"><g data-k="p_ident"></g></g><g data-cue="loud"><g data-k="p_loud"></g></g><g data-cue="paper"><g data-k="p_paper"></g></g><g data-cue="q"><g data-k="p_q"></g></g><g data-cue="contrib"><g data-k="p_contrib"></g></g><g data-cue="blame"><g data-k="p_blame"></g></g><g data-cue="goal"><g data-k="p_goal"></g></g><g data-cue="first"><g data-k="p_first"></g></g><g data-cue="third"><g data-k="p_third"></g></g><g data-cue="quote"><g data-k="p_quote"></g></g><g data-cue="runup"><g data-k="p_runup"></g></g><g data-cue="small"><g data-k="p_small"></g></g><g data-cue="mail"><g data-k="p_mail"></g></g><g data-cue="sep"><g data-k="p_sep"></g></g><g data-cue="name"><g data-k="p_name"></g></g><g data-cue="intent"><g data-k="p_intent"></g></g><g data-cue="ask"><g data-k="p_ask"></g></g><g data-cue="deal"><g data-k="p_deal"></g></g><g data-cue="dealex"><g data-k="p_dealex"></g></g><g data-cue="confirm"><g data-k="p_confirm"></g></g><g data-cue="trap"><g data-k="p_trap"></g></g><g data-cue="close"><g data-k="p_close"></g></g><g data-cue="said"><g data-k="p_said"></g></g><g data-cue="need"><g data-k="p_need"></g></g><g data-cue="plan"><g data-k="p_plan"></g></g><g data-cue="hwhat"><g data-k="p_hwhat"></g></g><g data-cue="hstory"><g data-k="p_hstory"></g></g><g data-cue="hfeel"><g data-k="p_hfeel"></g></g><g data-cue="hident"><g data-k="p_hident"></g></g><g data-cue="hgoal"><g data-k="p_hgoal"></g></g><g data-cue="open"><g data-k="p_open"></g></g><g data-cue="impact"><g data-k="p_impact"></g></g><g data-cue="listen"><g data-k="p_listen"></g></g><g data-cue="deal2"><g data-k="p_deal2"></g></g></g></g></svg><div class="fp-read" hidden></div>
+<div class="fp-poster"><p class="fp-poster-title">Drie gesprekken in één</p><button type="button" class="fp-go fp-poster-go"><svg class="fp-ico " viewBox="0 0 24 24" aria-hidden="true"><path d="M5 5a2 2 0 0 1 3.008-1.728l11.997 6.998a2 2 0 0 1 .003 3.458l-12 7A2 2 0 0 1 5 19z"/></svg><span>Bekijk de film</span></button></div>
+<div class="fp-end"><button type="button" class="fp-go fp-again"><svg class="fp-ico fp-replay" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg><span></span></button></div>
+</div>
+<p class="fp-cap" aria-live="polite"></p>
+<p class="fp-note" aria-live="polite"></p>
+<div class="fp-bar">
+<button type="button" class="fp-btn" data-act="play" data-state="play" aria-label="Afspelen"><svg data-i="play" class="fp-ico " viewBox="0 0 24 24" aria-hidden="true"><path d="M5 5a2 2 0 0 1 3.008-1.728l11.997 6.998a2 2 0 0 1 .003 3.458l-12 7A2 2 0 0 1 5 19z"/></svg><svg data-i="pause" class="fp-ico " viewBox="0 0 24 24" aria-hidden="true"><rect x="14" y="3" width="5" height="18" rx="1"/><rect x="5" y="3" width="5" height="18" rx="1"/></svg><svg data-i="replay" class="fp-ico " viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg></button>
+<button type="button" class="fp-btn fp-step" data-act="prev"><svg class="fp-ico " viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg></button>
+<div class="fp-scrub"><div class="fp-ticks"></div><input class="fp-range" type="range" min="0" max="100" step="0.1" value="0"><span class="fp-time"></span></div>
+<button type="button" class="fp-btn fp-step" data-act="next"><svg class="fp-ico " viewBox="0 0 24 24" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></button>
+<button type="button" class="fp-btn" data-act="mute" aria-pressed="false"><svg data-m="on" class="fp-ico " viewBox="0 0 24 24" aria-hidden="true"><path d="M11 4.702a.705.705 0 0 0-1.203-.498L6.413 7.587A1.4 1.4 0 0 1 5.416 8H3a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h2.416a1.4 1.4 0 0 1 .997.413l3.383 3.384A.705.705 0 0 0 11 19.298z"/><path d="M16 9a5 5 0 0 1 0 6"/><path d="M19.364 18.364a9 9 0 0 0 0-12.728"/></svg><svg data-m="off" class="fp-ico " viewBox="0 0 24 24" aria-hidden="true"><path d="M11 4.702a.705.705 0 0 0-1.203-.498L6.413 7.587A1.4 1.4 0 0 1 5.416 8H3a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h2.416a1.4 1.4 0 0 1 .997.413l3.383 3.384A.705.705 0 0 0 11 19.298z"/><path d="M22 9l-6 6"/><path d="M16 9l6 6"/></svg></button>
+<button type="button" class="fp-btn" data-act="scenes" aria-expanded="false"><svg class="fp-ico " viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12h.01"/><path d="M3 18h.01"/><path d="M3 6h.01"/><path d="M8 12h13"/><path d="M8 18h13"/><path d="M8 6h13"/></svg></button>
+</div>
+<div class="fp-sheet" hidden><div class="fp-sheet-head"><p class="fp-sheet-title"></p><button type="button" class="fp-speed" data-act="speed" aria-pressed="false"><span class="fp-speed-l"></span> <span class="fp-speed-v">1×</span></button><button type="button" class="fp-btn" data-act="close"><svg class="fp-ico " viewBox="0 0 24 24" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></button></div><div class="fp-list"></div></div>
+</main><script type="application/json" id="film-data">{"id":"pm.lead.difficult","title":{"nl":"Drie gesprekken in één","en":"Three conversations in one"},"lessons":["pm.lead.difficult"],"scenes":[{"id":"s1","n":1,"level":3,"dur":37,"still":0.9,"title":{"nl":"Drie gesprekken","en":"Three conversations"},"beats":[{"seg":{"nl":["Elk moeilijk gesprek is ",{"t":"drie gesprekken","c":"three","k":"pm.lead.difficult#0","en":"three conversations"}," tegelijk: Stone, Patton en Heen, 1999."],"en":["Every difficult conversation is ",{"t":"three conversations","c":"three","k":"pm.lead.difficult#0"}," at once: Stone, Patton and Heen, 1999."]},"text":{"nl":"Elk moeilijk gesprek is drie gesprekken (three conversations) tegelijk: Stone, Patton en Heen, 1999.","en":"Every difficult conversation is three conversations at once: Stone, Patton and Heen, 1999."},"speak":{"nl":"Elk moeilijk gesprek is drie gesprekken tegelijk: Stoon, Petten en Heen, 1999.","en":"Every difficult conversation is three conversations at once: Stone, Patton and Heen, 1999."},"cues":["three","what","feel","ident"],"focus":["three","what","feel","ident"],"still":0.191,"say":{"nl":["Een moeilijk gesprek. Volgens Stone, Patton en Heen, in hun boek Difficult Conversations uit negentien negenennegentig, is elk moeilijk gesprek eigenlijk ",{"t":"drie gesprekken","k":"pm.lead.difficult#0","en":"three conversations"}," tegelijk."],"en":["A difficult conversation. According to Stone, Patton and Heen, in their book Difficult Conversations from 1999, every difficult conversation is really ",{"t":"three conversations","k":"pm.lead.difficult#0"}," at once."]},"voice":{"nl":"Een moeilijk gesprek. Volgens Stoon, Petten en Heen, in hun boek Diffikkelt Konver-seesjens uit negentien negenennegentig, is elk moeilijk gesprek eigenlijk drie gesprekken tegelijk.","en":"A difficult conversation. According to Stone, Patton and Heen, in their book Difficult Conversations from 1999, every difficult conversation is really three conversations at once."}},{"seg":{"nl":["Het gesprek over wat er gebeurde: de feiten, wie gelijk heeft."],"en":["The “what happened” conversation: the facts, who’s right."]},"text":{"nl":"Het gesprek over wat er gebeurde: de feiten, wie gelijk heeft.","en":"The “what happened” conversation: the facts, who’s right."},"speak":{"nl":"Het gesprek over wat er gebeurde: de feiten, wie gelijk heeft.","en":"The “what happened” conversation: the facts, who's right."},"cues":["what"],"focus":["what"],"still":0.372,"say":{"nl":["Het eerste gaat over wat er gebeurde: de feiten, en wie er gelijk heeft."],"en":["The first is about what happened: the facts, and who is right."]},"voice":{"nl":"Het eerste gaat over wat er gebeurde: de feiten, en wie er gelijk heeft.","en":"The first is about what happened: the facts, and who is right."}},{"seg":{"nl":["Het gevoelsgesprek: boosheid, schaamte, gekwetstheid."],"en":["The feelings conversation: anger, embarrassment, hurt."]},"text":{"nl":"Het gevoelsgesprek: boosheid, schaamte, gekwetstheid.","en":"The feelings conversation: anger, embarrassment, hurt."},"speak":{"nl":"Het gevoelsgesprek: boosheid, schaamte, ge-kwetstheid.","en":"The feelings conversation: anger, embarrassment, hurt."},"cues":["feel"],"focus":["feel"],"still":0.465,"say":{"nl":["Het tweede is het gevoelsgesprek: boosheid, schaamte, gekwetstheid."],"en":["The second is the feelings conversation: anger, embarrassment, hurt."]},"voice":{"nl":"Het tweede is het gevoelsgesprek: boosheid, schaamte, ge-kwetstheid.","en":"The second is the feelings conversation: anger, embarrassment, hurt."}},{"seg":{"nl":["Het ",{"t":"identiteitsgesprek","c":"ident","k":"pm.lead.difficult#1","en":"identity conversation"},": wat zegt dit over mij? Ben ik competent?"],"en":["The ",{"t":"identity conversation","c":"ident","k":"pm.lead.difficult#1"},": what does this say about me? Am I competent?"]},"text":{"nl":"Het identiteitsgesprek (identity conversation): wat zegt dit over mij? Ben ik competent?","en":"The identity conversation: what does this say about me? Am I competent?"},"speak":{"nl":"Het identiteits-gesprek: wat zegt dit over mij? Ben ik competent?","en":"The identity conversation: what does this say about me? Am I competent?"},"cues":["ident","jij"],"focus":["ident","jij"],"still":0.64,"say":{"nl":["Het derde is het ",{"t":"identiteitsgesprek","k":"pm.lead.difficult#1","en":"identity conversation"},": wat zegt dit over mij? Ben ik competent? Word ik serieus genomen?"],"en":["The third is the ",{"t":"identity conversation","k":"pm.lead.difficult#1"},": what does this say about me? Am I competent? Am I taken seriously?"]},"voice":{"nl":"Het derde is het identiteits-gesprek: wat zegt dit over mij? Ben ik competent? Word ik serieus genomen?","en":"The third is the identity conversation: what does this say about me? Am I competent? Am I taken seriously?"}},{"seg":{"nl":["Onder druk praat dat het hardst, zeker als je de jongste bent. Je merkt het als drang om gelijk te krijgen."],"en":["Under pressure it runs loudest, especially if you’re the youngest. You notice it as the urge to be right."]},"text":{"nl":"Onder druk praat dat het hardst, zeker als je de jongste bent. Je merkt het als drang om gelijk te krijgen.","en":"Under pressure it runs loudest, especially if you’re the youngest. You notice it as the urge to be right."},"speak":{"nl":"Onder druk praat dat het hardst, zeker als je de jongste bent. Je merkt het als drang om gelijk te krijgen.","en":"Under pressure it runs loudest, especially if you're the youngest. You notice it as the urge to be right."},"cues":["loud","ident","jij"],"focus":["loud","ident","jij"],"still":0.953,"say":{"nl":["Onder druk praat dat identiteitsgesprek het hardst, zeker als je de jongste in de kamer bent. Je merkt het aan jezelf als de drang om gelijk te krijgen."],"en":["Under pressure the identity conversation runs loudest, especially when you are the youngest in the room. You notice it in yourself as the urge to prove you are right."]},"voice":{"nl":"Onder druk praat dat identiteits-gesprek het hardst, zeker als je de jongste in de kamer bent. Je merkt het aan jezelf als de drang om gelijk te krijgen.","en":"Under pressure the identity conversation runs loudest, especially when you are the youngest in the room. You notice it in yourself as the urge to prove you are right."}}],"terms":[{"lesson":"pm.lead.difficult","index":0,"nl":"Drie gesprekken","en":"Three conversations","cue":"three"},{"lesson":"pm.lead.difficult","index":1,"nl":"Identiteitsgesprek","en":"Identity conversation","cue":"ident"}]},{"id":"s2","n":2,"level":3,"dur":35,"still":0.9,"title":{"nl":"Voorbereiden op papier","en":"Preparing on paper"},"beats":[{"seg":{"nl":["Bereid het op papier voor; een kwartier is meestal genoeg."],"en":["Prepare on paper; fifteen minutes is usually enough."]},"text":{"nl":"Bereid het op papier voor; een kwartier is meestal genoeg.","en":"Prepare on paper; fifteen minutes is usually enough."},"speak":{"nl":"Bereid het op papier voor; een kwartier is meestal genoeg.","en":"Prepare on paper; fifteen minutes is usually enough."},"cues":["paper","sheet"],"focus":["paper","sheet"],"still":0.143,"say":{"nl":["Bereid het gesprek daarom op papier voor. Een kwartier is meestal genoeg."],"en":["So prepare the conversation on paper. Fifteen minutes is usually enough."]},"voice":{"nl":"Bereid het gesprek daarom op papier voor. Een kwartier is meestal genoeg.","en":"So prepare the conversation on paper. Fifteen minutes is usually enough."}},{"seg":{"nl":["Wat zag je? Wat is waarschijnlijk zijn verhaal? Wat voel je?"],"en":["What did you see? What is probably their story? What do you feel?"]},"text":{"nl":"Wat zag je? Wat is waarschijnlijk zijn verhaal? Wat voel je?","en":"What did you see? What is probably their story? What do you feel?"},"speak":{"nl":"Wat zag je? Wat is waarschijnlijk zijn verhaal? Wat voel je?","en":"What did you see? What is probably their story? What do you feel?"},"cues":["q"],"focus":["q"],"still":0.324,"say":{"nl":["Wat zag je? Wat is waarschijnlijk zijn verhaal? En wat voel je zelf?"],"en":["What did you see? What is probably their story? And what do you feel yourself?"]},"voice":{"nl":"Wat zag je? Wat is waarschijnlijk zijn verhaal? En wat voel je zelf?","en":"What did you see? What is probably their story? And what do you feel yourself?"}},{"seg":{"nl":["Wat was jouw ",{"t":"bijdrage","c":"contrib","k":"pm.lead.difficult#2","en":"contribution"},": wat deed jij, of liet je liggen?"],"en":["What was your ",{"t":"contribution","c":"contrib","k":"pm.lead.difficult#2"},": what did you do, or leave undone?"]},"text":{"nl":"Wat was jouw bijdrage (contribution): wat deed jij, of liet je liggen?","en":"What was your contribution: what did you do, or leave undone?"},"speak":{"nl":"Wat was jouw bijdrage: wat deed jij, of liet je liggen?","en":"What was your contribution: what did you do, or leave undone?"},"cues":["contrib"],"focus":["contrib"],"still":0.522,"say":{"nl":["Wat was jouw ",{"t":"bijdrage","k":"pm.lead.difficult#2","en":"contribution"},"? Wat deed jij, of liet je liggen, waardoor dit mede ontstond?"],"en":["What was your ",{"t":"contribution","k":"pm.lead.difficult#2"},"? What did you do, or leave undone, that helped create this?"]},"voice":{"nl":"Wat was jouw bijdrage? Wat deed jij, of liet je liggen, waardoor dit mede ontstond?","en":"What was your contribution? What did you do, or leave undone, that helped create this?"}},{"seg":{"nl":["Het boek ruilt schuld in voor bijdrage: schuld kijkt terug, bijdrage helpt oplossen."],"en":["The book swaps blame for contribution: blame looks back, contribution helps fix it."]},"text":{"nl":"Het boek ruilt schuld in voor bijdrage: schuld kijkt terug, bijdrage helpt oplossen.","en":"The book swaps blame for contribution: blame looks back, contribution helps fix it."},"speak":{"nl":"Het boek ruilt schuld in voor bijdrage: schuld kijkt terug, bijdrage helpt oplossen.","en":"The book swaps blame for contribution: blame looks back, contribution helps fix it."},"cues":["blame"],"focus":["blame"],"still":0.736,"say":{"nl":["Het boek ruilt schuld in voor bijdrage. Want schuld kijkt terug, en bijdrage helpt je het op te lossen."],"en":["The book swaps blame for contribution. Because blame looks back, and contribution helps you fix it."]},"voice":{"nl":"Het boek ruilt schuld in voor bijdrage. Want schuld kijkt terug, en bijdrage helpt je het op te lossen.","en":"The book swaps blame for contribution. Because blame looks back, and contribution helps you fix it."}},{"seg":{"nl":["Doel: één concrete afspraak. Schrijf de eerste twee zinnen op en zeg ze hardop."],"en":["Goal: one concrete agreement. Write the first two sentences and say them out loud."]},"text":{"nl":"Doel: één concrete afspraak. Schrijf de eerste twee zinnen op en zeg ze hardop.","en":"Goal: one concrete agreement. Write the first two sentences and say them out loud."},"speak":{"nl":"Doel: één concrete afspraak. Schrijf de eerste twee zinnen op en zeg ze hardop.","en":"Goal: one concrete agreement. Write the first two sentences and say them out loud."},"cues":["goal","first"],"focus":["goal","first"],"still":0.967,"say":{"nl":["Wat wil je aan het eind? Eén concrete afspraak. Schrijf dan de eerste twee zinnen op, en zeg ze hardop. Bij de opening gaan de meeste gesprekken mis."],"en":["What do you want at the end? One concrete agreement. Then write the first two sentences, and say them out loud. The opening is where most conversations go wrong."]},"voice":{"nl":"Wat wil je aan het eind? Eén concrete afspraak. Schrijf dan de eerste twee zinnen op, en zeg ze hardop. Bij de opening gaan de meeste gesprekken mis.","en":"What do you want at the end? One concrete agreement. Then write the first two sentences, and say them out loud. The opening is where most conversations go wrong."}}],"terms":[{"lesson":"pm.lead.difficult","index":2,"nl":"Bijdrage","en":"Contribution","cue":"contrib"}]},{"id":"s3","n":3,"level":3,"dur":34,"still":0.9,"title":{"nl":"De opening","en":"The opening"},"beats":[{"seg":{"nl":["Open direct, met het ",{"t":"derde verhaal","c":"third","k":"pm.lead.difficult#3","en":"third story"},": zoals een neutrale buitenstaander het ziet."],"en":["Open straight, with the ",{"t":"third story","c":"third","k":"pm.lead.difficult#3"},": as a neutral observer would see it."]},"text":{"nl":"Open direct, met het derde verhaal (third story): zoals een neutrale buitenstaander het ziet.","en":"Open straight, with the third story: as a neutral observer would see it."},"speak":{"nl":"Open direct, met het derde verhaal: zoals een neutrale buitenstaander het ziet.","en":"Open straight, with the third story: as a neutral observer would see it."},"cues":["third"],"focus":["third"],"still":0.204,"say":{"nl":["Open direct, met het ",{"t":"derde verhaal","k":"pm.lead.difficult#3","en":"third story"},": hoe een neutrale buitenstaander het verschil tussen jullie zou beschrijven."],"en":["Open straight, with the ",{"t":"third story","k":"pm.lead.difficult#3"},": how a neutral observer would describe the difference between you."]},"voice":{"nl":"Open direct, met het derde verhaal: hoe een neutrale buitenstaander het verschil tussen jullie zou beschrijven.","en":"Open straight, with the third story: how a neutral observer would describe the difference between you."}},{"seg":{"nl":["“Ik wil het hebben over de stilstanddata. We kijken er verschillend naar.”"],"en":["“I’d like to talk about the downtime data. We see it differently.”"]},"text":{"nl":"“Ik wil het hebben over de stilstanddata. We kijken er verschillend naar.”","en":"“I’d like to talk about the downtime data. We see it differently.”"},"speak":{"nl":"“Ik wil het hebben over de stilstand-data. We kijken er verschillend naar.”","en":"“I'd like to talk about the downtime data. We see it differently.”"},"cues":["quote","jij"],"focus":["quote","jij"],"still":0.412,"say":{"nl":["Bijvoorbeeld: ik wil het hebben over de stilstanddata. We kijken er verschillend naar, en ik wil snappen hoe jij het ziet."],"en":["For example: I would like to talk about the downtime data. We see it differently, and I want to understand how you look at it."]},"voice":{"nl":"Bijvoorbeeld: ik wil het hebben over de stilstand-data. We kijken er verschillend naar, en ik wil snappen hoe jij het ziet.","en":"For example: I would like to talk about the downtime data. We see it differently, and I want to understand how you look at it."}},{"seg":{"nl":["Geen lange aanloop: mensen voelen het aankomen en verkrampen."],"en":["No long warm-up: people feel it coming and tense up."]},"text":{"nl":"Geen lange aanloop: mensen voelen het aankomen en verkrampen.","en":"No long warm-up: people feel it coming and tense up."},"speak":{"nl":"Geen lange aanloop: mensen voelen het aankomen en verkrampen.","en":"No long warm-up: people feel it coming and tense up."},"cues":["runup"],"focus":["runup"],"still":0.572,"say":{"nl":["Geen lange aanloop. Mensen voelen het aankomen, en verkrampen."],"en":["No long warm-up. People feel it coming, and tense up."]},"voice":{"nl":"Geen lange aanloop. Mensen voelen het aankomen, en verkrampen.","en":"No long warm-up. People feel it coming, and tense up."}},{"seg":{"nl":["Smalltalk: op een Nederlandse werkvloer is één zin genoeg; elders is overslaan soms onbeleefd."],"en":["Small talk: in a Dutch workplace one sentence is plenty; in some cultures skipping it is rude."]},"text":{"nl":"Smalltalk: op een Nederlandse werkvloer is één zin genoeg; elders is overslaan soms onbeleefd.","en":"Small talk: in a Dutch workplace one sentence is plenty; in some cultures skipping it is rude."},"speak":{"nl":"Smoltok: op een Nederlandse werkvloer is één zin genoeg; elders is overslaan soms onbeleefd.","en":"Small talk: in a Dutch workplace one sentence is plenty; in some cultures skipping it is rude."},"cues":["small"],"focus":["small"],"still":0.797,"say":{"nl":["Over smalltalk verschillen de meningen. Op een Nederlandse werkvloer is één zin genoeg. In sommige culturen is het overslaan onbeleefd."],"en":["Opinions differ on small talk. In a Dutch workplace one sentence is plenty. In some cultures skipping it feels rude."]},"voice":{"nl":"Over smoltok verschillen de meningen. Op een Nederlandse werkvloer is één zin genoeg. In sommige culturen is het overslaan onbeleefd.","en":"Opinions differ on small talk. In a Dutch workplace one sentence is plenty. In some cultures skipping it feels rude."}},{"seg":{"nl":["Open nooit per mail: de toon gaat verloren, standpunten verharden."],"en":["Never open by e-mail: tone gets lost, positions harden."]},"text":{"nl":"Open nooit per mail: de toon gaat verloren, standpunten verharden.","en":"Never open by e-mail: tone gets lost, positions harden."},"speak":{"nl":"Open nooit per mail: de toon gaat verloren, standpunten verharden.","en":"Never open by e-mail: tone gets lost, positions harden."},"cues":["mail","laptop"],"focus":["mail","laptop"],"still":0.976,"say":{"nl":["En open nooit per mail. De toon gaat verloren, en standpunten verharden op papier."],"en":["And never open by e-mail. Tone gets lost, and positions harden in writing."]},"voice":{"nl":"En open nooit per mail. De toon gaat verloren, en standpunten verharden op papier.","en":"And never open by e-mail. Tone gets lost, and positions harden in writing."}}],"terms":[{"lesson":"pm.lead.difficult","index":3,"nl":"Derde verhaal","en":"Third story","cue":"third"}]},{"id":"s4","n":4,"level":3,"dur":29,"still":0.9,"title":{"nl":"In het gesprek","en":"In the talk"},"beats":[{"seg":{"nl":["Blijf bij feiten en gevoelens. Scheid wat er gebeurde van wat jij ervan maakte."],"en":["Stay with facts and feelings. Separate what happened from what you made of it."]},"text":{"nl":"Blijf bij feiten en gevoelens. Scheid wat er gebeurde van wat jij ervan maakte.","en":"Stay with facts and feelings. Separate what happened from what you made of it."},"speak":{"nl":"Blijf bij feiten en gevoelens. Scheid wat er gebeurde van wat jij ervan maakte.","en":"Stay with facts and feelings. Separate what happened from what you made of it."},"cues":["sep"],"focus":["sep"],"still":0.251,"say":{"nl":["In het gesprek blijf je bij feiten en gevoelens. Scheid wat er gebeurde van wat jij ervan maakte."],"en":["In the conversation, stay with facts and feelings. Separate what happened from what you made of it."]},"voice":{"nl":"In het gesprek blijf je bij feiten en gevoelens. Scheid wat er gebeurde van wat jij ervan maakte.","en":"In the conversation, stay with facts and feelings. Separate what happened from what you made of it."}},{"seg":{"nl":["Benoem emoties als ze zichtbaar zijn: “Je klinkt gefrustreerd.”"],"en":["Name emotions when they show: “You sound frustrated.”"]},"text":{"nl":"Benoem emoties als ze zichtbaar zijn: “Je klinkt gefrustreerd.”","en":"Name emotions when they show: “You sound frustrated.”"},"speak":{"nl":"Benoem emoties als ze zichtbaar zijn: “Je klinkt gefrustreerd.”","en":"Name emotions when they show: “You sound frustrated.”"},"cues":["name","teamlead"],"focus":["name","teamlead"],"still":0.453,"say":{"nl":["Benoem emoties als ze zichtbaar zijn. Bijvoorbeeld: je klinkt gefrustreerd."],"en":["Name emotions when they show. For example: you sound frustrated."]},"voice":{"nl":"Benoem emoties als ze zichtbaar zijn. Bijvoorbeeld: je klinkt gefrustreerd.","en":"Name emotions when they show. For example: you sound frustrated."}},{"seg":{"nl":[{"t":"Bedoeling tegenover impact","c":"intent","k":"pm.lead.difficult#4","en":"intent versus impact"},": jouw impact ken jij, zijn bedoeling alleen hij."],"en":[{"t":"Intent versus impact","c":"intent","k":"pm.lead.difficult#4"},": you know your impact, only they know their intent."]},"text":{"nl":"Bedoeling tegenover impact (intent versus impact): jouw impact ken jij, zijn bedoeling alleen hij.","en":"Intent versus impact: you know your impact, only they know their intent."},"speak":{"nl":"Bedoeling tegenover impact: jouw impact ken jij, zijn bedoeling alleen hij.","en":"Intent versus impact: you know your impact, only they know their intent."},"cues":["intent"],"focus":["intent"],"still":0.73,"say":{"nl":["Dan ",{"t":"bedoeling tegenover impact","k":"pm.lead.difficult#4","en":"intent versus impact"},". Jouw impact ken jij. Zijn bedoeling kent alleen hij."],"en":["Then ",{"t":"intent versus impact","k":"pm.lead.difficult#4"},". You know your impact. Only they know their intent."]},"voice":{"nl":"Dan bedoeling tegenover impact. Jouw impact ken jij. Zijn bedoeling kent alleen hij.","en":"Then intent versus impact. You know your impact. Only they know their intent."}},{"seg":{"nl":["Beschuldig niet, vraag: “Het maakte het lastiger. Wat bedoelde je ermee?”"],"en":["Don’t accuse; ask: “It made it harder. What did you mean by it?”"]},"text":{"nl":"Beschuldig niet, vraag: “Het maakte het lastiger. Wat bedoelde je ermee?”","en":"Don’t accuse; ask: “It made it harder. What did you mean by it?”"},"speak":{"nl":"Beschuldig niet, vraag: “Het maakte het lastiger. Wat bedoelde je ermee?”","en":"Don't accuse; ask: “It made it harder. What did you mean by it?”"},"cues":["ask","jij"],"focus":["ask","jij"],"still":0.968,"say":{"nl":["Beschuldig dus niet, maar vraag. Ik denk niet dat je het zo bedoelde, maar het maakte het voor mij lastiger om mensen aan het praten te krijgen. Wat bedoelde je ermee?"],"en":["So don't accuse; ask. I don't think you meant it this way, but it made it harder for me to get people to talk. What did you mean by it?"]},"voice":{"nl":"Beschuldig dus niet, maar vraag. Ik denk niet dat je het zo bedoelde, maar het maakte het voor mij lastiger om mensen aan het praten te krijgen. Wat bedoelde je ermee?","en":"So don't accuse; ask. I don't think you meant it this way, but it made it harder for me to get people to talk. What did you mean by it?"}}],"terms":[{"lesson":"pm.lead.difficult","index":4,"nl":"Bedoeling tegenover impact","en":"Intent versus impact","cue":"intent"}]},{"id":"s5","n":5,"level":3,"dur":31,"still":0.9,"title":{"nl":"De afspraak","en":"The agreement"},"beats":[{"seg":{"nl":["Sluit af met een afspraak: wie doet wat wanneer, en hoe je het checkt. Hardop."],"en":["End with an agreement: who does what by when, and how you check. Out loud."]},"text":{"nl":"Sluit af met een afspraak: wie doet wat wanneer, en hoe je het checkt. Hardop.","en":"End with an agreement: who does what by when, and how you check. Out loud."},"speak":{"nl":"Sluit af met een afspraak: wie doet wat wanneer, en hoe je het checkt. Hardop.","en":"End with an agreement: who does what by when, and how you check. Out loud."},"cues":["deal"],"focus":["deal"],"still":0.243,"say":{"nl":["Sluit af met een afspraak: wie doet wat wanneer, en hoe je het checkt. Zeg het hardop."],"en":["End with an agreement: who does what by when, and how you check. Say it out loud."]},"voice":{"nl":"Sluit af met een afspraak: wie doet wat wanneer, en hoe je het checkt. Zeg het hardop.","en":"End with an agreement: who does what by when, and how you check. Say it out loud."}},{"seg":{"nl":["“Jij stuurt het stilstandlogboek donderdag, ik vergelijk de ploegen. Maandag samen?”"],"en":["“You send the downtime log Thursday, I do the shift comparison. Monday together?”"]},"text":{"nl":"“Jij stuurt het stilstandlogboek donderdag, ik vergelijk de ploegen. Maandag samen?”","en":"“You send the downtime log Thursday, I do the shift comparison. Monday together?”"},"speak":{"nl":"“Jij stuurt het stilstand-log-boek donderdag, ik vergelijk de ploegen. Maandag samen?”","en":"“You send the downtime log Thursday, I do the shift comparison. Monday together?”"},"cues":["dealex","sheet"],"focus":["dealex","sheet"],"still":0.462,"say":{"nl":["Dus jij stuurt het stilstandlogboek donderdag, en ik haal de vergelijking tussen de ploegen eruit. Kijken we er maandag samen naar?"],"en":["So you send the downtime log by Thursday, and I take out the shift comparison. Shall we look at it together on Monday?"]},"voice":{"nl":"Dus jij stuurt het stilstand-log-boek donderdag, en ik haal de vergelijking tussen de ploegen eruit. Kijken we er maandag samen naar?","en":"So you send the downtime log by Thursday, and I take out the shift comparison. Shall we look at it together on Monday?"}},{"seg":{"nl":["Bevestig het dezelfde dag in twee zinnen."],"en":["Confirm it in two lines the same day."]},"text":{"nl":"Bevestig het dezelfde dag in twee zinnen.","en":"Confirm it in two lines the same day."},"speak":{"nl":"Bevestig het dezelfde dag in twee zinnen.","en":"Confirm it in two lines the same day."},"cues":["confirm"],"focus":["confirm"],"still":0.604,"say":{"nl":["Bevestig het dezelfde dag, in twee zinnen."],"en":["Then confirm it in two lines, the same day."]},"voice":{"nl":"Bevestig het dezelfde dag, in twee zinnen.","en":"Then confirm it in two lines, the same day."}},{"seg":{"nl":["Valkuil: goed gesprek, warm gevoel, geen afspraak. Volgende week hetzelfde probleem."],"en":["The trap: a good talk, warm feelings, no agreement. Next week the same problem."]},"text":{"nl":"Valkuil: goed gesprek, warm gevoel, geen afspraak. Volgende week hetzelfde probleem.","en":"The trap: a good talk, warm feelings, no agreement. Next week the same problem."},"speak":{"nl":"Valkuil: goed gesprek, warm gevoel, geen afspraak. Volgende week hetzelfde probleem.","en":"The trap: a good talk, warm feelings, no agreement. Next week the same problem."},"cues":["trap"],"focus":["trap"],"still":0.801,"say":{"nl":["De typische valkuil: een goed gesprek, een warm gevoel, geen afspraak, en volgende week hetzelfde probleem."],"en":["The typical failure: a good talk, warm feelings, no agreement, and next week the same problem."]},"voice":{"nl":"De typische valkuil: een goed gesprek, een warm gevoel, geen afspraak, en volgende week hetzelfde probleem.","en":"The typical failure: a good talk, warm feelings, no agreement, and next week the same problem."}},{"seg":{"nl":["Scherpe slotvraag: “Wat doen we vanaf morgen allebei anders?”"],"en":["A sharp closing question: “What will each of us do differently from tomorrow?”"]},"text":{"nl":"Scherpe slotvraag: “Wat doen we vanaf morgen allebei anders?”","en":"A sharp closing question: “What will each of us do differently from tomorrow?”"},"speak":{"nl":"Scherpe slotvraag: “Wat doen we vanaf morgen allebei anders?”","en":"A sharp closing question: “What will each of us do differently from tomorrow?”"},"cues":["close"],"focus":["close"],"still":0.976,"say":{"nl":["Een scherpe slotvraag: wat doen we vanaf morgen allebei anders?"],"en":["A sharp closing question: what will each of us do differently from tomorrow?"]},"voice":{"nl":"Een scherpe slotvraag: wat doen we vanaf morgen allebei anders?","en":"A sharp closing question: what will each of us do differently from tomorrow?"}}],"terms":[]},{"id":"s6","n":6,"level":3,"dur":49,"still":0.9,"title":{"nl":"Henk","en":"Henk"},"beats":[{"seg":{"nl":["Week ","3",". Henk, teamleider, tegen zijn ploeg: “Deze consultant denkt onze lijn te kennen.”"],"en":["Week ","3",". Henk, a team leader, to his shift: “This consultant thinks he knows our line.”"]},"text":{"nl":"Week 3. Henk, teamleider, tegen zijn ploeg: “Deze consultant denkt onze lijn te kennen.”","en":"Week 3. Henk, a team leader, to his shift: “This consultant thinks he knows our line.”"},"speak":{"nl":"Week 3. Henk, teamleider, tegen zijn ploeg: “Deze consultant denkt onze lijn te kennen.”","en":"Week 3. Henk, a team leader, to his shift: “This consultant thinks he knows our line.”"},"cues":["said","teamlead"],"focus":["said","teamlead"],"still":0.191,"say":{"nl":["Een voorbeeld. Week ","3"," bij een verpakkingsbedrijf. Henk, teamleider van in de vijftig, zegt waar jij bij staat tegen zijn ploeg: deze consultant denkt na twee weken onze lijn te kennen."],"en":["An example. Week ","3"," at a packaging plant. Henk, a team leader in his fifties, tells his shift in front of you: this consultant thinks he knows our line after two weeks."]},"voice":{"nl":"Een voorbeeld. Week 3 bij een verpakkingsbedrijf. Henk, teamleider van in de vijftig, zegt waar jij bij staat tegen zijn ploeg: deze consultant denkt na twee weken onze lijn te kennen.","en":"An example. Week 3 at a packaging plant. Henk, a team leader in his fifties, tells his shift in front of you: this consultant thinks he knows our line after two weeks."}},{"seg":{"nl":["Je analyse moet vrijdag af en je hebt zijn data nodig. Je werd rood en zei niks."],"en":["Your analysis is due Friday and you need his data. You went red and said nothing."]},"text":{"nl":"Je analyse moet vrijdag af en je hebt zijn data nodig. Je werd rood en zei niks.","en":"Your analysis is due Friday and you need his data. You went red and said nothing."},"speak":{"nl":"Je analiese moet vrijdag af en je hebt zijn data nodig. Je werd rood en zei niks.","en":"Your analysis is due Friday and you need his data. You went red and said nothing."},"cues":["need","jij"],"focus":["need","jij"],"still":0.454,"say":{"nl":["Je analyse moet vrijdag af, en je hebt zijn lijndata nog steeds nodig. Je voelde je hoofd rood worden, en zei niks."],"en":["Your analysis is due Friday, and you still need his line data. You felt your face go red, and said nothing."]},"voice":{"nl":"Je analiese moet vrijdag af, en je hebt zijn lijn-data nog steeds nodig. Je voelde je hoofd rood worden, en zei niks.","en":"Your analysis is due Friday, and you still need his line data. You felt your face go red, and said nothing."}},{"seg":{"nl":["Plan vandaag of morgen twintig minuten alleen met hem."],"en":["Book twenty minutes alone with him, today or tomorrow."]},"text":{"nl":"Plan vandaag of morgen twintig minuten alleen met hem.","en":"Book twenty minutes alone with him, today or tomorrow."},"speak":{"nl":"Plan vandaag of morgen twintig minuten alleen met hem.","en":"Book twenty minutes alone with him, today or tomorrow."},"cues":["plan"],"focus":["plan"],"still":0.615,"say":{"nl":["Plan vandaag of morgen twintig minuten alleen met hem."],"en":["Book twenty minutes alone with him, today or tomorrow."]},"voice":{"nl":"Plan vandaag of morgen twintig minuten alleen met hem.","en":"Book twenty minutes alone with him, today or tomorrow."}},{"seg":{"nl":["Bereid voor: de feiten, zijn verhaal, je gevoel en je identiteitsval."],"en":["Prepare: the facts, his story, your feelings and your identity trap."]},"text":{"nl":"Bereid voor: de feiten, zijn verhaal, je gevoel en je identiteitsval.","en":"Prepare: the facts, his story, your feelings and your identity trap."},"speak":{"nl":"Bereid voor: de feiten, zijn verhaal, je gevoel en je identiteits-val.","en":"Prepare: the facts, his story, your feelings and your identity trap."},"cues":["hwhat","hstory","hfeel","hident","sheet"],"focus":["hwhat","hstory","hfeel","hident","sheet"],"still":0.785,"say":{"nl":["Bereid de lagen voor. De feiten: wat hij zei, en de data die je niet kreeg. Zijn waarschijnlijke verhaal: een buitenstaander die over zijn lijn oordeelt, en zijn ploeg die de schuld krijgt. Je gevoel: schaamte en irritatie. En je identiteitsval: willen bewijzen dat je het kunt."],"en":["Prepare the layers. The facts: what he said, and the data you did not get. His likely story: an outsider judging his line, and his team getting the blame. Your feelings: embarrassed and irritated. And your identity trap: wanting to prove you are competent."]},"voice":{"nl":"Bereid de lagen voor. De feiten: wat hij zei, en de data die je niet kreeg. Zijn waarschijnlijke verhaal: een buitenstaander die over zijn lijn oordeelt, en zijn ploeg die de schuld krijgt. Je gevoel: schaamte en irritatie. En je identiteits-val: willen bewijzen dat je het kunt.","en":"Prepare the layers. The facts: what he said, and the data you did not get. His likely story: an outsider judging his line, and his team getting the blame. Your feelings: embarrassed and irritated. And your identity trap: wanting to prove you are competent."}},{"seg":{"nl":["Doel: data uiterlijk woensdag, en Henk die de analyse vóór vrijdag checkt."],"en":["Goal: data by Wednesday, and Henk checking the analysis before Friday."]},"text":{"nl":"Doel: data uiterlijk woensdag, en Henk die de analyse vóór vrijdag checkt.","en":"Goal: data by Wednesday, and Henk checking the analysis before Friday."},"speak":{"nl":"Doel: data uiterlijk woensdag, en Henk die de analiese vóór vrijdag checkt.","en":"Goal: data by Wednesday, and Henk checking the analysis before Friday."},"cues":["hgoal"],"focus":["hgoal"],"still":0.973,"say":{"nl":["Je doel: de data uiterlijk woensdag, en Henk die de analyse vóór vrijdag checkt."],"en":["Your goal: the data by Wednesday, and Henk checking the analysis before Friday."]},"voice":{"nl":"Je doel: de data uiterlijk woensdag, en Henk die de analiese vóór vrijdag checkt.","en":"Your goal: the data by Wednesday, and Henk checking the analysis before Friday."}}],"terms":[]},{"id":"s7","n":7,"level":3,"dur":25,"still":0.9,"title":{"nl":"Het gesprek met Henk","en":"The talk with Henk"},"beats":[{"seg":{"nl":["“Henk, ik wil het over je opmerking en de data hebben: ik heb je hulp nodig.”"],"en":["“Henk, I want to talk about your remark and the data: I need your help.”"]},"text":{"nl":"“Henk, ik wil het over je opmerking en de data hebben: ik heb je hulp nodig.”","en":"“Henk, I want to talk about your remark and the data: I need your help.”"},"speak":{"nl":"“Henk, ik wil het over je opmerking en de data hebben: ik heb je hulp nodig.”","en":"“Henk, I want to talk about your remark and the data: I need your help.”"},"cues":["open","jij"],"focus":["open","jij"],"still":0.393,"say":{"nl":["Je opent zo. Henk, ik wil het hebben over je opmerking van maandag en over de data, want ik heb je hulp nodig om dit goed te krijgen."],"en":["You open like this. Henk, I want to talk about Monday's remark and about the data, because I need your help to get this right."]},"voice":{"nl":"Je opent zo. Henk, ik wil het hebben over je opmerking van maandag en over de data, want ik heb je hulp nodig om dit goed te krijgen.","en":"You open like this. Henk, I want to talk about Monday's remark and about the data, because I need your help to get this right."}},{"seg":{"nl":["“Waar de ploeg bij was, werd praten voor mij lastiger. Wat zit erachter?”"],"en":["“In front of the shift, it got harder for me to get people talking. What’s behind it?”"]},"text":{"nl":"“Waar de ploeg bij was, werd praten voor mij lastiger. Wat zit erachter?”","en":"“In front of the shift, it got harder for me to get people talking. What’s behind it?”"},"speak":{"nl":"“Waar de ploeg bij was, werd praten voor mij lastiger. Wat zit erachter?”","en":"“In front of the shift, it got harder for me to get people talking. What's behind it?”"},"cues":["impact","teamlead"],"focus":["impact","teamlead"],"still":0.776,"say":{"nl":["Dan: toen je dat zei waar de ploeg bij was, werd het voor mij lastiger om mensen aan het praten te krijgen. Wat zit erachter?"],"en":["Then: when you said that in front of the shift, it made it harder for me to get people to talk. What is behind it?"]},"voice":{"nl":"Dan: toen je dat zei waar de ploeg bij was, werd het voor mij lastiger om mensen aan het praten te krijgen. Wat zit erachter?","en":"Then: when you said that in front of the shift, it made it harder for me to get people to talk. What is behind it?"}},{"seg":{"nl":["Luister. Sluit af met de afspraak."],"en":["Listen. End with the agreement."]},"text":{"nl":"Luister. Sluit af met de afspraak.","en":"Listen. End with the agreement."},"speak":{"nl":"Luister. Sluit af met de afspraak.","en":"Listen. End with the agreement."},"cues":["listen","deal2","sheet"],"focus":["listen","deal2","sheet"],"still":0.976,"say":{"nl":["Dan luister je. En je sluit af met de afspraak."],"en":["Then you listen. And you end with the agreement."]},"voice":{"nl":"Dan luister je. En je sluit af met de afspraak.","en":"Then you listen. And you end with the agreement."}}],"terms":[]}],"skip":[],"numbers":[{"lesson":"pm.lead.difficult","value":"3","scene":"s6"}],"strictFocus":true,"label":{"nl":"Een vergaderruimte. Aan de achterwand een whiteboard dat het paneel in het klein herhaalt, en een klok. Aan het linkereind van de tafel jij, de adviseur in petrol, tegenover de teamleider in zijn werkvest aan het rechtereind. Op tafel een vel waarop de voorbereiding en de afspraak verschijnen, een laptop en twee kopjes. Rechts een paneel met per scène een kaart, gemarkeerd als voorbeeld of schema: drie gestapelde lagen, wat er gebeurde, gevoel en identiteit, waarvan de onderste oplicht; de vragen voor de voorbereiding op papier, bijdrage in plaats van schuld en het doel; de opening met het derde verhaal; feiten en gevoelens, impact naast bedoeling; de afspraak met de slotvraag; en het voorbeeld van Henk, met zijn voorbereiding als vier lagen en het gesprek.","en":"A meeting room. On the back wall a whiteboard that repeats the panel in miniature, and a clock. At the left end of the table you, the consultant in petrol, facing the team lead in his work vest at the right end. On the table a sheet where the preparation and the agreement appear, a laptop and two cups. At the right a panel with one card per scene, marked as example or diagram: three stacked layers, what happened, feelings and identity, the bottom one lighting up; the questions for preparing on paper, contribution instead of blame, and the goal; the opening with the third story; facts and feelings, impact next to intent; the agreement with the closing question; and the example of Henk, with his preparation as four layers and the talk."}}</script><script>document.querySelector('.fp-again span').textContent=new URLSearchParams((location.search.length>1?location.search:(window.name.charAt(0)==="?"?window.name:""))).get('lang')==='en'?'Watch again':'Nog een keer';</script><script type="module">// Pure parts of the film player: caption markers, number formats, the speak
+// variant, the timeline, beats, the narration hold and the page parameters.
+// No imports and no DOM: the build inlines this file into every film page (with
+// its `export` words stripped), and tests/film.test.js imports it as it is.
+// The part between the build-only markers (caption markers, numbers, the SAY
+// table and the speak variants) runs only at build time: the page's film data
+// already carries the resolved captions and voice/speak strings, so the page
+// inlines everything except that part (runtimeTimeline in films/_kit/player.mjs).
+// Keep runtime code out of it, and build-only code in it.
+
+const wordsOf = (text) => String(text || '').trim().split(/\s+/).filter(Boolean).length;
+
+
+// v14b, the timeline driven by the narration audio. durs[scene][beat] is the
+// length of each beat's recorded line (s). Each scene opens with a short look
+// before the first line (the film itself with a longer lead), lines follow with
+// a breath in between, and a scene holds a moment after its last line.
+// The pauses of the narration, all in one place (seconds). Each sentence is one
+// Piper clip (films/_kit/narrate.mjs), commas inside: the voice makes its own
+// comma pause and keeps the sentence melody. Piper's own edge silence is
+// trimmed to about 40 ms (films/_kit/speak.py), so these are the pauses heard:
+// sentence after a full stop, beat between two lines, hold at a scene's end.
+// The listen guard (films/_kit/listen-guard.mjs) checks them on the render.
+const PAUSES = { sentence: 0.6, beat: 0.9, hold: 0.8 };
+const AUDIO_GAPS = { lead: 0.8, look: 0.4, gap: PAUSES.beat, hold: PAUSES.hold, tail: 1.6 };
+function audioTimeline(durs, gaps = AUDIO_GAPS) {
+  const g = { ...AUDIO_GAPS, ...gaps };
+  const scenes = [];
+  let t = 0;
+  durs.forEach((beats, si) => {
+    const start = t;
+    let at = start + (si === 0 ? g.lead : g.look);
+    const out = beats.map((d, bi) => {
+      if (!(d > 0)) throw new Error(`scene ${si + 1} beat ${bi + 1}: no audio`);
+      const b = { start: round3(at), dur: round3(d) };
+      at += d + (bi + 1 < beats.length ? g.gap : 0);
+      return b;
+    });
+    t = round3(at + (si + 1 < durs.length ? g.hold : g.tail));
+    scenes.push({ start: round3(start), dur: round3(t - start), beats: out });
+  });
+  return { scenes, total: t };
+}
+const round3 = (x) => Math.round(x * 1000) / 1000;
+
+// Where time t falls on an audio timeline: the scene, the beat on screen (the
+// last one started; the first while the scene opens) and the scene's progress u.
+function timedAt(t, atl) {
+  const sc = atl.scenes;
+  let si = 0;
+  for (let k = 0; k < sc.length; k++) if (t >= sc[k].start) si = k;
+  const s = sc[si];
+  let bi = 0;
+  for (let k = 0; k < s.beats.length; k++) if (t >= s.beats[k].start) bi = k;
+  const u = Math.min(1, Math.max(0, (t - s.start) / s.dur));
+  return { si, bi, u };
+}
+
+function timelineOf(scenes) {
+  const starts = [];
+  let t = 0;
+  for (const s of scenes) { starts.push(t); t += s.dur; }
+  return { starts, total: t };
+}
+
+function sceneIndexAt(t, tl) {
+  let i = 0;
+  for (let k = 0; k < tl.starts.length; k++) if (t >= tl.starts[k]) i = k;
+  return i;
+}
+
+// ?scene=n is 1-based; anything odd opens the first scene.
+function clampScene(param, count) {
+  const n = parseInt(param, 10);
+  if (!Number.isFinite(n) || n < 1) return 0;
+  return Math.min(count, n) - 1;
+}
+
+// Beat starts within a scene (seconds), by each beat's share of the words.
+function beatStarts(scene, lang) {
+  const counts = scene.beats.map((b) => Math.max(1, wordsOf(b.text[lang] ?? b.text.nl)));
+  const all = counts.reduce((a, b) => a + b, 0);
+  const out = [];
+  let acc = 0;
+  for (const c of counts) { out.push(Math.round((acc / all) * scene.dur * 100) / 100); acc += c; }
+  return out;
+}
+
+// The stage's u (0..1) in the HTML film. A stage drawn on the Dutch beats
+// (nlBeats, set by beatwarp.js) runs, while caption beat k shows in `lang`,
+// from Dutch beat k's fraction to k+1's, so English is never a beat off.
+function stageU(scene, lang, local, nlBeats) {
+  const u = Math.min(1, Math.max(0, local / scene.dur));
+  if (!nlBeats || lang === 'nl' || !scene.beats || !scene.beats.length) return u;
+  const own = beatStarts(scene, lang);
+  const nl = beatStarts(scene, 'nl');
+  let k = 0;
+  for (let i = 0; i < own.length; i++) if (local >= own[i]) k = i;
+  const a0 = own[k];
+  const a1 = k + 1 < own.length ? own[k + 1] : scene.dur;
+  const b0 = nl[k];
+  const b1 = k + 1 < nl.length ? nl[k + 1] : scene.dur;
+  const p = Math.min(1, Math.max(0, (local - a0) / Math.max(1e-6, a1 - a0)));
+  return Math.min(1, Math.max(0, (b0 + p * (b1 - b0)) / scene.dur));
+}
+
+function beatIndexAt(scene, lang, local) {
+  const starts = beatStarts(scene, lang);
+  let i = 0;
+  for (let k = 0; k < starts.length; k++) if (local >= starts[k]) i = k;
+  return i;
+}
+
+// While a beat is being spoken the clock may run up to the next beat, or to the
+// end of the scene for the last beat, and then holds there.
+function holdLimit(tl, scenes, lang, sceneIndex, beatIndex) {
+  const scene = scenes[sceneIndex];
+  const starts = beatStarts(scene, lang);
+  const local = beatIndex + 1 < starts.length ? starts[beatIndex + 1] : scene.dur;
+  return tl.starts[sceneIndex] + local;
+}
+
+// The page's parameters: from its URL when opened on its own, else from the
+// frame's name. The app hands the page over as srcdoc (a sandboxed frame's own
+// navigation skips the service worker, so a src would be blank offline) and
+// puts "?theme=…&lang=…" in the iframe's name attribute.
+const searchOf = (search, name) => (search && search.length > 1 ? search
+  : typeof name === 'string' && name.charAt(0) === '?' ? name : '');
+
+function parseParams(search) {
+  const q = new URLSearchParams(search || '');
+  const theme = q.get('theme');
+  const level = parseInt(q.get('level'), 10);
+  return {
+    theme: theme === 'light' || theme === 'dark' ? theme : null,
+    lang: q.get('lang') === 'en' ? 'en' : 'nl',
+    scene: q.get('scene'),
+    reduce: q.get('motion') === 'reduce',
+    muted: q.get('muted') === '1',
+    level: [1, 2, 3, 4].includes(level) ? level : null,
+    render: q.get('render') === '1',
+  };
+}
+
+function fmtClock(sec) {
+  const s = Math.max(0, Math.floor(sec));
+  return `${Math.floor(s / 60)}:${String(s % 60).padStart(2, '0')}`;
+}
+
+// Calm ease-in-out, and the eased progress of u through [a, b].
+const ease = (t) => (t <= 0 ? 0 : t >= 1 ? 1 : t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2);
+const span = (u, a, b) => ease(Math.min(1, Math.max(0, (u - a) / (b - a))));
+
+;
+const AZIMUTH = 45;
+const ELEVATION = 30;
+const SHADES = 4;
+const RADIANS = Math.PI / 180;
+const UNIT = Math.sqrt(1.6);
+function cameraOf({ scale, azimuth = AZIMUTH, elevation = ELEVATION }) {
+    const a = azimuth * RADIANS;
+    const e = elevation * RADIANS;
+    return { sinA: Math.sin(a), cosA: Math.cos(a), sinE: Math.sin(e), cosE: Math.cos(e), k: scale * UNIT };
+}
+function iso([x, y, z], projection) {
+    const { origin } = projection;
+    const { sinA, cosA, sinE, cosE, k } = cameraOf(projection);
+    return [origin[0] + (x * sinA - y * cosA) * k, origin[1] + ((x * cosA + y * sinA) * sinE - z * cosE) * k];
+}
+function towardViewer(projection) {
+    const { sinA, cosA } = cameraOf(projection);
+    return [cosA, sinA];
+}
+function depthOf([x, y, z], projection) {
+    const { sinA, cosA, sinE, cosE } = cameraOf(projection);
+    return (x * cosA + y * sinA) * cosE + z * sinE;
+}
+const tenth = (value) => {
+    const text = (Math.round(value * 10) / 10).toFixed(1).replace(/\.0$/, "");
+    return text === "-0" ? "0" : text;
+};
+function pathOf(points, closed = false) {
+    if (!points.length)
+        return "";
+    return points.map(([x, y], at) => `${at ? "L" : "M"}${tenth(x)} ${tenth(y)}`).join("") + (closed ? "Z" : "");
+}
+const joinPaths = (paths) => paths.filter(Boolean).join("");
+function roundedPlan({ x, y, w, d, r }, steps = 8) {
+    const radius = Math.max(0, Math.min(r, w / 2, d / 2));
+    const corners = [
+        [x + w - radius, y + radius, -90],
+        [x + w - radius, y + d - radius, 0],
+        [x + radius, y + d - radius, 90],
+        [x + radius, y + radius, 180],
+    ];
+    const out = [];
+    for (const [cx, cy, start] of corners) {
+        const count = radius > 0 ? steps : 0;
+        for (let step = 0; step <= count; step++) {
+            const angle = (start + (count ? (90 * step) / count : 45)) * RADIANS;
+            out.push([cx + radius * Math.cos(angle), cy + radius * Math.sin(angle)]);
+        }
+    }
+    return out;
+}
+function signedArea(points) {
+    let area = 0;
+    for (let index = 0; index < points.length; index++) {
+        const [ax, ay] = points[index];
+        const [bx, by] = points[(index + 1) % points.length];
+        area += ax * by - bx * ay;
+    }
+    return area / 2;
+}
+const oriented = (points) => (signedArea(points) < 0 ? [...points].reverse() : points);
+function convexHull(points) {
+    const sorted = [...points].sort((a, b) => a[0] - b[0] || a[1] - b[1]);
+    if (sorted.length < 3)
+        return sorted;
+    const cross = (o, a, b) => (a[0] - o[0]) * (b[1] - o[1]) - (a[1] - o[1]) * (b[0] - o[0]);
+    const lower = [];
+    for (const point of sorted) {
+        while (lower.length >= 2 && cross(lower[lower.length - 2], lower[lower.length - 1], point) <= 0)
+            lower.pop();
+        lower.push(point);
+    }
+    const upper = [];
+    for (let index = sorted.length - 1; index >= 0; index--) {
+        const point = sorted[index];
+        while (upper.length >= 2 && cross(upper[upper.length - 2], upper[upper.length - 1], point) <= 0)
+            upper.pop();
+        upper.push(point);
+    }
+    return [...lower.slice(0, -1), ...upper.slice(0, -1)];
+}
+function runsOf(flags, want) {
+    const count = flags.length;
+    const runs = [];
+    const start = flags.findIndex((flag, index) => flag !== flags[(index + count - 1) % count]);
+    if (start < 0)
+        return flags[0] === want ? [Array.from({ length: count + 1 }, (_, index) => index % count)] : [];
+    let run = null;
+    for (let step = 0; step < count; step++) {
+        const index = (start + step) % count;
+        if (flags[index] === want) {
+            if (!run)
+                run = [index];
+            run.push((index + 1) % count);
+        }
+        else if (run) {
+            runs.push(run);
+            run = null;
+        }
+    }
+    if (run)
+        runs.push(run);
+    return runs;
+}
+function extrude(ring, z, height, projection, options = {}) {
+    const convex = options.convex ?? true;
+    const count = ring.length;
+    const counter = signedArea(ring) > 0;
+    const [vx, vy] = towardViewer(projection);
+    const { sinA, cosA } = cameraOf(projection);
+    const normals = ring.map(([ax, ay], index) => {
+        const [bx, by] = ring[(index + 1) % count];
+        const dx = bx - ax;
+        const dy = by - ay;
+        const length = Math.hypot(dx, dy) || 1;
+        return (counter ? [dy / length, -dx / length] : [-dy / length, dx / length]);
+    });
+    const facing = normals.map(([nx, ny]) => nx * vx + ny * vy > 1e-9);
+    const top = ring.map(([x, y]) => iso([x, y, z + height], projection));
+    const bottom = ring.map(([x, y]) => iso([x, y, z], projection));
+    const outline = [];
+    const crease = [];
+    for (const run of runsOf(facing, false))
+        outline.push(pathOf(run.map((index) => top[index])));
+    for (const run of runsOf(facing, true)) {
+        crease.push(pathOf(run.map((index) => top[index])));
+        if (height > 0)
+            outline.push(pathOf(run.map((index) => bottom[index])));
+    }
+    if (height > 0) {
+        for (let index = 0; index < count; index++) {
+            if (facing[(index + count - 1) % count] !== facing[index])
+                outline.push(pathOf([top[index], bottom[index]]));
+        }
+    }
+    let fill;
+    if (convex) {
+        fill = pathOf(convexHull([...top, ...bottom]), true);
+    }
+    else {
+        const parts = [pathOf(oriented(top), true), pathOf(oriented(bottom), true)];
+        for (let index = 0; index < count; index++) {
+            if (!facing[index])
+                continue;
+            const next = (index + 1) % count;
+            parts.push(pathOf(oriented([top[index], top[next], bottom[next], bottom[index]]), true));
+        }
+        fill = parts.join("");
+    }
+    const buckets = Array.from({ length: SHADES }, () => []);
+    if (height > 0) {
+        const [lx, ly] = [-sinA, cosA];
+        for (let index = 0; index < count; index++) {
+            if (!facing[index])
+                continue;
+            const [nx, ny] = normals[index];
+            const lit = (nx * lx + ny * ly + 1) / 2;
+            const shade = Math.min(SHADES - 1, Math.max(0, Math.floor(lit * SHADES)));
+            const next = (index + 1) % count;
+            buckets[shade].push(pathOf(oriented([top[index], top[next], bottom[next], bottom[index]]), true));
+        }
+    }
+    let bevel;
+    if (options.bevel && options.bevel > 0) {
+        const by = options.bevel;
+        const inset = ring.map(([x, y], index) => {
+            const [ax, ay] = normals[(index + count - 1) % count];
+            const [bx, by2] = normals[index];
+            const mx = ax + bx;
+            const my = ay + by2;
+            const length = Math.hypot(mx, my) || 1;
+            return [x - (mx / length) * by, y - (my / length) * by];
+        });
+        const insetTop = inset.map(([x, y]) => iso([x, y, z + height], projection));
+        bevel = runsOf(facing, true)
+            .map((run) => pathOf([top[run[0]], ...run.slice(1, -1).map((index) => insetTop[index]), top[run[run.length - 1]]]))
+            .join("");
+    }
+    return {
+        fill,
+        outline: outline.join(""),
+        crease: crease.join(""),
+        top: pathOf(oriented(top), true),
+        shades: buckets.map((paths) => paths.join("")),
+        bevel,
+    };
+}
+const ringOf = (plan, steps = 8) => roundedPlan(plan, steps);
+function slabOf(plan, z, height, projection, steps = 8, bevel = 0) {
+    return extrude(ringOf(plan, steps), z, height, projection, { convex: true, bevel });
+}
+function circleRing(cx, cy, radius, steps = 40) {
+    return Array.from({ length: steps }, (_, step) => {
+        const angle = (step / steps) * Math.PI * 2;
+        return [cx + radius * Math.cos(angle), cy + radius * Math.sin(angle)];
+    });
+}
+function cylinder(cx, cy, radius, z, height, projection, steps = 32, bevel = 0) {
+    return extrude(circleRing(cx, cy, radius, steps), z, height, projection, { convex: true, bevel });
+}
+const insetPlan = ({ x, y, w, d, r }, by) => ({ x: x + by, y: y + by, w: w - by * 2, d: d - by * 2, r: Math.max(0, r - by) });
+function onTop(points, z, projection, closed = false) {
+    return pathOf(points.map(([x, y]) => iso([x, y, z], projection)), closed);
+}
+const planOutline = (plan, z, projection, steps = 8) => onTop(ringOf(plan, steps), z, projection, true);
+const lineOnTop = (from, to, z, projection) => onTop([from, to], z, projection);
+const segment = (from, to, projection) => pathOf([iso(from, projection), iso(to, projection)]);
+const rise = (at, from, to, projection) => segment([at[0], at[1], from], [at[0], at[1], to], projection);
+const ring = (cx, cy, radius, z, projection, steps = 40) => onTop(circleRing(cx, cy, radius, steps), z, projection, true);
+const pointsAt = (points, projection) => points.map((point) => iso(point, projection));
+function dotGrid(x, y, columns, rows, gap, z, projection) {
+    const dots = [];
+    for (let row = 0; row < rows; row++) {
+        for (let column = 0; column < columns; column++)
+            dots.push(iso([x + column * gap, y + row * gap, z], projection));
+    }
+    return dots;
+}
+function corners({ x, y, w, d }, inset = 0) {
+    return [
+        [x + inset, y + inset],
+        [x + w - inset, y + inset],
+        [x + inset, y + d - inset],
+        [x + w - inset, y + d - inset],
+    ];
+}
+function boxCorners({ x, y, w, d }, z0, z1) {
+    const out = [];
+    for (const px of [x, x + w])
+        for (const py of [y, y + d])
+            for (const z of [z0, z1])
+                out.push([px, py, z]);
+    return out;
+}
+function knurl(cx, cy, radius, z0, z1, count, projection, inset = 0.4) {
+    const [vx, vy] = towardViewer(projection);
+    const lines = [];
+    for (let index = 0; index < count; index++) {
+        const angle = (index / count) * Math.PI * 2;
+        const nx = Math.cos(angle);
+        const ny = Math.sin(angle);
+        if (nx * vx + ny * vy < 0.15)
+            continue;
+        lines.push(segment([cx + radius * nx, cy + radius * ny, z0 + inset], [cx + radius * nx, cy + radius * ny, z1 - inset], projection));
+    }
+    return lines.join("");
+}
+function sideArc(cx, cy, radius, z, projection, steps = 24) {
+    const [vx, vy] = towardViewer(projection);
+    const facing = Math.atan2(vy, vx);
+    const points = [];
+    for (let step = 0; step <= steps; step++) {
+        const angle = facing - Math.PI / 2 + (step / steps) * Math.PI;
+        points.push(iso([cx + radius * Math.cos(angle), cy + radius * Math.sin(angle), z], projection));
+    }
+    return pathOf(points);
+}
+function ringSeam(ring, z, projection) {
+    const count = ring.length;
+    const counter = signedArea(ring) > 0;
+    const [vx, vy] = towardViewer(projection);
+    const facing = ring.map(([ax, ay], index) => {
+        const [bx, by] = ring[(index + 1) % count];
+        const dx = bx - ax;
+        const dy = by - ay;
+        const [nx, ny] = counter ? [dy, -dx] : [-dy, dx];
+        return nx * vx + ny * vy > 1e-9;
+    });
+    return runsOf(facing, true).map((run) => pathOf(run.map((index) => iso([ring[index][0], ring[index][1], z], projection)))).join("");
+}
+const sideSeam = (plan, z, projection, steps = 8) => ringSeam(ringOf(plan, steps), z, projection);
+function sideRing(center, radius, axis, projection, steps = 20) {
+    const [px, py, pz] = center;
+    const points = [];
+    for (let step = 0; step < steps; step++) {
+        const angle = (step / steps) * Math.PI * 2;
+        const u = radius * Math.cos(angle);
+        const v = radius * Math.sin(angle);
+        points.push(iso(axis === "x" ? [px, py + u, pz + v] : [px + u, py, pz + v], projection));
+    }
+    return pathOf(points, true);
+}
+function coil(from, to, center, radius, turns, axis, projection, perTurn = 16) {
+    const count = Math.max(1, Math.round(turns * perTurn));
+    const back = [];
+    const front = [];
+    let run = [];
+    let near = null;
+    for (let index = 0; index <= count; index++) {
+        const share = index / count;
+        const angle = share * turns * Math.PI * 2;
+        const u = radius * Math.cos(angle);
+        const v = radius * Math.sin(angle);
+        const along = from + (to - from) * share;
+        const point = axis === "x" ? [along, center[0] + u, center[1] + v] : [center[0] + u, along, center[1] + v];
+        const normal = axis === "x" ? [0, Math.cos(angle), Math.sin(angle)] : [Math.cos(angle), 0, Math.sin(angle)];
+        const facing = depthOf(normal, projection) > 0;
+        const flat = iso(point, projection);
+        if (near === null)
+            near = facing;
+        if (facing !== near) {
+            run.push(flat);
+            (near ? front : back).push(pathOf(run));
+            run = [flat];
+            near = facing;
+            continue;
+        }
+        run.push(flat);
+    }
+    if (run.length > 1)
+        (near ? front : back).push(pathOf(run));
+    return { back: back.join(""), front: front.join("") };
+}
+function topTicks(from, to, step, every, edge, z, lengths, projection, axis = "x") {
+    const minor = [];
+    const major = [];
+    const first = Math.ceil(from / step) * step;
+    for (let at = first, index = Math.round(first / step); at <= to + 1e-9; at += step, index++) {
+        const big = index % every === 0;
+        const length = big ? lengths[1] : lengths[0];
+        const a = axis === "x" ? [at, edge] : [edge, at];
+        const b = axis === "x" ? [at, edge + length] : [edge + length, at];
+        (big ? major : minor).push(lineOnTop(a, b, z, projection));
+    }
+    return { minor: minor.join(""), major: major.join("") };
+}
+function sideTicks(from, to, step, every, face, top, lengths, projection, axis = "x") {
+    const minor = [];
+    const major = [];
+    const first = Math.ceil(from / step) * step;
+    for (let at = first, index = Math.round(first / step); at <= to + 1e-9; at += step, index++) {
+        const big = index % every === 0;
+        const length = big ? lengths[1] : lengths[0];
+        const a = axis === "x" ? [at, face, top] : [face, at, top];
+        const b = axis === "x" ? [at, face, top - length] : [face, at, top - length];
+        (big ? major : minor).push(segment(a, b, projection));
+    }
+    return { minor: minor.join(""), major: major.join("") };
+}
+function radialTicks(cx, cy, radius, count, every, z, lengths, projection, from = 0, span = Math.PI * 2) {
+    const minor = [];
+    const major = [];
+    const closed = Math.abs(span - Math.PI * 2) < 1e-9;
+    const steps = closed ? count : count + 1;
+    for (let index = 0; index < steps; index++) {
+        const angle = from + (index / count) * span;
+        const big = index % every === 0;
+        const inner = radius - (big ? lengths[1] : lengths[0]);
+        const sx = Math.sin(angle);
+        const sy = -Math.cos(angle);
+        (big ? major : minor).push(lineOnTop([cx + sx * inner, cy + sy * inner], [cx + sx * radius, cy + sy * radius], z, projection));
+    }
+    return { minor: minor.join(""), major: major.join("") };
+}
+const haloOf = (plan, z, height, projection) => slabOf(plan, z, height, projection).fill;
+function axisVector(projection, [dx, dy, dz]) {
+    const origin = iso([0, 0, 0], projection);
+    const moved = iso([dx, dy, dz], projection);
+    return [moved[0] - origin[0], moved[1] - origin[1]];
+}
+const fine = (value) => Math.round(value * 100) / 100;
+function translateAlong(projection, by) {
+    const [x, y] = axisVector(projection, by);
+    return `translate(${fine(x)} ${fine(y)})`;
+}
+const thousandth = (value) => Math.round(value * 1000) / 1000;
+function axesAt(at, z, projection) {
+    const origin = iso([at[0], at[1], z], projection);
+    const along = (point) => {
+        const [px, py] = iso(point, projection);
+        return [px - origin[0], py - origin[1]];
+    };
+    return { origin, x: along([at[0] + 1, at[1], z]), y: along([at[0], at[1] + 1, z]), z: along([at[0], at[1], z + 1]) };
+}
+const matrixOf = (u, v, origin) => `matrix(${thousandth(u[0])} ${thousandth(u[1])} ${thousandth(v[0])} ${thousandth(v[1])} ${thousandth(origin[0])} ${thousandth(origin[1])})`;
+function holdStill(element, [dx, dy]) {
+    const text = dx || dy ? `translate(${-dx} ${-dy})` : "";
+    element.querySelectorAll("[data-hold]").forEach((node) => (text ? node.setAttribute("transform", text) : node.removeAttribute("transform")));
+}
+function topMatrix(at, z, projection, along = "x") {
+    const { origin, x, y } = axesAt(at, z, projection);
+    return along === "x" ? matrixOf(x, y, origin) : matrixOf([-y[0], -y[1]], x, origin);
+}
+function sideMatrix(at, z, projection, face) {
+    const { origin, x, y, z: up } = axesAt(at, z, projection);
+    const down = [-up[0], -up[1]];
+    return face === "left" ? matrixOf(x, down, origin) : matrixOf([-y[0], -y[1]], down, origin);
+}
+function screenRise(height, projection) {
+    const { cosE, k } = cameraOf(projection);
+    return height * cosE * k;
+}
+function fitProjection(points, width, height, { pad = 24, headroom = 0, azimuth = AZIMUTH, elevation = ELEVATION } = {}) {
+    const unit = { origin: [0, 0], scale: 1, azimuth, elevation };
+    const flat = points.map((point) => iso(point, unit));
+    const xs = flat.map(([x]) => x);
+    const ys = flat.map(([, y]) => y);
+    const left = Math.min(...xs);
+    const right = Math.max(...xs);
+    const up = Math.min(...ys);
+    const down = Math.max(...ys);
+    const scale = Math.min((width - pad * 2) / (right - left), (height - pad * 2 - headroom) / (down - up));
+    return {
+        origin: [width / 2 - ((left + right) / 2) * scale, headroom + (height - headroom) / 2 - ((up + down) / 2) * scale],
+        scale,
+        azimuth,
+        elevation,
+    };
+}
+const escape = (text) => text.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+const attrs = (pairs) => Object.entries(pairs)
+    .filter(([, value]) => value !== undefined && value !== false)
+    .map(([key, value]) => ` ${key}="${escape(String(value))}"`)
+    .join("");
+function solidSvg(paths, { tone = "hi", crease = "faint", halo = false, lit = false, flat = false, className, inner = "" } = {}) {
+    const parts = [];
+    if (halo)
+        parts.push(`<path class="iso-halo" d="${paths.fill}"/>`);
+    parts.push(`<path class="iso-fill" d="${paths.fill}"/>`);
+    if (!flat) {
+        paths.shades.forEach((d, shade) => {
+            if (d)
+                parts.push(`<path class="iso-shade" data-shade="${shade}" d="${d}"/>`);
+        });
+        parts.push(`<path class="iso-top" d="${paths.top}"/>`);
+    }
+    if (crease !== "none" && paths.crease)
+        parts.push(`<path class="iso-line iso-crease" data-tone="${crease}" d="${paths.crease}"/>`);
+    if (crease !== "none" && paths.bevel)
+        parts.push(`<path class="iso-line iso-bevel" data-tone="${crease}" d="${paths.bevel}"/>`);
+    if (inner)
+        parts.push(inner);
+    parts.push(`<path class="iso-line iso-edge" data-tone="${tone}" d="${paths.outline}"/>`);
+    return `<g${attrs({ class: className ? `iso-solid ${className}` : "iso-solid", "data-lit": lit ? "" : undefined, "data-seamless": paths.seamless ? "" : undefined })}>${parts.join("")}</g>`;
+}
+function lineSvg(d, { tone = "lo", dotted = false, dashed = false, flow = false, className, free } = {}) {
+    if (!d)
+        return "";
+    return `<path${attrs({
+        class: className ? `iso-line ${className}` : "iso-line",
+        "data-tone": tone,
+        "data-free": free === true ? "" : free || undefined,
+        "data-dotted": dotted ? "" : undefined,
+        "data-dashed": dashed ? "" : undefined,
+        "data-flow": flow ? "" : undefined,
+        d,
+    })}/>`;
+}
+function dotsSvg(points, { size = 0.5, tone = "mid", pulse = false } = {}) {
+    const dots = points
+        .map(([x, y, alpha], index) => `<circle cx="${tenth(x)}" cy="${tenth(y)}" r="${size}"${alpha !== undefined && alpha < 1 ? ` fill-opacity="${Math.max(0, alpha).toFixed(2)}"` : ""}${pulse ? ` data-pulse="" style="--pulse-at:${(index * 137) % 1600}ms"` : ""}/>`)
+        .join("");
+    return `<g class="iso-dots" data-tone="${tone}">${dots}</g>`;
+}
+function fadedSvg(list, style = {}) {
+    const groups = new Map();
+    for (const entry of list) {
+        const [d, alpha] = Array.isArray(entry) ? entry : [entry.d, entry.alpha];
+        if (!d || !(alpha > 0.02))
+            continue;
+        const level = Math.min(1, Math.round(alpha * 20) / 20);
+        groups.set(level, (groups.get(level) ?? "") + d);
+    }
+    return [...groups].map(([alpha, d]) => (alpha >= 1 ? lineSvg(d, style) : `<g opacity="${alpha.toFixed(2)}">${lineSvg(d, style)}</g>`)).join("");
+}
+function fadeLineSvg(points, { fade = [0, 0], tone = "lo", className, stops = 6 } = {}) {
+    if (points.length < 2)
+        return "";
+    const ease = (t) => t * t * (3 - 2 * t);
+    const hashOf = (text) => {
+        let hash = 2166136261;
+        for (let index = 0; index < text.length; index++)
+            hash = Math.imul(hash ^ text.charCodeAt(index), 16777619);
+        return (hash >>> 0).toString(36);
+    };
+    const lengths = [0];
+    for (let index = 1; index < points.length; index++)
+        lengths.push(lengths[index - 1] + Math.hypot(points[index][0] - points[index - 1][0], points[index][1] - points[index - 1][1]));
+    const at = (length) => {
+        let index = 1;
+        while (index < points.length - 1 && lengths[index] < length)
+            index++;
+        const span = lengths[index] - lengths[index - 1] || 1;
+        const t = Math.max(0, Math.min(1, (length - lengths[index - 1]) / span));
+        return [points[index - 1][0] + (points[index][0] - points[index - 1][0]) * t, points[index - 1][1] + (points[index][1] - points[index - 1][1]) * t];
+    };
+    const pieceOf = (from, to) => [at(from), ...points.filter((_, index) => lengths[index] > from + 1e-6 && lengths[index] < to - 1e-6), at(to)];
+    const total = lengths[lengths.length - 1];
+    if (total < 1e-6)
+        return "";
+    let [start, end] = Array.isArray(fade) ? fade : [fade, fade];
+    if (start + end > total) {
+        const share = total / (start + end);
+        start *= share;
+        end *= share;
+    }
+    const paint = `var(--anatomy-${tone})`;
+    const ramp = (piece, rising) => {
+        const d = pathOf(piece);
+        const [x1, y1] = piece[0];
+        const [x2, y2] = piece[piece.length - 1];
+        const id = `iso-fade-${hashOf(`${d}|${tone}|${rising}`)}`;
+        const marks = Array.from({ length: stops + 1 }, (_, index) => {
+            const t = index / stops;
+            const alpha = ease(rising ? t : 1 - t);
+            return `<stop offset="${t.toFixed(3)}" stop-opacity="${alpha.toFixed(3)}" style="stop-color:${paint}"/>`;
+        }).join("");
+        const gradient = `<linearGradient id="${id}" gradientUnits="userSpaceOnUse" x1="${tenth(x1)}" y1="${tenth(y1)}" x2="${tenth(x2)}" y2="${tenth(y2)}">${marks}</linearGradient>`;
+        return `<defs>${gradient}</defs><path${attrs({ class: className ? `iso-line ${className}` : "iso-line", "data-tone": tone, "data-free": rising ? "start" : "end", d, style: `stroke:url(#${id})` })}/>`;
+    };
+    const parts = [];
+    if (start > 0.05)
+        parts.push(ramp(pieceOf(0, start), true));
+    if (total - end - start > 0.05)
+        parts.push(lineSvg(pathOf(pieceOf(start, total - end)), { tone, className }));
+    if (end > 0.05)
+        parts.push(ramp(pieceOf(total - end, total), false));
+    return `<g class="iso-fade">${parts.join("")}</g>`;
+}
+function wireSvg(from, to, { via = [], tone = "lo", dotted = false, dashed = false, flow = false, ends = "both", size = 1.2 } = {}) {
+    const d = pathOf([from, ...via, to]);
+    const end = ([x, y]) => `<circle class="iso-wire-end" cx="${tenth(x)}" cy="${tenth(y)}" r="${size}"/>`;
+    return `<g class="iso-wire" data-tone="${tone}">${lineSvg(d, { tone, dotted, dashed, flow })}${ends === "both" || ends === "from" ? end(from) : ""}${ends === "both" || ends === "to" ? end(to) : ""}</g>`;
+}
+function faceTextSvg(transform, text, { size = 3, tone = "mid", anchor = "start" } = {}) {
+    return `<text class="iso-face-text" data-tone="${tone}" transform="${transform}" font-size="${size}" text-anchor="${anchor}">${escape(text)}</text>`;
+}
+function groupSvg(children, extra = {}) {
+    return `<g${attrs(extra)}>${Array.isArray(children) ? children.join("") : children}</g>`;
+}
+function figureSvg({ width, height, label, body, standalone = false, className }) {
+    const style = standalone ? `<style>${ISO_CSS}</style>` : "";
+    return `<svg${attrs({
+        xmlns: "http://www.w3.org/2000/svg",
+        class: `iso-svg${standalone ? " iso" : ""}${className ? ` ${className}` : ""}`,
+        "data-theme": standalone || undefined,
+        viewBox: `0 0 ${width} ${height}`,
+        role: "img",
+        "aria-label": label,
+    })}>${style}${Array.isArray(body) ? body.join("") : body}</svg>`;
+}
+function swatchSvg(mark) {
+    if (mark === "raised" || mark === "flat" || mark === "lit") {
+        const body = mark === "flat" ? "M2 6.5 8 3.5 14 6.5 8 9.5Z" : "M2 4.5 8 1.5 14 4.5 14 6 8 9 2 6Z";
+        const crease = mark === "flat" ? "" : `<path class="iso-swatch-crease" d="M2 4.5 8 7.5 14 4.5"/>`;
+        return `<svg class="iso-swatch" data-mark="${mark}" viewBox="0 0 16 10" aria-hidden="true"><path d="${body}"/>${crease}</svg>`;
+    }
+    return `<svg class="iso-swatch" data-mark="${mark}" viewBox="0 0 16 10" aria-hidden="true"><path d="M1.5 5h13"/></svg>`;
+}
+function plateHtml({ fig, title, hint, readout = "", keys = [], caption, body }) {
+    const corner = (name, text, extra = "") => `<span class="iso-plate-corner" data-corner="${name}"${extra}>${escape(text)}</span>`;
+    const legend = keys.length || caption
+        ? `<figcaption class="iso-legend">${keys.length ? `<span class="iso-keys">${keys.map((key) => `<span class="iso-key">${swatchSvg(key.mark)}${escape(key.label)}</span>`).join("")}</span>` : ""}${caption ? `<span class="iso-caption">${escape(caption)}</span>` : ""}</figcaption>`
+        : "";
+    return `<figure class="iso-figure"><div class="iso-plate"><div class="iso-plate-corners" aria-hidden="true">${corner("fig", fig)}${title ? corner("title", title) : ""}${hint ? corner("hint", hint) : ""}${corner("readout", readout, " data-readout")}</div>${body}</div>${legend}</figure>`;
+}
+function pageHtml({ title, theme = "dark", body, script = "", width = 650 }) {
+    return `<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>${escape(title)}</title><style>${ISO_CSS}${PAGE_CSS.replace("__WIDTH__", String(width))}</style></head><body class="iso" data-theme="${theme}"><main class="iso-page">${body}</main>${script ? `<script type="module">${script.replace(/<\/(script)/gi, "<\\/$1")}<\/script>` : ""}</body></html>`;
+}
+const PAGE_CSS = `
+*{box-sizing:border-box}
+html{color-scheme:dark}
+body[data-theme="light"]{color-scheme:light}
+body{margin:0;background:var(--anatomy-page);color:var(--anatomy-text);font:14px/1.6 ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;-webkit-font-smoothing:antialiased}
+.iso-page{width:min(__WIDTH__px,100% - 32px);margin:64px auto 96px}
+`;
+const ISO_CSS = `
+.iso{
+  --anatomy-page:#0b0b0b;--anatomy-card:#131313;--anatomy-text:#a3a3a3;--anatomy-strong:#e6e6e6;--anatomy-muted:#6e6e6e;
+  --anatomy-paper:#131313;--anatomy-face:#1b1b1b;--anatomy-top:#1c1c1c;
+  --anatomy-shade-0:#0f0f0f;--anatomy-shade-1:#121212;--anatomy-shade-2:#151515;--anatomy-shade-3:#181818;
+  --anatomy-lit-top:#262626;--anatomy-lit-shade:#1d1d1d;
+  --anatomy-hi:#d4d4d4;--anatomy-mid:#6a6a6a;--anatomy-lo:#3e3e3e;--anatomy-faint:#2a2a2a;--anatomy-lit:#ffffff;
+  --anatomy-halo:#050505;--anatomy-halo-opacity:.9;--anatomy-dot:#e6e6e6;
+  --anatomy-red:#ff6b6b;--anatomy-green:#6be0a0;--anatomy-blue:#6b9bff;
+  --anatomy-weight:.6px;--anatomy-ease:cubic-bezier(.32,.72,0,1);
+  --anatomy-mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+  --anatomy-lift:inset 0 1px 0 0 #ffffff0a,inset 0 0 0 1px #ffffff06,0 0 0 1px #00000026,0 1px 1px -.5px #00000014,0 3px 3px -1.5px #00000014,0 6px 6px -3px #00000014,0 12px 12px -6px #00000014;
+}
+.iso[data-theme="light"]{
+  --anatomy-page:#f2f2ef;--anatomy-card:#fbfbfa;--anatomy-text:#57575a;--anatomy-strong:#18181a;--anatomy-muted:#8c8c90;
+  --anatomy-paper:#fbfbfa;--anatomy-face:#ffffff;--anatomy-top:#ffffff;
+  --anatomy-shade-0:#dcdcd9;--anatomy-shade-1:#e5e5e2;--anatomy-shade-2:#ededea;--anatomy-shade-3:#f4f4f1;
+  --anatomy-lit-top:#ffffff;--anatomy-lit-shade:#eeeeeb;
+  --anatomy-hi:#26262a;--anatomy-mid:#8a8a8f;--anatomy-lo:#b4b4b8;--anatomy-faint:#d4d4d6;--anatomy-lit:#000000;
+  --anatomy-halo:#8a8a80;--anatomy-halo-opacity:.32;--anatomy-dot:#3a3a3e;
+  --anatomy-red:#e5484d;--anatomy-green:#30a46c;--anatomy-blue:#3e63dd;
+  --anatomy-lift:inset 0 1px 0 0 #ffffff,0 0 0 1px #0000000f,0 1px 1px -.5px #0000000a,0 3px 3px -1.5px #0000000a,0 6px 6px -3px #0000000a,0 12px 12px -6px #0000000a;
+}
+.iso-svg{display:block;width:100%;height:auto;overflow:visible}
+.iso-svg path,.iso-svg circle{vector-effect:non-scaling-stroke}
+.iso-fill{fill:var(--anatomy-paper);stroke:none}
+.iso-solid[data-lit]>.iso-fill{fill:var(--anatomy-face)}
+.iso-shade,.iso-top{stroke:none}
+.iso-shade[data-shade="0"]{fill:var(--anatomy-shade-0)}
+.iso-shade[data-shade="1"]{fill:var(--anatomy-shade-1)}
+.iso-shade[data-shade="2"]{fill:var(--anatomy-shade-2)}
+.iso-shade[data-shade="3"]{fill:var(--anatomy-shade-3)}
+.iso-top{fill:var(--anatomy-top)}
+.iso-solid[data-lit]>.iso-top{fill:var(--anatomy-lit-top)}
+.iso-solid[data-lit]>.iso-shade{fill:var(--anatomy-lit-shade)}
+.iso-solid[data-seamless]>.iso-shade,.iso-solid[data-seamless]>.iso-top{stroke-width:.4;stroke-linejoin:round}
+.iso-solid[data-seamless]>.iso-shade[data-shade="0"]{stroke:var(--anatomy-shade-0)}
+.iso-solid[data-seamless]>.iso-shade[data-shade="1"]{stroke:var(--anatomy-shade-1)}
+.iso-solid[data-seamless]>.iso-shade[data-shade="2"]{stroke:var(--anatomy-shade-2)}
+.iso-solid[data-seamless]>.iso-shade[data-shade="3"]{stroke:var(--anatomy-shade-3)}
+.iso-solid[data-seamless]>.iso-top{stroke:var(--anatomy-top)}
+.iso-solid[data-seamless][data-lit]>.iso-top{stroke:var(--anatomy-lit-top)}
+.iso-solid[data-seamless][data-lit]>.iso-shade{stroke:var(--anatomy-lit-shade)}
+.iso-solid[data-lit]>.iso-edge{stroke:var(--anatomy-lit)}
+.iso-halo{fill:var(--anatomy-halo);stroke:none;filter:blur(9px);opacity:var(--anatomy-halo-opacity);transform:translateY(3px)}
+.iso-line{fill:none;stroke:var(--anatomy-lo);stroke-width:var(--anatomy-weight);stroke-linecap:round;stroke-linejoin:round}
+.iso-line[data-tone="hi"]{stroke:var(--anatomy-hi)}
+.iso-line[data-tone="mid"]{stroke:var(--anatomy-mid)}
+.iso-line[data-tone="lo"]{stroke:var(--anatomy-lo)}
+.iso-line[data-tone="faint"]{stroke:var(--anatomy-faint)}
+.iso-line[data-tone="lit"]{stroke:var(--anatomy-lit)}
+.iso-line[data-tone="red"]{stroke:var(--anatomy-red)}
+.iso-line[data-tone="green"]{stroke:var(--anatomy-green)}
+.iso-line[data-tone="blue"]{stroke:var(--anatomy-blue)}
+.iso-line[data-dotted]{stroke-dasharray:.01 3.5;stroke-width:1}
+.iso-line[data-dashed]{stroke-dasharray:3 3}
+.iso-line[data-flow]{stroke-dasharray:2 6}
+.iso-wire-end{fill:var(--anatomy-paper);stroke:var(--anatomy-lo);stroke-width:var(--anatomy-weight)}
+.iso-wire[data-tone="hi"] .iso-wire-end{stroke:var(--anatomy-hi)}
+.iso-wire[data-tone="mid"] .iso-wire-end{stroke:var(--anatomy-mid)}
+.iso-wire[data-tone="faint"] .iso-wire-end{stroke:var(--anatomy-faint)}
+.iso-wire[data-tone="lit"] .iso-wire-end{stroke:var(--anatomy-lit)}
+.iso-dots circle{fill:var(--anatomy-dot);stroke:none;opacity:.32}
+.iso-dots[data-tone="hi"] circle{opacity:.85}
+.iso-dots[data-tone="mid"] circle{opacity:.45}
+.iso-dots[data-tone="lo"] circle{opacity:.22}
+.iso-dots[data-tone="faint"] circle{opacity:.12}
+.iso-face-text{fill:var(--anatomy-mid);font-family:var(--anatomy-mono);letter-spacing:.04em}
+.iso-face-text[data-tone="hi"]{fill:var(--anatomy-hi)}
+.iso-face-text[data-tone="lo"]{fill:var(--anatomy-lo)}
+.iso-face-text[data-tone="faint"]{fill:var(--anatomy-faint)}
+.tb-body{fill:var(--anatomy-shade-2);stroke:none}
+.tb-shine{fill:var(--anatomy-top);stroke:none}
+.tb-shade{fill:var(--anatomy-shade-0);stroke:none}
+.tb-ring{fill:none;stroke:var(--anatomy-lo);stroke-width:.45;stroke-linecap:butt;stroke-linejoin:round}
+.tb-ring[data-tone="mid"]{stroke:var(--anatomy-mid)}
+.tb-ring[data-tone="faint"]{stroke:var(--anatomy-faint)}
+.tb-ring[data-tone="hi"]{stroke:var(--anatomy-hi)}
+@keyframes iso-flow{to{stroke-dashoffset:-32}}
+@keyframes iso-pulse{0%,100%{opacity:.18}12%{opacity:1}40%{opacity:.18}}
+.iso-line[data-flow]{animation:iso-flow 1600ms linear infinite}
+.iso-dots circle[data-pulse]{animation:iso-pulse 1600ms steps(1,end) infinite;animation-delay:var(--pulse-at,0ms)}
+.iso-figure{margin:32px 0 36px}
+.iso-plate{position:relative;padding:52px 24px;border-radius:0;background:var(--anatomy-card);box-shadow:0 0 0 1px var(--anatomy-mid);--anatomy-paper:var(--anatomy-card)}
+.iso-plate-corners{position:absolute;inset:18px 20px;pointer-events:none}
+.iso-plate-corner{position:absolute;color:var(--anatomy-muted);font-family:var(--anatomy-mono);font-size:10.5px;line-height:1;letter-spacing:.04em;white-space:nowrap}
+.iso-plate-corner[data-corner="fig"]{top:0;left:0;color:var(--anatomy-text)}
+.iso-plate-corner[data-corner="title"]{top:0;right:0;text-transform:uppercase;letter-spacing:.1em}
+.iso-plate-corner[data-corner="hint"]{bottom:0;left:0;text-transform:uppercase;letter-spacing:.1em}
+.iso-plate-corner[data-corner="readout"]{right:0;bottom:0;color:var(--anatomy-text);font-variant-numeric:tabular-nums}
+.iso-plate .iso-svg{margin:0 auto}
+.iso-legend{display:grid;gap:8px;margin-top:12px;color:var(--anatomy-muted);font-size:13px;line-height:1.55}
+.iso-keys{display:flex;flex-wrap:wrap;gap:6px 18px}
+.iso-key{display:inline-flex;align-items:center;gap:7px}
+.iso-swatch{width:16px;height:10px;flex:none;overflow:visible}
+.iso-swatch path{fill:none;stroke:var(--anatomy-hi);stroke-width:1;vector-effect:non-scaling-stroke;stroke-linejoin:round;stroke-linecap:round}
+.iso-swatch[data-mark="raised"] path,.iso-swatch[data-mark="flat"] path{stroke:var(--anatomy-mid)}
+.iso-swatch[data-mark="lit"] path{stroke:var(--anatomy-lit)}
+.iso-swatch[data-mark="dim"] path{stroke:var(--anatomy-lo)}
+.iso-swatch[data-mark="dotted"] path{stroke-dasharray:.01 3;stroke-width:1.4}
+.iso-swatch[data-mark="dashed"] path{stroke-dasharray:3 2.5}
+.iso-swatch[data-mark="red"] path{stroke:var(--anatomy-red)}
+.iso-swatch[data-mark="green"] path{stroke:var(--anatomy-green)}
+.iso-swatch[data-mark="blue"] path{stroke:var(--anatomy-blue)}
+.iso-swatch-crease{stroke:var(--anatomy-lo)!important}
+@media (max-width:560px){.iso-plate{padding:48px 12px 70px}.iso-plate-corner[data-corner="hint"]{bottom:18px}}
+@media (prefers-reduced-motion:reduce){.iso-line[data-flow],.iso-dots circle[data-pulse]{animation:none}}
+`;
+
+const C = {"CUES":["three","what","feel","ident","loud","paper","q","contrib","blame","goal","first","third","quote","runup","small","mail","sep","name","intent","ask","deal","dealex","confirm","trap","close","said","need","plan","hwhat","hstory","hfeel","hident","hgoal","open","impact","listen","deal2"]};
+const CAM = [{"from":[150,210,1],"to":[93.6,217.3,1.1]},{"from":[150,210,1.02],"to":[130,242.8,1.12]},{"from":[130,242.8,1.06],"to":[186.7,249.1,1.12]},{"from":[150,200,1.04],"to":[224.9,249.2,1.1]},{"from":[224.9,249.2,1.06],"to":[130,242.8,1.1]},{"from":[150,210,1],"to":[224.9,249.2,1.12]},{"from":[93.6,217.3,1.08],"to":[150,210,1]}];
+const W = 640, H = 400;
+/* global C, CAM, W, H, span, beatStarts */
+const STAGE = (() => {
+const svg = document.querySelector('.fp-stage svg');
+const E = {};
+svg.querySelectorAll('[data-k]').forEach((el) => { E[el.getAttribute('data-k')] = el; });
+const D = JSON.parse(document.getElementById('film-data').textContent);
+const NL = document.documentElement.getAttribute('lang') !== 'en';
+const tr = (nl, en) => (NL ? nl : en);
+const clamp = (v, a, b) => Math.min(b, Math.max(a, v));
+const lerp = (a, b, t) => a + (b - a) * t;
+const f1 = (v) => (Math.round(v * 10) / 10).toString();
+const set = (e, html) => { if (e.__h !== html) { e.innerHTML = html; e.__h = html; } };
+const move = (e, t) => { if (e.__t !== t) { e.setAttribute('transform', t); e.__t = t; } };
+const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+const txt = (x, y, t, cls = 'pm-txt', anchor = 'start') => `<text class="${cls}" x="${f1(x)}" y="${f1(y)}" font-size="20" text-anchor="${anchor}">${esc(t)}</text>`;
+const rect = (x, y, w, h, cls, r = 6) => `<rect class="${cls}" x="${f1(x)}" y="${f1(y)}" width="${f1(Math.max(0, w))}" height="${f1(Math.max(0, h))}" rx="${r}"/>`;
+const path = (d, cls) => `<path class="${cls}" d="${d}"/>`;
+const op = (a, body) => (a <= 0.01 || !body ? '' : a >= 0.999 ? body : `<g style="opacity:${a.toFixed(2)}">${body}</g>`);
+const X0 = 334;
+const X1 = 618;
+const card = (y, h, cls = 'pm-card') => rect(X0 - 6, y, X1 - X0 + 12, h, cls, 8);
+const lines = (y, list, x = X0) => list.map(([t, cls], i) => (t ? txt(x, y + i * 24, t, cls || 'pm-txt') : '')).join('');
+const slab = (y, name, detail, cls = 'pm-card', dy = 0) => {
+const yy = y + dy;
+return path(`M${X0 - 6} ${f1(yy)}L${X0 + 12} ${f1(yy - 12)}H${X1 + 6}L${X1 - 12} ${f1(yy)}Z`, 'pm-top')
++ rect(X0 - 6, yy, X1 - X0 - 6, 56, cls, 4)
++ txt(X0 + 4, yy + 23, name, cls === 'pm-hot' ? 'pm-on' : 'pm-big') + txt(X0 + 4, yy + 47, detail, 'pm-txt');
+};
+const at = (b, p, k, a = 0.05, c = 0.3) => (b > k ? 1 : b < k ? 0 : span(p, a, c));
+const SCHEMA = () => tr('schema', 'diagram');
+const VB = () => tr('voorbeeld', 'example');
+
+function beatOf(si, u) {
+const sc = D.scenes[si];
+const fr = beatStarts(sc, 'nl').map((x) => x / sc.dur);
+let b = 0;
+for (let i = 0; i < fr.length; i++) if (u >= fr[i] - 1e-9) b = i;
+const a0 = fr[b];
+const a1 = b + 1 < fr.length ? fr[b + 1] : 1;
+return { b, p: clamp((u - a0) / Math.max(1e-6, a1 - a0), 0, 1) };
+}
+function camera(si, u) {
+const c = CAM[si];
+const kk = span(u, 0, 1);
+const cx = lerp(c.from[0], c.to[0], kk);
+const cy = lerp(c.from[1], c.to[1], kk);
+const s = lerp(c.from[2], c.to[2], kk);
+move(E.world, `translate(${f1(cx)} ${f1(cy)}) scale(${s.toFixed(4)}) translate(${f1(-cx)} ${f1(-cy)})`);
+}
+
+function s1(b, p) {
+const o = { head: [tr('drie gesprekken', 'three conversations'), SCHEMA()] };
+o.three = txt(X0, 74, 'Stone, Patton, Heen, 1999', 'pm-mute');
+const fall = (k) => -30 * (1 - at(b, p, 0, 0.1 + k * 0.2, 0.3 + k * 0.2));
+const show = (k) => at(b, p, 0, 0.1 + k * 0.2, 0.3 + k * 0.2);
+o.what = op(show(0), slab(100, tr('wat er gebeurde', 'what happened'), tr('feiten, wie gelijk heeft', 'facts, who’s right'), 'pm-card', fall(0)));
+o.feel = op(show(1), slab(174, tr('gevoel', 'feelings'), tr('boos, schaamte, gekwetst', 'anger, shame, hurt'), 'pm-card', fall(1)));
+o.ident = op(show(2), slab(248, tr('identiteit', 'identity'), tr('wat zegt dit over mij?', 'what it says about me'), b >= 4 ? 'pm-hot' : 'pm-card', fall(2)));
+if (b >= 4) o.loud = op(span(p, 0.05, 0.3), lines(338, [[tr('onder druk het hardst:', 'loudest under pressure:'), 'pm-txt'], [tr('drang om gelijk te krijgen', 'the urge to be right'), 'pm-on']]));
+return o;
+}
+
+function s2(b, p) {
+const o = { head: [tr('op papier', 'on paper'), SCHEMA()] };
+o.paper = card(54, 44) + txt(X0 + 4, 83, tr('een kwartier, op papier', 'fifteen minutes, on paper'), 'pm-big');
+if (b >= 1) o.q = op(at(b, p, 1), lines(126, [[tr('wat zag je?', 'what did you see?')], [tr('zijn verhaal?', 'their story?')], [tr('wat voel je?', 'what do you feel?')]]));
+if (b >= 2) o.contrib = op(at(b, p, 2), card(196, 58, b === 2 ? 'pm-hot' : 'pm-card') + txt(X0 + 4, 220, tr('jouw bijdrage', 'your contribution'), b === 2 ? 'pm-on' : 'pm-big') + txt(X0 + 4, 244, tr('wat deed of liet jij?', 'what did you do, or not?')));
+if (b >= 3) {
+o.blame = op(at(b, p, 3), txt(X0, 280, tr('schuld: kijkt terug', 'blame: looks back'), 'pm-mute') + path(`M${X0 - 2} 273H${X0 + 64}`, 'pm-strike')
++ txt(X0, 304, tr('bijdrage: helpt oplossen', 'contribution: helps fix it'), 'pm-on'));
+}
+if (b >= 4) {
+o.goal = op(at(b, p, 4), card(318, 66, 'pm-hot') + txt(X0 + 4, 343, tr('doel: één afspraak', 'goal: one agreement'), 'pm-on'));
+o.first = op(at(b, p, 4, 0.35, 0.6), txt(X0 + 4, 369, tr('eerste 2 zinnen, hardop', 'first 2 lines, out loud'), 'pm-txt'));
+}
+return o;
+}
+
+function s3(b, p) {
+const o = { head: [tr('de opening', 'the opening'), b === 1 ? VB() : SCHEMA()] };
+o.third = card(54, 82, b === 0 ? 'pm-hot' : 'pm-card') + lines(80, [[tr('derde verhaal', 'third story'), b === 0 ? 'pm-on' : 'pm-big'], [tr('zoals een neutrale', 'as a neutral observer')], [tr('buitenstaander het ziet', 'would describe it')]], X0 + 4);
+if (b >= 1) o.quote = op(at(b, p, 1), card(146, 84, 'pm-dash') + lines(170, [[tr('“De stilstanddata: we kijken', '“The downtime data: we see'), 'pm-on'], [tr('er verschillend naar. Hoe', 'it differently. How do'), 'pm-on'], [tr('zie jij het?”', 'you look at it?”'), 'pm-on']], X0 + 4));
+if (b >= 2) o.runup = op(at(b, p, 2), txt(X0, 260, tr('geen lange aanloop', 'no long warm-up'), 'pm-big'));
+if (b >= 3) o.small = op(at(b, p, 3), lines(292, [[tr('smalltalk: in NL één zin;', 'small talk: in NL one line;')], [tr('soms overslaan onbeleefd', 'elsewhere skipping is rude'), 'pm-mute']]));
+if (b >= 4) o.mail = op(at(b, p, 4), card(338, 46, 'pm-hot') + txt(X0 + 4, 368, tr('nooit per mail', 'never by e-mail'), 'pm-on'));
+return o;
+}
+
+function s4(b, p) {
+const o = { head: [tr('in het gesprek', 'in the talk'), b === 3 ? VB() : SCHEMA()] };
+o.sep = card(54, 80) + lines(80, [[tr('feiten en gevoelens', 'facts and feelings'), 'pm-big'], [tr('scheid wat er gebeurde', 'split what happened')], [tr('van wat jij ervan maakte', 'from what you made of it')]], X0 + 4);
+if (b >= 1) o.name = op(at(b, p, 1), lines(162, [[tr('benoem wat je ziet:', 'name what shows:')], [tr('“Je klinkt gefrustreerd.”', '“You sound frustrated.”'), 'pm-on']]));
+if (b >= 2) {
+const half = (X1 - X0 - 8) / 2;
+const box = (x, t1, t2, cls) => rect(x, 212, half, 66, cls, 8) + txt(x + 8, 238, t1, cls === 'pm-hot' ? 'pm-on' : 'pm-big') + txt(x + 8, 264, t2, 'pm-txt');
+o.intent = op(at(b, p, 2), box(X0 - 4, 'impact', tr('ken jij', 'you know'), 'pm-card') + op(at(b, p, 2, 0.35, 0.6), box(X0 + half + 4, tr('bedoeling', 'intent'), tr('vraag ernaar', 'ask about it'), 'pm-hot')));
+}
+if (b >= 3) o.ask = op(at(b, p, 3), card(292, 92, 'pm-dash') + lines(316, [[tr('“Zo bedoelde je het vast', '“You likely didn’t mean it,'), 'pm-on'], [tr('niet, maar het werd lastiger.', 'but it made it harder.'), 'pm-on'], [tr('Wat bedoelde je ermee?”', 'What did you mean?”'), 'pm-on']], X0 + 2));
+return o;
+}
+
+function s5(b, p) {
+const o = { head: [tr('de afspraak', 'the agreement'), b === 1 ? VB() : SCHEMA()] };
+o.deal = card(54, 76, b === 0 ? 'pm-hot' : 'pm-card') + lines(80, [[tr('wie doet wat wanneer,', 'who does what by when,'), b === 0 ? 'pm-on' : 'pm-big'], [tr('en hoe check je het?', 'and how you check it')], [tr('zeg het hardop', 'say it out loud'), 'pm-mute']], X0 + 4);
+if (b >= 1) o.dealex = op(at(b, p, 1), card(140, 84, 'pm-dash') + lines(164, [[tr('hij: logboek, donderdag', 'he: the log, Thursday'), 'pm-on'], [tr('ik: ploegen vergelijken', 'I: the shift comparison'), 'pm-on'], [tr('maandag samen kijken', 'Monday: look together'), 'pm-on']], X0 + 4));
+if (b >= 2) o.confirm = op(at(b, p, 2), txt(X0, 252, tr('zelfde dag: 2 zinnen', 'same day: 2 lines'), 'pm-big'));
+if (b >= 3) o.trap = op(at(b, p, 3), lines(282, [[tr('valkuil: warm gevoel,', 'trap: warm feelings,')], [tr('maar geen afspraak', 'but no agreement'), 'pm-mute']]));
+if (b >= 4) o.close = op(at(b, p, 4), card(320, 64, 'pm-hot') + lines(346, [[tr('“Wat doen we vanaf morgen', '“What will each of us do'), 'pm-on'], [tr('allebei anders?”', 'differently from tomorrow?”'), 'pm-on']], X0 + 4));
+return o;
+}
+
+function s6(b, p) {
+const o = { head: [tr('Henk, week 3', 'Henk, week 3'), VB()] };
+if (b <= 2) {
+o.said = card(54, 102) + lines(80, [[tr('verpakker, ploeg erbij', 'packaging plant, his shift'), 'pm-mute'], [tr('“Deze consultant denkt na', '“This consultant thinks'), 'pm-on'], [tr('twee weken onze lijn', 'he knows our line after'), 'pm-on'], [tr('te kennen.”', 'two weeks.”'), 'pm-on']], X0 + 4);
+if (b >= 1) o.need = op(at(b, p, 1), lines(190, [[tr('analyse vrijdag af', 'analysis due Friday')], [tr('zijn lijndata nodig', 'you need his line data')], [tr('jij: rood, zei niks', 'you: red-faced, silent'), 'pm-mute']]));
+if (b >= 2) o.plan = op(at(b, p, 2), card(270, 70, 'pm-hot') + lines(296, [[tr('20 min, alleen met hem', '20 min, alone with him'), 'pm-on'], [tr('vandaag of morgen', 'today or tomorrow')]], X0 + 4));
+return o;
+}
+const show = (k) => (b > 3 ? 1 : span(p, 0.08 + k * 0.2, 0.22 + k * 0.2));
+o.hwhat = op(show(0), slab(66, tr('feiten', 'facts'), tr('opmerking, geen data', 'the remark, no data')));
+o.hstory = op(show(1), slab(132, tr('zijn verhaal', 'his story'), tr('buitenstaander oordeelt', 'an outsider judging')));
+o.hfeel = op(show(2), slab(198, tr('gevoel', 'feelings'), tr('schaamte, irritatie', 'embarrassed, irritated')));
+o.hident = op(show(3), slab(264, tr('identiteitsval', 'identity trap'), tr('bewijzen dat ik het kan', 'proving I’m competent'), 'pm-hot'));
+if (b >= 4) o.hgoal = op(at(b, p, 4), lines(350, [[tr('doel: data woensdag,', 'goal: data by Wednesday,'), 'pm-on'], [tr('Henk checkt vóór vrijdag', 'Henk checks before Friday'), 'pm-txt']]));
+return o;
+}
+
+function s7(b, p) {
+const o = { head: [tr('het gesprek', 'the talk'), VB()] };
+o.open = card(54, 106, b === 0 ? 'pm-hot' : 'pm-card') + lines(80, [[tr('opening', 'opening'), 'pm-big'], [tr('“Henk, je opmerking van', '“Henk, Monday’s remark'), 'pm-on'], [tr('maandag en de data: ik', 'and the data: I need'), 'pm-on'], [tr('heb je hulp nodig.”', 'your help.”'), 'pm-on']], X0 + 4);
+if (b >= 1) o.impact = op(at(b, p, 1), card(170, 106, b === 1 ? 'pm-hot' : 'pm-card') + lines(196, [[tr('impact, dan een vraag', 'impact, then a question'), 'pm-big'], [tr('“Met de ploeg erbij werd', '“In front of the shift it'), 'pm-on'], [tr('praten lastiger. Wat zit', 'got harder to talk. What’s'), 'pm-on'], [tr('erachter?”', 'behind it?”'), 'pm-on']], X0 + 4));
+if (b >= 2) {
+o.listen = op(at(b, p, 2), txt(X0, 308, tr('luisteren', 'listen'), 'pm-big'));
+o.deal2 = op(at(b, p, 2, 0.4, 0.65), card(326, 56, 'pm-hot') + txt(X0 + 4, 361, tr('dan: de afspraak', 'then: the agreement'), 'pm-on'));
+}
+return o;
+}
+const CARDS = [s1, s2, s3, s4, s5, s6, s7];
+
+function sheet(si, b, p) {
+let n = 0;
+if (si === 1) n = b + span(p, 0.1, 0.8);
+else if (si === 4) n = b >= 1 ? 3 + (b >= 2 ? 1 : span(p, 0.1, 0.8)) : 0;
+else if (si === 5) n = b < 3 ? 0 : b === 3 ? span(p, 0.1, 0.8) * 4 : 5;
+else if (si === 6) n = b < 2 ? 0 : 5 * span(p, 0.4, 0.9);
+let s = '';
+for (let i = 0; i < 5; i++) {
+const a = clamp(n - i, 0, 1);
+if (a > 0.01) s += `<path class="pm-line" d="M2.5 ${f1(4 + i * 3.2)}H${f1(2.5 + 15 * a)}"/>`;
+}
+return s;
+}
+
+function render(si, u) {
+camera(si, u);
+const { b, p } = beatOf(si, u);
+const o = CARDS[si](b, p);
+set(E.pHead, txt(X0, 38, o.head[0], 'pm-big') + txt(X1, 38, o.head[1], 'pm-mute', 'end'));
+let mini = '';
+for (const c of C.CUES) { set(E[`p_${c}`], o[c] || ''); mini += o[c] || ''; }
+set(E.bMini, mini);
+set(E.sLines, sheet(si, b, p));
+}
+
+return { render };
+})();
+
+;
+// v14b: keeps a film's stage in step with its narration in the video.
+// A stage is drawn as STAGE.render(scene, u), its moves placed at fractions of
+// the scene that match the caption beats of the HTML film (beatStarts, by the
+// caption's words). In the video (?render=1) the beats are timed by the
+// recorded narration instead, which is longer and spread differently. This
+// maps the narration time back: while beat k is being spoken (from its start to
+// the next beat's), the stage runs from caption beat k's fraction to beat k+1's.
+// The HTML film (no timing handed over) gets no warp here; it sets
+// STAGE.nlBeats, so the player (stageU in films/_kit/timeline.mjs) runs the
+// stage on the Dutch beats while the English captions follow English timing.
+//
+// Plain browser script: a film's build appends it after its stage script.
+/* global STAGE, beatStarts */
+(() => {
+  const D = JSON.parse(document.getElementById('film-data').textContent);
+  let atl = null;
+  let film;
+  // the render script hands the audio timeline to window.__film.setTiming
+  Object.defineProperty(window, '__film', {
+    configurable: true,
+    get: () => film,
+    set(v) {
+      film = v;
+      if (v && typeof v.setTiming === 'function') {
+        const set = v.setTiming;
+        v.setTiming = (a) => { atl = a; return set.call(v, a); };
+      }
+    },
+  });
+  STAGE.nlBeats = true; // this stage places its moves at the Dutch caption beats
+  const inner = STAGE.render.bind(STAGE);
+  STAGE.render = (si, u) => {
+    const s = atl && atl.scenes[si];
+    const sc = D.scenes[si];
+    if (!s || !sc || !s.beats.length) return inner(si, u);
+    const fr = beatStarts(sc, 'nl').map((x) => x / sc.dur);
+    const t = s.start + u * s.dur;
+    let k = 0;
+    for (let i = 0; i < s.beats.length; i++) if (t >= s.beats[i].start) k = i;
+    const a0 = k === 0 ? s.start : s.beats[k].start;
+    const a1 = k + 1 < s.beats.length ? s.beats[k + 1].start : s.start + s.dur;
+    const f0 = fr[k] ?? 0;
+    const f1 = k + 1 < fr.length ? fr[k + 1] : 1;
+    const p = Math.min(1, Math.max(0, (t - a0) / Math.max(1e-6, a1 - a0)));
+    return inner(si, f0 + p * (f1 - f0));
+  };
+})();
+
+;
+/* global STAGE, parseParams, searchOf, timelineOf, sceneIndexAt, clampScene, beatStarts, beatIndexAt, holdLimit, fmtClock, timedAt, stageU */
+(function () {
+  const DATA = JSON.parse(document.getElementById('film-data').textContent);
+  const PRM = parseParams(searchOf(location.search, window.name));
+  const LANG = PRM.lang;
+  const STR = {
+    nl: { play: 'Afspelen', pause: 'Pauzeren', replay: 'Opnieuw afspelen', mute: 'Gesproken uitleg uit', unmute: 'Gesproken uitleg aan', scenes: 'Scènes', close: 'Sluiten', prev: 'Vorige', next: 'Volgende', speed: 'Snelheid', scrub: 'Tijdlijn van de film', scene: (n, m) => `Scène ${n} van ${m}`, start: 'Bekijk de film', again: 'Nog een keer', voice: 'Geen stem op dit apparaat: lees de ondertitels mee.', label: 'Uitlegfilm' },
+    en: { play: 'Play', pause: 'Pause', replay: 'Play again', mute: 'Narration off', unmute: 'Narration on', scenes: 'Scenes', close: 'Close', prev: 'Previous', next: 'Next', speed: 'Speed', scrub: 'Film timeline', scene: (n, m) => `Scene ${n} of ${m}`, start: 'Watch the film', again: 'Watch again', voice: 'No voice on this device: follow the captions.', label: 'Explainer film' },
+  }[LANG];
+  const doc = document.documentElement;
+  const $ = (sel) => document.querySelector(sel);
+  const scenes = DATA.scenes;
+  const tl = timelineOf(scenes);
+  const reduceMq = matchMedia('(prefers-reduced-motion: reduce)');
+  let reduce = !PRM.render && (PRM.reduce || reduceMq.matches);
+
+  let t = tl.starts[clampScene(PRM.scene, scenes.length)];
+  let playing = false;
+  let started = false;
+  let ended = false;
+  let scrubbing = false;
+  let visible = true;
+  let rate = 1;
+  let muted = PRM.muted;
+  if (window.parent === window) { try { muted = localStorage.getItem('vp:filmMuted') === '1' || PRM.muted; } catch (e) { /* storage blocked */ } }
+  let spokenKey = null; // "scene:beat" last handed to the voice
+  let speaking = null; // { id, scene, beat, until? }
+  let nextId = 1;
+  let raf = 0;
+  let last = 0;
+
+  const main = $('.fp');
+  const stage = $('.fp-stage');
+  const cap = $('.fp-cap');
+  const read = $('.fp-read');
+  const playBtn = $('[data-act="play"]');
+  const muteBtn = $('[data-act="mute"]');
+  const scenesBtn = $('[data-act="scenes"]');
+  const prevBtn = $('[data-act="prev"]');
+  const nextBtn = $('[data-act="next"]');
+  const range = $('.fp-range');
+  const clock = $('.fp-time');
+  const poster = $('.fp-poster');
+  const sheet = $('.fp-sheet');
+  const note = $('.fp-note');
+  let focusOn = new Set();
+  const lightFocus = () => stage.querySelectorAll('[data-cue]').forEach((el) => el.toggleAttribute('data-on', focusOn.has(el.getAttribute('data-cue'))));
+
+  document.title = DATA.title[LANG];
+  doc.lang = LANG;
+  main.setAttribute('aria-label', `${STR.label}: ${DATA.title[LANG]}`);
+  $('.fp-poster-title').textContent = DATA.title[LANG];
+  $('.fp-poster-go span').textContent = STR.start;
+  $('.fp-sheet-title').textContent = STR.scenes;
+  $('[data-act="close"]').setAttribute('aria-label', STR.close);
+  prevBtn.setAttribute('aria-label', STR.prev);
+  nextBtn.setAttribute('aria-label', STR.next);
+  scenesBtn.setAttribute('aria-label', STR.scenes);
+  range.setAttribute('aria-label', STR.scrub);
+  range.max = String(tl.total);
+  const svgEl = stage.querySelector('svg');
+  if (svgEl && DATA.label) svgEl.setAttribute('aria-label', DATA.label[LANG]);
+
+  const ticks = $('.fp-ticks');
+  tl.starts.slice(1).forEach((s) => { const i = document.createElement('i'); i.style.left = `${(s / tl.total) * 100}%`; ticks.append(i); });
+  const list = $('.fp-list');
+  scenes.forEach((s, i) => {
+    const b = document.createElement('button');
+    b.type = 'button';
+    b.className = 'fp-item';
+    b.innerHTML = `<span class="fp-item-n">${i + 1}</span><span class="fp-item-t"></span><span class="fp-item-d">${fmtClock(tl.starts[i])}</span>`;
+    b.querySelector('.fp-item-t').textContent = s.title[LANG];
+    b.addEventListener('click', () => { closeSheet(); jump(tl.starts[i]); if (!playing) play(); });
+    list.append(b);
+  });
+  const speedBtn = $('[data-act="speed"]');
+  speedBtn.querySelector('.fp-speed-l').textContent = STR.speed;
+
+  const inFrame = window.parent !== window;
+  let bridge = false;
+  const post = (msg) => { try { window.parent.postMessage(Object.assign({ type: 'vp-film' }, msg), '*'); } catch (e) { /* no parent */ } };
+  window.addEventListener('message', (e) => {
+    if (!inFrame || e.source !== window.parent) return;
+    const d = e.data;
+    if (!d || typeof d !== 'object' || d.type !== 'vp-film') return;
+    if (d.op === 'ready') { bridge = true; doc.dataset.narration = 'bridge'; }
+    else if (d.op === 'said') lineDone(d.id, d.result);
+  });
+  if (inFrame) post({ op: 'hello' });
+  if (inFrame) document.body.style.background = 'transparent'; // the app's card shows round the player
+  doc.dataset.narration = 'local';
+  doc.dataset.said = '0';
+
+  const localSynth = (() => { try { return window.speechSynthesis && typeof SpeechSynthesisUtterance === 'function' ? window.speechSynthesis : null; } catch (e) { return null; } })();
+  function localSay(id, text) {
+    if (!localSynth) { setTimeout(() => lineDone(id, 'failed'), 0); return; }
+    try {
+      localSynth.cancel();
+      const u = new SpeechSynthesisUtterance(text);
+      u.lang = LANG === 'en' ? 'en-GB' : 'nl-NL';
+      u.rate = rate;
+      const code = LANG === 'en' ? 'en' : 'nl';
+      const voices = localSynth.getVoices();
+      const v = voices.find((x) => x.lang.toLowerCase().startsWith(code) && x.localService) || voices.find((x) => x.lang.toLowerCase().startsWith(code));
+      if (v) u.voice = v;
+      const t0 = Date.now();
+      u.onend = () => lineDone(id, Date.now() - t0 < 300 ? 'failed' : 'spoken');
+      u.onerror = () => lineDone(id, 'failed');
+      localSynth.speak(u);
+    } catch (e) { setTimeout(() => lineDone(id, 'failed'), 0); }
+  }
+  function sayBeat(si, bi) {
+    const b = scenes[si].beats[bi];
+    const text = (b.voice || b.speak)[LANG]; // the narration script when the film has one
+    const id = nextId++;
+    speaking = { id, scene: si, beat: bi };
+    const limit = Math.max(6000, 2000 + text.length * 90) / rate;
+    setTimeout(() => lineDone(id, 'timeout'), limit);
+    if (bridge) post({ op: 'say', id, text, lang: LANG, rate });
+    else localSay(id, text);
+  }
+  let failures = 0;
+  function lineDone(id, result) {
+    if (!speaking || speaking.id !== id || speaking.until) return;
+    speaking.until = performance.now() + 400; // a breath before the next line
+    doc.dataset.said = String(Number(doc.dataset.said) + 1);
+    if (result === 'failed') { failures += 1; if (failures >= 2) note.textContent = STR.voice; }
+  }
+  function cancelSpeech() {
+    if (speaking) { if (bridge) post({ op: 'cancel' }); else if (localSynth) { try { localSynth.cancel(); } catch (e) { /* ignore */ } } }
+    speaking = null;
+  }
+
+  const local = () => {
+    const si = sceneIndexAt(t, tl);
+    return { si, lt: t - tl.starts[si] };
+  };
+  let shownKey = '';
+  function caption(si, bi) {
+    const key = `${si}:${bi}`;
+    if (key === shownKey) return;
+    shownKey = key;
+    const b = scenes[si].beats[bi];
+    const line = b.seg[LANG].map((p) => {
+      if (typeof p === 'string') return document.createTextNode(p);
+      const s = document.createElement('span');
+      s.className = 'fp-term';
+      s.textContent = p.t;
+      if (!p.en) return s;
+      const f = document.createDocumentFragment();
+      const en = document.createElement('span');
+      en.className = 'fp-en';
+      en.lang = 'en';
+      en.textContent = ` (${p.en})`;
+      f.append(s, en);
+      return f;
+    });
+    if (PRM.render) { const one = document.createElement('span'); one.append(...line); cap.replaceChildren(one); } else cap.replaceChildren(...line);
+    let r = null;
+    for (let k = bi; k >= 0 && !r; k--) r = scenes[si].beats[k].read || null;
+    read.textContent = r ? r[LANG] : '';
+    read.hidden = !r;
+    focusOn = new Set(b.cues);
+    main.dataset.focus = main.dataset.focus === 'a' ? 'b' : 'a'; // the halo eases in again
+  }
+  function draw() {
+    const { si, lt } = local();
+    const s = scenes[si];
+    const bi = beatIndexAt(s, LANG, lt);
+    const u = reduce ? (s.beats[bi].still ?? s.still) : stageU(s, LANG, lt, STAGE.nlBeats === true);
+    caption(si, bi);
+    STAGE.render(si, u); lightFocus();
+    if (!scrubbing) range.value = String(Math.round(t * 10) / 10);
+    range.setAttribute('aria-valuetext', `${STR.scene(si + 1, scenes.length)}: ${s.title[LANG]}, ${fmtClock(t)}`);
+    clock.textContent = `${fmtClock(t)} / ${fmtClock(tl.total)}`;
+    doc.dataset.scene = String(si + 1);
+  }
+
+  function advance(dt) {
+    let target = t + dt * rate;
+    const now = performance.now();
+    if (!muted && speaking) {
+      if (speaking.until && now >= speaking.until) speaking = null;
+      else target = Math.min(target, holdLimit(tl, scenes, LANG, speaking.scene, speaking.beat) - 0.001);
+    }
+    t = Math.max(t, target);
+    if (t >= tl.total - 0.0005) { t = tl.total; finish(); return; }
+    const { si, lt } = local();
+    const bi = beatIndexAt(scenes[si], LANG, lt);
+    const key = `${si}:${bi}`;
+    if (key !== spokenKey) {
+      spokenKey = key;
+      if (!muted) sayBeat(si, bi);
+    }
+  }
+  function frame(now) {
+    raf = 0;
+    const dt = last ? Math.min(0.1, (now - last) / 1000) : 0;
+    last = now;
+    if (playing && visible && !scrubbing) advance(dt);
+    draw();
+    if (playing) raf = requestAnimationFrame(frame);
+  }
+  const kick = () => { if (!raf) { last = 0; raf = requestAnimationFrame(frame); } };
+
+  function setPlayBtn() {
+    const label = ended ? STR.replay : playing ? STR.pause : STR.play;
+    playBtn.setAttribute('aria-label', label);
+    playBtn.dataset.state = ended ? 'replay' : playing ? 'pause' : 'play';
+    main.dataset.playing = playing ? '1' : '0';
+  }
+  function play() {
+    if (ended) { ended = false; t = 0; spokenKey = null; main.dataset.ended = '0'; }
+    if (!started) { started = true; poster.hidden = true; main.dataset.started = '1'; }
+    playing = true;
+    setPlayBtn();
+    kick();
+  }
+  function pause() {
+    playing = false;
+    cancelSpeech();
+    spokenKey = null; // the beat speaks again from its start when play resumes
+    setPlayBtn();
+    draw();
+  }
+  function finish() {
+    playing = false;
+    ended = true;
+    speaking = null;
+    main.dataset.ended = '1';
+    setPlayBtn();
+  }
+  function jump(to) {
+    cancelSpeech();
+    t = Math.max(0, Math.min(tl.total - 0.01, to));
+    if (ended) { ended = false; main.dataset.ended = '0'; }
+    if (!started) { started = true; poster.hidden = true; main.dataset.started = '1'; }
+    spokenKey = null;
+    setPlayBtn();
+    draw();
+  }
+  const sceneStep = (dir) => {
+    const { si, lt } = local();
+    const to = dir < 0 ? (lt > 1.5 ? si : si - 1) : si + 1;
+    if (to >= scenes.length) { jump(tl.total - 0.01); return; }
+    jump(tl.starts[Math.max(0, to)]);
+  };
+  const toggle = () => (playing ? pause() : play());
+  playBtn.addEventListener('click', toggle);
+  $('.fp-poster-go').addEventListener('click', play);
+  $('.fp-again').addEventListener('click', play);
+  prevBtn.addEventListener('click', () => sceneStep(-1));
+  nextBtn.addEventListener('click', () => sceneStep(1));
+  function setMute(m) {
+    muted = m;
+    muteBtn.setAttribute('aria-pressed', muted ? 'true' : 'false');
+    muteBtn.setAttribute('aria-label', muted ? STR.unmute : STR.mute);
+    main.dataset.muted = muted ? '1' : '0';
+    if (muted) cancelSpeech(); else spokenKey = null;
+    if (inFrame) post({ op: 'mute', muted });
+    else { try { localStorage.setItem('vp:filmMuted', muted ? '1' : '0'); } catch (e) { /* storage blocked */ } }
+  }
+  muteBtn.addEventListener('click', () => setMute(!muted));
+  speedBtn.addEventListener('click', () => {
+    rate = rate === 1 ? 1.25 : 1;
+    speedBtn.querySelector('.fp-speed-v').textContent = rate === 1 ? '1×' : '1,25×'.replace(',', LANG === 'en' ? '.' : ',');
+    speedBtn.setAttribute('aria-pressed', rate !== 1 ? 'true' : 'false');
+  });
+  function openSheet() { sheet.hidden = false; scenesBtn.setAttribute('aria-expanded', 'true'); const { si } = local(); (list.children[si] || list.children[0]).focus(); }
+  function closeSheet() { sheet.hidden = true; scenesBtn.setAttribute('aria-expanded', 'false'); }
+  scenesBtn.addEventListener('click', () => (sheet.hidden ? openSheet() : closeSheet()));
+  $('[data-act="close"]').addEventListener('click', () => { closeSheet(); scenesBtn.focus(); });
+
+  range.addEventListener('pointerdown', () => { scrubbing = true; cancelSpeech(); });
+  const endScrub = () => { if (scrubbing) { scrubbing = false; spokenKey = null; kick(); } };
+  range.addEventListener('pointerup', endScrub);
+  range.addEventListener('pointercancel', endScrub);
+  range.addEventListener('change', endScrub);
+  range.addEventListener('input', () => { jump(Number(range.value)); if (playing) kick(); });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.target && e.target.tagName === 'INPUT' && (e.key === 'ArrowLeft' || e.key === 'ArrowRight')) return; // the scrubber's own keys
+    if (e.key === ' ' || e.key === 'k') { if (e.target && e.target.tagName === 'BUTTON' && e.key === ' ') return; toggle(); e.preventDefault(); }
+    else if (e.key === 'ArrowLeft') { sceneStep(-1); e.preventDefault(); }
+    else if (e.key === 'ArrowRight') { sceneStep(1); e.preventDefault(); }
+    else if (e.key === 'm' || e.key === 'M') setMute(!muted);
+    else if (e.key === 'End') { jump(tl.starts[scenes.length - 1]); e.preventDefault(); }
+    else if (e.key === 'Home') { jump(0); e.preventDefault(); }
+    else if (e.key === 'Escape' && !sheet.hidden) closeSheet();
+  });
+
+  const away = () => { if (playing) pause(); };
+  document.addEventListener('visibilitychange', () => { if (document.hidden) away(); });
+  if ('IntersectionObserver' in window) {
+    new IntersectionObserver((entries) => {
+      visible = entries[entries.length - 1].isIntersecting;
+      if (!visible) away();
+    }, { threshold: 0.15 }).observe(stage);
+  }
+  const setMotion = () => { main.dataset.motion = reduce ? 'reduce' : 'full'; draw(); };
+  reduceMq.addEventListener && reduceMq.addEventListener('change', () => { reduce = PRM.reduce || reduceMq.matches; setMotion(); });
+
+  if (inFrame && 'ResizeObserver' in window) {
+    let lastH = 0;
+    new ResizeObserver(() => {
+      const hgt = Math.ceil(main.getBoundingClientRect().height + 2);
+      if (Math.abs(hgt - lastH) > 1) { lastH = hgt; post({ op: 'size', h: hgt }); }
+    }).observe(main);
+  }
+
+  if (PRM.render) {
+    main.dataset.render = '1';
+    doc.dataset.render = '1';
+    poster.hidden = true;
+    started = true;
+    main.dataset.started = '1';
+    let atl = null;
+    window.__film = {
+      total: tl.total,
+      setTiming(next) { atl = next; return atl.total; },
+      seek(time) {
+        if (atl) {
+          const at = timedAt(time, atl);
+          caption(at.si, at.bi);
+          STAGE.render(at.si, at.u); lightFocus();
+        } else { t = Math.max(0, Math.min(tl.total, time)); draw(); }
+        return true;
+      },
+    };
+    window.__film.seek(0);
+    return;
+  }
+  setMute(muted);
+  setPlayBtn();
+  setMotion();
+})();
+</script></body></html>
