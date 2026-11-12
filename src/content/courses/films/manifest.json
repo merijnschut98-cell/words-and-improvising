@@ -1630,6 +1630,37 @@
         ],
         "vtt": "src/content/courses/films/pm.land.training.en.vtt"
       }
+    },
+    "pm.close.results": {
+      "poster": "src/content/courses/films/pm.close.results.jpg",
+      "nl": {
+        "dur": 246.3,
+        "bytes": 8327985,
+        "scenes": [
+          0,
+          37.71,
+          72.39,
+          107.53,
+          140.33,
+          179.88,
+          213.54
+        ],
+        "vtt": "src/content/courses/films/pm.close.results.nl.vtt"
+      },
+      "en": {
+        "dur": 255.2,
+        "bytes": 8578119,
+        "scenes": [
+          0,
+          37.33,
+          75.58,
+          112.46,
+          146.08,
+          184.35,
+          220.87
+        ],
+        "vtt": "src/content/courses/films/pm.close.results.en.vtt"
+      }
     }
   }
 }
