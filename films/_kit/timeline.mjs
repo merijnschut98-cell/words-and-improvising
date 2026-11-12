@@ -298,7 +298,12 @@ const SAY = {
     // five small requests (pm.run.scope): espeak-ng stresses wijzigingsverZOEK, wijzigingscomMISsie and
     // duivelsdrieHOEK (with a full e in duivels); split at the head, as stuur-groep, so they keep WIJzigings-
     // and DUIvels-; no other film says them
-    [/\b([Ww])ijzigings(verzoek|commissie)/g, '$1ijzigings-$2'], [/\b([Dd])uivelsdriehoek/g, '$1uivels-driehoek']],
+    [/\b([Ww])ijzigings(verzoek|commissie)/g, '$1ijzigings-$2'], [/\b([Dd])uivelsdriehoek/g, '$1uivels-driehoek'],
+    // proving results (pm.close.results): espeak-ng stresses controller on the first part, "KON-trol-ler" (said
+    // kon-TROL-ler), dekkingsbijdrage on "-DRAA-" with a French zj (split at the head: DEK-kings-BIJ-drage), and
+    // reads run chart with a French sj (said run tsjart); no other film says them
+    [/\b([Cc])ontroller(s?)\b/g, (m, c, s) => `${c === 'C' ? 'K' : 'k'}on-troller${s}`], [/\b([Dd])ekkingsbijdrage/g, '$1ekkings-bijdrage'],
+    [/\b([Rr])un chart\b/g, '$1un tsjart']],
   en: [[/\brpm\b/g, 'revolutions per minute'], [/\bmm\/min\b/g, 'millimetres per minute'], [/\bm\/min\b/g, 'metres per minute'], [/µm\b/g, 'micrometres'],
     [/€\s?(\d[\d,]*(?:\.\d+)?)/g, '$1 euros'], [/(\d)\.0(?![\d])/g, '$1'], [/(\d)\s?mm\b/g, '$1 millimetres'], [/(\d)\s?min\b/g, '$1 minutes'], [/(\d)\s?%/g, '$1 percent'],
     [/Ø\s*/g, 'diameter '], [/(\d)\+(\d)/g, '$1 plus $2'], [/\s×\s/g, ' times '], [/\s\/\s/g, ' divided by '], [/\s=\s/g, ' is '], [/°/g, ' degrees'], [/\bRa\b/g, 'R a'], [/’/g, "'"],
