@@ -672,6 +672,7 @@ export default {
     },
     {
       id: 'pm.run.rhythm',
+      film: 'pm.run.rhythm',
       title: 'Een overlegritme dat werkt',
       pre: [
         {
