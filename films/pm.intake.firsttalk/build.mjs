@@ -75,9 +75,11 @@
 //     problem" (s6 b3), gold (card, s6 b3); Thursday on the line with two
 //     shift leads, the summary that evening (s7 b4)
 //   listen teach 1: active listening, to understand, not to reply; MORE PIES
-//     from crisis negotiation (s5 b1); Rogers and Farson 1957, Scott Walker
-//     2023 (the card, s5 b1); mood, open questions with what and how, reflect
-//     the feeling, empathy why it matters (s5 b2, the card's glosses)
+//     from crisis negotiation (s5 b1; Rogers and Farson 1957 and "crisis
+//     negotiation" on the card); the negotiators' own letters, minimal
+//     encouragers and summarising, Scott Walker 2023, this course's version
+//     (s5 b4, the Walker card); mood, open questions with what and how,
+//     reflect the feeling, empathy why it matters (s5 b2, the card's glosses)
 //   listen teach 2: paraphrase, inquiry one level deeper, experience only when
 //     it helps, silence (s5 b3); under pressure you defend; the rule: reflect
 //     or paraphrase first, then ask, then answer; an attack hides a worry:
@@ -90,8 +92,7 @@
 //     (s9 b2); no "why" when heated, it sounds like blame; "what made you"
 //     (s9 b2); the fake question "don't you think": you learn nothing (s9 b3)
 //   listen teach 5: experience as a bridge: one sentence, then back; check
-//     yourself: what did I learn? nothing: you talked too much (s9 b4);
-//     versions: M minimal encouragers, S summarising (s5 b4)
+//     yourself: what did I learn? nothing: you talked too much (s9 b4)
 //   listen example: the senior work preparer in a team meeting: "three years
 //     ago, only more forms" (s8 b1); mood tense, reflect "more work", wait five
 //     seconds (s8 b3); open question "what happened then", paraphrase "not
@@ -109,6 +110,11 @@
 // bar, the hour as a clock, MORE PIES letter by letter, talk time and the
 // correction, the summary on one page, the steps under pressure and the wait
 // time. The whiteboard copies the panel's shapes in miniature.
+//
+// Focus (strictFocus): every beat names the block it explains. Each card
+// block of the panel is its own cue group (SLOTS below; MORE PIES a group per
+// letter), and so are the people, the wall clock, the calendar, the notebook
+// and the summary sheet on the table.
 //
 // The kit comes from the anatomy skill; point ANATOMY_SKILL at its folder if it
 // lives somewhere else on your machine.
@@ -216,16 +222,16 @@ const sumMini = `<g transform="${SUM.face}">${g('sMini', '')}</g>`;
 const person = (role) => w.person({ ...SPOT[role], role });
 const world = [
   w.room(ROOM),
-  w.clock(266, 186, 11),
+  cueG('clock', w.clock(266, 186, 11)),
   cueG('board', BOARD.svg + boardMini),
-  CAL.svg,
+  cueG('calendar', CAL.svg),
   person('planner'),
   w.chair({ x: 128, y: 98, back: -1 }),
   w.chair({ x: 224, y: 98, back: -1 }),
   person('teamlead'),
   w.table(TABLE),
   w.stack({ x: 104, y: 120, z: TZ, n: 3 }),
-  NOTE.svg,
+  cueG('notebook', NOTE.svg),
   cueG('summary', SUM.svg + sumMini),
   w.laptop({ x: 214, y: 134, z: TZ, toward: -1 }),
   w.cup(196, 172, TZ),
@@ -235,21 +241,22 @@ const world = [
 ].join('');
 
 // ---------------------------------------------------------------- the panel (stage space)
-// Each term's cue is a static group here (the player lights the groups it
-// finds at start); the stage fills their contents per scene.
+// Every block the panel draws is a static cue group here (the player lights
+// the groups it finds at start, so each beat's focus names the block it
+// explains); the stage fills their contents per scene. SLOTS lists the panel
+// blocks by key, in drawing order; the stage writes o[key] into data-k
+// "t_<key>". MORE PIES has a group per letter inside "pies".
+const SLOTS = ['ask', 'symptom', 'problem', 'goal', 'verdict', 'questions', 'cost', 'oee', 'see', 'show', 'hypo', 'naive', 'clock', 'legend',
+  'active', 'walker', 'talk', 'para', 'correction', 'pause', 'resist', 'prior', 'summary', 'followup', 'closing',
+  'attack', 'rule', 'reflect', 'openq', 'confirm', 'agree', 'wait', 'realq', 'fake', 'bridge'];
+const LETTERS = ['pM', 'pO', 'pR', 'pE', 'pP', 'pI', 'pX', 'pS'];
+const slot = (key) => cueG(key, g(`t_${key}`, ''));
 const PX = 322;
 const PW = 308;
 const hud = g('panel', `<rect class="ft-panel" x="${PX}" y="12" width="${PW}" height="376" rx="10"/>`
   + g('pHead', '')
-  + cueG('symptom', g('cSym', '')) + cueG('problem', g('cProb', '')) + cueG('goal', g('cGoal', ''))
-  + cueG('cost', g('cCost', '')) + cueG('oee', g('cOee', ''))
-  + cueG('clock', g('cClock', ''))
-  + cueG('active', g('cActive', ''))
-  + cueG('pies', g('cPies', '') + cueG('pO', g('cPO', '')) + cueG('pR', g('cPR', '')) + cueG('pP', g('cPP', '')))
-  + cueG('talk', g('cTalk', ''))
-  + cueG('summary', g('cSum', ''))
-  + cueG('openq', g('cOpenq', ''))
-  + g('pText', ''));
+  + SLOTS.map(slot).join('')
+  + cueG('pies', g('t_pies', '') + LETTERS.map(slot).join('')));
 
 const svg = `<svg class="iso-svg fp-svg" viewBox="0 0 ${W} ${H}" role="img" aria-label="">${g('world', world + g('bubbles', ''))}${g('hud', hud)}</svg>`;
 
@@ -270,92 +277,93 @@ const CAM = [
 ];
 
 // ---------------------------------------------------------------- the film
-const C = { PX, PW, PANEL_AREA, HEAD, HOUR, OEE, TALK, ORDERS, CHANGE, CAST: Object.fromEntries(Object.entries(CAST).map(([key, v]) => [key, { nl: v.nl, en: v.en }])) };
+const C = { PX, PW, PANEL_AREA, SLOTS: [...SLOTS, 'pies', ...LETTERS], HEAD, HOUR, OEE, TALK, ORDERS, CHANGE, CAST: Object.fromEntries(Object.entries(CAST).map(([key, v]) => [key, { nl: v.nl, en: v.en }])) };
 const spec = {
   id: 'pm.intake.firsttalk',
   title: { nl: 'Het eerste gesprek', en: 'The first conversation' },
   lessons: [ASK, FT, LI],
+  strictFocus: true,
   scenes: [
     {
       id: 's1', lesson: ASK, level: 1, still: 0.9, title: { nl: 'Wat ze vragen', en: 'What they ask' },
       beats: [
-        { nl: 'De teamleider vraagt om een beter dashboard. Klanten komen met een oplossing of een symptoom.', en: 'The team lead asks for a better dashboard. Clients bring a solution or a symptom.', cues: ['teamlead', 'jij'] },
-        { nl: 'Drie lagen: het {t:Symptoom|symptoom}, het {t:Probleem|probleem} eronder en het {t:Doel|doel}.', en: 'Three layers: the {t:Symptom|symptom}, the {t:Problem|problem} underneath and the {t:Goal|goal}.', cue: { Symptoom: 'symptom', Probleem: 'problem', Doel: 'goal' } },
-        { nl: 'Klussen lopen vast: {n:140} van de {n:600} orders wachten langer dan {n:4} weken, {n:90} op materiaal.', en: 'Jobs get stuck: {n:140} of {n:600} orders have waited over {n:4} weeks, {n:90} for materials.', cues: ['symptom', 'teamlead'] },
-        { nl: 'Probleem: materiaal niet gekoppeld aan de planning. Het dashboard wordt een klein onderdeel.', en: 'Problem: materials not linked to the planning. The dashboard becomes a small part.', cues: ['problem', 'goal'] },
+        { nl: 'De teamleider vraagt om een beter dashboard. Klanten komen met een oplossing of een symptoom.', en: 'The team lead asks for a better dashboard. Clients bring a solution or a symptom.', focus: ['teamlead', 'ask'] },
+        { nl: 'Drie lagen: het {t:Symptoom|symptoom}, het {t:Probleem|probleem} eronder en het {t:Doel|doel}.', en: 'Three layers: the {t:Symptom|symptom}, the {t:Problem|problem} underneath and the {t:Goal|goal}.', cue: { Symptoom: 'symptom', Probleem: 'problem', Doel: 'goal' }, focus: ['symptom', 'problem', 'goal'] },
+        { nl: 'Klussen lopen vast: {n:140} van de {n:600} orders wachten langer dan {n:4} weken, {n:90} op materiaal.', en: 'Jobs get stuck: {n:140} of {n:600} orders have waited over {n:4} weeks, {n:90} for materials.', focus: ['symptom', 'teamlead'] },
+        { nl: 'Probleem: materiaal niet gekoppeld aan de planning. Het dashboard wordt een klein onderdeel.', en: 'Problem: materials not linked to the planning. The dashboard becomes a small part.', focus: ['problem', 'goal', 'verdict'] },
       ],
     },
     {
       id: 's2', lesson: ASK, level: 1, still: 0.9, title: { nl: 'Eronder komen', en: 'Getting underneath' },
       beats: [
-        { nl: 'Waaraan merk je het? Sinds wanneer? Wat al geprobeerd? En één recent geval.', en: 'How do you notice it? Since when? What have you tried? And one recent case.', cues: ['jij'] },
-        { nl: 'Wat kost het per week? Dat zijn de {t:Kosten van niksdoen|kosten van niksdoen}.', en: 'What does it cost per week? That is the {t:Cost of inaction|cost of inaction}.', cue: { 'Kosten van niksdoen': 'cost' } },
-        { nl: 'Een streefcijfer op een KPI, zoals de {t:OEE|OEE}: goede producten op volle snelheid.', en: 'A target on a KPI, like {t:OEE|OEE}: good parts at full speed.', cue: { OEE: 'oee' } },
-        { nl: 'Van {n:58} naar {n:75}% is een wens. Waar gaan de {n:42} punten heen?', en: 'From {n:58} to {n:75}% is a wish. Where do the {n:42} points go?', cues: ['oee'] },
+        { nl: 'Waaraan merk je het? Sinds wanneer? Wat al geprobeerd? En één recent geval.', en: 'How do you notice it? Since when? What have you tried? And one recent case.', focus: ['jij', 'questions'] },
+        { nl: 'Wat kost het per week? Dat zijn de {t:Kosten van niksdoen|kosten van niksdoen}.', en: 'What does it cost per week? That is the {t:Cost of inaction|cost of inaction}.', cue: { 'Kosten van niksdoen': 'cost' }, focus: 'cost' },
+        { nl: 'Een streefcijfer op een KPI, zoals de {t:OEE|OEE}: goede producten op volle snelheid.', en: 'A target on a KPI, like {t:OEE|OEE}: good parts at full speed.', cue: { OEE: 'oee' }, focus: 'oee' },
+        { nl: 'Van {n:58} naar {n:75}% is een wens. Waar gaan de {n:42} punten heen?', en: 'From {n:58} to {n:75}% is a wish. Where do the {n:42} points go?', focus: 'oee' },
       ],
     },
     {
       id: 's3', lesson: ASK, level: 1, still: 0.9, title: { nl: 'De mensenkant', en: 'The people side' },
       beats: [
-        { nl: 'Ga niet tegen hun oplossing in: “Mag ik eerst zien waar de vertraging vandaan komt?”', en: 'Don’t attack their solution: “Can I first see where the delays come from?”', cues: ['teamlead', 'jij'] },
-        { nl: '“Al geanalyseerd?” Mooi, laat het zien. Kan dat niet, dan weet je ook iets.', en: '“Analysed already?” Great, show me. If they can’t, you’ve learned something too.', cues: ['teamlead'] },
-        { nl: 'Hun oplossing is een hypothese, die je in een week of twee met data checkt.', en: 'Their solution is a hypothesis you check with data in a week or two.', cues: ['jij'] },
-        { nl: 'Stel naïeve vragen en schrijf hun woorden letterlijk op.', en: 'Ask naive questions and write their words down literally.', cues: ['jij'] },
+        { nl: 'Ga niet tegen hun oplossing in: “Mag ik eerst zien waar de vertraging vandaan komt?”', en: 'Don’t attack their solution: “Can I first see where the delays come from?”', focus: ['see', 'teamlead'] },
+        { nl: '“Al geanalyseerd?” Mooi, laat het zien. Kan dat niet, dan weet je ook iets.', en: '“Analysed already?” Great, show me. If they can’t, you’ve learned something too.', focus: ['show', 'teamlead'] },
+        { nl: 'Hun oplossing is een hypothese, die je in een week of twee met data checkt.', en: 'Their solution is a hypothesis you check with data in a week or two.', focus: 'hypo' },
+        { nl: 'Stel naïeve vragen en schrijf hun woorden letterlijk op.', en: 'Ask naive questions and write their words down literally.', focus: 'naive' },
       ],
     },
     {
       id: 's4', lesson: FT, level: 2, still: 0.9, title: { nl: 'Een uur met vier delen', en: 'An hour in four parts' },
       beats: [
-        { nl: 'Een uur bij een zuivelfabriek: openen {n:5} minuten, verkennen {n:35}, checken {n:10}, afsluiten {n:10}.', en: 'An hour at a dairy plant: open {n:5} minutes, explore {n:35}, check {n:10}, close {n:10}.', cues: ['clock', 'sponsor', 'jij'] },
-        { nl: 'Benoem de opbouw: “Ik wil vooral luisteren en eindigen met een volgende stap.”', en: 'Say the structure: “I’d like to mostly listen and end with a next step.”', cues: ['clock', 'jij'] },
-        { nl: 'Verkennen: hun verhaal. Checken: samenvatten. Afsluiten: een stap met een datum.', en: 'Explore: their story. Check: summarise. Close: a step with a date.', cues: ['clock'] },
+        { nl: 'Een uur bij een zuivelfabriek: openen {n:5} minuten, verkennen {n:35}, checken {n:10}, afsluiten {n:10}.', en: 'An hour at a dairy plant: open {n:5} minutes, explore {n:35}, check {n:10}, close {n:10}.', focus: ['clock', 'sponsor'] },
+        { nl: 'Benoem de opbouw: “Ik wil vooral luisteren en eindigen met een volgende stap.”', en: 'Say the structure: “I’d like to mostly listen and end with a next step.”', focus: ['jij', 'legend'] },
+        { nl: 'Verkennen: hun verhaal. Checken: samenvatten. Afsluiten: een stap met een datum.', en: 'Explore: their story. Check: summarise. Close: a step with a date.', focus: 'legend' },
       ],
     },
     {
       id: 's5', lesson: LI, level: 1, still: 0.9, title: { nl: 'MORE PIES', en: 'MORE PIES' },
       beats: [
-        { nl: '{t:Actief luisteren|Actief luisteren}: om te begrijpen. De checklist: {t:MORE PIES|MORE PIES}.', en: '{t:Active listening|Active listening}: to understand. The checklist: {t:MORE PIES|MORE PIES}.', cue: { 'Actief luisteren': 'active', 'MORE PIES': 'pies' } },
-        { nl: 'De sfeer, {t:Open vragen|open vragen}, {t:Reflecteren|reflecteren} en empathie.', en: 'Mood, {t:Open questions|open questions}, {t:Reflecting|reflecting} and empathy.', cue: { 'Open vragen': 'pO', Reflecteren: 'pR' } },
-        { nl: '{t:Parafraseren|Parafraseren}, doorvragen, kort je ervaring, en stilte.', en: '{t:Paraphrasing|Paraphrasing}, inquiry, your experience briefly, and silence.', cue: { Parafraseren: 'pP' } },
-        { nl: 'Varianten: soms is de M aanmoedigen en de S samenvatten.', en: 'Versions differ: M can be minimal encouragers, S summarising.', cues: ['pies'] },
+        { nl: '{t:Actief luisteren|Actief luisteren}: om te begrijpen. De checklist: {t:MORE PIES|MORE PIES}.', en: '{t:Active listening|Active listening}: to understand. The checklist: {t:MORE PIES|MORE PIES}.', cue: { 'Actief luisteren': 'active', 'MORE PIES': 'pies' }, focus: ['active', 'pies'] },
+        { nl: 'De sfeer, {t:Open vragen|open vragen}, {t:Reflecteren|reflecteren} en empathie.', en: 'Mood, {t:Open questions|open questions}, {t:Reflecting|reflecting} and empathy.', cue: { 'Open vragen': 'pO', Reflecteren: 'pR' }, focus: ['pM', 'pO', 'pR', 'pE'] },
+        { nl: '{t:Parafraseren|Parafraseren}, doorvragen, kort je ervaring, en stilte.', en: '{t:Paraphrasing|Paraphrasing}, inquiry, your experience briefly, and silence.', cue: { Parafraseren: 'pP' }, focus: ['pP', 'pI', 'pX', 'pS'] },
+        { nl: 'Bij onderhandelaars is de M aanmoedigen en de S samenvatten.', en: 'Negotiators’ own version: M is minimal encouragers, S summarising.', focus: ['walker', 'pM', 'pS'] },
       ],
     },
     {
       id: 's6', lesson: FT, level: 2, still: 0.9, title: { nl: 'In de correctie', en: 'In the correction' },
       beats: [
-        { nl: 'De klant praat {n:70} tot {n:80}% van de tijd. Twee minuten aan het woord? Stel een vraag.', en: 'The client talks {n:70} to {n:80}% of the time. Talked two minutes? Ask a question.', cues: ['talk', 'sponsor'] },
-        { nl: '{n:6} omstellingen van {n:50} minuten. Jij: “Dus vijf uur omstellen houdt het volume tegen?”', en: '{n:6} changeovers of {n:50} minutes. You: “So five hours of changeovers block the volume?”', cues: ['jij'] },
-        { nl: '“Nee, het reinigen is het grotere probleem.” In de correctie zit het echte punt.', en: '“No, cleaning is the bigger problem.” The correction is where the real issue shows.', cues: ['sponsor'] },
-        { nl: 'Vul de stilte niet: de belangrijkste zin komt vaak net erna.', en: 'Don’t fill the silence: the important sentence often comes right after.', cues: ['sponsor'] },
+        { nl: 'De klant praat {n:70} tot {n:80}% van de tijd. Twee minuten aan het woord? Stel een vraag.', en: 'The client talks {n:70} to {n:80}% of the time. Talked two minutes? Ask a question.', focus: ['talk', 'sponsor'] },
+        { nl: '{n:6} omstellingen van {n:50} minuten. Jij: “Dus vijf uur omstellen houdt het volume tegen?”', en: '{n:6} changeovers of {n:50} minutes. You: “So five hours of changeovers block the volume?”', focus: ['para', 'jij'] },
+        { nl: '“Nee, het reinigen is het grotere probleem.” In de correctie zit het echte punt.', en: '“No, cleaning is the bigger problem.” The correction is where the real issue shows.', focus: ['correction', 'sponsor'] },
+        { nl: 'Vul de stilte niet: de belangrijkste zin komt vaak net erna.', en: 'Don’t fill the silence: the important sentence often comes right after.', focus: ['pause', 'sponsor'] },
       ],
     },
     {
       id: 's7', lesson: FT, level: 2, still: 0.9, title: { nl: 'Wat je meeneemt', en: 'What you leave with' },
       beats: [
-        { nl: 'Stille weerstand: korte antwoorden, “staat in het rapport”. Vraag: “Hoe ging dat toen?”', en: 'Quiet resistance: short answers, “it’s in the report”. Ask: “What happened last time?”', cues: ['sponsor', 'jij'] },
-        { nl: 'Laat het verhaal van de vorige consultant vertellen. Een notitieboek, geen verhoor.', en: 'Let them tell the previous consultant’s story. A notebook, not an interrogation.', cues: ['jij'] },
-        { nl: 'Binnen {n:24} uur een {t:Intakesamenvatting|intakesamenvatting}: vijf dingen op één A4.', en: 'Within {n:24} hours an {t:Intake summary|intake summary}: five things on one page.', cue: { Intakesamenvatting: 'summary' } },
-        { nl: 'Donderdag de lijn op met twee ploegleiders. De samenvatting gaat dezelfde avond weg.', en: 'Thursday on the line with two shift leads. The summary goes out that evening.', cues: ['summary'] },
-        { nl: '“Wanneer zeg jij over een half jaar: dit was het waard?”', en: '“What would make you say in six months that this was worth it?”', cues: ['sponsor', 'jij'] },
+        { nl: 'Stille weerstand: korte antwoorden, “staat in het rapport”. Vraag: “Hoe ging dat toen?”', en: 'Quiet resistance: short answers, “it’s in the report”. Ask: “What happened last time?”', focus: ['resist', 'sponsor'] },
+        { nl: 'Laat het verhaal van de vorige consultant vertellen. Een notitieboek, geen verhoor.', en: 'Let them tell the previous consultant’s story. A notebook, not an interrogation.', focus: ['prior', 'notebook'] },
+        { nl: 'Binnen {n:24} uur een {t:Intakesamenvatting|intakesamenvatting}: vijf dingen op één A4.', en: 'Within {n:24} hours an {t:Intake summary|intake summary}: five things on one page.', cue: { Intakesamenvatting: 'summary' }, focus: 'summary' },
+        { nl: 'Donderdag de lijn op met twee ploegleiders. De samenvatting gaat dezelfde avond weg.', en: 'Thursday on the line with two shift leads. The summary goes out that evening.', focus: ['followup', 'calendar'] },
+        { nl: '“Wanneer zeg jij over een half jaar: dit was het waard?”', en: '“What would make you say in six months that this was worth it?”', focus: ['closing', 'sponsor', 'jij'] },
       ],
     },
     {
       id: 's8', lesson: LI, level: 1, still: 0.9, title: { nl: 'Luisteren onder druk', en: 'Listening under pressure' },
       beats: [
-        { nl: 'De werkvoorbereider: “Drie jaar geleden ook gedaan. We kregen alleen meer formulieren.”', en: 'The work preparer: “We did this three years ago. We just got more forms.”', cues: ['planner'] },
-        { nl: 'Eerst reflecteren of parafraseren, dan vragen, dan pas antwoorden.', en: 'Reflect or paraphrase first, then ask, then answer.', cues: ['jij'] },
-        { nl: 'Jij: “Het leverde je vooral meer werk op.” Dan vijf seconden stilte.', en: 'You: “It mostly gave you more work.” Then five seconds of silence.', cues: ['jij', 'planner'] },
-        { nl: 'Een {t:Open vraag|open vraag}: “Wat gebeurde er toen?” De formulieren kwamen van het hoofdkantoor.', en: 'An {t:Open question|open question}: “What happened then?” The forms came from head office.', cue: { 'Open vraag': 'openq' } },
-        { nl: '“Ik snap dat je sceptisch bent. Kijk je donderdag mee naar de check?”', en: '“I get why you’re sceptical. Will you look at the check with me Thursday?”', cues: ['jij', 'planner'] },
+        { nl: 'De werkvoorbereider: “Drie jaar geleden ook gedaan. We kregen alleen meer formulieren.”', en: 'The work preparer: “We did this three years ago. We just got more forms.”', focus: ['attack', 'planner'] },
+        { nl: 'Eerst reflecteren of parafraseren, dan vragen, dan pas antwoorden.', en: 'Reflect or paraphrase first, then ask, then answer.', focus: ['rule', 'jij'] },
+        { nl: 'Jij: “Het leverde je vooral meer werk op.” Dan vijf seconden stilte.', en: 'You: “It mostly gave you more work.” Then five seconds of silence.', focus: ['reflect', 'jij'] },
+        { nl: 'Een {t:Open vraag|open vraag}: “Wat gebeurde er toen?” De formulieren kwamen van het hoofdkantoor.', en: 'An {t:Open question|open question}: “What happened then?” The forms came from head office.', cue: { 'Open vraag': 'openq' }, focus: ['openq', 'confirm'] },
+        { nl: '“Ik snap dat je sceptisch bent. Kijk je donderdag mee naar de check?”', en: '“I get why you’re sceptical. Will you look at the check with me Thursday?”', focus: ['agree', 'planner'] },
       ],
     },
     {
       id: 's9', lesson: LI, level: 1, still: 0.9, title: { nl: 'Stilte en echte vragen', en: 'Silence and real questions' },
       beats: [
-        { nl: 'Wacht minstens drie seconden, onder druk vijf. Het echte antwoord komt na het eerste.', en: 'Wait at least three seconds, five under pressure. The real answer comes after the first.', cues: ['jij'] },
-        { nl: '“Wat mis ik?” Geen “waarom” als de emoties hoog zitten: “wat maakte dat je…”', en: '“What am I missing?” No “why” when emotions run high: “what made you…”', cues: ['jij'] },
-        { nl: 'Geen nepvraag: “Vind je ook niet dat…?” Dan leer je niks.', en: 'No fake questions: “Don’t you think…?” Then you learn nothing.', cues: ['jij'] },
-        { nl: 'Ervaring: één zin, en geef het terug. Wat heb ik geleerd dat ik nog niet wist?', en: 'Experience: one sentence, then hand it back. What did I learn that I didn’t know?', cues: ['jij', 'planner'] },
+        { nl: 'Wacht minstens drie seconden, onder druk vijf. Het echte antwoord komt na het eerste.', en: 'Wait at least three seconds, five under pressure. The real answer comes after the first.', focus: 'wait' },
+        { nl: '“Wat mis ik?” Geen “waarom” als de emoties hoog zitten: “wat maakte dat je…”', en: '“What am I missing?” No “why” when emotions run high: “what made you…”', focus: 'realq' },
+        { nl: 'Geen nepvraag: “Vind je ook niet dat…?” Dan leer je niks.', en: 'No fake questions: “Don’t you think…?” Then you learn nothing.', focus: 'fake' },
+        { nl: 'Ervaring: één zin, en geef het terug. Wat heb ik geleerd dat ik nog niet wist?', en: 'Experience: one sentence, then hand it back. What did I learn that I didn’t know?', focus: ['bridge', 'jij'] },
       ],
     },
   ],
@@ -430,8 +438,8 @@ const SAY = [
       en: 'M, mood: read the room. O: {t:Open questions|open questions}: how does a normal Monday go? R: {t:Reflecting|reflecting}: that sounds frustrating. E: empathy.' },
     { nl: 'De P: {t:Parafraseren|parafraseren}, de kern in je eigen woorden. De I: doorvragen. De E: kort je ervaring, voor vertrouwen. De S: drie tellen stilte.',
       en: 'P: {t:Paraphrasing|paraphrasing}, the core in your own words. I: inquiry. E: your experience, briefly, for trust. S: three seconds of silence.' },
-    { nl: 'Soms is de M aanmoedigen, en de S: samenvatten.',
-      en: 'In some versions M is minimal encouragers, and S is summarising.' },
+    { nl: 'Onderhandelaars zeggen: M is aanmoedigen, S is samenvatten.',
+      en: 'For negotiators, M is minimal encouragers, and S is summarising.' },
   ],
   [ // s6 in the correction
     { nl: 'Laat de klant {n:70} tot {n:80} procent praten. Praat je twee minuten? Stel een vraag.',
@@ -543,7 +551,7 @@ const css = PM_CSS + `
 .ft-bub{fill:var(--anatomy-card);stroke:var(--anatomy-mid);stroke-width:1.2;stroke-linejoin:round}
 .ft-bubon{fill:var(--anatomy-card);stroke:var(--fp-accent);stroke-width:2;stroke-linejoin:round}
 [data-cue][data-on] .ft-card{stroke:var(--fp-accent);stroke-width:2}
-[data-cue][data-on] .ft-let,[data-cue][data-on] .ft-lab{fill:var(--fp-accent-text)}
+[data-cue][data-on] .ft-let,[data-cue][data-on] .ft-lab,[data-cue][data-on] .ft-txt,[data-cue][data-on] .ft-big{fill:var(--fp-accent-text)}
 [data-cue][data-on] .ft-fill{fill:var(--fp-accent)}
 [data-cue][data-on] .ft-line{stroke:var(--fp-accent)}
 .ft-lab{fill:var(--anatomy-strong);font-family:var(--fp-sans);font-weight:700}

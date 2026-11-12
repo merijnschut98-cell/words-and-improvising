@@ -68,10 +68,10 @@ const STAGE = (() => {
   // s1: three layers, then the dashboard example in them
   S[0] = (b, p, o) => {
     const fadeB = (n) => (b > n ? 1 : b === n ? span(p, 0.05, 0.3) : 0);
-    if (b === 0) o.text = op(span(p, 0.15, 0.4), lines(76, [[tr('de vraag:', 'the ask:'), 'ft-mute'], [tr('“een beter dashboard”', '“a better dashboard”'), 'ft-on'], [tr('een oplossing,', 'a solution,')], [tr('of een symptoom:', 'or a symptom:')], [tr('orders te laat', 'orders are late')]]));
+    if (b === 0) o.ask = op(span(p, 0.15, 0.4), lines(76, [[tr('de vraag:', 'the ask:'), 'ft-mute'], [tr('“een beter dashboard”', '“a better dashboard”'), 'ft-on'], [tr('een oplossing,', 'a solution,')], [tr('of een symptoom:', 'or a symptom:')], [tr('orders te laat', 'orders are late')]]));
     const lay = [
-      ['sym', 56, tr('symptoom', 'symptom'), [tr('wat ze zien', 'what they see')], [tr('140 van 600 orders', '140 of 600 orders'), tr('> 4 weken, 90 materiaal', 'over 4 weeks, 90 materials')], 2],
-      ['prob', 148, tr('probleem', 'problem'), [tr('de oorzaak eronder', 'the cause underneath')], [tr('materiaal niet gekoppeld', 'materials not linked'), tr('aan de planning', 'to the planning')], 3],
+      ['symptom', 56, tr('symptoom', 'symptom'), [tr('wat ze zien', 'what they see')], [tr('140 van 600 orders', '140 of 600 orders'), tr('> 4 weken, 90 materiaal', 'over 4 weeks, 90 materials')], 2],
+      ['problem', 148, tr('probleem', 'problem'), [tr('de oorzaak eronder', 'the cause underneath')], [tr('materiaal niet gekoppeld', 'materials not linked'), tr('aan de planning', 'to the planning')], 3],
       ['goal', 240, tr('doel', 'goal'), [tr('meetbaar anders', 'measurably different')], [tr('geen order > 4 weken', 'no order over 4 weeks'), tr('op materiaal', 'for materials')], 3],
     ];
     for (const [key, y, name, def, ex, at] of lay) {
@@ -81,14 +81,14 @@ const STAGE = (() => {
       const body = card(y, 84, txt(X0, y + 26, name, 'ft-lab') + op(1 - e, txt(X0, y + 54, def[0], 'ft-mute')) + op(e, lines(y + 52, [[ex[0]], [ex[1]]])));
       o[key] = op(a, body);
     }
-    if (b === 3) o.text = op(span(p, 0.5, 0.75), lines(350, [[tr('dashboard: klein onderdeel', 'dashboard: a small part'), 'ft-on'], [tr('hun oplossing: soms verkeerd', 'their solution: maybe wrong'), 'ft-mute']]));
+    if (b === 3) o.verdict = op(span(p, 0.2, 0.4), lines(350, [[tr('dashboard: klein onderdeel', 'dashboard: a small part'), 'ft-on'], [tr('hun oplossing: soms verkeerd', 'their solution: maybe wrong'), 'ft-mute']]));
     o.head = [tr('drie lagen', 'three layers'), b >= 2 ? 'ex' : 'dia'];
     o.bub = bubble('teamlead', b === 2 ? tr('Ze lopen vast.', 'They get stuck.') : tr('Een beter dashboard!', 'A better dashboard!'), b <= 2 ? span(p, 0.05, 0.2) : 0, b === 0);
   };
   // s2: questions, the cost of inaction, then the OEE bar
   S[1] = (b, p, o) => {
     const qa = b < 2 ? span(b === 0 ? p : 1, 0.05, 0.3) : b === 2 ? 1 - span(p, 0, 0.15) : 0;
-    o.text = op(qa, lines(72, [[tr('“Waaraan merk je het?”', '“How do you notice it?”')], [tr('“Sinds wanneer?”', '“Since when?”')], [tr('“Wat al geprobeerd?”', '“What have you tried?”')], [tr('“Neem me mee in dinsdag.”', '“Walk me through Tuesday.”')]]));
+    o.questions = op(qa, lines(72, [[tr('“Waaraan merk je het?”', '“How do you notice it?”')], [tr('“Sinds wanneer?”', '“Since when?”')], [tr('“Wat al geprobeerd?”', '“What have you tried?”')], [tr('“Neem me mee in dinsdag.”', '“Walk me through Tuesday.”')]]));
     if (b === 1 || (b === 2 && p < 0.15)) o.cost = op(b === 1 ? span(p, 0.2, 0.45) : 1 - span(p, 0, 0.15), card(196, 108, txt(X0, 224, tr('kosten van niksdoen', 'cost of inaction'), 'ft-lab') + lines(252, [[tr('per week?', 'per week?')], [tr('na een jaar niks?', 'a year of nothing?')]])));
     if (b >= 2) {
       const a = b === 2 ? span(p, 0.12, 0.35) : 1;
@@ -120,7 +120,7 @@ const STAGE = (() => {
       [204, [[tr('nooit overnemen, of al', 'never take it over, or half'), 'ft-mute'], [tr('half gediagnosticeerd?', 'diagnosed already?'), 'ft-mute'], [tr('hypothese: 1 à 2 weken', 'hypothesis: 1–2 weeks'), 'ft-on']]],
       [306, [[tr('proces onbekend? zeg het,', 'new process? say so,')], [tr('letterlijk, voor de doelzin', 'literally, for the goal'), 'ft-on']]],
     ];
-    o.text = cards.map(([y, L], i) => op(i < b ? 1 : i === b ? span(p, 0.08, 0.3) : 0, card(y, L.length * 26 + 16, lines(y + 28, L)))).join('');
+    ['see', 'show', 'hypo', 'naive'].forEach((key, i) => { const [y, L] = cards[i]; o[key] = op(i < b ? 1 : i === b ? span(p, 0.08, 0.3) : 0, card(y, L.length * 26 + 16, lines(y + 28, L))); });
     o.head = [tr('de mensenkant', 'the people side'), 'ex'];
     o.bub = bubble('jij', tr('Mag ik eerst zien?', 'Can I see first?'), b === 0 ? span(p, 0.3, 0.45) : 0, true)
       + bubble('teamlead', tr('Al geanalyseerd.', 'Analysed already.'), b === 1 ? span(p, 0.05, 0.2) : 0);
@@ -154,7 +154,7 @@ const STAGE = (() => {
     o.clock = clock(minute, part);
     const names = NL ? ['0–5 openen', '5–40 verkennen', '40–50 checken', '50–60 afsluiten'] : ['0–5 open', '5–40 explore', '40–50 check', '50–60 close'];
     const ex = NL ? [': je doel', ': verhaal', ': samenvatten', ': de stap'] : [': your aim', ': story', ': summarise', ': next step'];
-    o.text = lines(276, names.map((t, i) => [t + ((b >= 1 && i === 0) || b >= 2 ? ex[i] : ''), i === part ? 'ft-on' : 'ft-txt']));
+    o.legend = lines(276, names.map((t, i) => [t + ((b >= 1 && i === 0) || b >= 2 ? ex[i] : ''), i === part ? 'ft-on' : 'ft-txt']));
     o.head = [tr('een uur', 'an hour'), b >= 1 ? 'ex' : 'dia'];
     o.bub = bubble('jij', tr('Vooral luisteren, goed?', 'Mostly listen, okay?'), b === 1 ? span(p, 0.1, 0.25) : 0, true);
   };
@@ -163,19 +163,16 @@ const STAGE = (() => {
     ? [['M', 'Mood', 'sfeer'], ['O', 'Open vragen', 'wat, hoe'], ['R', 'Reflecteren', 'gevoel'], ['E', 'Empathie', 'waarom'], ['P', 'Parafraseren', 'kern'], ['I', 'Inquiry', 'dieper'], ['E', 'Experience', 'kort'], ['S', 'Silence', '3 tellen']]
     : [['M', 'Mood', 'the room'], ['O', 'Open questions', 'how?'], ['R', 'Reflecting', 'feeling'], ['E', 'Empathy', 'why'], ['P', 'Paraphrasing', 'core'], ['I', 'Inquiry', 'deeper'], ['E', 'Experience', 'briefly'], ['S', 'Silence', '3 seconds']];
   S[4] = (b, p, o) => {
-    const own = { 1: 'pO', 2: 'pR', 4: 'pP' };
-    const rows = { pies: '', pO: '', pR: '', pP: '' };
+    const own = ['pM', 'pO', 'pR', 'pE', 'pP', 'pI', 'pX', 'pS'];
     PIES.forEach(([l, word, gloss], i) => {
       const y = 132 + i * 30;
       const shown = i < 4 ? (b >= 1 ? (b === 1 ? span(p, 0.06 + i * 0.16, 0.2 + i * 0.16) : 1) : 0) : (b >= 2 ? (b === 2 ? span(p, 0.06 + (i - 4) * 0.16, 0.2 + (i - 4) * 0.16) : 1) : 0);
       const body = txt(X0 + 4, y, l, 'ft-let', 'start', 24) + op(shown, txt(X0 + 34, y, word, 'ft-txt') + txt(X1, y, gloss, 'ft-mute', 'end'));
-      rows[own[i] || 'pies'] += body;
+      o[own[i]] = body;
     });
-    o.pies = (b === 3 ? lines(64, [[tr('soms: M aanmoedigen,', 'or: M minimal encouragers,'), 'ft-mute'], [tr('S samenvatten', 'S summarising'), 'ft-mute']]) : txt(X0, 92, 'Scott Walker, 2023', 'ft-mute')) + rows.pies;
-    o.pO = rows.pO;
-    o.pR = rows.pR;
-    o.pP = rows.pP;
-    if (b !== 3) o.active = txt(X0, 66, 'Rogers, Farson, 1957', 'ft-lab');
+    // the crisis negotiators' own letters differ (Scott Walker's book): the card says so in the last beat
+    if (b === 3) o.walker = op(span(p, 0.1, 0.3), lines(64, [[tr('Walker 2023: M aanmoedigen,', 'Walker 2023: M minimal'), 'ft-mute'], [tr('S samenvatten, enz.', 'encouragers, S summarising'), 'ft-mute']]));
+    else o.active = txt(X0, 66, 'Rogers, Farson, 1957', 'ft-lab') + txt(X0, 92, tr('crisisonderhandeling', 'crisis negotiation'), 'ft-mute');
     o.head = ['MORE PIES', 'dia'];
     o.bub = bubble('jij', b === 1 ? tr('Dat klinkt frustrerend.', 'That sounds frustrating.') : tr('Dus de kern is…', 'So the core is…'), b === 1 || b === 2 ? span(p, 0.35, 0.5) : 0, true);
   };
@@ -188,10 +185,10 @@ const STAGE = (() => {
       const a = b === 1 ? span(p, 0.1, 0.3) : 1;
       let s = card(136, 92, lines(162, [[tr('jij parafraseert:', 'you paraphrase:'), 'ft-mute'], ['6 × 50 min = 5 uur'.replace('uur', tr('uur', 'hours'))], [tr('omstellen remt volume?', 'changeovers block volume?')]]));
       if (b >= 2) s += op(span(b === 2 ? p : 1, 0.05, 0.2), strike(X0, 214, 250));
-      o.text = op(a, s);
+      o.para = op(a, s);
     }
-    if (b >= 2) o.text += op(b === 2 ? span(p, 0.08, 0.25) : 1, card(240, 92, lines(266, [[tr('de correctie, goud waard:', 'the correction, gold:'), 'ft-mute'], [tr('“Nee, het reinigen is', '“No, cleaning is the'), 'ft-on'], [tr('het grotere probleem.”', 'bigger problem.”'), 'ft-on']]), 'ft-hot'));
-    if (b === 3) o.text += op(span(p, 0.15, 0.4), txt(X0, 360, tr('na de stilte: de kern', 'after the pause: the point'), 'ft-on'));
+    if (b >= 2) o.correction = op(b === 2 ? span(p, 0.08, 0.25) : 1, card(240, 92, lines(266, [[tr('de correctie, goud waard:', 'the correction, gold:'), 'ft-mute'], [tr('“Nee, het reinigen is', '“No, cleaning is the'), 'ft-on'], [tr('het grotere probleem.”', 'bigger problem.”'), 'ft-on']]), 'ft-hot'));
+    if (b === 3) o.pause = op(span(p, 0.15, 0.4), txt(X0, 360, tr('na de stilte: de kern', 'after the pause: the point'), 'ft-on'));
     o.head = [tr('spreektijd', 'talk time'), 'ex'];
     o.bub = bubble('jij', tr('Dus vijf uur omstellen?', 'So five hours?'), b === 1 ? span(p, 0.3, 0.45) : 0, true)
       + bubble('sponsor', tr('Nee: het reinigen!', 'No: the cleaning!'), b === 2 ? span(p, 0.02, 0.15) : 0, true);
@@ -203,9 +200,8 @@ const STAGE = (() => {
   S[6] = (b, p, o) => {
     if (b <= 1 || (b === 2 && p < 0.2)) {
       const out = b === 2 ? 1 - span(p, 0, 0.2) : 1;
-      let s = op(b === 0 ? span(p, 0.05, 0.3) : 1, lines(72, [[tr('korte antwoorden', 'short answers')], [tr('“staat in het rapport”', '“it’s in the report”')], [tr('telefoon op tafel', 'phone on the table')], [tr('“Hoe ging dat toen?”', '“What happened then?”'), 'ft-on']]));
-      if (b >= 1) s += op(b === 1 ? span(p, 0.1, 0.3) : 1, lines(200, [[tr('vorige consultant:', 'previous consultant:'), 'ft-mute'], [tr('slides, niks veranderd', 'slides, nothing changed')], [tr('dat niet herhalen', 'don’t repeat that')], [tr('notitieboek of laptop?', 'notebook or laptop?'), 'ft-on']]));
-      o.text = op(out, s);
+      o.resist = op(out * (b === 0 ? span(p, 0.05, 0.3) : 1), lines(72, [[tr('korte antwoorden', 'short answers')], [tr('“staat in het rapport”', '“it’s in the report”')], [tr('telefoon op tafel', 'phone on the table')], [tr('“Hoe ging dat toen?”', '“What happened then?”'), 'ft-on']]));
+      if (b >= 1) o.prior = op(out * (b === 1 ? span(p, 0.1, 0.3) : 1), lines(200, [[tr('vorige consultant:', 'previous consultant:'), 'ft-mute'], [tr('slides, niks veranderd', 'slides, nothing changed')], [tr('dat niet herhalen', 'don’t repeat that')], [tr('notitieboek of laptop?', 'notebook or laptop?'), 'ft-on']]));
     }
     let n = 0;
     if (b >= 2) {
@@ -213,10 +209,10 @@ const STAGE = (() => {
       const a = b === 2 ? span(p, 0.1, 0.25) : 1;
       let s = rect(X0 - 6, 52, X1 - X0 + 12, 288, 'ft-card', 4) + txt(X1 - 4, 76, tr('binnen 24 uur', 'within 24 hours'), 'ft-on', 'end');
       s += lines(108, SUMMARY.slice(0, n).map((t, i) => [t, i === 5 ? 'ft-on' : 'ft-txt']));
-      if (b >= 3) s += op(b === 3 ? span(p, 0.1, 0.35) : 1, `<path class="ft-line" d="M${X0} 270H${X1 - 6}"/>` + lines(296, [[tr('do: de lijn op, 2 ploegleiders', 'Thu: the line, 2 shift leads')], [tr('dezelfde avond verstuurd', 'sent that evening'), 'ft-on']]));
-      o.sum = op(a, s);
+      if (b >= 3) o.followup = op(b === 3 ? span(p, 0.1, 0.35) : 1, `<path class="ft-line" d="M${X0} 270H${X1 - 6}"/>` + lines(296, [[tr('do: de lijn op, 2 ploegleiders', 'Thu: the line, 2 shift leads')], [tr('dezelfde avond verstuurd', 'sent that evening'), 'ft-on']]));
+      o.summary = op(a, s);
     }
-    if (b === 4) o.text = op(span(p, 0.1, 0.3), txt(X0, 368, tr('“Over een half jaar: waard?”', '“In six months: worth it?”'), 'ft-on'));
+    if (b === 4) o.closing = op(span(p, 0.1, 0.3), txt(X0, 368, tr('“Over een half jaar: waard?”', '“In six months: worth it?”'), 'ft-on'));
     // the A4 on the table: a rule per line written
     let rules = '';
     for (let i = 0; i < n; i++) rules += `M2.5 ${f1(4 + i * 3.6)}H${f1(18.5 - (i % 3) * 2.5)}`;
@@ -227,21 +223,20 @@ const STAGE = (() => {
   };
   // s8: under pressure, step by step
   S[7] = (b, p, o) => {
-    let s = card(52, 84, lines(84, [[tr('“Drie jaar geleden ook.', '“We did this before.')], [tr('Alleen meer formulieren.”', 'We just got more forms.”')]]));
-    if (b >= 1) s += op(b === 1 ? span(p, 0.1, 0.35) : 1, lines(166, [[tr('eerst spiegelen,', 'mirror first,'), 'ft-lab'], [tr('dan vragen, dan antwoorden', 'then ask, then answer')]]));
+    o.attack = card(52, 84, lines(84, [[tr('“Drie jaar geleden ook.', '“We did this before.')], [tr('Alleen meer formulieren.”', 'We just got more forms.”')]]));
+    if (b >= 1) o.rule = op(b === 1 ? span(p, 0.1, 0.35) : 1, lines(166, [[tr('eerst spiegelen,', 'mirror first,'), 'ft-lab'], [tr('dan vragen, dan antwoorden', 'then ask, then answer')]]));
     const row = (y, l, v, cls = 'ft-txt') => txt(X0, y, l, 'ft-lab') + txt(X1, y, v, cls, 'end');
     if (b >= 2) {
       const dots = b === 2 ? Math.floor(span(p, 0.45, 0.95) * 5.99) : 5;
       let d = '';
       for (let i = 0; i < 5; i++) d += `<circle class="${i < dots ? 'ft-dot1' : 'ft-dot'}" cx="${f1(X1 - 6 - (4 - i) * 22)}" cy="252" r="7"/>`;
-      s += op(b === 2 ? span(p, 0.05, 0.25) : 1, row(232, tr('reflecteer', 'reflect'), tr('meer werk', 'more work')) + txt(X0, 258, tr('stilte, 5 s', 'silence, 5 s'), 'ft-lab') + d);
+      o.reflect = op(b === 2 ? span(p, 0.05, 0.25) : 1, row(232, tr('reflecteer', 'reflect'), tr('meer werk', 'more work')) + txt(X0, 258, tr('stilte, 5 s', 'silence, 5 s'), 'ft-lab') + d);
     }
     if (b >= 3) {
       o.openq = op(b === 3 ? span(p, 0.05, 0.25) : 1, row(284, tr('open vraag', 'open question'), tr('wat gebeurde er?', 'what then?'), 'ft-on'));
-      s += op(b === 3 ? span(p, 0.5, 0.7) : 1, row(310, tr('parafraseer', 'paraphrase'), tr('niet gevraagd', 'not asked')));
+      o.confirm = op(b === 3 ? span(p, 0.5, 0.7) : 1, row(310, tr('parafraseer', 'paraphrase'), tr('niet gevraagd', 'not asked')));
     }
-    if (b >= 4) s += op(b === 4 ? span(p, 0.05, 0.25) : 1, row(336, tr('empathie', 'empathy'), tr('sceptisch', 'sceptical')) + row(362, tr('afspraak', 'agree'), tr('donderdag', 'Thursday'), 'ft-on'));
-    o.text = s;
+    if (b >= 4) o.agree = op(b === 4 ? span(p, 0.05, 0.25) : 1, row(336, tr('empathie', 'empathy'), tr('sceptisch', 'sceptical')) + row(362, tr('afspraak', 'agree'), tr('donderdag', 'Thursday'), 'ft-on'));
     o.head = [tr('onder druk', 'under pressure'), 'ex'];
     o.bub = bubble('planner', tr('Meer formulieren!', 'More forms!'), b === 0 ? span(p, 0.1, 0.25) : 0)
       + bubble('jij', b === 2 ? tr('Vooral meer werk.', 'Mostly more work.') : tr('Wat gebeurde er toen?', 'What happened then?'), b === 2 || b === 3 ? span(p, 0.05, 0.2) : 0, true);
@@ -253,18 +248,19 @@ const STAGE = (() => {
     s += rect(X0, 82, 60 * grow, 24, 'ft-fill', 3) + op(grow, txt(X0 + 70, 101, tr('1 s: kort antwoord', '1 s: short answer'), 'ft-txt'));
     s += rect(X0, 116, 180 * grow, 24, 'ft-fill', 3) + op(grow, txt(X0 + 190, 135, '3 s+', 'ft-on'));
     s += op(span(b === 0 ? p : 1, 0.55, 0.8), lines(166, [[tr('langer, doordachter', 'longer, better thought out')], [tr('Rowe, jaren zeventig', 'Rowe, 1970s'), 'ft-mute']]));
+    o.wait = s;
     if (b >= 1) {
-      s += op(b === 1 ? span(p, 0.05, 0.25) : 1, txt(X0, 230, tr('“Wat mis ik?”', '“What am I missing?”'), 'ft-on'));
-      s += op(b === 1 ? span(p, 0.35, 0.55) : 1, txt(X0, 256, tr('“Waarom?”', '“Why?”'), 'ft-txt') + strike(X0, 256, NL ? 104 : 62) + txt(X0, 282, tr('“Wat maakte dat je…”', '“What made you…”'), 'ft-on'));
+      o.realq = op(b === 1 ? span(p, 0.05, 0.25) : 1, txt(X0, 230, tr('“Wat mis ik?”', '“What am I missing?”'), 'ft-on'))
+        + op(b === 1 ? span(p, 0.35, 0.55) : 1, txt(X0, 256, tr('“Waarom?”', '“Why?”'), 'ft-txt') + strike(X0, 256, NL ? 104 : 62) + txt(X0, 282, tr('“Wat maakte dat je…”', '“What made you…”'), 'ft-on'));
     }
-    if (b >= 2) s += op(b === 2 ? span(p, 0.05, 0.25) : 1, txt(X0, 308, tr('“Vind je ook niet…?”', '“Don’t you think…?”'), 'ft-txt') + op(span(b === 2 ? p : 1, 0.4, 0.6), strike(X0, 308, NL ? 206 : 192)));
-    if (b >= 3) s += op(b === 3 ? span(p, 0.05, 0.25) : 1, lines(336, [[tr('ervaring: één zin, terug', 'experience: one line, back')], [tr('wat heb ik geleerd?', 'what did I learn?'), 'ft-on']]));
-    o.text = s;
+    if (b >= 2) o.fake = op(b === 2 ? span(p, 0.05, 0.25) : 1, txt(X0, 308, tr('“Vind je ook niet…?”', '“Don’t you think…?”'), 'ft-txt') + op(span(b === 2 ? p : 1, 0.4, 0.6), strike(X0, 308, NL ? 206 : 192)));
+    if (b >= 3) o.bridge = op(b === 3 ? span(p, 0.05, 0.25) : 1, lines(336, [[tr('ervaring: één zin, terug', 'experience: one line, back')], [tr('wat heb ik geleerd?', 'what did I learn?'), 'ft-on']]));
     o.head = [tr('stilte', 'silence'), b === 0 ? 'dia' : 'ex'];
     o.bub = bubble('jij', tr('Wat mis ik?', 'What am I missing?'), b === 1 ? span(p, 0.05, 0.2) : 0, true);
   };
 
-  const KEYS = { sym: 'cSym', prob: 'cProb', goal: 'cGoal', cost: 'cCost', oee: 'cOee', clock: 'cClock', active: 'cActive', pies: 'cPies', pO: 'cPO', pR: 'cPR', pP: 'cPP', talk: 'cTalk', sum: 'cSum', openq: 'cOpenq', text: 'pText' };
+  // the panel's blocks: o[key] goes into the group data-k "t_<key>" (build.mjs, SLOTS)
+  const KEYS = Object.fromEntries(C.SLOTS.map((key) => [key, `t_${key}`]));
   function render(si, u) {
     camera(si, u);
     const { b, p } = beatOf(si, u);
