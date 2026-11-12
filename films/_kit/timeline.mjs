@@ -422,7 +422,16 @@ const SAY = {
     // ijkmoMENT and planningsreGEL (with the e of "bed"), split at the head as stuur-groep, and vrijgeven on
     // -GEE- (said VRIJ-geven). Not vrijgave, which films with a video say; no other film says these
     [/\b([Mm])ensenprobl/g, '$1ensen-probl'], [/\b([Cc])apaciteitsprobl/g, '$1apaciteits-probl'], [/\b(I[Jj]|ij)kmoment/g, '$1k-moment'],
-    [/\b([Pp])lanningsregel/g, '$1lannings-regel'], [/\b([Vv])rijgeven\b/g, '$1rij-geven']],
+    [/\b([Pp])lanningsregel/g, '$1lannings-regel'], [/\b([Vv])rijgeven\b/g, '$1rij-geven'],
+    // seeing progress without the expertise (pm.outside.steering): espeak-ng reads definition of done as
+    // "dee-fie-nie-SJON of doo-ne" (said deffi-nisjun of dun; not in pm.plan.wbs's caption "definition of done:
+    // klaar als", so that film's spoken text stays), FAT and SAT as the words "fat" and "sat" (said as letters,
+    // as on the floor; capitals only), stresses FABrieksacceptatietest and LOcatieacceptatietest with "ti" for
+    // "tsie" (split at the heads: fa-BRIEKS-ak-sep-TAA-tsie-TEST), and reads Jeffrey Pfeffer with a stressed
+    // -REY and a sounded p (said as his English name, Djeffri Feffer); no other film says them in Dutch
+    [/\b([Dd])efinition of done\b(?!: klaar als)/g, '$1effi-nisjun of dun'], [/\b([FS])AT\b/g, '$1 A T'],
+    [/\b([Ff])abrieksacceptatietest/g, '$1abrieks-acceptatie-test'], [/\b([Ll])ocatieacceptatietest/g, '$1ocatie-acceptatie-test'],
+    [/\bJeffrey Pfeffer\b/g, 'Djeffri Feffer']],
   en: [[/\brpm\b/g, 'revolutions per minute'], [/\bmm\/min\b/g, 'millimetres per minute'], [/\bm\/min\b/g, 'metres per minute'], [/µm\b/g, 'micrometres'],
     [/€\s?(\d[\d,]*(?:\.\d+)?)/g, '$1 euros'], [/(\d)\.0(?![\d])/g, '$1'], [/(\d)\s?mm\b/g, '$1 millimetres'], [/(\d)\s?min\b/g, '$1 minutes'], [/(\d)\s?%/g, '$1 percent'],
     [/Ø\s*/g, 'diameter '], [/(\d)\+(\d)/g, '$1 plus $2'], [/\s×\s/g, ' times '], [/\s\/\s/g, ' divided by '], [/\s=\s/g, ' is '], [/°/g, ' degrees'], [/\bRa\b/g, 'R a'], [/’/g, "'"],

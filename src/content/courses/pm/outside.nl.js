@@ -979,6 +979,7 @@ export default {
     // Onderwerp 4: sturen en besluiten
     {
       id: 'pm.outside.progress',
+      film: 'pm.outside.steering',
       title: 'Voortgang meten zonder vakkennis',
       pre: [
         {
@@ -1060,6 +1061,7 @@ export default {
     },
     {
       id: 'pm.outside.decide',
+      film: 'pm.outside.steering',
       title: 'Besluiten onder onzekerheid, en escaleren',
       pre: [
         {
