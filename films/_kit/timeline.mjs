@@ -2,9 +2,15 @@
 // variant, the timeline, beats, the narration hold and the page parameters.
 // No imports and no DOM: the build inlines this file into every film page (with
 // its `export` words stripped), and tests/film.test.js imports it as it is.
+// The part between the build-only markers (caption markers, numbers, the SAY
+// table and the speak variants) runs only at build time: the page's film data
+// already carries the resolved captions and voice/speak strings, so the page
+// inlines everything except that part (runtimeTimeline in films/_kit/player.mjs).
+// Keep runtime code out of it, and build-only code in it.
 
 export const wordsOf = (text) => String(text || '').trim().split(/\s+/).filter(Boolean).length;
 
+// build-only:start
 // A scene lasts at least (caption words / 2.5) + 2 s, so it can be read.
 export const minSceneDur = (words) => words / 2.5 + 2;
 
@@ -163,6 +169,9 @@ const SAY = {
     [/\b([Vv])rijschakelen\b/g, '$1rij-schakelen'],
     // and schakelstation and klantstation, said like netstation above (SCHAkel-staSJON, KLANT-staSJON)
     [/\b([Ss])chakelstation/g, '$1chakel-station'], [/\b([Kk])lantstation/g, '$1lant-station'],
+    // and sleutelstation (espeak-ng reads "-tɛl-" with the e of "bed"; said SLEUtel-staSJON) and foutstroom
+    // (stressed on "stroom"; said FOUT-STROOM), for eng.switchgear.automation
+    [/\b([Ss])leutelstation/g, '$1leutel-station'], [/\b([Ff])outstroom/g, '$1out-stroom'],
     // outages: espeak-ng drops "-burige" in naburige (it says "naa-e") and stresses vrijgeschakeld(e) on "-GE-"
     // with the e of "bed"; said na-burige and vrij-geschakeld, each part with its own reading
     [/\b([Nn])aburige\b/g, '$1a-burige'], [/\b([Vv])rijgeschakeld/g, '$1rij-geschakeld'],
@@ -205,6 +214,7 @@ export const sayable = (text, lang) => (SAY[lang] || []).reduce((s, [re, w]) => 
 export const speakOf = (seg, lang) => sayable(seg.map((p) => (typeof p === 'string' ? p : p.t)).join(''), lang).replace(/\s+/g, ' ').trim();
 // What is said, as written (no gloss, units kept): the subtitles of the video.
 export const saidOf = (seg) => seg.map((p) => (typeof p === 'string' ? p : p.t)).join('').replace(/\s+/g, ' ').trim();
+// build-only:end
 
 // v14b, the timeline driven by the narration audio. durs[scene][beat] is the
 // length of each beat's recorded line (s). Each scene opens with a short look

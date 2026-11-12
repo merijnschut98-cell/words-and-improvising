@@ -271,133 +271,14 @@ html[data-render="1"],html[data-render="1"] body{width:100%;height:100%;overflow
 // variant, the timeline, beats, the narration hold and the page parameters.
 // No imports and no DOM: the build inlines this file into every film page (with
 // its `export` words stripped), and tests/film.test.js imports it as it is.
+// The part between the build-only markers (caption markers, numbers, the SAY
+// table and the speak variants) runs only at build time: the page's film data
+// already carries the resolved captions and voice/speak strings, so the page
+// inlines everything except that part (runtimeTimeline in films/_kit/player.mjs).
+// Keep runtime code out of it, and build-only code in it.
 
 const wordsOf = (text) => String(text || '').trim().split(/\s+/).filter(Boolean).length;
 
-// A scene lasts at least (caption words / 2.5) + 2 s, so it can be read.
-const minSceneDur = (words) => words / 2.5 + 2;
-
-// "De {t:Snijsnelheid} is {n:220} m/min" → text, term and number pieces.
-// {t:Term|shown} names lesson term Term but shows "shown" (another form).
-function parseMarked(src) {
-  const out = [];
-  const re = /\{([a-z]):([^{}]*)\}/g;
-  let last = 0;
-  let m;
-  const plain = (s) => {
-    if (/[{}]/.test(s)) throw new Error(`bad marker in "${src}"`);
-    if (s) out.push({ text: s });
-  };
-  while ((m = re.exec(src))) {
-    plain(src.slice(last, m.index));
-    if (m[1] === 't') {
-      const [term, shown] = m[2].split('|');
-      out.push({ term: term.trim(), shown: (shown ?? term).trim() });
-    } else if (m[1] === 'n') out.push({ num: m[2].trim() });
-    else throw new Error(`bad marker {${m[1]}:} in "${src}"`);
-    last = re.lastIndex;
-  }
-  plain(src.slice(last));
-  return out;
-}
-
-// "1167" → 1.167 (nl) or 1,167 (en); "0.3" → 0,3 or 0.3. Decimals as written.
-function formatNumber(raw, lang) {
-  const s = String(raw);
-  if (!/^-?\d+(\.\d+)?$/.test(s)) throw new Error(`not a plain number: ${s}`);
-  const [int, dec] = s.split('.');
-  const group = lang === 'en' ? ',' : '.';
-  const point = lang === 'en' ? '.' : ',';
-  const body = int.replace(/^-/, '');
-  const grouped = body.length >= 4 ? body.replace(/\B(?=(\d{3})+(?!\d))/g, group) : body;
-  return (int.startsWith('-') ? '-' : '') + grouped + (dec !== undefined ? point + dec : '');
-}
-
-// A resolved caption is a list of strings and term pieces {t, en?, c}. In Dutch
-// a term carries its English word (en) on first use only.
-const plainOf = (seg) => seg.map((p) => (typeof p === 'string' ? p : p.t + (p.en ? ` (${p.en})` : ''))).join('');
-// Units and signs a voice would spell out or skip, said as words. Longest first.
-// Also for Piper (espeak-ng reads "6,0" as "zes komma nul" and "€8,67" badly).
-const SAY = {
-  // 1.167 is "elfhonderdzevenenzestig" (espeak-ng says "duizend honderd zevenenzestig")
-  nl: [[/\b([1-9])\.([1-9])(\d\d)\b/g, (m, a, b, cd) => `${a}${b}honderd${cd === '00' ? '' : ` ${Number(cd)}`}`],
-    [/omw\/min/g, 'omwentelingen per minuut'], [/\bmm\/min\b/g, 'millimeter per minuut'], [/\bm\/min\b/g, 'meter per minuut'], [/µm\b/g, 'micrometer'], [/\brpm\b/g, 'omwentelingen per minuut'],
-    [/€\s?(\d[\d.]*(?:,\d+)?)/g, '$1 euro'], [/(\d),0(?![\d])/g, '$1'], [/(\d)\s?mm\b/g, '$1 millimeter'], [/(\d)\s?min\b/g, '$1 minuten'], [/(\d)\s?%/g, '$1 procent'],
-    [/Ø\s*/g, 'diameter '], [/(\d)\+(\d)/g, '$1 plus $2'], [/\s×\s/g, ' maal '], [/\s\/\s/g, ' gedeeld door '], [/\s=\s/g, ' is '], [/°/g, ' graden'], [/\bRa\b/g, 'R a'], [/’/g, "'"],
-    // acronym pairs (MIG/MAG, IQ/OQ/PQ) without the slash, t8/5, and a standard's number in parts
-    [/\b([A-Z]{2,})\/(?=[A-Z]{2,}\b)/g, '$1 '], [/\bt8\/5\b/g, 't 8 5'], [/\bISO (\d\d)(\d\d)-(\d)\b/g, 'ISO $1 $2 deel $3'],
-    // the weld standards as said on the floor (ISO 58 17, not "vijfduizend..."), the execution
-    // classes as letters, and the ISO 6520-1 code 401 digit by digit; only these, so ISO 9001 stays
-    [/\bISO (5817|9712)\b/g, (m, n) => `ISO ${n.slice(0, 2)} ${n.slice(2)}`], [/\bEXC([1-4])\b/g, 'E X C $1'], [/\b401\b/g, 'vier nul één'],
-    // MIG, MAG and TIG on their own as letters, like MAG-lassen (espeak-ng reads MAG as the verb "mag")
-    [/\b(MIG|MAG|TIG)\b(?!-)/g, (m) => m.split('').join(' ')],
-    // DOE (design of experiments) as letters in both languages, not the Dutch verb "doe" or the English "doe"
-    [/\bDOE\b/g, 'D O E'],
-    // PFMEA as letters (espeak-ng says "pfmeea" in Dutch and drops the A in English)
-    [/\bPFMEA\b/g, 'P F M E A'],
-    // the go/no-go gauge and gauge R&R without "slash" or "ampersand": gaat, gaat niet; R en R
-    [/\b([Gg])aat\/gaat-niet\b/g, '$1aat, gaat niet'], [/\bR&R\b/g, 'R en R'],
-    // I/O without "slash"; OEE, MES and HMI as letters (espeak-ng says "oe", the word "mes", "hmie"); CE needs
-    // nothing: espeak-ng already spells it in CE-markering
-    [/\bI\/O\b/g, 'I O'], [/\bOEE\b/g, 'O E E'], [/\bMES\b/g, 'M E S'], [/\bHMI\b/g, 'H M I'],
-    // CILT (clean, inspect, lubricate, tighten) as letters: espeak-ng reads it as the word "silt"
-    [/\bCILT\b/g, 'C I L T'],
-    // English robot words in a Dutch sentence as the floor says them (espeak-ng reads "pajlo-at", "te-ach", "tolling", French "vision")
-    [/\b([Pp])ayload/g, '$1ee-lood'], [/\b([Tt])each pendant\b/g, '$1ietsj pendant'], [/\btooling\b/g, 'toeling'], [/\b([Vv])ision\b/g, '$1izjun'],
-    // espeak-ng reads "miksed-model", "heijunka" with the u of "bus", and drops the pr of "robotprogramma's"
-    [/\b([Mm])ixed-model\b/g, '$1ikst moddul'], [/\b([Hh])eijunka/g, '$1eijoenka'], [/\b([Rr])obotprogramma/g, '$1obot-programma'],
-    // the machine states and the Pareto chart (espeak-ng reads "star-vet", "blok-ket", and stresses "PA-re-to-diagram")
-    [/\b([Ss])tarved\b/g, '$1taarft'], [/\b([Bb])locked\b/g, '$1lokt'], [/\b([Pp])aretodiagram/g, '$1areto-diagram'],
-    // the range of a subgroup as the floor says it (espeak-ng reads the Dutch "rang-e"), and slijtagecompensatie
-    // with its parts apart (espeak-ng reads "slijtaaɣee" in the compound; "slijtage" alone is right)
-    [/\b([Rr])ange\b/g, '$1eenzj'], [/\b([Ss])lijtagecompensatie/g, '$1lijtage-compensatie'],
-    // ISO 2768 as "ISO 27 68" (espeak-ng says "tweeduizend zevenhonderd ...")
-    [/\bISO 2768\b/g, 'ISO 27 68'],
-    // the Weibull shape factor: espeak-ng reads "bèta" as "be-TAA" with a schwa; said as "beeta"
-    [/\b([Bb])èta\b/g, '$1eeta'],
-    // espeak-ng stresses "hoofdschaKElaar" (with the e of "bed") and "veiligheidsreGELS": split, each part
-    // keeps its own stress and vowels (HOOFD-SCHAkelaar, VEILigheids-REgels)
-    [/\b([Hh])oofdschakelaar/g, '$1oofd-schakelaar'], [/\b([Vv])eiligheidsregels\b/g, '$1eiligheids-regels'],
-    // the motor efficiency classes as letters (espeak-ng reads "IE3" with the vowel of "die": "ie drie"), and
-    // typeplaatje, isolatieklasse and draaistroom with their parts apart (espeak-ng reads "tipɛplaatje", stresses
-    // "Isolatieklasse" with a t for ts, and "draaiSTROOM"; split, each part keeps its own reading)
-    [/\bIE([1-5])\b/g, 'I-E $1'], [/\b([Tt])ypeplaatje/g, '$1iepe-plaatje'], [/\b([Ii])solatieklasse/g, '$1solatie-klasse'],
-    [/\b([Dd])raaistroom/g, '$1raai-stroom'],
-    // steel grades with the letter said as "es" (espeak-ng gives a bare hiss for the S in S235; capital at a
-    // sentence start, so the sentence still ends before it), and compounds espeak-ng stresses at the end
-    // (kerfslagPROEF, Elasticiteitsmodulus): split at the head
-    [/(^|[.!?]\s+)S(235|275|355)\b/g, '$1Es $2'], [/\bS(235|275|355)\b/g, 'es $1'],
-    [/\b([Kk])erfslagproef/g, '$1erfslag-proef'], [/\b([Ee])lasticiteitsmodulus/g, '$1lasticiteits-modulus'],
-    // trekproef the same way (espeak-ng stresses trekPROEF): TREK-proef
-    [/\b([Tt])rekproef/g, '$1rek-proef'],
-    // hydraulics: espeak-ng stresses the valve compounds on "-tiel" (stuurvenTIEL), cilindersnelheid on "snel",
-    // reads zuigeroppervlak as "zuigiir-oppervlak"
-    // and reads injectieletsel as "INjektie-letsel"; split at the head (STUUR-venTIEL, in-JECtie-LETsel),
-    // and ISO 4406 as the floor says it, "ISO 44 06" (as ISO 2768)
-    [/\b([Ss])tuurventiel/g, '$1tuur-ventiel'], [/\b([Ss])moorventiel/g, '$1moor-ventiel'], [/\b([Dd])rukbegrenzingsventiel/g, '$1rukbegrenzings-ventiel'],
-    [/\b([Cc])ilindersnelheid/g, '$1ilinder-snelheid'], [/\b([Zz])uigeroppervlak/g, '$1uiger-oppervlak'], [/\b([Ii])njectieletsel/g, '$1n-jectie-letsel'], [/\bISO 4406\b/g, 'ISO 44 06'],
-    // drives: espeak-ng stresses the singular magneetschakelaar and the -regelaar compounds on "-ke-"/"-ge-"
-    // with the e of "bed" (frequentieregeLAAR); split at the head (frequentie-REgelaar). It stresses
-    // "DIrect" in direct inschakelen (only there: "direct na elkaar" in other films stays), said as the
-    // floor says it, "d'rect"; and harmonischen with "sch" as in "school", said "harmonische" (-ise)
-    [/\b([Mm])agneetschakelaar\b/g, '$1agneet-schakelaar'], [/\b([Ff])requentieregelaar/g, '$1requentie-regelaar'], [/\b([Ss])ervoregelaar/g, '$1ervo-regelaar'],
-    [/\b([Dd])irect (?=in(?:schakel|geschakeld))/g, '$1e-rekt '], [/\b([Hh])armonischen\b/g, '$1armonische']],
-  en: [[/\brpm\b/g, 'revolutions per minute'], [/\bmm\/min\b/g, 'millimetres per minute'], [/\bm\/min\b/g, 'metres per minute'], [/µm\b/g, 'micrometres'],
-    [/€\s?(\d[\d,]*(?:\.\d+)?)/g, '$1 euros'], [/(\d)\.0(?![\d])/g, '$1'], [/(\d)\s?mm\b/g, '$1 millimetres'], [/(\d)\s?min\b/g, '$1 minutes'], [/(\d)\s?%/g, '$1 percent'],
-    [/Ø\s*/g, 'diameter '], [/(\d)\+(\d)/g, '$1 plus $2'], [/\s×\s/g, ' times '], [/\s\/\s/g, ' divided by '], [/\s=\s/g, ' is '], [/°/g, ' degrees'], [/\bRa\b/g, 'R a'], [/’/g, "'"],
-    [/\b([A-Z]{2,})\/(?=[A-Z]{2,}\b)/g, '$1 '], [/\bt8\/5\b/g, 't 8 5'], [/\bISO (\d\d)(\d\d)-(\d)\b/g, 'ISO $1 $2 part $3'],
-    [/\bISO (5817|9712)\b/g, (m, n) => `ISO ${n.slice(0, 2)} ${n.slice(2)}`], [/\bEXC([1-4])\b/g, 'E X C $1'], [/\b401\b/g, 'four oh one'],
-    [/\bDOE\b/g, 'D O E'], [/\bPFMEA\b/g, 'P F M E A'],
-    [/\b([Gg])o\/no-go\b/g, '$1o, no-go'], [/\bR&R\b/g, 'R and R'],
-    [/\bI\/O\b/g, 'I O'], [/\bOEE\b/g, 'O E E'], [/\bMES\b/g, 'M E S'], [/\bISO 2768\b/g, 'ISO 27 68'],
-    // CILT as letters here too: espeak-ng's English reads it as the word "silt"
-    [/\bCILT\b/g, 'C I L T']],
-};
-const sayable = (text, lang) => (SAY[lang] || []).reduce((s, [re, w]) => s.replace(re, w), text);
-// The words the voice says: no English gloss, and with a language, units as words.
-const speakOf = (seg, lang) => sayable(seg.map((p) => (typeof p === 'string' ? p : p.t)).join(''), lang).replace(/\s+/g, ' ').trim();
-// What is said, as written (no gloss, units kept): the subtitles of the video.
-const saidOf = (seg) => seg.map((p) => (typeof p === 'string' ? p : p.t)).join('').replace(/\s+/g, ' ').trim();
 
 // v14b, the timeline driven by the narration audio. durs[scene][beat] is the
 // length of each beat's recorded line (s). Each scene opens with a short look

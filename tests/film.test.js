@@ -298,3 +298,34 @@ test('resolveFilm: the narration names lesson terms and numbers, glosses in Dutc
   assert.throws(() => resolveFilm(spec([{ ...cap, say: { nl: '{n:42}', en: '{n:42}' } }]), lessons), /number 42/);
   assert.throws(() => resolveFilm(spec([{ ...cap, say: { nl: '{t:Snijsnelheid}', en: '{t:Cutting speed}' } }]), lessons), /none of the served/);
 });
+
+// The spoken-text transforms (SAY, sayable, speakOf) run at build time: the
+// page's film data already carries each beat's voice and speak strings. So the
+// page script inlines only the runtime part of the timeline, and does not grow
+// as each film adds SAY rules.
+test('a film page inlines the runtime timeline, not the build-time SAY table', async () => {
+  const { readFileSync, readdirSync } = await import('node:fs');
+  const vm = await import('node:vm');
+  const { pageHtml, runtimeTimeline } = await import('../films/_kit/player.mjs');
+  const { audioTimeline } = await import('../films/_kit/timeline.mjs');
+  const SAY_RULE = 'omwentelingen per minuut'; // a Dutch SAY rule (rpm, omw/min)
+  assert.ok(readFileSync(new URL('../films/_kit/timeline.mjs', import.meta.url), 'utf8').includes(SAY_RULE));
+  const rt = runtimeTimeline();
+  for (const gone of [SAY_RULE, 'const SAY', 'sayable', 'speakOf', 'parseMarked', 'export ']) assert.ok(!rt.includes(gone), gone);
+  // what the player needs still runs, and agrees with the module
+  const ctx = vm.createContext({});
+  vm.runInContext(`${rt};this.out=JSON.stringify({tl:timelineOf([{dur:3},{dur:5}]),at:sceneIndexAt(4,timelineOf([{dur:3},{dur:5}])),clock:fmtClock(65),atl:audioTimeline([[1,2],[3]]),w:wordsOf('a b c'),b:beatStarts({dur:6,beats:[{text:{nl:'a b'}},{text:{nl:'c'}}]},'nl'),q:searchOf('?scene=2','')})`, ctx);
+  assert.deepEqual(JSON.parse(ctx.out), {
+    tl: timelineOf([{ dur: 3 }, { dur: 5 }]), at: 1, clock: fmtClock(65), atl: audioTimeline([[1, 2], [3]]), w: 3,
+    b: beatStarts({ dur: 6, beats: [{ text: { nl: 'a b' } }, { text: { nl: 'c' } }] }, 'nl'), q: searchOf('?scene=2', ''),
+  });
+  // a page built now, and every built film page: no SAY table, and a script that parses
+  const page = pageHtml({ title: { nl: 'T', en: 'T' }, scenes: [] }, { svg: '<svg></svg>', script: 'const STAGE={};', label: { nl: 'l', en: 'l' } });
+  const dir = new URL('../src/content/courses/films/', import.meta.url);
+  const pages = [['built now', page], ...readdirSync(dir).filter((f) => f.endsWith('.html')).map((f) => [f, readFileSync(new URL(f, dir), 'utf8')])];
+  for (const [name, html] of pages) {
+    const script = html.match(/<script type="module">([\s\S]*)<\/script><\/body>/)[1];
+    assert.ok(!script.includes(SAY_RULE) && !/\bsayable\b/.test(script), `${name} inlines the SAY table`);
+    assert.doesNotThrow(() => new vm.Script(script), `${name} script does not parse`);
+  }
+});
