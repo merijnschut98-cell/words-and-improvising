@@ -196,6 +196,12 @@ const SAY = {
     [/\b([Ee])nergieleverancier/g, '$1nergie-leverancier'], [/\b([Pp])iekuren\b/g, '$1iek-uren'], [/\b([Dd]e|[Ee]en) wachtrij\b/g, '$1 wacht-rij'],
     // and congestiemanagement, stressed "KON-gestiemanagement": split, so it is said con-GES-tie-management
     [/\b([Cc])ongestiemanagement/g, '$1ongestie-management'],
+    // compressed air (eng.power.air): espeak-ng stresses oliene-VEL-aar (with the e of "bed"), verzorgings-EEN-heid,
+    // warmte-TEE-rugwinning (with a long e) and reads toerenregeling as "toer-en-regeling"; split at the head, each
+    // part keeps its own reading (OLie-NEvelaar, verZORgings-eenheid, warmte-teRUGwinning, TOEren-REgeling). And
+    // booster as the floor says it, "boester" (espeak-ng reads the Dutch oo).
+    [/\b([Oo])lienevel/g, '$1lie-nevel'], [/\b([Vv])erzorgingseenheid/g, '$1erzorgings-eenheid'], [/\b([Ww])armteterugwinning/g, '$1armte-terugwinning'],
+    [/\b([Tt])oerenregeling/g, '$1oeren-regeling'], [/\b([Bb])ooster/g, '$1oester'],
     // batch capacity (eng.process.batch): espeak-ng reads CIP as the word "sip" (said as letters, C I P), inline
     // as "in-lie-ne" (said "inlain"), stresses VIScositeitsmeter, vrijGAve, ploegWISsel, besturingsSYSteem and
     // spoedmoMENT, and reads labuitslag with the long a of "laaf"; split at the head, each part keeps its reading
@@ -208,7 +214,91 @@ const SAY = {
     [/\b([Ll])oadflow(?=\p{L})/gu, '$1oodflo-'], [/\b([Ll])oadflow\b/g, '$1oodflo'], [/\bN-1-/g, 'N min één '], [/\bN-1\b/g, 'N min één'],
     [/\b([Vv])luchtstrook/g, '$1lucht-strook'], [/\bNetcode\b/g, 'Net-code'], [/\bEN 50160\b/g, 'E N vijftig honderdzestig'],
     // non-firm as the floor says it, "non-furm" (espeak-ng reads the Dutch short i, "non-fim")
-    [/\b([Nn])on-firm\b/g, '$1on-furm']],
+    [/\b([Nn])on-firm\b/g, '$1on-furm'],
+    // flex and batteries (eng.gridplanning.flex): redispatch, peak shaving and the day-aheadmarkt as the floor
+    // says them (espeak-ng reads "reedisp-atch" with the ch of "lachen", "pe-ak sjaaving" and "daaj-aahe-admarkt");
+    // compounds it stresses at the end or on every part, split at the head: systeemCOde, KA-paciteitsbeperkings-
+    // contract, tijdsduurGEEbonden (with a long e), trafoWISsel and piek-UUR (as piekuren above)
+    [/\b([Rr])edispatch\b/g, '$1iedispetsj'], [/\b([Pp])eak shaving\b/g, '$1iek sjeeving'], [/\b([Dd])ay-aheadmarkt/g, '$1ee-ahed-markt'],
+    [/\b([Ss])ysteemcode\b/g, '$1ysteem-code'], [/\b([Cc])apaciteits(beperkings|sturings)contract/g, '$1apaciteits-$2contract'],
+    [/\b([Tt])ijdsduurgebonden\b/g, '$1ijdsduur-gebonden'], [/\b([Tt])rafowissel/g, '$1rafo-wissel'], [/\b([Pp])iekuur\b/g, '$1iek-uur'],
+    // from substation to socket (eng.gridbasics.path): espeak-ng says EE-neksis, LIE-ander, westLAND, wijkTRAfo
+    // and hoofdze-KIE-ring. "En-exis" and "Ljander" give one main stress in the right place (en-NEK-sis,
+    // LJAN-der); Westland, wijktrafo and hoofdzekering are split at the head, which stresses both parts (WEST-LAND,
+    // WIJK-TRAfo, HOOFD-ZEkering) but no longer the wrong one alone. hoofdzekering only after "aan de", so the
+    // load film's "De hoofdzekering" stays as it is
+    [/\bEnexis\b/g, 'En-exis'], [/\bLiander\b/g, 'Ljander'], [/\bWestland\b/g, 'West-land'],
+    [/\b([Ww])ijktrafo/g, '$1ijk-trafo'], [/\baan de hoofdzekering\b/g, 'aan de hoofd-zekering'],
+    // how a transformer works (eng.transformers.principle): ONAN and Dyn5 as letters (espeak-ng reads the words
+    // "onan" and "din vijf"); nullastverliezen and regelschakelaar, stressed nullastverLIEzen and regelschaKElaar
+    // (with the e of "bed"), split at the head (NULlast-verLIEzen, REgel-SCHAkelaar, as vermogensschakelaar
+    // above); and "in driehoek", stressed drie-HOEK, said drie-hoek (only after "in", so the drives film's
+    // "naar driehoek" stays as it is)
+    [/\bONAN\b/g, 'O N A N'], [/\bDyn5\b/g, 'D Y N 5'], [/\b([Nn])ullastverliezen/g, '$1ullast-verliezen'],
+    [/\b([Rr])egelschakelaar/g, '$1egel-schakelaar'], [/\bin driehoek\b/g, 'in drie-hoek'],
+    // the five safety rules (eng.switchgear.fiverules): espeak-ng reads NEN-EN 50110 as "en ee en ee en
+    // vijftig duizend honderd tien" and NEN 3140 as "en ee en drieduizend honderdveertig"; said as the floor
+    // says them, "nen E N vijftig honderdtien" and "nen 31 40" (only NEN with a four-digit number, so ISO and
+    // EN numbers elsewhere stay). IV is read as the word "if", VOP as the word "vop" and WV with a v for the
+    // w: said I V, vee oo pee and wee vee (VP is read right). It stresses ARbobesluit (with "bes-luit"),
+    // the head of schakelmonTEUR, schakelmoMENten and moffenPLOEG, and reads installatieverantwoordelijke
+    // as "INstalaativerantwoordelijke" (t, not ts): split at the head, each part keeps its own reading
+    [/\bNEN-EN 50110\b/g, 'nen E N vijftig honderdtien'], [/\bNEN (\d\d)(\d\d)\b/g, 'nen $1 $2'],
+    [/\bIV\b/g, 'I V'], [/\bVOP\b/g, 'vee oo pee'], [/\bWV\b/g, 'wee vee'], [/\bArbobesluit\b/g, 'Arbo-besluit'],
+    [/\b([Ss])chakelmonteur/g, '$1chakel-monteur'], [/\b([Ss])chakelmoment/g, '$1chakel-moment'], [/\b([Mm])offenploeg/g, '$1offen-ploeg'],
+    [/\b([Ii])nstallatieverantwoordelijke/g, '$1nstallatie-verantwoordelijke'],
+    // protection (eng.switchgear.protection): espeak-ng reads relais as "REE-lice" (said as the floor says it,
+    // re-LEE; only where no film with a video says it: not before "ziet", "ook" or "meet", nor at a full stop,
+    // so eng.lines.control, eng.switchgear.devices and eng.switchgear.automation keep their voice), NAI-jlen
+    // (said naa-ijlen), and it stresses or voices these compounds wrong: uitschaKEL-signaal with the e of "bed",
+    // REEzervee-beveiliging, aardfout-beeveiLIEging, middenspannings-sə-KIEring,
+    // lekSTROOM, faseSTROmen, foutSTROmen, laagspanningsKAbel, straatKAbel; split at the head, each part keeps
+    // its own reading
+    [/\b([Bb]eveiligings)?([Rr])elais\b(?! (?:ziet|ook|meet)\b)(?!\.)/g, '$1$2elee'], [/\bnaijlen\b/g, 'naa-ijlen'],
+    [/\b([Uu])itschakelsignaal/g, '$1itschakel-signaal'],
+    [/\b([Rr])eservebeveiliging/g, '$1eserve-beveiliging'], [/\b([Aa])ardfoutbeveiliging/g, '$1ardfout-beveiliging'],
+    [/\b([Mm])iddenspanningszekering/g, '$1iddenspannings-zekering'], [/\b([Ll])aagspanningszekering/g, '$1aagspannings-zekering'],
+    [/\b([Ll])ekstroom/g, '$1ek-stroom'], [/\b([Ff])asestromen\b/g, '$1ase-stromen'],
+    [/\b([Ff])outstromen\b/g, '$1out-stromen'], [/\b([Ll])aagspanningskabel/g, '$1aagspannings-kabel'], [/\b([Ss])traatkabel/g, '$1traat-kabel'],
+    // the critical path (pm.plan.schedule, the first pm film): go/no-go without "slash" (espeak-ng says
+    // "go slash no-go"; as the English rule), pilot as the Dutch say it, "pailot" (espeak-ng reads "pie-lot"),
+    // and compounds it stresses at the end or reads wrong, split at the head: stuurGROEP, mijlPAAL, nulmEting
+    // with a schwa, gereedheidsCHeck with s-ch, piekseiZOEN (STUUR-groep, MIJL-paal, NUL-meting, -check as tsjek)
+    [/\b([Gg])o\/no-go\b/g, '$1o, no-go'], [/\b([Pp])ilot/g, '$1ailot'], [/\b([Ss])tuurgroep/g, '$1tuur-groep'],
+    [/\b([Mm])ijlpa(al|len)\b/g, '$1ijl-pa$2'], [/\b([Nn])ulmeting/g, '$1ul-meting'], [/\b([Gg])ereedheidscheck/g, '$1ereedheids-check'],
+    [/\b([Pp])iekseizoen/g, '$1iek-seizoen'],
+    // the stakeholder map (pm.intake.stakeholders): espeak-ng reads stakeholder as "staa-ke-holder" (said
+    // steekholder; in stakeholdermap the map as "mep", else "-dər-map" runs together), stresses proceseigenaar
+    // as "PROOsə-zeigenaar" (split at the head), and reads the RACI letters' English words as Dutch
+    // ("res-pon-SI-ble", "ak-kaunt-ab-le", "IN-for-met"); said riesponsibel, akauntebel, informt. Consulted is
+    // read well enough as it is
+    [/\b([Ss])takeholdermap/g, '$1teekholdermep'], [/\b([Ss])takeholder/g, '$1teekholder'], [/\b([Pp])roceseigenaar/g, '$1roces-eigenaar'],
+    [/\b([Rr])esponsible\b/g, '$1iesponsibel'], [/\b([Aa])ccountable\b/g, (m, a) => (a === 'A' ? 'Akauntebel' : 'akauntebel')], [/\b([Ii])nformed\b/g, '$1nformt'],
+    // the first conversation (pm.intake.firsttalk): the listening checklist MORE PIES as its English name, "Mor
+    // pais" (espeak-ng reads PIES as the Dutch "pis"); only in capitals, as the lessons write it
+    [/\bMORE PIES\b/g, 'Mor pais'],
+    // escalation (pm.run.escalation): espeak-ng reads governance the Dutch way, "GOO-ver-nan-se" (said as the
+    // floor says it, "gavvernens"), MUM-effect as letters and keep with a long e (said mum-effect, kiep mum), and
+    // stresses ESkalatieroute; split at the head, so it keeps es-ka-LA-tie
+    [/\b([Gg])overnance\b/g, (m, g) => `${g === 'G' ? 'G' : 'g'}avvernens`], [/\bMUM-effect\b/g, 'mum-effect'], [/\bkeep mum\b/g, 'kiep mum'],
+    [/\b([Ee])scalatieroute/g, '$1scalatie-route'],
+    // the pre-mortem (pm.plan.risk): issue as Dutch project people say it, "isjoe" (espeak-ng reads "is-uu-e");
+    // no other film says issue in Dutch
+    [/\b([Ii])ssue(s?)\b/g, '$1sjoe$2'],
+    // ways of working (pm.plan.method): espeak-ng reads agile the Dutch way, "AA-gie-le" (said as the floor says
+    // it, "etsjail", tsj for the dzj it cannot voice there), and stresses HYbride (said hie-BRIE-de); not before
+    // "machine", so eng.moulding.machine, which has a rendered video, keeps its voice
+    [/\b([Aa])gile\b/g, (m, a) => `${a === 'A' ? 'E' : 'e'}tsjail`], [/\b([Hh])ybride\b(?! machine)/g, '$1iebriede'],
+    // breaking down the work (pm.plan.wbs): scope and scope creep as said in Dutch projects (espeak-ng reads
+    // "skoo-pe" and "kreep"): skoop, kriep; and werkpakket and nachtploeg, stressed werkPAKket and nachtPLOEG,
+    // split at the head (WERK-pakket, NACHT-ploeg); not before "accepteert", so pm.plan.risk's "De nachtploeg
+    // accepteert het niet" keeps the voice it was reviewed with
+    [/\b([Ss])cope creep\b/g, (m, s) => `${s === 'S' ? 'S' : 's'}koop kriep`], [/\b([Ss])cope\b/g, (m, s) => `${s === 'S' ? 'S' : 's'}koop`],
+    [/\b([Ww])erkpakket/g, '$1erk-pakket'], [/\b([Nn])achtploeg\b(?! accepteert)/g, '$1acht-ploeg'],
+    // five small requests (pm.run.scope): espeak-ng stresses wijzigingsverZOEK, wijzigingscomMISsie and
+    // duivelsdrieHOEK (with a full e in duivels); split at the head, as stuur-groep, so they keep WIJzigings-
+    // and DUIvels-; no other film says them
+    [/\b([Ww])ijzigings(verzoek|commissie)/g, '$1ijzigings-$2'], [/\b([Dd])uivelsdriehoek/g, '$1uivels-driehoek']],
   en: [[/\brpm\b/g, 'revolutions per minute'], [/\bmm\/min\b/g, 'millimetres per minute'], [/\bm\/min\b/g, 'metres per minute'], [/µm\b/g, 'micrometres'],
     [/€\s?(\d[\d,]*(?:\.\d+)?)/g, '$1 euros'], [/(\d)\.0(?![\d])/g, '$1'], [/(\d)\s?mm\b/g, '$1 millimetres'], [/(\d)\s?min\b/g, '$1 minutes'], [/(\d)\s?%/g, '$1 percent'],
     [/Ø\s*/g, 'diameter '], [/(\d)\+(\d)/g, '$1 plus $2'], [/\s×\s/g, ' times '], [/\s\/\s/g, ' divided by '], [/\s=\s/g, ' is '], [/°/g, ' degrees'], [/\bRa\b/g, 'R a'], [/’/g, "'"],
@@ -220,7 +310,12 @@ const SAY = {
     // CILT as letters here too: espeak-ng's English reads it as the word "silt"
     [/\bCILT\b/g, 'C I L T'],
     // the Dutch regulator as letters (espeak-ng's English reads "ackem") and TenneT as one word ("Ten T")
-    [/\bACM\b/g, 'A C M'], [/\bTenneT\b/g, 'Tennet']],
+    [/\bACM\b/g, 'A C M'], [/\bTenneT\b/g, 'Tennet'],
+    // the five safety rules (eng.switchgear.fiverules): espeak-ng's English reads IV as "Roman four" and the
+    // standards as "three thousand one hundred and forty", "fifty thousand one hundred and ten"; said I V,
+    // "nen thirty-one forty" and "nen E N fifty one ten"; before a comma it reads VOP as the word "vop"
+    // (letters elsewhere), so V O P throughout
+    [/\bIV\b/g, 'I V'], [/\bVOP\b/g, 'V O P'], [/\bNEN-EN 50110\b/g, 'nen E N fifty one ten'], [/\bNEN (\d\d)(\d\d)\b/g, 'nen $1 $2']],
 };
 export const sayable = (text, lang) => (SAY[lang] || []).reduce((s, [re, w]) => s.replace(re, w), text);
 // The words the voice says: no English gloss, and with a language, units as words.
@@ -302,6 +397,24 @@ export function beatStarts(scene, lang) {
   let acc = 0;
   for (const c of counts) { out.push(Math.round((acc / all) * scene.dur * 100) / 100); acc += c; }
   return out;
+}
+
+// The stage's u (0..1) in the HTML film. A stage drawn on the Dutch beats
+// (nlBeats, set by beatwarp.js) runs, while caption beat k shows in `lang`,
+// from Dutch beat k's fraction to k+1's, so English is never a beat off.
+export function stageU(scene, lang, local, nlBeats) {
+  const u = Math.min(1, Math.max(0, local / scene.dur));
+  if (!nlBeats || lang === 'nl' || !scene.beats || !scene.beats.length) return u;
+  const own = beatStarts(scene, lang);
+  const nl = beatStarts(scene, 'nl');
+  let k = 0;
+  for (let i = 0; i < own.length; i++) if (local >= own[i]) k = i;
+  const a0 = own[k];
+  const a1 = k + 1 < own.length ? own[k + 1] : scene.dur;
+  const b0 = nl[k];
+  const b1 = k + 1 < nl.length ? nl[k + 1] : scene.dur;
+  const p = Math.min(1, Math.max(0, (local - a0) / Math.max(1e-6, a1 - a0)));
+  return Math.min(1, Math.max(0, (b0 + p * (b1 - b0)) / scene.dur));
 }
 
 export function beatIndexAt(scene, lang, local) {

@@ -49,6 +49,14 @@ TESTS = {
     'cilinders': 'De pomp voedt twee cilinders tegelijk.',
     'manometer': 'Lees de druk af op de manometer, in bar.',
     'manometers': 'De twee manometers wijzen hetzelfde aan.',
+    # compressed-air film (2026-11-12): espeak-ng stresses KOMpressor (kˈɔmprɛsˌɔr); right is com-PRES-sor.
+    # compressoren it already reads right (kˌɔmprɛsˈoːrən), so it has no entry
+    'compressor': 'Het begint bij de compressor: een motor drijft hem aan.',
+    # forces and stress film (2026-11-12): espeak-ng stresses door-SNE-de (dɔːrsnˈeːdə); the noun is DOOR-snede.
+    # doorsneden it already reads right (dˈɔːrsneːdən), so it has no entry
+    'doorsnede': 'Dat oppervlak is de doorsnede: het vlak dat je ziet als je recht doorzaagt.',
+    # transformer film (2026-11-12): espeak-ng stresses AA-lu-minium (ˈaːlymˌiniˌɵm); right is a-lu-MI-nium
+    'aluminium': 'Om elk been zitten twee spoelen van draad, van koper of aluminium.',
 }
 TESTS = {w: t for w, t in TESTS.items() if w in LEX}  # the kit's lexicon is small now: try others with --lex
 if '--only' in sys.argv:

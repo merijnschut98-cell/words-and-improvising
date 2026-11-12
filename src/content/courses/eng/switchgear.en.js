@@ -576,6 +576,7 @@ export default {
     },
     {
       id: 'eng.switchgear.protection',
+      film: 'eng.switchgear.protection',
       title: 'Protection relays, CTs and VTs',
       pre: [
         {
@@ -647,6 +648,7 @@ export default {
     },
     {
       id: 'eng.switchgear.selectivity',
+      film: 'eng.switchgear.protection',
       figure: 'eng.switchgear.selectivity',
       title: 'Selectivity',
       pre: [
@@ -862,6 +864,7 @@ export default {
     },
     {
       id: 'eng.switchgear.safety',
+      film: 'eng.switchgear.fiverules',
       title: 'Working safely: the five rules and NEN 3140',
       pre: [
         {

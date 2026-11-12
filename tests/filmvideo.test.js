@@ -64,9 +64,27 @@ test('spoken text: units, signs, money and whole decimals as words; the gloss is
   assert.equal(speakOf(['Starved or blocked, in a Pareto chart.'], 'en'), 'Starved or blocked, in a Pareto chart.');
   assert.equal(speakOf(['Zet ze in een pareto-diagram.'], 'nl'), 'Zet ze in een pareto-diagram.');
   assert.equal(speakOf(['The go/no-go plug gauge. A gauge R&R.'], 'en'), 'The go, no-go plug gauge. A gauge R and R.');
+  // the stakeholder film: stakeholder as the Dutch say it (espeak-ng reads "staa-ke-holder"), proces-eigenaar
+  // split at the head, and the RACI letters' English words in a Dutch spelling; English keeps them
+  assert.equal(speakOf(['Een stakeholder, de stakeholdermap, de stakeholderkaart en de proceseigenaar.'], 'nl'), 'Een steekholder, de steekholdermep, de steekholderkaart en de proces-eigenaar.');
+  assert.equal(speakOf(['Responsible, Accountable, Consulted en Informed; wie is accountable?'], 'nl'), 'Riesponsibel, Akauntebel, Consulted en Informt; wie is akauntebel?');
+  assert.equal(speakOf(['A stakeholder map: Responsible, Accountable, Informed.'], 'en'), 'A stakeholder map: Responsible, Accountable, Informed.');
   // English robot words in Dutch said as on the floor; English keeps them
   assert.equal(speakOf(['De payload en het payloaddiagram, de teach pendant, end-of-arm tooling, met vision.'], 'nl'), 'De pee-lood en het pee-looddiagram, de tietsj pendant, end-of-arm toeling, met vizjun.');
   assert.equal(speakOf(['The payload, the teach pendant, end-of-arm tooling, vision.'], 'en'), 'The payload, the teach pendant, end-of-arm tooling, vision.');
+  // the listening checklist MORE PIES as the English name in Dutch (espeak-ng reads PIES as the Dutch "pis");
+  // English keeps it, and lower-case words stay
+  assert.equal(speakOf(['De checklist MORE PIES komt uit de crisisonderhandeling.'], 'nl'), 'De checklist Mor pais komt uit de crisisonderhandeling.');
+  assert.equal(speakOf(['The checklist MORE PIES comes from crisis negotiation.'], 'en'), 'The checklist MORE PIES comes from crisis negotiation.');
+  assert.equal(speakOf(['Meer pies en more pies.'], 'nl'), 'Meer pies en more pies.');
+  // issue as Dutch project people say it, "isjoe" (espeak-ng reads "is-uu-e"); English keeps it
+  assert.equal(speakOf(['Dan wordt het een issue. Twee issues. Issue blijft.'], 'nl'), 'Dan wordt het een isjoe. Twee isjoes. Isjoe blijft.');
+  assert.equal(speakOf(['Then it becomes an issue. Two issues.'], 'en'), 'Then it becomes an issue. Two issues.');
+  // pm.plan.wbs: scope and scope creep as said in Dutch projects (espeak-ng reads "skoo-pe" and "kreep"),
+  // werkpakket and nachtploeg split at the head (espeak-ng stresses werkPAKket, nachtPLOEG); English keeps them
+  assert.equal(speakOf(['Scope creep: buiten de scope. Een werkpakket, de werkpakketten, de nachtploeg.'], 'nl'), 'Skoop kriep: buiten de skoop. Een werk-pakket, de werk-pakketten, de nacht-ploeg.');
+  assert.equal(speakOf(['Scope creep: out of scope. A work package, the night shift.'], 'en'), 'Scope creep: out of scope. A work package, the night shift.');
+  assert.equal(speakOf(['De nachtploeg accepteert het niet.'], 'nl'), 'De nachtploeg accepteert het niet.');
 });
 
 // ------------------------------------------------------------ WAV files
@@ -241,7 +259,7 @@ test('the voice is configuration: films/_kit/voices.json names the voice and spe
 
 test('lexicon: small and hand-checked, swapped into the whole sentence; the seeded one is retired', () => {
   const nl = JSON.parse(fs.readFileSync('films/_kit/lexicon.nl.json', 'utf8'));
-  assert.ok(Object.keys(nl).length <= 14, `${Object.keys(nl).length} entries: each entry must be listened to`);
+  assert.ok(Object.keys(nl).length <= 18,`${Object.keys(nl).length} entries: each entry must be listened to`);
   for (const w of ['klauwplaat', 'omwenteling', 'omwentelingen', 'toerental']) assert.ok(nl[w], w);
   assert.ok(!('hardmetaal' in nl), 'hardmetaal was heard worse with an entry');
   for (const lang of ['nl', 'en']) {
@@ -258,6 +276,14 @@ test('lexicon: small and hand-checked, swapped into the whole sentence; the seed
   assert.ok(/^ˈoː/.test(nl.olie));
   for (const word of ['cilinder', 'cilinders']) assert.ok(nl[word].includes('lˈɪn'), `${word}: ${nl[word]}`);
   for (const word of ['manometer', 'manometers']) assert.ok(nl[word].includes('mˈeː'), `${word}: ${nl[word]}`);
+  // com-PRES-sor (espeak-ng says KOMpressor; 2026-11-12); compressoren it already reads right
+  assert.ok(nl.compressor.includes('prˈɛs'), `compressor: ${nl.compressor}`);
+  // DOOR-snede (espeak-ng says door-SNE-de; 2026-11-12); doorsneden it already reads right
+  assert.ok(/^dˈɔːr/.test(nl.doorsnede), `doorsnede: ${nl.doorsnede}`);
+  // a-lu-MI-nium (espeak-ng says AA-lu-minium; 2026-11-12)
+  assert.ok(nl.aluminium.includes('mˈi'), `aluminium: ${nl.aluminium}`);
+  // pro-JECT (espeak-ng says PRO-ject; 2026-11-12): audio only, at the next render; no rendered film says it
+  assert.ok(nl.project.includes('jˈɛ'), `project: ${nl.project}`);
   // no [[ ]] pieces cut into the text any more (piper-tts splits the sentence at each)
   assert.ok(!fs.existsSync('films/_kit/lexicon.mjs') && !fs.existsSync('films/_kit/lexicon/seed.py'));
   const speak = fs.readFileSync('films/_kit/speak.py', 'utf8');
@@ -292,6 +318,43 @@ test('speak.py word timing: each spoken word gets its phoneme words; a word espe
   // as separate words, the whole sentence glues "as it is." into one
   // (ˌæzɪtˈɪz), so the count per prefix goes 3, 4, 3 (was an IndexError)
   assert.deepEqual(wordSpans([1, 2, 3, 4, 3], g.slice(0, 3)), [[0, 10], [12, 20], [25, 40], [40, 40], [40, 40]]);
+});
+
+// films/_kit/speak.py swap_lexicon, run alone like word_spans (with PUNCT and re).
+function swapLexicon(ph, toks, counts, lex, alone) {
+  const py = [
+    'import ast, json, re, sys',
+    'src = open(sys.argv[1], encoding="utf-8").read()',
+    'body = [n for n in ast.parse(src).body if (isinstance(n, ast.FunctionDef) and n.name in ("swap_lexicon", "word_groups")) or (isinstance(n, ast.Assign) and any(getattr(t, "id", "") == "PUNCT" for t in n.targets))]',
+    'ns = {"re": re}',
+    'exec(compile(ast.Module(body=body, type_ignores=[]), "speak.py", "exec"), ns)',
+    'print(json.dumps(ns["swap_lexicon"](*json.loads(sys.stdin.read())), ensure_ascii=False))',
+  ].join('\n');
+  const r = spawnSync('python3', ['-I', '-c', py, 'films/_kit/speak.py'], { input: JSON.stringify([ph, toks, counts, lex, alone]), encoding: 'utf8' });
+  if (r.error) return null;
+  assert.equal(r.status, 0, r.stderr);
+  return JSON.parse(r.stdout);
+}
+test('speak.py lexicon swap: a word is swapped at its own position, never inside another word that holds its phonemes', (t) => {
+  const lex = { project: 'prɔjˈɛkt' };
+  const alone = { project: 'prˈoːjɛkt' };
+  // "projecten" comes first and starts with the phonemes of "project"
+  const r = swapLexicon('də prˈoːjɛktən ɛn ɦɛt prˈoːjɛkt.', ['De', 'projecten', 'en', 'het', 'project.'], [1, 2, 3, 4, 5], lex, alone);
+  if (r === null) return t.skip('no python3');
+  assert.deepEqual(r, ['də prˈoːjɛktən ɛn ɦɛt prɔjˈɛkt.', ['project'], []]);
+  // twice in a sentence: both, each at its own place; punctuation stays
+  assert.deepEqual(swapLexicon('prˈoːjɛkt, prˈoːjɛktən, prˈoːjɛkt.', ['Project,', 'projecten,', 'project.'], [1, 2, 3], lex, alone)[0], 'prɔjˈɛkt, prˈoːjɛktən, prɔjˈɛkt.');
+  // a word espeak-ng reads as two phoneme words: searched across both
+  assert.deepEqual(swapLexicon('ɦɛt prˈoː jɛkt lˈoːpt', ['het', 'project', 'loopt'], [1, 3, 4], { project: 'X' }, { project: 'prˈoː jɛkt' })[0], 'ɦɛt X lˈoːpt');
+  // glued onto the word before it (no phoneme word of its own): searched in that one
+  assert.deepEqual(swapLexicon('ɦɛtprˈoːjɛkt lˈoːpt', ['het', 'project', 'loopt'], [1, 1, 2], lex, alone)[0], 'ɦɛtprɔjˈɛkt lˈoːpt');
+  // not read the same way in the sentence: left alone, with a warning
+  const miss = swapLexicon('də proːjˈɛkt', ['de', 'project'], [1, 2], lex, alone);
+  assert.equal(miss[0], 'də proːjˈɛkt');
+  assert.deepEqual(miss[1], []);
+  assert.match(miss[2][0], /lexicon: espeak form of "project"/);
+  // counts that do not fit the sentence's phoneme words: whole phoneme words only
+  assert.deepEqual(swapLexicon('də prˈoːjɛktən ɛn prˈoːjɛkt.', ['De', 'projecten', 'en', 'project.'], [1, 2, 3, 5], lex, alone)[0], 'də prˈoːjɛktən ɛn prɔjˈɛkt.');
 });
 
 // The listen guard (films/_kit/listen-guard.mjs) on a synthetic track: "speech"

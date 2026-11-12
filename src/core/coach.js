@@ -1,12 +1,14 @@
 // AI speaking coach: scores an improvised answer and writes a stronger version.
 import { callClaude, withFallbacks, lastJson } from './claude.js';
 
-const score = { type: 'integer', minimum: 1, maximum: 5 };
+// The API refuses minimum/maximum in structured outputs, so the range lives in
+// the description and parseCoachResponse clamps the numbers to 1–5.
+const score = { type: 'integer', description: 'A whole number from 1 to 5.' };
 
 export const COACH_SCHEMA = {
   type: 'object',
   additionalProperties: false,
-  required: ['scores', 'overall', 'strength', 'improvement', 'stronger_version'],
+  required: ['scores', 'overall', 'strength', 'improvement', 'stronger_version', 'misheard'],
   properties: {
     scores: {
       type: 'object',
@@ -18,6 +20,20 @@ export const COACH_SCHEMA = {
     strength: { type: 'string' },
     improvement: { type: 'string' },
     stronger_version: { type: 'string' },
+    // Fragments the speech recognition probably got wrong; may be empty.
+    misheard: {
+      type: 'array',
+      description: 'Fragments of the transcript that speech recognition probably misheard, with the best guess of what he said. Empty when nothing looks misheard.',
+      items: {
+        type: 'object',
+        additionalProperties: false,
+        required: ['heard', 'likely'],
+        properties: {
+          heard: { type: 'string', description: 'The fragment exactly as it appears in the transcript.' },
+          likely: { type: 'string', description: 'What he most likely said instead.' },
+        },
+      },
+    },
   },
 };
 
@@ -78,7 +94,10 @@ function systemPrompt(lang) {
     'You are a speaking coach helping a 28-year-old Lean consultant get better at improvising:',
     'putting thoughts into clear, articulate words on the spot, and at small talk.',
     'He knows the words; the skill is retrieving and structuring them quickly.',
-    'You receive a speech-to-text transcript of an improvised answer. Expect transcription noise and missing punctuation; do not judge spelling.',
+    'You receive an automatic speech-recognition transcript of an improvised answer, not his exact words. Expect missing punctuation; do not judge spelling.',
+    'Speech recognition makes mistakes: words, numbers and names can be misheard (a stray number, a near-sounding word, a garbled name).',
+    'Do not penalise likely recognition errors: judge what the speaker most likely said, and base the stronger_version on that.',
+    'List every fragment you suspect was misheard in misheard, with heard copied from the transcript and likely as your best guess of what he said; leave it empty when nothing looks misheard.',
     'Judge it as spoken language under time pressure, not as an essay.',
     'Be warm and direct. No flattery, no padding. Name one concrete strength and the single most valuable improvement.',
     `The stronger_version rewrites his answer as he could have said it, in his voice, about the same length, in ${language}.`,
@@ -120,16 +139,28 @@ function describePrompt(drill, prompt) {
   return `Prompt: ${prompt.body}`;
 }
 
-export function buildCoachRequest({ drill, prompt, transcript, lang, durationS, metrics, model, modifier }) {
+// Digit tokens in the transcript that the task text never mentions: in a spoken
+// answer these are often recognition errors ("81" for "één"). Unique, in order.
+export function suspectNumbers(transcript, context) {
+  const known = new Set(String(context || '').match(/\d+(?:[.,]\d+)?/g) || []);
+  const found = String(transcript || '').match(/\d+(?:[.,]\d+)?/g) || [];
+  return [...new Set(found)].filter((n) => !known.has(n));
+}
+
+export function buildCoachRequest({ drill, prompt, transcript, lang, durationS, metrics, model, modifier, corrected = false }) {
   const m = metrics || {};
+  const task = describePrompt(drill, prompt);
+  const numbers = corrected ? [] : suspectNumbers(transcript, `${task} ${prompt.body || ''}`);
   const user = [
     `Drill: ${DRILL_BRIEF[drill] || drill}`,
-    describePrompt(drill, prompt),
+    task,
     modifier ? `Extra condition he chose for this round: ${MODIFIER_TEXT[modifier] || modifier}.` : '',
     `Spoke for ${Math.round(durationS)}s, ${m.words} words, ${m.wpm} wpm, ${m.fillerCount} filler words (${m.fillerRate}/min).`,
+    corrected ? 'He corrected the transcript by hand after speech recognition: trust it as what he said and leave misheard empty.' : '',
+    numbers.length ? `Numbers in the transcript that the task does not mention (check whether they were misheard): ${numbers.join(', ')}.` : '',
     'Transcript:',
     `"""${transcript}"""`,
-  ].join('\n\n');
+  ].filter(Boolean).join('\n\n');
   const req = {
     model,
     max_tokens: 8000,
@@ -140,12 +171,24 @@ export function buildCoachRequest({ drill, prompt, transcript, lang, durationS, 
   return withFallbacks(req);
 }
 
+// Defensive: anything but a list of distinct, non-empty string pairs drops out.
+function cleanMisheard(list) {
+  if (!Array.isArray(list)) return [];
+  return list
+    .filter((x) => x && typeof x.heard === 'string' && typeof x.likely === 'string')
+    .map((x) => ({ heard: x.heard.trim(), likely: x.likely.trim() }))
+    .filter((x) => x.heard && x.likely && x.heard.toLowerCase() !== x.likely.toLowerCase())
+    .slice(0, 8);
+}
+
 export function parseCoachResponse(message) {
   const res = lastJson(message);
   if (!res.ok) return res;
   const d = res.data;
   if (!d || !d.scores || typeof d.stronger_version !== 'string') return { ok: false, error: 'parse' };
-  return { ok: true, data: d };
+  const clamp = (n) => Math.min(5, Math.max(1, Math.round(Number(n) || 1)));
+  const scores = Object.fromEntries(Object.entries(d.scores).map(([k, v]) => [k, clamp(v)]));
+  return { ok: true, data: { ...d, scores, overall: clamp(d.overall), misheard: cleanMisheard(d.misheard) } };
 }
 
 export async function runCoach(apiKey, args, loadSdk) {

@@ -1,0 +1,325 @@
+WEBVTT
+
+1
+00:00:00.842 --> 00:00:01.794
+Een gewone straat.
+
+2
+00:00:02.529 --> 00:00:06.569
+Aan het eind staat een netstation; onder de stoep loopt een kabel naar elk huis.
+
+3
+00:00:07.616 --> 00:00:10.402
+Elektriciteit in die kabel lijkt op water in een leiding.
+
+4
+00:00:11.088 --> 00:00:15.477
+De spanning (voltage) is de druk, in volt: in een Nederlands huis 230 volt.
+
+5
+00:00:16.474 --> 00:00:20.910
+De stroomsterkte (current), kortweg stroom, is hoeveel er stroomt, in ampère.
+
+6
+00:00:21.633 --> 00:00:24.315
+Stroom maakt kabels warm en laat zekeringen doorslaan.
+
+7
+00:00:25.332 --> 00:00:29.743
+Vermogen is hoe snel er energie wordt gebruikt: spanning maal stroom, in watt.
+
+8
+00:00:30.497 --> 00:00:31.786
+Duizend watt is één kilowatt.
+
+9
+00:00:32.781 --> 00:00:37.901
+Een waterkoker van 2.000 watt trekt op 230 volt dus zo’n 8,7 ampère.
+
+10
+00:00:39.223 --> 00:00:40.721
+Vermogen is de stand van nu.
+
+11
+00:00:41.428 --> 00:00:45.353
+Energie is vermogen maal tijd, opgeteld, in kilowattuur.
+
+12
+00:00:46.339 --> 00:00:48.452
+Staat die waterkoker 3 minuten aan,
+
+13
+00:00:48.696 --> 00:00:52.852
+dan is dat 2 kilowatt maal 0,05 uur: 0,1 kilowattuur.
+
+14
+00:00:53.823 --> 00:00:58.014
+Een gemiddeld gezin verbruikt zo’n 2.700 kilowattuur per jaar.
+
+15
+00:00:58.715 --> 00:01:04.021
+Over de 8.760 uur van een jaar is dat gemiddeld maar 0,31 kilowatt.
+
+16
+00:01:05.094 --> 00:01:06.626
+Je betaalt per kilowattuur,
+
+17
+00:01:06.929 --> 00:01:11.329
+maar kabels en transformatoren moeten het hoogste vermogen op één moment dragen:
+
+18
+00:01:11.538 --> 00:01:13.291
+het net wordt gebouwd voor kilowatt.
+
+19
+00:01:14.607 --> 00:01:16.210
+Het net werkt met wisselstroom (alternating current):
+
+20
+00:01:16.453 --> 00:01:19.112
+de spanning gaat 50 keer per seconde heen en weer,
+
+21
+00:01:19.379 --> 00:01:20.285
+50 hertz.
+
+22
+00:01:20.994 --> 00:01:25.115
+Zonnepanelen en batterijen geven gelijkstroom, die één kant op loopt.
+
+23
+00:01:26.115 --> 00:01:30.469
+Wisselstroom won omdat een transformator de spanning makkelijk omhoog en omlaag zet.
+
+24
+00:01:31.163 --> 00:01:33.821
+Hier maakt hij van middenspanning laagspanning voor de straat.
+
+25
+00:01:34.841 --> 00:01:37.871
+De kabel in de straat is driefasig (three-phase): drie fasen,
+
+26
+00:01:38.150 --> 00:01:41.745
+elk een derde periode verschoven, plus een nul als terugleider.
+
+27
+00:01:42.686 --> 00:01:47.074
+Tussen fase en nul staat 230 volt, tussen twee fasen 400.
+
+28
+00:01:47.815 --> 00:01:50.497
+Warmtepompen en laadpalen gebruiken vaak alle drie.
+
+29
+00:01:51.792 --> 00:01:58.038
+Een gangbare huisaansluiting is 3 keer 25 ampère: maximaal zo’n 17 kilovoltampère,
+
+30
+00:01:58.375 --> 00:02:00.848
+de maat voor wat een kabel of zekering moet dragen.
+
+31
+00:02:01.846 --> 00:02:06.467
+Een dag in één huis: meestal vraagt het weinig, vaak minder dan het jaargemiddelde.
+
+32
+00:02:07.457 --> 00:02:08.978
+Maar om zes uur staan oven,
+
+33
+00:02:09.303 --> 00:02:14.481
+waterkoker en vaatwasser tegelijk aan: 3 plus 2 plus 2 is 7 kilowatt.
+
+34
+00:02:15.554 --> 00:02:18.248
+Laadt er ook een elektrische auto op 11 kilowatt,
+
+35
+00:02:18.421 --> 00:02:21.904
+dan trekt het huis 18 kilowatt: meer dan de aansluiting toelaat.
+
+36
+00:02:22.646 --> 00:02:24.445
+De hoofdzekering kan eruit vliegen.
+
+37
+00:02:25.759 --> 00:02:26.514
+Nu de hele wijk.
+
+38
+00:02:27.336 --> 00:02:33.071
+Dit netstation heeft een transformator van 400 kilovoltampère en voedt 150 woningen.
+
+39
+00:02:34.095 --> 00:02:38.913
+Ze pieken niet allemaal tegelijk: de een kookt om zes uur, de ander om half acht.
+
+40
+00:02:39.592 --> 00:02:40.904
+Dat heet gelijktijdigheid (simultaneity):
+
+41
+00:02:41.218 --> 00:02:43.598
+welk deel van ieders maximum tegelijk optreedt.
+
+42
+00:02:44.704 --> 00:02:47.339
+De piekbelasting (peak load) is de hoogste belasting van het jaar,
+
+43
+00:02:47.641 --> 00:02:49.417
+meestal op een koude winteravond.
+
+44
+00:02:50.157 --> 00:02:54.906
+Traditioneel rekenden planners met 1 tot 1,5 kilovoltampère per woning,
+
+45
+00:02:55.219 --> 00:02:57.390
+ver onder de 17 van de aansluiting.
+
+46
+00:02:58.397 --> 00:03:02.820
+150 maal 1,5 is 225 kilovoltampère:
+
+47
+00:03:03.122 --> 00:03:07.394
+op zijn drukste moment is de transformator voor 56 procent belast.
+
+48
+00:03:08.709 --> 00:03:10.915
+Waarom kilovoltampère en niet kilowatt?
+
+49
+00:03:11.636 --> 00:03:14.144
+Een kabel of transformator draagt alle stroom,
+
+50
+00:03:14.457 --> 00:03:18.254
+ook een deel dat door motoren en elektronica alleen heen en weer stroomt.
+
+51
+00:03:18.933 --> 00:03:20.767
+Dat totaal heet schijnbaar vermogen.
+
+52
+00:03:21.722 --> 00:03:24.106
+Het nuttige deel is het vermogen in kilowatt.
+
+53
+00:03:24.817 --> 00:03:28.195
+De verhouding tussen de twee is de arbeidsfactor (power factor), of cos phi.
+
+54
+00:03:28.947 --> 00:03:31.420
+Voor woningen meestal 0,9 tot 1.
+
+55
+00:03:32.411 --> 00:03:38.599
+Een transformator van 400 kilovoltampère levert dus zo’n 360 tot 400 kilowatt.
+
+56
+00:03:39.946 --> 00:03:43.208
+Nu krijgen 50 woningen een warmtepomp van 3 kilowatt.
+
+57
+00:03:43.956 --> 00:03:48.356
+Op een koude avond draaien ze allemaal tegelijk: een gelijktijdigheid van bijna één.
+
+58
+00:03:49.039 --> 00:03:53.718
+Elk draait op zo’n 80 procent: samen 120 kilovoltampère erbij.
+
+59
+00:03:54.700 --> 00:03:59.634
+En 40 woningen laden na het werk een auto op 11 kilowatt, zo’n 30 procent tegelijk.
+
+60
+00:04:00.357 --> 00:04:02.714
+Nog eens 132 kilovoltampère.
+
+61
+00:04:03.773 --> 00:04:11.203
+De nieuwe piek: 225 plus 120 plus 132 is 477 kilovoltampère.
+
+62
+00:04:11.986 --> 00:04:14.737
+Dat is 119 procent van de transformator.
+
+63
+00:04:15.693 --> 00:04:17.539
+Het jaarverbruik groeit veel minder hard,
+
+64
+00:04:17.888 --> 00:04:19.595
+maar de piek wordt meer dan twee keer zo hoog.
+
+65
+00:04:20.914 --> 00:04:23.584
+Op een zonnige middag komt er een piek de andere kant op:
+
+66
+00:04:23.898 --> 00:04:25.825
+alle daken leveren tegelijk terug.
+
+67
+00:04:26.818 --> 00:04:30.104
+De omvormer (inverter) zet de gelijkstroom van de panelen om naar wisselstroom.
+
+68
+00:04:30.773 --> 00:04:32.921
+Hier hangt dat kastje buiten aan de zijgevel.
+
+69
+00:04:33.920 --> 00:04:36.265
+Al die teruglevering duwt de spanning omhoog,
+
+70
+00:04:36.555 --> 00:04:38.238
+het meest aan het eind van een lange kabel.
+
+71
+00:04:39.317 --> 00:04:45.633
+Boven zo’n 253 volt, de Europese bovengrens van 230 volt plus 10 procent,
+
+72
+00:04:45.865 --> 00:04:47.247
+schakelt de omvormer af.
+
+73
+00:04:47.912 --> 00:04:51.082
+Panelen die steeds uitvallen zijn dus vaak een spanningsprobleem,
+
+74
+00:04:51.314 --> 00:04:52.614
+geen kapotte omvormer.
+
+75
+00:04:53.910 --> 00:04:59.367
+Waar experts over discussiëren: de gelijktijdigheid van warmtepompen en laadpalen.
+
+76
+00:05:00.362 --> 00:05:04.123
+Reken je te laag, dan raakt het net overbelast in de eerste koude week.
+
+77
+00:05:04.871 --> 00:05:08.056
+Reken je te hoog, dan gaan straten jaren te vroeg open.
+
+78
+00:05:09.027 --> 00:05:13.125
+Slim laden spreidt het laden van auto’s over de nacht en kan de piek flink verlagen,
+
+79
+00:05:13.357 --> 00:05:14.913
+maar alleen als mensen het toestaan.
+
+80
+00:05:15.967 --> 00:05:19.821
+Vraag dus altijd: op welke gelijktijdigheid is dit plan gebaseerd,
+
+81
+00:05:20.112 --> 00:05:21.494
+en waar komt dat getal vandaan?

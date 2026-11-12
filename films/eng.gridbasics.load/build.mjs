@@ -688,8 +688,8 @@ const SAY = [
   [ // s3 AC and three phases
     { nl: 'Het net werkt met {t:Wisselstroom|wisselstroom}: de spanning gaat {n:50} keer per seconde heen en weer, {n:50} hertz. Zonnepanelen en batterijen geven gelijkstroom, die één kant op loopt.',
       en: 'The grid runs on {t:Alternating current|alternating current}: the voltage swings back and forth {n:50} times a second, {n:50} hertz. Solar panels and batteries give direct current, which flows one way only.' },
-    { nl: 'Wisselstroom won omdat een transformator de spanning makkelijk omhoog en omlaag zet. In dit netstation maakt hij van middenspanning laagspanning voor de straat.',
-      en: 'AC won because a transformer can easily step its voltage up and down. In this distribution substation it turns medium voltage into low voltage for the street.' },
+    { nl: 'Wisselstroom won omdat een transformator de spanning makkelijk omhoog en omlaag zet. Hier maakt hij van middenspanning laagspanning voor de straat.',
+      en: 'AC won because a transformer can easily step its voltage up and down. Here it turns medium voltage into low voltage for the street.' },
     { nl: 'De kabel in de straat is {t:Driefasig|driefasig}: drie fasen, elk een derde periode verschoven, plus een nul als terugleider.',
       en: 'The street cable is {t:Three-phase|three-phase}: three phases, each a third of a cycle apart, plus a neutral as the return wire.' },
     { nl: 'Tussen fase en nul staat {n:230} volt, tussen twee fasen {n:400}. Warmtepompen en laadpalen gebruiken vaak alle drie.',
@@ -735,9 +735,9 @@ const SAY = [
   ],
   [ // s8 a sunny noon
     { nl: 'Op een zonnige middag komt er een piek de andere kant op: alle daken leveren tegelijk terug.',
-      en: 'At midday on a sunny day a peak comes the other way: every roof feeds power back at the same time.' },
-    { nl: 'De {t:Omvormer|omvormer} zet de gelijkstroom van de panelen om naar wisselstroom. Vaak hangt dat kastje op zolder of in de garage; hier buiten aan de zijgevel.',
-      en: 'The {t:Inverter|inverter} turns the panels’ direct current into alternating current. That box often hangs in the attic or garage; here outside on the end wall.' },
+      en: 'On a sunny afternoon a peak comes the other way: every roof feeds back at the same time.' },
+    { nl: 'De {t:Omvormer|omvormer} zet de gelijkstroom van de panelen om naar wisselstroom. Hier hangt dat kastje buiten aan de zijgevel.',
+      en: 'The {t:Inverter|inverter} turns the panels’ direct current into alternating current. Here that box hangs outside on the end wall.' },
     { nl: 'Al die teruglevering duwt de spanning omhoog, het meest aan het eind van een lange kabel.',
       en: 'All that feed-in pushes the voltage up, most at the end of a long cable.' },
     { nl: 'Boven zo’n {n:253} volt, de Europese bovengrens van {n:230} volt plus {n:10} procent, schakelt de omvormer af. Panelen die steeds uitvallen zijn dus vaak een spanningsprobleem, geen kapotte omvormer.',

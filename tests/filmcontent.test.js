@@ -84,6 +84,23 @@ test('every shipped film: its terms, numbers, coverage, language and length stil
   }
 });
 
+// v16: every sentence lights the part it explains. The reference film opts in
+// with strictFocus; any film that does must pass the focus check on its page.
+test('films with strictFocus: every beat has a focus (or null) that names a part of its drawing', async () => {
+  const { checkFocus, cueKeysOf } = await import('../films/_kit/assert.mjs');
+  const strict = films.map((id) => [id, fs.readFileSync(`${DIR}/${id}.html`, 'utf8')]).filter(([, html]) => readFilmData(html).strictFocus);
+  assert.ok(strict.some(([id]) => id === 'eng.switchgear.protection'), 'the reference film eng.switchgear.protection is strict');
+  for (const [id, html] of strict) {
+    const data = readFilmData(html);
+    const r = checkFocus(data, cueKeysOf(html));
+    assert.deepEqual(r.errors, [], `${id}:\n${r.errors.join('\n')}`);
+    for (const s of data.scenes) s.beats.forEach((b, i) => assert.ok('focus' in b, `${id} ${s.id} beat ${i + 1}`));
+    // most sentences point at something; an overview is the exception
+    const all = data.scenes.flatMap((s) => s.beats);
+    assert.ok(all.filter((b) => b.focus === null).length <= all.length / 4, `${id}: too many overview beats`);
+  }
+});
+
 test('the sync check catches a renamed term, a removed number and a Dutch word in English', async () => {
   const lessons = await allLessons();
   for (const id of films) {
@@ -101,7 +118,7 @@ test('the sync check catches a renamed term, a removed number and a Dutch word i
     const ln = lessons.nl.get(n.lesson);
     gone.nl.set(n.lesson, withoutNumber(ln, n.value));
     assert.ok(!lessonTextOf(gone.nl.get(n.lesson)).includes(n.value));
-    assert.match(checkFilm(data, { ...ctx, lessons: gone }).join('\n'), /no longer in eng\./);
+    assert.ok(checkFilm(data, { ...ctx, lessons: gone }).some((e) => e.endsWith(`no longer in ${n.lesson}`)), `${id}: removed number ${n.value} not reported`);
     // a Dutch term in the English caption
     const dutch = data.scenes.flatMap((s) => s.terms).find((x) => x.nl.toLowerCase() !== x.en.toLowerCase());
     const bad = JSON.parse(JSON.stringify(data));

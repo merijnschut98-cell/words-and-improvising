@@ -4,7 +4,7 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import {
   wordsOf, minSceneDur, parseMarked, formatNumber, speakOf, plainOf, timelineOf, sceneIndexAt,
-  clampScene, beatStarts, beatIndexAt, holdLimit, parseParams, fmtClock, ease, span, searchOf,
+  clampScene, beatStarts, beatIndexAt, holdLimit, parseParams, fmtClock, ease, span, searchOf, stageU,
 } from '../films/_kit/timeline.mjs';
 import { parseFilmRef, filmSrc, filmMessage, filmBridge, mutedPref, loadFilm } from '../src/ui/film.js';
 
@@ -58,6 +58,62 @@ test('speak variant: units and signs are said as words, per language', () => {
   assert.equal(en('Ra 0.77 µm, six holes at 60°.'), 'R a 0.77 micrometres, six holes at 60 degrees.');
   // words that merely contain the letters stay as they are
   assert.equal(nl('Rand en rpmx en Radius'), 'Rand en rpmx en Radius');
+});
+
+// espeak-ng reads governance the Dutch way ("goo-ver-nan-se"), MUM-effect as
+// letters, keep with a long e and stresses ESkalatieroute: Dutch only, the
+// English voice keeps them (pm.run.escalation)
+test('speak variant: governance, MUM-effect, keep mum and escalatieroute in Dutch', () => {
+  const nl = (s) => speakOf([s], 'nl');
+  assert.equal(nl('Dat is governance: één A4.'), 'Dat is gavvernens: één A4.');
+  assert.equal(nl('Governance is'), 'Gavvernens is');
+  assert.equal(nl('het MUM-effect, van keep mum, zwijgen'), 'het mum-effect, van kiep mum, zwijgen');
+  assert.equal(nl('een escalatieroute af. Escalatieroutes'), 'een escalatie-route af. Escalatie-routes');
+  const en = 'governance, the MUM effect, keep mum, an escalation path';
+  assert.equal(speakOf([en], 'en'), en);
+});
+
+// espeak-ng reads agile the Dutch way ("AA-gie-le") and stresses HYbride: said
+// as the floor says them, "etsjail" and "hiebriede"; Dutch only, and the
+// moulding film's "hybride machine" (rendered video) keeps its voice
+// (pm.plan.method)
+test('speak variant: agile and hybride in Dutch', () => {
+  const nl = (s) => speakOf([s], 'nl');
+  assert.equal(nl('Agile: korte rondes. Het Agile Manifesto, een agile methode.'), 'Etsjail: korte rondes. Het Etsjail Manifesto, een etsjail methode.');
+  assert.equal(nl('De meeste projecten zijn hybride: mijlpalen. Hybride'), 'De meeste projecten zijn hiebriede: mijl-palen. Hiebriede');
+  assert.equal(nl('Een hybride machine combineert beide'), 'Een hybride machine combineert beide');
+  assert.equal(nl('agileren, hybrides'), 'agileren, hybrides');
+  const en = 'Agile, the Agile Manifesto, hybrid';
+  assert.equal(speakOf([en], 'en'), en);
+});
+
+// A stage drawn on the Dutch caption beats (beatwarp films set STAGE.nlBeats)
+// follows the caption beat on screen in English too: while English beat k
+// shows, the stage runs through Dutch beat k, so the drawing is never a beat off.
+test('stageU: in English a Dutch-beat stage runs on the caption beat; Dutch and other stages stay plain', async () => {
+  // Dutch: beat 2 starts at 2 s of 10; English: at 8 s
+  const sc = { dur: 10, beats: [{ text: { nl: 'a', en: 'a b c d' } }, { text: { nl: 'b c d e', en: 'e' } }] };
+  assert.deepEqual(beatStarts(sc, 'nl'), [0, 2]);
+  assert.deepEqual(beatStarts(sc, 'en'), [0, 8]);
+  for (const t of [0, 1, 3, 7.5, 10]) {
+    assert.equal(stageU(sc, 'nl', t, true), t / 10);
+    assert.equal(stageU(sc, 'en', t, false), t / 10);
+  }
+  // English beat 1 (0..8 s) maps onto Dutch beat 1 (0..2 s), beat 2 onto 2..10 s
+  assert.equal(stageU(sc, 'en', 0, true), 0);
+  assert.equal(stageU(sc, 'en', 4, true), 0.1);
+  assert.ok(stageU(sc, 'en', 7.99, true) < 0.2);
+  assert.equal(stageU(sc, 'en', 8, true), 0.2);
+  assert.equal(stageU(sc, 'en', 9, true), 0.6);
+  assert.equal(stageU(sc, 'en', 10, true), 1);
+  assert.equal(stageU(sc, 'en', 12, true), 1);
+  // the stage's beat (by Dutch fractions) equals the caption beat (by English starts)
+  for (let t = 0; t < 10; t += 0.25) assert.equal(beatIndexAt(sc, 'nl', stageU(sc, 'en', t, true) * 10), beatIndexAt(sc, 'en', t), `t ${t}`);
+  // the player hands it the flag that beatwarp sets, and keeps the designed still under reduced motion
+  const { readFileSync } = await import('node:fs');
+  const rt = readFileSync(new URL('../films/_kit/player-runtime.js', import.meta.url), 'utf8');
+  assert.match(rt, /reduce \? \(s\.beats\[bi\]\.still \?\? s\.still\) : stageU\(s, LANG, lt, STAGE\.nlBeats === true\)/);
+  assert.match(readFileSync(new URL('../films/_kit/beatwarp.js', import.meta.url), 'utf8'), /STAGE\.nlBeats = true;/);
 });
 
 test('timeline: scene starts, total, the scene at a time', () => {
@@ -272,6 +328,26 @@ test('resolveFilm: terms come from the served lessons, the English word by posit
   assert.throws(() => resolveFilm(spec([{ nl: '{n:0.3}', en: '{n:0.4}' }]), lessons), /different numbers/);
 });
 
+// Two served lessons can name different Dutch terms with one English word
+// (Stakeholdermap and Stakeholderkaart are both "Stakeholder map"): the English
+// term then resolves to the lesson its Dutch twin names, in caption and narration.
+test('resolveFilm: an English term shared by two served lessons follows its Dutch term', async () => {
+  const { resolveFilm } = await import('../films/_kit/build-film.mjs');
+  const mk = (id, nl, en) => ({ nl: { id, terms: nl.map((term) => ({ term })), teach: [''] }, en: { id, terms: en.map((term) => ({ term })), teach: [''] } });
+  const a = mk('pm.fx.a', ['Stakeholdermap'], ['Stakeholder map']);
+  const b = mk('pm.fx.b', ['Valuta', 'Stakeholderkaart'], ['Currency', 'Stakeholder map']);
+  const lessons = { nl: new Map([['pm.fx.a', a.nl], ['pm.fx.b', b.nl]]), en: new Map([['pm.fx.a', a.en], ['pm.fx.b', b.en]]) };
+  const spec = (beats) => ({ id: 'x.y', title: { nl: 'a', en: 'a' }, lessons: ['pm.fx.a', 'pm.fx.b'], scenes: [{ id: 's1', level: 1, dur: 10, still: 0.5, title: { nl: 'a', en: 'a' }, beats }] });
+  const data = resolveFilm(spec([
+    { nl: 'De {t:Stakeholdermap|map}.', en: 'The {t:Stakeholder map|map}.', cue: { Stakeholdermap: 'm1' }, say: { nl: 'De {t:Stakeholdermap|stakeholdermap}.', en: 'The {t:Stakeholder map|stakeholder map}.' } },
+    { nl: 'De {t:Stakeholderkaart|kaart}.', en: 'The {t:Stakeholder map|map}.', cue: { Stakeholderkaart: 'm2' }, say: { nl: 'De {t:Stakeholderkaart|stakeholderkaart}.', en: 'The {t:Stakeholder map|stakeholder map}.' } },
+  ]), lessons);
+  assert.deepEqual(data.scenes[0].terms.map((t) => [t.lesson, t.index, t.cue]), [['pm.fx.a', 0, 'm1'], ['pm.fx.b', 1, 'm2']]);
+  assert.equal(data.scenes[0].beats[1].say.en[1].k, 'pm.fx.b#1');
+  // a Dutch term with an English word from yet another lesson still fails
+  assert.throws(() => resolveFilm(spec([{ nl: '{t:Valuta}', en: '{t:Stakeholder map}', cue: { Valuta: 'c' } }]), lessons), /different terms/);
+});
+
 // v14b: the narration script (say) beside the caption, checked the same way
 test('resolveFilm: the narration names lesson terms and numbers, glosses in Dutch once, and nl and en must agree', async () => {
   const { resolveFilm } = await import('../films/_kit/build-film.mjs');
@@ -328,4 +404,88 @@ test('a film page inlines the runtime timeline, not the build-time SAY table', a
     assert.ok(!script.includes(SAY_RULE) && !/\bsayable\b/.test(script), `${name} inlines the SAY table`);
     assert.doesNotThrow(() => new vm.Script(script), `${name} script does not parse`);
   }
+});
+
+// ------------------------------------------------------------ focus highlight (v16)
+// Each beat names the part(s) of the drawing it explains (focus: a cue key, a
+// list of them, or null for an overview sentence). The player lights those
+// parts light blue / white while the beat is spoken and its caption shows.
+test('resolveFilm: a beat names its focus; a term cue joins it; strictFocus demands one on every beat', async () => {
+  const { resolveFilm } = await import('../films/_kit/build-film.mjs');
+  const l = (lang) => ({ id: 'eng.fx.a', terms: lang === 'nl' ? [{ term: 'Voeding' }] : [{ term: 'Feed' }], teach: ['Voeding.'] });
+  const lessons = { nl: new Map([['eng.fx.a', l('nl')]]), en: new Map([['eng.fx.a', l('en')]]) };
+  const spec = (beats, more = {}) => ({ id: 'x.y', title: { nl: 'a', en: 'a' }, lessons: ['eng.fx.a'], scenes: [{ id: 's1', level: 1, dur: 10, still: 0.5, title: { nl: 'a', en: 'a' }, beats }], ...more });
+  const data = resolveFilm(spec([
+    { nl: 'Een.', en: 'One.', focus: 'tool' },
+    { nl: 'Twee.', en: 'Two.', focus: ['tool', 'chuck'] },
+    { nl: 'Overzicht.', en: 'Overview.', focus: null },
+    { nl: 'De {t:Voeding|voeding}.', en: 'The {t:Feed|feed}.', cue: { Voeding: 'feed' }, focus: 'tool' },
+    { nl: 'Oud.', en: 'Old.', cues: ['chuck'] },
+    { nl: 'Niets.', en: 'Nothing.' },
+  ]), lessons);
+  const b = data.scenes[0].beats;
+  assert.deepEqual(b.map((x) => x.cues), [['tool'], ['tool', 'chuck'], [], ['tool', 'feed'], ['chuck'], []]);
+  assert.deepEqual(b.map((x) => x.focus), [['tool'], ['tool', 'chuck'], null, ['tool', 'feed'], undefined, undefined]);
+  assert.ok(!('strictFocus' in data));
+  // a film without focus fields resolves exactly as before: no focus key at all
+  assert.ok(!('focus' in b[4]) && !('focus' in b[5]));
+  // strict: every beat declares it, no legacy cues list, an overview names no term
+  const ok = resolveFilm(spec([{ nl: 'Een.', en: 'One.', focus: 'tool' }, { nl: 'Twee.', en: 'Two.', focus: null }], { strictFocus: true }), lessons);
+  assert.equal(ok.strictFocus, true);
+  assert.throws(() => resolveFilm(spec([{ nl: 'Een.', en: 'One.' }], { strictFocus: true }), lessons), /scene 1 beat 1: no focus/);
+  assert.throws(() => resolveFilm(spec([{ nl: 'Een.', en: 'One.', cues: ['x'] }], { strictFocus: true }), lessons), /use focus, not cues/);
+  assert.throws(() => resolveFilm(spec([{ nl: 'De {t:Voeding|voeding}.', en: 'The {t:Feed|feed}.', cue: { Voeding: 'feed' }, focus: null }], { strictFocus: true }), lessons), /overview .*names a term/);
+  for (const bad of [[], '', ['ok', 3], {}]) assert.throws(() => resolveFilm(spec([{ nl: 'Een.', en: 'One.', focus: bad }]), lessons), /focus must be/, JSON.stringify(bad));
+});
+
+test('checkFocus: beats without a focus are counted (warnings), unknown parts too; strict films turn them into errors', async () => {
+  const { checkFocus, cueKeysOf } = await import('../films/_kit/assert.mjs');
+  assert.deepEqual([...cueKeysOf('<svg><g data-cue="a"><g data-cue="b"></g></g><g data-cue="a"></g></svg>')].sort(), ['a', 'b']);
+  // a stage script that draws a cue group per frame names it too
+  assert.deepEqual([...cueKeysOf('out += cue(\'nop\', x); s = `<g data-cue="lab">`; c = `<g data-cue="${name}">`')].sort(), ['lab', 'nop']);
+  const keys = new Set(['a', 'b']);
+  const film = (beats, more = {}) => ({ scenes: [{ id: 's1', beats }], ...more });
+  const loose = checkFocus(film([{ cues: ['a'] }, { cues: [] }, { cues: [], focus: null }, { cues: ['zz'] }]), keys);
+  assert.deepEqual(loose.errors, []);
+  assert.deepEqual(loose.missing, ['s1 beat 2']);
+  assert.deepEqual(loose.unknown, ['s1 beat 4: zz']);
+  const strict = checkFocus(film([{ cues: ['a'], focus: ['a'] }, { cues: [] }, { cues: ['zz'], focus: ['zz'] }], { strictFocus: true }), keys);
+  assert.match(strict.errors.join('\n'), /s1 beat 2: no focus/);
+  assert.match(strict.errors.join('\n'), /s1 beat 3: focus "zz" is no part of the drawing/);
+  assert.deepEqual(checkFocus(film([{ cues: ['a'], focus: ['a'] }, { cues: [], focus: null }], { strictFocus: true }), keys).errors, []);
+});
+
+test('player: the focus highlight is light blue / white in both themes, eases in, holds still for video and reduced motion', async () => {
+  const { pageHtml } = await import('../films/_kit/player.mjs');
+  const page = pageHtml({ title: { nl: 'T', en: 'T' }, scenes: [] }, { svg: '<svg></svg>', script: 'const STAGE={};', label: { nl: 'l', en: 'l' } });
+  const css = page.match(/<style>([\s\S]*?)<\/style>/)[1];
+  const block = (sel) => css.slice(css.indexOf(sel), css.indexOf('}', css.indexOf(sel)));
+  for (const theme of ['.iso{', '.iso[data-theme="light"]{']) for (const v of ['--fp-focus:', '--fp-focus-glow:', '--fp-focus-top:', '--fp-focus-shade:', '--fp-focus-text:']) assert.ok(block(theme).includes(v), `${theme} ${v}`);
+  // the focused part: a halo and its edges in the focus colour, not petrol
+  assert.match(css, /\[data-cue\]\[data-on\]\{[^}]*filter:drop-shadow\(.*var\(--fp-focus-glow\)/);
+  assert.match(css, /\[data-cue\]\[data-on\] \.iso-edge[^{]*\{stroke:var\(--fp-focus\)/);
+  // a film's own cue rules (written against --fp-accent) follow the focus colour
+  assert.match(css, /\[data-cue\]\[data-on\]\{[^}]*--fp-accent:var\(--fp-focus\)/);
+  // calm: a short ease-in of the halo (restarted on the player when the beat
+  // changes, so parts the stage redraws every frame ease in too), no breathing
+  assert.match(css, /@property --fp-fi\{syntax:'<number>';inherits:true;initial-value:1\}/);
+  assert.match(css, /\.fp\[data-focus="a"\]\{animation:fp-focus-a \.\d+s ease-in/);
+  assert.match(css, /\.fp\[data-focus="b"\]\{animation:fp-focus-b \.\d+s ease-in/);
+  assert.match(css, /drop-shadow\(0 0 calc\(var\(--fp-fi,1\) \* [\d.]+px\) var\(--fp-focus-glow\)\)/);
+  assert.ok(!/fp-breathe|infinite/.test(css), 'no breathing loop');
+  // reduced motion and the video frame: the halo is simply there, no ease
+  assert.match(css, /\.fp\[data-motion="reduce"\]\[data-focus\],\.fp\[data-render="1"\]\[data-focus\]\{animation:none\}/);
+  assert.match(css, /prefers-reduced-motion:reduce\)\{\.fp\[data-focus\]\{animation:none\}/);
+  // the video frame is deterministic: no wall-clock or film-clock glow
+  assert.ok(!page.includes('--fp-b'));
+  // a stage may redraw a cue group every frame: the runtime lights the beat's
+  // parts again after each render, not only when the beat changes
+  const { readFileSync } = await import('node:fs');
+  const rt = readFileSync(new URL('../films/_kit/player-runtime.js', import.meta.url), 'utf8');
+  const renders = rt.split('\n').filter((l) => l.includes('STAGE.render('));
+  assert.ok(renders.length >= 2);
+  for (const l of renders) assert.match(l, /STAGE\.render\([^)]*\);\s*lightFocus\(\);/, l.trim());
+  // the runtime goes in without its comment lines (bytes; each page stays near its 300 KB target)
+  assert.ok(rt.includes("// the beat's focus") && !page.includes("// the beat's focus"));
+  assert.ok(page.includes('lightFocus();'));
 });

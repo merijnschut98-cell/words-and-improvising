@@ -1,5 +1,6 @@
 // Web Speech API wrapper. Android Chrome ends sessions on silence and sometimes
 // reports cumulative finals, so we restart while active and dedupe per session.
+import { trackProbeVerdict } from './micshare.js';
 
 export function joinText(...parts) {
   return parts.join(' ').replace(/\s+/g, ' ').trim();
@@ -36,8 +37,30 @@ const Recognition = typeof window !== 'undefined'
 
 export const speechSupported = !!Recognition;
 
-export function createRecognizer({ lang, onText, onError }) {
+// Does this engine take a MediaStreamTrack (start(audioTrack))? Calls start()
+// with an ended clone of the track: a supporting engine throws InvalidStateError
+// and starts nothing; an older one ignores the argument and starts on the mic,
+// so that session is aborted at once. Needs a track that can be cloned.
+export function probeTrackInput(track) {
+  if (!Recognition || !track || typeof track.clone !== 'function') return false;
+  let dead;
+  try { dead = track.clone(); dead.stop(); } catch { return false; }
+  const rec = new Recognition();
+  try {
+    rec.start(dead);
+  } catch (err) {
+    return trackProbeVerdict(err);
+  }
+  try { if (typeof rec.abort === 'function') rec.abort(); else rec.stop(); } catch { /* ignore */ }
+  return false;
+}
+
+// track: optional MediaStreamTrack the page already holds. Every (re)start
+// listens to that same track, so no second mic stream is opened. If the engine
+// refuses it, the recogniser falls back to its own mic.
+export function createRecognizer({ lang, onText, onError, track = null }) {
   let rec = null;
+  let useTrack = !!track;
   let active = false;
   let committed = '';
   let session = { final: '', interim: '' };
@@ -77,11 +100,15 @@ export function createRecognizer({ lang, onText, onError }) {
         emit();
       }
     };
+    if (useTrack) {
+      try { rec.start(track); return; } catch { useTrack = false; }
+    }
     rec.start();
   }
 
   return {
     supported: speechSupported,
+    trackInUse: () => useTrack,
     start() {
       if (!Recognition) return false;
       active = true;

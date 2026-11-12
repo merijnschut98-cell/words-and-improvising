@@ -28,6 +28,9 @@ const FAKE_SPEECH = `
         const error = window.__speechMode === 'deny' ? 'not-allowed' : 'network';
         setTimeout(() => this.onerror && this.onerror({ error }), 50); setTimeout(() => this.onend && this.onend(), 80); return;
       }
+      // 'silent': the engine runs but never hears anything (Android, when another
+      // stream holds the mic): no result, no error.
+      if (window.__speechMode === 'silent') return;
       // An automatic restart after a natural end (Android behaviour, no stop()
       // in between) stays silent: real speech would not replay the sentence.
       if (window.__autoRestart) return;
@@ -81,7 +84,8 @@ const FAKE_SDK = `
       window.__coachReq = req;
       return { stop_reason: 'end_turn', content: [{ type: 'text', text: JSON.stringify({
         scores: { clarity: 4, structure: 3, fluency: 4, vocabulary: 3 }, overall: 4,
-        strength: 'Je begon meteen.', improvement: 'Begin met je punt.', stronger_version: 'Mijn punt is helder: de brug verbindt.' }) }] };
+        strength: 'Je begon meteen.', improvement: 'Begin met je punt.', stronger_version: 'Mijn punt is helder: de brug verbindt.',
+        ...(window.__misheard ? { misheard: window.__misheard } : {}) }) }] };
     } } }; }
   }
 `;
@@ -124,7 +128,9 @@ page.on('pageerror', onPageError);
 // Offline, a film video that was never cached fails to load: expected there, not an app error.
 page.on('console', (m) => m.type() === 'error' && !(currentStep.startsWith('offline') && /^Failed to load resource: net::ERR_/.test(m.text())) && errors.push(m.text()));
 
+// E2E_ONLY=<text>: run only the steps whose name contains it (setup still runs).
 const step = async (name, fn) => {
+  if (process.env.E2E_ONLY && !name.includes(process.env.E2E_ONLY)) return;
   currentStep = name;
   try { await fn(); console.log('ok  ', name); } catch (e) {
     console.log('FAIL', name, e.message); errors.push(`${name}: ${e.message}`);
@@ -1078,6 +1084,57 @@ await step('say it again shows a before/after comparison', async () => {
   await shot('17-compare');
 });
 
+await step('coach checks recognition: misheard pairs show, and the transcript can be corrected and sent again', async () => {
+  await page.goto(BASE);
+  await page.evaluate(() => { window.__misheard = [{ heard: 'river', likely: 'rivier' }, { heard: 'like a', likely: 'echt een' }]; });
+  await page.locator('.drill-minute').click();
+  await page.getByRole('button', { name: 'Start' }).click();
+  const ready = page.getByRole('button', { name: 'Ik ben er klaar voor' });
+  if (await ready.isVisible().catch(() => false)) await ready.click();
+  await page.waitForTimeout(1300);
+  await page.getByRole('button', { name: 'Klaar' }).click();
+  const card = page.locator('.coach-card');
+  await card.locator('.scores').waitFor({ timeout: 5000 });
+  // Card shots: the sticky header would cover the top of a tall card.
+  await page.addStyleTag({ content: '.coach-shot header.top { visibility: hidden; }' });
+  await page.evaluate(() => document.body.classList.add('coach-shot'));
+  const mis = card.locator('.misheard');
+  await mis.waitFor({ timeout: 3000 });
+  const misText = await mis.innerText();
+  if (!/Mogelijk verkeerd verstaan/i.test(misText) || !misText.includes('river') || !misText.includes('rivier') || !misText.includes('echt een')) throw new Error(`misheard block: ${misText}`);
+  await card.scrollIntoViewIfNeeded();
+  await card.screenshot({ path: `${out}/31-coach-misheard.png`, animations: 'disabled' });
+  // Correct the recognised text, then ask the coach with it.
+  await card.getByRole('button', { name: 'Klopt de tekst niet? Pas hem aan' }).click();
+  const area = card.locator('textarea.transcript-edit');
+  const before = await area.inputValue();
+  if (!before.includes('the bridge and the river')) throw new Error(`textarea not prefilled: ${before}`);
+  await area.fill('Ik denk dat dit een heel goed punt is over de brug en de rivier');
+  await card.screenshot({ path: `${out}/32-coach-edit.png`, animations: 'disabled' });
+  await page.evaluate(() => { window.__coachReq = null; window.__misheard = []; });
+  await card.getByRole('button', { name: 'Vraag de coach opnieuw' }).click();
+  await page.waitForFunction(() => window.__coachReq);
+  await card.locator('.scores').waitFor({ timeout: 5000 });
+  const req = await page.evaluate(() => window.__coachReq);
+  if (!req.messages[0].content.includes('over de brug en de rivier')) throw new Error('corrected text not sent');
+  if (!/corrected the transcript by hand/.test(req.messages[0].content)) throw new Error('coach not told about the correction');
+  if (!(await page.locator('.transcript').innerText()).includes('over de brug en de rivier')) throw new Error('transcript on screen not updated');
+  if (await card.locator('.misheard').count()) throw new Error('empty misheard list still shows a block');
+  // Dark theme: the same card with misheard items and the open editor.
+  await page.evaluate(() => { window.__misheard = [{ heard: 'river', likely: 'rivier' }, { heard: 'like a', likely: 'echt een' }]; window.__app.updateSettings({ theme: 'dark' }); });
+  await page.waitForFunction(() => document.documentElement.dataset.theme === 'dark');
+  await card.getByRole('button', { name: 'Klopt de tekst niet? Pas hem aan' }).click();
+  await card.getByRole('button', { name: 'Vraag de coach opnieuw' }).click();
+  await card.locator('.misheard').waitFor({ timeout: 5000 });
+  await card.scrollIntoViewIfNeeded();
+  await card.screenshot({ path: `${out}/33-coach-misheard-dark.png`, animations: 'disabled' });
+  await card.getByRole('button', { name: 'Klopt de tekst niet? Pas hem aan' }).click();
+  await card.screenshot({ path: `${out}/34-coach-edit-dark.png`, animations: 'disabled' });
+  await page.evaluate(() => document.body.classList.remove('coach-shot'));
+  await shot('35-feedback-misheard-dark');
+  await page.evaluate(() => { window.__misheard = undefined; window.__app.updateSettings({ theme: 'light' }); });
+});
+
 await step('debate flips sides at half time', async () => {
   await page.goto(BASE);
   await page.evaluate(() => {
@@ -1743,6 +1800,211 @@ await step('voice variety switches itself off when recognition breaks', async ()
   await page.evaluate(() => { window.__speechMode = 'ok'; });
   if (on !== false) throw new Error('voiceStats should have switched itself off');
   await page.getByRole('button', { name: 'Sluiten' }).click();
+});
+
+// Fake mic + MediaRecorder for the mic-clash steps: each recording is one
+// second of WAV, a loud tone or silence (window.__mrTone), so it decodes.
+const FAKE_RECORDER = () => {
+  const wav = () => {
+    const rate = 8000; const n = rate; const buf = new ArrayBuffer(44 + n * 2); const v = new DataView(buf);
+    const str = (o, x) => { for (let i = 0; i < x.length; i++) v.setUint8(o + i, x.charCodeAt(i)); };
+    str(0, 'RIFF'); v.setUint32(4, 36 + n * 2, true); str(8, 'WAVE'); str(12, 'fmt '); v.setUint32(16, 16, true);
+    v.setUint16(20, 1, true); v.setUint16(22, 1, true); v.setUint32(24, rate, true); v.setUint32(28, rate * 2, true);
+    v.setUint16(32, 2, true); v.setUint16(34, 16, true); str(36, 'data'); v.setUint32(40, n * 2, true);
+    for (let i = 0; i < n; i++) v.setInt16(44 + i * 2, window.__mrTone ? Math.round(12000 * Math.sin(i / 3)) : 0, true);
+    return new Blob([buf], { type: 'audio/wav' });
+  };
+  window.__mr = { starts: 0, stops: 0 };
+  Object.defineProperty(navigator, 'mediaDevices', { configurable: true, value: { getUserMedia: async () => ({ getTracks: () => [{ stop() {} }] }) } });
+  window.MediaRecorder = class {
+    constructor() { this.state = 'inactive'; this.mimeType = 'audio/wav'; }
+    start() { this.state = 'recording'; window.__mr.starts += 1; }
+    stop() {
+      this.state = 'inactive'; window.__mr.stops += 1;
+      setTimeout(() => { if (this.ondataavailable) this.ondataavailable({ data: wav() }); if (this.onstop) this.onstop(); }, 20);
+    }
+  };
+};
+
+await step('mic clash: recognition hears nothing while recording, so recording goes off and the same prompt is retried unscored', async () => {
+  await page.goto(BASE);
+  await page.evaluate(() => {
+    const st = JSON.parse(localStorage.getItem('spraakwater:v1'));
+    st.settings = { ...st.settings, record: true, voiceStats: false, mode: 'speak', lang: 'nl' };
+    st.ui = { ...st.ui, nextModifier: null };
+    localStorage.setItem('spraakwater:v1', JSON.stringify(st));
+  });
+  await page.reload();
+  await page.waitForFunction(() => window.__app);
+  await page.evaluate(FAKE_RECORDER);
+  const go = () => page.evaluate(async () => {
+    const { makePrompt } = await import('./src/core/lesson.js');
+    const { default: nl } = await import('./src/content/prompts.nl.js');
+    window.__clashPrompt = window.__clashPrompt || makePrompt('minute', nl, Math.random, {});
+    window.__app.session = null;
+    window.__app.go('round', { prompt: window.__clashPrompt, modifier: null, timing: { prepS: 0, answerS: 22, questions: 1 } });
+  });
+  const saved = () => page.evaluate(() => { const st = JSON.parse(localStorage.getItem('spraakwater:v1')); return { xp: st.xp || 0, rounds: (st.history || []).length, record: st.settings.record }; });
+  // 1. He was silent too (the recording is silence): the usual "too short", recording stays on.
+  await page.evaluate(() => { window.__speechMode = 'silent'; window.__mrTone = false; });
+  await go();
+  await page.getByRole('button', { name: 'Start' }).click();
+  await page.waitForTimeout(800);
+  await page.getByRole('button', { name: 'Klaar' }).click();
+  await page.locator('.card', { hasText: 'Te weinig verstaan' }).waitFor({ timeout: 6000 });
+  if (!(await saved()).record) throw new Error('a silent speaker must not switch recording off');
+  // 2. The recording has sound but recognition heard nothing: a clash.
+  const before = await saved();
+  await page.evaluate(() => { window.__mrTone = true; });
+  await go();
+  await page.getByRole('button', { name: 'Start' }).click();
+  await page.waitForTimeout(800);
+  await page.getByRole('button', { name: 'Klaar' }).click();
+  await page.locator('.mic-clash', { hasText: 'Opnemen staat nu uit; probeer het nog een keer.' }).waitFor({ timeout: 6000 });
+  await shot('45c-mic-clash');
+  const after = await saved();
+  if (after.record !== false) throw new Error('recording should have switched itself off');
+  if (after.xp !== before.xp || after.rounds !== before.rounds) throw new Error(`the empty attempt was scored: ${JSON.stringify([before, after])}`);
+  // 3. Retry: the same prompt, recognition works, no recorder this time.
+  const starts = await page.evaluate(() => window.__mr.starts);
+  await page.evaluate(() => { window.__speechMode = 'ok'; });
+  await page.getByRole('button', { name: 'Opnieuw' }).click();
+  const body = await page.evaluate(() => window.__clashPrompt.body);
+  await page.locator('.intro-card').waitFor();
+  await page.getByRole('button', { name: 'Start' }).click();
+  await page.locator('.prompt-card', { hasText: body.slice(0, 20) }).waitFor();
+  // The retry uses the drill's own timing: skip the thinking time first.
+  await page.getByRole('button', { name: 'Ik ben er klaar voor' }).click();
+  await page.waitForTimeout(1300);
+  await page.getByRole('button', { name: 'Klaar', exact: true }).click();
+  await page.locator('.stats').first().waitFor({ timeout: 8000 });
+  if ((await page.evaluate(() => window.__mr.starts)) !== starts) throw new Error('the recorder ran again after switching off');
+});
+
+await step('mic clash: on Android spoken rounds skip the recorder and Settings says why', async () => {
+  const ca = await browser.newContext({ viewport: { width: 390, height: 844 }, userAgent: 'Mozilla/5.0 (Linux; Android 14; Pixel 8) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Mobile Safari/537.36' });
+  await ca.addInitScript(FAKE_SPEECH);
+  await ca.addInitScript(() => { if (!localStorage.getItem('spraakwater:v1')) localStorage.setItem('spraakwater:v1', JSON.stringify({ onboarded: true, settings: { record: true, voiceStats: true, mode: 'speak', lang: 'nl' }, ui: { recordAsked: false, subject: 'speak' } })); });
+  const pa = await ca.newPage();
+  pa.on('pageerror', onPageError);
+  await pa.goto(BASE);
+  await pa.waitForFunction(() => window.__app);
+  await pa.evaluate(FAKE_RECORDER);
+  await pa.evaluate(() => { window.__gum = 0; const md = navigator.mediaDevices; Object.defineProperty(navigator, 'mediaDevices', { configurable: true, value: { getUserMedia: async (c) => { window.__gum += 1; return md.getUserMedia(c); } } }); });
+  await pa.evaluate(async () => {
+    const { makePrompt } = await import('./src/core/lesson.js');
+    const { default: nl } = await import('./src/content/prompts.nl.js');
+    window.__app.session = null;
+    window.__app.go('round', { prompt: makePrompt('minute', nl, Math.random, {}), modifier: null, timing: { prepS: 0, answerS: 22, questions: 1 } });
+  });
+  await pa.getByRole('button', { name: 'Start' }).click();
+  await pa.waitForTimeout(1300);
+  await pa.getByRole('button', { name: 'Klaar' }).click();
+  await pa.locator('.stats').first().waitFor({ timeout: 8000 });
+  // This Chrome ignores start(track) (the FAKE_SPEECH engine takes no argument):
+  // the first round opens the mic once to test that, closes it again and
+  // keeps the guard. No recorder ran; the transcript came through.
+  const gum = await pa.evaluate(() => window.__gum);
+  if (gum > 1) throw new Error(`more than the one test stream was opened on Android (${gum})`);
+  if (await pa.evaluate(() => window.__mr.starts)) throw new Error('the recorder ran on Android without track input');
+  if (await pa.locator('.record-ask').count()) throw new Error('Android should not be asked to turn recording on');
+  const verdict = await pa.evaluate(() => JSON.parse(localStorage.getItem('spraakwater:micTrack') || 'null'));
+  if (!verdict || verdict.ok !== false) throw new Error(`the test result was not kept: ${JSON.stringify(verdict)}`);
+  // The next round does not test again: no mic stream at all.
+  await pa.evaluate(() => { window.__gum = 0; });
+  await pa.evaluate(async () => {
+    const { makePrompt } = await import('./src/core/lesson.js');
+    const { default: nl } = await import('./src/content/prompts.nl.js');
+    window.__app.session = null;
+    window.__app.go('round', { prompt: makePrompt('minute', nl, Math.random, {}), modifier: null, timing: { prepS: 0, answerS: 22, questions: 1 } });
+  });
+  await pa.getByRole('button', { name: 'Start' }).click();
+  await pa.waitForTimeout(1300);
+  await pa.getByRole('button', { name: 'Klaar' }).click();
+  await pa.locator('.stats').first().waitFor({ timeout: 8000 });
+  if ((await pa.evaluate(() => window.__gum)) !== 0) throw new Error('the second round opened the mic again');
+  await pa.evaluate(() => window.__app.go('settings'));
+  await pa.locator('.mic-share-note', { hasText: 'kan je stem niet opnemen terwijl de live spraakherkenning luistert' }).waitFor();
+  if ((await pa.locator('.mic-share-note').count()) !== 1) throw new Error('the Android note should show once');
+  await pa.screenshot({ path: `${out}/45d-android-note.png`, fullPage: true });
+  await pa.evaluate(() => window.__app.go('listenback'));
+  await pa.locator('.lb-android', { hasText: 'Chrome op Android' }).waitFor({ timeout: 3000 });
+  await ca.close();
+});
+
+// A Chrome whose recogniser takes a MediaStreamTrack (the Web Speech API's
+// start(audioTrack)): one getUserMedia stream, its track goes to the recogniser
+// (every restart) and to the MediaRecorder; an ended track throws InvalidStateError.
+const FAKE_TRACK_MIC = () => {
+  window.__gum = 0; window.__recTracks = []; window.__mrStreams = [];
+  const track = () => ({ kind: 'audio', readyState: 'live', stop() { this.readyState = 'ended'; }, clone() { return track(); } });
+  Object.defineProperty(navigator, 'mediaDevices', { configurable: true, value: { getUserMedia: async () => {
+    window.__gum += 1;
+    const t = track(); window.__micTrack = t;
+    return { getTracks: () => [t], getAudioTracks: () => [t] };
+  } } });
+  const Rec = window.SpeechRecognition;
+  window.SpeechRecognition = class extends Rec {
+    start(t) {
+      if (t !== undefined) {
+        if (t.kind !== 'audio' || t.readyState !== 'live') throw new DOMException('track not live', 'InvalidStateError');
+        window.__recTracks.push(t);
+      }
+      super.start();
+    }
+    abort() { this.stop(); }
+  };
+  const MR = window.MediaRecorder;
+  window.MediaRecorder = class extends MR { constructor(s) { super(s); window.__mrStreams.push(s); } };
+};
+
+await step('mic clash: on Android with track input a spoken round records AND shows the live transcript', async () => {
+  const ca = await browser.newContext({ viewport: { width: 390, height: 844 }, userAgent: 'Mozilla/5.0 (Linux; Android 15; Pixel 9) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/150.0.0.0 Mobile Safari/537.36' });
+  await ca.addInitScript(FAKE_SPEECH);
+  // Before the app loads: speech.js picks up SpeechRecognition when it is imported.
+  await ca.addInitScript(FAKE_RECORDER);
+  await ca.addInitScript(FAKE_TRACK_MIC);
+  await ca.addInitScript(() => { window.__mrTone = true; if (!localStorage.getItem('spraakwater:v1')) localStorage.setItem('spraakwater:v1', JSON.stringify({ onboarded: true, settings: { record: true, voiceStats: false, mode: 'speak', lang: 'nl' }, ui: { recordAsked: true, subject: 'speak' } })); });
+  const pa = await ca.newPage();
+  pa.on('pageerror', onPageError);
+  await pa.goto(BASE);
+  await pa.waitForFunction(() => window.__app);
+  await pa.evaluate(async () => {
+    const { makePrompt } = await import('./src/core/lesson.js');
+    const { default: nl } = await import('./src/content/prompts.nl.js');
+    window.__app.session = null;
+    window.__app.go('round', { prompt: makePrompt('minute', nl, Math.random, {}), modifier: null, timing: { prepS: 0, answerS: 22, questions: 1 } });
+  });
+  await pa.getByRole('button', { name: 'Start' }).click();
+  // The live transcript shows while the recorder runs.
+  await pa.locator('.live', { hasText: 'Um so I think' }).waitFor({ timeout: 4000 });
+  const mid = await pa.evaluate(() => ({ starts: window.__mr.starts, gum: window.__gum }));
+  if (mid.starts !== 1) throw new Error(`the recorder did not run (${mid.starts})`);
+  await pa.waitForTimeout(1300); // the fake session ends and the recogniser restarts
+  await pa.getByRole('button', { name: 'Klaar' }).click();
+  await pa.locator('.stats').first().waitFor({ timeout: 8000 });
+  const r = await pa.evaluate(() => ({
+    gum: window.__gum,
+    tracks: window.__recTracks.length,
+    same: window.__recTracks.every((t) => t === window.__micTrack),
+    recorderStream: window.__mrStreams.length === 1 && window.__mrStreams[0].getAudioTracks()[0] === window.__micTrack,
+    ended: window.__micTrack.readyState,
+    verdict: JSON.parse(localStorage.getItem('spraakwater:micTrack') || 'null'),
+    record: JSON.parse(localStorage.getItem('spraakwater:v1')).settings.record,
+  }));
+  if (r.gum !== 1) throw new Error(`expected one mic stream, got ${r.gum}`);
+  if (r.tracks < 2 || !r.same) throw new Error(`the recogniser should get the same track on every (re)start: ${JSON.stringify(r)}`);
+  if (!r.recorderStream) throw new Error('the recorder should record the same stream');
+  if (r.ended !== 'ended') throw new Error('the mic should be released after the round');
+  if (!r.verdict || r.verdict.ok !== true) throw new Error(`verdict ${JSON.stringify(r.verdict)}`);
+  if (r.record !== true) throw new Error('recording should stay on');
+  await pa.locator('audio').waitFor({ state: 'attached', timeout: 3000 });
+  if (await pa.locator('.mic-clash').count()) throw new Error('no clash expected');
+  await pa.screenshot({ path: `${out}/45e-android-track.png`, fullPage: true });
+  await pa.evaluate(() => window.__app.go('settings'));
+  await pa.locator('.toggle, label', { hasText: 'Audio opnemen' }).first().waitFor();
+  if (await pa.locator('.mic-share-note').count()) throw new Error('no Android caveat where sharing works');
+  await ca.close();
 });
 
 await step('a double tap on rehearse starts the rehearsal once', async () => {

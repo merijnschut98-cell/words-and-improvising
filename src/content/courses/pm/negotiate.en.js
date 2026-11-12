@@ -657,6 +657,7 @@ export default {
     },
     {
       id: 'pm.negotiate.scope',
+      film: 'pm.run.scope',
       title: 'Negotiating scope and time with a client',
       pre: [
         {

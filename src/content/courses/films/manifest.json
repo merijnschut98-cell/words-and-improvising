@@ -1002,6 +1002,270 @@
         "vtt": "src/content/courses/films/eng.mechanics.fatigue.en.vtt"
       }
     },
+    "eng.mechanics.heattreat": {
+      "poster": "src/content/courses/films/eng.mechanics.heattreat.jpg",
+      "nl": {
+        "dur": 295.9,
+        "bytes": 10313955,
+        "scenes": [
+          0,
+          55.31,
+          102.29,
+          138.59,
+          174.04,
+          213.3,
+          250.42
+        ],
+        "vtt": "src/content/courses/films/eng.mechanics.heattreat.nl.vtt"
+      },
+      "en": {
+        "dur": 322.9,
+        "bytes": 11164069,
+        "scenes": [
+          0,
+          61.61,
+          111.94,
+          152.82,
+          192.84,
+          234.37,
+          277.06
+        ],
+        "vtt": "src/content/courses/films/eng.mechanics.heattreat.en.vtt"
+      }
+    },
+    "eng.power.motor": {
+      "poster": "src/content/courses/films/eng.power.motor.jpg",
+      "nl": {
+        "dur": 317.5,
+        "bytes": 11434051,
+        "scenes": [
+          0,
+          39.71,
+          74.58,
+          100.97,
+          131.8,
+          166.71,
+          197.82,
+          237.28,
+          273.02
+        ],
+        "vtt": "src/content/courses/films/eng.power.motor.nl.vtt"
+      },
+      "en": {
+        "dur": 350,
+        "bytes": 14078355,
+        "scenes": [
+          0,
+          39.51,
+          77.56,
+          108.14,
+          141.67,
+          175.69,
+          212.06,
+          260.21,
+          298.09
+        ],
+        "vtt": "src/content/courses/films/eng.power.motor.en.vtt"
+      }
+    },
+    "eng.power.drives": {
+      "poster": "src/content/courses/films/eng.power.drives.jpg",
+      "nl": {
+        "dur": 288.9,
+        "bytes": 9663073,
+        "scenes": [
+          0,
+          35.95,
+          65.85,
+          95.3,
+          124.86,
+          158.85,
+          195.34,
+          224.79,
+          253.68
+        ],
+        "vtt": "src/content/courses/films/eng.power.drives.nl.vtt"
+      },
+      "en": {
+        "dur": 308.6,
+        "bytes": 10228044,
+        "scenes": [
+          0,
+          37.72,
+          71.64,
+          102.63,
+          135.04,
+          173.47,
+          213,
+          241.96,
+          273.81
+        ],
+        "vtt": "src/content/courses/films/eng.power.drives.en.vtt"
+      }
+    },
+    "eng.power.hydraulics": {
+      "poster": "src/content/courses/films/eng.power.hydraulics.jpg",
+      "nl": {
+        "dur": 284,
+        "bytes": 8549198,
+        "scenes": [
+          0,
+          46.87,
+          84.13,
+          120.78,
+          161.32,
+          214.77,
+          252.71
+        ],
+        "vtt": "src/content/courses/films/eng.power.hydraulics.nl.vtt"
+      },
+      "en": {
+        "dur": 314.1,
+        "bytes": 9375278,
+        "scenes": [
+          0,
+          53.03,
+          95.36,
+          136.36,
+          179.85,
+          238.23,
+          276.81
+        ],
+        "vtt": "src/content/courses/films/eng.power.hydraulics.en.vtt"
+      }
+    },
+    "eng.drawings.reading": {
+      "poster": "src/content/courses/films/eng.drawings.reading.jpg",
+      "nl": {
+        "dur": 303.4,
+        "bytes": 8919237,
+        "scenes": [
+          0,
+          34.5,
+          68.66,
+          110.59,
+          150.12,
+          188.15,
+          223.32,
+          261.9
+        ],
+        "vtt": "src/content/courses/films/eng.drawings.reading.nl.vtt"
+      },
+      "en": {
+        "dur": 319.9,
+        "bytes": 9377389,
+        "scenes": [
+          0,
+          34.79,
+          73.31,
+          115.49,
+          156.45,
+          195.08,
+          232.11,
+          273.64
+        ],
+        "vtt": "src/content/courses/films/eng.drawings.reading.en.vtt"
+      }
+    },
+    "eng.gridbasics.load": {
+      "poster": "src/content/courses/films/eng.gridbasics.load.jpg",
+      "nl": {
+        "dur": 323.1,
+        "bytes": 12728434,
+        "scenes": [
+          0,
+          38.78,
+          74.2,
+          111.34,
+          145.32,
+          188.24,
+          219.5,
+          260.47,
+          293.47
+        ],
+        "vtt": "src/content/courses/films/eng.gridbasics.load.nl.vtt"
+      },
+      "en": {
+        "dur": 356.1,
+        "bytes": 13754436,
+        "scenes": [
+          0,
+          42.12,
+          82.73,
+          126.01,
+          161.81,
+          209.44,
+          242.84,
+          288.83,
+          325.33
+        ],
+        "vtt": "src/content/courses/films/eng.gridbasics.load.en.vtt"
+      }
+    },
+    "eng.switchgear.devices": {
+      "poster": "src/content/courses/films/eng.switchgear.devices.jpg",
+      "nl": {
+        "dur": 340.6,
+        "bytes": 10529278,
+        "scenes": [
+          0,
+          41.61,
+          76.58,
+          109.37,
+          156.65,
+          213.86,
+          256.05,
+          305.56
+        ],
+        "vtt": "src/content/courses/films/eng.switchgear.devices.nl.vtt"
+      },
+      "en": {
+        "dur": 354.2,
+        "bytes": 10825688,
+        "scenes": [
+          0,
+          44.44,
+          81.64,
+          113.97,
+          164.65,
+          223.88,
+          266.71,
+          322.17
+        ],
+        "vtt": "src/content/courses/films/eng.switchgear.devices.en.vtt"
+      }
+    },
+    "eng.process.plant": {
+      "poster": "src/content/courses/films/eng.process.plant.jpg",
+      "nl": {
+        "dur": 293.3,
+        "bytes": 12726574,
+        "scenes": [
+          0,
+          51.36,
+          88.18,
+          139.7,
+          180.92,
+          204.95,
+          259.53
+        ],
+        "vtt": "src/content/courses/films/eng.process.plant.nl.vtt"
+      },
+      "en": {
+        "dur": 312.1,
+        "bytes": 13356297,
+        "scenes": [
+          0,
+          51.82,
+          90.85,
+          142.53,
+          187.24,
+          213.4,
+          276.19
+        ],
+        "vtt": "src/content/courses/films/eng.process.plant.en.vtt"
+      }
+    },
     "eng.process.measure": {
       "poster": "src/content/courses/films/eng.process.measure.jpg",
       "nl": {
@@ -1064,6 +1328,41 @@
           268.57
         ],
         "vtt": "src/content/courses/films/eng.process.batch.en.vtt"
+      }
+    },
+    "eng.ot.isa95": {
+      "poster": "src/content/courses/films/eng.ot.isa95.jpg",
+      "nl": {
+        "dur": 322.1,
+        "bytes": 13051118,
+        "scenes": [
+          0,
+          21.63,
+          50.62,
+          80.96,
+          117.63,
+          145.7,
+          183.96,
+          215.74,
+          255.82
+        ],
+        "vtt": "src/content/courses/films/eng.ot.isa95.nl.vtt"
+      },
+      "en": {
+        "dur": 345.4,
+        "bytes": 13920723,
+        "scenes": [
+          0,
+          23.55,
+          54,
+          84.82,
+          124.32,
+          153.71,
+          195.86,
+          232.09,
+          274.25
+        ],
+        "vtt": "src/content/courses/films/eng.ot.isa95.en.vtt"
       }
     },
     "eng.ot.orderflow": {
@@ -1134,72 +1433,6 @@
         "vtt": "src/content/courses/films/eng.gridbasics.congestion.en.vtt"
       }
     },
-    "eng.switchgear.automation": {
-      "poster": "src/content/courses/films/eng.switchgear.automation.jpg",
-      "nl": {
-        "dur": 303.6,
-        "bytes": 7952401,
-        "scenes": [
-          0,
-          57.03,
-          97.43,
-          140.66,
-          190.15,
-          234.41,
-          268.4
-        ],
-        "vtt": "src/content/courses/films/eng.switchgear.automation.nl.vtt"
-      },
-      "en": {
-        "dur": 323.6,
-        "bytes": 8371671,
-        "scenes": [
-          0,
-          68.19,
-          109.37,
-          155.19,
-          210.02,
-          253.49,
-          289.11
-        ],
-        "vtt": "src/content/courses/films/eng.switchgear.automation.en.vtt"
-      }
-    },
-    "eng.ot.isa95": {
-      "poster": "src/content/courses/films/eng.ot.isa95.jpg",
-      "nl": {
-        "dur": 322.1,
-        "bytes": 13051118,
-        "scenes": [
-          0,
-          21.63,
-          50.62,
-          80.96,
-          117.63,
-          145.7,
-          183.96,
-          215.74,
-          255.82
-        ],
-        "vtt": "src/content/courses/films/eng.ot.isa95.nl.vtt"
-      },
-      "en": {
-        "dur": 345.4,
-        "bytes": 13920723,
-        "scenes": [
-          0,
-          23.55,
-          54,
-          84.82,
-          124.32,
-          153.71,
-          195.86,
-          232.09,
-          274.25
-        ],
-        "vtt": "src/content/courses/films/eng.ot.isa95.en.vtt"
-      }
-    },
     "eng.gridops.outage": {
       "poster": "src/content/courses/films/eng.gridops.outage.jpg",
       "nl": {
@@ -1229,6 +1462,37 @@
           271.57
         ],
         "vtt": "src/content/courses/films/eng.gridops.outage.en.vtt"
+      }
+    },
+    "eng.switchgear.automation": {
+      "poster": "src/content/courses/films/eng.switchgear.automation.jpg",
+      "nl": {
+        "dur": 303.6,
+        "bytes": 7952401,
+        "scenes": [
+          0,
+          57.03,
+          97.43,
+          140.66,
+          190.15,
+          234.41,
+          268.4
+        ],
+        "vtt": "src/content/courses/films/eng.switchgear.automation.nl.vtt"
+      },
+      "en": {
+        "dur": 323.6,
+        "bytes": 8371671,
+        "scenes": [
+          0,
+          68.19,
+          109.37,
+          155.19,
+          210.02,
+          253.49,
+          289.11
+        ],
+        "vtt": "src/content/courses/films/eng.switchgear.automation.en.vtt"
       }
     }
   }

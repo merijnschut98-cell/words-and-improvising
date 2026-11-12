@@ -8,6 +8,17 @@ import { parseBackup } from '../core/storage.js';
 import { navBar } from './home.js';
 import { planPicker } from './plan.js';
 import { recordings } from '../core/recordings.js';
+import { isAndroid, deviceTrackInput } from '../core/micshare.js';
+
+// Android only: what recording and voice variety do there, given the tested
+// (or not yet tested) track input of this Chrome. Nothing where they work.
+function micShareNote(t) {
+  if (!isAndroid(navigator) || !speechSupported) return null;
+  const tested = deviceTrackInput(localStorage, navigator);
+  if (tested === true) return null;
+  return h('p', { class: 'note mic-share-note' }, t(tested === false ? 'micShareAndroid' : 'micShareAndroidTest'));
+}
+import { speechSupported } from '../core/speech.js';
 
 export function renderSettings(app, _params, root) {
   const t = app.t;
@@ -182,7 +193,10 @@ export function renderSettings(app, _params, root) {
         toggle(s.cheer === true, (e) => set({ cheer: e.target.checked }), t('cheer'), h('p', { class: 'muted small' }, t('cheerHelp'))),
         toggle(s.record, (e) => set({ record: e.target.checked }), t('record'), h('p', { class: 'muted small' }, t('recordHelp'))),
         recordingsRow(),
-        toggle(!!s.voiceStats, (e) => set({ voiceStats: e.target.checked }), t('voiceStats'), h('p', { class: 'muted small' }, t('voiceStatsHelp')))),
+        toggle(!!s.voiceStats, (e) => set({ voiceStats: e.target.checked }), t('voiceStats'), h('p', { class: 'muted small' }, t('voiceStatsHelp'))),
+        // One note for both toggles: on Android they share the mic with live
+        // recognition only where the recogniser takes a track (tested in a round).
+        micShareNote(t)),
       group('appearance',
         segmented(THEMES.includes(s.theme) ? s.theme : 'auto', THEMES.map((th) => [th, t(`theme_${th}`)]), (v) => set({ theme: v }, true)),
         h('p', { class: 'muted small' }, t('themeHelp')),

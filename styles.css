@@ -321,6 +321,19 @@ audio { width: 100%; margin-top: 4px; }
 .coach-line { padding: 10px 12px; border-radius: var(--radius-sm); margin-top: 8px; border: 1px solid var(--border-subtle); }
 .coach-line.good { background: color-mix(in srgb, var(--good) 10%, var(--card)); }
 .coach-line.work { background: var(--tint); }
+/* Speech recognition check: quiet, compact. */
+.misheard { margin: 0 0 10px; padding: 8px 12px; border-radius: var(--radius-sm); border: 1px dashed var(--border-subtle); font-size: 0.875rem; }
+.misheard-title { margin: 0 0 4px; font-family: var(--font-mono); font-size: 11px; font-weight: 500; text-transform: uppercase; letter-spacing: var(--tracking-label); color: var(--muted); }
+.misheard ul { margin: 0; padding: 0; list-style: none; }
+.misheard li { overflow-wrap: anywhere; color: var(--muted); }
+.misheard .heard { text-decoration: line-through; }
+.misheard .likely { color: var(--ink); font-weight: 500; }
+.link-btn { background: none; border: 0; padding: 0; min-height: 44px; cursor: pointer; color: var(--accent-dark); text-decoration: underline; text-underline-offset: 3px; display: inline-flex; align-items: center; gap: 4px; }
+.transcript-fix { margin: -6px 0 6px; }
+.transcript-fix-box { margin: 0 0 12px; }
+.transcript-fix-box p { margin: 0 0 6px; }
+.transcript-fix-box textarea { resize: vertical; }
+.transcript-fix-box .row { align-items: center; gap: 16px; margin-top: 8px; }
 .stronger { margin-top: 12px; }
 .stronger summary { font-family: var(--font-display); font-weight: 600; color: var(--heading); cursor: pointer; min-height: 32px; }
 .stronger p { font-family: var(--font-display); font-style: italic; }
@@ -808,6 +821,16 @@ html.figure-full-open, html.figure-full-open body { overflow: hidden; }
 .film-video-wrap { margin: 0; }
 .film-video { display: block; width: 100%; aspect-ratio: 16 / 9; border-radius: var(--radius-md, 6px); background: #0d252b; }
 .film-note { margin: 8px 0 0; }
+/* Video captions: Chrome's default is 5% of the video height (about 11 px on a phone);
+   the app's caption rule is 16 px. */
+.film-video::cue { font-size: 16px; line-height: 1.35; }
+/* On a phone a film in a card runs edge to edge (16px screen gutter + 1px card
+   border + 16px card padding): at 390 px the 640-unit stage is then 390 px wide,
+   so the films' 20-unit stage text renders at 12.2 px instead of 11.1 px. */
+@media (max-width: 479px) {
+  .card .film-box.figure-wrap, .card .film-video-wrap { margin-left: -33px; margin-right: -33px; }
+  .card .film-box .film-frame, .card .film-video-wrap .film-video { border-radius: 0; }
+}
 .film-keep { margin-top: 6px; }
 .read-along { margin: var(--space-3, 12px) 0 0; padding: 10px 12px; border-radius: var(--radius-sm); background: var(--tint); border: 1px solid var(--border-subtle); }
 .read-along > summary { font-weight: 600; min-height: 28px; }

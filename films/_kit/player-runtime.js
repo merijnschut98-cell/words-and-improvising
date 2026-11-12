@@ -10,7 +10,7 @@
 // Render mode (?render=1, films/_kit/render.mjs): no clock, no controls and no
 // speech. The render script hands over the audio timeline and sets the time of
 // every frame through window.__film, so each frame is a pure function of t.
-/* global STAGE, parseParams, searchOf, timelineOf, sceneIndexAt, clampScene, beatStarts, beatIndexAt, holdLimit, fmtClock, timedAt */
+/* global STAGE, parseParams, searchOf, timelineOf, sceneIndexAt, clampScene, beatStarts, beatIndexAt, holdLimit, fmtClock, timedAt, stageU */
 (function () {
   const DATA = JSON.parse(document.getElementById('film-data').textContent);
   const PRM = parseParams(searchOf(location.search, window.name));
@@ -57,7 +57,9 @@
   const poster = $('.fp-poster');
   const sheet = $('.fp-sheet');
   const note = $('.fp-note');
-  const cueEls = [...document.querySelectorAll('[data-cue]')];
+  // the beat's focus, lit after every render (a stage may redraw a cue group)
+  let focusOn = new Set();
+  const lightFocus = () => stage.querySelectorAll('[data-cue]').forEach((el) => el.toggleAttribute('data-on', focusOn.has(el.getAttribute('data-cue'))));
 
   document.title = DATA.title[LANG];
   doc.lang = LANG;
@@ -179,16 +181,17 @@
     for (let k = bi; k >= 0 && !r; k--) r = scenes[si].beats[k].read || null;
     read.textContent = r ? r[LANG] : '';
     read.hidden = !r;
-    const on = new Set(b.cues);
-    cueEls.forEach((el) => el.toggleAttribute('data-on', on.has(el.getAttribute('data-cue'))));
+    focusOn = new Set(b.cues);
+    main.dataset.focus = main.dataset.focus === 'a' ? 'b' : 'a'; // the halo eases in again
   }
   function draw() {
     const { si, lt } = local();
     const s = scenes[si];
     const bi = beatIndexAt(s, LANG, lt);
-    const u = reduce ? (s.beats[bi].still ?? s.still) : Math.min(1, Math.max(0, lt / s.dur)); // a beat may set its own still
-    STAGE.render(si, u);
+    // a beat may set its own still; a stage drawn on the Dutch beats follows the caption beat in English too
+    const u = reduce ? (s.beats[bi].still ?? s.still) : stageU(s, LANG, lt, STAGE.nlBeats === true);
     caption(si, bi);
+    STAGE.render(si, u); lightFocus();
     if (!scrubbing) range.value = String(Math.round(t * 10) / 10);
     range.setAttribute('aria-valuetext', `${STR.scene(si + 1, scenes.length)}: ${s.title[LANG]}, ${fmtClock(t)}`);
     clock.textContent = `${fmtClock(t)} / ${fmtClock(tl.total)}`;
@@ -346,11 +349,9 @@
       seek(time) {
         if (atl) {
           const at = timedAt(time, atl);
-          STAGE.render(at.si, at.u);
           caption(at.si, at.bi);
+          STAGE.render(at.si, at.u); lightFocus();
         } else { t = Math.max(0, Math.min(tl.total, time)); draw(); }
-        // the cue's glow breathes with the film's own clock, not the wall clock
-        main.style.setProperty('--fp-b', `${(2.5 * (0.5 - 0.5 * Math.cos((2 * Math.PI * time) / 1.8))).toFixed(2)}px`);
         return true;
       },
     };

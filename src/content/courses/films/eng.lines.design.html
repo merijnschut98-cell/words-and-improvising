@@ -116,7 +116,8 @@ if(q.get("lang")==="en")d.setAttribute("lang","en");})();</script><style>
   --anatomy-lit-top:#1D4A55;--anatomy-lit-shade:#173D47;
   --anatomy-hi:#E4DDCC;--anatomy-mid:#7C9289;--anatomy-lo:#45615D;--anatomy-faint:#26433F;--anatomy-lit:#5C9FAE;
   --anatomy-halo:#03100F;--anatomy-halo-opacity:.85;--anatomy-dot:#F0E9DA;
-  --fp-hair:rgba(240,233,218,.12);--fp-accent:#5C9FAE;--fp-accent-text:#7DB6C3;--fp-glow:#5C9FAE;--fp-on-accent:#06191E;--fp-scrim:rgba(6,22,26,.62);
+  --fp-hair:rgba(240,233,218,.12);--fp-accent:#5C9FAE;--fp-accent-text:#7DB6C3;--fp-on-accent:#06191E;--fp-scrim:rgba(6,22,26,.62);
+  --fp-focus:#EAF7FF;--fp-focus-glow:#8FD3FF;--fp-focus-top:#2F6A86;--fp-focus-shade:#275A73;--fp-focus-text:#BDE5FF;
   --anatomy-mono:"JetBrains Mono",ui-monospace,"SF Mono",Menlo,Consolas,monospace;
   --fp-sans:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
 }
@@ -127,7 +128,8 @@ if(q.get("lang")==="en")d.setAttribute("lang","en");})();</script><style>
   --anatomy-lit-top:#E2ECEA;--anatomy-lit-shade:#CCDCDB;
   --anatomy-hi:#1E3328;--anatomy-mid:#7D877A;--anatomy-lo:#A9AE9E;--anatomy-faint:#D0CAB8;--anatomy-lit:#276F81;
   --anatomy-halo:#5A6B60;--anatomy-halo-opacity:.3;--anatomy-dot:#1E3328;
-  --fp-hair:rgba(11,41,27,.14);--fp-accent:#276F81;--fp-accent-text:#1C5563;--fp-glow:#3E8C9E;--fp-on-accent:#FFFFFF;--fp-scrim:rgba(244,239,227,.7);
+  --fp-hair:rgba(11,41,27,.14);--fp-accent:#276F81;--fp-accent-text:#1C5563;--fp-on-accent:#FFFFFF;--fp-scrim:rgba(244,239,227,.7);
+  --fp-focus:#1E88D2;--fp-focus-glow:#4DB0F2;--fp-focus-top:#FFFFFF;--fp-focus-shade:#E2F1FC;--fp-focus-text:#14659E;
 }
 *{box-sizing:border-box}
 html{color-scheme:dark}
@@ -189,18 +191,21 @@ body{background:var(--anatomy-page);color:var(--anatomy-text);font:16px/1.45 var
 .fp-item-d{font:12px/1 var(--anatomy-mono);color:var(--anatomy-muted)}
 @media (hover:hover){.fp-item:hover{background:color-mix(in srgb,var(--anatomy-strong) 6%,transparent)}}
 .fp-sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
-/* a term's visual cue: the part turns petrol and breathes while it is named */
-[data-cue][data-on] .iso-edge,[data-cue][data-on] .iso-crease{stroke:var(--fp-accent)!important}
-[data-cue][data-on] .iso-edge{stroke-width:1.4px}
-[data-cue][data-on] .iso-top{fill:var(--anatomy-lit-top)}
-[data-cue][data-on] .iso-shade{fill:var(--anatomy-lit-shade)}
-[data-cue][data-on] .iso-line,[data-cue][data-on] .fp-mark{stroke:var(--fp-accent)}
-[data-cue][data-on] .fp-ink{fill:var(--fp-accent)}
-[data-cue][data-on]{animation:fp-breathe 1.8s ease-in-out infinite}
-@keyframes fp-breathe{0%,100%{filter:none}50%{filter:drop-shadow(0 0 2.5px var(--fp-glow))}}
-.fp[data-motion="reduce"] [data-cue][data-on]{animation:none}
-@media (prefers-reduced-motion:reduce){[data-cue][data-on]{animation:none}}
-/* render mode (?render=1): the page is one 16:9 video frame, the stage only. No caption band: the video's subtitles come from its WebVTT track alone (the poster shows the band once, for the title) */
+@property --fp-fi{syntax:'<number>';inherits:true;initial-value:1}
+.fp[data-focus="a"]{animation:fp-focus-a .4s ease-in}
+.fp[data-focus="b"]{animation:fp-focus-b .4s ease-in}
+@keyframes fp-focus-a{from{--fp-fi:0}to{--fp-fi:1}}
+@keyframes fp-focus-b{from{--fp-fi:0}to{--fp-fi:1}}
+.fp[data-motion="reduce"][data-focus],.fp[data-render="1"][data-focus]{animation:none}
+@media (prefers-reduced-motion:reduce){.fp[data-focus]{animation:none}}
+[data-cue][data-on]{--fp-accent:var(--fp-focus);--fp-accent-text:var(--fp-focus-text);filter:drop-shadow(0 0 calc(var(--fp-fi,1) * 1px) var(--fp-focus-glow)) drop-shadow(0 0 calc(var(--fp-fi,1) * 3.5px) var(--fp-focus-glow))}
+[data-cue][data-on] .iso-edge,[data-cue][data-on] .iso-crease{stroke:var(--fp-focus)!important}
+[data-cue][data-on] .iso-edge{stroke-width:1.6px}
+[data-cue][data-on] .iso-top{fill:var(--fp-focus-top)}
+[data-cue][data-on] .iso-shade{fill:var(--fp-focus-shade)}
+[data-cue][data-on] .iso-line,[data-cue][data-on] .fp-mark{stroke:var(--fp-focus)}
+[data-cue][data-on] .fp-ink{fill:var(--fp-focus)}
+/* render mode (?render=1): one 16:9 video frame, the stage only; subtitles from WebVTT */
 html[data-render="1"],html[data-render="1"] body{width:100%;height:100%;overflow:hidden;background:var(--anatomy-card)}
 .fp[data-render="1"]{position:fixed;inset:0;max-width:none;margin:0;border-radius:0;box-shadow:none;display:flex;flex-direction:column}
 .fp[data-render="1"] .fp-stage{flex:1 1 auto;aspect-ratio:auto;min-height:0}
@@ -209,7 +214,6 @@ html[data-render="1"],html[data-render="1"] body{width:100%;height:100%;overflow
 .fp[data-render="1"] .fp-cap>span{display:block;max-width:100%}
 .fp[data-render="1"] .fp-read{left:2.4vh;top:2.4vh;font-size:clamp(12px,3.6vh,30px);padding:.3em .6em;border-radius:.4em}
 .fp[data-render="1"] .fp-bar,.fp[data-render="1"] .fp-note,.fp[data-render="1"] .fp-poster,.fp[data-render="1"] .fp-end,.fp[data-render="1"] .fp-sheet{display:none!important}
-.fp[data-render="1"] [data-cue][data-on]{animation:none;filter:drop-shadow(0 0 var(--fp-b,0px) var(--fp-glow))}
 .fp-mark{fill:none;stroke:var(--anatomy-mid);stroke-width:1.2;stroke-linecap:round;stroke-linejoin:round;vector-effect:non-scaling-stroke}
 .fp-ink{fill:var(--anatomy-mid)}
 
@@ -357,6 +361,24 @@ function beatStarts(scene, lang) {
   let acc = 0;
   for (const c of counts) { out.push(Math.round((acc / all) * scene.dur * 100) / 100); acc += c; }
   return out;
+}
+
+// The stage's u (0..1) in the HTML film. A stage drawn on the Dutch beats
+// (nlBeats, set by beatwarp.js) runs, while caption beat k shows in `lang`,
+// from Dutch beat k's fraction to k+1's, so English is never a beat off.
+function stageU(scene, lang, local, nlBeats) {
+  const u = Math.min(1, Math.max(0, local / scene.dur));
+  if (!nlBeats || lang === 'nl' || !scene.beats || !scene.beats.length) return u;
+  const own = beatStarts(scene, lang);
+  const nl = beatStarts(scene, 'nl');
+  let k = 0;
+  for (let i = 0; i < own.length; i++) if (local >= own[i]) k = i;
+  const a0 = own[k];
+  const a1 = k + 1 < own.length ? own[k + 1] : scene.dur;
+  const b0 = nl[k];
+  const b1 = k + 1 < nl.length ? nl[k + 1] : scene.dur;
+  const p = Math.min(1, Math.max(0, (local - a0) / Math.max(1e-6, a1 - a0)));
+  return Math.min(1, Math.max(0, (b0 + p * (b1 - b0)) / scene.dur));
 }
 
 function beatIndexAt(scene, lang, local) {
@@ -1617,19 +1639,7 @@ const STAGE = (() => {
 })();
 
 ;
-// The film player, inlined into every film page after films/_kit/timeline.mjs
-// and the film's own STAGE ({ render(sceneIndex, u) }). Plain browser script.
-//
-// Timeline: scenes of `dur` seconds, each split into caption beats. The stage is
-// a pure function of (scene, u in 0..1), so play, scrub and reduced motion
-// (each scene at its designed still) all draw the same way.
-// Narration: in the app the film asks the parent page to speak (postMessage,
-// {type:'vp-film'}); opened on its own it uses its own speechSynthesis. While a
-// line is spoken the clock may run to the next beat and then holds.
-// Render mode (?render=1, films/_kit/render.mjs): no clock, no controls and no
-// speech. The render script hands over the audio timeline and sets the time of
-// every frame through window.__film, so each frame is a pure function of t.
-/* global STAGE, parseParams, searchOf, timelineOf, sceneIndexAt, clampScene, beatStarts, beatIndexAt, holdLimit, fmtClock, timedAt */
+/* global STAGE, parseParams, searchOf, timelineOf, sceneIndexAt, clampScene, beatStarts, beatIndexAt, holdLimit, fmtClock, timedAt, stageU */
 (function () {
   const DATA = JSON.parse(document.getElementById('film-data').textContent);
   const PRM = parseParams(searchOf(location.search, window.name));
@@ -1645,7 +1655,6 @@ const STAGE = (() => {
   const reduceMq = matchMedia('(prefers-reduced-motion: reduce)');
   let reduce = !PRM.render && (PRM.reduce || reduceMq.matches);
 
-  // ---------------------------------------------------------------- state
   let t = tl.starts[clampScene(PRM.scene, scenes.length)];
   let playing = false;
   let started = false;
@@ -1661,7 +1670,6 @@ const STAGE = (() => {
   let raf = 0;
   let last = 0;
 
-  // ---------------------------------------------------------------- elements
   const main = $('.fp');
   const stage = $('.fp-stage');
   const cap = $('.fp-cap');
@@ -1676,7 +1684,8 @@ const STAGE = (() => {
   const poster = $('.fp-poster');
   const sheet = $('.fp-sheet');
   const note = $('.fp-note');
-  const cueEls = [...document.querySelectorAll('[data-cue]')];
+  let focusOn = new Set();
+  const lightFocus = () => stage.querySelectorAll('[data-cue]').forEach((el) => el.toggleAttribute('data-on', focusOn.has(el.getAttribute('data-cue'))));
 
   document.title = DATA.title[LANG];
   doc.lang = LANG;
@@ -1693,7 +1702,6 @@ const STAGE = (() => {
   const svgEl = stage.querySelector('svg');
   if (svgEl && DATA.label) svgEl.setAttribute('aria-label', DATA.label[LANG]);
 
-  // scene ticks on the scrubber, and the scene list
   const ticks = $('.fp-ticks');
   tl.starts.slice(1).forEach((s) => { const i = document.createElement('i'); i.style.left = `${(s / tl.total) * 100}%`; ticks.append(i); });
   const list = $('.fp-list');
@@ -1709,7 +1717,6 @@ const STAGE = (() => {
   const speedBtn = $('[data-act="speed"]');
   speedBtn.querySelector('.fp-speed-l').textContent = STR.speed;
 
-  // ---------------------------------------------------------------- narration
   const inFrame = window.parent !== window;
   let bridge = false;
   const post = (msg) => { try { window.parent.postMessage(Object.assign({ type: 'vp-film' }, msg), '*'); } catch (e) { /* no parent */ } };
@@ -1748,7 +1755,6 @@ const STAGE = (() => {
     const text = (b.voice || b.speak)[LANG]; // the narration script when the film has one
     const id = nextId++;
     speaking = { id, scene: si, beat: bi };
-    // never wait forever: some engines never end a line
     const limit = Math.max(6000, 2000 + text.length * 90) / rate;
     setTimeout(() => lineDone(id, 'timeout'), limit);
     if (bridge) post({ op: 'say', id, text, lang: LANG, rate });
@@ -1766,7 +1772,6 @@ const STAGE = (() => {
     speaking = null;
   }
 
-  // ---------------------------------------------------------------- drawing
   const local = () => {
     const si = sceneIndexAt(t, tl);
     return { si, lt: t - tl.starts[si] };
@@ -1791,30 +1796,27 @@ const STAGE = (() => {
       f.append(s, en);
       return f;
     });
-    // in a video frame the line sits centred in a band of fixed height (one span)
     if (PRM.render) { const one = document.createElement('span'); one.append(...line); cap.replaceChildren(one); } else cap.replaceChildren(...line);
-    // the readout of this beat, or the last one before it in the scene
     let r = null;
     for (let k = bi; k >= 0 && !r; k--) r = scenes[si].beats[k].read || null;
     read.textContent = r ? r[LANG] : '';
     read.hidden = !r;
-    const on = new Set(b.cues);
-    cueEls.forEach((el) => el.toggleAttribute('data-on', on.has(el.getAttribute('data-cue'))));
+    focusOn = new Set(b.cues);
+    main.dataset.focus = main.dataset.focus === 'a' ? 'b' : 'a'; // the halo eases in again
   }
   function draw() {
     const { si, lt } = local();
     const s = scenes[si];
     const bi = beatIndexAt(s, LANG, lt);
-    const u = reduce ? (s.beats[bi].still ?? s.still) : Math.min(1, Math.max(0, lt / s.dur)); // a beat may set its own still
-    STAGE.render(si, u);
+    const u = reduce ? (s.beats[bi].still ?? s.still) : stageU(s, LANG, lt, STAGE.nlBeats === true);
     caption(si, bi);
+    STAGE.render(si, u); lightFocus();
     if (!scrubbing) range.value = String(Math.round(t * 10) / 10);
     range.setAttribute('aria-valuetext', `${STR.scene(si + 1, scenes.length)}: ${s.title[LANG]}, ${fmtClock(t)}`);
     clock.textContent = `${fmtClock(t)} / ${fmtClock(tl.total)}`;
     doc.dataset.scene = String(si + 1);
   }
 
-  // ---------------------------------------------------------------- clock
   function advance(dt) {
     let target = t + dt * rate;
     const now = performance.now();
@@ -1842,7 +1844,6 @@ const STAGE = (() => {
   }
   const kick = () => { if (!raf) { last = 0; raf = requestAnimationFrame(frame); } };
 
-  // ---------------------------------------------------------------- controls
   function setPlayBtn() {
     const label = ended ? STR.replay : playing ? STR.pause : STR.play;
     playBtn.setAttribute('aria-label', label);
@@ -1911,7 +1912,6 @@ const STAGE = (() => {
   scenesBtn.addEventListener('click', () => (sheet.hidden ? openSheet() : closeSheet()));
   $('[data-act="close"]').addEventListener('click', () => { closeSheet(); scenesBtn.focus(); });
 
-  // scrub: speech stops; the scene you land in speaks from its beat's start
   range.addEventListener('pointerdown', () => { scrubbing = true; cancelSpeech(); });
   const endScrub = () => { if (scrubbing) { scrubbing = false; spokenKey = null; kick(); } };
   range.addEventListener('pointerup', endScrub);
@@ -1930,7 +1930,6 @@ const STAGE = (() => {
     else if (e.key === 'Escape' && !sheet.hidden) closeSheet();
   });
 
-  // pause when the film leaves the screen or the tab is hidden
   const away = () => { if (playing) pause(); };
   document.addEventListener('visibilitychange', () => { if (document.hidden) away(); });
   if ('IntersectionObserver' in window) {
@@ -1942,7 +1941,6 @@ const STAGE = (() => {
   const setMotion = () => { main.dataset.motion = reduce ? 'reduce' : 'full'; draw(); };
   reduceMq.addEventListener && reduceMq.addEventListener('change', () => { reduce = PRM.reduce || reduceMq.matches; setMotion(); });
 
-  // tell the app how tall the film is, so its frame fits without scrolling
   if (inFrame && 'ResizeObserver' in window) {
     let lastH = 0;
     new ResizeObserver(() => {
@@ -1952,7 +1950,6 @@ const STAGE = (() => {
   }
 
   if (PRM.render) {
-    // the frame is the video: no poster, controls or speech; time from the script
     main.dataset.render = '1';
     doc.dataset.render = '1';
     poster.hidden = true;
@@ -1965,11 +1962,9 @@ const STAGE = (() => {
       seek(time) {
         if (atl) {
           const at = timedAt(time, atl);
-          STAGE.render(at.si, at.u);
           caption(at.si, at.bi);
+          STAGE.render(at.si, at.u); lightFocus();
         } else { t = Math.max(0, Math.min(tl.total, time)); draw(); }
-        // the cue's glow breathes with the film's own clock, not the wall clock
-        main.style.setProperty('--fp-b', `${(2.5 * (0.5 - 0.5 * Math.cos((2 * Math.PI * time) / 1.8))).toFixed(2)}px`);
         return true;
       },
     };

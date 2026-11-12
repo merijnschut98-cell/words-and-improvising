@@ -3,6 +3,7 @@ export default {
   lessons: [
     {
       id: 'pm.intake.ask',
+      film: 'pm.intake.firsttalk',
       title: 'What they ask vs what they need',
       pre: [
         {
@@ -83,6 +84,7 @@ export default {
     },
     {
       id: 'pm.intake.firsttalk',
+      film: 'pm.intake.firsttalk',
       title: 'The first conversation',
       pre: [
         {
@@ -327,6 +329,7 @@ export default {
     },
     {
       id: 'pm.intake.stakeholders',
+      film: 'pm.intake.stakeholders',
       title: 'Who decides, who can stop it',
       pre: [
         {
@@ -408,6 +411,7 @@ export default {
     },
     {
       id: 'pm.intake.start',
+      film: 'pm.run.rhythm',
       title: 'The first weeks',
       pre: [
         {
@@ -652,6 +656,7 @@ export default {
     },
     {
       id: 'pm.intake.done',
+      film: 'pm.plan.wbs',
       title: 'Defining done',
       pre: [
         {
