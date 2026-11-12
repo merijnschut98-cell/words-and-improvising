@@ -87,7 +87,8 @@ const STAGE = (() => {
       for (let wk = 0; wk <= 15; wk++) ticks += `M${f1(xAt(wk, st))} 70V${wk % 3 ? 73 : 76}`;
       a += `<path class="pm-axis" d="M${f1(xAt(0, st))} 70H${f1(xAt(15, st))}${ticks}"/>`;
       const xe = xAt(pl.end, st);
-      a += `<path class="pm-end" d="M${f1(xe)} 78V${f1(y1)}"/>`;
+      // the end line, a cue group of its own (focus: 'end')
+      a += `<g data-cue="end"><path class="pm-end" d="M${f1(xe)} 78V${f1(y1)}"/></g>`;
       out.axis = op(st.net, a);
     }
     // the arrows (dependencies), each drawn in turn by st.deps (0..5)
@@ -114,7 +115,8 @@ const STAGE = (() => {
       const crit = st.crit.includes(t);
       let body = rect(x, y, w, h, crit ? 'pm-card pm-crit' : 'pm-card', lerp(6, 4, st.gantt));
       const late = st.late[t] || 0;
-      if (late > 0.01) body += rect(x + w + 1, y + 4, late * lerp(C.WK, C.GWK, st.gantt) - 2, h - 8, 'pm-late', 3);
+      // the weeks a task runs late (focus: 'late')
+      if (late > 0.01) body += `<g data-cue="late">${rect(x + w + 1, y + 4, late * lerp(C.WK, C.GWK, st.gantt) - 2, h - 8, 'pm-late', 3)}</g>`;
       const tA = 1 - st.gantt;
       if (tA > 0.01) {
         let s = txt(x + 8, y + 21, t, 22, 'start', crit ? 'pm-on' : 'pm-big');
@@ -122,6 +124,8 @@ const STAGE = (() => {
         body += op(tA, s);
       }
       if (st.gantt > 0.01) body += op(st.gantt, txt(334, C.GY0 + ROW[t] * C.GDY + 20, `${t} ${OWNER[t]}`, 20, 'start', 'pm-txt'));
+      // task C (system access, the step outside the team) is a cue group (focus: 'taskC')
+      if (t === 'C') body = `<g data-cue="taskC">${body}</g>`;
       if (crit) out.crit += op(a, body); else out.cards += op(a, body);
     }
     // the slack between C's end and E's start, on C's row
@@ -168,6 +172,8 @@ const STAGE = (() => {
       if (t) s += (d ? dia(342, y - 7, 7) + txt(356, y, t, 20, 'start', cls || 'pm-txt') : txt(334, y, t, 20, 'start', cls || 'pm-txt'));
       y += 26;
     }
+    // the lines are a cue group (focus: 'note'); the legend under them is not
+    if (s) s = `<g data-cue="note">${s}</g>`;
     if (st.legend > 0.01) {
       let l = '';
       IDS.forEach((t, i) => { l += txt(i < 3 ? 334 : 480, 318 + (i % 3) * 26, `${t} ${NAMES[t]}`, 20, 'start', 'pm-txt'); });

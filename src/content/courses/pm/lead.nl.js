@@ -654,6 +654,7 @@ export default {
     },
     {
       id: 'pm.lead.listen',
+      film: 'pm.intake.firsttalk#5',
       title: 'Luisteren onder druk',
       pre: [
         {
@@ -664,11 +665,11 @@ export default {
         },
       ],
       teach: [
-        'Actief luisteren, een term van de psychologen Carl Rogers en Richard Farson (1957), betekent luisteren om te begrijpen, niet om te antwoorden. MORE PIES, een checklist uit de crisisonderhandeling (crisis negotiation) die ontvoeringsonderhandelaar Scott Walker uitlegt in Order Out of Chaos (2023), laat zien hoe.\n\nMood: lees de sfeer in de kamer vóór de inhoud. Open vragen: wat en hoe, geen ja of nee; met een open vraag vertelt de ander het verhaal. Reflecteren: geef het gevoel terug. Empathie: laat zien dat je snapt waarom het ertoe doet.',
+        'Actief luisteren, een term van de psychologen Carl Rogers en Richard Farson (1957), betekent luisteren om te begrijpen, niet om te antwoorden. MORE PIES komt uit de crisisonderhandeling (crisis negotiation); ontvoeringsonderhandelaar Scott Walker legt het uit in Order Out of Chaos (2023). Hier een versie voor adviesgesprekken.\n\nMood: lees de sfeer in de kamer vóór de inhoud. Open vragen: wat en hoe, geen ja of nee; met een open vraag vertelt de ander het verhaal. Reflecteren: geef het gevoel terug. Empathie: laat zien dat je snapt waarom het ertoe doet.',
         'Parafraseren: zeg de inhoud in je eigen woorden. Inquiry: vraag één laag dieper door. Experience: deel je eigen ervaring alleen als het de ander helpt. Silence: laat stilte werken.\n\nOnder druk schiet je meteen in verdedigen of oplossen. De regel: eerst reflecteren of parafraseren, dan vragen, dan pas antwoorden. Reflecteren: “Dat klinkt frustrerend.” Parafraseren: “Dus die formulieren kostten meer tijd dan de verandering opleverde.” Wie het project aanvalt, heeft er meestal een zorg onder: werkdruk, schuld, controle kwijtraken.',
         'Stilte. Wacht na een vraag minstens drie seconden, zoals in Intake (Het eerste gesprek); tel onder druk tot vijf.\n\nIn klasonderzoek uit de jaren zeventig zag Mary Budd Rowe dat leraren zo’n één seconde op een antwoord wachtten; wachtten ze drie seconden of langer, dan werden de antwoorden langer en doordachter. Volwassenen in een overleg zijn niet anders: het echte antwoord komt vaak na het eerste. Je op je gemak voelen bij stilte komt over als zelfvertrouwen, en dat helpt als je de jongste bent.',
         'Vragen die openen: “Waar maak je je het meeste zorgen over?” “Wat moet er waar zijn om dit te laten werken?” “Wat hebben jullie eerder geprobeerd?” “Wat mis ik?”\n\nVermijd “waarom” als de emoties hoog zitten: het klinkt als een verwijt. Zeg liever “wat maakte dat je…”.\n\nDe typische valkuil is de nepvraag: “Vind je ook niet dat we…?” Mensen horen welk antwoord je wilt, geven het je, en je leert niks.',
-        'Ervaring, goed gebruikt. De valkuil is “Bij een vorige klant hadden we precies hetzelfde…”, en dan pak je de ander het woord af.\n\nGebruik het als brug: één zin, en geef het terug. “Ik heb dat zien misgaan als de mensen die het werk doen niet werden gevraagd. Is dat hier ook gebeurd?”\n\nCheck jezelf na een lastig overleg: wat heb ik geleerd dat ik nog niet wist? Niks? Dan heb je meer gepraat dan geluisterd. (Er bestaan varianten: soms is M minimal encouragers en S summarising.)',
+        'Ervaring, goed gebruikt. De valkuil is “Bij een vorige klant hadden we precies hetzelfde…”, en dan pak je de ander het woord af.\n\nGebruik het als brug: één zin, en geef het terug. “Ik heb dat zien misgaan als de mensen die het werk doen niet werden gevraagd. Is dat hier ook gebeurd?”\n\nCheck jezelf na een lastig overleg: wat heb ik geleerd dat ik nog niet wist? Niks? Dan heb je meer gepraat dan geluisterd.\n\nOnderhandelaars vullen de letters anders in, zoals M minimal encouragers en S summarising.',
       ],
       example: {
         kind: 'worked',

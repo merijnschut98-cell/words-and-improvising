@@ -416,6 +416,7 @@ export default {
     },
     {
       id: 'pm.plan.method',
+      film: 'pm.plan.method',
       title: 'Choosing a way of working',
       pre: [
         {
@@ -1000,6 +1001,7 @@ export default {
     },
     {
       id: 'pm.plan.risk',
+      film: 'pm.plan.risk',
       title: 'A risk register that gets used',
       pre: [
         {
@@ -1013,7 +1015,7 @@ export default {
         'A risk is something that might happen and would hurt the project. A risk register is the list of them, each with a likelihood (how probable), an impact (how bad), a risk owner and an action with a date.\n\nThe risk owner is one person who watches it and acts, not a department. “Data may be poor” is not useful. “The maintenance data before 2023 may be unusable after the move to the new system; owner: Pieter; action: test export in week 1” is.',
         'Many teams score likelihood and impact from 1 to 5 and multiply, so a risk scores 1 to 25. Treat the score as a way to sort, not as truth: a 12 is not really worse than a 10.\n\nThe action is the mitigation: what you do now to make the risk less likely or less harmful. “Monitor” is not a mitigation. “Test the export in week 1” is.',
         'Most registers die after the kick-off. Keep yours alive: only the top five are discussed in each steering group, each with its owner saying what happened since.\n\nRisks that came true become issues: problems that are happening now and need handling, not watching. Add new risks as you hear them, often in the coffee machine conversation.',
-        'The pre-mortem, described by Gary Klein in 2007: “Imagine it’s six months from now and this project has failed. Write down, alone, why it failed.” Then collect one reason per person per round.\n\nBecause the failure is imagined as fact, people name things they would not say otherwise: the sponsor might leave, the night shift won’t accept it, the IT change isn’t budgeted. Klein cites Mitchell, Russo and Pennington (1989): this “prospective hindsight” (looking back from an imagined future) made people about 30% better at naming the right reasons.',
+        'The pre-mortem, described by Gary Klein in 2007: “Imagine it’s six months from now and this project has failed. Write down, alone, why.” Then collect one reason per person per round.\n\nBecause the failure is imagined as fact, people name things they would not say otherwise: the sponsor might leave, the night shift won’t accept it, the IT change isn’t budgeted. Klein cites Mitchell, Russo and Pennington (1989): by his account, this “prospective hindsight” (looking back from an imagined future) increases the ability to identify the right reasons by 30%.',
         'The people side: some risks are sensitive, like “the plant manager doesn’t really believe in this”. Don’t write that in a register the plant manager reads. Word it as a theme (“sponsorship and visible support”) and discuss the real thing one-on-one with whoever can act on it.\n\nWhen you don’t know how likely something is, say so and plan a cheap test to find out. A sharp question for each top risk: “What would we see first if this starts to happen?”',
       ],
       example: {

@@ -4,7 +4,7 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import {
   wordsOf, minSceneDur, parseMarked, formatNumber, speakOf, plainOf, timelineOf, sceneIndexAt,
-  clampScene, beatStarts, beatIndexAt, holdLimit, parseParams, fmtClock, ease, span, searchOf,
+  clampScene, beatStarts, beatIndexAt, holdLimit, parseParams, fmtClock, ease, span, searchOf, stageU,
 } from '../films/_kit/timeline.mjs';
 import { parseFilmRef, filmSrc, filmMessage, filmBridge, mutedPref, loadFilm } from '../src/ui/film.js';
 
@@ -58,6 +58,62 @@ test('speak variant: units and signs are said as words, per language', () => {
   assert.equal(en('Ra 0.77 µm, six holes at 60°.'), 'R a 0.77 micrometres, six holes at 60 degrees.');
   // words that merely contain the letters stay as they are
   assert.equal(nl('Rand en rpmx en Radius'), 'Rand en rpmx en Radius');
+});
+
+// espeak-ng reads governance the Dutch way ("goo-ver-nan-se"), MUM-effect as
+// letters, keep with a long e and stresses ESkalatieroute: Dutch only, the
+// English voice keeps them (pm.run.escalation)
+test('speak variant: governance, MUM-effect, keep mum and escalatieroute in Dutch', () => {
+  const nl = (s) => speakOf([s], 'nl');
+  assert.equal(nl('Dat is governance: één A4.'), 'Dat is gavvernens: één A4.');
+  assert.equal(nl('Governance is'), 'Gavvernens is');
+  assert.equal(nl('het MUM-effect, van keep mum, zwijgen'), 'het mum-effect, van kiep mum, zwijgen');
+  assert.equal(nl('een escalatieroute af. Escalatieroutes'), 'een escalatie-route af. Escalatie-routes');
+  const en = 'governance, the MUM effect, keep mum, an escalation path';
+  assert.equal(speakOf([en], 'en'), en);
+});
+
+// espeak-ng reads agile the Dutch way ("AA-gie-le") and stresses HYbride: said
+// as the floor says them, "etsjail" and "hiebriede"; Dutch only, and the
+// moulding film's "hybride machine" (rendered video) keeps its voice
+// (pm.plan.method)
+test('speak variant: agile and hybride in Dutch', () => {
+  const nl = (s) => speakOf([s], 'nl');
+  assert.equal(nl('Agile: korte rondes. Het Agile Manifesto, een agile methode.'), 'Etsjail: korte rondes. Het Etsjail Manifesto, een etsjail methode.');
+  assert.equal(nl('De meeste projecten zijn hybride: mijlpalen. Hybride'), 'De meeste projecten zijn hiebriede: mijl-palen. Hiebriede');
+  assert.equal(nl('Een hybride machine combineert beide'), 'Een hybride machine combineert beide');
+  assert.equal(nl('agileren, hybrides'), 'agileren, hybrides');
+  const en = 'Agile, the Agile Manifesto, hybrid';
+  assert.equal(speakOf([en], 'en'), en);
+});
+
+// A stage drawn on the Dutch caption beats (beatwarp films set STAGE.nlBeats)
+// follows the caption beat on screen in English too: while English beat k
+// shows, the stage runs through Dutch beat k, so the drawing is never a beat off.
+test('stageU: in English a Dutch-beat stage runs on the caption beat; Dutch and other stages stay plain', async () => {
+  // Dutch: beat 2 starts at 2 s of 10; English: at 8 s
+  const sc = { dur: 10, beats: [{ text: { nl: 'a', en: 'a b c d' } }, { text: { nl: 'b c d e', en: 'e' } }] };
+  assert.deepEqual(beatStarts(sc, 'nl'), [0, 2]);
+  assert.deepEqual(beatStarts(sc, 'en'), [0, 8]);
+  for (const t of [0, 1, 3, 7.5, 10]) {
+    assert.equal(stageU(sc, 'nl', t, true), t / 10);
+    assert.equal(stageU(sc, 'en', t, false), t / 10);
+  }
+  // English beat 1 (0..8 s) maps onto Dutch beat 1 (0..2 s), beat 2 onto 2..10 s
+  assert.equal(stageU(sc, 'en', 0, true), 0);
+  assert.equal(stageU(sc, 'en', 4, true), 0.1);
+  assert.ok(stageU(sc, 'en', 7.99, true) < 0.2);
+  assert.equal(stageU(sc, 'en', 8, true), 0.2);
+  assert.equal(stageU(sc, 'en', 9, true), 0.6);
+  assert.equal(stageU(sc, 'en', 10, true), 1);
+  assert.equal(stageU(sc, 'en', 12, true), 1);
+  // the stage's beat (by Dutch fractions) equals the caption beat (by English starts)
+  for (let t = 0; t < 10; t += 0.25) assert.equal(beatIndexAt(sc, 'nl', stageU(sc, 'en', t, true) * 10), beatIndexAt(sc, 'en', t), `t ${t}`);
+  // the player hands it the flag that beatwarp sets, and keeps the designed still under reduced motion
+  const { readFileSync } = await import('node:fs');
+  const rt = readFileSync(new URL('../films/_kit/player-runtime.js', import.meta.url), 'utf8');
+  assert.match(rt, /reduce \? \(s\.beats\[bi\]\.still \?\? s\.still\) : stageU\(s, LANG, lt, STAGE\.nlBeats === true\)/);
+  assert.match(readFileSync(new URL('../films/_kit/beatwarp.js', import.meta.url), 'utf8'), /STAGE\.nlBeats = true;/);
 });
 
 test('timeline: scene starts, total, the scene at a time', () => {

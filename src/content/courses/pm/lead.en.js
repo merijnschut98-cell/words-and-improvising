@@ -654,6 +654,7 @@ export default {
     },
     {
       id: 'pm.lead.listen',
+      film: 'pm.intake.firsttalk#5',
       title: 'Listening under pressure',
       pre: [
         {
@@ -664,11 +665,11 @@ export default {
         },
       ],
       teach: [
-        'Active listening, a term from the psychologists Carl Rogers and Richard Farson (1957), means listening to understand, not to reply. MORE PIES, a checklist from crisis negotiation that Scott Walker, a kidnap negotiator, teaches in Order Out of Chaos (2023), spells out how.\n\nMood: read the energy in the room before the content. Open questions: what and how, not yes or no, so the other person tells the story. Reflecting: give back the feeling. Empathy: show you get why it matters to them.',
+        'Active listening, a term from the psychologists Carl Rogers and Richard Farson (1957), means listening to understand, not to reply. MORE PIES comes from crisis negotiation, as taught by Scott Walker, a kidnap negotiator, in Order Out of Chaos (2023). This course uses a version for client conversations.\n\nMood: read the energy in the room before the content. Open questions: what and how, not yes or no, so the other person tells the story. Reflecting: give back the feeling. Empathy: show you get why it matters to them.',
         'Paraphrasing: restate the content in your own words. Inquiry: dig one level deeper. Experience: share your own only when it helps them. Silence: let it work.\n\nUnder pressure you skip straight to defending or solving. The rule: reflect or paraphrase first, then ask, then answer. Reflecting: “That sounds frustrating.” Paraphrasing: “So the forms took more time than the change saved.” When someone attacks the project, there’s usually a worry underneath: workload, blame, losing control.',
         'Silence. After a question, wait at least three seconds, as in Intake (The first conversation); under pressure, count to five.\n\nIn classroom research in the 1970s, Mary Budd Rowe found teachers waited about one second for an answer; when they waited three seconds or more, answers got longer and better thought out. Adults in meetings are no different: the real answer often comes after the first one. Being comfortable with silence reads as confidence, which helps when you’re the youngest in the room.',
         'Questions that open: “What worries you most about this?” “What would have to be true for this to work?” “What have you tried before?” “What am I missing?”\n\nAvoid “why” when emotions run high: it sounds like an accusation. Use “what made you…” instead.\n\nThe typical failure is the fake question: “Don’t you think we should…?” People hear the answer you want, give it to you, and you learn nothing.',
-        'Experience, used well. The trap is “At a previous client we had exactly that…”, which takes the floor away from them.\n\nUse it as a bridge: one sentence, then hand it back. “I’ve seen that go wrong when the people doing the work weren’t asked. Is that what happened here?”\n\nCheck yourself after a tough meeting: what did I learn that I didn’t know before? If nothing, you talked more than you listened. (Versions of MORE PIES differ: in some, M is minimal encouragers and S is summarising.)',
+        'Experience, used well. The trap is “At a previous client we had exactly that…”, which takes the floor away from them.\n\nUse it as a bridge: one sentence, then hand it back. “I’ve seen that go wrong when the people doing the work weren’t asked. Is that what happened here?”\n\nCheck yourself after a tough meeting: what did I learn that I didn’t know before? If nothing, you talked more than you listened.\n\nNegotiators fill in the letters differently, for example M as minimal encouragers and S as summarising.',
       ],
       example: {
         kind: 'worked',

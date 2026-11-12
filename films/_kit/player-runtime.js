@@ -10,7 +10,7 @@
 // Render mode (?render=1, films/_kit/render.mjs): no clock, no controls and no
 // speech. The render script hands over the audio timeline and sets the time of
 // every frame through window.__film, so each frame is a pure function of t.
-/* global STAGE, parseParams, searchOf, timelineOf, sceneIndexAt, clampScene, beatStarts, beatIndexAt, holdLimit, fmtClock, timedAt */
+/* global STAGE, parseParams, searchOf, timelineOf, sceneIndexAt, clampScene, beatStarts, beatIndexAt, holdLimit, fmtClock, timedAt, stageU */
 (function () {
   const DATA = JSON.parse(document.getElementById('film-data').textContent);
   const PRM = parseParams(searchOf(location.search, window.name));
@@ -188,7 +188,8 @@
     const { si, lt } = local();
     const s = scenes[si];
     const bi = beatIndexAt(s, LANG, lt);
-    const u = reduce ? (s.beats[bi].still ?? s.still) : Math.min(1, Math.max(0, lt / s.dur)); // a beat may set its own still
+    // a beat may set its own still; a stage drawn on the Dutch beats follows the caption beat in English too
+    const u = reduce ? (s.beats[bi].still ?? s.still) : stageU(s, LANG, lt, STAGE.nlBeats === true);
     caption(si, bi);
     STAGE.render(si, u); lightFocus();
     if (!scrubbing) range.value = String(Math.round(t * 10) / 10);

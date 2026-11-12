@@ -3,6 +3,7 @@ export default {
   lessons: [
     {
       id: 'pm.intake.ask',
+      film: 'pm.intake.firsttalk',
       title: 'What they ask vs what they need',
       pre: [
         {
@@ -83,6 +84,7 @@ export default {
     },
     {
       id: 'pm.intake.firsttalk',
+      film: 'pm.intake.firsttalk',
       title: 'The first conversation',
       pre: [
         {
