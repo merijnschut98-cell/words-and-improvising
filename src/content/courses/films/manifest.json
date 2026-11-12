@@ -1587,6 +1587,41 @@
         ],
         "vtt": "src/content/courses/films/pm.plan.schedule.en.vtt"
       }
+    },
+    "pm.intake.firsttalk": {
+      "poster": "src/content/courses/films/pm.intake.firsttalk.jpg",
+      "nl": {
+        "dur": 336.9,
+        "bytes": 11812703,
+        "scenes": [
+          0,
+          47.04,
+          86.8,
+          116.1,
+          142.46,
+          181.68,
+          213.41,
+          257.65,
+          300.6
+        ],
+        "vtt": "src/content/courses/films/pm.intake.firsttalk.nl.vtt"
+      },
+      "en": {
+        "dur": 342.6,
+        "bytes": 12018537,
+        "scenes": [
+          0,
+          48.38,
+          87.92,
+          117.49,
+          143.32,
+          182.39,
+          216.02,
+          261,
+          303.44
+        ],
+        "vtt": "src/content/courses/films/pm.intake.firsttalk.en.vtt"
+      }
     }
   }
 }
