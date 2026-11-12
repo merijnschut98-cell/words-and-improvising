@@ -449,7 +449,7 @@ const SAY = [
       en: 'The {t:Line organisation|line organisation}, the departments that run the daily work, owns it after you leave.' },
     { nl: 'Benoem per nieuw proces één {t:Proceseigenaar|proceseigenaar}, dagelijks bij het werk, zoals het hoofd planning; geen staffunctie.',
       en: 'Name one {t:Process owner|process owner} per new process, close to the daily work, like a planning manager; not a staff role.' },
-    { nl: 'Die draagt de {t:KPI|KPI}, de kritieke prestatie-indicator: het getal dat laat zien of het werkt.',
+    { nl: 'Die draagt de {t:KPI|KPI}, de kritieke prestatie-indicator. Het getal dat laat zien of het werkt.',
       en: 'They own the {t:KPI|KPI}, the key performance indicator: the number that shows whether it works.' },
     { nl: 'Zonder jou moet de eigenaar weten wat normaal is, voorzitten, inwerken, problemen oplossen en weten wie hij belt.',
       en: 'Alone, the owner must know what is normal, chair, train new people, solve problems and know whom to call.' },
@@ -545,7 +545,7 @@ const SAY = [
       en: 'With the owner you look at what changed: two new planners never trained, the weekly review cancelled four times.' },
     { nl: 'Hij besluit: de senior planner traint ze, en het weekoverleg komt vast in de agenda, met een vervanger.',
       en: 'He decides: the senior planner trains them, and the weekly review is fixed in the calendar, with a stand-in.' },
-    { nl: 'Zes weken later kijken jullie weer: {n:88} procent.',
+    { nl: 'Zes weken later kijken jullie weer. {n:88} procent.',
       en: 'Six weeks later you look again: {n:88} percent.' },
   ],
 ];
