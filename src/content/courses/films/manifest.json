@@ -74,23 +74,23 @@
       "poster": "src/content/courses/films/eng.moulding.setting.jpg",
       "nl": {
         "dur": 264.5,
-        "bytes": 10774271,
+        "bytes": 10766066,
         "scenes": [
           0,
-          42.76,
-          65.91,
-          94.47,
-          109.4,
-          134.35,
-          159.29,
-          173.98,
-          226.12
+          42.38,
+          65.42,
+          93.88,
+          108.92,
+          134.29,
+          159.17,
+          173.77,
+          225.75
         ],
         "vtt": "src/content/courses/films/eng.moulding.setting.nl.vtt"
       },
       "en": {
         "dur": 287.1,
-        "bytes": 11573991,
+        "bytes": 11574644,
         "scenes": [
           0,
           47.44,
