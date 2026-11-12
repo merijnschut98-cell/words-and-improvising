@@ -1,0 +1,317 @@
+WEBVTT
+
+1
+00:00:00.846 --> 00:00:02.146
+An ordinary street.
+
+2
+00:00:02.958 --> 00:00:05.919
+At the end stands a distribution substation;
+
+3
+00:00:06.070 --> 00:00:08.787
+under the pavement a cable runs to every home.
+
+4
+00:00:09.842 --> 00:00:13.058
+Electricity in that cable is like water in a pipe.
+
+5
+00:00:13.810 --> 00:00:18.547
+The voltage is the push, in volts: 230 volts in a Dutch home.
+
+6
+00:00:19.571 --> 00:00:22.265
+The current is how much flows, in amperes.
+
+7
+00:00:22.991 --> 00:00:25.615
+Current heats cables and blows fuses.
+
+8
+00:00:26.619 --> 00:00:31.507
+Power is how fast energy is used: voltage times current, in watts.
+
+9
+00:00:32.215 --> 00:00:34.270
+A thousand watts is one kilowatt.
+
+10
+00:00:35.307 --> 00:00:41.228
+So a 2,000 watt kettle on 230 volts draws about 8.7 amps.
+
+11
+00:00:42.550 --> 00:00:44.443
+Power is the reading of the moment.
+
+12
+00:00:45.191 --> 00:00:48.965
+Energy is power times time, added up, in kilowatt hours.
+
+13
+00:00:49.982 --> 00:00:52.037
+If the kettle runs for 3 minutes,
+
+14
+00:00:52.176 --> 00:00:57.969
+that is 2 kilowatts times 0.05 hours: 0.1 kilowatt hours.
+
+15
+00:00:58.976 --> 00:01:03.887
+An average family uses about 2,700 kilowatt hours a year.
+
+16
+00:01:04.604 --> 00:01:12.395
+Spread over the 8,760 hours of a year, that is on average only 0.31 kilowatts.
+
+17
+00:01:13.393 --> 00:01:14.856
+You pay per kilowatt hour,
+
+18
+00:01:14.995 --> 00:01:19.744
+but cables and transformers must carry the highest power at any one moment:
+
+19
+00:01:19.953 --> 00:01:21.868
+the grid is built for kilowatts.
+
+20
+00:01:23.164 --> 00:01:25.498
+The grid runs on alternating current:
+
+21
+00:01:25.695 --> 00:01:29.132
+the voltage swings back and forth 50 times a second,
+
+22
+00:01:29.236 --> 00:01:30.246
+50 hertz.
+
+23
+00:01:30.932 --> 00:01:35.774
+Solar panels and batteries give direct current, which flows one way only.
+
+24
+00:01:36.753 --> 00:01:41.223
+AC won because a transformer can easily step its voltage up and down.
+
+25
+00:01:41.967 --> 00:01:45.891
+Here it turns medium voltage into low voltage for the street.
+
+26
+00:01:46.963 --> 00:01:52.129
+The street cable is three-phase: three phases, each a third of a cycle apart,
+
+27
+00:01:52.292 --> 00:01:54.440
+plus a neutral as the return wire.
+
+28
+00:01:55.450 --> 00:02:01.151
+Between a phase and neutral there are 230 volts, between two phases 400.
+
+29
+00:02:01.879 --> 00:02:05.176
+Heat pumps and car chargers often use all three.
+
+30
+00:02:06.453 --> 00:02:13.001
+A common house connection is 3 times 25 amps: at most about 17 kilovolt amperes,
+
+31
+00:02:13.187 --> 00:02:15.962
+the unit for what a cable or fuse must carry.
+
+32
+00:02:16.937 --> 00:02:21.906
+A day in one home: mostly it asks little, often less than the yearly average.
+
+33
+00:02:22.911 --> 00:02:25.001
+But at six in the evening the oven,
+
+34
+00:02:25.222 --> 00:02:30.145
+the kettle and the dishwasher run together: 3 plus 2 plus 2 is 7 kilowatts.
+
+35
+00:02:31.149 --> 00:02:34.620
+If an electric car also charges at 11 kilowatts,
+
+36
+00:02:34.795 --> 00:02:38.731
+the house draws 18 kilowatts: more than the connection allows.
+
+37
+00:02:39.442 --> 00:02:40.951
+The main fuse may blow.
+
+38
+00:02:42.276 --> 00:02:43.681
+Now the whole district.
+
+39
+00:02:44.465 --> 00:02:48.052
+This distribution substation has a 400 kilovolt
+
+40
+00:02:48.168 --> 00:02:51.872
+ampere transformer and feeds 150 homes.
+
+41
+00:02:52.886 --> 00:02:57.949
+Those homes do not all peak at once: one cooks at six, another at half past seven.
+
+42
+00:02:58.640 --> 00:03:03.713
+That is simultaneity: how much of everyone’s maximum happens at the same moment.
+
+43
+00:03:04.759 --> 00:03:09.554
+The peak load is the highest load of the year, usually on a cold winter evening.
+
+44
+00:03:10.288 --> 00:03:15.176
+Traditionally planners counted 1 to 1.5 kilovolt amperes per home,
+
+45
+00:03:15.316 --> 00:03:17.626
+far below the 17 of the connection.
+
+46
+00:03:18.624 --> 00:03:24.243
+150 times 1.5 is 225 kilovolt amperes:
+
+47
+00:03:24.394 --> 00:03:28.527
+at its busiest moment the transformer is 56 percent loaded.
+
+48
+00:03:29.881 --> 00:03:32.447
+Why kilovolt amperes and not kilowatts?
+
+49
+00:03:33.173 --> 00:03:35.936
+A cable or transformer carries all the current,
+
+50
+00:03:36.076 --> 00:03:40.232
+also a part that motors and electronics only push back and forth.
+
+51
+00:03:40.970 --> 00:03:42.874
+That total is the apparent power.
+
+52
+00:03:43.886 --> 00:03:46.603
+The useful part is the power in kilowatts.
+
+53
+00:03:47.300 --> 00:03:50.621
+The ratio of the two is the power factor, or cos phi.
+
+54
+00:03:51.321 --> 00:03:54.049
+For homes usually 0.9 to 1.
+
+55
+00:03:55.060 --> 00:04:01.980
+So a 400 kilovolt ampere transformer delivers about 360 to 400 kilowatts.
+
+56
+00:04:03.298 --> 00:04:06.259
+Now 50 homes get a 3 kilowatt heat pump.
+
+57
+00:04:07.005 --> 00:04:11.196
+On a cold evening they all run at once: a simultaneity close to one.
+
+58
+00:04:11.904 --> 00:04:17.186
+Each runs at about 80 percent: together 120 kilovolt amperes more.
+
+59
+00:04:18.216 --> 00:04:22.070
+And 40 homes charge a car at 11 kilowatts after work,
+
+60
+00:04:22.245 --> 00:04:24.753
+about 30 percent at the same moment.
+
+61
+00:04:25.538 --> 00:04:28.916
+Another 132 kilovolt amperes.
+
+62
+00:04:29.935 --> 00:04:38.840
+The new peak: 225 plus 120 plus 132 is 477 kilovolt amperes.
+
+63
+00:04:39.702 --> 00:04:42.999
+That is 119 percent of the transformer.
+
+64
+00:04:44.019 --> 00:04:47.955
+The yearly energy grows far less, but the peak more than doubles.
+
+65
+00:04:49.279 --> 00:04:52.135
+On a sunny afternoon a peak comes the other way:
+
+66
+00:04:52.344 --> 00:04:54.724
+every roof feeds back at the same time.
+
+67
+00:04:55.728 --> 00:05:00.314
+The inverter turns the panels’ direct current into alternating current.
+
+68
+00:05:01.062 --> 00:05:03.837
+Here that box hangs outside on the end wall.
+
+69
+00:05:04.814 --> 00:05:09.097
+All that feed-in pushes the voltage up, most at the end of a long cable.
+
+70
+00:05:10.142 --> 00:05:17.096
+Above about 253 volts, the European upper limit of 230 volts plus 10 percent,
+
+71
+00:05:17.293 --> 00:05:18.767
+the inverter switches off.
+
+72
+00:05:19.495 --> 00:05:24.440
+Panels that keep dropping out are often a voltage problem, not a broken inverter.
+
+73
+00:05:25.768 --> 00:05:30.354
+What experts argue about: the simultaneity of heat pumps and chargers.
+
+74
+00:05:31.401 --> 00:05:35.592
+Assume too low, and the grid overloads in the first cold week.
+
+75
+00:05:36.318 --> 00:05:39.580
+Too high, and streets are dug up years too early.
+
+76
+00:05:40.584 --> 00:05:45.577
+Smart charging, which spreads car charging over the night, can cut the peak a lot.
+
+77
+00:05:46.355 --> 00:05:48.155
+But only if people allow it.
+
+78
+00:05:49.179 --> 00:05:52.546
+So always ask: which simultaneity is this plan based on,
+
+79
+00:05:52.767 --> 00:05:54.474
+and where does that number come from?
