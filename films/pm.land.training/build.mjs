@@ -89,8 +89,10 @@
 // (it fills row by row), a wall clock (it shows six o'clock in s6) and a
 // calendar strip on the side wall (the weeks around go-live). The cast: "jij"
 // the consultant in petrol, the team lead as the instructor, reaching to the
-// joint, and the learner, a technician with a tablet (the planner's look from
-// CAST, its cue renamed "learner"). A panel at the right, in stage space,
+// joint, and the learner, a technician in an orange work jacket with the team
+// lead's reflective bands and the planner's tablet (both cut from the world's
+// own people, so films/_pm/world.mjs stays untouched; cue "learner"; the
+// planner's light jumper read as office wear at the bench). A panel at the right, in stage space,
 // carries the cards, each labelled "voorbeeld" or "schema".
 //
 // Focus (strictFocus): every beat names the block it explains. Each card block
@@ -130,7 +132,7 @@ has('nl', 'teach', ['korte werkinstructie: één A4 per taak, stappen op volgord
   'Schrijf hem met de mensen die het werk doen', 'laat iemand die er niet bij was hem volgen terwijl jij kijkt', 'Waar hij aarzelt, is de instructie onduidelijk',
   'TWI, Training Within Industry, een Amerikaans oorlogsprogramma uit 1940', 'tot 1945 meer dan 1,6 miljoen certificaten', 'Job Instruction heeft vier stappen',
   'de leerling voorbereiden, voordoen en uitleggen, zelf laten proberen terwijl jij corrigeert, en later nagaan hoe het gaat',
-  'heeft de medewerker het niet geleerd, dan heeft de instructeur het niet goed uitgelegd', 'Toyota nam het in de jaren 50 over',
+  'heeft de medewerker het niet geleerd, dan heeft de instructeur het niet aangeleerd', 'Toyota nam het in de jaren 50 over',
   'goed voor het waarom en het grote plaatje, in 30 tot 60 minuten', 'voordoen, samen doen, zelf laten doen terwijl jij kijkt, later checken',
   'Ploegleiders of ervaren operators zijn de beste trainers, als je hen eerst traint', 'Train vlak voordat mensen het nodig hebben', 'zes weken voor de livegang is dan grotendeels vergeten',
   'korte sessies in de week voor de livegang en begeleiding op de vloer in de eerste twee weken erna', 'ook nacht en weekend, die projecten vaak vergeten',
@@ -217,9 +219,24 @@ const SPOT = {
   jij: { x: 60, y: 168, along: 'y' },
 };
 const HEAD = Object.fromEntries(Object.entries(SPOT).map(([r, s]) => [r, w.at([s.x, s.y, 172]).map(f1)]));
-const person = (role) => (role === 'learner'
-  ? w.person({ ...SPOT.learner, role: 'planner' }).replace('data-cue="planner"', 'data-cue="learner"')
-  : w.person({ ...SPOT[role], role }));
+// the learner: the team lead's body (work vest, reflective bands, no reach)
+// with the planner's tablet put in before the neck, so the order of parts is the
+// planner's (the dark-theme skin rule below counts from the end); the jacket
+// (both arms and the torso, parts 6 to 8) gets the tw-work tint
+const partsOf = (html) => {
+  const inner = html.replace(/^<g data-cue="[^"]+">/, '').replace(/<\/g>$/, '');
+  const parts = inner.match(/<path class="iso-halo"[^>]*\/>|<g class="iso-solid"[^>]*>(?:(?!<g[ >]).)*?<\/g>/gs) || [];
+  assert(parts.join('') === inner, 'a person is a halo and solids, no nested groups');
+  return parts;
+};
+function learner() {
+  const body = partsOf(w.person({ ...SPOT.learner, role: 'teamlead' }));
+  const tab = partsOf(w.person({ ...SPOT.learner, role: 'planner' }));
+  assert(body.length === 11 && tab.length === 12, 'person parts: halo, 2 shoes, 2 legs, arm, torso, arm, (tablet), neck, hair, head');
+  const work = (part) => part.replace('class="iso-solid"', 'class="iso-solid tw-work"');
+  return `<g data-cue="learner">${[...body.slice(0, 5), ...body.slice(5, 8).map(work), tab[8], ...body.slice(8)].join('')}</g>`;
+}
+const person = (role) => (role === 'learner' ? learner() : w.person({ ...SPOT[role], role }));
 
 const world = [
   w.room(ROOM),
@@ -302,7 +319,7 @@ const spec = {
     {
       id: 's4', lesson: TRN, level: 1, still: 0.9, title: { nl: 'Klaslokaal of werkplek', en: 'Classroom or floor' },
       beats: [
-        { nl: '“Heeft de medewerker het niet geleerd, dan heeft de instructeur het niet goed uitgelegd.”', en: '“If the worker hasn’t learned, the instructor hasn’t taught.”', focus: ['motto', 'teamlead'] },
+        { nl: '“Heeft de medewerker het niet geleerd, dan heeft de instructeur het niet aangeleerd.”', en: '“If the worker hasn’t learned, the instructor hasn’t taught.”', focus: ['motto', 'teamlead'] },
         { nl: 'Toyota nam de methode in de jaren 50 over.', en: 'Toyota adopted it in the 1950s.', focus: 'toyota' },
         { nl: 'Een klaslokaal is goed voor het waarom en het grote plaatje, in {n:30} tot {n:60} minuten.', en: 'A classroom is good for the why and the big picture, in {n:30} to {n:60} minutes.', focus: 'room' },
         { nl: 'Vaardigheden: {t:Training op de werkplek|training op de werkplek}. Voordoen, samen doen, zelf doen, checken.', en: 'Skills: {t:On-the-job training|on-the-job training}. Show, do together, let them do, check.', cue: { 'Training op de werkplek': 'ojt' }, focus: ['ojt', 'teamlead', 'learner'] },
@@ -314,7 +331,7 @@ const spec = {
         { nl: 'Ploegleiders of ervaren operators zijn de beste trainers, als je hen eerst traint.', en: 'Shift leads or experienced operators make the best trainers, if you train them first.', focus: ['who', 'teamlead'] },
         { nl: 'Train vlak voordat mensen het nodig hebben: zes weken voor de livegang is het vergeten.', en: 'Train just before people need it: six weeks before go-live, it’s mostly forgotten.', focus: ['when', 'cal'] },
         { nl: 'Korte sessies in de week ervoor, begeleiding op de vloer in de eerste twee weken erna.', en: 'Short sessions in the week before, support on the floor in the first two weeks after.', focus: ['when', 'cal'] },
-        { nl: 'Elke ploeg komt aan bod, ook nacht en weekend: die vergeten projecten vaak.', en: 'Cover every shift, nights and weekends too: projects often forget them.', focus: ['shifts', 'clock'] },
+        { nl: 'Elke ploeg komt aan bod, ook nacht en weekend, die projecten vaak vergeten.', en: 'Cover every shift, nights and weekends too: projects often forget them.', focus: ['shifts', 'clock'] },
         { nl: 'Netbeheerder: {n:30} minuten in het ochtendoverleg, daarna gaat de teamleider mee op de eerste klus.', en: 'Grid operator: {n:30} minutes in the morning meeting, then the team lead joins each first job.', focus: ['morning', 'teamlead', 'learner'] },
       ],
     },
@@ -349,8 +366,8 @@ const spec = {
 // phonemes through Piper's own bridge (nl_NL-alex, 2026-11-12); see the guard
 // below for the words reworded instead of a new SAY rule: smileys (read
 // "smie-le-is") is "lachende gezichtjes", operators ("oo-pee-raa-tors") is "ervaren
-// mensen van de vloer", projecten (stressed PROO-, the lexicon covers only
-// "project") is "een project", and Toyota gets one new Dutch SAY rule in
+// mensen van de vloer", projecten (espeak-ng stresses PROO-) has its own
+// lexicon entry next to "project" (films/_kit/lexicon.nl.json), and Toyota gets one new Dutch SAY rule in
 // films/_kit/timeline.mjs, "Tojota" (espeak-ng reads "too-ie-oota"; no other
 // film says it). TWI is spelled out by both voices as it stands.
 const SAY = [
@@ -389,7 +406,7 @@ const SAY = [
       en: 'Four: follow up. They now work on their own, know whom to ask for help, and you check in regularly.' },
   ],
   [ // s4 classroom or floor
-    { nl: 'Het motto van TWI geldt nog steeds: heeft de medewerker het niet geleerd, dan heeft de instructeur het niet goed uitgelegd.',
+    { nl: 'Het motto van TWI geldt nog steeds: heeft de medewerker het niet geleerd, dan heeft de instructeur het niet aangeleerd.',
       en: 'The TWI motto still holds: if the worker hasn\'t learned, the instructor hasn\'t taught.' },
     { nl: 'Toyota nam de methode in de jaren vijftig over.',
       en: 'Toyota adopted it in the nineteen fifties.' },
@@ -405,7 +422,7 @@ const SAY = [
       en: 'And train just before people need it. A session six weeks before go-live is mostly forgotten by then.' },
     { nl: 'Plan korte sessies in de week voor de livegang, en begeleiding op de vloer in de eerste twee weken erna.',
       en: 'Plan short sessions in the week before go-live, and support on the floor in the first two weeks after.' },
-    { nl: 'Zorg dat elke ploeg aan bod komt, ook de nacht en het weekend. Die vergeet een project vaak.',
+    { nl: 'Zorg dat elke ploeg aan bod komt, ook nacht en weekend, die projecten vaak vergeten.',
       en: 'Cover every shift, including nights and weekends. Projects often forget those.' },
     { nl: 'Bij de netbeheerder krijgen de monteurs {n:30} minuten in het ochtendoverleg, over het waarom. Daarna gaat de teamleider mee met de eerste klus van elke monteur.',
       en: 'At the grid operator, the technicians get {n:30} minutes in the morning meeting, on why. Then the team leader goes along on each technician\'s first job.' },
@@ -425,7 +442,7 @@ const SAY = [
   [ // s7 what you measure
     { nl: 'Trainers meten vaak het verkeerde. De {t:Kirkpatrick-niveaus|Kirkpatrick-niveaus}, van Donald Kirkpatrick uit 1959, zetten vier checks op een rij. Vonden ze het leuk? Hebben ze het geleerd? Doen ze het op de werkplek? En zijn de resultaten beter?',
       en: 'Trainers often measure the wrong thing. The {t:Kirkpatrick levels|Kirkpatrick levels}, from Donald Kirkpatrick in 1959, rank four checks. Did they like it? Did they learn it? Do they do it on the job? And did results improve?' },
-    { nl: 'Een project stopt meestal bij de eerste: een formulier met lachende gezichtjes.',
+    { nl: 'De meeste projecten stoppen bij de eerste: een formulier met lachende gezichtjes.',
       en: 'Most projects stop at the first: a smiley form.' },
     { nl: 'Experts twisten of een klaslokaal wel nodig is. Vaak hoor je de regel zeventig, twintig, tien: zeventig procent leer je in het werk, twintig van anderen, en tien in cursussen. Dat is een praktijkmodel met zwak bewijs.',
       en: 'Experts argue whether a classroom is needed at all. You often hear the seventy, twenty, ten rule: seventy percent learned on the job, twenty from others, and ten in courses. It is a practitioner model with weak evidence.' },
@@ -440,7 +457,7 @@ spec.scenes.forEach((s, si) => {
 // no symbol the voice would read aloud, no spoken parenthesis or quote, and in
 // Dutch none of the words espeak-ng misreads (see above)
 const plainSay = (src) => src.replace(/\{t:[^|}]*\|([^}]*)\}/g, '$1').replace(/\{n:([^}]*)\}/g, '$1');
-const MISREAD = /\b(projecten|\w*manager\w*|operators?|as-built|revisiegegevens|smileys?|e-?mail|go-live)\b/i;
+const MISREAD = /\b(\w*manager\w*|operators?|as-built|revisiegegevens|smileys?|e-?mail|go-live)\b/i;
 for (const scene of SAY) for (const line of scene) for (const lang of ['nl', 'en']) {
   const plain = plainSay(line[lang]);
   if (/[/&×=+()“”"‘…%]/.test(plain)) throw new Error(`narration: a symbol the voice reads aloud in "${plain.slice(0, 50)}"`);
@@ -510,6 +527,9 @@ const css = PM_CSS + `
 [data-cue][data-on] .tw-lab,[data-cue][data-on] .tw-txt,[data-cue][data-on] .tw-big,[data-cue][data-on] .tw-mute{fill:var(--fp-focus-text)}
 [data-cue][data-on] .tw-rule2,[data-cue][data-on] .tw-line{stroke:var(--fp-accent)}
 [data-cue][data-on] .tw-c3,[data-cue][data-on] .tw-c2,[data-cue][data-on] .tw-photo{fill:color-mix(in srgb,var(--fp-accent) 40%,var(--anatomy-face))}
+/* the learner's orange work jacket (a lit learner keeps the focus colours) */
+[data-cue="learner"]:not([data-on])>.tw-work>:is(.iso-fill,.iso-top){fill:color-mix(in srgb,#E07B24 52%,var(--anatomy-top))}
+[data-cue="learner"]:not([data-on])>.tw-work>.iso-shade{fill:color-mix(in srgb,#C2620F 55%,var(--anatomy-shade-1))}
 /* dark theme: faces and hands in a light skin tone, not dark silhouettes (world.mjs gives heads only a light outline) */
 .iso:not([data-theme="light"]) ${PEOPLE}:not([data-on])>:is(.iso-solid:last-child,.iso-solid:nth-last-child(3))>:is(.iso-fill,.iso-top,.iso-shade){fill:#C9B8A3}
 .iso:not([data-theme="light"]) [data-cue="teamlead"]:not([data-on])>.iso-solid:nth-last-child(4)>:is(.iso-fill,.iso-top,.iso-shade){fill:#C9B8A3}
@@ -517,8 +537,8 @@ const css = PM_CSS + `
 `;
 
 const label = {
-  nl: 'Een hoek van een werkplaats. Tegen de achterwand een werkbank met een kabel en een mof erop; aan de wand de werkinstructie van één A4, die zich stap voor stap vult, en een klok. Op de zijwand een kalender met de weken rond de livegang. De teamleider staat aan de werkbank en wijst naar de mof; naast hem de monteur met een tablet; jij, de adviseur in petrol, staat een stap terug. Rechts een paneel met kaarten, gemarkeerd als voorbeeld of schema: een werkinstructie met stappen, foto’s en kernpunten; de instructie van de netbeheerder met zes stappen en stap 4 herschreven; TWI en de vier stappen van Job Instruction; het motto en Toyota; klaslokaal tegenover de werkplek; wie traint en wanneer, met de weken rond de livegang en elke ploeg; twintig meldingen, waarvan vijf zonder foto, van de ploegen van zes uur; en de vier Kirkpatrick-niveaus, de smileys en de regel 70-20-10.',
-  en: 'A corner of a workshop. Against the back wall a workbench with a cable and a joint on it; on the wall the one-page work instruction, which fills step by step, and a clock. On the side wall a calendar with the weeks around go-live. The team lead stands at the bench and points at the joint; beside him the technician with a tablet; you, the consultant in petrol, stand a step back. At the right a panel with cards, marked as example or diagram: a work instruction with steps, photos and key points; the grid operator’s instruction with six steps and step 4 rewritten; TWI and the four steps of Job Instruction; the motto and Toyota; classroom versus the floor; who trains and when, with the weeks around go-live and every shift; twenty reports, five without a photo, from the six o’clock crews; and the four Kirkpatrick levels, the smileys and the 70-20-10 rule.',
+  nl: 'Een hoek van een werkplaats. Tegen de achterwand een werkbank met een kabel en een mof erop; aan de wand de werkinstructie van één A4, die zich stap voor stap vult, en een klok. Op de zijwand een kalender met de weken rond de livegang. De teamleider staat aan de werkbank en wijst naar de mof; naast hem de monteur in een oranje werkjas, met een tablet; jij, de adviseur in petrol, staat een stap terug. Rechts een paneel met kaarten, gemarkeerd als voorbeeld of schema: een werkinstructie met stappen, foto’s en kernpunten; de instructie van de netbeheerder met zes stappen en stap 4 herschreven; TWI en de vier stappen van Job Instruction; het motto en Toyota; klaslokaal tegenover de werkplek; wie traint en wanneer, met de weken rond de livegang en elke ploeg; twintig meldingen, waarvan vijf zonder foto, van de ploegen van zes uur; en de vier Kirkpatrick-niveaus, de smileys en de regel 70-20-10.',
+  en: 'A corner of a workshop. Against the back wall a workbench with a cable and a joint on it; on the wall the one-page work instruction, which fills step by step, and a clock. On the side wall a calendar with the weeks around go-live. The team lead stands at the bench and points at the joint; beside him the technician in an orange work jacket, with a tablet; you, the consultant in petrol, stand a step back. At the right a panel with cards, marked as example or diagram: a work instruction with steps, photos and key points; the grid operator’s instruction with six steps and step 4 rewritten; TWI and the four steps of Job Instruction; the motto and Toyota; classroom versus the floor; who trains and when, with the weeks around go-live and every shift; twenty reports, five without a photo, from the six o’clock crews; and the four Kirkpatrick levels, the smileys and the 70-20-10 rule.',
 };
 
 const { data } = await defineFilm(spec, { svg, script: stageScript, css, kitCss: k.ISO_CSS, label });

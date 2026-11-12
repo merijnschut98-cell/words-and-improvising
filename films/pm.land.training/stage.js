@@ -183,7 +183,7 @@ const STAGE = (() => {
   // s4: the motto, Toyota, classroom versus the floor
   S[3] = (b, p, o) => {
     o.motto = op(span(b === 0 ? p : 1, 0.05, 0.3), card(56, 128, NL
-      ? lines(82, [['het motto', 'tw-lab'], ['Heeft de medewerker het'], ['niet geleerd, dan heeft de'], ['instructeur het niet goed'], ['uitgelegd.']], X0, 24)
+      ? lines(82, [['het motto', 'tw-lab'], ['Heeft de medewerker het'], ['niet geleerd, dan heeft de'], ['instructeur het niet'], ['aangeleerd.']], X0, 24)
       : lines(82, [['the motto', 'tw-lab'], ['If the worker hasn’t'], ['learned, the instructor'], ['hasn’t taught.']], X0, 24)));
     o.toyota = op(inAt(b, p, 1), txt(X0, 214, tr('Toyota: in de jaren 50', 'Toyota: in the 1950s'), 'tw-on'));
     const col = (x, list) => lines(268, list, x, 26);
@@ -263,10 +263,12 @@ const STAGE = (() => {
       s += op(b === 0 ? span(p, 0.1 + i * 0.15, 0.2 + i * 0.15) : 1, rect(X0 - 6 + i * 10, y, X1 - X0 + 12 - i * 10, 36, b === 1 && i === 0 ? 'tw-hot' : 'tw-card', 6)
         + txt(X0 + 4 + i * 10, y + 25, `${i + 1} ${a}`, 'tw-lab') + txt(X1 - 4, y + 25, q, 'tw-txt', 'end'));
     });
-    s += op(b === 0 ? span(p, 0.7, 0.9) : 1, txt(X0, 240, 'Donald Kirkpatrick, 1959', 'tw-mute'));
+    // the name and year as the voice says them, early in the beat
+    s += op(b === 0 ? span(p, 0.15, 0.3) : 1, txt(X0, 240, 'Donald Kirkpatrick, 1959', 'tw-mute'));
     o.kirk = s;
-    o.smiley = op(inAt(b, p, 1), txt(X0, 268, tr('de meeste stoppen bij 1', 'most stop at level 1'), 'tw-on')
-      + [0, 1, 2].map((i) => { const cx = X1 - 50 + i * 20; return `<circle class="tw-hole" cx="${cx}" cy="262" r="8"/><path class="tw-line" d="M${cx - 4} ${264 - (i - 1)}Q${cx} ${264 + 3 * (1 - i)} ${cx + 4} ${264 - (i - 1)}"/>`; }).join(''));
+    // the text stays clear of the three faces at the right
+    o.smiley = op(inAt(b, p, 1), txt(X0, 268, tr('meesten stoppen bij 1', 'most stop at level 1'), 'tw-on')
+      + [0, 1, 2].map((i) => { const cx = X1 - 46 + i * 20; return `<circle class="tw-hole" cx="${cx}" cy="262" r="8"/><path class="tw-line" d="M${cx - 4} ${264 - (i - 1)}Q${cx} ${264 + 3 * (1 - i)} ${cx + 4} ${264 - (i - 1)}"/>`; }).join(''));
     o.rule = op(inAt(b, p, 2), lines(304, [[tr('70-20-10: praktijkmodel,', '70-20-10: a practitioner'), 'tw-lab'], [tr('zwak bewijs', 'model, weak evidence'), 'tw-on']]));
     o.expert = op(inAt(b, p, 3), card(340, 42, txt(X0, 368, tr('expert traint, jij checkt', 'expert trains, you check'), 'tw-on'), 'tw-hot'));
     o.rows = sheetRows(6, 1);
