@@ -3,6 +3,7 @@ export default {
   lessons: [
     {
       id: 'pm.plan.wbs',
+      film: 'pm.plan.wbs',
       title: 'Het werk opdelen',
       pre: [
         {
@@ -21,7 +22,7 @@ export default {
       ],
       example: {
         kind: 'worked',
-        text: 'Bij een netbeheerder is het doel om afzeggingen van geplande MS-klussen (werk aan het middenspanningsnet, afgezegd in de laatste week voor de datum) binnen zes maanden van 18% naar onder de 8% te krijgen. Met twee planners en een teamleider zet je vier resultaten op de muur: (1) nulmeting van afzeggingen per oorzaak, (2) een gereedheidscheck afgestemd met planning en het bedrijfsvoeringscentrum (de meldkamer die het net op afstand bedient), (3) een pilot van zes weken in één regio, (4) overdracht aan alle regionale planners.\n\nOnder (1): “3 maanden afzeggingen uit het planningssysteem halen” (16 uur, de data-analist), “indelen per oorzaak met twee planners” (12 uur), “bespreken met de planningsmanager” (4 uur). Onder (3) voegt iemand “schakelmonteurs briefen” toe (de monteurs die het net veilig uit- en inschakelen), die was je vergeten.',
+        text: 'Bij een netbeheerder is het doel om afzeggingen van geplande MS-klussen (werk aan het middenspanningsnet, afgezegd in de laatste week voor de datum) binnen zes maanden van 18% naar onder de 8% te krijgen. Met twee planners en een teamleider zet je vier resultaten op de muur: (1) nulmeting van afzeggingen per oorzaak, (2) een gereedheidscheck afgestemd met planning en het bedrijfsvoeringscentrum (de meldkamer die het net op afstand bedient), (3) een pilot van zes weken in één regio, (4) overdracht aan alle regionale planners.\n\nOnder (1): “3 maanden afzeggingen uit het planningssysteem halen” (16 uur, de data-analist), “indelen per oorzaak met twee planners” (12 uur), “bespreken met de planningsmanager” (4 uur: onder de 8, maar de 8–80-regel is een vuistregel, geen wet; je kunt het ook bij het indelen voegen). Onder (3) voegt iemand “schakelmonteurs briefen” toe (de monteurs die het net veilig uit- en inschakelen), die was je vergeten.',
       },
       said: 'Wat je hoort in projecten: “Moet er echt een hele opdeling komen? We weten toch wat er moet gebeuren.”',
       recall: [
@@ -666,6 +667,7 @@ export default {
     },
     {
       id: 'pm.plan.estimate',
+      film: 'pm.plan.wbs',
       title: 'Eerlijk schatten',
       pre: [
         {
