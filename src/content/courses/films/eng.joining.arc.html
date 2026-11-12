@@ -364,6 +364,24 @@ function beatStarts(scene, lang) {
   return out;
 }
 
+// The stage's u (0..1) in the HTML film. A stage drawn on the Dutch beats
+// (nlBeats, set by beatwarp.js) runs, while caption beat k shows in `lang`,
+// from Dutch beat k's fraction to k+1's, so English is never a beat off.
+function stageU(scene, lang, local, nlBeats) {
+  const u = Math.min(1, Math.max(0, local / scene.dur));
+  if (!nlBeats || lang === 'nl' || !scene.beats || !scene.beats.length) return u;
+  const own = beatStarts(scene, lang);
+  const nl = beatStarts(scene, 'nl');
+  let k = 0;
+  for (let i = 0; i < own.length; i++) if (local >= own[i]) k = i;
+  const a0 = own[k];
+  const a1 = k + 1 < own.length ? own[k + 1] : scene.dur;
+  const b0 = nl[k];
+  const b1 = k + 1 < nl.length ? nl[k + 1] : scene.dur;
+  const p = Math.min(1, Math.max(0, (local - a0) / Math.max(1e-6, a1 - a0)));
+  return Math.min(1, Math.max(0, (b0 + p * (b1 - b0)) / scene.dur));
+}
+
 function beatIndexAt(scene, lang, local) {
   const starts = beatStarts(scene, lang);
   let i = 0;
@@ -2957,7 +2975,7 @@ const STAGE = (() => {
 })();
 
 ;
-/* global STAGE, parseParams, searchOf, timelineOf, sceneIndexAt, clampScene, beatStarts, beatIndexAt, holdLimit, fmtClock, timedAt */
+/* global STAGE, parseParams, searchOf, timelineOf, sceneIndexAt, clampScene, beatStarts, beatIndexAt, holdLimit, fmtClock, timedAt, stageU */
 (function () {
   const DATA = JSON.parse(document.getElementById('film-data').textContent);
   const PRM = parseParams(searchOf(location.search, window.name));
@@ -3126,7 +3144,7 @@ const STAGE = (() => {
     const { si, lt } = local();
     const s = scenes[si];
     const bi = beatIndexAt(s, LANG, lt);
-    const u = reduce ? (s.beats[bi].still ?? s.still) : Math.min(1, Math.max(0, lt / s.dur)); // a beat may set its own still
+    const u = reduce ? (s.beats[bi].still ?? s.still) : stageU(s, LANG, lt, STAGE.nlBeats === true);
     caption(si, bi);
     STAGE.render(si, u); lightFocus();
     if (!scrubbing) range.value = String(Math.round(t * 10) / 10);
