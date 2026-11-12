@@ -44,8 +44,8 @@
 //     card); high on both involve weekly; high influence low interest keep
 //     satisfied, short updates in their terms; low influence high interest keep
 //     informed and let them join, they know the details (s2 b2); draw it on
-//     paper in a quarter of an hour after the intake, update monthly, people
-//     move on the map (s2 b4, the users' pill moves)
+//     paper after the intake, update monthly, people move on the map (s2 b4,
+//     the users' pill moves; in a quarter of an hour: card)
 //   teach 3: the three questions (s3 b1); a laugh and a name, one-on-one this
 //     week (s3 b2; write it down: caption, the name pill); the works council
 //     early, consent on working times such as shift rosters, or a project
@@ -84,15 +84,15 @@
 //   teach 4: map before you move: influence, stance from against to for
 //     (s7 b1); ten to fifteen names (s7 b1 caption); win first the influential
 //     neutral one others listen to (s7 b2), often a respected shift lead, not
-//     the most senior (s7 b2 card); keep the sponsor in reserve, each use
-//     spends goodwill (s7 b4)
+//     the most senior (s7 b2 card); keep the sponsor, who commissioned the
+//     project, in reserve, each use spends goodwill (s7 b4)
 //   teach 5: one-on-one before any group meeting, nobody likes a surprise in
 //     front of peers; "what would make this worth it for you?" (s7 b5); "who
 //     should I talk to first?", the weekly report for two free mornings,
 //     most start with the movable middle rather than the critics, what does a
 //     yes bring them (s7 b5 card; the last also caption)
-//   example (faded, with its reveal): week 4, the readiness check on Tuesday
-//     (s7 b1); fewer jobs cancelled in the week, the check confirms permits,
+//   example (faded, with its reveal): the readiness check on Tuesday (s7 b1;
+//     week 4: card); fewer jobs cancelled in the week, the check confirms permits,
 //     material and access before a crew drives out (s7 b1 card); the head of
 //     planning for it, with little sway (the planning pill: for, low influence,
 //     all of s7); Ans, work preparer, neutral, others listen: start with her,
@@ -110,7 +110,9 @@
 //   teach 2: one owner per deliverable from the client side, who runs it after
 //     you leave; a client who owns nothing only watches: a red flag (s8 b5);
 //     you responsible for the analysis (s8 b5 card); in week one (caption)
-//   teach 3: the sponsor's role in writing: steering group every four weeks,
+//   teach 3: the sponsor defined as the senior client person who backs the
+//     project, decides and removes obstacles (s9 b1, the RACI lesson's own
+//     Sponsor term); the sponsor's role in writing: steering group every four weeks,
 //     scope within a week, obstacles, explaining why (s9 b1, the calendar's
 //     pins); "what can I count on you for, and how do I reach you?" (s9 b1
 //     card)
@@ -120,10 +122,10 @@
 //   teach 5: failures: made alone, too many Cs, filed and forgotten; RASCI,
 //     DACI; the conversation counts more than the letters (s9 b3; S for
 //     Support, Driver, Approver: card); the sharp question (s9 b4)
-//   example: cable manufacturer, weekly planning, the new planning meeting
-//     (s8 b1); its row R planner, A operations manager, C shift leads and
+//   example: cable manufacturer, weekly planning (s8 b1; the new planning
+//     meeting: card head); its row R planner, A operations manager, C shift leads and
 //     sales, I plant manager (s8 card, from b1 to the end); capacity model:
-//     R you, A planner (s8 b4; hours per machine per week: card); four
+//     R you, A planner, hours per machine per week (s8 b4); four
 //     agreements with the sponsor: chairs the steering group every four weeks,
 //     scope within a week, opens the talk with sales, tells the shift leads why
 //     (s9 b1); 30 minutes with the plant manager (s9 b1 card)
@@ -312,7 +314,7 @@ const CAM = [
 ];
 
 // ---------------------------------------------------------------- the film
-const DURS = [34, 36, 32, 28, 28, 36, 40, 36, 30];
+const DURS = [33, 33, 30, 25, 24, 37, 47, 36, 35];
 const B = (nl, en, focus, extra = {}) => ({ nl, en, focus, ...extra });
 const spec = {
   id: 'pm.intake.stakeholders',
@@ -344,7 +346,7 @@ const spec = {
         B('Wie beslist of dit doorgaat? Wie kan het tegenhouden? Wie deed zo’n project al eens?', 'Who decides whether this goes ahead? Who could stop it? And who has done this before?', ['asks', 'jij']),
         B('Op de tweede vraag: een lachje en een naam. Schrijf hem op; deze week één op één.', 'The second question gets a laugh and a name. Write it down; one-on-one this week.', 'board'),
         B('Een teamleider: ploegen gaan {n:30}% van de tijd naar storingen. Cruciale data.', 'A team lead: crews get pulled to faults {n:30}% of the time. Key data.', ['note', 'teamlead']),
-        B('Check vroeg de ondernemingsraad: instemming bij nieuwe roosters, anders maanden vertraging.', 'Check the works council early: its consent on shift patterns, or months of delay.', 'or'),
+        B('Check vroeg de ondernemingsraad: instemming bij nieuwe werktijden, anders mogelijk maanden vertraging.', 'Check the works council early: its consent on working times, or possibly months of delay.', 'or'),
       ],
     },
     {
@@ -385,7 +387,7 @@ const spec = {
     {
       id: 's8', lesson: RACI, level: 2, dur: DURS[7], title: { nl: 'Eén A per resultaat', en: 'One A per deliverable' },
       beats: [
-        B('Een {t:RACI|RACI}: rollen per resultaat, met vier Engelse letters.', 'A {t:RACI|RACI}: roles per deliverable, with four letters.', 'doc', { cue: { RACI: 'raci' } }),
+        B('Een {t:RACI|RACI}: rollen per resultaat, vier letters voor Engelse woorden.', 'A {t:RACI|RACI}: roles per deliverable, with four letters.', 'doc', { cue: { RACI: 'raci' } }),
         B('{t:Responsible|Responsible} doet het werk. {t:Accountable|Accountable} zegt “dit is af”: precies één persoon.', '{t:Responsible|Responsible} does the work. {t:Accountable|Accountable} says “this is done”: exactly one person.', 'raci', { cue: { Responsible: 'rR', Accountable: 'rA' } }),
         B('{t:Consulted|Consulted} vooraf, in gesprek. {t:Informed|Informed} achteraf. Twee namen onder A: geen eigenaar.', '{t:Consulted|Consulted} before, two-way. {t:Informed|Informed} after, one way. Two names under A: no owner.', 'raci', { cue: { Consulted: 'rC', Informed: 'rI' } }),
         B('Het capaciteitsmodel: R jij, A de planner.', 'The capacity model: R you, A the planner.', ['blk2', 'jij']),
@@ -395,7 +397,7 @@ const spec = {
     {
       id: 's9', lesson: RACI, level: 2, dur: DURS[8], title: { nl: 'Het RACI-gesprek', en: 'The RACI conversation' },
       beats: [
-        B('Spreek de rol van de sponsor af, op papier: stuurgroep, scope, obstakels, uitleggen waarom.', 'Agree the sponsor’s role in writing: steering group, scope, obstacles, explaining why.', ['deals', 'sponsor']),
+        B('De sponsor steunt, beslist en ruimt obstakels op. Leg die rol samen op papier vast.', 'The sponsor backs, decides and clears obstacles. Agree that role in writing.', ['deals', 'sponsor']),
         B('Twee namen bij het ploegenrooster? Wie beslist als jullie het oneens zijn? Liever week {n:2} dan {n:12}.', 'Two names on the shift pattern? Who decides if you disagree? Better week {n:2} than {n:12}.', 'clash'),
         B('Valkuilen: alleen gemaakt, te veel C’s, opgeborgen. RASCI of DACI: het gesprek telt.', 'Pitfalls: made alone, too many Cs, filed away. RASCI or DACI: the conversation counts.', 'vars'),
         B('Scherpe vraag: als dit misgaat, wiens telefoon gaat dan?', 'A sharp question: if this goes wrong, whose phone rings?', ['phone', 'jij']),
@@ -403,7 +405,7 @@ const spec = {
     },
   ],
   skip: [
-    { lesson: RACI, term: 'Sponsor', reason: 'Same name as the term Sponsor of pm.intake.stakeholders, which scene 1 names with its cue (the sponsor in the room); the build resolves a shared term name to the first served lesson. Scene 9 shows what the RACI lesson adds: the sponsor\'s role agreed in writing (steering group every four weeks, scope within a week, obstacles, explaining why).' },
+    { lesson: RACI, term: 'Sponsor', reason: 'Same name as the term Sponsor of pm.intake.stakeholders, which scene 1 names with its cue (the sponsor in the room); the build resolves a shared term name to the first served lesson. Scene 9 beat 1 says the RACI lesson\'s own definition in caption and narration (the senior client person who backs the project, decides and removes obstacles) and shows the role agreed in writing (steering group every four weeks, scope within a week, the talk with sales, explaining why).' },
   ],
 };
 
@@ -413,92 +415,92 @@ const spec = {
 // it on a card. No symbols the voice would read aloud, no quotes or brackets.
 const SAY = [
   [ // s1 who is who
-    { nl: 'Een netbeheerder wil aansluitingen voor kleinzakelijke klanten sneller leveren. Een {t:Stakeholder|stakeholder} is iedereen die invloed heeft op dat project, of er last of baat van heeft.',
-      en: 'A grid operator wants faster connections for small business customers. A {t:Stakeholder|stakeholder} is anyone who affects that project, or is affected by it.' },
+    { nl: 'Een netbeheerder wil kleinzakelijke klanten sneller aansluiten. Een {t:Stakeholder|stakeholder} is iedereen met invloed op dat project, of die er last of baat van heeft.',
+      en: 'A grid operator wants to connect small business customers faster. A {t:Stakeholder|stakeholder} is anyone who affects that project, or is affected by it.' },
     { nl: 'Vier rollen tellen. De {t:Sponsor|sponsor} is eigenaar van budget en resultaat, en beslist: de directeur klantaansluitingen.',
-      en: 'Four roles matter. The {t:Sponsor|sponsor} owns the budget and the result, and decides: the director of customer connections.' },
+      en: 'Four roles matter. The {t:Sponsor|sponsor} owns budget and result, and decides: the director of customer connections.' },
     { nl: 'De {t:Proceseigenaar|proceseigenaar} runt het proces en leeft met de verandering: het hoofd werkvoorbereiding. Gebruikers, van wie het werk verandert: de werkvoorbereiders en monteurs.',
-      en: 'The {t:Process owner|process owner} runs the process and lives with the change: the head of work preparation. Users, whose work changes: the work planners and technicians.' },
-    { nl: '{t:Blokkeerder|Blokkeerders} zijn wie in belang, macht of tijd geraakt wordt: vaak de IT-afdeling, de ondernemingsraad, of een ploegleider met twintig dienstjaren.',
-      en: '{t:Blocker|Blockers} are those whose interest, power or time is hit: often IT, the works council, or a shift lead with twenty years in.' },
+      en: 'The {t:Process owner|process owner} runs the process and lives with the change: the head of work preparation. Users, whose work changes: work planners and technicians.' },
+    { nl: '{t:Blokkeerder|Blokkeerders}: wie in belang, macht of tijd geraakt wordt. Vaak de IT-afdeling, de ondernemingsraad, of een ploegleider met twintig dienstjaren.',
+      en: '{t:Blocker|Blockers}: anyone whose interest, power or time is hit. Often IT, the works council, or a shift lead with twenty years in.' },
   ],
   [ // s2 on the map
     { nl: 'Zet ze op een {t:Stakeholdermap|stakeholdermap}. Invloed: kunnen ze het stoppen of versnellen? Belang: verandert hun werk?',
       en: 'Put them on a {t:Stakeholder map|stakeholder map}. Influence: can they stop it or speed it up? Interest: does it change their work?' },
-    { nl: 'Hoog op allebei: wekelijks betrekken. Veel invloed, weinig belang: tevreden houden en kort bijpraten, in hun taal. Andersom: informeren en laten meedoen, zij kennen de details.',
-      en: 'High on both: involve weekly. High influence, low interest: keep satisfied, with short updates in their terms. The reverse: keep informed and let them join, they know the details.' },
-    { nl: 'Invloedrijk en stil: de IT-eigenaar van de planning en de teamleiders die de ploegen indelen. Niemand nodigde ze uit, dus plan je drie één-op-ééntjes in week één.',
-      en: 'Influential and quiet: the IT owner of the planning system and the team leads who assign the crews. Nobody invited them, so you book three one-on-ones in week one.' },
-    { nl: 'Teken de map na het eerste gesprek in een kwartier op papier, werk hem elke maand bij: mensen schuiven mee.',
-      en: 'Draw it on paper in fifteen minutes after the intake, update it monthly: people move.' },
+    { nl: 'Hoog op allebei: wekelijks betrekken. Veel invloed, weinig belang: tevreden houden, kort bijpraten in hun taal. Andersom: informeren en laten meedoen, zij kennen de details.',
+      en: 'High on both: involve weekly. High influence, low interest: keep satisfied, short updates in their terms. The reverse: keep informed and let them join, they know the details.' },
+    { nl: 'Invloedrijk en stil: de IT-eigenaar en de teamleiders die ploegen indelen. Niemand nodigde ze uit: plan in week één drie één-op-ééntjes.',
+      en: 'Influential and quiet: the IT owner and the team leads who assign crews. Nobody invited them: book three one-on-ones in week one.' },
+    { nl: 'Teken de map na het eerste gesprek op papier en werk hem maandelijks bij: mensen schuiven mee.',
+      en: 'Draw it on paper after the intake and update it monthly: people move.' },
   ],
   [ // s3 just ask
-    { nl: 'Vraag gewoon: wie beslist of dit doorgaat? Wie kan het tegenhouden, ook zonder het te zeggen? En wie deed zo\'n project al eens?',
+    { nl: 'Vraag: wie beslist of dit doorgaat? Wie kan het tegenhouden, ook zonder het te zeggen? En wie deed zo\'n project al eens?',
       en: 'Just ask: who decides whether this goes ahead? Who could stop it, even without saying so? And who has done this before?' },
     { nl: 'Op de tweede vraag volgt vaak een lachje en een naam: spreek die persoon deze week één op één.',
       en: 'The second often gets a laugh and a name: see that person one-on-one this week.' },
-    { nl: 'Zo hoor je dat ploegen {n:30} procent van de tijd naar storingen worden gehaald. Cruciale data.',
-      en: 'That is how you learn that crews get pulled to fault repairs {n:30} percent of the time. Key data.' },
-    { nl: 'Check ook vroeg de ondernemingsraad: die moet instemmen met nieuwe werktijden, zoals ploegenroosters, anders ligt het project maanden stil.',
-      en: 'And check the works council early: it must consent to new working times, like shift patterns, or the project stalls for months.' },
+    { nl: 'Zo hoor je dat ploegen {n:30} procent van de tijd naar storingen worden gehaald: cruciale data.',
+      en: 'So you learn crews get pulled to faults {n:30} percent of the time: key data.' },
+    { nl: 'Check ook vroeg de ondernemingsraad: die moet instemmen met nieuwe werktijden, zoals ploegenroosters, anders kan het project maanden stilliggen.',
+      en: 'Check the works council early: it must consent to new working times, like shift patterns, or the project can stall for months.' },
   ],
   [ // s4 resistance never says no
     { nl: 'Weerstand klinkt zelden als nee: gemiste afspraken, mensen die niet vrijgemaakt worden, of: laten we het in het managementteam bespreken.',
       en: 'Resistance rarely sounds like no: missed meetings, people who aren\'t freed up, or: let\'s discuss it in the management team.' },
-    { nl: '{t:Escalatie|Escalatie}, een vastgelopen punt voorleggen aan iemand hoger die kan beslissen, is niet je eerste stap. Vraag eerst: hoe moet dit eruitzien om voor jouw team te werken?',
+    { nl: '{t:Escalatie|Escalatie}, een vastgelopen punt voorleggen aan iemand hoger die kan beslissen, komt als laatste. Vraag eerst: hoe moet dit eruitzien om voor jouw team te werken?',
       en: '{t:Escalation|Escalation}, taking a blocked issue to someone higher up who can decide, comes last. First ask: what would this need to look like to work for your team?' },
     { nl: 'Zit een besluit echt vast, ga dan naar de sponsor, en zeg het de persoon vooraf.',
       en: 'Only when a decision is truly blocked, go to the sponsor, and tell the person beforehand.' },
   ],
   [ // s5 where is the power
-    { nl: 'Valkuil: alleen namen uit het schema van wie onder wie valt. De echte macht zit vaak bij een planner die iedereen om raad vraagt, of bij de vakbondsman.',
-      en: 'A typical failure: the map holds only names from the org chart. The real power often sits with a planner everyone asks for advice, or the union rep.' },
+    { nl: 'Valkuil: alleen namen uit het schema van wie onder wie valt. De echte macht zit vaak bij een planner die iedereen om raad vraagt, of de vakbondsman.',
+      en: 'A typical failure: only names from the org chart. The real power often sits with a planner everyone asks for advice, or the union rep.' },
     { nl: 'De map aan de klant laten zien? Experts verschillen. Velen houden een neutrale versie voor het team, en hun eigen notities privé.',
-      en: 'Show the map to the client? Experts argue about that. Many keep a neutral version for the team, and their own notes private.' },
+      en: 'Show the map to the client? Experts argue. Many keep a neutral version for the team, and their own notes private.' },
     { nl: 'Vraag de sponsor: wiens steun hebben we nodig die we nog niet hebben?',
       en: 'Ask the sponsor: whose support do we need that we don\'t have yet?' },
   ],
   [ // s6 you trade
-    { nl: 'Je kunt niemand iets opdragen: je ruilt. Wat jij biedt, heet {t:Valuta|valuta}: hulp, informatie, zichtbaarheid, tijdwinst, een probleem minder.',
-      en: 'You can\'t order anyone around: you trade. What you offer is {t:Currency|currency}: help, information, visibility, time saved, a problem off their plate.' },
-    { nl: 'Mensen geven terug wat ze krijgen. Geef dus eerst: de data die hij al maanden wil, of een bevinding voordat die naar de {t:Stuurgroep|stuurgroep} gaat, de leiding die je project, vaak maandelijks, bewaakt.',
-      en: 'People repay what they receive. So give first: the data they have wanted for months, or a finding before it goes to the {t:Steering committee|steering committee}, the senior people who oversee your project, often monthly.' },
+    { nl: 'Opdragen kan niet: je ruilt. Wat jij biedt, heet {t:Valuta|valuta}: hulp, informatie, zichtbaarheid, tijdwinst, een probleem minder.',
+      en: 'You can\'t give orders: you trade. What you offer is {t:Currency|currency}: help, information, visibility, time saved, a problem off their plate.' },
+    { nl: 'Mensen geven terug wat ze krijgen, dus geef eerst: data waar iemand op wacht, of een bevinding voordat die naar de {t:Stuurgroep|stuurgroep} gaat: de leiding die vaak maandelijks je project bewaakt en grote besluiten neemt.',
+      en: 'People repay what they receive, so give first: data someone wants, or a finding before it goes to the {t:Steering committee|steering committee}: the senior people who oversee your project, often monthly, and take its big decisions.' },
     { nl: '{t:Geloofwaardigheid|Geloofwaardigheid}, ook als jongste, komt niet uit een titel: je cijfers kloppen, je doet wat je zei wanneer je het zei, en je staat op de vloer.',
       en: '{t:Credibility|Credibility}, even as the youngest, doesn\'t come from a title: your numbers are right, you do what you said, when you said, and you are on the floor.' },
     { nl: 'Ontbreekt het, dan hoor je: interessant, we zien wel. En dan gebeurt er niks.',
       en: 'When it\'s missing, you hear: interesting, let\'s see. Then nothing happens.' },
   ],
   [ // s7 whom do you win first
-    { nl: 'Eerst in kaart brengen, dan bewegen. De {t:Stakeholderkaart|stakeholderkaart} zet iedereen op invloed en op houding, van tegen tot voor. Week vier: dinsdag presenteer jij een gereedheidscheck.',
-      en: 'Map before you move. This {t:Stakeholder map|stakeholder map} puts everyone on influence and on stance, from against to for. Week four: on Tuesday you present a readiness check.' },
-    { nl: 'Win eerst Ans, werkvoorbereider: veel invloed, nog neutraal, en anderen luisteren naar haar. Toon haar de data, laat haar gaten schieten, en neem haar beste verbetering zichtbaar over.',
-      en: 'First win Ans, a work preparer: influential, still neutral, and others listen to her. Show her the data, let her poke holes in it, and visibly adopt her best fix.' },
+    { nl: 'Eerst in kaart brengen, dan bewegen: de {t:Stakeholderkaart|stakeholderkaart} zet iedereen op invloed en houding, van tegen tot voor. Dinsdag: jouw gereedheidscheck.',
+      en: 'Map before you move: this {t:Stakeholder map|stakeholder map} puts everyone on influence and stance, from against to for. Tuesday: your readiness check.' },
+    { nl: 'Win eerst Ans, werkvoorbereider: veel invloed, nog neutraal, en anderen luisteren naar haar. Toon haar de data, laat haar gaten schieten, neem haar beste verbetering zichtbaar over.',
+      en: 'First win Ans, a work preparer: influential, still neutral, and others listen to her. Show her the data, let her poke holes, and visibly adopt her best fix.' },
     { nl: 'Dan het hoofd uitvoering, die nog twijfelt, één op één. Zijn valuta: ploegen die niet voor niks uitrukken. Vraag: wat moet erin zitten om erachter te staan?',
       en: 'Then the sceptical head of execution, one-on-one. His currency: fewer wasted crew trips. Ask: what would have to be in this for you to back it?' },
-    { nl: 'Houd de sponsor achter de hand: elke inzet kost krediet. Dinsdag legt Ans zelf uit wat zij verbeterde.',
-      en: 'Keep the sponsor in reserve: each call spends goodwill. On Tuesday, Ans explains what she improved.' },
-    { nl: 'Praat één op één vóór elk groepsoverleg; niemand wil overvallen worden waar collega\'s bij zijn. Vraag: wat maakt dit de moeite waard voor jou?',
-      en: 'Talk one-on-one before any group meeting; nobody likes a surprise in front of peers. Ask: what would make this worth it for you?' },
+    { nl: 'Houd de sponsor, die het project liet starten, achter de hand: elke inzet kost krediet. Dinsdag legt Ans uit wat zij verbeterde.',
+      en: 'Keep the sponsor, who commissioned the project, in reserve: each call spends goodwill. On Tuesday, Ans explains what she improved.' },
+    { nl: 'Praat één op één vóór elk groepsoverleg: niemand wil overvallen worden waar collega\'s bij zijn. Vraag: wat maakt dit de moeite waard voor jou?',
+      en: 'Talk one-on-one before any group meeting: nobody likes a surprise in front of peers. Ask: what would make this worth it for you?' },
   ],
   [ // s8 one A per deliverable
-    { nl: 'Een kabelfabrikant wil een betere weekplanning. Je maakt een {t:RACI|RACI}: rollen per resultaat, in vier Engelse letters. Eerst voor het nieuwe planningsoverleg.',
-      en: 'A cable manufacturer wants better weekly planning. You draft a {t:RACI|RACI}: roles per deliverable, in four letters. First for the new planning meeting.' },
-    { nl: '{t:Responsible|Responsible} doet het werk. {t:Accountable|Accountable} is eigenaar van het resultaat en zegt: dit is af. Dat is precies één persoon.',
-      en: '{t:Responsible|Responsible} does the work. {t:Accountable|Accountable} owns the result and says: this is done. That is exactly one person.' },
+    { nl: 'Een kabelfabrikant wil een betere weekplanning. Je maakt een {t:RACI|RACI}: rollen per resultaat, vier letters voor Engelse woorden.',
+      en: 'A cable manufacturer wants better weekly planning. You draft a {t:RACI|RACI}: roles per deliverable, in four letters.' },
+    { nl: '{t:Responsible|Responsible} doet het werk. {t:Accountable|Accountable} is eigenaar van het resultaat en zegt: dit is af. Precies één persoon.',
+      en: '{t:Responsible|Responsible} does the work. {t:Accountable|Accountable} owns the result and says: this is done. Exactly one person.' },
     { nl: '{t:Consulted|Consulted} geeft vooraf input, in gesprek. {t:Informed|Informed} hoort het achteraf. Twee namen onder A: niemand is eigenaar.',
       en: '{t:Consulted|Consulted} gives input before, in a two-way talk. {t:Informed|Informed} hears after, one way. Two names under A: nobody owns it.' },
-    { nl: 'En voor het capaciteitsmodel: R jij, A de planner.',
-      en: 'And for the capacity model: R you, A the planner.' },
+    { nl: 'Voor het capaciteitsmodel, uren per machine per week: R jij, A de planner.',
+      en: 'For the capacity model, hours per machine per week: R you, A the planner.' },
     { nl: 'Eén eigenaar per resultaat, liefst bij de klant, die het draait als jij weg bent. Bezit de klant niets, dan kijkt die alleen toe: een rode vlag.',
       en: 'One owner per deliverable, from the client side, who runs it after you leave. If the client owns nothing, they only watch: a red flag.' },
   ],
   [ // s9 the RACI conversation
-    { nl: 'Leg ook de rol van de sponsor vast: elke vier weken de stuurgroep voorzitten, binnen een week over de omvang beslissen, het gesprek met verkoop openen, de ploegleiders uitleggen waarom.',
-      en: 'Put the sponsor\'s role in writing too: chairs the steering group every four weeks, decides scope within a week, opens the talk with sales, tells the shift leads why.' },
-    { nl: 'Willen twee leidinggevenden allebei over het ploegenrooster beslissen? Vraag: wie beslist er als jullie het oneens zijn? Anders beslist de sponsor. Liever in week {n:2} dan in week {n:12}.',
-      en: 'Two managers both claim the shift pattern? Ask: who decides if you disagree? Otherwise the sponsor decides. Better in week {n:2} than in week {n:12}.' },
-    { nl: 'Valkuilen: alleen gemaakt, te veel C\'s, of in de la. Varianten als RASCI en DACI bestaan, maar het gesprek telt meer dan de letters.',
-      en: 'Failures: made alone, too many Cs, or filed and forgotten. Variants like RASCI and DACI exist, but the conversation counts more than the letters.' },
+    { nl: 'De sponsor bij de klant steunt, beslist en ruimt obstakels op. Leg dat samen vast: elke vier weken de stuurgroep voorzitten, binnen een week over de omvang beslissen, het gesprek met verkoop openen, de ploegleiders uitleggen waarom.',
+      en: 'The client\'s senior sponsor backs the project, decides and clears obstacles. Agree in writing: chairs the steering group every four weeks, decides scope within a week, opens the talk with sales, tells the shift leads why.' },
+    { nl: 'Willen twee leidinggevenden allebei over het ploegenrooster beslissen? Vraag: wie beslist als jullie het oneens zijn? Anders de sponsor. Liever week {n:2} dan week {n:12}.',
+      en: 'Two managers both claim the shift pattern? Ask: who decides if you disagree? Otherwise the sponsor. Better week {n:2} than week {n:12}.' },
+    { nl: 'Valkuilen: alleen gemaakt, te veel C\'s, of in de la. RASCI of DACI: het gesprek telt meer dan de letters.',
+      en: 'Failures: made alone, too many Cs, or filed and forgotten. RASCI or DACI: the conversation counts more than the letters.' },
     { nl: 'Scherpe vraag: als dit misgaat, wiens telefoon gaat dan?',
       en: 'A sharp question: if this goes wrong, whose phone rings?' },
   ],

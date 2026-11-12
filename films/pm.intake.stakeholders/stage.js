@@ -161,7 +161,7 @@ const STAGE = (() => {
         return s + txt(x + 64, 214, t, 'pm-txt', 'middle');
       };
       o.private = sheet(X0 + 2, tr('team: neutraal', 'team: neutral')) + op(span(b === 1 ? p : 1, 0.3, 0.5), sheet(X1 - 130, tr('jij: privé', 'you: private'), true));
-      if (b === 1) o.text = op(span(p, 0.5, 0.7), lines(268, [[tr('“weinig steun” op een', '“low support” on a')], [tr('dia doet schade', 'slide does damage'), 'pm-on'], [tr('experts verschillen', 'experts argue'), 'pm-mute']]));
+      if (b === 1) o.text = op(span(p, 0.25, 0.4), lines(268, [[tr('“weinig steun” op een', '“low support” on a')], [tr('dia doet schade', 'slide does damage'), 'pm-on'], [tr('experts verschillen', 'experts argue'), 'pm-mute']]));
       if (b === 2) o.text = lines(268, [[tr('aan de sponsor:', 'for the sponsor:')], [tr('wiens steun missen we?', 'whose support is missing?'), 'pm-on']]);
     }
     return { tag: false, parts: o };
@@ -177,7 +177,7 @@ const STAGE = (() => {
       let c = txt(X0, 74, tr('geloofwaardig', 'credibility'), 'pm-big');
       ticks.forEach((t, i) => { const y = 102 + i * 30; c += rect(X0 + 2, y - 15, 18, 18, 'pm-letter', 4) + `<path class="pm-axis" d="M${X0 + 6} ${y - 6}L${X0 + 10} ${y - 2}L${X0 + 17} ${y - 11}"/>` + txt(X0 + 30, y, t, 'pm-txt'); });
       if (b === 2) c += op(span(p, 0.3, 0.45), txt(X0, 210, tr('1 observatie > 10 dia’s', '1 observation > 10 slides'), 'pm-on'));
-      if (b === 3) c += lines(226, [[tr('“Interessant, we zien wel.”', '“Interesting, let’s see.”'), 'pm-on'], [tr('1 fout getal in week 2:', '1 wrong number in week 2:')], [tr('elk getal dubbel gecheckt', 'every number checked twice')]].map((l, i) => (span(p, 0.15 + i * 0.25, 0.25 + i * 0.25) > 0.5 ? l : [''])));
+      if (b === 3) c += lines(226, [[tr('“Interessant, we zien wel.”', '“Interesting, let’s see.”'), 'pm-on'], [tr('1 fout getal in week 2:', '1 wrong number in week 2:')], [tr('elk getal dubbel gecheckt', 'every number checked twice')]].map((l, i) => (span(p, 0.08 + i * 0.12, 0.16 + i * 0.12) > 0.5 ? l : [''])));
       o.cred = c;
     }
     return { tag: false, parts: o };
@@ -212,7 +212,7 @@ const STAGE = (() => {
     o.rA = row(138, 'A', tr('hoofd productie', 'operations manager'), show(1));
     o.rC = row(170, 'C', tr('ploegleiders, verkoop', 'shift leads, sales'), show(2));
     o.rI = row(202, 'I', tr('fabrieksdirecteur', 'plant manager'), show(3));
-    if (b === 2) o.text = op(span(p, 0.5, 0.7), lines(250, [[tr('2× A: geen eigenaar', 'two As: no owner'), 'pm-on'], [tr('10× C: trage besluiten', 'ten Cs: slow decisions')]]));
+    if (b === 2) o.text = op(span(p, 0.2, 0.35), lines(250, [[tr('2× A: geen eigenaar', 'two As: no owner'), 'pm-on'], [tr('10× C: trage besluiten', 'ten Cs: slow decisions')]]));
     if (b >= 3) {
       o.blk2 = op(b === 3 ? span(p, 0.1, 0.4) : 1, txt(X0, 248, tr('capaciteitsmodel', 'capacity model'), 'pm-big') + row(280, 'R', tr('jij', 'you'), 1) + row(312, 'A', 'planner', 1) + (b === 3 ? txt(X0, 346, tr('uren per machine per week', 'hours per machine a week'), 'pm-mute') : ''));
     }
@@ -232,11 +232,11 @@ const STAGE = (() => {
       c += pill(X0 + 92, 100, tr('hoofd 1', 'head 1')) + pill(X0 + 196, 100, tr('hoofd 2', 'head 2'));
       const a = span(p, 0.35, 0.6);
       c += op(a, `<path class="pm-arrow" d="${arrowD(XM, 122, XM, 170, 9)}"/>` + pill(XM, 190, tr('wie beslist?', 'who decides?'), 'pm-new'));
-      c += op(span(p, 0.5, 0.7), lines(250, [[tr('los het niet zelf op', 'don’t solve it yourself')], [tr('anders: de sponsor', 'else: the sponsor')], [tr('week 2, niet week 12', 'week 2, not week 12'), 'pm-on']]));
+      c += op(span(p, 0.35, 0.5), lines(250, [[tr('los het niet zelf op', 'don’t solve it yourself')], [tr('anders: de sponsor', 'else: the sponsor')], [tr('week 2, niet week 12', 'week 2, not week 12'), 'pm-on']]));
       o.clash = c;
     }
     if (b === 2) {
-      o.vars = lines(74, [[tr('valkuilen', 'pitfalls'), 'pm-big'], [tr('alleen gemaakt', 'made alone')], [tr('te veel C’s', 'too many Cs')], [tr('opgeborgen, vergeten', 'filed and forgotten')], [''], [tr('varianten', 'variants'), 'pm-big'], [tr('RASCI: S voor support', 'RASCI: S for Support')], [tr('DACI: driver, approver', 'DACI: Driver, Approver')]].map((l, i) => (i < 4 || span(p, 0.45, 0.6) > 0.5 ? l : [''])))
+      o.vars = lines(74, [[tr('valkuilen', 'pitfalls'), 'pm-big'], [tr('alleen gemaakt', 'made alone')], [tr('te veel C’s', 'too many Cs')], [tr('opgeborgen, vergeten', 'filed and forgotten')], [''], [tr('varianten', 'variants'), 'pm-big'], [tr('RASCI: S voor support', 'RASCI: S for Support')], [tr('DACI: driver, approver', 'DACI: Driver, Approver')]].map((l, i) => (i < 4 || span(p, 0.3, 0.45) > 0.5 ? l : [''])))
         + op(span(p, 0.75, 0.9), txt(X0, 372, tr('het gesprek telt', 'the conversation counts'), 'pm-on'));
     }
     if (b === 3) o.phone = lines(150, [[tr('Als dit misgaat,', 'If this goes wrong,'), 'pm-big'], [tr('wiens telefoon gaat?', 'whose phone rings?'), 'pm-on']]);
