@@ -56,5 +56,46 @@ export function isAndroid(nav) {
   return /Android/i.test(nav.userAgent || '');
 }
 
-// Desktop browsers handle several mic streams fine; Android does not.
-export const canShareMic = (nav) => !isAndroid(nav);
+// Desktop browsers handle several mic streams fine; Android does not, unless
+// the recogniser listens to the page's own track (start(audioTrack)), so the
+// page opens the mic once for everything.
+// trackInput: true | false | undefined (not tested yet on this browser).
+export const canShareMic = (nav, trackInput) => !isAndroid(nav) || trackInput === true;
+
+// How a spoken round uses the microphone.
+//   'mic'         only the recogniser listens; it opens the mic itself (as before)
+//   'track'       one getUserMedia stream: its track feeds the recogniser, recorder and meter
+//   'probe'       not known yet: open the stream, test start(track), then decide again
+//   'separate'    no track input, desktop: recorder/meter on a stream, recogniser on its own
+//   'speech-only' no track input, Android: the guard, recogniser only
+// extras: the recorder or the loudness meter wants the mic too.
+export function micRoute({ android, trackInput, extras }) {
+  if (!extras) return 'mic';
+  if (trackInput === true) return 'track';
+  if (trackInput === undefined) return 'probe';
+  return android ? 'speech-only' : 'separate';
+}
+
+// The probe calls start() with an ended clone of the mic track. An engine that
+// takes tracks must throw InvalidStateError (spec: readyState not "live"); one
+// that ignores the argument starts on the mic instead and throws nothing.
+export const trackProbeVerdict = (err) => !!err && err.name === 'InvalidStateError';
+
+// The probe's answer, kept per device (not synced) and per browser version: a
+// Chrome update gets tested again.
+export const TRACK_KEY = 'spraakwater:micTrack';
+export const trackInputRecord = (ok, ua) => JSON.stringify({ ok: !!ok, ua: String(ua || '') });
+export function storedTrackInput(raw, ua) {
+  try {
+    const rec = JSON.parse(raw);
+    if (rec && typeof rec.ok === 'boolean' && rec.ua === String(ua || '')) return rec.ok;
+  } catch { /* nothing kept */ }
+  return undefined;
+}
+// storage: localStorage (passed in, so this file stays free of the DOM).
+export function deviceTrackInput(storage, nav) {
+  try { return storedTrackInput(storage.getItem(TRACK_KEY), nav && nav.userAgent); } catch { return undefined; }
+}
+export function keepTrackInput(storage, nav, ok) {
+  try { storage.setItem(TRACK_KEY, trackInputRecord(ok, nav && nav.userAgent)); } catch { /* private mode */ }
+}

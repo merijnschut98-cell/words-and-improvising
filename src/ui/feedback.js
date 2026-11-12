@@ -20,7 +20,7 @@ import { rateLink, askFriend, newNonce } from '../core/friend.js';
 import { baselineEntry } from '../core/programme.js';
 import { recordings, recordingMeta } from '../core/recordings.js';
 import { recorderSupported } from '../core/recorder.js';
-import { clashNotice, canShareMic } from '../core/micshare.js';
+import { clashNotice, canShareMic, deviceTrackInput } from '../core/micshare.js';
 
 function speak(text, lang) {
   if (!window.speechSynthesis) return;
@@ -284,8 +284,9 @@ export function renderFeedback(app, params, root) {
   if (audio) audioUrl = URL.createObjectURL(audio);
 
   // Recording is opt-in. After a spoken round, ask once, with the Android caveat.
-  // Not on Android: spoken rounds there never record (it starves speech recognition).
-  const askRecord = mode === 'speak' && recorderSupported && canShareMic(navigator) && !app.state.settings.record && !(app.state.ui || {}).recordAsked ? (() => {
+  // Not on Android, unless this Chrome passed the shared-track test: without it
+  // spoken rounds there never record (a second stream starves speech recognition).
+  const askRecord = mode === 'speak' && recorderSupported && canShareMic(navigator, deviceTrackInput(localStorage, navigator)) &&!app.state.settings.record && !(app.state.ui || {}).recordAsked ? (() => {
     const answer = (on) => {
       app.setState({ ...app.state, ui: { ...(app.state.ui || {}), recordAsked: true } });
       if (on) app.updateSettings({ record: true });
