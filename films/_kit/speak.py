@@ -120,6 +120,28 @@ def aligned_groups(chunk):
     return out
 
 
+def word_spans(counts, groups):
+    """Per spoken word, the sample span of its phoneme words: counts from
+    token_groups, groups from aligned_groups (counts[-1] == len(groups)).
+
+    A prefix can read as more phoneme words than the whole sentence: espeak-ng
+    reads "... as it" as two words but glues "as it is." into one (ˌæzɪtˈɪz).
+    So no count may exceed a later one; the words glued on take no time.
+    """
+    counts = list(counts)
+    for i in range(len(counts) - 2, -1, -1):
+        counts[i] = min(counts[i], counts[i + 1])
+    spans, prev = [], 0
+    for c in counts:
+        if c > prev:
+            spans.append([groups[prev][0], groups[c - 1][1]])
+        else:  # espeak-ng glued this word to the one before it
+            g = groups[prev - 1][1] if prev else 0
+            spans.append([g, g])
+        prev = c
+    return spans
+
+
 def edges(a, rate):
     """First and last sample to keep: the measured sound, plus KEEP either side."""
     env = np.abs(a)
@@ -192,14 +214,8 @@ def main():
             groups = aligned_groups(chunks[0]) if align else None
             counts = token_groups(voice, text)
             if groups is not None and counts and counts[-1] == len(groups):
-                words, prev = [], 0
-                for tok, c in zip(text.split(), counts):
-                    if c > prev:
-                        g0, g1 = groups[prev][0], groups[c - 1][1]
-                    else:  # espeak-ng glued this word to the one before it
-                        g0 = g1 = groups[prev - 1][1] if prev else 0
-                    words.append({'w': tok, 'start': round(min(max(0, (g0 - s) / rate), dur), 4), 'end': round(min(max(0, (g1 - s) / rate), dur), 4)})
-                    prev = c
+                words = [{'w': tok, 'start': round(min(max(0, (g0 - s) / rate), dur), 4), 'end': round(min(max(0, (g1 - s) / rate), dur), 4)}
+                         for tok, (g0, g1) in zip(text.split(), word_spans(counts, groups))]
                 meta['words'], meta['source'] = words, 'piper'
             else:
                 if groups is not None:
