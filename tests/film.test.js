@@ -73,6 +73,20 @@ test('speak variant: governance, MUM-effect, keep mum and escalatieroute in Dutc
   assert.equal(speakOf([en], 'en'), en);
 });
 
+// espeak-ng reads agile the Dutch way ("AA-gie-le") and stresses HYbride: said
+// as the floor says them, "etsjail" and "hiebriede"; Dutch only, and the
+// moulding film's "hybride machine" (rendered video) keeps its voice
+// (pm.plan.method)
+test('speak variant: agile and hybride in Dutch', () => {
+  const nl = (s) => speakOf([s], 'nl');
+  assert.equal(nl('Agile: korte rondes. Het Agile Manifesto, een agile methode.'), 'Etsjail: korte rondes. Het Etsjail Manifesto, een etsjail methode.');
+  assert.equal(nl('De meeste projecten zijn hybride: mijlpalen. Hybride'), 'De meeste projecten zijn hiebriede: mijl-palen. Hiebriede');
+  assert.equal(nl('Een hybride machine combineert beide'), 'Een hybride machine combineert beide');
+  assert.equal(nl('agileren, hybrides'), 'agileren, hybrides');
+  const en = 'Agile, the Agile Manifesto, hybrid';
+  assert.equal(speakOf([en], 'en'), en);
+});
+
 // A stage drawn on the Dutch caption beats (beatwarp films set STAGE.nlBeats)
 // follows the caption beat on screen in English too: while English beat k
 // shows, the stage runs through Dutch beat k, so the drawing is never a beat off.
@@ -312,6 +326,26 @@ test('resolveFilm: terms come from the served lessons, the English word by posit
   assert.throws(() => resolveFilm(spec([{ nl: '{t:Voeding}', en: '{t:Feed}' }]), lessons), /no cue/);
   assert.throws(() => resolveFilm(spec([{ nl: '{n:7}', en: '{n:7}' }]), lessons), /number 7/);
   assert.throws(() => resolveFilm(spec([{ nl: '{n:0.3}', en: '{n:0.4}' }]), lessons), /different numbers/);
+});
+
+// Two served lessons can name different Dutch terms with one English word
+// (Stakeholdermap and Stakeholderkaart are both "Stakeholder map"): the English
+// term then resolves to the lesson its Dutch twin names, in caption and narration.
+test('resolveFilm: an English term shared by two served lessons follows its Dutch term', async () => {
+  const { resolveFilm } = await import('../films/_kit/build-film.mjs');
+  const mk = (id, nl, en) => ({ nl: { id, terms: nl.map((term) => ({ term })), teach: [''] }, en: { id, terms: en.map((term) => ({ term })), teach: [''] } });
+  const a = mk('pm.fx.a', ['Stakeholdermap'], ['Stakeholder map']);
+  const b = mk('pm.fx.b', ['Valuta', 'Stakeholderkaart'], ['Currency', 'Stakeholder map']);
+  const lessons = { nl: new Map([['pm.fx.a', a.nl], ['pm.fx.b', b.nl]]), en: new Map([['pm.fx.a', a.en], ['pm.fx.b', b.en]]) };
+  const spec = (beats) => ({ id: 'x.y', title: { nl: 'a', en: 'a' }, lessons: ['pm.fx.a', 'pm.fx.b'], scenes: [{ id: 's1', level: 1, dur: 10, still: 0.5, title: { nl: 'a', en: 'a' }, beats }] });
+  const data = resolveFilm(spec([
+    { nl: 'De {t:Stakeholdermap|map}.', en: 'The {t:Stakeholder map|map}.', cue: { Stakeholdermap: 'm1' }, say: { nl: 'De {t:Stakeholdermap|stakeholdermap}.', en: 'The {t:Stakeholder map|stakeholder map}.' } },
+    { nl: 'De {t:Stakeholderkaart|kaart}.', en: 'The {t:Stakeholder map|map}.', cue: { Stakeholderkaart: 'm2' }, say: { nl: 'De {t:Stakeholderkaart|stakeholderkaart}.', en: 'The {t:Stakeholder map|stakeholder map}.' } },
+  ]), lessons);
+  assert.deepEqual(data.scenes[0].terms.map((t) => [t.lesson, t.index, t.cue]), [['pm.fx.a', 0, 'm1'], ['pm.fx.b', 1, 'm2']]);
+  assert.equal(data.scenes[0].beats[1].say.en[1].k, 'pm.fx.b#1');
+  // a Dutch term with an English word from yet another lesson still fails
+  assert.throws(() => resolveFilm(spec([{ nl: '{t:Valuta}', en: '{t:Stakeholder map}', cue: { Valuta: 'c' } }]), lessons), /different terms/);
 });
 
 // v14b: the narration script (say) beside the caption, checked the same way
