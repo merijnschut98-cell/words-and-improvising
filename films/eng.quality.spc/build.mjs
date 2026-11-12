@@ -567,8 +567,8 @@ const SAY = [
       en: 'Then {n:20.008}, {n:20.009}, and at four o’clock {n:20.011}. All inside the limits, and far inside spec.' },
     { nl: 'Maar zeven keer op rij omhoog gebeurt bijna nooit bij toeval. De regel zegt: zes of meer punten op rij die steeds stijgen. Dit is een trend, en de regel gaat af.',
       en: 'But seven rising in a row hardly ever happens by chance. The rule says: six or more points in a row that keep rising. This is a trend, and the rule fires.' },
-    { nl: 'Andere regels: één punt buiten een grens, zeven op rij aan één kant (sommige fabrieken nemen acht of negen), of twee van drie voorbij twee sigma. Meer regels vangen meer, maar geven ook meer loos alarm.',
-      en: 'Other rules: one point outside a limit, seven in a row on one side (some plants use eight or nine), or two of three beyond two sigma. More rules catch more, but also give more false alarms.' },
+    { nl: 'Andere regels: één punt buiten een grens, zeven op rij aan één kant, of twee van drie voorbij twee sigma. Sommige fabrieken nemen acht of negen op rij. Meer regels vangen meer, maar geven ook meer loos alarm.',
+      en: 'Other rules: one point outside a limit, seven in a row on one side, or two of three beyond two sigma. Some plants use eight or nine in a row. More rules catch more, but also give more false alarms.' },
   ],
   [ // s4 stop and look
     { nl: 'Elke kaart hoort een {t:Reactieplan|reactieplan} te hebben: wat doet de operator als een regel afgaat, en wie belt hij?',
