@@ -1000,6 +1000,7 @@ export default {
     },
     {
       id: 'pm.plan.risk',
+      film: 'pm.plan.risk',
       title: 'A risk register that gets used',
       pre: [
         {

@@ -72,6 +72,9 @@ test('spoken text: units, signs, money and whole decimals as words; the gloss is
   assert.equal(speakOf(['De checklist MORE PIES komt uit de crisisonderhandeling.'], 'nl'), 'De checklist Mor pais komt uit de crisisonderhandeling.');
   assert.equal(speakOf(['The checklist MORE PIES comes from crisis negotiation.'], 'en'), 'The checklist MORE PIES comes from crisis negotiation.');
   assert.equal(speakOf(['Meer pies en more pies.'], 'nl'), 'Meer pies en more pies.');
+  // issue as Dutch project people say it, "isjoe" (espeak-ng reads "is-uu-e"); English keeps it
+  assert.equal(speakOf(['Dan wordt het een issue. Twee issues. Issue blijft.'], 'nl'), 'Dan wordt het een isjoe. Twee isjoes. Isjoe blijft.');
+  assert.equal(speakOf(['Then it becomes an issue. Two issues.'], 'en'), 'Then it becomes an issue. Two issues.');
 });
 
 // ------------------------------------------------------------ WAV files
