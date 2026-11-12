@@ -1005,18 +1005,18 @@
     "eng.power.motor": {
       "poster": "src/content/courses/films/eng.power.motor.jpg",
       "nl": {
-        "dur": 317.1,
-        "bytes": 12811278,
+        "dur": 317.8,
+        "bytes": 12866606,
         "scenes": [
           0,
-          39.67,
-          74.83,
-          101.34,
-          131.18,
-          166.16,
-          197.54,
+          39.85,
+          74.47,
+          100.69,
+          130.99,
+          165.92,
+          197.47,
           237.3,
-          272.85
+          272.99
         ],
         "vtt": "src/content/courses/films/eng.power.motor.nl.vtt"
       },
