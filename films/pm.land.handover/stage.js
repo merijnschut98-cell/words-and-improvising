@@ -167,9 +167,9 @@ const STAGE = (() => {
     o.line2 = op(A * at(b, p, 1), card(246, 136) + lines(272, [[tr('eigenaar in de lijn', 'owner in the line'), 'pm-big'], [tr('bij de lijn: overleeft', 'with the line: survives'), 'pm-on'], [tr('bij het project: sterft', 'with the project: dies'), 'pm-mute'], [tr('niet: tijdelijk team', 'not: temporary team'), 'pm-mute']]));
     if (b === 2 || b === 3) {
       const B = page(b, p, 2, 4);
-      o.oo = op(B, lines(78, [[tr('output of resultaat?', 'outputs or outcomes?'), 'pm-big'], [tr('output: wat je opleverde', 'output: what you delivered')], [tr('resultaat (outcome): het', 'outcome: the effect, like')], [tr('effect, minder afzeggingen;', 'fewer cancellations;')], [tr('vaak pas na maanden', 'often months later'), 'pm-mute']]));
-      o.benefit = op(B * at(b, p, 3), card(208, 82) + lines(234, [[tr('PRINCE2, veelgebruikt:', 'PRINCE2, widely used:')], [tr('output, later batenreview', 'outputs, benefits review'), 'pm-on']]) + txt(X0, 282, tr('veel sponsors: resultaat', 'many sponsors: outcomes'), 'pm-mute'));
-      o.middle = op(B * at(b, p, 3, 0.4, 0.55), card(298, 84, 'pm-hot') + lines(324, [[tr('midden: output + weken', 'middle: outputs + weeks'), 'pm-on'], [tr('resultaat + review 3–6 mnd', 'outcomes + review 3–6 mo')]]));
+      o.oo = op(B, lines(78, [[tr('output of uitkomst?', 'outputs or outcomes?'), 'pm-big'], [tr('output: wat je opleverde', 'output: what you delivered')], [tr('uitkomst (outcome): het', 'outcome: the effect, like')], [tr('effect, minder afzeggingen;', 'fewer cancellations;')], [tr('vaak pas na maanden', 'often months later'), 'pm-mute']]));
+      o.benefit = op(B * at(b, p, 3), card(208, 82) + lines(234, [[tr('PRINCE2, veelgebruikt:', 'PRINCE2, widely used:')], [tr('output, later batenreview', 'outputs, benefits review'), 'pm-on']]) + txt(X0, 282, tr('veel sponsors: uitkomst', 'many sponsors: outcomes'), 'pm-mute'));
+      o.middle = op(B * at(b, p, 3, 0.4, 0.55), card(298, 84, 'pm-hot') + lines(324, [[tr('midden: output + weken', 'middle: outputs + weeks'), 'pm-on'], [tr('uitkomst + review 3–6 mnd', 'outcomes + review 3–6 mo')]]));
     }
     if (b >= 4) {
       const Cc = page(b, p, 4, -1);
