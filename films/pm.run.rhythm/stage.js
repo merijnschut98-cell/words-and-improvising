@@ -146,10 +146,12 @@ const STAGE = (() => {
     o.week = grid + su;
     const wk = op(at(b, p, 1, 0.02, 0.2), rect(GX + DW + 3, yAt(13), DW - 6, HH * 0.75, b === 1 ? 'pm-blk' : 'pm-blk2', 2));
     if (b === 0) o.week += op(span(p, 0.4, 0.6), lines(252, [[tr('stand-up ma, do 08:30', 'stand-up Mon, Thu 08:30'), 'pm-on'], [tr('bij het bord op de vloer', 'at the board on the floor')], [tr('15 min, 5 mensen', '15 min, 5 people')]]));
+    // the rows come in early, so the card-only ones (the one-page plan, the
+    // supplier) stay up at least 4 s of the beat
     if (b === 1) {
       const rows = [[C.WEEKLY.actions, tr('acties', 'actions')], [C.WEEKLY.progress, tr('voortgang op één A4', 'progress, one-page plan')], [C.WEEKLY.decisions, tr('2 besluiten: welke lijn,', '2 decisions: which line,')], [0, tr('de leverancier erbij?', 'bring in the supplier?')], [C.WEEKLY.next, tr('volgende week', 'next week')]];
       o.wagenda = wk + txt(X0, 252, tr('di 13:00, 45 min', 'Tue 13:00, 45 min'), 'pm-big')
-        + rows.map(([m, t], i) => op(span(p, 0.15 + i * 0.1, 0.25 + i * 0.1), (m ? txt(X0 + 24, 278 + i * 26, String(m), 'pm-on', 'end') : '') + txt(X0 + 36, 278 + i * 26, t))).join('');
+        + rows.map(([m, t], i) => op(span(p, 0.1 + i * 0.07, 0.2 + i * 0.07), (m ? txt(X0 + 24, 278 + i * 26, String(m), 'pm-on', 'end') : '') + txt(X0 + 36, 278 + i * 26, t))).join('');
     } else o.wagenda = wk;
     if (b >= 2) o.steer5 = op(span(p, 0.05, 0.3), card(232, 96) + lines(260, [[tr('stuurgroep', 'steering group'), 'pm-big'], [tr('elke 5 weken, 60 min', 'every 5 weeks, 60 min')], [tr('3 besluitpunten', '3 decision items'), 'pm-on']]));
     return o;

@@ -41,8 +41,8 @@
 //     groundwork: baseline, clear roles, a meeting rhythm (s1 b2); quick wins
 //     alone a show, foundations alone and people see nothing for six weeks
 //     and drop out; one or two quick wins in each of the first four weeks (s1 b3)
-//   start teach 2: the kick-off starts the project officially: goal, scope,
-//     roles, first steps; short, about an hour; the sponsor says why it matters
+//   start teach 2: the kick-off starts the project officially: goal, scope
+//     (said: skoop), roles, first steps; short, about an hour; the sponsor says why it matters
 //     in his own words (s1 b1); trust from doing what you say: write down every
 //     promise however small, "I'll check that with IT" (card), come back within
 //     a week, even with "no, and here's why" (s2 b3)
@@ -91,8 +91,8 @@
 //     shown in short, s7 b2)
 //   rhythm teach 5: the weekly grows to twelve who only listen, the steering
 //     group a slideshow where nothing is decided (s7 b3); experts differ:
-//     full-time agile teams a daily stand-up, part-time client teams often two a
-//     week; test: past 15 minutes, or nobody names a blocker: change the format
+//     full-time agile teams a daily stand-up (agile said: etsjail), part-time
+//     client teams often two a week; test: past 15 minutes, or nobody names a blocker: change the format
 //     (s7 b4)
 //   rhythm example: downtime (the hours a line stands still when it should
 //     run) at a beverage plant; stand-up Monday and Thursday 08:30 at the board
@@ -108,7 +108,7 @@
 //     weekly or every two weeks; management monthly; the same definitions all
 //     the way up (s8 b1); escalation connects the levels: up one level, with a
 //     date by which a decision comes back (s8 b2); the daily ladder is in Land
-//     (card, s8 b2 to b4)
+//     (card, s8 b2)
 //   perform teach 2: frequency fits the number; daily for jobs started or
 //     breakdowns, monthly for cost per connection or customer satisfaction; a
 //     slow number daily is noise and frustration; as often as it can really
@@ -148,6 +148,7 @@ import { readFileSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import { defineFilm, auditReport, resolveFilm, allLessons } from '../_kit/build-film.mjs';
+import { NARRATION_WPS } from '../_kit/assert.mjs';
 import { beatStarts, minSceneDur, wordsOf } from '../_kit/timeline.mjs';
 import { pmWorld, PM_CSS } from '../_pm/world.mjs';
 
@@ -373,10 +374,10 @@ const spec = {
 // Words checked with espeak-ng phonemes through Piper's own bridge
 // (nl_NL-alex, 2026-11-12) and Whisper small on the voice: stand-up is read
 // stˈɑndˈʌp (Whisper hears "stand-up"), quick win kvˈɪk ʋˈɪn, kick-off
-// kˈɪkˈɔf, check tʃˈɛk, team tˈiːm, Scrum skrˈɵm: left as read. Kept out of the
-// Dutch narration because espeak-ng misreads them (they stay on the cards):
-// agile (ˈaːɣilə), update (ɵpdˈaːtə), scope (skˈoːpə: said "afbakening"),
-// whiteboard, spreadsheet, statusslide, fulltime and parttime (said voltijds,
+// kˈɪkˈɔf, check tʃˈɛk, team tˈiːm, Scrum skrˈɵm: left as read. Scope and agile
+// are said, as the cards show them: the shared SAY rules (pm.plan.wbs, pm.plan.method)
+// make them skoop and etsjail. Kept out of the Dutch narration because espeak-ng
+// misreads them (they stay on the cards): update (ɵpdˈaːtə), whiteboard, spreadsheet, statusslide, fulltime and parttime (said voltijds,
 // deeltijds), momentsleutel (stressed on -TEL: said by its meaning), deadline,
 // and manager (said leidinggevende, hoofd productie), enthousiasteling (with a
 // zh: said een enthousiaste collega), management (mˈaːnɪdʒmənt: said de leiding),
@@ -385,12 +386,12 @@ const spec = {
 // nulmeting already have one (films/_kit/timeline.mjs, pm.plan.schedule).
 const SAY = [
   [ // s1 the first weeks
-    { nl: 'Het project start met de {t:Kick-off|kick-off}: doel, afbakening, rollen, eerste stappen. Een uur; de sponsor zegt in eigen woorden waarom het telt.',
+    { nl: 'Het project start met de {t:Kick-off|kick-off}: doel, scope, rollen, eerste stappen. Een uur; de sponsor zegt in eigen woorden waarom het telt.',
       en: 'The project starts with the {t:Kick-off|kick-off}: goal, scope, roles, first steps. An hour, and the sponsor says in his own words why it matters.' },
     { nl: 'Dan tegelijk {t:Quick win|quick wins}, kleine zichtbare verbeteringen van de mensen zelf, en het {t:Fundament|fundament}: nulmeting, rollen, ritme.',
       en: 'Then, in parallel, {t:Quick win|quick wins}, small visible fixes from the people themselves, and {t:Foundations|foundations}: baseline, roles, rhythm.' },
-    { nl: 'Alleen quick wins is een show; alleen fundament, en mensen haken af. Grofweg één of twee quick wins per week, vier weken lang.',
-      en: 'Quick wins alone are a show; foundations alone, and people drop out. One or two quick wins a week, for four weeks.' },
+    { nl: 'Alleen quick wins is een show; alleen fundament, en mensen haken af. Grofweg één of twee per week, vier weken lang.',
+      en: 'Quick wins alone are a show; foundations alone, and people drop out. Roughly one or two a week, for four weeks.' },
   ],
   [ // s2 look first
     { nl: 'De eerste twee weken zit je op de vloer. Vraag voordat je voorstelt; sta bij een omstelling, rij mee met monteurs.',
@@ -401,8 +402,8 @@ const SAY = [
       en: 'Trust: write down every promise, and come back within the week, even with a no.' },
     { nl: 'Dit hebben we in 2019 al geprobeerd? Vaak waar. Vraag wat er toen misging; dat moet je vermijden.',
       en: 'We tried this in 2019? Often true. Ask what went wrong then; that is what to avoid.' },
-    { nl: 'En vraag in week {n:4}: weten we het startgetal al? Anders blijft de nulmeting liggen.',
-      en: 'And ask in week {n:4}: do we know the starting number yet? Or the baseline waits.' },
+    { nl: 'Vraag in week {n:4}: weten we het startgetal al? Anders blijft de nulmeting liggen.',
+      en: 'Ask in week {n:4}: do we know the starting number yet? Or the baseline waits.' },
   ],
   [ // s3 week 1 at the pumps
     { nl: 'Week {n:1} bij een pompenassemblage. In de middagdienst ontbreekt een sleutel die bouten precies aandraait: zo\'n {n:20} minuten per dienst.',
@@ -421,8 +422,8 @@ const SAY = [
       en: 'Three meetings. The {t:Stand-up|stand-up}: fifteen minutes standing at the board, two or three times a week. Done, next, what blocks you?' },
     { nl: 'Het weekoverleg: {n:45} tot {n:60} minuten met het team, of {n:30} met de proceseigenaar.',
       en: 'The weekly: {n:45} to {n:60} minutes with the team, or {n:30} with the process owner.' },
-    { nl: 'En de {t:Stuurgroep|stuurgroep}, om de vier tot zes weken, {n:60} tot {n:90} minuten. Daar besluiten de {t:Sponsor|sponsor}, eigenaar van doel en budget, en een paar afdelingshoofden.',
-      en: 'And the {t:Steering group|steering group}, every four to six weeks, {n:60} to {n:90} minutes, where the {t:Sponsor|sponsor}, who owns goal and budget, and a few department heads decide.' },
+    { nl: 'De {t:Stuurgroep|stuurgroep}, om de vier tot zes weken, {n:60} tot {n:90} minuten. Daar besluiten de {t:Sponsor|sponsor}, eigenaar van doel en budget, en een paar afdelingshoofden.',
+      en: 'The {t:Steering group|steering group}, every four to six weeks, {n:60} to {n:90} minutes, where the {t:Sponsor|sponsor}, who owns goal and budget, and a few department heads decide.' },
     { nl: 'Zo zie je problemen in week drie, niet in maand vier.',
       en: 'So you see problems in week three, not month four.' },
   ],
@@ -449,18 +450,18 @@ const SAY = [
       en: 'Start every meeting with: which of last week\'s actions are done? Slipping actions say more than any status slide.' },
   ],
   [ // s7 the people side
-    { nl: 'De mensenkant: elk overleg kost de klant uren. Kort, op tijd beginnen, eerder stoppen, en afzeggen als er niets te besluiten is.',
-      en: 'The people side: every meeting costs the client hours. Keep it short, start on time, end early, cancel when there is nothing to decide.' },
+    { nl: 'Elk overleg kost de klant uren. Kort, op tijd beginnen, eerder stoppen, en afzeggen als er niets te besluiten is.',
+      en: 'Every meeting costs the client hours. Keep it short, start on time, end early, cancel when there is nothing to decide.' },
     { nl: 'Zegt de sponsor steeds af? Een signaal, geen pech. Vraag of hij liever op een andere manier beslist.',
       en: 'The sponsor keeps cancelling? A signal, not bad luck. Ask whether he would rather decide another way.' },
     { nl: 'Mis gaat het met twaalf luisteraars in het weekoverleg, en een diavoorstelling in de stuurgroep.',
       en: 'It goes wrong with twelve listeners at the weekly, and a slideshow at the steering group.' },
-    { nl: 'Hoe vaak? Experts verschillen: voltijdse teams dagelijks, deeltijdse klantteams twee keer per week. Loopt de stand-up uit, of noemt niemand een blokkade? Verander de vorm.',
+    { nl: 'Hoe vaak? Experts verschillen: voltijdse agile teams dagelijks, deeltijdse klantteams twee keer per week. Loopt de stand-up uit, of noemt niemand een blokkade? Verander de vorm.',
       en: 'How often? Experts disagree: full-time agile teams daily, part-time client teams twice a week. Stand-up running over, nobody naming a blocker? Change the format.' },
   ],
   [ // s8 a rhythm that lasts
-    { nl: 'Een ritme dat blijft, is een {t:Overlegstructuur|overlegstructuur}: korte overleggen die elkaar voeden, van team via afdeling naar de leiding, met dezelfde definities.',
-      en: 'A rhythm that lasts is a {t:Review cascade|review cascade}: short meetings feeding each other, from team through department to management, with the same definitions.' },
+    { nl: 'Een {t:Overlegstructuur|overlegstructuur}: korte overleggen die elkaar voeden, van team via afdeling naar de leiding, met dezelfde definities.',
+      en: 'A {t:Review cascade|review cascade}: short meetings feeding each other, from team through department to management, with the same definitions.' },
     { nl: '{t:Escaleren|Escaleren} verbindt ze: een probleem gaat een niveau omhoog, met een datum waarop het besluit terugkomt.',
       en: '{t:Escalation|Escalation} links them: a problem goes up one level, with a date by which the decision comes back.' },
     { nl: 'Kijk naar een cijfer zo vaak als het echt verandert en iemand kan handelen: storingen dagelijks, kosten maandelijks. Anders is het ruis.',
@@ -479,8 +480,8 @@ const SAY = [
       en: 'Week {n:1} the production manager chairs, you beside him. Week {n:2} you only attend. Weeks {n:3} and {n:4} you stay away.' },
     { nl: 'De data ververst zonder jou. Op één pagina staat wie, wanneer, welke cijfers en hoe problemen omhoog gaan. Plan een check na vier en twaalf weken.',
       en: 'The data refreshes without you. One page says who, when, which numbers, how problems go up. Plan checks after four and twelve weeks.' },
-    { nl: 'Pas op voor overleggen die één keertje vervallen, acties die doorschuiven, en een bord van één persoon. Een kwartier per dag met acht mensen kost samen {n:10} uur per week.',
-      en: 'Watch for meetings cancelled just this once, actions carried over, and a one-person board. Fifteen minutes a day with eight people costs {n:10} person-hours a week.' },
+    { nl: 'Pas op voor overleggen die één keertje vervallen, acties die doorschuiven, en een bord van één persoon. Een kwartier per dag met acht mensen kost samen {n:10} uur per week, en moet dus meer opleveren.',
+      en: 'Watch for meetings cancelled just this once, actions carried over, and a one-person board. Fifteen minutes a day with eight people costs {n:10} person-hours a week, so it must deliver more.' },
     { nl: 'Vraag de eigenaar: als ik volgende week niet kom, gaat dit overleg dan door?',
       en: 'Ask the owner: if I don\'t show up next week, will this meeting happen?' },
   ],
@@ -492,23 +493,27 @@ spec.scenes.forEach((s, si) => {
 // no symbol the voice would read aloud, no spoken parenthesis or quote, and in
 // Dutch none of the words espeak-ng misreads (see above)
 const plainSay = (src) => src.replace(/\{t:[^|}]*\|([^}]*)\}/g, '$1').replace(/\{n:([^}]*)\}/g, '$1');
-const MISREAD = /\b(agile|update\w*|scope|whiteboard|spreadsheet|statusslide|fulltime|parttime|momentsleutel|deadline|\w*manager\w*|management|manuren|enthousiasteling)\b|(^|[.?!;]\s)Eén\b|\bIT\b(?!-)/i;
+const MISREAD = /\b(update\w*|whiteboard|spreadsheet|statusslide|fulltime|parttime|momentsleutel|deadline|\w*manager\w*|management|manuren|enthousiasteling)\b|(^|[.?!;]\s)Eén\b|\bIT\b(?!-)/i;
 for (const scene of SAY) for (const line of scene) for (const lang of ['nl', 'en']) {
   const plain = plainSay(line[lang]);
   if (/[/&×=+()“”"‘…%€]|:\S/.test(plain)) throw new Error(`narration: a symbol the voice reads aloud in "${plain.slice(0, 50)}"`);
   if (lang === 'nl' && MISREAD.test(plain)) throw new Error(`narration: "${MISREAD.exec(plain)[0]}" is misread by the Dutch voice in "${plain.slice(0, 50)}"`);
 }
-// each scene's length from its share of the Dutch narration, never shorter than
-// its captions need; the whole about as long as the narration plus a short
-// look per scene, within the 300 s cap
+// each scene's length from its share of the narration (the longer of nl and
+// en, at the kit's 2.5 words a second), never shorter than its captions need;
+// the whole as long as the narration estimate, within the 300 s cap, no padding
 {
-  const said = SAY.map((s) => s.reduce((a, l) => a + wordsOf(plainSay(l.nl)), 0));
+  const said = SAY.map((s) => Math.max(...['nl', 'en'].map((lang) => s.reduce((a, l) => a + wordsOf(plainSay(l[lang])), 0))));
   const all = said.reduce((a, b) => a + b, 0);
-  const TOTAL = Math.min(296, Math.ceil(all / 2.5) + 2 * SAY.length);
+  const TOTAL = Math.min(300, Math.round(all / NARRATION_WPS));
   spec.scenes.forEach((s, si) => {
     const cap = Math.max(...['nl', 'en'].map((lang) => minSceneDur(wordsOf(s.beats.map((b) => plainSay(b[lang])).join(' ')) + 4)));
     s.dur = Math.max(Math.ceil(cap), Math.floor((said[si] / all) * TOTAL));
   });
+  // the seconds lost to rounding down go to the scenes that lost the most
+  const left = TOTAL - spec.scenes.reduce((a, s) => a + s.dur, 0);
+  spec.scenes.map((s, si) => [si, (said[si] / all) * TOTAL - s.dur]).sort((x, y) => y[1] - x[1])
+    .slice(0, Math.max(0, left)).forEach(([si]) => { spec.scenes[si].dur += 1; });
   const total = spec.scenes.reduce((a, s) => a + s.dur, 0);
   if (total > 300) throw new Error(`film is ${total} s, over 300`);
 }
