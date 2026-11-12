@@ -3,6 +3,7 @@ export default {
   lessons: [
     {
       id: 'pm.run.status',
+      film: 'pm.run.escalation',
       title: 'Honest status',
       pre: [
         {
@@ -1081,6 +1082,7 @@ export default {
     },
     {
       id: 'pm.run.decisions',
+      film: 'pm.run.escalation',
       title: 'Getting decisions made',
       pre: [
         {

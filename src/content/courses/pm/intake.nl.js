@@ -3,6 +3,7 @@ export default {
   lessons: [
     {
       id: 'pm.intake.ask',
+      film: 'pm.intake.firsttalk',
       title: 'Wat ze vragen, wat ze nodig hebben',
       pre: [
         {
@@ -83,6 +84,7 @@ export default {
     },
     {
       id: 'pm.intake.firsttalk',
+      film: 'pm.intake.firsttalk',
       title: 'Het eerste gesprek',
       pre: [
         {
