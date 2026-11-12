@@ -241,7 +241,7 @@ test('the voice is configuration: films/_kit/voices.json names the voice and spe
 
 test('lexicon: small and hand-checked, swapped into the whole sentence; the seeded one is retired', () => {
   const nl = JSON.parse(fs.readFileSync('films/_kit/lexicon.nl.json', 'utf8'));
-  assert.ok(Object.keys(nl).length <= 15,`${Object.keys(nl).length} entries: each entry must be listened to`);
+  assert.ok(Object.keys(nl).length <= 16,`${Object.keys(nl).length} entries: each entry must be listened to`);
   for (const w of ['klauwplaat', 'omwenteling', 'omwentelingen', 'toerental']) assert.ok(nl[w], w);
   assert.ok(!('hardmetaal' in nl), 'hardmetaal was heard worse with an entry');
   for (const lang of ['nl', 'en']) {
@@ -260,6 +260,8 @@ test('lexicon: small and hand-checked, swapped into the whole sentence; the seed
   for (const word of ['manometer', 'manometers']) assert.ok(nl[word].includes('mˈeː'), `${word}: ${nl[word]}`);
   // com-PRES-sor (espeak-ng says KOMpressor; 2026-11-12); compressoren it already reads right
   assert.ok(nl.compressor.includes('prˈɛs'), `compressor: ${nl.compressor}`);
+  // DOOR-snede (espeak-ng says door-SNE-de; 2026-11-12); doorsneden it already reads right
+  assert.ok(/^dˈɔːr/.test(nl.doorsnede), `doorsnede: ${nl.doorsnede}`);
   // no [[ ]] pieces cut into the text any more (piper-tts splits the sentence at each)
   assert.ok(!fs.existsSync('films/_kit/lexicon.mjs') && !fs.existsSync('films/_kit/lexicon/seed.py'));
   const speak = fs.readFileSync('films/_kit/speak.py', 'utf8');
