@@ -228,7 +228,7 @@ const STAGE = (() => {
   // s7a: Pink's three drivers
   function s7a(b, p) {
     const o = { head: [tr('motivatie', 'motivation'), DIA] };
-    o.pink = lines(80, L([['Pink, Drive, 2009', 'pm-big'], ['op basis van Deci', 'pm-mute'], ['en Ryan', 'pm-mute'], ['drie drijfveren:']], [['Pink, Drive, 2009', 'pm-big'], ['building on Deci', 'pm-mute'], ['and Ryan', 'pm-mute'], ['three drivers:']]));
+    o.pink = lines(80, L([['Pink, Drive, 2009', 'pm-big'], ['op Deci en Ryan,', 'pm-mute'], ['psychologen', 'pm-mute'], ['drie drijfveren:']], [['Pink, Drive, 2009', 'pm-big'], ['on Deci and Ryan,', 'pm-mute'], ['psychologists', 'pm-mute'], ['three drivers:']]));
     const drv = (i, name, def) => card(178 + i * 70, 64, b === i + 1 ? 'pm-hot' : 'pm-card') + txt(X0, 178 + i * 70 + 27, name, 'pm-big') + txt(X0, 178 + i * 70 + 53, def);
     o.auto = op(at(b, p, 1), drv(0, tr('autonomie', 'autonomy'), tr('zeggenschap over hoe', 'say in how you work')));
     o.mast = op(at(b, p, 2), drv(1, tr('meesterschap', 'mastery'), tr('beter in wat telt', 'better at what matters')));

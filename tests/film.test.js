@@ -210,8 +210,8 @@ test('speak variant: Fisher and Ury and the Lean consultant', () => {
 // as MAA-naa-gher (menetsjer, as the middenmanager rule; only in this film's
 // phrases), and stresses OO-pi-raa-tors (ope-raators, only before "verliezen",
 // so the TPM and LOTO films keep theirs), IN-stal-la-teur, zelfdeterminaatie
-// with "ti" for "tsie", bouwPLAATS, drijfVEren and PSI-cho-lo-gen: split at the
-// head; Dutch only, no other film says them
+// with "ti" for "tsie", bouwPLAATS, drijfVEren and, after "als"
+// and before a colon only, vuistreGEL: split at the head; Dutch only, no other film says them
 test('speak variant: second opinion, timebox, Weinberg, Pink, Deci and Ryan, manager and the split compounds in Dutch', () => {
   const nl = (s) => speakOf([s], 'nl');
   assert.equal(nl('Een second opinion is een kijk. Een second opinion: een expert. Een second opinion van een onafhankelijk bureau. De second opinion steunt het.'),
@@ -223,8 +223,10 @@ test('speak variant: second opinion, timebox, Weinberg, Pink, Deci and Ryan, man
   assert.equal(nl('de manager van de expert. Zijn manager verdeelt de uren. Zijn manager zegt het. Vraag zijn manager om één dag.'),
     'de menetsjer van de expert. Zijn menetsjer verdeelt de uren. Zijn menetsjer zegt het. Vraag zijn menetsjer om één dag.');
   assert.equal(nl('de operators verliezen tijd; de operators zijn eigenaar'), 'de ope-raators verliezen tijd; de operators zijn eigenaar');
-  assert.equal(nl('De installateur wil vervangen; de zelfdeterminatietheorie van de psychologen; van de bouwplaats'),
-    'De instal-lateur wil vervangen; de zelf-determinatie-theorie van de psychoo-logen; van de bouw-plaats');
+  assert.equal(nl('De installateur wil vervangen; de zelfdeterminatietheorie; van de bouwplaats'),
+    'De instal-lateur wil vervangen; de zelf-determinatie-theorie; van de bouw-plaats');
+  assert.equal(nl('Gerald Weinberg, 1992, als vuistregel: twee projecten'), 'Djerreld Wainburk, 1992, als vuist-regel: twee projecten');
+  assert.equal(nl('Meet daarom als vuistregel op tijd.'), 'Meet daarom als vuistregel op tijd.');
   assert.equal(nl('de manager van de productie, een vuistregel, een opinie, een box'), 'de manager van de productie, een vuistregel, een opinie, een box');
   const en = 'A second opinion, a timebox, Weinberg\'s table, Daniel Pink in Drive, Edward Deci and Richard Ryan, his manager, the operators lose, the installer';
   assert.equal(speakOf([en], 'en'), en);

@@ -460,8 +460,9 @@ const spec = {
 // Deci en Richard Ryan as Edwerd Diessie en Ritsjerd Rajen (a Dutch ch,
 // "rie-an"), manager as menetsjer in this film's phrases (MAA-naa-gher), the
 // operators before "verliezen" as ope-raators (OO-pi-raa-tors), and installateur,
-// zelfdeterminatietheorie ("ti" for "tsie"), psychologen, bouwplaats and
-// drijfveren split at the head (their stress falls on the wrong part). The
+// zelfdeterminatietheorie ("ti" for "tsie"), bouwplaats, drijfveren and, in
+// "als vuistregel:" only, vuistregel split at the head (their stress falls on
+// the wrong part; other films keep their vuistregel). The
 // shared stuurgroep rule already covers stuurgroep. Kept out of the Dutch
 // narration (on the cards and in the captions): engineer (said
 // "elektrotechnicus" and "de fabriek", as pm.outside.experts keeps it on the
@@ -549,8 +550,8 @@ const SAY = [
       en: 'For example: two hours on Thursday to decide the interface design.' },
   ],
   [ // s7 motivation; what you do with it
-    { nl: 'Daniel Pink noemt in Drive, uit 2009, drie drijfveren voor kenniswerk, voortbouwend op Edward Deci en Richard Ryan.',
-      en: 'Daniel Pink, in Drive, from 2009, names three drivers for knowledge work, building on Edward Deci and Richard Ryan.' },
+    { nl: 'Daniel Pink noemt in Drive, uit 2009, drie drijfveren voor kenniswerk, voortbouwend op de zelfdeterminatietheorie van Edward Deci en Richard Ryan.',
+      en: 'Daniel Pink, in Drive, from 2009, names three drivers for knowledge work, building on the self-determination theory of Edward Deci and Richard Ryan.' },
     { nl: '{t:Autonomie}: zeggenschap over hoe je het werk doet.',
       en: '{t:Autonomy}: control over how you do the work.' },
     { nl: '{t:Meesterschap}: beter worden in iets wat je belangrijk vindt.',
@@ -605,7 +606,7 @@ spec.scenes.forEach((s, si) => {
 // Dutch none of the words espeak-ng misreads (see above); checked on the text
 // after the SAY rules, so a rewritten word passes
 const plainSay = (src) => src.replace(/\{t:[^|}]*\|([^}]*)\}/g, '$1').replace(/\{t:([^}]*)\}/g, '$1').replace(/\{n:([^}]*)\}/g, '$1');
-const MISREAD = /\b(engineer|second opinion|timebox|Weinberg|Drive|Deci|Ryan|operators|manager|installateur|zelfdeterminatietheorie|psychologen|bouwplaats|drijfveren)\b/i;
+const MISREAD = /\b(engineer|second opinion|timebox|Weinberg|Drive|Deci|Ryan|operators|manager|installateur|zelfdeterminatietheorie|bouwplaats|drijfveren|als vuistregel(?=:))\b/i;
 for (const scene of SAY) for (const line of scene) for (const lang of ['nl', 'en']) {
   const said = sayable(plainSay(line[lang]), lang);
   if (/[/&×÷=+()“”"‘…%€]|:\S/.test(said)) throw new Error(`narration: a symbol the voice reads aloud in "${said.slice(0, 50)}"`);

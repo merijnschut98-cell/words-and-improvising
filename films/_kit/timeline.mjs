@@ -469,14 +469,14 @@ const SAY = {
     // Deci and Richard Ryan with a Dutch ch and "rie-an" (Edwerd Diessie, Ritsjerd Rajen), manager as MAA-naa-gher
     // (menetsjer, as the middenmanager rule; only in this film's phrases, so pm.plan.wbs keeps its voice), and
     // stresses OO-pi-raa-tors (ope-raators, only before "verliezen", so the TPM and LOTO films keep theirs),
-    // IN-stal-la-teur, zelfdeterminatie with "ti" for "tsie", bouwPLAATS, drijfVEren and PSI-cho-lo-gen: split
-    // at the head. No other film says them in Dutch
+    // IN-stal-la-teur, zelfdeterminatie with "ti" for "tsie", bouwPLAATS, drijfVEren and, after
+    // "als" and before a colon only (other films keep their vuistregel), vuistreGEL: split at the head. No other film says them in Dutch
     [/\b([Ss])econd opinion\b(?=:| is een| van een onafhankelijk| steunt)/g, '$1ekkend opinjun'], [/\b([Tt])imebox\b/g, '$1aimboks'],
     [/\bvan Weinberg\b/g, 'van Wainburk'], [/\bDaniel Pink noemt in Drive\b/g, 'Deniel Pink noemt in Draiv'],
     [/\bEdward Deci en Richard Ryan\b/g, 'Edwerd Diessie en Ritsjerd Rajen'],
     [/\b(de|[Zz]ijn) manager\b(?= van de expert| verdeelt| zegt| om )/g, '$1 menetsjer'], [/\bde operators(?= verliezen)/g, 'de ope-raators'],
-    [/\b([Ii])nstallateur\b/g, '$1nstal-lateur'], [/\bzelfdeterminatietheorie\b/g, 'zelf-determinatie-theorie'], [/\bpsychologen\b/g, 'psychoo-logen'],
-    [/\b([Bb])ouwplaats/g, '$1ouw-plaats'], [/\b([Dd])rijfveren\b/g, '$1rijf-veren']],
+    [/\b([Ii])nstallateur\b/g, '$1nstal-lateur'], [/\bzelfdeterminatietheorie\b/g, 'zelf-determinatie-theorie'],
+    [/\b([Bb])ouwplaats/g, '$1ouw-plaats'], [/\b([Dd])rijfveren\b/g, '$1rijf-veren'], [/\bals vuistregel:/g, 'als vuist-regel:']],
   en: [[/\brpm\b/g, 'revolutions per minute'], [/\bmm\/min\b/g, 'millimetres per minute'], [/\bm\/min\b/g, 'metres per minute'], [/µm\b/g, 'micrometres'],
     [/€\s?(\d[\d,]*(?:\.\d+)?)/g, '$1 euros'], [/(\d)\.0(?![\d])/g, '$1'], [/(\d)\s?mm\b/g, '$1 millimetres'], [/(\d)\s?min\b/g, '$1 minutes'], [/(\d)\s?%/g, '$1 percent'],
     [/Ø\s*/g, 'diameter '], [/(\d)\+(\d)/g, '$1 plus $2'], [/\s×\s/g, ' times '], [/\s\/\s/g, ' divided by '], [/\s=\s/g, ' is '], [/°/g, ' degrees'], [/\bRa\b/g, 'R a'], [/’/g, "'"],
