@@ -195,7 +195,12 @@ const SAY = {
     [/\bACM\b/g, 'A C M'], [/\bTenneT\b/g, 'Tennet'], [/\b([Ee])nergiewet/g, '$1nergie-wet'], [/\b([Cc])apaciteitskaart/g, '$1apaciteits-kaart'],
     [/\b([Ee])nergieleverancier/g, '$1nergie-leverancier'], [/\b([Pp])iekuren\b/g, '$1iek-uren'], [/\b([Dd]e|[Ee]en) wachtrij\b/g, '$1 wacht-rij'],
     // and congestiemanagement, stressed "KON-gestiemanagement": split, so it is said con-GES-tie-management
-    [/\b([Cc])ongestiemanagement/g, '$1ongestie-management']],
+    [/\b([Cc])ongestiemanagement/g, '$1ongestie-management'],
+    // batch capacity (eng.process.batch): espeak-ng reads CIP as the word "sip" (said as letters, C I P), inline
+    // as "in-lie-ne" (said "inlain"), stresses VIScositeitsmeter, vrijGAve, ploegWISsel, besturingsSYSteem and
+    // spoedmoMENT, and reads labuitslag with the long a of "laaf"; split at the head, each part keeps its reading
+    [/\bCIP\b/g, 'C I P'], [/\binline\b/g, 'inlain'], [/\b([Vv])iscositeitsmeter/g, '$1iscositeits-meter'], [/\bQC-vrijgave\b/g, 'QC-vrij-gave'],
+    [/\b([Pp])loegwissel/g, '$1loeg-wissel'], [/\b([Bb])esturingssysteem/g, '$1esturings-systeem'], [/\b([Ss])poedmoment/g, '$1poed-moment'], [/\b([Ll])abuitslag/g, '$1ab-uitslag']],
   en: [[/\brpm\b/g, 'revolutions per minute'], [/\bmm\/min\b/g, 'millimetres per minute'], [/\bm\/min\b/g, 'metres per minute'], [/µm\b/g, 'micrometres'],
     [/€\s?(\d[\d,]*(?:\.\d+)?)/g, '$1 euros'], [/(\d)\.0(?![\d])/g, '$1'], [/(\d)\s?mm\b/g, '$1 millimetres'], [/(\d)\s?min\b/g, '$1 minutes'], [/(\d)\s?%/g, '$1 percent'],
     [/Ø\s*/g, 'diameter '], [/(\d)\+(\d)/g, '$1 plus $2'], [/\s×\s/g, ' times '], [/\s\/\s/g, ' divided by '], [/\s=\s/g, ' is '], [/°/g, ' degrees'], [/\bRa\b/g, 'R a'], [/’/g, "'"],
