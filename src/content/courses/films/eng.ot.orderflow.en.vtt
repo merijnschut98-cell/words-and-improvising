@@ -1,0 +1,321 @@
+WEBVTT
+
+1
+00:00:00.853 --> 00:00:02.966
+An order travels through the whole plant,
+
+2
+00:00:03.082 --> 00:00:06.426
+from the ERP in the office to the machine on the floor.
+
+3
+00:00:07.103 --> 00:00:09.611
+Here we look more closely at one boundary:
+
+4
+00:00:09.831 --> 00:00:12.304
+the one between level four and level three,
+
+5
+00:00:12.467 --> 00:00:15.033
+between the ERP and the MES.
+
+6
+00:00:15.754 --> 00:00:19.318
+ISA-95 describes two main flows there.
+
+7
+00:00:20.390 --> 00:00:23.397
+Down goes the production schedule: what must be made.
+
+8
+00:00:24.111 --> 00:00:27.966
+Up goes the production performance: what was really made and used.
+
+9
+00:00:28.709 --> 00:00:31.472
+In short: orders down, confirmations up.
+
+10
+00:00:32.497 --> 00:00:37.293
+Master data also goes down, such as bills of materials and routings.
+
+11
+00:00:38.019 --> 00:00:40.759
+And sometimes an overview of the capacity goes up,
+
+12
+00:00:40.852 --> 00:00:43.801
+so the planner knows what the plant can still take on.
+
+13
+00:00:45.107 --> 00:00:45.966
+First, down.
+
+14
+00:00:46.695 --> 00:00:51.745
+The ERP sends the production order to the MES: 1,000 caps,
+
+15
+00:00:51.978 --> 00:00:57.005
+with 25 grams of granulate per cap according to the bill of materials.
+
+16
+00:00:57.734 --> 00:01:00.265
+That is the plan: what, how many and when.
+
+17
+00:01:01.279 --> 00:01:07.490
+The MES turns it into a work order: the job for one line or machine, in one shift.
+
+18
+00:01:08.230 --> 00:01:10.935
+Here that is machine four, on the early shift.
+
+19
+00:01:11.990 --> 00:01:15.926
+And the MES puts the work orders in the right sequence.
+
+20
+00:01:16.614 --> 00:01:20.480
+For example the white caps first, then grey, then black,
+
+21
+00:01:20.596 --> 00:01:23.858
+so the machine needs less purging at each colour change.
+
+22
+00:01:25.215 --> 00:01:26.689
+Then the order starts.
+
+23
+00:01:27.429 --> 00:01:32.653
+The MES, or the operator on the HMI, sends the recipe to the PLC.
+
+24
+00:01:33.630 --> 00:01:37.740
+A recipe is the set of settings for that one product: the temperatures,
+
+25
+00:01:37.984 --> 00:01:39.575
+the speeds and the times.
+
+26
+00:01:40.318 --> 00:01:42.466
+Every product has its own recipe.
+
+27
+00:01:43.423 --> 00:01:46.198
+That way nobody has to type them in by hand.
+
+28
+00:01:46.954 --> 00:01:51.900
+It saves time, and a typo in a temperature can easily cost a bin of scrap.
+
+29
+00:01:53.233 --> 00:01:53.918
+Now, up.
+
+30
+00:01:54.638 --> 00:01:56.635
+The PLC counts every cycle.
+
+31
+00:01:57.326 --> 00:02:02.388
+The MES collects the counts, the scrap with its reasons, and the downtime.
+
+32
+00:02:03.089 --> 00:02:04.749
+What is good and what is scrap,
+
+33
+00:02:04.958 --> 00:02:10.194
+only the shop floor knows: the ERP sees it only when the MES reports it.
+
+34
+00:02:11.278 --> 00:02:13.031
+At the end of the order or the shift,
+
+35
+00:02:13.263 --> 00:02:19.312
+the MES sends a confirmation to the ERP: so many good, so many scrap, so many hours.
+
+36
+00:02:20.310 --> 00:02:25.209
+For this order the MES counted 960 good and 40 scrap.
+
+37
+00:02:25.942 --> 00:02:32.258
+But in this example it confirms only the 960 good caps: the scrap is left out.
+
+38
+00:02:33.086 --> 00:02:34.259
+Keep that in mind.
+
+39
+00:02:35.595 --> 00:02:41.493
+With it, the ERP books a goods receipt: the 960 good caps go into stock.
+
+40
+00:02:42.261 --> 00:02:43.399
+The scrap does not.
+
+41
+00:02:44.448 --> 00:02:46.689
+What it is called depends on the system.
+
+42
+00:02:47.452 --> 00:02:53.059
+In SAP, for example, the goods receipt for an order is movement type 101.
+
+43
+00:02:53.758 --> 00:02:58.541
+The material used is booked out with movement type 261:
+
+44
+00:02:58.762 --> 00:03:00.434
+the goods issue to the order.
+
+45
+00:03:01.437 --> 00:03:03.364
+Other systems use other codes,
+
+46
+00:03:03.597 --> 00:03:08.844
+but the idea is the same everywhere: the product comes in, the material goes out.
+
+47
+00:03:10.172 --> 00:03:12.041
+But how does that material go out?
+
+48
+00:03:12.837 --> 00:03:17.411
+Many companies use backflush: the ERP books it out automatically,
+
+49
+00:03:17.539 --> 00:03:20.534
+from the bill of materials and the confirmed quantity.
+
+50
+00:03:21.527 --> 00:03:25.707
+So nobody has to scan every bag of granulate that goes to the machine.
+
+51
+00:03:26.355 --> 00:03:28.526
+That saves a lot of manual work.
+
+52
+00:03:29.253 --> 00:03:34.512
+So one confirmation often sets off two bookings: the caps in and the granulate out.
+
+53
+00:03:35.599 --> 00:03:39.488
+But backflush calculates with the standard and with what was confirmed.
+
+54
+00:03:40.305 --> 00:03:43.474
+If scrap is higher than the bill of materials assumes,
+
+55
+00:03:43.637 --> 00:03:47.446
+or only the good quantity counts, the stock is no longer right.
+
+56
+00:03:48.238 --> 00:03:51.129
+In SAP, confirmed scrap is normally included;
+
+57
+00:03:51.373 --> 00:03:54.368
+the gap then comes from scrap that is never confirmed.
+
+58
+00:03:55.775 --> 00:03:57.319
+Work it out for this order.
+
+59
+00:03:58.043 --> 00:04:00.876
+The MES confirmed only the good parts,
+
+60
+00:04:01.004 --> 00:04:07.784
+so backflush books out 960 times 25 grams: 24 kilos of granulate.
+
+61
+00:04:08.812 --> 00:04:14.675
+But what was really used is 1,000 times 25 grams: 25 kilos.
+
+62
+00:04:15.380 --> 00:04:18.074
+The 40 scrapped caps took granulate too.
+
+63
+00:04:19.040 --> 00:04:23.963
+So after this one order, the ERP shows 1 kilo of granulate too much.
+
+64
+00:04:24.681 --> 00:04:29.151
+A few months on, you hear: according to SAP we have three bags left,
+
+65
+00:04:29.301 --> 00:04:31.135
+but there is nothing in the warehouse.
+
+66
+00:04:32.130 --> 00:04:37.053
+The fix: confirm the scrap too, so backflush calculates with the total quantity,
+
+67
+00:04:37.238 --> 00:04:38.260
+good plus scrap.
+
+68
+00:04:38.972 --> 00:04:41.538
+Or book the scrap separately as consumption.
+
+69
+00:04:42.843 --> 00:04:46.245
+In practice you hear: stock in SAP is never right.
+
+70
+00:04:46.976 --> 00:04:50.412
+Often the cause is not in the warehouse, but in the confirmation.
+
+71
+00:04:51.436 --> 00:04:52.643
+It comes too late.
+
+72
+00:04:53.422 --> 00:04:58.879
+It is in the wrong unit, for example in pieces where the ERP expects boxes.
+
+73
+00:04:59.587 --> 00:05:01.154
+Or the scrap is left out.
+
+74
+00:05:01.939 --> 00:05:04.551
+Each of the three makes the stock in the ERP
+
+75
+00:05:04.586 --> 00:05:06.978
+slowly drift away from what is really there.
+
+76
+00:05:07.979 --> 00:05:10.986
+So ask the sharp question: how often do we confirm,
+
+77
+00:05:11.079 --> 00:05:12.937
+per part, per shift or per order?
+
+78
+00:05:13.703 --> 00:05:15.236
+And is scrap confirmed too?
+
+79
+00:05:16.243 --> 00:05:20.933
+Per part is usually too much for the ERP; per week, too little for the planner.
+
+80
+00:05:21.619 --> 00:05:26.774
+Orders down, confirmations up: when the way back is right, the stock is right too.

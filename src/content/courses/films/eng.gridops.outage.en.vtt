@@ -1,0 +1,297 @@
+WEBVTT
+
+1
+00:00:00.838 --> 00:00:06.190
+Under this street lies the medium-voltage grid: cables of 10 or 20 kilovolts,
+
+2
+00:00:06.329 --> 00:00:10.300
+running from a substation past a row of secondary substations.
+
+3
+00:00:11.022 --> 00:00:15.225
+Each one steps the medium voltage down to low voltage for the homes.
+
+4
+00:00:16.285 --> 00:00:18.085
+At seven forty it goes wrong.
+
+5
+00:00:18.844 --> 00:00:22.037
+A cable fault trips the protection in the substation,
+
+6
+00:00:22.165 --> 00:00:25.416
+where high voltage is stepped down to medium voltage.
+
+7
+00:00:26.111 --> 00:00:31.115
+The feeder breaker, the big switch at the start of one outgoing cable route, opens.
+
+8
+00:00:32.145 --> 00:00:35.686
+The control room watches and switches the grid around the clock.
+
+9
+00:00:36.485 --> 00:00:41.791
+It sees the trip within seconds in SCADA, its remote monitoring and control system.
+
+10
+00:00:42.794 --> 00:00:49.365
+Behind this feeder hang 12 secondary substations, with 1,800 customers between them.
+
+11
+00:00:50.034 --> 00:00:51.694
+They are all off supply now.
+
+12
+00:00:53.045 --> 00:00:54.740
+Low voltage is different.
+
+13
+00:00:55.498 --> 00:01:00.653
+The grid in the street, 400 and 230 volts, is barely measured.
+
+14
+00:01:01.833 --> 00:01:06.605
+You often notice a fault here only when customers call the national outage number.
+
+15
+00:01:07.355 --> 00:01:08.075
+More and more,
+
+16
+00:01:08.191 --> 00:01:11.151
+smart meters and sensors in the stations also
+
+17
+00:01:11.209 --> 00:01:13.903
+report that a street has lost its voltage.
+
+18
+00:01:14.935 --> 00:01:18.302
+And every minute before you know counts in the outage time.
+
+19
+00:01:19.035 --> 00:01:22.913
+How far to go with sensors is a debate: cheap for one station,
+
+20
+00:01:23.075 --> 00:01:25.304
+expensive across tens of thousands.
+
+21
+00:01:26.307 --> 00:01:31.033
+So ask: how do we find out about an LV fault today, and how long does that take?
+
+22
+00:01:32.370 --> 00:01:33.914
+Back to medium voltage.
+
+23
+00:01:34.619 --> 00:01:37.602
+MV grids are built as rings, but run open.
+
+24
+00:01:38.646 --> 00:01:41.932
+One switch stays open: the normally open point.
+
+25
+00:01:42.668 --> 00:01:45.768
+That is the switch in an MV ring that is kept open;
+
+26
+00:01:46.000 --> 00:01:48.833
+you close it to feed a section from the other side.
+
+27
+00:01:49.538 --> 00:01:53.172
+Here it sits in station 12, towards a neighbouring ring.
+
+28
+00:01:54.169 --> 00:01:56.607
+So each feeder is fed from one side.
+
+29
+00:01:57.368 --> 00:02:01.954
+That keeps fault currents and protection simple, while leaving a backup route.
+
+30
+00:02:03.572 --> 00:02:07.125
+At a quarter past eight the fault technician is on site.
+
+31
+00:02:07.891 --> 00:02:11.246
+With the control room, he first finds where the fault is.
+
+32
+00:02:12.260 --> 00:02:14.954
+For that, the stations have fault indicators:
+
+33
+00:02:15.058 --> 00:02:18.599
+small devices that flag whether fault current passed through.
+
+34
+00:02:19.619 --> 00:02:24.947
+The indicators in stations 1 to 5 have triggered, the one in station 6 has not.
+
+35
+00:02:25.700 --> 00:02:29.694
+So the fault drew current past station 5, but not past 6.
+
+36
+00:02:30.733 --> 00:02:35.342
+The fault lies between the last station that flagged and the first that did not:
+
+37
+00:02:35.481 --> 00:02:38.209
+here in the cable between 5 and 6.
+
+38
+00:02:38.900 --> 00:02:41.303
+Without indicators you search by switching
+
+39
+00:02:41.361 --> 00:02:44.171
+sections off and trying to re-energise them.
+
+40
+00:02:44.939 --> 00:02:46.019
+That takes longer.
+
+41
+00:02:47.330 --> 00:02:51.846
+Usually the control room gives the switching instructions, step by step,
+
+42
+00:02:52.032 --> 00:02:54.516
+and the technician confirms each step.
+
+43
+00:02:55.271 --> 00:02:59.184
+He opens the load-break switch in station 5 towards 6,
+
+44
+00:02:59.358 --> 00:03:02.028
+and in station 6 the one towards 5.
+
+45
+00:03:02.727 --> 00:03:06.849
+The damaged cable section is now isolated on both sides.
+
+46
+00:03:07.888 --> 00:03:09.827
+Then the feeder breaker recloses.
+
+47
+00:03:10.633 --> 00:03:13.094
+Stations 1 to 5 have power again.
+
+48
+00:03:14.103 --> 00:03:17.285
+For the rest, the normally open point must close.
+
+49
+00:03:17.998 --> 00:03:20.599
+First the control room checks that the neighbouring
+
+50
+00:03:20.680 --> 00:03:22.955
+ring can carry the extra morning load.
+
+51
+00:03:24.009 --> 00:03:27.434
+It can, so the open point in station 12 closes.
+
+52
+00:03:28.155 --> 00:03:31.429
+Now stations 6 to 12 are fed from the other side.
+
+53
+00:03:32.156 --> 00:03:35.094
+Everyone is back, and nobody waits for the repair,
+
+54
+00:03:35.245 --> 00:03:38.612
+because the fault is in a cable between two stations.
+
+55
+00:03:39.916 --> 00:03:42.946
+By hand, with a technician driving to the stations,
+
+56
+00:03:43.132 --> 00:03:46.545
+most customers are back within one to two hours this way.
+
+57
+00:03:47.228 --> 00:03:50.444
+With remote-controlled stations it can take minutes.
+
+58
+00:03:51.451 --> 00:03:57.580
+In this example, 1,800 customers were off supply for an average of 50 minutes.
+
+59
+00:03:58.274 --> 00:04:00.898
+That makes 90,000 customer minutes.
+
+60
+00:04:01.923 --> 00:04:06.219
+A customer connected inside the isolated section waits for the repair.
+
+61
+00:04:06.969 --> 00:04:10.011
+A measurement van pinpoints the fault, the crew digs,
+
+62
+00:04:10.127 --> 00:04:12.797
+makes one or two joints and tests the cable.
+
+63
+00:04:13.505 --> 00:04:17.627
+Before they touch the cable, the five safety rules apply: disconnect,
+
+64
+00:04:17.766 --> 00:04:23.002
+secure against reconnection, verify absence of voltage, earth and short-circuit,
+
+65
+00:04:23.222 --> 00:04:25.997
+and protect against adjacent live parts.
+
+66
+00:04:26.987 --> 00:04:30.678
+That often takes a day, and meanwhile the ring has no backup.
+
+67
+00:04:31.999 --> 00:04:35.900
+Grid operators add up a year of outages in three numbers.
+
+68
+00:04:36.604 --> 00:04:40.133
+SAIFI is the number of interruptions per customer per year.
+
+69
+00:04:41.130 --> 00:04:45.913
+CAIDI is the average duration of one interruption, for the customers affected.
+
+70
+00:04:46.949 --> 00:04:51.872
+Multiply them, and you get SAIDI: the average outage minutes per customer per year.
+
+71
+00:04:52.582 --> 00:05:01.220
+In 2025 in the Netherlands that was 0.316 interruptions of 73.9 minutes on average:
+
+72
+00:05:01.336 --> 00:05:04.552
+23.4 minutes from unplanned outages.
+
+73
+00:05:05.274 --> 00:05:08.769
+Planned work added 27.2 minutes on top.
+
+74
+00:05:09.803 --> 00:05:13.843
+A pitfall: one long rural feeder can drive a whole region’s SAIDI.

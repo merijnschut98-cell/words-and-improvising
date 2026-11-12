@@ -3,6 +3,7 @@ export default {
   lessons: [
     {
       id: 'pm.perform.kpis',
+      film: 'pm.perform.tree',
       title: 'A few indicators that steer',
       pre: [
         {
@@ -16,7 +17,7 @@ export default {
         'A KPI, short for key performance indicator, is a number someone acts on. If nobody would do anything different when it moves, it is a report figure, not a KPI.\n\nA rule of thumb from practice: a team can steer on about three to seven numbers; a wall of forty gets read by nobody. Choose per level: the board needs a few results, a team needs the few numbers it can move this week.',
         'A lagging indicator measures the result after the fact: on-time delivery last month, customer minutes lost (minutes without power, added up over all customers), cost per connection.\n\nA leading indicator moves before the result and points to what to do: the share of jobs with materials ready two days before the start, preventive maintenance (planned servicing before something breaks) done on time, the age of the backlog, the work still waiting.\n\nLagging tells you whether you won. Leading tells you whether you will.',
         'A good KPI has a written definition: what counts and what doesn’t. For example, “late” means one day or more after the date confirmed to the customer.\n\nIt also has one owner, a data source nobody argues about, a frequency that fits how fast the number can change, and a known direction: is higher better or lower? In practice, many KPI arguments turn out to be two people measuring different things under the same name.',
-        'One number on its own gets pushed at the cost of others. So use paired indicators: two numbers that guard each other, such as output with quality, speed with safety, cost with service.\n\nKaplan and Norton made this point with the balanced scorecard in 1992: a set of measures in four views, financial, customer, internal process, and learning and growth. Financial results alone tell you how you did, not where you are heading.',
+        'One number on its own gets pushed at the cost of others. So use paired indicators: two numbers that guard each other, such as output with quality, speed with safety, cost with service.\n\nKaplan and Norton made this point with the balanced scorecard in 1992: a set of measures in four views, financial, customer, internal process, and learning and growth (in 1992 the last one was still called innovation and learning). Financial results alone tell you how you did, not where you are heading.',
         'What you see in practice: dashboards that grow every year, because adding a number is easy and removing one feels risky. Leading indicators are harder to find, so many teams end up with only lagging ones.\n\nExperts argue about standardising: one KPI set for every team makes comparison easy, but a team may then steer on numbers it cannot move.\n\nA sharp question for any number on the wall: “When this went red last time, what did someone do differently?”',
       ],
       example: {
@@ -85,6 +86,7 @@ export default {
     },
     {
       id: 'pm.perform.tree',
+      film: 'pm.perform.tree',
       title: 'From strategy to a team’s numbers',
       pre: [
         {
@@ -417,6 +419,7 @@ export default {
     },
     {
       id: 'pm.perform.targets',
+      film: 'pm.perform.tree',
       title: 'Targets people believe',
       pre: [
         {
@@ -748,6 +751,7 @@ export default {
     },
     {
       id: 'pm.perform.gaming',
+      film: 'pm.perform.tree',
       title: 'Gaming and perverse incentives',
       pre: [
         {

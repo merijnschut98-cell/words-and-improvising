@@ -834,7 +834,7 @@ const SAY = [
       'So switch most customers back first, for example through the normally open point in the ring, and repair the cable after.'),
   ],
   [ // s9 regulated
-    B('Een netbeheerder is een {t:Gereguleerd monopolie|gereguleerd monopolie}: elk heeft een eigen gebied, en klanten kunnen niet kiezen.',
+    B('Een netbeheerder is een {t:Gereguleerd monopolie|gereguleerd monopolie}. Elk heeft een eigen gebied. Klanten kunnen niet kiezen.',
       'A grid operator is a {t:Regulated monopoly|regulated monopoly}: each has its own area, and customers cannot choose.'),
     B('Daarom bepaalt de {t:ACM|ACM}, de toezichthouder, zijn inkomsten via de tarieven, de regels in de codes, en controleert ze de kwaliteit.',
       'So the {t:ACM|ACM}, the regulator, sets its income through the tariffs, fixes the rules in the codes, and checks quality.'),

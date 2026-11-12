@@ -21,7 +21,8 @@ const STAGE = (() => {
   const f1 = (v) => (Math.round(v * 10) / 10).toString();
   const set = (e, html) => { if (e.__h !== html) { e.innerHTML = html; e.__h = html; } };
   const move = (e, t) => { if (e.__t !== t) { e.setAttribute('transform', t); e.__t = t; } };
-  const txt = (x, y, t, cls = 'pm-txt', anchor = 'start') => `<text class="${cls}" x="${f1(x)}" y="${f1(y)}" font-size="20" text-anchor="${anchor}">${t}</text>`;
+  const esc = (t) => String(t).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+  const txt = (x, y, t, cls = 'pm-txt', anchor = 'start') => `<text class="${cls}" x="${f1(x)}" y="${f1(y)}" font-size="20" text-anchor="${anchor}">${esc(t)}</text>`;
   const rect = (x, y, w, h, cls, r = 6) => `<rect class="${cls}" x="${f1(x)}" y="${f1(y)}" width="${f1(Math.max(0, w))}" height="${f1(Math.max(0, h))}" rx="${r}"/>`;
   const dot = (x, y, r, cls) => `<circle class="${cls}" cx="${f1(x)}" cy="${f1(y)}" r="${f1(r)}"/>`;
   const path = (d, cls) => `<path class="${cls}" d="${d}"/>`;
@@ -95,13 +96,13 @@ const STAGE = (() => {
       KINDS.forEach((k, i) => {
         if (fixes) {
           o[k] = row(i, '');
-          if (i < 3) o[k] += op(span(p, 0.05 + i * 0.2, 0.2 + i * 0.2), txt(X0 + 8, ROW(i) + 56, FIX[i], 'pm-on'));
+          if (i < 3) o[k] += op(span(p, 0.03 + i * 0.05, 0.12 + i * 0.05), txt(X0 + 8, ROW(i) + 56, FIX[i], 'pm-on'));
         } else {
           const a = b > when[i] ? 1 : b < when[i] ? 0 : span(p, i === 2 ? 0.45 : 0.05, i === 2 ? 0.65 : 0.25);
           o[k] = row(i, '') + op(a, txt(X0 + 8, ROW(i) + 56, SYM[i], 'pm-txt'));
         }
       });
-      if (fixes) o.trade = op(span(p, 0.65, 0.85), txt(X0 + 8, ROW(3) + 56, tr('→ wat krijgt minder tijd?', '→ what gets less time?'), 'pm-on'));
+      if (fixes) o.trade = op(span(p, 0.2, 0.32), txt(X0 + 8, ROW(3) + 56, tr('→ wat krijgt minder tijd?', '→ what gets less time?'), 'pm-on'));
       return o;
     }
     if (b === 4) {
@@ -114,7 +115,7 @@ const STAGE = (() => {
         s += op(span(p, 0.45 + i * 0.08, 0.55 + i * 0.08), rect(X0, 196 + i * 46, 124, 34, i === 0 ? 'pm-hot' : 'pm-card', 6) + txt(X0 + 10, 220 + i * 46, nm, i === 0 ? 'pm-on' : 'pm-txt'));
         if (i < 3) s += op(span(p, 0.5 + i * 0.08, 0.6 + i * 0.08), path(`M${X0 + 62} ${230 + i * 46}V${242 + i * 46}`, 'pm-line'));
       });
-      o.chain = s + op(span(p, 0.75, 0.9), txt(X0 + 136, 220, tr('twee soorten?', 'two kinds?'), 'pm-mute') + txt(X0 + 136, 246, tr('begin bij', 'start with')) + txt(X0 + 136, 272, tr('de vroegste', 'the earliest'), 'pm-on'));
+      o.chain = s + op(span(p, 0.6, 0.75), txt(X0 + 136, 220, tr('twee soorten?', 'two kinds?'), 'pm-mute') + txt(X0 + 136, 246, tr('begin bij', 'start with')) + txt(X0 + 136, 272, tr('de vroegste', 'the earliest'), 'pm-on'));
       return o;
     }
     const o = { head: [tr('zie het vroeg', 'notice it early'), tr('schema', 'diagram')] };
@@ -168,7 +169,7 @@ const STAGE = (() => {
     if (b >= 5) {
       o.target = op(span(p, 0.05, 0.3), card(238, 120, 'pm-hot') + txt(X0 + 8, 264, tr('de sponsor kiest, of:', 'the sponsor picks, or:'), 'pm-mute')
         + txt(X0 + 8, 292, tr('afzeggingen < 8%', 'cancellations < 8%'), 'pm-on') + txt(X0 + 8, 318, tr('vrijgeven ≤ 2 dagen later', 'release ≤ 2 days later'), 'pm-on'))
-        + op(span(p, 0.65, 0.85), txt(X0 + 8, 346, tr('dan pas ontwerpen', 'then design to it'), 'pm-txt'));
+        + op(span(p, 0.2, 0.32), txt(X0 + 8, 346, tr('dan pas ontwerpen', 'then design to it'), 'pm-txt'));
     }
     return o;
   }
@@ -189,6 +190,9 @@ const STAGE = (() => {
     }
     if (b >= 3) {
       o.certain = '';
+      // Bezos's names for the two doors, on the doors themselves (the lesson: two-way and one-way doors)
+      o.rev += op(at(b, p, 3, 0.3, 0.5), txt(X1 - 4, 164, 'two-way', 'pm-on', 'end'));
+      o.irrev += op(at(b, p, 3, 0.3, 0.5), txt(X1 - 4, 284, 'one-way', 'pm-on', 'end'));
       o.bezos = op(at(b, p, 3, 0.05, 0.3), card(54, 84) + txt(X0 + 8, 80, tr('Bezos, brief over 2015:', 'Bezos, letter for 2015:'), 'pm-mute') + txt(X0 + 8, 106, tr('“two-way doors”', '“two-way doors”'), 'pm-on') + txt(X0 + 8, 130, tr('april 2016', 'April 2016'), 'pm-mute'));
     }
     if (b >= 4) {
@@ -235,23 +239,38 @@ const STAGE = (() => {
           + op(at(b, p, 1, 0.65, 0.9), txt(X0, 248, tr('meet beide groepen', 'measure both groups'), 'pm-mute'));
       }
       if (b >= 2) {
-        o.crit = op(at(b, p, 2, 0.05, 0.3), card(262, 66) + txt(X0 + 8, 288, tr('door: −⅓, naar ~11%', 'go: −⅓, to ~11%'), 'pm-on') + txt(X0 + 8, 314, tr('en < 10 min per belletje', 'and < 10 min per call')))
+        o.crit = op(at(b, p, 2, 0.05, 0.3), card(262, 66) + txt(X0 + 8, 288, tr('door: −⅓, naar ~11%', 'go: −⅓, to ~11%'), 'pm-on') + txt(X0 + 8, 314, tr('belletje < 10 minuten', 'call < 10 minutes')))
           + op(at(b, p, 2, 0.6, 0.85), txt(X0 + 8, 352, tr('anders: stoppen', 'otherwise: drop it'), 'pm-mute'));
       }
       if (b >= 3) {
         o.crit = '';
-        o.cost = op(span(p, 0.05, 0.3), card(262, 118) + txt(X0 + 8, 288, tr('40 × 6 min = 4 uur', '40 × 6 min = 4 hours'), 'pm-big') + txt(X0 + 8, 314, tr('weinig naast één', 'small next to one'), 'pm-txt') + txt(X0 + 8, 340, tr('afgezegde ploegdag', 'cancelled crew day'), 'pm-txt'))
-          + op(span(p, 0.6, 0.85), txt(X0 + 8, 368, tr('een test: samen delen', 'a test, shared together'), 'pm-mute'));
+        o.cost = op(span(p, 0.05, 0.3), card(262, 118) + txt(X0 + 8, 288, tr('40 × 6 minuten = 4 uur', '40 × 6 minutes = 4 hours'), 'pm-big') + txt(X0 + 8, 314, tr('weinig naast één', 'small next to one'), 'pm-txt') + txt(X0 + 8, 340, tr('afgezegde ploegdag', 'cancelled crew day'), 'pm-txt'))
+          + op(span(p, 0.3, 0.5), txt(X0 + 8, 368, tr('een test: samen delen', 'a test, shared together'), 'pm-mute'));
       }
       return o;
     }
     const o = { head: [tr('de grens', 'the limit'), tr('schema', 'diagram')] };
-    o.safety = card(54, 144, 'pm-hot') + txt(X0 + 8, 82, tr('nooit met veiligheid', 'never with safety'), 'pm-on')
-      + txt(X0 + 8, 110, tr('schakelprocedures', 'switching procedures')) + txt(X0 + 8, 136, tr('vergrendeling: eigen slot', 'lockout: own padlock')) + txt(X0 + 8, 162, tr('op de energie', 'on the energy'), 'pm-mute')
-      + txt(X0 + 8, 188, tr('hoe groot de druk ook is', 'whatever the pressure'), 'pm-on');
-    const R = [tr('vrijschakelen', 'disconnect'), tr('beveiligen tegen herinsch.', 'secure: no reconnection'), tr('spanningsloos vaststellen', 'verify no voltage'), tr('aarden en kortsluiten', 'earth and short-circuit'), tr('naastgelegen afschermen', 'shield nearby live parts')];
-    o.rules = op(at(b, p, 4, 0.5, 0.8), txt(X0, 224, tr('vijf veiligheidsregels', 'five safety rules'), 'pm-big') + txt(X0, 248, tr('NEN 3140 en EN 50110', 'EN 50110; NL: NEN 3140'), 'pm-mute'));
-    if (b >= 5) o.rules += R.map((t, i) => op(span(p, 0.05 + i * 0.15, 0.2 + i * 0.15), txt(X0, 274 + i * 24, `${i + 1}`, 'pm-on') + txt(X0 + 22, 274 + i * 24, t, 'pm-txt'))).join('');
+    if (b === 4) {
+      o.safety = card(54, 144, 'pm-hot') + txt(X0 + 8, 82, tr('nooit met veiligheid', 'never with safety'), 'pm-on')
+        + txt(X0 + 8, 110, tr('schakelprocedures', 'switching procedures')) + txt(X0 + 8, 136, tr('vergrendeling: eigen slot', 'lockout: own padlock')) + txt(X0 + 8, 162, tr('op de energie', 'on the energy'), 'pm-mute')
+        + txt(X0 + 8, 188, tr('hoe groot de druk ook is', 'whatever the pressure'), 'pm-on');
+      o.rules = op(span(p, 0.5, 0.8), txt(X0, 236, tr('vijf veiligheidsregels', 'five safety rules'), 'pm-big') + txt(X0, 262, tr('NEN 3140 en EN 50110', 'EN 50110; NL: NEN 3140'), 'pm-mute'));
+      return o;
+    }
+    // the rules beat: the limit shrinks to one line, the five rules in the
+    // lesson's words (as eng.switchgear.fiverules), long ones on two lines
+    o.safety = card(54, 40, 'pm-hot') + txt(X0 + 8, 80, tr('nooit met veiligheid', 'never with safety'), 'pm-on');
+    const R = NL
+      ? [['vrijschakelen'], ['beveiligen tegen', 'herinschakelen'], ['spanningsloosheid', 'vaststellen'], ['aarden en kortsluiten'], ['naastgelegen delen onder', 'spanning afschermen']]
+      : [['disconnect'], ['secure against', 'reconnection'], ['verify absence', 'of voltage'], ['earth and short-circuit'], ['protect against adjacent', 'live parts']];
+    let y = 186;
+    let rows = '';
+    R.forEach((lines, i) => {
+      const y0 = y;
+      rows += op(span(p, 0.03 + i * 0.07, 0.1 + i * 0.07), txt(X0, y0, `${i + 1}`, 'pm-on') + lines.map((t, j) => txt(X0 + 22, y0 + j * 22, t, 'pm-txt')).join(''));
+      y += lines.length * 22 + 6;
+    });
+    o.rules = txt(X0, 126, tr('vijf veiligheidsregels', 'five safety rules'), 'pm-big') + txt(X0, 152, tr('NEN 3140 en EN 50110', 'EN 50110; NL: NEN 3140'), 'pm-mute') + rows;
     return o;
   }
 
@@ -309,8 +328,8 @@ const STAGE = (() => {
     if (b >= 4) {
       o.ijk = '';
       o.relief = op(span(p, 0.05, 0.3), txt(X0, 252, tr('sponsors: vaak opgelucht', 'sponsors: often relieved'), 'pm-on'))
-        + op(span(p, 0.3, 0.5), txt(X0, 278, tr('nieuwe leider? fris,', 'new lead? a fresh face,'), 'pm-mute') + txt(X0, 302, tr('of verdiend vertrouwen', 'or earned trust'), 'pm-mute'))
-        + op(span(p, 0.6, 0.8), card(316, 68, 'pm-hot') + txt(X0 + 8, 342, tr('Zouden we dit project', 'Knowing what we know,'), 'pm-on') + txt(X0 + 8, 368, tr('vandaag starten?', 'start it today?'), 'pm-on'));
+        + op(span(p, 0.12, 0.3), txt(X0, 278, tr('nieuwe leider? fris,', 'new lead? a fresh face,'), 'pm-mute') + txt(X0, 302, tr('of verdiend vertrouwen', 'or earned trust'), 'pm-mute'))
+        + op(span(p, 0.35, 0.5), card(310, 76, 'pm-hot') + txt(X0 + 8, 332, tr('Met wat we nu weten:', 'Knowing what we know,'), 'pm-on') + txt(X0 + 8, 356, tr('zouden we dit project', 'would we start this'), 'pm-on') + txt(X0 + 8, 380, tr('vandaag starten?', 'project today?'), 'pm-on'));
     }
     return o;
   }
@@ -320,15 +339,18 @@ const STAGE = (() => {
     o.case = b >= 2 ? '' : card(54, 92) + txt(X0 + 8, 82, tr('doel: vrijgavetijd ÷ 2', 'goal: release time ÷ 2'), 'pm-big') + txt(X0 + 8, 108, tr('in 3 regio’s', 'in 3 regions'))
       + op(at(b, p, 0, 0.5, 0.75), txt(X0 + 8, 134, tr('nu: 1 regio, 10% korter', 'now: 1 region, 10% faster'), 'pm-on'));
     if (b === 1) {
-      o.causes = op(span(p, 0.05, 0.3), txt(X0, 172, tr('sponsor: 1 van 4 keer', 'sponsor: 1 of 4 times'), 'pm-txt') + txt(X0, 198, tr('2 planners weg in mnd 2,', '2 planners left, month 2,'), 'pm-txt') + txt(X0, 224, tr('niet vervangen', 'not replaced'), 'pm-txt'))
+      o.causes = op(span(p, 0.05, 0.3), txt(X0, 172, tr('sponsor: 1 van 4 keer', 'sponsor: 1 of 4 times'), 'pm-txt') + txt(X0, 198, tr('2 planners weg, maand 2,', '2 planners left, month 2,'), 'pm-txt') + txt(X0, 224, tr('niet vervangen', 'not replaced'), 'pm-txt'))
         + op(span(p, 0.35, 0.55), dot(X0 + 10, 248, 9, 'sc-a') + txt(X0 + 28, 255, tr('meldt oranje: risico', 'reports amber: at risk'), 'pm-txt'))
-        + op(span(p, 0.6, 0.85), card(272, 66, 'pm-hot') + txt(X0 + 8, 298, tr('oorzaak: capaciteit', 'cause: capacity'), 'pm-on') + txt(X0 + 8, 324, tr('en mensen (sponsor)', 'and people (sponsor)'), 'pm-on'))
-        + op(span(p, 0.7, 0.95), txt(X0, 366, tr('eigen aandeel: maand 2', 'own part: month 2'), 'pm-mute'));
+        + op(span(p, 0.45, 0.65), card(272, 66, 'pm-hot') + txt(X0 + 8, 298, tr('oorzaak: capaciteit', 'cause: capacity'), 'pm-on') + txt(X0 + 8, 324, tr('en mensen (sponsor)', 'and people (sponsor)'), 'pm-on'))
+        + op(span(p, 0.55, 0.75), txt(X0, 366, tr('eigen aandeel: maand 2', 'own part: month 2'), 'pm-mute'));
     }
+    // the causes and your own part stay up below the options until the advice
+    if (b === 2) o.causes = card(272, 66, 'pm-hot') + txt(X0 + 8, 298, tr('oorzaak: capaciteit', 'cause: capacity'), 'pm-on') + txt(X0 + 8, 324, tr('en mensen (sponsor)', 'and people (sponsor)'), 'pm-on')
+      + txt(X0, 366, tr('eigen aandeel: maand 2', 'own part: month 2'), 'pm-mute');
     if (b >= 2) {
-      const O = [['A', tr('stoppen, overdragen', 'stop, hand over')], ['B', tr('pilotregio, −40%, 6 wk', 'pilot region, −40%, 6 wk')], ['C', tr('3 regio’s, +2 planners,', '3 regions, +2 planners,')]];
+      const O = [['A', tr('stoppen, overdragen', 'stop, hand over')], ['B', tr('pilot, −40%, 6 weken', 'pilot, −40%, 6 weeks')], ['C', tr('3 regio’s, +2 planners,', '3 regions, +2 planners,')]];
       o.opts = O.map(([n, t], i) => op(at(b, p, 2, 0.05 + i * 0.25, 0.2 + i * 0.25), card(54 + i * 62, i === 2 ? 78 : 52, b >= 3 && i === 1 ? 'pm-hot' : 'pm-card') + txt(X0 + 8, 86 + i * 62, n, 'pm-big') + txt(X0 + 32, 86 + i * 62, t))).join('')
-        + op(at(b, p, 2, 0.6, 0.75), txt(X0 + 32, 236, tr('sponsor elke keer, +10 wk', 'sponsor at each, +10 wk'), 'pm-txt'));
+        + op(at(b, p, 2, 0.6, 0.75), txt(X0 + 32, 236, tr('sponsor altijd, +10 weken', 'with sponsor, +10 weeks'), 'pm-txt'));
     }
     if (b >= 3) {
       o.advice = op(span(p, 0.05, 0.3), card(270, 108, 'pm-hot') + txt(X0 + 8, 296, tr('advies: B,', 'advice: B,'), 'pm-on'))

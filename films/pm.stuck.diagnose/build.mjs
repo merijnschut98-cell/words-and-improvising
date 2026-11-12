@@ -38,7 +38,9 @@
 // for 2015 (published April 2016) describes reversible ("Type 2", two-way
 // door) decisions that small groups should make fast; checked against the
 // letter. The five safety rules are those of EN 50110-1, which NEN 3140
-// applies in the Netherlands, in the lesson's words. No problem-type model is
+// applies in the Netherlands, in the lesson's words; the English lesson now
+// uses the switchgear lesson's and eng.switchgear.fiverules' English (verify
+// absence of voltage; protect against adjacent live parts). No problem-type model is
 // credited to anyone (the four kinds are the lesson's own; Cynefin is a
 // separate lesson, pm.stuck.cynefin, and is not named here).
 //
@@ -61,8 +63,8 @@
 //     meetings cancelled, the project lives in the evening hours (s2 b3)
 //   diagnose teach 4: fixes: goal back to the sponsor to choose; way a small
 //     experiment or an expert; people a one-on-one; capacity a trade-off by
-//     the sponsor, what gets less time so this gets more (s2 b4, card "what
-//     gets less time?"); the classic mistake, a goal problem treated as a
+//     the sponsor, what gets less time so this gets more (s2 b4, "door de
+//     sponsor" in the narration, card "what gets less time?" up 4 s or more); the classic mistake, a goal problem treated as a
 //     people problem and pushing harder; two kinds mixed, start with the
 //     earliest in the chain: goal, way, people, capacity (s2 b5, the chain on
 //     the card)
@@ -89,7 +91,8 @@
 //     planning rule, a board on the wall, decide fast and test (s4 b2);
 //     irreversible: buying a machine, changing a shift contract, announcing a
 //     reorganisation, slow careful analysis (s4 b3; the full lists on the
-//     card); two-way and one-way doors (the two doors of the card, s4 b4). Not said: the pointers to the Run and Leading-outside-your-
+//     card); two-way and one-way doors (the two doors of the card, labelled two-way and
+//     one-way from s4 b4). Not said: the pointers to the Run and Leading-outside-your-
 //     field lessons (navigation, not content).
 //   experiment teach 2: a small experiment, time-boxed with a measure; a
 //     hypothesis, a guess a test can prove wrong (s5 b1); "if planners confirm
@@ -111,8 +114,12 @@
 //     lockout (a machine's energy locked off with a personal padlock, card),
 //     whatever the pressure (card) (s6 b5); the five safety rules for
 //     electrical work (NEN 3140 and EN 50110, card) (s6 b6); the
-//     rules: disconnect, secure against reconnection, verify no voltage, earth
-//     and short-circuit, shield nearby live parts (s6 b6)
+//     rules in the lesson's words and order, as eng.switchgear.fiverules
+//     (card, long ones on two lines, no abbreviations): vrijschakelen,
+//     beveiligen tegen herinschakelen, spanningsloosheid vaststellen, aarden en
+//     kortsluiten, naastgelegen delen onder spanning afschermen; disconnect,
+//     secure against reconnection, verify absence of voltage, earth and
+//     short-circuit, protect against adjacent live parts (s6 b6)
 //   experiment example: a grid operator, three weeks of debate on planners
 //     calling the contractor two days ahead (the gloss of contractor, the firm
 //     whose crews do the work, is not repeated) to confirm crew and material; eats planner time or cuts
@@ -122,7 +129,8 @@
 //     call (s6 b2, b3); agreed in advance: a drop of at least a third, to about 11% or
 //     lower, and calls under 10 minutes, roll out, else stop (s6 b3); 6
 //     minutes a call, 40 jobs 4 hours, small next to one cancelled crew day;
-//     tell the team it is a test, present the result together (s6 b4, card)
+//     tell the team it is a test, present the result together (s6 b4,
+//     narration and card)
 //   reset teach 1: projects rarely fail suddenly, they drift; halfway, hoping
 //     to catch up is the most common and most expensive choice (s7 b1); sunk
 //     cost: what is spent feels like a reason to go on, only future costs and
@@ -136,8 +144,7 @@
 //     capacity issue in week 4" (s7 b5)
 //   reset teach 3: your own manager first, then the sponsor for 45 minutes;
 //     open plainly, "as set up, this project won't reach its goal" (s8 b1),
-//     with what you see and its cause (the honest page of s7) and three
-//     options: stop and hand over what works, shrink
+//     with what you see, its cause and three options (narration s8 b2): stop and hand over what works, shrink
 //     the scope and finish properly, re-plan with new conditions (s8 b2)
 //   reset teach 4: re-contracting, the new deal in writing: goal sentence,
 //     scope, end date, roles, what the sponsor commits to (every steering
@@ -147,14 +154,15 @@
 //   reset teach 5: uncomfortable, maybe shameful, do it anyway; sponsors often
 //     relieved; experts differ on a new lead (a fresh face, or the lead who
 //     named it has earned trust, card); "knowing what we know, would we start
-//     this project today?" (s8 b5). Not said: "maybe shameful", "they felt it
+//     this project today?" (s8 b5, caption, narration and card). Not said: "maybe shameful", "they felt it
 //     too, and nobody said it" (the relief carries it).
 //   reset example: week 14 of 20, a grid operator, halve the time from job
 //     request to release in three regions; the pilot in one region, release
 //     10% faster (s9 b1); the sponsor at one of four steering groups, two key
 //     planners left in month two, not replaced; the team reports amber; the
 //     honest page: mainly capacity and people; your part, raising the planners
-//     leaving in month two (s9 b2, card; amber is "at risk" on the card);
+//     leaving in month two (s9 b2: the causes in the narration, causes and
+//     own part on the card through s9 b3; amber is "at risk" on the card);
 //     manager first, then the sponsor for 45 minutes (as taught in s8 b1);
 //     A stop and hand over the pilot region's work; B the pilot region only, a 40% cut, six weeks; C all three
 //     regions with two extra planners and the sponsor at every steering group,
@@ -168,6 +176,7 @@ import { dirname, join } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import { defineFilm, auditReport, resolveFilm, allLessons } from '../_kit/build-film.mjs';
 import { beatStarts, wordsOf, minSceneDur } from '../_kit/timeline.mjs';
+import { NARRATION_WPS } from '../_kit/assert.mjs';
 import { pmWorld, PM_CSS } from '../_pm/world.mjs';
 
 const SKILL = process.env.ANATOMY_SKILL
@@ -378,13 +387,13 @@ const spec = {
       { nl: 'Het eerste nee is meestal waar je begint.', en: 'The first no is usually where you start.', focus: 'first' },
     ]),
     sc('s2', DG, 1, { nl: 'Symptomen en oplossingen', en: 'Symptoms and fixes' }, [
-      { nl: 'Doel: lange discussies, een wisselende sponsor, elke sessie breekt de vorige open.', en: 'Goal: long debates, a shifting sponsor, every workshop reopening the last.', focus: ['goal', 'sponsor'] },
+      { nl: 'Doel: lange discussies, wisselende sponsor, elke sessie breekt de vorige open.', en: 'Goal: long debates, a shifting sponsor, every workshop reopening the last.', focus: ['goal', 'sponsor'] },
       { nl: 'Weg: analyses in rondjes, wachten op data. Mensen: één loopt uit, stilte, “we zien wel”.', en: 'Way: analysis loops, waiting for data. People: one slips, silence, “we’ll see”.', focus: ['way', 'people'] },
-      { nl: 'Capaciteit: iedereen loopt uit, overleggen vallen af, het werk schuift naar de avond.', en: 'Capacity: everyone slips, meetings get cancelled, the project lives in the evenings.', focus: 'cap' },
+      { nl: 'Capaciteit: iedereen loopt uit, overleggen vallen af, werk in de avond.', en: 'Capacity: everyone slips, meetings cancelled, work in the evenings.', focus: 'cap' },
       { nl: 'Doel: de sponsor kiest. Weg: experiment of expert. Mensen: één-op-één. Capaciteit: een {t:Afweging|afweging}.', en: 'Goal: the sponsor chooses. Way: experiment or expert. People: one-on-one. Capacity: a {t:Trade-off|trade-off}.', cue: { Afweging: 'trade' }, focus: ['goal', 'way', 'people', 'trade', 'sponsor'] },
-      { nl: 'Fout: doelprobleem als mensenprobleem behandelen, harder duwen. Begin bij de vroegste in de keten.', en: 'The mistake: a goal problem treated as a people one, and pushing harder. Start with the earliest in the chain.', focus: ['mistake', 'chain'] },
-      { nl: 'Zie het vroeg: al twee weken “op het punt”? Week {n:3}, niet week {n:9}: dat is het vak.', en: 'Notice it early: two weeks “about to”? Week {n:3}, not week {n:9}: that is the skill.', focus: ['early', 'calendar', 'jij'] },
-      { nl: 'Experts: bijna altijd mensen? Of geeft “weerstand” de schuld van een besluit dat niemand nam?', en: 'Experts: nearly always people? Or does “resistance” blame them for a decision nobody took?', focus: ['debate', 'ask'] },
+      { nl: 'Fout: doelprobleem als mensenprobleem behandelen. Twee soorten? Begin vooraan in de keten.', en: 'Mistake: a goal problem treated as a people one. Two kinds? Start earliest in the chain.', focus: ['mistake', 'chain'] },
+      { nl: 'Twee weken “op het punt”? Week {n:3} zien, niet week {n:9}: het vak.', en: 'Two weeks “about to”? Week {n:3}, not week {n:9}: that is the skill.', focus: ['early', 'calendar', 'jij'] },
+      { nl: 'Experts: altijd mensen? Of geeft “weerstand” de schuld van een besluit dat niemand nam?', en: 'Experts: nearly always people? Or does “resistance” blame them for a decision nobody took?', focus: ['debate', 'ask'] },
     ]),
     sc('s3', DG, 1, { nl: 'De derde ontwerpsessie', en: 'The third design workshop' }, [
       { nl: 'Week {n:7}, netbeheerder: derde sessie over een gereedheidscheck. Heeft een klus alles?', en: 'Week {n:7}, grid operator: third workshop on a readiness check. Has a job got everything?', focus: ['check', 'calendar'] },
@@ -428,7 +437,7 @@ const spec = {
       { nl: 'Stoppen en overdragen, de scope verkleinen en goed afmaken, of opnieuw plannen.', en: 'Stop and hand over, shrink the scope and finish properly, or re-plan.', focus: 'opts' },
       { nl: '{t:Opnieuw contracteren|Opnieuw contracteren}: doel, scope, datum, rollen, toezeggingen, op papier.', en: '{t:Re-contracting|Re-contracting}: goal, scope, date, roles, commitments, in writing.', cue: { 'Opnieuw contracteren': 'recon' }, focus: ['recon', 'paper'] },
       { nl: 'Met een {t:IJkmoment|ijkmoment}: “Niet op X in week {n:20}? Dan stoppen we.”', en: 'With a {t:Check-in point|check-in point}: “Not at X by week {n:20}? We stop.”', cue: { IJkmoment: 'ijk' }, focus: 'ijk' },
-      { nl: 'Ongemakkelijk; doe het toch. Zouden we dit project vandaag nog starten?', en: 'Uncomfortable; do it anyway. Would we start this project today?', focus: ['relief', 'sponsor'] },
+      { nl: 'Ongemakkelijk; doe het toch. Met wat we nu weten: zouden we dit vandaag starten?', en: 'Uncomfortable; do it anyway. Knowing what we know, would we start it today?', focus: ['relief', 'sponsor'] },
     ]),
     sc('s9', RS, 3, { nl: 'Week 14 van 20', en: 'Week 14 of 20' }, [
       { nl: 'Week {n:14} van {n:20}: vrijgeven twee keer zo snel, in drie regio’s. Nu: één regio, {n:10}% korter.', en: 'Week {n:14} of {n:20}: release twice as fast in three regions. Now one region, {n:10}% faster.', focus: ['case', 'calendar'] },
@@ -464,47 +473,47 @@ const SAY = [
   [ // s1 four kinds of stuck
     { nl: 'Vastgelopen voelt altijd hetzelfde: er beweegt niks. Toch zijn er vier soorten, elk met een eigen oplossing.',
       en: 'Stuck always feels the same: nothing moves. Yet there are four kinds, each with its own fix.' },
-    { nl: 'Onduidelijk doel: oneens over wat succes is. Onduidelijke weg: het doel is helder, niemand weet hoe.',
-      en: 'Unclear goal: no agreement on what success is. Unclear way: the goal is clear, nobody knows how.' },
+    { nl: 'Onduidelijk doel: oneens over succes. Onduidelijke weg: het doel is helder, niemand weet hoe.',
+      en: 'Unclear goal: no agreement on success. Unclear way: the goal is clear, nobody knows how.' },
     { nl: 'Mensenprobleem: iemand wiens ja je nodig hebt, geeft hem niet. Capaciteitsprobleem: iedereen is het eens, niemand heeft tijd.',
       en: 'People problem: someone whose yes you need isn\'t giving it. Capacity problem: everyone agrees, nobody has time.' },
-    { nl: 'Vier vragen. Schrijven sponsor, de eigenaar, en team hetzelfde doel op? Kennen we de volgende drie stappen? Missen we steun? Echt uren?',
-      en: 'Four questions. One goal for the sponsor, the owner, and the team? The next three steps known? Support we lack? Real hours?' },
+    { nl: 'Vier vragen: zelfde doel bij sponsor, de eigenaar, en team? Volgende drie stappen? Steun die we missen? Echt uren?',
+      en: 'Four questions: same goal for sponsor, the owner, and team? Next three steps? Support we lack? Real hours?' },
     { nl: 'Het eerste nee is meestal waar je begint.',
       en: 'The first no is usually where you start.' },
   ],
   [ // s2 symptoms and fixes
-    { nl: 'Een onduidelijk doel: lange discussies, een wisselende sponsor, elke sessie breekt de vorige open.',
-      en: 'An unclear goal: long debates, a shifting sponsor, every workshop reopening the last.' },
-    { nl: 'Een onduidelijke weg: analyses in rondjes, wachten op data. Mensen: één persoon loopt uit, stilte.',
-      en: 'An unclear way: analysis loops, waiting for data. People: one person slips, silence.' },
-    { nl: 'Capaciteit: iedereen loopt uit, overleggen vallen af, en het project leeft in de avonduren.',
-      en: 'Capacity: everyone slips, meetings get cancelled, and the project lives in the evenings.' },
-    { nl: 'Doel: de sponsor kiest. Weg: een experiment of expert. Mensen: een gesprek één op één. Capaciteit: een {t:Afweging|afweging}.',
-      en: 'Goal: the sponsor chooses. Way: an experiment or an expert. People: a one-on-one. Capacity: a {t:Trade-off|trade-off}.' },
-    { nl: 'Klassieke fout: een doelprobleem als mensenprobleem behandelen, en harder duwen. Begin bij de vroegste in de keten.',
-      en: 'Classic mistake: treating a goal problem as a people problem, pushing harder. Start with the earliest in the chain.' },
-    { nl: 'Al twee weken op het punt hetzelfde te doen? Zie het in week drie, niet in week negen.',
-      en: 'Two weeks about to do the same thing? See it in week three, not week nine.' },
-    { nl: 'Experts twisten: bijna altijd mensen, of geeft weerstand de schuld van een besluit dat niemand nam? Vraag: welk besluit neemt niemand?',
-      en: 'Experts argue: nearly always people, or does resistance blame them for a decision nobody took? Ask: which decision is nobody taking?' },
+    { nl: 'Doel: lange discussies, een wisselende sponsor, elke sessie breekt de vorige open.',
+      en: 'Goal: long debates, a shifting sponsor, every workshop reopening the last.' },
+    { nl: 'Weg: analyses in rondjes, wachten op data. Mensen: één persoon loopt uit, stilte.',
+      en: 'Way: analysis loops, waiting for data. People: one person slips, silence.' },
+    { nl: 'Capaciteit: iedereen loopt uit, overleggen vallen af, het project leeft in de avonduren.',
+      en: 'Capacity: everyone slips, meetings get cancelled, the project lives in the evenings.' },
+    { nl: 'Oplossingen: de sponsor kiest, een experiment of expert, een gesprek één op één, en een {t:Afweging|afweging} door de sponsor.',
+      en: 'Fixes: the sponsor chooses, an experiment or an expert, a one-on-one, and a {t:Trade-off|trade-off} by the sponsor.' },
+    { nl: 'Klassieke fout: een doelprobleem als mensenprobleem behandelen, harder duwen. Twee soorten tegelijk? Begin bij de vroegste.',
+      en: 'Classic mistake: a goal problem treated as a people one, pushing harder. Two kinds at once? Start with the earliest.' },
+    { nl: 'Al twee weken op het punt? Zie het in week drie, niet negen.',
+      en: 'Two weeks about to act? See it in week three, not week nine.' },
+    { nl: 'Experts twisten: altijd mensen, of een besluit dat niemand nam? Welk besluit neemt niemand?',
+      en: 'Experts argue: always people, or a decision nobody took? Ask: which decision is nobody taking?' },
   ],
   [ // s3 the third design workshop
     { nl: 'Week {n:7}, netbeheerder: derde ontwerpsessie over een gereedheidscheck. Heeft een klus alles voor de ploeg?',
-      en: 'Week {n:7}, grid operator: third design workshop on a readiness check. Has a job got everything for the crew?' },
-    { nl: 'Planning wil streng: niets vrij zonder bevestigd schakelplan en materiaal. Uitvoering wil licht: streng is nog later.',
-      en: 'Planning wants strict: nothing released without a confirmed switching plan and material. Execution wants light: strict is later still.' },
-    { nl: 'De sponsor zei: zorg gewoon dat het werkt. Het team raakt moe. Maar het doel is onduidelijk.',
-      en: 'The sponsor said: just make it work. The team is tiring. But the goal is unclear.' },
+      en: 'Week {n:7}, grid operator: third workshop on a readiness check. Is a job ready for the crew?' },
+    { nl: 'Planning wil streng: niets vrij zonder bevestigd schakelplan en materiaal. Uitvoering wil licht.',
+      en: 'Planning wants strict: nothing released without a confirmed switching plan and material. Execution wants light.' },
+    { nl: 'De sponsor: zorg gewoon dat het werkt. Het team raakt moe. Maar het doel is onduidelijk.',
+      en: 'The sponsor said: just make it work. The team tires. But the goal is unclear.' },
     { nl: 'Streng dient minder afzeggingen, licht sneller vrijgeven. Nog een sessie lost dat niet op.',
       en: 'Strict serves fewer cancellations, light faster release. Another workshop won\'t settle that.' },
     { nl: 'Schrijf één A4 met beide doelen en wat elk ontwerp doet. Vertel beide hoofden het vooraf.',
       en: 'Write one page with both goals and what each design does. Tell both heads beforehand.' },
-    { nl: 'De sponsor kiest, of stelt één doel: afzeggingen onder de {n:8} procent, vrijgeven hooguit {n:2} dagen langer.',
+    { nl: 'De sponsor kiest, of stelt één doel: afzeggingen onder {n:8} procent, vrijgeven hooguit {n:2} dagen langer.',
       en: 'The sponsor chooses, or sets one target: cancellations under {n:8} percent, release at most {n:2} days longer.' },
   ],
   [ // s4 reversible or not
-    { nl: 'Zekerheid krijg je zelden. Wat kost het als je het mis hebt, en kun je terug?',
+    { nl: 'Zekerheid krijg je zelden. Wat kost het als het mis is, en kun je terug?',
       en: 'Certainty is rare. What does being wrong cost, and can you undo it?' },
     { nl: 'Een {t:Omkeerbaar besluit|omkeerbaar besluit}, zoals een planningsregel, neem je snel, en je test het.',
       en: 'A {t:Reversible decision|reversible decision}, like a planning rule, you make fast, and test.' },
@@ -513,33 +522,33 @@ const SAY = [
     { nl: 'Jeff Bezos noemde omkeerbare besluiten deuren waar je terug door kunt, voor kleine groepen, snel.',
       en: 'Jeff Bezos called reversible decisions two-way doors: small groups should make them fast.' },
     { nl: 'Critici: ook klein is sociaal lastig terug te draaien. Wat kost teruggaan, in geld en vertrouwen?',
-      en: 'Critics: even small can be socially hard to undo. What does going back cost, in money and trust?' },
+      en: 'Critics: even small is socially hard to undo. What does going back cost, in money and trust?' },
   ],
   [ // s5 a small experiment
     { nl: 'Een {t:Experiment|experiment}: een kleine test met vaste duur en meting. Een {t:Hypothese|hypothese} is een vermoeden dat een test kan weerleggen.',
-      en: 'An {t:Experiment|experiment}: a small test with a fixed duration and a measure. Start from a {t:Hypothesis|hypothesis}, a guess a test can prove wrong.' },
+      en: 'An {t:Experiment|experiment}: a small test, time-boxed, with a measure. Start from a {t:Hypothesis|hypothesis}, a guess a test can prove wrong.' },
     { nl: 'Bevestigen planners vooraf, dan dalen de afzeggingen? Test het kleinste wat het je vertelt: twee planners, twee weken, zo\'n {n:40} klussen.',
-      en: 'If planners confirm ahead, cancellations drop? Test the smallest thing that tells you: two planners, two weeks, about {n:40} jobs.' },
-    { nl: 'Spreek vooraf af wat je meet, en het {t:Stopcriterium|stopcriterium}: wanneer je doorgaat, en wanneer je stopt.',
-      en: 'Agree first what you measure, and the {t:Stop criterion|stop criterion}: when you go on, and when you stop.' },
+      en: 'If planners confirm ahead, do cancellations drop? Test the smallest thing that tells you: two planners, two weeks, about {n:40} jobs.' },
+    { nl: 'Spreek vooraf af wat je meet, en het {t:Stopcriterium|stopcriterium}: wanneer door, wanneer stoppen.',
+      en: 'Agree first what you measure, and the {t:Stop criterion|stop criterion}: when to go on, when to stop.' },
     { nl: 'Twee weken proberen, dan samen beslissen: daar zeg je makkelijker ja tegen. Stop dan ook echt.',
       en: 'Two weeks, then decide together: easier to say yes to. Then really stop.' },
     { nl: 'Fouten: geen groep om mee te vergelijken, twee veranderingen tegelijk, of een testteam met alle aandacht.',
       en: 'Failures: no comparison group, two changes at once, or a test team with all the attention.' },
   ],
   [ // s6 the call ahead
-    { nl: 'Drie weken discussie: de aannemer vooraf bellen, kost dat plannerstijd of scheelt het afzeggingen? Geen data; {n:16} procent wordt afgezegd.',
-      en: 'Three weeks of debate: does calling the contractor ahead eat planner time, or cut cancellations? No data; {n:16} percent cancelled.' },
-    { nl: 'Omkeerbaar en goedkoop: test het. Twee planners bellen, de anderen niet.',
-      en: 'Reversible and cheap: test it. Two planners call, the others work as usual.' },
-    { nl: 'Een derde minder afzeggingen, zo\'n {n:11} procent, en belletjes onder {n:10} minuten? Uitrollen. Anders stoppen.',
-      en: 'A third fewer cancellations, about {n:11} percent, and calls under {n:10} minutes? Roll it out. Otherwise stop.' },
-    { nl: 'Bij {n:6} minuten kosten {n:40} belletjes {n:4} uur: weinig naast één afgezegde ploegdag.',
-      en: 'At {n:6} minutes, {n:40} calls cost {n:4} hours: small next to one cancelled crew day.' },
-    { nl: 'De grens: experimenteer nooit met veiligheid. Schakelprocedures en vergrendeling gaan niet op de proef.',
-      en: 'The limit: never experiment with safety. Switching procedures and lockout are never tested.' },
-    { nl: 'Ook niet de {t:Vijf veiligheidsregels|vijf veiligheidsregels}: vrijschakelen, beveiligen tegen herinschakelen, spanningsloosheid vaststellen, aarden en kortsluiten, en afschermen.',
-      en: 'Nor the {t:Five safety rules|five safety rules}: disconnect, secure against reconnection, verify no voltage, earth and short-circuit, and shield.' },
+    { nl: 'Drie weken discussie: de aannemer vooraf bellen, kost dat plannerstijd of scheelt het afzeggingen? Geen data; {n:16} procent afgezegd.',
+      en: 'Three weeks of debate: calling the contractor ahead, planner time or fewer cancellations? No data; {n:16} percent cancelled.' },
+    { nl: 'Omkeerbaar en goedkoop: test het. Twee planners bellen, de rest niet.',
+      en: 'Reversible and cheap: test it. Two planners call; the rest don\'t.' },
+    { nl: 'Een derde minder, zo\'n {n:11} procent, en belletjes onder {n:10} minuten? Uitrollen, anders stoppen.',
+      en: 'A third fewer, about {n:11} percent, and calls under {n:10} minutes? Roll out; else stop.' },
+    { nl: 'Bij {n:6} minuten kosten {n:40} belletjes {n:4} uur: weinig naast één afgezegde ploegdag. Noem het een test; deel de uitkomst samen.',
+      en: 'At {n:6} minutes, {n:40} calls cost {n:4} hours, small next to a cancelled crew day. Call it a test; share the result.' },
+    { nl: 'Maar experimenteer nooit met veiligheid: niet met schakelprocedures of vergrendeling.',
+      en: 'Never experiment with safety: not switching procedures, not lockout.' },
+    { nl: 'Niet met de {t:Vijf veiligheidsregels|vijf veiligheidsregels}: vrijschakelen, beveiligen tegen herinschakelen, spanningsloosheid vaststellen, aarden en kortsluiten, afschermen.',
+      en: 'Nor the {t:Five safety rules|five safety rules}: disconnect, secure against reconnection, verify absence of voltage, earth and short-circuit, protect against adjacent live parts.' },
   ],
   [ // s7 drifting
     { nl: 'Projecten mislukken zelden plotseling, ze drijven af. Halverwege hopen op inhalen is de duurste keuze.',
@@ -547,50 +556,55 @@ const SAY = [
     { nl: '{t:Verzonken kosten|Verzonken kosten}: wat op is, voelt als reden om door te gaan. Alleen de toekomst telt.',
       en: '{t:Sunk cost|Sunk cost}: what is spent feels like a reason to go on. Only the future counts.' },
     { nl: 'Een {t:Herstart|herstart}: eerlijk kijken, nieuwe afspraak. Eerst één A4: plan tegenover werkelijkheid, met oorzaken.',
-      en: 'A {t:Reset|reset}: look honestly and agree a new deal. First one page: plan versus reality, and the causes.' },
+      en: 'A {t:Reset|reset}: look honestly, a new deal. First one page: plan versus reality, and causes.' },
     { nl: 'Een {t:RAG-status|RAG-status}, rood, oranje of groen, die wekenlang groen blijft terwijl het doel wegglijdt: een watermeloen.',
       en: 'A {t:RAG status|RAG status}, red, amber or green, green for weeks while the goal slips: a watermelon.' },
     { nl: 'Benoem je eigen aandeel: ik had het capaciteitsprobleem in week vier moeten escaleren.',
       en: 'Name your own part: I should have escalated the capacity issue in week four.' },
   ],
   [ // s8 the talk, the new deal
-    { nl: 'Eerst je eigen leidinggevende. Dan de sponsor, {n:45} minuten: zo haalt dit project zijn doel niet.',
-      en: 'Your own manager first. Then the sponsor, {n:45} minutes: as set up, this project won\'t reach its goal.' },
-    { nl: 'Opties: stoppen en overdragen wat werkt, de scope verkleinen en goed afmaken, of opnieuw plannen.',
-      en: 'Three options: stop and hand over what works, shrink the scope and finish properly, or re-plan.' },
+    { nl: 'Eerst je eigen leidinggevende, dan de sponsor, {n:45} minuten: zo haalt dit project zijn doel niet.',
+      en: 'Your manager first, then the sponsor, {n:45} minutes: as set up, this project won\'t reach its goal.' },
+    { nl: 'Met wat je ziet, de oorzaak en drie opties: stoppen en overdragen wat werkt, kleiner afmaken, of opnieuw plannen.',
+      en: 'With what you see, the cause and three options: stop and hand over what works, shrink and finish, or re-plan.' },
     { nl: '{t:Opnieuw contracteren|Opnieuw contracteren}: doel, scope, einddatum, rollen en wat de sponsor toezegt, op papier.',
-      en: '{t:Re-contracting|Re-contracting}: goal, scope, end date, roles and what the sponsor commits to, in writing.' },
+      en: '{t:Re-contracting|Re-contracting}: goal, scope, end date, roles, the sponsor\'s commitments, in writing.' },
     { nl: 'Plus een {t:IJkmoment|ijkmoment}: in week {n:20} niet op X, dan stoppen we. Alleen datums verschuiven mislukt weer.',
       en: 'Plus a {t:Check-in point|check-in point}: not at X by week {n:20}, we stop. Only moving dates fails again.' },
-    { nl: 'Ongemakkelijk? Doe het toch: sponsors zijn vaak opgelucht. Zouden we dit project vandaag starten?',
-      en: 'Uncomfortable? Do it anyway: sponsors are often relieved. Would we start this project today?' },
+    { nl: 'Ongemakkelijk? Doe het toch; sponsors zijn vaak opgelucht. Met wat we nu weten: zouden we dit vandaag starten?',
+      en: 'Uncomfortable? Do it anyway; sponsors are often relieved. Knowing what we know, would we start this today?' },
   ],
   [ // s9 week 14 of 20
     { nl: 'Week {n:14} van {n:20}: vrijgeven twee keer zo snel, in drie regio\'s. De pilot: één regio, {n:10} procent sneller.',
       en: 'Week {n:14} of {n:20}: release twice as fast, in three regions. The pilot: one region, {n:10} percent faster.' },
-    { nl: 'De sponsor kwam op één van vier stuurgroepen, twee planners vertrokken. Toch meldt het team oranje.',
-      en: 'The sponsor came to one of four steering groups, two planners left. Yet the team reports amber.' },
-    { nl: 'A: stoppen. B: de pilotregio, {n:40} procent korter, zes weken. C: drie regio\'s, twee planners extra, tien weken later.',
-      en: 'A: stop. B: the pilot region only, {n:40} percent shorter, six weeks. C: three regions, two extra planners, ten weeks later.' },
+    { nl: 'De sponsor kwam op één van vier stuurgroepen, twee planners vertrokken. Toch meldt het team oranje. Oorzaak: capaciteit en mensen.',
+      en: 'The sponsor came to one of four steering groups, two planners left. Yet the team reports amber. Cause: capacity and people.' },
+    { nl: 'A: stoppen. B: de pilotregio, {n:40} procent korter, zes weken. C: drie regio\'s, tien weken later.',
+      en: 'A: stop. B: the pilot region, {n:40} percent shorter, six weeks. C: three regions, ten weeks later.' },
     { nl: 'Adviseer B, tenzij zij zich echt aan C verbindt. Leg het vast, met een ijkmoment.',
       en: 'Recommend B, unless she truly commits to C. Write it down, with a check-in point.' },
   ],
 ];
-// Each scene's length from its share of the Dutch narration, never shorter than
-// its captions need; the whole about as long as the narration plus a short look
-// per scene, within the 300 s cap (as pm.run.scope).
+// Each scene's length from its share of the narration (the longer of nl and
+// en, at the kit's 2.5 words a second), never shorter than its captions need;
+// the whole as long as the narration estimate, within the 300 s cap (as
+// pm.portfolio.prioritise).
 {
   const plainSay = (src) => src.replace(/\{t:[^|}]*\|([^}]*)\}/g, '$1').replace(/\{n:([^}]*)\}/g, '$1');
-  const said = SAY.map((s) => s.reduce((a, l) => a + wordsOf(plainSay(l.nl)), 0));
+  const said = SAY.map((s) => Math.max(...['nl', 'en'].map((lang) => s.reduce((a, l) => a + wordsOf(plainSay(l[lang])), 0))));
   const all = said.reduce((a, b) => a + b, 0);
-  const TOTAL = Math.min(298, Math.ceil(all / 2.5) + 2 * SAY.length);
+  const TOTAL = Math.min(300, Math.round(all / NARRATION_WPS));
   // the captions as shown, with each term's English gloss (the check counts those words too)
   const shown = resolveFilm(spec, lessons);
   spec.scenes.forEach((s, si) => {
     const cap = Math.max(...['nl', 'en'].map((lang) => minSceneDur(wordsOf(shown.scenes[si].beats.map((b) => b.text[lang]).join(' ')) + 2)));
     s.dur = Math.max(Math.ceil(cap), Math.floor((said[si] / all) * TOTAL));
-    DURS[si] = s.dur;
   });
+  // the seconds lost to rounding down go to the scenes that lost the most
+  const left = TOTAL - spec.scenes.reduce((a, s) => a + s.dur, 0);
+  spec.scenes.map((s, si) => [si, (said[si] / all) * TOTAL - s.dur]).sort((x, y) => y[1] - x[1])
+    .slice(0, Math.max(0, left)).forEach(([si]) => { spec.scenes[si].dur += 1; });
+  spec.scenes.forEach((s, si) => { DURS[si] = s.dur; });
   const total = spec.scenes.reduce((a, s) => a + s.dur, 0);
   if (total > 300) throw new Error(`film is ${total} s, over 300`);
 }

@@ -311,6 +311,15 @@ const SAY = {
     // and COO as letters (before a colon espeak-ng reads the word "koo"); commitment as Dutch project people say
     // it, k'MIT-ment (espeak-ng reads "kommit-MENT", heard as "comment meer"; "kmitmunt" heard as commitment)
     [/\bCOO\b/g, 'C O O'], [/\bCommitment\b/g, 'Kmitmunt'], [/\bcommitment\b/g, 'kmitmunt'],
+    // handing over and holding on (pm.land.handover): hypercare as said in Dutch IT projects, "haiperkeer"
+    // (espeak-ng reads "hie-per-kaa-re"); the KPI after "de" and KPI's as letters (espeak-ng reads the word
+    // "kpie"; not "een KPI", so pm.intake.firsttalk keeps its voice, and KPI- compounds are read as letters
+    // already); and compounds it misreads, split at the head: acceptatiecriteria with "ti" for "tsie" (lower
+    // case only, so pm.plan.wbs's "Acceptatiecriteria:" keeps its voice), PROjectopdracht, PROOsə-zaudit,
+    // baTENreview and overdrachts-sx-ecklist (with the s-ch of "schip"); no other film says them
+    [/\b([Hh])ypercare\b/g, '$1aiperkeer'], [/\b([Dd]e) KPI\b(?!-)/g, '$1 K P I'], [/\bKPI's\b/g, "K P I's"],
+    [/\bacceptatiecriteria\b/g, 'acceptatie-criteria'], [/\b([Pp])rojectopdracht/g, '$1roject-opdracht'], [/\b([Pp])rocesaudit/g, '$1roces-audit'],
+    [/\b([Bb])atenreview/g, '$1aten-review'], [/\b([Oo])verdrachtschecklist/g, '$1verdrachts-checklist'],
     // adoption (pm.land.adoption): the five ADKAR steps as their English words, as the floor says them (espeak-ng
     // reads "AA-va-ree-nus", "DEE-zie-re", "knoow-ledge" with a g, "AA-bi-lie-ti", "rein-fors-e-MENT"): e-WER-nus,
     // di-ZAAI-er, NOL-litsj, e-BIL-li-ti, rie-in-FORS-ment; only with a capital, as the lessons write them.
@@ -321,6 +330,21 @@ const SAY = {
     [/\bAwareness\b/g, 'E-wèrnus'], [/\bDesire\b/g, 'Die-zaaijer'], [/\bKnowledge\b/g, 'Nollitsj'], [/\bAbility\b/g, 'E-billiti'], [/\bReinforcement\b/g, 'Rie-in-forsmunt'],
     [/\b([Ll])ivegang/g, '$1aif-gang'], [/\b([Cc])ommunicatieplan/g, '$1ommunicatie-plan'], [/\b([Mm])iddenmanager/g, '$1idden-menetsjer'], [/\b([Tt])own hall\b/g, '$1aun hol'],
     [/\bCoch en French\b/g, 'Kootsj en Frensj'], [/\bMark Hughes\b/g, 'Mark Hjoes'],
+    // from strategy to team number (pm.perform.tree): the English words Dutch performance people use, as they
+    // say them (espeak-ng reads "drie-vur", "baa-lan-set skoo-re-kart", gaming with the g of "lachen" and a long
+    // a, "Goo-dhart", "Strat-ern", "lok-ke en lat-tam" and stresses NORton on its last syllable): draiver,
+    // bellenst skoorkart, geeming, Goedhart, Strèthurn, Lok en Leetum, Norten (the names only in their pairs);
+    // and words it stresses or voices wrong: IN-dicator (said indie-KAtor, indie-kaTOren, only after voorlopende,
+    // achterlopende and gekoppelde, so the grid films' "kleine indicatoren" stay), actiegrens with a schwa (only
+    // after "een", so eng.maintenance.failure's "De actiegrens ligt" keeps its voice), "dee-ad-lie-ne",
+    // "dasj-boo-arts" (only the plural: the singular in pm.intake.firsttalk, pm.plan.method and pm.run.scope
+    // stays), RAPportagecijfer and "orderrə-GEL"; said actie-grens, dedlain, desjbords, rapportage-cijfer and
+    // order-regel. No other film's spoken text changes
+    [/\b([Dd])river/g, '$1raiver'], [/\b([Bb])alanced scorecard\b/g, (m, b) => `${b === 'B' ? 'B' : 'b'}ellenst skoorkart`], [/\bKaplan en Norton\b/g, 'Kaplan en Norten'],
+    [/\b([Gg])aming\b/g, '$1eeming'], [/\bGoodhart\b/g, 'Goedhart'], [/\bStrathern\b/g, 'Strèthurn'], [/\bLocke en Latham\b/g, 'Lok en Leetum'],
+    [/\b([Vv]oorlopende|[Aa]chterlopende|[Gg]ekoppelde) indicator/g, '$1 indie-kator'], [/\b([Ee]en) actiegrens\b/g, '$1 actie-grens'], [/\b([Dd])eadline/g, '$1edlain'],
+    [/\b([Dd])ashboards\b/g, '$1esjbords'],
+    [/\b([Rr])apportagecijfer/g, '$1apportage-cijfer'], [/\b([Oo])rderregel/g, '$1rder-regel'],
     // on-the-job instruction (pm.land.training): Toyota as the Dutch say it, "tojota" (espeak-ng reads
     // "too-ie-oota"); no other film says Toyota in Dutch
     [/\bToyota\b/g, 'Tojota'],
@@ -332,6 +356,35 @@ const SAY = {
     // this film's phrase "investering die niet nodig" is split
     [/\b([Cc])ontroller(s?)\b/g, (m, c, s) => `${c === 'C' ? 'K' : 'k'}on-troller${s}`], [/\b([Dd])ekkingsbijdrage/g, '$1ekkings-bijdrage'],
     [/\b([Rr])un chart\b/g, '$1un tsjart'], [/\b([Pp])rocentpunt/g, '$1rocent-punt'], [/\b([Ii])nvestering die niet nodig\b/g, '$1n-ves-tering die niet nodig'],
+    // what fits under the line (pm.portfolio.prioritise): espeak-ng stresses programmaRAAD, capaciteitsSTREEP,
+    // KApaciteitsmatrix, KApaciteitsconflict and risicogecorrigEERde: split at the head, each part keeps its own
+    // stress (pro-GRAM-ma-RAAD, ca-pa-ci-TEITS-STREEP, RI-si-co-ge-cor-ri-GEER-de). It stresses ONderhanden werk
+    // (said onder-HANden), but eng.lines.design says "onderhanden werk" in a rendered video, so only this film's
+    // two phrases are split. contextswitch with the tsj of "switch" (espeak-ng reads the ch of "lachen"),
+    // planningstool with the oe Dutch speakers say (it reads planningsTOOL with a Dutch oo), and Gerald Weinberg
+    // as his English name (it reads a Dutch g and ei); no other film says them
+    [/\b([Pp])rogrammaraad/g, '$1rogramma-raad'], [/\b([Cc])apaciteits(streep|matrix|conflict)/g, '$1apaciteits-$2'], [/\b([Rr])isicogecorrigeerd/g, '$1isico-gecorrigeerd'],
+    [/\b([Oo])nderhanden werk(?= is alles| gedeeld door)/g, '$1nder-handen werk'],
+    [/\b([Cc])ontextswitch/g, '$1ontext-switsj'], [/\b([Pp])lanningstool/g, '$1lannings-toel'], [/\bGerald Weinberg\b/g, 'Djerreld Wainburk'],
+    // BATNA, ZOPA and the first offer (pm.negotiate.batna): pakketdeal with "deal" as the Dutch say it, "diel"
+    // (espeak-ng drops the d: "pakket-eeal"), framing as "freeming" (espeak-ng reads "fraa-ming"), and the
+    // example's gecoate beugels and coaten with the English oa, "koote" (espeak-ng reads "ge-koo-aa-te"); gecoate
+    // only before beugels, so eng.joining.bonding's "gecoate nagels" keeps its voice. Also deal on its own as
+    // "diel" (espeak-ng reads "dee-al"). integriteit takes pm.lead.feedback's in-tegriteit above (stress on
+    // -TEIT, full e). BATNA and ZOPA need no rule (espeak-ng reads BAT-naa and ZOO-paa); no other film says
+    // these words in Dutch
+    [/\b([Pp])akketdeal/g, '$1akket-diel'], [/\b([Dd])eal(s?)\b/g, '$1iel$2'], [/\b([Ff])raming\b/g, '$1reeming'],
+    [/\b([Gg])ecoate beugels\b/g, '$1ekoote beugels'], [/\bcoaten\b/g, 'kooten'],
+    // three conversations in one (pm.lead.difficult): the authors and the book's title as English names (espeak-ng
+    // reads "stoo-ne", pat-TON and a Dutch "kon-ver-saa-sjons"): Stoon, Petten, Diffikkelt Konver-seesjens;
+    // identiteitsgesprek and identiteitsval split at the head (it stresses I-dentiteits; split, i-den-ti-TEITS),
+    // ge-kwetstheid (it stresses GE-), smalltalk as said in Dutch (smoltok); analyse is stressed AA-na-ly-se, but
+    // other films say it, so only this film's two phrases get "analiese"; stilstanddata, stilstandlogboek and
+    // lijndata split at the head (it stresses the last part). No other film says them
+    [/\bStone, Patton en Heen\b/g, 'Stoon, Petten en Heen'], [/\bDifficult Conversations\b/g, 'Diffikkelt Konver-seesjens'],
+    [/\b([Ii])dentiteits(gesprek|val)/g, '$1dentiteits-$2'], [/\b([Gg])ekwetstheid\b/g, '$1e-kwetstheid'], [/\b([Ss])malltalk\b/g, '$1moltok'],
+    [/\banalyse (?=moet vrijdag|vóór vrijdag)/g, 'analiese '], [/\b([Ss])tilstandlogboek\b/g, '$1tilstand-log-boek'],
+    [/\b([Ss])tilstanddata\b/g, '$1tilstand-data'], [/\b([Ll])ijndata\b/g, '$1ijn-data'],
     // stuck: which kind of problem (pm.stuck.diagnose): espeak-ng stresses mensenproBLEEM, capaciteitsproBLEEM,
     // ijkmoMENT and planningsreGEL (with the e of "bed"), split at the head as stuur-groep, and vrijgeven on
     // -GEE- (said VRIJ-geven). Not vrijgave, which films with a video say; no other film says these

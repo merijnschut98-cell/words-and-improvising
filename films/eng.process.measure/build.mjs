@@ -171,7 +171,7 @@ const spec = {
 // What the voice says, per scene and beat: the film replaces the lesson text
 // and its worked example, so this explains fully. No "/", "&", "×", "=" or
 // units as symbols in the spoken text: units are written out (bar(g) and
-// bar(a) are read "bar g" and "bar a" in Dutch; the English voice reads
+// bar(a) are spoken "bar g" and "bar a" in Dutch, written so: never a spoken parenthesis; the English voice reads
 // bar(a) as "bar uh" and psi as "sigh", so the English script says bar gauge,
 // bar absolute and pounds per square inch). Words checked with espeak-ng phonemes
 // (Piper's own bridge, films/_kit/voice-ab/phon.py with nl_NL-alex-medium):
@@ -184,17 +184,17 @@ const spec = {
 // een").
 const SAY = [
   [ // s1 four variables, pressure units
-    { nl: 'Om een proceslijn te sturen, meet je vooral vier grootheden: druk, temperatuur, debiet en niveau. Op deze lijn zit voor elk een meter.',
+    { nl: 'Om een proceslijn te sturen, meet je vooral vier grootheden. Dat zijn druk, temperatuur, debiet en niveau. Op deze lijn zit voor elk een meter.',
       en: 'To run a process line, you mainly measure four variables: pressure, temperature, flow and level. On this line there is a meter for each.' },
     { nl: 'Druk is kracht per oppervlak. Je meet hem in bar, of in kilopascal: 1 bar is 100 kilopascal. Op Amerikaanse apparatuur staat vaak psi, en 1 bar is ongeveer 14,5 psi.',
       en: 'Pressure is force per area. You measure it in bar, or in kilopascals: 1 bar is 100 kilopascals. American equipment often shows pounds per square inch, and 1 bar is about 14.5 of those.' },
   ],
   [ // s2 gauge, absolute, vacuum
-    { nl: 'Na de pomp zit een manometer. Zoals bijna alle manometers toont hij {t:Overdruk|overdruk}: de druk ten opzichte van de buitenlucht. Je schrijft dat als bar(g).',
+    { nl: 'Na de pomp zit een manometer. Zoals bijna alle manometers toont hij {t:Overdruk|overdruk}: de druk ten opzichte van de buitenlucht. Je schrijft dat als bar g.',
       en: 'After the pump sits a pressure gauge. Like almost every gauge, it shows {t:Gauge pressure|gauge pressure}: the pressure relative to the air around it. You write that as bar gauge.' },
-    { nl: 'De {t:Absolute druk|absolute druk} telt vanaf volledig vacuüm, in bar(a). Op zeeniveau drukt de lucht zelf al zo’n {n:1} bar. Wijst de manometer {n:2} bar aan, dan is de absolute druk dus ongeveer {n:3} bar.',
+    { nl: 'De {t:Absolute druk|absolute druk} telt vanaf volledig vacuüm, in bar a. Op zeeniveau drukt de lucht zelf al zo’n {n:1} bar. Wijst de manometer {n:2} bar aan, dan is de absolute druk dus ongeveer {n:3} bar.',
       en: 'The {t:Absolute pressure|absolute pressure} counts from a perfect vacuum, in bar absolute. At sea level the air itself presses about {n:1} bar. So if the gauge reads {n:2} bar, the absolute pressure is about {n:3} bar.' },
-    { nl: 'Vacuüm zie je dus op twee manieren: als negatieve overdruk, of als lage absolute druk. Een halve bar onder de buitenlucht is min een halve bar(g), of ongeveer een halve bar(a). Noemt iemand een druk, vraag dan welke.',
+    { nl: 'Vacuüm zie je dus op twee manieren: als negatieve overdruk, of als lage absolute druk. Een halve bar onder de buitenlucht is min een halve bar g, of ongeveer een halve bar a. Noemt iemand een druk, vraag dan welke.',
       en: 'So vacuum shows up in two ways: as negative gauge pressure, or as low absolute pressure. Half a bar below the outside air is minus half a bar gauge, or about half a bar absolute. When someone quotes a pressure, ask which one.' },
   ],
   [ // s3 volume or mass

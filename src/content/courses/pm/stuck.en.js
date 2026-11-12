@@ -506,7 +506,7 @@ export default {
         'Design a small experiment: a time-boxed test with a measure. Start from a hypothesis, a guess you can prove wrong: “If planners confirm crew and material two days ahead, cancellations drop.”\n\nThe smallest test: two planners, two weeks, about 40 jobs. What you’ll measure, and against what. And, agreed before you start, the stop criterion: what result means continue and what means stop.',
         'Experiments lower resistance. “We’ll try it for two weeks, then decide together” is much easier to say yes to than “from Monday this is the new way”. But keep the promise: evaluate openly, and actually stop if it doesn’t work.\n\nTypical failures: no comparison group, two changes at once, or a test team that gets so much attention it works there and nowhere else.',
         'What experts argue about: speed. In his letter to shareholders for 2015, published in April 2016, Jeff Bezos called reversible decisions “two-way doors” that small groups should make fast. Critics note that “small” changes can be hard to undo socially once people are used to them.\n\nSo ask: “What would it cost to go back, in money and in trust?” And when you don’t know what to do, say: “We don’t know yet. Here’s the smallest thing that would tell us.”',
-        'The limit: never experiment with safety. Switching procedures, lockout (locking a machine’s energy off with a personal padlock) and the five safety rules for electrical work (set out in the European standard EN 50110; in the Netherlands, NEN 3140) are not up for a quick test, whatever the pressure.\n\nThose rules: disconnect; secure against reconnection; verify there is no voltage; earth and short-circuit; shield nearby live parts.',
+        'The limit: never experiment with safety. Switching procedures, lockout (locking a machine’s energy off with a personal padlock) and the five safety rules for electrical work (set out in the European standard EN 50110; in the Netherlands, NEN 3140) are not up for a quick test, whatever the pressure.\n\nThose rules: disconnect; secure against reconnection; verify absence of voltage; earth and short-circuit; protect against adjacent live parts.',
       ],
       example: {
         kind: 'faded',
@@ -572,7 +572,7 @@ export default {
         { term: 'Experiment', def: 'A small, time-boxed test with a measure and stop criteria agreed in advance.' },
         { term: 'Hypothesis', def: 'A specific guess about cause and effect that a test can prove wrong.' },
         { term: 'Stop criterion', def: 'The result, agreed before the test, that means you stop instead of rolling out.' },
-        { term: 'Five safety rules', def: 'The fixed steps before electrical work: disconnect, secure against reconnection, verify no voltage, earth and short-circuit, shield nearby live parts.' },
+        { term: 'Five safety rules', def: 'The fixed steps before electrical work: disconnect, secure against reconnection, verify absence of voltage, earth and short-circuit, protect against adjacent live parts.' },
       ],
     },
     {
