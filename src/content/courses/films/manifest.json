@@ -1558,6 +1558,35 @@
         ],
         "vtt": "src/content/courses/films/pm.plan.risk.en.vtt"
       }
+    },
+    "pm.plan.schedule": {
+      "poster": "src/content/courses/films/pm.plan.schedule.jpg",
+      "nl": {
+        "dur": 290.1,
+        "bytes": 9702983,
+        "scenes": [
+          0,
+          59.55,
+          112.88,
+          159.88,
+          193.8,
+          237.72
+        ],
+        "vtt": "src/content/courses/films/pm.plan.schedule.nl.vtt"
+      },
+      "en": {
+        "dur": 305.2,
+        "bytes": 10212007,
+        "scenes": [
+          0,
+          61.72,
+          115.82,
+          165.29,
+          202.05,
+          248.8
+        ],
+        "vtt": "src/content/courses/films/pm.plan.schedule.en.vtt"
+      }
     }
   }
 }
