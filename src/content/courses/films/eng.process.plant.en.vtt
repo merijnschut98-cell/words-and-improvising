@@ -1,0 +1,317 @@
+WEBVTT
+
+1
+00:00:00.829 --> 00:00:02.489
+This is a small juice plant.
+
+2
+00:00:03.309 --> 00:00:06.432
+On the left stands a mixing vat, on the right a filler,
+
+3
+00:00:06.641 --> 00:00:09.706
+and in between the juice flows through a row of equipment.
+
+4
+00:00:10.774 --> 00:00:13.572
+Each step in that row is a unit operation:
+
+5
+00:00:13.757 --> 00:00:17.589
+a basic physical step that comes back in every process plant.
+
+6
+00:00:18.357 --> 00:00:21.631
+Here they are mixing, pumping, heating, holding and cooling.
+
+7
+00:00:22.664 --> 00:00:25.079
+Separating is a unit operation too.
+
+8
+00:00:25.769 --> 00:00:28.822
+It has many forms: filtering through a cloth or sieve,
+
+9
+00:00:28.950 --> 00:00:33.524
+centrifuging by spinning fast, distilling by boiling and catching the vapour,
+
+10
+00:00:33.629 --> 00:00:37.402
+or evaporating, where you boil off water to concentrate a liquid.
+
+11
+00:00:38.457 --> 00:00:40.117
+Other plants dry their product,
+
+12
+00:00:40.326 --> 00:00:44.192
+or let substances react: those are unit operations too.
+
+13
+00:00:44.892 --> 00:00:49.466
+A dairy, a chemical plant and a water works use the same building blocks,
+
+14
+00:00:49.571 --> 00:00:50.941
+just in a different order.
+
+15
+00:00:52.281 --> 00:00:54.115
+Look at the mixing vat first.
+
+16
+00:00:54.860 --> 00:01:00.213
+It works as a batch process: a fixed amount goes in, is processed step by step,
+
+17
+00:01:00.410 --> 00:01:02.291
+and comes out again as one lot.
+
+18
+00:01:03.333 --> 00:01:05.736
+Fill it, mix it, then empty the vat.
+
+19
+00:01:06.516 --> 00:01:08.629
+That whole lot gets one batch number,
+
+20
+00:01:08.780 --> 00:01:11.346
+with one record of what went in and what happened.
+
+21
+00:01:12.429 --> 00:01:15.018
+That is flexible and easy to trace.
+
+22
+00:01:15.766 --> 00:01:19.354
+It suits many recipes and small volumes: in pharma,
+
+23
+00:01:19.505 --> 00:01:22.605
+specialty chemicals, and much of the food industry.
+
+24
+00:01:23.589 --> 00:01:27.269
+The downside: filling, emptying and cleaning produce nothing,
+
+25
+00:01:27.432 --> 00:01:29.916
+and every batch comes out a little different.
+
+26
+00:01:31.271 --> 00:01:34.092
+From the pump on it is a continuous process.
+
+27
+00:01:34.783 --> 00:01:38.672
+The juice flows in and out all the time: through the heat exchanger,
+
+28
+00:01:38.905 --> 00:01:41.272
+the holding tube and the cooler, to the filler.
+
+29
+00:01:42.283 --> 00:01:45.336
+Once the line runs, it sits at steady state.
+
+30
+00:01:46.086 --> 00:01:51.323
+The temperatures, pressures and flows hold steady at every point, hour after hour,
+
+31
+00:01:51.485 --> 00:01:52.774
+and nothing builds up.
+
+32
+00:01:53.826 --> 00:01:59.179
+That is efficient at large volumes: in refineries, paper mills, bulk chemicals,
+
+33
+00:01:59.318 --> 00:02:00.282
+and milk powder.
+
+34
+00:02:01.265 --> 00:02:03.761
+But starting up and shutting down take hours,
+
+35
+00:02:03.947 --> 00:02:07.244
+and what you make in that time does not meet the specification.
+
+36
+00:02:07.977 --> 00:02:12.180
+That is called off-spec: it must be reworked, or sold off cheaply.
+
+37
+00:02:12.871 --> 00:02:14.624
+So such lines hate stopping.
+
+38
+00:02:15.698 --> 00:02:17.323
+Many plants combine the two,
+
+39
+00:02:17.462 --> 00:02:21.688
+as here: a mixing vat that works in batches feeds a continuous line.
+
+40
+00:02:22.993 --> 00:02:25.234
+How long does the product spend in a step?
+
+41
+00:02:25.945 --> 00:02:31.204
+Suppose this vat runs continuously: as much flows in as flows out, all the time.
+
+42
+00:02:32.239 --> 00:02:36.070
+That time is the residence time: on average the volume of the step,
+
+43
+00:02:36.268 --> 00:02:39.682
+divided by the flow, the volume that passes through per hour.
+
+44
+00:02:40.423 --> 00:02:45.497
+A tank of 6 cubic metres, with 3 cubic metres per hour flowing through,
+
+45
+00:02:45.741 --> 00:02:46.844
+gives 2 hours.
+
+46
+00:02:47.853 --> 00:02:50.024
+More flow means less residence time.
+
+47
+00:02:50.696 --> 00:02:53.169
+Push 50 percent more through the same tank,
+
+48
+00:02:53.343 --> 00:02:58.602
+and every litre spends a third less time inside: here one hour and twenty minutes.
+
+49
+00:02:59.616 --> 00:03:04.179
+So ask about the residence time whenever quality depends on time: in heating,
+
+50
+00:03:04.307 --> 00:03:06.374
+keeping hot, reacting or settling.
+
+51
+00:03:07.645 --> 00:03:10.385
+But watch out: residence time is an average.
+
+52
+00:03:11.128 --> 00:03:13.404
+In a stirred tank some of the product shoots
+
+53
+00:03:13.450 --> 00:03:16.144
+from the inlet to the outlet in a few minutes.
+
+54
+00:03:17.149 --> 00:03:22.350
+Another part hangs for hours in the dead corners, where the agitator hardly reaches.
+
+55
+00:03:23.398 --> 00:03:27.577
+If product must stay somewhere for a minimum time, as in pasteurising,
+
+56
+00:03:27.682 --> 00:03:32.511
+heating to kill germs, you design on the fastest part, not on the average.
+
+57
+00:03:33.836 --> 00:03:35.229
+Back to the juice plant.
+
+58
+00:03:36.017 --> 00:03:40.464
+After heating, the juice must stay hot for a set time, to kill germs.
+
+59
+00:03:41.217 --> 00:03:46.116
+So it flows through the holding tube: 0.1 cubic metres inside,
+
+60
+00:03:46.279 --> 00:03:49.216
+with 12 cubic metres per hour flowing through.
+
+61
+00:03:50.190 --> 00:03:53.499
+The residence time is the volume divided by the flow.
+
+62
+00:03:54.219 --> 00:03:59.350
+That gives 30 seconds, and the food safety plan demands at least 20.
+
+63
+00:04:00.346 --> 00:04:03.411
+If production wants 18 cubic metres per hour,
+
+64
+00:04:03.597 --> 00:04:08.880
+the residence time becomes 20 seconds: exactly on the minimum, with no margin.
+
+65
+00:04:09.894 --> 00:04:11.659
+And that is still an average.
+
+66
+00:04:12.399 --> 00:04:15.093
+In the centre of the tube the juice flows faster,
+
+67
+00:04:15.209 --> 00:04:19.006
+so the fastest juice spends less than 20 seconds inside.
+
+68
+00:04:19.768 --> 00:04:23.506
+That is why you design a holding tube on the fastest particle.
+
+69
+00:04:24.548 --> 00:04:28.123
+In a continuous process, throughput, the output per hour,
+
+70
+00:04:28.309 --> 00:04:30.376
+and residence time are tied together.
+
+71
+00:04:31.112 --> 00:04:35.281
+More output needs a longer holding tube, not just a faster pump.
+
+72
+00:04:36.639 --> 00:04:38.984
+Experts do not always agree either.
+
+73
+00:04:39.741 --> 00:04:44.083
+In pharma the debate is whether plants should move from batch to continuous.
+
+74
+00:04:45.101 --> 00:04:49.919
+Regulators such as the US FDA encourage continuous manufacturing.
+
+75
+00:04:50.596 --> 00:04:54.358
+But auditors know the batch record best: one lot, one file.
+
+76
+00:04:55.358 --> 00:04:58.934
+So a sharp question in any plant is: which steps here are batch,
+
+77
+00:04:59.050 --> 00:05:01.558
+which are continuous, and where do they meet?
+
+78
+00:05:02.605 --> 00:05:07.586
+In this juice plant the mixing vat is batch, and the rest of the line is continuous.
+
+79
+00:05:08.286 --> 00:05:10.445
+They meet at the pump under the vat.

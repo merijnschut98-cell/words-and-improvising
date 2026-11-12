@@ -673,6 +673,7 @@ export default {
     // Onderwerp 3 · Governance en sturen
     {
       id: 'pm.portfolio.governance',
+      film: 'pm.run.escalation',
       title: 'Governance die beslist',
       pre: [
         {

@@ -673,6 +673,7 @@ export default {
     // Topic 3 · Governance and steering
     {
       id: 'pm.portfolio.governance',
+      film: 'pm.run.escalation',
       title: 'Governance that decides',
       pre: [
         {

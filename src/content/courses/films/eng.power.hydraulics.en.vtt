@@ -1,0 +1,293 @@
+WEBVTT
+
+1
+00:00:00.835 --> 00:00:05.676
+Presses, injection moulding machines and excavators work with hydraulics.
+
+2
+00:00:06.384 --> 00:00:10.587
+Oil under high pressure, typically 100 to 350 bar,
+
+3
+00:00:10.691 --> 00:00:13.059
+makes a large force in a small space.
+
+4
+00:00:14.075 --> 00:00:17.116
+In confined oil, the pressure is the same everywhere.
+
+5
+00:00:17.830 --> 00:00:21.766
+So it pushes on the whole piston, in the cylinder on top of the press.
+
+6
+00:00:22.773 --> 00:00:25.443
+The force is the pressure times the piston area.
+
+7
+00:00:26.145 --> 00:00:32.414
+A pressure of 1 bar is 0.1 newtons per square millimetre, so 200 bar is 20.
+
+8
+00:00:33.093 --> 00:00:37.644
+A bore of 100 millimetres, the inside diameter of the cylinder,
+
+9
+00:00:37.818 --> 00:00:41.707
+gives 7,854 square millimetres.
+
+10
+00:00:42.706 --> 00:00:50.845
+Twenty times 7,854 is about 157 kilonewtons: the weight of 16 tonnes,
+
+11
+00:00:51.077 --> 00:00:52.168
+from one cylinder.
+
+12
+00:00:53.465 --> 00:00:57.877
+That oil comes from the hydraulic power unit: tank, motor and pump.
+
+13
+00:00:58.620 --> 00:01:02.718
+A gear, vane or piston pump makes the flow: the litres per minute.
+
+14
+00:01:03.769 --> 00:01:07.624
+The directional valve on the tank chooses where the oil goes.
+
+15
+00:01:08.368 --> 00:01:12.756
+In one position it goes on top of the piston, and the ram moves down.
+
+16
+00:01:13.499 --> 00:01:17.168
+In the other it goes underneath, and the ram comes back.
+
+17
+00:01:18.211 --> 00:01:22.925
+The oil on the other side of the piston runs back, through the filter, to the tank.
+
+18
+00:01:23.986 --> 00:01:29.466
+The cylinder speed, how fast the ram moves, is the flow divided by the piston area.
+
+19
+00:01:30.309 --> 00:01:34.442
+A flow control valve throttles the flow and so sets the speed.
+
+20
+00:01:35.831 --> 00:01:37.920
+A pump makes flow, not pressure.
+
+21
+00:01:38.653 --> 00:01:41.939
+The pressure only rises as far as the load resists.
+
+22
+00:01:42.645 --> 00:01:46.024
+While the ram comes down freely, the pressure stays low.
+
+23
+00:01:47.062 --> 00:01:49.280
+Then the upper die meets the workpiece.
+
+24
+00:01:49.996 --> 00:01:53.943
+The oil has nowhere left to go, and the pressure climbs fast.
+
+25
+00:01:54.997 --> 00:01:57.818
+That is why there is always a pressure relief valve.
+
+26
+00:01:58.567 --> 00:02:00.935
+Above a set value it opens to the tank.
+
+27
+00:02:01.687 --> 00:02:05.425
+That caps the pressure, and protects pump, hoses and press.
+
+28
+00:02:06.429 --> 00:02:08.937
+If the ram is held and the pump keeps running,
+
+29
+00:02:09.111 --> 00:02:11.630
+all of the flow pours away over that valve.
+
+30
+00:02:12.350 --> 00:02:15.462
+Every pressure drop across a valve turns into heat.
+
+31
+00:02:16.821 --> 00:02:19.201
+Next to the pump stands an accumulator:
+
+32
+00:02:19.329 --> 00:02:22.440
+a vessel with a bladder or piston and gas inside,
+
+33
+00:02:22.615 --> 00:02:23.741
+usually nitrogen.
+
+34
+00:02:24.455 --> 00:02:28.542
+It keeps oil under pressure, for fast movements or during a power cut.
+
+35
+00:02:29.637 --> 00:02:33.840
+Switch the pump off and watch the gauge: the needle stays where it is.
+
+36
+00:02:34.607 --> 00:02:36.882
+The accumulator stays pressurised.
+
+37
+00:02:37.897 --> 00:02:40.405
+So making it safe for maintenance is more than
+
+38
+00:02:40.463 --> 00:02:42.866
+switching off the motor and locking it out.
+
+39
+00:02:43.668 --> 00:02:46.594
+First a safety block under the ram, or lower it.
+
+40
+00:02:47.340 --> 00:02:49.894
+Only then bleed off the accumulator.
+
+41
+00:02:51.007 --> 00:02:55.128
+Then check that the gauge really reads zero before you open anything.
+
+42
+00:02:55.851 --> 00:02:58.892
+It is stored energy, just as in lockout-tagout.
+
+43
+00:03:00.307 --> 00:03:01.213
+An example.
+
+44
+00:03:01.922 --> 00:03:06.125
+This press cylinder has a bore of 125 millimetres,
+
+45
+00:03:06.322 --> 00:03:08.911
+and the pump delivers 60 litres per minute.
+
+46
+00:03:09.963 --> 00:03:14.804
+The piston area is 12,272 square millimetres.
+
+47
+00:03:15.519 --> 00:03:18.364
+Sixty litres per minute is one litre per second.
+
+48
+00:03:19.102 --> 00:03:23.862
+Divided by the area, that gives about 81 millimetres per second.
+
+49
+00:03:24.919 --> 00:03:30.260
+Measured: only 60 millimetres per second, and the oil is at 70 degrees.
+
+50
+00:03:30.989 --> 00:03:34.182
+So about a quarter of the flow never reaches the cylinder.
+
+51
+00:03:35.211 --> 00:03:37.893
+Most likely a worn pump leaks internally,
+
+52
+00:03:38.079 --> 00:03:40.889
+or a pressure relief valve opens too early.
+
+53
+00:03:41.575 --> 00:03:44.954
+Both turn the lost flow into heat: hence the hot oil.
+
+54
+00:03:45.987 --> 00:03:51.026
+Oil that keeps running above about 60 degrees ages fast, and seals harden.
+
+55
+00:03:51.757 --> 00:03:54.787
+A common rule of thumb: for every 10 degrees hotter,
+
+56
+00:03:54.996 --> 00:03:57.341
+the oil lasts roughly half as long.
+
+57
+00:03:58.666 --> 00:04:03.716
+The main enemy is dirt: most failures come from dirt, water or air in the oil.
+
+58
+00:04:04.724 --> 00:04:10.042
+How clean the oil is, you say with the ISO 4406 code.
+
+59
+00:04:10.814 --> 00:04:16.062
+It counts the particles per millilitre larger than 4, 6 and 14 micrometres,
+
+60
+00:04:16.271 --> 00:04:19.975
+as three code numbers, such as 18, 16, 13.
+
+61
+00:04:20.983 --> 00:04:25.720
+Each step lower in the code is roughly half the particles: lower is cleaner.
+
+62
+00:04:26.765 --> 00:04:30.190
+Good practice: filters chosen for the code you want to reach,
+
+63
+00:04:30.341 --> 00:04:33.627
+sealed breathers on the tank, regular oil analysis,
+
+64
+00:04:33.812 --> 00:04:35.925
+and never topping up from an open drum.
+
+65
+00:04:37.323 --> 00:04:41.433
+Then a leak: this hose fitting sprays a jet of oil, as thin as a pin.
+
+66
+00:04:42.465 --> 00:04:44.532
+Never feel for a leak with your hand.
+
+67
+00:04:45.289 --> 00:04:49.469
+Hold a piece of cardboard in front of it: the cardboard shows the jet.
+
+68
+00:04:50.521 --> 00:04:55.048
+A jet like that can force oil through the skin, even at modest pressure.
+
+69
+00:04:55.810 --> 00:04:57.702
+That is an injection injury.
+
+70
+00:04:58.424 --> 00:05:02.081
+It looks like a small prick, but it can cost a finger or a hand.
+
+71
+00:05:03.129 --> 00:05:07.576
+Always a medical emergency: go straight to the emergency department,
+
+72
+00:05:07.726 --> 00:05:09.793
+and say it is oil under high pressure.
+
+73
+00:05:10.493 --> 00:05:12.339
+Do not wait until it hurts.

@@ -1,0 +1,341 @@
+WEBVTT
+
+1
+00:00:00.889 --> 00:00:02.166
+Dit is een hardheidsmeter.
+
+2
+00:00:02.834 --> 00:00:05.899
+Hardheid (hardness) is de weerstand van een materiaal tegen indrukken.
+
+3
+00:00:06.614 --> 00:00:09.540
+De meter drukt met een vaste kracht een harde punt in het oppervlak,
+
+4
+00:00:09.807 --> 00:00:10.620
+en meet de indruk.
+
+5
+00:00:11.271 --> 00:00:13.717
+Hoe kleiner de indruk, hoe harder het materiaal.
+
+6
+00:00:14.715 --> 00:00:17.745
+Brinell drukt een kogel in en meet de breedte van de indruk:
+
+7
+00:00:18.000 --> 00:00:19.684
+voor zachter staal en gietwerk.
+
+8
+00:00:20.418 --> 00:00:25.329
+Vickers drukt een diamanten piramide in en meet de diagonalen: voor elk materiaal,
+
+9
+00:00:25.666 --> 00:00:26.548
+ook dunne lagen.
+
+10
+00:00:27.229 --> 00:00:31.513
+Rockwell C meet hoe diep een diamanten kegel zakt: de schaal voor gehard staal.
+
+11
+00:00:32.513 --> 00:00:35.172
+Gewoon constructiestaal zit rond 120 HB.
+
+12
+00:00:35.835 --> 00:00:38.854
+Gehard staal voor gereedschap haalt 60 HRC of meer.
+
+13
+00:00:39.520 --> 00:00:43.084
+Omrekenen tussen de schalen gaat met tabellen, en blijft een schatting.
+
+14
+00:00:44.049 --> 00:00:46.812
+Harder staal is meestal sterker en slijtvaster.
+
+15
+00:00:47.496 --> 00:00:51.339
+De meting is snel en goedkoop, dus een vaste ingangscontrole.
+
+16
+00:00:52.029 --> 00:00:53.062
+Maar hoe maak je staal hard?
+
+17
+00:00:53.789 --> 00:00:54.439
+Met warmte.
+
+18
+00:00:55.755 --> 00:01:00.434
+Staal met genoeg koolstof, ruwweg 0,3 procent of meer, kun je harden.
+
+19
+00:01:01.106 --> 00:01:04.648
+De takel laat deze as in de oven zakken, en het deksel gaat dicht.
+
+20
+00:01:05.693 --> 00:01:10.464
+De as warmt op tot grofweg 800 tot 900 graden, afhankelijk van de staalsoort.
+
+21
+00:01:11.198 --> 00:01:14.588
+Dan lost de koolstof op in het ijzer: het staal wordt austeniet.
+
+22
+00:01:15.603 --> 00:01:16.810
+Dan volgt het afschrikken (quenching).
+
+23
+00:01:17.515 --> 00:01:18.769
+Dat is heel snel afkoelen.
+
+24
+00:01:19.530 --> 00:01:22.247
+Binnen seconden gaat de as van de oven in het oliebad;
+
+25
+00:01:22.514 --> 00:01:24.709
+water of een polymeeroplossing kan ook.
+
+26
+00:01:25.450 --> 00:01:27.157
+De koolstof kan nergens heen,
+
+27
+00:01:27.389 --> 00:01:30.373
+en zit gevangen in een gespannen structuur: martensiet.
+
+28
+00:01:31.406 --> 00:01:35.435
+Het staal is nu heel hard, maar ook bros: het breekt zonder te waarschuwen.
+
+29
+00:01:36.085 --> 00:01:39.464
+Hetzelfde gebeurt in de WBZ van een las die te snel afkoelt;
+
+30
+00:01:39.882 --> 00:01:41.379
+daarom wordt dik staal voorgewarmd.
+
+31
+00:01:42.740 --> 00:01:44.087
+Afschrikken heeft een prijs.
+
+32
+00:01:44.772 --> 00:01:48.522
+De buitenkant koelt eerder af dan de kern, en dat geeft grote spanningen.
+
+33
+00:01:49.213 --> 00:01:51.639
+Een lange as kan krom trekken: vervorming.
+
+34
+00:01:52.646 --> 00:01:53.807
+Waar spanning zich ophoopt,
+
+35
+00:01:54.074 --> 00:01:58.335
+kan het staal scheuren: meestal bij een scherpe hoek of een plotselinge diktesprong,
+
+36
+00:01:58.602 --> 00:01:59.926
+zoals hier bij de kraag.
+
+37
+00:02:00.957 --> 00:02:03.337
+Sneller afkoelen betekent een groter risico.
+
+38
+00:02:04.056 --> 00:02:06.460
+Water is het felst, een oliebad het mildst,
+
+39
+00:02:06.715 --> 00:02:09.188
+en een polymeeroplossing zit meestal ertussenin.
+
+40
+00:02:10.169 --> 00:02:13.280
+Wat helpt: een ruime afronding in plaats van een scherpe hoek,
+
+41
+00:02:13.722 --> 00:02:15.568
+en die regel je al op de tekening.
+
+42
+00:02:16.272 --> 00:02:17.723
+Lange assen schrik je hangend af.
+
+43
+00:02:19.074 --> 00:02:22.789
+Daarom volgt meteen ontlaten (tempering): de as gaat opnieuw een oven in,
+
+44
+00:02:23.161 --> 00:02:26.540
+nu meestal tussen de 150 en 650 graden.
+
+45
+00:02:27.537 --> 00:02:29.151
+De martensiet ontspant een beetje.
+
+46
+00:02:29.881 --> 00:02:34.629
+Je levert wat hardheid in, en wint taaiheid: een klap opvangen zonder te scheuren.
+
+47
+00:02:35.624 --> 00:02:39.246
+Laag ontlaten houdt het staal hard, voor gereedschap zoals een beitel.
+
+48
+00:02:39.889 --> 00:02:43.926
+Hoog ontlaten maakt het taai, voor assen en bouten die stoten opvangen.
+
+49
+00:02:44.907 --> 00:02:47.217
+Harden en daarna hoog ontlaten heet veredelen.
+
+50
+00:02:47.914 --> 00:02:51.758
+Een afgeschrikt onderdeel dat nooit ontlaten wordt, kan vanzelf scheuren,
+
+51
+00:02:51.978 --> 00:02:53.197
+soms pas dagen later.
+
+52
+00:02:54.487 --> 00:02:58.214
+Gloeien (annealing) doet het omgekeerde: verhitten en heel langzaam afkoelen,
+
+53
+00:02:58.528 --> 00:02:59.701
+vaak in de oven zelf.
+
+54
+00:03:00.428 --> 00:03:03.632
+Het staal wordt zacht, en makkelijk te verspanen of te vervormen.
+
+55
+00:03:04.618 --> 00:03:06.336
+Spanningsarmgloeien (stress relieving) is milder:
+
+56
+00:03:06.452 --> 00:03:10.283
+voor staal meestal rond 550 tot 650 graden,
+
+57
+00:03:10.492 --> 00:03:13.244
+onder de temperatuur waarbij de structuur verandert.
+
+58
+00:03:13.931 --> 00:03:15.719
+Het haalt inwendige spanningen weg.
+
+59
+00:03:16.787 --> 00:03:18.308
+Neem een gelaste constructie.
+
+60
+00:03:18.973 --> 00:03:20.900
+Het lassen zet spanningen in het staal.
+
+61
+00:03:21.577 --> 00:03:25.512
+Verspaan je een vlak, dan komt die spanning vrij, en het hele stuk trekt krom.
+
+62
+00:03:26.516 --> 00:03:30.312
+Eerst spanningsarm gloeien, dan verspanen: dan blijft hij recht.
+
+63
+00:03:31.045 --> 00:03:32.403
+Zet die stap in het werkplan.
+
+64
+00:03:33.751 --> 00:03:36.363
+Soms wil je een hard oppervlak tegen slijtage,
+
+65
+00:03:36.630 --> 00:03:38.314
+op een taaie kern die klappen opvangt.
+
+66
+00:03:39.038 --> 00:03:40.304
+Dat is oppervlakteharden (case hardening).
+
+67
+00:03:41.054 --> 00:03:43.655
+Zo worden tandwielen en lagerzittingen behandeld.
+
+68
+00:03:44.687 --> 00:03:48.983
+Bij inzetharden dringt bij zo'n 900 graden koolstof een stukje het oppervlak in.
+
+69
+00:03:49.721 --> 00:03:51.927
+Na het afschrikken wordt alleen die huid echt hard.
+
+70
+00:03:52.953 --> 00:03:56.587
+Nitreren brengt stikstof in het oppervlak, bij zo'n 500 graden.
+
+71
+00:03:57.268 --> 00:04:00.391
+Er wordt niet afgeschrikt, dus het onderdeel vervormt weinig.
+
+72
+00:04:01.496 --> 00:04:05.246
+Bij inductieharden verhit een spoel in een paar seconden alleen de buitenlaag,
+
+73
+00:04:05.548 --> 00:04:07.057
+en meteen daarna volgt de koeling.
+
+74
+00:04:07.767 --> 00:04:09.621
+De kern blijft koel, en dus taai.
+
+75
+00:04:10.872 --> 00:04:16.562
+Op de tekening staat dan bijvoorbeeld: ingezet en gehard, 58 tot 62 HRC,
+
+76
+00:04:16.898 --> 00:04:19.963
+hardingsdiepte 0,8 tot 1,2 millimeter.
+
+77
+00:04:20.660 --> 00:04:23.051
+Een eis om te controleren, geen versiering.
+
+78
+00:04:24.083 --> 00:04:27.659
+Tandwielen van een nieuwe leverancier slijten binnen een paar weken.
+
+79
+00:04:28.362 --> 00:04:33.076
+De ingangscontrole meet 48 HRC aan het oppervlak: veel te zacht.
+
+80
+00:04:34.112 --> 00:04:37.445
+Was het inzetten te kort, verloor het oppervlak koolstof,
+
+81
+00:04:37.700 --> 00:04:39.175
+of ging het afschrikken te langzaam?
+
+82
+00:04:39.874 --> 00:04:44.320
+Blokkeer de voorraad, zaag er één door, en meet met Vickers van de rand naar binnen.
+
+83
+00:04:45.024 --> 00:04:46.731
+Dan zie je de echte hardingsdiepte.
+
+84
+00:04:47.758 --> 00:04:51.183
+En vraag de leverancier om de registratie van de oven en
+
+85
+00:04:51.241 --> 00:04:54.178
+het certificaat van de warmtebehandeling van die partij.
