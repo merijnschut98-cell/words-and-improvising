@@ -12,7 +12,7 @@
 // Storyboard: docs/superpowers/plans/2026-11-07-v14-explainer-films.md, 3.7
 // (pm.plan.wbs: "the goal splitting into deliverables and packages, then a
 // range instead of one number"). Storyboard drift: the plan's three scenes and
-// ~110 s are nine scenes and about 300 s here, because lessons with a film no
+// ~110 s are nine scenes and about 295 s here (each scene as long as its share of the narration), because lessons with a film no
 // longer show their worked example, so the film carries every point of all
 // three lessons' teach text and all three worked examples (as eng.switchgear.protection).
 //
@@ -67,8 +67,8 @@
 //     PMI's 100 % rule: the branches cover all the work and nothing outside;
 //     not in the tree, nobody does it (4.5)
 //   teach 3: a work package, one person or a small team can do and finish it
-//     (5.1); the 8–80 rule: under 8 hours micromanagement, over 80 hides
-//     surprises, can't be tracked (5.2); a verb, an owner, a definition of
+//     (5.1); the 8–80 rule, a rule of thumb (said, captioned and on the card): under
+//     8 hours micromanagement, over 80 hides surprises, can't be tracked (5.2); a verb, an owner, a definition of
 //     done: classify cancellations by cause, done when the planning manager
 //     agrees the categories (5.3)
 //   teach 4: build it with the people doing the work, sticky notes, one column
@@ -85,7 +85,8 @@
 //     deliverables: baseline by cause, readiness check with planning and the
 //     control room, six-week pilot in one region, handover to all planners
 //     (4.3); under (1): extract 16 h, the data analyst; classify with two
-//     planners 12 h; review with the planning manager 4 h (5.4); someone adds
+//     planners 12 h; review with the planning manager 4 h, under 8 but fine, the rule
+//     being a rule of thumb (5.4; the lesson now says so too); someone adds
 //     "brief the switching technicians" under (3), which you had missed (6.2)
 //   plan.estimate teach 1: a range, not a point, six to ten weeks more honest
 //     than eight, shows the uncertainty (7.1); three-point: optimistic, most
@@ -100,7 +101,7 @@
 //     four weeks; holidays and peak season go on the duration (8.2)
 //   teach 4: a buffer for what goes wrong; no hidden padding per task, it gets
 //     used (8.3); Parkinson 1955, Goldratt 1997 student syndrome (8.3, the
-//     rule spoken, the names on the card); one visible buffer at the end or
+//     rule spoken, the names and "starting late" on the card); one visible buffer at the end or
 //     before a hard milestone, watch it; half gone at a quarter is an early
 //     warning (8.4)
 //   teach 5: an engineer says "two weeks": don't argue, ask best case and what
@@ -121,7 +122,7 @@ import { readFileSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import { defineFilm, auditReport, resolveFilm, allLessons } from '../_kit/build-film.mjs';
-import { beatStarts } from '../_kit/timeline.mjs';
+import { beatStarts, wordsOf, minSceneDur } from '../_kit/timeline.mjs';
 import { pmWorld, PM_CSS } from '../_pm/world.mjs';
 
 const SKILL = process.env.ANATOMY_SKILL
@@ -151,7 +152,7 @@ has(nl(DONE).teach.join('\n'), ['van X naar Y voor wanneer, gemeten hoe', 'van 1
   'twee weken meten je eerste deliverable', 'en eerlijk gezegd jij ook niet', 'Twee weken vangt een normaal weekpatroon', 'Buiten is belangrijker', 'naar lijn 2 kijken',
   'Wat laten we vallen om ruimte te maken?', 'Vier weken beschermt tegen één toevallig goede week', 'stretch targets'], 'the intake.done teach text');
 has(nl(WBS).example.text, ['van 18% naar onder de 8%', 'twee planners en een teamleider', 'vier resultaten op de muur', '(1) nulmeting van afzeggingen per oorzaak', '(2) een gereedheidscheck',
-  '(3) een pilot van zes weken in één regio', '(4) overdracht aan alle regionale planners', '(16 uur, de data-analist)', '(12 uur)', '(4 uur)', '“schakelmonteurs briefen”'], 'the plan.wbs example');
+  '(3) een pilot van zes weken in één regio', '(4) overdracht aan alle regionale planners', '(16 uur, de data-analist)', '(12 uur)', '(4 uur: onder de 8', 'een vuistregel, geen wet', '“schakelmonteurs briefen”'], 'the plan.wbs example');
 has(nl(WBS).teach.join('\n'), ['Schrijf er vier tot zeven op', '100%-regel', 'De 8–80-regel', 'kleiner dan ongeveer 8 uur is micromanagement', 'groter dan ongeveer 80 uur', 'één resultaat per kolom, 60 minuten',
   'toegang tot data, de OR', 'het trainen van de nachtploeg', 'de overdracht aan de lijnorganisatie', 'Geef me één uur', 'in maand twee niet verrast', 'Wat moet er af zijn voordat jij hieraan kunt beginnen?'], 'the plan.wbs teach text');
 has(nl(EST).example.text, ['“Drie dagen.”', 'Best: 2 dagen, als de export werkt', 'Slechtst: 10 dagen', '(2 + 4 × 3 + 10) / 6 = 4 dagen werk', 'één dag per week', 'ongeveer 4 weken, geen 3 dagen',
@@ -283,7 +284,8 @@ const CAM = [
 ];
 
 // ---------------------------------------------------------------- the film
-const DURS = [34, 28, 26, 38, 29, 35, 34, 33, 43];
+// placeholders: each scene's length is set from the narration below
+const DURS = Array(9).fill(30);
 const C = { CELLS };
 const spec = {
   id: 'pm.plan.wbs',
@@ -333,9 +335,9 @@ const spec = {
       id: 's5', lesson: WBS, level: 1, dur: DURS[4], still: 0.9, title: { nl: 'Werkpakketten', en: 'Work packages' },
       beats: [
         { nl: 'Een {t:Werkpakket|werkpakket}: één persoon of een klein team kan het doen en afmaken.', en: 'A {t:Work package|work package}: one person or a small team can do and finish it.', cue: { Werkpakket: 'pkg' }, focus: 'pkg' },
-        { nl: 'De {t:8–80-regel|8–80-regel}: onder 8 uur micromanagement, boven 80 uur verrassingen.', en: 'The {t:8–80 rule|8–80 rule}: under 8 hours is micromanagement, over 80 hides surprises.', cue: { '8–80-regel': 'hours' }, focus: 'hours' },
+        { nl: 'De {t:8–80-regel|8–80-regel}, een vuistregel: onder 8 uur micromanagement, boven 80 uur verrassingen.', en: 'The {t:8–80 rule|8–80 rule}, a rule of thumb: under 8 hours micromanagement, over 80 hides surprises.', cue: { '8–80-regel': 'hours' }, focus: 'hours' },
         { nl: 'Werkwoord, eigenaar en een {t:Definition of done|definition of done}: klaar als de planningsmanager akkoord is.', en: 'A verb, an owner, a {t:Definition of done|definition of done}: done when the planning manager agrees.', cue: { 'Definition of done': 'dod' }, focus: ['dod', 'pkg'] },
-        { nl: 'Onder de nulmeting: {n:16}, {n:12} en {n:4} uur werk, elk met een eigenaar.', en: 'Under the baseline: {n:16}, {n:12} and {n:4} hours of work, each with an owner.', focus: ['pkg', 'note'] },
+        { nl: 'Onder de nulmeting: {n:16}, {n:12} en {n:4} uur werk, elk met een eigenaar. {n:4} uur mag ook.', en: 'Under the baseline: {n:16}, {n:12} and {n:4} hours of work, each with an owner. {n:4} hours is fine too.', focus: ['pkg', 'note'] },
       ],
     },
     {
@@ -393,13 +395,14 @@ const spec = {
 // "deliverable" (dee-li-vee-ra-ble) and "definition of done" are said as
 // "resultaat" and "een check wanneer het af is" (the captions carry the
 // terms); "project" is stressed PRO-ject, so the voice says het werk, het doel
-// or de looptijd; PMI ("pmie"), Q2 ("ku twee"), ERP, Kahneman, Buehler and
+// or de looptijd (films/_kit/lexicon.nl.json now carries pro-JECT for the next
+// render, 2026-11-12); PMI ("pmie"), Q2 ("ku twee"), ERP, Kahneman, Buehler and
 // Parkinson (parkin-SON) stand on the panel only; "productiemanager" (PRO-duk-tie)
 // is "de manager van de productie"; "datacheck" (data-gek) is "de check van de
-// data"; "vuistregel" (vuistre-GEL) and "stretch target" are reworded. SAY rules
+// data"; "vuistregel" (vuistre-GEL) is "een grove regel", "stretch target" is reworded. SAY rules
 // in films/_kit/timeline.mjs (2026-11-12, this film only says these words):
 // scope and scope creep as skoop and kriep, werkpakket and nachtploeg split at
-// the head; pilot, nulmeting, gereedheidscheck, mijlpaal and piekseizoen use
+// the head (not in pm.plan.risk's "nachtploeg accepteert"); pilot, nulmeting, gereedheidscheck, mijlpaal and piekseizoen use
 // the rules of pm.plan.schedule.
 const SAY = [
   [ // s1 from wish to goal
@@ -409,8 +412,8 @@ const SAY = [
       en: 'Write the goal in one sentence, with the client: from where, to where, by when, measured how.' },
     { nl: 'Lees hem hardop terug, in hun woorden.',
       en: 'Read it back, in their words.' },
-    { nl: 'Begin met een {t:Nulmeting|nulmeting}, de gemeten beginwaarde, anders wordt elk resultaat betwist. Hier is {n:3.2}% afkeur, {n:2400} kilo per week.',
-      en: 'Start with a {t:Baseline|baseline}, the measured starting value, or every result gets disputed. Here {n:3.2}% is scrap, {n:2400} kilos a week.' },
+    { nl: 'Begin met een {t:Nulmeting|nulmeting}, de gemeten beginwaarde, anders wordt elk resultaat betwist. Hier: {n:3.2}% afkeur, {n:2400} kilo per week.',
+      en: 'Start with a {t:Baseline|baseline}, the measured starting value, or every result gets disputed. Here: {n:3.2}% scrap, {n:2400} kilos a week.' },
     { nl: 'Geen data? Dan is twee weken meten je eerste resultaat. Ik weet het getal nog niet, en jij ook niet.',
       en: 'No data? Then two weeks of measuring is your first deliverable. I don\'t know the number yet, and neither do you.' },
     { nl: 'Doel: afkeur van {n:3.2} naar {n:2.0}%, voor eind juni, gemeten in de wekelijkse afkeurrapportage.',
@@ -420,15 +423,15 @@ const SAY = [
     { nl: '{t:Scope|Scope} is wat het werk omvat: het opstarten, de machine-instellingen, de werkinstructies.',
       en: '{t:Scope|Scope} is what the work covers: start-up, machine settings, work instructions.' },
     { nl: 'Belangrijker is wat {t:Buiten scope|buiten scope} valt: de verpakkingsleverancier, de recepturen, en wat mensen gaan vragen. Daar wijs je straks naar.',
-      en: 'What is {t:Out of scope|out of scope} matters more: the packaging supplier, the recipes, and what people will raise. Later you point to it.' },
+      en: 'What is {t:Out of scope|out of scope} matters more: the packaging supplier, the recipes, and what people will raise, to point to later.' },
     { nl: '{t:Scope creep|Scope creep}: het werk dijt uit, één redelijk verzoek tegelijk. Kun je ook even naar lijn 2 kijken?',
       en: '{t:Scope creep|Scope creep}: the work widens, one reasonable request at a time. Could you also look at line 2?' },
-    { nl: 'Zeg niet alleen nee: goed idee, maar buiten de scope, dus ruilen we, of geeft de sponsor tijd. Wat laten we vallen?',
-      en: 'Don\'t just say no: good idea, but out of scope, so we swap, or the sponsor adds time. What do we drop?' },
+    { nl: 'Zeg niet alleen nee: goed idee, maar buiten de scope; we ruilen, of de sponsor geeft tijd. Wat laten we vallen?',
+      en: 'Don\'t just say no: good idea, but out of scope; we swap, or the sponsor adds time. What do we drop?' },
   ],
   [ // s3 when is it done
-    { nl: '{t:Acceptatiecriteria|Acceptatiecriteria}: wie tekent af, op welk bewijs, en wanneer. Hier de manager van de productie, na vier weken op rij op {n:2.0}% of lager. Want één goede week kan toeval zijn.',
-      en: '{t:Acceptance criteria|Acceptance criteria}: who signs off, on what evidence, and when. Here the production manager, after four weeks in a row at {n:2.0}% or less. One good week can be luck.' },
+    { nl: '{t:Acceptatiecriteria|Acceptatiecriteria}: wie tekent af, op welk bewijs, wanneer. Hier de manager van de productie, na vier weken op rij op {n:2.0}% of lager. Eén goede week kan toeval zijn.',
+      en: '{t:Acceptance criteria|Acceptance criteria}: who signs off, on what evidence, when. Here the production manager, after four weeks in a row at {n:2.0}% or less. One good week can be luck.' },
     { nl: 'Spreek het aan het begin af; aan het eind herinnert iedereen het anders.',
       en: 'Agree it at the start; by the end, everyone remembers it differently.' },
     { nl: 'Experts verschillen: een extra ambitieus doel motiveert sommige teams, maar waar niemand in gelooft, wordt stilletjes genegeerd.',
@@ -437,38 +440,38 @@ const SAY = [
       en: 'This goal saves {n:900} kilos a week.' },
   ],
   [ // s4 deliverables, not activities
-    { nl: 'Nu opdelen. Een netbeheerder wil de late afzeggingen van klussen in zes maanden van {n:18} naar onder de {n:8}%.',
-      en: 'Now the breakdown. A grid operator wants last-week job cancellations from {n:18} to under {n:8}% in six months.' },
+    { nl: 'Nu opdelen. Een netbeheerder wil de late afzeggingen in zes maanden van {n:18} naar onder de {n:8}%.',
+      en: 'Now the breakdown. A grid operator wants last-week cancellations from {n:18} to under {n:8}% in six months.' },
     { nl: 'Begin bij resultaten, niet bij activiteiten: wat is er straks, controleerbaar, dat er nu niet is? Vier tot zeven.',
       en: 'Start with deliverables, not activities: what will exist, checkable, that isn\'t there now? Four to seven.' },
     { nl: 'Met twee planners en de teamleider komen er vier op de muur: nulmeting, gereedheidscheck op vergunning, materiaal en ploeg, pilot van zes weken, overdracht.',
       en: 'With two planners and the team lead, four go on the wall: baseline, readiness check on permits, materials and crew, six-week pilot, handover.' },
     { nl: 'Zo ontstaat een {t:WBS|WBS}: het doel bovenaan, de resultaten daaronder, de werkpakketten met de activiteiten onderaan.',
-      en: 'This makes a {t:WBS|WBS}: goal at the top, deliverables below, work packages with the activities at the bottom.' },
+      en: 'This makes a {t:WBS|WBS}: goal at the top, deliverables below, work packages with activities at the bottom.' },
     { nl: 'De 100%-regel: de takken dekken al het werk, en niets erbuiten. Wat er niet in staat, doet niemand.',
-      en: 'The 100% rule: the branches cover all the work, and nothing outside it. What isn\'t in it, nobody does.' },
+      en: 'The 100% rule: the branches cover all the work, nothing outside it. What isn\'t in it, nobody does.' },
   ],
   [ // s5 work packages
     { nl: 'Een {t:Werkpakket|werkpakket} kan één persoon of een klein team doen en afmaken.',
       en: 'One person or a small team can do and finish a {t:Work package|work package}.' },
-    { nl: 'De {t:8–80-regel|8–80-regel}: onder zo\'n 8 uur is micromanagement, boven zo\'n 80 uur verbergt verrassingen, en kun je niet volgen.',
-      en: 'The {t:8–80 rule|8–80 rule}: under about 8 hours is micromanagement, over about 80 hides surprises, and can\'t be tracked.' },
+    { nl: 'De {t:8–80-regel|8–80-regel}, een grove regel: onder zo\'n 8 uur is micromanagement, boven zo\'n 80 uur verbergt verrassingen, en kun je niet volgen.',
+      en: 'The {t:8–80 rule|8–80 rule}, a rule of thumb: under about 8 hours is micromanagement, over about 80 hides surprises, and can\'t be tracked.' },
     { nl: 'Elk pakket krijgt een werkwoord, een eigenaar, en een check wanneer het af is, zoals akkoord van de planningsmanager.',
-      en: 'Each package gets a verb, an owner, and a check for when it is done, like the planning manager agreeing.' },
-    { nl: 'Onder de nulmeting: drie maanden data halen, {n:16} uur, de data-analist. Indelen met twee planners, {n:12} uur. Bespreken, {n:4} uur.',
-      en: 'Under the baseline: extract three months of data, {n:16} hours, the data analyst. Classify with two planners, {n:12} hours. Review, {n:4} hours.' },
+      en: 'Each package gets a verb, an owner, and a definition of done, like the planning manager agreeing.' },
+    { nl: 'Onder de nulmeting: drie maanden data halen, {n:16} uur, de data-analist. Indelen met twee planners, {n:12} uur. Bespreken, {n:4} uur: kleiner, maar dat mag.',
+      en: 'Under the baseline: extract three months of data, {n:16} hours, the data analyst. Classify with two planners, {n:12} hours. Review, {n:4} hours: smaller, but fine.' },
   ],
   [ // s6 together on the wall
-    { nl: 'Deel samen op met wie het werk doet: post-its op de muur, een kolom per resultaat, zestig minuten.',
+    { nl: 'Deel samen op met wie het werk doet: post-its, een kolom per resultaat, zestig minuten.',
       en: 'Break it down with the people doing the work: sticky notes, a column per deliverable, sixty minutes.' },
     { nl: 'Mensen committeren zich aan wat ze zelf opdeelden, en zien wat jij vergat: hier schakelmonteurs briefen.',
       en: 'People commit to what they helped break down, and spot what you forgot: brief the switching technicians.' },
-    { nl: 'Vaak vergeten: toegang tot data, de ondernemingsraad, toestemmingen, training van de nachtploeg, en de overdracht aan de lijn.',
-      en: 'Often forgotten: data access, the works council, permissions, training the night shift, and the handover to the line.' },
+    { nl: 'Vaak vergeten: toegang tot data, de ondernemingsraad, toestemmingen, training van de nachtploeg, de overdracht aan de lijn.',
+      en: 'Often forgotten: data access, the works council, permissions, training the night shift, the handover to the line.' },
     { nl: 'Laten we gewoon beginnen? Eens, deze week. Geef me één uur om te zien waar we ja tegen zeggen.',
-      en: 'Let\'s just start? Agreed, this week. Give me one hour to see what we are signing up for.' },
+      en: 'Let\'s just start? Agreed, this week. Give me one hour to see what we\'re signing up for.' },
     { nl: 'Snap je het werk niet, vraag de expert: wat moet er af zijn voordat jij kunt beginnen?',
-      en: 'If you don\'t understand the work, ask the expert: what must be finished before you can start?' },
+      en: 'Don\'t understand the work? Ask the expert: what must be finished before you can start?' },
   ],
   [ // s7 a range, not a point
     { nl: 'Dan schatten. Geef een {t:Bandbreedte|bandbreedte}: zes tot tien weken is eerlijker dan acht, en toont de onzekerheid.',
@@ -487,24 +490,39 @@ const SAY = [
       en: '{t:Effort|Effort} is hours of work; {t:Duration|duration} is calendar time. A shift lead may have {n:20}% of his week free.' },
     { nl: 'Vraag de echte uren per week: {n:16} uur bij {n:4} per week is vier weken. Vakanties en piekseizoen tellen bij de doorlooptijd.',
       en: 'Ask the real hours a week: {n:16} hours at {n:4} a week is four weeks. Holidays and peak season go on the duration.' },
-    { nl: 'Een {t:Buffer|buffer} vangt op wat misgaat. Stop niet stiekem wat extra in elke taak: werk dijt uit tot de tijd op is.',
+    { nl: 'Een {t:Buffer|buffer} vangt op wat misgaat. Stop geen stiekeme marge in elke taak: werk dijt uit tot de tijd op is.',
       en: 'A {t:Buffer|buffer} absorbs what goes wrong. Don\'t pad every task secretly: work expands to fill the time.' },
     { nl: 'Zet één zichtbare buffer aan het eind, of voor een harde mijlpaal. Half op na een kwart van de looptijd? Een vroeg signaal.',
       en: 'Put one visible buffer at the end, or before a hard milestone. Half gone a quarter of the way in? An early warning.' },
   ],
   [ // s9 three days?
-    { nl: 'De onderhoudsman van een verpakkingsbedrijf zegt: drie dagen. Niet in discussie gaan; vraag het beste geval, en wat het langer maakt.',
+    { nl: 'De onderhoudsman van een verpakkingsbedrijf zegt: drie dagen. Niet discussiëren; vraag het beste geval, en wat het langer maakt.',
       en: 'The maintenance engineer at a packaging plant says: three days. Don\'t argue; ask the best case, and what makes it longer.' },
     { nl: 'Best {n:2} dagen, als de export werkt. Slechtst {n:10}: het systeem is gemigreerd, de oude data is misschien rommelig.',
       en: 'Best {n:2} days, if the export works. Worst {n:10}: the system was migrated, the old data may be messy.' },
     { nl: '{n:2} plus vier keer {n:3} plus {n:10}, gedeeld door zes, is {n:4} dagen werk. Bij één dag per week: zo\'n {n:4} weken, geen {n:3} dagen.',
-      en: '{n:2} plus four times {n:3} plus {n:10}, divided by six, is {n:4} days of work. At one day a week: about {n:4} weeks, not {n:3} days.' },
+      en: '{n:2} plus four times {n:3} plus {n:10}, divided by six, is {n:4} days of work. One day a week: about {n:4} weeks, not {n:3} days.' },
     { nl: 'In de planning: {n:2} tot {n:10} weken, waarschijnlijk {n:4}. Na de eerste export hoort de sponsor welke kant het op gaat.',
       en: 'In the plan: {n:2} to {n:10} weeks, most likely {n:4}. After the first export, the sponsor hears which end it is.' },
     { nl: 'Weet je het zelf niet, geef een bandbreedte en wat hem kleiner maakt, en een directie de datum waar je voor tekent.',
-      en: 'When you don\'t know yourself, give a range and what would narrow it, and a board the date you commit to.' },
+      en: 'Don\'t know yourself? Give a range and what would narrow it, and a board the date you commit to.' },
   ],
 ];
+// Each scene's length from its share of the Dutch narration, never shorter than
+// its captions need; the whole about as long as the narration plus a short look
+// per scene, within the 300 s cap (as pm.plan.risk).
+{
+  const plainSay = (src) => src.replace(/\{t:[^|}]*\|([^}]*)\}/g, '$1').replace(/\{n:([^}]*)\}/g, '$1');
+  const said = SAY.map((sc) => sc.reduce((a, l) => a + wordsOf(plainSay(l.nl)), 0));
+  const all = said.reduce((a, b) => a + b, 0);
+  const TOTAL = Math.min(298, Math.ceil(all / 2.5) + 2 * SAY.length);
+  spec.scenes.forEach((s, si) => {
+    const cap = Math.max(...['nl', 'en'].map((lang) => minSceneDur(wordsOf(s.beats.map((b) => plainSay(b[lang])).join(' ')) + 4)));
+    s.dur = Math.max(Math.ceil(cap), Math.floor((said[si] / all) * TOTAL));
+  });
+  const total = spec.scenes.reduce((a, s) => a + s.dur, 0);
+  if (total > 300) throw new Error(`film is ${total} s, over 300`);
+}
 // Each beat's still (reduced motion) sits late in its own share of the scene.
 {
   const resolved = resolveFilm(spec, lessons);

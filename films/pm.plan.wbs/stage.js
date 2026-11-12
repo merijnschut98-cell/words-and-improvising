@@ -88,6 +88,7 @@ const STAGE = (() => {
       s += lines(L, 162, [[tr('afkeur 3,2%', 'scrap 3.2%'), 'pm-on'], [tr('≈ 2.400 kg per week', '≈ 2,400 kg a week')], [tr('vooral na omstellen', 'mostly after changeovers'), 'pm-mute']]);
       if (b === 4) s += op(span(p, 0.05, 0.35), lines(L, 262, [[tr('geen data?', 'no data?'), 'pm-mute'], [tr('eerst 2 weken meten', 'measure 2 weeks first'), 'pm-on'], [tr('2 weken: weekpatroon', '2 weeks: weekly pattern')], [tr('seizoen: langer', 'seasonal: longer'), 'pm-mute']]));
       out.body = cue('base', s);
+      if (b === 4) out.label = tr('schema', 'diagram');
       if (b === 4) out.cal = [0, 1].filter((i) => span(p, 0.1 + i * 0.12, 0.25 + i * 0.12) > 0.5);
       return out;
     }
@@ -142,6 +143,7 @@ const STAGE = (() => {
     out.body = cue('accept', acc);
     if (b === 0) out.cal = [0, 1, 2, 3].filter((i) => span(p, 0.1 + i * 0.12, 0.25 + i * 0.12) > 0.5);
     if (b === 1) out.doc = span(p, 0.2, 0.6);
+    if (b === 2) out.label = tr('schema', 'diagram');
     if (b === 2) out.body += cue('stretch', op(span(p, 0.1, 0.4), path(`M${L + 52} 196H${R - 6}`, 'pm-late') + lines(L + 52, 280, [[tr('te ambitieus?', 'stretch target?'), 'pm-on'], [tr('niemand gelooft het:', 'nobody believes it:')], [tr('stil genegeerd', 'quietly ignored'), 'pm-mute']])));
     if (b === 3) out.body += cue('saved', op(span(p, 0.05, 0.4), lines(L, 286, [[tr('3,2% → 2,0%', '3.2% → 2.0%'), 'pm-big'], [tr('= 900 kg per week', '= 900 kg a week'), 'pm-on'], [tr('minder afkeur', 'less scrap')]])));
     return out;
@@ -207,13 +209,13 @@ const STAGE = (() => {
       // the 8–80 rule on a scale of hours (logarithmic, 1 to 400 h)
       const xh = (h) => L + ((Math.log10(h) - 0) / Math.log10(400)) * (R - L);
       let sc = rect(L, 262, xh(8) - L, 14, 'pm-late', 3) + rect(xh(8), 262, xh(80) - xh(8), 14, 'pm-slack', 3) + rect(xh(80), 262, R - xh(80), 14, 'pm-late', 3);
-      sc += txt(xh(8), 254, '8', 'pm-on', 'middle') + txt(xh(80), 254, '80', 'pm-on', 'middle') + txt(R, 254, tr('uur', 'hours'), 'pm-mute', 'end');
+      sc += txt(xh(8), 254, '8', 'pm-on', 'middle') + txt(xh(80), 254, '80', 'pm-on', 'middle') + txt(R, 254, tr('uur', 'hours'), 'pm-mute', 'end') + txt(L, 360, tr('een vuistregel', 'a rule of thumb'), 'pm-on');
       sc += txt(L, 302, tr('micro-', 'micro-'), 'pm-mute') + txt((xh(8) + xh(80)) / 2, 302, tr('goed', 'good'), 'pm-txt', 'middle') + txt(R, 302, tr('verborgen', 'hidden'), 'pm-mute', 'end');
       sc += txt(L, 326, tr('management', 'management'), 'pm-mute') + txt(R, 326, tr('verrassing', 'surprises'), 'pm-mute', 'end');
       out.body += cue('hours', op(span(p, 0.05, 0.3), sc));
     }
     if (b === 2) out.body += cue('dod', op(span(p, 0.2, 0.5), lines(L, 270, [[tr('werkwoord, eigenaar,', 'verb, owner,')], [tr('klaar als: akkoord', 'done when: agreed by'), 'pm-on'], [tr('planningsmanager', 'planning manager'), 'pm-on']])));
-    if (b === 3) out.body += cue('note', op(span(p, 0.15, 0.35), lines(L, 270, [[tr('16 u: de data-analist', '16 h: the data analyst')], [tr('12 u: twee planners', '12 h: two planners')]])));
+    if (b === 3) out.body += cue('note', op(span(p, 0.15, 0.35), lines(L, 270, [[tr('16 u: de data-analist', '16 h: the data analyst')], [tr('12 u: twee planners', '12 h: two planners')], [tr('4 u: onder 8, mag ook', '4 h: under 8, fine too'), 'pm-mute']])));
     return out;
   }
 
@@ -236,6 +238,7 @@ const STAGE = (() => {
       out.body += cue('added', op(a, rect(L + 6 + 2 * 72, 80 + 3 * 34, 56, 28, 'pm-note pm-crit', 2)
         + (b === 1 ? lines(L, 244, [[tr('+ schakelmonteurs', '+ brief the switching'), 'pm-on'], [tr('briefen', 'technicians'), 'pm-on']]) : '')));
     }
+    if (b >= 2) out.label = tr('schema', 'diagram');
     if (b === 2) out.body += cue('forgot', op(span(p, 0.05, 0.3), lines(L, 232, [[tr('vaak vergeten:', 'often forgotten:'), 'pm-mute'], [tr('data-toegang, OR,', 'data access, works council,')], [tr('toestemming, training,', 'permissions, training,')], [tr('overdracht aan de lijn', 'handover to the line')]])));
     if (b === 3) out.body += cue('talk', op(span(p, 0.05, 0.3), lines(L, 232, [[tr('“laten we gewoon', '“let’s just'), 'pm-mute'], [tr('beginnen”', 'start”'), 'pm-mute'], [tr('eens: deze week.', 'agreed: this week.'), 'pm-on'], [tr('geef me één uur', 'give me one hour'), 'pm-on'], [tr('geen verrassing', 'no surprise'), 'pm-txt'], [tr('in maand twee', 'in month two'), 'pm-txt']])));
     if (b === 4) out.body += cue('talk', op(span(p, 0.05, 0.3), lines(L, 232, [[tr('alles op dag één, of', 'all on day one, or'), 'pm-txt'], [tr('6 weken fijn, rest grof', '6 weeks fine, rest rough'), 'pm-txt'], [tr('vraag de expert:', 'ask the expert:'), 'pm-mute'], [tr('“wat moet eerst af?”', '“what must be done first?”'), 'pm-on']])));
@@ -265,12 +268,10 @@ const STAGE = (() => {
       out.body += cue('three', th);
       if (b === 1) out.body += cue('three', op(span(p, 0.7, 0.9), txt(L, 186, tr('drie punten', 'three points'), 'pm-mute')));
       if (b === 2) {
-        out.label = tr('voorbeeld', 'example');
         out.body += cue('note', op(span(p, 0.1, 0.4), lines(L, 310, [['(O + 4M + P) / 6'], ['(4 + 24 + 14) / 6 = 7', 'pm-on'], [tr('PERT: Polaris, 1958', 'PERT: Polaris, 1958'), 'pm-mute']])));
       }
     }
     if (b >= 3) {
-      out.label = tr('voorbeeld', 'example');
       const s = 4.6;
       let fa = txt(L, 202, tr('verwacht: 34 dagen', 'expected: 34 days'), 'pm-txt') + rect(L, 212, 34 * s, 18, 'pm-bar', 3);
       fa += txt(L, 258, tr('echt: 56 dagen', 'actual: 56 days'), 'pm-on') + rect(L, 268, 56 * s * (b === 3 ? span(p, 0.3, 0.7) : 1), 18, 'pm-crit', 3);
@@ -283,7 +284,7 @@ const STAGE = (() => {
 
   // ------------------------------------------------------------ scene 8: hours, weeks and one buffer
   function s8(b, p) {
-    const out = { title: tr('uren en weken', 'hours and weeks'), label: tr('voorbeeld', 'example'), body: '', cal: [] };
+    const out = { title: tr('uren en weken', 'hours and weeks'), label: tr('schema', 'diagram'), body: '', cal: [] };
     if (b <= 1) {
       // 16 hours of effort as 16 cells, flowing into four weeks of 4 hours
       const flow = b === 1 ? span(p, 0.1, 0.6) : 0;
@@ -317,7 +318,7 @@ const STAGE = (() => {
     });
     const bx = L + 230;
     let bf = op(hide, rect(bx, 66, R - bx, 34, 'pm-slack', 4) + txt((bx + R) / 2, 124, 'buffer', 'pm-on', 'middle'));
-    bf += op(span(b === 2 ? p : 1, 0.35, 0.55), lines(L, 170, [[tr('werk dijt uit:', 'work expands:'), 'pm-mute'], [tr('Parkinson, 1955', 'Parkinson, 1955')], [tr('Goldratt, 1997:', 'Goldratt, 1997:'), 'pm-mute'], [tr('studentensyndroom', 'student syndrome')]]));
+    bf += op(span(b === 2 ? p : 1, 0.35, 0.55), lines(L, 166, [[tr('werk dijt uit:', 'work expands:'), 'pm-mute'], [tr('Parkinson, 1955', 'Parkinson, 1955')], [tr('pas laat beginnen:', 'starting late:'), 'pm-mute'], [tr('studentensyndroom,', 'student syndrome,')], [tr('Goldratt, 1997', 'Goldratt, 1997')]]));
     if (b === 3) {
       // the buffer half used at a quarter of the way: an early warning
       const used = span(p, 0.05, 0.3) * 0.5;
@@ -336,6 +337,7 @@ const STAGE = (() => {
       ? cue('talk', txt(L, 82, tr('“drie dagen”', '“three days”'), 'pm-big') + op(b === 0 ? span(p, 0.3, 0.6) : 1, lines(L, 118, [[tr('beste geval?', 'best case?'), 'pm-on'], [tr('wat maakt het langer?', 'what makes it longer?'), 'pm-on']])))
       : cue('note', op(span(p, 0.05, 0.3), lines(L, 76, [[tr('“4 tot 8 weken; na de', '“4 to 8 weeks; after the'), 'pm-txt'], [tr('datacheck in week 2', 'data check in week 2'), 'pm-txt'], [tr('weet ik meer”', 'I’ll know more”'), 'pm-txt'], [tr('+ de datum die je belooft', '+ the date you commit to'), 'pm-on']])));
     out.body = top;
+    if (b === 4) out.label = tr('schema', 'diagram');
     if (b >= 1) {
       // days 0..12: best 2, the engineer's 3, worst 10, PERT 4
       const xd = (d) => L + 10 + d * ((R - L - 20) / 12);

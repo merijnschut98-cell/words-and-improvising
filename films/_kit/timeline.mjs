@@ -284,9 +284,10 @@ const SAY = {
     [/\b([Aa])gile\b/g, (m, a) => `${a === 'A' ? 'E' : 'e'}tsjail`], [/\b([Hh])ybride\b(?! machine)/g, '$1iebriede'],
     // breaking down the work (pm.plan.wbs): scope and scope creep as said in Dutch projects (espeak-ng reads
     // "skoo-pe" and "kreep"): skoop, kriep; and werkpakket and nachtploeg, stressed werkPAKket and nachtPLOEG,
-    // split at the head (WERK-pakket, NACHT-ploeg)
+    // split at the head (WERK-pakket, NACHT-ploeg); not before "accepteert", so pm.plan.risk's "De nachtploeg
+    // accepteert het niet" keeps the voice it was reviewed with
     [/\b([Ss])cope creep\b/g, (m, s) => `${s === 'S' ? 'S' : 's'}koop kriep`], [/\b([Ss])cope\b/g, (m, s) => `${s === 'S' ? 'S' : 's'}koop`],
-    [/\b([Ww])erkpakket/g, '$1erk-pakket'], [/\b([Nn])achtploeg/g, '$1acht-ploeg']],
+    [/\b([Ww])erkpakket/g, '$1erk-pakket'], [/\b([Nn])achtploeg\b(?! accepteert)/g, '$1acht-ploeg']],
   en: [[/\brpm\b/g, 'revolutions per minute'], [/\bmm\/min\b/g, 'millimetres per minute'], [/\bm\/min\b/g, 'metres per minute'], [/µm\b/g, 'micrometres'],
     [/€\s?(\d[\d,]*(?:\.\d+)?)/g, '$1 euros'], [/(\d)\.0(?![\d])/g, '$1'], [/(\d)\s?mm\b/g, '$1 millimetres'], [/(\d)\s?min\b/g, '$1 minutes'], [/(\d)\s?%/g, '$1 percent'],
     [/Ø\s*/g, 'diameter '], [/(\d)\+(\d)/g, '$1 plus $2'], [/\s×\s/g, ' times '], [/\s\/\s/g, ' divided by '], [/\s=\s/g, ' is '], [/°/g, ' degrees'], [/\bRa\b/g, 'R a'], [/’/g, "'"],
