@@ -3,6 +3,7 @@ export default {
   lessons: [
     {
       id: 'pm.perform.kpis',
+      film: 'pm.perform.tree',
       title: 'Een paar indicatoren die sturen',
       pre: [
         {
@@ -16,7 +17,7 @@ export default {
         'Een KPI, kort voor kritieke prestatie-indicator (key performance indicator), is een cijfer waar iemand op handelt. Als niemand iets anders gaat doen wanneer het beweegt, is het een rapportagecijfer, geen KPI.\n\nEen vuistregel uit de praktijk: een team kan sturen op zo’n drie tot zeven cijfers; een muur van veertig leest niemand. Kies per niveau: de directie heeft een paar resultaten nodig, een team de paar cijfers die het deze week kan beïnvloeden.',
         'Een achterlopende indicator meet het resultaat achteraf: de leverbetrouwbaarheid (on-time delivery) van vorige maand, verloren klantminuten (customer minutes lost: minuten zonder stroom, opgeteld over alle klanten), kosten per aansluiting.\n\nEen voorlopende indicator beweegt vóór het resultaat en laat zien wat je moet doen: het aandeel klussen waarvan het materiaal twee dagen voor de start klaarligt, preventief onderhoud (gepland onderhoud voordat iets kapotgaat) op tijd gedaan, de leeftijd van de werkvoorraad (backlog).\n\nAchterlopend zegt of je gewonnen hebt. Voorlopend zegt of je gaat winnen.',
         'Een goede KPI heeft een opgeschreven definitie: wat telt mee en wat niet. Bijvoorbeeld: “te laat” is één dag of meer na de datum die aan de klant is bevestigd.\n\nDaarnaast één eigenaar, een bron waar niemand over twist, een frequentie die past bij hoe snel het cijfer kan veranderen, en een bekende richting: is hoger beter of lager? In de praktijk blijken veel KPI-discussies te gaan over twee mensen die onder dezelfde naam iets anders meten.',
-        'Eén cijfer in z’n eentje wordt opgedreven ten koste van de rest. Werk daarom met gekoppelde indicatoren: twee cijfers die elkaar bewaken, zoals output met kwaliteit, snelheid met veiligheid, kosten met service.\n\nKaplan en Norton maakten dat punt in 1992 met de balanced scorecard: een set cijfers vanuit vier invalshoeken, financieel, klant, interne processen, en leren en groeien. Financiële resultaten alleen zeggen hoe het ging, niet waar je heen gaat.',
+        'Eén cijfer in z’n eentje wordt opgedreven ten koste van de rest. Werk daarom met gekoppelde indicatoren: twee cijfers die elkaar bewaken, zoals output met kwaliteit, snelheid met veiligheid, kosten met service.\n\nKaplan en Norton maakten dat punt in 1992 met de balanced scorecard: een set cijfers vanuit vier invalshoeken, financieel, klant, interne processen, en leren en groeien (die laatste heette in 1992 nog innovatie en leren). Financiële resultaten alleen zeggen hoe het ging, niet waar je heen gaat.',
         'Wat je in de praktijk ziet: dashboards die elk jaar groeien, omdat een cijfer toevoegen makkelijk is en er een weghalen eng voelt. Voorlopende indicatoren zijn lastiger te vinden, dus veel teams houden alleen achterlopende over.\n\nDeskundigen discussiëren over standaardiseren: één KPI-set voor elk team maakt vergelijken makkelijk, maar dan stuurt een team soms op cijfers die het niet kan bewegen.\n\nEen scherpe vraag bij elk cijfer aan de muur: “Toen dit de vorige keer rood werd, wat deed iemand toen anders?”',
       ],
       example: {
@@ -85,6 +86,7 @@ export default {
     },
     {
       id: 'pm.perform.tree',
+      film: 'pm.perform.tree',
       title: 'Van strategie naar de cijfers van een team',
       pre: [
         {
@@ -417,6 +419,7 @@ export default {
     },
     {
       id: 'pm.perform.targets',
+      film: 'pm.perform.tree',
       title: 'Doelen waar mensen in geloven',
       pre: [
         {
@@ -748,6 +751,7 @@ export default {
     },
     {
       id: 'pm.perform.gaming',
+      film: 'pm.perform.tree',
       title: 'Gaming en verkeerde prikkels',
       pre: [
         {

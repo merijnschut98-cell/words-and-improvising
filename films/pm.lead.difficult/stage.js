@@ -85,7 +85,7 @@ const STAGE = (() => {
     if (b >= 2) o.contrib = op(at(b, p, 2), card(196, 58, b === 2 ? 'pm-hot' : 'pm-card') + txt(X0 + 4, 220, tr('jouw bijdrage', 'your contribution'), b === 2 ? 'pm-on' : 'pm-big') + txt(X0 + 4, 244, tr('wat deed of liet jij?', 'what did you do, or not?')));
     if (b >= 3) {
       o.blame = op(at(b, p, 3), txt(X0, 280, tr('schuld: kijkt terug', 'blame: looks back'), 'pm-mute') + path(`M${X0 - 2} 273H${X0 + 64}`, 'pm-strike')
-        + txt(X0, 304, tr('bijdrage: lost het op', 'contribution: fixes it'), 'pm-on'));
+        + txt(X0, 304, tr('bijdrage: helpt oplossen', 'contribution: helps fix it'), 'pm-on'));
     }
     if (b >= 4) {
       o.goal = op(at(b, p, 4), card(318, 66, 'pm-hot') + txt(X0 + 4, 343, tr('doel: één afspraak', 'goal: one agreement'), 'pm-on'));
@@ -100,7 +100,7 @@ const STAGE = (() => {
     o.third = card(54, 82, b === 0 ? 'pm-hot' : 'pm-card') + lines(80, [[tr('derde verhaal', 'third story'), b === 0 ? 'pm-on' : 'pm-big'], [tr('zoals een neutrale', 'as a neutral observer')], [tr('buitenstaander het ziet', 'would describe it')]], X0 + 4);
     if (b >= 1) o.quote = op(at(b, p, 1), card(146, 84, 'pm-dash') + lines(170, [[tr('“De stilstanddata: we kijken', '“The downtime data: we see'), 'pm-on'], [tr('er verschillend naar. Hoe', 'it differently. How do'), 'pm-on'], [tr('zie jij het?”', 'you look at it?”'), 'pm-on']], X0 + 4));
     if (b >= 2) o.runup = op(at(b, p, 2), txt(X0, 260, tr('geen lange aanloop', 'no long warm-up'), 'pm-big'));
-    if (b >= 3) o.small = op(at(b, p, 3), lines(292, [[tr('smalltalk: hier één zin;', 'small talk: here one line;')], [tr('soms overslaan onbeleefd', 'elsewhere skipping is rude'), 'pm-mute']]));
+    if (b >= 3) o.small = op(at(b, p, 3), lines(292, [[tr('smalltalk: in NL één zin;', 'small talk: in NL one line;')], [tr('soms overslaan onbeleefd', 'elsewhere skipping is rude'), 'pm-mute']]));
     if (b >= 4) o.mail = op(at(b, p, 4), card(338, 46, 'pm-hot') + txt(X0 + 4, 368, tr('nooit per mail', 'never by e-mail'), 'pm-on'));
     return o;
   }
@@ -115,7 +115,7 @@ const STAGE = (() => {
       const box = (x, t1, t2, cls) => rect(x, 212, half, 66, cls, 8) + txt(x + 8, 238, t1, cls === 'pm-hot' ? 'pm-on' : 'pm-big') + txt(x + 8, 264, t2, 'pm-txt');
       o.intent = op(at(b, p, 2), box(X0 - 4, 'impact', tr('ken jij', 'you know'), 'pm-card') + op(at(b, p, 2, 0.35, 0.6), box(X0 + half + 4, tr('bedoeling', 'intent'), tr('vraag ernaar', 'ask about it'), 'pm-hot')));
     }
-    if (b >= 3) o.ask = op(at(b, p, 3), card(292, 92, 'pm-dash') + lines(316, [[tr('“Zo bedoelde je het vast', '“You didn’t mean it so,'), 'pm-on'], [tr('niet, maar het werd lastiger.', 'but it made it harder.'), 'pm-on'], [tr('Wat bedoelde je ermee?”', 'What did you mean?”'), 'pm-on']], X0 + 2));
+    if (b >= 3) o.ask = op(at(b, p, 3), card(292, 92, 'pm-dash') + lines(316, [[tr('“Zo bedoelde je het vast', '“You likely didn’t mean it,'), 'pm-on'], [tr('niet, maar het werd lastiger.', 'but it made it harder.'), 'pm-on'], [tr('Wat bedoelde je ermee?”', 'What did you mean?”'), 'pm-on']], X0 + 2));
     return o;
   }
 

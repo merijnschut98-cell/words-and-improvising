@@ -85,6 +85,14 @@ test('spoken text: units, signs, money and whole decimals as words; the gloss is
   assert.equal(speakOf(['Scope creep: buiten de scope. Een werkpakket, de werkpakketten, de nachtploeg.'], 'nl'), 'Skoop kriep: buiten de skoop. Een werk-pakket, de werk-pakketten, de nacht-ploeg.');
   assert.equal(speakOf(['Scope creep: out of scope. A work package, the night shift.'], 'en'), 'Scope creep: out of scope. A work package, the night shift.');
   assert.equal(speakOf(['De nachtploeg accepteert het niet.'], 'nl'), 'De nachtploeg accepteert het niet.');
+  // pm.perform.tree: the terms the cards show, said as Dutch performance people say them
+  assert.equal(speakOf(['Een driver in de driverboom. De balanced scorecard van Kaplan en Norton.'], 'nl'), 'Een draiver in de draiverboom. De bellenst skoorkart van Kaplan en Norten.');
+  assert.equal(speakOf(['Gaming, naar Goodhart en Strathern; Locke en Latham.'], 'nl'), 'Geeming, naar Goedhart en Strèthurn; Lok en Leetum.');
+  assert.equal(speakOf(['Een voorlopende indicator, achterlopende en gekoppelde indicatoren, een actiegrens.'], 'nl'), 'Een voorlopende indie-kator, achterlopende en gekoppelde indie-katoren, een actie-grens.');
+  // other films keep their voice: kleine indicatoren, De actiegrens ligt, het dashboard
+  assert.equal(speakOf(['Kleine indicatoren. De actiegrens ligt op 4,5. Een beter dashboard.'], 'nl'), 'Kleine indicatoren. De actiegrens ligt op 4,5. Een beter dashboard.');
+  assert.equal(speakOf(['Voor de deadline groeien dashboards; een rapportagecijfer per orderregel.'], 'nl'), 'Voor de dedlain groeien desjbords; een rapportage-cijfer per order-regel.');
+  assert.equal(speakOf(['A driver tree, gaming, Goodhart and Strathern, a leading indicator, the balanced scorecard.'], 'en'), 'A driver tree, gaming, Goodhart and Strathern, a leading indicator, the balanced scorecard.');
   // pm.lead.feedback: feedback, the feedbacksandwich and feedforward as Dutch project people say them (espeak-ng
   // reads "feed-bak"), SBI as letters (read as one word, "zbie"), disagree and commit and the English names in a
   // Dutch spelling, and prestatiegesprek, escalatiepad and integriteit stressed on the right part; English keeps
@@ -118,6 +126,15 @@ test('spoken text: units, signs, money and whole decimals as words; the gloss is
   // English keeps them
   assert.equal(speakOf(['De controller checkt de dekkingsbijdrage. Controllers. Een run chart, Run chart.'], 'nl'), 'De kon-troller checkt de dekkings-bijdrage. Kon-trollers. Een run tsjart, Run tsjart.');
   assert.equal(speakOf(['The controller checks the run chart.'], 'en'), 'The controller checks the run chart.');
+  // pm.negotiate.batna: pakketdeal with "deal" as the Dutch say it (espeak-ng drops the d: "pakket-eeal"), framing as
+  // "freeming" (espeak-ng reads the Dutch "fraa-ming"), and the example's gecoate beugels and coaten with the English
+  // oa (espeak-ng reads "ge-koo-aa-te"; only before beugels, so eng.joining.bonding's "gecoate nagels" keeps its
+  // voice); English keeps them all
+  assert.equal(speakOf(['Een pakketdeal, twee pakketdeals. Met framing, Framing.'], 'nl'), 'Een pakket-diel, twee pakket-diels. Met freeming, Freeming.');
+  assert.equal(speakOf(['Gecoate beugels; zelf coaten kan niet. Gecoate nagels.'], 'nl'), 'Gekoote beugels; zelf kooten kan niet. Gecoate nagels.');
+  // and deal on its own as "diel" (espeak-ng reads "dee-al"), integriteit stressed on -TEIT (pm.lead.feedback's in-tegriteit)
+  assert.equal(speakOf(['De slechtste deal, twee deals. Deal! Veiligheid en integriteit.'], 'nl'), 'De slechtste diel, twee diels. Diel! Veiligheid en in-tegriteit.');
+  assert.equal(speakOf(['A package deal, with framing. Coated brackets. The worst deal; integrity.'], 'en'), 'A package deal, with framing. Coated brackets. The worst deal; integrity.');
   // pm.lead.difficult: the authors and the book's title as English names (espeak-ng reads "stoo-ne", pat-TON and
   // a Dutch "kon-ver-saa-sjons"); identiteitsgesprek and identiteitsval split at the head (espeak-ng stresses
   // I-dentiteits), ge-kwetstheid (it stresses GE-), smalltalk as said in Dutch (smoltok), analyse with the

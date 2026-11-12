@@ -282,7 +282,7 @@ const spec = {
       { nl: 'Het gesprek over wat er gebeurde: de feiten, wie gelijk heeft.', en: 'The “what happened” conversation: the facts, who’s right.', focus: 'what' },
       { nl: 'Het gevoelsgesprek: boosheid, schaamte, gekwetstheid.', en: 'The feelings conversation: anger, embarrassment, hurt.', focus: 'feel' },
       { nl: 'Het {t:Identiteitsgesprek|identiteitsgesprek}: wat zegt dit over mij? Ben ik competent?', en: 'The {t:Identity conversation|identity conversation}: what does this say about me? Am I competent?', cue: { Identiteitsgesprek: 'ident' }, focus: ['ident', 'jij'] },
-      { nl: 'Onder druk praat dat het hardst, zeker als jongste. Je merkt het als drang om gelijk te krijgen.', en: 'Under pressure it runs loudest, especially as the youngest. You notice it as the urge to be right.', focus: ['loud', 'ident', 'jij'] },
+      { nl: 'Onder druk praat dat het hardst, zeker als je de jongste bent. Je merkt het als drang om gelijk te krijgen.', en: 'Under pressure it runs loudest, especially if you’re the youngest. You notice it as the urge to be right.', focus: ['loud', 'ident', 'jij'] },
     ]),
     sc('s2', { nl: 'Voorbereiden op papier', en: 'Preparing on paper' }, [
       { nl: 'Bereid het op papier voor; een kwartier is meestal genoeg.', en: 'Prepare on paper; fifteen minutes is usually enough.', focus: ['paper', 'sheet'] },
@@ -295,7 +295,7 @@ const spec = {
       { nl: 'Open direct, met het {t:Derde verhaal|derde verhaal}: zoals een neutrale buitenstaander het ziet.', en: 'Open straight, with the {t:Third story|third story}: as a neutral observer would see it.', cue: { 'Derde verhaal': 'third' }, focus: 'third' },
       { nl: '“Ik wil het hebben over de stilstanddata. We kijken er verschillend naar.”', en: '“I’d like to talk about the downtime data. We see it differently.”', focus: ['quote', 'jij'] },
       { nl: 'Geen lange aanloop: mensen voelen het aankomen en verkrampen.', en: 'No long warm-up: people feel it coming and tense up.', focus: 'runup' },
-      { nl: 'Smalltalk: hier is één zin genoeg; in sommige culturen is overslaan onbeleefd.', en: 'Small talk: here one sentence is plenty; in some cultures skipping it is rude.', focus: 'small' },
+      { nl: 'Smalltalk: op een Nederlandse werkvloer is één zin genoeg; elders is overslaan soms onbeleefd.', en: 'Small talk: in a Dutch workplace one sentence is plenty; in some cultures skipping it is rude.', focus: 'small' },
       { nl: 'Open nooit per mail: de toon gaat verloren, standpunten verharden.', en: 'Never open by e-mail: tone gets lost, positions harden.', focus: ['mail', 'laptop'] },
     ]),
     sc('s4', { nl: 'In het gesprek', en: 'In the talk' }, [
