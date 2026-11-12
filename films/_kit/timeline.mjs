@@ -330,6 +330,21 @@ const SAY = {
     [/\bAwareness\b/g, 'E-wèrnus'], [/\bDesire\b/g, 'Die-zaaijer'], [/\bKnowledge\b/g, 'Nollitsj'], [/\bAbility\b/g, 'E-billiti'], [/\bReinforcement\b/g, 'Rie-in-forsmunt'],
     [/\b([Ll])ivegang/g, '$1aif-gang'], [/\b([Cc])ommunicatieplan/g, '$1ommunicatie-plan'], [/\b([Mm])iddenmanager/g, '$1idden-menetsjer'], [/\b([Tt])own hall\b/g, '$1aun hol'],
     [/\bCoch en French\b/g, 'Kootsj en Frensj'], [/\bMark Hughes\b/g, 'Mark Hjoes'],
+    // from strategy to team number (pm.perform.tree): the English words Dutch performance people use, as they
+    // say them (espeak-ng reads "drie-vur", "baa-lan-set skoo-re-kart", gaming with the g of "lachen" and a long
+    // a, "Goo-dhart", "Strat-ern", "lok-ke en lat-tam" and stresses NORton on its last syllable): draiver,
+    // bellenst skoorkart, geeming, Goedhart, Strèthurn, Lok en Leetum, Norten (the names only in their pairs);
+    // and words it stresses or voices wrong: IN-dicator (said indie-KAtor, indie-kaTOren, only after voorlopende,
+    // achterlopende and gekoppelde, so the grid films' "kleine indicatoren" stay), actiegrens with a schwa (only
+    // after "een", so eng.maintenance.failure's "De actiegrens ligt" keeps its voice), "dee-ad-lie-ne",
+    // "dasj-boo-arts" (only the plural: the singular in pm.intake.firsttalk, pm.plan.method and pm.run.scope
+    // stays), RAPportagecijfer and "orderrə-GEL"; said actie-grens, dedlain, desjbords, rapportage-cijfer and
+    // order-regel. No other film's spoken text changes
+    [/\b([Dd])river/g, '$1raiver'], [/\b([Bb])alanced scorecard\b/g, (m, b) => `${b === 'B' ? 'B' : 'b'}ellenst skoorkart`], [/\bKaplan en Norton\b/g, 'Kaplan en Norten'],
+    [/\b([Gg])aming\b/g, '$1eeming'], [/\bGoodhart\b/g, 'Goedhart'], [/\bStrathern\b/g, 'Strèthurn'], [/\bLocke en Latham\b/g, 'Lok en Leetum'],
+    [/\b([Vv]oorlopende|[Aa]chterlopende|[Gg]ekoppelde) indicator/g, '$1 indie-kator'], [/\b([Ee]en) actiegrens\b/g, '$1 actie-grens'], [/\b([Dd])eadline/g, '$1edlain'],
+    [/\b([Dd])ashboards\b/g, '$1esjbords'],
+    [/\b([Rr])apportagecijfer/g, '$1apportage-cijfer'], [/\b([Oo])rderregel/g, '$1rder-regel'],
     // on-the-job instruction (pm.land.training): Toyota as the Dutch say it, "tojota" (espeak-ng reads
     // "too-ie-oota"); no other film says Toyota in Dutch
     [/\bToyota\b/g, 'Tojota'],
