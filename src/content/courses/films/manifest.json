@@ -1599,6 +1599,37 @@
         ],
         "vtt": "src/content/courses/films/pm.land.adoption.en.vtt"
       }
+    },
+    "pm.land.training": {
+      "poster": "src/content/courses/films/pm.land.training.jpg",
+      "nl": {
+        "dur": 251.2,
+        "bytes": 8843765,
+        "scenes": [
+          0,
+          21.47,
+          63.79,
+          109.12,
+          136.72,
+          174.28,
+          206.67
+        ],
+        "vtt": "src/content/courses/films/pm.land.training.nl.vtt"
+      },
+      "en": {
+        "dur": 267.7,
+        "bytes": 9241208,
+        "scenes": [
+          0,
+          22.79,
+          72.94,
+          118.61,
+          145.11,
+          186.21,
+          221.94
+        ],
+        "vtt": "src/content/courses/films/pm.land.training.en.vtt"
+      }
     }
   }
 }
