@@ -1657,6 +1657,41 @@
         ],
         "vtt": "src/content/courses/films/pm.run.escalation.en.vtt"
       }
+    },
+    "pm.plan.wbs": {
+      "poster": "src/content/courses/films/pm.plan.wbs.jpg",
+      "nl": {
+        "dur": 338.1,
+        "bytes": 11470287,
+        "scenes": [
+          0,
+          42.26,
+          74.82,
+          105.29,
+          149.05,
+          184.03,
+          219.35,
+          261.85,
+          294.97
+        ],
+        "vtt": "src/content/courses/films/pm.plan.wbs.nl.vtt"
+      },
+      "en": {
+        "dur": 340.6,
+        "bytes": 11507186,
+        "scenes": [
+          0,
+          42.97,
+          72.86,
+          103.22,
+          146.2,
+          182.13,
+          218.14,
+          261.35,
+          295.76
+        ],
+        "vtt": "src/content/courses/films/pm.plan.wbs.en.vtt"
+      }
     }
   }
 }
