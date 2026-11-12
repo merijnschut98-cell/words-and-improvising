@@ -385,6 +385,18 @@ const SAY = {
     [/\b([Tt])rigger(?=, een actie-?grens\b)/g, '$1rikker'],
     [/\b([Bb])atenhouder/g, '$1aten-houder'], [/\b([Pp])loegdagen\b/g, '$1loeg-dagen'], [/\b([Bb])usiness case/g, '$1iznis kees'],
     [/\b([Ww])eekenddienst/g, '$1ieken-dienst'], [/\b([Ll])ijnmanager/g, '$1ijn-menetsjer'], [/\b([Oo])perationeel manager/g, '$1pperaatsjoneel menetsjer'],
+    // asking questions outside your field (pm.outside.questions): the names behind the planning fallacy and the
+    // reference class as English and Danish speakers say them (espeak-ng reads Kahneman with a sounded h,
+    // Flyvbjerg as "flif-bjerg"): Kaaneman, Fluubjerg (Gardner is on the card only: no spelling gives
+    // espeak-ng a hard g, and Kardner is another name); and words it
+    // misreads, split at the head: REferentieklasse with "ti" for "tsie" (referentie-KLASse), basiscijfer without
+    // the s of cijfer ("basis-eifer"), IT-lead as "lee-ad" (said IT-lied), and OPtimistisch and VOORspelling
+    // (said op-timistisch, voor-spelling: op-ti-MIS-tisch, voor-SPEL-ling); no other film says them, and
+    // optimistisch only before "e", "en", a number or ", plus", so pm.plan.wbs's "optimistisch, meest
+    // waarschijnlijk" keeps the voice it was built with
+    [/\bKahneman\b/g, 'Kaaneman'], [/\bFlyvbjerg\b/g, 'Fluubjerg'],
+    [/\b([Rr])eferentieklasse/g, '$1eferentie-klasse'], [/\b([Bb])asiscijfer/g, '$1asis-cijfer'], [/\bIT-lead\b/g, 'IT-lied'],
+    [/\b([Oo])ptimistisch(?=e\b| en\b| \d|, plus\b)/g, '$1p-timistisch'], [/\b([Vv])oorspelling/g, '$1oor-spelling'],
     // three conversations in one (pm.lead.difficult): the authors and the book's title as English names (espeak-ng
     // reads "stoo-ne", pat-TON and a Dutch "kon-ver-saa-sjons"): Stoon, Petten, Diffikkelt Konver-seesjens;
     // identiteitsgesprek and identiteitsval split at the head (it stresses I-dentiteits; split, i-den-ti-TEITS),
