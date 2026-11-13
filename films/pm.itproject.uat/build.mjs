@@ -479,7 +479,7 @@ const SAY = [
       en: 'Each scenario links back to the requirements, so every Must is tested.' },
   ],
   [ // s3 the test script; real data
-    { nl: 'Een {t:Testscript|testscript} werkt een testscenario uit: stappen, invoer en verwacht resultaat. De tester noteert wat er echt gebeurde: geslaagd of gezakt.',
+    { nl: 'Een {t:Testscript|testscript} werkt een testscenario uit. Het bevat stappen met invoer en een verwacht resultaat. De tester noteert wat er echt gebeurde: geslaagd of gezakt.',
       en: 'A {t:Test script|test script} spells a scenario out: steps, input and expected result. The tester notes what happened: pass or fail.' },
     { nl: 'Gebruik echte data uit de laatste proefmigratie: een key user ziet meteen dat een bekend artikel de verkeerde eenheid heeft, of dat een routing een stap mist.',
       en: 'Use real data from the last mock migration: a key user spots a familiar article with the wrong unit at once, or a routing missing a step.' },
