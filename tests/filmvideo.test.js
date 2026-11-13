@@ -513,7 +513,7 @@ function werScore(ref, hyp, lang, said) {
     'w, n = W.score(ref, hyp, lang, said)',
     'print(json.dumps([round(float(w), 4), n]))',
   ].join('\n');
-  const r = spawnSync('python3', ['-I', '-c', py, 'films/_kit/wer.py'], { input: JSON.stringify([ref, hyp, lang, said]), encoding: 'utf8' });
+  const r = spawnSync('python3', ['-I', '-B', '-c', py, 'films/_kit/wer.py'], { input: JSON.stringify([ref, hyp, lang, said]), encoding: 'utf8' });
   if (r.error || /No module named .numpy/.test(r.stderr)) return null;
   assert.equal(r.status, 0, r.stderr);
   return JSON.parse(r.stdout);
