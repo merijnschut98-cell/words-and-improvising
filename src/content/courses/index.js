@@ -382,6 +382,15 @@ export const MODULES = [
     ],
     lessons: ['pm.devops.pipeline', 'pm.devops.tests', 'pm.devops.trunk', 'pm.devops.cdflow', 'pm.devops.fourkeys', 'pm.devops.measure', 'pm.devops.benchmark', 'pm.devops.metricsuse', 'pm.devops.environments', 'pm.devops.flags', 'pm.devops.strategies', 'pm.devops.rollback', 'pm.devops.incident', 'pm.devops.sla', 'pm.devops.postmortem', 'pm.devops.leanops'],
     questions: { 'pm.devops.pipeline': 4, 'pm.devops.tests': 4, 'pm.devops.trunk': 4, 'pm.devops.cdflow': 4, 'pm.devops.fourkeys': 4, 'pm.devops.measure': 4, 'pm.devops.benchmark': 4, 'pm.devops.metricsuse': 4, 'pm.devops.environments': 4, 'pm.devops.flags': 4, 'pm.devops.strategies': 4, 'pm.devops.rollback': 4, 'pm.devops.incident': 4, 'pm.devops.sla': 4, 'pm.devops.postmortem': 4, 'pm.devops.leanops': 4 } },
+  { id: 'pm.itproject', subject: 'pm', track: 'agile', level: 3, title: { en: 'Leading IT projects', nl: 'IT-projecten leiden' }, blurb: { en: 'Requirements with MoSCoW and an MVP, choosing a vendor and a SaaS contract, the ERP/MES go-live from data migration to hypercare, and from UAT to real use.', nl: 'Requirements met MoSCoW en een MVP, een leverancier en SaaS-contract kiezen, de ERP/MES-go-live van datamigratie tot hypercare, en van UAT tot echt gebruik.' },
+    topics: [
+      { id: 'scope', title: { en: 'Requirements and scope', nl: 'Requirements en scope' }, levels: ['pm.itproject.requirements', 'pm.itproject.mvp', 'pm.itproject.fitgap', 'pm.itproject.scopegov'] },
+      { id: 'vendor', title: { en: 'Choosing a vendor, SaaS and contracts', nl: 'Leverancier, SaaS en contract kiezen' }, levels: ['pm.itproject.saas', 'pm.itproject.selection', 'pm.itproject.tco', 'pm.itproject.contract'] },
+      { id: 'golive', title: { en: 'ERP/MES implementation: from migration to hypercare', nl: 'ERP/MES invoeren: van migratie tot hypercare' }, levels: ['pm.itproject.rollout', 'pm.itproject.migration', 'pm.itproject.cutover', 'pm.itproject.hypercare'] },
+      { id: 'adoption', title: { en: 'Testing and adoption', nl: 'Testen en adoptie' }, levels: ['pm.itproject.uat', 'pm.itproject.defects', 'pm.itproject.roles', 'pm.itproject.change'] },
+    ],
+    lessons: ['pm.itproject.requirements', 'pm.itproject.mvp', 'pm.itproject.fitgap', 'pm.itproject.scopegov', 'pm.itproject.saas', 'pm.itproject.selection', 'pm.itproject.tco', 'pm.itproject.contract', 'pm.itproject.rollout', 'pm.itproject.migration', 'pm.itproject.cutover', 'pm.itproject.hypercare', 'pm.itproject.uat', 'pm.itproject.defects', 'pm.itproject.roles', 'pm.itproject.change'],
+    questions: { 'pm.itproject.requirements': 4, 'pm.itproject.mvp': 4, 'pm.itproject.fitgap': 4, 'pm.itproject.scopegov': 4, 'pm.itproject.saas': 4, 'pm.itproject.selection': 4, 'pm.itproject.tco': 4, 'pm.itproject.contract': 4, 'pm.itproject.rollout': 4, 'pm.itproject.migration': 4, 'pm.itproject.cutover': 4, 'pm.itproject.hypercare': 4, 'pm.itproject.uat': 4, 'pm.itproject.defects': 4, 'pm.itproject.roles': 4, 'pm.itproject.change': 4 } },
 ];
 
 export const subjectOf = (id) => String(id).split('.')[0];
