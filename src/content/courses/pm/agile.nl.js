@@ -986,6 +986,7 @@ export default {
     },
     {
       id: 'pm.agile.board',
+      film: 'pm.agile.kanban',
       title: 'Kanban: het werk zichtbaar maken',
       pre: [
         {
@@ -1066,6 +1067,7 @@ export default {
     },
     {
       id: 'pm.agile.wip',
+      film: 'pm.agile.kanban',
       title: 'WIP-limieten: minder beginnen, meer afmaken',
       pre: [
         {
@@ -1146,6 +1148,7 @@ export default {
     },
     {
       id: 'pm.agile.flowmetrics',
+      film: 'pm.agile.kanban',
       title: 'Cycle time, throughput en de wet van Little',
       pre: [
         {
