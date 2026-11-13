@@ -533,6 +533,37 @@ test('speak variant: the post-mortem words in Dutch', () => {
   assert.equal(speakOf([en], 'en'), en);
 });
 
+// Rollout and data migration (pm.itproject.migration): the words of an ERP or
+// MES rollout as Dutch projects say them, checked with espeak-ng phonemes
+// through Piper's nl bridge: SAP Activate's phase names ("pree-paa-re,
+// eks-ploo-re, ree-aa-lie-ze": pri-peer, ek-sploor, rie-je-laaiz; run with the
+// Dutch u: ran; deploy through the pipeline film's rule), Activate
+// ("ak-tie-VAA-te": Ektiveet), legacysysteem ("lee-gaa-sie": legge-sie-systeem),
+// big bang ("big bang" with a Dutch a: big beng), Hershey ("her-SJEE-ie":
+// Hur-sjie), Halloween ("ha-lo-ween": Hellowien), business ("bu-ZIE-nes": biznis,
+// in this film's two phrases), Engineering ("ENG-ie-nie-ring": Entsjinieering, as
+// the post-mortem film), proefrun ("proef-run": proef-ran), records
+// ("re-KORTS": rekkords), getimed ("ge-TIE-med": getaimd), timing ("TIE-ming": taiming) and live in "nooit
+// live" and "data live" ("lie-ve": laiv). Stamdata, pilot, piekseizoen, go-live
+// and MES keep the rules above; English needs nothing; no other film's spoken
+// text changes
+test('speak variant: the rollout and migration words in Dutch', () => {
+  const nl = (s) => speakOf([s], 'nl');
+  assert.equal(nl('De methode van SAP, SAP Activate, noemt de kernfases prepare, explore, realize, deploy en run.'),
+    'De methode van SAP, SAP Ektiveet, noemt de kernfases pri-peer, ek-sploor, rie-je-laaiz, die-ploj en ran.');
+  assert.equal(nl('Het oude, het legacysysteem. Bij een big bang, een Big bang.'), 'Het oude, het legge-sie-systeem. Bij een big beng, een Big beng.');
+  assert.equal(nl('Hershey ging over, toen de bestellingen voor Halloween binnenkwamen.'), 'Hur-sjie ging over, toen de bestellingen voor Hellowien binnenkwamen.');
+  assert.equal(nl('Dat is werk voor de business. Voor het resultaat tekent de business, niet IT.'), 'Dat is werk voor de biznis. Voor het resultaat tekent de biznis, niet IT.');
+  assert.equal(nl('Engineering lost de dubbelingen op. Een proefrun, een Proefrun. Hoeveel records er mislukt zijn.'),
+    'Entsjinieering lost de dubbelingen op. Een proef-ran, een Proef-ran. Hoeveel rekkords er mislukt zijn.');
+  assert.equal(nl('De laatste wordt getimed. De timing telt. Ga dus nooit live, en gaat vuile data live om later op te lossen.'),
+    'De laatste wordt getaimd. De taiming telt. Ga dus nooit laiv, en gaat vuile data laiv om later op te lossen.');
+  assert.equal(nl('De pilot, de stamdata, het piekseizoen, de go-live, een nieuw MES in.'), 'De pailot, de stam-data, het piek-seizoen, de goo-laiv, een nieuw em ee es in.');
+  assert.equal(nl('De business case, de records, live gaan, de run, het blad CIO, de timing.'), 'De biznis kees, de records, live gaan, de run, het blad CIO, de timing.');
+  const en = 'SAP Activate calls the core phases prepare, explore, realize, deploy and run; the legacy system, a big bang, Hershey at Halloween, the business, engineering, a mock migration, records';
+  assert.equal(speakOf([en], 'en'), en);
+});
+
 // A stage drawn on the Dutch caption beats (beatwarp films set STAGE.nlBeats)
 // follows the caption beat on screen in English too: while English beat k
 // shows, the stage runs through Dutch beat k, so the drawing is never a beat off.

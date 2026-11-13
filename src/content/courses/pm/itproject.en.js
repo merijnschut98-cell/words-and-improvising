@@ -664,6 +664,7 @@ export default {
     },
     {
       id: 'pm.itproject.rollout',
+      film: 'pm.itproject.migration',
       title: 'How an implementation runs: big bang or phased',
       pre: [
         {
@@ -745,6 +746,7 @@ export default {
     },
     {
       id: 'pm.itproject.migration',
+      film: 'pm.itproject.migration',
       title: 'Data migration: moving, cleaning and counting',
       pre: [
         {
