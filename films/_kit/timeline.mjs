@@ -622,7 +622,18 @@ const SAY = {
     [/\b([Gg])o-live\b/g, '$1oo-laiv'], [/\b([Bb])usinessanalist\b/g, '$1iznis-analist'], [/\bvoedselbatches\b/g, 'voedselbetsjes'],
     // and, in this film's phrases only, business as Biznis in "tussen business en IT" and live as "laiv" in "live te
     // gaan" (it reads "buu-ZIE-nes" and the Dutch "lie-ve")
-    [/\btussen business en IT\b/g, 'tussen biznis en IT'], [/\blijn live te gaan\b/g, 'lijn laiv te gaan']],
+    [/\btussen business en IT\b/g, 'tussen biznis en IT'], [/\blijn live te gaan\b/g, 'lijn laiv te gaan'],
+    // the post-mortem (pm.devops.postmortem): the words of a post-mortem as Dutch IT teams say them, checked
+    // with espeak-ng phonemes through Piper's nl_NL-alex bridge: it reads incidentreview with "re-VIEW"
+    // (incident-rievjoe, as Sprint Review above), Site Reliability Engineering as "ree-li-aa-bi-li-ti
+    // eng-i-neer-ing" (Sait Rielaaje-bilitti Entsjinieering), stresses postmortemcultuur on -TEM- (split at its
+    // head: post-mortem-cultuur), reads blameless as "blaa-me-less" (bleemlus), workaround as "wor-kaa-raunt"
+    // (wurk-erraund) and update as "up-DAA-te" (updeet, also in IT-updates). Post-mortem, schuldvrij,
+    // servicedesk, scanners, OT and IT-manager need nothing; Taiichi Ohno and Toyota go through the rules
+    // above; no other film's spoken text changes
+    [/\b([Ii])ncidentreview(s?)\b/g, '$1ncident-rievjoe$2'], [/\bSite Reliability Engineering\b/g, 'Sait Rielaaje-bilitti Entsjinieering'],
+    [/\b([Pp])ostmortemcultuur\b/g, '$1ost-mortem-cultuur'], [/\b([Bb])lameless\b/g, '$1leemlus'], [/\b([Ww])orkaround(s?)\b/g, '$1urk-erraund$2'],
+    [/\b([Uu])pdate(s?)\b/g, '$1pdeet$2']],
   en: [[/\brpm\b/g, 'revolutions per minute'], [/\bmm\/min\b/g, 'millimetres per minute'], [/\bm\/min\b/g, 'metres per minute'], [/µm\b/g, 'micrometres'],
     [/€\s?(\d[\d,]*(?:\.\d+)?)/g, '$1 euros'], [/(\d)\.0(?![\d])/g, '$1'], [/(\d)\s?mm\b/g, '$1 millimetres'], [/(\d)\s?min\b/g, '$1 minutes'], [/(\d)\s?%/g, '$1 percent'],
     [/Ø\s*/g, 'diameter '], [/(\d)\+(\d)/g, '$1 plus $2'], [/\s×\s/g, ' times '], [/\s\/\s/g, ' divided by '], [/\s=\s/g, ' is '], [/°/g, ' degrees'], [/\bRa\b/g, 'R a'], [/’/g, "'"],

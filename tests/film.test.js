@@ -462,6 +462,30 @@ test('speak variant: the requirements and MoSCoW words in Dutch, MoSCoW, Ries an
   assert.equal(speakOf([en], 'en'), en);
 });
 
+// The post-mortem (pm.devops.postmortem): the words of a post-mortem as Dutch
+// IT teams say them, checked with espeak-ng phonemes through Piper's
+// nl_NL-alex bridge: incidentreview ("re-VIEW": incident-rievjoe, as Sprint
+// Review), Site Reliability Engineering ("ree-li-aa-bi-li-ti eng-i-neer-ing":
+// Sait Rielaaje-bilitti Entsjinieering), postmortemcultuur stressed on -tem
+// (post-mortem-cultuur), blameless ("blaa-me-less": bleemlus), workaround
+// ("wor-kaa-raunt": wurk-erraund) and update ("up-DAA-te": updeet). Post-mortem,
+// schuldvrij, servicedesk, scanners, OT and IT-manager keep their voice;
+// Taiichi Ohno and Toyota go through the existing rules. English needs
+// nothing; no other film's spoken text changes
+test('speak variant: the post-mortem words in Dutch', () => {
+  const nl = (s) => speakOf([s], 'nl');
+  assert.equal(nl('Een post-mortem, ook wel incidentreview. Incidentreviews.'), 'Een post-mortem, ook wel incident-rievjoe. Incident-rievjoes.');
+  assert.equal(nl('Het boek Site Reliability Engineering, met een hoofdstuk over een postmortemcultuur.'),
+    'Het boek Sait Rielaaje-bilitti Entsjinieering, met een hoofdstuk over een post-mortem-cultuur.');
+  assert.equal(nl('De bespreking is schuldvrij, blameless. Een workaround, twee workarounds.'),
+    'De bespreking is schuldvrij, bleemlus. Een wurk-erraund, twee wurk-erraunds.');
+  assert.equal(nl('Een geplande update, nooit in de IT-updates. Update de lijst.'), 'Een geplande updeet, nooit in de IT-updeets. Updeet de lijst.');
+  assert.equal(nl('Taiichi Ohno maakte die methode bekend bij Toyota. De IT-manager, de servicedesk, de scanners onder OT.'),
+    'Taitsjie Oono maakte die methode bekend bij Tojota. De IT-manager, de servicedesk, de scanners onder OT.');
+  const en = 'A post-mortem, an incident review, the book Site Reliability Engineering, postmortem culture, blameless, a workaround, the IT updates, Taiichi Ohno at Toyota';
+  assert.equal(speakOf([en], 'en'), en);
+});
+
 // A stage drawn on the Dutch caption beats (beatwarp films set STAGE.nlBeats)
 // follows the caption beat on screen in English too: while English beat k
 // shows, the stage runs through Dutch beat k, so the drawing is never a beat off.
