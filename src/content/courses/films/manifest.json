@@ -1630,6 +1630,41 @@
         ],
         "vtt": "src/content/courses/films/pm.stuck.diagnose.en.vtt"
       }
+    },
+    "pm.outside.questions": {
+      "poster": "src/content/courses/films/pm.outside.questions.jpg",
+      "nl": {
+        "dur": 342,
+        "bytes": 12428065,
+        "scenes": [
+          0,
+          27.28,
+          56.02,
+          83.27,
+          129.61,
+          172.99,
+          225.35,
+          254.73,
+          299.62
+        ],
+        "vtt": "src/content/courses/films/pm.outside.questions.nl.vtt"
+      },
+      "en": {
+        "dur": 344.4,
+        "bytes": 12272770,
+        "scenes": [
+          0,
+          27,
+          55.1,
+          81.41,
+          128.71,
+          170.79,
+          223.92,
+          257.35,
+          303.24
+        ],
+        "vtt": "src/content/courses/films/pm.outside.questions.en.vtt"
+      }
     }
   }
 }
