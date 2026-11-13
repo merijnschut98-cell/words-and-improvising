@@ -995,7 +995,7 @@ export default {
       teach: [
         'A business case is the sum that shows whether a project is worth it: what it costs, what it yields, and how certain that is. For a small improvement project that is often one table, not a report.\n\nAs a junior you don’t make it alone. But you need to understand the sum, because every sponsor asks: “What does it yield?” Preferably in euros.',
         'Split the costs into two kinds. One-off costs you pay once: consultant, training, a new tool. On top of that come costs that stay, such as a licence per year or extra maintenance.\n\nDon’t forget your own people’s time. Two operators four hours a week for eight weeks is 64 hours; they don’t run those hours in production. Many business cases leave that out and look cheaper than they are.',
-        'Benefits are what the project yields, expressed in money where possible. Less scrap: kilos times the material price. Less downtime: hours times what an hour of production is worth. Less overtime: hours times the overtime rate.\n\nBe honest about the difference between real and paper benefits. Two hours less downtime a week only yields money if you can also sell those hours. Otherwise it is capacity, not euros.',
+        'Benefits are the measurable gain the project brings the organisation, expressed in money where possible. Less scrap: kilos times the material price. Less downtime: hours times what an hour of production is worth. Less overtime: hours times the overtime rate.\n\nBe honest about the difference between real and paper benefits. Two hours less downtime a week only yields money if you can also sell those hours. Otherwise it is capacity, not euros.',
         'The simplest measure is the payback period: one-off costs divided by the net benefits per month or per year (benefits minus the costs that stay). If a project costs €30,000 and yields €2,500 a month net, it has paid for itself after 12 months.\n\nMany companies use a rule of thumb, such as “under two years”, but that differs by company and sector. Ask the controller: “What payback period do you consider good?”',
         'Where experts disagree: the payback period ignores what happens after payback and how certain the benefits are. Finance people therefore often also use net present value, which comes later. For a first conversation the payback period is clear.\n\nA common mistake: adding up benefits that overlap, such as less downtime and more output from the same hours. A sharp question: “On which line of the income statement will I see this?”',
       ],
@@ -1058,7 +1058,7 @@ export default {
       terms: [
         { term: 'Business case', def: 'The sum that shows whether a project is worth it: costs, benefits and how certain they are.' },
         { term: 'One-off costs', def: 'Costs you incur once, such as consultant, training or tooling.' },
-        { term: 'Benefits', def: 'What the project yields, expressed in money where possible.' },
+        { term: 'Benefits', def: 'The measurable gain the project brings the organisation, expressed in money where possible.' },
         { term: 'Payback period', def: 'One-off costs divided by the net benefits per month or year: how long until the project pays for itself.' },
       ],
     },

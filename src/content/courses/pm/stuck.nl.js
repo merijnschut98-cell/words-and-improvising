@@ -3,6 +3,7 @@ export default {
   lessons: [
     {
       id: 'pm.stuck.diagnose',
+      film: 'pm.stuck.diagnose',
       title: 'Het probleem benoemen',
       pre: [
         {
@@ -490,6 +491,7 @@ export default {
     },
     {
       id: 'pm.stuck.experiment',
+      film: 'pm.stuck.diagnose',
       title: 'Handelen onder onzekerheid',
       pre: [
         {
@@ -1143,6 +1145,7 @@ export default {
     },
     {
       id: 'pm.stuck.reset',
+      film: 'pm.stuck.diagnose',
       title: 'Een vastgelopen project herstarten',
       pre: [
         {

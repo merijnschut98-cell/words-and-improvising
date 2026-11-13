@@ -3,6 +3,7 @@ export default {
   lessons: [
     {
       id: 'pm.consult.proposal',
+      film: 'pm.consult.proposal',
       title: 'A proposal that wins',
       pre: [
         {
@@ -85,6 +86,7 @@ export default {
     },
     {
       id: 'pm.consult.pricing',
+      film: 'pm.consult.proposal',
       title: 'Pricing and scope',
       pre: [
         {

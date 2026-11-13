@@ -30,7 +30,7 @@ export default {
           q: 'What is a deliverable?',
           options: ['Something that exists at the end and can be checked', 'Any task on the plan', 'A meeting with the sponsor', 'The project goal'],
           answer: 'Something that exists at the end and can be checked',
-          why: 'Deliverables are outcomes you can point at; activities are what you do to get there.',
+          why: 'Deliverables are results you can point at; activities are what you do to get there.',
         },
         {
           q: 'A work package is estimated at 200 hours of work. By the 8–80 rule, what do you do?',

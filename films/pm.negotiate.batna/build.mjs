@@ -513,7 +513,7 @@ const SAY = [
       en: 'Your walk-away point is near the {n:4} percent, plus what qualifying costs.' },
   ],
   [ // s7 the first number
-    { nl: 'Het eerste getal is een {t:Anker|anker}: het trekt ieders schatting mee, zelfs willekeurig.',
+    { nl: 'Het eerste getal is een {t:Anker|anker}. Het trekt ieders schatting mee, zelfs willekeurig.',
       en: 'The first number is an {t:Anchor|anchor}: it pulls every estimate along, even when arbitrary.' },
     { nl: 'Het eerste bod voorspelt de deal sterk. Ken je de markt, noem dan zelf het eerste getal.',
       en: 'The first offer strongly predicts the deal. If you know the market, name the first number yourself.' },
@@ -559,7 +559,7 @@ const SAY = [
       en: 'Thursday, four o\'clock: your boss wants the steering deck reworked by eight tomorrow.' },
     { nl: 'Maar je beloofde de planningsleider een analyse voor vrijdag twaalf uur.',
       en: 'But you promised the planning lead an analysis by Friday noon.' },
-    { nl: 'Ja: ik wil ook een sterke presentatie. Nee: allebei goed lukt vanavond niet.',
+    { nl: 'Ja: ik wil ook een sterke presentatie. Nee. Allebei goed lukt vanavond niet.',
       en: 'Yes: I want a strong deck too. No: I can\'t do both properly tonight.' },
     { nl: 'Ja, met opties: drie dia\'s en de analyse op tijd, of de analyse naar maandag.',
       en: 'Yes, with options: three slides and the analysis on time, or the analysis on Monday.' },

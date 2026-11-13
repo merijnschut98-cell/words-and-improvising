@@ -329,6 +329,7 @@ export default {
     // Onderwerp 2: vragen stellen
     {
       id: 'pm.outside.phasequestions',
+      film: 'pm.outside.questions',
       title: 'Vragen per fase',
       pre: [
         {
@@ -409,6 +410,7 @@ export default {
     },
     {
       id: 'pm.outside.fail',
+      film: 'pm.outside.jargon',
       title: '“Waardoor zou dit mislukken?”',
       pre: [
         {
@@ -489,6 +491,7 @@ export default {
     },
     {
       id: 'pm.outside.estimates',
+      film: 'pm.outside.questions',
       title: 'Schattingen toetsen zonder vakkennis',
       pre: [
         {
@@ -572,6 +575,7 @@ export default {
     },
     {
       id: 'pm.outside.jargon',
+      film: 'pm.outside.jargon',
       title: 'Jargon terugvertalen',
       pre: [
         {
@@ -655,6 +659,7 @@ export default {
     // Onderwerp 3: werken met experts
     {
       id: 'pm.outside.trust',
+      film: 'pm.outside.experts',
       title: 'Vertrouwen en controleren',
       pre: [
         {
@@ -734,6 +739,7 @@ export default {
     },
     {
       id: 'pm.outside.disagree',
+      film: 'pm.outside.disagree',
       title: 'Als experts het oneens zijn',
       pre: [
         {
@@ -813,6 +819,7 @@ export default {
     },
     {
       id: 'pm.outside.time',
+      film: 'pm.outside.disagree',
       title: 'Hun tijd en motivatie',
       pre: [
         {
@@ -895,6 +902,7 @@ export default {
     },
     {
       id: 'pm.outside.redflags',
+      film: 'pm.outside.experts',
       title: 'Rode vlaggen',
       pre: [
         {
@@ -977,6 +985,7 @@ export default {
     // Onderwerp 4: sturen en besluiten
     {
       id: 'pm.outside.progress',
+      film: 'pm.outside.steering',
       title: 'Voortgang meten zonder vakkennis',
       pre: [
         {
@@ -1058,6 +1067,7 @@ export default {
     },
     {
       id: 'pm.outside.decide',
+      film: 'pm.outside.steering',
       title: 'Besluiten onder onzekerheid, en escaleren',
       pre: [
         {
