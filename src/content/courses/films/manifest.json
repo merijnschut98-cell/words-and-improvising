@@ -2127,6 +2127,37 @@
         ],
         "vtt": "src/content/courses/films/pm.outside.jargon.en.vtt"
       }
+    },
+    "pm.run.conflict": {
+      "poster": "src/content/courses/films/pm.run.conflict.jpg",
+      "nl": {
+        "dur": 229.8,
+        "bytes": 8399858,
+        "scenes": [
+          0,
+          35.76,
+          68.78,
+          102.71,
+          138.47,
+          172.18,
+          201.55
+        ],
+        "vtt": "src/content/courses/films/pm.run.conflict.nl.vtt"
+      },
+      "en": {
+        "dur": 241,
+        "bytes": 8779126,
+        "scenes": [
+          0,
+          38.08,
+          73.16,
+          110.75,
+          147.27,
+          181.31,
+          212.53
+        ],
+        "vtt": "src/content/courses/films/pm.run.conflict.en.vtt"
+      }
     }
   }
 }
