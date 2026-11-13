@@ -461,7 +461,22 @@ const SAY = {
     [/\b([Cc])odereviews\b/g, (m, c) => `${c === 'C' ? 'K' : 'k'}ood-rievjoes`],
     [/\b([Rr])isicogestuurd/g, '$1isico-gestuurd'], [/\b([Ss])leutelpersoon/g, '$1leutel-persoon'],
     [/\b([Nn])egentig-negentigregel/g, '$1egentig-negentig-regel'], [/\b(eerlijk )optimistisch\b/g, '$1op-timistisch'],
-    [/\b([Vv])age\b/g, '$1aage'], [/\b([Rr])outinepunt/g, '$1outine-punt']],
+    [/\b([Vv])age\b/g, '$1aage'], [/\b([Rr])outinepunt/g, '$1outine-punt'],
+    // disagreement and busy experts (pm.outside.disagree): espeak-ng reads second opinion as "se-KONT OP-i-ni-on"
+    // (said sekkend opinjun, only in this film's phrases, so pm.outside.steering's "een second opinion, de
+    // sponsor" keeps its voice), timebox as "TIE-me-box" (taimboks), Weinberg after "van" with a Dutch ei and g
+    // (Wainburk, as the Gerald Weinberg rule above), Daniel Pink's Drive as "dri-ve" (Deniel Pink, Draiv), Edward
+    // Deci and Richard Ryan with a Dutch ch and "rie-an" (Edwerd Diessie, Ritsjerd Rajen), manager as MAA-naa-gher
+    // (menetsjer, as the middenmanager rule; only in this film's phrases, so pm.plan.wbs keeps its voice), and
+    // stresses OO-pi-raa-tors (ope-raators, only before "verliezen", so the TPM and LOTO films keep theirs),
+    // IN-stal-la-teur, zelfdeterminatie with "ti" for "tsie", bouwPLAATS, drijfVEren and, after
+    // "als" and before a colon only (other films keep their vuistregel), vuistreGEL: split at the head. No other film says them in Dutch
+    [/\b([Ss])econd opinion\b(?=:| is een| van een onafhankelijk| steunt)/g, '$1ekkend opinjun'], [/\b([Tt])imebox\b/g, '$1aimboks'],
+    [/\bvan Weinberg\b/g, 'van Wainburk'], [/\bDaniel Pink noemt in Drive\b/g, 'Deniel Pink noemt in Draiv'],
+    [/\bEdward Deci en Richard Ryan\b/g, 'Edwerd Diessie en Ritsjerd Rajen'],
+    [/\b(de|[Zz]ijn) manager\b(?= van de expert| verdeelt| zegt| om )/g, '$1 menetsjer'], [/\bde operators(?= verliezen)/g, 'de ope-raators'],
+    [/\b([Ii])nstallateur\b/g, '$1nstal-lateur'], [/\bzelfdeterminatietheorie\b/g, 'zelf-determinatie-theorie'],
+    [/\b([Bb])ouwplaats/g, '$1ouw-plaats'], [/\b([Dd])rijfveren\b/g, '$1rijf-veren'], [/\bals vuistregel:/g, 'als vuist-regel:']],
   en: [[/\brpm\b/g, 'revolutions per minute'], [/\bmm\/min\b/g, 'millimetres per minute'], [/\bm\/min\b/g, 'metres per minute'], [/µm\b/g, 'micrometres'],
     [/€\s?(\d[\d,]*(?:\.\d+)?)/g, '$1 euros'], [/(\d)\.0(?![\d])/g, '$1'], [/(\d)\s?mm\b/g, '$1 millimetres'], [/(\d)\s?min\b/g, '$1 minutes'], [/(\d)\s?%/g, '$1 percent'],
     [/Ø\s*/g, 'diameter '], [/(\d)\+(\d)/g, '$1 plus $2'], [/\s×\s/g, ' times '], [/\s\/\s/g, ' divided by '], [/\s=\s/g, ' is '], [/°/g, ' degrees'], [/\bRa\b/g, 'R a'], [/’/g, "'"],

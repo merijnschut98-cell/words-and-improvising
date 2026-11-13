@@ -739,6 +739,7 @@ export default {
     },
     {
       id: 'pm.outside.disagree',
+      film: 'pm.outside.disagree',
       title: 'When experts disagree',
       pre: [
         {
@@ -818,6 +819,7 @@ export default {
     },
     {
       id: 'pm.outside.time',
+      film: 'pm.outside.disagree',
       title: 'Their time and motivation',
       pre: [
         {
