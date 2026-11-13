@@ -983,6 +983,7 @@ export default {
     },
     {
       id: 'pm.agile.board',
+      film: 'pm.agile.kanban',
       title: 'Kanban: making the work visible',
       pre: [
         {
@@ -1063,6 +1064,7 @@ export default {
     },
     {
       id: 'pm.agile.wip',
+      film: 'pm.agile.kanban',
       title: 'WIP limits: start less, finish more',
       pre: [
         {
@@ -1143,6 +1145,7 @@ export default {
     },
     {
       id: 'pm.agile.flowmetrics',
+      film: 'pm.agile.kanban',
       title: 'Cycle time, throughput and Little’s law',
       pre: [
         {

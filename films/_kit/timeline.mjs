@@ -497,7 +497,23 @@ const SAY = {
     [/\b([Rr])efinement\b/g, '$1i-fainmunt'],
     [/\b([Pp])roductieleider/g, '$1roductie-leider'],
     [/\b([Aa])cceptatieomgeving/g, '$1cceptatie-omgeving'], [/\b([Ss])printdoel/g, '$1print-doel'], [/\b([Uu])it het Lean-team\b/g, '$1it het Lien team'],
-    [/\bgangbare vuistregel\b/g, 'gangbare vuist-regel']],
+    [/\bgangbare vuistregel\b/g, 'gangbare vuist-regel'],
+    // flow on a kanban board (pm.agile.kanban): the names and the Kanban Guide's English measures as Dutch
+    // practitioners say them, checked with espeak-ng phonemes through Piper's nl_NL-alex bridge: it reads
+    // "TA-jich-ie OH-noo" (said Taitsjie Oono), David Anderson and John Little with a Dutch a and j (Deevid
+    // Enderson, Djon), "VAA-kan-tie" (Va-kenti), a Dutch "guide" (Gaid, as the Scrum Guide rule above),
+    // "dee-fie-nie-SJON of WORK-flow" (Deffi-nisjun of Wurkflo, as the definition-of-done rule), "TRAUCH-put"
+    // (Troepoet), "SIK-le time" (Saikl taim), "lee-at" (Lied taim), "ie-tem aa-zje" (Wurk aitem eetsj), pull
+    // with the u of "bus" (poel, also in pullsysteem; pullover keeps its voice), flowMAten (floo-maten), and
+    // engineering and engineer as "eng-i-neer" (entsjinieering after "afdeling", and pm.consult.proposal's
+    // entsjinier in this film's two phrases only); it stresses ONderhanden: split as pm.portfolio.prioritise's
+    // rule, in this film's phrases only, so eng.lines.design keeps its voice. No other film's spoken text changes
+    [/\bTaiichi Ohno\b/g, 'Taitsjie Oono'], [/\bDavid Anderson\b/g, 'Deevid Enderson'], [/\bJohn Little\b/g, 'Djon Little'], [/\bVacanti\b/g, 'Va-kenti'],
+    [/\bKanban Guide\b/g, 'Kanban Gaid'], [/\bDefinition of Workflow\b/g, 'Deffi-nisjun of Wurkflo'],
+    [/\b([Tt])hroughput\b/g, (m, t) => `${t === 'T' ? 'T' : 't'}roepoet`], [/\b([Cc])ycle time\b/g, (m, c) => `${c === 'C' ? 'S' : 's'}aikl taim`],
+    [/\b([Ll])ead time\b/g, '$1ied taim'], [/\b([Ww])ork item age\b/g, (m, c) => `${c === 'W' ? 'W' : 'w'}urk aitem eetsj`],
+    [/\b([Pp])ull(?=systeem\b|\b)/g, '$1oel'], [/\b([Ff])lowmaten\b/g, '$1loo-maten'], [/\bafdeling engineering\b/g, 'afdeling entsjinieering'],
+    [/\been engineer\b(?= pakt de kaart| doet de controle)/g, 'een entsjinier'], [/\b([Hh]eet dat|items|werkitems|twaalf) onderhanden\b/g, '$1 onder-handen']],
   en: [[/\brpm\b/g, 'revolutions per minute'], [/\bmm\/min\b/g, 'millimetres per minute'], [/\bm\/min\b/g, 'metres per minute'], [/µm\b/g, 'micrometres'],
     [/€\s?(\d[\d,]*(?:\.\d+)?)/g, '$1 euros'], [/(\d)\.0(?![\d])/g, '$1'], [/(\d)\s?mm\b/g, '$1 millimetres'], [/(\d)\s?min\b/g, '$1 minutes'], [/(\d)\s?%/g, '$1 percent'],
     [/Ø\s*/g, 'diameter '], [/(\d)\+(\d)/g, '$1 plus $2'], [/\s×\s/g, ' times '], [/\s\/\s/g, ' divided by '], [/\s=\s/g, ' is '], [/°/g, ' degrees'], [/\bRa\b/g, 'R a'], [/’/g, "'"],
