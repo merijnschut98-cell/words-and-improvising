@@ -102,8 +102,8 @@
 //     deck 1 2 3 5 8 13 20 40 100 and "big work is less precise" (card); doubt
 //     between 8 and 13: big and uncertain, maybe cut it (s7 b5); points began
 //     as ideal days (s7 b6), Extreme Programming, renamed, an ideal day about
-//     three real days (card); Ron Jeffries in 2019, half joking, may have
-//     invented them and is sorry (s7 b6)
+//     three real days, which clients did not get (card); Ron Jeffries in 2019,
+//     half joking, may have invented them and is sorry (s7 b6)
 //   points teach 3: planning poker, James Grenning 2002, estimating with
 //     cards (s8 b1); the Product Owner reads a story, everyone picks silently,
 //     all turn over at once (s8 b2); 3 and 13: highest and lowest explain; that
@@ -114,8 +114,8 @@
 //     spread: 18 to 30, don't plan on 30 (s8 b5); only with the same team and
 //     stable estimating (card, s8 b5)
 //   points teach 5: no productivity measure; made a target, teams estimate
-//     more generously (s8 b6), for a Lean consultant it looks like output per
-//     shift (card, s8 b7); experts: some just count items; ask what the points
+//     more generously (s8 b6), velocity rises with no more done (card); for a
+//     Lean consultant it looks like output per shift (card, s8 b7); experts: some just count items; ask what the points
 //     are for (s8 b7), as good when items are small and alike, and who looks
 //     (card)
 //   points example (faded): tow-bar maker, six sprints of 18 to 30 points,
@@ -504,10 +504,10 @@ const spec = {
 // "point" (it reads "po-ints"), epic as "eppik", velocity as "ve-lossetti"
 // (it reads "VEE-loo-si-ti"), the Fibonacci-reeks as "Fiebo-natsjie reeks",
 // Definition of Ready as "Deffi-nisjun of Reddi" (as the Done rule), Ron
-// Jeffries, Bill Wake and James Grenning as their names sound (Djeffriz, Bil
+// Jeffries, Bill Wake and James Grenning as their names sound (Djeffriz,
 // Weejk, Djeems), Card, Conversation en Confirmation and Extreme Programming
-// in English sounds, the Scrum Guide before "schrijft" and "noemt" (Gaid, as
-// the Scrum film's rule), and acceptatiecriteria, zaagmachines and trekhaken
+// in English sounds, the Scrum Guide before "schrijft" and "noemt" (Gaid: the
+// Scrum film's rule, widened), and acceptatiecriteria, zaagmachines and trekhaken
 // split at the head (it reads "ti" for "tsie" and stresses the end). In
 // English, "three Cs" as "three C's" (en_GB reads "C S"). Said around because
 // espeak-ng misreads them (they stay in the captions and on the cards):

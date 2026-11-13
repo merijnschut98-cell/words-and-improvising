@@ -221,7 +221,7 @@ const STAGE = (() => {
     if (b >= 4) o.doubt = op(B * at(b, p, 4), box(270, tr('8 of 13?', '8 or 13?'), [tr('groot en onzeker:', 'big and uncertain:'), [tr('knip hem misschien', 'maybe cut it'), 'pm-on']], true));
     const Cp = page(b, p, 5, -1);
     if (b >= 5) {
-      o.origin = op(Cp, box(54, tr('herkomst: XP', 'origin: XP'), [tr('eerst “ideale dagen”:', 'first “ideal days”:'), tr('1 ideale dag ≈ 3 echte', '1 ideal day ≈ 3 real'), tr('→ hernoemd', '→ renamed')], false)
+      o.origin = op(Cp, box(54, tr('herkomst: XP', 'origin: XP'), [tr('eerst “ideale dagen”:', 'first “ideal days”:'), tr('1 ideale dag ≈ 3 echte;', '1 ideal day ≈ 3 real;'), tr('klanten snapten het niet', 'clients didn’t get it'), tr('→ hernoemd', '→ renamed')], false)
         + op(at(b, p, 5, 0.4, 0.6), lines(232, [['Ron Jeffries, 2019,', 'pm-big'], [tr('half als grap:', 'half joking:'), 'pm-mute'], [tr('“misschien bedacht,', '“may have invented', ''), 'pm-on'], [tr('en nu spijt”', 'them; sorry now”'), 'pm-on']])));
     }
     return o;
@@ -238,7 +238,7 @@ const STAGE = (() => {
     const B = page(b, p, 3, 6);
     if (b >= 3) o.vel = op(B, box(54, 'velocity', [tr('punten per sprint af,', 'points done per sprint,'), tr('volgens Definition of Done', 'by the Definition of Done'), [tr('over sprints: bandbreedte', 'over sprints: a range'), 'pm-mute']], b === 3));
     if (b >= 4) o.spread = op(B * at(b, p, 4), lines(210, [[tr('18 tot 30 punten?', '18 to 30 points?'), 'pm-big'], [tr('plan niet op 30', 'don’t plan on 30'), 'pm-on'], [tr('zelfde team, stabiel', 'same team, stable'), 'pm-mute'], [tr('schatten', 'estimating'), 'pm-mute']]));
-    if (b >= 5) o.goal = op(B * at(b, p, 5), lines(334, [[tr('geen productiviteitsmaat', 'no productivity measure'), 'pm-big'], [tr('doel → ruimer schatten', 'target → estimates grow'), 'pm-on']]));
+    if (b >= 5) o.goal = op(B * at(b, p, 5), lines(320, [[tr('geen productiviteitsmaat', 'no productivity measure'), 'pm-big'], [tr('doel → ruimer schatten', 'target → estimates grow'), 'pm-on'], [tr('velocity ↑, niet meer af', 'velocity ↑, no more done'), 'pm-mute']]));
     const Cp = page(b, p, 6, -1);
     if (b >= 6) o.count = op(Cp, lines(80, [[tr('Lean: lijkt output per', 'Lean: looks like output'), 'pm-mute'], [tr('ploeg, maar is het niet', 'per shift, but isn’t'), 'pm-mute'], ['', ''], [tr('sommigen tellen items:', 'some count items:'), 'pm-big'], [tr('even goed bij kleine,', 'as good when items are'), 'pm-txt'], [tr('gelijke items', 'small and alike'), 'pm-txt'], ['', ''], [tr('vraag: waarvoor die', 'ask: what are these'), 'pm-on'], [tr('punten, wie kijkt?', 'points for, who looks?'), 'pm-on']]));
     return o;
