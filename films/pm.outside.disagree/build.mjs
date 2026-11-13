@@ -109,11 +109,12 @@
 //   time example (faded): a robot cell; the supplier's only safety specialist
 //     is on four projects and keeps missing your sessions (s9 b1); about 40 hours
 //     needed over 8 weeks; his manager says 25% (s9 b2); the ask, how to secure
-//     his time and attention; on paper 25% of 8 weeks of 40 hours is 80 hours
-//     (s9 b3); Weinberg's rough table, about 10% for each of four projects, the
-//     rest switching: about 32 hours, short of the 40 (s9 b4); blocks: one fixed
-//     8-hour day every two weeks, 4 days, 32 hours (s9 b5, the calendar); plus two
-//     half days for the safety test, 8 hours, booked now: 40 hours of
+//     his time (s9 b3 to b6, card; his attention in s9 b8); on paper 25% of 8
+//     weeks of 40 hours is 80 hours (s9 b3); Weinberg's rough table, about 10%
+//     for each of four projects, the rest switching: about 32 hours, short of
+//     the 40 (s9 b4); blocks: one fixed 8-hour day every two weeks, 32 hours
+//     (s9 b5, the calendar), 4 days (card); plus two half days for the safety
+//     test (8 hours: two half blocks on the card), booked now: 40 hours of
 //     concentrated time (s9 b6, the calendar); prepare each day: questions,
 //     drawings, decisions ready, no hour wasted (s9 b7, the sheet); ask what
 //     would make it worth his while, perhaps fewer late calls from the site; then
@@ -590,8 +591,8 @@ const SAY = [
       en: 'But Weinberg\'s table gives about {n:10} percent each on four projects: {n:32} hours, too few.' },
     { nl: 'Dus vraag zijn manager om blokken: één vaste dag van {n:8} uur per twee weken: {n:32} uur.',
       en: 'So ask his manager for blocks: one fixed {n:8}-hour day every two weeks: {n:32} hours.' },
-    { nl: 'Plus twee halve dagen voor de veiligheidstest, nu ingepland: samen {n:40} uur.',
-      en: 'Plus two half days for the safety test, booked now: {n:40} hours in all.' },
+    { nl: 'Plus twee halve dagen voor de veiligheidstest, nu ingepland: samen {n:40} uur geconcentreerde tijd.',
+      en: 'Plus two half days for the safety test, booked now: {n:40} hours of concentrated time.' },
     { nl: 'Bereid elke dag voor, zodat er geen uur verloren gaat.',
       en: 'Prepare each day, so no hour is wasted.' },
     { nl: 'Vraag wat het de moeite waard maakt, misschien minder late telefoontjes van de bouwplaats. Noem zijn werk in de stuurgroep.',

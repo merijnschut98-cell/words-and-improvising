@@ -108,14 +108,13 @@ const STAGE = (() => {
     const sb = [3, 1, 3];
     const tot = (s) => s.reduce((a, v, i) => a + v * wt[i], 0);
     const yRow = (i) => 124 + i * 34;
-    let m = txt(X0 + 106, 90, tr('gewicht', 'weight'), 'pm-mute') + txt(X0 + 222, 90, 'A', 'pm-big', 'middle') + txt(X0 + 266, 90, 'B', 'pm-big', 'middle');
+    let m = txt(X0 + 96, 90, tr('gewicht', 'weight'), 'pm-mute') + txt(X0 + 199, 90, 'A', 'pm-big', 'middle') + txt(X0 + 257, 90, 'B', 'pm-big', 'middle');
     rows.forEach((r, i) => {
       const y = yRow(i);
-      const hot = b === 3 && i !== 1 ? 0 : 0;
-      m += txt(X0, y + 7, r) + rect(X0 + 106, y - 8, wt[i] * 26, 16, 'pm-blk', 3) + hot;
+      m += txt(X0, y + 7, r) + rect(X0 + 96, y - 8, wt[i] * 26, 16, 'pm-blk', 3);
       for (let k = 0; k < 3; k++) {
-        m += dot(X0 + 206 + k * 8 + (k > 0 ? 0 : 0), y, 3.6, k < sa[i] ? 'pm-blk' : 'pm-sq');
-        m += dot(X0 + 250 + k * 8, y, 3.6, k < sb[i] ? 'pm-blk' : 'pm-sq');
+        m += dot(X0 + 185 + k * 14, y, 5.5, k < sa[i] ? 'pm-blk' : 'pm-sq');
+        m += dot(X0 + 243 + k * 14, y, 5.5, k < sb[i] ? 'pm-blk' : 'pm-sq');
       }
     });
     o.score = m;
@@ -130,11 +129,11 @@ const STAGE = (() => {
     if (b >= 2) o.weights = op(page(b, p, 2, 3), card(312, 70, 'pm-hot') + lines(340, L([['gewichten: zakelijk,', 'pm-on'], ['vast met de sponsor']], [['weights: business,', 'pm-on'], ['set with the sponsor']])));
     if (b >= 3) {
       // the rows where A and B differ most: cost and time
-      o.differ = op(page(b, p, 3, 4), [0, 2].map((i) => rect(X0 + 196, yRow(i) - 12, 84, 24, 'pm-line', 8)).join('')
+      o.differ = op(page(b, p, 3, 4), [0, 2].map((i) => rect(X0 + 174, yRow(i) - 12, 110, 24, 'pm-line', 8)).join('')
         + card(312, 70, 'pm-hot') + lines(340, L([['waar verschillen de', 'pm-on'], ['opties?']], [['where do the options', 'pm-on'], ['differ?']])));
     }
     if (b >= 4) {
-      o.shift = op(span(p, 0.02, 0.2), path(`M${f1(X0 + 106 + wt[1] * 26 + 6)} ${yRow(1)}l10 0`, 'pm-line')
+      o.shift = op(span(p, 0.02, 0.2), path(`M${f1(X0 + 96 + wt[1] * 26 + 4)} ${yRow(1)}l8 0`, 'pm-line')
         + card(312, 70, 'pm-hot') + lines(340, L([['gewicht iets anders:', 'pm-on'], ['verandert de uitkomst?']], [['a weight moves a bit:', 'pm-on'], ['does the outcome change?']])));
     }
     return o;
@@ -193,7 +192,7 @@ const STAGE = (() => {
       const bar = (y, lost, a) => rect(X0, y, CW * (1 - lost / 100), 20, 'pm-blk', 3) + op(a, rect(X0 + CW * (1 - lost / 100) + 2, y, CW * (lost / 100) - 2, 20, 'pm-lost', 3));
       if (b >= 3) {
         o.weinberg = op(at(b, p, 3), txt(X0, 196, 'Weinberg, 1992', 'pm-mute') + txt(X0, 224, tr('2 projecten', '2 projects'))
-          + txt(X1, 224, tr('een vijfde weg', 'a fifth lost'), 'pm-on', 'end') + bar(232, C.WB.two, b > 3 ? 1 : span(p, 0.4, 0.7)));
+          + txt(X1, 224, tr('een vijfde', 'a fifth'), 'pm-on', 'end') + bar(232, C.WB.two, b > 3 ? 1 : span(p, 0.4, 0.7)));
       }
       if (b >= 4) {
         o.five = op(at(b, p, 4), txt(X0, 286, tr('5 projecten', '5 projects')) + txt(X1, 286, tr('tot driekwart', 'up to ¾'), 'pm-on', 'end')
@@ -237,7 +236,7 @@ const STAGE = (() => {
   }
   // s7b: autonomy over the how; the problem, not the task; credit; what kills it
   function s7b(b, p) {
-    const o = { head: [tr('zo gebruik je het', 'using it'), DIA] };
+    const o = { head: [tr('gebruiken', 'using it'), DIA] };
     o.how = lines(80, L([['autonomie: het hoe', 'pm-big'], ['stevig: wat, wanneer', 'pm-on']], [['autonomy: the how', 'pm-big'], ['firm: what and when', 'pm-on']]));
     o.problem = op(at(b, p, 1), card(122, 116) + lines(150, L([['het probleem, niet'], ['alleen de taak:'], [`‘operators: ${20} min`, 'pm-on'], ['per dienst kwijt’', 'pm-on']],
       [['the problem, not'], ['just the task:'], ['‘operators lose 20', 'pm-on'], ['minutes a shift’', 'pm-on']])));
@@ -276,7 +275,7 @@ const STAGE = (() => {
     if (b >= 3) {
       const k = b === 3 ? span(p, 0.3, 0.7) : 1;
       o.cut = op(chart * at(b, p, 3), txt(X0, 176, tr(`${V.real}% per project: ${V.afterSwitch} uur`, `${V.real}% each: ${V.afterSwitch} hours`))
-        + rect(X0, 184, (sx(V.afterSwitch) - X0) * k, 20, 'pm-lost', 3) + path(`M${f1(sx(V.need))} 104V312`, 'pm-strike')
+        + rect(X0, 184, (sx(V.afterSwitch) - X0) * k, 20, 'pm-lost', 3) + path(`M${f1(sx(V.need))} 120v28M${f1(sx(V.need))} 180v28M${f1(sx(V.need))} 272v28`, 'pm-strike')
         + txt(sx(V.need) + 6, 230, tr(`nodig ${V.need}`, `need ${V.need}`), 'pm-on'));
     }
     if (b >= 4) {
