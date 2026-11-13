@@ -327,6 +327,7 @@ export default {
     },
     {
       id: 'pm.agile.scrumbasics',
+      film: 'pm.agile.scrum',
       title: 'Scrum: het team en de sprint',
       pre: [
         {
@@ -409,6 +410,7 @@ export default {
     },
     {
       id: 'pm.agile.events',
+      film: 'pm.agile.scrum',
       title: 'De vijf events van Scrum',
       pre: [
         {
@@ -490,6 +492,7 @@ export default {
     },
     {
       id: 'pm.agile.artefacts',
+      film: 'pm.agile.scrum',
       title: 'De drie artefacten en hun toezeggingen',
       pre: [
         {

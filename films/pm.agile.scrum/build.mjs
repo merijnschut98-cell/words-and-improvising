@@ -419,7 +419,7 @@ const spec = {
     ]),
     sc('s2', SB, 1, { nl: 'Drie verantwoordelijkheden', en: 'Three accountabilities' }, [
       { nl: 'Het {t:Scrum Team|Scrum Team}: meestal tien of minder, geen hiërarchie.', en: 'The {t:Scrum Team|Scrum Team}: usually ten or fewer, no hierarchy.', cue: { 'Scrum Team': 'team' }, focus: ['team', 'po', 'sm', 'devs'] },
-      { nl: 'Drie verantwoordelijkheden, geen functies.', en: 'Three accountabilities, not job titles.', focus: 'acc' },
+      { nl: 'Drie verantwoordelijkheden, accountabilities: sinds 2020 zo genoemd, niet functies.', en: 'Three accountabilities: the Guide’s word since 2020, not job titles.', focus: 'acc' },
       { nl: '{t:Product Owner|Product Owner}: één persoon. Bewaakt de waarde: wat eerst, en waarom.', en: '{t:Product Owner|Product Owner}: one person. Looks after value: what first, and why.', cue: { 'Product Owner': 'cpo' }, focus: ['cpo', 'po'] },
       { nl: '{t:Scrum Master|Scrum Master}: helpt Scrum goed te gebruiken, ruimt obstakels op. Geen baas.', en: '{t:Scrum Master|Scrum Master}: helps use Scrum well, removes impediments. No boss.', cue: { 'Scrum Master': 'csm' }, focus: ['csm', 'sm'] },
       { nl: '{t:Developers|Developers}: iedereen die bouwt.', en: '{t:Developers|Developers}: anyone who builds.', cue: { Developers: 'cdev' }, focus: ['cdev', 'devs'] },

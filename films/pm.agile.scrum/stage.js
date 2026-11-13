@@ -90,12 +90,12 @@ const STAGE = (() => {
         const a = at(b, p, 3, 0.1 + i * 0.15, 0.25 + i * 0.15);
         row += op(a, rect(X0 + i * (bw + 4), 100, bw, 40, i === 0 ? 'pm-hot' : 'pm-card', 4) + txt(X0 + i * (bw + 4) + bw / 2, 128, `${tr('sprint', 'sprint')} ${i + 1}`, i === 0 ? 'pm-on' : 'pm-txt', 'middle'));
       }
-      o.sprint = op(B, txt(X0, 80, tr('≤ 1 maand, vaak 2 weken', '≤ 1 month, often 2 weeks'), 'pm-big') + row + op(at(b, p, 3, 0.6, 0.8), txt(X0, 166, tr('direct na elkaar', 'back to back'), 'pm-mute')));
+      o.sprint = op(B, txt(X0, 80, tr('≤ 1 maand, vaak 2 weken', '≤ 1 month, often 2 weeks'), 'pm-big') + row + op(at(b, p, 3, 0.6, 0.8), txt(X0, 180, tr('direct na elkaar', 'back to back'), 'pm-mute')));
     }
     if (b >= 4) {
       const bw = (CW - 8) / 3;
-      o.usable = op(B * at(b, p, 4), [0, 1, 2].map((i) => tick(X0 + i * (bw + 4) + bw - 12, 92)).join('')
-        + lines(204, [[tr('elk: iets bruikbaars af', 'each: something usable'), 'pm-big'], [tr('ritme: plannen, tonen,', 'rhythm: plan, show,')], [tr('terugkijken', 'look back')]]));
+      o.usable = op(B * at(b, p, 4), [0, 1, 2].map((i) => tick(X0 + i * (bw + 4) + bw / 2, 154)).join('')
+        + lines(212, [[tr('elk: iets bruikbaars af', 'each: something usable'), 'pm-big'], [tr('ritme: plannen, tonen,', 'rhythm: plan, show,')], [tr('terugkijken', 'look back')]]));
     }
     if (b >= 5) o.risk = op(B * at(b, p, 5), box(290, tr('te lang: riskant', 'too long: risky'), [tr('doel veroudert,', 'the goal goes stale,'), tr('problemen verborgen', 'problems stay hidden')], true));
     return o;
@@ -109,8 +109,8 @@ const STAGE = (() => {
     if (b >= 1) o.acc = op(A * at(b, p, 1), box(156, tr('3 verantwoordelijk-', '3 accountabilities'), [tr('heden: accountabilities', 'since 2020:'), [tr('sinds 2020, geen functies', 'not job titles'), 'pm-on']], b === 1));
     const B = page(b, p, 2, 5);
     if (b >= 2) o.cpo = op(B, box(54, 'Product Owner', [tr('één persoon: waarde,', 'one person: value,'), tr('wat eerst en waarom', 'what first and why')], b === 2));
-    if (b >= 3) o.csm = op(B * at(b, p, 3), box(158, 'Scrum Master', [tr('helpt, ruimt obstakels', 'helps, removes'), tr('op; geen baas', 'impediments; no boss')], b === 3));
-    if (b >= 4) o.cdev = op(B * at(b, p, 4), box(262, 'Developers', [tr('iedereen die bouwt:', 'anyone who builds:'), tr('ook testers, analisten', 'testers, analysts too')], b === 4));
+    if (b >= 3) o.csm = op(B * at(b, p, 3), box(158, 'Scrum Master', [tr('helpt team en organisatie,', 'helps team, organisation;'), tr('ruimt obstakels op', 'removes impediments'), [tr('geen baas', 'not the boss'), 'pm-mute']], b === 3));
+    if (b >= 4) o.cdev = op(B * at(b, p, 4), box(288, 'Developers', [tr('programmeur, tester,', 'programmer, tester,'), tr('analist: wie bouwt', 'analyst: who builds')], b === 4));
     const Cp = page(b, p, 5, -1);
     if (b >= 5) {
       o.lean = op(Cp, lines(80, [[tr('in Lean-taal', 'in Lean terms'), 'pm-mute'], ['Product Owner', 'pm-big'], [tr('= klantstem in de', '= voice of the')], [tr('waardestroom', 'customer'), 'pm-on'], ['', ''], ['Scrum Master', 'pm-big'], [tr('= coach die het', '= a coach who')], [tr('systeem verbetert', 'improves the system'), 'pm-on'], [tr('geen takenverdeler', 'no task-giver'), 'pm-mute']]));
@@ -123,13 +123,14 @@ const STAGE = (() => {
     const o = { head: [tr('in de fabriek', 'in the plant'), b >= 3 ? EX : DIA] };
     const A = page(b, p, 0, 3);
     o.plant = op(A, lines(80, [[tr('IT-teams voor:', 'IT teams for:'), 'pm-big'], [tr('MES: orders en', 'MES: orders and')], [tr('productie op de vloer', 'production on the floor')], [tr('ERP, data, software', 'ERP, data, machine'), 'pm-mute'], [tr('voor machines', 'software'), 'pm-mute']]));
-    if (b >= 1) o.mistake = op(A * at(b, p, 1), box(200, tr('fout: IT-manager is', 'mistake: IT manager is'), [tr('PO én Scrum Master', 'PO and Scrum Master'), [tr('geen spiegel', 'no mirror'), 'pm-on']], b === 1) + cross(X1 - 14, 222));
-    if (b >= 2) o.ask = op(A * at(b, p, 2), lines(332, [[tr('wie beslist wat eerst?', 'who decides what first?'), 'pm-on'], [tr('wie bewaakt het hoe?', 'who guards how we work?'), 'pm-on']]));
-    const B = page(b, p, 3, -1);
-    if (b >= 3) o.pipes = op(B, box(54, tr('buizen, MES-team 7', 'pipes, MES team of 7'), [tr('PO: productieleider,', 'PO: production manager,'), tr('2 dagen per week', '2 days a week')], b === 3));
-    if (b >= 4) o.roles = op(B * at(b, p, 4), lines(178, [[tr('SM: uit het Lean-team', 'SM: from the Lean team')], [tr('Dev: 3 programmeurs,', 'Devs: 3 programmers,')], [tr('1 tester, 1 data-analist', '1 tester, 1 data analyst')]]));
-    if (b >= 5) o.goal5 = op(B * at(b, p, 5), box(250, tr('sprint 5 (ma, 2 weken)', 'sprint 5 (Mon, 2 weeks)'), [tr('lijn 2: afkeur per', 'line 2: scrap by cause'), tr('oorzaak op het scherm', 'on screen, not paper')], b === 5, 'pm-dash'));
-    if (b >= 6) o.shifts = op(at(b, p, 6), card(354, 34, 'pm-hot') + txt(X0 + 4, 379, tr('3 ploegen ✓ · dan sprint 6', '3 shifts ✓ · then sprint 6'), 'pm-on'));
+    if (b >= 1) o.mistake = op(A * at(b, p, 1), box(204, tr('fout: IT-manager is', 'mistake: IT manager is'), [tr('PO én Scrum Master:', 'PO and Scrum Master:'), tr('beslist én bewaakt', 'decides and guards'), [tr('geen spiegel', 'no mirror'), 'pm-on']], b === 1) + cross(X1 - 14, 226));
+    if (b >= 2) o.ask = op(A * at(b, p, 2), lines(352, [[tr('wie beslist wat eerst?', 'who decides what first?'), 'pm-on'], [tr('wie bewaakt het hoe?', 'who guards how we work?'), 'pm-on']]));
+    const B = page(b, p, 3, 5);
+    if (b >= 3) o.pipes = op(B, box(54, tr('buizen, MES-team 7', 'pipes, MES team of 7'), [tr('PO: productieleider,', 'PO: production manager,'), tr('2 dagen per week,', '2 days a week,'), tr('kent de vloer', 'knows the floor')], b === 3));
+    if (b >= 4) o.roles = op(B * at(b, p, 4), box(196, tr('SM: uit het Lean-team', 'SM: from the Lean team'), [tr('Developers:', 'Developers:'), tr('3 programmeurs,', '3 programmers,'), tr('1 tester, 1 data-analist', '1 tester, 1 data analyst')], b === 4));
+    const Cp = page(b, p, 5, -1);
+    if (b >= 5) o.goal5 = op(Cp, box(54, tr('sprint 5, 2 weken', 'sprint 5, 2 weeks'), [[tr('vanaf maandag', 'from Monday'), 'pm-mute'], tr('extrusielijn 2: afkeur', 'extrusion line 2: scrap'), tr('per oorzaak op het', 'by cause on the'), tr('scherm, niet op papier', 'screen, not on paper')], b === 5, 'pm-dash'));
+    if (b >= 6) o.shifts = op(at(b, p, 6), box(246, tr('na 2 weken:', 'after 2 weeks:'), [tr('scherm op lijn 2,', 'screen on line 2,'), tr('alle 3 ploegen ✓', 'all 3 shifts ✓'), [tr('maandag: sprint 6', 'Monday: sprint 6'), 'pm-on']], true));
     return o;
   }
 
@@ -146,7 +147,7 @@ const STAGE = (() => {
     });
     o.five = op(A, txt(X0, 80, tr('5 events', '5 events'), 'pm-big') + rect(X0 - 6, 92, CW + 12, 120, 'pm-dash', 8) + txt(X0, 120, tr('de sprint, met daarin:', 'the sprint, holding:'), 'pm-mute') + ch);
     if (b >= 1) {
-      o.tbox = op(A * at(b, p, 1), lines(240, [[tr('timebox, bij 1 maand:', 'timebox, for 1 month:'), b === 1 ? 'pm-on' : 'pm-big'], [tr('planning ≤ 8 uur', 'planning ≤ 8 hours')], [tr('daily 15 minuten', 'daily 15 minutes')], [tr('review ≤ 4 · retro ≤ 3', 'review ≤ 4 · retro ≤ 3')], [tr('korter: meestal korter', 'shorter sprint: shorter'), 'pm-mute']]));
+      o.tbox = op(A * at(b, p, 1), lines(240, [[tr('timebox, bij 1 maand:', 'timebox, for 1 month:'), b === 1 ? 'pm-on' : 'pm-big'], [tr('planning ≤ 8 uur', 'planning ≤ 8 hours')], [tr('daily 15 minuten', 'daily 15 minutes')], [tr('review ≤ 4 · retro ≤ 3', 'review ≤ 4 · retro ≤ 3')], [tr('kortere sprint: korter', 'shorter sprint: shorter'), 'pm-mute']]));
     }
     const B = page(b, p, 2, -1);
     if (b >= 2) o.why = op(B, txt(X0, 72, 'Sprint Planning', 'pm-big') + step(118, 1, tr('waarom waardevol?', 'why valuable?'), tr('→ het sprintdoel', '→ the sprint goal'), b === 2));
@@ -158,7 +159,7 @@ const STAGE = (() => {
 
   // s5: the daily; the review and its gate; the retro and refinement
   function s5(b, p) {
-    const o = { head: [tr('daily, review, retro', 'daily, review, retro'), DIA] };
+    const o = { head: [tr('drie events', 'three events'), DIA] };
     const A = page(b, p, 0, 2);
     o.daily = op(A, box(54, 'Daily Scrum', [tr('15 min, elke werkdag,', '15 min, every work day,'), tr('zelfde tijd en plek', 'same time and place'), [tr('→ naar het sprintdoel', '→ toward the sprint goal'), 'pm-mute']], b === 0));
     if (b >= 1) o.status = op(A * at(b, p, 1), lines(208, [[tr('geen statusoverleg', 'no status meeting'), 'pm-big'], [tr('voor een manager', 'for a manager')], [tr('3 vaste vragen: oud', '3 fixed questions: old'), 'pm-mute'], [tr('sinds 2020: eigen vorm', 'since 2020: own format'), 'pm-on']]) + cross(X1 - 12, 202));
@@ -166,20 +167,20 @@ const STAGE = (() => {
     if (b >= 2) o.review = op(B, box(54, 'Sprint Review', [tr('belanghebbenden zien', 'stakeholders see'), tr('wat af is; werksessie,', 'what’s done; working'), tr('geen slides', 'session, no slides')], b === 2));
     if (b >= 3) o.gate = op(B * at(b, p, 3), box(196, tr('nooit een poort', 'never a gate'), [tr('wat af is, mag eerder', 'what’s done may go'), tr('in gebruik', 'into use earlier')], b === 3, 'pm-dash'));
     const Cp = page(b, p, 4, -1);
-    if (b >= 4) o.retro = op(Cp, box(54, 'Sprint Retrospective', [tr('goed? beter? kies', 'well? better? pick'), tr('verbeteringen: kaizen,', 'improvements: kaizen,'), [tr('één concrete actie', 'one concrete action'), 'pm-on']], b === 4));
-    if (b >= 5) o.refine = op(Cp * at(b, p, 5), box(196, 'refinement', [tr('geen event:', 'not an event:'), tr('loopt door', 'runs all the time')], b === 5, 'pm-dash'));
+    if (b >= 4) o.retro = op(Cp, box(54, 'Sprint Retrospective', [tr('goed? beter? kies', 'well? better? pick'), tr('verbeteringen, direct', 'improvements, straight'), tr('in de volgende sprint', 'into the next sprint'), [tr('één concrete actie;', 'one concrete action;'), 'pm-on'], [tr('anders: kaizenbord', 'else: a kaizen board'), 'pm-mute'], [tr('zonder eigenaar', 'without an owner'), 'pm-mute']], b === 4));
+    if (b >= 5) o.refine = op(Cp * at(b, p, 5), box(262, 'refinement', [tr('geen event:', 'not an event:'), tr('loopt door', 'runs all the time')], b === 5, 'pm-dash'));
     return o;
   }
 
   // s6: the beverage maker's two weeks, the timeboxes halved
   function s6(b, p) {
-    const o = { head: [tr('drankenproducent', 'beverage maker'), EX] };
+    const o = { head: [tr('drankfabriek', 'beverage maker'), EX] };
     o.drinks = lines(80, [[tr('10 werkdagen', '10 working days'), 'pm-big'], [tr('timeboxes gehalveerd', 'timeboxes halved'), 'pm-mute']]);
-    const row = (y, day, what, hot) => txt(X0, y, day, hot ? 'pm-on' : 'pm-big') + txt(X0 + 104, y, what, hot ? 'pm-on' : 'pm-txt');
+    const row = (y, day, what, hot) => txt(X0, y, day, hot ? 'pm-on' : 'pm-big') + txt(X0 + 124, y, what, hot ? 'pm-on' : 'pm-txt');
     if (b >= 1) o.plan4 = op(at(b, p, 1), row(150, tr('ma wk 1', 'Mon wk 1'), tr('planning ≤ 4 u', 'planning ≤ 4 h'), b === 1));
     if (b >= 2) o.day9 = op(at(b, p, 2), row(190, tr('dag 9:00', 'daily 9:00'), tr('15 min, bord', '15 min, board'), b === 2));
-    if (b >= 3) o.fri = op(at(b, p, 3), row(230, tr('vr wk 2', 'Fri wk 2'), tr('review ≤ 2 u', 'review ≤ 2 h'), b === 3) + txt(X0 + 104, 256, tr('retro ≤ 1,5 u', 'retro ≤ 1.5 h'), b === 3 ? 'pm-on' : 'pm-txt'));
-    if (b >= 4) o.sum = op(at(b, p, 4), box(282, tr('10 × 15 = 150 min', '10 × 15 = 150 min'), [[tr('2,5 uur per persoon', '2.5 hours per person'), 'pm-on']], true));
+    if (b >= 3) o.fri = op(at(b, p, 3), row(230, tr('vr wk 2', 'Fri wk 2'), tr('review ≤ 2 u', 'review ≤ 2 h'), b === 3) + txt(X0 + 124, 256, tr('ploegleiders', 'shift leaders'), 'pm-mute') + txt(X0 + 124, 282, tr('retro ≤ 1,5 u', 'retro ≤ 1.5 h'), b === 3 ? 'pm-on' : 'pm-txt'));
+    if (b >= 4) o.sum = op(at(b, p, 4), box(300, tr('10 × 15 = 150 min', '10 × 15 = 150 min'), [[tr('2,5 uur per persoon', '2.5 hours per person'), 'pm-on']], true));
     return o;
   }
 
@@ -188,13 +189,13 @@ const STAGE = (() => {
   function s7(b, p) {
     const o = { head: [tr('artefacten', 'artefacts'), DIA] };
     const A = page(b, p, 0, 3);
-    o.arte = op(A, lines(80, [[tr('3 artefacten', '3 artefacts'), 'pm-big'], [tr('elk met een toezegging', 'each with a commitment'), 'pm-mute']]));
-    if (b >= 1) o.pb = op(A * at(b, p, 1), box(124, 'Product Backlog', [tr('geordende lijst,', 'ordered list,'), tr('Product Owner ordent', 'Product Owner orders')], b === 1));
-    if (b >= 2) o.pg = op(A * at(b, p, 2), txt(X0 + 4, 248, tr('↓ toezegging', '↓ commitment'), 'pm-mute') + box(258, 'Product Goal', [tr('doel op lange termijn', 'longer-term objective'), tr('sprint na sprint', 'sprint after sprint')], b === 2, 'pm-dash'));
+    o.arte = op(A, lines(80, [[tr('3 artefacten', '3 artefacts'), 'pm-big'], [tr('maken werk zichtbaar', 'make work visible')], [tr('elk: doel of afspraak', 'each: goal or agreement'), 'pm-mute']]));
+    if (b >= 1) o.pb = op(A * at(b, p, 1), box(150, 'Product Backlog', [tr('geordende lijst,', 'ordered list,'), tr('Product Owner ordent', 'Product Owner orders')], b === 1));
+    if (b >= 2) o.pg = op(A * at(b, p, 2), txt(X0 + 4, 272, tr('↓ toezegging', '↓ commitment'), 'pm-mute') + box(282, 'Product Goal', [tr('doel op lange termijn', 'longer-term objective'), tr('sprint na sprint', 'sprint after sprint')], b === 2, 'pm-dash'));
     const B = page(b, p, 3, -1);
     if (b >= 3) o.sb = op(B, box(54, 'Sprint Backlog', [tr('plan van Developers:', 'the Developers’ plan:'), tr('werk + hoe; verandert', 'work + how; changes')], b === 3));
     if (b >= 4) o.sg = op(B * at(b, p, 4), txt(X0 + 4, 176, tr('↓ toezegging', '↓ commitment'), 'pm-mute') + box(186, 'Sprint Goal', [tr('het ene doel: focus', 'single objective:'), tr('en ruimte', 'focus and room')], b === 4, 'pm-dash'));
-    if (b >= 5) o.scope = op(B * at(b, p, 5), lines(310, [[tr('item te groot?', 'item too big?'), 'pm-big'], [tr('inhoud bijstellen met', 'renegotiate scope with')], [tr('Product Owner; doel blijft', 'Product Owner; goal stands'), 'pm-on']]));
+    if (b >= 5) o.scope = op(B * at(b, p, 5), lines(298, [[tr('item te groot?', 'item too big?'), 'pm-big'], [tr('inhoud bijstellen met', 'renegotiate scope with')], [tr('de Product Owner;', 'the Product Owner;')], [tr('het doel blijft', 'the goal stands'), 'pm-on']]));
     return o;
   }
 
@@ -203,22 +204,21 @@ const STAGE = (() => {
   function s8(b, p) {
     const o = { head: ['Increment, Done', DIA] };
     const A = page(b, p, 0, 3);
-    o.inc = op(A, box(54, 'Increment', [tr('werkend product, af,', 'working product, done,'), tr('meerdere per sprint', 'several per sprint')], b === 0));
-    if (b >= 1) o.dod = op(A * at(b, p, 1), txt(X0 + 4, 166, tr('↓ toezegging', '↓ commitment'), 'pm-mute') + box(176, 'Definition of Done', [tr('getest, gedocumenteerd,', 'tested, documented,'), tr('geïnstalleerd', 'installed')], b === 1, 'pm-dash'));
-    if (b >= 2) o.back = op(A * at(b, p, 2), lines(300, [[tr('voldoet niet?', 'doesn’t meet it?'), 'pm-big'], [tr('niet opleveren, niet tonen:', 'not released, not shown:')], [tr('terug naar Product Backlog', 'back to Product Backlog'), 'pm-on']]));
+    o.inc = op(A, box(54, 'Increment', [tr('werkend, af, draagt bij', 'working, done, adds to'), tr('aan het Product Goal;', 'the Product Goal;'), [tr('meerdere; mag eerder', 'several, used earlier'), 'pm-mute']], b === 0));
+    if (b >= 1) o.dod = op(A * at(b, p, 1), txt(X0 + 4, 196, tr('↓ toezegging', '↓ commitment'), 'pm-mute') + box(206, 'Definition of Done', [tr('getest, gedocumenteerd,', 'tested, documented,'), tr('op de testomgeving', 'on the test environment')], b === 1, 'pm-dash'));
+    if (b >= 2) o.back = op(A * at(b, p, 2), lines(330, [[tr('voldoet niet? terug', 'fails it? back to the'), 'pm-big'], [tr('naar de Product Backlog', 'Product Backlog'), 'pm-on'], [tr('niet opleveren, tonen', 'not released or shown'), 'pm-mute']]));
     const B = page(b, p, 3, 5);
     if (b >= 3) {
       // a gate: two posts and a bar; one block passes, a half one stops
-      const gate = path(`M${X1 - 70} 150V96H${X1 - 10}V150`, 'pm-line') + rect(X1 - 120, 128, 22, 22, 'pm-blk', 3) + rect(X1 - 52, 128, 22, 22, 'pm-blk', 3);
-      o.qgate = op(B, box(54, tr('kwaliteitspoort', 'quality gate'), [tr('eind van de lijn:', 'end of the line:'), tr('half werk telt niet', 'half work doesn’t count')], b === 3) + op(at(b, p, 3, 0.3, 0.6), gate.replace(/<path/, '<path transform="translate(0 110)"').replace(/<rect class="pm-blk"/g, '<rect transform="translate(0 110)" class="pm-blk"')));
+      const gate = path(`M${X1 - 70} 150V96H${X1 - 10}V150`, 'pm-line') + rect(X1 - 120, 139, 22, 11, 'pm-dash', 2) + rect(X1 - 52, 128, 22, 22, 'pm-blk', 3);
+      o.qgate = op(B, box(54, tr('kwaliteitspoort', 'quality gate'), [tr('eind van de lijn:', 'end of the line:'), tr('half werk telt niet;', 'half work doesn’t count;'), tr('verstoppen kan niet', 'no hiding it')], b === 3) + op(at(b, p, 3, 0.3, 0.6), gate.replace(/<path/, '<path transform="translate(0 110)"').replace(/<rect class="pm-(blk|dash)"/g, '<rect transform="translate(0 110)" class="pm-$1"')));
     }
-    if (b >= 4) o.cancel = op(B * at(b, p, 4), box(280, tr('Sprint Goal zinloos?', 'Sprint Goal obsolete?'), [tr('alleen de PO breekt af;', 'only the PO cancels;'), [tr('zelden', 'rarely'), 'pm-mute']], b === 4));
+    if (b >= 4) o.cancel = op(B * at(b, p, 4), box(268, tr('Sprint Goal zinloos?', 'Sprint Goal obsolete?'), [[tr('bv. project gestopt', 'e.g. project stopped'), 'pm-mute'], tr('alleen de PO breekt af;', 'only the PO cancels;'), [tr('zelden', 'rarely'), 'pm-mute']], b === 4));
     const Cp = page(b, p, 5, -1);
     if (b >= 5) {
-      o.errs = op(Cp, lines(80, [[tr('fouten', 'mistakes'), 'pm-big'], [tr('400 items, geen overzicht', '400 items, no overview')], [tr('takenlijst van de baas', 'the manager’s task list')], [tr('Done: “code geschreven”', 'Done: “code written”')]])
-        + [106, 132, 158].map((y) => cross(X1 - 8, y - 7)).join(''));
+      o.errs = op(Cp, lines(80, [[tr('fouten', 'mistakes'), 'pm-big'], [tr('400 items, geen overzicht', '400 items, no overview')], [tr('takenlijst van de baas', 'the manager’s task list')], [tr('Done: “code geschreven”', 'Done: “code written”')], [tr('(testen schuift op)', '(testing slides)'), 'pm-mute']]));
     }
-    if (b >= 6) o.qs = op(at(b, p, 6), lines(214, [[tr('vraag:', 'ask:'), 'pm-big'], [tr('Product Goal in 1 zin?', 'Product Goal in 1 line?'), 'pm-on'], [tr('doel van deze sprint?', 'this sprint’s goal?'), 'pm-on'], [tr('mag ik jullie Definition', 'may I see your Definition'), 'pm-on'], [tr('of Done zien? Gebruikt?', 'of Done? Is it used?'), 'pm-on']]));
+    if (b >= 6) o.qs = op(at(b, p, 6), lines(240, [[tr('vraag:', 'ask:'), 'pm-big'], [tr('Product Goal in 1 zin?', 'Product Goal in 1 line?'), 'pm-on'], [tr('doel van deze sprint?', 'this sprint’s goal?'), 'pm-on'], [tr('mag ik jullie Definition', 'may I see your Definition'), 'pm-on'], [tr('of Done zien? Gebruikt?', 'of Done? Is it used?'), 'pm-on']]));
     return o;
   }
 
@@ -227,22 +227,22 @@ const STAGE = (() => {
   function s9(b, p) {
     const o = { head: [tr('weegschaal', 'the scale'), EX] };
     const A = page(b, p, 0, 3);
-    o.scales = op(A, lines(80, [[tr('vleesfabriek → MES', 'meat plant → MES'), 'pm-big'], [tr('Product Goal: elke', 'Product Goal: every')], [tr('partij juist gewicht', 'batch the right weight')], [tr('sprint 4: lijn 1 stuurt', 'sprint 4: line 1 sends'), 'pm-on']]));
-    if (b >= 1) o.dodx = op(A * at(b, p, 1), box(176, 'Done =', [tr('getest, echte weegdata,', 'tested, real weighing data,'), tr('gecontroleerd door', 'checked by quality,'), tr('kwaliteit, acceptatie', 'acceptance environment')], b === 1, 'pm-dash'));
+    o.scales = op(A, lines(80, [[tr('vleesfabriek → MES', 'meat plant → MES'), 'pm-big'], [tr('Product Goal: elke partij', 'Product Goal: every batch')], [tr('automatisch juist gewicht', 'the right weight, by itself')], [tr('sprint 4: lijn 1 stuurt', 'sprint 4: line 1 sends'), 'pm-on']]));
+    if (b >= 1) o.dodx = op(A * at(b, p, 1), box(172, 'Done =', [tr('getest, echte weegdata,', 'tested, real weighing data,'), tr('kwaliteit gecontroleerd,', 'checked by quality,'), tr('acceptatie: kopie van', 'acceptance: a copy of'), tr('het echte systeem', 'the real system')], b === 1, 'pm-dash'));
     if (b >= 2) {
       let row = '';
       for (let i = 0; i < 5; i++) {
         const x = X0 + i * 58;
         const a = at(b, p, 2, 0.05 + i * 0.08, 0.2 + i * 0.08);
-        row += op(a, rect(x, 316, 48, 40, i < 3 ? 'pm-hot' : i === 3 ? 'pm-dash' : 'pm-card', 4) + txt(x + 12, 344, String(i + 1), 'pm-big', 'start')
-          + (i < 3 ? tick(x + 34, 338) : i === 3 ? txt(x + 40, 344, '½', 'pm-mute', 'middle') : ''));
+        row += op(a, rect(x, 336, 48, 40, i < 3 ? 'pm-hot' : i === 3 ? 'pm-dash' : 'pm-card', 4) + txt(x + 12, 364, String(i + 1), 'pm-big', 'start')
+          + (i < 3 ? tick(x + 34, 358) : i === 3 ? txt(x + 40, 364, '½', 'pm-mute', 'middle') : ''));
       }
-      o.items = op(A, row + op(at(b, p, 2, 0.5, 0.7), txt(X0, 380, tr('3 af · 4 ½ · 5 niet begonnen', '3 done · 4 ½ · 5 not started'), 'pm-mute')));
+      o.items = op(A, row);
     }
     const B = page(b, p, 3, -1);
     if (b >= 3) o.show = op(B, box(54, tr('in de review:', 'at the review:'), [[tr('alleen 1, 2 en 3', 'only 1, 2 and 3'), 'pm-on']], b === 3));
     if (b >= 4) o.retour = op(B * at(b, p, 4), box(142, tr('4 en 5: terug naar', '4 and 5: back to the'), [tr('de Product Backlog;', 'Product Backlog;'), tr('PO bepaalt volgorde', 'PO decides the order')], b === 4));
-    if (b >= 5) o.met = op(B * at(b, p, 5), box(258, tr('doel gehaald?', 'goal met?'), [tr('lijn 1 → MES: ja', 'line 1 → MES: yes'), [tr('sterker dan takenlijst', 'beats a task list'), 'pm-on']], b === 5));
+    if (b >= 5) o.met = op(B * at(b, p, 5), box(258, tr('doel gehaald?', 'goal met?'), [tr('lijn 1 → MES: ja,', 'line 1 → MES: yes,'), tr('ook zonder al het werk', 'though not all work went'), [tr('sterker dan takenlijst', 'beats a task list'), 'pm-on']], b === 5));
     return o;
   }
   const CARDS = [s1, s2, s3, s4, s5, s6, s7, s8, s9];
