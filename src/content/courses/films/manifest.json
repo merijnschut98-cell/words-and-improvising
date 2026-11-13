@@ -2714,6 +2714,101 @@
         ],
         "vtt": "src/content/courses/films/pm.itproject.mvp.en.vtt"
       }
+    },
+    "pm.devops.incident": {
+      "poster": "src/content/courses/films/pm.devops.incident.jpg",
+      "nl": {
+        "dur": 191.7,
+        "bytes": 8346177,
+        "scenes": [
+          0,
+          29.21,
+          55.28,
+          80.31,
+          109.32,
+          138.4
+        ],
+        "vtt": "src/content/courses/films/pm.devops.incident.nl.vtt"
+      },
+      "en": {
+        "dur": 200.6,
+        "bytes": 8515880,
+        "scenes": [
+          0,
+          29.8,
+          57.12,
+          83.65,
+          112.46,
+          143.4
+        ],
+        "vtt": "src/content/courses/films/pm.devops.incident.en.vtt"
+      }
+    },
+    "pm.devops.postmortem": {
+      "poster": "src/content/courses/films/pm.devops.postmortem.jpg",
+      "nl": {
+        "dur": 230.3,
+        "bytes": 9543411,
+        "scenes": [
+          0,
+          28.49,
+          55.72,
+          80.8,
+          106.08,
+          134.99,
+          187.71
+        ],
+        "vtt": "src/content/courses/films/pm.devops.postmortem.nl.vtt"
+      },
+      "en": {
+        "dur": 238.2,
+        "bytes": 9644257,
+        "scenes": [
+          0,
+          29.36,
+          56.18,
+          82,
+          107.89,
+          138.01,
+          194.62
+        ],
+        "vtt": "src/content/courses/films/pm.devops.postmortem.en.vtt"
+      }
+    },
+    "pm.itproject.uat": {
+      "poster": "src/content/courses/films/pm.itproject.uat.jpg",
+      "nl": {
+        "dur": 329,
+        "bytes": 13316357,
+        "scenes": [
+          0,
+          35.15,
+          59.76,
+          85.28,
+          120.73,
+          161.52,
+          205.74,
+          249.73,
+          277.5
+        ],
+        "vtt": "src/content/courses/films/pm.itproject.uat.nl.vtt"
+      },
+      "en": {
+        "dur": 325.4,
+        "bytes": 12943719,
+        "scenes": [
+          0,
+          32.17,
+          57.04,
+          81.22,
+          117.51,
+          161.35,
+          202.9,
+          244.44,
+          272.87
+        ],
+        "vtt": "src/content/courses/films/pm.itproject.uat.en.vtt"
+      }
     }
   }
 }

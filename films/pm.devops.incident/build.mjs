@@ -392,7 +392,7 @@ const SAY = [
       en: '{t:ITIL|ITIL} is the best-known collection of good practice for IT service management: organising IT so that users can work reliably.' },
     { nl: 'Het begon eind jaren tachtig bij de Britse overheid. De huidige versie, ITIL vier, verscheen in tweeduizend negentien en is nu van het bedrijf PeopleCert.',
       en: 'It began in the late nineteen eighties at the British government. The current version, ITIL four, appeared in twenty nineteen and is now owned by the company PeopleCert.' },
-    { nl: 'Je hoeft het niet uit je hoofd te kennen. Wel moet je drie woorden scherp uit elkaar houden: incident, probleem en wijziging.',
+    { nl: 'Je hoeft het niet uit je hoofd te kennen. Wel moet je drie woorden scherp uit elkaar houden. Dat zijn incident, probleem en wijziging.',
       en: 'You do not need to know it by heart. But you must keep three words sharply apart: incident, problem and change.' },
   ],
   [ // s2 the incident, its goal, the service desk
@@ -438,7 +438,7 @@ const SAY = [
       en: 'The service desk restarts the link, and at twenty-five past six it works again.' },
     { nl: 'Dinsdag vijf over zes en woensdag twaalf over zes: dezelfde melding. Weer twee incidenten.',
       en: 'Tuesday at five past six and Wednesday at twelve past six: the same report. Two more incidents.' },
-    { nl: 'Woensdagmiddag ziet de IT-beheerder het patroon: drie incidenten, steeds rond zes uur. Dat wordt één probleem: koppeling weegschaal lijn twee valt uit bij ploegstart.',
+    { nl: 'Woensdagmiddag ziet de IT-beheerder het patroon: drie incidenten, steeds rond zes uur. Dat wordt één probleem. Koppeling weegschaal lijn twee valt uit bij ploegstart.',
       en: 'Wednesday afternoon the IT administrator sees the pattern: three incidents, always around six. That becomes one problem: scale link line two fails at shift start.' },
     { nl: 'Donderdag blijkt de oorzaak een geplande back-up om zes uur, die de koppeling blokkeert. De back-up naar vier uur verplaatsen is een wijziging, die eerst wordt besproken en gepland.',
       en: 'On Thursday the cause turns out to be a scheduled backup at six that blocks the link. Moving the backup to four is a change, which is first discussed and planned.' },
