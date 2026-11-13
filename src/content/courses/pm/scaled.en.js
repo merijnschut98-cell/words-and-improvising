@@ -3,6 +3,7 @@ export default {
   lessons: [
     {
       id: 'pm.scaled.why',
+      film: 'pm.scaled.pi',
       title: 'Why scale, and what a release train is',
       pre: [
         {
@@ -85,6 +86,7 @@ export default {
     },
     {
       id: 'pm.scaled.piplanning',
+      film: 'pm.scaled.pi',
       title: 'PI Planning: two days of planning together',
       pre: [
         {
@@ -167,6 +169,7 @@ export default {
     },
     {
       id: 'pm.scaled.roles',
+      film: 'pm.scaled.pi',
       title: 'The roles: who decides what',
       pre: [
         {
