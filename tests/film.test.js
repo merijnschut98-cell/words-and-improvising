@@ -462,6 +462,26 @@ test('speak variant: the requirements and MoSCoW words in Dutch, MoSCoW, Ries an
   assert.equal(speakOf([en], 'en'), en);
 });
 
+// Incident, problem, change (pm.devops.incident): the ITIL words as Dutch IT
+// teams say them, checked with espeak-ng phonemes through Piper's nl_NL-alex
+// bridge: PeopleCert ("pee-o-ple sert": Piepul-surt), change enablement and
+// change control with a French "change" ("sjanzje": tsjeensj e-neebul-munt,
+// tsjeensj kontrool) and printerdriver ("printer-drie-ver": printer-draaiver,
+// as the driver rule, which only reads a word that starts with driver). ITIL,
+// servicedesk, MES (letters) and firewall (the existing fajerwol rule) keep
+// their voice. English needs nothing; no other film's spoken text changes
+test('speak variant: the ITIL words in Dutch', () => {
+  const nl = (s) => speakOf([s], 'nl');
+  assert.equal(nl('ITIL 4 is nu van het bedrijf PeopleCert.'), 'ITIL 4 is nu van het bedrijf Piepul-surt.');
+  assert.equal(nl('ITIL noemt dat nu change enablement, eerst heette het change control.'),
+    'ITIL noemt dat nu tsjeensj e-neebul-munt, eerst heette het tsjeensj kontrool.');
+  assert.equal(nl('Een andere printerdriver, een Printerdriver. Een aangepaste firewall-regel.'),
+    'Een andere printer-draiver, een Printer-draiver. Een aangepaste fajerwol-regel.');
+  assert.equal(nl('De servicedesk, de change, een printer, de driver.'), 'De servicedesk, de change, een printer, de draiver.');
+  const en = 'ITIL 4 is owned by PeopleCert: change enablement, at first change control, a printer driver, a firewall rule';
+  assert.equal(speakOf([en], 'en'), en);
+});
+
 // The post-mortem (pm.devops.postmortem): the words of a post-mortem as Dutch
 // IT teams say them, checked with espeak-ng phonemes through Piper's
 // nl_NL-alex bridge: incidentreview ("re-VIEW": incident-rievjoe, as Sprint

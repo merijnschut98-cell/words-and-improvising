@@ -12,10 +12,10 @@
 // The companion of pm.devops.incident (level 1 of the same topic, its own
 // film): the same room, the IT side of a plant, with the MES rack at the back,
 // the link on the floor to the line, the service desk at the left and the same
-// people, so a learner who saw the incident film knows where to look. That film
-// is built in parallel and not yet on main, so nothing is imported from it; the
-// few pieces this film shares with it (the panel and card helpers, the path
-// compaction, the lamps) are copied into this folder.
+// people, so a learner who saw the incident film knows where to look. The two
+// films were built in parallel, so nothing is imported from it; the few pieces
+// this film shares with it (the panel and card helpers, the path compaction,
+// the lamps) are copied into this folder.
 //
 // The film follows the lesson's own order: the post-mortem (s1), blameless
 // (s2), the timeline and the 5 whys (s3), workaround and known error (s4), how
@@ -89,8 +89,12 @@
 // Toyota". The film adds no Lean comparison of its own; the 5 whys are named
 // as the lesson names them. The plant, its times and its people are the
 // lesson's own illustration (06:00 to 09:00 is the 3 hours, asserted below).
-// The room is the incident film's cooked-meats plant drawn again; the example
-// is the lesson's soft-drinks maker, and the narration says so.
+// The room is the incident film's room drawn again, which both films name only
+// as "the IT side of a plant" (the stage carries no product); the incident film
+// sets its example at a cooked-meats plant, this one at the lesson's soft-drinks
+// maker. The line is drawn with two scanners, not the incident film's
+// checkweigher, and the narration and the example card (bold, first line) name
+// the soft-drinks maker, so the room reads as a stand-in plant, not the same one.
 //
 // The drawing is the shared pm world (films/_pm/world.mjs, read-only here), in
 // the incident film's style (the same projection, lamps, panel and cards): a

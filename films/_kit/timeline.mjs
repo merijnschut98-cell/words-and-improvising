@@ -623,6 +623,14 @@ const SAY = {
     // and, in this film's phrases only, business as Biznis in "tussen business en IT" and live as "laiv" in "live te
     // gaan" (it reads "buu-ZIE-nes" and the Dutch "lie-ve")
     [/\btussen business en IT\b/g, 'tussen biznis en IT'], [/\blijn live te gaan\b/g, 'lijn laiv te gaan'],
+    // incident, problem, change (pm.devops.incident): the ITIL words as Dutch IT teams say them, checked with
+    // espeak-ng phonemes through Piper's nl_NL-alex bridge: it reads PeopleCert as "PEE-o-ple sert" (said
+    // Piepul-surt), change enablement and change control with a French "change", "SJAN-zje" (tsjeensj
+    // e-neebul-munt, tsjeensj kontrool; a lone change keeps its voice), and printerdriver with "drie-ver"
+    // (printer-draiver, as the driver rule above, which only reads a word that starts with driver). ITIL,
+    // servicedesk and firewall-regel (the firewall rule above) need nothing; no other film's spoken text changes
+    [/\bPeopleCert\b/g, 'Piepul-surt'], [/\bchange enablement\b/g, 'tsjeensj e-neebul-munt'], [/\bchange control\b/g, 'tsjeensj kontrool'],
+    [/\b([Pp])rinterdriver(s?)\b/g, '$1rinter-draiver$2'],
     // the post-mortem (pm.devops.postmortem): the words of a post-mortem as Dutch IT teams say them, checked
     // with espeak-ng phonemes through Piper's nl_NL-alex bridge: it reads incidentreview with "re-VIEW"
     // (incident-rievjoe, as Sprint Review above), Site Reliability Engineering as "ree-li-aa-bi-li-ti
