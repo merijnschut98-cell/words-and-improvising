@@ -1,0 +1,277 @@
+WEBVTT
+
+1
+00:00:00.843 --> 00:00:03.072
+Een bakkerij start een project tegen stilstand.
+
+2
+00:00:03.874 --> 00:00:08.262
+Bij de kick-off zit jij, de adviseur, met zes mensen in de vergaderruimte.
+
+3
+00:00:08.967 --> 00:00:10.616
+Je neemt er 20 minuten voor.
+
+4
+00:00:11.599 --> 00:00:12.644
+Je doet een pre-mortem.
+
+5
+00:00:13.338 --> 00:00:17.715
+Je zegt: stel, het is over zes maanden, en dit project is mislukt.
+
+6
+00:00:18.742 --> 00:00:20.565
+Schrijf alleen op waarom het mislukt is.
+
+7
+00:00:21.275 --> 00:00:23.017
+Iedereen schrijft eerst voor zichzelf.
+
+8
+00:00:23.757 --> 00:00:27.774
+Daarna haal je per ronde één reden per persoon op, tot alles op het bord hangt.
+
+9
+00:00:28.810 --> 00:00:31.202
+Door eerst alleen te schrijven krijg je ieders beeld,
+
+10
+00:00:31.526 --> 00:00:33.209
+en bepaalt de luidste niet de richting.
+
+11
+00:00:33.943 --> 00:00:36.938
+Gary Klein beschreef deze methode in 2007.
+
+12
+00:00:38.229 --> 00:00:39.111
+Wat komt er boven?
+
+13
+00:00:39.907 --> 00:00:43.912
+Drie mensen schrijven: onderhoud had nooit tijd, door de zomerpiek.
+
+14
+00:00:44.641 --> 00:00:49.726
+Iemand anders: de operators aan de lijn stopten na twee weken met stops registreren.
+
+15
+00:00:50.427 --> 00:00:52.401
+En: de nieuwe baas blies het af.
+
+16
+00:00:53.419 --> 00:00:55.729
+Omdat het mislukken als feit wordt voorgesteld,
+
+17
+00:00:55.973 --> 00:00:58.028
+noemen mensen dingen die ze anders niet zeggen.
+
+18
+00:00:58.713 --> 00:01:00.222
+De sponsor vertrekt misschien.
+
+19
+00:01:00.891 --> 00:01:02.400
+De nachtploeg accepteert het niet.
+
+20
+00:01:03.138 --> 00:01:05.901
+De aanpassing van de IT-afdeling heeft geen budget.
+
+21
+00:01:06.978 --> 00:01:10.148
+Klein haalt daarbij onderzoek uit 1989 aan.
+
+22
+00:01:10.905 --> 00:01:13.598
+Volgens hem maakt terugkijken vanuit een bedachte toekomst
+
+23
+00:01:13.633 --> 00:01:16.779
+mensen 30 procent beter in het noemen van de juiste redenen.
+
+24
+00:01:18.087 --> 00:01:20.630
+Nu maak je van de belangrijkste redenen risico's.
+
+25
+00:01:21.382 --> 00:01:24.633
+Een risico is iets wat kan gebeuren en het project pijn zou doen.
+
+26
+00:01:25.661 --> 00:01:27.252
+Een risicolijst (risk register) zet ze op een rij.
+
+27
+00:01:27.980 --> 00:01:31.788
+Elk risico krijgt een kans, een impact, dus hoe erg het is,
+
+28
+00:01:32.020 --> 00:01:34.087
+een eigenaar, en een actie met een datum.
+
+29
+00:01:35.142 --> 00:01:38.776
+De risico-eigenaar (risk owner) is één persoon die het in de gaten houdt en handelt.
+
+30
+00:01:39.573 --> 00:01:40.513
+Geen afdeling.
+
+31
+00:01:41.550 --> 00:01:44.975
+Een regel als: data kan slecht zijn, helpt niemand.
+
+32
+00:01:45.763 --> 00:01:46.297
+Deze wel:
+
+33
+00:01:46.657 --> 00:01:50.477
+de onderhoudsdata van voor 2023 is na de overstap
+
+34
+00:01:50.523 --> 00:01:52.601
+naar het nieuwe systeem misschien onbruikbaar.
+
+35
+00:01:53.263 --> 00:01:54.529
+Eigenaar: Pieter.
+
+36
+00:01:55.218 --> 00:01:57.540
+Actie: een testexport in week 1.
+
+37
+00:01:58.848 --> 00:02:03.109
+Vaak scoor je kans en impact van 1 tot 5, en vermenigvuldig je die.
+
+38
+00:02:03.801 --> 00:02:06.436
+Een risico scoort dan 1 tot 25.
+
+39
+00:02:07.481 --> 00:02:10.151
+Zie die score als sorteerhulp, niet als waarheid.
+
+40
+00:02:10.930 --> 00:02:12.915
+Een 12 is niet echt erger dan een 10.
+
+41
+00:02:13.889 --> 00:02:15.770
+De actie is de beheers-maatregel (mitigation):
+
+42
+00:02:16.095 --> 00:02:19.752
+wat je nu doet om het risico kleiner of minder schadelijk te maken.
+
+43
+00:02:20.431 --> 00:02:21.685
+Monitoren is dat niet.
+
+44
+00:02:22.430 --> 00:02:23.986
+Een testexport in week 1 wel.
+
+45
+00:02:24.960 --> 00:02:26.040
+Terug naar de bakkerij.
+
+46
+00:02:26.760 --> 00:02:29.778
+De zomerpiek: kans hoog, impact hoog.
+
+47
+00:02:30.510 --> 00:02:32.054
+Eigenaar is het hoofd onderhoud.
+
+48
+00:02:32.821 --> 00:02:38.219
+Actie: de analyse voor juni plannen, en per monteur 4 uur per week reserveren.
+
+49
+00:02:39.186 --> 00:02:42.332
+Het registreren: eigenaar is de ploegleider.
+
+50
+00:02:43.023 --> 00:02:47.330
+Actie: registreren met één tik op de lijnterminal, het scherm bij de lijn,
+
+51
+00:02:47.632 --> 00:02:48.329
+voor week 3.
+
+52
+00:02:49.628 --> 00:02:52.124
+De meeste risicolijsten sterven na de kick-off.
+
+53
+00:02:52.857 --> 00:02:56.944
+Houd de jouwe levend: alleen de top vijf komt in elke stuurgroep langs.
+
+54
+00:02:57.642 --> 00:03:00.370
+Bij de bakkerij begint elke stuurgroep met deze vijf.
+
+55
+00:03:01.413 --> 00:03:04.931
+En per risico vertelt de eigenaar zelf wat er sindsdien gebeurd is.
+
+56
+00:03:05.992 --> 00:03:08.210
+Voeg nieuwe risico's toe zodra je ze hoort.
+
+57
+00:03:08.978 --> 00:03:10.743
+Vaak hoor je ze bij het koffieapparaat.
+
+58
+00:03:11.805 --> 00:03:16.089
+Komt een risico uit, dan wordt het een issue: een probleem dat nu speelt.
+
+59
+00:03:16.826 --> 00:03:19.171
+Dat pak je aan; je volgt het niet alleen.
+
+60
+00:03:20.447 --> 00:03:21.318
+Dan de mensenkant.
+
+61
+00:03:22.072 --> 00:03:24.127
+Sommige risico's zijn gevoelig,
+
+62
+00:03:24.360 --> 00:03:27.924
+zoals: de directeur van de fabriek gelooft er eigenlijk niet in.
+
+63
+00:03:28.636 --> 00:03:30.180
+Zet dat niet in een lijst die hij leest.
+
+64
+00:03:31.251 --> 00:03:34.746
+Schrijf het op als thema: sponsorschap en zichtbare steun.
+
+65
+00:03:35.443 --> 00:03:38.718
+En bespreek het echte punt één op één, met wie er iets aan kan doen.
+
+66
+00:03:39.773 --> 00:03:41.294
+Weet je niet hoe groot de kans is?
+
+67
+00:03:42.017 --> 00:03:44.989
+Zeg dat, en plan een goedkope test om het uit te zoeken.
+
+68
+00:03:45.986 --> 00:03:48.529
+En stel bij elk toprisico één scherpe vraag:
+
+69
+00:03:48.900 --> 00:03:51.350
+wat zien we als eerste als dit begint te gebeuren?

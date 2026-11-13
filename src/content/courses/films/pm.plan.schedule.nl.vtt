@@ -1,0 +1,325 @@
+WEBVTT
+
+1
+00:00:00.848 --> 00:00:02.729
+Een planningsproject bij een netbeheerder.
+
+2
+00:00:03.397 --> 00:00:08.784
+Jij, de adviseur, staat bij het bord met de sponsor, de teamleider en de planner.
+
+3
+00:00:09.483 --> 00:00:14.776
+Vijf taken: de nulmeting, de gereedheidscheck ontwerpen, de planners trainen,
+
+4
+00:00:14.997 --> 00:00:19.015
+systeemtoegang regelen voor de pilotregio, en de pilot zelf.
+
+5
+00:00:20.002 --> 00:00:22.579
+Sommig werk kan pas beginnen als ander werk af is.
+
+6
+00:00:23.309 --> 00:00:24.679
+Dat heet een afhankelijkheid (dependency).
+
+7
+00:00:25.389 --> 00:00:27.513
+Je kunt de nieuwe gereedheidscheck niet testen
+
+8
+00:00:27.560 --> 00:00:29.313
+voordat de planners ermee akkoord zijn.
+
+9
+00:00:30.060 --> 00:00:32.161
+Op het bord wordt elke afhankelijkheid een pijl.
+
+10
+00:00:33.107 --> 00:00:33.757
+Hoe vind je ze?
+
+11
+00:00:34.523 --> 00:00:38.447
+Vraag elke eigenaar: wat heb je van een ander nodig voordat je kunt beginnen?
+
+12
+00:00:39.145 --> 00:00:42.152
+De teamleider kan pas trainen als de check ontworpen is.
+
+13
+00:00:42.894 --> 00:00:46.772
+En de pilot heeft getrainde planners nodig, en toegang tot het systeem.
+
+14
+00:00:47.771 --> 00:00:50.848
+Bij klanten gaan de meeste afhankelijkheden niet over taken,
+
+15
+00:00:51.172 --> 00:00:53.761
+maar over mensen en besluiten: een handtekening,
+
+16
+00:00:54.052 --> 00:00:56.513
+de ondernemingsraad, een productiestop.
+
+17
+00:00:57.172 --> 00:00:58.704
+Die zet je net zo goed op het bord.
+
+18
+00:00:59.995 --> 00:01:00.715
+Nu de duur.
+
+19
+00:01:01.417 --> 00:01:03.959
+De nulmeting, A, duurt 3 weken.
+
+20
+00:01:04.718 --> 00:01:05.949
+Daarna twee ketens.
+
+21
+00:01:06.641 --> 00:01:12.806
+De check ontwerpen, B, 4 weken, met daarna de planners trainen, D, 2 weken.
+
+22
+00:01:13.487 --> 00:01:16.657
+En systeemtoegang regelen, C, 6 weken.
+
+23
+00:01:17.345 --> 00:01:21.710
+De pilot, E, duurt 6 weken en heeft D en C allebei nodig.
+
+24
+00:01:22.696 --> 00:01:24.891
+Tel elke keten op, van start tot eind.
+
+25
+00:01:25.627 --> 00:01:28.564
+De langste keten van afhankelijk werk heet het kritieke pad (critical path),
+
+26
+00:01:28.890 --> 00:01:30.202
+en die bepaalt de einddatum.
+
+27
+00:01:30.885 --> 00:01:35.807
+De methode stamt uit 1957, van DuPont en Remington Rand.
+
+28
+00:01:36.904 --> 00:01:42.406
+Keten A, B, D, E: 3 plus 4 plus 2 plus 6 is 15 weken.
+
+29
+00:01:43.404 --> 00:01:48.152
+En keten A, C, E: 3 plus 6 plus 6 is ook 15 weken.
+
+30
+00:01:48.852 --> 00:01:52.010
+Twee ketens van 15 weken: allebei kritiek.
+
+31
+00:01:53.321 --> 00:01:57.466
+Loopt de systeemtoegang een week uit, dan kan de pilot pas een week later beginnen,
+
+32
+00:01:57.710 --> 00:01:59.289
+en schuift de einddatum een week op.
+
+33
+00:02:00.223 --> 00:02:04.101
+Hetzelfde geldt voor de check en de training: ook die keten is kritiek.
+
+34
+00:02:04.822 --> 00:02:07.121
+Dus houd je het kritieke pad scherp in de gaten.
+
+35
+00:02:07.803 --> 00:02:12.226
+Taken buiten dat pad mogen een beetje uitlopen; daar raak je niet van in paniek.
+
+36
+00:02:13.192 --> 00:02:17.360
+Bekende valkuil: de planning toont alleen taken die het team zelf in de hand heeft.
+
+37
+00:02:18.058 --> 00:02:21.739
+De langzame stappen erbuiten ontbreken, zoals de IT-toegang,
+
+38
+00:02:22.029 --> 00:02:23.654
+een leverancier of een vergunning.
+
+39
+00:02:24.353 --> 00:02:26.327
+Juist die blijken vaak het kritieke pad.
+
+40
+00:02:26.974 --> 00:02:27.867
+Hier is dat C.
+
+41
+00:02:28.858 --> 00:02:32.051
+Moet het sneller, dan helpt alleen het kritieke pad korter maken.
+
+42
+00:02:32.740 --> 00:02:35.388
+Maak je het te kort, dan wordt een andere keten kritiek.
+
+43
+00:02:36.089 --> 00:02:39.038
+Met twee kritieke ketens moet je hier dus allebei inkorten.
+
+44
+00:02:40.319 --> 00:02:44.417
+Dus vraag jij de IT-afdeling of de toegangsaanvraag in week 1 kan starten,
+
+45
+00:02:44.707 --> 00:02:46.054
+in plaats van na de nulmeting.
+
+46
+00:02:46.748 --> 00:02:48.675
+Dat kan: C loopt nu naast A.
+
+47
+00:02:49.694 --> 00:02:55.139
+De einddatum blijft 15 weken, want A, B, D en E is nog steeds 15 weken lang.
+
+48
+00:02:56.127 --> 00:03:00.249
+Maar de toegang is nu klaar na week 6, en de pilot begint pas na week 9.
+
+49
+00:03:00.963 --> 00:03:02.809
+Daartussen zit 3 weken speling (slack):
+
+50
+00:03:03.157 --> 00:03:06.281
+hoeveel een taak kan uitlopen zonder dat de einddatum verschuift.
+
+51
+00:03:07.326 --> 00:03:11.204
+Loopt de IT-afdeling nu twee weken uit, dan vangt de speling dat op,
+
+52
+00:03:11.505 --> 00:03:12.999
+en schuift de einddatum niet meer.
+
+53
+00:03:14.232 --> 00:03:15.138
+Dan de mijlpalen (milestone).
+
+54
+00:03:15.858 --> 00:03:18.330
+Een mijlpaal is een moment, geen activiteit.
+
+55
+00:03:19.101 --> 00:03:22.979
+Niet de analysefase, maar het moment dat de gereedheidscheck is vastgesteld,
+
+56
+00:03:23.234 --> 00:03:24.349
+of dat de pilot start.
+
+57
+00:03:25.076 --> 00:03:27.096
+Op de planning een ruitje, geen balk.
+
+58
+00:03:28.065 --> 00:03:30.689
+De belangrijkste soort is een go/no-go:
+
+59
+00:03:31.026 --> 00:03:33.452
+het besluit om door te gaan of uit te rollen,
+
+60
+00:03:33.696 --> 00:03:35.948
+dus overal in te voeren, of te stoppen.
+
+61
+00:03:36.624 --> 00:03:38.772
+Hier na de pilot, in week 15.
+
+62
+00:03:39.779 --> 00:03:42.902
+Goede mijlpalen zijn besluiten of zichtbare resultaten,
+
+63
+00:03:43.041 --> 00:03:44.899
+ongeveer elke drie tot zes weken.
+
+64
+00:03:45.550 --> 00:03:49.235
+Hier om de zes weken: in week 3, 9 en 15.
+
+65
+00:03:50.275 --> 00:03:55.220
+Ze geven de stuurgroep, het vaste besluitoverleg met de sponsor, iets om te checken,
+
+66
+00:03:55.546 --> 00:03:56.881
+en het team iets om op te mikken.
+
+67
+00:03:58.216 --> 00:04:02.000
+Zet de planning op één A4 als Gantt-chart (Gantt chart), genoemd naar Henry Gantt,
+
+68
+00:04:02.326 --> 00:04:05.379
+die zulke schema's in de jaren 1910 tekende.
+
+69
+00:04:06.129 --> 00:04:10.100
+Resultaten als rijen, weken als kolommen, balken voor het werk,
+
+70
+00:04:10.332 --> 00:04:13.142
+mijlpalen als ruitjes, en een eigenaar per rij.
+
+71
+00:04:14.123 --> 00:04:16.677
+Leg hem naast de kalender van de klant: stops,
+
+72
+00:04:16.944 --> 00:04:20.346
+vakanties, piekseizoen, en de datums van de stuurgroep.
+
+73
+00:04:21.048 --> 00:04:23.335
+Valt de pilot in een stop, dan zie je dat nu.
+
+74
+00:04:24.362 --> 00:04:25.697
+Hang hem op waar het team werkt.
+
+75
+00:04:26.398 --> 00:04:29.381
+Een planning die mensen elke dag zien, wordt gecorrigeerd.
+
+76
+00:04:30.119 --> 00:04:31.779
+Een planning in een map wordt vergeten.
+
+77
+00:04:32.787 --> 00:04:34.691
+Over software verschillen experts.
+
+78
+00:04:35.404 --> 00:04:38.597
+Een groot pakket als MS Project rekent de paden voor je uit.
+
+79
+00:04:39.357 --> 00:04:42.108
+Maar een planning aan de muur krijgt meer correcties van de vloer.
+
+80
+00:04:43.055 --> 00:04:45.401
+Stel bij elke bespreking één scherpe vraag:
+
+81
+00:04:45.691 --> 00:04:48.443
+wat moet er deze maand gebeuren om de einddatum te halen?

@@ -404,11 +404,11 @@ const SAY = [
       en: 'The problem: materials aren\'t linked to the planning. The goal: no order waits over {n:4} weeks for materials. The dashboard becomes a small part: a project on the symptom fixes nothing.' },
   ],
   [ // s2 getting underneath
-    { nl: 'Vraag waaraan ze het merken, sinds wanneer, en wat al geprobeerd is. Neem één recent geval door: dat toont het mechanisme, niet hun mening.',
+    { nl: 'Vraag waaraan ze het merken, sinds wanneer en wat al geprobeerd is. Neem één recent geval door: dat toont het mechanisme, niet hun mening.',
       en: 'Ask how they notice it, since when, and what has been tried. Walk through one recent case: it shows the mechanism, not their opinion.' },
     { nl: 'Wat kost het per week, of na een jaar? Dat zijn de {t:Kosten van niksdoen|kosten van niksdoen}: is een project het waard?',
       en: 'What does it cost per week, or after a year? That is the {t:Cost of inaction|cost of inaction}: is a project worth it?' },
-    { nl: 'Vaak gaat het om een streefcijfer op een KPI, zoals de {t:OEE|OEE}: het deel van de geplande tijd dat een machine op volle snelheid goede producten maakt.',
+    { nl: 'Vaak gaat het om een streefcijfer op een KPI, zoals de {t:OEE|OEE}. Dat is het deel van de geplande tijd dat een machine op volle snelheid goede producten maakt.',
       en: 'Often it is a target on a KPI, like {t:OEE|OEE}: the share of planned time a machine makes good parts at full speed.' },
     { nl: 'Van {n:58} naar {n:75} procent is nog een wens; {n:85} heet wereldklasse, maar is een afspraak. Waar gaan de {n:42} punten heen: storingen, omstellen, langzaam draaien of afkeur?',
       en: 'From {n:58} to {n:75} percent is still a wish; {n:85} is called world class, but is a convention. Where do the {n:42} points go: breakdowns, changeovers, slow running or scrap?' },
@@ -466,7 +466,7 @@ const SAY = [
   [ // s8 listening under pressure
     { nl: 'In een teamoverleg zegt de senior werkvoorbereider: dit hebben we drie jaar geleden ook gedaan. We kregen alleen meer formulieren.',
       en: 'In a team meeting the senior work preparer says: we did this three years ago. We just got more forms.' },
-    { nl: 'Onder druk verdedig je. De regel: eerst reflecteren of parafraseren, dan vragen, dan pas antwoorden. Onder een aanval zit vaak een zorg: werkdruk, schuld, controle.',
+    { nl: 'Onder druk verdedig je. De regel is eerst reflecteren of parafraseren, dan vragen, dan pas antwoorden. Onder een aanval zit vaak een zorg: werkdruk, schuld, controle.',
       en: 'Under pressure you want to defend. The rule: reflect or paraphrase first, then ask, then answer. An attack often hides a worry: workload, blame, control.' },
     { nl: 'De sfeer is gespannen. Je reflecteert: het leverde je vooral meer werk op. Dan wacht je vijf seconden.',
       en: 'The mood is tense. You reflect: it mostly gave you more work. Then you wait five seconds.' },

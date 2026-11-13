@@ -327,7 +327,7 @@ const SAY = [
   [ // s4 slack
     { nl: 'Dus vraag jij de IT-afdeling of de toegangsaanvraag in week {n:1} kan starten, in plaats van na de nulmeting. Dat kan: C loopt nu naast A.',
       en: 'So you ask IT whether the access request can start in week {n:1}, instead of after the baseline. It can: C now runs alongside A.' },
-    { nl: 'De einddatum blijft {n:15} weken, want A, B, D, E is nog steeds {n:15} weken lang.',
+    { nl: 'De einddatum blijft {n:15} weken, want A, B, D en E is nog steeds {n:15} weken lang.',
       en: 'The end date stays at {n:15} weeks, because A, B, D, E is still {n:15} weeks long.' },
     { nl: 'Maar de toegang is nu klaar na week {n:6}, en de pilot begint pas na week 9. Daartussen zit {n:3} weken {t:Speling|speling}: hoeveel een taak kan uitlopen zonder dat de einddatum verschuift.',
       en: 'But access is now ready after week {n:6}, and the pilot only starts after week 9. In between lie {n:3} weeks of {t:Slack|slack}: how much a task can slip without moving the end date.' },
