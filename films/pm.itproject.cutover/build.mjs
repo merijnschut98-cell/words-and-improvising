@@ -503,7 +503,7 @@ const SAY = [
       en: 'What has to be true by Sunday at eight? The interface works, or a manual workaround has been tested.' },
     { nl: 'De omweg: operators voeren de gewichten met de hand in, gecontroleerd door een tweede persoon.',
       en: 'The workaround: operators enter the weights by hand, checked by a second person.' },
-    { nl: 'Klopt geen van beide om acht uur, dan is het no-go: het oude systeem staat zondag rond achttien uur weer, ruim voor de eerste ploeg op maandag.',
+    { nl: 'Klopt geen van beide om acht uur, dan is het no-go. Het oude systeem staat zondag rond achttien uur weer, ruim voor de eerste ploeg op maandag.',
       en: 'If neither is true at eight, it is no-go: the old system is restored by about six on Sunday evening, well before Monday\'s first shift.' },
     { nl: 'Het besluit gaat met de reden in het cutoverlogboek. En na maandag volgt de hypercare: de extra steun na de livegang.',
       en: 'The decision, with the reason, goes in the cutover log. And after Monday comes hypercare: the extra support after go-live.' },

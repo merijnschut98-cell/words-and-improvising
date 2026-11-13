@@ -545,7 +545,7 @@ const SAY = [
       en: 'A {t:Could have|Could have} is nice to have, and goes first when time runs short.' },
   ],
   [ // s7 Won't have and the reserve
-    { nl: '{t:Won’t have|Won’t have} this time betekent: afgesproken dat het er nu niet in komt.',
+    { nl: '{t:Won’t have|Won’t have} this time betekent dat afgesproken is dat het er nu niet in komt.',
       en: '{t:Won’t have|Won’t have} this time means: agreed not to deliver it now.' },
     { nl: 'Het gaat toch op de lijst, zodat het niet via de achterdeur terugkomt.',
       en: 'It still goes on the list, so it can\'t creep back in through the side door.' },
@@ -557,7 +557,7 @@ const SAY = [
       en: 'If everything is a Must, the scope cannot absorb a setback: the date or the budget breaks.' },
   ],
   [ // s8 the MVP
-    { nl: '{t:MVP|MVP}: minimum viable product, een term van Frank Robinson uit tweeduizend een.',
+    { nl: '{t:MVP|MVP} staat voor minimum viable product, een term van Frank Robinson uit tweeduizend een.',
       en: '{t:MVP|MVP}: minimum viable product, Frank Robinson\'s term from 2001.' },
     { nl: 'Eric Ries maakte hem beroemd met The Lean Startup: de kleinste versie waarmee je het meest leert van echte gebruikers.',
       en: 'Eric Ries made it famous with The Lean Startup: the smallest version to learn the most from real users.' },

@@ -1,0 +1,361 @@
+WEBVTT
+
+1
+00:00:00.840 --> 00:00:03.824
+Een requirement is wat het nieuwe systeem moet doen of zijn,
+
+2
+00:00:04.126 --> 00:00:06.402
+zo opgeschreven dat je het later controleert.
+
+3
+00:00:07.391 --> 00:00:10.885
+Het is de basis voor de offerte, de tests en acceptatie.
+
+4
+00:00:11.869 --> 00:00:14.109
+Een functionele eis (functional requirement) zegt wat het systeem doet:
+
+5
+00:00:14.434 --> 00:00:17.337
+het blokkeert een batch die kwaliteit niet heeft vrijgegeven.
+
+6
+00:00:18.327 --> 00:00:20.986
+Een niet-functionele eis (non-functional requirement) zegt hoe goed: snelheid,
+
+7
+00:00:21.253 --> 00:00:23.076
+beschikbaarheid, beveiliging.
+
+8
+00:00:23.779 --> 00:00:25.869
+Zoals een etiket binnen drie seconden.
+
+9
+00:00:27.142 --> 00:00:31.124
+Begin bij het proces, niet bij de schermen: eerst het to-be-proces (to-be process),
+
+10
+00:00:31.391 --> 00:00:33.980
+hoe het werk na de go-live loopt, stap voor stap.
+
+11
+00:00:34.949 --> 00:00:36.888
+Vraag dan per stap wat het systeem moet doen.
+
+12
+00:00:37.959 --> 00:00:39.422
+Begin je bij het oude systeem,
+
+13
+00:00:39.724 --> 00:00:43.207
+dan krijg je een wensenlijst: het oude systeem in nieuwe kleuren,
+
+14
+00:00:43.532 --> 00:00:44.588
+met al zijn omwegen.
+
+15
+00:00:45.583 --> 00:00:47.603
+Een goede requirement is toetsbaar.
+
+16
+00:00:48.348 --> 00:00:52.725
+Gebruiksvriendelijk is dat niet: niemand kan zeggen of het geslaagd of gezakt is.
+
+17
+00:00:53.750 --> 00:00:54.238
+Dit wel:
+
+18
+00:00:54.598 --> 00:00:57.326
+na een uur training registreert een nieuwe operator
+
+19
+00:00:57.361 --> 00:00:59.392
+een lijnstop in minder dan dertig seconden.
+
+20
+00:01:00.405 --> 00:01:04.271
+Geef elke regel een nummer, een bron en later een prioriteit.
+
+21
+00:01:04.960 --> 00:01:07.340
+Het nummer komt terug in testscripts en contract.
+
+22
+00:01:08.713 --> 00:01:10.652
+Schrijf ze met de mensen die het werk kennen,
+
+23
+00:01:10.919 --> 00:01:13.996
+en een businessanalist (business analyst) die vertaalt tussen business en IT.
+
+24
+00:01:14.977 --> 00:01:19.713
+Let op oplossingen vermomd als requirement, zoals een Excel-export van alle orders.
+
+25
+00:01:20.730 --> 00:01:24.991
+De echte behoefte is misschien: de planner ziet de orders van morgen per lijn,
+
+26
+00:01:25.153 --> 00:01:26.105
+met materialen.
+
+27
+00:01:27.066 --> 00:01:31.536
+Wat vaak misgaat: twee grote workshops, geen toets aan het to-be-proces,
+
+28
+00:01:31.850 --> 00:01:34.160
+en een offerte op driehonderd vage regels.
+
+29
+00:01:35.148 --> 00:01:38.561
+Elke vage regel wordt later een discussie of iets in scope was.
+
+30
+00:01:39.693 --> 00:01:42.816
+Vraag: welke stap of welk besluit wordt hier beter van?
+
+31
+00:01:43.514 --> 00:01:46.800
+Weet niemand het, dan is het waarschijnlijk gewoonte, geen behoefte.
+
+32
+00:01:48.113 --> 00:01:50.307
+Een vleeswarenfabriek vervangt haar MES,
+
+33
+00:01:50.621 --> 00:01:52.920
+het systeem dat orders op de vloer aanstuurt.
+
+34
+00:01:53.773 --> 00:01:56.141
+Drie workshops: tweehonderdveertig wensen.
+
+35
+00:01:57.173 --> 00:02:01.016
+Stap een: zestig dubbelingen eruit, honderdtachtig over.
+
+36
+00:02:02.025 --> 00:02:04.788
+Stap twee: de Excel-export wordt een behoefte.
+
+37
+00:02:05.806 --> 00:02:10.473
+Stap drie: snelle etiketten worden toetsbaar: binnen drie seconden,
+
+38
+00:02:10.752 --> 00:02:12.772
+in vijfennegentig van de honderd tests.
+
+39
+00:02:13.801 --> 00:02:17.516
+Stap vier: zesendertig regels horen bij geen processtap,
+
+40
+00:02:17.865 --> 00:02:19.351
+en gaan op een parkeerlijst.
+
+41
+00:02:20.426 --> 00:02:24.640
+Resultaat: honderdvierenveertig requirements, elk met een nummer,
+
+42
+00:02:25.023 --> 00:02:26.091
+een bron en een test.
+
+43
+00:02:27.423 --> 00:02:30.523
+MoSCoW sorteert requirements in vier bakken: Must have,
+
+44
+00:02:30.604 --> 00:02:32.636
+Should have, Could have en Won’t have this time.
+
+45
+00:02:33.640 --> 00:02:35.579
+De o's staan er alleen in voor de uitspraak.
+
+46
+00:02:36.660 --> 00:02:39.586
+Dai Clegg bedacht het in negentienvierennegentig bij Oracle,
+
+47
+00:02:39.899 --> 00:02:41.989
+voor ontwikkelprojecten met weinig tijd.
+
+48
+00:02:42.988 --> 00:02:46.726
+Later werd het vast onderdeel van DSDM, een agile methode,
+
+49
+00:02:47.086 --> 00:02:49.280
+nu beheerd door het Agile Business Consortium.
+
+50
+00:02:50.299 --> 00:02:55.152
+In projecten met ERP en MES is het de gangbaarste manier om te prioriteren.
+
+51
+00:02:56.465 --> 00:02:58.949
+Een Must have is iets zonder wat de go-live geen zin heeft,
+
+52
+00:02:59.089 --> 00:03:00.691
+of onveilig of onwettig is.
+
+53
+00:03:01.484 --> 00:03:04.201
+DSDM noemt de Musts de Minimum Usable SubseT.
+
+54
+00:03:05.178 --> 00:03:08.081
+De toetsvraag: stellen we de go-live zonder dit uit?
+
+55
+00:03:08.839 --> 00:03:10.940
+Werken we eromheen, dan is het geen Must.
+
+56
+00:03:11.943 --> 00:03:14.938
+Een Should have is belangrijk, maar een tijdelijke omweg kan.
+
+57
+00:03:15.964 --> 00:03:20.213
+Een Could have is mooi meegenomen, en valt als eerste af als de tijd krap wordt.
+
+58
+00:03:21.574 --> 00:03:25.034
+Won’t have this time betekent dat afgesproken is dat het er nu niet in komt.
+
+59
+00:03:25.980 --> 00:03:29.312
+Het gaat toch op de lijst, zodat het niet via de achterdeur terugkomt.
+
+60
+00:03:30.457 --> 00:03:32.269
+DSDM geeft vuistregels:
+
+61
+00:03:32.547 --> 00:03:35.694
+de Musts meestal niet meer dan zestig procent van de inspanning,
+
+62
+00:03:36.077 --> 00:03:37.215
+de Coulds zo'n twintig.
+
+63
+00:03:38.268 --> 00:03:39.487
+De Coulds zijn je reserve.
+
+64
+00:03:40.512 --> 00:03:43.542
+Is alles Must, dan vangt de scope geen tegenvaller op,
+
+65
+00:03:43.810 --> 00:03:45.180
+en breekt de datum of het budget.
+
+66
+00:03:46.537 --> 00:03:48.964
+MVP staat voor minimum viable product,
+
+67
+00:03:49.219 --> 00:03:51.553
+een term van Frank Robinson uit tweeduizend een.
+
+68
+00:03:52.566 --> 00:03:54.957
+Eric Ries maakte hem beroemd met The Lean Startup:
+
+69
+00:03:55.306 --> 00:03:58.440
+de kleinste versie waarmee je het meest leert van echte gebruikers.
+
+70
+00:03:59.471 --> 00:04:04.603
+Bij ERP en MES is het losser: de kleinste scope om op een echte lijn live te gaan.
+
+71
+00:04:05.296 --> 00:04:08.059
+Alles boven de MVP-lijn moet klaar zijn voor de go-live.
+
+72
+00:04:09.076 --> 00:04:15.867
+Het hele proces, dun maar compleet: order erin, produceren, etiketteren, verzenden,
+
+73
+00:04:16.135 --> 00:04:16.878
+factureren.
+
+74
+00:04:17.868 --> 00:04:20.585
+De helft van de schermen van elke stap is geen MVP.
+
+75
+00:04:21.610 --> 00:04:25.116
+Voor een Lean-consultant herkenbaar: klein beginnen op één lijn.
+
+76
+00:04:25.790 --> 00:04:29.459
+Maar wettelijke en veiligheids-Musts, zoals voedselbatches traceren,
+
+77
+00:04:29.703 --> 00:04:30.771
+schaaf je nooit weg.
+
+78
+00:04:31.811 --> 00:04:34.644
+Vraag: wat doen we op de eerste maandag zonder dit?
+
+79
+00:04:35.995 --> 00:04:38.178
+Een spuitgieterij voert een MES in:
+
+80
+00:04:38.561 --> 00:04:41.220
+driehonderd mensdagen bouwcapaciteit tot de go-live.
+
+81
+00:04:42.204 --> 00:04:47.499
+Veertig requirements: Musts tweehonderdtien dagen, Shoulds dertig, Coulds zestig.
+
+82
+00:04:48.193 --> 00:04:50.364
+Precies driehonderd, zonder ruimte.
+
+83
+00:04:51.419 --> 00:04:56.016
+Stap een: de Musts zijn zeventig procent, boven de zestig van DSDM.
+
+84
+00:04:57.019 --> 00:04:58.911
+Stap twee: de toetsvraag.
+
+85
+00:04:59.667 --> 00:05:03.858
+Zes requirements, vijfenveertig dagen, hebben een werkbare omweg,
+
+86
+00:05:04.113 --> 00:05:05.657
+zoals een weekrapport met de hand.
+
+87
+00:05:06.458 --> 00:05:07.317
+Ze worden Should.
+
+88
+00:05:08.327 --> 00:05:12.948
+Stap drie: Musts honderdvijfenzestig dagen, vijfenvijftig procent.
+
+89
+00:05:13.751 --> 00:05:16.119
+Shoulds vijfenzeventig, Coulds zestig.
+
+90
+00:05:17.159 --> 00:05:21.095
+De MVP-lijn ligt onder de Musts: order tot verzending op lijn een.
