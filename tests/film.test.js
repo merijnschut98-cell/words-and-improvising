@@ -402,6 +402,38 @@ test('speak variant: the DevOps words in Dutch, CI/CD in English', () => {
   assert.equal(speakOf([en], 'en'), en);
 });
 
+// MoSCoW and an MVP (pm.itproject.mvp): the requirements and MoSCoW words as
+// Dutch IT projects say them, checked with espeak-ng phonemes through Piper's
+// nl_NL-alex bridge: requirement ("ree-kvi-re-MENT": ri-kwaijurmunt), MoSCoW
+// (it spells "mo S ko W": Moskou), the four bins in English sounds (it reads
+// "haa-ve", "sjout", "kout", "won": Must hev, Sjoed hev, Koed hev, Woont hev
+// dis taim; Shoulds and Coulds as Sjoeds, Koeds), Oracle ("OO-rak-le":
+// Orrekul), the Agile Business Consortium (Biznis, as the business case rule),
+// MVP ("em-fee-pee": em vee pee), minimum viable product ("vie-ab-le PROO-dukt":
+// vaaiebul prodduct), Frank Robinson ("rob-in-SON": Robbinsun), Eric Ries
+// ("e-RIK": Erik), The Lean Startup ("lee-an": de Lien Startap), the Minimum
+// Usable SubseT ("uu-za-ble sub-se tee": Joezebul Sabset), to-be-proces
+// ("too-bee-ee": toe-bie-proces), go-live ("go-lie-ve": goo-laiv),
+// businessanalist ("buu-zie-nes": biznis-analist), voedselbatches (the batch
+// rule's betsj). A lone Must keeps its voice. In English, MoSCoW as Moscow
+// (en_GB spells it), Eric Ries as Reese ("rise") and SubseT as Subset; no other
+// film's spoken text changes
+test('speak variant: the requirements and MoSCoW words in Dutch, MoSCoW, Ries and SubseT in English', () => {
+  const nl = (s) => speakOf([s], 'nl');
+  assert.equal(nl('Een requirement, de requirements. Requirements schrijf je samen.'), 'Een ri-kwaijurmunt, de ri-kwaijurmunts. Ri-kwaijurmunts schrijf je samen.');
+  assert.equal(nl('MoSCoW sorteert: Must have, Should have, Could have en Won\'t have this time. Een Won’t have.'),
+    'Moskou sorteert: Must hev, Sjoed hev, Koed hev en Woont hev dis taim. Een Woont hev.');
+  assert.equal(nl('De Musts, de Shoulds, de Coulds. Ze worden Should. Een Must.'), 'De Musts, de Sjoeds, de Koeds. Ze worden Sjoed. Een Must.');
+  assert.equal(nl('Dai Clegg bij Oracle. Het Agile Business Consortium. DSDM noemt de Musts de Minimum Usable SubseT.'),
+    'Dai Clegg bij Orrekul. Het Etsjail Biznis Consortium. DSDM noemt de Musts de Minimum Joezebul Sabset.');
+  assert.equal(nl('MVP staat voor minimum viable product, van Frank Robinson. Eric Ries, The Lean Startup. De MVP-lijn.'),
+    'em vee pee staat voor minimum vaaiebul prodduct, van Frank Robbinsun. Erik Ries, de Lien Startap. De em vee pee-lijn.');
+  assert.equal(nl('Het to-be-proces, na de go-live, een businessanalist, voedselbatches traceren.'), 'Het toe-bie-proces, na de goo-laiv, een biznis-analist, voedselbetsjes traceren.');
+  assert.equal(speakOf(['MoSCoW, by Dai Clegg. Eric Ries. The Minimum Usable SubseT.'], 'en'), 'Moscow, by Dai Clegg. Eric Reese. The Minimum Usable Subset.');
+  const en = 'Must have, Should have, Could have and Won\'t have this time, Oracle, DSDM, an MVP, minimum viable product, Frank Robinson, The Lean Startup, go-live, the to-be process, a business analyst';
+  assert.equal(speakOf([en], 'en'), en);
+});
+
 // A stage drawn on the Dutch caption beats (beatwarp films set STAGE.nlBeats)
 // follows the caption beat on screen in English too: while English beat k
 // shows, the stage runs through Dutch beat k, so the drawing is never a beat off.
