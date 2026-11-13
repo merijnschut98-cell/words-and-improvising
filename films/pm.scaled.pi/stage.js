@@ -108,7 +108,7 @@ const STAGE = (() => {
       o.ip = op(Cp, box(54, tr('IP-iteratie', 'IP iteration'), ['Innovation and Planning', [tr('verbeteren, plannen', 'improve, plan'), 'pm-mute']]));
       o.takt = op(Cp, lines(176, [[tr('Lean: als takt op een lijn', 'Lean: like takt on a line'), b === 6 ? 'pm-on' : 'pm-big'], [tr('elke 2 weken integreren', 'integrate every 2 weeks')]]));
     }
-    if (b >= 7) o.ask = op(Cp * at(b, p, 7), box(240, tr('vraag', 'ask'), [tr('welke teams leveren', 'which teams deliver'), tr('samen iets werkends?', 'something that works?'), [tr('= je trein, niet het', '= your train, not the'), 'pm-on'], [tr('organigram', 'org chart'), 'pm-on']], b === 7));
+    if (b >= 7) o.ask = op(Cp * at(b, p, 7), box(234, tr('vraag', 'ask'), [tr('welke teams leveren', 'which teams deliver'), tr('samen iets werkends?', 'something that works?'), [tr('= je trein, niet het', '= your train, not the'), 'pm-on'], [tr('organigram', 'org chart'), 'pm-on']], b === 7));
     return o;
   }
 
@@ -150,9 +150,9 @@ const STAGE = (() => {
     if (b >= 2) o.roamc = op(A * at(b, p, 2), box(296, 'ROAM', [tr('Resolved · Owned ·', 'Resolved · Owned ·'), tr('Accepted · Mitigated', 'Accepted · Mitigated')], b === 2).replace(/height="98"/, 'height="92"'));
     const B = page(b, p, 3, -1);
     if (b >= 3) o.vote = op(B, txt(X0, 72, 'confidence vote', b === 3 ? 'pm-on' : 'pm-big') + fingers(84, b === 3 ? Math.ceil(clamp(p * 6, 0, 5)) : 5)
-      + lines(156, [[tr('1–5 vingers: haalbaar?', '1–5 fingers: feasible?')]]));
-    if (b >= 4) o.rule = op(B * at(b, p, 4), lines(200, [[tr('gemiddeld ≥ 3: genoeg', 'average ≥ 3: enough'), b === 4 ? 'pm-on' : 'pm-big'], [tr('1 of 2? aan het woord', '1 or 2? gets the floor')], [tr('vuistregel, trainingen', 'a training rule of thumb'), 'pm-mute']]));
-    if (b >= 5) o.obeya = op(B * at(b, p, 5), lines(290, [[tr('obeya op grote schaal', 'an obeya at scale'), b === 5 ? 'pm-on' : 'pm-big'], [tr('valkuil: niemand zegt', 'pitfall: nobody says'), 'pm-mute'], [tr('dat het niet past', 'it does not fit'), 'pm-mute']]));
+      + lines(188, [[tr('1–5 vingers: haalbaar?', '1–5 fingers: feasible?')]]));
+    if (b >= 4) o.rule = op(B * at(b, p, 4), lines(226, [[tr('gemiddeld ≥ 3: genoeg', 'average ≥ 3: enough'), b === 4 ? 'pm-on' : 'pm-big'], [tr('1 of 2? aan het woord', '1 or 2? gets the floor')], [tr('vuistregel, trainingen', 'a training rule of thumb'), 'pm-mute']]));
+    if (b >= 5) o.obeya = op(B * at(b, p, 5), lines(312, [[tr('obeya op grote schaal', 'an obeya at scale'), b === 5 ? 'pm-on' : 'pm-big'], [tr('valkuil: niemand zegt', 'pitfall: nobody says'), 'pm-mute'], [tr('dat het niet past', 'it does not fit'), 'pm-mute']]));
     return o;
   }
 
@@ -207,8 +207,8 @@ const STAGE = (() => {
     if (b >= 2) o.ex2 = op(A * at(b, p, 2), box(234, 'Product Management', [tr('één persoon, ook', 'one person, also an'), tr('accountmanager;', 'account manager;'), [tr('ART Backlog: 9 mnd oud', 'ART Backlog: 9 months'), 'pm-on']], b === 2));
     const B = page(b, p, 3, -1);
     if (b >= 3) o.ex3 = op(B, box(54, 'PO', [tr('3 van 6 teams: één PO,', '3 of 6 teams: one PO,'), tr('2 middagen per week', '2 afternoons a week'), [tr('mis of te dun?', 'wrong or too thin?'), 'pm-on']], b === 3));
-    if (b >= 4) o.rev = op(B * at(b, p, 4), lines(200, [[tr('RTE: taken, geen coach', 'RTE: tasks, no coaching')], [tr('PM: geen tijd, geen orde', 'PM: no time, no order')], [tr('PO: te dun → gokken', 'PO: too thin → guessing')]]));
-    if (b >= 5) o.prop = op(B * at(b, p, 5), box(280, tr('voorstel', 'proposal'), [tr('RTE coachen · PM vrij', 'coach RTE · free up PM'), [tr('PO per team, of minder', 'a PO per team, or fewer'), 'pm-on'], [tr('teams tegelijk', 'teams at once'), 'pm-on']], true));
+    if (b >= 4) o.rev = op(B * at(b, p, 4), lines(198, [[tr('RTE: taken, geen coach', 'RTE: tasks, no coaching')], [tr('PM: geen tijd, geen orde', 'PM: no time, no order')], [tr('PO: te dun → gokken', 'PO: too thin → guessing')]]));
+    if (b >= 5) o.prop = op(B * at(b, p, 5), box(262, tr('voorstel', 'proposal'), [tr('RTE coachen · PM vrij', 'coach RTE · free up PM'), [tr('PO per team, of minder', 'a PO per team, or fewer'), 'pm-on'], [tr('teams tegelijk', 'teams at once'), 'pm-on']], true));
     return o;
   }
   const CARDS = [s1, s2, s3, s4, s5, s6, s7, s8, s9];
