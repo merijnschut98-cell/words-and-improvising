@@ -1692,6 +1692,41 @@
         ],
         "vtt": "src/content/courses/films/pm.plan.wbs.en.vtt"
       }
+    },
+    "pm.intake.stakeholders": {
+      "poster": "src/content/courses/films/pm.intake.stakeholders.jpg",
+      "nl": {
+        "dur": 333.7,
+        "bytes": 11284980,
+        "scenes": [
+          0,
+          40.2,
+          77.65,
+          107.32,
+          133.09,
+          156.24,
+          195.38,
+          248.93,
+          292.12
+        ],
+        "vtt": "src/content/courses/films/pm.intake.stakeholders.nl.vtt"
+      },
+      "en": {
+        "dur": 333.7,
+        "bytes": 11180795,
+        "scenes": [
+          0,
+          40.46,
+          78.91,
+          108.99,
+          134.16,
+          158.32,
+          197.26,
+          248.64,
+          291.71
+        ],
+        "vtt": "src/content/courses/films/pm.intake.stakeholders.en.vtt"
+      }
     }
   }
 }
