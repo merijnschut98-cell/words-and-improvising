@@ -622,7 +622,19 @@ const SAY = {
     [/\b([Gg])o-live\b/g, '$1oo-laiv'], [/\b([Bb])usinessanalist\b/g, '$1iznis-analist'], [/\bvoedselbatches\b/g, 'voedselbetsjes'],
     // and, in this film's phrases only, business as Biznis in "tussen business en IT" and live as "laiv" in "live te
     // gaan" (it reads "buu-ZIE-nes" and the Dutch "lie-ve")
-    [/\btussen business en IT\b/g, 'tussen biznis en IT'], [/\blijn live te gaan\b/g, 'lijn laiv te gaan']],
+    [/\btussen business en IT\b/g, 'tussen biznis en IT'], [/\blijn live te gaan\b/g, 'lijn laiv te gaan'],
+    // the user acceptance test (pm.itproject.uat): the test words as Dutch ERP and MES projects say them, checked
+    // with espeak-ng phonemes through Piper's nl_NL-alex bridge: it reads UAT as the word "uu-at" (U A T, letters),
+    // acceptatietest, acceptatietesten and gebruikersacceptatietest with a t for ts in "-taa-ti-test" (split at their
+    // parts), testdata as "tes-TAA-taa" (test-data), softwaretesten as "soft-waa-ree-testen" (software-testen, as
+    // the softwarebedrijf rule above), ISTQB as "ist-k-p" (ie es tee kuu bee; not "S": a lone S is a
+    // hiss), sign-off with a Dutch g (sain-of), happy path as "hap-pie pat" (heppi paath), stresses REgressietest
+    // and REgressieset (split at the head) and herTEST, herTESten (her-test). key users, go-live and MES go
+    // through the rules above; no other film's spoken text changes
+    [/\bUAT\b/g, 'U A T'], [/\b([Gg]ebruikers)?([Aa])cceptatietest(en)?\b/g, (m, g, a, e) => `${g ? `${g}-` : ''}${a}cceptatie-test${e || ''}`],
+    [/\b([Tt])estdata\b/g, '$1est-data'], [/\b([Ss])oftwaretest(en)?\b/g, '$1oftware-test$2'], [/\bISTQB\b/g, 'ie es tee kuu bee'],
+    [/\b([Ss])ign-off\b/g, '$1ain-of'], [/\bhappy path\b/g, 'heppi paath'], [/\b([Rr])egressie(test|set)/g, '$1egressie-$2'],
+    [/\b([Hh])ertest(en|s)?\b/g, '$1er-test$2']],
   en: [[/\brpm\b/g, 'revolutions per minute'], [/\bmm\/min\b/g, 'millimetres per minute'], [/\bm\/min\b/g, 'metres per minute'], [/µm\b/g, 'micrometres'],
     [/€\s?(\d[\d,]*(?:\.\d+)?)/g, '$1 euros'], [/(\d)\.0(?![\d])/g, '$1'], [/(\d)\s?mm\b/g, '$1 millimetres'], [/(\d)\s?min\b/g, '$1 minutes'], [/(\d)\s?%/g, '$1 percent'],
     [/Ø\s*/g, 'diameter '], [/(\d)\+(\d)/g, '$1 plus $2'], [/\s×\s/g, ' times '], [/\s\/\s/g, ' divided by '], [/\s=\s/g, ' is '], [/°/g, ' degrees'], [/\bRa\b/g, 'R a'], [/’/g, "'"],
@@ -659,7 +671,9 @@ const SAY = {
     [/\bCI CD\b/g, 'C I C D'],
     // MoSCoW and an MVP (pm.itproject.mvp): MoSCoW as Moscow (espeak-ng's English spells it), Eric Ries as
     // Reese (it reads "rise") and the Minimum Usable SubseT as a plain Subset (it reads "subs tee")
-    [/\bMoSCoW\b/g, 'Moscow'], [/\bEric Ries\b/g, 'Eric Reese'], [/\bSubseT\b/g, 'Subset']],
+    [/\bMoSCoW\b/g, 'Moscow'], [/\bEric Ries\b/g, 'Eric Reese'], [/\bSubseT\b/g, 'Subset'],
+    // the user acceptance test (pm.itproject.uat): ISTQB as letters (espeak-ng's English reads "ist-k-b")
+    [/\bISTQB\b/g, 'I S T Q B']],
 };
 export const sayable = (text, lang) => (SAY[lang] || []).reduce((s, [re, w]) => s.replace(re, w), text);
 // The words the voice says: no English gloss, and with a language, units as words.
