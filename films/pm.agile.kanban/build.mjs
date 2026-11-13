@@ -52,7 +52,8 @@
 //     customer, released to production (s3 b4); after an hour all 40 up, 12 in
 //     design, 9 waiting for the customer, 6 of them over 3 weeks (s3 b5), the
 //     other 19 in the other columns (card, s3 b5; the lesson gives no split, so
-//     those cards are drawn faint); 4 blocked by a missing customer
+//     those cards are drawn faint, 7, 6 and 6, and the card says the split is
+//     illustrative: "verdeling: voorbeeld"); 4 blocked by a missing customer
 //     specification; started when an engineer takes the card, done when the
 //     drawing is released (s3 b6). The lesson does not say in which column the
 //     4 blocked cards hang: the board puts their stickers on design cards.
@@ -576,7 +577,8 @@ const spec = {
 // swarming, contextwisseling, geblokkeerd, andon, goudmijn, pullsysteem with
 // the poel rule below, testomgeving, machinebouwer, klantspecificatie,
 // zuivelfabriek, supermarktvoorraad, bottleneck, voorspelmachine, Little (as
-// "littel"), WIP as Dutch letters (wee-ie-pee, as in the plants), Toyota
+// "littel"), WIP as letters (wee-ie-pee; W I P in English); espeak-ng reads
+// it as the word "wip" only right before a comma, so no line puts one there, Toyota
 // through pm.land.training's Tojota rule, Gerald Weinberg through
 // pm.portfolio.prioritise's rule, Lean-consultant through pm.run.conflict's.
 // New SAY rules in films/_kit/timeline.mjs (tested; recomputed for every film:
@@ -603,7 +605,7 @@ const SAY = [
     { nl: 'Kanban komt uit het Toyota-productiesysteem van Taiichi Ohno: een kaart bij een bak onderdelen.',
       en: 'Kanban comes from Taiichi Ohno\'s Toyota Production System: a card with a bin of parts.' },
     { nl: 'Bak leeg? De kaart gaat terug: maak bij. Verbruik trekt de productie aan: pull, geen overproductie.',
-      en: 'Bin empty? The card goes back: make more. Use pulls production: no overproduction.' },
+      en: 'Bin empty? The card goes back: make more. Consumption pulls production: no overproduction.' },
     { nl: 'In kenniswerk maakt Kanban de stroom van werk zichtbaar en stuurbaar; David Anderson maakte het bekend.',
       en: 'In knowledge work Kanban makes the flow of work visible and steerable; David Anderson made it known.' },
     { nl: 'De Kanban Guide noemt {t:Kanban|Kanban} een strategie om de stroom van waarde te optimaliseren, visueel en met pull.',
@@ -633,13 +635,13 @@ const SAY = [
     { nl: 'De kolommen zoals het echt loopt: aangevraagd, ontwerp, controle, wacht op klant, vrijgegeven.',
       en: 'Columns as the work really flows: requested, design, check, waiting for customer, released.' },
     { nl: 'Na een uur hangen alle veertig. Twaalf in ontwerp, negen wachten op de klant, zes daarvan al langer dan drie weken.',
-      en: 'An hour later all forty hang: twelve in design, nine waiting for the customer, six for over three weeks.' },
+      en: 'An hour later all forty are up: twelve in design, nine waiting for the customer, six for over three weeks.' },
     { nl: 'Vier zijn geblokkeerd. Begonnen: een engineer pakt de kaart; klaar: de tekening is vrijgegeven.',
       en: 'Four are blocked. Started: an engineer takes the card; done: the drawing is released.' },
   ],
   [ // s4 WIP and the limit
     { nl: '{t:WIP|WIP} is begonnen maar niet af; in de fabriek heet dat onderhanden werk. Het kost geld, verbergt problemen en vertraagt.',
-      en: '{t:WIP|WIP}, work in progress: started, not done, as in the factory. It costs money, hides problems, slows things.' },
+      en: '{t:WIP|WIP} is work in progress: started, not done, as in the factory. It costs money, hides problems, slows things.' },
     { nl: 'Een {t:WIP-limiet|WIP-limiet} is een maximum per kolom of voor het hele systeem, zoals testen hooguit twee. Vol? Dan niets nieuws: dat is pull.',
       en: 'A {t:WIP limit|WIP limit}: a maximum per column or for the whole system, such as test at most two. Full? Nothing new: that is pull.' },
     { nl: 'Vijf dingen tegelijk is schakelen, en {t:Contextwisseling|contextwisseling} kost tijd. Gerald Weinberg schatte zo\'n twintig procent per extra project.',
@@ -672,8 +674,8 @@ const SAY = [
       en: 'After six weeks: six at once, not fifteen, and a request takes about two and a half weeks.' },
   ],
   [ // s7 four flow measures
-    { nl: 'De Kanban Guide noemt vier flowmaten. De WIP, en de {t:Throughput|throughput}: hoeveel items er per week afkomen.',
-      en: 'The Kanban Guide names four flow measures. WIP, and {t:Throughput|throughput}: how many items finish per week.' },
+    { nl: 'De Kanban Guide noemt vier flowmaten. Eerst de WIP en de {t:Throughput|throughput}: hoeveel items er per week afkomen.',
+      en: 'The Kanban Guide names four flow measures. First WIP and {t:Throughput|throughput}: how many items finish per week.' },
     { nl: 'De {t:Work item age|work item age}: hoe lang een onaf item al onderweg is.',
       en: '{t:Work item age|Work item age}: how long an unfinished item has been under way.' },
     { nl: 'En de {t:Cycle time|cycle time}: begin tot klaar van een afgerond item, volgens je Definition of Workflow.',
@@ -716,12 +718,12 @@ spec.scenes.forEach((s, si) => {
 });
 // no symbol the voice would read aloud, no spoken parenthesis or quote, no
 // digits in the Dutch voice, and none of the words espeak-ng misreads (see
-// above); checked on the text after the SAY rules, so a word a rule rewrites
+// above; a WIP right before a comma is read as the word "wip"); checked on the text after the SAY rules, so a word a rule rewrites
 // passes and a misread one fails the build
 const plainSay = (src) => src.replace(/\{t:[^|}]*\|([^}]*)\}/g, '$1').replace(/\{n:([^}]*)\}/g, '$1');
 const MISREAD = {
-  nl: /\b(\w*manager\w*|whiteboard|work in progress|vuistregel|Guide|Ohno|Anderson|Vacanti|Workflow|[Tt]hroughput|[Cc]ycle time|[Ll]ead time|[Ww]ork item age|pull\w*|flowmaten|engineer\w*|onderhanden|John|Lean-team|e-?mail)\b|(^|[.?!;]\s)Eén\b/,
-  en: /\bUry\b/,
+  nl: /\b(\w*manager\w*|whiteboard|work in progress|vuistregel|Guide|Ohno|Anderson|Vacanti|Workflow|[Tt]hroughput|[Cc]ycle time|[Ll]ead time|[Ww]ork item age|pull\w*|flowmaten|engineer\w*|onderhanden|John|Lean-team|e-?mail|WIP(?=,))\b|(^|[.?!;]\s)Eén\b/,
+  en: /\b(Ury|WIP(?=,))\b/,
 };
 for (const scene of SAY) for (const line of scene) for (const lang of ['nl', 'en']) {
   const said = sayable(plainSay(line[lang]), lang);

@@ -109,7 +109,7 @@ const STAGE = (() => {
     const B = page(b, p, 2, 5);
     if (b >= 2) o.mb = op(B, lines(72, [[tr('whiteboard, 40 losse', 'whiteboard, 40 loose'), b === 2 ? 'pm-on' : 'pm-big'], [tr('post-its: wat loopt er?', 'notes: what’s running?')]]));
     if (b >= 3) o.cols5 = op(B * at(b, p, 3), lines(140, [[tr('aangevraagd', 'requested')], [tr('ontwerp', 'design')], [tr('controle (2e engineer)', 'check (2nd engineer)')], [tr('wacht op klant', 'waiting for customer')], [tr('vrijgegeven', 'released')]]));
-    if (b >= 4) o.count = op(B * at(b, p, 4), lines(282, [[tr('ontwerp 12 · wacht 9', 'design 12 · waiting 9'), 'pm-big'], [tr('6 al > 3 weken', '6 for > 3 weeks'), 'pm-on'], [tr('19: overige kolommen', '19: the other columns'), 'pm-mute']]));
+    if (b >= 4) o.count = op(B * at(b, p, 4), lines(282, [[tr('ontwerp 12 · wacht 9', 'design 12 · waiting 9'), 'pm-big'], [tr('6 al > 3 weken', '6 for > 3 weeks'), 'pm-on'], [tr('19 in andere kolommen,', '19 in other columns,'), 'pm-mute'], [tr('verdeling: voorbeeld', 'split: illustrative'), 'pm-mute']]));
     const Cp = page(b, p, 5, -1);
     if (b >= 5) {
       o.blk4 = op(Cp, box(54, tr('4 geblokkeerd', '4 blocked'), [tr('klantspecificatie mist', 'no customer spec')], true) + sticker(X1 - 12, 76)
@@ -162,7 +162,7 @@ const STAGE = (() => {
   function s7(b, p) {
     const o = { head: [tr('flowmaten', 'flow measures'), DIA] };
     const A = page(b, p, 0, 3);
-    o.tp = op(A, txt(X0, 72, tr('Kanban Guide: 4 maten', 'Kanban Guide: 4 measures'), 'pm-mute') + box(90, 'WIP · throughput', [tr('items af per week', 'items done per week')], b === 0));
+    o.tp = op(A, txt(X0, 72, tr('Kanban Guide: minimaal 4', 'Kanban Guide: at least 4'), 'pm-mute') + box(90, 'WIP · throughput', [tr('items af per week', 'items done per week')], b === 0));
     if (b >= 1) o.age = op(A * at(b, p, 1), box(172, 'work item age', [tr('onaf item: hoe lang', 'unfinished: how long'), tr('al onderweg', 'under way so far')], b === 1));
     if (b >= 2) o.ct = op(A * at(b, p, 2), box(280, 'cycle time', [tr('begin → klaar, afgerond', 'start → done, finished'), [tr('punten: je afspraak', 'points: your agreement'), 'pm-mute']], b === 2));
     const B = page(b, p, 3, -1);
