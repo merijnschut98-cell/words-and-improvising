@@ -65,7 +65,7 @@
 //     production on the card); three workshops with planners, shift leaders and
 //     quality, 240 wishes (s4 b1, who on the card); step 1, 60 duplicates, 180
 //     left (s4 b2); step 2, the Excel export becomes R-031, tomorrow's orders per
-//     line with materials and stock (s4 b3, R-031 on the card); step 3, fast
+//     line with materials and stock (s4 b3; R-031 and what it says on the card); step 3, fast
 //     labels become R-047, non-functional, within 3 seconds in 95 of 100 tests
 //     (s4 b4, R-047 on the card); step 4, 36 lines serve no step, parked (s4
 //     b5); result 144 requirements with an ID, a source and a test (s4 b6)
@@ -102,12 +102,14 @@
 //   mvp example: a plastics injection moulder introduces an MES, 300 person-days
 //     of build capacity to go-live (s9 b1); 40 requirements sorted: Musts 210,
 //     Shoulds 30, Coulds 60, exactly 300 with no room (s9 b2); step 1, Musts
-//     210 / 300 = 70 %, above DSDM's 60 % (s9 b3, the division on the card);
+//     210 / 300 = 70 %, above DSDM's 60 % (s9 b3, the division on the card,
+//     up through b4);
 //     step 2, the test question; six requirements, 45 days, a workable
 //     workaround such as the planner's weekly report by hand; they move to
 //     Should (s9 b4); step 3, Musts 165 days (55 %), Shoulds 75 (25 %), Coulds 60
 //     (20 %) (s9 b5, the 25 and 20 % on the card); the MVP cut line under the
-//     Musts, 165 days, order to shipment on line 1, the Coulds the reserve (s9 b6)
+//     Musts, 165 days, order to shipment on line 1 (s9 b6), the Coulds the reserve (s9 b6,
+//     on the card; said in s7 b4)
 //   Not in the film: the lessons' pre and recall questions, their "said"
 //   lines, situations and sayIt (practice, not teach text). Every card-only
 //   point stays up at least one beat of 4 s or more.
@@ -443,8 +445,8 @@ const spec = {
 // (nl_NL-alex, 2026-11-13). Read as written: functionele and niet-functionele
 // eis, beschikbaarheid, beveiliging, Excel-export, workshops, testscripts,
 // parkeerlijst, vleeswarenfabriek, spuitgieterij, mensdagen, Dai Clegg (said
-// as the lesson spells it; "Dai" is Welsh "die"), DSDM and ERP (letters; ERP
-// the word "erp", as the films with a video say it), Lean-consultant and scope
+// as the lesson spells it; "Dai" is Welsh "die"), DSDM and ERP (letters, as
+// eng.ot.isa95 and pm.itproject.cutover say it), Lean-consultant and scope
 // (the kit's existing rules), MES (the kit's letters rule) and Must, Musts. New
 // SAY rules in films/_kit/timeline.mjs (tested; recomputed for every film: no
 // other film's spoken text changes): requirement as "ri-kwaijurmunt" (it reads
@@ -490,7 +492,7 @@ const SAY = [
     { nl: 'Dit wel: na een uur training registreert een nieuwe operator een lijnstop in minder dan dertig seconden.',
       en: 'This is: after an hour\'s training, a new operator logs a line stop in under thirty seconds.' },
     { nl: 'Geef elke regel een nummer, een bron en later een prioriteit. Het nummer komt terug in testscripts en contract.',
-      en: 'Give every line an ID, a source and later a priority. The ID returns in test scripts and the contract.' },
+      en: 'Give every line an ID, a source and later a priority. The ID returns in test scripts and contract.' },
   ],
   [ // s3 a need, not a solution
     { nl: 'Schrijf ze met de mensen die het werk kennen, en een {t:Businessanalist|businessanalist} die vertaalt tussen business en IT.',
@@ -502,7 +504,7 @@ const SAY = [
     { nl: 'Wat vaak misgaat: twee grote workshops, geen toets aan het to-be-proces, en een offerte op driehonderd vage regels.',
       en: 'What often goes wrong: two big workshops, no check against the to-be process, and a quote on three hundred vague lines.' },
     { nl: 'Elke vage regel wordt later een discussie of iets in scope was.',
-      en: 'Every vague line later turns into an argument: was it in scope?' },
+      en: 'Every vague line later becomes an argument: was it in scope?' },
     { nl: 'Vraag: welke stap of welk besluit wordt hier beter van? Weet niemand het, dan is het waarschijnlijk gewoonte, geen behoefte.',
       en: 'Ask: which step or decision gets better? If nobody knows, it is probably habit, not need.' },
   ],
@@ -511,8 +513,8 @@ const SAY = [
       en: 'A meat products plant replaces its MES, the system that runs orders on the floor. Three workshops: two hundred and forty wishes.' },
     { nl: 'Stap een: zestig dubbelingen eruit, honderdtachtig over.',
       en: 'Step one: sixty duplicates out, a hundred and eighty left.' },
-    { nl: 'Stap twee: de Excel-export wordt een behoefte, de orders van morgen per lijn.',
-      en: 'Step two: the Excel export becomes a need, tomorrow\'s orders per line.' },
+    { nl: 'Stap twee: de Excel-export wordt een behoefte.',
+      en: 'Step two: the Excel export becomes a need.' },
     { nl: 'Stap drie: snelle etiketten worden toetsbaar: binnen drie seconden, in vijfennegentig van de honderd tests.',
       en: 'Step three: fast labels become testable: within three seconds, in ninety-five of a hundred tests.' },
     { nl: 'Stap vier: zesendertig regels horen bij geen processtap, en gaan op een parkeerlijst.',
@@ -526,7 +528,7 @@ const SAY = [
     { nl: 'De o\'s staan er alleen in voor de uitspraak.',
       en: 'The o\'s only make it pronounceable.' },
     { nl: 'Dai Clegg bedacht het in negentienvierennegentig bij Oracle, voor ontwikkelprojecten met weinig tijd.',
-      en: 'Dai Clegg devised it in nineteen ninety-four at Oracle, for projects with little time.' },
+      en: 'Dai Clegg devised it in nineteen ninety-four at Oracle, for development projects with little time.' },
     { nl: 'Later werd het vast onderdeel van DSDM, een agile methode, nu beheerd door het Agile Business Consortium.',
       en: 'It later became a fixed part of DSDM, an agile method now kept by the Agile Business Consortium.' },
     { nl: 'In projecten met ERP en MES is het de gangbaarste manier om te prioriteren.',
@@ -573,16 +575,16 @@ const SAY = [
   [ // s9 the injection moulder
     { nl: 'Een spuitgieterij voert een MES in: driehonderd mensdagen bouwcapaciteit tot de go-live.',
       en: 'An injection moulder introduces an MES: three hundred person-days of build capacity until go-live.' },
-    { nl: 'Veertig requirements, gesorteerd: Musts tweehonderdtien dagen, Shoulds dertig, Coulds zestig. Precies driehonderd, zonder ruimte.',
+    { nl: 'Veertig requirements: Musts tweehonderdtien dagen, Shoulds dertig, Coulds zestig. Precies driehonderd, zonder ruimte.',
       en: 'Forty requirements: Musts two hundred and ten days, Shoulds thirty, Coulds sixty. Exactly three hundred, no room.' },
     { nl: 'Stap een: de Musts zijn zeventig procent, boven de zestig van DSDM.',
       en: 'Step one: Musts are seventy percent, above DSDM\'s sixty.' },
     { nl: 'Stap twee: de toetsvraag. Zes requirements, vijfenveertig dagen, hebben een werkbare omweg, zoals een weekrapport met de hand. Ze worden Should.',
-      en: 'Step two: the test question. Six requirements, forty-five days, have a workaround, such as a weekly report by hand. They become Shoulds.' },
+      en: 'Step two: the test question. Six requirements, forty-five days, have a workaround, such as a weekly report by hand. They move to Should.' },
     { nl: 'Stap drie: Musts honderdvijfenzestig dagen, vijfenvijftig procent. Shoulds vijfenzeventig, Coulds zestig.',
       en: 'Step three: Musts a hundred and sixty-five days, fifty-five percent. Shoulds seventy-five, Coulds sixty.' },
-    { nl: 'De MVP-lijn ligt onder de Musts: order tot verzending op lijn een. De Coulds zijn de reserve.',
-      en: 'The MVP cut line sits under the Musts: order to shipment on line one. The Coulds are the reserve.' },
+    { nl: 'De MVP-lijn ligt onder de Musts: order tot verzending op lijn een.',
+      en: 'The MVP cut line sits under the Musts: order to shipment on line one.' },
   ],
 ];
 spec.scenes.forEach((s, si) => {

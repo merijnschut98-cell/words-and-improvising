@@ -127,7 +127,7 @@ const STAGE = (() => {
   function s3(b, p) {
     const o = { head: [tr('behoefte', 'the need'), DIA] };
     const A = page(b, p, 0, 1);
-    o.who = op(A, box(54, tr('wie schrijft?', 'who writes?'), [tr('planners, operators,', 'planners, operators,'), tr('kwaliteitsmensen', 'quality staff'), [tr('+ een businessanalist:', '+ a business analyst:'), 'pm-on'], [tr('vertaalt business ↔ IT', 'translates between'), 'pm-mute'], [tr('en schrijft het precies', 'business and IT, writes'), 'pm-mute'], [tr('op', 'it down precisely'), 'pm-mute']], b === 0));
+    o.who = op(A, box(54, tr('wie schrijft?', 'who writes?'), [tr('planners, operators,', 'planners, operators,'), tr('kwaliteitsmensen', 'quality staff'), [tr('+ een businessanalist:', '+ a business analyst:'), 'pm-on'], [tr('vertaalt business ↔ IT,', 'translates between'), 'pm-mute'], [tr('schrijft het precies op', 'business and IT, writes'), 'pm-mute'], [tr('', 'it down precisely'), 'pm-mute']], b === 0));
     const B = page(b, p, 1, 3);
     if (b >= 1) o.solution = op(B, box(54, tr('een oplossing:', 'a solution:'), [tr('“Excel-export van', '“an Excel export of'), tr('alle orders”', 'all orders”')], b === 1) + cross(X1 - 14, 108));
     if (b >= 2) o.need = op(B * at(b, p, 2), box(176, tr('de echte behoefte', 'the real need'), [tr('planner ziet de orders', 'the planner sees'), tr('van morgen per lijn,', 'tomorrow’s orders per'), tr('met hun materialen', 'line, with materials'), [tr('misschien zonder Excel', 'maybe with no Excel'), 'pm-mute']], true));
@@ -153,13 +153,13 @@ const STAGE = (() => {
     return o;
   }
 
-  // the four bins, in two rows of two, with their names; hot: the bin lit
+  // the four bins, one under the other (a name at 22 units needs the card's
+  // width at 390 px), each with two notes at the right; hot: the bin lit
   const bins = (y, hot = -1, a = [1, 1, 1, 1]) => BINS.map(([name, cls], i) => {
-    const x = X0 + (i % 2) * 144;
-    const yy = y + Math.floor(i / 2) * 74;
+    const yy = y + i * 40;
     const on = hot === i;
-    return op(a[i], rect(x, yy, 140, 64, on ? 'pm-hot' : 'pm-card', 6) + rect(x + 6, yy + 40, 30, 14, cls, 1) + rect(x + 42, yy + 40, 30, 14, cls, 1)
-      + txt(x + 5, yy + 28, name, on ? 'pm-on' : 'pm-big'));
+    return op(a[i], rect(X0, yy, CW, 34, on ? 'pm-hot' : 'pm-card', 6) + rect(X1 - 76, yy + 10, 30, 14, cls, 1) + rect(X1 - 40, yy + 10, 30, 14, cls, 1)
+      + txt(X0 + 8, yy + 25, name, on ? 'pm-on' : 'pm-big'));
   }).join('');
 
   // s5: MoSCoW: the four bins; the o's; Dai Clegg, DSDM, common in ERP/MES
@@ -270,9 +270,11 @@ const STAGE = (() => {
         + op(at(b, p, 1, 0.6, 0.8), txt(X0, 282, tr('precies 300: vol', 'exactly 300: full'), 'pm-on')));
     }
     if (b >= 2) {
+      // the division is on the card only, so it stays up through step 2 (below
+      // the step-2 box) and gives way when step 3's bar takes its place
       const x60 = xOf(0.6 * BB.cap, BB.cap);
-      o.check = op(A * at(b, p, 2), path(`M${f1(x60)} 188v42`, 'pm-line') + txt(x60, 182, '60%', 'pm-big', 'middle')
-        + lines(320, [[tr('210 / 300 = 70%', '210 / 300 = 70%'), 'pm-big'], [tr('boven de 60% van DSDM', 'above DSDM’s 60%'), 'pm-on']]));
+      o.check = op(A * at(b, p, 2), path(`M${f1(x60)} 188v42`, 'pm-line') + txt(x60, 182, '60%', 'pm-big', 'middle'))
+        + op(at(b, p, 2) * page(b, p, 2, 4), lines(320, [[tr('210 / 300 = 70%', '210 / 300 = 70%'), 'pm-big'], [tr('boven de 60% van DSDM', 'above DSDM’s 60%'), 'pm-on']]));
     }
     const B = page(b, p, 3, -1);
     if (b >= 3) o.move = op(B, box(54, tr('stap 2: toetsvraag', 'step 2: test question'), [tr('6 eisen, 45 dagen: een', '6 reqs, 45 days: a'), tr('werkbare omweg, bv. een', 'workable workaround,'), tr('weekrapport met de hand', 'a weekly report by hand'), [tr('→ ze worden Should', '→ they move to Should'), 'pm-on']], b === 3));
