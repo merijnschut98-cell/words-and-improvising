@@ -371,6 +371,35 @@ test('speak variant: the stage-gate and lead-time words in Dutch, go/kill and SO
   assert.equal(speakOf([en], 'en'), en);
 });
 
+// A commit through the pipeline (pm.devops.pipeline): the DevOps words as
+// Dutch IT teams say them, checked with espeak-ng phonemes through Piper's
+// nl_NL-alex bridge: pipeline ("pi-pe-LIE-ne": paiplain), build ("buld" with
+// the ui of "huis": bild), deploy, deploys, deployen and deployfrequentie
+// ("DE-ploo-ie": die-ploj), Debois ("DEE-boo-is": De-bwa), Jez Humble and
+// Gene Kim with Dutch j, u and g (Djez Hambul, Djien), Accelerate
+// ("ak-se-lee-RAA-te": Ek-sellereet), State of DevOps ("STAA-te": Steet), mean
+// time to restore ("mee-aan": mien taim toe ristoor), four keys ("fau-r
+// kee-is": for kies), CI/CD ("si see-dee": sie ie sie die), continuous
+// integration and continuous delivery in Dutch sounds, softwarebedrijf ("sofT-
+// waa-re", split at the head), artefact (stressed AR-: arte-fact) and "in een
+// waardestroom" (stressed -STROOM: waarde-stroom). In English, CI/CD as letters
+// (it reads CI as the word "sigh"); no other film's spoken text changes
+test('speak variant: the DevOps words in Dutch, CI/CD in English', () => {
+  const nl = (s) => speakOf([s], 'nl');
+  assert.equal(nl('De pipeline, Pipelines. De build, een Build. Een deploy, de deploys, deployen. De deployfrequentie, Deployfrequentie.'),
+    'De paiplain, Paiplains. De bild, een Bild. Een die-ploj, de die-plojs, die-plojen. De die-ploj-frequentie, Die-ploj-frequentie.');
+  assert.equal(nl('Patrick Debois. Nicole Forsgren, Jez Humble en Gene Kim. Het boek Accelerate. Het State of DevOps-rapport.'),
+    'Patrick De-bwa. Nicole Forsgren, Djez Hambul en Djien Kim. Het boek Ek-sellereet. Het Steet of DevOps-rapport.');
+  assert.equal(nl('MTTR, mean time to restore. De vier sleutels, four keys. Vaak CI/CD: continuous integration en continuous delivery.'),
+    'MTTR, mien taim toe ristoor. De vier sleutels, for kies. Vaak sie ie sie die: kon-tinjoe-wus inte-gree-sjun en kon-tinjoe-wus de-livvrie.');
+  assert.equal(nl('Geen softwarebedrijf. Een Softwarebedrijf. Het artefact, Artefact. Doorlooptijd in een waardestroom.'),
+    'Geen software-bedrijf. Een Software-bedrijf. Het arte-fact, Arte-fact. Doorlooptijd in een waarde-stroom.');
+  assert.equal(nl('een builder, de waardestroom, een artefacten-lijst, continuous process'), 'een builder, de waardestroom, een artefacten-lijst, continuous process');
+  assert.equal(speakOf(['Often called CI/CD, continuous integration.'], 'en'), 'Often called C I C D, continuous integration.');
+  const en = 'The pipeline, the build, a deployment, Patrick Debois, Jez Humble and Gene Kim, Accelerate, the State of DevOps report, mean time to restore, the four keys, an artefact';
+  assert.equal(speakOf([en], 'en'), en);
+});
+
 // A stage drawn on the Dutch caption beats (beatwarp films set STAGE.nlBeats)
 // follows the caption beat on screen in English too: while English beat k
 // shows, the stage runs through Dutch beat k, so the drawing is never a beat off.
