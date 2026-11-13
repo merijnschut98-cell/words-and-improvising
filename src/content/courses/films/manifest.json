@@ -2057,6 +2057,41 @@
         ],
         "vtt": "src/content/courses/films/pm.outside.steering.en.vtt"
       }
+    },
+    "pm.outside.experts": {
+      "poster": "src/content/courses/films/pm.outside.experts.jpg",
+      "nl": {
+        "dur": 329.9,
+        "bytes": 12705716,
+        "scenes": [
+          0,
+          50.84,
+          75.78,
+          116.26,
+          168.24,
+          210.49,
+          235.74,
+          256.29,
+          279.66
+        ],
+        "vtt": "src/content/courses/films/pm.outside.experts.nl.vtt"
+      },
+      "en": {
+        "dur": 329.5,
+        "bytes": 12466368,
+        "scenes": [
+          0,
+          48.43,
+          71.64,
+          113.61,
+          163.75,
+          206.84,
+          231.72,
+          253.5,
+          277.77
+        ],
+        "vtt": "src/content/courses/films/pm.outside.experts.en.vtt"
+      }
     }
   }
 }
