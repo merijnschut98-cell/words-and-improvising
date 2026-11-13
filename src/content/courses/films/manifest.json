@@ -2368,6 +2368,41 @@
         ],
         "vtt": "src/content/courses/films/pm.outside.disagree.en.vtt"
       }
+    },
+    "pm.agile.scrum": {
+      "poster": "src/content/courses/films/pm.agile.scrum.jpg",
+      "nl": {
+        "dur": 332.9,
+        "bytes": 13594238,
+        "scenes": [
+          0,
+          32.6,
+          69.71,
+          116.53,
+          153.59,
+          192.02,
+          217.04,
+          250.53,
+          293.68
+        ],
+        "vtt": "src/content/courses/films/pm.agile.scrum.nl.vtt"
+      },
+      "en": {
+        "dur": 348.6,
+        "bytes": 13993982,
+        "scenes": [
+          0,
+          34.87,
+          73.8,
+          121.19,
+          161.13,
+          200.07,
+          226.42,
+          264.12,
+          307.85
+        ],
+        "vtt": "src/content/courses/films/pm.agile.scrum.en.vtt"
+      }
     }
   }
 }
