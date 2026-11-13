@@ -2541,6 +2541,41 @@
         ],
         "vtt": "src/content/courses/films/pm.agile.backlog.en.vtt"
       }
+    },
+    "pm.scaled.pi": {
+      "poster": "src/content/courses/films/pm.scaled.pi.jpg",
+      "nl": {
+        "dur": 345.8,
+        "bytes": 16335945,
+        "scenes": [
+          0,
+          38,
+          83.49,
+          108.46,
+          154.54,
+          194.61,
+          229.87,
+          265.52,
+          304.32
+        ],
+        "vtt": "src/content/courses/films/pm.scaled.pi.nl.vtt"
+      },
+      "en": {
+        "dur": 358.2,
+        "bytes": 16788185,
+        "scenes": [
+          0,
+          38.33,
+          83.19,
+          108.72,
+          157.05,
+          197.44,
+          233.89,
+          272.78,
+          314.18
+        ],
+        "vtt": "src/content/courses/films/pm.scaled.pi.en.vtt"
+      }
     }
   }
 }
