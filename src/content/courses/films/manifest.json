@@ -1596,6 +1596,41 @@
         "vtt": "src/content/courses/films/pm.portfolio.benefits.en.vtt"
       }
     },
+    "pm.portfolio.prioritise": {
+      "poster": "src/content/courses/films/pm.portfolio.prioritise.jpg",
+      "nl": {
+        "dur": 335.5,
+        "bytes": 13114685,
+        "scenes": [
+          0,
+          24.37,
+          54.79,
+          97.56,
+          130.99,
+          182.22,
+          221.76,
+          260.63,
+          300.72
+        ],
+        "vtt": "src/content/courses/films/pm.portfolio.prioritise.nl.vtt"
+      },
+      "en": {
+        "dur": 343.7,
+        "bytes": 13223166,
+        "scenes": [
+          0,
+          24.72,
+          56.57,
+          99.85,
+          134.11,
+          187.17,
+          228.91,
+          266.35,
+          307.39
+        ],
+        "vtt": "src/content/courses/films/pm.portfolio.prioritise.en.vtt"
+      }
+    },
     "pm.stuck.diagnose": {
       "poster": "src/content/courses/films/pm.stuck.diagnose.jpg",
       "nl": {
