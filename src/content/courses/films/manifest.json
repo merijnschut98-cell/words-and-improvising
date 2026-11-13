@@ -2471,6 +2471,41 @@
         ],
         "vtt": "src/content/courses/films/pm.agile.scrum.en.vtt"
       }
+    },
+    "pm.agile.kanban": {
+      "poster": "src/content/courses/films/pm.agile.kanban.jpg",
+      "nl": {
+        "dur": 342.6,
+        "bytes": 16982035,
+        "scenes": [
+          0,
+          28.74,
+          70.9,
+          114.52,
+          147.79,
+          190.79,
+          219.4,
+          255.15,
+          305.41
+        ],
+        "vtt": "src/content/courses/films/pm.agile.kanban.nl.vtt"
+      },
+      "en": {
+        "dur": 350,
+        "bytes": 17353293,
+        "scenes": [
+          0,
+          28.75,
+          68.79,
+          112.89,
+          150.29,
+          190.43,
+          220.25,
+          259.17,
+          312.66
+        ],
+        "vtt": "src/content/courses/films/pm.agile.kanban.en.vtt"
+      }
     }
   }
 }
