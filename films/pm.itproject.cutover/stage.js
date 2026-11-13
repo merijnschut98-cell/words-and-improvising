@@ -107,7 +107,7 @@ const STAGE = (() => {
   function s4(b, p) {
     const o = { head: [tr('terug of door', 'back or forward'), DIA] };
     const A = page(b, p, 0, 2);
-    o.ponr = op(A, box(54, tr('point of no return', 'rollback point'), [tr('laatste kans om terug', 'the last chance to go'), tr('te gaan zonder', 'back without losing'), tr('werkverlies', 'work')], b === 0));
+    o.ponr = op(A, box(54, tr('point of no return', 'rollback point'), NL ? ['laatste kans om terug', 'te gaan zonder', 'werkverlies'] : [['also: point of no return', 'pm-mute'], 'last chance to go back', 'without losing work'], b === 0));
     if (b >= 1) o.back = op(A * at(b, p, 1), lines(200, [[tr('ervoor:', 'before it:'), 'pm-mute'], [tr('terugdraaiplan klaar', 'rollback plan ready'), ''], [tr('erna:', 'after it:'), 'pm-mute'], [tr('oplossen in het nieuwe', 'fix in the new system'), 'pm-on']]));
     const B = page(b, p, 2, -1);
     if (b >= 2) o.place = op(B, box(54, tr('waar leg je het?', 'where to place it?'), [tr('terugzetten moet ruim', 'a restore must finish'), tr('voor de eerste ploeg', 'well before the'), tr('klaar zijn', 'first shift')], b === 2));
@@ -137,11 +137,11 @@ const STAGE = (() => {
     if (b >= 1) o.t1 = op(A * at(b, p, 1), row(166, tr('vr 18:00', 'Fri 18:00'), 'freeze', b === 1) + row(192, '18–21', tr('telling', 'stock count'), b === 1) + row(218, '21–06', tr('laden: 9 u', 'load: 9 h'), b === 1));
     if (b >= 2) o.t2 = op(A * at(b, p, 2), lines(252, [[tr('7,5 u + 20% = 9 uur', '7.5 h + 20% = 9 hours'), 'pm-on']]));
     const B = page(b, p, 3, -1);
-    if (b >= 3) o.t3 = op(B, row(58, tr('za 06–12', 'Sat 06–12'), tr('afstemming', 'reconcile'), b === 3) + row(84, tr('za 12:00', 'Sat 12:00'), 'go/no-go 1', b === 3) + row(110, '12–20', tr('koppelingen', 'interfaces'), b === 3)
-      + txt(X0 + 122, 136, tr('testorders', 'test orders'), 'pm-mute'));
-    if (b >= 4) o.t4 = op(at(b, p, 4), row(168, '20–08', 'key users', b === 4) + row(194, tr('zo 08:00', 'Sun 08:00'), 'go/no-go 2', b === 4)
-      + txt(X0, 220, tr('point of no return:', 'rollback point:'), 'pm-mute') + txt(X0, 246, tr('terugzetten 10 uur', 'restore: 10 hours'), 'pm-mute'));
-    if (b >= 5) o.t5 = op(at(b, p, 5), row(276, tr('ma 06:00', 'Mon 06:00'), tr('eerste ploeg', 'first shift'), true));
+    if (b >= 3) o.t3 = op(B, row(66, tr('za 06–12', 'Sat 06–12'), tr('afstemming', 'reconcile'), b === 3) + row(92, tr('za 12:00', 'Sat 12:00'), 'go/no-go 1', b === 3) + row(118, '12–20', tr('koppelingen', 'interfaces'), b === 3)
+      + txt(X0 + 122, 144, tr('testorders', 'test orders'), 'pm-mute'));
+    if (b >= 4) o.t4 = op(at(b, p, 4), row(174, '20–08', 'key users', b === 4) + row(200, tr('zo 08:00', 'Sun 08:00'), 'go/no-go 2', b === 4)
+      + txt(X0, 226, tr('point of no return:', 'rollback point:'), 'pm-mute') + txt(X0, 252, tr('terugzetten 10 uur', 'restore: 10 hours'), 'pm-mute'));
+    if (b >= 5) o.t5 = op(at(b, p, 5), row(280, tr('ma 06:00', 'Mon 06:00'), tr('eerste ploeg', 'first shift'), true));
     return o;
   }
   // s7: Saturday 11:30: the stock within tolerance, the checkweigher fails; go
@@ -153,7 +153,7 @@ const STAGE = (() => {
     if (b >= 1) o.fail = op(A * at(b, p, 1), lines(184, [[tr('maar:', 'but:'), 'pm-mute'], [tr('✗ koppeling met de', '✗ the checkweigher'), 'pm-big'], [tr('controleweegschalen', 'interface fails'), 'pm-big']]));
     const B = page(b, p, 2, -1);
     if (b >= 2) o.go = op(B, box(54, 'go/no-go 1', [[tr('go, met een', 'go, with a'), 'pm-on'], [tr('voorwaarde', 'condition'), 'pm-on']], b === 2));
-    if (b >= 3) o.window = op(B * at(b, p, 3), lines(184, [[tr('weegschalen pas nodig:', 'the scales are needed'), ''], [tr('maandag 06:00', 'Monday 06:00'), 'pm-big'], [tr('repareren tot', 'fix it by'), ''], [tr('zondag 08:00', 'Sunday 08:00'), 'pm-on']]));
+    if (b >= 3) o.window = op(B * at(b, p, 3), lines(184, [[tr('koppeling pas nodig:', 'interface needed from'), ''], [tr('maandag 06:00', 'Monday 06:00'), 'pm-big'], [tr('repareren tot', 'fix it by'), ''], [tr('zondag 08:00', 'Sunday 08:00'), 'pm-on']]));
     return o;
   }
   // s8: Sunday 08:00: the condition, the manual workaround; no-go and the

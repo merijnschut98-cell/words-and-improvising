@@ -52,7 +52,10 @@
 //     decides, usually the sponsor or plant manager; not the partner, who has an
 //     interest in going ahead (s3 b4)
 //   cutover teach 4: the point of no return (nl) / rollback point (en): the
-//     last moment to go back to the old system without losing work (s4 b1);
+//     last moment to go back to the old system without losing work (s4 b1;
+//     the English card adds "also: point of no return", the lesson's other name,
+//     on the card only: the kit's language check keeps the Dutch term name out of
+//     the English captions and narration);
 //     before it a rollback plan is ready; after it, problems are fixed in the new
 //     system, because going back would cost more (s4 b2); place it so a restore
 //     would finish well before the first shift (s4 b3); rehearse the whole
@@ -102,8 +105,10 @@
 // checkweigher (a small conveyor scale with a display). People: you (the
 // consultant, at the board), the sponsor (who decides), the partner (the Scrum
 // film's cast: a Developer with a laptop, pm.agile.scrum/cast.mjs, imported, not
-// edited), a key user (the pm world's planner figure with a tablet, cue
-// "planner") and the team lead from the floor (the Monday shift). At the top
+// edited) and the team lead from the floor (the Monday shift). Review
+// (2026-11-13): a fifth figure, a key user with a tablet, stood almost wholly
+// behind the team lead at 390 px and was dropped; the board's criteria carry
+// "key users ready". At the top
 // right a panel with one card per scene, labelled "schema" or "voorbeeld". Along
 // the bottom the weekend strip, hour by hour from Friday 18:00 to Monday 06:00,
 // 9.8 units an hour: the freeze, the blocks of the plan, the two go/no-go
@@ -232,7 +237,6 @@ const world = [
   crit,
   w.person({ x: 22, y: 52, role: 'jij', along: 'x', reach: [52, 6, 150] }),
   scrumPerson(w, k, G, P, { x: 146, y: 78, key: 'partner', look: 'dev2', along: 'x' }),
-  w.person({ x: 40, y: 146, role: 'planner', along: 'y' }),
   w.table(TABLE),
   cueG('systems', systems),
   cueG('binder', binder),
@@ -242,7 +246,7 @@ const world = [
   w.person({ x: 258, y: 146, role: 'sponsor', along: 'y' }),
   w.person({ x: 96, y: 212, role: 'teamlead', along: 'x' }),
 ].join('');
-for (const r of ['jij', 'sponsor', 'teamlead', 'planner', 'partner', 'clock', 'board', 'crit', 'systems', 'binder', 'paper', 'scale']) assert(world.includes(`data-cue="${r}"`), `${r} is a cue group`);
+for (const r of ['jij', 'sponsor', 'teamlead', 'partner', 'clock', 'board', 'crit', 'systems', 'binder', 'paper', 'scale']) assert(world.includes(`data-cue="${r}"`), `${r} is a cue group`);
 if (FAILS.length) throw new Error(`model:\n  ${FAILS.join('\n  ')}`);
 
 // ---------------------------------------------------------------- the panel and the strip (stage space)
@@ -260,7 +264,8 @@ const CUES = ['cut', 'when', 'cplan', 'lines',
   'cond', 'manual', 'nogo', 'log'];
 // the weekend strip: x of hour h, its parts each a cue group
 const STRIP = { x0: 26, ph: 9.8, y0: 294, y1: 396 };
-const SPARTS = ['sAxis', 'sCount', 'sLoad', 'sRecon', 'sIf', 'sKu', 'sRestore', 'sFreeze', 'sGng1', 'sGng2', 'sPonr', 'sShift', 'sWindow'];
+// sLoad after sRecon: the 14-hour load's overrun (s5) lies over the reconciliation block
+const SPARTS = ['sAxis', 'sCount', 'sRecon', 'sIf', 'sKu', 'sLoad', 'sRestore', 'sFreeze', 'sGng1', 'sGng2', 'sPonr', 'sShift', 'sWindow'];
 assert(r1(STRIP.x0 + 60 * STRIP.ph) <= 616, 'the strip ends inside the stage');
 const hud = g('panel', `<rect class="pm-panel" x="${PX}" y="10" width="${PW}" height="278" rx="10"/>`
   + g('pHead', '') + CUES.map((c) => cueG(c, g(`p_${c}`, ''))).join(''))
@@ -358,7 +363,7 @@ const spec = {
     sc('s3', 3, { nl: 'Go/no-go', en: 'Go/no-go' }, [
       { nl: '{t:Go/no-go|Go/no-go}: doorgaan of stoppen, tegen criteria die vooraf zijn afgesproken.', en: '{t:Go/no-go|Go/no-go}: go ahead or stop, against criteria agreed in advance.', cue: { 'Go/no-go': 'gng' }, focus: ['gng', 'sGng1', 'sGng2'] },
       { nl: 'Bijvoorbeeld: de afstemming binnen de tolerantie, de belangrijkste koppelingen werken.', en: 'For example: reconciliation within tolerance, the key interfaces work.', focus: ['crit1', 'crit'] },
-      { nl: 'Geen open blokkerende bevindingen, en de key users zijn klaar.', en: 'No open blocking defects, and the key users are ready.', focus: ['crit2', 'crit', 'planner'] },
+      { nl: 'Geen open blokkerende bevindingen, en de key users zijn klaar.', en: 'No open blocking defects, and the key users are ready.', focus: ['crit2', 'crit'] },
       { nl: 'Een benoemd persoon beslist: de sponsor of de plantmanager. Niet de partner.', en: 'A named person decides: the sponsor or plant manager. Not the partner.', focus: ['who', 'sponsor', 'partner'] },
     ]),
     sc('s4', 3, { nl: 'Het point of no return', en: 'The rollback point' }, [
@@ -385,7 +390,7 @@ const spec = {
       { nl: 'Zaterdag 11:30: het voorraadverschil is {n:0.2}%, binnen de tolerantie van {n:0.5}%.', en: 'Saturday 11:30: the stock difference is {n:0.2}%, within the {n:0.5}% tolerance.', focus: ['diff', 'sRecon', 'crit'] },
       { nl: 'Maar de koppeling met de controleweegschalen werkt niet.', en: 'But the interface with the checkweighers does not work.', focus: ['fail', 'scale', 'sIf'] },
       { nl: 'Advies bij go/no-go 1: go, met een voorwaarde.', en: 'The advice at go/no-go 1: go, with a condition.', focus: ['go', 'sGng1', 'sponsor'] },
-      { nl: 'De weegschalen zijn pas maandag 06:00 nodig: tot zondag 08:00 is er tijd om te repareren.', en: 'The scales are only needed on Monday at 06:00: there is until Sunday 08:00 to fix it.', focus: ['window', 'sWindow'] },
+      { nl: 'De koppeling is pas maandag 06:00 nodig: tot zondag 08:00 is er tijd om te repareren.', en: 'The interface is only needed from Monday 06:00: there is until Sunday 08:00 to fix it.', focus: ['window', 'sWindow', 'scale'] },
     ]),
     sc('s8', 3, { nl: 'Voorbeeld: zondag 08:00', en: 'Example: Sunday 08:00' }, [
       { nl: 'Zondag 08:00: de koppeling werkt, of een handmatige omweg is getest.', en: 'Sunday 08:00: the interface works, or a manual workaround has been tested.', focus: ['cond', 'sGng2', 'scale'] },
@@ -566,7 +571,7 @@ const preamble = `const C = ${JSON.stringify(C)};\nconst CAM = ${JSON.stringify(
 const stageScript = kitScript() + '\n' + preamble + lean(readFileSync(join(HERE, 'stage.js'), 'utf8'))
   + '\n;\n' + readFileSync(join(HERE, '../_kit/beatwarp.js'), 'utf8');
 
-const PEOPLE = ':is([data-cue="jij"],[data-cue="sponsor"],[data-cue="teamlead"],[data-cue="planner"],[data-cue="partner"])';
+const PEOPLE = ':is([data-cue="jij"],[data-cue="sponsor"],[data-cue="teamlead"],[data-cue="partner"])';
 const css = PM_CSS + `
 .pm-panel{fill:var(--anatomy-shade-0);stroke:var(--fp-hair);stroke-width:1;opacity:.97}
 .pm-card{fill:var(--anatomy-face);stroke:var(--anatomy-mid);stroke-width:1.4;stroke-linejoin:round}
@@ -597,8 +602,8 @@ const css = PM_CSS + `
 `;
 
 const label = {
-  nl: 'Een war room voor een go-liveweekend. Aan de achterwand een grote klok en een whiteboard met vier vinkregels, de go/no-gocriteria. Op tafel twee laptops, het oude en het nieuwe systeem, het cutoverdraaiboek als dikke stapel papier, een vel voor wat met de hand wordt genoteerd en een controleweegschaal. Jij, de adviseur in petrol, staat bij het bord; de sponsor, die beslist, aan het eind van de tafel; de partner met een laptop en een key user met een tablet erachter, en vooraan de teamleider van de vloer, van de eerste ploeg op maandag. Rechts een paneel met per scène een kaart, gemarkeerd als schema of voorbeeld. Onderaan het weekend uur voor uur, van vrijdag 18:00 tot maandag 06:00: de freeze, de telling, het laden, de afstemming, de koppelingen, de tests van de key users, twee go/no-goruiten, de vlag van het point of no return, de gestippelde tien uur om terug te zetten, en de eerste ploeg op maandag.',
-  en: 'A war room for a go-live weekend. On the back wall a big clock and a whiteboard with four tick rows, the go/no-go criteria. On the table two laptops, the old and the new system, the cutover plan as a thick stack of paper, a sheet for what is written by hand, and a checkweigher. You, the consultant in petrol, stand at the board; the sponsor, who decides, at the end of the table; the partner with a laptop and a key user with a tablet behind it, and in front the team lead from the floor, of Monday\'s first shift. At the right a panel with one card per scene, marked as diagram or example. Along the bottom the weekend hour by hour, from Friday 18:00 to Monday 06:00: the freeze, the count, the load, the reconciliation, the interfaces, the key users\' tests, two go/no-go diamonds, the rollback point flag, the dashed ten hours of a restore, and the first shift on Monday.',
+  nl: 'Een war room voor een go-liveweekend. Aan de achterwand een grote klok en een whiteboard met vier vinkregels, de go/no-gocriteria. Op tafel twee laptops, het oude en het nieuwe systeem, het cutoverdraaiboek als dikke stapel papier, een vel voor wat met de hand wordt genoteerd en een controleweegschaal. Jij, de adviseur in petrol, staat bij het bord; de sponsor, die beslist, aan het eind van de tafel; de partner met een laptop erachter, en vooraan de teamleider van de vloer, van de eerste ploeg op maandag. Rechts een paneel met per scène een kaart, gemarkeerd als schema of voorbeeld. Onderaan het weekend uur voor uur, van vrijdag 18:00 tot maandag 06:00: de freeze, de telling, het laden, de afstemming, de koppelingen, de tests van de key users, twee go/no-goruiten, de vlag van het point of no return, de gestippelde tien uur om terug te zetten, en de eerste ploeg op maandag.',
+  en: 'A war room for a go-live weekend. On the back wall a big clock and a whiteboard with four tick rows, the go/no-go criteria. On the table two laptops, the old and the new system, the cutover plan as a thick stack of paper, a sheet for what is written by hand, and a checkweigher. You, the consultant in petrol, stand at the board; the sponsor, who decides, at the end of the table; the partner with a laptop behind it, and in front the team lead from the floor, of Monday\'s first shift. At the right a panel with one card per scene, marked as diagram or example. Along the bottom the weekend hour by hour, from Friday 18:00 to Monday 06:00: the freeze, the count, the load, the reconciliation, the interfaces, the key users\' tests, two go/no-go diamonds, the rollback point flag, the dashed ten hours of a restore, and the first shift on Monday.',
 };
 
 const { data } = await defineFilm(spec, { svg, script: stageScript, css, kitCss: k.ISO_CSS, label });
