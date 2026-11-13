@@ -545,7 +545,7 @@ const SAY = [
       en: 'Two are about stability. {t:Change fail rate|Change fail rate}: the share of deployments that need immediate intervention.' },
     { nl: 'Ingrijpen is bijvoorbeeld terugdraaien, of een spoedreparatie.',
       en: 'For example a rollback, or an urgent fix.' },
-    { nl: 'De {t:Hersteltijd na een mislukte deploy|hersteltijd na een mislukte deploy}: hoe lang herstellen duurt als een deploy misgaat.',
+    { nl: 'De {t:Hersteltijd na een mislukte deploy|hersteltijd na een mislukte deploy} is hoe lang herstellen duurt als een deploy misgaat.',
       en: '{t:Failed deployment recovery time|Failed deployment recovery time}: how long recovery takes when a deployment goes wrong.' },
     { nl: 'Tot tweeduizend drieëntwintig heette die MTTR, mean time to restore. Nu telt alleen een storing door een eigen wijziging, geen stroomstoring in het datacenter.',
       en: 'Until twenty twenty-three it was called MTTR, mean time to restore. Now only a failure from the team\'s own change counts, not a power cut in the data centre.' },
