@@ -658,6 +658,7 @@ export default {
     },
     {
       id: 'pm.agile.stories',
+      film: 'pm.agile.backlog',
       title: 'User stories: werk beschrijven vanuit de gebruiker',
       pre: [
         {
@@ -737,6 +738,7 @@ export default {
     },
     {
       id: 'pm.agile.refine',
+      film: 'pm.agile.backlog',
       title: 'Refinement: de backlog klaar maken',
       pre: [
         {
@@ -817,6 +819,7 @@ export default {
     },
     {
       id: 'pm.agile.points',
+      film: 'pm.agile.backlog',
       title: 'Story points, planning poker en velocity',
       pre: [
         {
