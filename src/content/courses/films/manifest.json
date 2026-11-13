@@ -1595,6 +1595,41 @@
         ],
         "vtt": "src/content/courses/films/pm.portfolio.benefits.en.vtt"
       }
+    },
+    "pm.stuck.diagnose": {
+      "poster": "src/content/courses/films/pm.stuck.diagnose.jpg",
+      "nl": {
+        "dur": 357.9,
+        "bytes": 12959590,
+        "scenes": [
+          0,
+          36.66,
+          86.09,
+          127.63,
+          157.76,
+          195.52,
+          243.83,
+          280.85,
+          320.38
+        ],
+        "vtt": "src/content/courses/films/pm.stuck.diagnose.nl.vtt"
+      },
+      "en": {
+        "dur": 357.4,
+        "bytes": 12788812,
+        "scenes": [
+          0,
+          36.31,
+          84.99,
+          130.43,
+          160.65,
+          197.14,
+          246.22,
+          281.65,
+          320.25
+        ],
+        "vtt": "src/content/courses/films/pm.stuck.diagnose.en.vtt"
+      }
     }
   }
 }
