@@ -17,7 +17,8 @@
 //   words spoken in its span, and the cue starts with its first word;
 // - with faster-whisper installed: the word error rate of a Whisper
 //   transcript against the script (films/_kit/wer.py), at most 15 % for
-//   large-v3-turbo and 20 % for small.
+//   large-v3-turbo and 20 % for small. A word a SAY rule respelled for the
+//   voice counts as heard when Whisper writes the real word (the said text).
 // Exit code 1 when a check fails.
 import { spawnSync } from 'node:child_process';
 import { existsSync, readFileSync, writeFileSync, mkdtempSync } from 'node:fs';
@@ -150,7 +151,10 @@ export function runGuard(id, lang, { audio = null, wer = process.env.FILM_GUARD_
     const tmp = mkdtempSync(join(tmpdir(), 'guard-'));
     const ref = join(tmp, 'ref.txt');
     writeFileSync(ref, timing.sentences.map((s) => s.spoken).join('\n'));
-    const r = spawnSync('python3', ['-I', join(KIT, 'wer.py'), file, ref, lang, wer], { maxBuffer: 1 << 26, env: { ...process.env, HF_HUB_OFFLINE: process.env.HF_HUB_OFFLINE || '1' } });
+    // the words a listener should hear: a SAY respelling heard as the real word is no error
+    const said = join(tmp, 'said.txt');
+    writeFileSync(said, timing.sentences.map((s) => s.said).join('\n'));
+    const r = spawnSync('python3', ['-I', join(KIT, 'wer.py'), file, ref, lang, wer, said], { maxBuffer: 1 << 26, env: { ...process.env, HF_HUB_OFFLINE: process.env.HF_HUB_OFFLINE || '1' } });
     if (r.status === 0) w = { model: wer, ...JSON.parse(String(r.stdout).trim().split('\n').pop()) };
     else log(`listen guard: no word error rate (${String(r.stderr).trim().split('\n').pop()})`);
   }
