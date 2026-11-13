@@ -264,6 +264,33 @@ test('speak variant: the Scrum names and split compounds in Dutch', () => {
   assert.equal(speakOf([en], 'en'), en);
 });
 
+// From idea to sprint-ready (pm.agile.backlog): the backlog and estimating
+// words as Dutch agile teams say them, checked with espeak-ng phonemes through
+// Piper's nl_NL-alex bridge: user story (it reads "uuzer": joezer story),
+// stories (it stresses "sto-RIES": story's), story points ("po-ints": pojnts),
+// epic (eppik), velocity ("VEE-loo-si-ti": ve-lossetti), the Fibonacci-reeks
+// (Fiebo-natsjie reeks), Definition of Ready (as the Done rule: Deffi-nisjun of
+// Reddi), Ron Jeffries, Bill Wake and James Grenning as their names sound,
+// Card, Conversation en Confirmation and Extreme Programming in English
+// sounds, the Scrum Guide before "schrijft" and "noemt" (Gaid, as the Scrum
+// film's rule), and acceptatiecriteria, zaagmachines and trekhaken split at the
+// head (a capital Acceptatiecriteria only before "zijn concrete", so
+// pm.plan.wbs's "Acceptatiecriteria:" stays). In English, "three Cs" as "three
+// C's" (en_GB reads "C S"). Story alone, planning poker and INVEST keep their
+// voice; no other film's spoken text changes
+test('speak variant: the backlog and estimating words in Dutch, the three Cs in English', () => {
+  const nl = (s) => speakOf([s], 'nl');
+  assert.equal(nl('Een user story. User stories. Stories en epics. Een epic.'), 'Een joezer story. Joezer story\'s. Story\'s en eppiks. Een eppik.');
+  assert.equal(nl('Story points, de velocity en de Fibonacci-reeks. Velocity is.'), 'Story pojnts, de ve-lossetti en de Fiebo-natsjie reeks. Ve-lossetti is.');
+  assert.equal(nl('Een Definition of Ready, van Bill Wake. Ron Jeffries en James Grenning.'), 'Een Deffi-nisjun of Reddi, van Bil Weejk. Ron Djeffriz en Djeems Grenning.');
+  assert.equal(nl('Card, Conversation en Confirmation, uit Extreme Programming.'), 'Kaard, Konver-seesjun en Konfur-meesjun, uit Ekstriem Proogremming.');
+  assert.equal(nl('De Scrum Guide schrijft niets. De Scrum Guide noemt hem niet. Acceptatiecriteria zijn concrete. De zaagmachines, trekhaken.'), 'De Scrum Gaid schrijft niets. De Scrum Gaid noemt hem niet. Acceptatie-criteria zijn concrete. De zaag-machines, trek-haken.');
+  assert.equal(nl('Een story, planning poker, INVEST. Uit de Scrum Guide. Acceptatiecriteria: wie'), 'Een story, planning poker, INVEST. Uit de Scrum Guide. Acceptatiecriteria: wie');
+  assert.equal(speakOf(['Ron Jeffries described the three Cs. Three Cs.'], 'en'), 'Ron Jeffries described the three C\'s. Three C\'s.');
+  const en = 'A user story, story points, the velocity, an epic, the Fibonacci sequence, the Definition of Ready, Bill Wake, James Grenning';
+  assert.equal(speakOf([en], 'en'), en);
+});
+
 // A stage drawn on the Dutch caption beats (beatwarp films set STAGE.nlBeats)
 // follows the caption beat on screen in English too: while English beat k
 // shows, the stage runs through Dutch beat k, so the drawing is never a beat off.

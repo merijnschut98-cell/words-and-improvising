@@ -497,7 +497,26 @@ const SAY = {
     [/\b([Rr])efinement\b/g, '$1i-fainmunt'],
     [/\b([Pp])roductieleider/g, '$1roductie-leider'],
     [/\b([Aa])cceptatieomgeving/g, '$1cceptatie-omgeving'], [/\b([Ss])printdoel/g, '$1print-doel'], [/\b([Uu])it het Lean-team\b/g, '$1it het Lien team'],
-    [/\bgangbare vuistregel\b/g, 'gangbare vuist-regel']],
+    [/\bgangbare vuistregel\b/g, 'gangbare vuist-regel'],
+    // from idea to sprint-ready (pm.agile.backlog): the backlog and estimating words as Dutch agile teams say
+    // them, checked with espeak-ng phonemes through Piper's nl_NL-alex bridge: it reads user story with
+    // "uuzer" (said joezer story), stresses "sto-RIES" (story's), reads story points as "po-ints" (pojnts),
+    // epic with a long e (eppik), velocity as "VEE-loo-si-ti" (ve-lossetti), the Fibonacci-reeks as
+    // "FIE-boo-nak-si" (Fiebo-natsjie reeks), Definition of Ready as "dee-fie-nie-SJON of REE-aa-die" (Deffi-nisjun of
+    // Reddi, as the Done rule above), Jeffries with a Dutch j, Wake as "waa-ke" and James as "jaa-mes" (Djeffriz,
+    // Weejk, Djeems), Card, Conversation and Confirmation as Dutch words and Extreme Programming as "ek-STREE-me"
+    // (said in English sounds), the Scrum Guide as a Dutch "guide" (Gaid, as the Scrum film's rule, only before
+    // "schrijft" and "noemt", so pm.outside.steering's "Uit de Scrum Guide" stays), and acceptatiecriteria with
+    // "ti", zaagmachines and trekhaken stressed at the end: split at the head. A story alone, planning poker and
+    // INVEST keep their voice; a capital Acceptatiecriteria only before "zijn concrete" (the lower-case rule above
+    // covers the rest; pm.plan.wbs's "Acceptatiecriteria:" stays); no other film's spoken text changes
+    [/\b([Uu])ser stor(y|ies)\b/g, (m, u, e) => `${u === 'U' ? 'J' : 'j'}oezer story${e === 'ies' ? '\'s' : ''}`],
+    [/\b([Ss])tories\b/g, '$1tory\'s'], [/\b([Ss])tory points\b/g, '$1tory pojnts'], [/\b([Ee])pic(s?)\b/g, '$1ppik$2'],
+    [/\b([Vv])elocity\b/g, '$1e-lossetti'], [/\bFibonacci-reeks\b/g, 'Fiebo-natsjie reeks'], [/\bDefinition of Ready\b/g, 'Deffi-nisjun of Reddi'],
+    [/\bRon Jeffries\b/g, 'Ron Djeffriz'], [/\bBill Wake\b/g, 'Bil Weejk'], [/\bJames Grenning\b/g, 'Djeems Grenning'],
+    [/\bCard, Conversation en Confirmation\b/g, 'Kaard, Konver-seesjun en Konfur-meesjun'], [/\bExtreme Programming\b/g, 'Ekstriem Proogremming'],
+    [/\bScrum Guide (?=schrijft|noemt)/g, 'Scrum Gaid '], [/\b([Aa])cceptatiecriteria(?= zijn concrete)/g, '$1cceptatie-criteria'],
+    [/\bzaagmachines\b/g, 'zaag-machines'], [/\btrekhaken\b/g, 'trek-haken']],
   en: [[/\brpm\b/g, 'revolutions per minute'], [/\bmm\/min\b/g, 'millimetres per minute'], [/\bm\/min\b/g, 'metres per minute'], [/µm\b/g, 'micrometres'],
     [/€\s?(\d[\d,]*(?:\.\d+)?)/g, '$1 euros'], [/(\d)\.0(?![\d])/g, '$1'], [/(\d)\s?mm\b/g, '$1 millimetres'], [/(\d)\s?min\b/g, '$1 minutes'], [/(\d)\s?%/g, '$1 percent'],
     [/Ø\s*/g, 'diameter '], [/(\d)\+(\d)/g, '$1 plus $2'], [/\s×\s/g, ' times '], [/\s\/\s/g, ' divided by '], [/\s=\s/g, ' is '], [/°/g, ' degrees'], [/\bRa\b/g, 'R a'], [/’/g, "'"],
@@ -519,7 +538,10 @@ const SAY = {
     [/\bidempotency\b/g, 'idem-potency'],
     // conflict: interests and the difficult conversation (pm.run.conflict): Ury as his name sounds, "Yuri"
     // (espeak-ng's English reads "urry"), only after "by", so pm.negotiate.batna's caption "Fisher and Ury:" stays
-    [/\bby Fisher and Ury\b/g, 'by Fisher and Yuri']],
+    [/\bby Fisher and Ury\b/g, 'by Fisher and Yuri'],
+    // from idea to sprint-ready (pm.agile.backlog): Ron Jeffries' three Cs with an apostrophe, as the letter's
+    // plural sounds (espeak-ng's English reads "three Cs" as "three C S")
+    [/\b([Tt])hree Cs\b/g, '$1hree C\'s']],
 };
 export const sayable = (text, lang) => (SAY[lang] || []).reduce((s, [re, w]) => s.replace(re, w), text);
 // The words the voice says: no English gloss, and with a language, units as words.
