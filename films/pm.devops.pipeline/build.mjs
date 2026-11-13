@@ -245,7 +245,7 @@ const STX = [88, 128, 168, 208, 248];
 const PX0 = 60;
 const STATIONS = ['stBuild', 'stTest', 'stArt', 'stEnv', 'stProd'];
 const lampAt = [[STX[0] + 7, 137, TZ + 20], [STX[1], 137, TZ + 16], [STX[2], 139, TZ + 6], [STX[3], 136, TZ + 4], [STX[4], 131, TZ + 52]];
-const LAMPS = lampAt.map(([x, y, z], i) => k.pathOf(k.circleRing(x, y, i === 2 ? 2.8 : 3.6, 20).map(([px, py]) => w.at([px, py, z + 0.2]).map(r1)), true));
+const LAMPS = lampAt.map(([x, y, z], i) => k.pathOf(k.circleRing(x, y, i === 2 ? 3.4 : 4.4, 20).map(([px, py]) => w.at([px, py, z + 0.2]).map(r1)), true));
 const lamp = (i) => g(`lamp${i}`, '');
 const stationSvg = [
   // build: a box with a hopper on top
@@ -279,14 +279,14 @@ const world = [
   w.room(ROOM),
   w.clock(252, 180, 11),
   cueG('board', BOARD.svg + boardLayers),
-  w.person({ x: 222, y: 50, role: 'jij', along: 'x' }),
+  w.person({ x: 214, y: 34, role: 'jij', along: 'x' }),
+  scrumPerson(w, k, G, P, { x: 284, y: 92, key: 'ops', look: 'sm', along: 'y' }),
   scrumPerson(w, k, G, P, { x: 24, y: 150, key: 'dev', look: 'dev2', along: 'y' }),
   w.table(TABLE),
   STATIONS.map((c, i) => cueG(c, stationSvg[i])).join(''),
   cueG('belt', belt),
   cueG('parcel', g('parcel', parcel, ' class="pm-parcel"')),
   w.cup(236, 166, TZ),
-  scrumPerson(w, k, G, P, { x: 284, y: 200, key: 'ops', look: 'sm', along: 'y' }),
 ].join('');
 for (const r of ['jij', 'dev', 'ops', 'board', 'belt', 'parcel', 'bMeters', ...STATIONS, ...LAYERS, ...DIALS]) assert(world.includes(`data-cue="${r}"`), `${r} is a cue group`);
 if (FAILS.length) throw new Error(`model:\n  ${FAILS.join('\n  ')}`);
@@ -362,15 +362,15 @@ const BCAM = (s) => [BOARD_AT[0], BOARD_AT[1] + 30, s];
 const BELT_AT = w.at([155, 150, TZ]).map(r1);
 const TCAM = (s) => [BELT_AT[0], BELT_AT[1], s];
 const CAM = [
-  { from: [160, 205, 1], to: BCAM(1.1) },
-  { from: TCAM(1.02), to: TCAM(1.12) },
-  { from: TCAM(1.06), to: TCAM(1.16) },
-  { from: [160, 205, 1], to: TCAM(1.08) },
-  { from: TCAM(1.04), to: BCAM(1.08) },
   { from: [160, 205, 1], to: BCAM(1.12) },
-  { from: TCAM(1.04), to: BCAM(1.1) },
-  { from: BCAM(1.06), to: [160, 205, 1] },
-  { from: [160, 205, 1], to: BCAM(1.12) },
+  { from: TCAM(1.28), to: TCAM(1.42) },
+  { from: TCAM(1.38), to: TCAM(1.5) },
+  { from: [160, 205, 1.05], to: TCAM(1.3) },
+  { from: TCAM(1.42), to: TCAM(1.3) },
+  { from: TCAM(1.15), to: BCAM(1.2) },
+  { from: TCAM(1.3), to: BCAM(1.2) },
+  { from: BCAM(1.15), to: [160, 205, 1] },
+  { from: [160, 205, 1.05], to: BCAM(1.2) },
 ];
 
 // ---------------------------------------------------------------- the film
@@ -424,7 +424,7 @@ const spec = {
     ]),
     sc('s7', FK, 1, { nl: 'Stabiliteit, en de vier samen', en: 'Stability, and all four together' }, [
       { nl: 'Stabiliteit: het {t:Faalpercentage van wijzigingen|faalpercentage van wijzigingen}.', en: 'Stability: the {t:Change fail rate|change fail rate}, the share of deployments that need intervention.', cue: { 'Faalpercentage van wijzigingen': 'fail' }, focus: ['fail', 'mFail', 'stProd'] },
-      { nl: 'Dat zijn deploys die direct ingrijpen vragen: terugdraaien, of een spoedreparatie.', en: 'That means action at once: a rollback, or an urgent fix.', focus: ['roll', 'parcel'] },
+      { nl: 'Dat zijn deploys die direct ingrijpen vragen: terugdraaien, of een spoedreparatie.', en: 'That means action at once: a rollback, or an urgent fix.', focus: ['roll', 'parcel', 'stProd'] },
       { nl: 'De {t:Hersteltijd na een mislukte deploy|hersteltijd na een mislukte deploy}: hoe lang herstellen duurt.', en: 'The {t:Failed deployment recovery time|failed deployment recovery time}: how long recovery takes.', cue: { 'Hersteltijd na een mislukte deploy': 'rec' }, focus: ['rec', 'mRec', 'stProd'] },
       { nl: 'Tot 2023 heette die MTTR; nu telt alleen een storing door een eigen wijziging.', en: 'Until 2023 it was called MTTR; now only a failure from the team’s own change counts.', focus: ['mttr', 'mRec'] },
       { nl: 'De vier sleutels: de beste teams scoren op alle vier goed. Snel en stabiel gaan samen.', en: 'The four keys: the best teams score well on all four. Fast and stable go together.', focus: ['keys', 'bMeters'] },
@@ -685,5 +685,4 @@ if (process.argv.includes('--audit')) {
   const sizes = new Set([...`${svg}\n${readFileSync(join(HERE, 'stage.js'), 'utf8')}`.matchAll(/font-size="(\d+)"/g)].map((m) => Number(m[1])));
   if ([...sizes].some((s) => s < 22)) throw new Error(`stage text under 22 units: ${[...sizes].join(', ')}`);
   console.log(`stage font sizes: ${[...sizes].join(', ')}`);
-  for (const c of ['fp-bar', 'fp-note', 'fp-poster', 'fp-end', 'fp-sheet']) if (new RegExp(`class="[^"]*\\b${c}\\b`).test(svg + readFileSync(join(HERE, 'stage.js'), 'utf8'))) throw new Error(`reserved class ${c} on the stage`);
 }

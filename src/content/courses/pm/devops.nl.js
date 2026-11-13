@@ -3,6 +3,7 @@ export default {
   lessons: [
     {
       id: 'pm.devops.pipeline',
+      film: 'pm.devops.pipeline',
       title: 'Wat DevOps is, en wat een pipeline doet',
       pre: [
         {
@@ -333,6 +334,7 @@ export default {
     },
     {
       id: 'pm.devops.fourkeys',
+      film: 'pm.devops.pipeline',
       title: 'DORA: de vier sleutelmetingen',
       pre: [
         {

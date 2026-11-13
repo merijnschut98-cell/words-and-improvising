@@ -121,8 +121,8 @@ const STAGE = (() => {
     if (b >= 2) o.batch = op(A * at(b, p, 2), box(274, tr('kleine series', 'small batches'), [tr('kleine commits:', 'small commits:'), tr('minder voorraad', 'less work between')], b === 2));
     const B = page(b, p, 3, -1);
     if (b >= 3) o.cicd = op(B, box(54, 'CI/CD', [tr('continuous', 'continuous'), tr('  integration', '  integration'), tr('continuous delivery', 'continuous delivery'), [tr('volgende lessen', 'later lessons'), 'pm-mute']], b === 3));
-    if (b >= 4) o.notsw = op(at(b, p, 4), box(204, tr('“geen softwarebedrijf”', '“not a software firm”'), [tr('maar MES, etiketten', 'but MES, labels'), tr('en ERP-koppelingen', 'and ERP links'), tr('veranderen steeds', 'keep changing')], b === 4));
-    if (b >= 5) o.ask = op(at(b, p, 5), lines(334, [[tr('vraag: welke stappen', 'ask: which steps'), 'pm-on'], [tr('gaan met de hand?', 'are done by hand?'), 'pm-on']]));
+    if (b >= 4) o.notsw = op(at(b, p, 4), box(204, tr('“geen softwarebedrijf”', '“not a software firm”'), [tr('maar MES, etiketten,', 'but MES, labels and'), tr('ERP: steeds aangepast', 'ERP links keep changing')], b === 4));
+    if (b >= 5) o.ask = op(at(b, p, 5), lines(332, [[tr('vraag: welke stappen', 'ask: which steps'), 'pm-on'], [tr('gaan met de hand?', 'are done by hand?'), 'pm-on']]));
     return o;
   }
 
