@@ -126,9 +126,8 @@
 // Production System, used parts pulling replenishment (Ohno, Toyota Production
 // System, 1978, English 1988); David J. Anderson's Kanban, Successful
 // Evolutionary Change for Your Technology Business (Blue Hole Press, 2010),
-// his first kanban system at Microsoft from 2004; The Kanban Guide (Vacanti
-// and Coleman, Kanban University's and ProKanban's guides of 2020; the lesson's
-// "Kanban Guide van 2020" is the ProKanban.org one): "a strategy for
+// his first kanban system at Microsoft from 2004; The Kanban Guide (Daniel
+// Vacanti and John Coleman, ProKanban.org, December 2020): "a strategy for
 // optimizing the flow of value through a process that uses a visual,
 // pull-based system", a Definition of Workflow (units of value, start and
 // finish points, states, how WIP is controlled, explicit policies, a service
