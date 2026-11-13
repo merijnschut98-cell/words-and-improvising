@@ -622,7 +622,15 @@ const SAY = {
     [/\b([Gg])o-live\b/g, '$1oo-laiv'], [/\b([Bb])usinessanalist\b/g, '$1iznis-analist'], [/\bvoedselbatches\b/g, 'voedselbetsjes'],
     // and, in this film's phrases only, business as Biznis in "tussen business en IT" and live as "laiv" in "live te
     // gaan" (it reads "buu-ZIE-nes" and the Dutch "lie-ve")
-    [/\btussen business en IT\b/g, 'tussen biznis en IT'], [/\blijn live te gaan\b/g, 'lijn laiv te gaan']],
+    [/\btussen business en IT\b/g, 'tussen biznis en IT'], [/\blijn live te gaan\b/g, 'lijn laiv te gaan'],
+    // incident, problem, change (pm.devops.incident): the ITIL words as Dutch IT teams say them, checked with
+    // espeak-ng phonemes through Piper's nl_NL-alex bridge: it reads PeopleCert as "PEE-o-ple sert" (said
+    // Piepul-surt), change enablement and change control with a French "change", "SJAN-zje" (tsjeensj
+    // e-neebul-munt, tsjeensj kontrool; a lone change keeps its voice), and printerdriver with "drie-ver"
+    // (printer-draiver, as the driver rule above, which only reads a word that starts with driver). ITIL,
+    // servicedesk and firewall-regel (the firewall rule above) need nothing; no other film's spoken text changes
+    [/\bPeopleCert\b/g, 'Piepul-surt'], [/\bchange enablement\b/g, 'tsjeensj e-neebul-munt'], [/\bchange control\b/g, 'tsjeensj kontrool'],
+    [/\b([Pp])rinterdriver(s?)\b/g, '$1rinter-draiver$2']],
   en: [[/\brpm\b/g, 'revolutions per minute'], [/\bmm\/min\b/g, 'millimetres per minute'], [/\bm\/min\b/g, 'metres per minute'], [/µm\b/g, 'micrometres'],
     [/€\s?(\d[\d,]*(?:\.\d+)?)/g, '$1 euros'], [/(\d)\.0(?![\d])/g, '$1'], [/(\d)\s?mm\b/g, '$1 millimetres'], [/(\d)\s?min\b/g, '$1 minutes'], [/(\d)\s?%/g, '$1 percent'],
     [/Ø\s*/g, 'diameter '], [/(\d)\+(\d)/g, '$1 plus $2'], [/\s×\s/g, ' times '], [/\s\/\s/g, ' divided by '], [/\s=\s/g, ' is '], [/°/g, ' degrees'], [/\bRa\b/g, 'R a'], [/’/g, "'"],
