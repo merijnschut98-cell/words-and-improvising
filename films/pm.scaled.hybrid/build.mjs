@@ -446,10 +446,16 @@ const spec = {
 // "snellere marktintroductie"), flensmaat (stressed on -maat: "maat van de
 // flens"), engineering change (said "een formele procedure"), "à" (said "tegen
 // ... per uur"), businesscase as one word (said "business case", the existing
-// rule) and a sentence that starts with "Eén". Years and numbers in words.
+// rule) and a sentence that starts with "Eén". Review (2026-11-13), also said
+// around: CAD alone before a colon (both voices read the word "cad"; said "de
+// CAD-tekening"), hardwaresprint and hardwareproject (espeak-ng's Dutch reads
+// "hardwaare-e-sprint"; said "een sprint, een project met hardware"),
+// besturingssoftware (Dutch "softwaare"; said "software voor de besturing") and
+// interfaces (stressed "inter-faa-SES"; said "koppelvlakken"). Years and
+// numbers in words.
 const SAY = [
   [ // s1 stages and gates
-    { nl: 'Veel fabrikanten ontwikkelen nieuwe producten met {t:Stage-gate|stage-gate}, uitgewerkt door Robert Cooper vanaf de jaren tachtig.',
+    { nl: 'Veel fabrikanten ontwikkelen producten met {t:Stage-gate|stage-gate}, uitgewerkt door Robert Cooper vanaf de jaren tachtig.',
       en: 'Many manufacturers develop products with {t:Stage-gate|stage-gate}, worked out by Robert Cooper from the nineteen eighties.' },
     { nl: 'Het werk loopt in fases: verkennen, de business case, ontwikkelen, testen en lanceren.',
       en: 'The work runs in stages: scoping, the business case, development, testing and launch.' },
@@ -479,12 +485,12 @@ const SAY = [
       en: 'Cooper reports good first results in a handful of companies, like faster time to market, but also struggles; the evidence is still limited.' },
   ],
   [ // s4 done after a hardware sprint; the paper gate
-    { nl: 'Wat is af na een hardwaresprint? Meestal geen leverbaar product, maar iets om te testen of te laten zien.',
-      en: 'What is done after a hardware sprint? Rarely a shippable product; usually something to test or show.' },
-    { nl: 'Een CAD-model dat je met een klant doorloopt, een 3D-geprint model, een test van een prototype, of besturingssoftware op een testopstelling.',
+    { nl: 'Wat is af na een sprint met hardware? Meestal geen leverbaar product, maar iets om te testen of te laten zien.',
+      en: 'What is done after a hardware sprint? Rarely a shippable product: something to test or show.' },
+    { nl: 'Een CAD-model dat je met een klant doorloopt, een 3D-geprint model, een test van een prototype, of software voor de besturing op een testopstelling.',
       en: 'A CAD model you walk through with a customer, a 3D-printed model, a prototype test, or control software on a test rig.' },
-    { nl: 'De vraag blijft: wat hebben we deze twee weken geleerd?',
-      en: 'The question stays: what did we learn these two weeks?' },
+    { nl: 'De vraag blijft: wat hebben we deze twee weken geleerd dat we niet wisten?',
+      en: 'The question stays: what did we learn these two weeks that we didn\'t know?' },
     { nl: 'Voor een Lean-consultant: een gate lijkt op een kwaliteitspoort; de valkuil is een papierencontrole: zijn de documenten er, niet: werkt het product?',
       en: 'For a Lean consultant: a gate resembles a quality gate; the pitfall is a paperwork check: are the documents there, not: does the product work?' },
     { nl: 'Vraag: wat moet er bij de volgende gate bewezen zijn, en welke sprint levert dat bewijs? Is het antwoord het ontwerpdossier, dan is de gate een formaliteit.',
@@ -493,8 +499,8 @@ const SAY = [
   [ // s5 the pump housing
     { nl: 'Een voorbeeld met bedragen ter illustratie: een nieuw pomphuis, en steeds dezelfde wijziging, een andere maat van de flens.',
       en: 'An example with illustrative amounts: a new pump housing, each time the same change, another flange size.' },
-    { nl: 'In CAD: vier uur werk tegen negentig euro, samen driehonderdzestig euro.',
-      en: 'In CAD: four hours of engineering at ninety euros, three hundred and sixty euros.' },
+    { nl: 'In de CAD-tekening: vier uur tegen negentig euro per uur, driehonderdzestig euro.',
+      en: 'In the CAD drawing: four hours at ninety euros an hour, three hundred and sixty euros.' },
     { nl: 'Na het eerste prototype: een nieuw geprint of gefreesd prototype, zo\'n drieduizend euro.',
       en: 'After the first prototype: a new printed or milled prototype, about three thousand euros.' },
     { nl: 'Na de geharde matrijs: vijfendertigduizend euro, en zes weken vertraging.',
@@ -503,13 +509,13 @@ const SAY = [
       en: 'Development takes twenty-six weeks: thirteen two-week sprints, thirteen chances to find mistakes while changes cost hundreds, not tens of thousands.' },
   ],
   [ // s6 long-lead items, the SOP, backward planning, the design freeze
-    { nl: 'Dan de levertijden. Een {t:Long-lead item|long-lead item} heeft zo\'n lange levertijd dat het de hele planning bepaalt.',
-      en: 'Then lead times. A {t:Long-lead item|long-lead item} has a lead time so long it drives the whole schedule.' },
-    { nl: 'Een spuitgietmatrijs, een gietstuk, een speciale motor, een chip. Acht tot twintig weken voor een matrijs is niet ongewoon, maar vraag het altijd aan de leverancier.',
+    { nl: 'Een {t:Long-lead item|long-lead item} heeft zo\'n lange levertijd dat het de hele planning bepaalt.',
+      en: 'A {t:Long-lead item|long-lead item} has a lead time so long it drives the whole schedule.' },
+    { nl: 'Een spuitgietmatrijs, een gietstuk, een speciale motor, een chip. Acht tot twintig weken voor een matrijs is niet ongewoon; vraag het altijd de leverancier.',
       en: 'An injection mould, a casting, a special motor, a chip. Eight to twenty weeks for a mould is not unusual; always ask the supplier.' },
     { nl: 'De start van de serieproductie heet de {t:SOP|SOP}, start of production, vaak vastgelegd door een beurs, een klantcontract of een seizoen.',
       en: 'The start of series production is the {t:SOP|SOP}, often fixed by a trade fair, a customer contract or a season.' },
-    { nl: 'Dan werkt {t:Terugplannen|terugplannen}: vanaf de SOP terugrekenen. Min de validatie, min proefspuiten en correcties, min de bouw van het gereedschap, min bestellen.',
+    { nl: 'Dan {t:Terugplannen|terugplannen}: vanaf de SOP terugrekenen. Min de validatie, min proefspuiten en correcties, min de bouw van het gereedschap, min bestellen.',
       en: 'Then {t:Backward planning|backward planning}: count back from the SOP. Minus validation, minus trial runs and corrections, minus building the tool, minus ordering.' },
     { nl: 'Wat overblijft is het laatste moment om het ontwerp vast te leggen: de {t:Design freeze|design freeze}. Daarna lopen wijzigingen via een formele procedure.',
       en: 'What is left is the last moment to fix the design: the {t:Design freeze|design freeze}. Then changes go through a formal engineering change.' },
@@ -517,7 +523,7 @@ const SAY = [
   [ // s7 decide early where it matters; set-based design
     { nl: 'Hier botst agile met hardware. Sprints willen leren en bijsturen; long-lead items vragen vroege beslissingen.',
       en: 'Here agile clashes with hardware. Sprints want to learn and adjust; long-lead items demand early decisions.' },
-    { nl: 'Beslis dus vroeg over de long-lead items, houd de rest flexibel, en leg de interfaces vroeg vast, zoals bevestigingspunten en aansluitingen, zodat de binnenkant van een module nog kan veranderen.',
+    { nl: 'Beslis dus vroeg over de long-lead items, houd de rest flexibel, en leg de koppelvlakken vroeg vast, zoals bevestigingspunten en aansluitingen, zodat de binnenkant van een module nog kan veranderen.',
       en: 'So decide early on the long-lead items, keep the rest flexible, and fix the interfaces early, like mounting points and connections, so the inside of a module can still change.' },
     { nl: 'Een tweede hulpmiddel is {t:Set-based design|set-based design}: een paar ontwerpopties openhouden en pas afvallen bij genoeg kennis, in plaats van één vroeg ontwerp steeds te repareren.',
       en: 'A second tool is {t:Set-based design|set-based design}: keep a few design options open and drop them only with enough knowledge, rather than repairing one early design.' },
@@ -527,18 +533,18 @@ const SAY = [
       en: 'In practice: cheap aluminium trial moulds for two variants first, soft tooling; then the hardened steel mould for the winner.' },
   ],
   [ // s8 purchasing at the table
-    { nl: 'Wat je vaak ziet: inkoop zit niet bij de sprintplanning of de PI Planning.',
+    { nl: 'Vaak zit inkoop niet bij de sprintplanning of de PI Planning.',
       en: 'Often purchasing is not at the sprint planning or the PI Planning.' },
     { nl: 'Inkoop hoort pas van een matrijs als het ontwerp bijna klaar is. Dan is de levertijd al te lang.',
       en: 'Purchasing hears about a mould when the design is almost done. By then the lead time is too long.' },
     { nl: 'Zet long-lead items als vaste mijlpalen op het planningsbord, en nodig inkoop uit.',
       en: 'Put long-lead items on the planning board as fixed milestones, and invite purchasing.' },
-    { nl: 'Vraag in elk hardwareproject: welk onderdeel heeft de langste levertijd, en in welke week moet dat ontwerp uiterlijk vast?',
+    { nl: 'Vraag in elk project met hardware: welk onderdeel heeft de langste levertijd, en in welke week moet dat ontwerp uiterlijk vast?',
       en: 'Ask in every hardware project: which part has the longest lead time, and by which week must its design be fixed?' },
   ],
   [ // s9 the e-bike
-    { nl: 'Een voorbeeld: een maker van elektrische fietsen wil in week veertig de serieproductie starten; het accuhuis wordt spuitgegoten.',
-      en: 'An example: an e-bike maker wants series production to start in week forty; the battery housing is injection moulded.' },
+    { nl: 'Een maker van elektrische fietsen wil in week veertig de serieproductie starten; het accuhuis wordt spuitgegoten.',
+      en: 'An e-bike maker wants series production to start in week forty; the battery housing is injection moulded.' },
     { nl: 'Terug vanaf week veertig: validatie van de eerste serie duurt vier weken, dus start uiterlijk in week zesendertig.',
       en: 'Back from week forty: validating the first series takes four weeks, so start by week thirty-six.' },
     { nl: 'Proefspuiten en matrijscorrecties: drie weken, dus de matrijs is klaar in week drieëndertig.',

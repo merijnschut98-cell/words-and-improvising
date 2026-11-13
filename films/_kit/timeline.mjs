@@ -543,7 +543,8 @@ const SAY = {
     // as the word "sop" before a comma (letters: es oo pee, not "S O P": a lone S is a hiss), design freeze as
     // "DEE-zich FREE-ze" (di-zain friez), set-based design (set-beesd di-zain), SAFe as "saa-fe" (Seef) and
     // stresses MAtrijsbouw (matrijs-bouw); Toyota goes through pm.land.training's rule above (Tojota). No other
-    // film's spoken text changes
+    // film's spoken text changes. Integrator: pm.scaled.pi adds the same SAFe → Seef rule; keep one, so both
+    // films say it the same way
     [/\b([Ss])tage-([Gg])ate(s?)\b/g, (m, s, g, n) => `${s === 'S' ? 'S' : 's'}teetsj-${g === 'G' ? 'G' : 'g'}eet${n}`],
     [/\b([Gg])ate(s?)\b(?!-freeze)/g, '$1eet$2'], [/\b([Gg])o\/kill\b/g, '$1o-kill'], [/\bCooper\b/g, 'Koeper'],
     [/\b([Ll])ong-lead item(s?)\b/g, '$1ong-lied aitem$2'], [/\bSOP\b/g, 'es oo pee'], [/\b([Dd])esign freeze\b/g, '$1i-zain friez'],
