@@ -533,7 +533,21 @@ const SAY = {
     [/\b([Tt])hroughput\b/g, (m, t) => `${t === 'T' ? 'T' : 't'}roepoet`], [/\b([Cc])ycle time\b/g, (m, c) => `${c === 'C' ? 'S' : 's'}aikl taim`],
     [/\b([Ll])ead time\b/g, '$1ied taim'], [/\b([Ww])ork item age\b/g, (m, c) => `${c === 'W' ? 'W' : 'w'}urk aitem eetsj`],
     [/\b([Pp])ull(?=systeem\b|\b)/g, '$1oel'], [/\b([Ff])lowmaten\b/g, '$1loo-maten'], [/\bafdeling engineering\b/g, 'afdeling entsjinieering'],
-    [/\been engineer\b(?= pakt de kaart| doet de controle)/g, 'een entsjinier'], [/\b([Hh]eet dat|items|werkitems|twaalf) onderhanden\b/g, '$1 onder-handen']],
+    [/\been engineer\b(?= pakt de kaart| doet de controle)/g, 'een entsjinier'], [/\b([Hh]eet dat|items|werkitems|twaalf) onderhanden\b/g, '$1 onder-handen'],
+    // stage-gate with sprints (pm.scaled.hybrid): the stage-gate and lead-time words as Dutch product
+    // developers say them, checked with espeak-ng phonemes through Piper's nl_NL-alex bridge: it reads
+    // stage-gate as "staa-zje-GAA-te" and gate as "GAA-te" (said steetsj-geet, geet, tsj as in the agile rule
+    // above, which turns Agile-Stage-Gate into Etsjail-Stage-Gate first; not in eng.moulding.setting's
+    // gate-freeze-studie), go/kill as "go slash kill" (go-kill, as the go/no-go rule), Cooper as "koo-per"
+    // (Koeper), long-lead item as "lee-at ie-tem" (long-lied aitem, as the lead time and work item rules), SOP
+    // as the word "sop" before a comma (letters: es oo pee, not "S O P": a lone S is a hiss), design freeze as
+    // "DEE-zich FREE-ze" (di-zain friez), set-based design (set-beesd di-zain), SAFe as "saa-fe" (Seef) and
+    // stresses MAtrijsbouw (matrijs-bouw); Toyota goes through pm.land.training's rule above (Tojota). No other
+    // film's spoken text changes
+    [/\b([Ss])tage-([Gg])ate(s?)\b/g, (m, s, g, n) => `${s === 'S' ? 'S' : 's'}teetsj-${g === 'G' ? 'G' : 'g'}eet${n}`],
+    [/\b([Gg])ate(s?)\b(?!-freeze)/g, '$1eet$2'], [/\b([Gg])o\/kill\b/g, '$1o-kill'], [/\bCooper\b/g, 'Koeper'],
+    [/\b([Ll])ong-lead item(s?)\b/g, '$1ong-lied aitem$2'], [/\bSOP\b/g, 'es oo pee'], [/\b([Dd])esign freeze\b/g, '$1i-zain friez'],
+    [/\b([Ss])et-based design\b/g, '$1et-beesd di-zain'], [/\bSAFe\b/g, 'Seef'], [/\b([Mm])atrijsbouw\b/g, '$1atrijs-bouw']],
   en: [[/\brpm\b/g, 'revolutions per minute'], [/\bmm\/min\b/g, 'millimetres per minute'], [/\bm\/min\b/g, 'metres per minute'], [/µm\b/g, 'micrometres'],
     [/€\s?(\d[\d,]*(?:\.\d+)?)/g, '$1 euros'], [/(\d)\.0(?![\d])/g, '$1'], [/(\d)\s?mm\b/g, '$1 millimetres'], [/(\d)\s?min\b/g, '$1 minutes'], [/(\d)\s?%/g, '$1 percent'],
     [/Ø\s*/g, 'diameter '], [/(\d)\+(\d)/g, '$1 plus $2'], [/\s×\s/g, ' times '], [/\s\/\s/g, ' divided by '], [/\s=\s/g, ' is '], [/°/g, ' degrees'], [/\bRa\b/g, 'R a'], [/’/g, "'"],
@@ -558,7 +572,10 @@ const SAY = {
     [/\bby Fisher and Ury\b/g, 'by Fisher and Yuri'],
     // from idea to sprint-ready (pm.agile.backlog): Ron Jeffries' three Cs with an apostrophe, as the letter's
     // plural sounds (espeak-ng's English reads "three Cs" as "three C S")
-    [/\b([Tt])hree Cs\b/g, '$1hree C\'s']],
+    [/\b([Tt])hree Cs\b/g, '$1hree C\'s'],
+    // stage-gate with sprints (pm.scaled.hybrid): go/kill without "slash" (as the go/no-go rule) and SOP as
+    // letters (espeak-ng's English reads the word "sop" before a comma)
+    [/\b([Gg])o\/kill\b/g, '$1o-kill'], [/\bSOP\b/g, 'S O P']],
 };
 export const sayable = (text, lang) => (SAY[lang] || []).reduce((s, [re, w]) => s.replace(re, w), text);
 // The words the voice says: no English gloss, and with a language, units as words.

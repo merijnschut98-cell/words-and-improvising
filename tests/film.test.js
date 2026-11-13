@@ -319,6 +319,30 @@ test('speak variant: the kanban names and flow measures in Dutch', () => {
   assert.equal(speakOf([en], 'en'), en);
 });
 
+// Stage-gate with sprints (pm.scaled.hybrid): the stage-gate and lead-time
+// words as Dutch product developers say them, checked with espeak-ng phonemes
+// through Piper's nl_NL-alex bridge: stage-gate and gate ("staa-zje-GAA-te":
+// steetsj-geet, geet; also after the agile rule in Agile-Stage-Gate), go/kill
+// without "slash" (go-kill), Cooper ("koo-per": Koeper), long-lead item
+// ("lee-at ie-tem": long-lied aitem), SOP as letters (it reads the word "sop"
+// before a comma: es oo pee), design freeze ("DEE-zich FREE-ze": di-zain friez),
+// set-based design (set-beesd di-zain), SAFe (it reads "saa-fe": Seef) and
+// matrijsbouw (stressed MA-: matrijs-bouw); Toyota keeps pm.land.training's
+// rule (Tojota). Not in
+// eng.moulding.setting's gate-freeze-studie. In English, go/kill without
+// "slash" and SOP as letters (en_GB reads "sop" before a comma); no other
+// film's spoken text changes
+test('speak variant: the stage-gate and lead-time words in Dutch, go/kill and SOP in English', () => {
+  const nl = (s) => speakOf([s], 'nl');
+  assert.equal(nl('Stage-gate en de gates. Een gate, Agile-Stage-Gate van Cooper.'), 'Steetsj-geet en de geets. Een geet, Etsjail-Steetsj-Geet van Koeper.');
+  assert.equal(nl('Een go/kill-beslissing. Een long-lead item, twee long-lead items. De SOP, vanaf de SOP.'), 'Een go-kill-beslissing. Een long-lied aitem, twee long-lied aitems. De es oo pee, vanaf de es oo pee.');
+  assert.equal(nl('De design freeze. Design freeze. Set-based design, naar Toyota, SAFe noemt het. De matrijsbouw.'), 'De di-zain friez. Di-zain friez. Set-beesd di-zain, naar Tojota, Seef noemt het. De matrijs-bouw.');
+  assert.equal(nl('De gate-freeze-studie. Een kwaliteitspoort. Het ontwerp.'), 'De gate-freeze-studie. Een kwaliteitspoort. Het ontwerp.');
+  assert.equal(speakOf(['A go/kill decision. The SOP, from the SOP.'], 'en'), 'A go-kill decision. The S O P, from the S O P.');
+  const en = 'Stage-gate, a gate, Agile-Stage-Gate, Cooper, a long-lead item, the design freeze, set-based design, Toyota, SAFe';
+  assert.equal(speakOf([en], 'en'), en);
+});
+
 // A stage drawn on the Dutch caption beats (beatwarp films set STAGE.nlBeats)
 // follows the caption beat on screen in English too: while English beat k
 // shows, the stage runs through Dutch beat k, so the drawing is never a beat off.
