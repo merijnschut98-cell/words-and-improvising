@@ -31,97 +31,105 @@
 // Checklist (lesson point: scene and beat; "card" = on the card only, not
 // spoken, on screen at least 4 s; every card stays up for the rest of its page):
 //   stories teach 1: a short description of what a user wants, in their own
-//     words (s1 b1); the common template from the British company Connextra,
-//     around 2001, as a role I want something so that value (s1 b2), as card
-//     and caption; the downtime example, operator line 3, two taps, the shift
-//     leader knows where the time went (s1 b3); the so that is the most
-//     important part, it says why (s1 b4)
-//   stories teach 2: a story is no specification (card, s1 b5); Ron Jeffries,
-//     one of the creators of Extreme Programming (s1 b5), an early agile method
-//     (card); the three Cs in 2001 (s1 b5); card a reminder, details from a
-//     conversation between users and builders, agreements how you check; a
-//     promise of a conversation, not a contract (s1 b6)
-//   stories teach 3: acceptance criteria, concrete testable conditions to be
-//     accepted (s2 b1); at most 8 causes, with work gloves on, within 1 minute
-//     in the shift leader's overview (s2 b2); without them nobody knows when it
-//     is done, the argument starts at delivery (s2 b3)
-//   stories teach 4: an epic, too big for one sprint, OEE per line for the
-//     plant manager, cut later (s2 b4), OEE spelled out on the card; stories and
-//     epics are Product Backlog items on the ordered list; the Scrum Guide
-//     prescribes no format, user stories a popular choice (s2 b5)
-//   stories teach 5: typical mistakes, a technical task as a story, no so that,
-//     "the user" as role while an operator wants something else than a planner
-//     (s2 b6), "as a developer I want a database" (card); experts find the
-//     template schoolmasterly, fine as long as who, what and why are in it; ask
-//     who notices when it is done, and how (s2 b7)
+//     words (s1 b1); the common template from the company Connextra, around
+//     2001, as a role I want something so that value (s1 b2), British (card:
+//     VK, UK), the template on the card; the downtime example, operator line 3,
+//     two taps, the shift leader knows where the time went (s1 b3), when the
+//     line stops (card); the so that is the most important part, it says why
+//     (s1 b4)
+//   stories teach 2: a story is no specification (card, s1 b5); Ron Jeffries
+//     of Extreme Programming (s1 b5), one of its creators, an early agile
+//     method (card); the three Cs in 2001 (s1 b5); card a reminder, details
+//     from a conversation, agreements how you check; a promise, not a contract
+//     (s1 b6), between users and builders (card)
+//   stories teach 3: acceptance criteria, concrete testable conditions (s2
+//     b1), when is it done (card); at most 8 causes, with work gloves on,
+//     within 1 minute at the shift leader (s2 b2); without them the argument
+//     only starts at delivery (s2 b3)
+//   stories teach 4: an epic, too big for one sprint, OEE per line, cut later
+//     (s2 b4), for the plant manager, OEE spelled out (card); stories and epics
+//     are Product Backlog items; the Scrum Guide prescribes no format (s2 b5),
+//     user stories a choice (card)
+//   stories teach 5: typical mistakes, a task as a story, no so that, "the
+//     user" as role (s2 b6), "as a developer I want a database", an operator
+//     wants something else than a planner (card); experts find the template
+//     schoolmasterly, fine as long as who, what and why are in it (card, s2
+//     b7); ask who notices when it is done, and how (s2 b7)
 //   stories example: a planner at a steel-door maker delivers 30 pages of
 //     requirements (s3 b1), for a new planning screen (card); page 4, show the
-//     load on all machines: who needs it and what for (s3 b2); after 10 minutes
-//     with the planner, the welding-robot story with 5 working days and rush
-//     orders (s3 b3); criteria: hours per day, red above 90 %, refreshed every
-//     15 minutes (s3 b4); about 25 stories, 6 pages deliver nothing (s3 b5)
-//   refine teach 1: refinement, ongoing: cut smaller and more precise, add
-//     details and acceptance criteria, size (s4 b1); no separate event, a fixed
-//     slot, often an hour or two a week (s4 b2); the Developers who do the work
-//     size it, the Product Owner explains what and why (s4 b3)
+//     load on all machines: who needs it and what for (s3 b2); after 10
+//     minutes, the welding-robot story with 5 working days and rush orders on
+//     a robot with room (s3 b3); criteria: hours per day, red above 90
+//     percent, refreshed every 15 minutes (s3 b4); about 25 stories, 6 pages
+//     deliver nothing (s3 b5)
+//   refine teach 1: refinement, ongoing: cutting, adding details and criteria,
+//     sizing (s4 b1); no separate event, a fixed slot, often an hour or two a
+//     week (s4 b2); the Developers size it, the Product Owner explains what and
+//     why (s4 b3)
 //   refine teach 2: INVEST, Bill Wake 2003 (s4 b4); the six letters and what
-//     they mean (s4 b5: Dutch meanings spoken, the English words on the card);
-//     a poor letter tells you what to do in refinement (s4 b6)
-//   refine teach 3: story splitting, smaller stories that each still deliver
+//     they mean (s4 b5: Dutch meanings in the Dutch voice, the words in the
+//     English one; the English words and short meanings on the card); a weak
+//     letter tells you what to do (s4 b6)
+//   refine teach 3: story splitting, smaller stories that each deliver
 //     something working (s5 b1); not horizontally into layers, database, logic,
-//     screen: no piece gives the user anything (s5 b2); vertically like slices
-//     of cake: by step, rule, line or product type, the simplest variant first,
-//     then the exceptions (s5 b3)
+//     screen: then the user gets nothing (s5 b2), crossed out on card and
+//     board; vertically like slices of cake: by step, rule, line or product
+//     type, the simplest first (s5 b3), then the exceptions (card), slices on
+//     card and board
 //   refine teach 4: the Definition of Ready, when a story is ready for a
-//     sprint; not in the Scrum Guide; no new gate where everything waits (s5
-//     b4), e.g. criteria known (card); ordering, the Product Owner on value,
-//     risk and dependencies (s5 b5), often first what delivers much or removes
-//     much uncertainty (card)
-//   refine teach 5: for a Lean consultant, refinement resembles work
-//     preparation in maintenance; a job without parts and drawing gets stuck, a
-//     story without criteria too (s6 b1); mistakes: a long meeting about items
-//     for six months out, or no refinement and Sprint Planning takes hours (s6
-//     b2); ask: are the top items ready for the next two sprints (s6 b2)
+//     sprint; not in the Scrum Guide; not a new gate (s5 b4), e.g. criteria
+//     known (card); ordering, the Product Owner on value, risk and
+//     dependencies (s5 b5), often first what delivers much or removes much
+//     uncertainty (card)
+//   refine teach 5: for a Lean consultant, refinement is work preparation;
+//     without criteria a story gets stuck (s6 b1), as in maintenance, a job
+//     without parts and drawings (card); mistakes: refining far ahead, or not
+//     at all, so Sprint Planning takes hours (s6 b2), a long meeting about work
+//     six months out (card); ask: are the top items ready for the next two
+//     sprints (card, s6 b2)
 //   refine example: window frames, the planner's story to spread all orders
 //     over the saws, an hour a day puzzling (s6 b3); the team estimates 3
 //     sprints, so cut vertically (s6 b4); 1 saw and standard profiles, all 3
-//     saws, rush orders first, changeover time (s6 b5), the time to set a
-//     machine up for another profile (card); story 1 fits one sprint, after 2
-//     weeks the planner uses it on one machine, the team learns straight away
-//     whether the rules are right (s6 b6)
-//   points teach 1: bad at absolute (how many hours), reasonable at comparing:
-//     relative estimation (s7 b1); story points: work, complexity, uncertainty
-//     together, an 8 about four times a 2 (s7 b2); per team, A's 5 is not B's 5
-//     (s7 b3)
-//   points teach 2: a modified Fibonacci sequence, 1 2 3 5 8 13 20 40 100, the
-//     gaps grow (s7 b4) because big work is less precise (card); doubt between 8
-//     and 13: big and uncertain, maybe cut it (s7 b5); points come from
-//     Extreme Programming's ideal days, renamed (s7 b6), an ideal day about
+//     saws, rush orders, changeover time (s6 b5), rush orders first and the
+//     time to set a machine up for another profile (card); story 1 fits one
+//     sprint, in use after 2 weeks, the team learns whether the rules are
+//     right (s6 b6), on one machine (card)
+//   points teach 1: bad at hours, reasonable at comparing: relative estimation
+//     (s7 b1), bigger or smaller than known work (card); story points: work,
+//     complexity, uncertainty together, an 8 about four times a 2 (s7 b2); per
+//     team, A's 5 is not B's 5 (s7 b3)
+//   points teach 2: a modified Fibonacci sequence, the gaps grow (s7 b4), the
+//     deck 1 2 3 5 8 13 20 40 100 and "big work is less precise" (card); doubt
+//     between 8 and 13: big and uncertain, maybe cut it (s7 b5); points began
+//     as ideal days (s7 b6), Extreme Programming, renamed, an ideal day about
 //     three real days (card); Ron Jeffries in 2019, half joking, may have
 //     invented them and is sorry (s7 b6)
-//   points teach 3: planning poker, James Grenning 2002, cards with the
-//     sequence (s8 b1); the Product Owner reads a story, everyone picks
-//     silently, all turn over at once (s8 b2); 3 and 13: highest and lowest
-//     explain; that conversation is the value, one sees a risk the other
-//     misses (card); then another round (s8 b3)
+//   points teach 3: planning poker, James Grenning 2002, estimating with
+//     cards (s8 b1); the Product Owner reads a story, everyone picks silently,
+//     all turn over at once (s8 b2); 3 and 13: highest and lowest explain; that
+//     conversation is the value; then another round (s8 b3), one sees a risk
+//     the other misses (card); the cards above the Developers' heads
 //   points teach 4: velocity, the points a team finishes per sprint by the
 //     Definition of Done (s8 b4), over several sprints a range (card); use the
-//     spread, not one average: 18 to 30, don't plan on 30 (s8 b5); only with
-//     the same team and stable estimating (card, s8 b5)
-//   points teach 5: for a Lean consultant it looks like output per shift but
-//     is no productivity measure; made a target, teams estimate more
-//     generously (s8 b6); experts: some just count items, as good when items
-//     are small and alike; ask what the points are for and who looks (s8 b7)
-//   points example (faded): tow-bar maker, customer portal, six two-week
-//     sprints 21, 25, 18, 30, 24, 22, together 140, average 23.3 (s9 b1); 120
-//     points left, the sales director asks when (s9 b2); 120 / 23.3 = 5.1, so 6
-//     sprints, a false certainty (s9 b3)
+//     spread: 18 to 30, don't plan on 30 (s8 b5); only with the same team and
+//     stable estimating (card, s8 b5)
+//   points teach 5: no productivity measure; made a target, teams estimate
+//     more generously (s8 b6), for a Lean consultant it looks like output per
+//     shift (card, s8 b7); experts: some just count items; ask what the points
+//     are for (s8 b7), as good when items are small and alike, and who looks
+//     (card)
+//   points example (faded): tow-bar maker, six sprints of 18 to 30 points,
+//     average 23.3 (s9 b1), customer portal, the six values, 140 / 6 (card);
+//     120 points left, the sales director asks when (s9 b2); six sprints by
+//     the average, a false certainty (s9 b3), 120 / 23.3 = 5.1 (card)
 //   reveal (the ask is answered in the voice): fastest 30, 4 sprints; slowest
-//     18, 6.7 so 7 (s9 b4); 4 to 7 sprints, 8 to 14 weeks, most likely 6
-//     sprints, 12 weeks (s9 b5); only if the backlog doesn't grow, and it
-//     nearly always does; update the range after every sprint (s9 b6)
+//     18, 6.7 so 7 (s9 b4), the divisions on the card; 4 to 7 sprints, 8 to 14
+//     weeks, most likely 12 weeks (s9 b5), 6 sprints (card); only if the list
+//     doesn't grow, and it nearly always does; update the range every sprint
+//     (s9 b6)
 //   Not in the film: the lessons' pre and recall questions, their "said"
-//   lines, situations and sayIt (practice, not teach text).
+//   lines, situations and sayIt (practice, not teach text). Every card-only
+//   point stays up at least one beat of 4 s or more.
 //
 // Facts checked (2026-11-13): the template "As a [role] I want [something] so
 // that [value]" from Connextra (Rachel Davies' team, London, 2001; popularised
@@ -503,7 +511,7 @@ const spec = {
 // split at the head (it reads "ti" for "tsie" and stresses the end). In
 // English, "three Cs" as "three C's" (en_GB reads "C S"). Said around because
 // espeak-ng misreads them (they stay in the captions and on the cards):
-// plantmanager ("het hoofd van de fabriek"), sales-directeur ("de
+// plantmanager (left to the card), sales-directeur ("de
 // verkoopdirecteur"), a lower-case backlog ("de lijst"), "bovenste" (it reads
 // "bovenstee": "de eerste items"), and a sentence that starts with "Eén". Years
 // in words.
@@ -553,7 +561,7 @@ const SAY = [
   [ // s4 refinement and INVEST
     { nl: '{t:Refinement|Refinement} is de Product Backlog doorlopend verfijnen: knippen, details en criteria toevoegen, grootte inschatten.',
       en: '{t:Refinement|Refinement} is ongoing work on the Product Backlog: cutting items, adding details and criteria, sizing.' },
-    { nl: 'Geen apart event; vaak een vast moment van een of twee uur per week.',
+    { nl: 'Het is geen event; vaak een vast moment van een of twee uur per week.',
       en: 'Not a separate event; often a fixed slot of an hour or two a week.' },
     { nl: 'De Developers schatten de grootte; de Product Owner legt uit wat nodig is en waarom.',
       en: 'The Developers who do the work size it; the Product Owner explains what and why.' },
@@ -660,7 +668,6 @@ for (const scene of SAY) for (const line of scene) for (const lang of ['nl', 'en
 {
   const said = SAY.map((s) => Math.max(...['nl', 'en'].map((lang) => s.reduce((a, l) => a + wordsOf(plainSay(l[lang])), 0))));
   const all = said.reduce((a, b) => a + b, 0);
-  if (process.env.WC) console.log("words per scene", said.join(" "), "all", all);
   const TOTAL = Math.min(MAX_TOTAL, Math.round(all / NARRATION_WPS));
   spec.scenes.forEach((s, si) => {
     const cap = Math.max(...['nl', 'en'].map((lang) => minSceneDur(wordsOf(s.beats.map((b) => plainSay(b[lang])).join(' ')) + 4)));

@@ -79,18 +79,18 @@ const STAGE = (() => {
     const o = { head: ['user story', b === 2 || b === 3 ? EX : DIA] };
     const A = page(b, p, 0, 2);
     o.story = op(A, lines(80, [[tr('een user story', 'a user story'), 'pm-big'], [tr('wat een gebruiker wil,', 'what a user wants,')], [tr('in eigen woorden', 'in their own words')]]));
-    if (b >= 1) o.tmpl = op(A * at(b, p, 1), box(160, tr('Connextra, ±2001', 'Connextra, c. 2001'), [tr('Als [rol] wil ik', 'As a [role] I want'), tr('[iets], zodat', '[something], so that'), tr('[waarde].', '[value].')], b === 1));
+    if (b >= 1) o.tmpl = op(A * at(b, p, 1), box(160, tr('Connextra (VK), ±2001', 'Connextra (UK), c. 2001'), [tr('Als [rol] wil ik', 'As a [role] I want'), tr('[iets], zodat', '[something], so that'), tr('[waarde].', '[value].')], b === 1));
     const B = page(b, p, 2, 4);
     if (b >= 2) o.ex1 = op(B, box(54, tr('operator, lijn 3', 'operator, line 3'), [tr('“Als operator wil ik bij', '“As an operator I want'), tr('een stilstand met twee', 'to pick a cause in two'), tr('tikken een oorzaak', 'taps when the line'), tr('kiezen, zodat de ploeg-', 'stops, so that the shift'), tr('leider weet waar de', 'leader knows where the'), tr('tijd heen ging.”', 'time went.”')], b === 2));
     if (b >= 3) o.why = op(B * at(b, p, 3), box(278, tr('“zodat” = waarom', '“so that” = why'), [tr('het belangrijkste deel', 'the most important part')], true));
     const Cp = page(b, p, 4, -1);
     if (b >= 4) {
-      o.threec = op(Cp, lines(76, [[tr('geen specificatie', 'not a specification'), 'pm-mute'], ['Ron Jeffries, 2001', 'pm-big'], [tr('XP: vroege agile methode', 'XP: an early agile way'), 'pm-mute']])
-        + step(170, 1, 'Card', tr('kaartje, geheugensteun', 'a card, a reminder'), b === 4)
-        + op(at(b, p, 4, 0.3, 0.5), step(228, 2, 'Conversation', tr('details uit gesprek', 'details from talking'), b === 4))
-        + op(at(b, p, 4, 0.55, 0.75), step(286, 3, 'Confirmation', tr('zo controleer je het', 'how you check it'), b === 4)));
+      o.threec = op(Cp, lines(76, [[tr('geen specificatie', 'not a specification'), 'pm-mute'], ['Ron Jeffries, 2001', 'pm-big'], [tr('mede-bedenker van XP,', 'a creator of XP,'), 'pm-mute'], [tr('een vroege agile methode', 'an early agile method'), 'pm-mute']])
+        + step(190, 1, 'Card', tr('kaartje, geheugensteun', 'a card, a reminder'), b === 4)
+        + op(at(b, p, 4, 0.3, 0.5), step(244, 2, 'Conversation', tr('gebruikers en bouwers', 'users and builders talk'), b === 4))
+        + op(at(b, p, 4, 0.55, 0.75), step(298, 3, 'Confirmation', tr('zo controleer je het', 'how you check it'), b === 4)));
     }
-    if (b >= 5) o.promise = op(Cp * at(b, p, 5), lines(352, [[tr('belofte, geen contract', 'a promise, no contract'), 'pm-on']]));
+    if (b >= 5) o.promise = op(Cp * at(b, p, 5), lines(360, [[tr('belofte, geen contract', 'a promise, no contract'), 'pm-on']]));
     return o;
   }
 
@@ -106,8 +106,8 @@ const STAGE = (() => {
     if (b >= 3) o.epic = op(B, box(54, 'epic', [tr('te groot voor 1 sprint', 'too big for 1 sprint'), tr('bv. OEE per lijn voor', 'e.g. OEE per line for'), tr('de plantmanager', 'the plant manager'), [tr('OEE: beschikbaarheid ×', 'OEE: availability ×'), 'pm-mute'], [tr('prestatie × kwaliteit', 'performance × quality'), 'pm-mute'], [tr('later knippen', 'cut it later'), 'pm-on']], b === 3));
     if (b >= 4) o.pbi = op(B * at(b, p, 4), lines(278, [[tr('story, epic: soorten', 'story, epic: kinds of'), 'pm-big'], [tr('Product Backlog-items', 'Product Backlog items')], [tr('Scrum Guide: geen vorm', 'Scrum Guide: no format'), 'pm-mute'], [tr('stories: een keuze', 'stories: a choice'), 'pm-mute']]));
     const Cp = page(b, p, 5, -1);
-    if (b >= 5) o.errs = op(Cp, lines(80, [[tr('fouten', 'mistakes'), 'pm-big'], [tr('taak als story: “als', 'a task as a story: “as a'), 'pm-txt'], [tr('ontwikkelaar wil ik een', 'developer I want a'), 'pm-txt'], [tr('database”', 'database”'), 'pm-txt'], [tr('geen “zodat”', 'no “so that”')], [tr('rol: “de gebruiker”', 'role: “the user”')]]) + cross(X1 - 12, 74));
-    if (b >= 6) o.ask = op(at(b, p, 6), lines(250, [[tr('sjabloon te schools?', 'template too formal?'), 'pm-big'], [tr('prima, als wie, wat en', 'fine, if who, what and')], [tr('waarom erin staan', 'why are in it')], [tr('wie merkt het als dit af', 'who notices when this is'), 'pm-on'], [tr('is, en waaraan?', 'done, and how?'), 'pm-on']]));
+    if (b >= 5) o.errs = op(Cp, lines(80, [[tr('fouten', 'mistakes'), 'pm-big'], [tr('taak als story: “als', 'a task as a story: “as a'), 'pm-txt'], [tr('ontwikkelaar wil ik een', 'developer I want a'), 'pm-txt'], [tr('database”', 'database”'), 'pm-txt'], [tr('geen “zodat”', 'no “so that”')], [tr('rol: “de gebruiker”', 'role: “the user”')], [tr('operator ≠ planner', 'operator ≠ planner'), 'pm-mute']]) + cross(X1 - 12, 74));
+    if (b >= 6) o.ask = op(at(b, p, 6), lines(268, [[tr('sjabloon te schools?', 'template too formal?'), 'pm-big'], [tr('prima, als wie, wat en', 'fine, if who, what and')], [tr('waarom erin staan', 'why are in it')], [tr('wie merkt het als dit af', 'who notices when this is'), 'pm-on'], [tr('is, en waaraan?', 'done, and how?'), 'pm-on']]));
     return o;
   }
 
@@ -138,8 +138,9 @@ const STAGE = (() => {
     if (b >= 4) {
       const L = [['I', 'ndependent', tr('los', 'separate')], ['N', 'egotiable', tr('open', 'open')], ['V', 'aluable', tr('waardevol', 'of value')],
         ['E', 'stimable', tr('te schatten', 'sizable')], ['S', 'mall', tr('klein', 'fits a sprint')], ['T', 'estable', tr('testbaar', 'checkable')]];
+      // the letter in the accent colour, the rest of the word straight after it
       o.letters = L.map(([l, rest, nl], i) => op(at(b, p, 4, 0.05 + i * 0.1, 0.15 + i * 0.1),
-        txt(X0, 136 + i * 32, l, 'pm-on') + txt(X0 + 18, 136 + i * 32, `${rest}:`, 'pm-txt') + txt(X1, 136 + i * 32, nl, 'pm-mute', 'end'))).join('');
+        `<text class="pm-txt" x="${X0}" y="${136 + i * 32}" font-size="22"><tspan class="pm-on">${l}</tspan>${rest}:</text>` + txt(X1, 136 + i * 32, nl, 'pm-mute', 'end'))).join('');
     }
     if (b >= 5) o.fail = op(at(b, p, 5), lines(340, [[tr('zwakke letter? dan weet', 'weak letter? then you'), 'pm-on'], [tr('je wat je moet doen', 'know what to do'), 'pm-on']]));
     return o;
@@ -177,8 +178,8 @@ const STAGE = (() => {
   function s6(b, p) {
     const o = { head: [tr('kozijnen', 'window frames'), b >= 2 ? EX : DIA] };
     const A = page(b, p, 0, 2);
-    o.prep = op(A, box(54, tr('Lean: werkvoorbereiding', 'Lean: work preparation'), [tr('klus zonder onderdelen', 'a job without parts'), tr('en tekening loopt vast;', 'and drawings gets stuck;'), tr('zo ook een story', 'so does a story'), tr('zonder criteria', 'without criteria')], b === 0));
-    if (b >= 1) o.errs2 = op(A * at(b, p, 1), lines(236, [[tr('fouten', 'mistakes'), 'pm-big'], [tr('lang over werk voor over', 'long talks about work')], [tr('een half jaar; of niets,', 'six months out; or none,')], [tr('dan uren Sprint Planning', 'then hours of planning')], [tr('klaar voor 2 sprints?', 'ready for 2 sprints?'), 'pm-on']]));
+    o.prep = op(A, box(54, tr('Lean: werkvoorbereiding', 'Lean: work preparation'), [[tr('zoals in onderhoud:', 'as in maintenance:'), 'pm-mute'], tr('klus zonder onderdelen', 'a job without parts'), tr('en tekening loopt vast;', 'and drawings gets stuck;'), tr('zo ook een story', 'so does a story'), tr('zonder criteria', 'without criteria')], b === 0));
+    if (b >= 1) o.errs2 = op(A * at(b, p, 1), lines(258, [[tr('fouten', 'mistakes'), 'pm-big'], [tr('lang over werk voor over', 'long talks about work')], [tr('een half jaar; of niets,', 'six months out; or none,')], [tr('dan uren Sprint Planning', 'then hours of planning')], [tr('klaar voor 2 sprints?', 'ready for 2 sprints?'), 'pm-on']]));
     const B = page(b, p, 2, 4);
     if (b >= 2) o.frames = op(B, box(54, tr('kozijnen', 'window frames'), [tr('Als planner wil ik dat', 'As a planner I want the'), tr('het systeem de orders', 'system to spread orders'), tr('over de zaagmachines', 'over the saws, so that'), tr('verdeelt, zodat ik geen', 'I don’t spend an hour'), tr('uur per dag puzzel.', 'a day puzzling.')], b === 2));
     if (b >= 3) o.cut3 = op(B * at(b, p, 3), lines(268, [[tr('team: 3 sprints', 'team: 3 sprints'), 'pm-big'], [tr('→ verticaal knippen', '→ cut vertically'), 'pm-on']]));
@@ -189,7 +190,7 @@ const STAGE = (() => {
         + op(at(b, p, 4, 0.45, 0.6), step(196, 3, tr('spoedorders eerst', 'rush orders first'), ''))
         + op(at(b, p, 4, 0.65, 0.8), step(242, 4, tr('omsteltijd: machine', 'changeover: set up for'), tr('naar ander profiel', 'another profile'))));
     }
-    if (b >= 5) o.learn = op(Cp * at(b, p, 5), lines(310, [[tr('story 1: 1 sprint', 'story 1: 1 sprint'), 'pm-on'], [tr('na 2 weken op 1 machine', 'in use after 2 weeks')], [tr('team leert of de regels', 'team learns if the rules')], [tr('kloppen', 'are right')]]));
+    if (b >= 5) o.learn = op(Cp * at(b, p, 5), lines(310, [[tr('story 1: 1 sprint', 'story 1: 1 sprint'), 'pm-on'], [tr('na 2 weken op 1 machine', 'in use after 2 weeks')], [tr('team leert: regels goed?', 'team learns: rules right?')]]));
     return o;
   }
 
@@ -232,8 +233,8 @@ const STAGE = (() => {
     const o = { head: [tr('planning poker', 'planning poker'), DIA] };
     const A = page(b, p, 0, 3);
     o.poker = op(A, box(54, 'planning poker', ['James Grenning, 2002', tr('samen schatten, kaarten', 'estimating with cards')], b === 0));
-    if (b >= 1) o.read = op(A * at(b, p, 1), step(184, 1, tr('PO leest voor', 'PO reads out'), '', b === 1) + step(220, 2, tr('iedereen kiest stil', 'all pick silently'), '', b === 1) + step(256, 3, tr('tegelijk omdraaien', 'turn over at once'), '', b === 1));
-    if (b >= 2) o.talk = op(A * at(b, p, 2), box(278, tr('3 en 13?', '3 and 13?'), [tr('hoogste, laagste: uitleg', 'highest, lowest explain'), [tr('dat gesprek is de waarde', 'that talk is the value'), 'pm-mute']], b === 2));
+    if (b >= 1) o.read = op(A * at(b, p, 1), step(180, 1, tr('PO leest voor', 'PO reads out'), '', b === 1) + step(214, 2, tr('iedereen kiest stil', 'all pick silently'), '', b === 1) + step(248, 3, tr('tegelijk omdraaien', 'turn over at once'), '', b === 1));
+    if (b >= 2) o.talk = op(A * at(b, p, 2), box(262, tr('3 en 13?', '3 and 13?'), [tr('hoogste, laagste: uitleg', 'highest, lowest explain'), [tr('de een ziet een risico', 'one sees a risk the'), 'pm-mute'], [tr('dat de ander mist', 'other one misses'), 'pm-mute']], b === 2));
     const B = page(b, p, 3, 6);
     if (b >= 3) o.vel = op(B, box(54, 'velocity', [tr('punten per sprint af,', 'points done per sprint,'), tr('volgens Definition of Done', 'by the Definition of Done'), [tr('over sprints: bandbreedte', 'over sprints: a range'), 'pm-mute']], b === 3));
     if (b >= 4) o.spread = op(B * at(b, p, 4), lines(210, [[tr('18 tot 30 punten?', '18 to 30 points?'), 'pm-big'], [tr('plan niet op 30', 'don’t plan on 30'), 'pm-on'], [tr('zelfde team, stabiel', 'same team, stable'), 'pm-mute'], [tr('schatten', 'estimating'), 'pm-mute']]));
@@ -249,7 +250,7 @@ const STAGE = (() => {
     const o = { head: [tr('trekhaken', 'tow bars'), EX] };
     const A = page(b, p, 0, 3);
     {
-      let s = txt(X0, 72, tr('velocity, 6 sprints', 'velocity, 6 sprints'), 'pm-big');
+      let s = txt(X0, 72, tr('klantportaal', 'customer portal'), 'pm-big') + txt(X1, 72, 'velocity', 'pm-mute', 'end');
       const base = 210;
       C.VEL.forEach((v, i) => {
         const x = X0 + i * 48;
@@ -261,12 +262,12 @@ const STAGE = (() => {
       s += op(at(b, p, 0, 0.6, 0.8), path(`M${X0 - 4} ${f1(ym)}H${X1}`, 'pm-dash') + txt(X0, 240, tr('gem. 140 / 6 = 23,3', 'mean 140 / 6 = 23.3'), 'pm-on'));
       o.vel6 = op(A, s);
     }
-    if (b >= 1) o.when = op(A * at(b, p, 1), lines(282, [[tr('nog 120 punten', '120 points left'), 'pm-big'], [tr('“wanneer klaar?”', '“when is it done?”')]]));
+    if (b >= 1) o.when = op(A * at(b, p, 1), lines(282, [[tr('nog 120 punten', '120 points left'), 'pm-big'], [tr('sales: “wanneer klaar?”', 'sales: “when is it done?”')]]));
     if (b >= 2) o.single = op(A * at(b, p, 2), lines(344, [[tr('120 / 23,3 = 5,1 → 6?', '120 / 23.3 = 5.1 → 6?'), 'pm-mute'], [tr('schijnzekerheid', 'false certainty'), 'pm-on']]) + cross(X1 - 12, 338));
     const B = page(b, p, 3, -1);
     if (b >= 3) o.range = op(B, box(54, tr('bandbreedte', 'range'), [tr('snelst: 120 / 30 = 4', 'fastest: 120 / 30 = 4'), tr('traagst: 120 / 18 = 6,7', 'slowest: 120 / 18 = 6.7'), tr('→ 7 sprints', '→ 7 sprints')], b === 3));
     if (b >= 4) o.weeks = op(B * at(b, p, 4), box(196, tr('4 tot 7 sprints', '4 to 7 sprints'), [tr('= 8 tot 14 weken', '= 8 to 14 weeks'), tr('waarschijnlijk 6: 12 wk', 'likely 6: 12 weeks')], true));
-    if (b >= 5) o.grow = op(B * at(b, p, 5), lines(326, [[tr('alleen als de lijst niet', 'only if the list doesn’t'), 'pm-mute'], [tr('groeit; elke sprint bijwerken', 'grow; update each sprint'), 'pm-on']]));
+    if (b >= 5) o.grow = op(B * at(b, p, 5), lines(326, [[tr('alleen als de lijst', 'only if the list'), 'pm-mute'], [tr('niet groeit', 'doesn’t grow'), 'pm-mute'], [tr('elke sprint bijwerken', 'update every sprint'), 'pm-on']]));
     return o;
   }
   const CARDS = [s1, s2, s3, s4, s5, s6, s7, s8, s9];
@@ -369,17 +370,23 @@ const STAGE = (() => {
     let vals = C.POKER.first;
     if (b === 1) face = span(p, 0.6, 0.8);
     if (b >= 2) face = 1;
-    const second = b === 2 ? span(p, 0.72, 0.9) : b === 3 ? 1 : 0;
+    // the second round only at the very end of the beat, so its still shows 3 and 13 lit
+    const second = b === 2 ? span(p, 0.9, 0.98) : b === 3 ? 1 : 0;
     let s = '';
-    C.HEADS.forEach(([hx, hy], i) => {
+    // the two Developers behind the table stand close: their cards move apart
+    const DX = [-14, 10, 0];
+    C.HEADS.forEach(([hx0, hy], i) => {
+      const hx = hx0 + DX[i];
       const x = hx - 17;
-      const y = hy - 80;
+      const y = hy - 84;
       const one = (v, hot) => rect(x, y, 34, 44, hot ? 'pm-hot' : 'pm-pk', 3) + txt(hx, y + 30, String(v), hot ? 'pm-on' : 'pm-big', 'middle');
       let c = '';
       const back = rect(x, y, 34, 44, 'pm-pkb', 3);
       if (face < 1) c += op(1 - face, back);
       const lit = b === 2 && (vals[i] === 3 || vals[i] === 13);
-      if (face > 0) c += op(face * (1 - second), one(vals[i], lit));
+      // while the far ones explain, the middle card steps back
+      const back2 = b === 2 && !lit ? 0.45 : 1;
+      if (face > 0) c += op(face * (1 - second) * back2, one(vals[i], lit));
       if (second > 0) c += op(second, one(C.POKER.second[i], false));
       s += c;
     });
