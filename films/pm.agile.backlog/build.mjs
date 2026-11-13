@@ -525,7 +525,7 @@ const SAY = [
       en: 'As an operator on line three, I want to pick a cause in two taps, so the shift leader knows where the time went.' },
     { nl: 'Dat zodat is het belangrijkste: het zegt waarom.',
       en: 'That so that matters most: it says why.' },
-    { nl: 'Ron Jeffries van Extreme Programming beschreef in tweeduizend een de {t:Drie C’s|drie C’s}: Card, Conversation en Confirmation.',
+    { nl: 'Ron Jeffries van Extreme Programming beschreef in tweeduizend een de {t:Drie C’s|drie C’s}. Card, Conversation en Confirmation.',
       en: 'Ron Jeffries of Extreme Programming described the {t:Three Cs|three Cs} in 2001: Card, Conversation and Confirmation.' },
     { nl: 'Een kaartje als geheugensteun, details uit een gesprek, afspraken over de controle: een belofte, geen contract.',
       en: 'A card as a reminder, details from a conversation, agreed checks: a promise, not a contract.' },
@@ -533,7 +533,7 @@ const SAY = [
   [ // s2 criteria and epics
     { nl: '{t:Acceptatiecriteria|Acceptatiecriteria} zijn concrete, toetsbare voorwaarden.',
       en: '{t:Acceptance criteria|Acceptance criteria} are concrete, testable conditions.' },
-    { nl: 'Hier: hooguit acht oorzaken, met werkhandschoenen, binnen een minuut bij de ploegleider.',
+    { nl: 'Hier zijn dat hooguit acht oorzaken, met werkhandschoenen, binnen een minuut bij de ploegleider.',
       en: 'Here: at most eight causes, with work gloves on, at the shift leader within a minute.' },
     { nl: 'Zonder criteria begint de discussie pas bij de oplevering.',
       en: 'Without criteria, the argument only starts at delivery.' },

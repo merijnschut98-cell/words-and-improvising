@@ -2506,6 +2506,41 @@
         ],
         "vtt": "src/content/courses/films/pm.agile.kanban.en.vtt"
       }
+    },
+    "pm.agile.backlog": {
+      "poster": "src/content/courses/films/pm.agile.backlog.jpg",
+      "nl": {
+        "dur": 335.9,
+        "bytes": 13950562,
+        "scenes": [
+          0,
+          38.77,
+          76.59,
+          110.52,
+          144.72,
+          179.29,
+          218.78,
+          257.76,
+          299.13
+        ],
+        "vtt": "src/content/courses/films/pm.agile.backlog.nl.vtt"
+      },
+      "en": {
+        "dur": 343.6,
+        "bytes": 14175731,
+        "scenes": [
+          0,
+          39.98,
+          79.17,
+          113.59,
+          146.53,
+          181.44,
+          222.99,
+          263.3,
+          305.79
+        ],
+        "vtt": "src/content/courses/films/pm.agile.backlog.en.vtt"
+      }
     }
   }
 }
