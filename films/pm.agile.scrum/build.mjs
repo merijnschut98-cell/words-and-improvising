@@ -31,110 +31,106 @@
 // and a retrospective. "Often two weeks" is the lesson's, not the Guide's.
 //
 // Checklist (lesson point: scene and beat; "card" = on the card only, not
-// spoken, at least 4 s; every card stays up for the rest of its page):
+// spoken, on screen at least 4 s; every card stays up for the rest of its page):
 //   scrumbasics teach 1: a framework for a small team to make complex
 //     products, the best-known agile way of working (s1 b1); the Scrum Guide by
-//     Ken Schwaber and Jeff Sutherland (s1 b2), version November 2020, about
-//     thirteen pages (card, s1 b2); deliberately little on how you do the
-//     work: a few fixed roles, moments and lists, the rest to the team (s1 b3)
+//     Ken Schwaber and Jeff Sutherland, about thirteen pages (s1 b2), version
+//     November 2020 (card and caption, s1 b2); deliberately little on how you
+//     do the work: fixed roles, moments and lists, the rest to the team (s1 b3)
 //   scrumbasics teach 2: sprints, fixed periods of at most a month, often two
-//     weeks, the next starts right after (s1 b4); something usable each
-//     sprint, the fixed length gives rhythm: planning, showing, looking back
-//     (s1 b5); too long is risky, the goal goes stale, problems stay hidden (s1 b6)
-//   scrumbasics teach 3: the Scrum Team is small, by the Guide usually ten or
-//     fewer, no hierarchy, no sub-teams (s2 b1), three accountabilities (s2
+//     weeks, the next right after (s1 b4); something usable each sprint, a
+//     fixed rhythm (s1 b5) of planning, showing and looking back (card, s1 b5);
+//     longer is risky, the goal goes stale, problems stay hidden (s1 b6)
+//   scrumbasics teach 3: the Scrum Team is small, usually ten or fewer, no
+//     hierarchy (s2 b1), no sub-teams (card, s2 b1); three accountabilities (s2
 //     b2); the Product Owner one person, not a committee, guards the value:
-//     what first and why (s2 b3); the Scrum Master helps team and organisation
-//     use Scrum well and removes obstacles (s2 b4); the Developers make the
-//     work: programmers, testers, analysts, anyone who builds (s2 b5)
+//     what first and why (s2 b3); the Scrum Master helps use Scrum well and
+//     removes obstacles (s2 b4), for team and organisation (card, s2 b4); the
+//     Developers make the work: anyone who builds, testers and analysts too
+//     (s2 b5), programmers (card, s2 b5)
 //   scrumbasics teach 4: since 2020 accountabilities, not job titles (s2 b2); a
-//     Developer needn't be a programmer (s2 b5), the Scrum Master is no boss
-//     (s2 b4); for a Lean consultant the Product Owner is like the voice of the
-//     customer in a value stream, the Scrum Master a coach who improves the
-//     system instead of handing out tasks (s2 b6)
-//   scrumbasics teach 5: in plants mostly IT teams for MES, ERP changes, data
-//     and machine software (s3 b1), MES glossed as the system for orders and
-//     production on the floor (card, s3 b1); the common mistake, the IT manager
-//     as Product Owner and Scrum Master at once: one person decides what is
-//     built and guards the process, nobody holds up a mirror (s3 b2); ask "who
-//     decides what comes first, and who guards how we work?" (s3 b3)
-//   scrumbasics example: a plastic pipe maker, an MES team of 7; Product
-//     Owner the production manager, freed 2 days a week, because he knows the
-//     floor (s3 b4); Scrum Master a process improver from the Lean team;
-//     Developers 3 programmers, 1 tester, 1 data analyst (s3 b5); two-week
-//     sprints from Monday; sprint 5's goal, operators of extrusion line 2
-//     report scrap per cause on the screen, not on paper (s3 b6); after 2
-//     weeks the screen is on line 2, used on all 3 shifts; sprint 6 starts the
-//     Monday after (s3 b7)
+//     Developer needn't be a programmer (s2 b5: anyone who builds, testers and
+//     analysts too); the Scrum Master is no boss (s2 b4); for a Lean consultant
+//     the Product Owner is the voice of the customer, the Scrum Master a coach
+//     of the system (s2 b6), in a value stream, not handing out tasks (card,
+//     s2 b6)
+//   scrumbasics teach 5: in plants mostly IT teams, for MES, ERP, data and
+//     machine software (s3 b1), MES as the system for orders and production on
+//     the floor (card, s3 b1); the common mistake, the IT manager as Product
+//     Owner and Scrum Master, nobody holds up a mirror (s3 b2), because he
+//     decides and guards at once (card, s3 b2); ask "who decides what comes
+//     first, and who guards how we work?" (s3 b3)
+//   scrumbasics example: a pipe maker, a team of seven, the production
+//     manager as Product Owner two days a week (s3 b4), an MES team, because he
+//     knows the floor (card, s3 b4); Scrum Master a process improver from the
+//     Lean team, five Developers (s3 b5), 3 programmers, 1 tester, 1 data
+//     analyst (card, s3 b5); sprint 5's goal: scrap per cause on a screen, not
+//     on paper (s3 b6), two-week sprints from Monday, extrusion line 2 (card,
+//     s3 b6); after two weeks all shifts use it, sprint 6 starts on Monday (s3
+//     b7), the screen on line 2, three shifts (card, s3 b7)
 //   events teach 1: five events, fixed moments to plan, inspect and adapt; the
-//     sprint is the first and contains the other four (s4 b1); each a timebox,
-//     a fixed maximum; for a month: planning at most 8 h, Daily Scrum 15 min,
-//     review at most 4 h, retrospective at most 3 h; shorter sprints usually
-//     shorter (s4 b2)
-//   events teach 2: Sprint Planning opens the sprint, the whole team, three
-//     questions: why valuable, the sprint goal (s4 b3); what can be done, the
-//     Developers pick work from the list (s4 b4); how, pieces of usually a day
-//     or less (s4 b5); the Developers decide how much, the Product Owner what
-//     matters most, not how much (s4 b6)
-//   events teach 3: the Daily Scrum, 15 minutes, for the Developers, every
-//     working day same time and place, progress toward the sprint goal, plan
-//     for the day (s5 b1); no status meeting for a manager; the three fixed
-//     questions were in older versions, since 2020 the team picks the form (s5 b2)
-//   events teach 4: the Sprint Review closes the sprint's work; the team shows
-//     stakeholders what is done, together they discuss what is most valuable
-//     now; a working session, not a slide show (s5 b3); never a gate to go
-//     live, what is done may be used earlier (s5 b4)
-//   events teach 5: the Sprint Retrospective, the last event: how it worked,
-//     what went well, what can improve, the main improvements, straight onto
-//     the next sprint's list; Scrum's kaizen engine, a retrospective without
-//     one concrete action is a kaizen board without an owner (s5 b5);
-//     refinement is no event, it runs continuously (s5 b6)
-//   events example: an MES team at a beverage maker, two-week sprints of 10
-//     working days; the Guide's timeboxes are for a month, usually shorter;
-//     the team halves them, a common rule of thumb (s6 b1); Monday week 1
-//     planning at most 4 h instead of 8 (s6 b2); every working day at 9:00 the
-//     Daily Scrum, 15 minutes at the board (s6 b3); Friday week 2 the review,
-//     at most 2 h, with the shift leads of the filling lines, then the
-//     retrospective, at most 1.5 h (s6 b4); 10 × 15 = 150 minutes, 2.5 hours
-//     per person per sprint (s6 b5)
-//   artefacts teach 1: three artefacts, lists or results that make work
-//     visible; since 2020 each has a commitment, a goal or agreement (s7 b1);
-//     the Product Backlog, the ordered list of all that can improve the
-//     product, the Product Owner orders it (s7 b2); its commitment the Product
-//     Goal, the longer-term goal, sprint after sprint (s7 b3)
+//     sprint contains the other four (s4 b1); each a timebox, a maximum
+//     duration; for a month planning at most 8 h, the Daily Scrum 15 min (s4
+//     b2), review at most 4 h, retrospective at most 3 h, shorter sprints
+//     usually shorter (card, s4 b2)
+//   events teach 2: Sprint Planning, three questions: why valuable, the sprint
+//     goal (s4 b3); what can be done, the Developers pick (s4 b4); how, pieces
+//     of usually a day or less (s4 b5); the Developers decide how much, the
+//     Product Owner what matters most (s4 b6)
+//   events teach 3: the Daily Scrum, 15 minutes for the Developers, every
+//     working day same time and place, toward the sprint goal (s5 b1); no
+//     status meeting for a manager, the team picks the form (s5 b2), the three
+//     fixed questions were in older versions, since 2020 (card, s5 b2)
+//   events teach 4: the Sprint Review shows stakeholders what is done, together
+//     they discuss what matters most now; a working session, not a
+//     presentation (s5 b3), no slides (card); never a gate, what is done may go
+//     into use earlier (s5 b4)
+//   events teach 5: the Sprint Retrospective, the team looks back; Scrum's
+//     kaizen engine, with one concrete action (s5 b5); what went well, what can
+//     improve, improvements straight into the next sprint, without an action a
+//     kaizen board without an owner (card, s5 b5); refinement is no event, it
+//     runs continuously (s5 b6)
+//   events example: a beverage maker, ten-day sprints; the team halves each
+//     timebox, a common rule of thumb (s6 b1); Monday the planning, at most 4 h
+//     (s6 b2), instead of 8 (said in s4 b2); every working day at nine the Daily
+//     Scrum (s6 b3), at the board (card and caption); Friday of week two the
+//     Sprint Review with the shift leaders, then the Sprint Retrospective (s6
+//     b4), at most 2 h and 1.5 h (card); ten days of fifteen minutes, 2.5 hours
+//     per person per sprint (s6 b5), 150 minutes (card and caption)
+//   artefacts teach 1: three artefacts, since 2020 each with a commitment (s7
+//     b1), lists or results that make work visible, a goal or agreement (card,
+//     s7 b1); the Product Backlog, the ordered list of all that makes the
+//     product better, the Product Owner orders it (s7 b2); its commitment the
+//     Product Goal, the longer-term goal (s7 b3), sprint after sprint (card)
 //   artefacts teach 2: the Sprint Backlog, the Developers' plan for this
-//     sprint, the chosen work and how; theirs, it changes as they learn (s7
-//     b4); its commitment the Sprint Goal, the one goal, focus and room (s7
-//     b5); an item too big: scope adjusted with the Product Owner, as long as
-//     the sprint goal stands (s7 b6)
-//   artefacts teach 3: the Increment, a concrete piece of working product,
-//     done, adding to the Product Goal; several per sprint, may be used
-//     earlier (s8 b1); its commitment the Definition of Done, the shared
-//     agreement when work is really done, e.g. tested, documented, installed
-//     on the test environment (s8 b2); work that doesn't meet it is not
-//     delivered or shown at the review, back to the Product Backlog (s8 b3)
-//   artefacts teach 4: the Definition of Done like a quality gate at the end
-//     of a line, half work doesn't count, hiding is over (s8 b4); a Sprint Goal
-//     made pointless, the plant stops a project: only the Product Owner may
-//     cancel the sprint, rarely (s8 b5)
-//   artefacts teach 5: typical mistakes, a Product Backlog of 400 items nobody
-//     oversees, a Sprint Backlog that is the manager's task list, a Definition
-//     of Done that only says "code written", so testing slides (s8 b6); sharp
-//     questions: the Product Goal in one sentence, this sprint's goal, may I
-//     see your Definition of Done and is it used (s8 b7)
-//   artefacts example: weighing scales in a meat plant linked to the MES;
-//     Product Goal every batch the right weight automatically, no hand work;
-//     Sprint Goal of sprint 4, the scale of line 1 sends weights to the MES (s9
-//     b1); Definition of Done: tested with real weighing data, checked by
-//     quality, installed on the acceptance environment, a copy of the real
-//     system for testing (s9 b2); end of the sprint: 5 items chosen, 3 meet the
-//     Definition of Done, item 4 written but not checked by quality, item 5
-//     not started (s9 b3)
-//   reveal (the ask is answered in the voice): only the 3 done items in the
-//     review (s9 b4); items 4 and 5 back to the Product Backlog, the Product
-//     Owner decides their place (s9 b5); whether the Sprint Goal is met depends
-//     on what the 3 do: if line 1's weights reach the MES, it is met, though
-//     not all chosen work went; so a sprint goal beats a task list (s9 b6)
+//     sprint, it changes as they learn (s7 b4), the chosen work plus how (card);
+//     its commitment the Sprint Goal, the one goal, focus (s7 b5) and room
+//     (card); too big: scope adjusted with the Product Owner, the goal stands
+//     (s7 b6)
+//   artefacts teach 3: the Increment, working product that is done, several
+//     per sprint (s8 b1), adds to the Product Goal, may be used earlier (card,
+//     s8 b1); its commitment the Definition of Done, when work is really done,
+//     such as tested and installed (s8 b2), documented, on the test environment
+//     (card); work that fails it is not shown, back to the Product Backlog (s8
+//     b3), nor delivered (card)
+//   artefacts teach 4: a quality gate at the end of the line, half work doesn't
+//     count (s8 b4), no hiding it (card); a pointless Sprint Goal: only the
+//     Product Owner may cancel the sprint, rarely (s8 b5), e.g. a stopped
+//     project (card)
+//   artefacts teach 5: typical mistakes, 400 items, the manager's task list, a
+//     Definition of Done of only code (s8 b6), nobody oversees the backlog,
+//     testing slides (card); ask for the Product Goal, this sprint's goal, the
+//     Definition of Done (s8 b7), in one sentence, and is it used (card)
+//   artefacts example: linking a meat plant's scales to the MES, sprint 4's
+//     goal: line 1 sends weights (s9 b1); Product Goal, every batch the right
+//     weight automatically (card, s9 b1); Definition of Done: real weighing
+//     data, checked by quality, on the acceptance environment (s9 b2), a copy
+//     of the real system (card); 5 items, 3 meet it, 4 not checked, 5 not
+//     started (s9 b3)
+//   reveal (the ask is answered in the voice): only those three are shown (s9
+//     b4); 4 and 5 back to the Product Backlog, the Product Owner decides the
+//     order (s9 b5); if line 1's weights get through, the goal is met: a sprint
+//     goal beats a task list (s9 b6), though not all work went (card)
 //   Not in the film: the lessons' pre and recall questions, their "said"
 //   lines, situations and sayIt (practice, not teach text).
 //
@@ -514,7 +510,11 @@ const spec = {
 // "dia's"), live ("lie-ve": said "in gebruik"), a lower-case review or
 // retrospective (always the full Sprint Review, Sprint Retrospective in the
 // voice), accountabilities and stakeholders (said in Dutch,
-// verantwoordelijkheden and belanghebbenden). Years in words.
+// verantwoordelijkheden and belanghebbenden), Lean-taal ("lee-an": said "als
+// Lean-consultant", the Lien consultant rule), timeboxes (the taimboks rule
+// covers the singular: said "elke timebox") and "item vier" ("ie-tem", while
+// items is "ai-tems": said "nummer vier"). ERP stays the word "erp" in both
+// voices, as eng.ot.isa95 and eng.ot.orderflow say it. Years in words.
 const SAY = [
   [ // s1 scrum and the sprint
     { nl: '{t:Scrum|Scrum} is een raamwerk voor een klein team en complexe producten: de bekendste agile werkwijze.',
@@ -541,7 +541,7 @@ const SAY = [
       en: 'The {t:Scrum Master|Scrum Master} helps people use Scrum well and removes impediments. Not the boss.' },
     { nl: 'De {t:Developers|Developers} maken het werk: iedereen die bouwt, ook testers en analisten.',
       en: 'The {t:Developers|Developers} do the work: anyone who builds, testers and analysts too.' },
-    { nl: 'In Lean-taal: de Product Owner is de klantstem, de Scrum Master een coach van het systeem.',
+    { nl: 'Voor jou als Lean-consultant: de Product Owner is de klantstem, de Scrum Master een coach van het systeem.',
       en: 'In Lean terms: the Product Owner is the customer\'s voice, the Scrum Master a coach of the system.' },
   ],
   [ // s3 in the plant, and the pipe maker
@@ -589,7 +589,7 @@ const SAY = [
       en: 'Refinement, refining the list, is not an event. It runs all the time.' },
   ],
   [ // s6 the beverage example
-    { nl: 'Een voorbeeld: een drankenproducent met sprints van tien werkdagen. Het team halveert de timeboxes, een gangbare vuistregel.',
+    { nl: 'Een voorbeeld: een drankenproducent met sprints van tien werkdagen. Het team halveert elke timebox, een gangbare vuistregel.',
       en: 'An example: a beverage maker with ten-day sprints. The team halves the timeboxes, a common rule of thumb.' },
     { nl: 'Maandag de planning, hooguit vier uur.',
       en: 'Monday, the planning, at most four hours.' },
@@ -635,7 +635,7 @@ const SAY = [
       en: 'An example: linking a meat plant\'s scales to the MES. Sprint four\'s goal: line one sends weights.' },
     { nl: 'De Definition of Done: getest met echte weegdata, gecontroleerd door kwaliteit, op de acceptatieomgeving.',
       en: 'The Definition of Done: tested with real weighing data, checked by quality, on the acceptance environment.' },
-    { nl: 'Van vijf items voldoen er drie. Item vier is niet gecontroleerd, item vijf niet begonnen.',
+    { nl: 'Van vijf items voldoen er drie. Nummer vier is niet gecontroleerd, nummer vijf niet begonnen.',
       en: 'Of five items, three meet it. Item four is not checked, item five not started.' },
     { nl: 'Wat laat het team zien? Alleen die drie.',
       en: 'What does the team show? Only those three.' },
