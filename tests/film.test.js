@@ -240,13 +240,13 @@ test('speak variant: second opinion, timebox, Weinberg, Pink, Deci and Ryan, man
 // Daily Scrum ("DAI-lie": Deeli), Sprint Review ("ree-VIEW": Rievjoe, as the
 // Harvard Business Review rule), Sprint Retrospective ("RE-tros-pek-tie-ve":
 // Retro-spektif), Scrum Guide (a Dutch "guide": Gaid), Definition of Done with a
-// capital D (Deffi-nisjun of Dun, as pm.outside.steering's lower-case rule),
+// capital D (through pm.outside.steering's rule: Deffi-nisjun of dun),
 // Schwaber and Jeff ("schwaber" with sch, "yef": Sjwaaber, Djef), events
 // ("ee-VENTS": ievents), refinement ("ree-fie-ne-MENT": ri-fainmunt), and the
 // compounds espeak-ng stresses at the end or reads with "ti" for "tsie": split
 // at the head (sprintdoel, and vuistregel only after "gangbare"); "uit het
 // Lean-team" as "Lien team". Dutch only; the capitalised names only, the Guide
-// only as "Scrum Guide van" or "de Guide", ERP untouched (the videos say "erp"),
+// only as "Scrum Guide van", ERP untouched (the videos say "erp"),
 // and no other film's spoken text changes
 test('speak variant: the Scrum names and split compounds in Dutch', () => {
   const nl = (s) => speakOf([s], 'nl');
@@ -254,10 +254,9 @@ test('speak variant: the Scrum names and split compounds in Dutch', () => {
   assert.equal(nl('De Developers maken de Sprint Backlog en het Sprint Goal. Een Developer.'), 'De Di-vellopers maken de Sprint Bek-lok en het Sprint Gool. Een Di-velloper.');
   assert.equal(nl('De Daily Scrum, de Sprint Review en de Sprint Retrospective.'), 'De Deeli Scrum, de Sprint Rievjoe en de Sprint Retro-spektif.');
   assert.equal(nl('De Scrum Guide van Ken Schwaber en Jeff Sutherland.'), 'De Scrum Gaid van Ken Sjwaaber en Djef Sutherland.');
-  assert.equal(nl('De Definition of Done. Vijf events. Events zijn vast. Refinement is geen event.'), 'De Deffi-nisjun of Dun. Vijf ievents. Ievents zijn vast. Ri-fainmunt is geen ievent.');
-  assert.equal(nl('De productieleider van de extrusielijn. De acceptatieomgeving, een waardestroom.'),
-    'De productie-leider van de extrusie-lijn. De acceptatie-omgeving, een waarde-stroom.');
-  assert.equal(nl('Volgens de Guide; de timeboxes van de Guide. De Guide zegt het.'), 'Volgens de Gaid; de timeboxes van de Gaid. De Gaid zegt het.');
+  assert.equal(nl('De Definition of Done. Vijf events. Events zijn vast. Refinement is geen event.'), 'De Deffi-nisjun of dun. Vijf ievents. Ievents zijn vast. Ri-fainmunt is geen ievent.');
+  assert.equal(nl('De productieleider. De acceptatieomgeving.'), 'De productie-leider. De acceptatie-omgeving.');
+  assert.equal(nl('De definition of done: klaar als'), 'De definition of done: klaar als');
   assert.equal(nl('Het sprintdoel. Uit het Lean-team, een gangbare vuistregel.'), 'Het sprint-doel. Uit het Lien team, een gangbare vuist-regel.');
   assert.equal(nl('Een Lean-team, een vuistregel.'), 'Een Lean-team, een vuistregel.');
   assert.equal(nl('een product, een goal, de review, een retrospective, de developer, Uit de Scrum Guide; het ERP'), 'een product, een goal, de review, een retrospective, de developer, Uit de Scrum Guide; het ERP');

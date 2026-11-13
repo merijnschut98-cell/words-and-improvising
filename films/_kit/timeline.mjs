@@ -423,13 +423,14 @@ const SAY = {
     // -GEE- (said VRIJ-geven). Not vrijgave, which films with a video say; no other film says these
     [/\b([Mm])ensenprobl/g, '$1ensen-probl'], [/\b([Cc])apaciteitsprobl/g, '$1apaciteits-probl'], [/\b(I[Jj]|ij)kmoment/g, '$1k-moment'],
     [/\b([Pp])lanningsregel/g, '$1lannings-regel'], [/\b([Vv])rijgeven\b/g, '$1rij-geven'],
-    // seeing progress without the expertise (pm.outside.steering): espeak-ng reads definition of done as
+    // seeing progress without the expertise (pm.outside.steering): espeak-ng reads definition of done (also with
+    // a capital D, pm.agile.scrum's Scrum Guide name) as
     // "dee-fie-nie-SJON of doo-ne" (said deffi-nisjun of dun; not in pm.plan.wbs's caption "definition of done:
     // klaar als", so that film's spoken text stays), FAT and SAT as the words "fat" and "sat" (said as letters,
     // as on the floor; capitals only), stresses FABrieksacceptatietest and LOcatieacceptatietest with "ti" for
     // "tsie" (split at the heads: fa-BRIEKS-ak-sep-TAA-tsie-TEST), and reads Jeffrey Pfeffer with a stressed
     // -REY and a sounded p (said as his English name, Djeffri Feffer); no other film says them in Dutch
-    [/\b([Dd])efinition of done\b(?!: klaar als)/g, '$1effi-nisjun of dun'], [/\b([FS])AT\b/g, '$1 A T'],
+    [/\b([Dd])efinition of [Dd]one\b(?!: klaar als)/g, '$1effi-nisjun of dun'], [/\b([FS])AT\b/g, '$1 A T'],
     [/\b([Ff])abrieksacceptatietest/g, '$1abrieks-acceptatie-test'], [/\b([Ll])ocatieacceptatietest/g, '$1ocatie-acceptatie-test'],
     [/\bJeffrey Pfeffer\b/g, 'Djeffri Feffer'],
     // testing plans, translating jargon (pm.outside.jargon): espeak-ng stresses PREmortem (said pree-mortem), reads
@@ -481,21 +482,20 @@ const SAY = {
     // with espeak-ng phonemes through Piper's nl_NL-alex bridge: it reads "PROO-dukt OU-ner", "BAK-loch" and
     // "GOO-al" (said Prodduct Ooner, Bek-lok, Gool, the goal of Dutch football), "DEE-ve-loo-pers" (Di-vellopers),
     // "DAI-lie" (Deeli), "ree-VIEW" (Rievjoe, as Harvard Business Review above), "RE-tros-pek-tie-ve"
-    // (Retro-spektif), a Dutch "guide" (Gaid), Definition of Done with a capital D (Deffi-nisjun of Dun, as the
-    // lower-case rule above), Schwaber with sch and Jeff as "yef" (Sjwaaber, Djef), "ee-VENTS" (ievents) and
-    // "ree-fie-ne-MENT" (ri-fainmunt), and it stresses productieLEIder with "ti", extrusieLIJN, waardeSTROOM,
+    // (Retro-spektif), a Dutch "guide" (Gaid), Schwaber with sch and Jeff as "yef" (Sjwaaber, Djef), "ee-VENTS" (ievents) and
+    // "ree-fie-ne-MENT" (ri-fainmunt), and it stresses productieLEIder with "ti",
     // acceptatieomGEving with "ti", sprintDOEL and, in this film's phrases only, vuistreGEL (pm.outside.disagree's
     // rule covers "als vuistregel:"): split at the head; "uit het Lean-team" as "Lien team", as the Lean-consultant
     // rule above (espeak-ng reads "lee-an"; pm.run.conflict's "een Lean-team" stays). Capitalised names only (a
-    // lower-case goal, review or developer keeps its voice), the Guide only as "Scrum Guide van" or "de Guide"
+    // lower-case goal, review or developer keeps its voice), the Guide only as "Scrum Guide van"
     // (pm.outside.steering's "Uit de Scrum Guide" stays); ERP stays the word "erp", as the films with a video say
-    // it; no other film's voice changes
+    // it; Definition of Done with a capital D goes through pm.outside.steering's rule above; no other film's voice changes
     [/\bProduct (?=(?:Owner|Backlog|Goal)\b)/g, 'Prodduct '], [/\bOwner\b/g, 'Ooner'], [/\bBacklog\b/g, 'Bek-lok'], [/\bGoal\b/g, 'Gool'],
     [/\bDeveloper(s?)\b/g, 'Di-velloper$1'], [/\bDaily Scrum\b/g, 'Deeli Scrum'], [/\bSprint Review\b/g, 'Sprint Rievjoe'],
-    [/\bSprint Retrospective\b/g, 'Sprint Retro-spektif'], [/\bScrum Guide van\b/g, 'Scrum Gaid van'], [/\b([Dd])e Guide\b/g, '$1e Gaid'], [/\bDefinition of Done\b/g, 'Deffi-nisjun of Dun'],
+    [/\bSprint Retrospective\b/g, 'Sprint Retro-spektif'], [/\bScrum Guide van\b/g, 'Scrum Gaid van'],
     [/\bKen Schwaber en Jeff Sutherland\b/g, 'Ken Sjwaaber en Djef Sutherland'], [/\b([Ee])vent(s?)\b/g, (m, e, s) => `${e === 'E' ? 'I' : 'i'}event${s}`],
     [/\b([Rr])efinement\b/g, '$1i-fainmunt'],
-    [/\b([Pp])roductieleider/g, '$1roductie-leider'], [/\b([Ee])xtrusielijn/g, '$1xtrusie-lijn'], [/\b([Ww])aardestroom/g, '$1aarde-stroom'],
+    [/\b([Pp])roductieleider/g, '$1roductie-leider'],
     [/\b([Aa])cceptatieomgeving/g, '$1cceptatie-omgeving'], [/\b([Ss])printdoel/g, '$1print-doel'], [/\b([Uu])it het Lean-team\b/g, '$1it het Lien team'],
     [/\bgangbare vuistregel\b/g, 'gangbare vuist-regel']],
   en: [[/\brpm\b/g, 'revolutions per minute'], [/\bmm\/min\b/g, 'millimetres per minute'], [/\bm\/min\b/g, 'metres per minute'], [/µm\b/g, 'micrometres'],

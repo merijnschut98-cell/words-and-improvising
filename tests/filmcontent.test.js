@@ -10,6 +10,11 @@ import { validateModule } from '../src/content/courses/validate.js';
 import { readFilmData, checkFilm, lessonTextOf, MAX_BYTES } from '../films/_kit/assert.mjs';
 
 const DIR = 'src/content/courses/films';
+// Films whose terms all carry the same name in both languages (pm.agile.scrum:
+// the Scrum Guide's names), so no Dutch term can leak into their English; the
+// Dutch-in-English probes skip only these, and fail for any other film that
+// would have no term to probe with.
+const SAME_NAMED = new Set(['pm.agile.scrum']);
 const films = fs.existsSync(DIR) ? fs.readdirSync(DIR).filter((f) => f.endsWith('.html')).map((f) => f.slice(0, -5)) : [];
 
 const q = (n) => ({ q: `Question ${n}?`, options: ['a', 'b', 'c', 'd'], answer: 'b', why: 'Because b.' });
@@ -122,6 +127,7 @@ test('the sync check catches a renamed term, a removed number and a Dutch word i
     // a Dutch term in the English caption (a film whose terms all carry the
     // same name in both languages, as pm.agile.scrum's Scrum Guide names, has none)
     const dutch = data.scenes.flatMap((s) => s.terms).find((x) => x.nl.toLowerCase() !== x.en.toLowerCase());
+    assert.ok(Boolean(dutch) !== SAME_NAMED.has(id), `${id}: ${dutch ? 'has a Dutch-named term but is listed in SAME_NAMED' : 'has no Dutch-named term to probe with'}`);
     if (dutch) {
       const bad = JSON.parse(JSON.stringify(data));
       bad.scenes[0].beats[0].text.en += ` ${dutch.nl}`;
@@ -151,6 +157,7 @@ test('every narrated film: each beat has a script in both languages, and the syn
     assert.match(checkFilm(gap, ctx).join('\n'), /narration: 1 beats have no script/);
     // a Dutch term in the English narration (none in a film whose terms are named alike in both languages)
     const dutch = data.scenes.flatMap((s) => s.terms).find((x) => x.nl.toLowerCase() !== x.en.toLowerCase());
+    assert.ok(Boolean(dutch) !== SAME_NAMED.has(data.id), `${data.id}: ${dutch ? 'has a Dutch-named term but is listed in SAME_NAMED' : 'has no Dutch-named term to probe with'}`);
     if (dutch) {
       const bad = JSON.parse(JSON.stringify(data));
       bad.scenes[0].beats[0].say.en.push(` ${dutch.nl}`);

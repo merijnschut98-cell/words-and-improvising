@@ -78,7 +78,8 @@
 //     of usually a day or less (s4 b5); the Developers decide how much, the
 //     Product Owner what matters most (s4 b6)
 //   events teach 3: the Daily Scrum, 15 minutes for the Developers, every
-//     working day same time and place, toward the sprint goal (s5 b1); no
+//     working day same time and place, toward the sprint goal (s5 b1), adjusting
+//     the plan for the day ahead (card, s5 b1); no
 //     status meeting for a manager, the team picks the form (s5 b2), the three
 //     fixed questions were in older versions, since 2020 (card, s5 b2)
 //   events teach 4: the Sprint Review shows stakeholders what is done, together
@@ -498,12 +499,12 @@ const spec = {
 // film's spoken text changes): Product Owner, Product Backlog and Product Goal
 // (Prodduct Ooner, Bek-lok, Gool), Sprint Backlog and Sprint Goal, Developers
 // (Di-vellopers), Daily Scrum (Deeli), Sprint Review (Rievjoe), Sprint
-// Retrospective (Retro-spektif), Scrum Guide after "van" and the Guide after
-// "volgens" (Gaid), Ken Schwaber en Jeff Sutherland (Sjwaaber, Djef),
-// Definition of Done with a capital D (Deffi-nisjun of Dun), events
-// (ievents), refinement (ri-fainmunt), and split compounds: productieleider,
-// extrusielijn, waardestroom, acceptatieomgeving, sprintdoel, "uit het
-// Lean-team" (Lien team) and "gangbare vuistregel". Said around because
+// Retrospective (Retro-spektif), Scrum Guide after "van" (Gaid), Ken
+// Schwaber en Jeff Sutherland (Sjwaaber, Djef), events (ievents), refinement
+// (ri-fainmunt), and split compounds: productieleider, acceptatieomgeving,
+// sprintdoel, "uit het Lean-team" (Lien team) and "gangbare vuistregel".
+// Definition of Done with a capital D goes through pm.outside.steering's
+// definition-of-done rule (Deffi-nisjun of dun), widened to a capital D. Said around because
 // espeak-ng misreads them (they stay in the captions and on the cards):
 // manager ("maa-naa-gher": said "het hoofd IT", "de baas"), machinesoftware
 // ("zoftwaare": said "software voor machines"), slides ("slie-des": said
@@ -523,21 +524,21 @@ const SAY = [
       en: 'The Scrum Guide by Ken Schwaber and Jeff Sutherland describes it, in about thirteen pages.' },
     { nl: 'Vaste rollen, momenten en lijsten; de rest laat het bewust aan het team.',
       en: 'Fixed accountabilities, events and lists; the rest it deliberately leaves to the team.' },
-    { nl: 'Het werk gebeurt in {t:Sprint|sprints} van hooguit een maand, vaak twee weken, direct na elkaar.',
-      en: 'The work happens in {t:Sprint|sprints} of one month or less, often two weeks, back to back.' },
+    { nl: 'Werk gebeurt in {t:Sprint|sprints} van hooguit een maand, vaak twee weken, direct na elkaar.',
+      en: 'Work runs in {t:Sprint|sprints} of a month or less, often two weeks, back to back.' },
     { nl: 'Elke sprint levert iets bruikbaars op, in een vast ritme.',
       en: 'Each sprint delivers something usable, in a fixed rhythm.' },
-    { nl: 'Langer is riskant: het doel veroudert, en problemen blijven verborgen.',
-      en: 'Longer is risky: the goal goes stale, and problems stay hidden.' },
+    { nl: 'Langer is riskant: het doel veroudert, problemen blijven verborgen.',
+      en: 'Longer is risky: the goal goes stale, problems stay hidden.' },
   ],
   [ // s2 three accountabilities
-    { nl: 'Het {t:Scrum Team|Scrum Team} is klein: meestal tien mensen of minder, zonder hiërarchie.',
-      en: 'The {t:Scrum Team|Scrum Team} is small: typically ten people or fewer, with no hierarchy.' },
+    { nl: 'Het {t:Scrum Team|Scrum Team} is klein: meestal tien of minder, zonder hiërarchie.',
+      en: 'The {t:Scrum Team|Scrum Team} is small: typically ten or fewer, with no hierarchy.' },
     { nl: 'Het draagt drie verantwoordelijkheden. Sinds tweeduizend twintig zijn dat geen functies.',
       en: 'It holds three accountabilities. Since 2020, they are not job titles.' },
     { nl: 'De {t:Product Owner|Product Owner} is één persoon, geen commissie. Hij bewaakt de waarde: wat eerst komt, en waarom.',
       en: 'The {t:Product Owner|Product Owner} is one person, not a committee, guarding value: what comes first, and why.' },
-    { nl: 'De {t:Scrum Master|Scrum Master} helpt Scrum goed te gebruiken, en ruimt obstakels op. Hij is geen baas.',
+    { nl: 'De {t:Scrum Master|Scrum Master} helpt Scrum goed te gebruiken, en ruimt obstakels op; geen baas.',
       en: 'The {t:Scrum Master|Scrum Master} helps people use Scrum well and removes impediments. Not the boss.' },
     { nl: 'De {t:Developers|Developers} maken het werk: iedereen die bouwt, ook testers en analisten.',
       en: 'The {t:Developers|Developers} do the work: anyone who builds, testers and analysts too.' },
@@ -547,8 +548,8 @@ const SAY = [
   [ // s3 in the plant, and the pipe maker
     { nl: 'In de fabriek werken vooral IT-teams zo: voor MES, ERP, data en software voor machines.',
       en: 'In factories, mostly IT teams work this way: MES, ERP, data and machine software.' },
-    { nl: 'Een veelgemaakte fout: het hoofd IT als Product Owner én Scrum Master. Niemand houdt hem een spiegel voor.',
-      en: 'A common mistake: the IT manager as Product Owner and Scrum Master. Nobody holds up a mirror.' },
+    { nl: 'Veelgemaakte fout: het hoofd IT als Product Owner én Scrum Master. Niemand houdt hem een spiegel voor.',
+      en: 'Common mistake: the IT manager as Product Owner and Scrum Master. Nobody holds up a mirror.' },
     { nl: 'Vraag: wie beslist wat er eerst komt, en wie bewaakt hoe we werken?',
       en: 'Ask: who decides what comes first, and who guards how we work?' },
     { nl: 'Voorbeeld: een buizenfabrikant, een team van zeven. Product Owner: de productieleider, twee dagen per week.',
@@ -561,7 +562,7 @@ const SAY = [
       en: 'After two weeks, all shifts use it. Sprint six starts the next Monday.' },
   ],
   [ // s4 five events, and the planning
-    { nl: 'Scrum kent vijf events: vaste momenten om te plannen, te inspecteren en bij te sturen. De sprint bevat de andere vier.',
+    { nl: 'Scrum kent vijf events: vaste momenten om te plannen, inspecteren en bijsturen. De sprint bevat de andere vier.',
       en: 'Scrum has five events: fixed moments to plan, inspect and adapt. The sprint contains the other four.' },
     { nl: 'Elk heeft een {t:Timebox|timebox}, een maximale duur. Bij een maand: planning hooguit acht uur, de Daily Scrum een kwartier.',
       en: 'Each has a {t:Timebox|timebox}, a maximum duration. For a month: planning at most eight hours, the Daily Scrum fifteen minutes.' },
@@ -581,58 +582,58 @@ const SAY = [
       en: 'Not a status meeting for a manager; the team picks the format.' },
     { nl: 'De {t:Sprint Review|Sprint Review} laat belanghebbenden zien wat af is; samen bespreken ze wat nu het belangrijkst is. Een werksessie, geen presentatie.',
       en: 'The {t:Sprint Review|Sprint Review} shows stakeholders what is done; together they discuss what matters most now. A working session, not a presentation.' },
-    { nl: 'En nooit een poort: wat af is, mag eerder in gebruik.',
-      en: 'And never a gate: what is done may go into use earlier.' },
+    { nl: 'Nooit een poort: wat af is, mag eerder in gebruik.',
+      en: 'Never a gate: what is done may go into use earlier.' },
     { nl: 'In de {t:Sprint Retrospective|Sprint Retrospective} kijkt het team terug: de kaizenmotor van Scrum, met één concrete actie.',
       en: 'In the {t:Sprint Retrospective|Sprint Retrospective} the team looks back: Scrum\'s kaizen engine, with one concrete action.' },
-    { nl: 'Refinement, het verfijnen van de lijst, is geen event. Dat loopt door.',
-      en: 'Refinement, refining the list, is not an event. It runs all the time.' },
+    { nl: 'Refinement is geen event: het verfijnen van de lijst loopt door.',
+      en: 'Refinement is not an event: refining the list runs all the time.' },
   ],
   [ // s6 the beverage example
-    { nl: 'Een voorbeeld: een drankenproducent met sprints van tien werkdagen. Het team halveert elke timebox, een gangbare vuistregel.',
-      en: 'An example: a beverage maker with ten-day sprints. The team halves the timeboxes, a common rule of thumb.' },
+    { nl: 'Een drankenproducent met sprints van tien werkdagen. Het team halveert elke timebox, een gangbare vuistregel.',
+      en: 'A beverage maker with ten-day sprints. The team halves the timeboxes, a common rule of thumb.' },
     { nl: 'Maandag de planning, hooguit vier uur.',
       en: 'Monday, the planning, at most four hours.' },
     { nl: 'Elke werkdag om negen uur de Daily Scrum.',
       en: 'Every working day at nine, the Daily Scrum.' },
-    { nl: 'Vrijdag in week twee de Sprint Review met de ploegleiders, en de Sprint Retrospective.',
+    { nl: 'Vrijdag week twee de Sprint Review met de ploegleiders, en de Sprint Retrospective.',
       en: 'Friday of week two, the review with the shift leaders, then the retrospective.' },
     { nl: 'Tien dagen een kwartier: tweeënhalf uur per persoon per sprint.',
       en: 'Ten days of fifteen minutes: two and a half hours per person per sprint.' },
   ],
   [ // s7 two backlogs, two goals
-    { nl: 'Dan de drie artefacten, sinds tweeduizend twintig elk met een toezegging.',
-      en: 'Then the three artefacts. Since 2020, each has a commitment.' },
+    { nl: 'Drie artefacten, sinds tweeduizend twintig elk met een toezegging.',
+      en: 'Three artefacts. Since 2020, each has a commitment.' },
     { nl: 'De {t:Product Backlog|Product Backlog} is de geordende lijst van alles wat het product beter maakt. De Product Owner bepaalt de volgorde.',
       en: 'The {t:Product Backlog|Product Backlog} is the ordered list of everything that could improve the product. The Product Owner decides the order.' },
-    { nl: 'De toezegging is het {t:Product Goal|Product Goal}, het doel op langere termijn.',
-      en: 'Its commitment is the {t:Product Goal|Product Goal}, the longer-term objective.' },
+    { nl: 'Toezegging: het {t:Product Goal|Product Goal}, het doel op langere termijn.',
+      en: 'Its commitment: the {t:Product Goal|Product Goal}, the longer-term objective.' },
     { nl: 'De {t:Sprint Backlog|Sprint Backlog} is het plan van de Developers voor deze sprint. Het verandert als ze leren.',
       en: 'The {t:Sprint Backlog|Sprint Backlog} is the Developers\' plan for this sprint. It changes as they learn.' },
-    { nl: 'De toezegging is het {t:Sprint Goal|Sprint Goal}: het ene doel, dat focus geeft.',
-      en: 'Its commitment is the {t:Sprint Goal|Sprint Goal}: the single objective, which gives focus.' },
-    { nl: 'Te groot? Dan passen ze de inhoud aan met de Product Owner; het doel blijft.',
-      en: 'Too big? Then they renegotiate the scope with the Product Owner; the goal stands.' },
+    { nl: 'Toezegging: het {t:Sprint Goal|Sprint Goal}, het ene doel, dat focus geeft.',
+      en: 'Its commitment: the {t:Sprint Goal|Sprint Goal}, the single objective, which gives focus.' },
+    { nl: 'Te groot? Ze passen de inhoud aan met de Product Owner; het doel blijft.',
+      en: 'Too big? They renegotiate the scope with the Product Owner; the goal stands.' },
   ],
   [ // s8 the increment and the definition of done
     { nl: 'Het {t:Increment|Increment} is werkend product dat af is; soms meerdere per sprint.',
       en: 'The {t:Increment|Increment} is working product that is done; a sprint can have several.' },
     { nl: 'De toezegging: de {t:Definition of Done|Definition of Done}, wanneer werk echt af is, zoals getest en geïnstalleerd.',
       en: 'Its commitment: the {t:Definition of Done|Definition of Done}, when work is really done, such as tested and installed.' },
-    { nl: 'Wat daar niet aan voldoet, wordt niet getoond, en gaat terug naar de Product Backlog.',
-      en: 'Work that fails it is not shown; it goes back to the Product Backlog.' },
-    { nl: 'Voor jou: een kwaliteitspoort aan het eind van de lijn. Half werk telt niet.',
-      en: 'For you: a quality gate at the end of the line. Half-done work doesn\'t count.' },
+    { nl: 'Wat daar niet aan voldoet, wordt niet getoond: terug naar de Product Backlog.',
+      en: 'Work that fails it is not shown: back to the Product Backlog.' },
+    { nl: 'Een kwaliteitspoort aan het eind van de lijn. Half werk telt niet.',
+      en: 'A quality gate at the end of the line. Half-done work doesn\'t count.' },
     { nl: 'Is het Sprint Goal zinloos, dan mag alleen de Product Owner de sprint afbreken. Zelden.',
-      en: 'Is the Sprint Goal obsolete? Only the Product Owner may cancel the sprint. Rarely.' },
+      en: 'Sprint Goal obsolete? Only the Product Owner may cancel the sprint. Rarely.' },
     { nl: 'Fouten: vierhonderd items, een takenlijst van de baas, een Definition of Done van alleen code.',
       en: 'Mistakes: four hundred items, the manager\'s task list, a Definition of Done of just code.' },
     { nl: 'Vraag: wat is het Product Goal? Het doel van deze sprint? Mag ik jullie Definition of Done zien?',
       en: 'So ask: what is the Product Goal? This sprint\'s goal? May I see your Definition of Done?' },
   ],
   [ // s9 the weighing example
-    { nl: 'Een voorbeeld: weegschalen in een vleesfabriek koppelen aan het MES. Doel van sprint vier: lijn één stuurt gewichten.',
-      en: 'An example: linking a meat plant\'s scales to the MES. Sprint four\'s goal: line one sends weights.' },
+    { nl: 'Weegschalen in een vleesfabriek koppelen aan het MES. Doel van sprint vier: lijn één stuurt gewichten.',
+      en: 'Linking a meat plant\'s scales to the MES. Sprint four\'s goal: line one sends weights.' },
     { nl: 'De Definition of Done: getest met echte weegdata, gecontroleerd door kwaliteit, op de acceptatieomgeving.',
       en: 'The Definition of Done: tested with real weighing data, checked by quality, on the acceptance environment.' },
     { nl: 'Van vijf items voldoen er drie. Nummer vier is niet gecontroleerd, nummer vijf niet begonnen.',
@@ -641,8 +642,8 @@ const SAY = [
       en: 'What does the team show? Only those three.' },
     { nl: 'Vier en vijf gaan terug naar de Product Backlog; de Product Owner bepaalt de volgorde.',
       en: 'Four and five go back to the Product Backlog; the Product Owner decides the order.' },
-    { nl: 'Komen de gewichten van lijn één al door? Dan is het doel gehaald: een sprintdoel is sterker dan een takenlijst.',
-      en: 'Do line one\'s weights already get through? Then the goal is met: a sprint goal beats a task list.' },
+    { nl: 'Komen de gewichten van lijn één door? Dan is het doel gehaald: een sprintdoel is sterker dan een takenlijst.',
+      en: 'Do line one\'s weights get through? Then the goal is met: a sprint goal beats a task list.' },
   ],
 ];
 spec.scenes.forEach((s, si) => {

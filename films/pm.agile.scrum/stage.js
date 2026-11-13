@@ -161,7 +161,7 @@ const STAGE = (() => {
   function s5(b, p) {
     const o = { head: [tr('drie events', 'three events'), DIA] };
     const A = page(b, p, 0, 2);
-    o.daily = op(A, box(54, 'Daily Scrum', [tr('15 min, elke werkdag,', '15 min, every work day,'), tr('zelfde tijd en plek', 'same time and place'), [tr('→ naar het sprintdoel', '→ toward the sprint goal'), 'pm-mute']], b === 0));
+    o.daily = op(A, box(54, 'Daily Scrum', [tr('15 min, elke werkdag,', '15 min, every work day,'), tr('zelfde tijd en plek', 'same time and place'), [tr('→ dagplan bijstellen', '→ adjust the day’s plan'), 'pm-mute']], b === 0));
     if (b >= 1) o.status = op(A * at(b, p, 1), lines(208, [[tr('geen statusoverleg', 'no status meeting'), 'pm-big'], [tr('voor een manager', 'for a manager')], [tr('3 vaste vragen: oud', '3 fixed questions: old'), 'pm-mute'], [tr('sinds 2020: eigen vorm', 'since 2020: own format'), 'pm-on']]) + cross(X1 - 12, 202));
     const B = page(b, p, 2, 4);
     if (b >= 2) o.review = op(B, box(54, 'Sprint Review', [tr('belanghebbenden zien', 'stakeholders see'), tr('wat af is; werksessie,', 'what’s done; working'), tr('geen slides', 'session, no slides')], b === 2));
