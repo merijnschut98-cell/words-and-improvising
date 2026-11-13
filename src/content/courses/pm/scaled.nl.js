@@ -3,6 +3,7 @@ export default {
   lessons: [
     {
       id: 'pm.scaled.why',
+      film: 'pm.scaled.pi',
       title: 'Waarom opschalen, en wat een release train is',
       pre: [
         {
@@ -85,6 +86,7 @@ export default {
     },
     {
       id: 'pm.scaled.piplanning',
+      film: 'pm.scaled.pi',
       title: 'PI Planning: twee dagen samen plannen',
       pre: [
         {
@@ -167,6 +169,7 @@ export default {
     },
     {
       id: 'pm.scaled.roles',
+      film: 'pm.scaled.pi',
       title: 'De rollen: wie beslist wat',
       pre: [
         {
