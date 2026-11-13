@@ -264,6 +264,33 @@ test('speak variant: the Scrum names and split compounds in Dutch', () => {
   assert.equal(speakOf([en], 'en'), en);
 });
 
+// From idea to sprint-ready (pm.agile.backlog): the backlog and estimating
+// words as Dutch agile teams say them, checked with espeak-ng phonemes through
+// Piper's nl_NL-alex bridge: user story (it reads "uuzer": joezer story),
+// stories (it stresses "sto-RIES": story's), story points ("po-ints": pojnts),
+// epic (eppik), velocity ("VEE-loo-si-ti": ve-lossetti), the Fibonacci-reeks
+// (Fiebo-natsjie reeks), Definition of Ready (as the Done rule: Deffi-nisjun of
+// Reddi), Ron Jeffries, Bill Wake and James Grenning as their names sound,
+// Card, Conversation en Confirmation and Extreme Programming in English
+// sounds, the Scrum Guide before "schrijft" and "noemt" (Gaid, as the Scrum
+// film's rule), and acceptatiecriteria, zaagmachines and trekhaken split at the
+// head (a capital Acceptatiecriteria only before "zijn concrete", so
+// pm.plan.wbs's "Acceptatiecriteria:" stays). In English, "three Cs" as "three
+// C's" (en_GB reads "C S"). Story alone, planning poker and INVEST keep their
+// voice; no other film's spoken text changes
+test('speak variant: the backlog and estimating words in Dutch, the three Cs in English', () => {
+  const nl = (s) => speakOf([s], 'nl');
+  assert.equal(nl('Een user story. User stories. Stories en epics. Een epic.'), 'Een joezer story. Joezer story\'s. Story\'s en eppiks. Een eppik.');
+  assert.equal(nl('Story points, de velocity en de Fibonacci-reeks. Velocity is.'), 'Story pojnts, de ve-lossetti en de Fiebo-natsjie reeks. Ve-lossetti is.');
+  assert.equal(nl('Een Definition of Ready, van Bill Wake. Ron Jeffries en James Grenning.'), 'Een Deffi-nisjun of Reddi, van Bill Weejk. Ron Djeffriz en Djeems Grenning.');
+  assert.equal(nl('Card, Conversation en Confirmation, uit Extreme Programming.'), 'Kaard, Konver-seesjun en Konfur-meesjun, uit Ekstriem Proogremming.');
+  assert.equal(nl('De Scrum Guide schrijft niets. De Scrum Guide noemt hem niet. Acceptatiecriteria zijn concrete. De zaagmachines, trekhaken. Trekhaken.'), 'De Scrum Gaid schrijft niets. De Scrum Gaid noemt hem niet. Acceptatie-criteria zijn concrete. De zaag-machines, trek-haken. Trek-haken.');
+  assert.equal(nl('Een story, planning poker, INVEST. Uit de Scrum Guide. Acceptatiecriteria: wie'), 'Een story, planning poker, INVEST. Uit de Scrum Guide. Acceptatiecriteria: wie');
+  assert.equal(speakOf(['Ron Jeffries described the three Cs. Three Cs.'], 'en'), 'Ron Jeffries described the three C\'s. Three C\'s.');
+  const en = 'A user story, story points, the velocity, an epic, the Fibonacci sequence, the Definition of Ready, Bill Wake, James Grenning';
+  assert.equal(speakOf([en], 'en'), en);
+});
+
 // Flow on a kanban board (pm.agile.kanban): the names and the Kanban Guide's
 // English measures as Dutch practitioners say them, checked with espeak-ng
 // phonemes through Piper's nl_NL-alex bridge: Taiichi Ohno ("TA-jich-ie OH-
@@ -299,10 +326,10 @@ test('speak variant: the kanban names and flow measures in Dutch', () => {
 // ART and RTE as letters (espeak-ng reads the word "art" and "r-tee"), the
 // Planning Board ("boo-art": Bord), confidence vote ("vo-te": konfidens voot),
 // Business Owners ("bu-ZIE-nus OW-ners": Biznis Ooners, as Owner and business
-// case), ROAM ("roo-am": Rooum), objectives ("ob-jek-tie-ves": ob-tsjektivs),
+// case), ROAM ("roo-am": Room), objectives ("ob-jek-tie-ves": ob-tsjektivs),
 // (un)committed (kommittid), Product Management ("MAA-nidzj-ment": Prodduct
 // Mennitsjmunt), System Architect with a Dutch ch (Sistum Arkitekt), feature
-// ("fee-aa-TUU-re": fietsjer), user stories ("uu-zer": joezer stoo-ries),
+// ("fee-aa-TUU-re": fietsjer; user stories go through pm.agile.backlog's rule),
 // obeya ("OO-be-ie-aa": oobeeja), and program-, project- and productmanager
 // with a Dutch "manager" (said -menetsjer, as the middenmanager rule). Dutch
 // only; capitals as the lessons write them, and no other film's spoken text changes
@@ -311,9 +338,9 @@ test('speak variant: the SAFe names in Dutch', () => {
   assert.equal(nl('SAFe, een SAFe-rol. De Agile Release Train en de Release Train Engineer.'), 'Seef, een Seef-rol. De Etsjail Rieliez Treen en de Rieliez Treen Entsjinier.');
   assert.equal(nl('Een ART, de RTE, het ART Planning Board, de confidence vote. De Confidence vote.'), 'Een A R T, de R T E, het A R T Planning Bord, de konfidens voot. De Konfidens voot.');
   assert.equal(nl('De Business Owners, een Business Owner. ROAM. De PI-objectives, uncommitted en committed.'),
-    'De Biznis Ooners, een Biznis Ooner. Rooum. De PI-ob-tsjektivs, un-kommittid en kommittid.');
+    'De Biznis Ooners, een Biznis Ooner. Room. De PI-ob-tsjektivs, un-kommittid en kommittid.');
   assert.equal(nl('Product Management, de System Architect, een feature, de features, user stories, een obeya.'),
-    'Prodduct Mennitsjmunt, de Sistum Arkitekt, een fietsjer, de fietsjers, joezer stoo-ries, een oobeeja.');
+    'Prodduct Mennitsjmunt, de Sistum Arkitekt, een fietsjer, de fietsjers, joezer story\'s, een oobeeja.');
   assert.equal(nl('Een oud-projectmanager, een programmamanager, een productmanager.'), 'Een oud-project-menetsjer, een programma-menetsjer, een product-menetsjer.');
   assert.equal(nl('de kunst, een safe, het Product, een manager'), 'de kunst, een safe, het Product, een manager');
   const en = 'SAFe, the Agile Release Train, the RTE, an ART, the ART Planning Board, the Business Owners, ROAM, PI objectives, uncommitted, Product Management, a feature, an obeya';

@@ -487,17 +487,37 @@ const SAY = {
     // acceptatieomGEving with "ti", sprintDOEL and, in this film's phrases only, vuistreGEL (pm.outside.disagree's
     // rule covers "als vuistregel:"): split at the head; "uit het Lean-team" as "Lien team", as the Lean-consultant
     // rule above (espeak-ng reads "lee-an"; pm.run.conflict's "een Lean-team" stays). Capitalised names only (a
-    // lower-case goal, review or developer keeps its voice), the Guide only as "Scrum Guide van"
+    // lower-case goal, review or developer keeps its voice), the Guide only as "Scrum Guide van" (and, for
+    // pm.agile.backlog, before "schrijft" and "noemt")
     // (pm.outside.steering's "Uit de Scrum Guide" stays); ERP stays the word "erp", as the films with a video say
     // it; Definition of Done with a capital D goes through pm.outside.steering's rule above; no other film's voice changes
     [/\bProduct (?=(?:Owner|Backlog|Goal)\b)/g, 'Prodduct '], [/\bOwner\b/g, 'Ooner'], [/\bBacklog\b/g, 'Bek-lok'], [/\bGoal\b/g, 'Gool'],
     [/\bDeveloper(s?)\b/g, 'Di-velloper$1'], [/\bDaily Scrum\b/g, 'Deeli Scrum'], [/\bSprint Review\b/g, 'Sprint Rievjoe'],
-    [/\bSprint Retrospective\b/g, 'Sprint Retro-spektif'], [/\bScrum Guide van\b/g, 'Scrum Gaid van'],
+    [/\bSprint Retrospective\b/g, 'Sprint Retro-spektif'], [/\bScrum Guide (?=(?:van|schrijft|noemt)\b)/g, 'Scrum Gaid '],
     [/\bKen Schwaber en Jeff Sutherland\b/g, 'Ken Sjwaaber en Djef Sutherland'], [/\b([Ee])vent(s?)\b/g, (m, e, s) => `${e === 'E' ? 'I' : 'i'}event${s}`],
     [/\b([Rr])efinement\b/g, '$1i-fainmunt'],
     [/\b([Pp])roductieleider/g, '$1roductie-leider'],
     [/\b([Aa])cceptatieomgeving/g, '$1cceptatie-omgeving'], [/\b([Ss])printdoel/g, '$1print-doel'], [/\b([Uu])it het Lean-team\b/g, '$1it het Lien team'],
     [/\bgangbare vuistregel\b/g, 'gangbare vuist-regel'],
+    // from idea to sprint-ready (pm.agile.backlog): the backlog and estimating words as Dutch agile teams say
+    // them, checked with espeak-ng phonemes through Piper's nl_NL-alex bridge: it reads user story with
+    // "uuzer" (said joezer story), stresses "sto-RIES" (story's), reads story points as "po-ints" (pojnts),
+    // epic with a long e (eppik), velocity as "VEE-loo-si-ti" (ve-lossetti), the Fibonacci-reeks as
+    // "FIE-boo-nak-si" (Fiebo-natsjie reeks), Definition of Ready as "dee-fie-nie-SJON of REE-aa-die" (Deffi-nisjun of
+    // Reddi, as the Done rule above), Jeffries with a Dutch j, Wake as "waa-ke" and James as "jaa-mes" (Djeffriz,
+    // Weejk, Djeems; Bill already sounds right), Card, Conversation and Confirmation as Dutch words and Extreme Programming as "ek-STREE-me"
+    // (said in English sounds), the Scrum Guide as a Dutch "guide" (Gaid: the Scrum film's rule above, widened to
+    // "schrijft" and "noemt"; pm.outside.steering's "Uit de Scrum Guide" stays), and acceptatiecriteria with
+    // "ti", zaagmachines and trekhaken stressed at the end: split at the head. A story alone, planning poker and
+    // INVEST keep their voice; a capital Acceptatiecriteria only before "zijn concrete" (the lower-case rule above
+    // covers the rest; pm.plan.wbs's "Acceptatiecriteria:" stays); no other film's spoken text changes
+    [/\b([Uu])ser stor(y|ies)\b/g, (m, u, e) => `${u === 'U' ? 'J' : 'j'}oezer story${e === 'ies' ? '\'s' : ''}`],
+    [/\b([Ss])tories\b/g, '$1tory\'s'], [/\b([Ss])tory points\b/g, '$1tory pojnts'], [/\b([Ee])pic(s?)\b/g, '$1ppik$2'],
+    [/\b([Vv])elocity\b/g, '$1e-lossetti'], [/\bFibonacci-reeks\b/g, 'Fiebo-natsjie reeks'], [/\bDefinition of Ready\b/g, 'Deffi-nisjun of Reddi'],
+    [/\bRon Jeffries\b/g, 'Ron Djeffriz'], [/\bBill Wake\b/g, 'Bill Weejk'], [/\bJames Grenning\b/g, 'Djeems Grenning'],
+    [/\bCard, Conversation en Confirmation\b/g, 'Kaard, Konver-seesjun en Konfur-meesjun'], [/\bExtreme Programming\b/g, 'Ekstriem Proogremming'],
+    [/\b([Aa])cceptatiecriteria(?= zijn concrete)/g, '$1cceptatie-criteria'],
+    [/\bzaagmachines\b/g, 'zaag-machines'], [/\b([Tt])rekhaken\b/g, '$1rek-haken'],
     // flow on a kanban board (pm.agile.kanban): the names and the Kanban Guide's English measures as Dutch
     // practitioners say them, checked with espeak-ng phonemes through Piper's nl_NL-alex bridge: it reads
     // "TA-jich-ie OH-noo" (said Taitsjie Oono), David Anderson and John Little with a Dutch a and j (Deevid
@@ -520,19 +540,19 @@ const SAY = {
     // entsjinier), ART as the word "art" and RTE as "r-tee" (said as letters), Board as "boo-art" (Bord, only in
     // Planning Board), confidence vote with a sounded e ("konfidens voot"), Business Owners as "bu-ZIE-nus
     // OW-ners" (Biznis Ooners, as the business case and Owner rules above; the Owner rule has already made
-    // "Ooner" of the singular), ROAM as "roo-am" (Rooum), objectives as "ob-jek-tie-ves" (ob-tsjektivs, tsj for the
+    // "Ooner" of the singular), ROAM as "roo-am" (Room, one syllable as in English), objectives as "ob-jek-tie-ves" (ob-tsjektivs, tsj for the
     // dzj it cannot voice), (un)committed as "OEN-kom-it-et" (un-kommittid), Product Management as
     // "MAA-nidzj-ment" (Prodduct Mennitsjmunt, as kmitmunt above), System Architect with the ch of "lachen"
-    // (Sistum Arkitekt), feature as "fee-aa-TUU-re" (fietsjer), user stories with a Dutch uu (joezer stoo-ries),
-    // obeya as "OO-be-ie-aa" (oobeeja), and program-, project- and productmanager with a Dutch "manager" (said
+    // (Sistum Arkitekt), feature as "fee-aa-TUU-re" (fietsjer; user stories and story points go
+    // through pm.agile.backlog's rules above), obeya as "OO-be-ie-aa" (oobeeja), and program-, project- and productmanager with a Dutch "manager" (said
     // -menetsjer, as the middenmanager rule above). Capitals as the lessons write them (a lower-case safe or
     // art keeps its voice); no other film's spoken text changes
     [/\bSAFe\b/g, 'Seef'], [/\bRelease Train Engineer\b/g, 'Rieliez Treen Entsjinier'], [/\bRelease Train\b/g, 'Rieliez Treen'],
     [/\b(ART|RTE)\b/g, (m) => m.split('').join(' ')], [/\bPlanning Board\b/g, 'Planning Bord'],
     [/\b([Cc])onfidence vote\b/g, (m, c) => `${c === 'C' ? 'K' : 'k'}onfidens voot`], [/\bBusiness O(?:oner|wner)(s?)\b/g, 'Biznis Ooner$1'],
-    [/\bROAM\b/g, 'Rooum'], [/\bobjectives\b/g, 'ob-tsjektivs'], [/\b(un)?committed\b/g, (m, u) => (u ? 'un-kommittid' : 'kommittid')],
+    [/\bROAM\b/g, 'Room'], [/\bobjectives\b/g, 'ob-tsjektivs'], [/\b(un)?committed\b/g, (m, u) => (u ? 'un-kommittid' : 'kommittid')],
     [/\bProduct Management\b/g, 'Prodduct Mennitsjmunt'], [/\bSystem Architect\b/g, 'Sistum Arkitekt'], [/\b([Ff])eature(s?)\b/g, '$1ietsjer$2'],
-    [/\buser stories\b/g, 'joezer stoo-ries'], [/\b([Oo])beya\b/g, '$1obeeja'], [/\b([Pp]rogramma|[Pp]roject|[Pp]roduct)manager\b/g, '$1-menetsjer']],
+    [/\b([Oo])beya\b/g, '$1obeeja'], [/\b([Pp]rogramma|[Pp]roject|[Pp]roduct)manager\b/g, '$1-menetsjer']],
   en: [[/\brpm\b/g, 'revolutions per minute'], [/\bmm\/min\b/g, 'millimetres per minute'], [/\bm\/min\b/g, 'metres per minute'], [/µm\b/g, 'micrometres'],
     [/€\s?(\d[\d,]*(?:\.\d+)?)/g, '$1 euros'], [/(\d)\.0(?![\d])/g, '$1'], [/(\d)\s?mm\b/g, '$1 millimetres'], [/(\d)\s?min\b/g, '$1 minutes'], [/(\d)\s?%/g, '$1 percent'],
     [/Ø\s*/g, 'diameter '], [/(\d)\+(\d)/g, '$1 plus $2'], [/\s×\s/g, ' times '], [/\s\/\s/g, ' divided by '], [/\s=\s/g, ' is '], [/°/g, ' degrees'], [/\bRa\b/g, 'R a'], [/’/g, "'"],
@@ -554,7 +574,10 @@ const SAY = {
     [/\bidempotency\b/g, 'idem-potency'],
     // conflict: interests and the difficult conversation (pm.run.conflict): Ury as his name sounds, "Yuri"
     // (espeak-ng's English reads "urry"), only after "by", so pm.negotiate.batna's caption "Fisher and Ury:" stays
-    [/\bby Fisher and Ury\b/g, 'by Fisher and Yuri']],
+    [/\bby Fisher and Ury\b/g, 'by Fisher and Yuri'],
+    // from idea to sprint-ready (pm.agile.backlog): Ron Jeffries' three Cs with an apostrophe, as the letter's
+    // plural sounds (espeak-ng's English reads "three Cs" as "three C S")
+    [/\b([Tt])hree Cs\b/g, '$1hree C\'s']],
 };
 export const sayable = (text, lang) => (SAY[lang] || []).reduce((s, [re, w]) => s.replace(re, w), text);
 // The words the voice says: no English gloss, and with a language, units as words.

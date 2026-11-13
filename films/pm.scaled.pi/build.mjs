@@ -57,7 +57,7 @@
 //     of 9 (s3 b1); 72 / 9 = 8 teams, within 50 to 125, one ART (s3 b2); a
 //     10-week PI, 2-week iterations, 10 / 2 = 5: 4 to build, 1 IP (s3 b3);
 //     52 / 10 = 5.2, about 5 times a year all 8 teams plan together (s3 b4)
-//   piplanning teach 1: PI Planning, an event of the whole train, usually two
+//   piplanning teach 1: PI Planning, an event that aligns the whole train, usually two
 //     days, ideally one room, in the IP iteration (s4 b1), so no build time
 //     lost (card, s4 b1); day 1 the business context and the vision, what and
 //     why (s4 b2); teams make a first plan per iteration with their own
@@ -76,8 +76,8 @@
 //     accepted, mitigated (s5 b3)
 //   piplanning teach 5: the confidence vote, one to five fingers on how
 //     feasible the plan is (s5 b4); a rule of thumb from training material: an
-//     average of three or more is enough; who shows one or two gets the floor
-//     (s5 b5); an obeya (Japanese for big room); the pitfall: the board full
+//     average of three or more is enough, lower means plan again; who shows one
+//     or two gets the floor (s5 b5); an obeya (Japanese for big room); the pitfall: the board full
 //     and nobody says it does not fit (s5 b6), "at scale" (caption and card)
 //   piplanning example: a machine builder's team, 4 build iterations of 30
 //     story points (a relative measure): 4 x 30 = 120 (s6 b1); 20 % free for
@@ -99,9 +99,9 @@
 //     seen by all (card, s8 b1); the System Architect, technical coherence,
 //     architecture, interfaces (s8 b2), enablers (card, s8 b2)
 //   roles teach 4: a Scrum Master per team, also Team Coach in 6.0; the
-//     Business Owners steer the business side (caption, s8 b3); names: a
-//     product manager at a machine builder often does marketing and sales, no
-//     SAFe role (s8 b4; "no SAFe role" in the caption)
+//     Business Owners steer the business side (s8 b3); names: a product
+//     manager at a machine builder often does marketing and sales, no SAFe
+//     role (s8 b4)
 //   roles teach 5: a strong PO has mandate and time; one day a week and teams
 //     guess (s8 b5); the question: team 3 and Product Management disagree, who
 //     decides and how fast (s8 b6); nobody knows, the org chart is only on
@@ -516,7 +516,7 @@ const spec = {
 // the films with a video), afhankelijkheid, opschalen, cadans, iteraties,
 // IP-iteratie, Planning Interval, PI and PI Planning (pee-ie; but espeak-ng
 // reads PI right before a colon or comma as the word "pie", so no line puts one
-// there), takt, organigram, machinebouwer, story points, capaciteit, Scrum
+// there), takt, organigram, machinebouwer, capaciteit, Scrum
 // Master, Team Coach, levensvatbaar, MES through the existing letters rule;
 // Agile through pm.plan.method's etsjail rule, Owner and Backlog through
 // pm.agile.scrum's rules, events through its ievent rule. New SAY rules in
@@ -524,7 +524,8 @@ const spec = {
 // spoken text changes): SAFe (Seef), Release Train and its Engineer, ART and
 // RTE as letters, Planning Board, confidence vote, Business Owners, ROAM,
 // objectives, uncommitted, Product Management, System Architect, feature,
-// user stories, obeya and the -manager compounds. Said around because
+// obeya and the -manager compounds; user stories and story points through
+// pm.agile.backlog's rules. Said around because
 // espeak-ng misreads them (they stay in the captions and on the cards): Scaled
 // Agile Framework, Dean Leffingwell, State of Agile and Digital.ai (said "een
 // jaarlijkse enquête"), Program Increment, management review and problem
@@ -538,12 +539,12 @@ const spec = {
 // marked "card" in the checklist above.
 const SAY = [
   [ // s1 many teams, one product
-    { nl: 'Een Scrum-team telt hooguit zo\'n tien mensen; een nieuwe verpakkingsmachine vraagt meer.',
+    { nl: 'Een Scrum-team telt hooguit tien mensen; een nieuwe verpakkingsmachine vraagt meer.',
       en: 'One Scrum team has ten people at most; a new packaging machine needs more.' },
     { nl: 'De PLC-besturing, het scherm, de camerakeuring en de koppeling met het ERP.',
       en: 'The PLC controls, the screen, the camera inspection and the ERP link.' },
     { nl: 'Zes teams doen prima Scrum en lopen toch vast: team A wacht op team B. Een {t:Afhankelijkheid|afhankelijkheid}.',
-      en: 'Six teams do Scrum well and still stall: team B waits for team A. A {t:Dependency|dependency}.' },
+      en: 'Six teams do Scrum well and still stall: team A waits for team B. A {t:Dependency|dependency}.' },
     { nl: 'Opschalen: afspraken waarmee veel teams als één geheel leveren.',
       en: 'Scaling: agreements that let many teams deliver as one.' },
     { nl: 'De bekendste aanpak: {t:SAFe|SAFe}, uit tweeduizend elf; versie zes is van begin tweeduizend drieëntwintig.',
@@ -564,8 +565,8 @@ const SAY = [
       en: 'The big cadence is the {t:Planning Interval|Planning Interval}: the PI lasts eight to twelve weeks.' },
     { nl: 'Iteraties duren twee weken; de laatste, de {t:IP-iteratie|IP-iteratie}, is voor verbeteren en plannen.',
       en: 'Iterations last two weeks; the last, the {t:IP iteration|IP iteration}, is for improving and planning.' },
-    { nl: 'Voor jou: als takt op een lijn. Elke twee weken samen integreren en testen.',
-      en: 'For you: like takt on a line. Integrate and test together every two weeks.' },
+    { nl: 'Net als takt op een lijn: elke twee weken samen integreren en testen.',
+      en: 'Like takt on a line: integrate and test together every two weeks.' },
     { nl: 'Vraag: welke teams leveren samen iets werkends? Dat is je trein.',
       en: 'Ask: which teams deliver something that works together? That is your train.' },
   ],
@@ -580,12 +581,12 @@ const SAY = [
       en: 'Per year five point two: about five times all eight teams plan together.' },
   ],
   [ // s4 two days in one room
-    { nl: '{t:PI Planning|PI Planning}: de hele trein, meestal twee dagen in één zaal, in de IP-iteratie.',
-      en: '{t:PI Planning|PI Planning}: the whole train, usually two days in one room, in the IP iteration.' },
+    { nl: '{t:PI Planning|PI Planning} brengt de hele trein op één lijn: meestal twee dagen, één zaal, in de IP-iteratie.',
+      en: '{t:PI Planning|PI Planning} aligns the whole train: usually two days, one room, in the IP iteration.' },
     { nl: 'Dag één: de bedrijfscontext en de visie. Wat moet het product kunnen, en waarom?',
       en: 'Day one: the business context and the vision. What must the product do, and why?' },
-    { nl: 'Dan plannen de teams zelf, per iteratie, met hun eigen capaciteit.',
-      en: 'Then the teams plan themselves, per iteration, with their own capacity.' },
+    { nl: 'De teams plannen zelf, per iteratie, met hun eigen capaciteit.',
+      en: 'The teams plan themselves, per iteration, with their own capacity.' },
     { nl: 'Eind dag één zoekt de leiding waar capaciteit of voorrang knelt. Dag twee: bijstellen en presenteren.',
       en: 'At the end of day one, management looks where capacity or priorities clash. Day two: adjust and present.' },
     { nl: 'Elk team schrijft {t:PI-objectives|PI-objectives}: korte doelen in zakelijke taal.',
@@ -606,14 +607,14 @@ const SAY = [
       en: 'Risks go through {t:ROAM|ROAM}: resolved, owned, accepted or mitigated.' },
     { nl: 'Tot slot de {t:Confidence vote|confidence vote}: één tot vijf vingers voor hoe haalbaar het plan is.',
       en: 'Finally the {t:Confidence vote|confidence vote}: one to five fingers for how feasible the plan is.' },
-    { nl: 'Een regel uit trainingen: gemiddeld drie of meer is genoeg; wie één of twee steekt, krijgt het woord.',
-      en: 'A training rule: an average of three or more is enough; whoever shows one or two gets the floor.' },
+    { nl: 'Een regel uit trainingen: gemiddeld drie of meer is genoeg, lager betekent opnieuw plannen. Wie één of twee steekt, krijgt het woord.',
+      en: 'A training rule: an average of three or more is enough, lower means plan again. Whoever shows one or two gets the floor.' },
     { nl: 'Een obeya, Japans voor grote kamer. Valkuil: het bord hangt vol en niemand zegt dat het niet past.',
       en: 'An obeya, Japanese for big room. The pitfall: the board is full and nobody says it does not fit.' },
   ],
   [ // s6 one team plans
-    { nl: 'Voorbeeld: een team van een machinebouwer heeft vier iteraties van dertig story points: honderdtwintig.',
-      en: 'Example: a machine builder\'s team has four iterations of thirty story points. A hundred and twenty.' },
+    { nl: 'Voorbeeld: een team heeft vier iteraties van dertig story points: honderdtwintig.',
+      en: 'Example: a team has four iterations of thirty story points. A hundred and twenty.' },
     { nl: 'Twintig procent blijft vrij voor onverwacht werk en storingen: zesennegentig punten.',
       en: 'Twenty percent stays free for unplanned work and breakdowns: ninety-six points.' },
     { nl: 'Storing melden met één tik: veertig punten, waarde negen. Rapport per ploeg: vijfendertig, waarde zes.',
@@ -644,12 +645,12 @@ const SAY = [
       en: 'Product Management looks at market and customer, the PO at team and details.' },
     { nl: 'De {t:System Architect|System Architect} bewaakt de technische samenhang: architectuur, koppelingen, voorbereiding.',
       en: 'The {t:System Architect|System Architect} guards technical coherence: architecture, interfaces, groundwork.' },
-    { nl: 'Elk team heeft een Scrum Master, in SAFe zes ook Team Coach.',
-      en: 'Each team has a Scrum Master, in SAFe six also Team Coach.' },
-    { nl: 'Let op namen: een productmanager bij een machinebouwer doet vaak marketing en verkoop.',
-      en: 'Watch names: a product manager at a machine builder often does marketing and sales.' },
-    { nl: 'Een sterke PO heeft mandaat en tijd. Maar één dag per week? Dan gaan teams gokken.',
-      en: 'A strong PO has mandate and time. One day a week? Then teams start guessing.' },
+    { nl: 'Elk team heeft een Scrum Master, in SAFe zes ook Team Coach. De Business Owners sturen zakelijk.',
+      en: 'Each team has a Scrum Master, in SAFe six also Team Coach. The Business Owners steer the business side.' },
+    { nl: 'Let op namen: een productmanager bij een machinebouwer doet vaak marketing en verkoop: geen SAFe-rol.',
+      en: 'Watch names: a product manager at a machine builder often does marketing and sales: no SAFe role.' },
+    { nl: 'Een sterke PO heeft mandaat en tijd. Maar één dag per week? Dan gokken teams.',
+      en: 'A strong PO has mandate and time. One day a week? Then teams guess.' },
     { nl: 'Vraag: als team drie en Product Management het oneens zijn, wie beslist, en hoe snel?',
       en: 'Ask: if team three and Product Management disagree, who decides, and how fast?' },
   ],
@@ -679,7 +680,7 @@ spec.scenes.forEach((s, si) => {
 const plainSay = (src) => src.replace(/\{t:[^|}]*\|([^}]*)\}/g, '$1').replace(/\{n:([^}]*)\}/g, '$1');
 const MISREAD = {
   nl: /\b(\w*manager\w*|management|Scaled|Framework|Leffingwell|State of|Digital|Increment|Resolved|Owned|Accepted|Mitigated|interfaces|enablers|flow|backlog|operations|vuistregel|\w+regel|Business|Owners?|Board|Release|Train|ART|RTE|SAFe|ROAM|objectives|committed|feature\w*|obeya|Architect|stories|content authority|PI(?=[:,]))\b|(^|[.?!;]\s)Eén\b/,
-  en: /\b(Rooum|Seef)\b/,
+  en: /\b(Room|Seef)\b/,
 };
 for (const scene of SAY) for (const line of scene) for (const lang of ['nl', 'en']) {
   const said = sayable(plainSay(line[lang]), lang);
