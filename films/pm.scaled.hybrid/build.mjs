@@ -529,7 +529,7 @@ const SAY = [
       en: 'A second tool is {t:Set-based design|set-based design}: keep a few design options open and drop them only with enough knowledge, rather than repairing one early design.' },
     { nl: 'Het komt uit onderzoek naar Toyota in de jaren negentig, en SAFe noemt het ook.',
       en: 'It comes from research on Toyota in the nineteen nineties, and SAFe names it too.' },
-    { nl: 'In de praktijk: eerst goedkope proefmatrijzen van aluminium voor twee varianten, soft tooling; daarna de geharde stalen matrijs voor de winnaar.',
+    { nl: 'In de praktijk, eerst goedkope proefmatrijzen van aluminium voor twee varianten, soft tooling; daarna de geharde stalen matrijs voor de winnaar.',
       en: 'In practice: cheap aluminium trial moulds for two variants first, soft tooling; then the hardened steel mould for the winner.' },
   ],
   [ // s8 purchasing at the table

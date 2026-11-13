@@ -2576,6 +2576,41 @@
         ],
         "vtt": "src/content/courses/films/pm.scaled.pi.en.vtt"
       }
+    },
+    "pm.scaled.hybrid": {
+      "poster": "src/content/courses/films/pm.scaled.hybrid.jpg",
+      "nl": {
+        "dur": 334.1,
+        "bytes": 13170779,
+        "scenes": [
+          0,
+          28.49,
+          58.4,
+          92.83,
+          134.31,
+          173.11,
+          218.44,
+          264.49,
+          288.64
+        ],
+        "vtt": "src/content/courses/films/pm.scaled.hybrid.nl.vtt"
+      },
+      "en": {
+        "dur": 337.3,
+        "bytes": 13189669,
+        "scenes": [
+          0,
+          28,
+          57.79,
+          95.93,
+          136.6,
+          175.66,
+          219.78,
+          265.95,
+          292.71
+        ],
+        "vtt": "src/content/courses/films/pm.scaled.hybrid.en.vtt"
+      }
     }
   }
 }
