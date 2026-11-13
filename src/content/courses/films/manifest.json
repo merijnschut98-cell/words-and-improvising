@@ -1560,6 +1560,41 @@
         ],
         "vtt": "src/content/courses/films/pm.lead.difficult.en.vtt"
       }
+    },
+    "pm.portfolio.benefits": {
+      "poster": "src/content/courses/films/pm.portfolio.benefits.jpg",
+      "nl": {
+        "dur": 255,
+        "bytes": 8911118,
+        "scenes": [
+          0,
+          27.79,
+          54.01,
+          65.21,
+          90.15,
+          116.76,
+          148.28,
+          180.44,
+          213.58
+        ],
+        "vtt": "src/content/courses/films/pm.portfolio.benefits.nl.vtt"
+      },
+      "en": {
+        "dur": 266.8,
+        "bytes": 9174019,
+        "scenes": [
+          0,
+          28.19,
+          56.92,
+          69.29,
+          94.96,
+          122.75,
+          154.48,
+          189.56,
+          224.14
+        ],
+        "vtt": "src/content/courses/films/pm.portfolio.benefits.en.vtt"
+      }
     }
   }
 }
