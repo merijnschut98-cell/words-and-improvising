@@ -3,6 +3,7 @@ export default {
   lessons: [
     {
       id: 'pm.devops.pipeline',
+      film: 'pm.devops.pipeline',
       title: 'What DevOps is, and what a pipeline does',
       pre: [
         {
@@ -16,7 +17,7 @@ export default {
         'IT used to have two camps. Developers (development) built new software; operators (operations) kept the systems running. One side wanted fast change, the other wanted calm. Code was “thrown over the wall”.\n\nDevOps is the way of working that removes that wall: one team is responsible for building and running, and automates everything that recurs. The word appeared around 2009, when Patrick Debois organised the first DevOpsDays in Ghent, Belgium.',
         'The heart of DevOps is the pipeline: an automated conveyor that takes every change to the code through the same steps, from developer to user.\n\nIt starts with version control: a system, usually Git, that keeps every version of the code and shows who changed what. A developer saves a change with a commit: a small package of changes with a short explanation.',
         'After a commit the pipeline starts by itself. Step 1 is the build: the code is turned into something a computer can run. Step 2: automated tests check that everything still works.\n\nStep 3: the result is stored as an artefact, a fixed package that no longer changes. Step 4: that artefact is installed on a test environment and later on the real systems. If a step fails, the conveyor stops and the team is told at once.',
-        'For a Lean consultant this is familiar. A pipeline is standard work for software: every change follows the same route, so the outcome is predictable. Stopping at a fault is jidoka, the Toyota idea that a machine stops as soon as something goes wrong, so faults are not passed on.\n\nAnd small commits are like small batches: less work in between, and you see sooner what goes wrong. In proposals such a pipeline is often called CI/CD (continuous integration and continuous delivery); both come in the next lessons.',
+        'For a Lean consultant this is familiar. A pipeline works like standard work for software: every change follows the same route, so the outcome is predictable. Stopping at a fault is jidoka, the Toyota idea that a machine stops as soon as something goes wrong, so faults are not passed on.\n\nAnd small commits are like small batches: less work in between, and you see sooner what goes wrong. In proposals such a pipeline is often called CI/CD (continuous integration and continuous delivery); both come in the next lessons.',
         'What you hear in factories: “We are not a software company, DevOps is not for us.” But an MES (Manufacturing Execution System, the system that tracks orders and production on the floor), label software and links to the ERP are changed more and more often.\n\nA sharp question: “How does a change get from the developer to the floor today, and which steps are manual?” Every manual step is a place where errors and waiting arise.',
       ],
       example: {
@@ -333,6 +334,7 @@ export default {
     },
     {
       id: 'pm.devops.fourkeys',
+      film: 'pm.devops.pipeline',
       title: 'DORA: the four key metrics',
       pre: [
         {
