@@ -1758,6 +1758,37 @@
         ],
         "vtt": "src/content/courses/films/pm.plan.method.en.vtt"
       }
+    },
+    "pm.run.scope": {
+      "poster": "src/content/courses/films/pm.run.scope.jpg",
+      "nl": {
+        "dur": 307.5,
+        "bytes": 10493114,
+        "scenes": [
+          0,
+          21.28,
+          71.7,
+          113.8,
+          157.24,
+          186.29,
+          236.48
+        ],
+        "vtt": "src/content/courses/films/pm.run.scope.nl.vtt"
+      },
+      "en": {
+        "dur": 314.7,
+        "bytes": 10530089,
+        "scenes": [
+          0,
+          23.44,
+          73.5,
+          114.87,
+          159.8,
+          191.71,
+          243
+        ],
+        "vtt": "src/content/courses/films/pm.run.scope.en.vtt"
+      }
     }
   }
 }
