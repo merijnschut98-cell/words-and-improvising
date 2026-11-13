@@ -2158,6 +2158,41 @@
         ],
         "vtt": "src/content/courses/films/pm.run.conflict.en.vtt"
       }
+    },
+    "pm.outside.disagree": {
+      "poster": "src/content/courses/films/pm.outside.disagree.jpg",
+      "nl": {
+        "dur": 335.2,
+        "bytes": 11803631,
+        "scenes": [
+          0,
+          41.72,
+          65.19,
+          106.44,
+          154.09,
+          184.01,
+          214.62,
+          261.15,
+          284.71
+        ],
+        "vtt": "src/content/courses/films/pm.outside.disagree.nl.vtt"
+      },
+      "en": {
+        "dur": 337.7,
+        "bytes": 11850421,
+        "scenes": [
+          0,
+          40.75,
+          64.14,
+          107.28,
+          155.47,
+          187.37,
+          215.89,
+          262.69,
+          286.92
+        ],
+        "vtt": "src/content/courses/films/pm.outside.disagree.en.vtt"
+      }
     }
   }
 }
