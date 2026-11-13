@@ -2022,6 +2022,41 @@
         ],
         "vtt": "src/content/courses/films/pm.run.scope.en.vtt"
       }
+    },
+    "pm.outside.steering": {
+      "poster": "src/content/courses/films/pm.outside.steering.jpg",
+      "nl": {
+        "dur": 339.5,
+        "bytes": 12548881,
+        "scenes": [
+          0,
+          23.57,
+          47.95,
+          82.82,
+          129,
+          167.56,
+          215.83,
+          242.22,
+          286.85
+        ],
+        "vtt": "src/content/courses/films/pm.outside.steering.nl.vtt"
+      },
+      "en": {
+        "dur": 341.2,
+        "bytes": 12401558,
+        "scenes": [
+          0,
+          25.36,
+          51.56,
+          86.41,
+          131.41,
+          169.38,
+          218.75,
+          245.58,
+          291.53
+        ],
+        "vtt": "src/content/courses/films/pm.outside.steering.en.vtt"
+      }
     }
   }
 }

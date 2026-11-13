@@ -566,7 +566,7 @@ const SAY = [
       en: 'Step one: ordering is a one-way door. Cancelling costs a lot.' },
     { nl: 'Stap twee, de expert van het net: de cijfers veranderen de schakelinstallatie alleen als de belasting meer dan {n:30} procent stijgt.',
       en: 'Step two, the grid engineer: the figures only change the switchgear if the load rises by more than {n:30} percent.' },
-    { nl: 'Stap drie, vraag de fabriek: hoe waarschijnlijk is dat? Heel onwaarschijnlijk.',
+    { nl: 'Stap drie, vraag de fabriek hoe waarschijnlijk dat is. Heel onwaarschijnlijk.',
       en: 'Step three, ask the factory: how likely is that? Very unlikely.' },
     { nl: 'Stap vier, een beslisnotitie aan de sponsor: nu bestellen op de huidige dimensionering, risico benoemd, of {n:4} weken wachten en een maand schuiven. Advies: nu bestellen.',
       en: 'Step four, a decision memo to the sponsor: order now on the current sizing, risk named, or wait {n:4} weeks and slip a month. Recommendation: order now.' },
