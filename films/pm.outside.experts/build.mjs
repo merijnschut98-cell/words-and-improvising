@@ -533,7 +533,7 @@ const SAY = [
   [ // s8 vague answers
     { nl: 'Vage antwoorden: we zijn ermee bezig, wat kleine issues; één keer is normaal, een patroon is een signaal.',
       en: 'Vague answers: we\'re working on it, some minor issues. One is normal; a pattern is a signal.' },
-    { nl: 'Vraag door: welke issues, en wat is bij elk de volgende stap? Wie grip heeft, antwoordt in één zin; anderen worden vager.',
+    { nl: 'Vraag door. Welke issues, en wat is bij elk de volgende stap? Wie grip heeft, antwoordt in één zin; anderen worden vager.',
       en: 'Ask which issues, and the next step on each. Someone in control answers in a sentence; others get vaguer.' },
     { nl: 'Een {t:Watermeloenstatus|watermeloenstatus}: van buiten groen, van binnen rood. Gemeld als prima, terwijl het team weet van niet.',
       en: 'A {t:Watermelon status|watermelon status}: green outside, red inside. Reported fine, while the team knows it isn\'t.' },
