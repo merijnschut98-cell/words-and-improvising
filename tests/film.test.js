@@ -292,6 +292,34 @@ test('speak variant: the kanban names and flow measures in Dutch', () => {
   assert.equal(speakOf([en], 'en'), en);
 });
 
+// A two-day PI planning (pm.scaled.pi): SAFe's English names as Dutch
+// practitioners say them, checked with espeak-ng phonemes through Piper's
+// nl_NL-alex bridge: SAFe ("SAA-fe": Seef), Release Train ("ree-le-AA-ze
+// treen": Rieliez Treen) and its Engineer (Entsjinier, as pm.consult.proposal),
+// ART and RTE as letters (espeak-ng reads the word "art" and "r-tee"), the
+// Planning Board ("boo-art": Bord), confidence vote ("vo-te": konfidens voot),
+// Business Owners ("bu-ZIE-nus OW-ners": Biznis Ooners, as Owner and business
+// case), ROAM ("roo-am": Rooum), objectives ("ob-jek-tie-ves": ob-tsjektivs),
+// (un)committed (kommittid), Product Management ("MAA-nidzj-ment": Prodduct
+// Mennitsjmunt), System Architect with a Dutch ch (Sistum Arkitekt), feature
+// ("fee-aa-TUU-re": fietsjer), user stories ("uu-zer": joezer stoo-ries),
+// obeya ("OO-be-ie-aa": oobeeja), and program-, project- and productmanager
+// with a Dutch "manager" (said -menetsjer, as the middenmanager rule). Dutch
+// only; capitals as the lessons write them, and no other film's spoken text changes
+test('speak variant: the SAFe names in Dutch', () => {
+  const nl = (s) => speakOf([s], 'nl');
+  assert.equal(nl('SAFe, een SAFe-rol. De Agile Release Train en de Release Train Engineer.'), 'Seef, een Seef-rol. De Etsjail Rieliez Treen en de Rieliez Treen Entsjinier.');
+  assert.equal(nl('Een ART, de RTE, het ART Planning Board, de confidence vote. De Confidence vote.'), 'Een A R T, de R T E, het A R T Planning Bord, de konfidens voot. De Konfidens voot.');
+  assert.equal(nl('De Business Owners, een Business Owner. ROAM. De PI-objectives, uncommitted en committed.'),
+    'De Biznis Ooners, een Biznis Ooner. Rooum. De PI-ob-tsjektivs, un-kommittid en kommittid.');
+  assert.equal(nl('Product Management, de System Architect, een feature, de features, user stories, een obeya.'),
+    'Prodduct Mennitsjmunt, de Sistum Arkitekt, een fietsjer, de fietsjers, joezer stoo-ries, een oobeeja.');
+  assert.equal(nl('Een oud-projectmanager, een programmamanager, een productmanager.'), 'Een oud-project-menetsjer, een programma-menetsjer, een product-menetsjer.');
+  assert.equal(nl('de kunst, een safe, het Product, een manager'), 'de kunst, een safe, het Product, een manager');
+  const en = 'SAFe, the Agile Release Train, the RTE, an ART, the ART Planning Board, the Business Owners, ROAM, PI objectives, uncommitted, Product Management, a feature, an obeya';
+  assert.equal(speakOf([en], 'en'), en);
+});
+
 // A stage drawn on the Dutch caption beats (beatwarp films set STAGE.nlBeats)
 // follows the caption beat on screen in English too: while English beat k
 // shows, the stage runs through Dutch beat k, so the drawing is never a beat off.

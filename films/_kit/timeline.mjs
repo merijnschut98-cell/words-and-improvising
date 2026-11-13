@@ -513,7 +513,26 @@ const SAY = {
     [/\b([Tt])hroughput\b/g, (m, t) => `${t === 'T' ? 'T' : 't'}roepoet`], [/\b([Cc])ycle time\b/g, (m, c) => `${c === 'C' ? 'S' : 's'}aikl taim`],
     [/\b([Ll])ead time\b/g, '$1ied taim'], [/\b([Ww])ork item age\b/g, (m, c) => `${c === 'W' ? 'W' : 'w'}urk aitem eetsj`],
     [/\b([Pp])ull(?=systeem\b|\b)/g, '$1oel'], [/\b([Ff])lowmaten\b/g, '$1loo-maten'], [/\bafdeling engineering\b/g, 'afdeling entsjinieering'],
-    [/\been engineer\b(?= pakt de kaart| doet de controle)/g, 'een entsjinier'], [/\b([Hh]eet dat|items|werkitems|twaalf) onderhanden\b/g, '$1 onder-handen']],
+    [/\been engineer\b(?= pakt de kaart| doet de controle)/g, 'een entsjinier'], [/\b([Hh]eet dat|items|werkitems|twaalf) onderhanden\b/g, '$1 onder-handen'],
+    // a two-day PI planning (pm.scaled.pi): SAFe's English names as Dutch practitioners say them, checked with
+    // espeak-ng phonemes through Piper's nl_NL-alex bridge: it reads SAFe as "SAA-fe" (said Seef, also in
+    // SAFe-rol), Release Train as "ree-le-AA-ze treen" (Rieliez Treen; its Engineer as pm.consult.proposal's
+    // entsjinier), ART as the word "art" and RTE as "r-tee" (said as letters), Board as "boo-art" (Bord, only in
+    // Planning Board), confidence vote with a sounded e ("konfidens voot"), Business Owners as "bu-ZIE-nus
+    // OW-ners" (Biznis Ooners, as the business case and Owner rules above; the Owner rule has already made
+    // "Ooner" of the singular), ROAM as "roo-am" (Rooum), objectives as "ob-jek-tie-ves" (ob-tsjektivs, tsj for the
+    // dzj it cannot voice), (un)committed as "OEN-kom-it-et" (un-kommittid), Product Management as
+    // "MAA-nidzj-ment" (Prodduct Mennitsjmunt, as kmitmunt above), System Architect with the ch of "lachen"
+    // (Sistum Arkitekt), feature as "fee-aa-TUU-re" (fietsjer), user stories with a Dutch uu (joezer stoo-ries),
+    // obeya as "OO-be-ie-aa" (oobeeja), and program-, project- and productmanager with a Dutch "manager" (said
+    // -menetsjer, as the middenmanager rule above). Capitals as the lessons write them (a lower-case safe or
+    // art keeps its voice); no other film's spoken text changes
+    [/\bSAFe\b/g, 'Seef'], [/\bRelease Train Engineer\b/g, 'Rieliez Treen Entsjinier'], [/\bRelease Train\b/g, 'Rieliez Treen'],
+    [/\b(ART|RTE)\b/g, (m) => m.split('').join(' ')], [/\bPlanning Board\b/g, 'Planning Bord'],
+    [/\b([Cc])onfidence vote\b/g, (m, c) => `${c === 'C' ? 'K' : 'k'}onfidens voot`], [/\bBusiness O(?:oner|wner)(s?)\b/g, 'Biznis Ooner$1'],
+    [/\bROAM\b/g, 'Rooum'], [/\bobjectives\b/g, 'ob-tsjektivs'], [/\b(un)?committed\b/g, (m, u) => (u ? 'un-kommittid' : 'kommittid')],
+    [/\bProduct Management\b/g, 'Prodduct Mennitsjmunt'], [/\bSystem Architect\b/g, 'Sistum Arkitekt'], [/\b([Ff])eature(s?)\b/g, '$1ietsjer$2'],
+    [/\buser stories\b/g, 'joezer stoo-ries'], [/\b([Oo])beya\b/g, '$1obeeja'], [/\b([Pp]rogramma|[Pp]roject|[Pp]roduct)manager\b/g, '$1-menetsjer']],
   en: [[/\brpm\b/g, 'revolutions per minute'], [/\bmm\/min\b/g, 'millimetres per minute'], [/\bm\/min\b/g, 'metres per minute'], [/µm\b/g, 'micrometres'],
     [/€\s?(\d[\d,]*(?:\.\d+)?)/g, '$1 euros'], [/(\d)\.0(?![\d])/g, '$1'], [/(\d)\s?mm\b/g, '$1 millimetres'], [/(\d)\s?min\b/g, '$1 minutes'], [/(\d)\s?%/g, '$1 percent'],
     [/Ø\s*/g, 'diameter '], [/(\d)\+(\d)/g, '$1 plus $2'], [/\s×\s/g, ' times '], [/\s\/\s/g, ' divided by '], [/\s=\s/g, ' is '], [/°/g, ' degrees'], [/\bRa\b/g, 'R a'], [/’/g, "'"],
