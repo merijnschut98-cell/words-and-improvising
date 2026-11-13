@@ -8,6 +8,7 @@ import { pathModel, topicPath } from './pathmap.js';
 import { medalSeal, metaSeal, moduleEndModel, checkEntry, goalLeftLine } from './flairui.js';
 import { dueCount } from '../core/coursereview.js';
 import { moduleTier, trackProgress, openTrack } from '../core/layout.js';
+import { filmStep, introFilm } from './film.js';
 
 export const COURSE_ICON = { apply: 'pen-line', prep: 'calendar', due: 'repeat', lesson: 'book-open', situation: 'drama', sayIt: 'mic', maintain: 'wrench', done: 'circle-check' };
 
@@ -108,13 +109,31 @@ function topicModuleRow(app, meta) {
         h('span', { class: 'mono topic-count' }, t('topicCount', topic.passed))),
       topicPath(t, title, topic, go));
   });
-  return h('details', { class: 'module topic-module' },
+  const details = h('details', { class: 'module topic-module' });
+  details.append(...[
     modSummary(app, meta, ...moduleMeta(app, meta, t('moduleLevels', done, total))),
     h('p', { class: 'muted small module-blurb' }, meta.blurb[app.lang] || meta.blurb.en),
+    moduleIntro(app, meta, details),
     h('section', { class: 'topics' }, rows),
     moduleEnd(app, meta),
     next ? h('button', { class: 'btn btn-ghost small module-continue', onclick: () => go(next) },
-      ico('play'), ' ', at ? t('moduleContinueAt', placeLabel(t, app.lang, next, [meta])) : t('moduleContinue')) : null);
+      ico('play'), ' ', at ? t('moduleContinueAt', placeLabel(t, app.lang, next, [meta])) : t('moduleContinue')) : null,
+  ].filter(Boolean));
+  return details;
+}
+
+// v17: the module's intro film, the big picture before the topics. Built the
+// first time the module opens, so the course home fetches no film it won't show.
+function moduleIntro(app, meta, details) {
+  if (!introFilm(meta)) return null;
+  const slot = h('section', { class: 'module-intro' }, h('h3', { class: 'topic-title module-intro-title' }, app.t('moduleIntro')));
+  const fill = () => {
+    if (!details.open || slot.dataset.filled) return;
+    slot.dataset.filled = '1';
+    slot.append(filmStep(app, { film: meta.intro }, null, { text: () => h('p', {}, meta.blurb[app.lang] || meta.blurb.en) }));
+  };
+  details.addEventListener('toggle', fill);
+  return slot;
 }
 
 // Under the last topic: the module's medal (an empty ring before bronze).
