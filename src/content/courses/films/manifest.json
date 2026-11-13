@@ -1665,6 +1665,41 @@
         ],
         "vtt": "src/content/courses/films/pm.outside.questions.en.vtt"
       }
+    },
+    "pm.consult.proposal": {
+      "poster": "src/content/courses/films/pm.consult.proposal.jpg",
+      "nl": {
+        "dur": 334.6,
+        "bytes": 12031089,
+        "scenes": [
+          0,
+          21.12,
+          51.57,
+          84.85,
+          109.46,
+          170.17,
+          214.05,
+          260.38,
+          286.1
+        ],
+        "vtt": "src/content/courses/films/pm.consult.proposal.nl.vtt"
+      },
+      "en": {
+        "dur": 343.5,
+        "bytes": 12282475,
+        "scenes": [
+          0,
+          22.4,
+          51.47,
+          86.18,
+          111.77,
+          174.82,
+          220.39,
+          267.57,
+          294.06
+        ],
+        "vtt": "src/content/courses/films/pm.consult.proposal.en.vtt"
+      }
     }
   }
 }
