@@ -100,12 +100,13 @@
 //     interface fixes it (s7 b6); credit their work by name in front of the
 //     sponsor (s7 b7); what kills motivation: changing priorities without
 //     explanation, meetings without purpose, advised decisions overruled
-//     without being told why (s7 b8)
+//     without being told why (s7 b8, caption, voice and card)
 //   time teach 5: the failure, the expert's manager as the only lever (s8 b1);
 //     the manager allocates hours, you earn their attention (s8 b2); "what would
 //     make this project worth your time?" at the start (s8 b3); an interesting
 //     problem, a clean handover, not being called at night (s8 b4); remember the
-//     answer (s8 b5)
+//     answer (s8 b5; "zo verdien je zijn aandacht" ties it back to b2 and gives
+//     the beat about 4 s instead of 2)
 //   time example (faded): a robot cell; the supplier's only safety specialist
 //     is on four projects and keeps missing your sessions (s9 b1); about 40 hours
 //     needed over 8 weeks; his manager says 25% (s9 b2); the ask, how to secure
@@ -425,14 +426,14 @@ const spec = {
       { nl: 'Autonomie over het hoe; stevig over het wat en wanneer.', en: 'Autonomy over the how; firm on the what and when.', focus: ['how', 'teamlead'] },
       { nl: 'Het probleem, niet alleen de taak: {n:20} minuten per dienst kwijt.', en: 'The problem, not just the task: {n:20} minutes lost a shift.', focus: 'problem' },
       { nl: 'Noem hun werk bij naam waar de sponsor bij is.', en: 'Credit their work by name in front of the sponsor.', focus: ['credit', 'sponsor'] },
-      { nl: 'Wat motivatie sloopt: veranderen zonder uitleg, overleg zonder doel.', en: 'What kills it: changes without explanation, meetings without purpose.', focus: 'kills' },
+      { nl: 'Wat motivatie sloopt: wijzigen zonder uitleg, advies genegeerd, overleg zonder doel.', en: 'What kills it: unexplained changes, advice overruled, meetings without purpose.', focus: 'kills' },
     ]),
     sc('s8', TI, 3, { nl: 'Hun aandacht verdienen', en: 'Earning their attention' }, [
-      { nl: 'Fout: de manager van de expert als enige hefboom zien.', en: 'A failure: treating the expert’s manager as the only lever.', focus: ['lever', 'teamlead'] },
+      { nl: 'Fout: zijn manager als enige hefboom zien.', en: 'A failure: treating their manager as the only lever.', focus: ['lever', 'teamlead'] },
       { nl: 'Zijn manager verdeelt de uren; zijn aandacht moet je verdienen.', en: 'Their manager allocates hours; you earn their attention.', focus: 'earn' },
       { nl: 'Vraag bij de start: “Wat zou dit project jouw tijd waard maken?”', en: 'Ask at the start: “What would make this project worth your time?”', focus: ['worth', 'jij'] },
       { nl: 'Een interessant probleem, een nette overdracht, of niet ’s nachts gebeld worden.', en: 'An interesting problem, a clean handover, or not being called at night.', focus: ['answers', 'teamlead'] },
-      { nl: 'Onthoud dan het antwoord.', en: 'Then remember the answer.', focus: 'remember' },
+      { nl: 'Onthoud dan het antwoord: zo verdien je zijn aandacht.', en: 'Then remember the answer: that is how you earn their attention.', focus: 'remember' },
     ]),
     sc('s9', TI, 3, { nl: 'Een specialist op vier projecten', en: 'A specialist on four projects' }, [
       { nl: 'Robotcel: de enige veiligheidsspecialist zit op vier projecten.', en: 'A robot cell: the only safety specialist is on four projects.', focus: ['case2', 'teamlead'] },
@@ -441,7 +442,7 @@ const spec = {
       { nl: 'Weinberg: op vier projecten {n:10}% per project, dus {n:32} uur. Te weinig.', en: 'Weinberg: {n:10}% each on four projects, so {n:32} hours. Too few.', focus: 'cut' },
       { nl: 'Blokken: één vaste dag van {n:8} uur per twee weken: {n:32} uur.', en: 'Blocks: one fixed {n:8}-hour day every two weeks: {n:32} hours.', focus: ['blocks2', 'calendar'] },
       { nl: 'Plus twee halve dagen voor de test, nu ingepland: {n:40} uur.', en: 'Plus two half days for the test, booked now: {n:40} hours.', focus: ['test', 'calendar'] },
-      { nl: 'Bereid elke dag voor.', en: 'Prepare each day.', focus: ['prep2', 'sheet'] },
+      { nl: 'Bereid elke dag voor: vragen, tekeningen en besluiten klaar.', en: 'Prepare each day: questions, drawings and decisions ready.', focus: ['prep2', 'sheet'] },
       { nl: 'Vraag wat het de moeite waard maakt; noem zijn werk in de stuurgroep.', en: 'Ask what makes it worth it; credit him in the steering meeting.', focus: ['ask2', 'teamlead', 'sponsor'] },
     ]),
   ],
@@ -501,8 +502,8 @@ const SAY = [
       en: 'A {t:Second opinion|second opinion}: an independent outside expert, for big choices that are hard to undo.' },
     { nl: 'Geef hem de vraag en de criteria mee, niet wie wat zei.',
       en: 'Brief them on the question and the criteria, not on who said what.' },
-    { nl: 'Of laat elk het standpunt van de ander verwoorden, tot die het eens is. Dat koelt af; vaak liggen ze dichterbij dan het klonk.',
-      en: 'Or have each state the other\'s position until the other agrees. It cools things down; often they are closer than they sounded.' },
+    { nl: 'Ook nuttig: laat elk het standpunt van de ander verwoorden, tot die het eens is. Dat koelt af; vaak liggen ze dichterbij dan het klonk.',
+      en: 'Also useful: have each state the other\'s position until the other agrees. It cools things down; often they are closer than they sounded.' },
     { nl: 'Klassieke fouten: beslissen op senioriteit, op wie het hardst praat, of het verschil delen in een oplossing waar niemand in gelooft.',
       en: 'Typical failures: deciding by seniority, by who talks loudest, or splitting the difference into a solution nobody believes in.' },
     { nl: 'Of het laten slepen, terwijl het project wacht.',
@@ -565,8 +566,8 @@ const SAY = [
       en: 'Tell them the problem, not just the task: the operators lose {n:20} minutes a shift on this.' },
     { nl: 'Noem hun werk bij naam, waar de sponsor bij is.',
       en: 'Credit their work by name, in front of the sponsor.' },
-    { nl: 'Motivatie sloop je met prioriteiten en besluiten die zonder uitleg veranderen, en met overleg zonder doel.',
-      en: 'Motivation dies with priorities and decisions changed without explanation, and meetings without purpose.' },
+    { nl: 'Motivatie sloopt: prioriteiten die zonder uitleg wijzigen, overleg zonder doel, advies dat zonder uitleg opzij gaat.',
+      en: 'Motivation dies with priorities changed without explanation, meetings without purpose, and advice overruled without being told why.' },
   ],
   [ // s8 earning their attention
     { nl: 'Een klassieke fout: de manager van de expert als enige hefboom zien.',
@@ -577,8 +578,8 @@ const SAY = [
       en: 'Ask at the start: what would make this project worth your time?' },
     { nl: 'Een interessant probleem, een nette overdracht, of gewoon niet \'s nachts gebeld worden.',
       en: 'An interesting problem, a clean handover, or simply not being called at night.' },
-    { nl: 'Onthoud dan het antwoord.',
-      en: 'Then remember the answer.' },
+    { nl: 'Onthoud dan het antwoord: zo verdien je zijn aandacht.',
+      en: 'Then remember the answer: that is how you earn their attention.' },
   ],
   [ // s9 the safety specialist on four projects
     { nl: 'Een robotcel. De enige veiligheidsspecialist van de leverancier zit op vier projecten, en mist steeds jouw sessies.',
@@ -596,7 +597,7 @@ const SAY = [
     { nl: 'Bereid elke dag voor, zodat er geen uur verloren gaat.',
       en: 'Prepare each day, so no hour is wasted.' },
     { nl: 'Vraag wat het de moeite waard maakt, misschien minder late telefoontjes van de bouwplaats. Noem zijn werk in de stuurgroep.',
-      en: 'Ask what would make it worth his while, perhaps fewer late calls from the site. And credit his work in the steering meeting.' },
+      en: 'Ask what makes it worth his while, perhaps fewer late calls from the site. Credit his work in the steering meeting.' },
   ],
 ];
 spec.scenes.forEach((s, si) => {
@@ -620,14 +621,19 @@ for (const scene of SAY) for (const line of scene) for (const lang of ['nl', 'en
   const said = SAY.map((s) => Math.max(...['nl', 'en'].map((lang) => s.reduce((a, l) => a + wordsOf(plainSay(l[lang])), 0))));
   const all = said.reduce((a, b) => a + b, 0);
   const TOTAL = Math.min(300, Math.round(all / NARRATION_WPS));
-  spec.scenes.forEach((s, si) => {
-    const cap = Math.max(...['nl', 'en'].map((lang) => minSceneDur(wordsOf(s.beats.map((b) => plainSay(b[lang])).join(' ')) + 4)));
-    s.dur = Math.max(Math.ceil(cap), Math.floor((said[si] / all) * TOTAL));
-  });
+  const caps = spec.scenes.map((s) => Math.ceil(Math.max(...['nl', 'en'].map((lang) => minSceneDur(wordsOf(s.beats.map((b) => plainSay(b[lang])).join(' ')) + 4)))));
+  spec.scenes.forEach((s, si) => { s.dur = Math.max(caps[si], Math.floor((said[si] / all) * TOTAL)); });
   // the seconds lost to rounding down go to the scenes that lost the most
   const left = TOTAL - spec.scenes.reduce((a, s) => a + s.dur, 0);
   spec.scenes.map((s, si) => [si, (said[si] / all) * TOTAL - s.dur]).sort((x, y) => y[1] - x[1])
     .slice(0, Math.max(0, left)).forEach(([si]) => { spec.scenes[si].dur += 1; });
+  // the seconds the caption minimums add beyond the cap come back from the
+  // scenes with the most time above their own caption minimum
+  for (let over = spec.scenes.reduce((a, s) => a + s.dur, 0) - TOTAL; over > 0; over--) {
+    const si = spec.scenes.map((s, i) => [i, s.dur - caps[i]]).sort((x, y) => y[1] - x[1])[0][0];
+    if (spec.scenes[si].dur <= caps[si]) break;
+    spec.scenes[si].dur -= 1;
+  }
   const total = spec.scenes.reduce((a, s) => a + s.dur, 0);
   if (total > 300) throw new Error(`film is ${total} s, over 300`);
 }

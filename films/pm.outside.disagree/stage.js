@@ -129,7 +129,7 @@ const STAGE = (() => {
     if (b >= 2) o.weights = op(page(b, p, 2, 3), card(312, 70, 'pm-hot') + lines(340, L([['gewichten: zakelijk,', 'pm-on'], ['vast met de sponsor']], [['weights: business,', 'pm-on'], ['set with the sponsor']])));
     if (b >= 3) {
       // the rows where A and B differ most: cost and time
-      o.differ = op(page(b, p, 3, 4), [0, 2].map((i) => rect(X0 + 174, yRow(i) - 12, 110, 24, 'pm-line', 8)).join('')
+      o.differ = op(page(b, p, 3, 4), [0, 2].map((i) => rect(X0 + 177, yRow(i) - 12, 106, 24, 'pm-line', 8)).join('')
         + card(312, 70, 'pm-hot') + lines(340, L([['waar verschillen de', 'pm-on'], ['opties?']], [['where do the options', 'pm-on'], ['differ?']])));
     }
     if (b >= 4) {
@@ -240,7 +240,7 @@ const STAGE = (() => {
     o.problem = op(at(b, p, 1), card(122, 116) + lines(150, L([['het probleem, niet'], ['alleen de taak:'], [`‘operators: ${20} min`, 'pm-on'], ['per dienst kwijt’', 'pm-on']],
       [['the problem, not'], ['just the task:'], ['‘operators lose 20', 'pm-on'], ['minutes a shift’', 'pm-on']])));
     o.credit = op(at(b, p, 2), txt(X0, 268, tr('bij naam, bij sponsor', 'by name, to sponsor'), 'pm-on'));
-    o.kills = op(at(b, p, 3), lines(300, L([['wat sloopt:', 'pm-big'], ['koers wijzigt zonder'], ['uitleg; overleg'], ['zonder doel']], [['what kills it:', 'pm-big'], ['changes unexplained,'], ['advice overruled,'], ['pointless meetings']])));
+    o.kills = op(at(b, p, 3), lines(300, L([['wat sloopt:', 'pm-big'], ['wijzigen zonder uitleg,'], ['advies genegeerd,'], ['overleg zonder doel']], [['what kills it:', 'pm-big'], ['changes unexplained,'], ['advice overruled,'], ['pointless meetings']])));
     return o;
   }
 
