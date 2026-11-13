@@ -570,7 +570,8 @@ const SAY = {
     [/\b([Ss])et-based design\b/g, '$1et-beesd di-zain'], [/\b([Mm])atrijsbouw\b/g, '$1atrijs-bouw'],
     // the cutover weekend (pm.itproject.cutover): the go-live words as Dutch ERP and MES projects say them,
     // checked with espeak-ng phonemes through Piper's nl_NL-alex bridge: it reads cutover as "KUU-too-ver"
-    // (said kattoover, also in cutoverdraaiboek and cutoverlogboek), freeze as "FREE-ze" (friez, as the design
+    // (said kattoover; in cutoverdraaiboek and cutoverlogboek split at the head, kattoover-draaiboek, as espeak-ng
+    // stresses -BOEK in the compound), freeze as "FREE-ze" (friez, as the design
     // freeze rule above, which runs first; not in eng.moulding.setting's gate-freeze-studie, nor in
     // pm.scaled.hybrid's caption "freeze in week 18"), key users as "kee-i uu-zers" (kie joezers, as the user
     // story rule), point of no return as "po-int ... ree-turn" (pojnt of noo rie-turn), and, in this film's
@@ -578,7 +579,7 @@ const SAY = {
     // plantmanager keeps its voice), stopwatch with a Dutch "watch" (stop-wotsj; eng.lines.design's "Met de
     // stopwatch" stays) and controleweegschalen run together (split at the head). go/no-go, MES and hypercare
     // go through the rules above; no other film's spoken text changes
-    [/\b([Cc])utover/g, (m, c) => `${c === 'C' ? 'K' : 'k'}attoover`], [/(?<![\p{L}-])([Ff])reeze\b(?!-| in week)/gu, '$1riez'],
+    [/\b([Cc])utover(-?)(?=(\p{L})?)/gu, (m, c, d, l) => `${c === 'C' ? 'K' : 'k'}attoover${l ? '-' : d}`], [/(?<![\p{L}-])([Ff])reeze\b(?!-| in week)/gu, '$1riez'],
     [/\b([Kk])ey user(s?)\b/g, (m, k, s) => `${k === 'K' ? 'K' : 'k'}ie joezer${s}`], [/\b([Pp])oint of no return\b/g, '$1ojnt of noo rie-turn'],
     [/\bof de plantmanager\b/g, 'of de plant-menetsjer'], [/\b([Mm])et een stopwatch\b/g, '$1et een stop-wotsj'],
     [/\b([Cc])ontroleweegschalen\b/g, '$1ontrole-weegschalen']],

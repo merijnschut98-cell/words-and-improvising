@@ -373,8 +373,8 @@ test('speak variant: the stage-gate and lead-time words in Dutch, go/kill and SO
 
 // The cutover weekend (pm.itproject.cutover): the go-live words as Dutch ERP
 // and MES projects say them, checked with espeak-ng phonemes through Piper's
-// nl_NL-alex bridge: cutover ("KUU-too-ver": kattoover, also in
-// cutoverdraaiboek and cutoverlogboek), freeze ("FREE-ze": friez; not in
+// nl_NL-alex bridge: cutover ("KUU-too-ver": kattoover; in cutoverdraaiboek
+// and cutoverlogboek split at the head, kattoover-draaiboek), freeze ("FREE-ze": friez; not in
 // eng.moulding.setting's gate-freeze-studie nor pm.scaled.hybrid's caption
 // "freeze in week 18", and design freeze keeps pm.scaled.hybrid's rule), key users ("kee-i uu-zers": kie joezers, as the
 // user story rule), point of no return ("po-int ... ree-turn": pojnt of noo
@@ -385,7 +385,8 @@ test('speak variant: the stage-gate and lead-time words in Dutch, go/kill and SO
 // MES and hypercare keep the rules above; no other film's spoken text changes
 test('speak variant: the cutover words in Dutch, cutover in English', () => {
   const nl = (s) => speakOf([s], 'nl');
-  assert.equal(nl('De cutover, het cutoverdraaiboek, het cutoverlogboek. Cutover.'), 'De kattoover, het kattooverdraaiboek, het kattooverlogboek. Kattoover.');
+  assert.equal(nl('Het cutover-weekend.'), 'Het kattoover-weekend.');
+  assert.equal(nl('De cutover, het cutoverdraaiboek, het cutoverlogboek. Cutover.'), 'De kattoover, het kattoover-draaiboek, het kattoover-logboek. Kattoover.');
   assert.equal(nl('Een freeze, de Freeze. De design freeze. De gate-freeze-studie. Bestellen 1 week: freeze in week 18.'), 'Een friez, de Friez. De di-zain friez. De gate-freeze-studie. Bestellen 1 week: freeze in week 18.');
   assert.equal(nl('De key users, een key user. Key users. Het point of no return.'), 'De kie joezers, een kie joezer. Kie joezers. Het pojnt of noo rie-turn.');
   assert.equal(nl('De sponsor of de plantmanager. Met een stopwatch. De controleweegschalen.'), 'De sponsor of de plant-menetsjer. Met een stop-wotsj. De controle-weegschalen.');
