@@ -109,8 +109,8 @@
 //     (s9 b1); the old system 12,480 articles, 2,530 unused for five years go to
 //     the archive (card and strip; said "the unused articles"), so 9,950 to move
 //     (s9 b1); 9,871 arrive, 9,950 − 9,871 = 79 rejected (s9 b2); 52 with no unit,
-//     27 with a drawing number that already exists (s9 b2: the two causes said,
-//     the counts on the card and in the caption); stock value old €4,212,000, new
+//     27 with a drawing number that already exists (s9 b2: causes and counts said,
+//     on the card and in the caption); stock value old €4,212,000, new
 //     €4,198,500 (card and strip), a difference of €13,500 (s9 b3), 0.32% (card
 //     and caption), exactly the stock of the 79 rejected articles (s9 b3);
 //     engineering fixes the 27 duplicates, purchasing fills in the 52 units, each
@@ -119,6 +119,9 @@
 //   Not in the film: the lessons' pre and recall questions, their "said"
 //   lines, situations and sayIt (practice, not teach text).
 //
+// The strip marks no month for Hershey: the lesson names the Halloween orders,
+// not the month of the go-live, so scene 4's strip shows the months and, from
+// beat 3, "never go live in the peak season".
 // Facts as the lessons credit them, and no more: SAP Activate as SAP's method
 // with the five core phases; Hershey's go-live in 1999 as the Halloween orders
 // came in, and about 100 million dollars of orders not delivered that season,
@@ -409,9 +412,9 @@ const spec = {
       { nl: 'Gefaseerd kost extra: tijdelijke koppelingen en een langer project. De prijs van minder risico.', en: 'Phased costs extra: temporary interfaces and a longer project. The price of less risk.', focus: ['price', 'partner'] },
     ]),
     sc('s4', RO, 1, { nl: 'De timing', en: 'The timing' }, [
-      { nl: 'In 1999 ging Hershey live met een nieuw ERP, precies toen de Halloweenorders binnenkwamen.', en: 'In 1999 Hershey went live with a new ERP just as the Halloween orders came in.', focus: ['hershey', 'sMonths', 'sPeak'] },
+      { nl: 'In 1999 ging Hershey live met een nieuw ERP, precies toen de Halloweenorders binnenkwamen.', en: 'In 1999 Hershey went live with a new ERP just as the Halloween orders came in.', focus: ['hershey', 'sMonths'] },
       { nl: 'Volgens het blad CIO kon Hershey dat seizoen voor zo’n {n:100} miljoen dollar aan orders niet leveren.', en: 'According to CIO magazine, Hershey could not deliver about {n:100} million dollars of orders that season.', focus: ['cio'] },
-      { nl: 'Ga nooit live in je piekseizoen. Vraag: wat is de rustigste maand, en staat de go-live daar?', en: 'Never go live in your peak season. Ask: what is the quietest month, and is go-live planned there?', focus: ['peak', 'askt', 'jij'] },
+      { nl: 'Ga nooit live in je piekseizoen. Vraag: wat is de rustigste maand, en staat de go-live daar?', en: 'Never go live in your peak season. Ask: what is the quietest month, and is go-live planned there?', focus: ['peak', 'askt', 'jij', 'sPeak'] },
     ]),
     sc('s5', RO, 1, { nl: 'Voorbeeld: drie fabrieken', en: 'Example: three plants' }, [
       { nl: 'Een zuivelgroep, nieuw MES in drie fabrieken: A {n:20}%, B {n:35}%, C {n:45}% van het volume. Piek in december.', en: 'A dairy group, a new MES at three plants: A {n:20}%, B {n:35}%, C {n:45}% of the volume. Peak in December.', focus: ['dairy', 'notes', 'sPeak'] },
@@ -490,8 +493,8 @@ const SAY = [
   [ // s3 phased and the pilot; MES and ERP; the price
     { nl: 'Een {t:Gefaseerde invoering|gefaseerde invoering} gaat per vestiging, per lijn of per module.',
       en: 'A {t:Phased rollout|phased rollout} goes per site, per line or per module.' },
-    { nl: 'Vaak begint die met een {t:Pilot|pilot}: één vestiging of lijn die voorgaat, zodat je leert voordat de rest volgt.',
-      en: 'It often starts with a {t:Pilot|pilot}: one site or line that goes first, so you learn before the rest follows.' },
+    { nl: 'Vaak begint die met een {t:Pilot|pilot}. Daarbij gaat één vestiging of lijn voor, zodat je leert voordat de rest volgt.',
+      en: 'It often starts with a {t:Pilot|pilot}. One site or line goes first, so you learn before the rest follows.' },
     { nl: 'In fabrieken gaat een MES vaak per lijn of per fabriek. Een ERP schakelt meestal een hele vestiging tegelijk om.',
       en: 'In factories an MES often goes per line or per plant. An ERP usually switches a whole site at once.' },
     { nl: 'Gefaseerd kost extra, met tijdelijke koppelingen en een langer project. Dat is de prijs van een kleiner risico per stap.',
@@ -510,12 +513,12 @@ const SAY = [
       en: 'A dairy group brings a new MES into three plants. Plant A makes twenty percent of the volume. December is the peak.' },
     { nl: 'Optie één is een big bang in één weekend in oktober. Gaat het mis, dan staat alle productie op het spel, twee maanden voor de piek.',
       en: 'Option one is a big bang in one weekend in October. If it goes wrong, all production is at risk, two months before the peak.' },
-    { nl: 'Optie twee is gefaseerd, A als pilot in maart, B in juni, C in september. Een tijdelijke koppeling kost veertigduizend euro, en het project duurt zes maanden langer.',
-      en: 'Option two is phased, A as the pilot in March, B in June, C in September. A temporary interface costs forty thousand euros, and the project runs six months longer.' },
+    { nl: 'Optie twee is gefaseerd. A start als pilot in maart, dan B in juni en C in september. Een tijdelijke koppeling kost veertigduizend euro, en het project duurt zes maanden langer.',
+      en: 'Option two is phased. A pilots in March, B follows in June and C in September. A temporary interface costs forty thousand euros, and the project runs six months longer.' },
     { nl: 'De groep kiest optie twee. Gaat de pilot mis, dan staat twintig procent op het spel in plaats van honderd.',
       en: 'The group chooses option two. If the pilot goes wrong, twenty percent is at risk instead of a hundred.' },
-    { nl: 'C, de grootste, volgt in september, met drie maanden om te stabiliseren voor december.',
-      en: 'C, the biggest, follows in September, with three months to settle before December.' },
+    { nl: 'C, de grootste, heeft dan drie maanden om te stabiliseren voor december.',
+      en: 'C, the biggest, then has three months to settle before December.' },
   ],
   [ // s6 data migration: master data, open items, history
     { nl: '{t:Datamigratie|Datamigratie} is data uit het oude systeem naar het nieuwe verhuizen.',
@@ -528,20 +531,20 @@ const SAY = [
       en: 'History, such as orders from past years, is usually not migrated. It stays readable in the old system or in an archive.' },
   ],
   [ // s7 cleansing; the business owns it; extract, transform, load; the mock migration
-    { nl: 'Eerst {t:Data opschonen|data opschonen}: dubbelingen weghalen, ongebruikte artikelen, verkeerde eenheden en lege velden. Rommel in het oude systeem wordt rommel in het nieuwe.',
+    { nl: 'Eerst komt {t:Data opschonen|data opschonen}. Je haalt dubbelingen, ongebruikte artikelen, verkeerde eenheden en lege velden weg. Rommel in het oude systeem wordt rommel in het nieuwe.',
       en: 'First comes {t:Data cleansing|data cleansing}, removing duplicates, unused articles, wrong units and empty fields. Rubbish in the old system becomes rubbish in the new.' },
     { nl: 'Dat is werk voor de business, de eigenaren van de data. IT ziet wat er mis is, maar niet welke van twee bijna gelijke artikelen het echte is.',
       en: 'That is work for the business, who own the data. IT shows what is wrong, but not which of two near-identical articles is the real one.' },
-    { nl: 'De migratie zelf heeft drie stappen: uit het oude systeem halen, omzetten naar de nieuwe structuur, en laden.',
-      en: 'The migration itself has three steps: extract from the old system, transform to the new structure, and load.' },
+    { nl: 'De migratie zelf heeft drie stappen. Uit het oude systeem halen, omzetten naar de nieuwe structuur, en laden.',
+      en: 'The migration itself has three steps. Extract from the old system, transform to the new structure, and load.' },
     { nl: 'Dat oefen je in een {t:Proefmigratie|proefmigratie}, een proefrun naar een testomgeving. Elke proef is schoner en sneller, en de laatste wordt getimed voor het draaiboek van de go-live.',
       en: 'You rehearse that in a {t:Mock migration|mock migration}, a trial run into a test environment. Each trial is cleaner and faster, and the last is timed for the go-live plan.' },
   ],
   [ // s8 reconciliation; who signs; what goes wrong; the question
-    { nl: 'Na elke lading volgt de {t:Afstemming|afstemming}: de getallen in oud en nieuw vergelijken en elk verschil verklaren. Hoeveel ging eruit, hoeveel kwam erin, wat is geweigerd en waarom?',
-      en: 'After every load comes {t:Reconciliation|reconciliation}: comparing the numbers in old and new and explaining every difference. How many went out, how many came in, what was rejected and why?' },
+    { nl: 'Na elke lading volgt de {t:Afstemming|afstemming}. Vergelijk de getallen in oud en nieuw, en verklaar elk verschil. Hoeveel ging eruit, hoeveel kwam erin, wat is geweigerd en waarom?',
+      en: 'After every load comes {t:Reconciliation|reconciliation}. Compare the numbers in old and new, and explain every difference. How many went out, how many came in, what was rejected and why?' },
     { nl: 'Voor het resultaat tekent de business, niet IT. De controller tekent voor de voorraadwaarde, de planner voor de open orders.',
-      en: 'The business signs off on the result, not IT. The controller signs for the stock value, the planner for the open orders.' },
+      en: 'The business signs off on the result, not IT. The controller signs for the stock value, the planner for open orders.' },
     { nl: 'Vaak begint de migratie laat, en het opschonen pas bij de derde proef. Dan is er geen tijd meer, en gaat vuile data live om later op te lossen.',
       en: 'Often the migration starts late, and cleaning only at the third trial. Then there is no time left, and dirty data goes live to be fixed later.' },
     { nl: 'Vraag in elk projectoverleg hoeveel records er bij de laatste proef mislukt zijn, en wie eigenaar is van het oplossen.',
@@ -550,8 +553,8 @@ const SAY = [
   [ // s9 the metal parts maker
     { nl: 'Een maker van metalen onderdelen gaat over op een nieuw ERP, en dit is de tweede proefmigratie. De ongebruikte artikelen gaan naar het archief, dus moeten er negenduizend negenhonderdvijftig mee.',
       en: 'A metal parts maker moves to a new ERP; this is its second mock migration. Unused articles go to the archive, so nine thousand nine hundred and fifty should move.' },
-    { nl: 'Er komen er negenduizend achthonderdeenenzeventig aan, dus negenenzeventig zijn geweigerd: geen eenheid, of een tekeningnummer dat al bestaat.',
-      en: 'Nine thousand eight hundred and seventy-one arrive, so seventy-nine are rejected: no unit, or a drawing number that already exists.' },
+    { nl: 'Er komen er negenduizend achthonderdeenenzeventig aan, dus negenenzeventig zijn geweigerd. Tweeënvijftig hebben geen eenheid, zevenentwintig een tekeningnummer dat al bestaat.',
+      en: 'Nine thousand eight hundred and seventy-one arrive, so seventy-nine are rejected. Fifty-two have no unit, twenty-seven a drawing number that already exists.' },
     { nl: 'De voorraadwaarde verschilt dertienduizend vijfhonderd euro. Dat is precies de voorraad van de geweigerde artikelen.',
       en: 'The stock value differs by thirteen thousand five hundred euros. That is exactly the stock of the rejected articles.' },
     { nl: 'Engineering lost de dubbelingen op, inkoop vult de eenheden in, elk met een datum voor de derde proef. Het doel is nul geweigerd en nul euro verschil, getekend door de controller.',

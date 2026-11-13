@@ -86,7 +86,7 @@ const STAGE = (() => {
     const o = { head: ['go-live', DIA] };
     const A = page(b, p, 0, 2);
     o.golive = op(A, box(54, 'go-live', [tr('nieuw systeem officieel', 'new system is official'), [tr('nieuw werk alleen daar', 'new work only there'), 'pm-on']], b === 0));
-    if (b >= 1) o.legacy = op(A * at(b, p, 1), lines(182, [[tr('legacysysteem: het oude,', 'legacy system, the old'), 'pm-big'], [tr('niet voor nieuw werk', 'one: not for new work'), ''], [tr('→ kies de datum', '→ choose the date'), 'pm-on'], [tr('   zorgvuldig', '   carefully'), 'pm-on']]));
+    if (b >= 1) o.legacy = op(A * at(b, p, 1), lines(182, [[tr('legacysysteem: het oude,', 'legacy system: the old'), 'pm-big'], [tr('niet voor nieuw werk', 'one, not for new work'), ''], [tr('→ kies de datum', '→ choose the date'), 'pm-on'], [tr('   zorgvuldig', '   carefully'), 'pm-on']]));
     const B = page(b, p, 2, -1);
     if (b >= 2) o.bang = op(B, box(54, 'big bang', [tr('alle vestigingen en', 'all sites and'), tr('afdelingen, één dag', 'departments, one day')], b === 2));
     if (b >= 3) o.bangpm = op(B * at(b, p, 3), lines(180, [[tr('+ één omschakeling', '+ one switchover'), 'pm-big'], [tr('+ geen tijdelijke koppeling', '+ no temporary links'), 'pm-big'], [tr('− alles tegelijk op het spel', '− all at risk at once'), 'pm-on']]));
@@ -232,7 +232,8 @@ const STAGE = (() => {
     }
     if (si === 3) {
       L.sMonths = months();
-      L.sPeak = op(at(b, p, 0, 0.3, 0.55), peak(9) + mark(9, tr('go-live bij Halloween', 'go-live at Halloween'), 'pm-on', 'end'));
+      // no month is marked: the lesson names the Halloween orders, not a month (the card carries Hershey)
+      if (b >= 2) L.sPeak = op(at(b, p, 2, 0.1, 0.35), txt(320, RB + 32, tr('nooit live in het piekseizoen', 'never go live in the peak season'), 'pm-on', 'middle'));
     }
     if (si === 4) {
       L.sMonths = months();

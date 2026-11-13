@@ -178,7 +178,8 @@ assert(lessons.nl.get(CO).terms.map((t) => t.term).join() === 'Cutover,Cutoverdr
 assert(lessons.en.get(CO).terms.map((t) => t.term).join() === 'Cutover,Cutover plan,Freeze,Go/no-go,Rollback point,Dress rehearsal', 'the six terms of cutover (en)');
 for (const lang of ['nl', 'en']) for (const id of [CO, 'pm.itproject.migration', 'pm.itproject.hypercare']) {
   const f = lessons[lang].get(id).film;
-  assert(!f || (id === CO && f === 'pm.itproject.cutover'), `${id} (${lang}) has film ${f}: never overwrite another film`);
+  // the neighbours keep their own films (pm.itproject.migration has one); only cutover points here
+  assert(id === CO ? (!f || f === 'pm.itproject.cutover') : f !== 'pm.itproject.cutover', `${id} (${lang}) has film ${f}: never overwrite another film`);
 }
 // the weekend in hours from Friday 18:00 (h = 0) to Monday 06:00 (h = 60)
 const clock = (h) => `${String(Math.floor((18 + h) % 24)).padStart(2, '0')}:${String(Math.round(((18 + h) % 1) * 60)).padStart(2, '0')}`;
