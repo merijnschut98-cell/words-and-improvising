@@ -221,7 +221,7 @@ const r1 = (v) => Math.round(v * 10) / 10;
 
 // the plan on the back wall, as shapes: each layer its own cue group, drawn by
 // stage.js in the board's face plane (u = x, v = -z)
-const BOARD = w.board({ x0: 34, x1: 196, z0: 100, z1: 206 });
+const BOARD = w.board({ x0: 52, x1: 198, z0: 100, z1: 206 });
 const BA = BOARD.area;
 const LAYERS = ['bGates', 'bStages', 'bSprints', 'bCost', 'bPlan', 'bSop', 'bFreeze', 'bMiles', 'bVariants'];
 const boardLayers = `<g transform="${BOARD.face}">${LAYERS.map((c) => cueG(c, g(c, ''))).join('')}</g>`;
@@ -233,34 +233,34 @@ const TZ = TABLE.h;
 // the table, two Developers (the team), purchasing in front
 const SPOT = {
   d1: { x: 216, y: 84, along: 'x', look: 'dev' },
-  d2: { x: 128, y: 224, along: 'x', look: 'dev2' },
+  d2: { x: 44, y: 206, along: 'y', look: 'dev2' },
 };
 const fig = (r) => scrumPerson(w, k, G, P, { ...SPOT[r], key: 'team' });
 // the steel mould (two halves with a parting line) and the pump housing prototype on the table
-const MOULD = { x: 186, y: 132, w: 30, d: 24 };
-const mould = w.box({ ...MOULD, r: 1 }, TZ, TZ + 9, { tone: 'lo' }, { steps: 2, bevel: 0.4 })
-  + w.box({ ...MOULD, r: 1 }, TZ + 9.6, TZ + 18, { tone: 'lo' }, { steps: 2, bevel: 0.4 })
-  + w.post(MOULD.x + 7, MOULD.y + 7, 1.6, TZ + 18, TZ + 21, { tone: 'mid' }, 10)
-  + w.post(MOULD.x + 23, MOULD.y + 17, 1.6, TZ + 18, TZ + 21, { tone: 'mid' }, 10);
-const proto = w.post(138, 156, 12, TZ, TZ + 3, { tone: 'mid' }, 24)
-  + w.post(138, 156, 8.5, TZ + 3, TZ + 16, { tone: 'hi' }, 24)
-  + w.post(138, 156, 11, TZ + 16, TZ + 19, { tone: 'mid' }, 24);
+const MOULD = { x: 184, y: 120, w: 38, d: 30 };
+const mould = w.box({ ...MOULD, r: 1 }, TZ, TZ + 13, { tone: 'lo' }, { steps: 2, bevel: 0.4 })
+  + w.box({ ...MOULD, r: 1 }, TZ + 14, TZ + 27, { tone: 'lo' }, { steps: 2, bevel: 0.4 })
+  + w.post(MOULD.x + 8, MOULD.y + 8, 2, TZ + 27, TZ + 31, { tone: 'mid' }, 10)
+  + w.post(MOULD.x + 32, MOULD.y + 24, 2, TZ + 27, TZ + 31, { tone: 'mid' }, 10);
+const proto = w.post(132, 150, 16, TZ, TZ + 4, { tone: 'mid' }, 28)
+  + w.post(132, 150, 11, TZ + 4, TZ + 22, { tone: 'hi' }, 28)
+  + w.post(132, 150, 15, TZ + 22, TZ + 26, { tone: 'mid' }, 28);
 const world = [
   w.room(ROOM),
   w.clock(246, 180, 11),
   cueG('board', BOARD.svg + boardLayers),
-  w.person({ x: 20, y: 60, role: 'jij', along: 'x', reach: [40, 6, 150] }),
+  w.person({ x: 26, y: 50, role: 'jij', along: 'x', reach: [56, 6, 150] }),
   fig('d1'),
   w.chair({ x: 140, y: 102, back: -1 }),
   w.table(TABLE),
   cueG('mould', mould),
   cueG('proto', proto),
-  w.laptop({ x: 214, y: 166, z: TZ, toward: 1 }),
-  w.stack({ x: 104, y: 124, z: TZ, n: 3 }),
+  w.laptop({ x: 214, y: 168, z: TZ, toward: 1 }),
+  w.stack({ x: 104, y: 166, z: TZ, n: 3 }),
   w.cup(232, 124, TZ),
   w.person({ x: 272, y: 152, role: 'sponsor', along: 'y' }),
   fig('d2'),
-  w.person({ x: 222, y: 226, role: 'planner', along: 'x' }),
+  w.person({ x: 150, y: 236, role: 'planner', along: 'x' }),
 ].join('');
 for (const r of ['jij', 'sponsor', 'team', 'planner', 'board', 'mould', 'proto', ...LAYERS]) assert(world.includes(`data-cue="${r}"`), `${r} is a cue group`);
 if (FAILS.length) throw new Error(`model:\n  ${FAILS.join('\n  ')}`);
@@ -335,7 +335,7 @@ const BOARD_AT = w.at([(BA.x0 + BA.x1) / 2, 0, (BA.z0 + BA.z1) / 2]).map(r1);
 const BCAM = (s) => [BOARD_AT[0], BOARD_AT[1] + 30, s];
 const TABLE_AT = w.at([170, 150, TZ]).map(r1);
 const TCAM = (s) => [TABLE_AT[0], TABLE_AT[1], s];
-const BUYER_AT = w.at([222, 226, 150]).map(r1);
+const BUYER_AT = w.at([150, 236, 150]).map(r1);
 const CAM = [
   { from: [160, 205, 1], to: BCAM(1.1) },
   { from: TCAM(1.02), to: TCAM(1.12) },
@@ -364,7 +364,7 @@ const spec = {
       { nl: 'De {t:Go/kill-beslissing|go/kill-beslissing}: doorgaan, stoppen, aanhouden of overdoen.', en: 'The {t:Go/kill decision|go/kill decision}: continue, stop, hold or redo a stage.', cue: { 'Go/kill-beslissing': 'gokill' }, focus: ['gokill', 'sponsor'] },
     ]),
     sc('s2', SG, 1, { nl: 'Wijzigen wordt duurder', en: 'Change gets dearer' }, [
-      { nl: '{t:Kosten van verandering|Kosten van verandering}: hoe verder je bent, hoe duurder.', en: '{t:Cost of change|Cost of change}: the further along, the dearer.', cue: { 'Kosten van verandering': 'coc' }, focus: ['coc', 'bCost'] },
+      { nl: '{t:Kosten van verandering|Kosten van verandering}: hoe verder je bent, hoe duurder.', en: '{t:Cost of change|Cost of change}: the further along you are, the dearer a change.', cue: { 'Kosten van verandering': 'coc' }, focus: ['coc', 'bCost'] },
       { nl: 'Een tekening in CAD: een paar uur. Een geharde stalen matrijs: tienduizenden euro’s.', en: 'A drawing in CAD: a few hours. A hardened steel mould: tens of thousands of euros.', focus: ['cad', 'mould'] },
       { nl: 'En een wijziging na levering kan een terugroepactie betekenen.', en: 'And a change after delivery can mean a recall of the product.', focus: ['recall', 'bCost'] },
       { nl: 'Plus lange levertijden voor gereedschap, en eisen als de CE-markering.', en: 'Plus long lead times for tooling, and requirements like CE marking.', focus: ['lead', 'mould'] },
@@ -376,8 +376,8 @@ const spec = {
       { nl: 'Een handvol bedrijven: sneller op de markt, maar ook worstelingen. Het bewijs is beperkt.', en: 'A handful of firms: faster to market, but also struggles. The evidence is limited.', focus: 'evidence' },
     ]),
     sc('s4', SG, 1, { nl: 'Af na een hardwaresprint', en: 'Done after a hardware sprint' }, [
-      { nl: 'Af na een hardwaresprint: iets om te testen of te laten zien.', en: 'Done after a hardware sprint: something to test or show.', focus: ['done', 'proto'] },
-      { nl: 'Een CAD-model met de klant, een 3D-print, een prototypetest, software op een testopstelling.', en: 'A CAD model with a customer, a 3D print, a prototype test, software on a test rig.', focus: ['done4', 'proto', 'team'] },
+      { nl: 'Af na een hardwaresprint: iets om te testen of te laten zien.', en: 'Done after a hardware sprint: something you can test or show.', focus: ['done', 'proto'] },
+      { nl: 'Een CAD-model met de klant, een 3D-print, een prototypetest, software op een testopstelling.', en: 'A CAD model with a customer, 3D print, prototype test, software on a test rig.', focus: ['done4', 'proto', 'team'] },
       { nl: 'De vraag: wat hebben we deze twee weken geleerd?', en: 'The question: what did we learn these two weeks?', focus: ['learned', 'bSprints'] },
       { nl: 'Lean-blik: een gate lijkt op een kwaliteitspoort. Valkuil: een papierencontrole.', en: 'Lean view: a gate is like a quality gate. Pitfall: a paperwork check.', focus: ['paper', 'bGates'] },
       { nl: 'Vraag: wat moet er bij de volgende gate bewezen zijn, en welke sprint levert dat?', en: 'Ask: what must be proven at the next gate, and which sprint delivers it?', focus: ['ask', 'jij'] },
@@ -628,8 +628,8 @@ const css = PM_CSS + `
 .pm-dia{fill:var(--anatomy-hi);stroke:var(--anatomy-face);stroke-width:.5}
 .pm-note{fill:var(--anatomy-face);stroke:var(--anatomy-hi);stroke-width:.6}
 .pm-note2{fill:var(--fp-accent);stroke:none;opacity:.85}
-.pm-loop{fill:none;stroke:var(--anatomy-hi);stroke-width:.9;stroke-linecap:round}
-.pm-bdash{fill:none;stroke:var(--anatomy-mid);stroke-width:.7;stroke-dasharray:2.4 1.8}
+.pm-loop{fill:none;stroke:var(--anatomy-hi);stroke-width:1.3;stroke-linecap:round}
+.pm-bdash{fill:none;stroke:var(--anatomy-mid);stroke-width:1;stroke-dasharray:2.4 1.8}
 .pm-strike{fill:none;stroke:var(--anatomy-strong);stroke-width:2.4;stroke-linecap:round}
 .pm-bstrike{fill:none;stroke:var(--anatomy-strong);stroke-width:1;stroke-linecap:round}
 [data-cue][data-on] .pm-card,[data-cue][data-on] .pm-dash{stroke:var(--fp-accent);stroke-width:2}

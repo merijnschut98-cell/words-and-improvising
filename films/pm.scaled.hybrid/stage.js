@@ -85,10 +85,10 @@ const STAGE = (() => {
       o.phases = op(A * at(b, p, 1), s);
     }
     const B = page(b, p, 2, -1);
-    if (b >= 2) o.gate = op(B, box(54, 'gate', [tr('beslismoment tussen', 'decision moment'), tr('twee fases, op afge-', 'between two stages,'), tr('sproken resultaten', 'on agreed deliverables')], b === 2) + dia(X1 - 12, 76, 9));
+    if (b >= 2) o.gate = op(B, box(54, 'gate', [tr('beslismoment tussen', 'a decision moment'), tr('twee fases, op basis', 'between two stages,'), tr('van afgesproken', 'based on agreed'), tr('resultaten', 'deliverables')], b === 2) + dia(X1 - 12, 76, 9));
     if (b >= 3) {
       const GK = [[tr('doorgaan', 'continue'), 'pm-on'], [tr('stoppen', 'stop')], [tr('aanhouden', 'hold')], [tr('fase overdoen', 'redo the stage')]];
-      o.gokill = op(B * at(b, p, 3), box(204, tr('go/kill-beslissing', 'go/kill decision'), GK, b === 3));
+      o.gokill = op(B * at(b, p, 3), box(222, tr('go/kill-beslissing', 'go/kill decision'), GK, b === 3));
     }
     return o;
   }
@@ -182,9 +182,9 @@ const STAGE = (() => {
     const o = { head: [tr('vroeg en laat', 'early and late'), DIA] };
     const A = page(b, p, 0, 2);
     o.clash = op(A, box(54, tr('agile botst', 'agile clashes'), [tr('sprints willen leren', 'sprints want to learn'), tr('long-lead items vragen', 'long-lead items need'), tr('vroege beslissingen', 'early decisions')], b === 0));
-    if (b >= 1) o.split = op(A * at(b, p, 1), lines(212, [[tr('onderscheid maken:', 'make a distinction:'), 'pm-big'], [tr('✓ long-lead vroeg vast', '✓ long-lead fixed early'), ''], [tr('✓ de rest flexibel', '✓ the rest flexible'), ''], [tr('✓ interfaces vroeg:', '✓ interfaces early:'), ''], [tr('  bevestigingspunten,', '  mounting points,'), 'pm-mute'], [tr('  aansluitingen', '  connections'), 'pm-mute']]));
+    if (b >= 1) o.split = op(A * at(b, p, 1), lines(212, [[tr('onderscheid maken:', 'make a distinction:'), 'pm-big'], [tr('✓ long-lead vroeg vast', '✓ long-lead fixed early'), ''], [tr('✓ de rest flexibel', '✓ the rest flexible'), ''], [tr('✓ interfaces vroeg:', '✓ interfaces early:'), ''], [tr('  bevestigingspunten,', '  mounting points,'), 'pm-mute'], [tr('  aansluitingen', '  connections'), 'pm-mute'], [tr('→ binnenkant kan later', '→ the inside can change'), 'pm-on']]));
     const B = page(b, p, 2, -1);
-    if (b >= 2) o.sbd = op(B, box(54, 'set-based design', [tr('een paar opties open;', 'a few options open;'), tr('afvallen bij kennis', 'drop them with knowledge')], b === 2));
+    if (b >= 2) o.sbd = op(B, box(54, 'set-based design', [tr('een paar opties open;', 'a few options open;'), tr('afvallen bij kennis', 'drop with knowledge')], b === 2));
     if (b >= 3) o.toyota = op(B * at(b, p, 3), lines(184, [[tr('onderzoek naar Toyota,', 'research on Toyota,'), ''], [tr('jaren 90; ook in SAFe', 'the 1990s; also in SAFe'), 'pm-mute']]));
     if (b >= 4) {
       const ab = rect(X0, 244, 54, 22, 'pm-card', 3) + txt(X0 + 27, 262, 'A', 'pm-big', 'middle') + rect(X0, 274, 54, 22, 'pm-card', 3) + txt(X0 + 27, 292, 'B', 'pm-big', 'middle')
