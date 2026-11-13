@@ -371,6 +371,32 @@ test('speak variant: the stage-gate and lead-time words in Dutch, go/kill and SO
   assert.equal(speakOf([en], 'en'), en);
 });
 
+// The cutover weekend (pm.itproject.cutover): the go-live words as Dutch ERP
+// and MES projects say them, checked with espeak-ng phonemes through Piper's
+// nl_NL-alex bridge: cutover ("KUU-too-ver": kattoover; in cutoverdraaiboek
+// and cutoverlogboek split at the head, kattoover-draaiboek), freeze ("FREE-ze": friez; not in
+// eng.moulding.setting's gate-freeze-studie nor pm.scaled.hybrid's caption
+// "freeze in week 18", and design freeze keeps pm.scaled.hybrid's rule), key users ("kee-i uu-zers": kie joezers, as the
+// user story rule), point of no return ("po-int ... ree-turn": pojnt of noo
+// rie-turn), and, in this film's phrases only, plantmanager ("maa-naa-ger":
+// plant-menetsjer, as the manager rules), stopwatch ("stop-watch" with a Dutch
+// w-a-ch: stop-wotsj) and controleweegschalen (run together: controle-
+// weegschalen). In English, cutover as "cute-over" (en_GB): cuttover. go/no-go,
+// MES and hypercare keep the rules above; no other film's spoken text changes
+test('speak variant: the cutover words in Dutch, cutover in English', () => {
+  const nl = (s) => speakOf([s], 'nl');
+  assert.equal(nl('Het cutover-weekend.'), 'Het kattoover-weekend.');
+  assert.equal(nl('De cutover, het cutoverdraaiboek, het cutoverlogboek. Cutover.'), 'De kattoover, het kattoover-draaiboek, het kattoover-logboek. Kattoover.');
+  assert.equal(nl('Een freeze, de Freeze. De design freeze. De gate-freeze-studie. Bestellen 1 week: freeze in week 18.'), 'Een friez, de Friez. De di-zain friez. De gate-freeze-studie. Bestellen 1 week: freeze in week 18.');
+  assert.equal(nl('De key users, een key user. Key users. Het point of no return.'), 'De kie joezers, een kie joezer. Kie joezers. Het pojnt of noo rie-turn.');
+  assert.equal(nl('De sponsor of de plantmanager. Met een stopwatch. De controleweegschalen.'), 'De sponsor of de plant-menetsjer. Met een stop-wotsj. De controle-weegschalen.');
+  assert.equal(nl('De plantmanager gelooft er niet in. Met de stopwatch.'), 'De plantmanager gelooft er niet in. Met de stopwatch.');
+  assert.equal(nl('De go/no-go, de hypercare, het nieuwe MES.'), 'De go, no-go, de haiperkeer, het nieuwe M E S.');
+  assert.equal(speakOf(['The cutover, a cutover plan. Cutover.'], 'en'), 'The cuttover, a cuttover plan. Cuttover.');
+  const en = 'The freeze, the key users, the rollback point, a stopwatch, the checkweighers';
+  assert.equal(speakOf([en], 'en'), en);
+});
+
 // A commit through the pipeline (pm.devops.pipeline): the DevOps words as
 // Dutch IT teams say them, checked with espeak-ng phonemes through Piper's
 // nl_NL-alex bridge: pipeline ("pi-pe-LIE-ne": paiplain), build ("buld" with
