@@ -1,0 +1,245 @@
+WEBVTT
+
+1
+00:00:00.844 --> 00:00:03.015
+Er zijn twee manieren om een project te plannen.
+
+2
+00:00:03.702 --> 00:00:06.558
+De eerste heet waterval (waterfall): fases op volgorde.
+
+3
+00:00:07.258 --> 00:00:11.009
+Analyseren, ontwerpen, bouwen, invoeren.
+
+4
+00:00:12.010 --> 00:00:15.098
+Elke fase wordt afgetekend voordat de volgende begint.
+
+5
+00:00:15.819 --> 00:00:19.731
+En de inhoud ligt vast: wat het project omvat, staat vooraf op papier.
+
+6
+00:00:20.668 --> 00:00:23.721
+Je plant één keer in detail, en stuurt op afwijkingen.
+
+7
+00:00:24.426 --> 00:00:27.584
+Dat past bij werk dat voorspelbaar is en later moeilijk te veranderen.
+
+8
+00:00:28.269 --> 00:00:31.113
+Denk aan een nieuw station voor middenspanning in de wijk plaatsen,
+
+9
+00:00:31.392 --> 00:00:32.982
+of een lijn in de fabriek verhuizen.
+
+10
+00:00:34.269 --> 00:00:37.520
+De tweede manier heet agile: werken in korte rondes.
+
+11
+00:00:38.232 --> 00:00:42.062
+Elke ronde eindigt met iets werkends, waar gebruikers op reageren.
+
+12
+00:00:43.073 --> 00:00:44.780
+De inhoud beweegt mee met wat je leert.
+
+13
+00:00:45.491 --> 00:00:48.011
+Wat de planners zeggen, stuurt de volgende ronde.
+
+14
+00:00:48.992 --> 00:00:51.302
+Het woord komt uit het Agile Manifesto,
+
+15
+00:00:51.686 --> 00:00:55.401
+in 2001 geschreven door zeventien ontwikkelaars van software.
+
+16
+00:00:56.377 --> 00:00:58.827
+Het past bij werk waar de oplossing onduidelijk
+
+17
+00:00:58.885 --> 00:01:00.940
+is en de reactie van gebruikers telt:
+
+18
+00:01:01.358 --> 00:01:02.635
+een nieuw planningsoverleg,
+
+19
+00:01:02.867 --> 00:01:05.491
+of een nieuw scherm met kerncijfers voor ploegleiders.
+
+20
+00:01:06.795 --> 00:01:08.746
+De bekendste agile methode is scrum.
+
+21
+00:01:09.459 --> 00:01:13.511
+Daar heten de rondes sprints: een vaste periode van hooguit een maand,
+
+22
+00:01:13.674 --> 00:01:14.649
+vaak twee weken.
+
+23
+00:01:15.647 --> 00:01:17.551
+Elke sprint begint met een korte planning.
+
+24
+00:01:18.244 --> 00:01:20.787
+Aan het eind laat het team de gebruikers het resultaat zien.
+
+25
+00:01:21.779 --> 00:01:23.753
+Daarna kijkt het team terug op hoe het werkte.
+
+26
+00:01:24.772 --> 00:01:27.582
+In een fabriek heb je de volledige methode zelden nodig.
+
+27
+00:01:28.278 --> 00:01:33.416
+De kern is genoeg: korte rondes, aan het eind iets echts, en feedback van de vloer.
+
+28
+00:01:34.702 --> 00:01:38.359
+De meeste verbeterprojecten zijn hybride (hybrid): vaste mijlpalen,
+
+29
+00:01:38.743 --> 00:01:42.272
+budget en einddatum voor de stuurgroep, en korte rondes daarbinnen.
+
+30
+00:01:43.227 --> 00:01:46.780
+De stuurgroep ziet één datum: de pilot draait in week 10.
+
+31
+00:01:47.471 --> 00:01:49.770
+Het team werkt daar in rondes van twee weken naartoe.
+
+32
+00:01:50.822 --> 00:01:53.876
+Een pilot is een kleine, afgebakende proef op één plek,
+
+33
+00:01:54.119 --> 00:01:55.814
+met een einddatum en een weg terug.
+
+34
+00:01:56.827 --> 00:01:59.103
+Experts twijfelen of pilots veel bewijzen:
+
+35
+00:01:59.440 --> 00:02:03.092
+een pilot met extra aandacht scoort vaak beter dan straks de uitrol.
+
+36
+00:02:04.349 --> 00:02:05.104
+Een voorbeeld.
+
+37
+00:02:05.835 --> 00:02:09.295
+Bij een netbeheerder leid jij een project om een gereedheidscheck in te voeren:
+
+38
+00:02:09.701 --> 00:02:11.245
+een controle dat vergunningen,
+
+39
+00:02:11.570 --> 00:02:15.460
+materiaal en ploeg geregeld zijn, voordat een klus in de weekplanning komt.
+
+40
+00:02:16.466 --> 00:02:18.544
+Niemand weet precies welke checks ertoe doen.
+
+41
+00:02:19.262 --> 00:02:22.455
+Als waterval zouden de planners de check pas bij de invoering zien.
+
+42
+00:02:23.154 --> 00:02:24.222
+Dus werk je in rondes.
+
+43
+00:02:25.340 --> 00:02:29.461
+Voor de stuurgroep een planning met mijlpalen: de nulmeting klaar in week 4,
+
+44
+00:02:29.775 --> 00:02:34.674
+de pilot van start in week 8, en de go/no-go voor de uitrol in week 16.
+
+45
+00:02:35.636 --> 00:02:39.223
+Daarbinnen werkt het team in rondes van twee weken, met de planners erbij.
+
+46
+00:02:40.516 --> 00:02:44.870
+Ronde één: een lijst op papier met vijf checks, gebruikt door twee planners.
+
+47
+00:02:45.856 --> 00:02:50.652
+Aan het eind van de ronde zeggen ze: check vier kost te veel tijd, en valt nooit af.
+
+48
+00:02:51.356 --> 00:02:52.296
+Dus die gaat eruit.
+
+49
+00:02:53.323 --> 00:02:56.307
+Ronde twee: er komt een check op het schakelplan bij,
+
+50
+00:02:56.620 --> 00:02:58.687
+waar het bedrijfsvoeringscentrum om vroeg.
+
+51
+00:02:59.701 --> 00:03:02.557
+In week 8 is de lijst op 60 echte klussen getest.
+
+52
+00:03:03.263 --> 00:03:06.386
+En de planners hebben hem mee vormgegeven, dus ze verdedigen hem.
+
+53
+00:03:07.696 --> 00:03:10.099
+Dan de mensenkant: verkoop geen jargon.
+
+54
+00:03:10.836 --> 00:03:14.992
+Een fabrieksdirecteur die scrum hoort, denkt misschien aan software en chaos.
+
+55
+00:03:16.077 --> 00:03:16.994
+Zeg liever dit.
+
+56
+00:03:17.704 --> 00:03:21.941
+We werken in rondes van twee weken, en elke ronde zie je iets werken op de vloer.
+
+57
+00:03:22.895 --> 00:03:23.499
+Weerstand?
+
+58
+00:03:24.305 --> 00:03:25.954
+De directie wil een volledig plan.
+
+59
+00:03:26.724 --> 00:03:30.625
+Geef ze dan de planning met mijlpalen; de rondes zijn hoe het team er komt.
+
+60
+00:03:31.641 --> 00:03:33.452
+En twijfel je welke aanpak past,
+
+61
+00:03:33.649 --> 00:03:36.865
+vraag dan: hoe zeker zijn we van hoe de oplossing eruitziet?

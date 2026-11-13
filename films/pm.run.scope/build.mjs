@@ -387,7 +387,7 @@ const SAY = [
   [ // s2 five small requests
     { nl: 'Bij een fabrikant van kabels verbeter je de weekplanning, begroot op {n:40} dagen van de consultant: de tijd die de klant betaalt.',
       en: 'At a cable manufacturer you improve the weekly planning, planned at {n:40} consultant days: the time the client pays for.' },
-    { nl: 'Kun je ook even naar lijn vier kijken? Schuif je aan bij het overleg over het nieuwe ERP, het systeem voor orders, voorraad en planning? Elk verzoek is klein en redelijk.',
+    { nl: 'Kun je ook even naar lijn vier kijken? Schuif je aan bij het overleg over het nieuwe ERP-systeem voor orders, voorraad en planning? Elk verzoek is klein en redelijk.',
       en: 'Can you also look at line four? Could you join the meeting about the new ERP, the system for orders, stock and planning? Each request is small and reasonable.' },
     { nl: 'In week vijf heb je ja gezegd tegen vijf: een rapportage voor verkoop, een voorraadcontrole, een sessie met het ERP-team en twee extra analyses. Elk zo\'n {n:2} dagen.',
       en: 'By week five you\'ve said yes to five: a report for sales, a stock check, a session with the ERP team, and two extra analyses. Each about {n:2} days.' },
@@ -439,7 +439,7 @@ const SAY = [
       en: 'Asking for more in the same time, for the same budget, is asking you to cut quality without saying so. Don\'t refuse: make the trade visible.' },
     { nl: 'Kleine ja\'s tellen op. Vijf snelle extraatjes van een dag zijn een hele week, op een project van {n:20} dagen.',
       en: 'Small yeses add up. Five quick extras of a day are a full week, on a {n:20}-day project.' },
-    { nl: 'Houd een {t:Wijzigingslog|wijzigingslog} bij: wat er gevraagd werd, wanneer, hoeveel werk, en wat er besloten is. Dan gaat het over feiten, niet over wie er moeilijk doet.',
+    { nl: 'Houd een {t:Wijzigingslog|wijzigingslog} bij: wat er wanneer gevraagd werd, hoeveel werk en wat er besloten is. Dan gaat het over feiten, niet over wie er moeilijk doet.',
       en: 'Keep a {t:Change log|change log}: what was asked, when, how much effort, and what was decided. Then it\'s about facts, not about who is being difficult.' },
     { nl: 'Bij een {t:Vaste prijs|vaste prijs} ligt het risico van extra werk bij jou. Bij een tarief per dag betaalt de klant elke gewerkte dag, en draagt hij het risico. Scope creep doet dus het meeste pijn bij een vaste prijs: het werk groeit, de prijs niet.',
       en: 'On a {t:Fixed price|fixed price} the risk of extra effort sits with you. On a day rate the client pays per day worked and carries it. So scope creep hurts most on a fixed price: the work grows, the price doesn\'t.' },

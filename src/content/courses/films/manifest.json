@@ -1925,6 +1925,103 @@
         ],
         "vtt": "src/content/courses/films/pm.lead.difficult.en.vtt"
       }
+    },
+    "pm.intake.stakeholders": {
+      "poster": "src/content/courses/films/pm.intake.stakeholders.jpg",
+      "nl": {
+        "dur": 333.7,
+        "bytes": 11284980,
+        "scenes": [
+          0,
+          40.2,
+          77.65,
+          107.32,
+          133.09,
+          156.24,
+          195.38,
+          248.93,
+          292.12
+        ],
+        "vtt": "src/content/courses/films/pm.intake.stakeholders.nl.vtt"
+      },
+      "en": {
+        "dur": 333.7,
+        "bytes": 11180795,
+        "scenes": [
+          0,
+          40.46,
+          78.91,
+          108.99,
+          134.16,
+          158.32,
+          197.26,
+          248.64,
+          291.71
+        ],
+        "vtt": "src/content/courses/films/pm.intake.stakeholders.en.vtt"
+      }
+    },
+    "pm.plan.method": {
+      "poster": "src/content/courses/films/pm.plan.method.jpg",
+      "nl": {
+        "dur": 218.6,
+        "bytes": 7514521,
+        "scenes": [
+          0,
+          33.82,
+          66.33,
+          94.22,
+          123.89,
+          160.07,
+          187.23
+        ],
+        "vtt": "src/content/courses/films/pm.plan.method.nl.vtt"
+      },
+      "en": {
+        "dur": 227.6,
+        "bytes": 7731659,
+        "scenes": [
+          0,
+          34.7,
+          67.89,
+          98.85,
+          130.52,
+          169.49,
+          195.94
+        ],
+        "vtt": "src/content/courses/films/pm.plan.method.en.vtt"
+      }
+    },
+    "pm.run.scope": {
+      "poster": "src/content/courses/films/pm.run.scope.jpg",
+      "nl": {
+        "dur": 307.5,
+        "bytes": 10493114,
+        "scenes": [
+          0,
+          21.28,
+          71.7,
+          113.8,
+          157.24,
+          186.29,
+          236.48
+        ],
+        "vtt": "src/content/courses/films/pm.run.scope.nl.vtt"
+      },
+      "en": {
+        "dur": 314.7,
+        "bytes": 10530089,
+        "scenes": [
+          0,
+          23.44,
+          73.5,
+          114.87,
+          159.8,
+          191.71,
+          243
+        ],
+        "vtt": "src/content/courses/films/pm.run.scope.en.vtt"
+      }
     }
   }
 }
