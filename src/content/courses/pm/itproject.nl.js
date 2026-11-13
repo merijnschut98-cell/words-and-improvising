@@ -7,8 +7,8 @@ export default {
       pre: [
         {
           q: 'Een voedingsbedrijf vraagt zijn planners wat het nieuwe MES moet kunnen. Er komt een lijst terug van 240 regels, vaak “net als het oude scherm, maar beter”. Wat is het grootste risico van die lijst?',
-          options: ['Hij is te kort om de leverancier een eerlijke en complete offerte te laten maken', 'Planners mogen geen requirements schrijven; dat is het werk van de IT-afdeling', 'Hij kopieert het oude systeem in plaats van de nieuwe manier van werken te beschrijven', 'De leverancier weigert een lijst van meer dan 100 regels te lezen en te prijzen'],
-          answer: 'Hij kopieert het oude systeem in plaats van de nieuwe manier van werken te beschrijven',
+          options: ['Hij is te kort om de leverancier een eerlijke en complete offerte te laten maken', 'Planners mogen geen requirements schrijven; dat is het werk van de IT-afdeling', 'Hij beschrijft het oude systeem, niet de nieuwe manier van werken', 'De leverancier weigert een lijst van meer dan 100 regels te lezen en te prijzen'],
+          answer: 'Hij beschrijft het oude systeem, niet de nieuwe manier van werken',
           why: 'Een wensenlijst op basis van de oude schermen bouwt het oude systeem na, met al zijn omwegen. Requirements beginnen bij hoe het werk na de go-live loopt.',
         },
       ],
@@ -46,8 +46,8 @@ export default {
         },
         {
           q: 'Waarom beschrijf je het to-be-proces voordat je requirements schrijft?',
-          options: ['Omdat de leverancier het to-be-proces nodig heeft om de licentieprijs te berekenen', 'Zodat de requirements de nieuwe manier van werken ondersteunen, niet de oude schermen', 'Omdat de ISA-95-norm een to-be-proces eist voordat je een requirement schrijft', 'Zodat het project de gebruikersacceptatietest aan het eind kan overslaan'],
-          answer: 'Zodat de requirements de nieuwe manier van werken ondersteunen, niet de oude schermen',
+          options: ['Omdat de leverancier het to-be-proces nodig heeft om de licentieprijs te berekenen', 'Zodat de requirements het nieuwe werk volgen, niet de oude schermen', 'Omdat de ISA-95-norm een to-be-proces eist voordat je een requirement schrijft', 'Zodat het project de gebruikersacceptatietest aan het eind kan overslaan'],
+          answer: 'Zodat de requirements het nieuwe werk volgen, niet de oude schermen',
           why: 'Requirements die vanuit het oude systeem geschreven zijn, bouwen de omwegen na. Het to-be-proces zegt wat het werk nodig heeft.',
         },
       ],
@@ -62,7 +62,7 @@ export default {
         ],
         pushback: {
           lines: [
-            '“We hebben geen tijd voor processessies, de datum van de aanbesteding ligt vast.”',
+            '“We hebben geen tijd voor procesworkshops, de datum van de aanbesteding ligt vast.”',
             '“De monteurs hebben zelf om deze functies gevraagd. Als we ze schrappen, wijzen ze het systeem af.”',
           ],
           model: '“Dan houden we het klein: twee halve dagen, één klus van begin tot eind, en alleen de regels die in de aanbesteding komen. En er verdwijnt niets zonder hen: geparkeerde regels blijven zichtbaar, en de monteurs beslissen met ons welke echt hun werk dienen. Dan hebben ze juist meer te zeggen, niet minder.”',
@@ -98,7 +98,7 @@ export default {
         'Een Must have is iets zonder wat de go-live geen zin heeft, of onveilig of onwettig is. DSDM noemt de Musts de Minimum Usable SubseT. De toetsvraag: “Als dit ontbreekt, stellen we de go-live dan uit?” Is het antwoord “nee, we werken eromheen”, dan is het geen Must.\n\nEen Should have is belangrijk, maar een tijdelijke omweg kan. Een Could have is mooi meegenomen en valt als eerste af als de tijd krap wordt.',
         'Won’t have this time betekent: afgesproken dat het er nu niet in komt. Het gaat toch op de lijst, zodat iedereen ziet dat het besproken is en het niet via de achterdeur terugkomt.\n\nDSDM geeft twee vuistregels: de Musts kosten meestal niet meer dan 60% van de inspanning, en de Coulds zo’n 20%. De Coulds zijn je reserve. Is alles een Must, dan kan de scope geen tegenvaller opvangen, en breekt de datum of het budget.',
         'MVP staat voor minimum viable product. Frank Robinson bedacht de term in 2001; Eric Ries maakte hem beroemd met The Lean Startup (2011), als de kleinste versie waarmee je het meest leert van echte gebruikers.\n\nIn ERP- en MES-projecten gebruiken mensen het losser: de kleinste scope waarmee je op een echte lijn live kunt. De MVP-lijn is de streep in de gesorteerde lijst: alles erboven moet klaar zijn voor de go-live.',
-        'Een MVP moet het hele proces van begin tot eind dekken, dun maar compleet: order erin, produceren, etiketteren, verzenden, factureren. De helft van de schermen van elke stap is geen MVP; daar kan niemand mee werken.\n\nVoor een Lean-consultant is het herkenbaar: een kleine serie, eerst op één lijn geleerd. Waar het verschilt: wettelijke en veiligheids-Musts, zoals het traceren van voedselbatches, schaaf je nooit weg. Een scherpe vraag: “Wat doen we op de eerste maandag als dit er niet is?”',
+        'Een MVP moet het hele proces van begin tot eind dekken, dun maar compleet: order erin, produceren, etiketteren, verzenden, factureren. De helft van de schermen van elke stap is geen MVP; daar kan niemand mee werken.\n\nVoor een Lean-consultant is het herkenbaar: klein beginnen en eerst op één lijn leren. Waar het verschilt: wettelijke en veiligheids-Musts, zoals het traceren van voedselbatches, schaaf je nooit weg. Een scherpe vraag: “Wat doen we op de eerste maandag als dit er niet is?”',
       ],
       example: {
         kind: 'worked',
@@ -363,8 +363,8 @@ export default {
         },
         {
           q: 'Wat doet de implementatiepartner?',
-          options: ['Hij ontwikkelt het softwarepakket en brengt de updates ervoor uit', 'Hij beheert de servers en het datacenter voor de SaaS-leverancier', 'Hij controleert het project onafhankelijk namens de raad van bestuur', 'Hij past het pakket aan jou aan: configuratie, data, koppelingen, training'],
-          answer: 'Hij past het pakket aan jou aan: configuratie, data, koppelingen, training',
+          options: ['Hij ontwikkelt het softwarepakket en brengt de updates ervoor uit', 'Hij beheert de servers en het datacenter voor de SaaS-leverancier', 'Hij controleert het project onafhankelijk namens de raad van bestuur', 'Hij richt het pakket voor jou in: configuratie, data, koppelingen'],
+          answer: 'Hij richt het pakket voor jou in: configuratie, data, koppelingen',
           why: 'De leverancier maakt het pakket; de partner past het aan jouw bedrijf aan. Vaak twee verschillende bedrijven met twee contracten.',
         },
         {
@@ -589,7 +589,7 @@ export default {
         },
       ],
       teach: [
-        'Er zijn meestal twee contracten. Het abonnement bij de softwareleverancier, met de service level agreement over beschikbaarheid en ondersteuning. En het implementatiecontract met de partner.\n\nVoor de implementatie is de grote keuze: vaste prijs of nacalculatie. Een vaste prijs, scope en prijs vooraf afgesproken, legt het risico bij de partner, maar vraagt een vaste scope; elke wijziging wordt een onderhandeling. Bij nacalculatie (time and materials) betaal je per gewerkt uur: flexibel, maar je moet zelf hard sturen.',
+        'Er zijn meestal twee contracten. Het abonnement bij de softwareleverancier, met de service level agreement over beschikbaarheid en ondersteuning. En het implementatiecontract met de partner.\n\nVoor de implementatie is de grote keuze: vaste prijs of nacalculatie, in IT ook regie genoemd. Een vaste prijs, scope en prijs vooraf afgesproken, legt het risico bij de partner, maar vraagt een vaste scope; elke wijziging wordt een onderhandeling. Bij nacalculatie (time and materials) betaal je per gewerkt uur: flexibel, maar je moet zelf hard sturen.',
         'Een gangbare middenweg: nacalculatie tot en met het ontwerp, daarna een vaste prijs per fase als de scope helder is.\n\nKoppel betalingen aan bewijs. Een mijlpaalbetaling wordt betaald als een resultaat is geaccepteerd, niet als een datum voorbij is: na goedkeuring van het ontwerp, na de sign-off van de gebruikersacceptatietest, bij de go-live, en een laatste deel na de eerste weken ondersteuning.',
         'Je data is van jou. Een exitclausule regelt hoe je al je data terugkrijgt als het contract stopt: in welk formaat, binnen hoeveel dagen, tegen welke kosten, en hoe lang de leverancier hem bewaart voordat hij wordt gewist.\n\nZonder die clausule loop je het risico op vendor lock-in: je blijft bij een leverancier niet omdat hij goed is, maar omdat vertrekken te veel kost.',
         'Verwerkt de leverancier persoonsgegevens voor jou, zoals namen van medewerkers of klanten, dan eist de AVG een verwerkersovereenkomst: een contract over wat de leverancier met die gegevens mag en hoe hij ze beschermt. Vraag ook waar de data staat.\n\nVoor een netbeheerder, onderdeel van de vitale infrastructuur, komen daar beveiligingseisen bij en het recht om die te controleren.',
@@ -612,8 +612,8 @@ export default {
         },
         {
           q: 'Wat is het grootste nadeel van een vaste prijs voor een implementatie?',
-          options: ['Hij vraagt een vaste scope, dus elke wijziging wordt een onderhandeling', 'De klant draagt al het risico als het werk langer duurt dan gepland', 'De partner kan op elk moment zonder opzegtermijn stoppen', 'Hij is niet toegestaan voor SaaS-systemen onder het Nederlandse recht'],
-          answer: 'Hij vraagt een vaste scope, dus elke wijziging wordt een onderhandeling',
+          options: ['Elke wijziging in de vaste scope wordt een onderhandeling', 'De klant draagt al het risico als het werk langer duurt dan gepland', 'De partner kan op elk moment zonder opzegtermijn stoppen', 'Hij is niet toegestaan voor SaaS-systemen onder het Nederlandse recht'],
+          answer: 'Elke wijziging in de vaste scope wordt een onderhandeling',
           why: 'De partner draagt het risico, dus hij verdedigt de scope scherp. Wijzigingen kosten tijd en geld om af te spreken.',
         },
         {
@@ -653,7 +653,7 @@ export default {
       },
       sayIt: 'Leg in 60 seconden uit wat je in een ERP- of SaaS-contract vastlegt voordat je tekent: betalingen, data en vertrekken.',
       terms: [
-        { term: 'Nacalculatie', def: 'Contract waarbij je per gewerkt uur betaalt (time and materials); flexibel, maar je moet het werk zelf sturen.' },
+        { term: 'Nacalculatie', def: 'Contract waarbij je de werkelijk gewerkte uren betaalt (regie, time and materials); flexibel, maar je moet het werk zelf sturen.' },
         { term: 'Mijlpaalbetaling', def: 'Een betaling die volgt als een resultaat is geaccepteerd, niet als een datum voorbij is.' },
         { term: 'Exitclausule', def: 'Deel van een contract dat regelt hoe je je data terugkrijgt als het stopt: formaat, termijn, kosten en wissen.' },
         { term: 'Vendor lock-in', def: 'Vastzitten aan een leverancier omdat vertrekken te veel kost, niet omdat hij de beste is.' },
@@ -672,7 +672,7 @@ export default {
         },
       ],
       teach: [
-        'Een ERP is het bedrijfssysteem voor orders, inkoop, voorraad en kosten, zoals SAP. Een MES is het systeem op de vloer dat de orders per lijn aanstuurt en registreert wat er gemaakt, verbruikt en afgekeurd wordt.\n\nInvoeren gaat in fases. De methode van SAP noemt ze prepare, explore, realize, deploy en run: voorbereiden, de standaard naast je proces leggen, bouwen en testen, omschakelen, en draaiend houden. Elke leverancier gebruikt andere namen; de volgorde is dezelfde.',
+        'Een ERP is het bedrijfssysteem voor orders, inkoop, voorraad en kosten, zoals SAP. Een MES is het systeem op de vloer dat de orders per lijn aanstuurt en registreert wat er gemaakt, verbruikt en afgekeurd wordt.\n\nInvoeren gaat in fases. De methode van SAP, SAP Activate, noemt de kernfases prepare, explore, realize, deploy en run: voorbereiden, de standaard naast je proces leggen, bouwen en testen, omschakelen, en draaiend houden. Elke leverancier gebruikt andere namen; de volgorde is dezelfde.',
         'De go-live is de dag dat het nieuwe systeem het officiële wordt: vanaf dan gaan nieuwe orders, voorraadmutaties en terugmeldingen alleen nog in het nieuwe systeem. Het oude, het legacysysteem, wordt niet meer gebruikt voor nieuw werk.\n\nAlles in het project wijst naar die dag. Daarom kies je de datum zorgvuldig.',
         'Er zijn twee manieren om live te gaan. Big bang: alle vestigingen en afdelingen schakelen op dezelfde dag om. Het voordeel: één omschakeling, en geen tijdelijke koppelingen tussen oud en nieuw. Het nadeel: alles staat tegelijk op het spel.\n\nEen gefaseerde invoering gaat per vestiging, per lijn of per module. Vaak begint die met een pilot: één vestiging of lijn die voorgaat, zodat je leert voordat de rest volgt.',
         'In fabrieken wordt een MES vaak per lijn of per fabriek ingevoerd. Een ERP omvat financiën en voorraad voor een heel bedrijf of een hele vestiging, dus dat schakelt meestal een hele vestiging tegelijk om.\n\nGefaseerd kost extra: tijdelijke koppelingen tussen oude en nieuwe systemen, en een langer project. Dat is de prijs van een kleiner risico per stap.',
@@ -747,8 +747,8 @@ export default {
       pre: [
         {
           q: 'Bij een proefrun van een ERP-datamigratie worden 79 van de 9.950 artikelen geweigerd. Wat is de juiste reactie?',
-          options: ['Accepteren: meer dan 99% geladen is goed genoeg om mee live te gaan', 'De 79 artikelen tijdens het go-liveweekend een voor een met de hand laden', 'Ze voorgoed uit het nieuwe systeem laten, want niemand zal ze missen', 'Elke oorzaak zoeken en de data-eigenaren het voor de volgende proef laten oplossen'],
-          answer: 'Elke oorzaak zoeken en de data-eigenaren het voor de volgende proef laten oplossen',
+          options: ['Accepteren: meer dan 99% geladen is goed genoeg om mee live te gaan', 'De 79 artikelen tijdens het go-liveweekend een voor een met de hand laden', 'Ze voorgoed uit het nieuwe systeem laten, want niemand zal ze missen', 'Per oorzaak de data-eigenaar laten oplossen voor de volgende proef'],
+          answer: 'Per oorzaak de data-eigenaar laten oplossen voor de volgende proef',
           why: 'Elk geweigerd artikel kan voorraad of open orders hebben. De oorzaak zit meestal in de data, en de business moet die oplossen voor de echte migratie.',
         },
       ],
@@ -838,13 +838,13 @@ export default {
         'Het begint met een freeze: vanaf een vast moment, bijvoorbeeld vrijdag 18:00, voert niemand nog iets nieuws in het oude systeem in. Laatste orders, laatste goederenbewegingen, dan een laatste voorraadtelling.\n\nGaat de productie in het weekend door, dan wordt die op papier vastgelegd en daarna in het nieuwe systeem ingevoerd. Weken eerder is er ook een freeze op instellingen, zodat niemand op het laatste moment de configuratie verandert.',
         'Op vaste punten is er een go/no-go: het besluit om door te gaan of te stoppen, tegen criteria die vooraf zijn afgesproken. Bijvoorbeeld: de afstemming van voorraad en open orders valt binnen de tolerantie, de belangrijkste koppelingen werken, er zijn geen open blokkerende bevindingen, de key users zijn klaar.\n\nEen benoemd persoon beslist, meestal de sponsor of de plantmanager. Niet de partner, die er belang bij heeft om door te gaan.',
         'Het point of no return is het laatste moment waarop je terug kunt naar het oude systeem zonder werk te verliezen. Daarvoor ligt er een terugdraaiplan klaar. Daarna los je problemen op in het nieuwe systeem, omdat teruggaan meer zou kosten.\n\nLeg het zo dat terugzetten ruim voor de eerste ploeg klaar zou zijn. Oefen het hele weekend één keer in een generale repetitie: een volledige proef van de cutover, met een stopwatch.',
-        'In een fabriek bepaalt maandagochtend de klok: de eerste ploeg heeft om 06:00 orders, etiketten en de weegschalen nodig. Reken vanaf die tijd terug.\n\nWat vaak misgaat: geen generale repetitie, dus het laden van de data duurt 14 uur in plaats van 8, en de go/no-go wordt “we zijn te ver om nog te stoppen”. Een scherpe vraag: “Als de go/no-go op zaterdag nee zegt, wat doen de lijnen dan op maandag?”',
+        'In een fabriek bepaalt maandagochtend de klok: de eerste ploeg heeft om 06:00 orders, etiketten en de weegschalen nodig. Reken vanaf die tijd terug.\n\nWat vaak misgaat: geen generale repetitie, dus het laden van de data duurt 14 uur in plaats van 9, en de go/no-go wordt “we zijn te ver om nog te stoppen”. Een scherpe vraag: “Als de go/no-go op zaterdag nee zegt, wat doen de lijnen dan op maandag?”',
       ],
       example: {
         kind: 'faded',
-        text: 'Een snackfabrikant schakelt in één weekend over op een nieuw ERP en MES. Het cutoverdraaiboek, getimed in de generale repetitie:\n\nVrijdag 18:00 freeze in het oude systeem. 18:00–22:00 laatste voorraadtelling. 22:00–06:00 migratie van open orders en voorraad (7,5 uur in de generale repetitie, gepland op 8). Zaterdag 06:00–12:00 afstemming. Zaterdag 12:00 go/no-go 1. Zaterdag 12:00–20:00 koppelingen aan, testorders, testetiketten. Zondag 08:00 go/no-go 2, tevens het point of no return: het oude systeem terugzetten kost 10 uur. Maandag 06:00 eerste ploeg op het nieuwe systeem.\n\nZaterdag 11:30: het voorraadverschil is 0,2%, binnen de afgesproken tolerantie van 0,5%. Maar de koppeling met de controleweegschalen werkt niet.',
+        text: 'Een snackfabrikant schakelt in één weekend over op een nieuw ERP en MES. Het cutoverdraaiboek, getimed in de generale repetitie:\n\nVrijdag 18:00 freeze in het oude systeem. 18:00–21:00 laatste voorraadtelling. 21:00–06:00 migratie van open orders en voorraad (7,5 uur in de generale repetitie, plus 20% marge: 9 uur). Zaterdag 06:00–12:00 afstemming. Zaterdag 12:00 go/no-go 1. Zaterdag 12:00–20:00 koppelingen aan, testorders, testetiketten. Zaterdag 20:00 tot zondag 08:00 spelen key users de belangrijkste scenario’s na en lost het team bevindingen op. Zondag 08:00 go/no-go 2, tevens het point of no return: het oude systeem terugzetten kost 10 uur. Maandag 06:00 eerste ploeg op het nieuwe systeem.\n\nZaterdag 11:30: het voorraadverschil is 0,2%, binnen de afgesproken tolerantie van 0,5%. Maar de koppeling met de controleweegschalen werkt niet.',
         ask: 'Wat adviseer je bij go/no-go 1, en wat moet er zondag om 08:00 kloppen?',
-        reveal: 'Go, met een voorwaarde. De koppeling met de controleweegschalen is pas vanaf maandag 06:00 nodig, dus er is tot zondag 08:00 tijd om hem te repareren. Dan moet hij werken, of moet een handmatige omweg getest zijn: operators voeren gewichten met de hand in, gecontroleerd door een tweede persoon. Klopt geen van beide om 08:00, dan is het no-go: het oude systeem staat rond 18:00 weer, ruim voor de eerste ploeg op maandag. Het besluit gaat met de reden in het cutoverlogboek.',
+        reveal: 'Go, met een voorwaarde. De koppeling met de controleweegschalen is pas vanaf maandag 06:00 nodig, dus er is tot zondag 08:00 tijd om hem te repareren. Dan moet hij werken, of moet een handmatige omweg getest zijn: operators voeren gewichten met de hand in, gecontroleerd door een tweede persoon. Klopt geen van beide om 08:00, dan is het no-go: het oude systeem staat zondag rond 18:00 weer, ruim voor de eerste ploeg op maandag. Het besluit gaat met de reden in het cutoverlogboek.',
       },
       said: 'Wat je om 02:00 in een cutovernacht hoort: “We zijn te ver om nog te stoppen. Gewoon doordrukken.”',
       recall: [
@@ -857,8 +857,8 @@ export default {
         },
         {
           q: 'Wat gebeurt er bij de freeze?',
-          options: ['Het nieuwe systeem gaat eerst uit voor één laatste testronde', 'De partner stopt al het configuratie- en testwerk tot de go/no-go', 'Vanaf een vast moment voert niemand nog iets nieuws in het oude systeem in', 'De voorraad in het oude systeem wordt afgeboekt en opnieuw geteld'],
-          answer: 'Vanaf een vast moment voert niemand nog iets nieuws in het oude systeem in',
+          options: ['Het nieuwe systeem gaat nog één keer uit voor een laatste volledige testronde', 'De partner stopt al het configuratie- en testwerk tot de go/no-go', 'Vanaf een vast moment gaat er niets nieuws meer in het oude systeem', 'De voorraad in het oude systeem wordt afgeboekt en opnieuw geteld'],
+          answer: 'Vanaf een vast moment gaat er niets nieuws meer in het oude systeem',
           why: 'Dan kun je de laatste data tellen en verhuizen zonder dat die onder je handen verandert. Weekendproductie gaat op papier.',
         },
         {
@@ -869,8 +869,8 @@ export default {
         },
         {
           q: 'Wat is het point of no return?',
-          options: ['Het moment dat de eerste ploeg in het nieuwe systeem begint te werken', 'Het moment dat de freeze begint en het oude systeem dichtgaat voor alle nieuwe invoer', 'Het moment dat de hypercare stopt en applicatiebeheer het overneemt', 'Het laatste moment waarop je terug kunt naar het oude systeem zonder werk te verliezen'],
-          answer: 'Het laatste moment waarop je terug kunt naar het oude systeem zonder werk te verliezen',
+          options: ['Het moment dat de eerste ploeg in het nieuwe systeem begint te werken', 'Het moment dat de freeze begint en het oude systeem dichtgaat voor alle nieuwe invoer', 'Het moment dat de hypercare stopt en applicatiebeheer het overneemt', 'Het laatste moment om zonder werkverlies terug te gaan naar het oude systeem'],
+          answer: 'Het laatste moment om zonder werkverlies terug te gaan naar het oude systeem',
           why: 'Daarna los je problemen vooruit op in het nieuwe systeem, omdat teruggaan meer zou kosten dan repareren.',
         },
       ],
@@ -995,13 +995,13 @@ export default {
       pre: [
         {
           q: 'Wie moet in een MES-project de gebruikersacceptatietest uitvoeren?',
-          options: ['De implementatiepartner, omdat die het systeem het allerbest kent', 'Een extern testbureau, zodat de test volledig onafhankelijk blijft', 'De IT-afdeling, omdat die het systeem na de go-live gaat beheren', 'De toekomstige gebruikers, zoals planners, ploegleiders en kwaliteitsmensen'],
-          answer: 'De toekomstige gebruikers, zoals planners, ploegleiders en kwaliteitsmensen',
+          options: ['De implementatiepartner, omdat die het systeem het allerbest kent', 'Een extern testbureau, zodat de test volledig onafhankelijk blijft', 'De IT-afdeling, omdat die het systeem na de go-live gaat beheren', 'De toekomstige gebruikers: planners, ploegleiders, kwaliteit'],
+          answer: 'De toekomstige gebruikers: planners, ploegleiders, kwaliteit',
           why: 'Alleen de mensen die het werk gaan doen, kunnen beoordelen of het systeem dat ondersteunt. De partner heeft zijn eigen configuratie al getest.',
         },
       ],
       teach: [
-        'Een ERP- of MES-project heeft meerdere testniveaus. Eerst test de partner zijn eigen configuratie: de systeemtest. Dan de ketentest: een heel proces over alle systemen heen, zoals order naar MES naar etiket naar verzending naar factuur.\n\nDan de UAT, de gebruikersacceptatietest (user acceptance test): de toekomstige gebruikers controleren of het systeem hun werk ondersteunt, en accepteren het. ISTQB, de internationale organisatie voor softwaretesten, noemt acceptatietesten formeel testen tegen de behoeften van gebruikers, requirements en bedrijfsprocessen.',
+        'Een ERP- of MES-project heeft meerdere testniveaus. Eerst test de partner zijn eigen configuratie: de systeemtest. Dan de ketentest: een heel proces over alle systemen heen, zoals order naar MES naar etiket naar verzending naar factuur.\n\nDan de UAT, de gebruikersacceptatietest (user acceptance test): de toekomstige gebruikers controleren of het systeem hun werk ondersteunt, en accepteren het. ISTQB, de internationale organisatie voor softwaretesten, omschreef acceptatietesten als formeel testen tegen de behoeften van gebruikers, requirements en bedrijfsprocessen.',
         'Het testen doen key users: ervaren medewerkers van elke afdeling die meehelpen het systeem te ontwerpen, het testen en later hun collega’s trainen. Niet de partner.\n\nZe testen met testscenario’s uit het echte werk: “Er komt een spoedorder binnen terwijl er van één materiaal te weinig is.” “Kwaliteit blokkeert een batch die al half verpakt is.” “Een klant stuurt een pallet terug.” Elk scenario verwijst terug naar de requirements, zodat je weet dat elke Must getest is.',
         'Een testscript werkt een scenario uit: de stappen, de invoer en het verwachte resultaat. De tester voert het uit en schrijft op wat er echt gebeurde: geslaagd of gezakt.\n\nGebruik echte data, uit de laatste proefmigratie. Een key user ziet meteen dat een bekend artikel de verkeerde eenheid heeft of dat een routing een stap mist. Met verzonnen testdata blijven die fouten verborgen tot de go-live.',
         'De UAT eindigt met een sign-off: de formele acceptatie door de proceseigenaren dat de test aan de afgesproken criteria voldeed. Vaak is daar een betaling aan de partner aan gekoppeld.\n\nUAT is niet de training, al helpt het de key users om te leren. En het is niet het moment voor nieuwe wensen: “Het zou handig zijn als…” gaat naar het wijzigingsproces, niet in de test.',
@@ -1110,8 +1110,8 @@ export default {
         },
         {
           q: 'Waarom draai je na een oplossing een regressietest?',
-          options: ['Om te controleren of de oplossing echt werkt voor de vastgelegde bevinding', 'Om de gebruikers te trainen op de veranderde schermen na de oplossing', 'Omdat het contract voor elke bevinding twee aparte testrondes eist', 'Om te controleren dat de oplossing niets heeft gebroken wat eerder slaagde'],
-          answer: 'Om te controleren dat de oplossing niets heeft gebroken wat eerder slaagde',
+          options: ['Om te controleren of de oplossing echt werkt voor de vastgelegde bevinding', 'Om de gebruikers te trainen op de veranderde schermen na de oplossing', 'Omdat het contract voor elke bevinding twee aparte testrondes eist', 'Om te zien of de oplossing niets brak wat eerder slaagde'],
+          answer: 'Om te zien of de oplossing niets brak wat eerder slaagde',
           why: 'De hertest controleert de oplossing; de regressietest controleert de rest.',
         },
         {
@@ -1143,7 +1143,7 @@ export default {
           ],
         },
       },
-      sayIt: 'Leg in 60 seconden uit hoe bevindingen in een UAT getrieerd worden, en waar exitcriteria voor zijn.',
+      sayIt: 'Leg in 60 seconden uit hoe de triage van bevindingen in een UAT werkt, en waar exitcriteria voor zijn.',
       terms: [
         { term: 'Bevinding', def: 'Een testresultaat dat afwijkt van het verwachte resultaat, zo vastgelegd dat een ander het kan herhalen.' },
         { term: 'Ernst', def: 'Hoe groot de impact van een bevinding is, van 1 (blokkerend) tot 4 (cosmetisch).' },
@@ -1252,14 +1252,14 @@ export default {
         'De les over wat adoptie echt drijft (pm.land.change) behandelt waarom mensen een nieuwe werkwijze wel of niet oppakken. Bij een IT-systeem heb je een voordeel: je kunt het meten. Het systeem legt elke transactie vast.\n\nGebruiksdata laten zien wie het systeem gebruikt, waarvoor en wanneer. Bijvoorbeeld: het deel van de productie dat binnen de ploeg in het MES is teruggemeld, het aantal handmatige voorraadcorrecties, orders die achteraf zijn ingevoerd.',
         'Een schaduwsysteem is een Excel-lijst, whiteboard of papieren formulier dat naast het nieuwe systeem draait, omdat het systeem nog niet past. Het is een signaal, geen sabotage.\n\nVind ze door te vragen: “Wat open je ’s ochtends als eerste?” Vraag dan wat de lijst toevoegt. Vaak is het informatie die het systeem mist, zoals de echte omsteltijden die niet in de routing staan.',
         'Een workaround is een omweg rond een probleem in het systeem, zoals een batchnummer met de hand intikken omdat de scanner het niet kan lezen. Elke omweg kost tijd en veroorzaakt fouten. Verzamel ze, en los ze op of accepteer ze bewust.\n\nDe keten uit de portfolioles over baten geldt: de go-live is output; de uitkomst is een verandering in prestatie, zoals de voorraadbetrouwbaarheid van 92% naar 98%; de baten zijn het geld. Zonder gebruik geen uitkomst.',
-        'Uitfaseren betekent het oude systeem uitzetten. Zolang mensen er nog in kunnen invoeren, gaan sommigen terug. Houd voor een vaste periode read-only toegang: mensen kunnen historie opzoeken, maar niets veranderen. Daarna archiveer je.\n\nBesluit de datum bij de go/no-go, en vertel het iedereen. Een oud systeem zonder einddatum houdt de helft van je gebruikers in het verleden.',
+        'Uitfaseren betekent het oude systeem uitzetten. Zolang mensen er nog in kunnen invoeren, gaan sommigen terug. Zet het daarom voor een vaste periode op alleen-lezen: mensen kunnen historie opzoeken, maar niets veranderen. Daarna archiveer je de data en gaat het systeem uit.\n\nBesluit de datum bij de go/no-go, en vertel het iedereen. Een oud systeem zonder einddatum houdt de helft van je gebruikers in het verleden.',
         'Waar experts verschillen: afdwingen of eerst luisteren? Te vroeg afdwingen verstopt problemen; mensen voeren data in om het scherm tevreden te houden. Alleen luisteren laat de oude manier voortleven.\n\nEén verdedigbare lijn: gebruik de data om te vinden wie het systeem niet gebruikt, vraag waarom, los de drie belangrijkste redenen op, en zet de oude manier dan op een datum uit. Een scherpe vraag: “Wat zeggen de gebruiksdata over wie het niet gebruikt, en waarom?”',
       ],
       example: {
         kind: 'faded',
         text: 'Acht weken na de go-live van een nieuw ERP en MES bij een kabelfabrikant kijk je naar de gebruiksdata.\n\nOrders binnen de ploeg teruggemeld: lijn 1 tot 3 rond de 95%, lijn 4 55%. Handmatige voorraadcorrecties: 140 per week, tegen een doel van minder dan 30. En de planners houden nog steeds hun eigen Excel-planning bij.\n\nStap 1: bij lijn 4 hoor je waarom. De afgewerkte kabelhaspels staan op het buitenterrein, en in de kou kan de handscanner de etiketten vaak niet lezen. Operators schrijven de haspelnummers op papier en melden aan het eind van de ploeg terug.\nStap 2: de meeste voorraadcorrecties komen van lijn 4: haspels die laat of met een tikfout zijn teruggemeld. Eén oorzaak, twee symptomen. De oplossing: etiketten die tegen de kou kunnen en een vaste scanner bij de poort van het terrein.',
         ask: 'Wat doe je met de Excel van de planners en het oude planningsprogramma?',
-        reveal: 'Vraag de planners wat de Excel toevoegt. Hier: de echte omsteltijden tussen kabeltypes, die niet in de routings staan. Zet die in de stamdata, zodat het systeem ermee plant. Spreek dan een datum af waarop het oude planningsprogramma read-only wordt, en volg de voorraadbetrouwbaarheid als uitkomst: dalen de correcties richting 30 per week?',
+        reveal: 'Vraag de planners wat de Excel toevoegt. Hier: de echte omsteltijden tussen kabeltypes, die niet in de routings staan. Zet die in de stamdata, zodat het systeem ermee plant. Spreek dan een datum af waarop het oude planningsprogramma op alleen-lezen gaat, en volg de voorraadbetrouwbaarheid als uitkomst: dalen de correcties richting 30 per week?',
       },
       said: 'Wat je twee maanden na de go-live van een planner hoort: “Het systeem is prima voor de boekhouding. De echte planning doe ik nog in mijn eigen sheet.”',
       recall: [
@@ -1272,20 +1272,20 @@ export default {
         },
         {
           q: 'Wat is een schaduwsysteem?',
-          options: ['Een lijst of formulier naast het systeem, omdat dat nog niet past', 'Een reservekopie van het nieuwe systeem in een tweede datacenter', 'Het oude systeem, read-only beschikbaar gehouden voor de historie', 'Een kopie van het systeem met oefendata, gebruikt voor trainingssessies'],
+          options: ['Een lijst of formulier naast het systeem, omdat dat nog niet past', 'Een reservekopie van het nieuwe systeem in een tweede datacenter', 'Het oude systeem, op alleen-lezen bewaard voor de historie', 'Een kopie van het systeem met oefendata, gebruikt voor trainingssessies'],
           answer: 'Een lijst of formulier naast het systeem, omdat dat nog niet past',
           why: 'Een signaal dat er iets ontbreekt in het systeem. Zoek uit wat het toevoegt, en los dat op.',
         },
         {
-          q: 'Waarom geef je het oude systeem voor een vaste periode read-only toegang?',
+          q: 'Waarom zet je het oude systeem voor een vaste periode op alleen-lezen?',
           options: ['Omdat de softwareleverancier het eist in de licentievoorwaarden', 'Zodat het oude systeem nog als reserve kan dienen als het nieuwe uitvalt', 'Mensen kunnen historie opzoeken, maar er niet meer in werken', 'Omdat oude data op geen andere manier te archiveren is'],
           answer: 'Mensen kunnen historie opzoeken, maar er niet meer in werken',
           why: 'Zolang het oude systeem beschrijfbaar is, gaan sommige mensen ernaar terug. Na de periode archiveer je.',
         },
         {
           q: 'Wat is de beste aanpak voor gebruikers die het nieuwe systeem niet gebruiken?',
-          options: ['Het oude systeem op de allereerste dag blokkeren, wat hun redenen ook zijn', 'Ze in de data vinden, vragen waarom, de top-redenen oplossen, dan een einddatum zetten', 'Het aan de lijnmanagers overlaten, team voor team', 'Ze meer en langere klassikale training geven tot ze het gaan gebruiken'],
-          answer: 'Ze in de data vinden, vragen waarom, de top-redenen oplossen, dan een einddatum zetten',
+          options: ['Het oude systeem op de allereerste dag blokkeren, wat hun redenen ook zijn', 'Opzoeken in de data, vragen waarom, oplossen, dan een einddatum', 'Het aan de lijnmanagers overlaten, team voor team', 'Ze meer en langere klassikale training geven tot ze het gaan gebruiken'],
+          answer: 'Opzoeken in de data, vragen waarom, oplossen, dan een einddatum',
           why: 'Eerst luisteren vindt de echte problemen; een datum zorgt dat de oude manier echt stopt.',
         },
       ],
@@ -1316,8 +1316,8 @@ export default {
         { term: 'Gebruiksdata', def: 'Wat het systeem vastlegt over wie het gebruikt, waarvoor en wanneer; de basis om adoptie te meten.' },
         { term: 'Schaduwsysteem', def: 'Een Excel-lijst, whiteboard of papieren formulier dat naast het nieuwe systeem draait omdat het nog niet past.' },
         { term: 'Workaround', def: 'Een omweg rond een probleem in het systeem, zoals een batchnummer met de hand intikken.' },
-        { term: 'Uitfaseren', def: 'Het oude systeem uitzetten, meestal na een periode van read-only toegang.' },
-        { term: 'Read-only toegang', def: 'Gegevens in een systeem kunnen opzoeken zonder iets te kunnen veranderen.' },
+        { term: 'Uitfaseren', def: 'Het oude systeem uitzetten, meestal na een periode waarin het alleen-lezen beschikbaar is.' },
+        { term: 'Alleen-lezen', def: 'Toegang waarbij je gegevens in een systeem kunt opzoeken maar niets kunt veranderen; in IT vaak read-only genoemd.' },
       ],
     },
   ],
