@@ -321,7 +321,7 @@ const SAY = [
       en: 'There are two ways to plan a project. The first is called {t:Waterfall|waterfall}: phases in order. Analyse, design, build, implement.' },
     { nl: 'Elke fase wordt afgetekend voordat de volgende begint. En de inhoud ligt vast: wat het project omvat, staat vooraf op papier.',
       en: 'Each phase is signed off before the next one starts. And the scope is fixed: what the project covers is on paper up front.' },
-    { nl: 'Je plant één keer in detail, en stuurt op afwijkingen. Dat past bij werk dat voorspelbaar is en later moeilijk te veranderen: een nieuw station voor middenspanning in de wijk plaatsen, of een lijn in de fabriek verhuizen.',
+    { nl: 'Je plant één keer in detail, en stuurt op afwijkingen. Dat past bij werk dat voorspelbaar is en later moeilijk te veranderen. Denk aan een nieuw station voor middenspanning in de wijk plaatsen, of een lijn in de fabriek verhuizen.',
       en: 'You plan once in detail, and manage deviations. That fits work that is predictable and hard to change later: installing a new medium-voltage substation in a neighbourhood, or moving a production line.' },
   ],
   [ // s2 agile
@@ -377,7 +377,7 @@ const SAY = [
   [ // s7 without jargon
     { nl: 'Dan de mensenkant: verkoop geen jargon. Een fabrieksdirecteur die scrum hoort, denkt misschien aan software en chaos.',
       en: 'Then the people side: don\'t sell jargon. A plant manager who hears Scrum may think of software and chaos.' },
-    { nl: 'Zeg liever: we werken in rondes van twee weken, en elke ronde zie je iets werken op de vloer.',
+    { nl: 'Zeg liever dit. We werken in rondes van twee weken, en elke ronde zie je iets werken op de vloer.',
       en: 'Say instead: we work in two-week rounds, and every round you\'ll see something working on the floor.' },
     { nl: 'Weerstand? De directie wil een volledig plan. Geef ze dan de planning met mijlpalen; de rondes zijn hoe het team er komt.',
       en: 'Resistance? The board wants a full plan. Then give them the milestone plan; the rounds are how the team gets there.' },
