@@ -516,7 +516,7 @@ const SAY = {
     [/\bRon Jeffries\b/g, 'Ron Djeffriz'], [/\bBill Wake\b/g, 'Bil Weejk'], [/\bJames Grenning\b/g, 'Djeems Grenning'],
     [/\bCard, Conversation en Confirmation\b/g, 'Kaard, Konver-seesjun en Konfur-meesjun'], [/\bExtreme Programming\b/g, 'Ekstriem Proogremming'],
     [/\bScrum Guide (?=schrijft|noemt)/g, 'Scrum Gaid '], [/\b([Aa])cceptatiecriteria(?= zijn concrete)/g, '$1cceptatie-criteria'],
-    [/\bzaagmachines\b/g, 'zaag-machines'], [/\btrekhaken\b/g, 'trek-haken']],
+    [/\bzaagmachines\b/g, 'zaag-machines'], [/\b([Tt])rekhaken\b/g, '$1rek-haken']],
   en: [[/\brpm\b/g, 'revolutions per minute'], [/\bmm\/min\b/g, 'millimetres per minute'], [/\bm\/min\b/g, 'metres per minute'], [/µm\b/g, 'micrometres'],
     [/€\s?(\d[\d,]*(?:\.\d+)?)/g, '$1 euros'], [/(\d)\.0(?![\d])/g, '$1'], [/(\d)\s?mm\b/g, '$1 millimetres'], [/(\d)\s?min\b/g, '$1 minutes'], [/(\d)\s?%/g, '$1 percent'],
     [/Ø\s*/g, 'diameter '], [/(\d)\+(\d)/g, '$1 plus $2'], [/\s×\s/g, ' times '], [/\s\/\s/g, ' divided by '], [/\s=\s/g, ' is '], [/°/g, ' degrees'], [/\bRa\b/g, 'R a'], [/’/g, "'"],
