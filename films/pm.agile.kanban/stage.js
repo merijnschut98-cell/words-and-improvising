@@ -92,8 +92,8 @@ const STAGE = (() => {
     o.cols = op(A, lines(80, [[tr('een kolom per stap:', 'a column per step:'), b === 0 ? 'pm-on' : 'pm-big'], [tr('te doen · analyse', 'to do · analysis')], [tr('bouwen · testen', 'build · test')], [tr('klaar', 'done')]]));
     if (b >= 1) o.item = op(A * at(b, p, 1), box(196, tr('werkitem = kaart', 'work item = card'), [tr('een wens, een storing', 'a request, a fault'), tr('schuift naar rechts →', 'moves to the right →')], b === 1));
     const B = page(b, p, 2, 4);
-    if (b >= 2) o.start = op(B, box(54, tr('begin waar je bent', 'start where you are'), [tr('teken het werk zoals', 'draw the work as it'), tr('het echt loopt', 'really flows'), [tr('geen vaste rollen of', 'no fixed roles or'), 'pm-mute'], [tr('sprints; ook naast Scrum', 'sprints; fine with Scrum'), 'pm-mute']], b === 2));
-    if (b >= 3) o.dow = op(B * at(b, p, 3), lines(238, [['Definition of Workflow', b === 3 ? 'pm-on' : 'pm-big'], [tr('wat is een werkitem?', 'what is a work item?')], [tr('begin en klaar, stappen', 'start, done, steps')], [tr('WIP-grens, regels', 'WIP limits, rules')], [tr('hoe lang meestal?', 'how long, usually?')]]));
+    if (b >= 2) o.start = op(B, box(54, tr('begin waar je bent', 'start where you are'), [tr('teken het werk zoals', 'draw the work as it'), tr('het echt loopt', 'really flows'), [tr('niet zoals op papier', 'not as on paper'), 'pm-mute'], [tr('geen vaste rollen of', 'no fixed roles or'), 'pm-mute'], [tr('sprints; ook naast Scrum', 'sprints; fine with Scrum'), 'pm-mute']], b === 2));
+    if (b >= 3) o.dow = op(B * at(b, p, 3), lines(258, [['Definition of Workflow', b === 3 ? 'pm-on' : 'pm-big'], [tr('wat is een werkitem?', 'what is a work item?')], [tr('begin en klaar, stappen', 'start, done, steps')], [tr('WIP-grens, regels', 'WIP limits, rules')], [tr('hoe lang meestal?', 'how long, usually?')]]));
     const Cp = page(b, p, 4, -1);
     if (b >= 4) o.blk = op(Cp, box(54, tr('geblokkeerd', 'blocked'), [tr('wacht op leverancier,', 'waits on a supplier,'), tr('besluit, testomgeving', 'decision, test system'), [tr('rode sticker', 'red sticker'), 'pm-on'], tr('goudmijn: waar het', 'gold mine: where the'), tr('systeem hapert', 'system stutters')], b === 4) + sticker(X1 - 12, 76));
     if (b >= 5) o.andon = op(Cp * at(b, p, 5), box(240, tr('Lean-blik', 'Lean view'), [tr('visueel managementbord', 'visual management board'), tr('geblokkeerd = andon:', 'blocked = andon:'), [tr('de lijn staat stil', 'the line has stopped'), 'pm-on']], b === 5));
@@ -108,7 +108,7 @@ const STAGE = (() => {
     if (b >= 1) o.mistake = op(A * at(b, p, 1), box(216, tr('fout: geen grens', 'mistake: no limit'), [tr('takenlijst aan de muur,', 'a to-do list on a wall,'), tr('nog geen pullsysteem', 'not yet a pull system'), [tr('begonnen? klaar?', 'started? done?'), 'pm-on']], b === 1) + cross(X1 - 14, 240));
     const B = page(b, p, 2, 5);
     if (b >= 2) o.mb = op(B, lines(72, [[tr('whiteboard, 40 losse', 'whiteboard, 40 loose'), b === 2 ? 'pm-on' : 'pm-big'], [tr('post-its: wat loopt er?', 'notes: what’s running?')]]));
-    if (b >= 3) o.cols5 = op(B * at(b, p, 3), lines(140, [[tr('aangevraagd', 'requested')], [tr('ontwerp', 'design')], [tr('controle (2e engineer)', 'check (2nd engineer)')], [tr('wacht op klant', 'waiting for customer')], [tr('vrijgegeven', 'released')]]) + path(`M${X0 - 2} 122v114`, 'pm-line'));
+    if (b >= 3) o.cols5 = op(B * at(b, p, 3), lines(140, [[tr('aangevraagd', 'requested')], [tr('ontwerp', 'design')], [tr('controle (2e engineer)', 'check (2nd engineer)')], [tr('wacht op klant', 'waiting for customer')], [tr('vrijgegeven', 'released')]]));
     if (b >= 4) o.count = op(B * at(b, p, 4), lines(282, [[tr('ontwerp 12 · wacht 9', 'design 12 · waiting 9'), 'pm-big'], [tr('6 al > 3 weken', '6 for > 3 weeks'), 'pm-on'], [tr('19: overige kolommen', '19: the other columns'), 'pm-mute']]));
     const Cp = page(b, p, 5, -1);
     if (b >= 5) {
@@ -176,25 +176,25 @@ const STAGE = (() => {
     const o = { head: [tr('wet van Little', 'Little’s law'), DIA] };
     const A = page(b, p, 0, 3);
     o.little = op(A, rect(X0 - 6, 52, CW + 12, 110, b === 0 ? 'pm-hot' : 'pm-dash', 8) + lines(76, [['John Little, 1961', 'pm-mute'], ['cycle time =', 'pm-big'], [tr('WIP ÷ throughput', 'WIP ÷ throughput'), 'pm-big'], [tr('gemiddeld', 'on average'), 'pm-mute']], X0 + 4));
-    if (b >= 1) o.ex12 = op(A * at(b, p, 1), box(176, tr('12 onderhanden', '12 in progress'), [tr('3 per week af', '3 a week done'), [tr('→ gemiddeld 4 weken', '→ 4 weeks on average'), 'pm-on'], [tr('periode, niet één item', 'a period, not one item'), 'pm-mute']], b === 1));
-    if (b >= 2) o.half = op(A * at(b, p, 2), lines(334, [[tr('WIP ÷ 2 → tijd ÷ 2', 'WIP ÷ 2 → time ÷ 2'), 'pm-on'], [tr('daarom werkt een limiet', 'why WIP limits work'), 'pm-txt']]));
+    if (b >= 1) o.ex12 = op(A * at(b, p, 1), box(170, tr('12 onderhanden', '12 in progress'), [tr('3 per week af', '3 a week done'), [tr('→ gemiddeld 4 weken', '→ 4 weeks on average'), 'pm-on'], [tr('fabriek: hetzelfde', 'factory: the same'), 'pm-mute'], [tr('periode, niet één item', 'a period, not one item'), 'pm-mute']], b === 1));
+    if (b >= 2) o.half = op(A * at(b, p, 2), lines(372, [[tr('WIP ÷ 2 → tijd ÷ 2', 'WIP ÷ 2 → time ÷ 2'), 'pm-on']]));
     const B = page(b, p, 3, -1);
     if (b >= 3) o.stable = op(B, box(54, tr('voorwaarde: stabiel', 'condition: stable'), [tr('in = uit, gemiddeld', 'in = out, on average'), tr('WIP begin ≈ eind', 'WIP start ≈ end'), [tr('stapel groeit? dan', 'pile growing? then'), 'pm-mute'], [tr('klopt de som niet', 'the sum fails'), 'pm-mute']], b === 3));
-    if (b >= 4) o.vacanti = op(B * at(b, p, 4), box(216, 'Vacanti', [tr('verband achteraf,', 'averages after the fact,'), tr('geen voorspelmachine', 'no forecasting machine')], b === 4));
-    if (b >= 5) o.spread = op(B * at(b, p, 5), lines(342, [[tr('kijk naar de spreiding', 'look at the spread'), 'pm-on'], [tr('klok: begin en eind?', 'clock: start and stop?'), 'pm-txt']]));
+    if (b >= 4) o.vacanti = op(B * at(b, p, 4), box(212, 'Vacanti', [tr('verband achteraf,', 'averages after the fact,'), tr('geen voorspelmachine', 'no forecasting machine')], b === 4));
+    if (b >= 5) o.spread = op(B * at(b, p, 5), lines(332, [[tr('minder WIP: korter', 'less WIP: shorter'), 'pm-txt'], [tr('kijk naar de spreiding', 'look at the spread'), 'pm-on'], [tr('klok: begin en eind?', 'clock: start and stop?'), 'pm-txt']]));
     return o;
   }
 
   // s9: the office-furniture maker, the faded example and its reveal
   function s9(b, p) {
-    const o = { head: [tr('kantoormeubelen', 'office furniture'), EX] };
+    const o = { head: [tr('meubelfabriek', 'furniture maker'), EX] };
     const A = page(b, p, 0, 2);
     o.furn = op(A, box(54, tr('8 weken gemeten', '8 weeks measured'), [tr('12 onderhanden', '12 in progress'), tr('3 per week uit, 3 in', '3 a week out, 3 in'), [tr('stabiel', 'stable'), 'pm-on']], b === 0));
     if (b >= 1) o.calc4 = op(A * at(b, p, 1), box(190, tr('12 ÷ 3 = 4 weken', '12 ÷ 3 = 4 weeks'), [tr('gemeten 4,2: klopt', 'measured 4.2: a match'), [tr('plantmanager: te', 'plant manager: too'), 'pm-mute'], [tr('lang voor kleine wensen', 'long for small requests'), 'pm-mute']], b === 1));
     const B = page(b, p, 2, -1);
     if (b >= 2) o.calc2 = op(B, box(54, tr('WIP-limiet 6', 'WIP limit 6'), [tr('nog 3 per week af', 'still 3 a week done'), [tr('6 ÷ 3 = 2 weken', '6 ÷ 3 = 2 weeks'), 'pm-on']], b === 2));
-    if (b >= 3) o.watch = op(B * at(b, p, 3), box(160, tr('bewaak', 'watch'), [tr('throughput blijft 3', 'throughput stays 3'), tr('geen werk naast bord', 'no work off the board')], b === 3));
-    if (b >= 4) o.queue = op(B * at(b, p, 4), box(266, tr('instroom > 3 per week?', 'arrivals > 3 a week?'), [tr('rij vóór bord groeit,', 'the queue grows, seen'), [tr('zit in de lead time', 'in lead time, not cycle'), 'pm-on']], b === 4));
+    if (b >= 3) o.watch = op(B * at(b, p, 3), box(160, tr('bewaak', 'watch'), [tr('throughput blijft 3', 'throughput stays 3'), tr('geen werk naast bord', 'no work off the board'), [tr('meet na 4 weken', 'measure after 4 weeks'), 'pm-mute']], b === 3));
+    if (b >= 4) o.queue = op(B * at(b, p, 4), box(288, tr('instroom > 3 per week?', 'arrivals > 3 a week?'), [tr('rij vóór bord groeit,', 'the queue grows, seen'), [tr('zit in de lead time', 'in lead time, not cycle'), 'pm-on']], b === 4));
     return o;
   }
   const CARDS = [s1, s2, s3, s4, s5, s6, s7, s8, s9];

@@ -256,7 +256,7 @@ const cueG = (name, body) => `<g data-cue="${name}">${body}</g>`;
 const r1 = (v) => Math.round(v * 10) / 10;
 
 // the kanban board on the back wall: five columns, a header strip each for its limit
-const BOARD = w.board({ x0: 44, x1: 262, z0: 94, z1: 214 });
+const BOARD = w.board({ x0: 44, x1: 262, z0: 104, z1: 222 });
 const BA = BOARD.area;
 const CWD = (BA.x1 - BA.x0 - 6) / 5;
 const COLS = [0, 1, 2, 3, 4].map((i) => ({ x0: r1(BA.x0 + 3 + i * CWD), x1: r1(BA.x0 + 3 + (i + 1) * CWD - 1.5) }));
@@ -480,14 +480,14 @@ const HELP_AT = w.at([colMid(3), 0, 150]).map(r1);
 const BV = (s) => [BOARD_AT[0], BOARD_AT[1], s];
 const CAM = [
   { from: [160, 205, 1], to: [BIN_AT[0] + 30, BIN_AT[1] - 20, 1.1] },
-  { from: [160, 205, 1], to: BV(1.3) },
-  { from: BV(1.25), to: BV(1.35) },
-  { from: BV(1.2), to: [BOARD_AT[0], BOARD_AT[1] + 30, 1.15] },
-  { from: BV(1.2), to: [HELP_AT[0], HELP_AT[1] + 20, 1.3] },
-  { from: BV(1.2), to: BV(1.35) },
-  { from: BV(1.3), to: [(BOARD_AT[0] + CLOCK_AT[0]) / 2, BOARD_AT[1], 1.3] },
-  { from: [160, 205, 1.05], to: BV(1.25) },
-  { from: [CAL_AT[0] + 40, CAL_AT[1], 1.1], to: BV(1.3) },
+  { from: [160, 205, 1], to: BV(1.5) },
+  { from: BV(1.45), to: BV(1.55) },
+  { from: BV(1.45), to: [BOARD_AT[0], BOARD_AT[1] + 30, 1.3] },
+  { from: BV(1.35), to: [HELP_AT[0], HELP_AT[1] + 20, 1.45] },
+  { from: BV(1.45), to: [(BOARD_AT[0] + CAL_AT[0]) / 2, BOARD_AT[1] + 20, 1.15] },
+  { from: BV(1.45), to: [(BOARD_AT[0] + CLOCK_AT[0]) / 2, BOARD_AT[1], 1.45] },
+  { from: [(BOARD_AT[0] + CAL_AT[0]) / 2, BOARD_AT[1] + 20, 1.1], to: BV(1.45) },
+  { from: [CAL_AT[0] + 40, CAL_AT[1], 1.1], to: BV(1.45) },
 ];
 
 // ---------------------------------------------------------------- the film
@@ -586,14 +586,19 @@ const spec = {
 // Vacanti (Va-kenti), the Kanban Guide (Gaid, as the Scrum Guide), Definition
 // of Workflow (Deffi-nisjun of Wurkflo), throughput (Troepoet), cycle time
 // (Saikl taim), lead time (Lied taim), work item age (Wurk aitem eetsj), pull
-// as the Dutch say it (poel), flowmaten (floo-maten), "IT en engineering"
+// as the Dutch say it (poel), flowmaten (floo-maten), "afdeling engineering"
 // (entsjinieering), engineer as pm.consult.proposal's entsjinier in this
-// film's phrases, plantmanager with the menetsjer of the middenmanager rule,
-// and onderhanden werk split as pm.portfolio.prioritise does (onder-handen) in
-// this film's phrases only. Said around because espeak-ng misreads them (they
-// stay in the captions and on the cards): whiteboard ("whie-te-board": said
-// "bord"), work in progress (a Dutch g: said "werk dat begonnen is maar nog
-// niet af"), vuistregel (stressed -GEL: said "schatte"). Years in words.
+// film's two phrases, and onderhanden split as pm.portfolio.prioritise does
+// (onder-handen) in this film's phrases only. Said around because espeak-ng
+// misreads them (they stay in the captions and on the cards): whiteboard
+// ("whie-te-board"), plantmanager (MAA-naa-gher: the voice drops the plant
+// manager and keeps "te lang voor kleine wensen"), work in progress (a Dutch
+// g: said "begonnen maar niet af"), vuistregel (stressed -GEL: said
+// "schatte"), Weinberg alone (said with Gerald, the existing rule). Years in
+// words. Card-only points (each on screen at least 4 s): Anderson's book of
+// 2010, "niet zoals op papier", "ook naast Scrum", "geen voorraad", "niemand weet wat er loopt", the second engineer of
+// the check, the missing customer specification, the factory's same relation
+// for Little's law, "minder WIP: korter" and "meet na 4 weken".
 const SAY = [
   [ // s1 from Toyota to knowledge work
     { nl: 'Kanban komt uit het Toyota-productiesysteem van Taiichi Ohno: een kaart bij een bak onderdelen.',
