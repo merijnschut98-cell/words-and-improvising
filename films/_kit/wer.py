@@ -1,14 +1,17 @@
 #!/usr/bin/env python3
 """Dev tool, not shipped. Word error rate of a narration track against its script.
 
-    python3 -I films/_kit/wer.py <audio> <reference.txt> <nl|en> <whisper model>
+    python3 -I films/_kit/wer.py <audio> <reference.txt> <nl|en> <whisper model> [said.txt]
 
 faster-whisper (local, CPU) transcribes the audio; both texts are lower-cased,
 stripped of punctuation, numbers written out as words (and number words glued
 together, so "1167", "elfhonderd zevenenzestig" and "11honderd 67" agree).
+With said.txt (the script before the SAY rules, line for line), a word a SAY
+rule respelled for the voice counts as heard when Whisper writes the real word.
 Prints one JSON line: {"wer": 0.08, "ref_words": 512, "hyp": "..."}.
 Used by films/_kit/listen-guard.mjs.
 """
+import difflib
 import json
 import re
 import subprocess
@@ -102,12 +105,54 @@ def glue(a, b):
     return out
 
 
-def score(ref, hyp, lang):
-    """WER of hyp against ref (texts), and the reference's word count."""
+def score(ref, hyp, lang, said=None):
+    """WER of hyp against ref (texts), and the reference's word count.
+
+    said: the same script before the SAY rules (one line per line of ref), the
+    words a listener should hear. Where a SAY rule respelled a word for the voice
+    ("Prodduct Ooner"), Whisper writing the real word ("product owner") is no
+    error, and neither is the respelling as written: the errors are the fewest
+    over both readings, line by line (never more than without said). The word
+    count stays that of ref, and a script without respellings scores exactly as
+    without said."""
     rw, hw = words(ref, lang), words(hyp, lang)
     hw = glue(hw, rw)
     rw = glue(rw, hw)
-    return wer(rw, hw), len(words(ref, lang))
+    if said is None or said == ref:
+        return wer(rw, hw), len(words(ref, lang))
+    errors = min(round(wer(rw, hw) * max(1, len(rw))), either_errors(ref, said, hyp, lang))
+    return errors / max(1, len(rw)), len(words(ref, lang))
+
+
+def either_errors(ref, said, hyp, lang):
+    """Edit distance of hyp against the script where each stretch a SAY rule
+    changed may be read either way (the said or the spoken words)."""
+    lines, said_lines = ref.split('\n'), said.split('\n')
+    if len(lines) != len(said_lines):
+        raise ValueError(f'said text has {len(said_lines)} lines, the reference {len(lines)}')
+    every = [w for t in (ref, said) for w in words(t, lang)]
+    hw = glue(words(hyp, lang), every)
+    segs = []  # each: the readings of one stretch, as word lists
+    for sp, sa in zip(lines, said_lines):
+        a, b = glue(words(sa, lang), hw), glue(words(sp, lang), hw)
+        for op, i1, i2, j1, j2 in difflib.SequenceMatcher(None, a, b, autojunk=False).get_opcodes():
+            if op == 'equal':
+                segs.extend([[w]] for w in a[i1:i2])
+            else:
+                segs.append([a[i1:i2], b[j1:j2]])
+    row = list(range(len(hw) + 1))
+    for readings in segs:
+        best = None
+        for reading in readings:
+            r = row
+            for w in reading:
+                nxt = [r[0] + 1]
+                for j, h in enumerate(hw, 1):
+                    nxt.append(min(r[j] + 1, nxt[j - 1] + 1, r[j - 1] + (w != h)))
+                r = nxt
+            best = r if best is None else [min(x, y) for x, y in zip(best, r)]
+        row = best
+    return row[-1]
 
 
 def wer(ref, hyp):
@@ -123,6 +168,7 @@ def wer(ref, hyp):
 
 def main():
     audio, ref_file, lang, model = sys.argv[1:5]
+    said_file = sys.argv[5] if len(sys.argv) > 5 else None
     from faster_whisper import WhisperModel
     asr = WhisperModel(model, device='cpu', compute_type='int8')
     pcm = np.frombuffer(subprocess.run(['ffmpeg', '-v', 'quiet', '-i', audio, '-ar', '16000', '-ac', '1', '-f', 'f32le', '-'],
@@ -130,7 +176,8 @@ def main():
     segs, _ = asr.transcribe(pcm, language=lang, beam_size=5, condition_on_previous_text=False, vad_filter=True)
     hyp = ' '.join(s.text for s in segs).strip()
     ref = open(ref_file, encoding='utf-8').read()
-    w, n = score(ref, hyp, lang)
+    said = open(said_file, encoding='utf-8').read() if said_file else None
+    w, n = score(ref, hyp, lang, said)
     print(json.dumps({'wer': round(float(w), 4), 'ref_words': n, 'hyp': hyp}, ensure_ascii=False))
 
 

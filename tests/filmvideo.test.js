@@ -502,6 +502,39 @@ test('listen guard: silences inside a sentence, full-stop pauses and cue texts a
   assert.match(listenGuard({ samples: good, rate: RATE, sentences, cues, lang: 'nl', wer: { model: 'small', wer: 0.31 } }).errors.join('\n'), /word error rate 31/);
 });
 
+// films/_kit/wer.py score, run alone (faster-whisper is only imported in main;
+// numpy is needed, so the test skips without it).
+function werScore(ref, hyp, lang, said) {
+  const py = [
+    'import importlib.util, json, sys',
+    'spec = importlib.util.spec_from_file_location("wer", sys.argv[1])',
+    'W = importlib.util.module_from_spec(spec); spec.loader.exec_module(W)',
+    'ref, hyp, lang, said = json.loads(sys.stdin.read())',
+    'w, n = W.score(ref, hyp, lang, said)',
+    'print(json.dumps([round(float(w), 4), n]))',
+  ].join('\n');
+  const r = spawnSync('python3', ['-I', '-B', '-c', py, 'films/_kit/wer.py'], { input: JSON.stringify([ref, hyp, lang, said]), encoding: 'utf8' });
+  if (r.error || /No module named .numpy/.test(r.stderr)) return null;
+  assert.equal(r.status, 0, r.stderr);
+  return JSON.parse(r.stdout);
+}
+test('listen guard WER: a respelled word heard as the real word is no error (the reference is what the listener should hear)', (t) => {
+  const spoken = 'De Prodduct Ooner beslist.\nDe Di-vellopers bouwen het.';
+  const said = 'De Product Owner beslist.\nDe Developers bouwen het.';
+  const base = werScore(spoken, 'De product owner beslist. De developers bouwen het.', 'nl', null);
+  if (base === null) return t.skip('no python3 with numpy');
+  assert.ok(base[0] > 0, 'without the said text the respellings count as errors');
+  // with the said text: the real words are right, and so are the respellings as written
+  assert.deepEqual(werScore(spoken, 'De product owner beslist. De developers bouwen het.', 'nl', said), [0, base[1]]);
+  assert.deepEqual(werScore(spoken, 'De prodduct ooner beslist. De di-vellopers bouwen het.', 'nl', said), [0, base[1]]);
+  // a word really misheard still counts, against the same word count as before
+  assert.deepEqual(werScore(spoken, 'De product owner besliste. De developers bouwen het.', 'nl', said), [Math.round((1 / base[1]) * 1e4) / 1e4, base[1]]);
+  // a film without respellings scores exactly as before
+  assert.deepEqual(werScore('De as draait snel.', 'De as draaide snel.', 'nl', 'De as draait snel.'), werScore('De as draait snel.', 'De as draaide snel.', 'nl', null));
+  // the guard hands wer.py the said text of every sentence
+  assert.match(fs.readFileSync('films/_kit/listen-guard.mjs', 'utf8'), /sentences\.map\(\(s\) => s\.said\)/);
+});
+
 test('render refuses to finish when the listen guard fails', () => {
   const src = fs.readFileSync('films/_kit/render.mjs', 'utf8');
   assert.match(src, /import \{[^}]*runGuard[^}]*\} from '\.\/listen-guard\.mjs'/);
