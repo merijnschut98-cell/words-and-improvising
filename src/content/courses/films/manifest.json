@@ -2646,6 +2646,39 @@
         ],
         "vtt": "src/content/courses/films/pm.devops.pipeline.en.vtt"
       }
+    },
+    "pm.itproject.cutover": {
+      "poster": "src/content/courses/films/pm.itproject.cutover.jpg",
+      "nl": {
+        "dur": 255.8,
+        "bytes": 10056610,
+        "scenes": [
+          0,
+          28.74,
+          56.63,
+          86.32,
+          112.26,
+          142.04,
+          198.47,
+          224.09
+        ],
+        "vtt": "src/content/courses/films/pm.itproject.cutover.nl.vtt"
+      },
+      "en": {
+        "dur": 266.9,
+        "bytes": 10406543,
+        "scenes": [
+          0,
+          28.17,
+          58.79,
+          89.25,
+          117.24,
+          146.62,
+          206.62,
+          233.35
+        ],
+        "vtt": "src/content/courses/films/pm.itproject.cutover.en.vtt"
+      }
     }
   }
 }
