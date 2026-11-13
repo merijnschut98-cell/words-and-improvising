@@ -568,6 +568,21 @@ const SAY = {
     [/\b([Gg])ate(s?)\b(?!-freeze)/g, '$1eet$2'], [/\b([Gg])o\/kill\b/g, '$1o-kill'], [/\bCooper\b/g, 'Koeper'],
     [/\b([Ll])ong-lead item(s?)\b/g, '$1ong-lied aitem$2'], [/\bSOP\b/g, 'es oo pee'], [/\b([Dd])esign freeze\b/g, '$1i-zain friez'],
     [/\b([Ss])et-based design\b/g, '$1et-beesd di-zain'], [/\b([Mm])atrijsbouw\b/g, '$1atrijs-bouw'],
+    // the cutover weekend (pm.itproject.cutover): the go-live words as Dutch ERP and MES projects say them,
+    // checked with espeak-ng phonemes through Piper's nl_NL-alex bridge: it reads cutover as "KUU-too-ver"
+    // (said kattoover; in cutoverdraaiboek and cutoverlogboek split at the head, kattoover-draaiboek, as espeak-ng
+    // stresses -BOEK in the compound), freeze as "FREE-ze" (friez, as the design
+    // freeze rule above, which runs first; not in eng.moulding.setting's gate-freeze-studie, nor in
+    // pm.scaled.hybrid's caption "freeze in week 18"), key users as "kee-i uu-zers" (kie joezers, as the user
+    // story rule), point of no return as "po-int ... ree-turn" (pojnt of noo rie-turn), and, in this film's
+    // phrases only, plantmanager as "maa-naa-ger" (plant-menetsjer, as the manager rules above; other films'
+    // plantmanager keeps its voice), stopwatch with a Dutch "watch" (stop-wotsj; eng.lines.design's "Met de
+    // stopwatch" stays) and controleweegschalen run together (split at the head). go/no-go, MES and hypercare
+    // go through the rules above; no other film's spoken text changes
+    [/\b([Cc])utover(-?)(?=(\p{L})?)/gu, (m, c, d, l) => `${c === 'C' ? 'K' : 'k'}attoover${l ? '-' : d}`], [/(?<![\p{L}-])([Ff])reeze\b(?!-| in week)/gu, '$1riez'],
+    [/\b([Kk])ey user(s?)\b/g, (m, k, s) => `${k === 'K' ? 'K' : 'k'}ie joezer${s}`], [/\b([Pp])oint of no return\b/g, '$1ojnt of noo rie-turn'],
+    [/\bof de plantmanager\b/g, 'of de plant-menetsjer'], [/\b([Mm])et een stopwatch\b/g, '$1et een stop-wotsj'],
+    [/\b([Cc])ontroleweegschalen\b/g, '$1ontrole-weegschalen'],
     // a commit through the pipeline (pm.devops.pipeline): the DevOps words as Dutch IT teams say them, checked with
     // espeak-ng phonemes through Piper's nl_NL-alex bridge: it reads pipeline as "pi-pe-LIE-ne" (paiplain), build
     // with the ui of "huis" (bild), deploy, deploys, deployen and deployfrequentie as "DE-ploo-ie" (die-ploj), Debois
@@ -613,6 +628,9 @@ const SAY = {
     // stage-gate with sprints (pm.scaled.hybrid): go/kill without "slash" (as the go/no-go rule) and SOP as
     // letters (espeak-ng's English reads the word "sop" before a comma)
     [/\b([Gg])o\/kill\b/g, '$1o-kill'], [/\bSOP\b/g, 'S O P'],
+    // the cutover weekend (pm.itproject.cutover): cutover as English says it, "cut-over" (en_GB reads
+    // "cute-over"), also in cutover plan and cutover log; no other film's spoken text changes
+    [/\b([Cc])utover/g, '$1uttover'],
     // a commit through the pipeline (pm.devops.pipeline): CI/CD (made "CI CD" by the acronym-pair rule above) as
     // letters (espeak-ng's English reads CI as the word "sigh")
     [/\bCI CD\b/g, 'C I C D']],
