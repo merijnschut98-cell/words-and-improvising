@@ -1,0 +1,321 @@
+WEBVTT
+
+1
+00:00:00.847 --> 00:00:05.503
+One Scrum team has ten people at most; a new packaging machine needs more.
+
+2
+00:00:06.545 --> 00:00:11.607
+The PLC controls, the screen, the camera inspection and the ERP link.
+
+3
+00:00:12.622 --> 00:00:16.999
+Six teams do Scrum well and still stall: team A waits for team B.
+
+4
+00:00:17.719 --> 00:00:18.683
+A dependency.
+
+5
+00:00:19.694 --> 00:00:23.177
+Scaling: agreements that let many teams deliver as one.
+
+6
+00:00:24.200 --> 00:00:30.853
+The best known: SAFe, from 2011; version six dates from early 2023.
+
+7
+00:00:31.849 --> 00:00:35.378
+An annual survey has named SAFe the most used for years.
+
+8
+00:00:36.124 --> 00:00:37.436
+Note: not a sample.
+
+9
+00:00:38.761 --> 00:00:43.441
+The heart of SAFe: the Agile Release Train, a team of agile teams.
+
+10
+00:00:44.479 --> 00:00:48.275
+Usually fifty to a hundred and twenty-five people, long-lived.
+
+11
+00:00:49.299 --> 00:00:53.351
+The train leaves at fixed times; what is not ready takes the next one.
+
+12
+00:00:54.435 --> 00:00:58.847
+That rhythm is the cadence: all teams plan, build and deliver at once.
+
+13
+00:00:59.829 --> 00:01:04.438
+The big cadence is the Planning Interval: the PI lasts eight to twelve weeks.
+
+14
+00:01:05.473 --> 00:01:09.572
+Iterations last two weeks; the last, the IP iteration,
+
+15
+00:01:09.734 --> 00:01:11.394
+is for improving and planning.
+
+16
+00:01:12.407 --> 00:01:16.784
+Like takt on a line: integrate and test together every two weeks.
+
+17
+00:01:17.793 --> 00:01:20.533
+Ask: which teams deliver something that works together?
+
+18
+00:01:21.336 --> 00:01:22.323
+That is your train.
+
+19
+00:01:23.656 --> 00:01:28.172
+Example: a machine builder, seventy-two people on a new line's software,
+
+20
+00:01:28.370 --> 00:01:29.426
+in teams of nine.
+
+21
+00:01:30.452 --> 00:01:35.642
+That makes eight teams: within fifty to a hundred and twenty-five, so one ART.
+
+22
+00:01:36.659 --> 00:01:42.185
+A ten-week PI has five two-week iterations: four to build, one IP iteration.
+
+23
+00:01:43.198 --> 00:01:47.842
+Per year five point two: about five times all eight teams plan together.
+
+24
+00:01:49.167 --> 00:01:55.169
+PI Planning aligns the whole train: usually two days, one room, in the IP iteration.
+
+25
+00:01:56.178 --> 00:01:58.825
+Day one: the business context and the vision.
+
+26
+00:01:59.547 --> 00:02:01.613
+What must the product do, and why?
+
+27
+00:02:02.614 --> 00:02:06.806
+The teams plan themselves, per iteration, with their own capacity.
+
+28
+00:02:07.840 --> 00:02:12.368
+At the end of day one, management looks where capacity or priorities clash.
+
+29
+00:02:13.070 --> 00:02:14.951
+Day two: adjust and present.
+
+30
+00:02:16.031 --> 00:02:20.733
+Each team writes PI objectives: short goals in business language.
+
+31
+00:02:21.753 --> 00:02:22.380
+In doubt?
+
+32
+00:02:23.187 --> 00:02:26.194
+Then uncommitted: it counts, but is no promise.
+
+33
+00:02:27.189 --> 00:02:31.972
+The Business Owners, business-accountable, give each goal a value from one to ten.
+
+34
+00:02:32.968 --> 00:02:36.195
+When time is tight, value nine goes before three.
+
+35
+00:02:37.476 --> 00:02:43.096
+Dependencies go on the ART Planning Board: teams in rows, iterations in columns.
+
+36
+00:02:44.146 --> 00:02:48.686
+A red string joins team A's work to team B, which waits for it.
+
+37
+00:02:49.760 --> 00:02:54.067
+Risks go through ROAM: resolved, owned, accepted or mitigated.
+
+38
+00:02:55.107 --> 00:02:59.832
+Finally the confidence vote: one to five fingers for how feasible the plan is.
+
+39
+00:03:00.863 --> 00:03:05.588
+A training rule: an average of three or more is enough, lower means plan again.
+
+40
+00:03:06.293 --> 00:03:08.766
+Whoever shows one or two gets the floor.
+
+41
+00:03:09.785 --> 00:03:11.898
+An obeya, Japanese for big room.
+
+42
+00:03:12.586 --> 00:03:16.533
+The pitfall: the board is full and nobody says it does not fit.
+
+43
+00:03:17.914 --> 00:03:22.082
+Example: a team has four iterations of thirty story points.
+
+44
+00:03:22.795 --> 00:03:24.258
+A hundred and twenty.
+
+45
+00:03:25.221 --> 00:03:30.480
+Twenty percent stays free for unplanned work and breakdowns: ninety-six points.
+
+46
+00:03:31.483 --> 00:03:35.176
+Report a stoppage with one tap: forty points, value nine.
+
+47
+00:03:35.864 --> 00:03:38.767
+Report per shift: thirty-five, value six.
+
+48
+00:03:39.809 --> 00:03:43.164
+Link with the new MES: thirty, value seven.
+
+49
+00:03:43.867 --> 00:03:46.375
+Together a hundred and five: no fit.
+
+50
+00:03:47.436 --> 00:03:48.922
+The link goes uncommitted.
+
+51
+00:03:49.662 --> 00:03:53.029
+Committed: seventy-five points, with room for overrun.
+
+52
+00:03:54.323 --> 00:03:59.687
+The Release Train Engineer, the RTE, is a servant leader and coach of the train.
+
+53
+00:04:00.696 --> 00:04:05.132
+Facilitates the events, removes impediments and steers on flow.
+
+54
+00:04:06.168 --> 00:04:11.149
+No boss handing out tasks; often a former programme manager, a known pitfall.
+
+55
+00:04:12.149 --> 00:04:17.223
+Product Management decides which solutions are desirable, feasible and viable.
+
+56
+00:04:18.246 --> 00:04:21.648
+They order the ART Backlog: the features of the whole train.
+
+57
+00:04:22.642 --> 00:04:26.264
+A feature fits in one PI and has value for a user.
+
+58
+00:04:27.291 --> 00:04:31.912
+The Product Owner sits with one team and turns features into user stories.
+
+59
+00:04:33.218 --> 00:04:38.048
+Product Management looks at market and customer, the PO at team and details.
+
+60
+00:04:39.056 --> 00:04:42.887
+The System Architect guards technical coherence: architecture,
+
+61
+00:04:43.073 --> 00:04:44.652
+interfaces, groundwork.
+
+62
+00:04:45.725 --> 00:04:49.708
+Each team has a Scrum Master, in SAFe six also Team Coach.
+
+63
+00:04:50.451 --> 00:04:52.715
+The Business Owners steer the business side.
+
+64
+00:04:53.780 --> 00:04:59.051
+Watch names: a product manager at a machine builder often does marketing and sales:
+
+65
+00:04:59.225 --> 00:05:00.178
+no SAFe role.
+
+66
+00:05:01.188 --> 00:05:03.475
+A strong PO has mandate and time.
+
+67
+00:05:04.184 --> 00:05:05.113
+One day a week?
+
+68
+00:05:05.931 --> 00:05:07.162
+Then teams guess.
+
+69
+00:05:08.170 --> 00:05:13.267
+Ask: if team three and Product Management disagree, who decides, and how fast?
+
+70
+00:05:14.640 --> 00:05:18.158
+Example: a maker of weighing systems, six teams.
+
+71
+00:05:18.895 --> 00:05:20.114
+You watch for a week.
+
+72
+00:05:21.151 --> 00:05:26.886
+The RTE, a former project manager, hands out tasks on Monday and checks Friday.
+
+73
+00:05:27.869 --> 00:05:31.619
+Product Management: one person with a sales job besides;
+
+74
+00:05:31.805 --> 00:05:34.127
+the ART Backlog nine months old.
+
+75
+00:05:35.193 --> 00:05:38.595
+Three teams share one PO, two afternoons a week.
+
+76
+00:05:39.316 --> 00:05:41.139
+Which roles are wrong or too thin?
+
+77
+00:05:42.118 --> 00:05:44.138
+The RTE steers on tasks,
+
+78
+00:05:44.185 --> 00:05:49.270
+so teams do not learn to plan; Product Management has no time; the PO is too thin.
+
+79
+00:05:50.269 --> 00:05:53.879
+Proposal: coach the RTE, free up Product Management,
+
+80
+00:05:54.100 --> 00:05:56.468
+and give each team a PO with mandate.

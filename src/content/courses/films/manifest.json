@@ -2436,6 +2436,146 @@
         ],
         "vtt": "src/content/courses/films/pm.perform.tree.en.vtt"
       }
+    },
+    "pm.agile.scrum": {
+      "poster": "src/content/courses/films/pm.agile.scrum.jpg",
+      "nl": {
+        "dur": 332.9,
+        "bytes": 13594238,
+        "scenes": [
+          0,
+          32.6,
+          69.71,
+          116.53,
+          153.59,
+          192.02,
+          217.04,
+          250.53,
+          293.68
+        ],
+        "vtt": "src/content/courses/films/pm.agile.scrum.nl.vtt"
+      },
+      "en": {
+        "dur": 348.6,
+        "bytes": 13993982,
+        "scenes": [
+          0,
+          34.87,
+          73.8,
+          121.19,
+          161.13,
+          200.07,
+          226.42,
+          264.12,
+          307.85
+        ],
+        "vtt": "src/content/courses/films/pm.agile.scrum.en.vtt"
+      }
+    },
+    "pm.agile.kanban": {
+      "poster": "src/content/courses/films/pm.agile.kanban.jpg",
+      "nl": {
+        "dur": 342.6,
+        "bytes": 16982035,
+        "scenes": [
+          0,
+          28.74,
+          70.9,
+          114.52,
+          147.79,
+          190.79,
+          219.4,
+          255.15,
+          305.41
+        ],
+        "vtt": "src/content/courses/films/pm.agile.kanban.nl.vtt"
+      },
+      "en": {
+        "dur": 350,
+        "bytes": 17353293,
+        "scenes": [
+          0,
+          28.75,
+          68.79,
+          112.89,
+          150.29,
+          190.43,
+          220.25,
+          259.17,
+          312.66
+        ],
+        "vtt": "src/content/courses/films/pm.agile.kanban.en.vtt"
+      }
+    },
+    "pm.agile.backlog": {
+      "poster": "src/content/courses/films/pm.agile.backlog.jpg",
+      "nl": {
+        "dur": 335.9,
+        "bytes": 13950562,
+        "scenes": [
+          0,
+          38.77,
+          76.59,
+          110.52,
+          144.72,
+          179.29,
+          218.78,
+          257.76,
+          299.13
+        ],
+        "vtt": "src/content/courses/films/pm.agile.backlog.nl.vtt"
+      },
+      "en": {
+        "dur": 343.6,
+        "bytes": 14175731,
+        "scenes": [
+          0,
+          39.98,
+          79.17,
+          113.59,
+          146.53,
+          181.44,
+          222.99,
+          263.3,
+          305.79
+        ],
+        "vtt": "src/content/courses/films/pm.agile.backlog.en.vtt"
+      }
+    },
+    "pm.scaled.pi": {
+      "poster": "src/content/courses/films/pm.scaled.pi.jpg",
+      "nl": {
+        "dur": 345.8,
+        "bytes": 16335945,
+        "scenes": [
+          0,
+          38,
+          83.49,
+          108.46,
+          154.54,
+          194.61,
+          229.87,
+          265.52,
+          304.32
+        ],
+        "vtt": "src/content/courses/films/pm.scaled.pi.nl.vtt"
+      },
+      "en": {
+        "dur": 358.2,
+        "bytes": 16788185,
+        "scenes": [
+          0,
+          38.33,
+          83.19,
+          108.72,
+          157.05,
+          197.44,
+          233.89,
+          272.78,
+          314.18
+        ],
+        "vtt": "src/content/courses/films/pm.scaled.pi.en.vtt"
+      }
     }
   }
 }
