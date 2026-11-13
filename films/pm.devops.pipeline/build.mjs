@@ -417,7 +417,7 @@ const spec = {
     ]),
     sc('s6', FK, 1, { nl: 'DORA en snelheid', en: 'DORA and speed' }, [
       { nl: '{t:DORA|DORA}: DevOps Research and Assessment. Sinds 2014 elk jaar een grote enquête.', en: '{t:DORA|DORA}: DevOps Research and Assessment. Since 2014 a large survey every year.', cue: { DORA: 'dora' }, focus: ['dora', 'bMeters'] },
-      { nl: 'Forsgren, Humble en Kim: het boek Accelerate, 2018. Sinds eind 2018 hoort DORA bij Google Cloud.', en: 'Forsgren, Humble and Kim: the book Accelerate, 2018. Since late 2018 DORA is part of Google Cloud.', focus: 'book' },
+      { nl: 'Forsgren, Humble en Kim: het boek Accelerate, 2018. Sinds eind 2018 hoort DORA bij Google Cloud.', en: 'Forsgren, Humble and Kim: the book Accelerate, 2018. Since late 2018 DORA has been part of Google Cloud.', focus: 'book' },
       { nl: 'Snelheid: de {t:Deployfrequentie|deployfrequentie}, hoe vaak een nieuwe versie live gaat.', en: 'Speed: {t:Deployment frequency|deployment frequency}, how often a new version goes live.', cue: { Deployfrequentie: 'freq' }, focus: ['freq', 'mFreq', 'parcel'] },
       { nl: 'Live betekent in {t:Productie|productie}: de echte systemen die gebruikers gebruiken.', en: 'Live means in {t:Production|production}: the real systems that users use.', cue: { Productie: 'stProd' }, focus: 'prodterm' },
       { nl: '{t:Doorlooptijd van een wijziging|Doorlooptijd van een wijziging}: van commit tot in productie.', en: '{t:Change lead time|Change lead time}: from commit until it runs in production.', cue: { 'Doorlooptijd van een wijziging': 'lead' }, focus: ['lead', 'mLead', 'belt'] },
@@ -466,7 +466,10 @@ const spec = {
 // rule, lead time is not said in Dutch. In English, CI/CD as letters. Said
 // around because espeak-ng misreads it (it stays in the captions and on the
 // cards): etiketsoftware (Dutch "softwaare" in the compound; said "de software
-// voor etiketten"). Years, times and numbers in words.
+// voor etiketten"), live (Dutch "lieve"; said "in productie"), Lean-blik ("lee-an"; said
+// "voor een Lean-consultant", which pm.run.conflict's rule covers) and ERP-koppelingen
+// (letters in the compound; said "de koppelingen met het ERP", the word "erp" as the
+// other films say it). Years, times and numbers in words.
 const SAY = [
   [ // s1 two camps, the wall, DevOps, 2009
     { nl: 'Vroeger had IT twee kampen: ontwikkelaars bouwden software, beheerders hielden de systemen draaiend.',
@@ -479,7 +482,7 @@ const SAY = [
       en: 'The word appeared around two thousand and nine, when Patrick Debois organised the first DevOpsDays in Ghent.' },
   ],
   [ // s2 the pipeline, version control, a commit
-    { nl: 'Het hart van DevOps is de {t:Pipeline|pipeline}: een automatische lopende band, met voor elke wijziging dezelfde stappen, van ontwikkelaar tot gebruiker.',
+    { nl: 'Het hart van DevOps is de {t:Pipeline|pipeline}: een automatische lopende band: elke wijziging dezelfde stappen, van ontwikkelaar tot gebruiker.',
       en: 'The heart of DevOps is the {t:Pipeline|pipeline}: an automated conveyor, the same steps for every change, from developer to user.' },
     { nl: 'Het begint bij {t:Versiebeheer|versiebeheer}, meestal Git: het bewaart elke versie van de code en laat zien wie wat veranderde.',
       en: 'It starts with {t:Version control|version control}, usually Git: every version of the code kept, and who changed what.' },
@@ -507,7 +510,7 @@ const SAY = [
       en: 'Small commits are like small batches: less work in between, faults seen sooner.' },
     { nl: 'In offertes heet dit vaak CI/CD: continuous integration en continuous delivery. Die komen later.',
       en: 'In proposals this is often called CI/CD: continuous integration and continuous delivery. Both follow in later lessons.' },
-    { nl: 'In fabrieken hoor je: wij zijn geen softwarebedrijf, DevOps is niets voor ons. Maar het MES, de software voor etiketten en de ERP-koppelingen veranderen steeds vaker.',
+    { nl: 'In fabrieken hoor je: wij zijn geen softwarebedrijf, DevOps is niets voor ons. Maar het MES, de software voor etiketten en de koppelingen met het ERP veranderen steeds vaker.',
       en: 'Factories say: we are no software company, DevOps is not for us. Yet the MES, label software and ERP links change ever more often.' },
     { nl: 'Vraag: hoe komt een wijziging nu op de vloer, en welke stappen gaan met de hand? Elke handmatige stap geeft fouten en wachttijd.',
       en: 'Ask: how does a change reach the floor today, and which steps are manual? Each manual step means errors and waiting.' },
@@ -529,9 +532,9 @@ const SAY = [
       en: 'How well does a team deliver? {t:DORA|DORA} measures it: DevOps Research and Assessment, surveying thousands of IT professionals yearly since twenty fourteen.' },
     { nl: 'Nicole Forsgren, Jez Humble en Gene Kim vatten de eerste jaren samen in het boek Accelerate, tweeduizend achttien; eind dat jaar ging DORA naar Google Cloud. Het State of DevOps-rapport is bekend om een paar metingen.',
       en: 'Nicole Forsgren, Jez Humble and Gene Kim summed up the first years in the book Accelerate, twenty eighteen; late that year DORA joined Google Cloud. The State of DevOps report is known for a few metrics.' },
-    { nl: 'Twee gaan over snelheid. De {t:Deployfrequentie|deployfrequentie}: hoe vaak een nieuwe versie live gaat, van drie keer per dag tot één keer per maand.',
+    { nl: 'Twee gaan over snelheid. De {t:Deployfrequentie|deployfrequentie}: hoe vaak een nieuwe versie in productie gaat, van drie keer per dag tot één keer per maand.',
       en: 'Two are about speed. {t:Deployment frequency|Deployment frequency}: how often a new version goes live, from three times a day to once a month.' },
-    { nl: 'Live betekent in {t:Productie|productie}: de echte systemen die gebruikers gebruiken.',
+    { nl: '{t:Productie|Productie}: dat zijn de echte systemen die gebruikers gebruiken.',
       en: 'Live means in {t:Production|production}: the real systems that users use.' },
     { nl: 'De {t:Doorlooptijd van een wijziging|doorlooptijd van een wijziging}: van commit tot productie, het deel van de keten dat het team zelf in de hand heeft.',
       en: '{t:Change lead time|Change lead time}: from commit to production, the part of the chain the team controls itself.' },
@@ -549,7 +552,7 @@ const SAY = [
       en: 'Together, the four keys. The best teams score well on all four: speed and stability go together, as small changes are easier to test and recover.' },
   ],
   [ // s8 the Lean view, once a quarter, the question
-    { nl: 'Lean-blik: de doorlooptijd lijkt op die in een waardestroom, het faalpercentage op first pass yield, het deel dat in één keer goed is, maar omgekeerd.',
+    { nl: 'Voor een Lean-consultant: de doorlooptijd lijkt op die in een waardestroom, het faalpercentage op first pass yield, het deel dat in één keer goed is, maar omgekeerd.',
       en: 'The Lean view: lead time is like lead time in a value stream, change fail rate like first pass yield, the share right first time, but reversed.' },
     { nl: 'Je hoort: wij deployen één keer per kwartaal, dan gaat er minder mis. DORA laat vaak het omgekeerde zien: zeldzame, grote deploys gaan vaker mis en herstellen langzamer.',
       en: 'You hear: we deploy once a quarter, so less goes wrong. DORA often shows the reverse: rare, big deployments fail more often and recover more slowly.' },
@@ -557,7 +560,7 @@ const SAY = [
       en: 'Ask an IT team: how often do you deploy to production, and how often must you step in straight after? If nobody knows, nothing is measured yet.' },
   ],
   [ // s9 the confectionery plant
-    { nl: 'Een voorbeeld. Het IT-team van een snoepfabriek bouwt koppelingen tussen ERP en MES. Jij verzamelt de cijfers van vier weken.',
+    { nl: 'Een voorbeeld: het IT-team van een snoepfabriek koppelt ERP en MES; jij verzamelt vier weken cijfers.',
       en: 'An example: a confectionery plant\'s IT team builds ERP and MES links; you collect four weeks of numbers.' },
     { nl: 'De deployfrequentie: acht deploys in vier weken, dus twee per week.',
       en: 'Deployment frequency: eight deployments in four weeks, so two a week.' },
