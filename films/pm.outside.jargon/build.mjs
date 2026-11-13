@@ -530,7 +530,7 @@ const SAY = [
       en: 'Step two: read them out. The barcode scanners on line {n:2} didn\'t connect. The night shift wasn\'t trained. Only Ahmed knows the interface.' },
     { nl: 'Stap drie: groepeer ze en kies de drie zwaarste.',
       en: 'Step three: group them and pick the three most serious.' },
-    { nl: 'Stap vier: hoe weten we dat het niet gebeurt? De scanners zijn op kantoor getest, niet aan de lijn. Zwak bewijs.',
+    { nl: 'Stap vier. Hoe weten we dat het niet gebeurt? De scanners zijn op kantoor getest, niet aan de lijn. Zwak bewijs.',
       en: 'Step four: how do we know it won\'t happen? The scanners were tested in the office, not on the line. Weak evidence.' },
     { nl: 'Stap vijf: volgende week een scannertest op lijn {n:2}, met de IT-lead als eigenaar. En Ahmed, de single point of failure, krijgt een tweede persoon.',
       en: 'Step five: a scanner test on line {n:2} next week, with the IT lead as owner. And Ahmed, the single point of failure, gets a second person trained.' },

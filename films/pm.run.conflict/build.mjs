@@ -463,7 +463,7 @@ const SAY = [
       en: 'When you bring them back together, you name the shared interest: you both want line {n:1} reliable for Thursday.' },
     { nl: 'Productie vreest een gemiste levering. Onderhoud vreest een storing, waardoor die levering ook mislukt.',
       en: 'Production fears missing the shipment. Maintenance fears a breakdown that would also miss it.' },
-    { nl: 'Dan leg je een optie op tafel: een stop van drie uur op vrijdagochtend, de dag na de levering van donderdag.',
+    { nl: 'Dan leg je een optie op tafel: een stop van drie uur op vrijdagochtend. De dag na de levering van donderdag.',
       en: 'Then you put an option on the table: a three-hour stop on Friday morning, the day after the Thursday shipment.' },
     { nl: 'En je beslist op objectieve criteria. Spreek af het vier weken te proberen, en kijk dan naar uren stilstand en gemiste leveringen.',
       en: 'And you decide on objective criteria. Agree to try it for four weeks, then look at downtime hours and missed deliveries.' },
@@ -471,7 +471,7 @@ const SAY = [
       en: 'Not at who argued loudest.' },
   ],
   [ // s6 the difficult conversation
-    { nl: 'Dan het {t:Lastig gesprek|lastige gesprek}: het gesprek dat je liever uit de weg gaat. Voer het in vier stappen.',
+    { nl: 'Dan het {t:Lastig gesprek|lastige gesprek}. Het gesprek dat je liever uit de weg gaat. Voer het in vier stappen.',
       en: 'Then the {t:Difficult conversation|difficult conversation}: the talk you would rather avoid. Do it in four steps.' },
     { nl: 'Eerst wat je zag, feitelijk. Bijvoorbeeld: deze maand was de data twee keer niet klaar op maandag.',
       en: 'First, what you saw, factually. For example: twice this month the data wasn\'t there on Monday.' },

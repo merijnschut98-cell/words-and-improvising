@@ -1,0 +1,369 @@
+WEBVTT
+
+1
+00:00:00.862 --> 00:00:02.743
+Als je de antwoorden niet kunt beoordelen,
+
+2
+00:00:03.045 --> 00:00:05.297
+is de kwaliteit van je vragen je vakkennis.
+
+3
+00:00:06.285 --> 00:00:09.722
+Een vragenset (question set) is een korte, vaste lijst vragen voor een fase,
+
+4
+00:00:09.965 --> 00:00:14.250
+welk vak het ook is: een database, een kabel of een robot.
+
+5
+00:00:15.295 --> 00:00:17.663
+Vijf gebieden dekken het meeste: scope,
+
+6
+00:00:17.988 --> 00:00:21.877
+aannames, risico's, schattingen en afhankelijkheden.
+
+7
+00:00:22.935 --> 00:00:24.131
+Stel ze in die volgorde.
+
+8
+00:00:24.861 --> 00:00:26.428
+Elk bouwt voort op de vorige.
+
+9
+00:00:27.727 --> 00:00:30.061
+Scope: wat hebben we precies aan het eind?
+
+10
+00:00:31.097 --> 00:00:32.514
+En wat zit er uitdrukkelijk niet in?
+
+11
+00:00:33.313 --> 00:00:36.482
+Die helft is het belangrijkst: daar zitten de misverstanden.
+
+12
+00:00:37.435 --> 00:00:40.790
+Een aanname (assumption): voorlopig waar, zonder bewijs.
+
+13
+00:00:41.573 --> 00:00:45.671
+Vraag: wat nemen we aan dat, als het niet klopt, de planning verandert?
+
+14
+00:00:46.699 --> 00:00:50.112
+Bijvoorbeeld: het netwerk van de fabriek kan de nieuwe data aan.
+
+15
+00:00:50.813 --> 00:00:55.155
+Schrijf aannames op: elke aanname is een risico tot hij gecheckt is.
+
+16
+00:00:56.465 --> 00:00:59.019
+Een risico (risk) kan gebeuren en het doel schaden.
+
+17
+00:00:59.782 --> 00:01:02.150
+Vraag: waar maak je je het meest zorgen over?
+
+18
+00:01:02.853 --> 00:01:04.687
+Wat ging er mis bij vergelijkbare klussen?
+
+19
+00:01:05.692 --> 00:01:07.190
+Vraag elke expert apart.
+
+20
+00:01:07.923 --> 00:01:10.013
+In een groep zet de meest senior stem de toon.
+
+21
+00:01:11.054 --> 00:01:14.630
+Een schatting (estimate) is een voorspelling van tijd of kosten, geen belofte.
+
+22
+00:01:15.353 --> 00:01:18.883
+Vraag: hoe zeker ben je, en waarop is het gebaseerd?
+
+23
+00:01:19.896 --> 00:01:22.427
+En vraag om een bandbreedte in plaats van één getal.
+
+24
+00:01:23.707 --> 00:01:26.981
+Een afhankelijkheid (dependency): jouw werk wacht op iets van een ander.
+
+25
+00:01:27.694 --> 00:01:30.956
+Vraag: wat heb je van anderen nodig, en wanneer?
+
+26
+00:01:31.960 --> 00:01:36.209
+De netbeheerder heeft de belastinggegevens nodig voordat hij de kabel dimensioneert.
+
+27
+00:01:36.950 --> 00:01:40.538
+De MES-leverancier wacht op een koppeling van het ERP-team.
+
+28
+00:01:41.551 --> 00:01:44.535
+De meeste vertragingen buiten je vak zijn niet technisch.
+
+29
+00:01:45.289 --> 00:01:48.215
+Het zijn afhankelijkheden waar niemand eigenaar van was.
+
+30
+00:01:49.300 --> 00:01:54.142
+Gebruik de sets bij de start, bij elke wijziging en voor elk go/no-go-moment.
+
+31
+00:01:54.818 --> 00:01:58.867
+Elke keer dezelfde vragen: dan bereiden experts de antwoorden voor.
+
+32
+00:01:59.848 --> 00:02:04.225
+De klassieke fout: één keer vragen, bij de kick-off, en archiveren.
+
+33
+00:02:04.939 --> 00:02:08.747
+Sluit elk overleg af met: wat namen we vandaag aan dat niemand checkte?
+
+34
+00:02:10.064 --> 00:02:13.454
+Een kick-off voor een MES bij een maker van metalen onderdelen,
+
+35
+00:02:13.780 --> 00:02:15.835
+met de leverancier en de IT-lead.
+
+36
+00:02:16.873 --> 00:02:20.054
+Scope: welke lijnen draaien bij livegang op het MES?
+
+37
+00:02:20.775 --> 00:02:22.737
+Lijn 1 en 2, niet lijn 3.
+
+38
+00:02:23.763 --> 00:02:27.455
+Aanname: de machinedata komt binnen via het bestaande netwerk.
+
+39
+00:02:28.169 --> 00:02:29.841
+Jij schrijft: niet gecheckt.
+
+40
+00:02:30.830 --> 00:02:33.036
+Het risico zit in de stamgegevens,
+
+41
+00:02:33.268 --> 00:02:37.308
+die elders vervuild waren: producten en de volgorde van bewerkingen.
+
+42
+00:02:38.017 --> 00:02:42.313
+Schatting: opschonen kost vier tot acht weken, afhankelijk van de staat.
+
+43
+00:02:43.345 --> 00:02:47.815
+Afhankelijkheid: een ERP-koppeling van de IT van de klant, voor 1 maart.
+
+44
+00:02:48.573 --> 00:02:52.184
+Vijf vragen, drie nieuwe risico's, elk een eigenaar.
+
+45
+00:02:53.435 --> 00:02:56.732
+Een schatting toets je niet aan het werk, maar aan hoe hij gemaakt is.
+
+46
+00:02:57.534 --> 00:03:02.388
+Drie gereedschappen: een bandbreedte, een referentieklasse en een tweede schatting.
+
+47
+00:03:03.383 --> 00:03:07.737
+Kahneman en Tversky benoemden in 1979 de planningsdrogreden (planning fallacy):
+
+48
+00:03:08.062 --> 00:03:09.490
+je onderschat je eigen taak,
+
+49
+00:03:09.792 --> 00:03:12.346
+ook als je weet dat vergelijkbare taken uitliepen.
+
+50
+00:03:13.031 --> 00:03:13.855
+Experts ook.
+
+51
+00:03:14.857 --> 00:03:19.118
+Een bandbreedte (range) is een lage en een hoge schatting, tussen 3 en 6 weken.
+
+52
+00:03:19.774 --> 00:03:21.573
+Hij laat zien hoe onzeker iemand is.
+
+53
+00:03:22.645 --> 00:03:23.609
+Een driepuntsschatting (three-point estimate)
+
+54
+00:03:23.678 --> 00:03:27.347
+voegt een meest waarschijnlijke waarde toe aan optimistisch en pessimistisch.
+
+55
+00:03:28.373 --> 00:03:34.527
+PERT, uit 1958, voor het Polaris-programma van de marine van de Verenigde Staten,
+
+56
+00:03:34.736 --> 00:03:38.265
+weegt ze: optimistisch, plus vier keer meest waarschijnlijk,
+
+57
+00:03:38.567 --> 00:03:40.970
+plus pessimistisch, gedeeld door zes.
+
+58
+00:03:41.697 --> 00:03:44.507
+Een afspraak, geen wet: het trekt naar de lange staart.
+
+59
+00:03:45.791 --> 00:03:47.045
+Een referentieklasse (reference class):
+
+60
+00:03:47.289 --> 00:03:49.692
+vergelijkbare eerdere projecten als maatstaf.
+
+61
+00:03:50.412 --> 00:03:52.270
+Kahneman en Flyvbjerg raden het aan.
+
+62
+00:03:53.292 --> 00:03:54.708
+Redeneer niet vanuit het plan,
+
+63
+00:03:54.975 --> 00:03:58.725
+maar vraag: hoe lang duurden de laatste vijf koppelingen zoals deze?
+
+64
+00:03:59.806 --> 00:04:02.326
+Flyvbjerg meldt in 2023:
+
+65
+00:04:02.523 --> 00:04:08.050
+van zo'n 16.000 vooral grote projecten haalde maar 8,5 procent budget en planning,
+
+66
+00:04:08.224 --> 00:04:10.442
+en maar 0,5 procent ook de baten.
+
+67
+00:04:11.403 --> 00:04:13.899
+Zo'n basiscijfer wint van een zelfverzekerd plan.
+
+68
+00:04:15.172 --> 00:04:18.028
+Een tweede schatting (second estimate): vraag een andere expert,
+
+69
+00:04:18.319 --> 00:04:21.383
+zonder het eerste getal te laten zien, en vergelijk.
+
+70
+00:04:22.420 --> 00:04:23.186
+Dicht bij elkaar?
+
+71
+00:04:23.946 --> 00:04:24.283
+Mooi.
+
+72
+00:04:25.059 --> 00:04:25.790
+Ver uit elkaar?
+
+73
+00:04:26.502 --> 00:04:29.822
+Dan is het verschil het gesprek: wat zie jij waardoor het langer duurt?
+
+74
+00:04:30.849 --> 00:04:34.529
+Let op de taal: drie weken als er niks misgaat is het beste geval.
+
+75
+00:04:35.239 --> 00:04:38.490
+Een schatting die maandenlang gelijk blijft, wordt vaak niet bijgewerkt.
+
+76
+00:04:39.472 --> 00:04:40.540
+Experts twisten.
+
+77
+00:04:41.251 --> 00:04:44.676
+Sommige agile teams voorspellen alleen uit wat ze eerder haalden;
+
+78
+00:04:44.943 --> 00:04:47.324
+anderen willen een vast getal voor het contract.
+
+79
+00:04:48.029 --> 00:04:51.256
+Jouw vraag: voorspelling met onzekerheid, of hoop?
+
+80
+00:04:52.231 --> 00:04:55.435
+Scherpe vraag: waardoor zou het twee keer zo lang duren?
+
+81
+00:04:56.104 --> 00:04:58.751
+Komt het antwoord meteen, zet dat in de bandbreedte.
+
+82
+00:05:00.056 --> 00:05:04.410
+De automatiseringsleverancier schat het PLC-werk voor een robotcel:
+
+83
+00:05:04.746 --> 00:05:06.209
+optimistisch 6 weken,
+
+84
+00:05:06.441 --> 00:05:08.984
+meest waarschijnlijk 8, pessimistisch 16.
+
+85
+00:05:10.030 --> 00:05:15.568
+De driepuntsschatting: 6, plus vier keer 8, plus 16 is 54.
+
+86
+00:05:16.278 --> 00:05:18.368
+Gedeeld door zes: 9 weken.
+
+87
+00:05:19.362 --> 00:05:22.532
+Hun laatste drie cellen kostten 9, 11 en 10 weken.
+
+88
+00:05:23.304 --> 00:05:27.286
+Die referentieklasse zegt: 9 ligt aan de optimistische kant.
+
+89
+00:05:28.329 --> 00:05:32.625
+Plan dus rond 10 tot 11 weken, en vraag: waardoor gaat deze sneller?
+
+90
+00:05:33.593 --> 00:05:36.078
+Een echte reden, zoals code hergebruiken?
+
+91
+00:05:36.792 --> 00:05:37.233
+Prima.
+
+92
+00:05:37.972 --> 00:05:40.352
+Zo niet, zet het langere getal in de planning.
