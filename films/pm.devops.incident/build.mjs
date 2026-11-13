@@ -17,13 +17,13 @@
 // shows its worked example (v16 notes), so the film carries the whole teach
 // text and the worked example.
 //
-// Served alone. pm.devops.postmortem (level 3 of the same topic) was weighed
-// and left out: with every teach point and its faded example (question and
-// answer: two more whys, a workaround, two actions with owners, no culprit)
-// said, the two lessons need about 900 narration words (about 840 even when
-// written tersely, with the asides on the cards only), over the 760 a film may
-// say and over the kit's 330-second narration cap (films/_kit/assert.mjs:
-// 825 words). Said in full, this lesson alone is about 450 to 480 words.
+// This lesson alone. pm.devops.postmortem (level 3 of the same topic) has its
+// own film in the same room (films/pm.devops.postmortem), because together,
+// with every teach point and its faded example (question and answer: two more
+// whys, a workaround, two actions with owners, no culprit) said, the two
+// lessons need about 900 narration words (about 840 even when written tersely,
+// with the asides on the cards only), over the 760 a film may say and over the
+// kit's 330-second narration cap (films/_kit/assert.mjs: 825 words).
 //
 // Checklist (lesson point: scene and beat; "card" = on the card only, not
 // spoken, on screen at least 4 s; every card stays up for the rest of its page):
@@ -155,7 +155,6 @@ says(IN, ['It began in the late 1980s at the British government', 'is now owned 
 assert(lessons.nl.get(IN).terms.map((t) => t.term).join() === 'ITIL,Incident,Probleem,Wijziging,Servicedesk', 'the five terms of incident');
 assert(lessons.en.get(IN).terms.map((t) => t.term).join() === 'ITIL,Incident,Problem,Change,Service desk', 'the five English terms of incident');
 for (const lang of ['nl', 'en']) assert(lessons[lang].get(IN).film === 'pm.devops.incident', `${IN} (${lang}) wires this film`);
-for (const lang of ['nl', 'en']) assert(!lessons[lang].get('pm.devops.postmortem').film, 'pm.devops.postmortem is not served (see the header)');
 // one printer failure a week, every week of the year
 assert(1 * 52 === 52, '52 incidents a year');
 // the example's week, in minutes after midnight: three reports around six, the backup at six, moved to four

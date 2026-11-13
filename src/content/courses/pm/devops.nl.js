@@ -1154,6 +1154,7 @@ export default {
     },
     {
       id: 'pm.devops.postmortem',
+      film: 'pm.devops.postmortem',
       title: 'De post-mortem: leren van een storing zonder schuldige',
       pre: [
         {
