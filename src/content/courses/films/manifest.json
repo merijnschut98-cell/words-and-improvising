@@ -2714,6 +2714,35 @@
         ],
         "vtt": "src/content/courses/films/pm.itproject.mvp.en.vtt"
       }
+    },
+    "pm.devops.incident": {
+      "poster": "src/content/courses/films/pm.devops.incident.jpg",
+      "nl": {
+        "dur": 191.7,
+        "bytes": 8346177,
+        "scenes": [
+          0,
+          29.21,
+          55.28,
+          80.31,
+          109.32,
+          138.4
+        ],
+        "vtt": "src/content/courses/films/pm.devops.incident.nl.vtt"
+      },
+      "en": {
+        "dur": 200.6,
+        "bytes": 8515880,
+        "scenes": [
+          0,
+          29.8,
+          57.12,
+          83.65,
+          112.46,
+          143.4
+        ],
+        "vtt": "src/content/courses/films/pm.devops.incident.en.vtt"
+      }
     }
   }
 }
