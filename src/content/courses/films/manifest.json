@@ -2022,6 +2022,41 @@
         ],
         "vtt": "src/content/courses/films/pm.run.scope.en.vtt"
       }
+    },
+    "pm.negotiate.batna": {
+      "poster": "src/content/courses/films/pm.negotiate.batna.jpg",
+      "nl": {
+        "dur": 344.5,
+        "bytes": 12147303,
+        "scenes": [
+          0,
+          28.88,
+          63.45,
+          100.25,
+          128.62,
+          166.75,
+          203.2,
+          247.61,
+          286.53
+        ],
+        "vtt": "src/content/courses/films/pm.negotiate.batna.nl.vtt"
+      },
+      "en": {
+        "dur": 351,
+        "bytes": 12189767,
+        "scenes": [
+          0,
+          27.86,
+          63.36,
+          99.32,
+          131.13,
+          170.04,
+          207.28,
+          253.13,
+          291.85
+        ],
+        "vtt": "src/content/courses/films/pm.negotiate.batna.en.vtt"
+      }
     }
   }
 }
