@@ -30,96 +30,92 @@
 // Checklist (lesson point: scene and beat; "card" = on the card only, not
 // spoken, on screen at least 4 s; every card stays up for the rest of its page):
 //   why teach 1: one Scrum team ten people at most; a new packaging machine's
-//     software needs more (s1 b1); the PLC controls (the industrial computer
-//     that runs the machine), the operator screen, the camera inspection, the
-//     ERP link (s1 b2); six or seven teams on one product; each does Scrum well
-//     and the whole stalls, team A waits for team B: a dependency (s1 b3)
+//     software needs more (s1 b1); the PLC controls, the operator screen, the
+//     camera inspection, the ERP link (s1 b2), the PLC as the industrial
+//     computer (card, s1 b2); six or seven teams on one product; each does
+//     Scrum well and the whole stalls, team A waits for team B: a dependency
+//     (s1 b3)
 //   why teach 2: scaling, agreements so many teams deliver as one (s1 b4);
 //     SAFe, first published 2011, version 6.0 from early 2023 (s1 b5), the
-//     Scaled Agile Framework and Dean Leffingwell (card, s1 b5); the annual
-//     State of Agile survey of a software vendor, most used for years; a survey
-//     of interested respondents, not a sample (s1 b6), Digital.ai (card, s1 b6)
-//   why teach 3: the Agile Release Train, ART, a long-lived team of agile teams
-//     that develops and delivers together (s2 b1); 50 to 125 people (s2 b2);
-//     the train image: fixed departures, not ready goes on the next; the work
-//     comes to the train, no new team per project (s2 b3)
+//     Scaled Agile Framework and Dean Leffingwell (card, s1 b5); an annual
+//     survey, most used for years; not a sample (s1 b6), the State of Agile
+//     survey of Digital.ai, interested respondents (card, s1 b6)
+//   why teach 3: the Agile Release Train, ART, a team of agile teams (s2 b1);
+//     50 to 125 people, long-lived (s2 b2); the train image: fixed departures,
+//     not ready goes on the next (s2 b3); the work comes to the train, no new
+//     team per project (card, s2 b3)
 //   why teach 4: cadence, the fixed rhythm in which all teams plan, build and
-//     deliver at once (s2 b4); the Planning Interval, PI, 8 to 12 weeks; until
-//     6.0 another name, the abbreviation stayed (s2 b5), Program Increment
-//     (card, s2 b5); iterations of usually 2 weeks, the last the IP iteration,
-//     Innovation and Planning: improve, innovate, plan the next PI (s2 b6)
-//   why teach 5: for a Lean consultant like takt on a line, all teams
-//     synchronise; integrate and test every two weeks, not at the end (s2 b7);
-//     the question which teams must deliver together for something that works:
-//     that is the train, often not the org chart (s2 b8)
-//   why example: a machine builder, 72 people on a new line's software (controls,
-//     screens, camera, ERP, testing: card "besturing, schermen, ..."), teams of
-//     9 (s3 b1); 72 / 9 = 8 teams, within 50 to 125, one ART (s3 b2); a 10-week
-//     PI, 2-week iterations, 10 / 2 = 5: 4 to build, 1 IP (s3 b3); 52 / 10 =
-//     5.2, about 5 PIs, 5 moments when all 8 teams plan together (s3 b4)
+//     deliver at once (s2 b4); the Planning Interval, PI, 8 to 12 weeks (s2
+//     b5), until 6.0 Program Increment (card, s2 b5); iterations of 2 weeks,
+//     the last the IP iteration, for improving and planning (s2 b6),
+//     Innovation and Planning (card, s2 b7)
+//   why teach 5: for a Lean consultant like takt on a line; integrate and test
+//     together every two weeks (s2 b7), not only at the end (card, s2 b7); the
+//     question which teams must deliver something that works together: that is
+//     the train (s2 b8), not always the org chart (card, s2 b8)
+//   why example: a machine builder, 72 people on a new line's software, teams
+//     of 9 (s3 b1); 72 / 9 = 8 teams, within 50 to 125, one ART (s3 b2); a
+//     10-week PI, 2-week iterations, 10 / 2 = 5: 4 to build, 1 IP (s3 b3);
+//     52 / 10 = 5.2, about 5 times a year all 8 teams plan together (s3 b4)
 //   piplanning teach 1: PI Planning, an event of the whole train, usually two
-//     days, ideally one room, in the IP iteration so no build time (s4 b1);
-//     day 1 the business context and the vision, what and why (s4 b2); teams
-//     make a first plan per iteration with their own capacity (s4 b3)
-//   piplanning teach 2: end of day 1 the leaders review the draft plans, short
-//     capacity, clashing priorities; day 2 adjust and present (s4 b4), the name
-//     management review and problem solving (card, s4 b4); PI objectives, short
-//     goals in business language, the one-tap stoppage report (s4 b5); unsure
-//     goals apart as uncommitted, in the plan, not a promise (s4 b6)
-//   piplanning teach 3: the Business Owners, business-accountable for what the
-//     train delivers, a director or a product manager; a business value of 1 to
-//     10 per objective (s4 b7); the team hears what weighs most, value 9 before
-//     value 3 when time is tight (s4 b8)
+//     days, ideally one room, in the IP iteration (s4 b1), so no build time
+//     lost (card, s4 b1); day 1 the business context and the vision, what and
+//     why (s4 b2); teams make a first plan per iteration with their own
+//     capacity (s4 b3)
+//   piplanning teach 2: end of day 1 the leaders look where capacity or
+//     priorities pinch; day 2 adjust and present (s4 b4), the name management
+//     review and problem solving (caption and card, s4 b4); PI objectives,
+//     short goals in business language, the one-tap stoppage report (s4 b5);
+//     unsure goals apart as uncommitted, in the plan, not a promise (s4 b6)
+//   piplanning teach 3: the Business Owners, business-accountable, a business
+//     value of 1 to 10 per objective (s4 b7), for example a director (card, s4
+//     b7); value 9 before value 3 when time is tight (s4 b8)
 //   piplanning teach 4: the ART Planning Board, teams in rows, iterations in
 //     columns (s5 b1), formerly program board (card, s5 b1); a red string from
-//     team A's work to the work of team B that waits for it (s5 b2); ROAM:
-//     resolved, owned, accepted, mitigated (s5 b3)
+//     team A's work to team B that waits for it (s5 b2); ROAM: resolved, owned,
+//     accepted, mitigated (s5 b3)
 //   piplanning teach 5: the confidence vote, one to five fingers on how
 //     feasible the plan is (s5 b4); a rule of thumb from training material: an
-//     average of three or more is enough, lower is replanning; who shows one or
-//     two gets the floor (s5 b5); for a Lean consultant an obeya (Japanese for
-//     big room) at scale; the pitfall: the board full and nobody dares say it
-//     does not fit (s5 b6)
-//   piplanning example: a team in a machine builder's train, 4 build iterations,
-//     30 story points each (a relative measure of size): 4 x 30 = 120 (s6 b1);
-//     20 % free for unplanned work and breakdowns: 120 x 0.8 = 96 (s6 b2); the
-//     objectives: one-tap stoppage report 40 points, value 9; report per shift
-//     35, value 6 (s6 b3); link with the new MES 30, value 7; together 105, not
-//     in 96 (s6 b4); the link uncommitted; committed 40 + 35 = 75, room for
-//     overrun (s6 b5)
+//     average of three or more is enough; who shows one or two gets the floor
+//     (s5 b5); an obeya (Japanese for big room); the pitfall: the board full
+//     and nobody says it does not fit (s5 b6), "at scale" (caption and card)
+//   piplanning example: a machine builder's team, 4 build iterations of 30
+//     story points (a relative measure): 4 x 30 = 120 (s6 b1); 20 % free for
+//     unplanned work and breakdowns: 120 x 0.8 = 96 (s6 b2); the objectives:
+//     one-tap stoppage report 40 points, value 9; report per shift 35, value 6
+//     (s6 b3); link with the new MES 30, value 7; together 105, not in 96 (s6
+//     b4); the link uncommitted; committed 40 + 35 = 75, room for overrun (s6 b5)
 //   roles teach 1: the Release Train Engineer, RTE, a servant leader and coach
-//     of the train (s7 b1); facilitates PI Planning and the other events,
-//     removes impediments, steers on flow (s7 b2); no project manager handing
-//     out tasks, not the boss; often a former programme manager, a known
-//     pitfall (s7 b3)
+//     of the train (s7 b1); facilitates the events, removes impediments, steers
+//     on flow (s7 b2), PI Planning among them (card, s7 b2); no boss handing
+//     out tasks; often a former programme manager, a known pitfall (s7 b3)
 //   roles teach 2: Product Management decides which solutions are desirable,
-//     feasible and viable (s7 b4); manages and orders the ART Backlog, the
-//     features of the whole train (s7 b5); a feature, functionality that fits in
-//     one PI and has value for a user (s7 b6); the Product Owner with one team,
-//     features into user stories (short descriptions of what a user wants),
-//     orders the team's backlog (s7 b7)
-//   roles teach 3: content authority: Product Management market and customer,
-//     the PO team and details; work closely; a contradiction in the room is
-//     seen by all (s8 b1); the System Architect, technical coherence:
-//     architecture, interfaces, enablers before features (s8 b2)
-//   roles teach 4: a Scrum Master per team, Scrum Master/Team Coach in 6.0; the
-//     Business Owners steer from the business side (s8 b3); names: a "product
-//     manager" at a machine builder often does marketing and sales, no SAFe
-//     role (s8 b4)
-//   roles teach 5: experts: a strong PO has mandate and time; one day a week
-//     beside a full job and teams guess (s8 b5); the question: team 3 and
-//     Product Management disagree, who settles it and how fast; nobody knows,
-//     the org chart is only on paper (s8 b6)
+//     feasible and viable (s7 b4); orders the ART Backlog, the features of the
+//     whole train (s7 b5); a feature fits in one PI and has value for a user
+//     (s7 b6); the Product Owner with one team, features into user stories (s7
+//     b7), orders the team's backlog (card, s7 b7)
+//   roles teach 3: Product Management market and customer, the PO team and
+//     details (s8 b1); content authority, work closely, a clash in the room is
+//     seen by all (card, s8 b1); the System Architect, technical coherence,
+//     architecture, interfaces (s8 b2), enablers (card, s8 b2)
+//   roles teach 4: a Scrum Master per team, also Team Coach in 6.0; the
+//     Business Owners steer the business side (caption, s8 b3); names: a
+//     product manager at a machine builder often does marketing and sales, no
+//     SAFe role (s8 b4; "no SAFe role" in the caption)
+//   roles teach 5: a strong PO has mandate and time; one day a week and teams
+//     guess (s8 b5); the question: team 3 and Product Management disagree, who
+//     decides and how fast (s8 b6); nobody knows, the org chart is only on
+//     paper (card, s8 b6)
 //   roles example (faded): a weighing-systems maker, a train of six teams, a
-//     week of looking (s9 b1); the RTE, a former project manager, a task list
-//     per team on Monday, checked on Friday (s9 b2); Product Management one
-//     person who is also an account manager, the ART Backlog nine months old
-//     (s9 b3); three of six teams share one PO, two afternoons a week; the ask
-//     (s9 b4); the reveal: the RTE steers on tasks instead of coaching and
-//     clearing impediments, teams do not learn to plan; Product Management
-//     without time, no real ordering; the PO too thin, teams guess (s9 b5);
-//     the proposal: coach the RTE, free up or strengthen Product Management, a
-//     PO per team with mandate and time, or fewer teams at once (s9 b6)
+//     week of looking (s9 b1); the RTE, a former project manager, tasks on
+//     Monday, a check on Friday (s9 b2); Product Management one person with a
+//     sales job besides (account manager on the caption and card), the ART
+//     Backlog nine months old (s9 b3); three of six teams share one PO, two
+//     afternoons a week; the ask (s9 b4); the reveal: the RTE steers on tasks,
+//     so teams do not learn to plan; Product Management without time, no real
+//     ordering (card); the PO too thin, teams guess (s9 b5); the proposal:
+//     coach the RTE, free up Product Management, a PO per team with mandate
+//     (s9 b6), and time, or fewer teams at once (card, s9 b6)
 //   Not in the film: the lessons' pre and recall questions, their "said"
 //   lines, situations and sayIt (practice, not teach text).
 //
@@ -494,7 +490,7 @@ const spec = {
       { nl: 'Product Management: markt en klant. De PO: team en details.', en: 'Product Management: market and customer. The PO: team and details.', focus: ['ca', 'planner', 'po'] },
       { nl: '{t:System Architect|System Architect}: technische samenhang, zoals architectuur en interfaces.', en: '{t:System Architect|System Architect}: technical coherence, such as architecture and interfaces.', cue: { 'System Architect': 'sa' }, focus: ['sa', 'arch'] },
       { nl: 'Per team een Scrum Master, in 6.0 ook Team Coach. Business Owners: de zakelijke kant.', en: 'Each team a Scrum Master, in 6.0 also Team Coach. Business Owners: the business side.', focus: ['smc', 'teams', 'sponsor'] },
-      { nl: 'Let op namen: een productmanager doet vaak marketing en verkoop.', en: 'Watch names: a product manager often does marketing and sales.', focus: 'names' },
+      { nl: 'Let op namen: een productmanager doet vaak marketing en verkoop, geen SAFe-rol.', en: 'Watch names: a product manager often does marketing and sales, no SAFe role.', focus: 'names' },
       { nl: 'Sterke PO: mandaat en tijd. Eén dag per week? Teams gokken.', en: 'Strong PO: mandate and time. One day a week? Teams guess.', focus: ['po2', 'po'] },
       { nl: 'Team {n:3} en Product Management oneens: wie beslist, hoe snel?', en: 'Team {n:3} and Product Management disagree: who decides, how fast?', focus: ['ask2', 'teams', 'planner'] },
     ]),
@@ -516,33 +512,30 @@ const spec = {
 // said here or shown on the card. No symbol the voice would read aloud, no
 // spoken parenthesis or quote. Dutch checked with espeak-ng phonemes through
 // Piper's own bridge (nl_NL-alex, 2026-11-13). Read as written: Scrum-team,
-// verpakkingsmachine, PLC-besturing, bedieningsscherm, camerakeuring, ERP (the
-// word "erp", as the films with a video), afhankelijkheid, opschalen, cadans,
-// iteraties, IP-iteratie, Planning Interval, PI and PI Planning (pee-ie),
-// takt, organigram, machinebouwer, story points, capaciteit, Scrum Master,
-// Team Coach, levensvatbaar, MES through the existing letters rule; Agile
-// through pm.plan.method's etsjail rule, Owner and Backlog through
-// pm.agile.scrum's rules, events through its ievent rule, Lean-consultant
-// through pm.run.conflict's. New SAY rules in films/_kit/timeline.mjs
-// (tested; recomputed for every film: no other film's spoken text changes):
-// SAFe (Seef), Release Train and its Engineer, ART and RTE as letters,
-// Planning Board, confidence vote, Business Owners, ROAM, objectives,
-// uncommitted, Product Management, System Architect, feature, user stories,
-// obeya and the -manager compounds. Said around because espeak-ng misreads them
-// (they stay in the captions and on the cards): Scaled Agile Framework, Dean
-// Leffingwell, State of Agile and Digital.ai (the card names them; the voice
-// says "een jaarlijkse enquête van een softwareleverancier"), Program
-// Increment (said "heette dat anders; de afkorting bleef"), management review
-// and problem solving (said "bekijkt de leiding de conceptplannen"), Resolved,
-// Owned, Accepted, Mitigated (said in Dutch), interfaces (said koppelingen),
-// enablers (said technische voorbereiding), content authority (said
-// inhoudelijke zeggenschap), flow (said doorstroming), the team's backlog in
-// lower case (said "de lijst van zijn team"), operations and accountmanager
-// (said around), vuistregel (said "regel"). Years in words. Card-only points
-// (each on screen at least 4 s): the Scaled Agile Framework, Leffingwell,
-// Digital.ai, Program Increment, the 6.0 rename, management review and problem
-// solving, "vroeger program board", the four ROAM words, content authority,
-// enablers, and "of minder teams tegelijk".
+// verpakkingsmachine, PLC-besturing, camerakeuring, ERP (the word "erp", as
+// the films with a video), afhankelijkheid, opschalen, cadans, iteraties,
+// IP-iteratie, Planning Interval, PI and PI Planning (pee-ie; but espeak-ng
+// reads PI right before a colon or comma as the word "pie", so no line puts one
+// there), takt, organigram, machinebouwer, story points, capaciteit, Scrum
+// Master, Team Coach, levensvatbaar, MES through the existing letters rule;
+// Agile through pm.plan.method's etsjail rule, Owner and Backlog through
+// pm.agile.scrum's rules, events through its ievent rule. New SAY rules in
+// films/_kit/timeline.mjs (tested; recomputed for every film: no other film's
+// spoken text changes): SAFe (Seef), Release Train and its Engineer, ART and
+// RTE as letters, Planning Board, confidence vote, Business Owners, ROAM,
+// objectives, uncommitted, Product Management, System Architect, feature,
+// user stories, obeya and the -manager compounds. Said around because
+// espeak-ng misreads them (they stay in the captions and on the cards): Scaled
+// Agile Framework, Dean Leffingwell, State of Agile and Digital.ai (said "een
+// jaarlijkse enquête"), Program Increment, management review and problem
+// solving (said "zoekt de leiding waar capaciteit of voorrang knelt";
+// prioriteiten is stressed PRI-), Resolved, Owned, Accepted, Mitigated (said in
+// Dutch), interfaces (said koppelingen), enablers (said voorbereiding), content
+// authority, flow (said doorstroming), backlog in lower case, accountmanager
+// (said "een commerciële baan erbij"), vuistregel and trainingsregel (stressed
+// -GEL; said "een regel uit trainingen"), and Eén at a sentence start (read
+// "ee-een"). Years in words. Card-only points (each on screen at least 4 s) are
+// marked "card" in the checklist above.
 const SAY = [
   [ // s1 many teams, one product
     { nl: 'Een Scrum-team telt hooguit zo\'n tien mensen; een nieuwe verpakkingsmachine vraagt meer.',
@@ -562,15 +555,15 @@ const SAY = [
     { nl: 'Het hart van SAFe: de {t:Agile Release Train|Agile Release Train}, een team van agile teams.',
       en: 'The heart of SAFe: the {t:Agile Release Train|Agile Release Train}, a team of agile teams.' },
     { nl: 'Meestal vijftig tot honderdvijfentwintig mensen, lang bij elkaar.',
-      en: 'Usually fifty to a hundred and twenty-five people, who stay together.' },
+      en: 'Usually fifty to a hundred and twenty-five people, long-lived.' },
     { nl: 'De trein vertrekt op vaste tijden; wat niet klaar is, gaat mee met de volgende.',
       en: 'The train leaves at fixed times; what is not ready takes the next one.' },
     { nl: 'Dat ritme is de {t:Cadans|cadans}: alle teams plannen, bouwen en leveren tegelijk.',
       en: 'That rhythm is the {t:Cadence|cadence}: all teams plan, build and deliver at once.' },
     { nl: 'De grote cadans is het {t:Planning Interval|Planning Interval}: de PI duurt acht tot twaalf weken.',
       en: 'The big cadence is the {t:Planning Interval|Planning Interval}: the PI lasts eight to twelve weeks.' },
-    { nl: 'Daarin iteraties van twee weken; de laatste, de {t:IP-iteratie|IP-iteratie}, is om te verbeteren en te plannen.',
-      en: 'Inside it, two-week iterations; the last, the {t:IP iteration|IP iteration}, is for improving and planning.' },
+    { nl: 'Iteraties duren twee weken; de laatste, de {t:IP-iteratie|IP-iteratie}, is voor verbeteren en plannen.',
+      en: 'Iterations last two weeks; the last, the {t:IP iteration|IP iteration}, is for improving and planning.' },
     { nl: 'Voor jou: als takt op een lijn. Elke twee weken samen integreren en testen.',
       en: 'For you: like takt on a line. Integrate and test together every two weeks.' },
     { nl: 'Vraag: welke teams leveren samen iets werkends? Dat is je trein.',
@@ -593,8 +586,8 @@ const SAY = [
       en: 'Day one: the business context and the vision. What must the product do, and why?' },
     { nl: 'Dan plannen de teams zelf, per iteratie, met hun eigen capaciteit.',
       en: 'Then the teams plan themselves, per iteration, with their own capacity.' },
-    { nl: 'Eind dag één bekijkt de leiding de concepten. Dag twee: bijstellen en presenteren.',
-      en: 'At the end of day one, management reviews the drafts. Day two: adjust and present.' },
+    { nl: 'Eind dag één zoekt de leiding waar capaciteit of voorrang knelt. Dag twee: bijstellen en presenteren.',
+      en: 'At the end of day one, management looks where capacity or priorities clash. Day two: adjust and present.' },
     { nl: 'Elk team schrijft {t:PI-objectives|PI-objectives}: korte doelen in zakelijke taal.',
       en: 'Each team writes {t:PI objectives|PI objectives}: short goals in business language.' },
     { nl: 'Twijfel? Dan uncommitted: het telt mee, maar is geen belofte.',
@@ -611,15 +604,15 @@ const SAY = [
       en: 'A red string joins team A\'s work to team B, which waits for it.' },
     { nl: 'Risico\'s gaan door {t:ROAM|ROAM}: opgelost, eigenaar, aanvaard of verkleind.',
       en: 'Risks go through {t:ROAM|ROAM}: resolved, owned, accepted or mitigated.' },
-    { nl: 'Het slot: de {t:Confidence vote|confidence vote}. Iedereen steekt één tot vijf vingers: hoe haalbaar is het plan?',
-      en: 'The close: the {t:Confidence vote|confidence vote}. Everyone shows one to five fingers: how feasible is the plan?' },
+    { nl: 'Tot slot de {t:Confidence vote|confidence vote}: één tot vijf vingers voor hoe haalbaar het plan is.',
+      en: 'Finally the {t:Confidence vote|confidence vote}: one to five fingers for how feasible the plan is.' },
     { nl: 'Een regel uit trainingen: gemiddeld drie of meer is genoeg; wie één of twee steekt, krijgt het woord.',
       en: 'A training rule: an average of three or more is enough; whoever shows one or two gets the floor.' },
     { nl: 'Een obeya, Japans voor grote kamer. Valkuil: het bord hangt vol en niemand zegt dat het niet past.',
       en: 'An obeya, Japanese for big room. The pitfall: the board is full and nobody says it does not fit.' },
   ],
   [ // s6 one team plans
-    { nl: 'Voorbeeld: een team van een machinebouwer heeft vier iteraties van dertig story points. Samen honderdtwintig.',
+    { nl: 'Voorbeeld: een team van een machinebouwer heeft vier iteraties van dertig story points: honderdtwintig.',
       en: 'Example: a machine builder\'s team has four iterations of thirty story points. A hundred and twenty.' },
     { nl: 'Twintig procent blijft vrij voor onverwacht werk en storingen: zesennegentig punten.',
       en: 'Twenty percent stays free for unplanned work and breakdowns: ninety-six points.' },
@@ -647,8 +640,8 @@ const SAY = [
       en: 'The {t:Product Owner|Product Owner} sits with one team and turns features into user stories.' },
   ],
   [ // s8 who decides what
-    { nl: 'De zeggenschap is verdeeld: Product Management kijkt naar markt en klant, de PO naar team en details.',
-      en: 'Authority is split: Product Management looks at market and customer, the PO at team and details.' },
+    { nl: 'Product Management kijkt naar markt en klant, de PO naar team en details.',
+      en: 'Product Management looks at market and customer, the PO at team and details.' },
     { nl: 'De {t:System Architect|System Architect} bewaakt de technische samenhang: architectuur, koppelingen, voorbereiding.',
       en: 'The {t:System Architect|System Architect} guards technical coherence: architecture, interfaces, groundwork.' },
     { nl: 'Elk team heeft een Scrum Master, in SAFe zes ook Team Coach.',
@@ -664,13 +657,13 @@ const SAY = [
     { nl: 'Voorbeeld: een producent van weegsystemen, zes teams. Je kijkt een week mee.',
       en: 'Example: a maker of weighing systems, six teams. You watch for a week.' },
     { nl: 'De RTE, een oud-projectmanager, deelt maandag taken uit en controleert vrijdag.',
-      en: 'The RTE, a former project manager, hands out tasks on Monday and checks on Friday.' },
+      en: 'The RTE, a former project manager, hands out tasks on Monday and checks Friday.' },
     { nl: 'Product Management: één persoon met een commerciële baan erbij; de ART Backlog negen maanden oud.',
       en: 'Product Management: one person with a sales job besides; the ART Backlog nine months old.' },
     { nl: 'Drie teams delen één PO, twee middagen per week. Welke rollen zijn mis of te dun?',
       en: 'Three teams share one PO, two afternoons a week. Which roles are wrong or too thin?' },
-    { nl: 'De RTE stuurt op taken, Product Management heeft geen tijd, de PO is te dun.',
-      en: 'The RTE steers on tasks, Product Management has no time, the PO is too thin.' },
+    { nl: 'De RTE stuurt op taken, dus teams leren niet plannen; Product Management heeft geen tijd; de PO is te dun.',
+      en: 'The RTE steers on tasks, so teams do not learn to plan; Product Management has no time; the PO is too thin.' },
     { nl: 'Voorstel: coach de RTE, maak Product Management vrij, en geef elk team een PO met mandaat.',
       en: 'Proposal: coach the RTE, free up Product Management, and give each team a PO with mandate.' },
   ],
@@ -730,7 +723,7 @@ const preamble = `const C = ${JSON.stringify(C)};\nconst CAM = ${JSON.stringify(
 const stageScript = kitScript() + '\n' + preamble + lean(readFileSync(join(HERE, 'stage.js'), 'utf8'))
   + '\n;\n' + readFileSync(join(HERE, '../_kit/beatwarp.js'), 'utf8');
 
-const PEOPLE = ':is([data-cue="teams"],[data-cue="po"],[data-cue="arch"],[data-cue="rte"])';
+const PEOPLE = ':is([data-cue="teams"],[data-cue="po"],[data-cue="arch"],[data-cue="rte"],[data-cue="planner"],[data-cue="sponsor"])';
 const css = PM_CSS + `
 .pm-panel{fill:var(--anatomy-shade-0);stroke:var(--fp-hair);stroke-width:1;opacity:.97}
 .pm-card{fill:var(--anatomy-face);stroke:var(--anatomy-mid);stroke-width:1.4;stroke-linejoin:round}

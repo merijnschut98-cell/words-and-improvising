@@ -83,12 +83,12 @@ const STAGE = (() => {
     const o = { head: [tr('opschalen', 'scaling'), DIA] };
     const A = page(b, p, 0, 3);
     o.one = op(A, box(54, tr('één Scrum-team', 'one Scrum team'), [tr('hooguit ± tien mensen', 'ten people at most'), [tr('machine vraagt meer', 'a machine needs more'), 'pm-on']], b === 0));
-    if (b >= 1) o.parts = op(A * at(b, p, 1), lines(178, [[tr('PLC · bedieningsscherm', 'PLC · operator screen')], [tr('camera · ERP-koppeling', 'camera · ERP link')]]));
-    if (b >= 2) o.dep = op(A * at(b, p, 2), box(236, tr('afhankelijkheid', 'dependency'), [tr('6–7 teams, 1 product', '6–7 teams, 1 product'), [tr('team A wacht op B', 'team A waits for B'), 'pm-on']], b === 2) + path(`M${X1 - 50} 258q20 -14 40 0`, 'pm-redp'));
+    if (b >= 1) o.parts = op(A * at(b, p, 1), lines(176, [[tr('PLC: de industriële', 'PLC: the industrial')], [tr('computer · scherm', 'computer · screen')], [tr('camera · ERP-koppeling', 'camera · ERP link')]]));
+    if (b >= 2) o.dep = op(A * at(b, p, 2), box(248, tr('afhankelijkheid', 'dependency'), [tr('6–7 teams, 1 product', '6–7 teams, 1 product'), [tr('team A wacht op B', 'team A waits for B'), 'pm-on']], b === 2) + path(`M${X1 - 50} 270q20 -14 40 0`, 'pm-redp'));
     const B = page(b, p, 3, -1);
-    if (b >= 3) o.scale = op(B, lines(72, [[tr('opschalen: veel teams', 'scaling: many teams'), b === 3 ? 'pm-on' : 'pm-big'], [tr('leveren als één geheel', 'deliver as one')]]));
-    if (b >= 4) o.safe = op(B * at(b, p, 4), box(116, 'SAFe', ['Scaled Agile Framework', tr('Dean Leffingwell, 2011', 'Dean Leffingwell, 2011'), [tr('versie 6.0 · begin 2023', 'version 6.0 · early 2023'), 'pm-on']], b === 4));
-    if (b >= 5) o.survey = op(B * at(b, p, 5), box(258, 'State of Agile', [tr('Digital.ai: al jaren', 'Digital.ai: most used'), tr('meest gebruikt', 'for years'), [tr('geen steekproef', 'not a sample'), 'pm-mute']], b === 5));
+    if (b >= 3) o.scale = op(B, lines(72, [[tr('veel teams, één geheel', 'many teams, as one'), b === 3 ? 'pm-on' : 'pm-big']]));
+    if (b >= 4) o.safe = op(B * at(b, p, 4), box(94, 'SAFe', ['Scaled Agile Framework', tr('Dean Leffingwell, 2011', 'Dean Leffingwell, 2011'), [tr('versie 6.0 · begin 2023', 'version 6.0 · early 2023'), 'pm-on']], b === 4));
+    if (b >= 5) o.survey = op(B * at(b, p, 5), box(230, 'State of Agile', [tr('Digital.ai: al jaren', 'Digital.ai: most used'), tr('meest gebruikt', 'for years'), [tr('onder belangstellenden,', 'interested respondents,'), 'pm-mute'], [tr('geen steekproef', 'not a sample'), 'pm-mute']], b === 5));
     return o;
   }
 
@@ -98,7 +98,7 @@ const STAGE = (() => {
     const A = page(b, p, 0, 3);
     o.art = op(A, box(54, 'Agile Release Train', [tr('ART: team van agile', 'ART: a team of agile'), tr('teams, blijft lang', 'teams, long-lived')], b === 0));
     if (b >= 1) o.size = op(A * at(b, p, 1), lines(174, [[tr('50 tot 125 mensen', '50 to 125 people'), 'pm-on']]));
-    if (b >= 2) o.train = op(A * at(b, p, 2), train(206, at(b, p, 2, 0.05, 0.6)) + lines(286, [[tr('vertrekt op vaste tijd;', 'leaves at fixed times;')], [tr('niet klaar: de volgende', 'not ready: the next one')], [tr('werk komt naar de trein', 'work comes to the train'), 'pm-mute']]));
+    if (b >= 2) o.train = op(A * at(b, p, 2), train(206, at(b, p, 2, 0.05, 0.6)) + lines(286, [[tr('vertrekt op vaste tijd;', 'leaves at fixed times;')], [tr('niet klaar: de volgende', 'not ready: the next one')], [tr('werk komt naar de trein,', 'work comes to the train,'), 'pm-mute'], [tr('geen team per project', 'no team per project'), 'pm-mute']]));
     const B = page(b, p, 3, 6);
     if (b >= 3) o.cad = op(B, box(54, tr('cadans', 'cadence'), [tr('vast ritme: alle teams', 'a fixed rhythm: all'), tr('plannen, bouwen en', 'teams plan, build and'), tr('leveren tegelijk', 'deliver at once')], b === 3));
     if (b >= 4) o.pi = op(B * at(b, p, 4), box(192, 'Planning Interval', [[tr('PI: 8 tot 12 weken', 'PI: 8 to 12 weeks'), 'pm-on'], [tr('tot 6.0: Program', 'until 6.0: Program'), 'pm-mute'], ['Increment', 'pm-mute']], b === 4));
@@ -106,9 +106,9 @@ const STAGE = (() => {
     const Cp = page(b, p, 6, -1);
     if (b >= 6) {
       o.ip = op(Cp, box(54, tr('IP-iteratie', 'IP iteration'), ['Innovation and Planning', [tr('verbeteren, plannen', 'improve, plan'), 'pm-mute']]));
-      o.takt = op(Cp, lines(176, [[tr('Lean: als takt op een lijn', 'Lean: like takt on a line'), b === 6 ? 'pm-on' : 'pm-big'], [tr('elke 2 weken integreren', 'integrate every 2 weeks')]]));
+      o.takt = op(Cp, lines(172, [[tr('Lean: als takt op een lijn', 'Lean: like takt on a line'), b === 6 ? 'pm-on' : 'pm-big'], [tr('elke 2 weken integreren,', 'integrate every 2 weeks,')], [tr('niet pas aan het eind', 'not only at the end')]]));
     }
-    if (b >= 7) o.ask = op(Cp * at(b, p, 7), box(234, tr('vraag', 'ask'), [tr('welke teams leveren', 'which teams deliver'), tr('samen iets werkends?', 'something that works?'), [tr('= je trein, niet het', '= your train, not the'), 'pm-on'], [tr('organigram', 'org chart'), 'pm-on']], b === 7));
+    if (b >= 7) o.ask = op(Cp * at(b, p, 7), box(236, tr('vraag', 'ask'), [tr('welke teams leveren', 'which teams deliver'), tr('samen iets werkends?', 'something that works?'), [tr('= je trein, niet het', '= your train, not the'), 'pm-on'], [tr('organigram', 'org chart'), 'pm-on']], b === 7));
     return o;
   }
 
@@ -126,15 +126,15 @@ const STAGE = (() => {
   function s4(b, p) {
     const o = { head: ['PI Planning', DIA] };
     const A = page(b, p, 0, 4);
-    o.pip = op(A, box(54, 'PI Planning', [tr('hele trein, ± 2 dagen,', 'whole train, ~2 days,'), tr('één zaal; IP-iteratie', 'one room; IP iteration')], b === 0));
-    if (b >= 1) o.day1 = op(A * at(b, p, 1), lines(172, [[tr('dag 1: context en visie', 'day 1: context, vision'), b === 1 ? 'pm-on' : 'pm-big'], [tr('wat, en waarom?', 'what, and why?')]]));
-    if (b >= 2) o.cap = op(A * at(b, p, 2), lines(234, [[tr('teams plannen zelf,', 'teams plan themselves,'), b === 2 ? 'pm-on' : 'pm-txt'], [tr('per iteratie, eigen', 'per iteration, own')], [tr('capaciteit', 'capacity')]]));
-    if (b >= 3) o.review = op(A * at(b, p, 3), lines(320, [[tr('eind dag 1: management', 'end of day 1: management'), b === 3 ? 'pm-on' : 'pm-big'], [tr('review, problem solving', 'review, problem solving')], [tr('dag 2: bijstellen, tonen', 'day 2: adjust, present')]]));
+    o.pip = op(A, box(54, 'PI Planning', [tr('hele trein, ± 2 dagen,', 'whole train, ~2 days,'), tr('één zaal; IP-iteratie:', 'one room; IP iteration:'), [tr('geen bouwtijd kwijt', 'no build time lost'), 'pm-mute']], b === 0));
+    if (b >= 1) o.day1 = op(A * at(b, p, 1), lines(200, [[tr('dag 1: context en visie', 'day 1: context, vision'), b === 1 ? 'pm-on' : 'pm-big'], [tr('wat, en waarom?', 'what, and why?')]]));
+    if (b >= 2) o.cap = op(A * at(b, p, 2), lines(256, [[tr('teams plannen zelf,', 'teams plan themselves,'), b === 2 ? 'pm-on' : 'pm-txt'], [tr('per iteratie, eigen', 'per iteration, own')], [tr('capaciteit', 'capacity')]]));
+    if (b >= 3) o.review = op(A * at(b, p, 3), lines(340, [[tr('eind dag 1: management', 'end of day 1: management'), b === 3 ? 'pm-on' : 'pm-big'], [tr('review, problem solving', 'review, problem solving')]]));
     const B = page(b, p, 4, -1);
     if (b >= 4) o.obj = op(B, box(54, 'PI-objectives', [tr('doelen in zakelijke taal:', 'goals in business words:'), [tr('storing melden, 1 tik', 'report a stop, 1 tap'), 'pm-on']], b === 4));
     if (b >= 5) o.unc = op(B * at(b, p, 5), lines(172, [[tr('twijfel? uncommitted', 'unsure? uncommitted'), b === 5 ? 'pm-on' : 'pm-big'], [tr('gepland, geen belofte', 'planned, no promise'), 'pm-mute']]));
-    if (b >= 6) o.bo = op(B * at(b, p, 6), box(228, 'Business Owners', [tr('zakelijk verantwoordelijk', 'business-accountable'), [tr('waarde 1 tot 10', 'value 1 to 10'), 'pm-on']], b === 6));
-    if (b >= 7) o.bv = op(B * at(b, p, 7), lines(358, [[tr('krap? 9 gaat voor 3', 'tight? 9 before 3'), 'pm-on']]));
+    if (b >= 6) o.bo = op(B * at(b, p, 6), box(224, 'Business Owners', [tr('zakelijk verantwoordelijk', 'business-accountable'), [tr('bv. een directeur', 'e.g. a director'), 'pm-mute'], [tr('waarde 1 tot 10', 'value 1 to 10'), 'pm-on']], b === 6));
+    if (b >= 7) o.bv = op(B * at(b, p, 7), lines(372, [[tr('krap? 9 gaat voor 3', 'tight? 9 before 3'), 'pm-on']]));
     return o;
   }
 
@@ -188,13 +188,13 @@ const STAGE = (() => {
   function s8(b, p) {
     const o = { head: [tr('wie beslist', 'who decides'), DIA] };
     const A = page(b, p, 0, 3);
-    o.ca = op(A, box(54, 'content authority', [tr('PM: markt en klant', 'PM: market, customer'), tr('PO: team en details', 'PO: team and details'), [tr('nauw samenwerken', 'working closely'), 'pm-mute']], b === 0));
-    if (b >= 1) o.sa = op(A * at(b, p, 1), box(192, 'System Architect', [tr('technische samenhang:', 'technical coherence:'), tr('interfaces, enablers', 'interfaces, enablers')], b === 1));
-    if (b >= 2) o.smc = op(A * at(b, p, 2), lines(320, [[tr('Scrum Master: in 6.0', 'Scrum Master: in 6.0'), b === 2 ? 'pm-on' : 'pm-big'], [tr('ook Team Coach', 'also Team Coach')]]));
+    o.ca = op(A, box(54, 'content authority', [tr('PM: markt en klant', 'PM: market, customer'), tr('PO: team en details', 'PO: team and details'), [tr('nauw samen; oneens in', 'work closely; a clash in'), 'pm-mute'], [tr('de zaal ziet iedereen', 'the room is seen by all'), 'pm-mute']], b === 0));
+    if (b >= 1) o.sa = op(A * at(b, p, 1), box(216, 'System Architect', [tr('technische samenhang:', 'technical coherence:'), tr('interfaces, enablers', 'interfaces, enablers')], b === 1));
+    if (b >= 2) o.smc = op(A * at(b, p, 2), lines(342, [[tr('Scrum Master: in 6.0', 'Scrum Master: in 6.0'), b === 2 ? 'pm-on' : 'pm-big'], [tr('ook Team Coach', 'also Team Coach')]]));
     const B = page(b, p, 3, -1);
     if (b >= 3) o.names = op(B, box(54, tr('let op namen', 'watch the names'), [tr('"productmanager" bij een', '"product manager" at a'), tr('machinebouwer: vaak', 'machine builder: often'), [tr('marketing en verkoop', 'marketing and sales'), 'pm-mute']], b === 3));
-    if (b >= 4) o.po2 = op(B * at(b, p, 4), box(196, tr('sterke PO', 'a strong PO'), [tr('mandaat en tijd', 'mandate and time'), [tr('1 dag/week? gokken', '1 day a week? guessing'), 'pm-mute']], b === 4));
-    if (b >= 5) o.ask2 = op(B * at(b, p, 5), lines(326, [[tr('vraag: team 3 vs. PM:', 'ask: team 3 vs. PM:'), b === 5 ? 'pm-on' : 'pm-big'], [tr('wie beslist, hoe snel?', 'who decides, how fast?')]]));
+    if (b >= 4) o.po2 = op(B * at(b, p, 4), box(186, tr('sterke PO', 'a strong PO'), [tr('mandaat en tijd', 'mandate and time'), [tr('1 dag/week? gokken', '1 day a week? guessing'), 'pm-mute']], b === 4));
+    if (b >= 5) o.ask2 = op(B * at(b, p, 5), lines(304, [[tr('vraag: team 3 vs. PM:', 'ask: team 3 vs. PM:'), b === 5 ? 'pm-on' : 'pm-big'], [tr('wie beslist, hoe snel?', 'who decides, how fast?')], [tr('weet niemand het, dan', 'nobody knows? then the'), 'pm-mute'], [tr('is het alleen papier', 'org chart is just paper'), 'pm-mute']]));
     return o;
   }
 
