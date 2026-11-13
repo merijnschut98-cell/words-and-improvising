@@ -96,7 +96,9 @@
 // laptop and a phone. People: you (the consultant, at the board), the service
 // desk agent and the IT administrator (the Scrum film's cast,
 // pm.agile.scrum/cast.mjs, imported, not edited) and the team lead from the
-// floor at the line. A lamp turns red at an outage and green when the line works
+// floor at the line. The administrator stands by the backup unit and the rack,
+// the team lead in front of line 2, so neither hides the other (nor the board's
+// week) at 390 px. A lamp turns red at an outage and green when the line works
 // again; the link turns red and dashed while it is down. A panel at the right,
 // in stage space, carries one card per scene, labelled "schema" or "voorbeeld".
 //
@@ -233,10 +235,10 @@ const world = [
   cueG('mes', rack + g(LAMPK[0], '')),
   cueG('backup', backup + g(LAMPK[1], '')),
   w.person({ x: 34, y: 48, role: 'jij', along: 'x' }),
-  scrumPerson(w, k, G, P, { x: 158, y: 50, key: 'admin', look: 'sm', along: 'x' }),
+  scrumPerson(w, k, G, P, { x: 246, y: 122, key: 'admin', look: 'sm', along: 'x' }),
   scrumPerson(w, k, G, P, { x: 50, y: 156, key: 'agent', look: 'dev', along: 'x' }),
   cueG('desk', desk),
-  w.person({ x: 244, y: 126, role: 'teamlead', along: 'x' }),
+  w.person({ x: 230, y: 200, role: 'teamlead', along: 'x' }),
   cueG('line', stand + belt
     + cueG('scale', scale + g(LAMPK[2], ''))
     + cueG('printer', printer + g(LAMPK[3], ''))),

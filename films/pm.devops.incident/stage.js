@@ -108,8 +108,8 @@ const STAGE = (() => {
     const B = page(b, p, 2, -1);
     if (b >= 2) {
       o.p52 = op(B, box(54, tr('printer', 'the printer'), [tr('1 storing per week:', '1 failure a week:'), ['1 × 52 = 52', 'pm-big'], tr('incidenten per jaar', 'incidents a year')], false)
-        + op(at(b, p, 2, 0.4, 0.6), card(194, 98, 'pm-hot') + lines(222, [[tr('misschien 1 probleem', 'maybe 1 problem'), 'pm-on'], [tr('stroom zakt in bij', 'power dips as the'), ''], [tr('start van de pers', 'press starts'), '']], X0 + 4))
-        + op(at(b, p, 2, 0.7, 0.9), lines(326, NL ? [['probleembeheer', 'pm-big'], ['problem management', 'pm-mute']] : [['problem management', 'pm-big'], ['looks for the cause', 'pm-mute']])));
+        + op(at(b, p, 2, 0.2, 0.35), card(194, 98, 'pm-hot') + lines(222, [[tr('misschien 1 probleem', 'maybe 1 problem'), 'pm-on'], [tr('stroom zakt in bij', 'power dips as the'), ''], [tr('start van de pers', 'press starts'), '']], X0 + 4))
+        + op(at(b, p, 2, 0.4, 0.5), lines(326, NL ? [['probleembeheer', 'pm-big'], ['problem management', 'pm-mute']] : [['problem management', 'pm-big'], ['looks for the cause', 'pm-mute']])));
     }
     return o;
   }
@@ -146,9 +146,9 @@ const STAGE = (() => {
     o.meat = op(A, lines(80, [[tr('vleeswarenfabriek', 'cooked-meats plant'), b === 0 ? 'pm-on' : 'pm-big'], [tr('meldingen indelen', 'sorting the reports'), 'pm-mute']]));
     if (b >= 1) o.e1 = op(A * at(b, p, 1), row(146, tr('ma 06:10', 'Mon 06:10'), 'incident', 'pm-badt') + txt(X0, 172, tr('lijn 2: geen gewichten', 'line 2: no weights'), 'pm-mute'));
     if (b >= 2) o.e2 = op(A * at(b, p, 2), row(212, '06:25', tr('werkt weer', 'works again'), b === 2 ? 'pm-on' : 'pm-txt') + txt(X0, 238, tr('koppeling herstart', 'link restarted'), 'pm-mute'));
-    if (b >= 3) o.e3 = op(A * at(b, p, 3), row(278, tr('di 06:05', 'Tue 06:05'), 'incident', 'pm-badt') + op(at(b, p, 3, 0.4, 0.6), row(304, tr('wo 06:12', 'Wed 06:12'), 'incident', 'pm-badt')));
+    if (b >= 3) o.e3 = op(A * at(b, p, 3), row(278, tr('di 06:05', 'Tue 06:05'), 'incident', 'pm-badt') + op(at(b, p, 3, 0.3, 0.45), row(304, tr('wo 06:12', 'Wed 06:12'), 'incident', 'pm-badt')));
     const B = page(b, p, 4, -1);
-    if (b >= 4) o.e4 = op(B, box(54, tr('wo middag: patroon', 'Wednesday: pattern'), [tr('3 incidenten, steeds', '3 incidents, always'), tr('rond zes uur', 'around six'), [tr('= 1 probleem', '= 1 problem'), 'pm-on'], [tr('uitval bij ploegstart', 'fails at shift start'), 'pm-mute']], b === 4));
+    if (b >= 4) o.e4 = op(B, box(54, tr('wo middag: patroon', 'Wed afternoon: pattern'), [tr('3 incidenten, steeds', '3 incidents, always'), tr('rond zes uur', 'around six'), [tr('= 1 probleem', '= 1 problem'), 'pm-on'], [tr('uitval bij ploegstart', 'fails at shift start'), 'pm-mute']], b === 4));
     if (b >= 5) o.e5 = op(at(b, p, 5), box(216, tr('do: de oorzaak', 'Thu: the cause'), [tr('back-up om 06:00', 'backup at 06:00'), tr('blokkeert koppeling', 'blocks the link'), [tr('naar 04:00: wijziging', 'to 04:00: a change'), 'pm-on'], [tr('besproken, gepland', 'discussed, planned'), 'pm-mute']], true));
     return o;
   }
@@ -232,7 +232,7 @@ const STAGE = (() => {
       const dot = (i, min, a) => op(a, circ(dayU(i), vOf(min / 60), 3, 'pm-red'));
       s += dot(0, T.mon, at(b, p, 1, 0.15, 0.35));
       s += op(at(b, p, 2, 0.3, 0.5), circ(dayU(0) + 7, vOf(T.fixed / 60), 2.2, 'pm-ok'));
-      s += dot(1, T.tue, at(b, p, 3, 0.1, 0.3)) + dot(2, T.wed, at(b, p, 3, 0.45, 0.65));
+      s += dot(1, T.tue, at(b, p, 3, 0.1, 0.3)) + dot(2, T.wed, at(b, p, 3, 0.3, 0.5));
       s += op(at(b, p, 4, 0.15, 0.45), rect(dayU(0) - 7, vOf(T.tue / 60) - 7, dayU(2) - dayU(0) + 14, vOf(T.wed / 60) - vOf(T.tue / 60) + 14, 'pm-loop', 6));
       if (b >= 5) {
         const m = span(p, 0.55, 0.85);
