@@ -994,6 +994,7 @@ export default {
     },
     {
       id: 'pm.itproject.uat',
+      film: 'pm.itproject.uat',
       title: 'The user acceptance test',
       pre: [
         {
@@ -1076,6 +1077,7 @@ export default {
     },
     {
       id: 'pm.itproject.defects',
+      film: 'pm.itproject.uat',
       title: 'Defects, triage and exit criteria',
       pre: [
         {
