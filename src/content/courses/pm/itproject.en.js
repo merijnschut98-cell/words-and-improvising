@@ -442,6 +442,7 @@ export default {
           tolerance: 0.01,
           unit: '',
           why: '0.40 × 4 + 0.30 × 3 + 0.30 × 5 = 1.6 + 0.9 + 1.5 = 4.0.',
+          hint: 'Multiply each score by its weight, then add up the three results.',
         },
         {
           q: 'What makes a scripted demo different from an ordinary vendor demo?',

@@ -442,6 +442,7 @@ export default {
           tolerance: 0.01,
           unit: '',
           why: '0,40 × 4 + 0,30 × 3 + 0,30 × 5 = 1,6 + 0,9 + 1,5 = 4,0.',
+          hint: 'Vermenigvuldig elke score met zijn gewicht en tel de drie uitkomsten op.',
         },
         {
           q: 'Wat maakt een scripted demo anders dan een gewone demo van een leverancier?',
