@@ -176,7 +176,7 @@ says(PL, ['Vroeger waren er in IT twee kampen', 'Ontwikkelaars (development) bou
   'meestal Git, dat elke versie van de code bewaart en laat zien wie wat veranderde', 'een pakketje veranderingen met een korte uitleg',
   'Na een commit start de pipeline vanzelf', 'de code wordt omgezet in iets wat een computer kan draaien', 'automatische tests controleren of alles nog werkt',
   'artefact, een vast pakket dat niet meer verandert', 'geïnstalleerd op een testomgeving en later op de echte systemen', 'Faalt een stap, dan stopt de band en krijgt het team direct een melding',
-  'Een pipeline is standaardwerk voor software: elke wijziging volgt dezelfde route, dus de uitkomst is voorspelbaar',
+  'Een pipeline werkt als standaardwerk voor software: elke wijziging volgt dezelfde route, dus de uitkomst is voorspelbaar',
   'jidoka, de Toyota-gedachte dat een machine stopt zodra er iets misgaat, zodat je geen fouten doorgeeft',
   'kleine commits lijken op kleine series: minder tussenvoorraad, sneller zien wat er fout gaat', 'CI/CD (continuous integration en continuous delivery); die twee komen in de volgende lessen',
   '“Wij zijn geen softwarebedrijf, DevOps is niets voor ons.”', 'het systeem dat orders en productie op de vloer bijhoudt', 'etiketsoftware en koppelingen met het ERP worden ook steeds aangepast',
@@ -401,9 +401,9 @@ const spec = {
       { nl: 'Faalt een stap, zoals een rode test, dan stopt de band en krijgt het team direct een melding.', en: 'If a step fails, like a red test, the conveyor stops and the team is told at once.', focus: ['red', 'stTest', 'dev'] },
     ]),
     sc('s4', PL, 1, { nl: 'Lean-blik, en de fabriek', en: 'The Lean view, and the factory' }, [
-      { nl: 'Een pipeline is standaardwerk voor software: dezelfde route, een voorspelbare uitkomst.', en: 'A pipeline is standard work for software: the same route, a predictable outcome.', focus: ['std', 'belt'] },
+      { nl: 'Een pipeline werkt als standaardwerk voor software: dezelfde route, een voorspelbare uitkomst.', en: 'A pipeline works like standard work for software: the same route, a predictable outcome.', focus: ['std', 'belt'] },
       { nl: 'Stoppen bij een fout is jidoka: de machine stopt, je geeft geen fouten door.', en: 'Stopping at a fault is jidoka: the machine stops, faults are not passed on.', focus: ['jidoka', 'stTest'] },
-      { nl: 'Kleine commits zijn kleine series: minder tussenvoorraad, sneller zien wat fout gaat.', en: 'Small commits are small batches: less work in between, faults seen sooner.', focus: ['batch', 'bBatch'] },
+      { nl: 'Kleine commits lijken op kleine series: minder tussenvoorraad, sneller zien wat fout gaat.', en: 'Small commits are like small batches: less work in between, faults seen sooner.', focus: ['batch', 'bBatch'] },
       { nl: 'In offertes heet dit vaak CI/CD: continuous integration en continuous delivery.', en: 'In proposals this is often called CI/CD: continuous integration and continuous delivery.', focus: ['cicd', 'belt'] },
       { nl: '“Wij zijn geen softwarebedrijf.” Maar MES, etiketsoftware en ERP-koppelingen veranderen steeds.', en: '“We are not a software company.” But the MES, label software and ERP links keep changing.', focus: ['notsw', 'stProd', 'ops'] },
       { nl: 'Vraag: hoe komt een wijziging nu op de vloer, en welke stappen gaan met de hand?', en: 'Ask: how does a change reach the floor today, and which steps are manual?', focus: ['ask', 'jij'] },
@@ -453,7 +453,7 @@ const spec = {
 // Dutch checked with espeak-ng phonemes through Piper's own bridge
 // (nl_NL-alex, 2026-11-13). Read as written: DevOps, DevOpsDays, Gent, commit,
 // Git, DORA, Forsgren, Google Cloud, MTTR (letters), first pass yield,
-// jidoka, testomgeving, proefetiket, houdbaarheidsdatum, kwaliteitsafdeling,
+// testomgeving, proefetiket, houdbaarheidsdatum, kwaliteitsafdeling,
 // spoedreparatie, datacenter, stroomstoring, snoepfabriek, IT-professionals.
 // New SAY rules in films/_kit/timeline.mjs (tested; recomputed for every film:
 // no other film's spoken text changes): pipeline as "paiplain", build as
@@ -461,7 +461,8 @@ const spec = {
 // Debois as "De-bwa", "Jez Humble en Gene Kim" with English sounds, Accelerate,
 // State of, mean time to restore, four keys, CI/CD as letters, continuous
 // integration and delivery in Dutch sounds, softwarebedrijf, artefact and "in
-// een waardestroom" split at the head. Toyota goes through pm.land.training's
+// een waardestroom" split at the head, jidoka as "djidoka" (espeak-ng reads "jie-DOO-kaa"
+// with the j of "ja"). Toyota goes through pm.land.training's
 // rule, Lean-consultant through pm.run.conflict's, MES through the letters
 // rule, lead time is not said in Dutch. In English, CI/CD as letters. Said
 // around because espeak-ng misreads it (it stays in the captions and on the
@@ -482,7 +483,7 @@ const SAY = [
       en: 'The word appeared around two thousand and nine, when Patrick Debois organised the first DevOpsDays in Ghent.' },
   ],
   [ // s2 the pipeline, version control, a commit
-    { nl: 'Het hart van DevOps is de {t:Pipeline|pipeline}: een automatische lopende band: elke wijziging dezelfde stappen, van ontwikkelaar tot gebruiker.',
+    { nl: 'Het hart van DevOps is de {t:Pipeline|pipeline}, een automatische lopende band: elke wijziging dezelfde stappen, van ontwikkelaar tot gebruiker.',
       en: 'The heart of DevOps is the {t:Pipeline|pipeline}: an automated conveyor, the same steps for every change, from developer to user.' },
     { nl: 'Het begint bij {t:Versiebeheer|versiebeheer}, meestal Git: het bewaart elke versie van de code en laat zien wie wat veranderde.',
       en: 'It starts with {t:Version control|version control}, usually Git: every version of the code kept, and who changed what.' },
@@ -502,14 +503,14 @@ const SAY = [
       en: 'If a step fails, like a red test, the conveyor stops and the team is told at once.' },
   ],
   [ // s4 the Lean view; CI/CD; the factory
-    { nl: 'Voor een Lean-consultant bekend: een pipeline is standaardwerk voor software. Dezelfde route, dus een voorspelbare uitkomst.',
-      en: 'For a Lean consultant, familiar: a pipeline is standard work for software, the same route, a predictable outcome.' },
+    { nl: 'Voor een Lean-consultant bekend: een pipeline werkt als standaardwerk voor software: dezelfde route, een voorspelbare uitkomst.',
+      en: 'For a Lean consultant, familiar: a pipeline works like standard work for software, the same route, a predictable outcome.' },
     { nl: 'Stoppen bij een fout is jidoka, de Toyota-gedachte dat een machine stopt zodra er iets misgaat: geen fouten doorgeven.',
       en: 'Stopping at a fault is jidoka, the Toyota idea that a machine stops as soon as something goes wrong: no faults passed on.' },
     { nl: 'Kleine commits lijken op kleine series: minder tussenvoorraad, sneller zien wat fout gaat.',
       en: 'Small commits are like small batches: less work in between, faults seen sooner.' },
     { nl: 'In offertes heet dit vaak CI/CD: continuous integration en continuous delivery. Die komen later.',
-      en: 'In proposals this is often called CI/CD: continuous integration and continuous delivery. Both follow in later lessons.' },
+      en: 'In proposals this is often called CI/CD: continuous integration and continuous delivery. Both come later.' },
     { nl: 'In fabrieken hoor je: wij zijn geen softwarebedrijf, DevOps is niets voor ons. Maar het MES, de software voor etiketten en de koppelingen met het ERP veranderen steeds vaker.',
       en: 'Factories say: we are no software company, DevOps is not for us. Yet the MES, label software and ERP links change ever more often.' },
     { nl: 'Vraag: hoe komt een wijziging nu op de vloer, en welke stappen gaan met de hand? Elke handmatige stap geeft fouten en wachttijd.',
@@ -523,7 +524,7 @@ const SAY = [
     { nl: 'Om vier over negen de tests, acht minuten; ze controleren onder meer of de datum nog in het juiste formaat staat.',
       en: 'At four past nine the tests, eight minutes, checking among other things that the date format is still right.' },
     { nl: 'Om twaalf over negen is artefact vier punt zeven punt één bewaard. Kwart over negen staat het op de testomgeving, en kwaliteit print een proefetiket.',
-      en: 'At twelve past nine artefact four point seven point one is stored; at quarter past, it is on the test environment and quality prints a test label.' },
+      en: 'At twelve past nine artefact four point seven point one is stored; at quarter past it is on the test environment; quality prints a test label.' },
     { nl: 'Totaal: vijftien minuten van commit tot testomgeving, zonder één handmatige stap.',
       en: 'Total: fifteen minutes from commit to test environment, without a single manual step.' },
   ],
@@ -536,8 +537,8 @@ const SAY = [
       en: 'Two are about speed. {t:Deployment frequency|Deployment frequency}: how often a new version goes live, from three times a day to once a month.' },
     { nl: '{t:Productie|Productie}: dat zijn de echte systemen die gebruikers gebruiken.',
       en: 'Live means in {t:Production|production}: the real systems that users use.' },
-    { nl: 'De {t:Doorlooptijd van een wijziging|doorlooptijd van een wijziging}: van commit tot productie, het deel van de keten dat het team zelf in de hand heeft.',
-      en: '{t:Change lead time|Change lead time}: from commit to production, the part of the chain the team controls itself.' },
+    { nl: 'De {t:Doorlooptijd van een wijziging|doorlooptijd van een wijziging}: van commit tot productie, het deel van de keten dat het team in de hand heeft.',
+      en: '{t:Change lead time|Change lead time}: from commit to production, the part of the chain the team controls.' },
   ],
   [ // s7 change fail rate, rollback; recovery time, MTTR; the four keys
     { nl: 'Twee gaan over stabiliteit. Het {t:Faalpercentage van wijzigingen|faalpercentage van wijzigingen}: het aandeel deploys dat direct ingrijpen vraagt.',
@@ -582,7 +583,7 @@ spec.scenes.forEach((s, si) => {
 // and a misread one fails the build
 const plainSay = (src) => src.replace(/\{t:[^|}]*\|([^}]*)\}/g, '$1').replace(/\{n:([^}]*)\}/g, '$1');
 const MISREAD = {
-  nl: /\b(pipelines?|build|deploy\w*|etiketsoftware|softwarebedrijf|Debois|Accelerate|State of|four keys|continuous|artefact)\b|(^|[.?!;]\s)Eén\b/i,
+  nl: /\b(pipelines?|build|deploy\w*|etiketsoftware|softwarebedrijf|Debois|Accelerate|State of|four keys|continuous|artefact|jidoka)\b|(^|[.?!;]\s)Eén\b/i,
   en: /\bCI\b/,
 };
 for (const scene of SAY) for (const line of scene) for (const lang of ['nl', 'en']) {

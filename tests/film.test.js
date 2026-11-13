@@ -382,7 +382,8 @@ test('speak variant: the stage-gate and lead-time words in Dutch, go/kill and SO
 // kee-is": for kies), CI/CD ("si see-dee": sie ie sie die), continuous
 // integration and continuous delivery in Dutch sounds, softwarebedrijf ("sofT-
 // waa-re", split at the head), artefact (stressed AR-: arte-fact) and "in een
-// waardestroom" (stressed -STROOM: waarde-stroom). In English, CI/CD as letters
+// waardestroom" (stressed -STROOM: waarde-stroom), jidoka (the j of "ja":
+// djidoka). In English, CI/CD as letters
 // (it reads CI as the word "sigh"); no other film's spoken text changes
 test('speak variant: the DevOps words in Dutch, CI/CD in English', () => {
   const nl = (s) => speakOf([s], 'nl');
@@ -395,6 +396,7 @@ test('speak variant: the DevOps words in Dutch, CI/CD in English', () => {
   assert.equal(nl('Geen softwarebedrijf. Een Softwarebedrijf. Het artefact, Artefact. Doorlooptijd in een waardestroom.'),
     'Geen software-bedrijf. Een Software-bedrijf. Het arte-fact, Arte-fact. Doorlooptijd in een waarde-stroom.');
   assert.equal(nl('een builder, de waardestroom, een artefacten-lijst, continuous process'), 'een builder, de waardestroom, een artefacten-lijst, continuous process');
+  assert.equal(nl('Dat is jidoka. Jidoka, de Toyota-gedachte.'), 'Dat is djidoka. Djidoka, de Tojota-gedachte.');
   assert.equal(speakOf(['Often called CI/CD, continuous integration.'], 'en'), 'Often called C I C D, continuous integration.');
   const en = 'The pipeline, the build, a deployment, Patrick Debois, Jez Humble and Gene Kim, Accelerate, the State of DevOps report, mean time to restore, the four keys, an artefact';
   assert.equal(speakOf([en], 'en'), en);

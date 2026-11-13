@@ -576,13 +576,15 @@ const SAY = {
     // taim toe ristoor), four keys as "fau-r kee-is" (for kies), CI/CD (made "CI CD" by the acronym-pair rule above)
     // as "si see-dee" (sie ie sie die), continuous integration and continuous delivery in Dutch sounds, and it
     // stresses softwarebedrijf with "waa-re", ARtefact and waardeSTROOM: split, the last only in "in een
-    // waardestroom". Commit, Git, DORA, DevOps and MTTR (letters) keep their voice; no other film's spoken text changes
+    // waardestroom"; jidoka as "jie-DOO-kaa" with the j of "ja" (said Djidoka, the dzj of Japanese and of Dutch Lean
+    // practice, as Djez above). Commit, Git, DORA, DevOps and MTTR (letters) keep their voice; no other film's spoken text changes
     [/\b([Pp])ipeline(s?)\b/g, '$1aiplain$2'], [/\b([Bb])uild\b/g, '$1ild'], [/\b([Dd])eployfrequentie\b/g, '$1ie-ploj-frequentie'],
     [/\b([Dd])eploy(s|en)?\b/g, (m, d, e) => `${d === 'D' ? 'D' : 'd'}ie-ploj${e || ''}`], [/\bDebois\b/g, 'De-bwa'],
     [/\bJez Humble en Gene Kim\b/g, 'Djez Hambul en Djien Kim'], [/\bAccelerate\b/g, 'Ek-sellereet'], [/\bState of DevOps\b/g, 'Steet of DevOps'],
     [/\bmean time to restore\b/g, 'mien taim toe ristoor'], [/\bfour keys\b/g, 'for kies'], [/\bCI CD\b/g, 'sie ie sie die'],
     [/\bcontinuous integration en continuous delivery\b/g, 'kon-tinjoe-wus inte-gree-sjun en kon-tinjoe-wus de-livvrie'],
-    [/\b([Ss])oftwarebedrijf\b/g, '$1oftware-bedrijf'], [/\b([Aa])rtefact\b/g, '$1rte-fact'], [/\bin een waardestroom\b/g, 'in een waarde-stroom']],
+    [/\b([Ss])oftwarebedrijf\b/g, '$1oftware-bedrijf'], [/\b([Aa])rtefact\b/g, '$1rte-fact'], [/\bin een waardestroom\b/g, 'in een waarde-stroom'],
+    [/\b([Jj])idoka\b/g, (m, j) => `${j === 'J' ? 'D' : 'd'}jidoka`]],
   en: [[/\brpm\b/g, 'revolutions per minute'], [/\bmm\/min\b/g, 'millimetres per minute'], [/\bm\/min\b/g, 'metres per minute'], [/µm\b/g, 'micrometres'],
     [/€\s?(\d[\d,]*(?:\.\d+)?)/g, '$1 euros'], [/(\d)\.0(?![\d])/g, '$1'], [/(\d)\s?mm\b/g, '$1 millimetres'], [/(\d)\s?min\b/g, '$1 minutes'], [/(\d)\s?%/g, '$1 percent'],
     [/Ø\s*/g, 'diameter '], [/(\d)\+(\d)/g, '$1 plus $2'], [/\s×\s/g, ' times '], [/\s\/\s/g, ' divided by '], [/\s=\s/g, ' is '], [/°/g, ' degrees'], [/\bRa\b/g, 'R a'], [/’/g, "'"],
