@@ -2092,6 +2092,41 @@
         ],
         "vtt": "src/content/courses/films/pm.outside.experts.en.vtt"
       }
+    },
+    "pm.outside.jargon": {
+      "poster": "src/content/courses/films/pm.outside.jargon.jpg",
+      "nl": {
+        "dur": 323.6,
+        "bytes": 11367736,
+        "scenes": [
+          0,
+          16.92,
+          49.97,
+          76.68,
+          125.38,
+          173.96,
+          195.51,
+          234.56,
+          272.51
+        ],
+        "vtt": "src/content/courses/films/pm.outside.jargon.nl.vtt"
+      },
+      "en": {
+        "dur": 337.5,
+        "bytes": 11630731,
+        "scenes": [
+          0,
+          17.8,
+          54.34,
+          80.74,
+          130.68,
+          180.95,
+          203.02,
+          242.78,
+          283.54
+        ],
+        "vtt": "src/content/courses/films/pm.outside.jargon.en.vtt"
+      }
     }
   }
 }
