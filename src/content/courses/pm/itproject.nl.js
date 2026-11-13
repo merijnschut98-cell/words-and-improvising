@@ -3,6 +3,7 @@ export default {
   lessons: [
     {
       id: 'pm.itproject.requirements',
+      film: 'pm.itproject.mvp',
       title: 'Wat een requirement is, en hoe je er een schrijft',
       pre: [
         {
@@ -84,6 +85,7 @@ export default {
     },
     {
       id: 'pm.itproject.mvp',
+      film: 'pm.itproject.mvp',
       title: 'MoSCoW en de MVP',
       pre: [
         {

@@ -604,7 +604,10 @@ const SAY = {
     [/\bOracle\b/g, 'Orrekul'], [/\bBusiness Consortium\b/g, 'Biznis Consortium'], [/\bMVP\b/g, 'em vee pee'],
     [/\bminimum viable product\b/g, 'minimum vaaiebul prodduct'], [/\bFrank Robinson\b/g, 'Frank Robbinsun'], [/\bEric Ries\b/g, 'Erik Ries'],
     [/\bThe Lean Startup\b/g, 'de Lien Startap'], [/\bMinimum Usable SubseT\b/g, 'Minimum Joezebul Sabset'], [/\b([Tt])o-be-proces\b/g, '$1oe-bie-proces'],
-    [/\b([Gg])o-live\b/g, '$1oo-laiv'], [/\b([Bb])usinessanalist\b/g, '$1iznis-analist'], [/\bvoedselbatches\b/g, 'voedselbetsjes']],
+    [/\b([Gg])o-live\b/g, '$1oo-laiv'], [/\b([Bb])usinessanalist\b/g, '$1iznis-analist'], [/\bvoedselbatches\b/g, 'voedselbetsjes'],
+    // and, in this film's phrases only, business as Biznis in "tussen business en IT" and live as "laiv" in "live te
+    // gaan" (it reads "buu-ZIE-nes" and the Dutch "lie-ve")
+    [/\btussen business en IT\b/g, 'tussen biznis en IT'], [/\blijn live te gaan\b/g, 'lijn laiv te gaan']],
   en: [[/\brpm\b/g, 'revolutions per minute'], [/\bmm\/min\b/g, 'millimetres per minute'], [/\bm\/min\b/g, 'metres per minute'], [/µm\b/g, 'micrometres'],
     [/€\s?(\d[\d,]*(?:\.\d+)?)/g, '$1 euros'], [/(\d)\.0(?![\d])/g, '$1'], [/(\d)\s?mm\b/g, '$1 millimetres'], [/(\d)\s?min\b/g, '$1 minutes'], [/(\d)\s?%/g, '$1 percent'],
     [/Ø\s*/g, 'diameter '], [/(\d)\+(\d)/g, '$1 plus $2'], [/\s×\s/g, ' times '], [/\s\/\s/g, ' divided by '], [/\s=\s/g, ' is '], [/°/g, ' degrees'], [/\bRa\b/g, 'R a'], [/’/g, "'"],

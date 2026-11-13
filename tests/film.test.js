@@ -429,6 +429,8 @@ test('speak variant: the requirements and MoSCoW words in Dutch, MoSCoW, Ries an
   assert.equal(nl('MVP staat voor minimum viable product, van Frank Robinson. Eric Ries, The Lean Startup. De MVP-lijn.'),
     'em vee pee staat voor minimum vaaiebul prodduct, van Frank Robbinsun. Erik Ries, de Lien Startap. De em vee pee-lijn.');
   assert.equal(nl('Het to-be-proces, na de go-live, een businessanalist, voedselbatches traceren.'), 'Het toe-bie-proces, na de goo-laiv, een biznis-analist, voedselbetsjes traceren.');
+  assert.equal(nl('Die vertaalt tussen business en IT. Om op een echte lijn live te gaan.'), 'Die vertaalt tussen biznis en IT. Om op een echte lijn laiv te gaan.');
+  assert.equal(nl('De business, live muziek.'), 'De business, live muziek.');
   assert.equal(speakOf(['MoSCoW, by Dai Clegg. Eric Ries. The Minimum Usable SubseT.'], 'en'), 'Moscow, by Dai Clegg. Eric Reese. The Minimum Usable Subset.');
   const en = 'Must have, Should have, Could have and Won\'t have this time, Oracle, DSDM, an MVP, minimum viable product, Frank Robinson, The Lean Startup, go-live, the to-be process, a business analyst';
   assert.equal(speakOf([en], 'en'), en);
