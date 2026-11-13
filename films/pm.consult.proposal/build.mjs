@@ -534,7 +534,7 @@ const SAY = [
       en: 'Then the approach, in phases, first a {t:Diagnostic phase|diagnostic phase}: short and cheap, say three weeks, {n:12} days, {n:14400} euros.' },
     { nl: 'Die eindigt met een {t:Go/no-go-besluit|go/no-go-besluit}: doorgaan, bijsturen of stoppen.',
       en: 'It ends in a {t:Go/no-go decision|go/no-go decision}: continue, change course, or stop.' },
-    { nl: 'De rest prijs je na de data: minder risico voor beide kanten.',
+    { nl: 'De rest prijs je na de data, met minder risico voor beide kanten.',
       en: 'You price the rest after seeing the data: less risk for both sides.' },
   ],
   [ // s3 commitments and options
@@ -582,7 +582,7 @@ const SAY = [
   [ // s6 three ways to price
     { nl: 'Drie manieren om te prijzen. Een {t:Dagtarief|dagtarief}, zeg {n:1200} euro: simpel, de klant draagt de uitloop, je verdient aan uren.',
       en: 'Three ways to price. A {t:Day rate|day rate}, say {n:1200} euros: simple, the client carries the overrun, you are paid for hours.' },
-    { nl: 'Een {t:Vaste prijs|vaste prijs}, zeg {n:48} duizend, voor een afgesproken {t:Scope|scope}: de klant weet wat het kost, jij draagt het risico.',
+    { nl: 'Een {t:Vaste prijs|vaste prijs}, zeg {n:48} duizend, voor een afgesproken {t:Scope|scope}. De klant weet wat het kost, jij draagt het risico.',
       en: 'A {t:Fixed price|fixed price}, say {n:48} thousand, for an agreed {t:Scope|scope}: the client knows the bill, you carry the risk.' },
     { nl: 'Een {t:Waardegebaseerde prijs|waardegebaseerde prijs} volgt de waarde: zeg {n:80} duizend voor een verandering van {n:900} duizend per jaar.',
       en: '{t:Value-based pricing|Value-based pricing} follows the worth: say {n:80} thousand for a change worth {n:900} thousand a year.' },
