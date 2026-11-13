@@ -1,0 +1,321 @@
+WEBVTT
+
+1
+00:00:00.858 --> 00:00:03.935
+A requirement is what the new system must do or be,
+
+2
+00:00:04.062 --> 00:00:05.862
+written so you can check it later.
+
+3
+00:00:06.909 --> 00:00:10.346
+It is the basis for the quote, the tests and acceptance.
+
+4
+00:00:11.349 --> 00:00:14.322
+A functional requirement says what the system does:
+
+5
+00:00:14.496 --> 00:00:17.015
+it blocks a batch quality has not released.
+
+6
+00:00:18.070 --> 00:00:21.158
+A non-functional requirement says how well: speed,
+
+7
+00:00:21.367 --> 00:00:25.326
+availability, security, like a label within three seconds.
+
+8
+00:00:26.629 --> 00:00:30.577
+Start from the process, not the screens: first the to-be process,
+
+9
+00:00:30.692 --> 00:00:33.792
+how the work runs after go-live, step by step.
+
+10
+00:00:34.880 --> 00:00:37.817
+Then ask, per step, what the system must do.
+
+11
+00:00:38.851 --> 00:00:43.553
+Start from the old system and you get a wish list: the old system in new colours,
+
+12
+00:00:43.681 --> 00:00:44.621
+detours and all.
+
+13
+00:00:45.608 --> 00:00:47.535
+A good requirement is testable.
+
+14
+00:00:48.253 --> 00:00:51.689
+User-friendly is not: nobody can say pass or fail.
+
+15
+00:00:52.709 --> 00:00:54.706
+This is: after an hour's training,
+
+16
+00:00:54.892 --> 00:00:58.630
+a new operator logs a line stop in under thirty seconds.
+
+17
+00:00:59.625 --> 00:01:03.444
+Give every line an ID, a source and later a priority.
+
+18
+00:01:04.130 --> 00:01:07.381
+The ID returns in test scripts and contract.
+
+19
+00:01:08.789 --> 00:01:10.809
+Write them with the people who know the work,
+
+20
+00:01:11.018 --> 00:01:14.838
+and a business analyst who translates between business and IT.
+
+21
+00:01:15.849 --> 00:01:18.984
+Watch out for solutions disguised as requirements,
+
+22
+00:01:19.146 --> 00:01:21.410
+like an Excel export of all orders.
+
+23
+00:01:22.415 --> 00:01:27.639
+The real need may be: the planner sees tomorrow's orders per line, with materials.
+
+24
+00:01:28.645 --> 00:01:33.173
+What often goes wrong: two big workshops, no check against the to-be process,
+
+25
+00:01:33.393 --> 00:01:35.936
+and a quote on three hundred vague lines.
+
+26
+00:01:36.957 --> 00:01:40.417
+Every vague line later becomes an argument: was it in scope?
+
+27
+00:01:41.483 --> 00:01:43.817
+Ask: which step or decision gets better?
+
+28
+00:01:44.578 --> 00:01:47.852
+If nobody knows, it is probably habit, not need.
+
+29
+00:01:49.196 --> 00:01:54.896
+A meat products plant replaces its MES, the system that runs orders on the floor.
+
+30
+00:01:55.609 --> 00:01:58.558
+Three workshops: two hundred and forty wishes.
+
+31
+00:01:59.672 --> 00:02:03.654
+Step one: sixty duplicates out, a hundred and eighty left.
+
+32
+00:02:04.753 --> 00:02:07.656
+Step two: the Excel export becomes a need.
+
+33
+00:02:08.672 --> 00:02:12.701
+Step three: fast labels become testable: within three seconds,
+
+34
+00:02:12.910 --> 00:02:15.023
+in ninety-five of a hundred tests.
+
+35
+00:02:16.016 --> 00:02:20.346
+Step four: thirty-six lines serve no process step, and are parked.
+
+36
+00:02:21.417 --> 00:02:27.129
+Result: a hundred and forty-four requirements, each with an ID, a source and a test.
+
+37
+00:02:28.461 --> 00:02:31.758
+MoSCoW sorts requirements into four bins: Must have,
+
+38
+00:02:31.921 --> 00:02:34.011
+Should have, Could have and Won’t have this time.
+
+39
+00:02:34.992 --> 00:02:37.035
+The o's only make it pronounceable.
+
+40
+00:02:38.027 --> 00:02:41.510
+Dai Clegg devised it in nineteen ninety-four at Oracle,
+
+41
+00:02:41.603 --> 00:02:43.925
+for development projects with little time.
+
+42
+00:02:44.937 --> 00:02:47.723
+It later became a fixed part of DSDM,
+
+43
+00:02:47.897 --> 00:02:51.531
+an agile method now kept by the Agile Business Consortium.
+
+44
+00:02:52.544 --> 00:02:57.652
+In ERP and MES projects it is the most common way to prioritise.
+
+45
+00:02:58.953 --> 00:03:02.424
+A Must have is something without which go-live makes no sense,
+
+46
+00:03:02.587 --> 00:03:04.189
+or is unsafe or illegal.
+
+47
+00:03:04.854 --> 00:03:08.174
+DSDM calls the Musts the Minimum Usable SubseT.
+
+48
+00:03:09.261 --> 00:03:12.663
+The test question: without this, do we postpone go-live?
+
+49
+00:03:13.412 --> 00:03:15.932
+If we'd work around it, it is not a Must.
+
+50
+00:03:16.980 --> 00:03:20.858
+A Should have is important, but a workaround is possible for a while.
+
+51
+00:03:21.875 --> 00:03:25.822
+A Could have is nice to have, and goes first when time runs short.
+
+52
+00:03:27.227 --> 00:03:30.536
+Won’t have this time means: agreed not to deliver it now.
+
+53
+00:03:31.538 --> 00:03:35.694
+It still goes on the list, so it can't creep back in through the side door.
+
+54
+00:03:36.700 --> 00:03:41.541
+DSDM's rules of thumb: Musts typically no more than sixty percent of the effort,
+
+55
+00:03:41.716 --> 00:03:43.005
+Coulds around twenty.
+
+56
+00:03:43.976 --> 00:03:45.427
+The Coulds are your reserve.
+
+57
+00:03:46.478 --> 00:03:47.894
+If everything is a Must,
+
+58
+00:03:47.999 --> 00:03:52.016
+the scope cannot absorb a setback: the date or the budget breaks.
+
+59
+00:03:53.306 --> 00:03:58.414
+MVP: minimum viable product, Frank Robinson's term from 2001.
+
+60
+00:03:59.414 --> 00:04:02.131
+Eric Ries made it famous with The Lean Startup:
+
+61
+00:04:02.270 --> 00:04:05.776
+the smallest version to learn the most from real users.
+
+62
+00:04:06.791 --> 00:04:12.236
+In ERP and MES it is looser: the smallest scope to go live on a real line.
+
+63
+00:04:12.926 --> 00:04:16.432
+All above the MVP cut line must be ready for go-live.
+
+64
+00:04:17.487 --> 00:04:22.712
+The whole process, thin but complete: order in, produce, label, ship, invoice.
+
+65
+00:04:23.911 --> 00:04:26.964
+Half the screens of every step is not an MVP.
+
+66
+00:04:27.930 --> 00:04:31.761
+Familiar to a Lean consultant: start small, on one line.
+
+67
+00:04:32.452 --> 00:04:37.375
+But legal and safety Musts, such as tracing food batches, are never trimmed.
+
+68
+00:04:38.406 --> 00:04:41.308
+Ask: what do we do on the first Monday without this?
+
+69
+00:04:42.624 --> 00:04:45.689
+An injection moulder introduces an MES:
+
+70
+00:04:45.805 --> 00:04:49.660
+three hundred person-days of build capacity until go-live.
+
+71
+00:04:50.642 --> 00:04:56.145
+Forty requirements: Musts two hundred and ten days, Shoulds thirty, Coulds sixty.
+
+72
+00:04:57.005 --> 00:04:59.234
+Exactly three hundred, no room.
+
+73
+00:05:00.247 --> 00:05:04.264
+Step one: Musts are seventy percent, above DSDM's sixty.
+
+74
+00:05:05.229 --> 00:05:07.121
+Step two: the test question.
+
+75
+00:05:07.831 --> 00:05:11.604
+Six requirements, forty-five days, have a workaround,
+
+76
+00:05:11.732 --> 00:05:13.764
+such as a weekly report by hand.
+
+77
+00:05:14.581 --> 00:05:15.579
+They move to Should.
+
+78
+00:05:16.668 --> 00:05:21.312
+Step three: Musts a hundred and sixty-five days, fifty-five percent.
+
+79
+00:05:22.067 --> 00:05:24.354
+Shoulds seventy-five, Coulds sixty.
+
+80
+00:05:25.382 --> 00:05:29.852
+The MVP cut line sits under the Musts: order to shipment on line one.
