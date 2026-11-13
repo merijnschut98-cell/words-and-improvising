@@ -664,6 +664,7 @@ export default {
     },
     {
       id: 'pm.itproject.rollout',
+      film: 'pm.itproject.migration',
       title: 'Hoe een invoering verloopt: big bang of gefaseerd',
       pre: [
         {
@@ -745,6 +746,7 @@ export default {
     },
     {
       id: 'pm.itproject.migration',
+      film: 'pm.itproject.migration',
       title: 'Datamigratie: verhuizen, opschonen en tellen',
       pre: [
         {
