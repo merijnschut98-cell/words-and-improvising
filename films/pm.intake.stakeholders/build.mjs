@@ -461,7 +461,7 @@ const SAY = [
       en: 'Ask the sponsor: whose support do we need that we don\'t have yet?' },
   ],
   [ // s6 you trade
-    { nl: 'Opdragen kan niet: je ruilt. Wat jij biedt, heet {t:Valuta|valuta}: hulp, informatie, zichtbaarheid, tijdwinst, een probleem minder.',
+    { nl: 'Opdragen kan niet. Je ruilt. Wat jij biedt, heet {t:Valuta|valuta}: hulp, informatie, zichtbaarheid, tijdwinst, een probleem minder.',
       en: 'You can\'t give orders: you trade. What you offer is {t:Currency|currency}: help, information, visibility, time saved, a problem off their plate.' },
     { nl: 'Mensen geven terug wat ze krijgen, dus geef eerst: data waar iemand op wacht, of een bevinding voordat die naar de {t:Stuurgroep|stuurgroep} gaat: de leiding die vaak maandelijks je project bewaakt en grote besluiten neemt.',
       en: 'People repay what they receive, so give first: data someone wants, or a finding before it goes to the {t:Steering committee|steering committee}: the senior people who oversee your project, often monthly, and take its big decisions.' },
