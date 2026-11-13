@@ -244,9 +244,10 @@ test('speak variant: second opinion, timebox, Weinberg, Pink, Deci and Ryan, man
 // Schwaber and Jeff ("schwaber" with sch, "yef": Sjwaaber, Djef), events
 // ("ee-VENTS": ievents), refinement ("ree-fie-ne-MENT": ri-fainmunt), and the
 // compounds espeak-ng stresses at the end or reads with "ti" for "tsie": split
-// at the head. Dutch only; the capitalised names only, the Guide only after
-// "van" or "volgens", ERP untouched (the videos say "erp"), and no other film's
-// spoken text changes
+// at the head (sprintdoel, and vuistregel only after "gangbare"); "uit het
+// Lean-team" as "Lien team". Dutch only; the capitalised names only, the Guide
+// only as "Scrum Guide van" or "de Guide", ERP untouched (the videos say "erp"),
+// and no other film's spoken text changes
 test('speak variant: the Scrum names and split compounds in Dutch', () => {
   const nl = (s) => speakOf([s], 'nl');
   assert.equal(nl('De Product Owner ordent de Product Backlog naar het Product Goal.'), 'De Prodduct Ooner ordent de Prodduct Bek-lok naar het Prodduct Gool.');
@@ -256,7 +257,9 @@ test('speak variant: the Scrum names and split compounds in Dutch', () => {
   assert.equal(nl('De Definition of Done. Vijf events. Events zijn vast. Refinement is geen event.'), 'De Deffi-nisjun of Dun. Vijf ievents. Ievents zijn vast. Ri-fainmunt is geen ievent.');
   assert.equal(nl('De productieleider van de extrusielijn. De acceptatieomgeving, een waardestroom.'),
     'De productie-leider van de extrusie-lijn. De acceptatie-omgeving, een waarde-stroom.');
-  assert.equal(nl('Volgens de Guide; volgens de Guide.'), 'Volgens de Gaid; volgens de Gaid.');
+  assert.equal(nl('Volgens de Guide; de timeboxes van de Guide. De Guide zegt het.'), 'Volgens de Gaid; de timeboxes van de Gaid. De Gaid zegt het.');
+  assert.equal(nl('Het sprintdoel. Uit het Lean-team, een gangbare vuistregel.'), 'Het sprint-doel. Uit het Lien team, een gangbare vuist-regel.');
+  assert.equal(nl('Een Lean-team, een vuistregel.'), 'Een Lean-team, een vuistregel.');
   assert.equal(nl('een product, een goal, de review, een retrospective, de developer, Uit de Scrum Guide; het ERP'), 'een product, een goal, de review, een retrospective, de developer, Uit de Scrum Guide; het ERP');
   const en = 'The Product Owner, the Product Backlog, the Developers, the Daily Scrum, the Sprint Review, the Sprint Retrospective, the Scrum Guide by Ken Schwaber and Jeff Sutherland, events, refinement, the ERP';
   assert.equal(speakOf([en], 'en'), en);

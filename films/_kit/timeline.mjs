@@ -483,17 +483,21 @@ const SAY = {
     // "DAI-lie" (Deeli), "ree-VIEW" (Rievjoe, as Harvard Business Review above), "RE-tros-pek-tie-ve"
     // (Retro-spektif), a Dutch "guide" (Gaid), Definition of Done with a capital D (Deffi-nisjun of Dun, as the
     // lower-case rule above), Schwaber with sch and Jeff as "yef" (Sjwaaber, Djef), "ee-VENTS" (ievents) and
-    // "ree-fie-ne-MENT" (ri-fainmunt), and it stresses productieLEIder with "ti", extrusieLIJN, waardeSTROOM
-    // and acceptatieomGEving with "ti": split at the head. Capitalised names only (a lower-case goal, review or
-    // developer keeps its voice), the Guide only after "van" or "volgens" (pm.outside.steering's "Uit de Scrum
-    // Guide" stays); ERP stays the word "erp", as the films with a video say it; no other film's voice changes
+    // "ree-fie-ne-MENT" (ri-fainmunt), and it stresses productieLEIder with "ti", extrusieLIJN, waardeSTROOM,
+    // acceptatieomGEving with "ti", sprintDOEL and, in this film's phrases only, vuistreGEL (pm.outside.disagree's
+    // rule covers "als vuistregel:"): split at the head; "uit het Lean-team" as "Lien team", as the Lean-consultant
+    // rule above (espeak-ng reads "lee-an"; pm.run.conflict's "een Lean-team" stays). Capitalised names only (a
+    // lower-case goal, review or developer keeps its voice), the Guide only as "Scrum Guide van" or "de Guide"
+    // (pm.outside.steering's "Uit de Scrum Guide" stays); ERP stays the word "erp", as the films with a video say
+    // it; no other film's voice changes
     [/\bProduct (?=(?:Owner|Backlog|Goal)\b)/g, 'Prodduct '], [/\bOwner\b/g, 'Ooner'], [/\bBacklog\b/g, 'Bek-lok'], [/\bGoal\b/g, 'Gool'],
     [/\bDeveloper(s?)\b/g, 'Di-velloper$1'], [/\bDaily Scrum\b/g, 'Deeli Scrum'], [/\bSprint Review\b/g, 'Sprint Rievjoe'],
-    [/\bSprint Retrospective\b/g, 'Sprint Retro-spektif'], [/\bScrum Guide van\b/g, 'Scrum Gaid van'], [/\b([Vv])olgens de Guide\b/g, '$1olgens de Gaid'], [/\bDefinition of Done\b/g, 'Deffi-nisjun of Dun'],
+    [/\bSprint Retrospective\b/g, 'Sprint Retro-spektif'], [/\bScrum Guide van\b/g, 'Scrum Gaid van'], [/\b([Dd])e Guide\b/g, '$1e Gaid'], [/\bDefinition of Done\b/g, 'Deffi-nisjun of Dun'],
     [/\bKen Schwaber en Jeff Sutherland\b/g, 'Ken Sjwaaber en Djef Sutherland'], [/\b([Ee])vent(s?)\b/g, (m, e, s) => `${e === 'E' ? 'I' : 'i'}event${s}`],
     [/\b([Rr])efinement\b/g, '$1i-fainmunt'],
     [/\b([Pp])roductieleider/g, '$1roductie-leider'], [/\b([Ee])xtrusielijn/g, '$1xtrusie-lijn'], [/\b([Ww])aardestroom/g, '$1aarde-stroom'],
-    [/\b([Aa])cceptatieomgeving/g, '$1cceptatie-omgeving']],
+    [/\b([Aa])cceptatieomgeving/g, '$1cceptatie-omgeving'], [/\b([Ss])printdoel/g, '$1print-doel'], [/\b([Uu])it het Lean-team\b/g, '$1it het Lien team'],
+    [/\bgangbare vuistregel\b/g, 'gangbare vuist-regel']],
   en: [[/\brpm\b/g, 'revolutions per minute'], [/\bmm\/min\b/g, 'millimetres per minute'], [/\bm\/min\b/g, 'metres per minute'], [/µm\b/g, 'micrometres'],
     [/€\s?(\d[\d,]*(?:\.\d+)?)/g, '$1 euros'], [/(\d)\.0(?![\d])/g, '$1'], [/(\d)\s?mm\b/g, '$1 millimetres'], [/(\d)\s?min\b/g, '$1 minutes'], [/(\d)\s?%/g, '$1 percent'],
     [/Ø\s*/g, 'diameter '], [/(\d)\+(\d)/g, '$1 plus $2'], [/\s×\s/g, ' times '], [/\s\/\s/g, ' divided by '], [/\s=\s/g, ' is '], [/°/g, ' degrees'], [/\bRa\b/g, 'R a'], [/’/g, "'"],
