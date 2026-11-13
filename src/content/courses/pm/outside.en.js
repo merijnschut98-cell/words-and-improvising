@@ -410,6 +410,7 @@ export default {
     },
     {
       id: 'pm.outside.fail',
+      film: 'pm.outside.jargon',
       title: '“What would make this fail?”',
       pre: [
         {
@@ -574,6 +575,7 @@ export default {
     },
     {
       id: 'pm.outside.jargon',
+      film: 'pm.outside.jargon',
       title: 'Translating jargon back',
       pre: [
         {
@@ -657,6 +659,7 @@ export default {
     // Topic 3: working with experts
     {
       id: 'pm.outside.trust',
+      film: 'pm.outside.experts',
       title: 'Trust and verify',
       pre: [
         {
@@ -736,6 +739,7 @@ export default {
     },
     {
       id: 'pm.outside.disagree',
+      film: 'pm.outside.disagree',
       title: 'When experts disagree',
       pre: [
         {
@@ -815,6 +819,7 @@ export default {
     },
     {
       id: 'pm.outside.time',
+      film: 'pm.outside.disagree',
       title: 'Their time and motivation',
       pre: [
         {
@@ -897,6 +902,7 @@ export default {
     },
     {
       id: 'pm.outside.redflags',
+      film: 'pm.outside.experts',
       title: 'Red flags',
       pre: [
         {
@@ -979,6 +985,7 @@ export default {
     // Topic 4: steering and deciding
     {
       id: 'pm.outside.progress',
+      film: 'pm.outside.steering',
       title: 'Measuring progress without the content',
       pre: [
         {
@@ -1060,6 +1067,7 @@ export default {
     },
     {
       id: 'pm.outside.decide',
+      film: 'pm.outside.steering',
       title: 'Deciding under uncertainty, and escalating',
       pre: [
         {

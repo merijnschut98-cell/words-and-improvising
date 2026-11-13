@@ -434,7 +434,7 @@ const SAY = [
       en: '{t:Acceptance criteria|Acceptance criteria}: who signs off, on what evidence, when. Here the production manager, after four weeks in a row at {n:2.0}% or less. One good week can be luck.' },
     { nl: 'Spreek het aan het begin af; aan het eind herinnert iedereen het anders.',
       en: 'Agree it at the start; by the end, everyone remembers it differently.' },
-    { nl: 'Experts verschillen: een extra ambitieus doel motiveert sommige teams, maar waar niemand in gelooft, wordt stilletjes genegeerd.',
+    { nl: 'Experts verschillen. Een extra ambitieus doel motiveert sommige teams, maar waar niemand in gelooft, wordt stilletjes genegeerd.',
       en: 'Experts differ: a stretch target motivates some teams, but one nobody believes in gets quietly ignored.' },
     { nl: 'Dit doel scheelt {n:900} kilo per week.',
       en: 'This goal saves {n:900} kilos a week.' },

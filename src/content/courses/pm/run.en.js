@@ -834,6 +834,7 @@ export default {
     },
     {
       id: 'pm.run.conflict',
+      film: 'pm.run.conflict',
       title: 'Conflict and the difficult conversation',
       pre: [
         {

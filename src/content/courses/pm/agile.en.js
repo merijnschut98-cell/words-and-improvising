@@ -327,6 +327,7 @@ export default {
     },
     {
       id: 'pm.agile.scrumbasics',
+      film: 'pm.agile.scrum',
       title: 'Scrum: the team and the sprint',
       pre: [
         {
@@ -409,6 +410,7 @@ export default {
     },
     {
       id: 'pm.agile.events',
+      film: 'pm.agile.scrum',
       title: 'The five Scrum events',
       pre: [
         {
@@ -490,6 +492,7 @@ export default {
     },
     {
       id: 'pm.agile.artefacts',
+      film: 'pm.agile.scrum',
       title: 'The three artefacts and their commitments',
       pre: [
         {

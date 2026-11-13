@@ -10,6 +10,11 @@ import { validateModule } from '../src/content/courses/validate.js';
 import { readFilmData, checkFilm, lessonTextOf, MAX_BYTES } from '../films/_kit/assert.mjs';
 
 const DIR = 'src/content/courses/films';
+// Films whose terms all carry the same name in both languages (pm.agile.scrum:
+// the Scrum Guide's names), so no Dutch term can leak into their English; the
+// Dutch-in-English probes skip only these, and fail for any other film that
+// would have no term to probe with.
+const SAME_NAMED = new Set(['pm.agile.scrum']);
 const films = fs.existsSync(DIR) ? fs.readdirSync(DIR).filter((f) => f.endsWith('.html')).map((f) => f.slice(0, -5)) : [];
 
 const q = (n) => ({ q: `Question ${n}?`, options: ['a', 'b', 'c', 'd'], answer: 'b', why: 'Because b.' });
@@ -119,11 +124,15 @@ test('the sync check catches a renamed term, a removed number and a Dutch word i
     gone.nl.set(n.lesson, withoutNumber(ln, n.value));
     assert.ok(!lessonTextOf(gone.nl.get(n.lesson)).includes(n.value));
     assert.ok(checkFilm(data, { ...ctx, lessons: gone }).some((e) => e.endsWith(`no longer in ${n.lesson}`)), `${id}: removed number ${n.value} not reported`);
-    // a Dutch term in the English caption
+    // a Dutch term in the English caption (a film whose terms all carry the
+    // same name in both languages, as pm.agile.scrum's Scrum Guide names, has none)
     const dutch = data.scenes.flatMap((s) => s.terms).find((x) => x.nl.toLowerCase() !== x.en.toLowerCase());
-    const bad = JSON.parse(JSON.stringify(data));
-    bad.scenes[0].beats[0].text.en += ` ${dutch.nl}`;
-    assert.match(checkFilm(bad, ctx).join('\n'), /Dutch term ".*" in the English caption/);
+    assert.ok(Boolean(dutch) !== SAME_NAMED.has(id), `${id}: ${dutch ? 'has a Dutch-named term but is listed in SAME_NAMED' : 'has no Dutch-named term to probe with'}`);
+    if (dutch) {
+      const bad = JSON.parse(JSON.stringify(data));
+      bad.scenes[0].beats[0].text.en += ` ${dutch.nl}`;
+      assert.match(checkFilm(bad, ctx).join('\n'), /Dutch term ".*" in the English caption/);
+    }
     // a caption that would run past 3 lines in the lesson's film frame
     const long = JSON.parse(JSON.stringify(data));
     const beat = long.scenes[0].beats[0];
@@ -146,11 +155,14 @@ test('every narrated film: each beat has a script in both languages, and the syn
     const gap = JSON.parse(JSON.stringify(data));
     delete gap.scenes[0].beats[0].say;
     assert.match(checkFilm(gap, ctx).join('\n'), /narration: 1 beats have no script/);
-    // a Dutch term in the English narration
+    // a Dutch term in the English narration (none in a film whose terms are named alike in both languages)
     const dutch = data.scenes.flatMap((s) => s.terms).find((x) => x.nl.toLowerCase() !== x.en.toLowerCase());
-    const bad = JSON.parse(JSON.stringify(data));
-    bad.scenes[0].beats[0].say.en.push(` ${dutch.nl}`);
-    assert.match(checkFilm(bad, ctx).join('\n'), /Dutch term ".*" in the English narration/);
+    assert.ok(Boolean(dutch) !== SAME_NAMED.has(data.id), `${data.id}: ${dutch ? 'has a Dutch-named term but is listed in SAME_NAMED' : 'has no Dutch-named term to probe with'}`);
+    if (dutch) {
+      const bad = JSON.parse(JSON.stringify(data));
+      bad.scenes[0].beats[0].say.en.push(` ${dutch.nl}`);
+      assert.match(checkFilm(bad, ctx).join('\n'), /Dutch term ".*" in the English narration/);
+    }
     // a narration term whose lesson term was renamed
     const piece = data.scenes.flatMap((s) => s.beats.flatMap((b) => b.say.nl)).find((p) => typeof p !== 'string');
     const [lid, ix] = piece.k.split('#');

@@ -110,6 +110,160 @@ test('speak variant: Kahneman, Flyvbjerg, referentieklasse, basiscijfer, IT-lead
   assert.equal(speakOf([en], 'en'), en);
 });
 
+// Seeing progress without the expertise (pm.outside.steering): espeak-ng reads
+// definition of done as "dee-fie-nie-SJON of doo-ne" (said deffi-nisjun of dun;
+// not in pm.plan.wbs's caption "definition of done: klaar als", which keeps its
+// voice), FAT and SAT as the words "fat" and "sat" (said as letters), stresses
+// FABrieksacceptatietest and LOcatieacceptatietest with "ti" for "tsie" (split
+// at the heads), and reads Jeffrey Pfeffer with a stressed -REY and a sounded p
+// (said Djeffri Feffer); Dutch only
+test('speak variant: definition of done, FAT, SAT, the acceptance tests and Jeffrey Pfeffer in Dutch', () => {
+  const nl = (s) => speakOf([s], 'nl');
+  assert.equal(nl('De definition of done is een checklist. Definition of done:'), 'De deffi-nisjun of dun is een checklist. Deffi-nisjun of dun:');
+  assert.equal(nl('Werkwoord, eigenaar en een definition of done: klaar als de planningsmanager akkoord is.'),
+    'Werkwoord, eigenaar en een definition of done: klaar als de planningsmanager akkoord is.');
+  assert.equal(nl('De FAT bij de leverancier, de SAT op locatie; een FAT.'), 'De F A T bij de leverancier, de S A T op locatie; een F A T.');
+  assert.equal(nl('de fabrieksacceptatietest en de locatieacceptatietest, Fabrieksacceptatietest'),
+    'de fabrieks-acceptatie-test en de locatie-acceptatie-test, Fabrieks-acceptatie-test');
+  assert.equal(nl('De 7 Rules of Power van Jeffrey Pfeffer'), 'De 7 Rules of Power van Djeffri Feffer');
+  assert.equal(nl('een fat budget, de SATELLIET, de fabriek, de locatie'), 'een fat budget, de SATELLIET, de fabriek, de locatie');
+  const en = 'The definition of done, the FAT and the SAT, a factory acceptance test, Jeffrey Pfeffer';
+  assert.equal(speakOf([en], 'en'), en);
+});
+
+// Testing plans, translating jargon (pm.outside.jargon): espeak-ng stresses
+// PREmortem (said pree-mortem), reads single point of failure as "poo-int of
+// fa-LU-re" (said singel pojnt of feeljer), stresses beheersmaatreGEL and
+// nachtDIENST and reads barcodescanners as "barcoo-des-kanners" (said barkoodskenners; split at the
+// head; beheersmaatregel only after "een", so pm.plan.risk's caption "De
+// beheersmaatregel" keeps its voice), and reads the integration specialist's
+// jargon in Dutch: "ree-al-TAIM", "laa-ten-sie", "re-TRIES" (said riel-taim,
+// lee-tensie, rie-traiz; batch is betsj by an older rule), and jargon as
+// "sjargon" in this film's phrases only (espeak-ng reads "jar-gon"), and Harvard
+// Business Review as "Harvard Biznis Rievjoe" (it reads "bu-ZIE-nus ree-VIEW"); Dutch only
+test('speak variant: premortem, single point of failure, beheersmaatregel, the ERP jargon and jargon in Dutch', () => {
+  const nl = (s) => speakOf([s], 'nl');
+  assert.equal(nl('Een premortem. Premortem:'), 'Een pree-mortem. Pree-mortem:');
+  assert.equal(nl('Een single point of failure. Single point of failure:'), 'Een singel pojnt of feeljer. Singel pojnt of feeljer:');
+  assert.equal(nl('Vraag naar een beheersmaatregel. Zonder een beheersmaatregel. De beheersmaatregel: wat je nu doet.'),
+    'Vraag naar een beheers-maatregel. Zonder een beheers-maatregel. De beheersmaatregel: wat je nu doet.');
+  assert.equal(nl('De barcodescanners op de nachtdienst; Nachtdienst'), 'De barkoodskenners op de nacht-dienst; Nacht-dienst');
+  assert.equal(nl('De koppeling is batch, niet real-time, met 15 minuten latency, en geen idempotentie bij retries.'),
+    'De koppeling is betsj, niet riel-taim, met 15 minuten lee-tensie, en geen idempotentie bij rie-traiz.');
+  assert.equal(nl('een masterbatch, een scanner, de dienst, de tijd'), 'een masterbatch, een scanner, de dienst, de tijd');
+  assert.equal(nl('Jargon is de vaktaal. Jargon: de vaktaal. De expert in jargon aan het bestuur.'), 'Sjargon is de vaktaal. Sjargon: de vaktaal. De expert in sjargon aan het bestuur.');
+  assert.equal(nl('Verkoop geen jargon. Het jargon onvertaald doorgeven.'), 'Verkoop geen jargon. Het jargon onvertaald doorgeven.');
+  assert.equal(nl('in 2007, in Harvard Business Review. De Harvard-methode'), 'in 2007, in Harvard Biznis Rievjoe. De Harvard-methode');
+  const en = 'A premortem, a single point of failure, the barcode scanners, batch, not real-time, latency, retries, jargon is the language';
+  assert.equal(speakOf([en], 'en'), en);
+  // English: espeak-ng reads idempotency as "AID-mpoatency"; said idem-potency
+  assert.equal(speakOf(['And no idempotency on retries.'], 'en'), 'And no idem-potency on retries.');
+  assert.equal(speakOf(['En geen idempotentie.'], 'nl'), 'En geen idempotentie.');
+});
+
+// espeak-ng reads codereviews as "koo-di-re-views", issues as "i-su-es", vage
+// with a French g ("vaazje"), stresses risico-GE-stuurd and sleu-TEL-persoon
+// (with the e of "bed"), negentig-negentigregEL, routineNEEpunten and, after
+// "eerlijk", OPtimistisch: said kood-rievjoes, isjoes, vaage, risico-gestuurd,
+// sleutel-persoon, negentig-negentig-regel, routine-punten and op-timistisch;
+// Dutch only (pm.outside.experts). Not the steekproef of eng.quality.spc or
+// other films' optimistisch
+test('speak variant: codereviews, issues, vage, risicogestuurd, sleutelpersoon, negentig-negentigregel, routinepunten and eerlijk optimistisch in Dutch', () => {
+  const nl = (s) => speakOf([s], 'nl');
+  assert.equal(nl('met codereviews en testrapporten; Codereviews'), 'met kood-rievjoes en testrapporten; Kood-rievjoes');
+  assert.equal(nl('wat kleine issues. Welke issues'), 'wat kleine isjoes. Welke isjoes');
+  assert.equal(nl('Risicogestuurd controleren: risicogestuurd'), 'Risico-gestuurd controleren: risico-gestuurd');
+  assert.equal(nl('de sleutelpersoon die vertrekt'), 'de sleutel-persoon die vertrekt');
+  assert.equal(nl('De negentig-negentigregel, van Bell Labs'), 'De negentig-negentig-regel, van Bell Labs');
+  assert.equal(nl('Experts zijn vaak eerlijk optimistisch.'), 'Experts zijn vaak eerlijk op-timistisch.');
+  assert.equal(nl('Vage antwoorden: vage kleine issues'), 'Vaage antwoorden: vaage kleine isjoes');
+  assert.equal(nl('drie willekeurige routinepunten'), 'drie willekeurige routine-punten');
+  assert.equal(nl('een steekproef, optimistisch, meest waarschijnlijk, het risico, een persoon, vaag, routine'), 'een steekproef, optimistisch, meest waarschijnlijk, het risico, een persoon, vaag, routine');
+  const en = 'code reviews, some minor issues, risk-based checking, the key person, the ninety-ninety rule, honestly optimistic';
+  assert.equal(speakOf([en], 'en'), en);
+});
+
+// Conflict: interests and the difficult conversation (pm.run.conflict): the
+// authors of Getting to Yes as their names sound, only after "van" / "by" (so
+// pm.negotiate.batna's captions "Fisher en Ury:" keep their voice): espeak-ng
+// sounds the h of Fisher and reads Ury as "uu-rie" in Dutch and "urry" in
+// English (said Fisjer en Joeri, Fisher and Yuri); and Lean-consultant as
+// "Lien consultant", two words (espeak-ng reads "lee-an"; with the hyphen it
+// runs on into "link-consultant"); no other film says them
+test('speak variant: Fisher and Ury and the Lean consultant', () => {
+  const nl = (s) => speakOf([s], 'nl');
+  assert.equal(nl('Het komt uit het boek van Fisher en Ury, uit negentien eenentachtig.'), 'Het komt uit het boek van Fisjer en Joeri, uit negentien eenentachtig.');
+  assert.equal(nl('Fisher en Ury: principieel onderhandelen.'), 'Fisher en Ury: principieel onderhandelen.');
+  assert.equal(nl('Je bent junior Lean-consultant bij een zuivelfabriek.'), 'Je bent junior Lien consultant bij een zuivelfabriek.');
+  assert.equal(nl('lean werken, een Lean-team'), 'lean werken, een Lean-team');
+  assert.equal(speakOf(['Getting to Yes, the book by Fisher and Ury, from 1981.'], 'en'), 'Getting to Yes, the book by Fisher and Yuri, from 1981.');
+  assert.equal(speakOf(['Fisher and Ury: principled negotiation. A junior Lean consultant.'], 'en'), 'Fisher and Ury: principled negotiation. A junior Lean consultant.');
+});
+
+// Disagreement and busy experts (pm.outside.disagree): espeak-ng reads second
+// opinion as "se-KONT OP-i-ni-on" (said sekkend opinjun, only in this film's
+// phrases, so pm.outside.steering's caption "een second opinion, de sponsor"
+// keeps its voice), timebox as "TIE-me-box" (taimboks), Weinberg after "van"
+// with a Dutch ei and g (Wainburk, as the Gerald Weinberg rule says it), Daniel
+// Pink's book Drive as "dri-ve" (Deniel Pink, Draiv), Edward Deci and Richard
+// Ryan with a Dutch ch and "rie-an" (Edwerd Diessie, Ritsjerd Rajen), manager
+// as MAA-naa-gher (menetsjer, as the middenmanager rule; only in this film's
+// phrases), and stresses OO-pi-raa-tors (ope-raators, only before "verliezen",
+// so the TPM and LOTO films keep theirs), IN-stal-la-teur, zelfdeterminaatie
+// with "ti" for "tsie", bouwPLAATS, drijfVEren and, after "als"
+// and before a colon only, vuistreGEL: split at the head; Dutch only, no other film says them
+test('speak variant: second opinion, timebox, Weinberg, Pink, Deci and Ryan, manager and the split compounds in Dutch', () => {
+  const nl = (s) => speakOf([s], 'nl');
+  assert.equal(nl('Een second opinion is een kijk. Een second opinion: een expert. Een second opinion van een onafhankelijk bureau. De second opinion steunt het.'),
+    'Een sekkend opinjun is een kijk. Een sekkend opinjun: een expert. Een sekkend opinjun van een onafhankelijk bureau. De sekkend opinjun steunt het.');
+  assert.equal(nl('Dan vertraag je: meer bewijs, een second opinion, de sponsor beslist.'), 'Dan vertraag je: meer bewijs, een second opinion, de sponsor beslist.');
+  assert.equal(nl('Een timebox helpt. Timebox:'), 'Een taimboks helpt. Taimboks:');
+  assert.equal(nl('de grove tabel van Weinberg; Gerald Weinberg'), 'de grove tabel van Wainburk; Djerreld Wainburk');
+  assert.equal(nl('Daniel Pink noemt in Drive drie drijfveren, op basis van Edward Deci en Richard Ryan.'), 'Deniel Pink noemt in Draiv drie drijf-veren, op basis van Edwerd Diessie en Ritsjerd Rajen.');
+  assert.equal(nl('de manager van de expert. Zijn manager verdeelt de uren. Zijn manager zegt het. Vraag zijn manager om één dag.'),
+    'de menetsjer van de expert. Zijn menetsjer verdeelt de uren. Zijn menetsjer zegt het. Vraag zijn menetsjer om één dag.');
+  assert.equal(nl('de operators verliezen tijd; de operators zijn eigenaar'), 'de ope-raators verliezen tijd; de operators zijn eigenaar');
+  assert.equal(nl('De installateur wil vervangen; de zelfdeterminatietheorie; van de bouwplaats'),
+    'De instal-lateur wil vervangen; de zelf-determinatie-theorie; van de bouw-plaats');
+  assert.equal(nl('Gerald Weinberg, 1992, als vuistregel: twee projecten'), 'Djerreld Wainburk, 1992, als vuist-regel: twee projecten');
+  assert.equal(nl('Meet daarom als vuistregel op tijd.'), 'Meet daarom als vuistregel op tijd.');
+  assert.equal(nl('de manager van de productie, een vuistregel, een opinie, een box'), 'de manager van de productie, een vuistregel, een opinie, een box');
+  const en = 'A second opinion, a timebox, Weinberg\'s table, Daniel Pink in Drive, Edward Deci and Richard Ryan, his manager, the operators lose, the installer';
+  assert.equal(speakOf([en], 'en'), en);
+});
+
+// A two-week sprint (pm.agile.scrum): the Scrum Guide's English names as Dutch
+// Scrum teams say them, checked with espeak-ng phonemes through Piper's
+// nl_NL-alex bridge: Product Owner, Product Backlog and Product Goal (espeak-ng
+// reads "PROO-dukt OU-ner", "BAK-loch", "GOO-al": said Prodduct Ooner, Bek-lok,
+// Gool, the goal of Dutch football), Developers ("DEE-ve-loo-pers": Di-vellopers),
+// Daily Scrum ("DAI-lie": Deeli), Sprint Review ("ree-VIEW": Rievjoe, as the
+// Harvard Business Review rule), Sprint Retrospective ("RE-tros-pek-tie-ve":
+// Retro-spektif), Scrum Guide (a Dutch "guide": Gaid), Definition of Done with a
+// capital D (through pm.outside.steering's rule: Deffi-nisjun of dun),
+// Schwaber and Jeff ("schwaber" with sch, "yef": Sjwaaber, Djef), events
+// ("ee-VENTS": ievents), refinement ("ree-fie-ne-MENT": ri-fainmunt), and the
+// compounds espeak-ng stresses at the end or reads with "ti" for "tsie": split
+// at the head (sprintdoel, and vuistregel only after "gangbare"); "uit het
+// Lean-team" as "Lien team". Dutch only; the capitalised names only, the Guide
+// only as "Scrum Guide van", ERP untouched (the videos say "erp"),
+// and no other film's spoken text changes
+test('speak variant: the Scrum names and split compounds in Dutch', () => {
+  const nl = (s) => speakOf([s], 'nl');
+  assert.equal(nl('De Product Owner ordent de Product Backlog naar het Product Goal.'), 'De Prodduct Ooner ordent de Prodduct Bek-lok naar het Prodduct Gool.');
+  assert.equal(nl('De Developers maken de Sprint Backlog en het Sprint Goal. Een Developer.'), 'De Di-vellopers maken de Sprint Bek-lok en het Sprint Gool. Een Di-velloper.');
+  assert.equal(nl('De Daily Scrum, de Sprint Review en de Sprint Retrospective.'), 'De Deeli Scrum, de Sprint Rievjoe en de Sprint Retro-spektif.');
+  assert.equal(nl('De Scrum Guide van Ken Schwaber en Jeff Sutherland.'), 'De Scrum Gaid van Ken Sjwaaber en Djef Sutherland.');
+  assert.equal(nl('De Definition of Done. Vijf events. Events zijn vast. Refinement is geen event.'), 'De Deffi-nisjun of dun. Vijf ievents. Ievents zijn vast. Ri-fainmunt is geen ievent.');
+  assert.equal(nl('De productieleider. De acceptatieomgeving.'), 'De productie-leider. De acceptatie-omgeving.');
+  assert.equal(nl('De definition of done: klaar als'), 'De definition of done: klaar als');
+  assert.equal(nl('Het sprintdoel. Uit het Lean-team, een gangbare vuistregel.'), 'Het sprint-doel. Uit het Lien team, een gangbare vuist-regel.');
+  assert.equal(nl('Een Lean-team, een vuistregel.'), 'Een Lean-team, een vuistregel.');
+  assert.equal(nl('een product, een goal, de review, een retrospective, de developer, Uit de Scrum Guide; het ERP'), 'een product, een goal, de review, een retrospective, de developer, Uit de Scrum Guide; het ERP');
+  const en = 'The Product Owner, the Product Backlog, the Developers, the Daily Scrum, the Sprint Review, the Sprint Retrospective, the Scrum Guide by Ken Schwaber and Jeff Sutherland, events, refinement, the ERP';
+  assert.equal(speakOf([en], 'en'), en);
+});
+
 // A stage drawn on the Dutch caption beats (beatwarp films set STAGE.nlBeats)
 // follows the caption beat on screen in English too: while English beat k
 // shows, the stage runs through Dutch beat k, so the drawing is never a beat off.

@@ -283,7 +283,7 @@ const SAY = {
     [/\b([Gg])overnance\b/g, (m, g) => `${g === 'G' ? 'G' : 'g'}avvernens`], [/\bMUM-effect\b/g, 'mum-effect'], [/\bkeep mum\b/g, 'kiep mum'],
     [/\b([Ee])scalatieroute/g, '$1scalatie-route'],
     // the pre-mortem (pm.plan.risk): issue as Dutch project people say it, "isjoe" (espeak-ng reads "is-uu-e");
-    // no other film says issue in Dutch
+    // pm.outside.experts says issues (isjoes) through this rule too
     [/\b([Ii])ssue(s?)\b/g, '$1sjoe$2'],
     // ways of working (pm.plan.method): espeak-ng reads agile the Dutch way, "AA-gie-le" (said as the floor says
     // it, "etsjail", tsj for the dzj it cannot voice there), and stresses HYbride (said hie-BRIE-de); not before
@@ -422,7 +422,82 @@ const SAY = {
     // ijkmoMENT and planningsreGEL (with the e of "bed"), split at the head as stuur-groep, and vrijgeven on
     // -GEE- (said VRIJ-geven). Not vrijgave, which films with a video say; no other film says these
     [/\b([Mm])ensenprobl/g, '$1ensen-probl'], [/\b([Cc])apaciteitsprobl/g, '$1apaciteits-probl'], [/\b(I[Jj]|ij)kmoment/g, '$1k-moment'],
-    [/\b([Pp])lanningsregel/g, '$1lannings-regel'], [/\b([Vv])rijgeven\b/g, '$1rij-geven']],
+    [/\b([Pp])lanningsregel/g, '$1lannings-regel'], [/\b([Vv])rijgeven\b/g, '$1rij-geven'],
+    // seeing progress without the expertise (pm.outside.steering): espeak-ng reads definition of done (also with
+    // a capital D, pm.agile.scrum's Scrum Guide name) as
+    // "dee-fie-nie-SJON of doo-ne" (said deffi-nisjun of dun; not in pm.plan.wbs's caption "definition of done:
+    // klaar als", so that film's spoken text stays), FAT and SAT as the words "fat" and "sat" (said as letters,
+    // as on the floor; capitals only), stresses FABrieksacceptatietest and LOcatieacceptatietest with "ti" for
+    // "tsie" (split at the heads: fa-BRIEKS-ak-sep-TAA-tsie-TEST), and reads Jeffrey Pfeffer with a stressed
+    // -REY and a sounded p (said as his English name, Djeffri Feffer); no other film says them in Dutch
+    [/\b([Dd])efinition of [Dd]one\b(?!: klaar als)/g, '$1effi-nisjun of dun'], [/\b([FS])AT\b/g, '$1 A T'],
+    [/\b([Ff])abrieksacceptatietest/g, '$1abrieks-acceptatie-test'], [/\b([Ll])ocatieacceptatietest/g, '$1ocatie-acceptatie-test'],
+    [/\bJeffrey Pfeffer\b/g, 'Djeffri Feffer'],
+    // testing plans, translating jargon (pm.outside.jargon): espeak-ng stresses PREmortem (said pree-mortem), reads
+    // single point of failure as "poo-int of fa-LU-re" (said singel pojnt of feeljer), stresses beheersmaatreGEL and
+    // nachtDIENST and reads barcodescanners as "barcoo-des-kanners" (said barkoodskenners; split at the head; beheersmaatregel only after
+    // "een", so pm.plan.risk's caption "De beheersmaatregel" keeps its voice), and the integration specialist's
+    // jargon: "ree-al-TAIM", "laa-ten-sie", "re-TRIES" (said riel-taim, lee-tensie, rie-traiz; batch already has its
+    // rule above, betsj), and jargon as "sjargon", near the Dutch zj espeak-ng cannot give (it reads "jar-gon"), only
+    // in this film's phrases, so pm.plan.method's "geen jargon" keeps its voice; Harvard Business Review as "Harvard
+    // Biznis Rievjoe" (it reads "bu-ZIE-nus ree-VIEW"; the business case rule above has the same Biznis); no other
+    // film says them in Dutch
+    [/\b([Pp])remortem/g, '$1ree-mortem'], [/\b([Ss])ingle point of failure\b/g, '$1ingel pojnt of feeljer'],
+    [/\b([Ee]en) beheersmaatregel\b/g, '$1 beheers-maatregel'], [/\b([Bb])arcodescanner/g, '$1arkoodskenner'], [/\b([Nn])achtdienst/g, '$1acht-dienst'],
+    [/\breal-time\b/g, 'riel-taim'], [/\blatency\b/g, 'lee-tensie'], [/\bretries\b/g, 'rie-traiz'],
+    [/\b([Jj])argon(?= is de vaktaal|: de vaktaal| aan het bestuur)/g, (m, j) => `${j === 'J' ? 'S' : 's'}jargon`], [/\bHarvard Business Review\b/g, 'Harvard Biznis Rievjoe'],
+    // conflict: interests and the difficult conversation (pm.run.conflict): the authors of Getting to Yes as their
+    // names sound, only after "van" (so pm.negotiate.batna's captions "Fisher en Ury:" keep their voice): espeak-ng
+    // sounds the h of Fisher and reads Ury as "uu-rie" (said Fisjer en Joeri); and Lean-consultant as
+    // "Lien consultant", two words (espeak-ng reads "lee-an"; "Lien-consultant" runs on into "link-consultant",
+    // as Whisper hears it); no other film says them in Dutch
+    [/\bvan Fisher en Ury\b/g, 'van Fisjer en Joeri'], [/\bLean-consultant\b/g, 'Lien consultant'],
+    // working with experts (pm.outside.experts): espeak-ng reads codereviews as "koo-di-re-views" (said as Dutch
+    // makers say it, kood-rievjoes; its issues goes through the pre-mortem's rule above) and vage with a French g
+    // ("vaazje": vaage),
+    // stresses risico-GE-stuurd and sleu-TEL-persoon with the e of "bed" (split at the head), negentig-
+    // negentigregEL and routineNEEpunten (the last part apart), and after "eerlijk" OPtimistisch (op-timistisch,
+    // as the questions film's rule says it). No other film says these; eng.quality.spc's steekproef and the
+    // other films' optimistisch keep their voice
+    [/\b([Cc])odereviews\b/g, (m, c) => `${c === 'C' ? 'K' : 'k'}ood-rievjoes`],
+    [/\b([Rr])isicogestuurd/g, '$1isico-gestuurd'], [/\b([Ss])leutelpersoon/g, '$1leutel-persoon'],
+    [/\b([Nn])egentig-negentigregel/g, '$1egentig-negentig-regel'], [/\b(eerlijk )optimistisch\b/g, '$1op-timistisch'],
+    [/\b([Vv])age\b/g, '$1aage'], [/\b([Rr])outinepunt/g, '$1outine-punt'],
+    // disagreement and busy experts (pm.outside.disagree): espeak-ng reads second opinion as "se-KONT OP-i-ni-on"
+    // (said sekkend opinjun, only in this film's phrases, so pm.outside.steering's "een second opinion, de
+    // sponsor" keeps its voice), timebox as "TIE-me-box" (taimboks), Weinberg after "van" with a Dutch ei and g
+    // (Wainburk, as the Gerald Weinberg rule above), Daniel Pink's Drive as "dri-ve" (Deniel Pink, Draiv), Edward
+    // Deci and Richard Ryan with a Dutch ch and "rie-an" (Edwerd Diessie, Ritsjerd Rajen), manager as MAA-naa-gher
+    // (menetsjer, as the middenmanager rule; only in this film's phrases, so pm.plan.wbs keeps its voice), and
+    // stresses OO-pi-raa-tors (ope-raators, only before "verliezen", so the TPM and LOTO films keep theirs),
+    // IN-stal-la-teur, zelfdeterminatie with "ti" for "tsie", bouwPLAATS, drijfVEren and, after
+    // "als" and before a colon only (other films keep their vuistregel), vuistreGEL: split at the head. No other film says them in Dutch
+    [/\b([Ss])econd opinion\b(?=:| is een| van een onafhankelijk| steunt)/g, '$1ekkend opinjun'], [/\b([Tt])imebox\b/g, '$1aimboks'],
+    [/\bvan Weinberg\b/g, 'van Wainburk'], [/\bDaniel Pink noemt in Drive\b/g, 'Deniel Pink noemt in Draiv'],
+    [/\bEdward Deci en Richard Ryan\b/g, 'Edwerd Diessie en Ritsjerd Rajen'],
+    [/\b(de|[Zz]ijn) manager\b(?= van de expert| verdeelt| zegt| om )/g, '$1 menetsjer'], [/\bde operators(?= verliezen)/g, 'de ope-raators'],
+    [/\b([Ii])nstallateur\b/g, '$1nstal-lateur'], [/\bzelfdeterminatietheorie\b/g, 'zelf-determinatie-theorie'],
+    [/\b([Bb])ouwplaats/g, '$1ouw-plaats'], [/\b([Dd])rijfveren\b/g, '$1rijf-veren'], [/\bals vuistregel:/g, 'als vuist-regel:'],
+    // a two-week sprint (pm.agile.scrum): the Scrum Guide's English names as Dutch Scrum teams say them, checked
+    // with espeak-ng phonemes through Piper's nl_NL-alex bridge: it reads "PROO-dukt OU-ner", "BAK-loch" and
+    // "GOO-al" (said Prodduct Ooner, Bek-lok, Gool, the goal of Dutch football), "DEE-ve-loo-pers" (Di-vellopers),
+    // "DAI-lie" (Deeli), "ree-VIEW" (Rievjoe, as Harvard Business Review above), "RE-tros-pek-tie-ve"
+    // (Retro-spektif), a Dutch "guide" (Gaid), Schwaber with sch and Jeff as "yef" (Sjwaaber, Djef), "ee-VENTS" (ievents) and
+    // "ree-fie-ne-MENT" (ri-fainmunt), and it stresses productieLEIder with "ti",
+    // acceptatieomGEving with "ti", sprintDOEL and, in this film's phrases only, vuistreGEL (pm.outside.disagree's
+    // rule covers "als vuistregel:"): split at the head; "uit het Lean-team" as "Lien team", as the Lean-consultant
+    // rule above (espeak-ng reads "lee-an"; pm.run.conflict's "een Lean-team" stays). Capitalised names only (a
+    // lower-case goal, review or developer keeps its voice), the Guide only as "Scrum Guide van"
+    // (pm.outside.steering's "Uit de Scrum Guide" stays); ERP stays the word "erp", as the films with a video say
+    // it; Definition of Done with a capital D goes through pm.outside.steering's rule above; no other film's voice changes
+    [/\bProduct (?=(?:Owner|Backlog|Goal)\b)/g, 'Prodduct '], [/\bOwner\b/g, 'Ooner'], [/\bBacklog\b/g, 'Bek-lok'], [/\bGoal\b/g, 'Gool'],
+    [/\bDeveloper(s?)\b/g, 'Di-velloper$1'], [/\bDaily Scrum\b/g, 'Deeli Scrum'], [/\bSprint Review\b/g, 'Sprint Rievjoe'],
+    [/\bSprint Retrospective\b/g, 'Sprint Retro-spektif'], [/\bScrum Guide van\b/g, 'Scrum Gaid van'],
+    [/\bKen Schwaber en Jeff Sutherland\b/g, 'Ken Sjwaaber en Djef Sutherland'], [/\b([Ee])vent(s?)\b/g, (m, e, s) => `${e === 'E' ? 'I' : 'i'}event${s}`],
+    [/\b([Rr])efinement\b/g, '$1i-fainmunt'],
+    [/\b([Pp])roductieleider/g, '$1roductie-leider'],
+    [/\b([Aa])cceptatieomgeving/g, '$1cceptatie-omgeving'], [/\b([Ss])printdoel/g, '$1print-doel'], [/\b([Uu])it het Lean-team\b/g, '$1it het Lien team'],
+    [/\bgangbare vuistregel\b/g, 'gangbare vuist-regel']],
   en: [[/\brpm\b/g, 'revolutions per minute'], [/\bmm\/min\b/g, 'millimetres per minute'], [/\bm\/min\b/g, 'metres per minute'], [/µm\b/g, 'micrometres'],
     [/€\s?(\d[\d,]*(?:\.\d+)?)/g, '$1 euros'], [/(\d)\.0(?![\d])/g, '$1'], [/(\d)\s?mm\b/g, '$1 millimetres'], [/(\d)\s?min\b/g, '$1 minutes'], [/(\d)\s?%/g, '$1 percent'],
     [/Ø\s*/g, 'diameter '], [/(\d)\+(\d)/g, '$1 plus $2'], [/\s×\s/g, ' times '], [/\s\/\s/g, ' divided by '], [/\s=\s/g, ' is '], [/°/g, ' degrees'], [/\bRa\b/g, 'R a'], [/’/g, "'"],
@@ -439,7 +514,12 @@ const SAY = {
     // standards as "three thousand one hundred and forty", "fifty thousand one hundred and ten"; said I V,
     // "nen thirty-one forty" and "nen E N fifty one ten"; before a comma it reads VOP as the word "vop"
     // (letters elsewhere), so V O P throughout
-    [/\bIV\b/g, 'I V'], [/\bVOP\b/g, 'V O P'], [/\bNEN-EN 50110\b/g, 'nen E N fifty one ten'], [/\bNEN (\d\d)(\d\d)\b/g, 'nen $1 $2']],
+    [/\bIV\b/g, 'I V'], [/\bVOP\b/g, 'V O P'], [/\bNEN-EN 50110\b/g, 'nen E N fifty one ten'], [/\bNEN (\d\d)(\d\d)\b/g, 'nen $1 $2'],
+    // translating jargon (pm.outside.jargon): espeak-ng's English reads idempotency as "AID-mpoatency"; said idem-potency
+    [/\bidempotency\b/g, 'idem-potency'],
+    // conflict: interests and the difficult conversation (pm.run.conflict): Ury as his name sounds, "Yuri"
+    // (espeak-ng's English reads "urry"), only after "by", so pm.negotiate.batna's caption "Fisher and Ury:" stays
+    [/\bby Fisher and Ury\b/g, 'by Fisher and Yuri']],
 };
 export const sayable = (text, lang) => (SAY[lang] || []).reduce((s, [re, w]) => s.replace(re, w), text);
 // The words the voice says: no English gloss, and with a language, units as words.
