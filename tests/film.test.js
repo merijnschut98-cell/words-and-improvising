@@ -470,8 +470,9 @@ test('speak variant: the requirements and MoSCoW words in Dutch, MoSCoW, Ries an
 // test-data), softwaretesten ("soft-waa-ree-": software-testen), ISTQB ("ist-k-p": ie es tee kuu bee, letters; not "S", a lone S
 // is a hiss), sign-off ("sig-n-of" with a Dutch g: sain-of), happy path
 // ("hap-pie pat": heppi paath), regressietest and regressieset (stressed
-// RE-gres-si: split at the head, re-GRES-sie-test) and hertest, hertesten
-// (stressed her-TEST: her-test). In English ISTQB as letters (en_GB reads
+// RE-gres-si: split at the head, re-GRES-sie-test); hertest keeps its voice
+// (already her-TEST), and so does a gloss "(sign-off)" on a Dutch caption
+// (pm.land.handover). In English ISTQB as letters (en_GB reads
 // "ist-k-b"). key users, go-live and MES keep the rules above; no other film's
 // spoken text changes
 test('speak variant: the acceptance test words in Dutch, ISTQB in English', () => {
@@ -479,11 +480,32 @@ test('speak variant: the acceptance test words in Dutch, ISTQB in English', () =
   assert.equal(nl('Dan de UAT, de gebruikersacceptatietest. ISTQB omschreef het.'), 'Dan de U A T, de gebruikers-acceptatie-test. ie es tee kuu bee omschreef het.');
   assert.equal(nl('Hij omschreef acceptatietesten. Een Acceptatietest. Met verzonnen testdata, Testdata. Voor softwaretesten.'), 'Hij omschreef acceptatie-testen. Een Acceptatie-test. Met verzonnen test-data, Test-data. Voor software-testen.');
   assert.equal(nl('De UAT eindigt met een sign-off. Een Sign-off. Alleen het happy path.'), 'De U A T eindigt met een sain-of. Een Sain-of. Alleen het heppi paath.');
-  assert.equal(nl('Een regressietest, een regressieset. Een hertest, hertesten wat gezakt is. Hertest.'), 'Een regressie-test, een regressie-set. Een her-test, her-testen wat gezakt is. Her-test.');
+  assert.equal(nl('Een regressietest, een regressieset. Een hertest, hertesten wat gezakt is. Hertest.'), 'Een regressie-test, een regressie-set. Een hertest, hertesten wat gezakt is. Hertest.');
+  assert.equal(nl('De ondertekening (sign-off): elk criterium met bewijs.'), 'De ondertekening (sign-off): elk criterium met bewijs.');
   assert.equal(nl('De key users, na de go-live, het nieuwe MES.'), 'De kie joezers, na de goo-laiv, het nieuwe M E S.');
   assert.equal(nl('De acceptatie, een regressie, de herten, een signaal, de data, een testdatabank.'), 'De acceptatie, een regressie, de herten, een signaal, de data, een testdatabank.');
   assert.equal(speakOf(['ISTQB, the international board for software testing.'], 'en'), 'I S T Q B, the international board for software testing.');
   const en = 'The UAT, the user acceptance test, sign-off, the happy path, a regression test, a retest';
+  assert.equal(speakOf([en], 'en'), en);
+});
+
+// Incident, problem, change (pm.devops.incident): the ITIL words as Dutch IT
+// teams say them, checked with espeak-ng phonemes through Piper's nl_NL-alex
+// bridge: PeopleCert ("pee-o-ple sert": Piepul-surt), change enablement and
+// change control with a French "change" ("sjanzje": tsjeensj e-neebul-munt,
+// tsjeensj kontrool) and printerdriver ("printer-drie-ver": printer-draaiver,
+// as the driver rule, which only reads a word that starts with driver). ITIL,
+// servicedesk, MES (letters) and firewall (the existing fajerwol rule) keep
+// their voice. English needs nothing; no other film's spoken text changes
+test('speak variant: the ITIL words in Dutch', () => {
+  const nl = (s) => speakOf([s], 'nl');
+  assert.equal(nl('ITIL 4 is nu van het bedrijf PeopleCert.'), 'ITIL 4 is nu van het bedrijf Piepul-surt.');
+  assert.equal(nl('ITIL noemt dat nu change enablement, eerst heette het change control.'),
+    'ITIL noemt dat nu tsjeensj e-neebul-munt, eerst heette het tsjeensj kontrool.');
+  assert.equal(nl('Een andere printerdriver, een Printerdriver. Een aangepaste firewall-regel.'),
+    'Een andere printer-draiver, een Printer-draiver. Een aangepaste fajerwol-regel.');
+  assert.equal(nl('De servicedesk, de change, een printer, de driver.'), 'De servicedesk, de change, een printer, de draiver.');
+  const en = 'ITIL 4 is owned by PeopleCert: change enablement, at first change control, a printer driver, a firewall rule';
   assert.equal(speakOf([en], 'en'), en);
 });
 

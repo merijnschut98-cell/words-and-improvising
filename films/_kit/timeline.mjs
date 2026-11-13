@@ -629,12 +629,20 @@ const SAY = {
     // parts), testdata as "tes-TAA-taa" (test-data), softwaretesten as "soft-waa-ree-testen" (software-testen, as
     // the softwarebedrijf rule above), ISTQB as "ist-k-p" (ie es tee kuu bee; not "S": a lone S is a
     // hiss), sign-off with a Dutch g (sain-of), happy path as "hap-pie pat" (heppi paath), stresses REgressietest
-    // and REgressieset (split at the head) and herTEST, herTESten (her-test). key users, go-live and MES go
-    // through the rules above; no other film's spoken text changes
+    // and REgressieset (split at the head); hertest it stresses on TEST already. Sign-off only outside a
+    // bracket: a Dutch caption's gloss, "De ondertekening (sign-off)" in pm.land.handover, keeps its voice. key
+    // users, go-live and MES go through the rules above; no other film's spoken text changes
     [/\bUAT\b/g, 'U A T'], [/\b([Gg]ebruikers)?([Aa])cceptatietest(en)?\b/g, (m, g, a, e) => `${g ? `${g}-` : ''}${a}cceptatie-test${e || ''}`],
     [/\b([Tt])estdata\b/g, '$1est-data'], [/\b([Ss])oftwaretest(en)?\b/g, '$1oftware-test$2'], [/\bISTQB\b/g, 'ie es tee kuu bee'],
-    [/\b([Ss])ign-off\b/g, '$1ain-of'], [/\bhappy path\b/g, 'heppi paath'], [/\b([Rr])egressie(test|set)/g, '$1egressie-$2'],
-    [/\b([Hh])ertest(en|s)?\b/g, '$1er-test$2']],
+    [/(?<!\()\b([Ss])ign-off\b/g, '$1ain-of'], [/\bhappy path\b/g, 'heppi paath'], [/\b([Rr])egressie(test|set)/g, '$1egressie-$2'],
+    // incident, problem, change (pm.devops.incident): the ITIL words as Dutch IT teams say them, checked with
+    // espeak-ng phonemes through Piper's nl_NL-alex bridge: it reads PeopleCert as "PEE-o-ple sert" (said
+    // Piepul-surt), change enablement and change control with a French "change", "SJAN-zje" (tsjeensj
+    // e-neebul-munt, tsjeensj kontrool; a lone change keeps its voice), and printerdriver with "drie-ver"
+    // (printer-draiver, as the driver rule above, which only reads a word that starts with driver). ITIL,
+    // servicedesk and firewall-regel (the firewall rule above) need nothing; no other film's spoken text changes
+    [/\bPeopleCert\b/g, 'Piepul-surt'], [/\bchange enablement\b/g, 'tsjeensj e-neebul-munt'], [/\bchange control\b/g, 'tsjeensj kontrool'],
+    [/\b([Pp])rinterdriver(s?)\b/g, '$1rinter-draiver$2']],
   en: [[/\brpm\b/g, 'revolutions per minute'], [/\bmm\/min\b/g, 'millimetres per minute'], [/\bm\/min\b/g, 'metres per minute'], [/µm\b/g, 'micrometres'],
     [/€\s?(\d[\d,]*(?:\.\d+)?)/g, '$1 euros'], [/(\d)\.0(?![\d])/g, '$1'], [/(\d)\s?mm\b/g, '$1 millimetres'], [/(\d)\s?min\b/g, '$1 minutes'], [/(\d)\s?%/g, '$1 percent'],
     [/Ø\s*/g, 'diameter '], [/(\d)\+(\d)/g, '$1 plus $2'], [/\s×\s/g, ' times '], [/\s\/\s/g, ' divided by '], [/\s=\s/g, ' is '], [/°/g, ' degrees'], [/\bRa\b/g, 'R a'], [/’/g, "'"],

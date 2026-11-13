@@ -75,7 +75,7 @@ const STAGE = (() => {
     if (b >= 1) o.chain = op(A * at(b, p, 1), box(160, tr('2  ketentest', '2  chain test'), [tr('order → MES → etiket', 'order → MES → label'), tr('→ verzending → factuur', '→ shipment → invoice')], b === 1));
     const B = page(b, p, 2, -1);
     if (b >= 2) o.uat = op(B, box(54, '3  UAT', [[tr('gebruikers accepteren', 'users check and accept'), 'pm-on']], b === 2));
-    if (b >= 3) o.istqb = op(B * at(b, p, 3), lines(154, [['ISTQB:', 'pm-mute'], [tr('formeel testen tegen', 'formal testing against'), ''], [tr('gebruikersbehoeften,', 'user needs,'), ''], [tr('requirements en', 'requirements and'), ''], [tr('bedrijfsprocessen', 'business processes'), '']]));
+    if (b >= 3) o.istqb = op(B * at(b, p, 3), lines(154, [[tr('ISTQB, acceptatietest:', 'ISTQB, acceptance test:'), 'pm-mute'], [tr('formeel testen tegen', 'formal testing against'), ''], [tr('gebruikersbehoeften,', 'user needs,'), ''], [tr('requirements en', 'requirements and'), ''], [tr('bedrijfsprocessen', 'business processes'), '']]));
     return o;
   }
   // s2: key users; test scenarios from real work; back to the requirements
@@ -133,8 +133,8 @@ const STAGE = (() => {
     o.defect = op(A, box(54, tr('bevinding', 'defect'), [tr('wijkt af van verwacht', 'differs from expected'), tr('stappen, scherm, nummer', 'steps, screenshot, ID')], b === 0));
     if (b >= 1) o.nofault = op(A * at(b, p, 1), lines(180, [[tr('geen fout als het is:', 'no fault when it is:'), 'pm-mute'], [tr('verkeerde testdata,', 'wrong test data,'), ''], [tr('nog niet geleerd, of', 'not learned yet, or'), ''], [tr('nieuwe wens → wijziging', 'a new wish → change'), 'pm-on']]));
     const B = page(b, p, 2, -1);
-    if (b >= 2) o.sev = op(B, box(54, tr('ernst', 'severity'), [tr('1  blokkerend: niet', '1  blocking: cannot'), [tr('   verzenden of boeken', '   ship or book stock'), 'pm-mute'], tr('2  zwaar, wel omweg', '2  serious, workaround'), tr('3 klein  4 cosmetisch', '3 minor  4 cosmetic')], b === 2));
-    if (b >= 3) o.prio = op(at(b, p, 3), lines(232, [[tr('prioriteit: hoe snel', 'priority: how fast'), 'pm-big'], [tr('datum kan hem verhogen', 'a date can raise it'), 'pm-on']]));
+    if (b >= 2) o.sev = op(B, box(54, tr('ernst', 'severity'), [tr('1  blokkerend: niet', '1  blocking: cannot'), [tr('   verzenden of', '   ship or book stock'), 'pm-mute'], [tr('   voorraad boeken', ''), 'pm-mute'], tr('2  zwaar, wel omweg', '2  serious, workaround'), tr('3 klein  4 cosmetisch', '3 minor  4 cosmetic')], b === 2));
+    if (b >= 3) o.prio = op(at(b, p, 3), lines(252, [[tr('prioriteit: hoe snel', 'priority: how fast'), 'pm-big'], [tr('datum kan hem verhogen', 'a date can raise it'), 'pm-on']]));
     return o;
   }
   // s7: triage and the andon response; retest; regression test
@@ -142,7 +142,7 @@ const STAGE = (() => {
     const o = { head: ['triage', DIA] };
     const A = page(b, p, 0, 2);
     o.triage = op(A, box(54, tr('triage, dagelijks', 'triage, daily'), [tr('fout? welke ernst?', 'a fault? what severity?'), tr('wie lost op, wanneer?', 'who fixes, by when?')], b === 0));
-    if (b >= 1) o.andon = op(A * at(b, p, 1), lines(180, [[tr('als een andonreactie:', 'like an andon response:'), 'pm-mute'], [tr('snel, dicht bij het werk', 'fast, close to the work'), ''], [tr('ernst: de proces-', 'severity: the process'), 'pm-on'], [tr('eigenaar, niet de partner', 'owner, not the partner'), 'pm-on']]));
+    if (b >= 1) o.andon = op(A * at(b, p, 1), lines(180, [[tr('als een andonreactie:', 'like an andon response:'), 'pm-mute'], [tr('snel, dicht bij het werk', 'fast, close to the work'), ''], [tr('laatste woord: de proces-', 'last word: the process'), 'pm-on'], [tr('eigenaar, niet de partner', 'owner, not the partner'), 'pm-on']]));
     const B = page(b, p, 2, -1);
     if (b >= 2) o.retest = op(B, box(54, tr('hertest', 'retest'), [tr('script opnieuw na fix', 'rerun after a fix'), [tr('✓ dan gaat hij dicht', '✓ then it is closed'), 'pm-on']], b === 2));
     if (b >= 3) o.regr = op(B * at(b, p, 3), box(166, tr('regressietest', 'regression test'), [tr('eerder geslaagde', 'scripts that passed'), tr('scripts opnieuw', 'before, run again')], b === 3));
@@ -164,7 +164,7 @@ const STAGE = (() => {
     const A = page(b, p, 0, 4);
     o.day = op(A, lines(70, [[tr('nieuw MES, 120 scripts:', 'new MES, 120 scripts:'), b === 0 ? 'pm-on' : 'pm-big'], [tr('112 gedaan, 101 geslaagd', '112 run, 101 passed'), ''], [tr('23 bevindingen open', '23 defects open'), '']]));
     if (b >= 1) o.six = op(A * at(b, p, 1), lines(152, [[tr('triage: 6 geen fout', 'triage: 6 no fault'), b === 1 ? 'pm-on' : 'pm-big'], [tr('3 testdata, 2 training,', '3 test data, 2 training,'), 'pm-mute'], [tr('1 wens → wijziging', '1 wish → change'), 'pm-mute']]));
-    if (b >= 2) o.left = op(A * at(b, p, 2), lines(238, [[tr('17: 2, 5, 7, 3 per ernst', '17: 2, 5, 7, 3 by severity'), b === 2 ? 'pm-on' : 'pm-big']]));
+    if (b >= 2) o.left = op(A * at(b, p, 2), lines(238, [['23 − 6 = 17 = 2+5+7+3', b === 2 ? 'pm-on' : 'pm-big']]));
     if (b >= 3) o.sev1 = op(A * at(b, p, 3), lines(266, [[tr('ernst 1: werkorder, etiket', 'sev. 1: work order, label'), 'pm-on']]));
     const B = page(b, p, 4, -1);
     if (b >= 4) o.need = op(B, box(54, tr('95% van 120 = 114', '95% of 120 = 114'), [[tr('114 − 101 = nog 13', '114 − 101 = 13 more'), 'pm-on']], b === 4));

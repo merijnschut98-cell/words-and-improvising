@@ -73,12 +73,12 @@
 //   defects teach 1: a defect, a test result that differs from the expected
 //     result, logged with the steps, a screenshot and the test script's ID, so
 //     someone else can repeat it (s6 b1); not every defect is a fault in the
-//     system: wrong test data, something the tester has not learned yet (said:
-//     a training gap; the card: not learned yet), or a new wish, which goes to
-//     the change process (s6 b2)
+//     system: wrong test data, something the tester has not learned yet, or a
+//     new wish, which goes to the change process (s6 b2; the routing on the
+//     card, as s4 b2 says it)
 //   defects teach 2: each defect gets a severity, how big the impact is; 1,
 //     blocking, the process cannot continue, e.g. you cannot ship (said) or book
-//     stock (card); 2, serious, but there is a workaround; 3, minor; 4,
+//     stock (card, its own line); 2, serious, but there is a workaround; 3, minor; 4,
 //     cosmetic, such as a typo (s6 b3; the scale also on the strip); priority,
 //     how fast it must be fixed; usually follows severity, but a date can raise
 //     it, such as a label (format) for a customer who launches next month (s6 b4)
@@ -87,8 +87,7 @@
 //     it really a fault, what is the severity, who fixes it and by when? (s7
 //     b1); for a Lean consultant it resembles an andon response: deal with
 //     problems quickly, close to the work, with the people who know it; the
-//     process owner has the last word on severity (said: decides), not the
-//     partner (s7 b2)
+//     process owner has the last word on severity, not the partner (s7 b2)
 //   defects teach 4: after a fix the tester runs the script again, a retest; if
 //     it passes, the defect is closed (s7 b3); a fix can break something
 //     elsewhere, so a regression test: running scripts again that passed
@@ -106,7 +105,7 @@
 //     not faults: 3 wrong test data, 2 a training gap, 1 a new wish (s9 b2; that
 //     it goes to the change process on the card); 17 remain: severity 1: 2,
 //     severity 2: 5, severity 3: 7, severity 4: 3 (s9 b3; the check 2 + 5 + 7 +
-//     3 = 17 as the board's four columns); the two severity 1s: a work order
+//     3 = 17 on the card as 23 − 6 = 17 = 2+5+7+3, and as the board's columns); the two severity 1s: a work order
 //     cannot be closed, the label misses the batch number (s9 b4); the exit
 //     criteria: 95% of 120 is 114, so 13 more must pass (s9 b5; all 120 run and
 //     no open severity 1 said in s8 b2 and in the caption); both severity 1s
@@ -387,7 +386,7 @@ const spec = {
       { nl: 'Het eerste testniveau: de partner test zijn eigen configuratie, de systeemtest.', en: 'The first test level: the partner tests its own configuration, the system test.', focus: ['lev', 'lSys', 'partner'] },
       { nl: '{t:Ketentest|Ketentest}: een heel proces over alle systemen, van order tot factuur.', en: '{t:Chain test|Chain test}: a whole process across all systems, from order to invoice.', cue: { Ketentest: 'chain' }, focus: ['chain', 'lChain', 'sChain'] },
       { nl: '{t:UAT|UAT}: de toekomstige gebruikers controleren of het systeem hun werk ondersteunt.', en: '{t:UAT|UAT}: the future users check whether the system supports their work.', cue: { UAT: 'uat' }, focus: ['uat', 'lUat', 'planner', 'teamlead'] },
-      { nl: 'ISTQB: formeel testen tegen behoeften van gebruikers, requirements en bedrijfsprocessen.', en: 'ISTQB: formal testing against user needs, requirements and business processes.', focus: ['istqb'] },
+      { nl: 'ISTQB over acceptatietesten: formeel testen tegen behoeften van gebruikers, requirements en bedrijfsprocessen.', en: 'ISTQB on acceptance testing: formal testing against user needs, requirements and business processes.', focus: ['istqb'] },
     ]),
     sc('s2', UA, 1, { nl: 'Key users en scenario’s', en: 'Key users and scenarios' }, [
       { nl: 'Testen doen {t:Key user|key users}: ervaren mensen van elke afdeling. Niet de partner.', en: 'Testing is done by {t:Key user|key users}: experienced people from each department. Not the partner.', cue: { 'Key user': 'ku' }, focus: ['ku', 'planner', 'teamlead'] },
@@ -422,7 +421,7 @@ const spec = {
     ]),
     sc('s7', DF, 2, { nl: 'Triage en hertest', en: 'Triage and retest' }, [
       { nl: '{t:Triage|Triage}: dagelijks bevindingen sorteren. Echt een fout? Welke ernst? Wie lost hem op, wanneer?', en: '{t:Triage|Triage}: sorting defects daily. A real fault? What severity? Who fixes it, by when?', cue: { Triage: 'triage' }, focus: ['triage', 'notes', 'partner', 'planner', 'owner'] },
-      { nl: 'Als een andonreactie: snel, dicht bij het werk. De proceseigenaar bepaalt de ernst, niet de partner.', en: 'Like an andon response: fast, close to the work. The process owner sets severity, not the partner.', focus: ['andon', 'owner'] },
+      { nl: 'Een andonreactie: snel, dicht bij het werk. Laatste woord over de ernst: de proceseigenaar, niet de partner.', en: 'An andon response: fast, close to the work. The last word on severity: the process owner, not the partner.', focus: ['andon', 'owner'] },
       { nl: '{t:Hertest|Hertest}: na een oplossing het script opnieuw. Slaagt het, dan gaat de bevinding dicht.', en: '{t:Retest|Retest}: after a fix, run the script again. If it passes, the defect is closed.', cue: { Hertest: 'retest' }, focus: ['retest', 'sheet'] },
       { nl: '{t:Regressietest|Regressietest}: eerder geslaagde scripts opnieuw, want een oplossing kan elders iets breken.', en: '{t:Regression test|Regression test}: scripts that passed before, run again: a fix can break something elsewhere.', cue: { Regressietest: 'regr' }, focus: ['regr', 'scripts'] },
     ]),
@@ -454,8 +453,8 @@ const spec = {
 // letters (ie es tee kuu bee), acceptatietesten and gebruikersacceptatietest
 // split at their parts, testdata as test-data, softwaretesten as
 // software-testen, sign-off as sain-of, happy path as heppi paath,
-// regressietest and regressieset split at the head, hertest as her-test; in
-// English ISTQB as letters. key users, go-live, MES, batch and the Lean
+// regressietest and regressieset split at the head (hertest needs nothing:
+// espeak-ng stresses it on test); in English ISTQB as letters. key users, go-live, MES, batch and the Lean
 // consultant through the kit's existing rules; ERP stays as the kit says it.
 // Said around because espeak-ng misreads them: a lone "scenario" (stressed
 // SEE-naa-rio; the Dutch narration says testscenario, stressed on test, as
@@ -502,8 +501,8 @@ const SAY = [
   [ // s5 the food producer's plan
     { nl: 'Een voedingsbedrijf plant de UAT voor zijn nieuwe ERP: vier processen, honderdtwintig testscripts, ook de lastige gevallen.',
       en: 'A food producer plans the UAT for its new ERP: four processes, a hundred and twenty test scripts, awkward cases included.' },
-    { nl: 'Één script kost gemiddeld anderhalf uur, met de data: honderdtachtig uur voor ronde één.',
-      en: 'One script takes an hour and a half, data included: a hundred and eighty hours for round one.' },
+    { nl: 'Één script kost gemiddeld anderhalf uur, inclusief het klaarzetten van de data: honderdtachtig uur voor ronde één.',
+      en: 'One script takes an hour and a half on average, including preparing the data: a hundred and eighty hours for round one.' },
     { nl: 'Acht key users, elk de helft van een werkweek van zesendertig uur vrijgemaakt: honderdvierenveertig uur per week.',
       en: 'Eight key users, each freed for half of a thirty-six-hour week: a hundred and forty-four hours a week.' },
     { nl: 'Één ronde duurt dus één komma vijfentwintig week.',
@@ -516,18 +515,18 @@ const SAY = [
   [ // s6 the defect; severity; priority
     { nl: 'Een {t:Bevinding|bevinding} is een resultaat dat afwijkt van het verwachte, vastgelegd met stappen, schermafdruk en scriptnummer, zodat een ander hem kan herhalen.',
       en: 'A {t:Defect|defect} is a result that differs from the expected one, logged with steps, screenshot and script ID, so others can repeat it.' },
-    { nl: 'Niet elke bevinding is een fout in het systeem: het kan verkeerde testdata zijn, een gat in de training, of een nieuwe wens voor het wijzigingsproces.',
-      en: 'Not every defect is a system fault: it can be wrong test data, a training gap, or a new wish for the change process.' },
+    { nl: 'Niet elke bevinding is een fout in het systeem: het kan verkeerde testdata zijn, iets wat de tester nog niet geleerd heeft, of een nieuwe wens.',
+      en: 'Not every defect is a system fault: it can be wrong test data, something the tester has not learned yet, or a new wish.' },
     { nl: 'De {t:Ernst|ernst} is de impact. Één: blokkerend, het proces kan niet verder, zoals verzenden. Twee: zwaar, met een omweg. Drie: klein. Vier: cosmetisch, zoals een typefout.',
       en: 'The {t:Severity|severity} is the impact. One: blocking, the process cannot continue, such as shipping. Two: serious, with a workaround. Three: minor. Four: cosmetic, such as a typo.' },
-    { nl: 'Prioriteit is hoe snel het opgelost moet worden: meestal als de ernst, maar een datum kan hem verhogen, zoals een etiket voor een klant die volgende maand lanceert.',
-      en: 'Priority is how fast to fix it: usually as severity, but a date can raise it, like a label for a customer launching next month.' },
+    { nl: 'Prioriteit is hoe snel het opgelost moet worden: meestal als de ernst, maar een datum kan hem verhogen, zoals een etiketformaat voor een klant die volgende maand lanceert.',
+      en: 'Priority is how fast to fix it: usually as severity, but a date can raise it, like a label format for a customer launching next month.' },
   ],
   [ // s7 triage; retest; regression test
     { nl: '{t:Triage|Triage} is het dagelijkse overleg waarin testcoördinator, partner, key users en een proceseigenaar nieuwe bevindingen sorteren: echt een fout? Welke ernst? Wie lost hem op, wanneer?',
       en: '{t:Triage|Triage} is the daily meeting where test lead, partner, key users and a process owner sort new defects: a real fault? How severe? Who fixes it, by when?' },
-    { nl: 'Voor een Lean-consultant lijkt het op een andonreactie: snel, dicht bij het werk, met de mensen die het kennen. De proceseigenaar beslist over de ernst, niet de partner.',
-      en: 'For a Lean consultant it resembles an andon response: quick, close to the work, with the people who know it. The process owner decides severity, not the partner.' },
+    { nl: 'Voor een Lean-consultant lijkt het op een andonreactie: snel, dicht bij het werk, met de mensen die het kennen. De proceseigenaar heeft het laatste woord over de ernst, niet de partner.',
+      en: 'For a Lean consultant it resembles an andon response: quick, close to the work, with the people who know it. The process owner has the last word on severity, not the partner.' },
     { nl: 'Na een oplossing voert de tester het script opnieuw uit: een {t:Hertest|hertest}. Slaagt die, dan gaat de bevinding dicht.',
       en: 'After a fix, the tester reruns the script: a {t:Retest|retest}. If it passes, the defect is closed.' },
     { nl: 'Een oplossing kan elders iets breken. Een {t:Regressietest|regressietest} voert daarom eerder geslaagde scripts opnieuw uit. Hoe groter de oplossing, hoe groter de set.',
@@ -548,8 +547,8 @@ const SAY = [
       en: 'Triage finds six are no fault: three wrong test data, two a training gap, one a new wish.' },
     { nl: 'Er blijven er zeventien over: twee met ernst één, vijf met ernst twee, zeven met drie, drie met vier.',
       en: 'Seventeen remain: two of severity one, five of two, seven of three, three of four.' },
-    { nl: 'De twee met ernst één: een werkorder kan niet worden afgesloten, en op het etiket ontbreekt het batchnummer.',
-      en: 'The two of severity one: a work order cannot be closed, and the label misses the batch number.' },
+    { nl: 'Die twee: een werkorder kan niet worden afgesloten, en op het etiket ontbreekt het batchnummer.',
+      en: 'Those two: a work order cannot be closed, and the label misses the batch number.' },
     { nl: 'De exitcriteria vragen vijfennegentig procent van honderdtwintig: honderdveertien. Er moeten er dus nog dertien slagen.',
       en: 'The exit criteria ask ninety-five percent of a hundred and twenty: a hundred and fourteen. So thirteen more must pass.' },
     { nl: 'Beide met ernst één moeten opgelost, hertest en gedekt zijn door een regressieset. De partner krijgt ze eerst, met een datum.',
@@ -566,7 +565,7 @@ spec.scenes.forEach((s, si) => {
 // and a misread one fails the build
 const plainSay = (src) => src.replace(/\{t:[^|}]*\|([^}]*)\}/g, '$1').replace(/\{n:([^}]*)\}/g, '$1');
 const MISREAD = {
-  nl: /\b(UAT|ISTQB|sign-off|happy path|\w*acceptatietest\w*|testdata|softwaretest\w*|regressie(test|set)|hertest\w*|key users?|go-live|Eén)\b|(?<!test)scenario\b/i,
+  nl: /\b(UAT|ISTQB|sign-off|happy path|\w*acceptatietest\w*|testdata|softwaretest\w*|regressie(test|set)|key users?|go-live|Eén)\b|(?<!test)scenario\b/i,
   en: /\bISTQB\b/,
 };
 for (const scene of SAY) for (const line of scene) for (const lang of ['nl', 'en']) {
