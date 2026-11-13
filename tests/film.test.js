@@ -264,6 +264,34 @@ test('speak variant: the Scrum names and split compounds in Dutch', () => {
   assert.equal(speakOf([en], 'en'), en);
 });
 
+// Flow on a kanban board (pm.agile.kanban): the names and the Kanban Guide's
+// English measures as Dutch practitioners say them, checked with espeak-ng
+// phonemes through Piper's nl_NL-alex bridge: Taiichi Ohno ("TA-jich-ie OH-
+// noo": Taitsjie Oono), David Anderson and John Little as English names
+// (Deevid Enderson, Djon), Vacanti (Va-kenti), Kanban Guide (a Dutch "guide":
+// Gaid), Definition of Workflow (Deffi-nisjun of Wurkflo), throughput ("TRAUCH-
+// put": Troepoet), cycle time ("SIK-le": Saikl taim), lead time ("lee-at":
+// Lied taim), work item age ("ie-tem aa-zje": Wurk aitem eetsj), pull and
+// pullsysteem ("pul": poel), flowmaten ("flow-MAA-ten": floo-maten), "afdeling
+// engineering" (entsjinieering), engineer in this film's two phrases (as
+// pm.consult.proposal's entsjinier), and onderhanden in this film's phrases
+// (onder-handen, as pm.portfolio.prioritise). Dutch only; no other film's
+// spoken text changes
+test('speak variant: the kanban names and flow measures in Dutch', () => {
+  const nl = (s) => speakOf([s], 'nl');
+  assert.equal(nl('Het systeem van Taiichi Ohno. David Anderson. John Little. Vacanti benadrukt.'), 'Het systeem van Taitsjie Oono. Deevid Enderson. Djon Little. Va-kenti benadrukt.');
+  assert.equal(nl('De Kanban Guide van 2020. De Definition of Workflow.'), 'De Kanban Gaid van 2020. De Deffi-nisjun of Wurkflo.');
+  assert.equal(nl('De Throughput, de throughput, de cycle time, Cycle time, de lead time, De work item age.'),
+    'De Troepoet, de troepoet, de saikl taim, Saikl taim, de lied taim, De wurk aitem eetsj.');
+  assert.equal(nl('met pull, een pullsysteem, vier flowmaten, de afdeling engineering'), 'met poel, een poelsysteem, vier floo-maten, de afdeling entsjinieering');
+  assert.equal(nl('een engineer pakt de kaart; een engineer doet de controle'), 'een entsjinier pakt de kaart; een entsjinier doet de controle');
+  assert.equal(nl('Heet dat onderhanden werk. Twaalf items onderhanden; vijftien werkitems onderhanden; gemiddeld twaalf onderhanden'),
+    'Heet dat onder-handen werk. Twaalf items onder-handen; vijftien werkitems onder-handen; gemiddeld twaalf onder-handen');
+  assert.equal(nl('een engineer, de pullover, onderhanden werk, de Guide, een lead, IT en engineering'), 'een engineer, de pullover, onderhanden werk, de Guide, een lead, IT en engineering');
+  const en = 'Taiichi Ohno, David Anderson, John Little, Vacanti, the Kanban Guide, the Definition of Workflow, throughput, cycle time, lead time, work item age, pull, an engineer takes the card';
+  assert.equal(speakOf([en], 'en'), en);
+});
+
 // A stage drawn on the Dutch caption beats (beatwarp films set STAGE.nlBeats)
 // follows the caption beat on screen in English too: while English beat k
 // shows, the stage runs through Dutch beat k, so the drawing is never a beat off.
