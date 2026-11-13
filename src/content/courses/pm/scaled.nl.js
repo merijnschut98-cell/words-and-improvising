@@ -998,6 +998,7 @@ export default {
     },
     {
       id: 'pm.scaled.stagegate',
+      film: 'pm.scaled.hybrid',
       title: 'Stage-gate en agile in de maakindustrie',
       pre: [
         {
@@ -1079,6 +1080,7 @@ export default {
     },
     {
       id: 'pm.scaled.longlead',
+      film: 'pm.scaled.hybrid',
       title: 'Lange levertijden en terugplannen',
       pre: [
         {
