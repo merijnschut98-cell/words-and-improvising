@@ -133,8 +133,7 @@ const STAGE = (() => {
         + card(312, 70, 'pm-hot') + lines(340, L([['waar verschillen de', 'pm-on'], ['opties?']], [['where do the options', 'pm-on'], ['differ?']])));
     }
     if (b >= 4) {
-      o.shift = op(span(p, 0.02, 0.2), path(`M${f1(X0 + 96 + wt[1] * 26 + 4)} ${yRow(1)}l8 0`, 'pm-line')
-        + card(312, 70, 'pm-hot') + lines(340, L([['gewicht iets anders:', 'pm-on'], ['verandert de uitkomst?']], [['a weight moves a bit:', 'pm-on'], ['does the outcome change?']])));
+      o.shift = op(span(p, 0.02, 0.2), card(312, 70, 'pm-hot') + lines(340, L([['gewicht iets anders:', 'pm-on'], ['verandert de uitkomst?']], [['a weight moves a bit:', 'pm-on'], ['does the outcome change?']])));
     }
     return o;
   }
@@ -275,7 +274,7 @@ const STAGE = (() => {
     if (b >= 3) {
       const k = b === 3 ? span(p, 0.3, 0.7) : 1;
       o.cut = op(chart * at(b, p, 3), txt(X0, 176, tr(`${V.real}% per project: ${V.afterSwitch} uur`, `${V.real}% each: ${V.afterSwitch} hours`))
-        + rect(X0, 184, (sx(V.afterSwitch) - X0) * k, 20, 'pm-lost', 3) + path(`M${f1(sx(V.need))} 120v28M${f1(sx(V.need))} 180v28M${f1(sx(V.need))} 272v28`, 'pm-strike')
+        + rect(X0, 184, (sx(V.afterSwitch) - X0) * k, 20, 'pm-lost', 3) + path(`M${f1(sx(V.need))} 120v28M${f1(sx(V.need))} 180v28${b >= 4 ? `M${f1(sx(V.need))} 272v28` : ''}`, 'pm-strike')
         + txt(sx(V.need) + 6, 230, tr(`nodig ${V.need}`, `need ${V.need}`), 'pm-on'));
     }
     if (b >= 4) {
