@@ -599,7 +599,30 @@ const SAY = {
     [/\bmean time to restore\b/g, 'mien taim toe ristoor'], [/\bfour keys\b/g, 'for kies'], [/\bCI CD\b/g, 'sie ie sie die'],
     [/\bcontinuous integration en continuous delivery\b/g, 'kon-tinjoe-wus inte-gree-sjun en kon-tinjoe-wus de-livvrie'],
     [/\b([Ss])oftwarebedrijf\b/g, '$1oftware-bedrijf'], [/\b([Aa])rtefact\b/g, '$1rte-fact'], [/\bin een waardestroom\b/g, 'in een waarde-stroom'],
-    [/\b([Jj])idoka\b/g, (m, j) => `${j === 'J' ? 'D' : 'd'}jidoka`]],
+    [/\b([Jj])idoka\b/g, (m, j) => `${j === 'J' ? 'D' : 'd'}jidoka`],
+    // MoSCoW and an MVP (pm.itproject.mvp): the requirements and MoSCoW words as Dutch IT projects say them,
+    // checked with espeak-ng phonemes through Piper's nl_NL-alex bridge: it reads requirement as
+    // "ree-kvi-re-MENT" (said ri-kwaijurmunt), spells MoSCoW as "mo S ko W" (Moskou), reads the bins as
+    // "haa-ve", "sjout", "kout" and "won" (Must hev, Sjoed hev, Koed hev, Woont hev dis taim; Shoulds and
+    // Coulds as Sjoeds, Koeds; a lone Must is read right), Oracle as "OO-rak-le" (Orrekul), Business as
+    // "buu-ZIE-nes" (Biznis, as the business case rule, here in the Agile Business Consortium, which the agile
+    // rule above has already made Etsjail), MVP as "em-fee-pee" (em vee pee), minimum viable product as
+    // "vie-ab-le PROO-dukt" (vaaiebul prodduct, as Prodduct above), Robinson stressed "-SON" (Robbinsun), Eric
+    // as "e-RIK" (Erik), The Lean Startup with "lee-an" (de Lien Startap, as the Lean-consultant rule), the
+    // Minimum Usable SubseT as "uu-za-ble sub-se tee" (Joezebul Sabset), to-be-proces as "too-bee-ee" (toe-bie),
+    // go-live as "go-lie-ve" (goo-laiv), businessanalist with "buu-zie-nes" (biznis-analist) and voedselbatches
+    // with "bat-chès" (betsj, as the batch rule above, which only reads a word that starts with batch).
+    // Capitals as the lessons write them; no other film's spoken text changes
+    [/\b([Rr])equirement(s?)\b/g, '$1i-kwaijurmunt$2'], [/\bMoSCoW\b/g, 'Moskou'],
+    [/\bMust have\b/g, 'Must hev'], [/\bShould have\b/g, 'Sjoed hev'], [/\bCould have\b/g, 'Koed hev'],
+    [/\bWon[’']t have this time\b/g, 'Woont hev dis taim'], [/\bWon[’']t have\b/g, 'Woont hev'], [/\bShould(s?)\b/g, 'Sjoed$1'], [/\bCould(s?)\b/g, 'Koed$1'],
+    [/\bOracle\b/g, 'Orrekul'], [/\bBusiness Consortium\b/g, 'Biznis Consortium'], [/\bMVP\b/g, 'em vee pee'],
+    [/\bminimum viable product\b/g, 'minimum vaaiebul prodduct'], [/\bFrank Robinson\b/g, 'Frank Robbinsun'], [/\bEric Ries\b/g, 'Erik Ries'],
+    [/\bThe Lean Startup\b/g, 'de Lien Startap'], [/\bMinimum Usable SubseT\b/g, 'Minimum Joezebul Sabset'], [/\b([Tt])o-be-proces\b/g, '$1oe-bie-proces'],
+    [/\b([Gg])o-live\b/g, '$1oo-laiv'], [/\b([Bb])usinessanalist\b/g, '$1iznis-analist'], [/\bvoedselbatches\b/g, 'voedselbetsjes'],
+    // and, in this film's phrases only, business as Biznis in "tussen business en IT" and live as "laiv" in "live te
+    // gaan" (it reads "buu-ZIE-nes" and the Dutch "lie-ve")
+    [/\btussen business en IT\b/g, 'tussen biznis en IT'], [/\blijn live te gaan\b/g, 'lijn laiv te gaan']],
   en: [[/\brpm\b/g, 'revolutions per minute'], [/\bmm\/min\b/g, 'millimetres per minute'], [/\bm\/min\b/g, 'metres per minute'], [/µm\b/g, 'micrometres'],
     [/€\s?(\d[\d,]*(?:\.\d+)?)/g, '$1 euros'], [/(\d)\.0(?![\d])/g, '$1'], [/(\d)\s?mm\b/g, '$1 millimetres'], [/(\d)\s?min\b/g, '$1 minutes'], [/(\d)\s?%/g, '$1 percent'],
     [/Ø\s*/g, 'diameter '], [/(\d)\+(\d)/g, '$1 plus $2'], [/\s×\s/g, ' times '], [/\s\/\s/g, ' divided by '], [/\s=\s/g, ' is '], [/°/g, ' degrees'], [/\bRa\b/g, 'R a'], [/’/g, "'"],
@@ -633,7 +656,10 @@ const SAY = {
     [/\b([Cc])utover/g, '$1uttover'],
     // a commit through the pipeline (pm.devops.pipeline): CI/CD (made "CI CD" by the acronym-pair rule above) as
     // letters (espeak-ng's English reads CI as the word "sigh")
-    [/\bCI CD\b/g, 'C I C D']],
+    [/\bCI CD\b/g, 'C I C D'],
+    // MoSCoW and an MVP (pm.itproject.mvp): MoSCoW as Moscow (espeak-ng's English spells it), Eric Ries as
+    // Reese (it reads "rise") and the Minimum Usable SubseT as a plain Subset (it reads "subs tee")
+    [/\bMoSCoW\b/g, 'Moscow'], [/\bEric Ries\b/g, 'Eric Reese'], [/\bSubseT\b/g, 'Subset']],
 };
 export const sayable = (text, lang) => (SAY[lang] || []).reduce((s, [re, w]) => s.replace(re, w), text);
 // The words the voice says: no English gloss, and with a language, units as words.
