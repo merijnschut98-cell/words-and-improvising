@@ -134,7 +134,7 @@ const STAGE = (() => {
     const Cp = page(b, p, 3, -1);
     if (b >= 3) o.wrong = op(Cp, lines(80, [[tr('wat vaak misgaat', 'what often goes wrong'), 'pm-big'], [tr('2 grote workshops', '2 big workshops')], [tr('niet getoetst aan het', 'no check against the')], [tr('to-be-proces', 'to-be process')], [tr('offerte op 300 vage', 'a quote on 300 vague')], [tr('regels', 'lines')]]));
     if (b >= 4) o.scope = op(Cp * at(b, p, 4), lines(240, [[tr('vage regel: later', 'vague line: later'), 'pm-big'], [tr('“was dit in scope?”', '“was this in scope?”')], [tr('scope: de afgesproken', 'scope: the agreed'), 'pm-mute'], [tr('inhoud van het project', 'content of the project'), 'pm-mute']]));
-    if (b >= 5) o.askq = op(at(b, p, 5), lines(346, [[tr('welke stap wordt beter?', 'which step gets better?'), 'pm-on'], [tr('niemand? dan gewoonte', 'nobody? then habit,'), 'pm-txt'], [tr('', 'not need'), 'pm-txt']].filter(([t]) => t)));
+    if (b >= 5) o.askq = op(at(b, p, 5), lines(346, [[tr('welke stap wordt beter?', 'which step gets better?'), 'pm-on'], [tr('niemand? dan gewoonte', 'nobody? habit, not need'), 'pm-txt']]));
     return o;
   }
 
@@ -155,11 +155,11 @@ const STAGE = (() => {
 
   // the four bins, in two rows of two, with their names; hot: the bin lit
   const bins = (y, hot = -1, a = [1, 1, 1, 1]) => BINS.map(([name, cls], i) => {
-    const x = X0 + (i % 2) * 146;
+    const x = X0 + (i % 2) * 144;
     const yy = y + Math.floor(i / 2) * 74;
     const on = hot === i;
-    return op(a[i], rect(x, yy, 138, 64, on ? 'pm-hot' : 'pm-card', 6) + rect(x + 8, yy + 40, 30, 14, cls, 1) + rect(x + 44, yy + 40, 30, 14, cls, 1)
-      + txt(x + 8, yy + 28, name, on ? 'pm-on' : 'pm-big'));
+    return op(a[i], rect(x, yy, 140, 64, on ? 'pm-hot' : 'pm-card', 6) + rect(x + 6, yy + 40, 30, 14, cls, 1) + rect(x + 42, yy + 40, 30, 14, cls, 1)
+      + txt(x + 5, yy + 28, name, on ? 'pm-on' : 'pm-big'));
   }).join('');
 
   // s5: MoSCoW: the four bins; the o's; Dai Clegg, DSDM, common in ERP/MES
@@ -198,12 +198,12 @@ const STAGE = (() => {
     const B = page(b, p, 2, -1);
     if (b >= 2) {
       o.rules = op(B, lines(76, [[tr('DSDM-vuistregels', 'DSDM’s rules of thumb'), 'pm-big'], [tr('van de inspanning', 'share of the effort'), 'pm-mute']])
-        + bar(108, [[60, 'pm-acc'], [20, 'pm-blk2'], [20, 'pm-card']], 100, at(b, p, 2, 0.1, 0.5))
-        + txt(X0, 166, tr('Musts ≤ 60%', 'Musts ≤ 60%'), 'pm-big') + txt(X1, 166, tr('Coulds ± 20%', 'Coulds ~20%'), 'pm-big', 'end')
-        + path(`M${f1(xOf(60, 100))} 100v46`, 'pm-cut'));
+        + bar(118, [[60, 'pm-acc'], [20, 'pm-blk2'], [20, 'pm-card']], 100, at(b, p, 2, 0.1, 0.5))
+        + txt(X0, 176, tr('Musts ≤ 60%', 'Musts ≤ 60%'), 'pm-big') + txt(X1, 202, tr('Coulds ± 20%', 'Coulds ~20%'), 'pm-big', 'end')
+        + path(`M${f1(xOf(60, 100))} 110v46`, 'pm-cut'));
     }
-    if (b >= 3) o.reserve = op(B * at(b, p, 3), lines(204, [[tr('Coulds = je reserve', 'Coulds = your reserve'), 'pm-on']]) + path(`M${f1(xOf(90, 100))} 184v-38`, 'pm-line'));
-    if (b >= 4) o.breaks = op(B * at(b, p, 4), box(232, tr('alles Must?', 'all Musts?'), [tr('de scope vangt geen', 'the scope absorbs no'), tr('tegenvaller op: datum', 'setback: the date or'), tr('of budget breekt', 'the budget breaks')], true));
+    if (b >= 3) o.reserve = op(B * at(b, p, 3), lines(238, [[tr('Coulds = je reserve', 'Coulds = your reserve'), 'pm-on']], X0 + 40) + rect(xOf(80, 100), 116, CW * 0.2, 34, 'pm-hot', 3));
+    if (b >= 4) o.breaks = op(B * at(b, p, 4), box(256, tr('alles Must?', 'all Musts?'), [tr('de scope vangt geen', 'the scope absorbs no'), tr('tegenvaller op: datum', 'setback: the date or'), tr('of budget breekt', 'the budget breaks')], true));
     return o;
   }
 
@@ -243,7 +243,7 @@ const STAGE = (() => {
     }
     const Dp = page(b, p, 5, -1);
     if (b >= 5) o.lean = op(Dp, box(54, tr('Lean: herkenbaar', 'Lean: familiar'), [tr('klein beginnen, eerst', 'start small, learn on'), tr('op één lijn leren', 'one line first'), [tr('maar nooit weg: wette-', 'never trimmed: legal'), 'pm-on'], [tr('lijke en veiligheids-', 'and safety Musts, such'), 'pm-on'], [tr('Musts, zoals traceren', 'as tracing food'), 'pm-on'], [tr('van voedselbatches', 'batches'), 'pm-on']], b === 5));
-    if (b >= 6) o.monday = op(Dp * at(b, p, 6), lines(270, [[tr('vraag:', 'ask:'), 'pm-mute'], [tr('wat doen we op de eerste', 'what do we do on the'), 'pm-on'], [tr('maandag zonder dit?', 'first Monday without it?'), 'pm-on']]));
+    if (b >= 6) o.monday = op(Dp * at(b, p, 6), lines(292, [[tr('vraag:', 'ask:'), 'pm-mute'], [tr('wat doen we op de eerste', 'what do we do on the'), 'pm-on'], [tr('maandag zonder dit?', 'first Monday without it?'), 'pm-on']]));
     return o;
   }
 
