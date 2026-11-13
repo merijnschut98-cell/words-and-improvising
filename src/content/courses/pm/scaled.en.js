@@ -995,6 +995,7 @@ export default {
     },
     {
       id: 'pm.scaled.stagegate',
+      film: 'pm.scaled.hybrid',
       title: 'Stage-gate and agile in manufacturing',
       pre: [
         {
@@ -1076,6 +1077,7 @@ export default {
     },
     {
       id: 'pm.scaled.longlead',
+      film: 'pm.scaled.hybrid',
       title: 'Long lead times and backward planning',
       pre: [
         {
