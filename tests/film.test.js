@@ -844,7 +844,7 @@ test('speak variant: Radical Candor of the lead intro', () => {
 // field film's rule says it, here only after "steekproef en een" (that rule serves "vragenset en een" only, and the
 // disagreement and steering films keep their voice). The film's other words (naïeve vraag, vragenset, premortem,
 // besliscriteria, eenrichtingsdeuren, vertrouwensformule, contextwisseling, referentieklassen, piramideprincipe,
-// terugvertellen, watermeloenstatus, meelopen, beslisnotitie, fabrieksacceptatietest, PLC-programmeur) go through
+// terugvertellen, watermeloenstatus, meelopen, fabrieksacceptatietest, PLC-programmeur) go through
 // the rules above or are read right as they are; English needs nothing; no other film's spoken text changes
 test('speak variant: second opinion of the outside intro', () => {
   const nl = (s) => speakOf([s], 'nl');

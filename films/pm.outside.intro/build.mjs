@@ -48,8 +48,9 @@
 // question (pm.outside.humility, Werkkennis); a question set (pm.outside.phasequestions, Basis, as
 // field film 2 names it) and a premortem (pm.outside.fail, Werkkennis); a spot check
 // (pm.outside.trust, Basis) and a second opinion (pm.outside.disagree, Werkkennis, as field film 2
-// names it); a factory acceptance test (pm.outside.progress, Basis) and a decision memo
-// (pm.outside.decide, Werkkennis). The Werkkennis tools named in a Basis scene do not come back in
+// names it); a factory acceptance test (pm.outside.progress, Basis; a FAT is the test of a
+// supplier-built item at the supplier before shipping, here the switchboard). The decision memo (pm.outside.decide)
+// is the run intro's decision note and is not named here. The Werkkennis tools named in a Basis scene do not come back in
 // s7, and neither does any Basis term a scene named; s7 names what each later level adds and
 // nothing a scene explained or named. Acceptance criteria and the milestone are not named as tools:
 // the close intro and the plan intro already name them for their own topics. Terms come from the
@@ -131,15 +132,16 @@ isTerm('pm.outside.trust', 'Spot check', 'en'); isTerm('pm.outside.disagree', 'S
 // s5: outside your field you cannot look at the work and judge how far it is; percent complete is the weakest measure,
 // an opinion that tends to stall near 90%; a milestone is a yes or no, not a percentage (switchgear energised); count a
 // milestone only when its evidence exists (a signed test report, a demo); the tools: a factory acceptance test
-// (pm.outside.progress, Basis) and a decision memo (pm.outside.decide, Werkkennis). The milestone and acceptance
+// (pm.outside.progress, Basis), given its reason: the switchboard comes from a supplier. The decision memo is the run
+// intro's besluitnotitie, the same one-page idea, and is dropped here. The milestone and acceptance
 // criteria are the plan and close intros' tools and are not named here
 has('pm.outside.progress', ['Percentage gereed', 'is buiten je vak de zwakste maat: het is een mening', 'Een mijlpaal (milestone) is een punt in het project waarop een duidelijk resultaat er moet zijn', 'schakelinstallatie onder spanning', 'Het is ja of nee, geen percentage', 'tel een mijlpaal pas als het bewijs er is: een getekend testrapport, een demo']);
 has('pm.outside.progress', ['Percent complete', 'is the weakest measure outside your field: it’s an opinion', 'A milestone is a point in the project where a clear result has to exist', 'switchgear energised', 'It’s a yes-or-no, not a percentage', 'only count a milestone when its evidence exists: a signed test report, a demo'], 'en');
-isTerm('pm.outside.progress', 'Fabrieksacceptatietest', 'nl'); isTerm('pm.outside.decide', 'Beslisnotitie', 'nl');
-isTerm('pm.outside.progress', 'Factory acceptance test', 'en'); isTerm('pm.outside.decide', 'Decision memo', 'en');
+isTerm('pm.outside.progress', 'Fabrieksacceptatietest', 'nl');
+isTerm('pm.outside.progress', 'Factory acceptance test', 'en');
 // s7: the later levels, as the lessons are titled or word them (the grid names what each adds, and nothing a scene
 // explained or named: no naive question, question set, premortem, spot check, second opinion, factory acceptance test,
-// decision memo, director, process owner, assumption, milestone, evidence, percentage; curiosity, single point of
+// director, process owner, assumption, milestone, evidence, percentage; curiosity, single point of
 // failure, decision criteria, one-way doors, the trust equation, reference classes, context switching, the pyramid
 // principle, what you never hand over, teach-back, the watermelon status and shadowing are named here and nowhere else)
 for (const [id, word] of [['pm.outside.humility', 'Nieuwsgierigheid'], ['pm.outside.fail', 'Single point of failure'], ['pm.outside.disagree', 'Besliscriteria'], ['pm.outside.decide', 'Eenrichtingsdeur'],
@@ -235,8 +237,17 @@ const hud = g('hud', `<rect data-k="pbg" class="pm-panel" x="322" y="12" width="
   + cueG('tool1', g('tool1B', '')) + cueG('tool2', g('tool2B', ''))
   + cueG('flow', g('flowB', '')) + cueG('decision', g('decisionB', '')));
 // the shared map, Projecten leiden buiten je vakgebied lit, in the stage (the film's closing scene; the stage script moves and fades it)
-const MAP = (await mapScene({ subject: 'pm', highlight: ['pm.outside'] })).replace('<svg class="subject-map"', '<svg class="subject-map" width="640" height="520"');
 const OUT_PLACE = pmMap.places.find((p) => p.module === 'pm.outside');
+// The English label of this place is four lines of 17 units from y 326 (Leading, projects, outside your, field): the last
+// line's descenders and the lit halo reach the tile's bottom border (y 382), which shows at the 1.5 zoom of the closing
+// scene. mapSvg is pinned and the app's own, so this film closes its label up to 16 units a line (baselines 323 to 371),
+// which keeps it clear of the border and of the desk above it; the build asserts the drawing it edits and that it fits.
+const LABEL_EN = [326, 343, 360, 377].map((y, i) => `<tspan x="${OUT_PLACE.x + OUT_PLACE.w / 2}" y="${y}">${['Leading', 'projects', 'outside your', 'field'][i]}</tspan>`).join('');
+const LABEL_EN_FIT = [323, 339, 355, 371].map((y, i) => `<tspan x="${OUT_PLACE.x + OUT_PLACE.w / 2}" y="${y}">${['Leading', 'projects', 'outside your', 'field'][i]}</tspan>`).join('');
+assert(OUT_PLACE.y + OUT_PLACE.h - 371 >= 8, 'the closed-up English label keeps 8 units clear of the tile border');
+const MAP0_SVG = await mapScene({ subject: 'pm', highlight: ['pm.outside'] });
+assert(MAP0_SVG.split(LABEL_EN).length === 2, 'the shared map draws the English label of Leading projects outside your field as this film expects');
+const MAP = MAP0_SVG.replace(LABEL_EN, LABEL_EN_FIT).replace('<svg class="subject-map"', '<svg class="subject-map" width="640" height="520"');
 const MAPZ = [OUT_PLACE.x + OUT_PLACE.w / 2, OUT_PLACE.y + OUT_PLACE.h / 2];
 assert(MAP.includes(`data-cue="${mapCue('pm.outside')}"`), 'the map lights pm.outside as a cue group');
 
@@ -299,7 +310,7 @@ const CAM = [
   { from: cam(95, 95, 60, 1.1), to: cam(98, 98, 60, 1.15) }, // s2 the installer at the cabinet and the sponsor on the floor
   { from: cam(70, 75, 60, 1.2), to: cam(75, 78, 60, 1.25) }, // s3 the installer at the cabinet
   { from: cam(78, 82, 60, 1.1), to: cam(82, 84, 60, 1.15) }, // s4 the installer and the PLC programmer
-  { from: cam(95, 98, 60, 1.1), to: cam(98, 100, 60, 1.15) }, // s5 the installer and the sponsor
+  { from: cam(145, 88, 70, 1), to: cam(148, 90, 70, 1.03) }, // s5 the whole hall: the installer, the sponsor and the switchboard's place on the wall
   { from: cam(150, 90, 60, 1.1), to: cam(145, 85, 70, 1) }, // s6 the whole hall, finished
   { from: cam(145, 85, 70, 1), to: cam(145, 85, 70, 1) }, // s7 (the map)
 ];
@@ -364,14 +375,14 @@ const spec = {
         { nl: 'Vierde onderwerp is Sturen en besluiten. De installateur zegt dat de aansluiting negentig procent klaar is.', en: 'Fourth topic is Steering and deciding. The installer says the connection is ninety percent done.', focus: ['tSteer', 'pct', 'installer'] },
         { nl: 'Een percentage is een mening. Tel mijlpalen, ja of nee, zoals de schakelkast onder spanning.', en: 'A percentage is an opinion. Count milestones, yes or no, like the switchboard energised.', focus: ['mile', 'installer', 'switch'] },
         { nl: 'Een mijlpaal telt pas met bewijs, zoals een getekend testrapport of een demo. De sponsor besluit op feiten.', en: 'A milestone counts only with evidence, such as a signed test report or a demo. The sponsor decides on facts.', focus: ['proof', 'sponsor'] },
-        { nl: 'We gebruiken een {t:Fabrieksacceptatietest|fabrieksacceptatietest} en een {t:Beslisnotitie|beslisnotitie}.', en: 'For steering we use a {t:Factory acceptance test|factory acceptance test} and a {t:Decision memo|decision memo}.', cue: { Fabrieksacceptatietest: 'tool1', Beslisnotitie: 'tool2', 'Factory acceptance test': 'tool1', 'Decision memo': 'tool2' }, focus: ['tool1', 'tool2'] },
+        { nl: 'Een leverancier bouwt de schakelkast. We testen daar met een {t:Fabrieksacceptatietest|fabrieksacceptatietest}.', en: 'A supplier builds the switchboard. We test there with a {t:Factory acceptance test|factory acceptance test}.', cue: { Fabrieksacceptatietest: 'tool1', 'Factory acceptance test': 'tool1' }, focus: ['switch', 'tool1'] },
       ],
     },
     {
       id: 's6', level: 1, dur: DURS[5], still: 0.9, title: { nl: 'Eén geheel', en: 'One whole' },
       beats: [
         { nl: 'Het hangt samen. Regisseur, goede vragen, vertrouwen en controleren, sturen op bewijs.', en: 'It connects. Director, good questions, trust and check, steering on evidence.', focus: ['flow', 'installer', 'plc', 'sponsor'] },
-        { nl: 'De berekening is getekend. De kast wordt groter en lijn 3 komt op zijn plek.', en: 'The calculation is signed. The cabinet gets bigger and line 3 gets into place.', focus: ['decision', 'installer', 'power', 'line3'] },
+        { nl: 'De tweede controleur rekent na en tekent. De kast is te klein, wordt groter en lijn 3 komt op zijn plek.', en: 'The second checker recalculates and signs. The cabinet is too small, gets bigger and line 3 gets into place.', focus: ['decision', 'installer', 'power', 'line3'] },
       ],
     },
     {
@@ -401,7 +412,7 @@ const spec = {
 // explaining them. The film has one SAY rule of its own (films/_kit/timeline.mjs, the group at the end of
 // the Dutch list): second opinion in "steekproef en een second opinion". PLC, premortem, single point of
 // failure, vertrouwensformule and fabrieksacceptatietest have rules there or are read right, and
-// the other words (naïeve vraag, vragenset, beslisnotitie, stroomkast, besliscriteria, eenrichtingsdeuren,
+// the other words (naïeve vraag, vragenset, stroomkast, besliscriteria, eenrichtingsdeuren,
 // contextwisseling, referentieklassen, piramideprincipe, terugvertellen, watermeloenstatus, meelopen) are
 // plain Dutch words or already said by other films.
 const SAY = [
@@ -452,14 +463,14 @@ const SAY = [
       en: 'Outside your field a percentage is the weakest measure, because it is an opinion. Count milestones instead, which are yes or no, like the switchboard energised.' },
     { nl: 'Tel een mijlpaal pas als het bewijs er is, zoals een getekend testrapport of een demo. Zo besluit de sponsor op feiten.',
       en: 'Only count a milestone when the evidence exists, such as a signed test report or a demo. That way the sponsor decides on facts.' },
-    { nl: 'Bij sturen gebruiken we een {t:Fabrieksacceptatietest|fabrieksacceptatietest} en een {t:Beslisnotitie|beslisnotitie}.',
-      en: 'For steering we use a {t:Factory acceptance test|factory acceptance test} and a {t:Decision memo|decision memo}.' },
+    { nl: 'Een leverancier bouwt de schakelkast. We testen hem daar voor verzending, met een {t:Fabrieksacceptatietest|fabrieksacceptatietest}.',
+      en: 'A supplier builds the switchboard. We test it there before shipping, with a {t:Factory acceptance test|factory acceptance test}.' },
   ],
   [ // s6 one whole
     { nl: 'Het hangt samen. Je bent regisseur, je stelt goede vragen, en je vertrouwt experts maar controleert wat telt. Je stuurt op bewijs.',
       en: 'It connects. You are the director, you ask good questions, and you trust experts but check what counts. You steer on evidence.' },
-    { nl: 'De berekening is gecontroleerd en getekend. De stroomkast blijkt te klein en wordt groter, en lijn 3 komt op zijn plek.',
-      en: 'The calculation is checked and signed. The power cabinet turns out too small and gets bigger, and line 3 gets into place.' },
+    { nl: 'De tweede controleur rekent na en tekent. De stroomkast is te klein, wordt groter, en lijn 3 komt op zijn plek.',
+      en: 'The second checker recalculates and signs. The power cabinet is too small, gets bigger, and line 3 gets into place.' },
   ],
   [ // s7 the map
     { nl: 'Dit is de kaart van Projecten. Projecten leiden buiten je vakgebied is het vierde station van Mensen en invloed.',

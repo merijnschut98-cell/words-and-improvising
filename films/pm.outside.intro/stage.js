@@ -206,7 +206,7 @@ const STAGE = (() => {
     const proof = card2(94, tr('Telt met bewijs', 'Counts with evidence'), tr('dat je kunt zien', 'you can see', 260), 'pm-crit')
       + card2(160, tr('Getekend testrapport', 'Signed test report'), tr('of een demo', 'or a demo', 260));
     return { pctB: b === 0 ? op(span(p, 0.1, 0.5), pct) : '', mileB: b === 1 ? op(span(p, 0.05, 0.4), mile) : '', proofB: b === 2 ? op(span(p, 0, 0.4), proof) : '',
-      ...tools(b, p, 3, tr('Fabrieksacceptatietest', 'Factory acceptance test', 272), tr('Beslisnotitie', 'Decision memo', 260)) };
+      ...tools(b, p, 3, tr('Fabrieksacceptatietest', 'Factory acceptance test', 272)) };
   }
 
   // ---- s6: one whole. The chain from mindset to steering, and the result.

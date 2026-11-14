@@ -823,7 +823,7 @@ const SAY = {
     // opinion" as "sekont opinion" (said sekkend opinjen, as the people field film's rule above), only after
     // "steekproef en een" in this film's tool sentence, so the other films keep their voice. Naïeve vraag, vragenset,
     // premortem, besliscriteria, eenrichtingsdeuren, vertrouwensformule, contextwisseling, referentieklassen,
-    // piramideprincipe, terugvertellen, watermeloenstatus, meelopen, beslisnotitie and fabrieksacceptatietest go
+    // piramideprincipe, terugvertellen, watermeloenstatus, meelopen and fabrieksacceptatietest go
     // through the rules above or are read right as they are; no other film's spoken text changes
     [/\bsteekproef en een second opinion\b/g, 'steekproef en een sekkend opinjen']],
   en: [[/\brpm\b/g, 'revolutions per minute'], [/\bmm\/min\b/g, 'millimetres per minute'], [/\bm\/min\b/g, 'metres per minute'], [/µm\b/g, 'micrometres'],
