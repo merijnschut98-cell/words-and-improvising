@@ -658,7 +658,7 @@ const SAY = {
     // them, checked with espeak-ng phonemes through Piper's nl_NL-alex bridge: it stresses onzekerheidskeGEL with
     // the e of "bed" (onzekerheids-kegel), reads Boehm as "boehm" (Beem), Steve McConnell as "stee-ve em-see konnel"
     // (Stiev Me-konnul), Troy Magennis as "troo-ie MAA-ge-nis" (Troj Me-gennis), NoEstimates as "es-ti-MAA-tes"
-    // (Noo-estimets), runs Monte Carlo-simulatie together (Monte Carlo simulatie), stresses verpakkingsfoLIE
+    // (Noo-estimets), stresses verpakkingsfoLIE
     // (verpakkings-fooli), reads labelsysteem with "laa-bel" (leebul-systeem), service level expectation as "su-ves
     // lee-VEL" (Surrvis levvul ekspek-teesjun), cycle times as "sik-le tie-mes" (saikl taims; the cycle time rule
     // above only reads the singular) and flow in "behoud van flow" as "flouw" (floo, as the flowmaten rule), stresses
@@ -671,7 +671,7 @@ const SAY = {
     // lower-case backlog as "bak-loch" (bek-lok, as the Backlog rule; only in "meer backlog"). No other film's spoken
     // text changes
     [/\b([Oo])nzekerheidskegel/g, '$1nzekerheids-kegel'], [/\bBarry Boehm\b/g, 'Barry Beem'], [/\bSteve McConnell\b/g, 'Stiev Me-konnul'],
-    [/\bTroy Magennis\b/g, 'Troj Me-gennis'], [/\bNoEstimates\b/g, 'Noo-estimets'], [/\bMonte Carlo-simulatie/g, 'Monte Carlo simulatie'],
+    [/\bTroy Magennis\b/g, 'Troj Me-gennis'], [/\bNoEstimates\b/g, 'Noo-estimets'],
     [/\b([Vv])erpakkingsfolie\b/g, '$1erpakkings-fooli'], [/\b([Ll])abelsysteem\b/g, (m, l) => `${l === 'L' ? 'L' : 'l'}eebul-systeem`],
     [/\b([Ss])ervice level expectation\b/g, '$1urrvis levvul ekspek-teesjun'], [/\b([Cc])ycle times\b/g, (m, c) => `${c === 'C' ? 'S' : 's'}aikl taims`],
     [/\bbehoud van flow\b/g, 'behoud van floo'], [/\b([Bb])ezettingsgraad\b/g, '$1ezettings-graad'], [/\b([Ww])achtrijmodel\b/g, '$1acht-rij-model'],

@@ -73,7 +73,7 @@ const STAGE = (() => {
   function s1(b, p) {
     const o = { head: [tr('de kegel', 'the cone'), DIA] };
     o.cone = box(54, tr('onzekerheidskegel', 'cone of uncertainty'), [[tr('Boehm, 1981; later', 'Boehm, 1981; later'), 'pm-mute'], [tr('uitgewerkt: McConnell', 'worked out: McConnell'), 'pm-mute'], tr('hoe vroeger, hoe breder', 'the earlier, the wider')], b === 0);
-    if (b >= 1) o.range = op(at(b, p, 1), lines(194, [[tr('eerste idee: 0,25× tot 4×', 'initial idea: 0.25× to 4×'), b === 1 ? 'pm-on' : 'pm-big'], [tr('ervaringsoordeel,', 'expert judgement,'), 'pm-mute'], [tr('geen harde meting', 'not hard measurement'), 'pm-mute']]));
+    if (b >= 1) o.range = op(at(b, p, 1), lines(194, [[tr('eerste idee: 0,25× tot 4×', 'initial idea: 0.25× to 4×'), b === 1 ? 'pm-on' : 'pm-big'], [tr('grotendeels ervarings-', 'largely expert judgement,'), 'pm-mute'], [tr('oordeel, geen harde', 'not hard measurement'), 'pm-mute'], [tr('meting', ''), 'pm-mute']]));
     if (b >= 2) o.narrow = op(page(b, p, 2, -1), card(184, 100, 'pm-hot') + lines(212, [[tr('smalt alleen door', 'narrows only by'), 'pm-on'], [tr('✓ werkende stukken', '✓ working pieces'), 'pm-big'], [tr('✗ alleen tijd', '✗ time on its own'), 'pm-big']], X0 + 4));
     if (b >= 2) o.range = op(b === 2 ? 1 - span(p, 0, 0.15) : 0, o.range);
     return o;
@@ -98,7 +98,7 @@ const STAGE = (() => {
       const f = span(p, 0.02, 0.2);
       o.mc = op(1 - f, o.mc);
       o.read = op(1 - f, o.read);
-      o.vac = op(f, box(54, tr('Vacanti, Magennis:', 'Vacanti, Magennis:'), [tr('populair in agile teams', 'popular in agile teams'), [tr('werkt alleen als de', 'only works if the way'), 'pm-mute'], [tr('manier van werken', 'of working stays'), 'pm-mute'], [tr('ongeveer gelijk blijft', 'roughly the same'), 'pm-mute']], true));
+      o.vac = op(f, box(54, tr('Daniel Vacanti en', 'Daniel Vacanti and'), [tr('Troy Magennis: populair', 'Troy Magennis: popular'), tr('in agile teams', 'in agile teams'), [tr('werkt alleen als de', 'only works if the way'), 'pm-mute'], [tr('manier van werken', 'of working stays'), 'pm-mute'], [tr('ongeveer gelijk blijft', 'roughly the same'), 'pm-mute']], true));
     }
     return o;
   }
@@ -135,7 +135,7 @@ const STAGE = (() => {
     const o = { head: ['SLE', DIA] };
     o.sle = box(54, 'service level expectation', [[tr('Kanban Guide:', 'Kanban Guide:'), 'pm-mute'], tr('een tijd met een kans,', 'a time with a chance,'), tr('85% binnen 8 dagen', '85% within 8 days')], b === 0);
     if (b >= 1) o.pct = op(at(b, p, 1), lines(198, [[tr('percentiel: de waarde', 'percentile: the value'), b === 1 ? 'pm-on' : 'pm-big'], [tr('waar een deel van de', 'below which a share of'), ''], [tr('metingen onder valt', 'the measurements falls'), '']]));
-    if (b >= 2) o.avg = op(at(b, p, 2), lines(276, [[tr('85e > gemiddelde', '85th > the average'), 'pm-on']]));
+    if (b >= 2) o.avg = op(at(b, p, 2), lines(276, [[tr('zegt meer dan gemiddelde', 'tells more than average'), 'pm-on']]));
     return o;
   }
   // s7: work item age; the control chart; the CFD; growing WIP; conservation of flow
@@ -147,7 +147,7 @@ const STAGE = (() => {
     const B = page(b, p, 2, -1);
     if (b >= 2) o.cfd = op(B, box(54, tr('cumulatief', 'cumulative flow'), [[tr('stroomdiagram', 'diagram'), 'pm-big'], [tr('per dag, banden per stap', 'per day, a band a step'), 'pm-mute'], tr('dikker = bottleneck', 'thicker = bottleneck')], b === 2));
     if (b >= 3) o.grow = op(B * at(b, p, 3) * (b === 4 ? 1 - span(p, 0, 0.15) : 1), lines(206, [[tr('in en klaar uit elkaar:', 'in and done apart:'), b === 3 ? 'pm-on' : 'pm-big'], [tr('onderhanden werk groeit', 'work in progress grows'), 'pm-mute']]));
-    if (b >= 4) o.cons = op(at(b, p, 4, 0.1, 0.3), lines(206, [[tr('behoud van flow: wat', 'conservation of flow:'), 'pm-on'], [tr('begint, komt ook af; nodig', 'what starts, finishes;'), ''], [tr('voor de wet van Little', 'needed for Little’s law'), '']]));
+    if (b >= 4) o.cons = op(at(b, p, 4, 0.1, 0.3), lines(200, [[tr('behoud van flow: wat', 'conservation of flow:'), 'pm-on'], [tr('begint, komt gemiddeld', 'what starts, finishes'), ''], [tr('ook af; voorwaarde voor', 'on average; a condition'), ''], [tr('de wet van Little', 'for Little’s law'), '']]));
     return o;
   }
   // s8: utilisation and the queueing factor; Reinertsen; 100 %; for you; the experts
@@ -158,7 +158,7 @@ const STAGE = (() => {
     if (b >= 1) o.rein = op(A * at(b, p, 1), lines(222, [[tr('één model; de vorm geldt', 'one model; the shape'), 'pm-mute'], [tr('breed (Reinertsen)', 'holds widely (Reinertsen)'), 'pm-big']]));
     if (b >= 2) o.full = op(A * at(b, p, 2), lines(274, [[tr('100%: geen ruimte', '100%: no room'), 'pm-on']]));
     const B = page(b, p, 3, -1);
-    if (b >= 3) o.lean = op(B, box(54, tr('voor jou', 'for you'), [tr('lijkt op buffers en', 'like buffers and'), tr('heijunka: gelijkmatig', 'heijunka: level'), tr('plannen; kenniswerk', 'scheduling; knowledge'), [tr('varieert veel meer', 'work varies far more'), 'pm-mute']], b === 3));
+    if (b >= 3) o.lean = op(B, box(54, tr('voor jou', 'for you'), [tr('reden voor buffers en', 'reason for buffers and'), tr('heijunka: gelijkmatig', 'heijunka: level'), tr('plannen; kenniswerk', 'scheduling; knowledge'), [tr('varieert veel meer', 'work varies far more'), 'pm-mute']], b === 3));
     if (b >= 4) o.exp = op(B * at(b, p, 4), lines(228, [[tr('vraag: onze SLE? hoeveel', 'ask: our SLE? how many'), 'pm-big'], [tr('items boven de helft?', 'items past half of it?'), 'pm-big'], [tr('welke band groeit?', 'which band is growing?'), 'pm-on']]));
     return o;
   }
@@ -257,13 +257,13 @@ const STAGE = (() => {
     const out = C.TP.map((v, i) => { const x = 24 + i * 50; const h = 9 * v; return rect(x, BASE - h, 34, h, hot && v === 3 ? 'pm-barhot' : 'pm-bar', 2) + txt(x + 17, BASE - 6, String(v), hot && v === 3 ? 'pm-on' : 'pm-big', 'middle'); });
     return out.join('') + path(`M16 ${BASE}H520`, 'pm-line') + path(`M16 ${BASE - 45}H520`, 'pm-over') + txt(530, BASE - 37, tr('gem. 5', 'avg 5'), 'pm-on');
   }
-  const CUM = [[10, 75, '≈75%'], [11, 98, '98%'], [12, 100, '≈100%']];
+  const CUM = [[10, 75, '≈75%'], [11, 98, '98%'], [12, 100, null]];
   function cumSvg(hot, line) {
     const x0 = 132;
     const full = 480;
     const out = CUM.map(([wk, pc, lab], i) => {
       const y = 300 + i * 30;
-      return txt(16, y + 21, tr(`≤ ${wk} wk`, `≤ ${wk} wk`), 'pm-big') + rect(x0, y, full * (pc / 100), 25, i === hot ? 'pm-barhot' : 'pm-bar', 3) + txt(x0 + full * (pc / 100) - 8, y + 21, lab, i === hot ? 'pm-on' : 'pm-big', 'end');
+      return txt(16, y + 21, tr(`≤ ${wk} wk`, `≤ ${wk} wk`), 'pm-big') + rect(x0, y, full * (pc / 100), 25, i === hot ? 'pm-barhot' : 'pm-bar', 3) + txt(x0 + full * (pc / 100) - 8, y + 21, lab || tr('vrijwel alle', 'practically all'), i === hot ? 'pm-on' : 'pm-big', 'end');
     }).join('');
     return out + (line ? path(`M${f1(x0 + full * 0.85)} 298V356`, 'pm-mark') : '');
   }
@@ -281,7 +281,7 @@ const STAGE = (() => {
   const AGES = [2, 5, 3, 7, 1, 4];
   function ageSvg(hotAge) {
     const lim = BASE - 8 * 9;
-    return AGES.map((v, i) => { const x = 150 + i * 62; const hot = v === 7 && hotAge; return rect(x, BASE - 9 * v, 36, 9 * v, hot ? 'pm-barhot' : 'pm-bar', 2) + (hot ? txt(x + 18, BASE - 9 * v - 6, '7', 'pm-on', 'middle') : ''); }).join('')
+    return AGES.map((v, i) => { const x = 150 + i * 62; const hot = v === 7 && hotAge; return rect(x, BASE - 9 * v, 36, 9 * v, hot ? 'pm-barhot' : 'pm-bar', 2) + (hot ? txt(x + 44, BASE - 9 * v + 20, '7', 'pm-on') : ''); }).join('')
       + path(`M140 ${BASE}H530`, 'pm-line') + path(`M140 ${lim}H530`, 'pm-over') + txt(16, lim + 8, tr('SLE: 8 d', 'SLE: 8 d'), 'pm-on') + txt(16, BASE - 6, tr('leeftijd', 'age'), 'pm-mute');
   }
   // the cumulative flow diagram: arrived, started and done per day, the middle band growing

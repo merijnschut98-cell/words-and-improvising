@@ -538,8 +538,7 @@ test('speak variant: the post-mortem words in Dutch', () => {
 // through Piper's nl_NL-alex bridge: onzekerheidskegel (stressed kə-GEL:
 // onzekerheids-kegel), Barry Boehm ("boehm": Beem), Steve McConnell ("stee-ve
 // em-see konnel": Stiev Me-konnul), Troy Magennis ("troo-ie MAA-ge-nis": Troj
-// Me-gennis), NoEstimates ("es-ti-MAA-tes": Noo-estimets), Monte
-// Carlo-simulatie (run together: Monte Carlo simulatie), verpakkingsfolie
+// Me-gennis), NoEstimates ("es-ti-MAA-tes": Noo-estimets), verpakkingsfolie
 // (stressed fo-LIE: verpakkings-fooli), labelsysteem ("laa-bel": leebul-systeem),
 // service level expectation ("su-ves lee-VEL": Surrvis levvul ekspek-teesjun),
 // cycle times ("sik-le tie-mes": saikl taims; cycle time has its rule already),
@@ -560,7 +559,7 @@ test('speak variant: the forecasting and flow words in Dutch and English', () =>
   assert.equal(nl('De onzekerheidskegel is een model van Barry Boehm, later uitgewerkt door Steve McConnell.'),
     'De onzekerheids-kegel is een model van Barry Beem, later uitgewerkt door Stiev Me-konnul.');
   assert.equal(nl('Daniel Vacanti en Troy Magennis. NoEstimates kwam op gang. Een Monte Carlo-simulatie trekt weken.'),
-    'Daniel Va-kenti en Troj Me-gennis. Noo-estimets kwam op gang. Een Monte Carlo simulatie trekt weken.');
+    'Daniel Va-kenti en Troj Me-gennis. Noo-estimets kwam op gang. Een Monte Carlo-simulatie trekt weken.');
   assert.equal(nl('Een maker van verpakkingsfolie vervangt het labelsysteem. Twintig procent meer backlog doet.'),
     'Een maker van verpakkings-fooli vervangt het leebul-systeem. Twintig procent meer bek-lok doet.');
   assert.equal(nl('Een service level expectation, de cycle times, behoud van flow.'), 'Een surrvis levvul ekspek-teesjun, de saikl taims, behoud van floo.');
