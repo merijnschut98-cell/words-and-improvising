@@ -914,32 +914,32 @@
     "eng.maintenance.tpm": {
       "poster": "src/content/courses/films/eng.maintenance.tpm.jpg",
       "nl": {
-        "dur": 304.3,
-        "bytes": 9652090,
+        "dur": 268.3,
+        "bytes": 8389668,
         "scenes": [
-          0,
-          35.6,
-          80.46,
-          113.77,
-          138.62,
-          172.25,
-          222.13,
-          261.71
+          0.0,
+          30.53,
+          75.11,
+          103.34,
+          123.53,
+          155.83,
+          197.66,
+          235.66
         ],
         "vtt": "src/content/courses/films/eng.maintenance.tpm.nl.vtt"
       },
       "en": {
-        "dur": 325.1,
-        "bytes": 10214563,
+        "dur": 290.8,
+        "bytes": 8931472,
         "scenes": [
-          0,
-          42.5,
-          87.04,
-          124.55,
-          149.08,
-          182.91,
-          231.62,
-          276.61
+          0.0,
+          37.94,
+          83.93,
+          117.23,
+          137.28,
+          171.47,
+          213.14,
+          253.8
         ],
         "vtt": "src/content/courses/films/eng.maintenance.tpm.en.vtt"
       }
@@ -1205,32 +1205,32 @@
     "eng.switchgear.devices": {
       "poster": "src/content/courses/films/eng.switchgear.devices.jpg",
       "nl": {
-        "dur": 340.6,
-        "bytes": 10529278,
+        "dur": 291.1,
+        "bytes": 8070593,
         "scenes": [
           0,
-          41.61,
-          76.58,
-          109.37,
-          156.65,
-          213.86,
-          256.05,
-          305.56
+          36.71,
+          66.34,
+          97.97,
+          135.49,
+          179.48,
+          221.68,
+          271.05
         ],
         "vtt": "src/content/courses/films/eng.switchgear.devices.nl.vtt"
       },
       "en": {
-        "dur": 354.2,
-        "bytes": 10825688,
+        "dur": 309.5,
+        "bytes": 8524215,
         "scenes": [
           0,
-          44.44,
-          81.64,
-          113.97,
-          164.65,
-          223.88,
-          266.71,
-          322.17
+          40.48,
+          72.1,
+          104.43,
+          145.65,
+          192.06,
+          235.25,
+          290.67
         ],
         "vtt": "src/content/courses/films/eng.switchgear.devices.en.vtt"
       }
@@ -1368,32 +1368,32 @@
     "eng.ot.orderflow": {
       "poster": "src/content/courses/films/eng.ot.orderflow.jpg",
       "nl": {
-        "dur": 293.6,
-        "bytes": 11174054,
+        "dur": 233.8,
+        "bytes": 8787723,
         "scenes": [
           0,
-          40.61,
-          74.66,
-          99.79,
-          137.46,
-          168.53,
-          208.46,
-          250.19
+          29.72,
+          59.59,
+          77.77,
+          113.41,
+          131.83,
+          165.27,
+          202.32
         ],
         "vtt": "src/content/courses/films/eng.ot.orderflow.nl.vtt"
       },
       "en": {
-        "dur": 328.5,
-        "bytes": 12335313,
+        "dur": 267.2,
+        "bytes": 9938872,
         "scenes": [
           0,
-          44.67,
-          84.73,
-          112.77,
-          155.15,
-          189.77,
-          235.31,
-          282.4
+          31.09,
+          68,
+          87.45,
+          128.59,
+          150.95,
+          190.42,
+          232.73
         ],
         "vtt": "src/content/courses/films/eng.ot.orderflow.en.vtt"
       }
@@ -2878,6 +2878,39 @@
           301.68
         ],
         "vtt": "src/content/courses/films/pm.agile.forecast.en.vtt"
+      }
+    },
+    "eng.power.air": {
+      "poster": "src/content/courses/films/eng.power.air.jpg",
+      "nl": {
+        "dur": 230.6,
+        "bytes": 8523266,
+        "scenes": [
+          0,
+          19.25,
+          32.88,
+          54.77,
+          82.29,
+          113.73,
+          153.14,
+          193.62
+        ],
+        "vtt": "src/content/courses/films/eng.power.air.nl.vtt"
+      },
+      "en": {
+        "dur": 250.8,
+        "bytes": 9353630,
+        "scenes": [
+          0,
+          20.1,
+          36.35,
+          60.89,
+          91.32,
+          125.38,
+          167.25,
+          211.66
+        ],
+        "vtt": "src/content/courses/films/eng.power.air.en.vtt"
       }
     }
   }
