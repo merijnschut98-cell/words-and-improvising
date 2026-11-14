@@ -839,6 +839,23 @@ test('speak variant: Radical Candor of the lead intro', () => {
   assert.equal(speakOf([en], 'en'), en);
 });
 
+// The Leading projects outside your field module intro (pm.outside.intro), checked with espeak-ng phonemes through
+// Piper's nl bridge: it reads the English "second opinion" as "sekont opinion" (said sekkend opinjen), as the people
+// field film's rule says it, here only after "steekproef en een" (that rule serves "vragenset en een" only, and the
+// disagreement and steering films keep their voice). The film's other words (naïeve vraag, vragenset, premortem,
+// besliscriteria, eenrichtingsdeuren, vertrouwensformule, contextwisseling, referentieklassen, piramideprincipe,
+// terugvertellen, watermeloenstatus, meelopen, beslisnotitie, fabrieksacceptatietest, PLC-programmeur) go through
+// the rules above or are read right as they are; English needs nothing; no other film's spoken text changes
+test('speak variant: second opinion of the outside intro', () => {
+  const nl = (s) => speakOf([s], 'nl');
+  assert.equal(nl('Met experts gebruiken we een steekproef en een second opinion.'), 'Met experts gebruiken we een steekproef en een sekkend opinjen.');
+  // elsewhere the words keep their voice
+  assert.equal(nl('Vraag een second opinion bij een BATNA.'), 'Vraag een second opinion bij een BATNA.');
+  assert.equal(nl('Vraag een steekproef bij een second opinion.'), 'Vraag een steekproef bij een second opinion.');
+  const en = 'With experts we use a spot check and a second opinion.';
+  assert.equal(speakOf([en], 'en'), en);
+});
+
 // A stage drawn on the Dutch caption beats (beatwarp films set STAGE.nlBeats)
 // follows the caption beat on screen in English too: while English beat k
 // shows, the stage runs through Dutch beat k, so the drawing is never a beat off.
