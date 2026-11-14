@@ -472,7 +472,7 @@ const CAM = [
 ];
 
 // ---------------------------------------------------------------- the film
-const DUR = [35, 38, 32, 42, 43, 34, 38, 28];
+const DUR = [30, 34, 32, 34, 36, 34, 38, 16];
 const C = { MIMIC, blades, FF, CB_KA, FAULT_KA, T_OPEN, FL, CB_RANGE, RMUS, KG, GWP, STOCK_T, LEAK_KG, CO2_T, dur: DUR };
 const B = (nl, en, more = {}) => ({ nl, en, ...more });
 const spec = {
@@ -546,9 +546,6 @@ const spec = {
     {
       id: 's8', lesson: DEV, level: 1, dur: DUR[7], still: 0.92, title: { nl: 'Wat kan hij?', en: 'What can it do?' },
       beats: [
-        B('Vermogensschakelaar: last schakelen en kortsluiting onderbreken, telkens opnieuw.', 'Circuit breaker: switches load and breaks short circuits, again and again.', { cues: [] }),
-        B('Lastscheider: last schakelen, geen kortsluiting. Zekering: onderbreekt, één keer.', 'Load-break switch: switches load, no short circuit. Fuse: breaks it, once.', { cues: [] }),
-        B('Scheider: alleen stroomloos. Aardingsschakelaar: het dode deel naar aarde.', 'Disconnector: only without current. Earthing switch: the dead section to earth.', { cues: [] }),
         B('Een installatie staat er {n:30} tot {n:50} jaar. Vraag dus: welk type is het?', 'An installation stays {n:30} to {n:50} years. So ask: which type is it?', { cues: ['rmu'] }),
       ],
     },
@@ -561,11 +558,8 @@ const spec = {
 // so this explains fully. No "/", "&", "×", "=", "%" or units as symbols in the
 // spoken text: kA, kV and kVA are written out, and "0,1%" is said "0,1
 // procent". Terms as in the grid modules (netstation, onderstation, ring,
-// beveiligingsrelais, kortsluitverklikker not needed here), the five safety
-// rules word for word as eng.gridops (vrijschakelen, beveiligen tegen
-// herinschakelen, spanningsloosheid vaststellen, aarden en kortsluiten,
-// naastgelegen delen onder spanning afschermen) and the LOTO and permit films
-// (vergrendeling). Dutch words checked with espeak-ng phonemes (Piper's own
+// beveiligingsrelais, kortsluitverklikker not needed here) and the LOTO and
+// permit films (vergrendeling). Dutch words checked with espeak-ng phonemes (Piper's own
 // bridge, films/_kit/voice-ab/phon.py with nl_NL-alex-medium). Dutch-only SAY
 // rules in films/_kit/timeline.mjs: vermogensschakelaar and
 // aardingsschakelaar (singular; espeak-ng stresses "-ke-" with the e of "bed",
@@ -578,13 +572,13 @@ const spec = {
 // ringkabel (stressed on the head), materialen (stressed on "MA-"),
 // kortsluitstroom (stressed on "stroom"),
 // transformatorveld, "ring main unit" (read as Dutch). Read right:
-// lastscheider, zekering, scheider, vacuümschakelbuis, smeltpatroon, slagpen,
+// lastscheider, zekering, scheider, vacuümschakelbuis,
 // beveiligingsrelais, luchtgeïsoleerde, gasgeïsoleerde, drukmeter, SF6, CO2,
-// F-gassenverordening, spanningsloosheid, vergrendeling, netstation.
+// F-gassenverordening, vergrendeling, netstation.
 const SAY = [
   [ // s1 a secondary substation
-    B('Dit netstation voedt een paar straten. Links de schakelinstallatie voor de middenspanning, rechts de transformator die {n:10} kilovolt omzet naar laagspanning.',
-      'This secondary substation feeds a few streets. On the left the medium-voltage switchgear, on the right the transformer that steps {n:10} kilovolts down to low voltage.'),
+    B('Links in het netstation de schakelinstallatie voor de middenspanning, rechts de transformator.',
+      'In this secondary substation, the medium-voltage switchgear is on the left, the transformer on the right.'),
     B('Een schakelinstallatie schakelt, beveiligt en scheidt delen van het net. Hier is dat een {t:RMU|RMU}. Dat is één compact blok in een gesloten stalen tank.',
       'Switchgear switches, protects and isolates parts of the grid. Here it is an {t:RMU|RMU}, a ring main unit: one compact block in a sealed steel tank.'),
     B('Die heeft drie {t:Veld|velden}: één kast per kabel of transformator. Twee velden koppelen het station in de ring, het derde voedt de transformator. Een lijntekening op de voorkant toont welke schakelaar open, dicht of geaard is.',
@@ -599,8 +593,8 @@ const SAY = [
       'It switches load, but also breaks a short circuit, again and again, and is typically rated for {n:16} to {n:25} kiloamps.'),
     B('Een beveiligingsrelais meet de stroom. Ziet het een fout, dan laat het de schakelaar openen.',
       'A protection relay measures the current. When it sees a fault, it tells the breaker to open.'),
-    B('Gaan de contacten uit elkaar, dan springt er een boog over. In een {t:Vacuümschakelbuis|vacuümschakelbuis} brandt die alleen in metaaldamp. Bij de volgende nuldoorgang van de stroom dooft hij, en de damp slaat meteen neer.',
-      'As the contacts part, an arc jumps across. In a {t:Vacuum interrupter|vacuum interrupter} it burns only in metal vapour. At the next current zero it goes out, and the vapour condenses at once.'),
+    B('Gaan de contacten uit elkaar, dan springt er een boog over. In een {t:Vacuümschakelbuis|vacuümschakelbuis} dooft die bij een nuldoorgang van de stroom.',
+      'As the contacts part, an arc jumps across. In a {t:Vacuum interrupter|vacuum interrupter} it goes out at a current zero.'),
   ],
   [ // s3 the fault level
     B('Hoe zwaar? Dat hangt af van het {t:Kortsluitvermogen|kortsluitvermogen}: hoe hard een kortsluiting op die plek aankomt.',
@@ -617,18 +611,18 @@ const SAY = [
       'Back in the secondary substation, the two ring panels each have a {t:Load-break switch|load-break switch}, for switching sections of the ring in and out.'),
     B('Een lastscheider schakelt de normale belasting, en kan inschakelen op een fout, maar geen kortsluiting onderbreken. In het voorbeeld opent dus eerst de vermogensschakelaar. Daarna opent een monteur de lastscheiders rond het kapotte stuk, en gaat de vermogensschakelaar weer in.',
       'A load-break switch switches the normal load, and can close onto a fault, but cannot break a short circuit. So when the digger strikes, the breaker opens first. Then a technician opens the load-break switches around the damaged section, and the breaker goes back in.'),
-    B('Het derde veld voedt de transformator van {n:400} kilovoltampère, met een lastscheider en een {t:Zekering|zekering} per fase: een smeltpatroon vol zand, met een dunne draad van zilver.',
-      'The third panel feeds the {n:400} kilovolt-ampere transformer, through a load-break switch and a {t:Fuse|fuse} per phase: a sand-filled cartridge with a thin silver element.'),
-    B('Bij een fout smelt de draad door en dooft het zand de boog. Meestal springt er een slagpen uit, die de lastscheider laat openen. Daarna moet er een nieuwe zekering in.',
-      'On a fault the element melts and the sand quenches the arc. Usually a striker pin pops out and trips the load-break switch. Then the fuse is replaced.'),
+    B('Het derde veld voedt de transformator van {n:400} kilovoltampère, met een lastscheider en een {t:Zekering|zekering} per fase.',
+      'The third panel feeds the {n:400} kilovolt-ampere transformer, through a load-break switch and a {t:Fuse|fuse} per phase.'),
+    B('Bij een fout smelt de zekering door, één keer. Daarna moet er een nieuwe in.',
+      'On a fault the fuse melts, once. Then a new one must go in.'),
   ],
   [ // s5 isolating and earthing
     B('Voor werk achter een veld is er de {t:Scheider|scheider}. Die bedien je alleen stroomloos: hij maakt een veilige scheiding.',
       'For work behind a panel there is the {t:Disconnector|disconnector}. You operate it only without current: it makes a safe gap.'),
     B('De {t:Aardingsschakelaar|aardingsschakelaar} verbindt het spanningsloze deel met aarde. Komt er per ongeluk toch spanning op, dan gaat de stroom naar aarde, niet door een mens.',
       'The {t:Earthing switch|earthing switch} connects the dead section to earth. If voltage comes back by mistake, the current flows to earth, not through a person.'),
-    B('In een RMU is dat vaak één schakelaar met drie standen: dicht, open en geaard. Een vergrendeling blokkeert de verkeerde volgorde, zoals een kabel aarden die nog onder spanning staat. Die volgorde hoort bij de vijf veiligheidsregels: vrijschakelen, beveiligen tegen herinschakelen, spanningsloosheid vaststellen, aarden en kortsluiten, en naastgelegen delen onder spanning afschermen.',
-      'In an RMU this is often one three-position switch: closed, open and earthed. An interlock blocks the wrong order, such as earthing a cable that is still live. That order belongs to the five safety rules: disconnect, secure against reconnection, verify absence of voltage, earth and short-circuit, and protect against adjacent live parts.'),
+    B('In een RMU is dat vaak één schakelaar met drie standen: dicht, open en geaard. Een vergrendeling blokkeert de verkeerde volgorde, zoals een kabel aarden die nog onder spanning staat.',
+      'In an RMU this is often one three-position switch: closed, open and earthed. An interlock blocks the wrong order, such as earthing a cable that is still live.'),
     B('Een scheider onder belasting bedienen, of inschakelen op een fout die de schakelaar niet aankan, kan een vlamboog geven: hitte, licht en druk die de bediener verbranden. Goede schakelinstallaties zijn beproefd op een interne boog: de klap gaat weg van de bediener.',
       'Operating a disconnector under load, or closing a switch onto a fault it cannot handle, can cause an arc flash: heat, light and pressure that burn the operator. Good switchgear is tested against an internal arc and vents the blast away from the operator.'),
   ],
@@ -653,12 +647,6 @@ const SAY = [
       'So under the EU F-gas Regulation, new switchgear up to {n:24} kilovolts may in principle no longer use SF6 from 2026, and up to {n:52} kilovolts from 2030. New types break the arc in vacuum and insulate with dry air or solid materials.'),
   ],
   [ // s8 what can it do
-    B('Samengevat. De vermogensschakelaar onderbreekt kortsluitingen, telkens opnieuw.',
-      'In short: the circuit breaker breaks short circuits, again and again.'),
-    B('De lastscheider schakelt belasting, maar geen kortsluiting. De zekering onderbreekt een fout, één keer.',
-      'The load-break switch switches load, not short circuits; the fuse breaks a fault once.'),
-    B('De scheider bedien je alleen stroomloos, de aardingsschakelaar aardt het dode deel.',
-      'The disconnector works only without current; the earthing switch earths the dead section.'),
     B('Een schakelinstallatie staat er {n:30} tot {n:50} jaar, dus die keuze weegt zwaar. Vraag altijd: welk type is het? En wat houdt iemand tegen die hem verkeerd gebruikt? Oudere schakelinstallaties missen een deel van de vergrendelingen.',
       'Switchgear stays {n:30} to {n:50} years, so the choice matters. Always ask: which type is it? And what stops someone using it wrong? Older units lack some of the interlocks.'),
   ],

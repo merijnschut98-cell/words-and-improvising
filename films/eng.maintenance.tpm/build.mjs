@@ -19,7 +19,8 @@
 // come to light), the tags, the 37 tags and who closes them, the daily CILT
 // round with its visual controls, the results, and OEE as the measure. Cards
 // in stage space carry the three zeros, the eight pillars, the tag count, the
-// tag board, the CILT strip with a close-up inset, the results and OEE; the
+// tag board, the CILT strip with a close-up inset, the results (with the people
+// side: operators fear extra work, technicians fear for their role) and OEE; the
 // cards that show invented values are labelled "voorbeeld".
 //
 // The kit comes from the anatomy skill; point ANATOMY_SKILL at its folder if it
@@ -495,7 +496,7 @@ const svg = compact(`<svg class="iso-svg fp-svg" viewBox="0 0 ${W} ${H}" role="i
 
 // ---------------------------------------------------------------- the film
 const TPM = 'eng.maintenance.tpm';
-const DUR = [30, 32, 28, 30, 32, 36, 32, 32];
+const DUR = [31, 37, 30, 20, 30, 39, 40, 29];
 const spec = {
   id: 'eng.maintenance.tpm',
   title: { nl: 'TPM: de eerste schoonmaak', en: 'TPM: the first clean' },
@@ -547,7 +548,6 @@ const spec = {
       id: 's6', lesson: TPM, level: 1, dur: DUR[5], still: 0.9, title: { nl: 'CILT, elke ploeg', en: 'CILT, every shift' },
       beats: [
         { nl: '{t:CILT|CILT}: schoonmaken, inspecteren, smeren, aandraaien.', en: '{t:CILT|CILT}: clean, inspect, lubricate, tighten.', cue: { CILT: 'cilt' } },
-        { nl: 'Schoonmaken en inspecteren: kijken naar lekken, scheuren en losse delen.', en: 'Clean and inspect: look for leaks, cracks and loose parts.', cues: ['pump', 'guard'] },
         { nl: 'Smeren op het lager. Aandraaien: een merkstreep over bout en moer toont of hij losdraait.', en: 'Lubricate the bearing. Tighten: a match mark across bolt and nut shows if it works loose.', cues: ['stud', 'bolt'] },
         { nl: 'Visueel: min en max op het oliepeilglas, een gekleurde zone op de meter.', en: 'Visual: min and max on the oil glass, a coloured zone on the gauge.', cues: ['level', 'gauge'] },
         { nl: 'Hier een checklist van {n:8} punten: {n:7} minuten bij de start van de ploeg.', en: 'Here a checklist of {n:8} points: {n:7} minutes at shift start.', cues: [] },
@@ -557,8 +557,8 @@ const spec = {
       id: 's7', lesson: TPM, level: 1, dur: DUR[6], still: 0.9, title: { nl: 'Wat het oplevert', en: 'What it brings' },
       beats: [
         { nl: 'Na drie maanden: storingen van {n:9} naar {n:4} per maand.', en: 'After three months: breakdowns down from {n:9} to {n:4} a month.', cues: [] },
-        { nl: 'Kost een storing {n:2.5} uur, dan scheelt dat {n:12.5} uur stilstand per maand.', en: 'At {n:2.5} hours per breakdown, that saves {n:12.5} hours of downtime a month.', cues: [] },
         { nl: 'Hydraulische olie bijvullen: van {n:60} naar {n:15} liter per maand.', en: 'Hydraulic oil top-ups: down from {n:60} to {n:15} litres a month.', cues: ['tank'] },
+        { nl: 'De mensenkant beslist: operators zien extra werk, monteurs vrezen voor hun rol.', en: 'The people side decides: operators see extra work, technicians fear for their role.', cues: [] },
         { nl: 'Monteurs trainen de operators en bepalen welke controles op de lijst staan.', en: 'Technicians train the operators and decide which checks go on the list.', cues: [] },
       ],
     },
@@ -568,7 +568,6 @@ const spec = {
         { nl: 'De voortgang meet je met {t:OEE|OEE}: beschikbaarheid × prestatie (performance) × kwaliteit.', en: 'Progress is measured with {t:OEE|OEE}: availability × performance × quality.', cue: { OEE: 'oeeC' } },
         { nl: 'Minder storingen: hogere beschikbaarheid. Minder microstops: hogere prestatie.', en: 'Fewer breakdowns: higher availability. Fewer micro-stops: higher performance.', cues: ['oeeC'] },
         { nl: '{n:85}% is een veelgenoemde norm voor wereldklasse; eerlijk gemeten zit je vaak veel lager.', en: '{n:85}% is a widely quoted world-class benchmark; honest measurement often lands far lower.', cues: ['oeeC'] },
-        { nl: 'Het gaat om de trend: elke ploeg de ronde, elk label snel gesloten.', en: 'It is the trend that counts: the round every shift, every tag closed fast.', cues: ['panel'] },
       ],
     },
   ],
@@ -587,8 +586,8 @@ const spec = {
 // (stressed on -list; said as controlelijst), "pilot", "smeernippel".
 const SAY = [
   [ // s1 who looks after the machine
-    { nl: 'Dit is het hydraulische aggregaat van een spuitgietmachine, een machine die gesmolten kunststof in een matrijs spuit. Op de olietank staan een pomp, een koppeling en een elektromotor. Wie zorgt er elke dag voor deze machine?',
-      en: 'This is the hydraulic power unit of an injection moulding machine, a machine that shoots molten plastic into a mould. On the oil tank stand a pump, a coupling and an electric motor. Who looks after this machine every day?' },
+    { nl: 'Dit is het hydraulische aggregaat van een spuitgietmachine, een machine die gesmolten kunststof in een matrijs spuit. Wie zorgt er elke dag voor deze machine?',
+      en: 'This is the hydraulic power unit of an injection moulding machine, a machine that shoots molten plastic into a mould. Who looks after this machine every day?' },
     { nl: '{t:TPM|TPM} geeft daar een eigen antwoord op. Het komt uit Japan, uit de jaren zeventig. Het doel is nul storingen, nul defecten en nul ongevallen.',
       en: '{t:TPM|TPM}, total productive maintenance, has its own answer to that. It came from Japan in the nineteen seventies. The goal is zero breakdowns, zero defects and zero accidents.' },
     { nl: 'Dat lukt alleen als de zorg voor de machines van iedereen is, en niet alleen van de onderhoudsdienst. Dus ook van de mensen die de machine elke dag bedienen: de operators.',
@@ -609,16 +608,16 @@ const SAY = [
       en: 'Autonomous maintenance is usually rolled out in seven steps, and the first is an initial clean. With the machine safely off, the team cleans it from top to bottom, including the places nobody has reached for years. In this pilot it takes one shift.' },
     { nl: 'Schoonmaken is inspecteren. Wie met aandacht schoonmaakt, ziet wat het vuil verborg. Hier lekt de pomp olie, druppel voor druppel.',
       en: 'Cleaning is inspection. Clean with attention, and you see what the dirt was hiding. Here the pump is leaking oil, drop by drop.' },
-    { nl: 'Bij de motorvoet zit een bout los. In de koppelingskap zit een scheur. Op een vuile machine zie je dat pas als er iets misgaat.',
-      en: 'On the motor foot a bolt is loose. The coupling guard has a crack. On a dirty machine you only see that when something goes wrong.' },
+    { nl: 'Bij de motorvoet zit een bout los. In de koppelingskap zit een scheur.',
+      en: 'On the motor foot a bolt is loose. The coupling guard has a crack.' },
   ],
   [ // s4 a tag on every abnormality
     { nl: 'Elke afwijking die het team vindt, krijgt een {t:Label|label}: een gekleurd kaartje aan de machine. Daarop staat wat er mis is en wie het oplost.',
       en: 'Every abnormality the team finds gets a {t:Tag|tag}: a coloured card on the machine. It says what is wrong and who fixes it.' },
     { nl: 'Na één ploeg hangen er {n:37} labels aan deze ene machine.',
       en: 'After one shift, {n:37} tags hang on this one machine.' },
-    { nl: 'Het zijn {n:12} olielekken, {n:9} losse bouten, {n:6} ontbrekende afschermingen en {n:10} overige gebreken. Als niemand ze oplost, groeien veel daarvan later uit tot een storing.',
-      en: 'They are {n:12} oil leaks, {n:9} loose bolts, {n:6} missing guards and {n:10} other faults. Left alone, many of them grow into a breakdown later.' },
+    { nl: 'Het zijn {n:12} olielekken, {n:9} losse bouten, {n:6} ontbrekende afschermingen en {n:10} overige gebreken.',
+      en: 'They are {n:12} oil leaks, {n:9} loose bolts, {n:6} missing guards and {n:10} other faults.' },
   ],
   [ // s5 closing the tags
     { nl: 'Operators lossen er in de eerste week {n:21} zelf op: een bout aandraaien, een klem vastzetten, een vuilnest opruimen.',
@@ -633,8 +632,6 @@ const SAY = [
   [ // s6 CILT, every shift
     { nl: 'Na de schoonmaak volgt de dagelijkse routine: {t:CILT|CILT}. Die letters staan voor de Engelse woorden voor schoonmaken, inspecteren, smeren en aandraaien.',
       en: 'After the clean comes the daily routine: {t:CILT|CILT}. The letters stand for clean, inspect, lubricate and tighten.' },
-    { nl: 'Schoonmaken en inspecteren: de operator veegt de machine af en kijkt naar lekken, scheuren en losse delen.',
-      en: 'Clean and inspect: the operator wipes the machine down and looks for leaks, cracks and loose parts.' },
     { nl: 'Smeren: vet op het lager, op de juiste plek en in de juiste hoeveelheid. Aandraaien: een merkstreep over bout en moer laat in één oogopslag zien of een bout is losgedraaid.',
       en: 'Lubricate: grease on the bearing, in the right place and the right amount. Tighten: a match mark painted across bolt and nut shows at a glance whether a bolt has worked loose.' },
     { nl: 'Goede controles zijn visueel: een min- en een maxstreep op het oliepeilglas, een gekleurde zone, vaak groen, op de manometer. Dan ziet iedereen meteen of het goed is.',
@@ -645,12 +642,12 @@ const SAY = [
   [ // s7 what it brings
     { nl: 'Na drie maanden zakken de storingen van {n:9} naar {n:4} per maand.',
       en: 'After three months, breakdowns drop from {n:9} to {n:4} a month.' },
-    { nl: 'Kost elke storing gemiddeld {n:2.5} uur, dan scheelt dat vijf storingen maal {n:2.5} uur: {n:12.5} uur stilstand per maand.',
-      en: 'If each breakdown costs {n:2.5} hours on average, that is five breakdowns times {n:2.5} hours: {n:12.5} hours of downtime saved a month.' },
     { nl: 'En het bijvullen van hydraulische olie zakt van {n:60} naar {n:15} liter per maand. De lekken zijn dicht, dus de olie blijft in de machine. Veel fabrieken blijven juist daar hangen, bij stap twee of drie, als de bronnen van vuil en lekken echt opgelost moeten worden.',
       en: 'And hydraulic oil top-ups fall from {n:60} to {n:15} litres a month. The leaks are fixed, so the oil stays in the machine. Many plants stall exactly there, at step two or three, when the sources of dirt and leaks must actually be fixed.' },
-    { nl: 'Dat werkt alleen als onderhoud meedoet. Monteurs trainen de operators en bepalen welke controles op de lijst staan. Alles daarbuiten blijft bij hen.',
-      en: 'That only works with maintenance on board. Technicians train the operators and decide which checks go on the list. Everything beyond it stays with them.' },
+    { nl: 'De mensenkant beslist. Operators horen: extra werk, niet mijn taak. Monteurs zijn bang hun rol te verliezen, of vertrouwen operators niet met hun machine.',
+      en: 'The people side decides. Operators hear: extra work, not my job. Technicians fear losing their role, or do not trust operators with their machine.' },
+    { nl: 'Het werkt als monteurs de operators trainen en bepalen welke controles op de lijst staan, en als labels snel gesloten worden.',
+      en: 'It works when technicians train the operators and decide which checks go on the list, and when tags are closed fast.' },
   ],
   [ // s8 measuring with OEE
     { nl: 'De voortgang van TPM meet je met {t:OEE|OEE}: beschikbaarheid maal prestatie maal kwaliteit.',
@@ -659,8 +656,6 @@ const SAY = [
       en: 'Fewer breakdowns give higher availability. Fewer micro-stops, short stops of seconds to minutes, give higher performance. That is how the clean shows up in the numbers.' },
     { nl: '{n:85} procent wordt vaak genoemd als norm voor wereldklasse, een vuistregel. Eerlijk gemeten komen veel fabrieken veel lager uit; de module Capaciteit en flow ontleedt dat getal in de zes grote verliezen.',
       en: '{n:85} percent is often quoted as the world-class benchmark, a rule of thumb. Measured honestly, many plants land far lower; the module Capacity and flow breaks that figure down into the six big losses.' },
-    { nl: 'Het gaat om de trend, niet om één getal. Elke ploeg een korte ronde, elk label snel gesloten: zo wordt de zorg voor de machine gewoon werk.',
-      en: 'It is the trend that counts, not one number. A short round every shift, every tag closed fast: that is how caring for the machine becomes normal work.' },
   ],
 ];
 

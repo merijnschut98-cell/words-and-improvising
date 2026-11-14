@@ -287,17 +287,17 @@ const STAGE = (() => {
     });
     return o;
   }
-  function resultsSvg(a1, rd, a2, team) {
+  function resultsSvg(a1, a2, ppl, team) {
     let o = PANEL();
     o += bars(54, tr('storingen per maand', 'breakdowns a month'), C.BD, '', 30, a1);
-    if (rd > 0.01) o += grp(rd, txt(222, 176, `(${C.BD[0]} − ${C.BD[1]}) × ${dec(C.BD_H, 1)} = ${dec(C.SAVED, 1)} ${tr('uur', 'h')}`, 24, 'start', 'mt-on'));
     if (a2 > 0.01) o += grp(Math.min(1, a2 * 4), bars(226, tr('olie bijvullen, liter per maand', 'oil top-ups, litres a month'), C.OIL, '', 4.5, a2));
+    if (ppl > 0.01) o += grp(ppl, txt(222, 336, tr('operators: extra werk?', 'operators: extra work?'), 21, 'start', 'mt-on') + txt(222, 366, tr('monteurs: onze rol?', 'technicians: our role?'), 21, 'start', 'mt-on'));
     if (team > 0.01) o += grp(team, txt(222, 362, tr('onderhoud traint en kiest de controles', 'maintenance trains and picks the checks'), 20, 'start', 'mt-on'));
     return o;
   }
 
   // ------------------------------------------------------------ s8: OEE (an example)
-  function oeeSvg(form, grow, world, trend) {
+  function oeeSvg(form, grow, world) {
     let o = PANEL() + txt(612, 380, EX, 20, 'end', 'mt-mute');
     const w = 380;
     const A = lerp(C.OEE_A[0], C.OEE_A[1], grow);
@@ -313,12 +313,6 @@ const STAGE = (() => {
     if (world > 0.01) {
       const x = 222 + (w * C.WORLD) / 100;
       o += grp(world, line(x, 220, x, 268, 'mt-lim') + txt(612, 290, `${C.WORLD}% ${tr('vaak genoemd als wereldklasse', 'often quoted as world class')}`, 20, 'end', 'mt-txt'));
-    }
-    if (trend > 0.01) {
-      o += txt(222, 318, tr('trend per maand', 'trend by month'), 20, 'start', 'mt-mute') + line(222, 356, 500, 356, 'mt-axis');
-      const pts = [];
-      for (let t = 0; t <= trend + 1e-9; t += 0.04) pts.push([lerp(230, 494, t), 350 - 26 * (trendAt(t) - 0.45) / 0.3]);
-      if (pts.length > 1) o += `<path class="mt-line" d="${fmt(pts)}"/>`;
     }
     return o;
   }
@@ -381,15 +375,11 @@ const STAGE = (() => {
       crack = b === 0 || (b === 1 && p < 0.8);
     } else if (si === 5) {
       vis.cilt = 1;
-      const lit = b === 1 ? [0, 1] : b === 2 ? [2, 3] : [];
+      const lit = b === 1 ? [2, 3] : [];
       set(E.clIn, ciltSvg(b === 0 ? span(p, 0.05, 0.3) : 1, lit));
-      running = !(b === 1 || b === 2);
+      running = b !== 1;
       let inset = '';
       if (b === 1) {
-        const t = span(p, 0.05, 0.6);
-        const [x, y] = along(CLOTH_PATH.slice(0, 7), t);
-        tool = p < 0.62 ? rag(x, y - 4 * z, z, clockS * 3) : loupe(...at([-14, 9, 24]), z);
-      } else if (b === 2) {
         if (p < 0.5) {
           const [x, y] = at([C.STUD[0], C.STUD[1], C.STUD[2] + 3.8]);
           tool = greaseGun(x, y, z, span(p, 0.15, 0.3) * (1 - span(p, 0.35, 0.45)));
@@ -400,19 +390,19 @@ const STAGE = (() => {
           tool = wrench(x, y, z, -0.5 - ang);
           inset = matchMark(ang);
         }
-      } else if (b === 3) {
+      } else if (b === 2) {
         inset = visual(span(p, 0.1, 0.6));
-      } else if (b === 4) {
+      } else if (b === 3) {
         inset = checklist(Math.round(C.POINTS * span(p, 0.1, 0.85)));
       }
       set(E.clInset, inset);
     } else if (si === 6) {
       vis.res = span(u, 0, 0.04);
-      set(E.rsIn, resultsSvg(b === 0 ? span(p, 0.1, 0.6) : 1, b >= 1 ? (b === 1 ? span(p, 0.2, 0.5) : 1) : 0, b >= 2 ? (b === 2 ? span(p, 0.05, 0.6) : 1) : 0, b === 3 ? span(p, 0.1, 0.4) : 0));
+      set(E.rsIn, resultsSvg(b === 0 ? span(p, 0.1, 0.6) : 1, b >= 1 ? (b === 1 ? span(p, 0.1, 0.6) : 1) : 0, b === 2 ? span(p, 0.05, 0.5) : 0, b === 3 ? span(p, 0.1, 0.4) : 0));
     } else if (si === 7) {
       vis.oee = span(u, 0, 0.04);
-      set(E.oeIn, oeeSvg(b === 0 ? span(p, 0.1, 0.7) : 1, b >= 1 ? (b === 1 ? span(p, 0.1, 0.8) : 1) : 0, b >= 2 ? (b === 2 ? span(p, 0.05, 0.3) : 1) : 0, b === 3 ? span(p, 0.05, 0.85) : 0));
-      trend = b === 3 ? 0.35 + 0.65 * span(p, 0.05, 0.85) : 0.35;
+      set(E.oeIn, oeeSvg(b === 0 ? span(p, 0.1, 0.7) : 1, b >= 1 ? (b === 1 ? span(p, 0.1, 0.8) : 1) : 0, b >= 2 ? (b === 2 ? span(p, 0.05, 0.3) : 1) : 0));
+      trend = 0.35 + 0.65 * span(u, 0.45, 0.95);
     }
 
     // world parts

@@ -374,8 +374,8 @@ const STAGE = (() => {
       set(E.sfAlt, sfAlt(b === 3 ? span(p, 0.05, 0.85) : 0));
     } else if (si === 7) {
       vis.tb = span(u, 0, 0.04);
-      const lit = b === 0 ? [0] : b === 1 ? [1, 2] : b === 2 ? [3, 4] : [];
-      set(E.tbIn, tbIn([on(b, 0, p, 0, 0.2), on(b, 1, p, 0, 0.2), on(b, 1, p, 0.4, 0.6), on(b, 2, p, 0, 0.2), on(b, 2, p, 0.4, 0.6)], lit));
+      // the closing scene is one beat: the table builds row by row while the question is asked
+      set(E.tbIn, tbIn([0, 1, 2, 3, 4].map((i) => span(p, 0.04 + i * 0.1, 0.16 + i * 0.1)), []));
     }
     blades(sw, ea);
     for (const h of HUDS) { const a = Math.min(1, vis[h] || 0); show(E[h], a > 0.01); fade(E[h], a); }
