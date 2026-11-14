@@ -416,7 +416,7 @@ test('speak variant: the DevOps words in Dutch, CI/CD in English', () => {
   assert.equal(nl('De pipeline, Pipelines. De build, een Build. Een deploy, de deploys, deployen. De deployfrequentie, Deployfrequentie.'),
     'De paiplain, Paiplains. De bild, een Bild. Een die-ploj, de die-plojs, die-plojen. De die-ploj-frequentie, Die-ploj-frequentie.');
   assert.equal(nl('Patrick Debois. Nicole Forsgren, Jez Humble en Gene Kim. Het boek Accelerate. Het State of DevOps-rapport.'),
-    'Patrick De-bwa. Nicole Forsgren, Djez Hambul en Djien Kim. Het boek Ek-sellereet. Het Steet of DevOps-rapport.');
+    'Patrick De-bwa. Nicole Forsgren, Djez Hambul en Djien Kim. Het boek Ek-sellereet. Het Steet of Dev-ops-rapport.');
   assert.equal(nl('MTTR, mean time to restore. De vier sleutels, four keys. Vaak CI/CD: continuous integration en continuous delivery.'),
     'MTTR, mien taim toe ristoor. De vier sleutels, for kies. Vaak sie ie sie die: kon-tinjoe-wus inte-gree-sjun en kon-tinjoe-wus de-livvrie.');
   assert.equal(nl('Geen softwarebedrijf. Een Softwarebedrijf. Het artefact, Artefact. Doorlooptijd in een waardestroom.'),
@@ -673,6 +673,22 @@ test('speak variant: the IT and agile field film words in Dutch', () => {
   // elsewhere plantmanager keeps its voice
   assert.equal(nl('Vraag het de plantmanager.'), 'Vraag het de plantmanager.');
   const en = 'You use PI Planning and WSJF. You lead that IT project for the plant manager.';
+  assert.equal(speakOf([en], 'en'), en);
+});
+
+// DevOps in Dutch (Task 20), checked with espeak-ng phonemes through Piper's nl bridge:
+// "DevOps" is read dˈɛf ˈɔps ("def ops"); "Dev-ops" is read dˈɛvˈɔps, a v as in "developer".
+// The rule takes the word as the films write it (DevOps, DevOps-rapport, DevOpsDays,
+// "State of DevOps" after its own rule). English reads dˈɛv ˈɒps and needs nothing.
+test('speak variant: DevOps in Dutch is said with a v, English is left alone', () => {
+  const nl = (s) => speakOf([s], 'nl');
+  assert.equal(nl('Bij DevOps hoort een pijplijn.'), 'Bij Dev-ops hoort een pijplijn.');
+  assert.equal(nl('Het DevOps-rapport en de DevOpsDays.'), 'Het Dev-ops-rapport en de Dev-opsDays.');
+  assert.equal(nl('Het State of DevOps rapport.'), 'Het Steet of Dev-ops rapport.');
+  assert.equal(nl('Een Devops-team.'), 'Een Dev-ops-team.');
+  // other words keep their voice
+  assert.equal(nl('De ontwikkelaars en operations.'), 'De ontwikkelaars en operations.');
+  const en = 'DevOps joins development and operations.';
   assert.equal(speakOf([en], 'en'), en);
 });
 
