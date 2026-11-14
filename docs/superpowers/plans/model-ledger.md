@@ -54,5 +54,6 @@ Outcome: accepted (merged as delivered), sent back N times, redone.
 | 14 Nov | Render PM-13: four overview films | sonnet | 66 | 89 min | 136,625 | accepted; every guard passed first time; merged v265 |
 | 14 Nov | Review: Andon visible | opus | 91 | 47 min | 193,328 | accepted; added the start-screen greeting, fixed two guide lines on one screen, fixed two e2e steps for several field films |
 | 14 Nov | DevOps pronunciation (Task 20) | sonnet | 38 | 6 min | 111,168 | accepted; no separate review (spoken text only, checked by the render's listen guard); merged v266 |
-| 14 Nov | Build module intro pm.run.intro (Task 11) | sonnet | 144 | 23 min | 331,227 | in review (opus, kit constant TILE_UNITS 128 to 130) |
+| 14 Nov | Build module intro pm.run.intro (Task 11) | sonnet | 144 | 23 min | 331,227 | accepted with fixes by its review (two tool picks, a map fade bug) |
 | 14 Nov | Build module intro pm.intake.intro (Task 11) | sonnet | 150 | 27 min | 379,094 | in review (opus, kit: optional tileUnits; clashes with the run intro's TILE_UNITS 130) |
+| 14 Nov | Review module intro pm.run.intro | opus | 76 | 17 min | 208,568 | accepted with four fixes; TILE_UNITS 130 measured safe; found the same map fade bug in the pilot |
