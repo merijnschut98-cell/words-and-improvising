@@ -25,6 +25,19 @@
 //   20 font-size units in an HTML-only film (12.2 px) and at least 22 units in
 //   a film that will be rendered to video (the 1280x720 frame shows the stage
 //   at 0.9 of its width: 22 units = 12.1 px). Older films keep their sizes.
+// - Module intro film (v17): `module: 'pm.plan'` in place of `lessons`, and
+//   `topics: { breakdown: { scene: 's2', cue: 'tBreak' }, ... }`, one entry per
+//   topic of the module: the scene that explains it and the data-cue group of
+//   its part (a tile or card that carries its title). The film serves all of the
+//   module's lessons, so its terms come from any of them, and its {n:} numbers
+//   from any of them or from the module's own title, blurb and topic titles.
+//   Instead of per-term coverage it is held to the map (checkIntro in
+//   assert.mjs): every topic named (its title in a caption or on a card, in both
+//   languages) and shown (a beat of its scene lights its part). The data carries
+//   `module` and `topics` (with the titles from the index, for the stage to
+//   draw); a lesson film's data is unchanged. Its id is '<module id>.intro', the
+//   index names it (`intro:`) and sw.js precaches it (tests/intro.test.js).
+//   Notes: docs/superpowers/plans/2026-11-11-v16-notes.md, "Module intro films".
 // - Then the shared checks (coverage, language, pacing; films/_kit/assert.mjs)
 //   and the size cap. Any problem throws, so a broken film is never written.
 import { mkdirSync, writeFileSync } from 'node:fs';
@@ -32,7 +45,7 @@ import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { MODULES, loadModule, placeOf } from '../../src/content/courses/index.js';
 import { parseMarked, formatNumber, plainOf, speakOf } from './timeline.mjs';
-import { checkFilm, checkFocus, cueKeysOf, lessonTextOf, hasNumber, narrationWords, NARRATION_WPS, MAX_BYTES, TARGET_BYTES } from './assert.mjs';
+import { checkFilm, checkFocus, cueKeysOf, lessonTextOf, moduleMetaTextOf, hasNumber, narrationWords, NARRATION_WPS, MAX_BYTES, TARGET_BYTES } from './assert.mjs';
 import { pageHtml } from './player.mjs';
 
 export const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..', '..');
@@ -82,10 +95,32 @@ function findTerm(name, lang, served, lessons, prefer) {
   throw new Error(`term "${name}" (${lang}) is in none of the served lessons`);
 }
 
-// prefer: the lesson a scene belongs to, searched first.
-function findNumber(value, served, lessons, prefer) {
+// prefer: the lesson a scene belongs to, searched first. mod: an intro film's
+// module, whose own Dutch text (title, blurb, topic titles) is searched last.
+function findNumber(value, served, lessons, prefer, mod) {
   for (const id of prefer && served.includes(prefer) ? [prefer, ...served] : served) if (hasNumber(lessonTextOf(lessons.nl.get(id)), value)) return id;
-  throw new Error(`number ${value} is in none of the served Dutch lessons`);
+  if (mod && hasNumber(moduleMetaTextOf(mod, 'nl'), value)) return mod.id;
+  throw new Error(`number ${value} is in none of the served Dutch lessons${mod ? ` nor in the text of module ${mod.id}` : ''}`);
+}
+
+// An intro film's module (v17), or null for a lesson film.
+function introModule(spec, modules) {
+  if (spec.module === undefined) return null;
+  if (spec.lessons !== undefined) throw new Error(`film ${spec.id}: name a module or lessons, not both`);
+  const mod = modules.find((m) => m.id === spec.module);
+  if (!mod) throw new Error(`film ${spec.id}: unknown module ${spec.module}`);
+  return mod;
+}
+// Its map: every topic of the module, with the scene and the part that show it.
+function introTopics(spec, mod) {
+  const given = spec.topics || {};
+  for (const id of Object.keys(given)) if (!(mod.topics || []).some((t) => t.id === id)) throw new Error(`topic ${id} is no topic of ${mod.id}`);
+  return (mod.topics || []).map((t) => {
+    const g = given[t.id];
+    if (!g || !g.scene || !g.cue) throw new Error(`topic ${t.id} of ${mod.id} has no scene and cue in the film's topics`);
+    if (!spec.scenes.some((s) => s.id === g.scene)) throw new Error(`topic ${t.id}: no scene ${g.scene}`);
+    return { id: t.id, title: { nl: t.title.nl, en: t.title.en }, scene: g.scene, cue: g.cue };
+  });
 }
 
 // A beat's focus as written: a cue key, a list of them, or null (an overview).
@@ -97,8 +132,11 @@ function focusOf(f, where) {
 }
 
 // Resolves one film source into the data block (plan 2.4, with beats).
-export function resolveFilm(spec, lessons) {
-  const served = spec.lessons;
+// modules: the index (a test passes its own), for an intro film's module.
+export function resolveFilm(spec, lessons, modules = MODULES) {
+  const mod = introModule(spec, modules);
+  const topics = mod ? introTopics(spec, mod) : null;
+  const served = mod ? mod.lessons : spec.lessons;
   for (const id of served) if (!lessons.nl.has(id)) throw new Error(`unknown lesson ${id}`);
   const glossed = new Set();
   const sayGlossed = new Set();
@@ -120,7 +158,7 @@ export function resolveFilm(spec, lessons) {
       if (readP && readP.nl.filter((p) => p.num).map((p) => p.num).join() !== readP.en.filter((p) => p.num).map((p) => p.num).join()) throw new Error(`${where}: readout numbers differ`);
       for (const raw of [...nn, ...(readP ? readP.nl.filter((p) => p.num).map((p) => p.num) : [])]) {
         const value = formatNumber(raw, 'nl');
-        if (!numbers.some((n) => n.value === value)) numbers.push({ lesson: findNumber(value, served, lessons, s.lesson), value, scene: s.id });
+        if (!numbers.some((n) => n.value === value)) numbers.push({ lesson: findNumber(value, served, lessons, s.lesson, mod), value, scene: s.id });
       }
       // focus (v16): the part(s) of the drawing this beat explains, lit while it
       // is spoken; a term's cue joins it. Films without it resolve as before.
@@ -169,7 +207,7 @@ export function resolveFilm(spec, lessons) {
         if (nums.nl.join() !== nums.en.join()) throw new Error(`${where}: the nl and en narration carry different numbers`);
         for (const raw of nums.nl) {
           const value = formatNumber(raw, 'nl');
-          if (!numbers.some((n) => n.value === value)) numbers.push({ lesson: findNumber(value, served, lessons, s.lesson), value, scene: s.id });
+          if (!numbers.some((n) => n.value === value)) numbers.push({ lesson: findNumber(value, served, lessons, s.lesson, mod), value, scene: s.id });
         }
         const say = {};
         for (const lang of ['nl', 'en']) {
@@ -200,14 +238,16 @@ export function resolveFilm(spec, lessons) {
     });
     return { id: s.id, n: si + 1, level: s.level, dur: s.dur, still: s.still, title: s.title, beats, terms: sceneTerms };
   });
-  return { id: spec.id, title: spec.title, lessons: served, scenes, skip: spec.skip || [], numbers, ...(spec.strictFocus ? { strictFocus: true } : {}) };
+  return { id: spec.id, title: spec.title, lessons: served, scenes, skip: spec.skip || [], numbers, ...(mod ? { module: mod.id, topics } : {}), ...(spec.strictFocus ? { strictFocus: true } : {}) };
 }
 
 // Builds and writes the page; returns { data, bytes, out }.
 export async function defineFilm(spec, stage) {
   const lessons = await allLessons();
   const data = resolveFilm(spec, lessons);
-  const errs = checkFilm(data, { lessons, levelOf: (id) => (placeOf(id) || {}).level || 1, wiredBy: spec.lessons });
+  // an intro film is wired by its module's index entry, not by lessons; its cards' words stand in the stage
+  const module = data.module ? MODULES.find((m) => m.id === data.module) : undefined;
+  const errs = checkFilm(data, { lessons, levelOf: (id) => (placeOf(id) || {}).level || 1, wiredBy: spec.lessons || [], module, stageText: `${stage.svg}\n${stage.script || ''}` });
   const focus = checkFocus(data, cueKeysOf(`${stage.svg}\n${stage.script || ''}`));
   errs.push(...focus.errors);
   if (errs.length) throw new Error(`film ${spec.id} fails its checks:\n  ${errs.join('\n  ')}`);

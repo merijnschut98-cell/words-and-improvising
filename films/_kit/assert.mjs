@@ -32,6 +32,16 @@ export function lessonTextOf(l) {
   return parts.filter(Boolean).join('\n');
 }
 
+// v17, a module intro film: the module's own text (title, blurb, topic titles)
+// and then all of its lessons' texts, in one language. An intro film's numbers
+// must stand in the Dutch one.
+export function moduleMetaTextOf(meta, lang = 'nl') {
+  return [meta.title?.[lang], meta.blurb?.[lang], ...(meta.topics || []).map((t) => t.title?.[lang])].filter(Boolean).join('\n');
+}
+export function moduleTextOf(meta, lessons, lang = 'nl') {
+  return [moduleMetaTextOf(meta, lang), ...(meta.lessons || []).map((id) => lessons[lang].get(id)).filter(Boolean).map(lessonTextOf)].join('\n');
+}
+
 // "1.167" stands in the text as a number of its own, not inside 21.167 or 1.1675.
 export function hasNumber(text, value) {
   const esc = value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
@@ -43,10 +53,18 @@ const wholeWord = (text, word) => new RegExp(`(?<![\\p{L}\\d-])${lc(word).replac
 
 // data: the film JSON. lessons: { nl: Map, en: Map } of lesson objects by id.
 // levelOf(lessonId) → 1–4. wiredBy: the lesson ids that wire this film.
-export function checkFilm(data, { lessons, levelOf, wiredBy = [] }) {
+// A module intro film (v17, data.module) also needs module, the module's index
+// entry, and stageText, the stage's drawing and script (where a card's words
+// stand); it is held to the module's text and its map instead of to per-term
+// coverage (checkIntro below).
+export function checkFilm(data, { lessons, levelOf, wiredBy = [], module: meta, stageText = '' }) {
   const errs = [];
   const served = new Set(data.lessons || []);
+  const intro = data.module !== undefined;
+  const mod = intro && meta && meta.id === data.module ? meta : null;
+  if (intro && !mod) errs.push(`intro film of ${data.module}: module ${data.module} not given`);
   for (const id of served) if (!lessons.nl.has(id) || !lessons.en.has(id)) errs.push(`served lesson ${id} does not exist`);
+  if (mod) for (const id of served) if (!(mod.lessons || []).includes(id)) errs.push(`served lesson ${id} is no longer in module ${mod.id}`);
   for (const id of wiredBy) if (!served.has(id)) errs.push(`${id} wires the film but is not in its lessons`);
   const scenes = data.scenes || [];
   if (scenes.length < 4 || scenes.length > 9) errs.push(`needs 4–9 scenes, has ${scenes.length}`);
@@ -69,8 +87,10 @@ export function checkFilm(data, { lessons, levelOf, wiredBy = [] }) {
     }
   }
 
-  // coverage: each term of each served lesson is shown at or below its level, or skipped with a reason
-  for (const id of served) {
+  // coverage: each term of each served lesson is shown at or below its level, or
+  // skipped with a reason (an intro film: every topic of its module, below)
+  if (mod) errs.push(...checkIntro(data, mod, stageText));
+  if (!intro) for (const id of served) {
     const l = lessons.nl.get(id);
     if (!l) continue;
     const level = levelOf(id);
@@ -83,8 +103,13 @@ export function checkFilm(data, { lessons, levelOf, wiredBy = [] }) {
     });
   }
 
-  // numbers: still in the Dutch lesson text
+  // numbers: still in the Dutch lesson text (an intro film: anywhere in its module's Dutch text)
+  const modText = mod ? moduleTextOf(mod, lessons, 'nl') : '';
   for (const n of data.numbers || []) {
+    if (intro) {
+      if (mod && !hasNumber(modText, n.value)) errs.push(`number ${n.value} (scene ${n.scene}) no longer in the text of module ${mod.id}`);
+      continue;
+    }
     const l = lessons.nl.get(n.lesson);
     if (!l) { errs.push(`number ${n.value}: lesson ${n.lesson} missing`); continue; }
     if (!hasNumber(lessonTextOf(l), n.value)) errs.push(`number ${n.value} (scene ${n.scene}) no longer in ${n.lesson}`);
@@ -163,6 +188,32 @@ export function checkFilm(data, { lessons, levelOf, wiredBy = [] }) {
     if (![1, 2, 3, 4].includes(s.level)) errs.push(`scene ${s.id}: level must be 1–4`);
   }
   if (total < MIN_TOTAL || total > MAX_TOTAL) errs.push(`film is ${total} s, must be ${MIN_TOTAL}–${MAX_TOTAL}`);
+  return errs;
+}
+
+// The map of a module intro film (v17): every topic of the module is on it
+// (data.topics, with the title it had at build time, the scene that explains it
+// and the cue key of its part), still under that title, named in a caption or
+// on a card in both languages, and shown: a beat of its scene lights its part.
+export function checkIntro(data, mod, stageText = '') {
+  const errs = [];
+  const scenes = data.scenes || [];
+  const onMap = new Map((data.topics || []).map((t) => [t.id, t]));
+  const card = lc(stageText);
+  for (const t of mod.topics || []) {
+    const ft = onMap.get(t.id);
+    if (!ft) { errs.push(`topic ${t.id} of ${mod.id} is not on the film's map`); continue; }
+    for (const lang of ['nl', 'en']) {
+      if ((ft.title || {})[lang] !== t.title[lang]) errs.push(`topic ${t.id}: title "${(ft.title || {})[lang]}" (${lang}) is now "${t.title[lang]}"`);
+      const name = lc(t.title[lang]);
+      const said = scenes.some((s) => (s.beats || []).some((b) => lc(b.text[lang]).includes(name)));
+      if (!said && !card.includes(name)) errs.push(`topic ${t.id}: "${t.title[lang]}" (${lang}) is in no caption and on no card`);
+    }
+    const sc = scenes.find((s) => s.id === ft.scene);
+    if (!sc) errs.push(`topic ${t.id}: no scene ${ft.scene}`);
+    else if (!ft.cue || !sc.beats.some((b) => [...(b.focus || []), ...(b.cues || [])].includes(ft.cue))) errs.push(`topic ${t.id}: no beat of scene ${ft.scene} lights its part ${ft.cue}`);
+  }
+  for (const ft of data.topics || []) if (!(mod.topics || []).some((t) => t.id === ft.id)) errs.push(`topic ${ft.id} is no topic of ${mod.id}`);
   return errs;
 }
 
