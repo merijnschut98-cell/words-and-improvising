@@ -165,8 +165,17 @@ Minimum hit size rule: `place.w * 390 / view.w >= 44` and the same for `h`.
 
 - [ ] **Step 1:** Write the failing kit tests: a field film whose captions omit one module title fails the coverage check; `mapScene` output contains one lit place per highlighted module.
 - [ ] **Step 2:** Run them. Expected: FAIL.
-- [ ] **Step 3:** Agent brief (one build agent): add the kit support, then build `pm.field.lifecycle`. Story: one manufacturing improvement project (reuse the pilot's project so the two films agree) walks the road intake, plan, run, land, close; at each station one sentence on what happens there and what goes wrong without it; the film ends on the map with the five stations lit. About 3 minutes, 450 to 600 words, 5 to 8 scenes. Set `film: 'pm.field.lifecycle'` on the field in `FIELDS`. Standard film rules and checks.
+- [ ] **Step 3:** Agent brief (one build agent): add the kit support, then build `pm.field.lifecycle`. Story: one manufacturing improvement project (reuse the pilot's project so the two films agree) walks the road intake, plan, run, land, close; at each station one sentence on what happens there and what goes wrong without it; the film ends on the map with the five stations lit. As long as the content needs (about 2 to 3 minutes for a field film, shorter is fine), 5 to 8 scenes. Set `film: 'pm.field.lifecycle'` on the field in `FIELDS`. Standard film rules and checks.
 - [ ] **Step 4:** Review agent, merge, checks, push; render, merge, upload, verify, push.
+
+### Task 4a: Short films in the kit (after the improved pilot is merged)
+
+Merijn, 14 Nov: a video of a minute or even half a minute is enough when the content says so. The kit refuses that today: `MIN_TOTAL` is 60 s, a film needs 4 to 9 scenes and `NARRATION_MIN` is 60 words (`films/_kit/assert.mjs`, `films/_kit/build-film.mjs`).
+
+- [ ] **Step 1:** Failing tests first (`tests/filmcontent.test.js`, `tests/introfilm.test.js`): a film of 30 s with 2 scenes and about 60 narration words passes the build checks; the beat, readability and guard rules still apply (4 s per beat, 22-unit text, in-sentence pause at most 0.4 s); the shipped pages are unchanged.
+- [ ] **Step 2:** Lower the limits to what a 30 s film needs (proposal: `MIN_TOTAL` 25 s, 2 to 9 scenes, `NARRATION_MIN` 25 words), keep every other check, rebuild all films and confirm no page changes. The listen guard's pause and WER limits are unchanged.
+- [ ] **Step 3:** Note it in the "Module intro films (v17)" brief: the film is as long as its content needs; give no length target to fill.
+- Agent: `sonnet`, one task, own worktree. Do not run it while another agent is changing `films/_kit/`.
 
 ### Task 5: Checkpoint with Merijn
 
