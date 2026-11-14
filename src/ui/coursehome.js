@@ -2,7 +2,10 @@
 import { h, enableOnFail } from './dom.js';
 import { ico } from './icons.js';
 import { masteryBadge, realWeekEntry, progressBar } from './home.js';
-import { MODULES, TRACKS, topicsOf, placeOf } from '../content/courses/index.js';
+import { MODULES, TRACKS, FIELDS, topicsOf, placeOf } from '../content/courses/index.js';
+import { mapFor } from '../content/courses/maps/index.js';
+import { subjectMap } from './subjectmap.js';
+import { filmButton } from './film.js';
 import { courseTodayPick, moduleMastery, nextLesson, levelsDone } from '../core/course.js';
 import { pathModel, topicPath } from './pathmap.js';
 import { medalSeal, metaSeal, moduleEndModel, checkEntry, goalLeftLine } from './flairui.js';
@@ -180,23 +183,63 @@ function trackSection(app, subject, track, open) {
     mods.map((m) => moduleRow(app, m)));
 }
 
+// The blocks of a subject home, top to bottom. A subject with a map shows it
+// first (v17), then the next step, and a row of field films before the tracks.
+export const homeOrder = (subject, hasMap) => (hasMap
+  ? ['map', 'next', 'goal', 'quick', 'due', 'fields', 'tracks']
+  : ['next', 'goal', 'quick', 'due', 'tracks']);
+
+// The subject's fields that have a film of their own, in the order of FIELDS.
+export const fieldFilms = (subject, fields = FIELDS) => fields.filter((f) => f.subject === subject && f.film);
+
+// The drawn map in a card; every place opens its module screen. The place of
+// "Your next step" is marked. The map shows no progress.
+function mapCard(app, subject, map, pick) {
+  const t = app.t;
+  return h('section', { class: 'card map-card' },
+    h('h2', { class: 'card-title' }, t('mapHeading')),
+    h('p', { class: 'muted small map-hint' }, t('mapHint')),
+    subjectMap(app, map, {
+      lang: app.lang,
+      next: pick.moduleId || null,
+      onPlace: (moduleId) => app.go('module', { subject, moduleId }),
+    }));
+}
+
+// One compact entry per field film: the field's title, then the film button.
+// It opens the rendered video in place, as the module intro does; the HTML film
+// only when there is no video, the field's blurb when neither loads.
+function fieldsRow(app, subject) {
+  const films = fieldFilms(subject);
+  if (!films.length) return null;
+  return h('section', { class: 'field-films' }, films.map((f) => h('div', { class: 'field-film' },
+    h('span', { class: 'field-film-title' }, f.title[app.lang] || f.title.en),
+    filmButton(app, f.film, null, { video: true, text: () => h('p', { class: 'muted small' }, f.blurb[app.lang] || f.blurb.en) }))));
+}
+
 export function courseHome(app, subject) {
   const t = app.t;
+  const map = mapFor(subject);
   const due = dueCount(app.state.courseReviews, app.today(), subject, app.lang);
   const pick = courseTodayPick(app.state, subject, app.lang, app.today());
-  const first = openTrack(app.state, subject, pick);
+  // With a map the tracks stay closed: the map is the way in.
+  const first = map ? null : openTrack(app.state, subject, pick);
   const tracks = TRACKS[subject].map((track) => trackSection(app, subject, track, track === first));
-  return h('main', { class: `screen home course-home course-${subject}` },
-    h('h1', { class: 'sr' }, t(`subject_${subject}`)),
-    todayCard(app, subject, pick),
-    goalLeftLine(app),
+  const blocks = {
+    map: () => mapCard(app, subject, map, pick),
+    next: () => todayCard(app, subject, pick),
+    goal: () => goalLeftLine(app),
     // Begrippen and Mijn echte week: one compact row under the next step.
-    h('div', { class: 'quick-row' },
+    quick: () => h('div', { class: 'quick-row' },
       h('button', { class: 'btn btn-ghost small glossary-entry', onclick: () => app.go('glossary', { subject }) }, ico('library'), ' ', t('glossary')),
       realWeekEntry(app, true)),
-    due ? h('button', { class: 'btn due-card', onclick: () => app.go('due', { subject }) },
+    due: () => (due ? h('button', { class: 'btn due-card', onclick: () => app.go('due', { subject }) },
       h('span', { class: 'hero-title' }, ico('repeat'), ' ', t('dueTitle')),
-      h('span', { class: 'hero-sub' }, t('dueCard', due))) : null,
-    ...tracks,
-    tracks.some(Boolean) ? null : h('p', { class: 'note' }, t('courseEmpty')));
+      h('span', { class: 'hero-sub' }, t('dueCard', due))) : null),
+    fields: () => fieldsRow(app, subject),
+    tracks: () => [...tracks, tracks.some(Boolean) ? null : h('p', { class: 'note' }, t('courseEmpty'))],
+  };
+  return h('main', { class: `screen home course-home course-${subject}` },
+    h('h1', { class: 'sr' }, t(`subject_${subject}`)),
+    ...homeOrder(subject, Boolean(map)).flatMap((k) => blocks[k]()));
 }

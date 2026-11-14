@@ -65,8 +65,8 @@ export async function mapScene({ subject, highlight = [] }) {
 // The colour variables the app's map rules read, on the film palette. The zone
 // colours are the app's: petrol, ochre, the primary and the secondary fill.
 const PALETTE = `
-.subject-map{--card:var(--anatomy-face);--line:var(--anatomy-faint);--heading:var(--anatomy-strong);--accent:var(--fp-accent);--ok:#A87433;--primary:#276F81;--secondary-fill:#1F3E73;--font-body:var(--fp-sans)}
-.iso[data-theme="light"] .subject-map{--primary:#0B291B;--secondary-fill:#0F2042}
+.subject-map{--card:var(--anatomy-face);--line:var(--anatomy-faint);--heading:var(--anatomy-strong);--accent:var(--fp-accent);--ok:#A87433;--primary:#276F81;--secondary-fill:#1F3E73;--font-body:var(--fp-sans);--map-halo:var(--anatomy-face)}
+.iso[data-theme="light"] .subject-map{--primary:#0B291B;--secondary-fill:#0F2042;--map-halo:none}
 .subject-map .map-hit{display:none}
 .subject-map .map-place.is-lit .map-hit{display:block;fill:color-mix(in srgb,var(--fp-accent) 16%,transparent);stroke:var(--fp-accent);stroke-width:3}
 .iso[lang="en"] .subject-map .l-nl,.iso:not([lang="en"]) .subject-map .l-en{display:none}
