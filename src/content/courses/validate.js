@@ -93,6 +93,38 @@ export function checkIntro(meta) {
   return meta.intro === `${meta.id}.intro` ? [] : [`${meta && meta.id}: intro must be '${meta && meta.id}.intro'`];
 }
 
+// v17: the fields of the course index. Each is `<subject>.field.<slug>` with a
+// title and blurb in both languages and modules of its own subject; a module sits
+// in one field only; a subject that has fields has all its modules in them; a
+// field's film, when set, is its own id. Pure.
+export function checkFields(fields, modules) {
+  const errs = [];
+  const seen = new Map();
+  const bySubject = new Set();
+  for (const f of Array.isArray(fields) ? fields : []) {
+    const at = `field ${f && f.id}`;
+    if (!f || typeof f.id !== 'string' || !new RegExp(`^${f.subject}\\.field\\.[a-z0-9]+$`).test(f.id)) { errs.push(`${at}: id must be <subject>.field.<slug>`); continue; }
+    bySubject.add(f.subject);
+    for (const key of ['title', 'blurb']) {
+      if (!f[key] || !str(f[key].en) || !str(f[key].nl)) errs.push(`${at}: ${key} needs en and nl`);
+    }
+    if ('film' in f && f.film !== f.id) errs.push(`${at}: film must be the field's own id`);
+    for (const id of Array.isArray(f.modules) ? f.modules : []) {
+      const m = modules.find((x) => x.id === id);
+      if (!m) { errs.push(`${at}: unknown module ${id}`); continue; }
+      if (m.subject !== f.subject) errs.push(`${at}: ${id} is not in subject ${f.subject}`);
+      if (seen.has(id)) errs.push(`${at}: ${id} is in two fields (${seen.get(id)} and ${f.id})`);
+      else seen.set(id, f.id);
+    }
+  }
+  for (const subject of bySubject) {
+    for (const m of modules.filter((x) => x.subject === subject)) {
+      if (!seen.has(m.id)) errs.push(`${subject}: module ${m.id} has no field`);
+    }
+  }
+  return errs;
+}
+
 // The topic table of a topic module: 2–8 topics, each a slug id unique in the
 // module, a title in both languages and exactly 4 distinct lessons as levels
 // 1–4; every lesson in exactly one topic; lessons in topic order.
