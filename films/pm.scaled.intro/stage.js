@@ -84,6 +84,9 @@ const STAGE = (() => {
     for (const who of Object.keys(FROM)) {
       let a = 0;
       for (const [sc, from] of FROM[who]) if (sc === si && b >= from) a = b === from ? span(p, 0, 0.35) : 1;
+      // the two IT teams step aside in the scales beat and the gate beat (they would stand in front of the scales) and
+      // are back for the sprints
+      if (si === 4 && (who === 'devs' || who === 'team2')) a = b === 1 ? 1 - span(p, 0, 0.35) : b === 2 ? 0 : b === 3 ? span(p, 0, 0.35) : 1;
       show(E[`pp-${who}`], a);
     }
   }
@@ -167,7 +170,7 @@ const STAGE = (() => {
     const fund = row(196, tr('Project', 'Project', 110), tr('eigen budget', 'own budget', 150), 'pm-out') + row(234, tr('Trein', 'Train', 110), tr('vast budget', 'fixed budget', 150), 'pm-crit');
     const themes = rect(334, 270, 284, 30, 'pm-tile', 6) + txt(346, 293, tr('Thema’s: de richting', 'Themes: the direction', 262), 22, 'start', 'pm-txt');
     return { plistB: op(from(b, p, 1), list), fundB: op(from(b, p, 2), fund), themesB: op(from(b, p, 3), themes),
-      ...tools(b, p, 4, tr('Lean business case', 'Lean business case', 260), tr('WSJF', 'WSJF', 260)) };
+      ...tools(b, p, 4, tr('Lean business case', 'Lean business case', 260), tr('Portfolio Kanban', 'Portfolio Kanban', 260)) };
   }
 
   // ---- s4: alternatives and criticism. The options (SAFe, LeSS, Nexus); LeSS takes things away: three teams, one
@@ -200,7 +203,7 @@ const STAGE = (() => {
 
   // ---- s6: one whole. The four topics in a row, and what scaling means.
   function flowParts(b, p) {
-    const rows = [tr('SAFe: de trein', 'SAFe: the train', 262), tr('Portfolio: de volgorde', 'Portfolio: the order', 262), tr('Alternatief: andere weg', 'Options: other ways', 262), tr('Hybride: de hardware', 'Hybrid: the hardware', 262)];
+    const rows = [tr('SAFe: de trein', 'SAFe: the train', 262), tr('Portfolio: het budget', 'Portfolio: the budget', 262), tr('Alternatief: andere weg', 'Options: other ways', 262), tr('Hybride: de hardware', 'Hybrid: the hardware', 262)];
     let flow = '';
     rows.forEach((n, i) => {
       flow += rect(334, 94 + i * 46, 284, 36, 'pm-card', 6) + txt(346, 119 + i * 46, n, 22, 'start', 'pm-txt');
@@ -212,7 +215,7 @@ const STAGE = (() => {
   }
 
   // ---- s7: the closing scene. ONE function. First the shared Projects map (the kit's mapScene, the very drawing
-  // of the app) with Agile and Scrum lit, then zoomed to it; then the module's four topics, each with its four levels as
+  // of the app) with Opschalen lit, then zoomed to it; then the module's four topics, each with its four levels as
   // columns (the words the app uses for the levels), the start marker on the first level of the first topic.
   const MAP0 = { s: 0.77, x: 73.6, y: 0 };
   const MAP1 = { s: 1.5, x: 320 - MAPZ[0] * 1.5, y: 200 - MAPZ[1] * 1.5 };

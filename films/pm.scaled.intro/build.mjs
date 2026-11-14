@@ -43,8 +43,9 @@
 // .stagegate). Each topic scene names two tools of that topic's lessons in one
 // short sentence, without explaining them (Merijn's checkpoint, 14 Nov): PI Planning
 // and the ART Planning Board (SAFe-basis; pm.scaled.piplanning), a Lean business case
-// and WSJF (portfolio; pm.scaled.epics, .wsjf; WSJF is the field film's second tool of
-// this station), Sprint Planning One of LeSS and Cross-Team Refinement of Nexus
+// and a Portfolio Kanban (portfolio; both from pm.scaled.epics, a Werkkennis lesson, as
+// the SAFe pair; WSJF, which field film 4 names, is a Gevorderd lesson and so the level grid's
+// own addition), Sprint Planning One of LeSS and Cross-Team Refinement of Nexus
 // (alternatives; pm.scaled.less, .nexus) and backward planning and a design freeze
 // (hybrid; pm.scaled.longlead). Terms come from the module's lessons and {n:} numbers
 // from the module's text (the kit's intro mode, films/_kit/build-film.mjs); the kit
@@ -108,13 +109,11 @@ has('pm.scaled.piplanning', ['PI Planning', 'ART Planning Board']);
 has('pm.scaled.piplanning', ['PI Planning', 'ART Planning Board'], 'en');
 // s3: the portfolio (all development investments, new products, improvements, IT systems), project funding (own budget, a
 // temporary team) against funding the train (the work comes to the train), strategic themes (a few goals that steer the
-// choices); the tools (a Lean business case, WSJF)
+// choices); the tools (a Lean business case, a Portfolio Kanban)
 has('pm.scaled.lpm', ['Een portfolio is het geheel van alle ontwikkelinvesteringen', 'elk project schrijft een businesscase, krijgt in een jaarronde een budget, stelt een team samen', 'SAFe financiert die ontwikkelwaardestromen, niet losse projecten. De trein heeft een budget; het werk komt naar de trein', 'Richting komt uit strategische thema’s', 'Projectfinanciering', 'Strategische thema’s']);
 has('pm.scaled.lpm', ['A portfolio is the whole of an organisation’s or division’s development investments', 'each project writes a business case, gets a budget in an annual round, assembles a team', 'SAFe funds those development value streams, not separate projects. The train has a budget; the work comes to the train', 'Direction comes from strategic themes', 'Project funding', 'Strategic themes'], 'en');
-has('pm.scaled.epics', ['Lean business case']);
-has('pm.scaled.epics', ['Lean business case'], 'en');
-has('pm.scaled.wsjf', ['WSJF, Weighted Shortest Job First']);
-has('pm.scaled.wsjf', ['WSJF, Weighted Shortest Job First'], 'en');
+has('pm.scaled.epics', ['Lean business case', 'Portfolio Kanban']);
+has('pm.scaled.epics', ['Lean business case', 'Portfolio Kanban'], 'en');
 // s4: LeSS takes things away (one Product Owner, one Product Backlog for the whole product), feature teams (a customer function
 // from start to finish, through all layers); the tools (Sprint Planning One of LeSS, Cross-Team Refinement of Nexus)
 has('pm.scaled.less', ['Het idee is het omgekeerde van een raamwerk met veel lagen: haal zo veel mogelijk weg', 'Eén Product Owner, één Product Backlog voor het hele product', 'LeSS vraagt feature teams: teams die een klantfunctie van begin tot eind bouwen, door alle lagen heen', 'Sprint Planning One']);
@@ -194,8 +193,9 @@ const CABLE = [[[0, 100], [32, 100], [32, 28]], [[32, 66], [190, 66], [190, 52]]
 const MESTAB = { x: 70, y: 112, w: 58, d: 30, h: 74 };
 const cablePath = (dashed) => CABLE.map((pts) => hall.cable(pts, { dashed })).join('');
 // the hardware of the lines, in the hardware topic: a weighing scale at the front of each line (the MES has interfaces with
-// the scales): a low base and a plate on it
-const scale = (x, y) => w.box({ x, y, w: 34, d: 24, r: 2 }, 0, 9, { tone: 'lo' }, { steps: 2 }) + w.box({ x: x + 2, y: y + 2, w: 30, d: 20, r: 1.5 }, 9, 14, { tone: 'hi' }, { steps: 2 });
+// the scales): a low base, a plate on it and a small display post
+const scale = (x, y) => w.box({ x, y, w: 34, d: 24, r: 2 }, 0, 9, { tone: 'lo' }, { steps: 2 }) + w.box({ x: x + 2, y: y + 2, w: 30, d: 20, r: 1.5 }, 9, 14, { tone: 'hi' }, { steps: 2 })
+  + w.box({ x: x + 25, y: y + 3, w: 6, d: 6, r: 1 }, 14, 36, { tone: 'lo' }, { steps: 2 });
 
 // the people: the plant manager (the sponsor) is the pm cast; the first IT team (two Developers) and the second IT team
 // (two Developers) are pm.agile.scrum's figures. Each stands in a cue group; the stage script shows each when the story needs it.
@@ -339,11 +339,11 @@ const spec = {
     {
       id: 's3', level: 1, dur: DURS[2], still: 0.9, title: { nl: 'Portfolio en Lean budgets', en: 'Portfolio and Lean budgets' },
       beats: [
-        { nl: 'Tweede onderwerp: Portfolio en Lean budgets. Welk werk krijgt de teams, en wie betaalt dat?', en: 'Second topic: Portfolio and Lean budgets. Which work do the teams get, and who pays for it?', focus: ['tPort', 'sponsor'] },
+        { nl: 'Tweede onderwerp: Portfolio en Lean budgets. Welk werk krijgen de teams, en wie betaalt dat?', en: 'Second topic: Portfolio and Lean budgets. Which work do the teams get, and who pays for it?', focus: ['tPort', 'sponsor'] },
         { nl: 'Alle ontwikkelinvesteringen van de fabriek samen heten het {t:Portfolio|portfolio}. Het MES is er één van.', en: 'All the development investments of the plant together are called the {t:Portfolio|portfolio}. The MES is one of them.', cue: { Portfolio: 'plist' }, focus: ['plist', 'sponsor'] },
         { nl: 'Bij {t:Projectfinanciering|projectfinanciering} krijgt elk project een eigen budget. SAFe financiert de trein.', en: 'With {t:Project funding|project funding} each project gets its own budget. SAFe funds the train.', cue: { Projectfinanciering: 'fund' }, focus: ['fund', 'sponsor'] },
-        { nl: 'De plantmanager kiest een paar {t:Strategische thema’s|strategische thema’s}. Die wijzen de richting voor de keuzes.', en: 'The plant manager picks a few {t:Strategic themes|strategic themes}. They give the direction for the choices.', cue: { 'Strategische thema’s': 'themes' }, focus: ['themes', 'sponsor'] },
-        { nl: 'Bij het portfolio gebruiken we vaak een {t:Lean business case|Lean business case} en {t:WSJF|WSJF}.', en: 'For the portfolio we often use a {t:Lean business case|Lean business case} and {t:WSJF|WSJF}.', cue: { 'Lean business case': 'tool1', WSJF: 'tool2' }, focus: ['tool1', 'tool2'] },
+        { nl: 'Een paar {t:Strategische thema’s|strategische thema’s} wijzen de richting voor de plantmanager.', en: 'A few {t:Strategic themes|strategic themes} give the direction for the plant manager.', cue: { 'Strategische thema’s': 'themes' }, focus: ['themes', 'sponsor'] },
+        { nl: 'Bij het portfolio gebruiken we vaak een {t:Lean business case|Lean business case} en een {t:Portfolio Kanban|Portfolio Kanban}.', en: 'For the portfolio we often use a {t:Lean business case|Lean business case} and a {t:Portfolio Kanban|Portfolio Kanban}.', cue: { 'Lean business case': 'tool1', 'Portfolio Kanban': 'tool2' }, focus: ['tool1', 'tool2'] },
       ],
     },
     {
@@ -358,9 +358,9 @@ const spec = {
     {
       id: 's5', level: 1, dur: DURS[4], still: 0.9, title: { nl: 'Hybride: stage-gate plus agile', en: 'Hybrid: stage-gate plus agile' },
       beats: [
-        { nl: 'Vierde onderwerp: Hybride: stage-gate plus agile. Wat als er ook hardware bij komt?', en: 'Fourth topic: Hybrid: stage-gate plus agile. What if hardware joins in?', focus: ['tHyb', 'line3', 'line4'] },
+        { nl: 'Vierde onderwerp is Hybride: stage-gate plus agile. Wat als er ook hardware bij komt?', en: 'The fourth topic is Hybrid: stage-gate plus agile. What if hardware joins in?', focus: ['tHyb', 'line3', 'line4'] },
         { nl: 'Het MES koppelt met weegschalen. Bij hardware stijgen de {t:Kosten van verandering|kosten van verandering}.', en: 'The MES links to scales. With hardware the {t:Cost of change|cost of change} rises.', cue: { 'Kosten van verandering': 'cost' }, focus: ['scales', 'cost'] },
-        { nl: 'In {t:Stage-gate|stage-gate} werk je in fases. Bij elke {t:Gate|gate} beslist de plantmanager of het doorgaat.', en: 'In {t:Stage-gate|stage-gate} you work in stages. At each {t:Gate|gate} the plant manager decides whether it goes on.', cue: { 'Stage-gate': 'stages', Gate: 'stages' }, focus: ['stages', 'sponsor'] },
+        { nl: 'In {t:Stage-gate|stage-gate} werk je in fases. Elke {t:Gate|gate} is een beslismoment voor de plantmanager.', en: 'In {t:Stage-gate|stage-gate} you work in stages. Each {t:Gate|gate} is a decision moment for the plant manager.', cue: { 'Stage-gate': 'stages', Gate: 'stages' }, focus: ['stages', 'sponsor'] },
         { nl: 'Binnen elke fase werken de teams in sprints. De gates blijven voor de grote beslissingen.', en: 'Within each stage the teams work in sprints. The gates stay for the big decisions.', focus: ['sprints', 'stages', 'devs', 'team2'] },
         { nl: 'Bij hybride werken gebruiken we vaak {t:Terugplannen|terugplannen} en een {t:Design freeze|design freeze}.', en: 'For hybrid work we often use {t:Backward planning|backward planning} and a {t:Design freeze|design freeze}.', cue: { Terugplannen: 'tool1', 'Design freeze': 'tool2' }, focus: ['tool1', 'tool2'] },
       ],
@@ -368,7 +368,7 @@ const spec = {
     {
       id: 's6', level: 1, dur: DURS[5], still: 0.9, title: { nl: 'Eén geheel', en: 'One whole' },
       beats: [
-        { nl: 'Het hangt samen. De trein, de volgorde, andere wegen en de hardware.', en: 'It connects. The train, the order, other ways and the hardware.', focus: ['flow', 'mes'] },
+        { nl: 'Het hangt samen. De trein, het budget, andere wegen en de hardware.', en: 'It connects. The train, the budget, other ways and the hardware.', focus: ['flow', 'mes'] },
         { nl: 'Opschalen betekent afspraken waarmee veel teams als één geheel leveren.', en: 'Scaling means agreements that let many teams deliver as one.', focus: ['decision', 'devs', 'team2'] },
       ],
     },
@@ -405,8 +405,8 @@ const SAY = [
       en: 'The new MES, the system that runs the orders on the floor, has to go to more lines. One IT team is too small for the whole system.' },
     { nl: 'Jij leidt het project voor de plantmanager. Er komen meer IT-teams bij.',
       en: 'You lead the project for the plant manager. More IT teams join.' },
-    { nl: 'We volgen dit project langs de vier onderwerpen van de module. De details komen later, in de lessen.',
-      en: 'We follow this project through the four topics of the module. The details come later, in the lessons.' },
+    { nl: 'We volgen dit project langs de vier onderwerpen van de module.',
+      en: 'We follow this project through the four topics of the module.' },
   ],
   [ // s2 SAFe basics
     { nl: 'Het eerste onderwerp is SAFe-basis. Hoe laat je veel teams als één geheel werken?',
@@ -421,16 +421,16 @@ const SAY = [
       en: 'For SAFe we often use PI Planning, the planning with all teams, and the ART Planning Board.' },
   ],
   [ // s3 portfolio and Lean budgets
-    { nl: 'Het tweede onderwerp is Portfolio en Lean budgets. Welk werk krijgt de teams, en wie betaalt dat?',
+    { nl: 'Het tweede onderwerp is Portfolio en Lean budgets. Welk werk krijgen de teams, en wie betaalt dat?',
       en: 'The second topic is Portfolio and Lean budgets. Which work do the teams get, and who pays for it?' },
     { nl: 'Alle ontwikkelinvesteringen van de fabriek samen heten het {t:Portfolio|portfolio}. Het MES is er één van.',
       en: 'All the development investments of the plant together are called the {t:Portfolio|portfolio}. The MES is one of them.' },
     { nl: 'Bij {t:Projectfinanciering|projectfinanciering} krijgt elk project een eigen budget en een tijdelijk team. SAFe financiert de trein, en het werk komt naar de trein.',
       en: 'With {t:Project funding|project funding} each project gets its own budget and a temporary team. SAFe funds the train, and the work comes to the train.' },
-    { nl: 'De plantmanager kiest een paar {t:Strategische thema’s|strategische thema’s}. Die wijzen de richting voor de keuzes.',
-      en: 'The plant manager picks a few {t:Strategic themes|strategic themes}. They give the direction for the choices.' },
-    { nl: 'Bij het portfolio gebruiken we vaak een Lean business case en WSJF, een formule voor de volgorde.',
-      en: 'For the portfolio we often use a Lean business case and WSJF, a formula for the order.' },
+    { nl: 'Een paar {t:Strategische thema’s|strategische thema’s} wijzen de richting voor de plantmanager.',
+      en: 'A few {t:Strategic themes|strategic themes} give the direction for the plant manager.' },
+    { nl: 'Bij het portfolio gebruiken we vaak een Lean business case en een Portfolio Kanban.',
+      en: 'For the portfolio we often use a Lean business case and a Portfolio Kanban.' },
   ],
   [ // s4 alternatives and criticism
     { nl: 'Het derde onderwerp is Alternatieven en kritiek. SAFe is niet de enige weg, er zijn ook LeSS en Nexus.',
@@ -447,16 +447,16 @@ const SAY = [
       en: 'The fourth topic is Hybrid, stage-gate plus agile. What if hardware joins in?' },
     { nl: 'Het MES krijgt een koppeling met weegschalen op de lijnen. Dat is hardware, en bij hardware stijgen de {t:Kosten van verandering|kosten van verandering} snel.',
       en: 'The MES gets a link to scales on the lines. That is hardware, and with hardware the {t:Cost of change|cost of change} rises fast.' },
-    { nl: 'In {t:Stage-gate|stage-gate} werk je in fases. Tussen twee fases zit een {t:Gate|gate}, daar beslist de plantmanager of het doorgaat.',
-      en: 'In {t:Stage-gate|stage-gate} you work in stages. Between two stages sits a {t:Gate|gate}, where the plant manager decides whether it goes on.' },
+    { nl: 'In {t:Stage-gate|stage-gate} werk je in fases. Tussen twee fases zit een {t:Gate|gate}, een beslismoment voor de plantmanager.',
+      en: 'In {t:Stage-gate|stage-gate} you work in stages. Between two stages sits a {t:Gate|gate}, a decision moment for the plant manager.' },
     { nl: 'Binnen elke fase werken de teams in sprints. De gates blijven voor de grote beslissingen.',
       en: 'Within each stage the teams work in sprints. The gates stay for the big decisions.' },
     { nl: 'Bij hybride werken gebruiken we vaak terugplannen en een design freeze, het vastleggen van het ontwerp.',
       en: 'For hybrid work we often use backward planning and a design freeze, fixing the design.' },
   ],
   [ // s6 one whole
-    { nl: 'Het hangt samen. SAFe-basis geeft de trein, het portfolio de volgorde, de alternatieven andere wegen en hybride werken de hardware.',
-      en: 'It all connects. SAFe basics gives the train, the portfolio the order, the alternatives other ways and hybrid work the hardware.' },
+    { nl: 'Het hangt samen. SAFe-basis geeft de trein, het portfolio het budget, de alternatieven andere wegen en hybride werken de hardware.',
+      en: 'It all connects. SAFe basics gives the train, the portfolio the budget, the alternatives other ways and hybrid work the hardware.' },
     { nl: 'Opschalen betekent afspraken waarmee veel teams als één geheel leveren.',
       en: 'Scaling means agreements that let many teams deliver as one.' },
   ],

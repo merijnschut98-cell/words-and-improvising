@@ -765,25 +765,23 @@ test('speak variant: the Land intro phrases', () => {
 
 // The Scaling module intro (pm.scaled.intro), checked with espeak-ng phonemes through Piper's nl bridge: it reads
 // LeSS as the letters "le es es" (said Less, lˈɛss), "Sprint Planning One" with the Dutch number "oone" (said Wan,
-// ʋˈɑn), Spotify-model with the Dutch i (said Spotifai, spˈoːtifˌɑj), plantmanager with a hard g (said
-// plant-menetsjer, in this film's two phrases only) and Lean as "lee-an" (said Lien, as the Lean-consultant rule),
-// in this film's three phrases only. English reads LeSS as letters too (said Less); Cross-Team Refinement has its
-// rule above. Everything else of the film (SAFe, PI Planning, ART Planning Board, WSJF, stage-gate, gate, design
-// freeze, Product Owner, feature teams, epics, portfolio, terugplannen) has a rule above or reads right;
-// no other film's spoken text changes
+// ʋˈɑn), Spotify with the Dutch i (said Spotifai, spˈoːtifˌɑj) and Lean as "lee-an" (said Lien, as the Lean-consultant
+// rule), in "Lean budgets" and "Lean business case" only. English reads LeSS as letters too (said Less);
+// Cross-Team Refinement has its rule above, and the film's plant manager phrases are the ones the rules above cover.
+// Everything else of the film (SAFe, PI Planning, ART Planning Board, WSJF, stage-gate, gate, design freeze, Product
+// Owner, feature teams, epics, portfolio, Portfolio Kanban, terugplannen) has a rule above or reads right; no other
+// film's spoken text changes
 test('speak variant: the Scaling intro words', () => {
   const nl = (s) => speakOf([s], 'nl');
   assert.equal(nl('Er zijn ook LeSS en Nexus.'), 'Er zijn ook Less en Nexus.');
   assert.equal(nl('Sprint Planning One van LeSS.'), 'Sprint Planning Wan van Less.');
   assert.equal(nl('Het Spotify-model.'), 'Het Spotifai-model.');
-  assert.equal(nl('De plantmanager kiest een paar thema’s.'), "De plant-menetsjer kiest een paar thema's.");
-  assert.equal(nl('Daar beslist de plantmanager of het doorgaat.'), 'Daar beslist de plant-menetsjer of het doorgaat.');
   assert.equal(nl('Het tweede onderwerp is Portfolio en Lean budgets.'), 'Het tweede onderwerp is Portfolio en Lien budgets.');
-  assert.equal(nl('We gebruiken vaak een Lean business case en WSJF.'), 'We gebruiken vaak een Lien biznis kees en wee es jee ef.');
+  assert.equal(nl('We gebruiken vaak een Lean business case en een Portfolio Kanban.'), 'We gebruiken vaak een Lien biznis kees en een Portfolio Kanban.');
   assert.equal(nl('Op Expert komen Lean budgets, de kritiek op SAFe erbij.'), 'Op Expert komen Lien budgets, de kritiek op Seef erbij.');
+  assert.equal(nl('Dat is een beslismoment voor de plantmanager.'), 'Dat is een beslismoment voor de plant-menetsjer.');
   // elsewhere the words keep their voice
-  assert.equal(nl('Vraag het de plantmanager.'), 'Vraag het de plantmanager.');
-  assert.equal(nl('Een Lean-team met Lean budgets.'), 'Een Lean-team met Lean budgets.');
+  assert.equal(nl('Een Lean-team met een Lean aanpak.'), 'Een Lean-team met een Lean aanpak.');
   assert.equal(speakOf(['There are also LeSS and Nexus.'], 'en'), 'There are also Less and Nexus.');
   const en = 'Sprint Planning One of the Spotify model. The plant manager picks Lean budgets.';
   assert.equal(speakOf([en], 'en'), en);

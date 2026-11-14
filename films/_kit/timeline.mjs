@@ -768,16 +768,15 @@ const SAY = {
     [/\bA3-rapport en een after-action review\b/g, 'A3-rapport en een after-eksjun rievjoe'],
     // the Scaling intro (pm.scaled.intro), a self-contained group at the end of the Dutch list, checked with phonemes
     // through Piper's nl_NL-alex bridge: espeak-ng reads LeSS as the letters "le es es" (said Less, lˈɛss), "Sprint
-    // Planning One" with the Dutch number "oone" (said Wan, ʋˈɑn), Spotify-model with the Dutch i (said Spotifai,
-    // spˈoːtifˌɑj), plantmanager with a hard g (said plant-menetsjer, in this film's two phrases only) and Lean as
-    // "lee-an" (said Lien, as the Lean-consultant rule above, in this film's three phrases only: "Lean business case"
-    // has already become "Lean biznis kees" by then). Cross-Team Refinement, SAFe, PI Planning, ART Planning Board,
-    // WSJF, stage-gate, gate and design freeze have rules above and the rest reads right; no other film's spoken
+    // Planning One" with the Dutch number "oone" (said Wan, ʋˈɑn), Spotify with the Dutch i (said Spotifai,
+    // spˈoːtifˌɑj; no other film says it) and Lean as "lee-an" (said Lien, as the Lean-consultant rule above) in
+    // "Lean budgets" and in "Lean business case" (which has already become "Lean biznis kees" by then) only: the other
+    // films' Lean (pm.agile.kanban's "in Lean") keeps its voice. The plant manager phrases of the film are the ones
+    // the rules above already cover (voor de plantmanager). Cross-Team Refinement, SAFe, PI Planning, ART Planning
+    // Board, stage-gate, gate and design freeze have rules above and the rest reads right; no other film's spoken
     // text changes
-    [/\bLeSS\b/g, 'Less'], [/\bSprint Planning One\b/g, 'Sprint Planning Wan'], [/\bSpotify-model\b/g, 'Spotifai-model'],
-    [/\bDe plantmanager kiest\b/g, 'De plant-menetsjer kiest'], [/\bbeslist de plantmanager\b/g, 'beslist de plant-menetsjer'],
-    [/\bPortfolio en Lean budgets\b/g, 'Portfolio en Lien budgets'], [/\bvaak een Lean (?=biznis kees\b)/g, 'vaak een Lien '],
-    [/\bLean budgets, de kritiek\b/g, 'Lien budgets, de kritiek']],
+    [/\bLeSS\b/g, 'Less'], [/\bSprint Planning One\b/g, 'Sprint Planning Wan'], [/\bSpotify\b/g, 'Spotifai'],
+    [/\bLean (?=budgets\b|biznis kees\b)/g, 'Lien ']],
   en: [[/\brpm\b/g, 'revolutions per minute'], [/\bmm\/min\b/g, 'millimetres per minute'], [/\bm\/min\b/g, 'metres per minute'], [/µm\b/g, 'micrometres'],
     [/€\s?(\d[\d,]*(?:\.\d+)?)/g, '$1 euros'], [/(\d)\.0(?![\d])/g, '$1'], [/(\d)\s?mm\b/g, '$1 millimetres'], [/(\d)\s?min\b/g, '$1 minutes'], [/(\d)\s?%/g, '$1 percent'],
     [/Ø\s*/g, 'diameter '], [/(\d)\+(\d)/g, '$1 plus $2'], [/\s×\s/g, ' times '], [/\s\/\s/g, ' divided by '], [/\s=\s/g, ' is '], [/°/g, ' degrees'], [/\bRa\b/g, 'R a'], [/’/g, "'"],
