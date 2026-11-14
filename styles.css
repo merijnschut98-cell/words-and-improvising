@@ -663,6 +663,15 @@ details[open] > summary::before { transform: rotate(45deg); }
 .speak-home .review-card .hero-title .ico { color: var(--accent-dark); }
 .speak-home .review-card .hero-sub { color: var(--muted); opacity: 1; }
 .speak-home .btn-hero { padding: 12px 16px; }
+/* The weekly boss round is outlined too: the next round stays the only filled button. */
+.speak-home .boss-card {
+  padding: 12px 16px; border-radius: var(--radius); background: var(--card); color: var(--heading);
+  border: 1px solid var(--border-subtle); box-shadow: var(--shadow-card);
+}
+@media (hover: hover) { .speak-home .boss-card:hover:not(:disabled) { border-color: var(--accent); } }
+.speak-home .boss-card .hero-title { font-size: 1.05rem; }
+.speak-home .boss-card .hero-title .ico { color: var(--accent-dark); }
+.speak-home .boss-card .hero-sub { color: var(--muted); opacity: 1; }
 /* A thin progress bar (decorative; the text beside it carries the number). */
 .pbar { display: block; height: 4px; border-radius: 2px; background: var(--line); overflow: hidden; }
 .pbar > i { display: block; height: 100%; background: var(--accent); border-radius: 2px; }

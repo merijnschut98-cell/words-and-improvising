@@ -144,3 +144,29 @@ test('ui.speakOpen is cleaned on load', async () => {
   save(be, { ...defaultState(), ui: { speakOpen: 'nope' } });
   assert.equal('speakOpen' in load(be).ui, false);
 });
+
+test('ui.speakOpen: hostile values load safely and a backup round trip keeps a clean list', async () => {
+  const { load, parseBackup, KEY } = await import('../src/core/storage.js');
+  const at = (ui) => load({ getItem: (k) => (k === KEY ? JSON.stringify({ ...defaultState(), ui }) : null), setItem() {} }).ui;
+  // An old save without the key: nothing added, both folds closed.
+  assert.equal('speakOpen' in at({ subject: 'speak' }), false);
+  assert.ok(speakLayout({ ...defaultState(), ui: at({ subject: 'speak' }) }).flatMap((b) => b.items).every((i) => !i.fold || !i.open));
+  for (const bad of [null, 7, 'quests', { quests: true }, true]) assert.equal('speakOpen' in at({ speakOpen: bad }), false, JSON.stringify(bad));
+  const huge = Array.from({ length: 100000 }, (_, i) => (i === 99999 ? 'quests' : { x: i }));
+  assert.deepEqual(at({ speakOpen: huge }).speakOpen, ['quests']);
+  assert.deepEqual(at({ speakOpen: [null, ['quests'], 'practice', 'practice'] }).speakOpen, ['practice']);
+  const res = parseBackup(JSON.stringify({ ...defaultState(), ui: { speakOpen: ['practice', 'evil', 'quests'], drillGroups: ['basics'] } }));
+  assert.ok(res.ok);
+  assert.deepEqual(res.state.ui.speakOpen, ['quests', 'practice']);
+  assert.deepEqual(res.state.ui.drillGroups, ['basics']);
+});
+
+test('ui.speakOpen stays on this device, like ui.drillGroups: never synced, never overwritten by a merge', async () => {
+  const { syncable, mergeStates } = await import('../src/core/sync.js');
+  const local = { ...defaultState(), ui: { speakOpen: ['quests'], drillGroups: ['pressure'] } };
+  assert.equal(JSON.stringify(syncable(local)).includes('speakOpen'), false);
+  const remote = { ...syncable(defaultState()), ui: { speakOpen: ['practice'] } };
+  const m = mergeStates(local, remote);
+  assert.deepEqual(m.ui.speakOpen, ['quests']);
+  assert.deepEqual(m.ui.drillGroups, ['pressure']);
+});

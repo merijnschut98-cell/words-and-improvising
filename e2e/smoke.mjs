@@ -255,8 +255,25 @@ await step('speaking home: one next round on top, quests and practice collapsed,
   await pg.evaluate(() => window.__app.updateSettings({ theme: 'dark' }));
   await pg.locator('.today-card .today-go').waitFor();
   await snap('speak-home-dark');
+  await pg.evaluate(() => { window.__app.updateSettings({ lang: 'en' }); window.__app.go('home'); });
+  await pg.locator('details.practice-fold > summary', { hasText: '16 drills' }).waitFor();
+  if (await pg.locator('details.speak-fold[open]').count()) throw new Error('en: folds should start closed');
+  await snap('speak-home-en-dark');
   await pg.evaluate(() => window.__app.updateSettings({ theme: 'light' }));
-  await pg.locator('details.quest-card > summary').click();
+  await pg.locator('.today-card .today-go').waitFor();
+  await snap('speak-home-en');
+  await pg.evaluate(() => { window.__app.updateSettings({ lang: 'nl' }); window.__app.go('home'); });
+  await pg.locator('details.practice-fold > summary', { hasText: '16 oefeningen' }).waitFor();
+  await pg.evaluate(() => window.__app.updateSettings({ theme: 'light' }));
+  await pg.locator('.today-card .today-go').waitFor();
+  // Both summaries are real 44 px targets.
+  for (const sel of ['details.quest-card > summary', 'details.practice-fold > summary']) {
+    const hgt = await pg.locator(sel).evaluate((el) => el.getBoundingClientRect().height);
+    if (hgt < 44) throw new Error(`${sel} is ${hgt}px tall`);
+  }
+  // Keyboard: the quests open with Enter on the focused summary.
+  await pg.locator('details.quest-card > summary').focus();
+  await pg.keyboard.press('Enter');
   await pg.locator('.quest-card .quest').first().waitFor({ state: 'visible' });
   await pg.waitForFunction(() => (JSON.parse(localStorage.getItem('spraakwater:v1')).ui.speakOpen || []).includes('quests'), null, { timeout: 3000 });
   await onePrimary(pg, 'speaking home, quests open');
@@ -270,6 +287,21 @@ await step('speaking home: one next round on top, quests and practice collapsed,
   await pg.locator('details.practice-fold[open]').waitFor();
   const ui = await pg.evaluate(() => JSON.parse(localStorage.getItem('spraakwater:v1')).ui.speakOpen);
   if (ui.join() !== 'quests,practice') throw new Error(`speakOpen: ${ui}`);
+  await onePrimary(pg, 'speaking home, quests and practice open');
+  const wide = await pg.evaluate(() => document.documentElement.scrollWidth > window.innerWidth);
+  if (wide) throw new Error('horizontal scroll with the folds open');
+  await snap('speak-home-open');
+  await pg.evaluate(() => window.__app.updateSettings({ theme: 'dark' }));
+  await pg.locator('.today-card .today-go').waitFor();
+  await snap('speak-home-open-dark');
+  await pg.evaluate(() => { window.__app.updateSettings({ theme: 'light', lang: 'en' }); window.__app.go('home'); });
+  await pg.locator('details.practice-fold > summary', { hasText: '16 drills' }).waitFor();
+  await snap('speak-home-open-en');
+  await pg.evaluate(() => { window.__app.updateSettings({ lang: 'nl' }); window.__app.go('home'); });
+  await pg.locator('details.practice-fold > summary', { hasText: '16 oefeningen' }).waitFor();
+  // A drill inside the opened folds starts its round.
+  await pg.locator('.group-basics .drill-minute').click();
+  await pg.getByRole('button', { name: 'Start' }).waitFor({ timeout: 5000 });
   await c.close();
 });
 
@@ -1302,6 +1334,19 @@ await step('boss card shows on a Friday', async () => {
   await p2.clock.setFixedTime(new Date(2026, 9, 30, 10, 0));
   await p2.goto(BASE);
   await p2.locator('.boss-card').waitFor({ timeout: 5000 });
+  // The next round stays the only filled button: the boss card is outlined like the lesson card, in both themes.
+  await onePrimary(p2, 'speaking home with the boss card');
+  for (const theme of ['light', 'dark']) {
+    await p2.evaluate((th) => window.__app.updateSettings({ theme: th }), theme);
+    await p2.locator('.boss-card').waitFor();
+    // Colours ease between themes: compare once they have settled.
+    const bg = () => p2.evaluate(() => [getComputedStyle(document.querySelector('.boss-card')).backgroundColor, getComputedStyle(document.querySelector('.today-card')).backgroundColor]);
+    let [boss, card] = await bg();
+    for (let i = 0; i < 20 && boss !== card; i++) { await p2.waitForTimeout(100); [boss, card] = await bg(); }
+    if (boss !== card) throw new Error(`${theme}: boss card is filled (${boss}), expected the card colour ${card}`);
+  }
+  await p2.evaluate(() => window.__app.updateSettings({ theme: 'light' }));
+  await p2.locator('.boss-card').waitFor();
   await p2.screenshot({ path: `${out}/23-boss-home.png`, fullPage: true });
   await c2.close();
 });
