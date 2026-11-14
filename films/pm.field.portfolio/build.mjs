@@ -239,7 +239,7 @@ const spec = {
       id: 's1', level: 1, dur: DURS[0], still: 0.9, title: { nl: 'De senior kant', en: 'The senior side' },
       beats: [
         { nl: 'Lijn 3 staat in hal B. De fabriek wil dit jaar nog meer projecten.', en: 'Line 3 stands in hall B. The plant wants more projects this year.', focus: ['goal', 'line3', 'crew', 'teamlead'] },
-        { nl: 'Jij leidde het project. Nu adviseer je de fabrieksdirecteur welke er komen.', en: 'You led the project. Now you advise the plant manager which ones come next.', focus: ['people5', 'sponsor'] },
+        { nl: 'Jij leidde het project. Nu adviseer je de plantmanager welke er komen.', en: 'You led the project. Now you advise the plant manager which ones come next.', focus: ['people5', 'sponsor'] },
         { nl: 'Twee stations: projecten kiezen en sturen, en adviseren wie ze betaalt.', en: 'Two stations: choosing and steering projects, and advising who pays for them.', focus: 'road' },
       ],
     },
@@ -255,7 +255,7 @@ const spec = {
     {
       id: 's3', level: 1, dur: DURS[2], still: 0.9, title: { nl: 'Het adviesvak', en: 'The consulting craft' },
       beats: [
-        { nl: 'Het tweede station is Het adviesvak: de directeur betaalt, en het begint met een offerte.', en: 'The second station is The consulting craft: the manager pays, and it starts with a proposal.', focus: ['st-consult', 'for', 'sponsor'] },
+        { nl: 'Het tweede station is Het adviesvak: de plantmanager betaalt, en het begint met een offerte.', en: 'The second station is The consulting craft: the manager pays, and it starts with a proposal.', focus: ['st-consult', 'for', 'sponsor'] },
         { nl: 'Daarna draait het om vertrouwen, om onafhankelijk blijven en om werk dat nieuw werk oplevert.', en: 'Then it is about trust, about staying independent and about work that brings new work.', focus: ['for', 'sponsor'] },
         { nl: 'Je gebruikt een {t:Diagnosefase|diagnosefase} en de {t:Vertrouwensformule|vertrouwensformule}.', en: 'You use a {t:Diagnostic phase|diagnostic phase} and the {t:Trust equation|trust equation}.', ...TOOLCUE('Diagnosefase', 'Vertrouwensformule') },
         { nl: 'Zonder dit gaat je advies over jezelf en niet over de klant.', en: 'Without this your advice is about yourself and not about the client.', focus: 'without' },
@@ -285,7 +285,7 @@ const SAY = [
   [ // s1 the opening
     { nl: 'Lijn 3 staat in hal B. Maar de fabriek wil dit jaar veel meer projecten.',
       en: 'Line 3 stands in hall B. But the plant wants many more projects this year.' },
-    { nl: 'Jij leidde dat project. Nu adviseer je de fabrieksdirecteur welke projecten er daarna komen.',
+    { nl: 'Jij leidde dat project. Nu adviseer je de plantmanager welke projecten er daarna komen.',
       en: 'You led that project. Now you advise the plant manager on which projects come next.' },
     { nl: 'Daar horen twee stations bij. Eerst kiezen en sturen, dan adviseren.',
       en: 'That takes two stations. First choosing and steering, then advising.' },
@@ -301,7 +301,7 @@ const SAY = [
       en: 'Without this everything runs at once, and less gets done.' },
   ],
   [ // s3 consult
-    { nl: 'Het tweede station is Het adviesvak. De directeur betaalt voor jouw advies, en het begint met een offerte over zijn probleem.',
+    { nl: 'Het tweede station is Het adviesvak. De plantmanager betaalt voor jouw advies, en het begint met een offerte over zijn probleem.',
       en: 'The second station is The consulting craft. The manager pays for your advice, and it starts with a proposal about the problem.' },
     { nl: 'Daarna draait het om vertrouwen, om onafhankelijk blijven en om werk dat nieuw werk oplevert.',
       en: 'Then it is about trust, about staying independent and about work that brings new work.' },
@@ -394,7 +394,7 @@ const css = PM_CSS + HALL_CSS + `
 ` + mapStyles();
 
 const label = {
-  nl: 'Hal B van de fabriek, waar lijn 3 nu staat, zoals in de intro van Plannen. Op de vloer lijn 3 op zijn plek met een gestippelde omtrek; ernaast staat lijn 4. Links de stroomkast met de kabel van buiten, aan de achterwand de schakelkast, en aan de zijwand een kalender waarvan de laatste drie weken de zomerstop zijn. Eerst staan de teamleider en de operators bij lijn 3; later komt de sponsor erbij, de directeur van de fabriek, die voor het advies betaalt. Rechts een paneel, gemarkeerd als voorbeeld of schema. Eerst een kaart met vier projecten van dit jaar, dan jij en de directeur, en de weg met twee stations. Dan per station een schema, twee namen van hulpmiddelen en, gestippeld, wat er misgaat zonder: bij Programma’s en governance een rij projecten met een capaciteitsstreep, en daarna drie niveaus van beslissen, met Capaciteitsstreep en Besluitenlijst; bij Het adviesvak een offerte met eerst het probleem, en daarna vertrouwen, onafhankelijkheid en groei, met Diagnosefase en Vertrouwensformule. Aan het eind de kaart van Projecten met de twee stations verlicht, eerst helemaal en dan plek voor plek van dichtbij.',
+  nl: 'Hal B van de fabriek, waar lijn 3 nu staat, zoals in de intro van Plannen. Op de vloer lijn 3 op zijn plek met een gestippelde omtrek; ernaast staat lijn 4. Links de stroomkast met de kabel van buiten, aan de achterwand de schakelkast, en aan de zijwand een kalender waarvan de laatste drie weken de zomerstop zijn. Eerst staan de teamleider en de operators bij lijn 3; later komt de sponsor erbij, de plantmanager, die voor het advies betaalt. Rechts een paneel, gemarkeerd als voorbeeld of schema. Eerst een kaart met vier projecten van dit jaar, dan jij en de plantmanager, en de weg met twee stations. Dan per station een schema, twee namen van hulpmiddelen en, gestippeld, wat er misgaat zonder: bij Programma’s en governance een rij projecten met een capaciteitsstreep, en daarna drie niveaus van beslissen, met Capaciteitsstreep en Besluitenlijst; bij Het adviesvak een offerte met eerst het probleem, en daarna vertrouwen, onafhankelijkheid en groei, met Diagnosefase en Vertrouwensformule. Aan het eind de kaart van Projecten met de twee stations verlicht, eerst helemaal en dan plek voor plek van dichtbij.',
   en: 'Hall B of the plant, where line 3 now stands, as in the intro of Plan. On the floor line 3 in its place with a dashed outline; next to it stands line 4. At the left the power cabinet with the cable from outside, on the back wall the switchboard, and on the side wall a calendar whose last three weeks are the summer shutdown. First the team lead and the operators stand at line 3; later the sponsor joins, the plant manager, who pays for the advice. At the right a panel, marked as an example or a diagram. First a card with four projects of this year, then you and the plant manager, and the road with two stations. Then per station a schema, two names of tools and, dashed, what goes wrong without it: at Programmes and governance a row of projects with a capacity line, and then three levels of deciding, with Capacity line and Decision log; at The consulting craft a proposal that starts with the problem, and then trust, independence and growth, with Diagnostic phase and Trust equation. At the end the map of Projects with the two stations lit, first whole and then place by place up close.',
 };
 

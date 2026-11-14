@@ -118,7 +118,7 @@ const STAGE = (() => {
   function pair(a) {
     return op(a, rect(334, 60, 284, 56, 'pm-crit', 8) + glyph(364, 88, 'pm-on') + txt(394, 96, tr('Jij: adviseert', 'You: advise', 216), 22, 'start', 'pm-on')
       + arrow(476, 120, 476, 144)
-      + rect(334, 150, 284, 56, 'pm-card', 8) + glyph(364, 178, 'pm-tile') + txt(394, 186, tr('Directeur: betaalt', 'Manager: pays', 216), 22, 'start', 'pm-txt'));
+      + rect(334, 150, 284, 56, 'pm-card', 8) + glyph(364, 178, 'pm-tile') + txt(394, 186, tr('Plantmanager', 'Plant manager', 216), 22, 'start', 'pm-txt'));
   }
 
   // ---- the schemas of the two stations (y 108 to 214), two each: what the station is for
@@ -144,9 +144,15 @@ const STAGE = (() => {
   ];
   function station(si, b, p) {
     const k = si - 1;
-    const sch = FOR[k][b === 0 ? 0 : 1];
+    // beat 3 names the two tools: the schema of the first tool (the ranked list with its capacity line, the proposal)
+    // dissolves in at the start and gives way to the schema of the second (who decides what, trust, independence and
+    // growth) halfway, as the voice names the second tool
+    const a1 = span(p, 0.05, 0.2);
+    const a2 = span(p, 0.5, 0.65);
+    const w = b === 0 ? [1, 0] : b === 2 ? [a1 - a2, 1 - a1 + a2] : [0, 1];
+    const fade = b <= 1 ? span(p, 0.1, 0.45) : 1;
     return {
-      forB: op(b <= 1 ? span(p, 0.1, 0.45) : 1, sch()),
+      forB: op(fade, op(w[0], FOR[k][0]()) + op(w[1], FOR[k][1]())),
       t1B: chip(224, TOOLS[k][0], b >= 2 ? (b === 2 ? span(p, 0, 0.3) : 1) : 0),
       t2B: chip(270, TOOLS[k][1], b >= 2 ? (b === 2 ? span(p, 0.2, 0.5) : 1) : 0),
       withoutB: without(WITHOUT[k], b >= 3 ? span(p, 0, 0.4) : 0),
@@ -183,7 +189,7 @@ const STAGE = (() => {
     show(E.mapG, isMap ? 1 : 0);
     show(E.hud, isMap ? 0 : 1);
     if (si === 0) {
-      const t = [tr('Dit jaar', 'This year'), tr('Jij en de directeur', 'You and the manager'), tr('De weg', 'The road')][b];
+      const t = [tr('Dit jaar', 'This year'), tr('Wie adviseert wie', 'Who advises whom'), tr('De weg', 'The road')][b];
       head = txt(334, 38, t, 22, 'start', 'pm-big') + txt(618, 38, b === 0 ? tr('voorbeeld', 'example') : tr('schema', 'diagram'), 22, 'end', 'pm-mute');
       if (b === 0) o.goalB = projects(span(p, 0.05, 0.4));
       else if (b === 1) o.peopleB = pair(span(p, 0.05, 0.4));
