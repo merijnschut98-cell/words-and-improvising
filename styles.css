@@ -1151,6 +1151,11 @@ details.rw-topic > summary { cursor: pointer; min-height: 44px; display: flex; a
 .subject-map .m-left { fill: var(--zone, var(--accent)); }
 .subject-map .m-right { fill: color-mix(in srgb, var(--zone, var(--accent)) 75%, var(--heading)); }
 .subject-map .map-road-arrow { fill: color-mix(in srgb, var(--heading) 30%, var(--card)); }
+/* v272: the phone layout (map.phone, drawn by subjectMap when the card is under 460 px): a 340-unit sheet, so 13 units
+   are 12.4 px at 390 and 9.8 px at 320. These rules start with .subject-map-wrap, so the films do not carry them. */
+.subject-map-wrap .subject-map-phone { max-width: 400px; margin: 0 auto; }
+.subject-map-wrap .subject-map-phone .map-label { font-size: 13px; }
+.subject-map-wrap .subject-map-phone .map-zone-label { font-size: 13px; }
 
 /* v17: the map first on a subject home, and the field films under the next step */
 .map-card { padding-bottom: 12px; }
