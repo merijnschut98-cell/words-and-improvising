@@ -50,7 +50,7 @@
 // topic scene names the tools of that topic's lessons in one short sentence, without explaining
 // them (Merijn's checkpoint, 14 Nov), each a term of its lesson: a BATNA (pm.negotiate.batna,
 // Werkkennis, as field film 2 names it) and a fair standard (pm.negotiate.interests, Basis); an anchor
-// and a counteroffer (pm.negotiate.anchor, Basis); a change log and a change request
+// and a conditional concession (pm.negotiate.anchor and .concede); the iron triangle and a change request
 // (pm.negotiate.scope, Basis); a positive no (pm.negotiate.no, Basis) and the conflict modes
 // (pm.negotiate.assert, Werkkennis). The Werkkennis tools named in a Basis scene (the BATNA, the
 // conflict modes) do not come back in s7; s7 names what each later level adds and nothing a
@@ -116,20 +116,20 @@ isTerm('pm.negotiate.batna', 'BATNA', 'nl'); isTerm('pm.negotiate.batna', 'BATNA
 isTerm('pm.negotiate.interests', 'Eerlijke maatstaf', 'nl'); isTerm('pm.negotiate.interests', 'Fair standard', 'en');
 // s3: the first number in the room pulls the outcome towards it; when they anchor first, do not argue about their number,
 // ask how they arrived at it and put your own on the table with its basis (similar jobs cost); concessions in smaller
-// steps and something back for each; the tools: an anchor and a counteroffer (both pm.negotiate.anchor, Basis)
+// steps; the tools: an anchor (pm.negotiate.anchor, Basis) and a conditional concession (pm.negotiate.concede, Werkkennis, "if you..., then I..."; the scene does not explain it)
 has('pm.negotiate.anchor', ['het eerste getal in de kamer trekt ieders schatting naar zich toe', 'Ankert de ander eerst, ga dan niet over zijn getal in discussie', 'Vraag hoe hij erop kwam', 'leg jouw basis uit en leg je eigen getal op tafel', 'Vergelijkbare diagnoses kostten', 'maak elke stap kleiner', 'vraag er telkens iets voor terug', 'Grote of snelle concessies verraden dat er nog veel ruimte is']);
 has('pm.negotiate.anchor', ['the first number in the room pulls everyone’s estimates towards it', 'When they anchor first, don’t argue about their number', 'Ask how they arrived at it', 'explain your basis and put your own number on the table', 'Similar diagnostics took', 'make each one smaller than the last', 'get something for each', 'Big or quick concessions signal much more room'], 'en');
-isTerm('pm.negotiate.anchor', 'Anker', 'nl'); isTerm('pm.negotiate.anchor', 'Tegenbod', 'nl');
-isTerm('pm.negotiate.anchor', 'Anchor', 'en'); isTerm('pm.negotiate.anchor', 'Counteroffer', 'en');
+isTerm('pm.negotiate.anchor', 'Anker', 'nl'); isTerm('pm.negotiate.concede', 'Voorwaardelijke concessie', 'nl');
+isTerm('pm.negotiate.anchor', 'Anchor', 'en'); isTerm('pm.negotiate.concede', 'Conditional concession', 'en');
 // s4: scope, time and cost hang together, you make the trade visible and the client chooses; keep the rate and move the
-// scope; a first "too expensive" is information; a savings target; the tools: a change log and a change request (both
+// scope; a first "too expensive" is information; a savings target; the tools: the iron triangle and a change request (both
 // pm.negotiate.scope, Basis)
 has('pm.negotiate.scope', ['Beweegt er één, dan moet er iets anders mee', 'maar de ruil zichtbaar maken', 'Laat de klant kiezen: het is zijn prioriteit']);
 has('pm.negotiate.scope', ['If one moves, something else has to', 'make the trade visible', 'Let the client choose: it’s their priority'], 'en');
 has('pm.negotiate.price', ['houd het tarief vast en beweeg de scope', 'is dus informatie, geen oordeel', 'Besparingsdoel']);
 has('pm.negotiate.price', ['keep the rate and move the scope', 'is information, not a verdict', 'Savings target'], 'en');
-isTerm('pm.negotiate.scope', 'Wijzigingslog', 'nl'); isTerm('pm.negotiate.scope', 'Wijzigingsverzoek', 'nl');
-isTerm('pm.negotiate.scope', 'Change log', 'en'); isTerm('pm.negotiate.scope', 'Change request', 'en');
+isTerm('pm.negotiate.scope', 'Duivelsdriehoek', 'nl'); isTerm('pm.negotiate.scope', 'Wijzigingsverzoek', 'nl');
+isTerm('pm.negotiate.scope', 'Iron triangle', 'en'); isTerm('pm.negotiate.scope', 'Change request', 'en');
 // s5: yes to what you protect, a clear no, yes to something else; safety is not for trading (a red line); the tools: a
 // positive no (pm.negotiate.no, Basis) and the conflict modes (pm.negotiate.assert, Werkkennis, so not in s7)
 has('pm.negotiate.no', ['Eerst het ja tegen wat je beschermt', 'Dan een duidelijk nee', 'Dan een ja tegen iets anders', 'Sommige dingen ruil je niet: veiligheid', 'Rode lijn']);
@@ -137,7 +137,7 @@ has('pm.negotiate.no', ['First the yes to what you are protecting', 'Then a clea
 isTerm('pm.negotiate.no', 'Positieve nee', 'nl'); isTerm('pm.negotiate.no', 'Positive no', 'en');
 isTerm('pm.negotiate.assert', 'Conflictstijlen', 'nl'); isTerm('pm.negotiate.assert', 'Conflict modes', 'en');
 // s7: the later levels, as the lessons are titled or word them (the grid names what each adds, and nothing a scene
-// explained or named as a tool: no BATNA, fair standard, anchor, counteroffer, change log, change request, positive no,
+// explained or named as a tool: no BATNA, fair standard, anchor, conditional concession, iron triangle, change request, positive no,
 // conflict modes, red line, interest, rate, trade; the ZOPA, splitting the difference, payment terms and appreciation
 // without deference, the preparation sheet, trading across issues, assumptions and the fact-view-request, weaker
 // positions, hard tactics, renegotiating and the golden bridge are named here and nowhere else)
@@ -332,7 +332,7 @@ const spec = {
         { nl: 'Eerste onderwerp is Voorbereiden: belangen en alternatieven. De installateur zegt: pas na de stop.', en: 'First topic is Preparing: interests and alternatives. The installer says: only after the shutdown.', focus: ['tPrep', 'pos', 'installer'] },
         { nl: 'Dat is zijn standpunt. Zijn belang: zijn ploeg werkt eerst bij een andere klant.', en: 'That is his position. His interest: his crew works for another client first.', focus: ['why', 'installer'] },
         { nl: 'Zoek een optie die ook zijn belang dient: de fabriek graaft zelf de sleuf voor de kabel.', en: 'Find an option that also serves his interest: the plant digs the trench for the cable itself.', focus: ['opt', 'installer', 'power'] },
-        { nl: 'En als hij nee blijft zeggen? Dan vraag je een tweede installateur.', en: 'And if he keeps saying no? Then you ask a second installer.', focus: ['alt', 'installer'] },
+        { nl: 'En als hij nee blijft zeggen? Dan is je alternatief een tweede installateur.', en: 'And if he keeps saying no? Then your alternative is a second installer.', focus: ['alt', 'installer'] },
         { nl: 'Bij het voorbereiden gebruiken we een {t:BATNA|BATNA} en een {t:Eerlijke maatstaf|eerlijke maatstaf}.', en: 'For preparing we use a {t:BATNA|BATNA} and a {t:Fair standard|fair standard}.', cue: { BATNA: 'tool1', 'Eerlijke maatstaf': 'tool2', 'Fair standard': 'tool2' }, focus: ['tool1', 'tool2'] },
       ],
     },
@@ -341,8 +341,8 @@ const spec = {
       beats: [
         { nl: 'Tweede onderwerp is Aan tafel: bieden en ruilen. Hij komt eerder, maar wil een toeslag.', en: 'Second topic is At the table: offers and trades. He will come sooner, but wants a surcharge.', focus: ['tTrade', 'offer', 'installer', 'buyer'] },
         { nl: 'Hij noemt als eerste een bedrag. Vraag waar het op rust en noem het jouwe, met een reden.', en: 'He names a figure first. Ask what it rests on and name yours, with a reason.', focus: ['first', 'installer', 'buyer'] },
-        { nl: 'Geef daarna in kleine stappen toe, en vraag er telkens iets voor terug.', en: 'Then give ground in small steps, and ask for something back each time.', focus: ['steps', 'installer', 'buyer'] },
-        { nl: 'Aan tafel gebruiken we een {t:Anker|anker} en een {t:Tegenbod|tegenbod}.', en: 'At the table we use an {t:Anchor|anchor} and a {t:Counteroffer|counteroffer}.', cue: { Anker: 'tool1', Tegenbod: 'tool2', Anchor: 'tool1', Counteroffer: 'tool2' }, focus: ['tool1', 'tool2'] },
+        { nl: 'Geef daarna toe in steeds kleinere stappen.', en: 'Then give ground in ever smaller steps.', focus: ['steps', 'installer', 'buyer'] },
+        { nl: 'Aan tafel gebruiken we een {t:Anker|anker} en een {t:Voorwaardelijke concessie|voorwaardelijke concessie}.', en: 'At the table we use an {t:Anchor|anchor} and a {t:Conditional concession|conditional concession}.', cue: { Anker: 'tool1', 'Voorwaardelijke concessie': 'tool2', Anchor: 'tool1', 'Conditional concession': 'tool2' }, focus: ['tool1', 'tool2'] },
       ],
     },
     {
@@ -351,13 +351,13 @@ const spec = {
         { nl: 'Derde onderwerp is Scope, tarief en klanten. De sponsor wil de verlichting van lijn 4 erbij.', en: 'Third topic is Scope, fees and clients. The sponsor wants the lighting of line 4 added.', focus: ['tClient', 'extra', 'sponsor', 'line4'] },
         { nl: 'Scope, tijd en kosten hangen samen. Weiger niet, maak de ruil zichtbaar en laat hem kiezen.', en: 'Scope, time and cost hang together. Do not refuse, make the trade visible and let him choose.', focus: ['triangle', 'sponsor'] },
         { nl: 'De inkoper moet besparen en wil korting op je tarief. Houd het tarief vast, beweeg de scope.', en: 'The buyer has to save and wants a discount on your fee. Keep the fee, move the scope.', focus: ['fee', 'buyer'] },
-        { nl: 'Met klanten gebruiken we een {t:Wijzigingslog|wijzigingslog} en een {t:Wijzigingsverzoek|wijzigingsverzoek}.', en: 'With clients we use a {t:Change log|change log} and a {t:Change request|change request}.', cue: { Wijzigingslog: 'tool1', Wijzigingsverzoek: 'tool2', 'Change log': 'tool1', 'Change request': 'tool2' }, focus: ['tool1', 'tool2'] },
+        { nl: 'Met klanten gebruiken we de {t:Duivelsdriehoek|duivelsdriehoek} en een {t:Wijzigingsverzoek|wijzigingsverzoek}.', en: 'With clients we use the {t:Iron triangle|iron triangle} and a {t:Change request|change request}.', cue: { Duivelsdriehoek: 'tool1', Wijzigingsverzoek: 'tool2', 'Iron triangle': 'tool1', 'Change request': 'tool2' }, focus: ['tool1', 'tool2'] },
       ],
     },
     {
       id: 's5', level: 1, dur: DURS[4], still: 0.9, title: { nl: 'Voet bij stuk', en: 'Holding firm' },
       beats: [
-        { nl: 'Vierde onderwerp is Voet bij stuk houden. De sponsor wil de keuring van de stroomkast overslaan.', en: 'Fourth topic is Holding your ground. The sponsor wants to skip the inspection of the power cabinet.', focus: ['tGround', 'skip', 'sponsor', 'power'] },
+        { nl: 'Vierde onderwerp is Voet bij stuk houden. De eerste order wacht, dus de sponsor wil de keuring overslaan.', en: 'Fourth topic is Holding your ground. The first order waits, so the sponsor wants to skip the inspection.', focus: ['tGround', 'skip', 'sponsor', 'power'] },
         { nl: 'Zeg ja tegen wat je beschermt, dan een duidelijk nee, dan ja tegen iets anders.', en: 'Say yes to what you protect, then a clear no, then yes to something else.', focus: ['yesno', 'sponsor'] },
         { nl: 'Veiligheid ruil je niet, ook niet voor de datum. Dat is een {t:Rode lijn|rode lijn}.', en: 'You do not trade safety, not even for the date. That is a {t:Red line|red line}.', cue: { 'Rode lijn': 'line', 'Red line': 'line' }, focus: ['line', 'sponsor', 'power'] },
         { nl: 'We gebruiken een {t:Positieve nee|positieve nee} en de {t:Conflictstijlen|conflictstijlen}.', en: 'We use a {t:Positive no|positive no} and the {t:Conflict modes|conflict modes}.', cue: { 'Positieve nee': 'tool1', Conflictstijlen: 'tool2', 'Positive no': 'tool1', 'Conflict modes': 'tool2' }, focus: ['tool1', 'tool2'] },
@@ -367,7 +367,7 @@ const spec = {
       id: 's6', level: 1, dur: DURS[5], still: 0.9, title: { nl: 'Eén geheel', en: 'One whole' },
       beats: [
         { nl: 'Het hangt samen. Voorbereiden, bieden, scope en tarief in balans, en voet bij stuk houden.', en: 'It connects. Preparing, bidding, scope and fee in balance, and holding your ground.', focus: ['flow', 'installer', 'buyer', 'sponsor'] },
-        { nl: 'De installateur komt voor de stop, de keuring blijft. Lijn 3 komt op zijn plek.', en: 'The installer comes before the shutdown, the inspection stays. Line 3 gets into place.', focus: ['decision', 'installer', 'power', 'line3'] },
+        { nl: 'De installateur komt in de stop, de keuring blijft. De verlichting van lijn 4 volgt later.', en: 'The installer comes during the shutdown, the inspection stays. The lighting of line 4 follows later.', focus: ['decision', 'installer', 'power', 'line3'] },
       ],
     },
     {
@@ -403,20 +403,20 @@ const SAY = [
   [ // s1 one project, four topics
     { nl: 'Lijn 3 moet voor het einde van de zomerstop in hal B staan. De stroom komt van een installateur van buiten.',
       en: 'Line 3 has to stand in hall B before the summer shutdown ends. The power comes from an installer from outside.' },
-    { nl: 'Maar hij zegt dat hij pas na de stop kan komen. Zonder stroom kan de lijn niet draaien, dus jij moet het met hem regelen.',
-      en: 'But he says he can only come after the shutdown. Without power the line cannot run, so you have to sort it out with him.' },
+    { nl: 'Maar hij zegt dat hij pas na de stop kan komen. Zonder stroom kan de lijn niet draaien.',
+      en: 'But he says he can only come after the shutdown. Without power the line cannot run.' },
     { nl: 'Hoe haal je de datum? We volgen dit project langs de vier onderwerpen van de module.',
       en: 'How do you make the date? We follow this project through the four topics of the module.' },
   ],
   [ // s2 preparing: interests and alternatives
     { nl: 'Het eerste onderwerp is voorbereiden, met belangen en alternatieven. De installateur zegt dat het pas na de stop kan.',
       en: 'The first topic is preparing, with interests and alternatives. The installer says it can only happen after the shutdown.' },
-    { nl: 'Dat is zijn standpunt. Zijn belang is dat zijn ploeg eerst bij een andere klant werkt, en die klant wil hij niet laten wachten.',
-      en: 'That is his position. His interest is that his crew works for another client first, and he does not want to keep that client waiting.' },
-    { nl: 'Zoek een optie die ook zijn belang dient. De fabriek graaft zelf de sleuf voor de kabel. Dat kost jou weinig en scheelt hem een halve dag.',
-      en: 'Find an option that serves his interest too. The plant digs the trench for the cable itself. That costs you little and saves him half a day.' },
-    { nl: 'En wat doe je als hij nee blijft zeggen? Dan vraag je een tweede installateur, die duurder is maar wel eerder kan.',
-      en: 'And what do you do if he keeps saying no? Then you ask a second installer, who costs more but can come sooner.' },
+    { nl: 'Dat is zijn standpunt. Zijn belang is dat zijn ploeg eerst bij een andere klant werkt.',
+      en: 'That is his position. His interest is that his crew works for another client first.' },
+    { nl: 'Zoek een optie die ook zijn belang dient. De fabriek graaft zelf de sleuf voor de kabel. Dat kost jou weinig en scheelt hem veel.',
+      en: 'Find an option that serves his interest too. The plant digs the trench for the cable itself. That costs you little and saves him a lot.' },
+    { nl: 'En als hij nee blijft zeggen? Dan is je alternatief een tweede installateur.',
+      en: 'And if he keeps saying no? Then your alternative is a second installer.' },
     { nl: 'Bij het voorbereiden gebruiken we een BATNA en een eerlijke maatstaf.',
       en: 'For preparing we use a BATNA and a fair standard.' },
   ],
@@ -425,10 +425,10 @@ const SAY = [
       en: 'The second topic is at the table, offers and trades. The installer will come sooner, but wants a surcharge because his crew then works at the weekend. The buyer pays for that from a cut budget.' },
     { nl: 'Hij noemt als eerste een bedrag, en dat getal trekt de uitkomst naar zich toe. Praat niet over zijn getal, maar vraag waar het op rust. Leg dan jouw bedrag op tafel, met een reden.',
       en: 'He names a figure first, and that number pulls the outcome towards it. Do not argue about his number, ask what it rests on. Then put your own figure on the table, with a reason.' },
-    { nl: 'Daarna geef je in kleine stappen toe, en je vraagt er elke keer iets voor terug.',
-      en: 'After that you give ground in small steps, and you ask for something back each time.' },
-    { nl: 'Aan tafel gebruiken we een anker en een tegenbod.',
-      en: 'At the table we use an anchor and a counteroffer.' },
+    { nl: 'Daarna geef je toe, in steeds kleinere stappen.',
+      en: 'After that you give ground, in ever smaller steps.' },
+    { nl: 'Aan tafel gebruiken we een anker en een voorwaardelijke concessie.',
+      en: 'At the table we use an anchor and a conditional concession.' },
   ],
   [ // s4 scope, fees and clients
     { nl: 'Het derde onderwerp is scope, tarief en klanten. De sponsor vraagt of de verlichting van lijn 4 er ook bij kan, want alleen tijdens de stop staat alles stil.',
@@ -437,12 +437,12 @@ const SAY = [
       en: 'Scope, time and cost hang together. If one moves, something else has to. You do not refuse, you make the trade visible and let the sponsor choose.' },
     { nl: 'De inkoper moet besparen en vraagt korting op je tarief. Houd je tarief vast en doe minder voor minder geld.',
       en: 'The buyer has to save and asks for a discount on your fee. Keep your fee and do less for less money.' },
-    { nl: 'Met klanten gebruiken we een wijzigingslog en een wijzigingsverzoek.',
-      en: 'With clients we use a change log and a change request.' },
+    { nl: 'Met klanten gebruiken we de duivelsdriehoek en een wijzigingsverzoek.',
+      en: 'With clients we use the iron triangle and a change request.' },
   ],
   [ // s5 holding your ground
-    { nl: 'Het vierde onderwerp is voet bij stuk houden. Om de datum te halen wil de sponsor de veiligheidskeuring van de stroomkast overslaan.',
-      en: 'The fourth topic is holding your ground. To make the date, the sponsor wants to skip the safety inspection of the power cabinet.' },
+    { nl: 'Het vierde onderwerp is voet bij stuk houden. De eerste order wacht, dus om de datum te halen wil de sponsor de veiligheidskeuring van de stroomkast overslaan.',
+      en: 'The fourth topic is holding your ground. The first order is waiting, so to make the date the sponsor wants to skip the safety inspection of the power cabinet.' },
     { nl: 'Zeg eerst ja tegen wat je beschermt, de veiligheid. Zeg dan duidelijk nee. Zeg daarna ja tegen iets anders, de keuring direct na de aansluiting.',
       en: 'First say yes to what you protect, safety. Then say a clear no. After that say yes to something else, the inspection right after the connection.' },
     { nl: 'Veiligheid ruil je niet, ook niet voor de datum. Dat is een {t:Rode lijn|rode lijn}.',
@@ -453,8 +453,8 @@ const SAY = [
   [ // s6 one whole
     { nl: 'Het hangt samen. Je bereidt voor en biedt aan tafel. Je houdt scope en tarief in balans en houdt voet bij stuk waar het moet.',
       en: 'It connects. You prepare and bid at the table. You keep scope and fee in balance and hold your ground where you must.' },
-    { nl: 'De installateur komt nu voor de stop, voor een toeslag waar de inkoper mee kan leven. De keuring blijft, en lijn 3 komt op zijn plek.',
-      en: 'The installer now comes before the shutdown, for a surcharge the buyer can live with. The inspection stays, and line 3 gets into place.' },
+    { nl: 'De installateur komt nu in de stop, voor een toeslag waar de inkoper mee kan leven. De keuring blijft, de verlichting van lijn 4 volgt na de stop, en lijn 3 komt op zijn plek.',
+      en: 'The installer now comes during the shutdown, for a surcharge the buyer can live with. The inspection stays, the lighting of line 4 follows after the shutdown, and line 3 gets into place.' },
   ],
   [ // s7 the map
     { nl: 'Dit is de kaart van Projecten. Onderhandelen en voet bij stuk houden is het derde station van Mensen en invloed.',

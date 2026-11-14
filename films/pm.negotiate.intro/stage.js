@@ -129,9 +129,11 @@ const STAGE = (() => {
 
   // ---- the two tool names of a topic scene, as chips under the schema (one short sentence names them; they are
   // not explained). a: the scene's two labels; shown in the beat of the sentence (b === at)
-  function tools(b, p, at, one, two) {
-    const chip = (y, label) => rect(334, y, 284, 34, 'pm-badge', 6) + txt(346, y + 25, label, 22, 'start', 'pm-txt');
-    return { tool1B: b === at ? op(span(p, 0, 0.4), chip(296, one)) : '', tool2B: b === at && two ? op(span(p, 0.25, 0.65), chip(338, two)) : '' };
+  // a label too long for one line is given as two (an array of two): the chip is then 56 units high
+  function tools(b, p, at, one, two, y0 = 296) {
+    const chip = (y, label) => { const ls = [].concat(label); return rect(334, y, 284, ls.length > 1 ? 56 : 34, 'pm-badge', 6) + ls.map((l, i) => txt(346, y + 25 + i * 23, l, 22, 'start', 'pm-txt')).join(''); };
+    const y1 = y0 + 42;
+    return { tool1B: b === at ? op(span(p, 0, 0.4), chip(y0, one)) : '', tool2B: b === at && two ? op(span(p, 0.25, 0.65), chip(y1, two)) : '' };
   }
   // a card with a big line and a small one under it (two lines in a 56-unit card: baselines at 24 and 47 keep
   // the first line clear of the top edge and leave room under the descenders of the second line)
@@ -173,9 +175,8 @@ const STAGE = (() => {
       + card2(204, tr('Jouw bedrag', 'Your figure'), tr('met een reden', 'with a reason', 260), 'pm-crit');
     let steps = txt(334, 112, tr('Steeds kleiner', 'Ever smaller', 260), 22, 'start', 'pm-mute');
     [180, 120, 60].forEach((len, i) => { steps += rect(334, 124 + i * 40, len, 30, 'pm-bar', 6); });
-    steps += yes(250, tr('Iets terug per stap', 'Something back', 220));
     return { offerB: b === 0 ? op(span(p, 0.1, 0.5), offer) : '', firstB: b === 1 ? op(span(p, 0.05, 0.4), first) : '', stepsB: b === 2 ? op(span(p, 0, 0.4), steps) : '',
-      ...tools(b, p, 3, tr('Anker', 'Anchor', 260), tr('Tegenbod', 'Counteroffer', 260)) };
+      ...tools(b, p, 3, tr('Anker', 'Anchor', 260), [tr('Voorwaardelijke', 'Conditional', 260), tr('concessie', 'concession', 260)], 262) };
   }
 
   // ---- s4: scope, fees and clients. The sponsor asks for the lighting of line 4 in the same shutdown; scope, time and cost
@@ -193,14 +194,14 @@ const STAGE = (() => {
       + card2(160, tr('Tarief blijft', 'Fee stays'), tr('scope beweegt', 'scope moves', 260), 'pm-crit')
       + yes(226, tr('Minder voor minder', 'Less for less', 220));
     return { extraB: b === 0 ? op(span(p, 0.1, 0.5), extra) : '', triB: b === 1 ? op(span(p, 0, 0.4), tri) : '', feeB: b === 2 ? op(span(p, 0, 0.4), fee) : '',
-      ...tools(b, p, 3, tr('Wijzigingslog', 'Change log', 260), tr('Wijzigingsverzoek', 'Change request', 260)) };
+      ...tools(b, p, 3, tr('Duivelsdriehoek', 'Iron triangle', 260), tr('Wijzigingsverzoek', 'Change request', 260)) };
   }
 
   // ---- s5: holding your ground. The sponsor wants to skip the safety inspection of the power cabinet to make the date; yes
   // to what you protect, a clear no, yes to something else; safety is a red line.
   function groundParts(b, p) {
     const skip = card2(94, tr('Sponsor', 'Sponsor'), tr('keuring overslaan', 'skip the inspection', 260))
-      + card2(160, tr('Reden', 'Reason'), tr('de datum halen', 'make the date', 260));
+      + card2(160, tr('Reden', 'Reason'), tr('eerste order wacht', 'first order waits', 260));
     const yesno = card2(94, tr('Ja', 'Yes'), tr('veiligheid beschermen', 'protect safety', 260))
       + card2(160, tr('Nee', 'No'), tr('niet overslaan', 'not skipping', 260), 'pm-crit')
       + card2(226, tr('Ja', 'Yes'), tr('keuring direct erna', 'inspect right after', 260));
