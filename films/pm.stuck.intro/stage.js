@@ -103,7 +103,7 @@ const STAGE = (() => {
       const a = show4[i];
       if (a <= 0.01) return '';
       const x = 334 + (i % 2) * 144;
-      const y = 214 + Math.floor(i / 2) * 90;
+      const y = 112 + Math.floor(i / 2) * 90;
       // a 140-unit tile with 5 units of padding each side holds 130 units of text, up to three lines (the kit's TILE_UNITS)
       const lines = wrap(t, D.tileUnits);
       let s = rect(x, y, 140, 84, 'pm-tile', 8) + txt(x + 132, y + 74, String(i + 1), 22, 'end', 'pm-on');
@@ -131,7 +131,7 @@ const STAGE = (() => {
   // not explained). a: the scene's two labels; shown in the beat of the sentence (b === at)
   function tools(b, p, at, one, two) {
     const chip = (y, label) => rect(334, y, 284, 34, 'pm-badge', 6) + txt(346, y + 25, label, 22, 'start', 'pm-txt');
-    return { tool1B: b === at ? op(span(p, 0, 0.4), chip(296, one)) : '', tool2B: b === at ? op(span(p, 0.25, 0.65), chip(338, two)) : '' };
+    return { tool1B: b === at ? op(span(p, 0, 0.4), chip(296, one)) : '', tool2B: b === at && two ? op(span(p, 0.25, 0.65), chip(338, two)) : '' };
   }
   // a card with a big line and a small one under it (two lines in a 56-unit card: baselines at 24 and 47 keep
   // the first line clear of the top edge and leave room under the descenders of the second line)
@@ -175,7 +175,7 @@ const STAGE = (() => {
     const talk = card2(166, tr('Onder vier ogen', 'One to one', 260), tr('wat maakt het lastig?', 'what makes it hard?', 260))
       + card2(232, tr('Lukt het niet?', 'Does it fail?', 260), tr('zeg het hem eerst', 'tell him first', 260), 'pm-crit');
     return { quoteB: b === 0 ? op(span(p, 0.1, 0.5), quote) : quote, reflexB: b === 1 ? op(span(p, 0, 0.4), reflex) : '', talkB: b >= 2 ? op(b === 2 ? span(p, 0, 0.4) : 1, talk) : '',
-      ...tools(b, p, 3, tr('Niveaus van weerstand', 'Levels of resistance', 260), tr('Terugbelmoment', 'Call-back moment', 260)) };
+      ...tools(b, p, 3, tr('Niveaus van weerstand', 'Levels of resistance', 260)) };
   }
 
   // ---- s5: restarting with the sponsor. What a sponsor does (decide, make room, give air cover), then a concrete ask with
@@ -189,7 +189,7 @@ const STAGE = (() => {
     const ask = rect(334, 94, 284, 106, 'pm-card', 8) + txt(346, 124, tr('Naam: de teamleider', 'Name: the team lead', 260), 22, 'start', 'pm-big')
       + txt(346, 152, tr('Wat: de ploeg vrij', 'What: crew free', 250), 22, 'start', 'pm-txt') + txt(346, 180, tr('Datum: maandag', 'Date: Monday', 260), 22, 'start', 'pm-txt');
     return { tasksB: b === 1 ? tasks : '', concB: b >= 2 ? op(b === 2 ? span(p, 0, 0.45) : 1, ask) : '',
-      ...tools(b, p, 3, tr('Sponsorgesprek', 'Sponsor check-in', 260), tr('Klein succes', 'Small win', 260)) };
+      ...tools(b, p, 3, tr('Sponsorgesprek', 'Sponsor check-in', 260)) };
   }
 
   // ---- s6: one whole. The chain from the facts to the sponsor, and the decision that gets line 3 moving.

@@ -36,12 +36,13 @@
 //   s7 the shared Projects map with Als je vastzit lit, then the module's four topics
 //      with their levels as columns, where to start, and what each later level adds
 // Definitions as the Basis lessons word them (pm.stuck.diagnose, .buytime, .blocker,
-// .sponsor). Each topic scene names two tools of that topic's lessons in one short
+// .sponsor). Each topic scene names the tools of that topic's lessons in one short
 // sentence, without explaining them (Merijn's checkpoint, 14 Nov): triangulation and a
 // decision log (pm.stuck.facts), a holding statement and a range (pm.stuck.buytime),
-// the three levels of resistance (pm.stuck.blocker) and a call-back moment
-// (pm.stuck.pressure), a sponsor check-in (pm.stuck.sponsor) and a small win
-// (pm.stuck.smallwins). Terms come from the module's lessons and {n:} numbers from the
+// the three levels of resistance (pm.stuck.blocker) and a sponsor check-in
+// (pm.stuck.sponsor). Only real tools: a call-back moment (client pressure, and the same idea as
+// the holding statement) and a small win (an outcome, not a tool) are left out, and the
+// Werkkennis lessons on them are what s7 says that level adds. Terms come from the module's lessons and {n:} numbers from the
 // module's text (the kit's intro mode, films/_kit/build-film.mjs); the kit holds the
 // film to its map (every topic named in a caption of its own scene, explained in two
 // beats and lit), to the narration guard and to the label fit.
@@ -99,17 +100,12 @@ has('pm.stuck.facts', ['A diagnosis based on a feeling convinces nobody', 'Trian
 has('pm.stuck.buytime', ['Weet je het niet, zeg dat dan, en zeg wanneer je het wel weet', 'Scheid wat je weet, wat je denkt en wat je niet weet', 'Bluf nooit', 'Een beloofd antwoord op donderdag dat op donderdag komt', 'Tussenbericht', 'Bandbreedte']);
 has('pm.stuck.buytime', ['When you don’t know, say so, and say when you will', 'Separate what you know, what you think, and what you don’t know', 'Never bluff', 'A promised answer on Thursday that arrives on Thursday', 'Holding statement', 'Range'], 'en');
 // s4: a blocker rarely says a hard no; pushing and working around make it worse; understand why; one-to-one; escalate and
-// tell him first; the tools: the three levels of resistance (Basis) and the call-back moment (pm.stuck.pressure, Werkkennis)
+// tell him first; the tool: the three levels of resistance (Basis), a model for diagnosing resistance; he may fear for line 4 (level 2, a feared loss)
 has('pm.stuck.blocker', ['“goed idee, maar nu even niet”', 'Allebei maken het meestal erger', 'Begin met begrijpen waarom', 'Het gesprek voer je onder vier ogen', 'je zegt het hem eerst', 'Drie niveaus van weerstand']);
 has('pm.stuck.blocker', ['“good idea, but not right now”', 'Both usually make it worse', 'Start by understanding why', 'You have the conversation one-on-one', 'you tell him first', 'Three levels of resistance'], 'en');
-has('pm.stuck.pressure', ['Terugbelmoment']);
-has('pm.stuck.pressure', ['Call-back moment'], 'en');
-// s5: the sponsor's three jobs, a concrete ask with a name and a date; the tools: the sponsor check-in (Basis) and the small win
-// (pm.stuck.smallwins, Werkkennis)
+// s5: the sponsor's three jobs, a concrete ask with a name and a date; the tool: the sponsor check-in (Basis)
 has('pm.stuck.sponsor', ['Zit een project vast, dan kan de sponsor het meestal los krijgen', 'Beslissen', 'Ruimte maken', 'Rugdekking geven', 'Vraag concreet, met naam en datum', 'dat de planners een dag per week vrij zijn', 'Sponsorgesprek']);
 has('pm.stuck.sponsor', ['When a project is stuck, the sponsor can usually get it moving', 'Deciding', 'Making room', 'Giving air cover', 'Ask concretely, with a name and a date', 'that the planners are free one day a week', 'Sponsor check-in'], 'en');
-has('pm.stuck.smallwins', ['Klein succes']);
-has('pm.stuck.smallwins', ['Small win'], 'en');
 // s7: the later levels, as the lessons are titled (the grid names what each adds)
 for (const [id, word] of [['pm.stuck.facts', 'Feiten verzamelen'], ['pm.stuck.askhelp', 'hulp vragen'], ['pm.stuck.pressure', 'klant druk zet'], ['pm.stuck.smallwins', 'kleine successen'],
   ['pm.stuck.rootcause', 'Oorzaken onder de oppervlakte'], ['pm.stuck.experiment', 'Handelen onder onzekerheid'], ['pm.stuck.hidden', 'Ja zeggen, nee doen'], ['pm.stuck.reset', 'herstarten'],
@@ -185,7 +181,7 @@ const world = [
 // Every part a sentence can light is a static cue group here (data-cue), filled
 // by the stage script each frame (data-k): the topic tiles (the route and the
 // map, or one tile as a scene's heading) with their level columns, and each
-// scene's parts. Each topic scene has two tool chips (tool1, tool2) for the two
+// scene's parts. Each topic scene has up to two tool chips (tool1, tool2) for the
 // names of its sentence. The shared Projects map (the kit's mapScene) sits under
 // the panel; its place Als je vastzit is a cue group of its own (map-stuck).
 const tiles = ['tDiag', 'tUnk', 'tPol', 'tRes'].map((key, i) => cueG(key, g(`r${i}`, ''))).join('');
@@ -314,9 +310,9 @@ const spec = {
       id: 's4', level: 1, dur: DURS[3], still: 0.9, title: { nl: 'Weerstand', en: 'Resistance' },
       beats: [
         { nl: 'Derde onderwerp is Weerstand en politiek. De teamleider zegt: goed idee, maar nu even niet.', en: 'Third topic is Resistance and politics. The team lead says: good idea, but not right now.', focus: ['tPol', 'quote', 'teamlead', 'crew'] },
-        { nl: 'Duwen of er omheen werken maakt het meestal erger. Begin met begrijpen waarom.', en: 'Pushing or working around him usually makes it worse. Start by understanding why.', focus: ['reflex', 'teamlead'] },
+        { nl: 'Duwen of er omheen werken maakt het meestal erger. Begin met begrijpen waarom. Vreest hij voor lijn 4?', en: 'Pushing or working around him usually makes it worse. Start by understanding why. Does he fear for line 4?', focus: ['reflex', 'teamlead', 'line4'] },
         { nl: 'Praat onder vier ogen. Lukt dat niet, dan escaleer je, en je zegt het hem eerst.', en: 'Talk one to one. If that fails, you escalate, and you tell him first.', focus: ['talk', 'teamlead'] },
-        { nl: 'We gebruiken {t:Drie niveaus van weerstand|drie niveaus van weerstand} en een {t:Terugbelmoment|terugbelmoment}.', en: 'We use the {t:Three levels of resistance|three levels of resistance} and a {t:Call-back moment|call-back moment}.', cue: { 'Drie niveaus van weerstand': 'tool1', Terugbelmoment: 'tool2' }, focus: ['tool1', 'tool2'] },
+        { nl: 'We gebruiken {t:Drie niveaus van weerstand|drie niveaus van weerstand}.', en: 'We use the {t:Three levels of resistance|three levels of resistance}.', cue: { 'Drie niveaus van weerstand': 'tool1' }, focus: ['tool1'] },
       ],
     },
     {
@@ -325,7 +321,7 @@ const spec = {
         { nl: 'Vierde onderwerp is Herstarten met de sponsor. Wat heb je van je sponsor nodig?', en: 'Fourth topic is Restarting with the sponsor. What do you need from your sponsor?', focus: ['tRes', 'sponsor'] },
         { nl: 'Een sponsor beslist, maakt ruimte en geeft {t:Rugdekking|rugdekking}, maar alleen als jij vraagt.', en: 'A sponsor decides, makes room and gives {t:Air cover|air cover}, but only if you ask.', cue: { Rugdekking: 'tasks', 'Air cover': 'tasks' }, focus: ['tasks', 'sponsor'] },
         { nl: 'Vraag concreet, met naam en datum. Zeg jij maandag tegen de teamleider dat de ploeg vrij is?', en: 'Ask concretely, with a name and a date. Will you tell the team lead on Monday that the crew is free?', focus: ['conc', 'sponsor', 'teamlead'] },
-        { nl: 'Bij herstarten gebruiken we een {t:Sponsorgesprek|sponsorgesprek} en {t:Klein succes|kleine successen}.', en: 'To restart we use a {t:Sponsor check-in|sponsor check-in} and {t:Small win|small wins}.', cue: { Sponsorgesprek: 'tool1', 'Klein succes': 'tool2' }, focus: ['tool1', 'tool2'] },
+        { nl: 'Bij herstarten gebruiken we een {t:Sponsorgesprek|sponsorgesprek}.', en: 'To restart we use a {t:Sponsor check-in|sponsor check-in}.', cue: { Sponsorgesprek: 'tool1' }, focus: ['tool1'] },
       ],
     },
     {
@@ -358,7 +354,7 @@ const spec = {
 // read aloud and nothing in parentheses: the kit's narration guard
 // (films/_kit/assert.mjs, checkNarration) holds every module film to that, and
 // the render guard caps a pause inside a sentence at 0.4 s. Each topic scene ends
-// on one short sentence naming two tools of that topic's lessons, without
+// on one short sentence naming the tools of that topic's lessons, without
 // explaining them. Words checked with espeak-ng phonemes through Piper's own
 // bridge (nl_NL-alex); this film's own SAY group (the last of the Dutch list in
 // films/_kit/timeline.mjs) carries what it alone says. The word blokkeerder is not
@@ -397,22 +393,22 @@ const SAY = [
   [ // s4 resistance and politics
     { nl: 'Het derde onderwerp is Weerstand en politiek. De teamleider zegt dat het een goed idee is, maar nu even niet. Zo blokkeren mensen zelden met een hard nee.',
       en: 'The third topic is Resistance and politics. The team lead says it is a good idea, but not right now. People rarely block with a hard no.' },
-    { nl: 'Duwen of er omheen werken maakt het meestal erger. Begin met begrijpen waarom.',
-      en: 'Pushing or working around him usually makes it worse. Start by understanding why.' },
+    { nl: 'Duwen of er omheen werken maakt het meestal erger. Begin met begrijpen waarom. Misschien vreest hij dat lijn 4 het zwaar krijgt als zijn ploeg wegloopt.',
+      en: 'Pushing or working around him usually makes it worse. Start by understanding why. Maybe he fears that line 4 will struggle if his crew goes away.' },
     { nl: 'Praat onder vier ogen en vraag wat het lastig maakt. Lukt dat niet, dan escaleer je, en je zegt het hem eerst.',
       en: 'Talk one to one and ask what makes it hard. If that fails, you escalate, and you tell him first.' },
-    { nl: 'Daarbij gebruiken we de drie niveaus van weerstand en een terugbelmoment.',
-      en: 'For this we use the three levels of resistance and a call-back moment.' },
+    { nl: 'Daarbij gebruiken we de drie niveaus van weerstand.',
+      en: 'For this we use the three levels of resistance.' },
   ],
   [ // s5 restarting with the sponsor
     { nl: 'Het vierde onderwerp is Herstarten met de sponsor. Wat heb je van je sponsor nodig?',
       en: 'The fourth topic is Restarting with the sponsor. What do you need from your sponsor?' },
-    { nl: 'Een sponsor kan een vast project meestal los krijgen. Hij beslist, maakt ruimte en geeft {t:Rugdekking|rugdekking}, maar alleen als jij vraagt.',
+    { nl: 'Een sponsor kan een vastgelopen project meestal los krijgen. Hij beslist, maakt ruimte en geeft {t:Rugdekking|rugdekking}, maar alleen als jij vraagt.',
       en: 'A sponsor can usually get a stuck project moving. He decides, makes room and gives {t:Air cover|air cover}, but only if you ask.' },
     { nl: 'Vraag concreet, met naam en datum. Zeg jij maandag tegen de teamleider dat de ploeg een dag per week vrij is?',
       en: 'Ask concretely, with a name and a date. Will you tell the team lead on Monday that the crew is free one day a week?' },
-    { nl: 'Bij herstarten gebruiken we een sponsorgesprek en kleine successen.',
-      en: 'To restart we use a sponsor check-in and small wins.' },
+    { nl: 'Bij herstarten gebruiken we een sponsorgesprek.',
+      en: 'To restart we use a sponsor check-in.' },
   ],
   [ // s6 one whole
     { nl: 'Het hangt samen. Je zoekt de feiten, je blijft eerlijk over wat je niet weet, en je praat met de teamleider. Dan beslist de sponsor.',
