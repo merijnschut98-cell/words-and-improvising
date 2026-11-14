@@ -87,3 +87,4 @@ Outcome: accepted (merged as delivered), sent back N times, redone.
 | 14 Nov | Build: Andon recognisable (status light, name, bubble, introduction) | sonnet | 52 | 11 min | 162,655 | accepted with fixes by its review |
 | 14 Nov | Review: Andon recognisable | opus | n/a | about 45 min | n/a | accepted with three fixes (intro swallowed by the sync redraw, true green from the brand's success colour, layout jump); merged v286 |
 | 14 Nov | Research: two new Projects modules (Task 14 step 1) | sonnet | n/a | n/a | n/a | accepted; 12 MC decisions kept for Merijn's round the next day |
+| 14 Nov | Task 22: English IT words in the Dutch voice | sonnet | 82 | 49 min | 198,550 | accepted; Agile, Daily Scrum, WIP, rollback, versiebeheer fixed; 13 rendered films need a re-render; merged v288 |
