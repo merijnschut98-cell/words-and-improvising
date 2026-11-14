@@ -795,7 +795,14 @@ const SAY = {
     // through Piper's nl_NL-alex bridge: espeak-ng reads SaaS as the letters "saa es" (said Sas, sˈɑs); the rest of the film
     // (RFP, MVP, ERP, triage, testscript, proefmigratie, shortlist, pilot, key users, sign-off, go-live, MoSCoW, to-be-proces,
     // requirements, UAT, hypercare, cutover) has a rule above or reads right; no other film's spoken text changes
-    [/\bSaaS\b/g, 'Sas']],
+    [/\bSaaS\b/g, 'Sas'],
+    // the Leading people module intro (pm.lead.intro), a self-contained group at the end of the Dutch list, checked with
+    // phonemes through Piper's nl_NL-alex bridge: espeak-ng reads "Radical Candor" in the Dutch way, "RAA-dikal KAN-dor"
+    // (rˈaːdikˌɑl kˈɑndɔr); said "Redikal Kander" it reads rˈeːdikˌɑl kˈɑndər, as the English name sounds. Only in this
+    // film's phrase "en Radical Candor" (SBI has its rule above and goes first; Toyota has pm.land.training's rule): no
+    // other film says the name. Its other words (wederkerigheid, sociaal bewijs, actief luisteren, Kata, herkaderen,
+    // valuta, coachingscycli, psychologische) are read right as they are; no other film's spoken text changes
+    [/\ben Radical Candor\b/g, 'en Redikal Kander']],
   en: [[/\brpm\b/g, 'revolutions per minute'], [/\bmm\/min\b/g, 'millimetres per minute'], [/\bm\/min\b/g, 'metres per minute'], [/µm\b/g, 'micrometres'],
     [/€\s?(\d[\d,]*(?:\.\d+)?)/g, '$1 euros'], [/(\d)\.0(?![\d])/g, '$1'], [/(\d)\s?mm\b/g, '$1 millimetres'], [/(\d)\s?min\b/g, '$1 minutes'], [/(\d)\s?%/g, '$1 percent'],
     [/Ø\s*/g, 'diameter '], [/(\d)\+(\d)/g, '$1 plus $2'], [/\s×\s/g, ' times '], [/\s\/\s/g, ' divided by '], [/\s=\s/g, ' is '], [/°/g, ' degrees'], [/\bRa\b/g, 'R a'], [/’/g, "'"],

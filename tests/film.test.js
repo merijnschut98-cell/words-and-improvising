@@ -803,6 +803,22 @@ test('speak variant: the tussenbericht of the stuck intro', () => {
   assert.equal(speakOf([en], 'en'), en);
 });
 
+// The Leading people module intro (pm.lead.intro), checked with espeak-ng phonemes through Piper's nl bridge: it reads
+// "Radical Candor" in the Dutch way, "RAA-dikal KAN-dor" (rˈaːdikˌɑl kˈɑndɔr); said "Redikal Kander" it reads
+// rˈeːdikˌɑl kˈɑndər, as the English name sounds. Only in this film's phrase "en Radical Candor" (SBI has its rule above
+// and goes first, Toyota its rule from pm.land.training): no other film says the name. The film's other words
+// (wederkerigheid, sociaal bewijs, actief luisteren, Kata, herkaderen, valuta, coachingscycli, psychologische) are
+// read right as they are, and it says "de ploeg" instead of operators; no other film's spoken text changes
+test('speak variant: Radical Candor of the lead intro', () => {
+  const nl = (s) => speakOf([s], 'nl');
+  assert.equal(nl('Bij feedback gebruiken we SBI en Radical Candor.'), 'Bij fiedbek gebruiken we es bee ie en Redikal Kander.');
+  // elsewhere the name keeps its voice
+  assert.equal(nl('Radical Candor is een model van Kim Scott.'), 'Radical Candor is een model van Kim Scott.');
+  assert.equal(nl('We gebruiken actief luisteren en, om te coachen, Toyota Kata.'), 'We gebruiken actief luisteren en, om te coachen, Tojota Kata.');
+  const en = 'For feedback we use SBI and Radical Candor.';
+  assert.equal(speakOf([en], 'en'), en);
+});
+
 // A stage drawn on the Dutch caption beats (beatwarp films set STAGE.nlBeats)
 // follows the caption beat on screen in English too: while English beat k
 // shows, the stage runs through Dutch beat k, so the drawing is never a beat off.
