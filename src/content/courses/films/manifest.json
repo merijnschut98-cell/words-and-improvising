@@ -2883,30 +2883,30 @@
     "pm.plan.intro": {
       "poster": "src/content/courses/films/pm.plan.intro.jpg",
       "nl": {
-        "dur": 238.9,
-        "bytes": 9309901,
+        "dur": 244.4,
+        "bytes": 9415341,
         "scenes": [
           0,
-          23.14,
-          69.17,
-          109.26,
-          145.26,
-          179.17,
-          202.61
+          24.41,
+          71.38,
+          112.11,
+          148.57,
+          183.75,
+          207.17
         ],
         "vtt": "src/content/courses/films/pm.plan.intro.nl.vtt"
       },
       "en": {
-        "dur": 272.8,
-        "bytes": 10406952,
+        "dur": 274,
+        "bytes": 10341723,
         "scenes": [
           0,
-          28.22,
-          81.12,
-          126.77,
-          169.57,
-          205.86,
-          232.7
+          28.33,
+          81.46,
+          127.72,
+          170.48,
+          206.83,
+          233.81
         ],
         "vtt": "src/content/courses/films/pm.plan.intro.en.vtt"
       }
@@ -3058,6 +3058,68 @@
           116.27
         ],
         "vtt": "src/content/courses/films/pm.field.it.en.vtt"
+      }
+    },
+    "pm.intake.intro": {
+      "poster": "src/content/courses/films/pm.intake.intro.jpg",
+      "nl": {
+        "dur": 211.5,
+        "bytes": 7886142,
+        "scenes": [
+          0,
+          24.14,
+          51.26,
+          89.38,
+          115.78,
+          154.99,
+          170.23
+        ],
+        "vtt": "src/content/courses/films/pm.intake.intro.nl.vtt"
+      },
+      "en": {
+        "dur": 233.7,
+        "bytes": 8665342,
+        "scenes": [
+          0,
+          28.83,
+          61.51,
+          101.08,
+          130.79,
+          172.39,
+          188.84
+        ],
+        "vtt": "src/content/courses/films/pm.intake.intro.en.vtt"
+      }
+    },
+    "pm.run.intro": {
+      "poster": "src/content/courses/films/pm.run.intro.jpg",
+      "nl": {
+        "dur": 189.7,
+        "bytes": 7325983,
+        "scenes": [
+          0,
+          18.72,
+          46.11,
+          75.97,
+          100.6,
+          133.55,
+          151.16
+        ],
+        "vtt": "src/content/courses/films/pm.run.intro.nl.vtt"
+      },
+      "en": {
+        "dur": 213.6,
+        "bytes": 8145440,
+        "scenes": [
+          0,
+          22.05,
+          52.08,
+          88.23,
+          116.38,
+          152.18,
+          171.95
+        ],
+        "vtt": "src/content/courses/films/pm.run.intro.en.vtt"
       }
     }
   }
