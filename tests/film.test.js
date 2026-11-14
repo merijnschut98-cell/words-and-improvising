@@ -1165,3 +1165,15 @@ test('player: the focus highlight is light blue / white in both themes, eases in
   assert.ok(rt.includes("// the beat's focus") && !page.includes("// the beat's focus"));
   assert.ok(page.includes('lightFocus();'));
 });
+
+// The DevOps module intro (pm.devops.intro), checked with espeak-ng phonemes through Piper's nl bridge: it reads
+// "testpiramide" with the stress on "raa" (tˈɛstpirˌaːmidə, test-pi-RAA-mi-de); "test-piramiede" gives
+// tˈɛstpˌiraːmˈidə, the stress of piramide. The film's other words (versiebeheer, mediaan, feature flag, rollbackplan,
+// prioriteitsmatrix, A3, impactstraal, servicedesk, post-mortem) are read right or have rules above; English needs nothing
+test('speak variant: the DevOps module intro word in Dutch', () => {
+  const nl = (s) => speakOf([s], 'nl');
+  assert.equal(nl('Bij tests gebruiken we vaak versiebeheer en een testpiramide.'), 'Bij tests gebruiken we vaak versiebeheer en een test-piramiede.');
+  assert.equal(nl('De Testpiramide.'), 'De Test-piramiede.');
+  const en = 'We often use version control and a test pyramid.';
+  assert.equal(speakOf([en], 'en'), en);
+});
