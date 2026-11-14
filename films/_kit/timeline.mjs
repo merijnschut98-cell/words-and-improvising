@@ -719,7 +719,14 @@ const SAY = {
     // pm.consult.proposal; governance, capaciteitsstreep, offerte, besluitenlijst and programma's have rules above or
     // need nothing; no other film's spoken text changes
     [/\b([Aa])dviesvak\b/g, '$1dvies-vak'], [/\b([Vv])ertrouwensformule\b/g, '$1ertrouwens-formule'],
-    [/\badviseer je de plantmanager\b/g, 'adviseer je de plant-menetsjer'], [/\bDe plantmanager betaalt\b/g, 'De plant-menetsjer betaalt']],
+    [/\badviseer je de plantmanager\b/g, 'adviseer je de plant-menetsjer'], [/\bDe plantmanager betaalt\b/g, 'De plant-menetsjer betaalt'],
+    // the field film (pm.field.it), a self-contained group at the end of the Dutch list, checked with phonemes through
+    // Piper's nl_NL-alex bridge: espeak-ng reads the letter W as "vee" (WSJF said wee es jee ef), and plantmanager
+    // with a hard g (plant-menetsjer, in this film's phrase "voor de plantmanager" only: other films' plantmanager
+    // keeps its voice). sprint, kanbanbord, planning poker, PI Planning, pipeline, feature flag, go-live, cutover,
+    // MoSCoW, MES, SAFe, agile, DORA, IT-team and IT-project have rules above or need nothing; no other film's
+    // spoken text changes
+    [/\bWSJF\b/g, 'wee es jee ef'], [/\bvoor de plantmanager\b/g, 'voor de plant-menetsjer']],
   en: [[/\brpm\b/g, 'revolutions per minute'], [/\bmm\/min\b/g, 'millimetres per minute'], [/\bm\/min\b/g, 'metres per minute'], [/µm\b/g, 'micrometres'],
     [/€\s?(\d[\d,]*(?:\.\d+)?)/g, '$1 euros'], [/(\d)\.0(?![\d])/g, '$1'], [/(\d)\s?mm\b/g, '$1 millimetres'], [/(\d)\s?min\b/g, '$1 minutes'], [/(\d)\s?%/g, '$1 percent'],
     [/Ø\s*/g, 'diameter '], [/(\d)\+(\d)/g, '$1 plus $2'], [/\s×\s/g, ' times '], [/\s\/\s/g, ' divided by '], [/\s=\s/g, ' is '], [/°/g, ' degrees'], [/\bRa\b/g, 'R a'], [/’/g, "'"],

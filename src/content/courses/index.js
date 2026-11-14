@@ -435,7 +435,7 @@ export const FIELDS = [
   { id: 'pm.field.it', subject: 'pm',
     title: { en: 'IT and agile', nl: 'IT en agile' },
     blurb: { en: 'Agile, scaling it, DevOps and the IT project from requirements to go-live.', nl: 'Agile, opschalen, DevOps en het IT-project van eisen tot go-live.' },
-    modules: ['pm.agile', 'pm.scaled', 'pm.devops', 'pm.itproject'] },
+    modules: ['pm.agile', 'pm.scaled', 'pm.devops', 'pm.itproject'], film: 'pm.field.it' },
 ];
 export const fieldOf = (moduleId, fields = FIELDS) => fields.find((f) => f.modules.includes(moduleId)) || null;
 
