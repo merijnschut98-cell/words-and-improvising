@@ -59,7 +59,7 @@ What nobody shows: results for a project like this one (films, content and a sma
 6. **Measure.** The sources say the metric is cost per accepted task, not price per token, and that it must be measured on your own work. When an agent finishes, the integrator adds one line to `docs/superpowers/plans/model-ledger.md`: date, task, model, tool uses, duration, tokens, outcome (accepted, sent back N times, redone). Review this after about 30 lines, and change the table above where the data disagrees.
 7. **Session model.** The integrating session runs on Opus for design, review of agent reports and hard merges. Routine merging and pushing can run on Sonnet. Merijn switches the session model; the session model does not decide the subagent models any more.
 
-## 5. Not done, offered
+## 5. Safety net and what is still offered
 
-- `CLAUDE_CODE_SUBAGENT_MODEL=sonnet` in the project's `.claude/settings.json` (not the FORCE variant), so a call that forgets `model` falls back to Sonnet instead of the session model. The per-call parameter still wins. Needs Merijn's yes because it changes settings.
-- Project agents in `.claude/agents/` (reader on Haiku, builder and renderer on Sonnet, reviewer on Sonnet, architect on Opus) so the model sits in the definition and not in my memory. A bigger change: the long briefs would move into agent definitions.
+- **Done (Merijn said yes, 14 Nov):** `CLAUDE_CODE_SUBAGENT_MODEL=sonnet` in `.claude/settings.json` (the plain variable, not the FORCE one). A call that forgets `model` now falls back to Sonnet instead of the session model; the per-call parameter still wins. Environment settings may only apply from the next session start; until then the safety net is not verified. Check the first dispatch after a restart: the subagent log shows the model it ran on.
+- **Offered, not done:** project agents in `.claude/agents/` (reader on Haiku, builder and renderer on Sonnet, reviewer on Sonnet, architect on Opus) so the model sits in the definition and not in my memory. A bigger change: the long briefs would move into agent definitions.

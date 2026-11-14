@@ -20,6 +20,7 @@ Every `Agent` call carries an explicit `model` (`haiku`, `sonnet`, `opus` or `fa
 - Fable is not used for subagents unless Merijn asks.
 - Resuming with SendMessage has no model parameter; if the model matters, start a fresh agent with `model`.
 - Up to three agents in parallel, each in its own worktree, only for independent tasks; two tasks that change the same kit files run one after the other.
+- Safety net: `.claude/settings.json` sets `CLAUDE_CODE_SUBAGENT_MODEL=sonnet`, so a forgotten model falls back to Sonnet. It does not replace passing `model`.
 - When an agent finishes, add one line to `docs/superpowers/plans/model-ledger.md` (date, task, model, tool uses, duration, tokens, outcome).
 
 ## Standing rules for this repo
