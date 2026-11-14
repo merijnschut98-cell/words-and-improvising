@@ -2,7 +2,7 @@ import { weakestDrill } from '../core/lesson.js';
 import { weekFocus } from '../core/weekly.js';
 import { masteryOf, ownedDrills } from '../core/mastery.js';
 import { todayPick, startCards, homeNotices } from '../core/today.js';
-import { SPEAK_BANDS, DRILL_GROUPS, groupProgress, openGroups, toggleGroup } from '../core/layout.js';
+import { speakLayout, toggleSpeak, speakOpen, DRILL_GROUPS, groupProgress, openGroups, toggleGroup } from '../core/layout.js';
 import { programmeWeek, PROGRAMME, startProgramme, stopProgramme, baselineDue } from '../core/programme.js';
 import { challengePrompt } from '../core/share.js';
 import { MODULES } from '../content/courses/index.js';
@@ -39,18 +39,29 @@ export function navBar(app, active) {
   return h('nav', { class: 'navbar' }, item('home', 'house'), item('progress', 'gauge'), item('settings', 'settings'));
 }
 
-function questCard(app) {
+// A fold on the speaking home: closed by default, what he opened is kept in ui.speakOpen.
+function speakFold(app, key, cls, open, summary, body) {
+  return h('details', {
+    class: `${cls} speak-fold`, open,
+    ontoggle: (e) => {
+      const isOpen = e.currentTarget.open;
+      if (speakOpen(app.state.ui).includes(key) === isOpen) return;
+      app.setState({ ...app.state, ui: toggleSpeak(app.state.ui, key, isOpen) });
+    },
+  }, h('summary', { class: 'fold-head' }, summary), body);
+}
+
+function questCard(app, open) {
   const t = app.t;
   const items = currentQuests(app.state, app.today());
   const done = items.filter((q) => q.done).length;
-  return h('section', { class: 'card quest-card' },
-    h('div', { class: 'level-row' },
-      h('h2', { class: 'card-title' }, t('questsTitle')),
-      h('span', { class: 'muted small quest-reward' }, ico('snowflake'), ' ', done === items.length ? t('questsAllDone') : `${done}/${items.length} · ${t('questsReward')}`)),
-    items.map((q) => h('div', { class: `quest${q.done ? ' done' : ''}` },
+  return speakFold(app, 'quests', 'card quest-card', open,
+    [h('h2', { class: 'card-title' }, t('questsTitle')),
+      h('span', { class: 'muted small quest-reward' }, ico('snowflake'), ' ', done === items.length ? t('questsAllDone') : `${done}/${items.length} · ${t('questsReward')}`)],
+    h('div', { class: 'fold-body' }, items.map((q) => h('div', { class: `quest${q.done ? ' done' : ''}` },
       h('span', { class: 'quest-check', 'aria-hidden': 'true' }, q.done ? ico('check') : ''),
       h('span', {}, t(`quest_${q.id}`)),
-      h('span', { class: 'muted small' }, '+15'))));
+      h('span', { class: 'muted small' }, '+15')))));
 }
 
 // Learn → Practise → Own, as a small label on each drill.
@@ -186,7 +197,7 @@ function drillGroup(app, g, open) {
   h('div', { class: 'drill-grid' }, g.drills.map((d) => drillTile(app, d))));
 }
 
-// The speaking home below the header: four bands (SPEAK_BANDS), one primary button.
+// The speaking home below the header: four bands (speakLayout), one primary button; quests and practice fold shut.
 function speakBands(app) {
   const t = app.t;
   const s = app.state;
@@ -197,7 +208,7 @@ function speakBands(app) {
   const open = openGroups(s.ui);
   const ITEMS = {
     next: () => todayCard(app),
-    quests: () => questCard(app),
+    quests: (o) => questCard(app, o),
     lesson: () => h('button', { class: 'btn btn-hero', onclick: () => app.startLesson() },
       h('span', { class: 'hero-title' }, ico('layers'), ' ', doneToday ? t('lessonDone') : t('todayLesson')),
       h('span', { class: 'hero-sub' }, weak ? `${t('lessonSub')} · ${t('lessonFocus', t(`drill_${weak}`))}` : t('lessonSub'))),
@@ -205,7 +216,10 @@ function speakBands(app) {
       h('span', { class: 'hero-title' }, ico('repeat'), ' ', t('reviewTitle')),
       h('span', { class: 'hero-sub' }, t('reviewSub', Math.min(3, dueCount)))) : null),
     quick: () => h('button', { class: 'btn btn-ghost quick-btn', onclick: () => app.startQuick() }, ico('timer'), ' ', t('quickRound')),
-    groups: () => h('div', { class: 'drill-groups' }, DRILL_GROUPS.map((g) => drillGroup(app, g, open.includes(g.id)))),
+    groups: (o) => speakFold(app, 'practice', 'card practice-fold', o,
+      [h('h2', { class: 'card-title' }, t('speakPractice')),
+        h('span', { class: 'muted small' }, t('speakPracticeCount', DRILL_GROUPS.reduce((n, g) => n + g.drills.length, 0)))],
+      h('div', { class: 'drill-groups fold-body' }, DRILL_GROUPS.map((g) => drillGroup(app, g, open.includes(g.id))))),
     boss: () => (bossAvailable(s, new Date()) ? h('button', {
       class: 'btn boss-card',
       onclick: () => { app.session = null; app.go('round', { prompt: makePrompt('boss', app.content, Math.random, s.seen) }); },
@@ -234,8 +248,8 @@ function speakBands(app) {
     finder: () => situationFinder(app),
     listen: () => listenEntry(app),
   };
-  return SPEAK_BANDS.map((b) => {
-    const items = b.items.map((id) => ITEMS[id]()).filter(Boolean);
+  return speakLayout(s).map((b) => {
+    const items = b.items.map((i) => ITEMS[i.id](i.open)).filter(Boolean);
     return items.length ? h('section', { class: `band band-${b.id}`, 'aria-labelledby': `band-${b.id}` },
       h('h2', { class: 'band-title', id: `band-${b.id}` }, t(`band_${b.id}`)), items) : null;
   });

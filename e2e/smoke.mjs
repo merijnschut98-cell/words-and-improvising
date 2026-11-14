@@ -105,14 +105,14 @@ const browser = await chromium.launch();
 const ctx = await browser.newContext({ viewport: { width: 390, height: 844 }, deviceScaleFactor: 2 });
 await ctx.addInitScript(FAKE_SPEECH);
 // Most steps click drills on the speaking home directly: on every load, open on
-// speaking (not the start screen) with "More practice" open. The start screen
+// speaking (not the start screen) with "More practice", the quests and the practice fold open. The start screen
 // itself is checked in its own context and by tapping Home.
 await ctx.addInitScript(() => {
   try {
     const st = JSON.parse(localStorage.getItem('spraakwater:v1') || 'null');
     const ui = (st && st.ui) || {};
     const subject = ui.subject && ui.subject !== 'start' ? ui.subject : 'speak';
-    if (st) localStorage.setItem('spraakwater:v1', JSON.stringify({ ...st, ui: { ...ui, moreOpen: true, subject } }));
+    if (st) localStorage.setItem('spraakwater:v1', JSON.stringify({ ...st, ui: { ...ui, moreOpen: true, speakOpen: ui.speakOpen || ['quests', 'practice'], subject } }));
   } catch { /* first run */ }
 });
 await ctx.route('https://esm.sh/**', (route) => route.fulfill({ contentType: 'application/javascript', body: FAKE_SDK }));
@@ -206,6 +206,7 @@ await step('start screen: one card per subject with its reason, streak and level
   const bands = await p5.locator('.band-title').allInnerTexts();
   if (bands.map((x) => x.trim().toUpperCase()).join('|') !== 'VANDAAG|OEFENEN|UITDAGEN|ECHT EN TERUGKIJKEN') throw new Error(`bands: ${bands}`);
   if (await p5.locator('details.drill-group[open]').count()) throw new Error('drill groups should start closed');
+  await p5.locator('details.practice-fold > summary').click();
   await p5.locator('details.group-basics > summary').click();
   await p5.waitForFunction(() => (JSON.parse(localStorage.getItem('spraakwater:v1')).ui.drillGroups || []).includes('basics'), null, { timeout: 3000 });
   for (const g of ['Basis', 'Structuur', 'Gesprek en luisteren', 'Onder druk']) await p5.locator('.group-name', { hasText: g }).waitFor();
@@ -213,7 +214,7 @@ await step('start screen: one card per subject with its reason, streak and level
   await onePrimary(p5, 'speaking home with a drill group open');
   await shot5('82-more-practice');
   await p5.reload();
-  await p5.locator('details.group-basics[open]').waitFor();
+  await p5.locator('details.practice-fold[open] details.group-basics[open]').waitFor();
   if (await p5.locator('details.group-pressure[open]').count()) throw new Error('only the opened group stays open');
   // Home in the bottom bar always returns to the overview, which stays the default after a reload.
   await p5.getByRole('button', { name: /Home/ }).click();
@@ -228,6 +229,80 @@ await step('start screen: one card per subject with its reason, streak and level
   await p5.locator('.begin-btn').click();
   await p5.locator('.intro-card').waitFor({ timeout: 5000 });
   await c5.close();
+});
+
+await step('speaking home: one next round on top, quests and practice collapsed, opened state remembered after reload', async () => {
+  const c = await browser.newContext({ viewport: { width: 390, height: 844 }, deviceScaleFactor: 2 });
+  const pg = await c.newPage();
+  pg.on('pageerror', onPageError);
+  await c.addInitScript(() => { if (!localStorage.getItem('spraakwater:v1')) localStorage.setItem('spraakwater:v1', JSON.stringify({ onboarded: true, xp: 40, ui: { subject: 'speak' } })); });
+  const snap = async (n) => { await pg.screenshot({ path: `${out}/${n}.png`, fullPage: true, animations: 'disabled' }); };
+  await pg.goto(BASE);
+  await pg.locator('.today-card .today-go').waitFor();
+  // The next round is the first card and the only filled button.
+  const first = await pg.evaluate(() => document.querySelector('.speak-home .band .card, .speak-home .band .btn').className);
+  if (!/today-card/.test(first)) throw new Error(`first card is not the next round: ${first}`);
+  await onePrimary(pg, 'speaking home, folds closed');
+  if (await pg.locator('details.speak-fold[open]').count()) throw new Error('quests and practice should start closed');
+  // Closed, each fold says what is inside in one line.
+  const q = (await pg.locator('details.quest-card > summary').innerText()).replace(/\s+/g, ' ');
+  if (!/0\/3 · alle 3 = een streak-bevriezer/.test(q)) throw new Error(`quest summary: ${q}`);
+  const pr = (await pg.locator('details.practice-fold > summary').innerText()).replace(/\s+/g, ' ');
+  if (!/16 oefeningen/.test(pr)) throw new Error(`practice summary: ${pr}`);
+  // Nothing is hidden for good: one tap each.
+  if (await pg.locator('.quest-card .quest:visible').count()) throw new Error('quests visible while closed');
+  await snap('speak-home');
+  await pg.evaluate(() => window.__app.updateSettings({ theme: 'dark' }));
+  await pg.locator('.today-card .today-go').waitFor();
+  await snap('speak-home-dark');
+  await pg.evaluate(() => { window.__app.updateSettings({ lang: 'en' }); window.__app.go('home'); });
+  await pg.locator('details.practice-fold > summary', { hasText: '16 drills' }).waitFor();
+  if (await pg.locator('details.speak-fold[open]').count()) throw new Error('en: folds should start closed');
+  await snap('speak-home-en-dark');
+  await pg.evaluate(() => window.__app.updateSettings({ theme: 'light' }));
+  await pg.locator('.today-card .today-go').waitFor();
+  await snap('speak-home-en');
+  await pg.evaluate(() => { window.__app.updateSettings({ lang: 'nl' }); window.__app.go('home'); });
+  await pg.locator('details.practice-fold > summary', { hasText: '16 oefeningen' }).waitFor();
+  await pg.evaluate(() => window.__app.updateSettings({ theme: 'light' }));
+  await pg.locator('.today-card .today-go').waitFor();
+  // Both summaries are real 44 px targets.
+  for (const sel of ['details.quest-card > summary', 'details.practice-fold > summary']) {
+    const hgt = await pg.locator(sel).evaluate((el) => el.getBoundingClientRect().height);
+    if (hgt < 44) throw new Error(`${sel} is ${hgt}px tall`);
+  }
+  // Keyboard: the quests open with Enter on the focused summary.
+  await pg.locator('details.quest-card > summary').focus();
+  await pg.keyboard.press('Enter');
+  await pg.locator('.quest-card .quest').first().waitFor({ state: 'visible' });
+  await pg.waitForFunction(() => (JSON.parse(localStorage.getItem('spraakwater:v1')).ui.speakOpen || []).includes('quests'), null, { timeout: 3000 });
+  await onePrimary(pg, 'speaking home, quests open');
+  await pg.reload();
+  await pg.locator('details.quest-card[open]').waitFor();
+  if (await pg.locator('details.practice-fold[open]').count()) throw new Error('practice should still be closed');
+  await pg.locator('details.practice-fold > summary').click();
+  await pg.locator('details.group-basics > summary').click();
+  await pg.locator('.group-basics .drill-minute').waitFor({ state: 'visible' });
+  await pg.reload();
+  await pg.locator('details.practice-fold[open]').waitFor();
+  const ui = await pg.evaluate(() => JSON.parse(localStorage.getItem('spraakwater:v1')).ui.speakOpen);
+  if (ui.join() !== 'quests,practice') throw new Error(`speakOpen: ${ui}`);
+  await onePrimary(pg, 'speaking home, quests and practice open');
+  const wide = await pg.evaluate(() => document.documentElement.scrollWidth > window.innerWidth);
+  if (wide) throw new Error('horizontal scroll with the folds open');
+  await snap('speak-home-open');
+  await pg.evaluate(() => window.__app.updateSettings({ theme: 'dark' }));
+  await pg.locator('.today-card .today-go').waitFor();
+  await snap('speak-home-open-dark');
+  await pg.evaluate(() => { window.__app.updateSettings({ theme: 'light', lang: 'en' }); window.__app.go('home'); });
+  await pg.locator('details.practice-fold > summary', { hasText: '16 drills' }).waitFor();
+  await snap('speak-home-open-en');
+  await pg.evaluate(() => { window.__app.updateSettings({ lang: 'nl' }); window.__app.go('home'); });
+  await pg.locator('details.practice-fold > summary', { hasText: '16 oefeningen' }).waitFor();
+  // A drill inside the opened folds starts its round.
+  await pg.locator('.group-basics .drill-minute').click();
+  await pg.getByRole('button', { name: 'Start' }).waitFor({ timeout: 5000 });
+  await c.close();
 });
 
 await step('one filled button per screen: speaking home, course home, every lesson step, due and situation', async () => {
@@ -311,6 +386,111 @@ await step('subject bar switches to Engineering and Projects and back; speaking 
   await page.locator('.course-pm').waitFor();
   await page.locator('.subject-tab', { hasText: 'Spreken' }).click();
   await page.locator('.btn-hero').waitFor();
+});
+
+await step('Projects home: the map is the first thing; tapping Planning opens its module screen; the field film entry is there; Engineering unchanged', async () => {
+  await page.locator('.subject-tab', { hasText: 'Projecten' }).click();
+  await page.locator('.course-pm .map-card .subject-map').waitFor();
+  // the map is the first block, "Your next step" the second
+  const order = await page.evaluate(() => [...document.querySelector('.course-pm').children].map((e) => e.className.split(' ')[1] || e.className).slice(0, 3));
+  if (!/map-card/.test(await page.locator('.course-pm > :nth-child(2)').getAttribute('class'))) throw new Error(`the map is not first: ${order}`);
+  if (!/course-today/.test(await page.locator('.course-pm > :nth-child(3)').getAttribute('class'))) throw new Error(`next step is not second: ${order}`);
+  // every place is a button, 44 px at 390, the next module marked, tracks closed, no sideways scroll
+  const places = await page.locator('.course-pm .map-place').evaluateAll((gs) => gs.map((g) => {
+    const r = g.querySelector('.map-hit').getBoundingClientRect();
+    return { role: g.getAttribute('role'), tab: g.getAttribute('tabindex'), label: g.getAttribute('aria-label'), w: r.width, h: r.height };
+  }));
+  if (places.length !== 16) throw new Error(`${places.length} places`);
+  const bad = places.filter((p) => p.role !== 'button' || p.tab !== '0' || !p.label || p.w < 43.5 || p.h < 43.5);
+  if (bad.length) throw new Error(`places not buttons of 44 px: ${JSON.stringify(bad.slice(0, 2))}`);
+  if (await page.locator('.course-pm .map-place.is-next').count() !== 1) throw new Error('the next module is not marked once');
+  if (await page.locator('.course-pm details.track[open]').count() !== 0) throw new Error('a track is open on a subject with a map');
+  if (await page.evaluate(() => document.documentElement.scrollWidth > window.innerWidth)) throw new Error('sideways scroll');
+  // the field film entry: the lifecycle field only, by its title
+  await page.locator('.course-pm .field-film .film-btn').waitFor();
+  if (await page.locator('.course-pm .field-film').count() !== 1) throw new Error('more than one field film entry');
+  await page.locator('.course-pm .field-film-title', { hasText: 'Een project van begin tot eind' }).waitFor();
+  await shot('map-home-pm');
+  // the field film plays the rendered video (Piper voice, captions), the HTML film only as its fallback
+  await page.locator('.course-pm .field-film .film-btn').click();
+  await page.locator('.course-pm .field-film .film-step[data-mode="video"] video.film-video').waitFor();
+  if (await page.locator('.course-pm .field-film iframe.film-frame').count()) throw new Error('the field film opened the HTML film, not the video');
+  if (await page.locator('.btn-primary:visible').count() !== 1) throw new Error('more than one filled button with the field film open');
+  await page.locator('.course-pm .field-film .film-btn').click();
+  if (await page.locator('.course-pm .field-film .film-step').count()) throw new Error('the field film did not close');
+  // dark
+  await page.evaluate(() => window.__app.updateSettings({ theme: 'dark' }));
+  await page.waitForFunction(() => document.documentElement.dataset.theme === 'dark');
+  await shot('map-home-pm-dark');
+  await page.evaluate(() => window.__app.updateSettings({ theme: 'auto' }));
+  await page.waitForFunction(() => !document.documentElement.dataset.theme);
+  // keyboard: Enter on a focused place opens its module; a tap on Planning does too
+  await page.locator('.course-pm .map-place[data-module="pm.run"]').focus();
+  await page.keyboard.press('Enter');
+  await page.locator('.module-screen').waitFor();
+  await page.locator('.module-screen .lesson-back').click();
+  await page.locator('.course-pm .map-card').waitFor();
+  await page.locator('.course-pm .map-place[data-module="pm.plan"]').click();
+  await page.locator('.module-screen').waitFor();
+  await page.locator('.module-screen', { hasText: 'Plannen' }).waitFor();
+  await page.locator('.module-screen .lesson-back').click();
+  await page.locator('.course-pm .map-card').waitFor();
+  // Engineering: no map, today's order, the track with the next step open
+  await page.locator('.subject-tab', { hasText: 'Engineering' }).click();
+  await page.locator('.course-eng .track').first().waitFor();
+  if (await page.locator('.course-eng .map-card, .course-eng .field-film').count() !== 0) throw new Error('Engineering shows a map or field film');
+  if (!/course-today/.test(await page.locator('.course-eng > :nth-child(2)').getAttribute('class'))) throw new Error('Engineering order changed');
+  if (await page.locator('.course-eng details.track[open]').count() !== 1) throw new Error('Engineering: one track should be open');
+  await page.locator('.subject-tab', { hasText: 'Spreken' }).click();
+  await page.locator('.btn-hero').waitFor();
+});
+
+// Review (14 Nov): the field film falls back as the module intro does: no video,
+// the HTML film; no video and no HTML film, the field's blurb. The entry used to
+// wait for the HTML page and vanished without it, leaving its title alone.
+await step('offline (video and page not cached): Projects home field film falls back to the HTML film, then to the blurb', async () => {
+  const FIELD_PAGE = /\/films\/pm\.field\.lifecycle\.html/;
+  const noVideo = (r) => r.abort();
+  const noPage = (r) => r.abort();
+  // Takes the page out of the worker's cache; returns what to put back after.
+  const dropCached = () => page.evaluate(async () => {
+    const gone = [];
+    for (const k of await caches.keys()) {
+      const c = await caches.open(k);
+      for (const req of await c.keys()) if (/pm\.field\.lifecycle\.html/.test(req.url)) { await c.delete(req); gone.push([k, req.url]); }
+    }
+    return gone;
+  });
+  let dropped = [];
+  // Opens the field film and waits for the mode it should fall back to (the
+  // step shows "video" first, until the video fails); returns the mode it has.
+  const openField = async (want) => {
+    await page.locator('.subject-tab', { hasText: 'Projecten' }).click();
+    await page.locator('.course-pm .field-film-title').waitFor();
+    await page.locator('.course-pm .field-film .film-btn').waitFor({ timeout: 4000 });
+    await page.locator('.course-pm .field-film .film-btn').click();
+    await page.locator(`.course-pm .field-film .film-step[data-mode="${want}"]`).waitFor({ timeout: 5000 }).catch(() => {});
+    return page.locator('.course-pm .field-film .film-step').getAttribute('data-mode');
+  };
+  const back = async () => {
+    await page.locator('.subject-tab', { hasText: 'Spreken' }).click();
+    await page.locator('.btn-hero').waitFor();
+  };
+  try {
+    await ctx.route(FILM_URL, noVideo);
+    if (await openField('frame') !== 'frame') throw new Error('without the video the field film did not play the HTML film');
+    await back();
+    await ctx.route(FIELD_PAGE, noPage);
+    dropped = await dropCached();
+    const mode = await openField('text').catch((e) => { throw new Error(`without video and HTML film: ${e.message.split('\n')[0]}`); });
+    if (mode !== 'text') throw new Error(`without video and HTML film the mode is ${mode}, not text`);
+    await page.locator('.course-pm .field-film .film-stage', { hasText: 'de weg die elk project loopt' }).waitFor({ timeout: 3000 });
+    await back();
+  } finally {
+    await ctx.unroute(FIELD_PAGE, noPage);
+    await ctx.unroute(FILM_URL, noVideo);
+    await page.evaluate(async (list) => { for (const [k, url] of list) await (await caches.open(k)).add(url); }, dropped);
+  }
 });
 
 // Answers a lesson's quiz from the module file; the first question wrong on purpose.
@@ -1259,6 +1439,19 @@ await step('boss card shows on a Friday', async () => {
   await p2.clock.setFixedTime(new Date(2026, 9, 30, 10, 0));
   await p2.goto(BASE);
   await p2.locator('.boss-card').waitFor({ timeout: 5000 });
+  // The next round stays the only filled button: the boss card is outlined like the lesson card, in both themes.
+  await onePrimary(p2, 'speaking home with the boss card');
+  for (const theme of ['light', 'dark']) {
+    await p2.evaluate((th) => window.__app.updateSettings({ theme: th }), theme);
+    await p2.locator('.boss-card').waitFor();
+    // Colours ease between themes: compare once they have settled.
+    const bg = () => p2.evaluate(() => [getComputedStyle(document.querySelector('.boss-card')).backgroundColor, getComputedStyle(document.querySelector('.today-card')).backgroundColor]);
+    let [boss, card] = await bg();
+    for (let i = 0; i < 20 && boss !== card; i++) { await p2.waitForTimeout(100); [boss, card] = await bg(); }
+    if (boss !== card) throw new Error(`${theme}: boss card is filled (${boss}), expected the card colour ${card}`);
+  }
+  await p2.evaluate(() => window.__app.updateSettings({ theme: 'light' }));
+  await p2.locator('.boss-card').waitFor();
   await p2.screenshot({ path: `${out}/23-boss-home.png`, fullPage: true });
   await c2.close();
 });
@@ -2588,9 +2781,9 @@ await step('layout: each home at 390 px in light and dark, one primary, bands, t
   if (await p.locator('details.drill-group[open]').count()) throw new Error('groups open by default');
   const tall = await p.evaluate(() => document.documentElement.scrollHeight / window.innerHeight);
   if (tall > 2.6) throw new Error(`Spreken home is ${tall.toFixed(2)} screens tall`);
-  // The quests sit right under the next round; Terugluisteren is in the last band.
+  // The next round is on top, then the lesson; the quests fold comes last in Vandaag. Terugluisteren is in the last band.
   const order = await p.locator('.band-today > *').evaluateAll((els) => els.map((e) => e.className));
-  if (!order[1].includes('today-card') || !order[2].includes('quest-card')) throw new Error(`Vandaag order: ${order.join(' | ')}`);
+  if (!order[1].includes('today-card') || !order[2].includes('btn-hero') || !order[order.length - 1].includes('quest-card')) throw new Error(`Vandaag order: ${order.join(' | ')}`);
   await p.locator('.band-real .lb-entry').waitFor();
   // Course homes: exactly one track open, the one with the next step; Begrippen and the real week in one row.
   await p.evaluate(() => window.__app.setSubject('eng'));

@@ -139,24 +139,27 @@ test('the sync check catches a renamed term, a removed number and a Dutch word i
     assert.match(checkFilm(data, { ...ctx, lessons: renamed }).join('\n'), /is no longer term \d+ of/);
     // a lesson that no longer has the number (an intro film: none of its module's text has it)
     const n = data.numbers[0];
-    const gone = { nl: new Map(lessons.nl), en: lessons.en };
-    if (data.field) {
-      const mods = ctx.field.modules.map((mid) => withoutNumber(MODULES.find((m) => m.id === mid), n.value));
-      for (const m of mods) for (const lid of m.lessons) gone.nl.set(lid, withoutNumber(lessons.nl.get(lid), n.value));
-      const fld = withoutNumber(ctx.field, n.value);
-      assert.ok(!fieldTextOf(fld, mods, gone, 'nl').includes(n.value));
-      const others = MODULES.filter((m) => !fld.modules.includes(m.id));
-      assert.ok(checkFilm(data, { ...ctx, field: fld, modules: [...others, ...mods], lessons: gone }).some((e) => e.endsWith(`no longer in the text of field ${fld.id}`)), `${id}: removed number ${n.value} not reported`);
-    } else if (data.module) {
-      for (const lid of ctx.module.lessons) gone.nl.set(lid, withoutNumber(lessons.nl.get(lid), n.value));
-      const mod = withoutNumber(ctx.module, n.value);
-      assert.ok(!moduleTextOf(mod, gone, 'nl').includes(n.value));
-      assert.ok(checkFilm(data, { ...ctx, module: mod, lessons: gone }).some((e) => e.endsWith(`no longer in the text of module ${mod.id}`)), `${id}: removed number ${n.value} not reported`);
-    } else {
-      const ln = lessons.nl.get(n.lesson);
-      gone.nl.set(n.lesson, withoutNumber(ln, n.value));
-      assert.ok(!lessonTextOf(gone.nl.get(n.lesson)).includes(n.value));
-      assert.ok(checkFilm(data, { ...ctx, lessons: gone }).some((e) => e.endsWith(`no longer in ${n.lesson}`)), `${id}: removed number ${n.value} not reported`);
+    // a film without a number (the people field film) has none to remove
+    if (n) {
+      const gone = { nl: new Map(lessons.nl), en: lessons.en };
+      if (data.field) {
+        const mods = ctx.field.modules.map((mid) => withoutNumber(MODULES.find((m) => m.id === mid), n.value));
+        for (const m of mods) for (const lid of m.lessons) gone.nl.set(lid, withoutNumber(lessons.nl.get(lid), n.value));
+        const fld = withoutNumber(ctx.field, n.value);
+        assert.ok(!fieldTextOf(fld, mods, gone, 'nl').includes(n.value));
+        const others = MODULES.filter((m) => !fld.modules.includes(m.id));
+        assert.ok(checkFilm(data, { ...ctx, field: fld, modules: [...others, ...mods], lessons: gone }).some((e) => e.endsWith(`no longer in the text of field ${fld.id}`)), `${id}: removed number ${n.value} not reported`);
+      } else if (data.module) {
+        for (const lid of ctx.module.lessons) gone.nl.set(lid, withoutNumber(lessons.nl.get(lid), n.value));
+        const mod = withoutNumber(ctx.module, n.value);
+        assert.ok(!moduleTextOf(mod, gone, 'nl').includes(n.value));
+        assert.ok(checkFilm(data, { ...ctx, module: mod, lessons: gone }).some((e) => e.endsWith(`no longer in the text of module ${mod.id}`)), `${id}: removed number ${n.value} not reported`);
+      } else {
+        const ln = lessons.nl.get(n.lesson);
+        gone.nl.set(n.lesson, withoutNumber(ln, n.value));
+        assert.ok(!lessonTextOf(gone.nl.get(n.lesson)).includes(n.value));
+        assert.ok(checkFilm(data, { ...ctx, lessons: gone }).some((e) => e.endsWith(`no longer in ${n.lesson}`)), `${id}: removed number ${n.value} not reported`);
+      }
     }
     // a Dutch term in the English caption (a film whose terms all carry the
     // same name in both languages, as pm.agile.scrum's Scrum Guide names, has none)
