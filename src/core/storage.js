@@ -120,6 +120,8 @@ export function load(backend) {
     if (fixed !== r.box) merged.courseReviews[k] = { ...r, box: fixed };
   }
   if ('subject' in merged.ui && !['start', 'speak', 'eng', 'pm'].includes(merged.ui.subject)) delete merged.ui.subject;
+  // Andon has introduced himself on this device (device only: it is about this screen, not the learner).
+  if ('andonIntro' in merged.ui && merged.ui.andonIntro !== true) delete merged.ui.andonIntro;
   if ('moreOpen' in merged.ui && typeof merged.ui.moreOpen !== 'boolean') delete merged.ui.moreOpen;
   // Which drill groups on the speaking home are open (device only).
   if ('drillGroups' in merged.ui) {

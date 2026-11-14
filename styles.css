@@ -1173,11 +1173,23 @@ details.rw-topic > summary { cursor: pointer; min-height: 44px; display: flex; a
 /* Andon visible (v17 Task 8): greets on the home screens, presents the module intro.
    Decoration plus one line, never a button; the row keeps its height when the line goes. */
 .guide-72 { height: 72px; }
+.guide-80 { height: 80px; }
 .guide-96 { height: 96px; }
-.guide-greeting { display: flex; align-items: center; gap: 14px; min-height: 96px; margin: 6px 0 4px; }
-.guide-greeting .guide-say { margin: 0; flex: 1; min-width: 0; font-size: 1.02rem; line-height: 1.4; color: var(--heading); overflow-wrap: anywhere; }
-.guide-intro { display: flex; align-items: center; gap: 12px; min-height: 72px; margin: 0 0 8px; }
+.guide-greeting { display: flex; align-items: center; gap: 12px; margin: 6px 0 4px; }
+.guide-figure { display: inline-flex; flex-direction: column; align-items: center; gap: 2px; flex: none; }
+.guide-name { font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.06em; color: var(--heading); line-height: 1.2; }
+/* The line sits in a speech bubble whose tail points at the tower. */
+.guide-greeting .guide-say, .guide-intro .guide-say { position: relative; margin: 0; flex: 1; min-width: 0; padding: 9px 12px; border-radius: var(--radius-md); border: 1px solid var(--border-subtle); background: var(--card); font-size: 1rem; line-height: 1.4; color: var(--heading); overflow-wrap: anywhere; }
+.guide-greeting .guide-say::before, .guide-intro .guide-say::before { content: ''; position: absolute; left: -7px; top: 50%; width: 12px; height: 12px; margin-top: -6px; transform: rotate(45deg); background: var(--card); box-shadow: -1px 1px 0 var(--border-subtle); }
+@keyframes vp-blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.25; } }
+/* On track: the bottom light burns the brand success green (--good), as a
+   running andon does; petrol stays for the milestone lights. */
+.guide-svg.st-ok .g-seg.g-low.on .t-top { fill: color-mix(in srgb, var(--good) 70%, var(--card)); }
+.guide-svg.st-ok .g-seg.g-low.on .t-left { fill: var(--good); }
+.guide-svg.st-ok .g-seg.g-low.on .t-right { fill: color-mix(in srgb, var(--good) 75%, var(--heading)); }
+.guide-svg .g-seg.blink { animation: vp-blink calc(2 * var(--motion-slow)) ease-in-out 3; }
+.guide-intro { display: flex; align-items: center; gap: 12px; margin: 0 0 8px; }
 .guide-intro-text { flex: 1; min-width: 0; display: flex; flex-direction: column; justify-content: center; }
 .guide-intro .module-intro-title { margin: 0; }
-.guide-intro .guide-say { margin: 2px 0 0; font-size: 0.95rem; line-height: 1.4; color: var(--muted); }
+.guide-intro .guide-say { margin-top: 8px; }
 .guide-greeting .guide, .guide-intro .guide { pointer-events: none; }

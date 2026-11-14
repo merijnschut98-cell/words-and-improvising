@@ -3166,7 +3166,7 @@ await step('module return: a lesson opened from the Today card still returns to 
 });
 
 // v17: the module screen. The fixture machining module gets an intro film (a
-// stub video and a stub film page), so the intro block is real; pm.intake has
+// stub video and a stub film page), so the intro block is real; pm.stuck has
 // none and shows its blurb where the film would be.
 const MACHINING_INTRO_FIXTURE = MACHINING_TOPIC_FIXTURE.replace("track: 'discrete',", "track: 'discrete', intro: 'eng.machining.intro',");
 const PNG_1PX = Buffer.from('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkYPhfDwAChwGA60e6kgAAAABJRU5ErkJggg==', 'base64');
@@ -3236,10 +3236,10 @@ await step('module screen: open Verspanen from the Engineering list, the intro b
   // A module without an intro: its field, and the blurb where the film would be.
   const other = await topicContext({});
   const q = other.p;
-  await q.evaluate(() => window.__app.go('module', { subject: 'pm', moduleId: 'pm.intake' }));
+  await q.evaluate(() => window.__app.go('module', { subject: 'pm', moduleId: 'pm.stuck' }));
   const pm = q.locator('.module-screen');
   await pm.waitFor();
-  if (!(await pm.locator('.module-field', { hasText: 'Een project van begin tot eind' }).count())) throw new Error('no field label');
+  if (!(await pm.locator('.module-field', { hasText: 'Mensen en invloed' }).count())) throw new Error('no field label');
   if (await pm.locator('.film-step, .module-intro-title').count()) throw new Error('a module without an intro shows a film');
   if (!(await pm.locator('.module-intro-text').innerText()).trim()) throw new Error('no blurb');
   if (!(await pm.locator('.topic-row').count())) throw new Error('no topics');
@@ -3250,7 +3250,7 @@ await step('module screen: open Verspanen from the Engineering list, the intro b
   await other.shotP('ms-module-nointro-dark');
   await other.c.close();
 });
-// v17 Task 8: Andon is visible: he greets on the home screens (96 px, one line), presents the intro on a
+// v17 Task 8: Andon is visible: he greets on the home screens (80 px plus his name, one line in a bubble), presents the intro on a
 // module screen (72 px, one line, beside the heading), lights his top segment once the intro has been
 // watched, and leaves no gap anywhere when the guide is off.
 await step('Andon: greets on the home screens, presents the intro on a module screen, lights up after the intro, hidden when the guide is off', async () => {
@@ -3261,11 +3261,13 @@ await step('Andon: greets on the home screens, presents the intro on a module sc
     const g = p.locator(`${main} .guide-greeting`);
     if (await g.count() !== 1) throw new Error(`${where}: ${await g.count()} greetings`);
     const r = await g.locator('.guide').evaluate((e) => { const b = e.getBoundingClientRect(); return { h: b.height, w: b.width }; });
-    if (Math.abs(r.h - 96) > 1) throw new Error(`${where}: Andon ${r.h}px, expected 96`);
+    if (Math.abs(r.h - 80) > 1) throw new Error(`${where}: Andon ${r.h}px, expected 80`);
+    if (!/^Andon\b/.test(await g.locator('.guide-name').evaluate((e) => e.firstChild && e.firstChild.textContent))) throw new Error(`${where}: no name under the tower`);
     if (await g.locator('.guide-say').count() !== 1) throw new Error(`${where}: not exactly one line`);
     if (!(await g.locator('.guide-say').innerText()).trim()) throw new Error(`${where}: empty line`);
     if (await g.locator('button, a, [role="button"]').count()) throw new Error(`${where}: Andon is interactive`);
-    if (await g.locator('.g-seg.on').count()) throw new Error(`${where}: a light is on at the greeting`);
+    // one status light always burns: the bottom one (on track) or the middle one (reviews due)
+    if (await g.locator('.g-seg.g-low.on, .g-seg.g-mid.warn').count() !== 1) throw new Error(`${where}: not exactly one status light`);
     // he is the first thing under the header: above the first card
     const above = await p.evaluate(({ main }) => {
       const m = document.querySelector(main);
@@ -3287,12 +3289,15 @@ await step('Andon: greets on the home screens, presents the intro on a module sc
     await p.waitForFunction(() => document.documentElement.dataset.theme === 'light');
   };
   await greeting('Engineering home', '.course-eng');
+  // A fresh device: he introduces himself once; the next home has its day line.
+  if ((await p.locator('.course-eng .guide-greeting .guide-say').innerText()).trim() !== 'Ik ben Andon. Ik wijs je de weg.') throw new Error('no introduction on a fresh device');
   await onePrimary(p, 'Engineering home with Andon');
   await both('andon-eng');
   // Speaking home: above the first band; the one filled button stays.
   await p.locator('.subject-tab', { hasText: 'Spreken' }).click();
   await p.locator('.speak-home').waitFor();
   await greeting('speaking home', '.speak-home');
+  if (await p.locator('.speak-home .guide-greeting[data-line="intro"]').count()) throw new Error('the introduction came twice');
   await onePrimary(p, 'speaking home with Andon');
   await both('andon-home');
   // Projects home: above the map card.
@@ -3372,7 +3377,7 @@ await step('Andon: greets on the home screens, presents the intro on a module sc
   if (await p.locator('.module-screen .guide-intro .guide-say').count()) throw new Error('a seen intro shows a line');
 
   // A module without an intro: no Andon.
-  await p.evaluate(() => window.__app.go('module', { subject: 'pm', moduleId: 'pm.intake' }));
+  await p.evaluate(() => window.__app.go('module', { subject: 'pm', moduleId: 'pm.stuck' }));
   await p.locator('.module-screen .module-intro-text').waitFor();
   if (await p.locator('.module-screen .guide, .module-screen .guide-intro').count()) throw new Error('Andon on a module without an intro');
 

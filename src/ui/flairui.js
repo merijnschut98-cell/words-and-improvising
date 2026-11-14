@@ -8,7 +8,8 @@ import { isStreakAlive, levelFromXp, dayKey } from '../core/progress.js';
 import { checkOf } from '../core/modulecheck.js';
 import { celebrationOf } from '../core/flair.js';
 import { cheerOn, cueFor, play as playCue } from '../core/sound.js';
-import { guide, guideLine, guideSvg, guideOn } from './guide.js';
+import { guide, guideLine, guideSvg, guideOn, guideFigure, statusModel, andonIntroSeen, markAndonIntroSeen } from './guide.js';
+import { dueCount } from '../core/coursereview.js';
 import { introFilm } from './film.js';
 import { introSeen } from '../core/course.js';
 import { MODULES } from '../content/courses/index.js';
@@ -238,12 +239,37 @@ export function goalLeftText(app) {
 // while it is open: one Andon and one line per screen, so the goal line that
 // stood under the Today card with its own small Andon is said by him here.
 export function guideGreeting(app, { subject = null, goal = false } = {}) {
-  const el = guide(app.state, { mood: 'idle', size: 96 });
-  if (!el) return null;
-  const left = goal ? goalLeftText(app) : null;
-  return h('div', { class: 'guide-greeting', 'data-subject': subject || '', 'data-line': left ? 'goal' : 'day' },
-    el,
-    h('p', { class: 'guide-say' }, left || guideLine(app.t, 'guideHome', app.today())));
+  if (!guideOn(app.state)) return null;
+  const today = app.today();
+  const model = statusModel({ due: dueFor(app, subject), goalDone: goalProgress(app.state, today).done });
+  // First time on this device: he introduces himself instead of the day line,
+  // one light blinking briefly. Marked at once (device only), so it is said
+  // once; redraws of the same home keep the line (no second blink), so an
+  // automatic redraw (sync after boot) never swallows it. A subject switch or
+  // leaving the homes (app.go) ends it.
+  const first = !andonIntroSeen(app.state);
+  if (first) {
+    app.andonIntroLive = subject || 'home';
+    if (typeof app.setState === 'function') app.setState(markAndonIntroSeen(app.state));
+  }
+  const intro = first || (!!app.andonIntroLive && app.andonIntroLive === (subject || 'home'));
+  if (!intro) app.andonIntroLive = false;
+  const left = !intro && goal ? goalLeftText(app) : null;
+  const kind = intro ? 'intro' : left ? 'goal' : 'day';
+  const say = intro ? app.t('guideMeet') : left || guideLine(app.t, 'guideHome', today);
+  return h('div', { class: 'guide-greeting', 'data-subject': subject || '', 'data-line': kind, 'data-status': model.status },
+    guideFigure(app.state, { mood: 'idle', size: 80, status: model, blink: first, statusText: app.t(model.status === 'due' ? 'guideStatusDue' : 'guideStatusOk') }),
+    h('p', { class: 'guide-say' }, say));
+}
+
+// How many reviews wait for this screen: a course home counts its own queue,
+// the speaking home its prompts, the start screen all of them.
+export function dueFor(app, subject) {
+  const course = (sub) => dueCount(app.state.courseReviews || {}, app.today(), sub, app.lang);
+  const speak = () => (typeof app.dueReviews === 'function' ? app.dueReviews().length : 0);
+  if (subject === 'eng' || subject === 'pm') return course(subject);
+  if (subject === 'speak') return speak();
+  return course('eng') + course('pm') + speak();
 }
 
 // What Andon shows with a module's intro, from the state alone (pure): idle
@@ -259,8 +285,9 @@ export function introGuideModel(state, meta) {
 export function guideIntro(app, meta, heading = null) {
   const m = introGuideModel(app.state, meta);
   if (!m) return null;
-  return h('div', { class: 'guide-intro', 'data-mood': m.mood },
-    guide(app.state, { mood: m.mood, size: 72 }),
+  const status = statusModel({ due: dueFor(app, meta.subject) });
+  return h('div', { class: 'guide-intro', 'data-mood': m.mood, 'data-status': status.status },
+    guideFigure(app.state, { mood: m.mood, size: 72, status, statusText: app.t(status.status === 'due' ? 'guideStatusDue' : 'guideStatusOk') }),
     h('div', { class: 'guide-intro-text' },
       heading,
       m.line ? h('p', { class: 'guide-say' }, app.t(m.line)) : null));
@@ -271,8 +298,13 @@ export function guideIntro(app, meta, heading = null) {
 export function guideIntroSeen(el) {
   if (!el) return;
   const a = el.querySelector('.guide');
-  if (a) a.innerHTML = guideSvg('right');
+  if (a) a.innerHTML = guideSvg('right', { status: statusModel({ due: el.getAttribute('data-status') === 'due' ? 1 : 0 }) });
   const say = el.querySelector('.guide-say');
-  if (say) say.remove();
+  if (say) {
+    // The bubble is taller than the tower: keep the block's height so nothing below moves.
+    const r = typeof el.getBoundingClientRect === 'function' ? el.getBoundingClientRect() : null;
+    if (r && r.height > 0) el.style.minHeight = `${Math.ceil(r.height)}px`;
+    say.remove();
+  }
   el.setAttribute('data-mood', 'right');
 }
