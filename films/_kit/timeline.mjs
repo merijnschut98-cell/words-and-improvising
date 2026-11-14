@@ -709,7 +709,14 @@ const SAY = {
     // English "second opinion" as "sekont opinion" (said sekkend opinjen), checked with phonemes through Piper's
     // nl_NL-alex bridge; only in this film's phrase. SBI has its rule above; BATNA, KPI-boom, mensenprobleem,
     // vragenset and prestatiebord need nothing; no other film's spoken text changes
-    [/\bvragenset en een second opinion\b/g, 'vragenset en een sekkend opinjen']],
+    [/\bvragenset en een second opinion\b/g, 'vragenset en een sekkend opinjen'],
+    // the field film (pm.field.portfolio), a self-contained group at the end of the Dutch list: espeak-ng stresses
+    // ADvies-vak on its first syllable (said advies-vak, stress on vies), diagnoseFASE on fase (said diagnose-fase,
+    // only before "en de", so pm.consult.proposal's "een diagnosefase:" keeps its voice) and vertrouwensforMUle on
+    // mu (said vertrouwens-formulle, stress on for), checked with phonemes through Piper's nl_NL-alex bridge.
+    // Governance, capaciteitsstreep and offerte have rules above; besluitenlijst, programma's, prioriteren and
+    // fabrieksdirecteur need nothing; no other film's spoken text changes
+    [/\b([Aa])dviesvak\b/g, '$1dvies-vak'], [/\bdiagnosefase en de\b/g, 'diagnose-fase en de'], [/\b([Vv])ertrouwensformule\b/g, '$1ertrouwens-formulle']],
   en: [[/\brpm\b/g, 'revolutions per minute'], [/\bmm\/min\b/g, 'millimetres per minute'], [/\bm\/min\b/g, 'metres per minute'], [/µm\b/g, 'micrometres'],
     [/€\s?(\d[\d,]*(?:\.\d+)?)/g, '$1 euros'], [/(\d)\.0(?![\d])/g, '$1'], [/(\d)\s?mm\b/g, '$1 millimetres'], [/(\d)\s?min\b/g, '$1 minutes'], [/(\d)\s?%/g, '$1 percent'],
     [/Ø\s*/g, 'diameter '], [/(\d)\+(\d)/g, '$1 plus $2'], [/\s×\s/g, ' times '], [/\s\/\s/g, ' divided by '], [/\s=\s/g, ' is '], [/°/g, ' degrees'], [/\bRa\b/g, 'R a'], [/’/g, "'"],
