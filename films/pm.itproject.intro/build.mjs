@@ -18,7 +18,7 @@
 // requirements and vendor to go-live, real users test the MES, then the cutover
 // weekend, with MoSCoW as the first tool): line 3 runs in hall B, the plant brings in
 // a new MES for the orders on the floor, you lead that IT project for the plant
-// manager together with the IT team. The STORY IS DRAWN IN THE ROOM: the MES is the
+// manager; the IT team builds the MES out and keeps it running (as the agile, devops and field films say). The STORY IS DRAWN IN THE ROOM: the MES is the
 // laptop on the table at the front of the hall, and the cast changes per topic (the
 // plant manager, the IT team at the table, the team lead of line 3 who knows the
 // work, the operators at the line). The film is about the IT project as a whole:
@@ -30,8 +30,8 @@
 //      first version, so what must be in at go-live and what may wait
 //                                                          → pm.itproject.requirements
 //   s3 Leverancier, SaaS en contract kiezen: build, buy or rent (SaaS); the vendor makes
-//      the package, the partner sets it up, one table of who does what; the selection
-//      runs in steps to a shortlist and one choice        → pm.itproject.saas, .selection
+//      the package, the partner sets it up, one table of who does what; the IT team
+//      builds on it and runs it, one table of who does what → pm.itproject.saas (the tools of choosing are named)
 //   s4 ERP/MES invoeren: the go-live is the day the new MES becomes the official system;
 //      big bang or phased                                  → pm.itproject.rollout
 //   s5 Testen en adoptie: the UAT with key users (the team lead of line 3), the sign-off
@@ -118,11 +118,9 @@ tool('pm.itproject.requirements', 'To-be-proces', 'To-be process');
 has('pm.itproject.requirements', ['hoe het werk na de go-live loopt, stap voor stap']);
 has('pm.itproject.requirements', ['how the work will run after go-live, step by step'], 'en');
 // s3: build, buy or rent (SaaS, the vendor runs it), the vendor makes the package and the partner sets it up (and writes down who
-// does what in one table), the selection in steps (many candidates, a shortlist); the tools (RFP, the scoring matrix)
+// does what in one table; our IT team builds on it and runs it); the tools (RFP, the scoring matrix)
 has('pm.itproject.saas', ['Zelf bouwen', 'Een pakket kopen en op je eigen servers draaien', 'huren als SaaS', 'de leverancier regelt alles', 'De softwareleverancier maakt het pakket', 'De implementatiepartner is een apart bedrijf dat het voor jou inricht', 'Zet het antwoord in één tabel die alle drie tekenen']);
 has('pm.itproject.saas', ['Build it yourself', 'Buy a package and run it on your own servers', 'rent it as SaaS', 'the vendor runs everything', 'The software vendor makes the package', 'The implementation partner is a separate company that configures it for you', 'Put the answer in one table that all three sign'], 'en');
-has('pm.itproject.selection', ['Een longlist van acht tot tien kandidaten', 'Een shortlist van een stuk of drie']);
-has('pm.itproject.selection', ['A longlist of eight to ten candidates', 'A shortlist of about three'], 'en');
 tool('pm.itproject.selection', 'RFP', 'RFP');
 tool('pm.itproject.selection', 'Beoordelingsmatrix', 'Scoring matrix');
 has('pm.itproject.selection', ['RFP, request for proposal: jouw requirements, scenario’s en contractvoorwaarden, waarop zij reageren met een voorstel en een prijs']);
@@ -244,7 +242,7 @@ const tiles = ['tScope', 'tVendor', 'tLive', 'tTest'].map((key, i) => cueG(key, 
 const hud = g('hud', `<rect data-k="pbg" class="pm-panel" x="322" y="12" width="308" height="376" rx="10"/>` + g('pHead', '')
   + cueG('route', tiles) + cueG('lv1', g('l1', '')) + cueG('lv2', g('l2', '')) + cueG('lv3', g('l3', '')) + cueG('lv4', g('l4', '')) + cueG('start', g('st', ''))
   + cueG('goal', g('goalB', '')) + cueG('team', g('teamB', ''))
-  + cueG('req', g('reqB', '')) + cueG('list', g('listB', '')) + cueG('opt', g('optB', '')) + cueG('party', g('partyB', '')) + cueG('table', g('tableB', '')) + cueG('funnel', g('funnelB', ''))
+  + cueG('req', g('reqB', '')) + cueG('list', g('listB', '')) + cueG('opt', g('optB', '')) + cueG('party', g('partyB', '')) + cueG('table', g('tableB', ''))
   + cueG('golive', g('lineB', '')) + cueG('how', g('howB', ''))
   + cueG('uat', g('uatB', '')) + cueG('sit', g('sitB', '')) + cueG('sign', g('signB', '')) + cueG('use', g('useB', ''))
   + cueG('tool1', g('tool1B', '')) + cueG('tool2', g('tool2B', ''))
@@ -339,7 +337,7 @@ const spec = {
       id: 's1', level: 1, dur: DURS[0], still: 0.9, title: { nl: 'Eén project, vier onderwerpen', en: 'One project, four topics' },
       beats: [
         { nl: 'Lijn 3 draait in hal B. Nu komt er een nieuw MES voor de orders op de vloer.', en: 'Line 3 runs in hall B. Now a new MES is coming for the orders on the floor.', focus: ['goal', 'line3', 'mes'] },
-        { nl: 'Jij leidt dat IT-project voor de plantmanager, samen met het IT-team.', en: 'You lead that IT project for the plant manager, together with the IT team.', focus: ['team', 'sponsor', 'devs', 'mes'] },
+        { nl: 'Jij leidt dat IT-project voor de plantmanager. Het IT-team bouwt het MES uit en houdt het draaiend.', en: 'You lead that IT project for the plant manager. The IT team builds the MES out and keeps it running.', focus: ['team', 'sponsor', 'devs', 'mes'] },
         { nl: 'We volgen het project van eerste eis tot echt gebruik, langs de vier onderwerpen van de module.', en: 'We follow the project from the first requirement to real use, through the four topics of the module.', focus: 'route' },
       ],
     },
@@ -357,10 +355,9 @@ const spec = {
       id: 's3', level: 1, dur: DURS[2], still: 0.9, title: { nl: 'Leverancier kiezen', en: 'Choosing a vendor' },
       beats: [
         { nl: 'Tweede onderwerp: Leverancier, SaaS en contract kiezen. Van wie komt het MES?', en: 'Second topic: Choosing a vendor, SaaS and contracts. Where does the MES come from?', focus: ['tVendor', 'devs', 'mes'] },
-        { nl: 'Je kunt een MES zelf bouwen, kopen of huren. Huren heet {t:SaaS|SaaS}, de leverancier draait het voor je.', en: 'You can build an MES yourself, buy it or rent it. Renting is called {t:SaaS|SaaS}, the vendor runs it for you.', cue: { SaaS: 'opt' }, focus: ['opt', 'devs'] },
+        { nl: 'Zelf bouwen doe je zelden. Je koopt of huurt. Huren heet {t:SaaS|SaaS}, de leverancier draait het voor je.', en: 'You rarely build it yourself. You buy or rent. Renting is called {t:SaaS|SaaS}, the vendor runs it for you.', cue: { SaaS: 'opt' }, focus: ['opt', 'devs'] },
         { nl: 'De {t:Softwareleverancier|leverancier} maakt het pakket. De {t:Implementatiepartner|partner} richt het in.', en: 'The {t:Software vendor|vendor} makes the package. The {t:Implementation partner|partner} sets it up.', cue: { Softwareleverancier: 'party', Implementatiepartner: 'party' }, focus: ['party', 'devs'] },
-        { nl: 'Leg vooraf vast wie wat doet, in één tabel. Anders wijst de een later naar de ander.', en: 'Fix who does what in advance, in one table. Otherwise one points at the other later.', focus: ['table', 'party'] },
-        { nl: 'Je kiest in stappen, van veel kandidaten via een {t:Shortlist|shortlist} naar één keuze.', en: 'You choose in steps, from many candidates via a {t:Shortlist|shortlist} to one choice.', cue: { Shortlist: 'funnel' }, focus: ['funnel', 'devs'] },
+        { nl: 'Zet in één tabel wie wat doet, ook ons IT-team. Anders wijst de een later naar de ander.', en: 'Put in one table who does what, our IT team too. Otherwise one points at the other later.', focus: ['table', 'party'] },
         { nl: 'Bij het kiezen gebruiken we een {t:RFP|RFP}, de vraag om een voorstel, en een {t:Beoordelingsmatrix|beoordelingsmatrix}.', en: 'For choosing we use an {t:RFP|RFP}, the request for a proposal, and a {t:Scoring matrix|scoring matrix}.', cue: { RFP: 'tool1', Beoordelingsmatrix: 'tool2' }, focus: ['tool1', 'tool2'] },
       ],
     },
@@ -370,13 +367,13 @@ const spec = {
         { nl: 'Derde onderwerp: ERP/MES invoeren: van migratie tot hypercare. Hoe gaat het MES echt live?', en: 'Third topic: ERP/MES implementation: from migration to hypercare. How does the MES really go live?', focus: ['tLive', 'line3', 'mes'] },
         { nl: 'De {t:Go-live|go-live} is de dag dat het MES het officiële systeem wordt. Het oude systeem doet geen nieuw werk meer.', en: '{t:Go-live|Go-live} is the day the MES becomes the official system. The old system does no new work.', cue: { 'Go-live': 'golive' }, focus: ['golive', 'mes'] },
         { nl: 'Een {t:Big bang|big bang} gaat alles tegelijk. {t:Gefaseerde invoering|Gefaseerd} gaat lijn voor lijn, met minder risico per stap.', en: 'A {t:Big bang|big bang} switches everything at once. {t:Phased rollout|Phased} goes line by line, with less risk per step.', cue: { 'Big bang': 'how', 'Gefaseerde invoering': 'how' }, focus: ['how', 'line3', 'crew'] },
-        { nl: 'Bij het invoeren gebruiken we een {t:Pilot|pilot} en een {t:Proefmigratie|proefmigratie}, een oefenrun voor de data.', en: 'For roll-out we use a {t:Pilot|pilot} and a {t:Mock migration|mock migration}, a practice run for the data.', cue: { Pilot: 'tool1', Proefmigratie: 'tool2' }, focus: ['tool1', 'tool2'] },
+        { nl: 'Bij het invoeren gebruiken we een {t:Pilot|pilot} en een {t:Proefmigratie|proefmigratie}.', en: 'For roll-out we use a {t:Pilot|pilot} and a {t:Mock migration|mock migration}.', cue: { Pilot: 'tool1', Proefmigratie: 'tool2' }, focus: ['tool1', 'tool2'] },
       ],
     },
     {
       id: 's5', level: 1, dur: DURS[4], still: 0.9, title: { nl: 'Testen en adoptie', en: 'Testing and adoption' },
       beats: [
-        { nl: 'Vierde onderwerp: Testen en adoptie. Past het MES echt bij het werk?', en: 'Fourth topic: Testing and adoption. Does the MES really fit the work?', focus: ['tTest', 'devs', 'mes'] },
+        { nl: 'Vierde onderwerp: Testen en adoptie. Past het MES voor de go-live echt bij het werk?', en: 'Fourth topic: Testing and adoption. Before go-live, does the MES really fit the work?', focus: ['tTest', 'devs', 'mes'] },
         { nl: 'Bij de {t:UAT|UAT}, de gebruikersacceptatietest, controleren toekomstige gebruikers of het MES past.', en: 'In the {t:UAT|UAT}, the user acceptance test, future users check that the MES fits.', cue: { UAT: 'uat' }, focus: ['uat', 'devs', 'mes'] },
         { nl: '{t:Key user|Key users}, zoals de teamleider van lijn 3, testen met situaties uit het echte werk.', en: '{t:Key user|Key users}, like the team lead of line 3, test with situations from the real work.', cue: { 'Key user': 'sit' }, focus: ['sit', 'teamlead'] },
         { nl: 'Na de test tekenen de proceseigenaren voor de {t:Sign-off|sign-off}. Dan is het MES geaccepteerd.', en: 'After the test the process owners sign the {t:Sign-off|sign-off}. Then the MES is accepted.', cue: { 'Sign-off': 'sign' }, focus: ['sign', 'teamlead'] },
@@ -388,7 +385,7 @@ const spec = {
       id: 's6', level: 1, dur: DURS[5], still: 0.9, title: { nl: 'Eén geheel', en: 'One whole' },
       beats: [
         { nl: 'Het hangt samen. Eerst de requirements en de leverancier, dan de test, de go-live en het gebruik.', en: 'It all connects. First the requirements and the vendor, then the test, the go-live and the use.', focus: ['flow', 'mes'] },
-        { nl: 'Alles wijst naar de go-live. Daarom kies je die dag zorgvuldig en niet in je drukste tijd.', en: 'Everything points at go-live. So you choose that day carefully, not in your busiest time.', focus: ['decision', 'sponsor'] },
+        { nl: 'Alles wijst naar de go-live. Kies die dag zorgvuldig, niet in je drukste tijd. Een fout kost dan het meest.', en: 'Everything points at go-live. Choose that day carefully, not in your busiest time. A mistake costs most then.', focus: ['decision', 'sponsor'] },
       ],
     },
     {
@@ -420,8 +417,8 @@ const SAY = [
   [ // s1 one project, four topics
     { nl: 'Lijn 3 draait in hal B. Nu komt er een nieuw MES, het systeem dat de orders op de vloer aanstuurt.',
       en: 'Line 3 runs in hall B. Now a new MES is coming, the system that runs the orders on the floor.' },
-    { nl: 'Jij leidt dat IT-project voor de plantmanager, samen met het IT-team.',
-      en: 'You lead that IT project for the plant manager, together with the IT team.' },
+    { nl: 'Jij leidt dat IT-project voor de plantmanager. Het IT-team bouwt het MES uit en houdt het draaiend.',
+      en: 'You lead that IT project for the plant manager. The IT team builds the MES out and keeps it running.' },
     { nl: 'We volgen het project van eerste eis tot echt gebruik, langs de vier onderwerpen van de module. De details komen later, in de lessen.',
       en: 'We follow the project from the first requirement to real use, through the four topics of the module. The details come later, in the lessons.' },
   ],
@@ -440,14 +437,12 @@ const SAY = [
   [ // s3 choosing a vendor
     { nl: 'Het tweede onderwerp is Leverancier, SaaS en contract kiezen. Van wie komt het MES?',
       en: 'The second topic is Choosing a vendor, SaaS and contracts. Where does the MES come from?' },
-    { nl: 'Je kunt een MES zelf bouwen, kopen of huren. Huren heet {t:SaaS|SaaS}, de leverancier draait het voor je.',
-      en: 'You can build an MES yourself, buy it or rent it. Renting is called {t:SaaS|SaaS}, the vendor runs it for you.' },
+    { nl: 'Een MES bouw je zelden zelf. Je koopt een pakket of je huurt het. Huren heet {t:SaaS|SaaS}, de leverancier draait het voor je.',
+      en: 'You rarely build an MES yourself. You buy a package or rent it. Renting is called {t:SaaS|SaaS}, the vendor runs it for you.' },
     { nl: 'De {t:Softwareleverancier|softwareleverancier} maakt het pakket. De {t:Implementatiepartner|implementatiepartner} richt het voor jou in.',
       en: 'The {t:Software vendor|software vendor} makes the package. The {t:Implementation partner|implementation partner} sets it up for you.' },
-    { nl: 'Leg vooraf vast wie wat doet, in één tabel. Anders wijst de een later naar de ander.',
-      en: 'Fix who does what in advance, in one table. Otherwise one points at the other later.' },
-    { nl: 'Je kiest in stappen, van veel kandidaten via een {t:Shortlist|shortlist} naar één keuze.',
-      en: 'You choose in steps, from many candidates via a {t:Shortlist|shortlist} to one choice.' },
+    { nl: 'Zet in één tabel wie wat doet, ook ons IT-team. Anders wijst de een later naar de ander.',
+      en: 'Put in one table who does what, our IT team too. Otherwise one points at the other later.' },
     { nl: 'Bij het kiezen gebruiken we een RFP, de vraag om een voorstel, en een beoordelingsmatrix.',
       en: 'For choosing we use an RFP, the request for a proposal, and a scoring matrix.' },
   ],
@@ -458,12 +453,12 @@ const SAY = [
       en: '{t:Go-live|Go-live} is the day the new MES becomes the official system. The old system then does no new work.' },
     { nl: 'Een {t:Big bang|big bang} schakelt alles tegelijk om. {t:Gefaseerde invoering|Gefaseerd} gaat lijn voor lijn, met minder risico per stap.',
       en: 'A {t:Big bang|big bang} switches everything at once. {t:Phased rollout|Phased} goes line by line, with less risk per step.' },
-    { nl: 'Bij het invoeren gebruiken we een pilot en een proefmigratie, een oefenrun voor het verhuizen van data.',
-      en: 'For roll-out we use a pilot and a mock migration, a practice run for moving the data.' },
+    { nl: 'Bij het invoeren gebruiken we een pilot en een proefmigratie.',
+      en: 'For roll-out we use a pilot and a mock migration.' },
   ],
   [ // s5 testing and adoption
-    { nl: 'Het vierde onderwerp is Testen en adoptie. Past het MES echt bij het werk?',
-      en: 'The fourth topic is Testing and adoption. Does the MES really fit the work?' },
+    { nl: 'Het vierde onderwerp is Testen en adoptie. Past het MES voor de go-live echt bij het werk?',
+      en: 'The fourth topic is Testing and adoption. Before go-live, does the MES really fit the work?' },
     { nl: 'Bij de {t:UAT|UAT}, de gebruikersacceptatietest, controleren toekomstige gebruikers of het MES past.',
       en: 'In the {t:UAT|UAT}, the user acceptance test, future users check that the MES fits.' },
     { nl: '{t:Key user|Key users}, zoals de teamleider van lijn 3, testen met situaties uit het echte werk.',
@@ -478,8 +473,8 @@ const SAY = [
   [ // s6 one whole
     { nl: 'Het hangt samen. Eerst de requirements en de leverancier, dan de test, de go-live en het gebruik.',
       en: 'It all connects. First the requirements and the vendor, then the test, the go-live and the use.' },
-    { nl: 'Alles wijst naar de go-live. Daarom kies je die dag zorgvuldig en niet in je drukste tijd.',
-      en: 'Everything points at go-live. So you choose that day carefully, not in your busiest time.' },
+    { nl: 'Alles wijst naar de go-live. Kies die dag zorgvuldig, niet in je drukste tijd. Een fout kost dan het meest.',
+      en: 'Everything points at go-live. Choose that day carefully, not in your busiest time. A mistake costs most then.' },
   ],
   [ // s7 the map
     { nl: 'Dit is de kaart van Projecten. IT-projecten leiden is het vierde station van IT en agile.',
@@ -578,8 +573,8 @@ const css = PM_CSS + HALL_CSS + `
 ` + mapStyles();
 
 const label = {
-  nl: 'Hal B van de fabriek, waar lijn 3 draait, zoals in het vierde veldfilmpje, IT en agile. Op de vloer lijn 3 op zijn plek met een gestippelde omtrek; ernaast staat lijn 4. Links de stroomkast met de kabel van buiten, aan de achterwand de schakelkast, aan de zijwand een kalender en voorin een tafel met een laptop: het nieuwe MES. Per onderwerp komen er mensen bij: de plantmanager, het IT-team bij de tafel, de teamleider van lijn 3 die het werk kent en twee operators bij lijn 3. Rechts een paneel, gemarkeerd als voorbeeld of schema: het nieuwe MES en wie wat doet; een eis met een controle, de teamleider die meeschrijft en een lijst die verdeeld is in wat bij de go-live moet en wat later mag; drie manieren om aan een MES te komen, de leverancier en de partner met één tabel en een trechter van kandidaten naar een keuze; de go-live als moment tussen het oude systeem en het nieuwe MES, een big bang en een gefaseerde invoering; de gebruikers die het MES testen, een situatie uit het werk, een akkoord en de vraag of het MES wordt gebruikt; en per onderwerp twee namen van hulpmiddelen. Aan het eind de kaart van Projecten met IT-projecten leiden verlicht, en de vier onderwerpen met hun vier niveaus.',
-  en: 'Hall B of the plant, where line 3 runs, as in the fourth field film, IT and agile. On the floor line 3 in its place with a dashed outline; next to it stands line 4. At the left the power cabinet with the cable from outside, on the back wall the switchboard, on the side wall a calendar and at the front a table with a laptop: the new MES. Each topic brings people: the plant manager, the IT team at the table, the team lead of line 3 who knows the work and two operators at line 3. At the right a panel, marked as an example or a diagram: the new MES and who does what; a requirement with a check, the team lead who helps write and a list divided into what must be in at go-live and what can wait; three ways to get an MES, the vendor and the partner with one table and a funnel from candidates to one choice; the go-live as the moment between the old system and the new MES, a big bang and a phased roll-out; the users who test the MES, a situation from the work, an acceptance and the question whether the MES is used; and per topic two names of tools. At the end the map of Projects with Leading IT projects lit, and the four topics with their four levels.',
+  nl: 'Hal B van de fabriek, waar lijn 3 draait, zoals in het vierde veldfilmpje, IT en agile. Op de vloer lijn 3 op zijn plek met een gestippelde omtrek; ernaast staat lijn 4. Links de stroomkast met de kabel van buiten, aan de achterwand de schakelkast, aan de zijwand een kalender en voorin een tafel met een laptop: het nieuwe MES. Per onderwerp komen er mensen bij: de plantmanager, het IT-team bij de tafel, de teamleider van lijn 3 die het werk kent en twee operators bij lijn 3. Rechts een paneel, gemarkeerd als voorbeeld of schema: het nieuwe MES en wie wat doet; een eis met een controle, de teamleider die meeschrijft en een lijst die verdeeld is in wat bij de go-live moet en wat later mag; drie manieren om aan een MES te komen, de leverancier, de partner en het IT-team met één tabel; de go-live als moment tussen het oude systeem en het nieuwe MES, een big bang en een gefaseerde invoering; de gebruikers die het MES testen, een situatie uit het werk, een akkoord en de vraag of het MES wordt gebruikt; en per onderwerp twee namen van hulpmiddelen. Aan het eind de kaart van Projecten met IT-projecten leiden verlicht, en de vier onderwerpen met hun vier niveaus.',
+  en: 'Hall B of the plant, where line 3 runs, as in the fourth field film, IT and agile. On the floor line 3 in its place with a dashed outline; next to it stands line 4. At the left the power cabinet with the cable from outside, on the back wall the switchboard, on the side wall a calendar and at the front a table with a laptop: the new MES. Each topic brings people: the plant manager, the IT team at the table, the team lead of line 3 who knows the work and two operators at line 3. At the right a panel, marked as an example or a diagram: the new MES and who does what; a requirement with a check, the team lead who helps write and a list divided into what must be in at go-live and what can wait; three ways to get an MES, the vendor, the partner and the IT team with one table; the go-live as the moment between the old system and the new MES, a big bang and a phased roll-out; the users who test the MES, a situation from the work, an acceptance and the question whether the MES is used; and per topic two names of tools. At the end the map of Projects with Leading IT projects lit, and the four topics with their four levels.',
 };
 const { data } = await defineFilm(spec, { svg, script: stageScript, css, kitCss: k.ISO_CSS, label });
 

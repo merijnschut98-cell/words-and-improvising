@@ -131,7 +131,7 @@ const STAGE = (() => {
   function teamCard(a) {
     const row = (i, who, what) => rect(334, 162 + i * 42, 284, 36, 'pm-badge', 6) + txt(346, 162 + i * 42 + 26, who, 22, 'start', 'pm-big') + txt(606, 162 + i * 42 + 26, what, 22, 'end', 'pm-txt');
     return op(a, row(0, tr('Plantmanager', 'Plant manager', 160), tr('sponsor', 'sponsor', 90)) + row(1, tr('Jij', 'You', 60), tr('leidt het project', 'lead the project', 190))
-      + row(2, tr('IT-team', 'IT team', 100), tr('doet mee', 'takes part', 190)));
+      + row(2, tr('IT-team', 'IT team', 100), tr('bouwt het uit', 'builds on it', 190)));
   }
 
   // ---- the two tool names of a topic scene, as chips under the schema (one short sentence names them; they are
@@ -157,20 +157,17 @@ const STAGE = (() => {
       ...tools(b, p, 4, tr('MoSCoW', 'MoSCoW', 260), tr('To-be-proces', 'To-be process', 260)) };
   }
 
-  // ---- s3: the vendor. Build, buy or rent (SaaS); the vendor makes the package, the partner sets it up, we write down who does what;
-  // the selection runs in steps, from many candidates to a shortlist and one choice.
+  // ---- s3: the vendor. Build, buy or rent (SaaS); the vendor makes the package, the partner sets it up, our IT team builds on it and runs it, and we write down who does what;
+  // the tools of choosing are named, not explained.
   function vendorParts(b, p) {
     const opt = (i, t, lit) => rect(334, 94 + i * 40, 284, 34, lit ? 'pm-crit' : 'pm-card', 6) + txt(346, 94 + i * 40 + 25, t, 22, 'start', lit ? 'pm-on' : 'pm-txt');
     const options = opt(0, tr('Zelf bouwen', 'Build it', 262), false) + opt(1, tr('Kopen', 'Buy it', 262), false) + opt(2, tr('Huren: SaaS', 'Rent it: SaaS', 262), true);
     const party = (i, who, what) => rect(334, 94 + i * 42, 284, 36, 'pm-badge', 6) + txt(346, 94 + i * 42 + 26, who, 22, 'start', 'pm-big') + txt(606, 94 + i * 42 + 26, what, 22, 'end', 'pm-txt');
     const parties = party(0, tr('Leverancier', 'Vendor', 150), tr('het pakket', 'the package', 140)) + party(1, tr('Partner', 'Partner', 100), tr('richt het in', 'sets it up', 150))
-      + party(2, tr('Wij', 'We', 60), tr('de eisen', 'the needs', 120));
+      + party(2, tr('IT-team', 'IT team', 100), tr('bouwt, draait', 'extends, runs', 160));
     const table = `<rect class="pm-out" x="328" y="88" width="296" height="132" rx="10"/>` + txt(334, 242, tr('Eén tabel', 'One table', 284), 22, 'start', 'pm-mute');
-    const bar = (i, w, t, lit) => rect(334, 94 + i * 42, w, 36, lit ? 'pm-crit' : 'pm-card', 6) + txt(346, 94 + i * 42 + 26, t, 22, 'start', lit ? 'pm-on' : 'pm-txt');
-    const funnel = bar(0, 284, tr('Veel kandidaten', 'Many candidates', 262), false) + bar(1, 200, tr('Shortlist', 'Shortlist', 180), false) + bar(2, 150, tr('Eén keuze', 'One choice', 130), true);
-    return { optB: b === 1 ? op(span(p, 0.1, 0.5), options) : '', partyB: b === 2 ? op(span(p, 0.1, 0.5), parties) : b === 3 ? parties : '', tableB: b === 3 ? op(span(p, 0.1, 0.5), table) : '',
-      funnelB: b >= 4 ? (b === 4 ? op(span(p, 0.1, 0.5), funnel) : funnel) : '',
-      ...tools(b, p, 5, tr('RFP', 'RFP', 260), tr('Beoordelingsmatrix', 'Scoring matrix', 260)) };
+    return { optB: b === 1 ? op(span(p, 0.1, 0.5), options) : '', partyB: b === 2 ? op(span(p, 0.1, 0.5), parties) : b >= 3 ? parties : '', tableB: b === 3 ? op(span(p, 0.1, 0.5), table) : b >= 4 ? table : '',
+      ...tools(b, p, 4, tr('RFP', 'RFP', 260), tr('Beoordelingsmatrix', 'Scoring matrix', 260)) };
   }
 
   // ---- s4: implementation and go-live. The go-live is the day the new MES becomes the official system (the old one then does no
@@ -248,7 +245,7 @@ const STAGE = (() => {
   }
 
 
-  const KEYS = ['goalB', 'teamB', 'reqB', 'listB', 'optB', 'partyB', 'tableB', 'funnelB', 'lineB', 'howB', 'uatB', 'sitB', 'signB', 'useB', 'tool1B', 'tool2B', 'flowB', 'decisionB', 'l1', 'l2', 'l3', 'l4', 'st'];
+  const KEYS = ['goalB', 'teamB', 'reqB', 'listB', 'optB', 'partyB', 'tableB', 'lineB', 'howB', 'uatB', 'sitB', 'signB', 'useB', 'tool1B', 'tool2B', 'flowB', 'decisionB', 'l1', 'l2', 'l3', 'l4', 'st'];
   function render(si, u) {
     camera(si, u);
     const { b, p } = beatOf(si, u);
