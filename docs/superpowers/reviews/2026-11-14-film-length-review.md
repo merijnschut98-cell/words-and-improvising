@@ -47,3 +47,8 @@ Why it matters: in a lesson with a film, the film replaces the reading (`lessonP
 ## Answer to the question
 
 The length came from the rule, but the films are not padded: 92 of 96 are informative throughout, 4 can lose 12 to 23 percent, none is padded. The bigger issue is the other way round: dense films that leave lesson points out, which the learner then never sees.
+
+## Decisions (Merijn, 14 Nov)
+
+- Dropped lesson points: **complete the films** (not the lesson text under the film). Plan Task 17, worst first, after the Projects intros.
+- The four trimmable films: **trim** them. Plan Task 18.

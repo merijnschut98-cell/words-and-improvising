@@ -210,6 +210,24 @@ test('sync: seenIntros of two devices merge as a union', () => {});
 - [ ] **Step 4:** e2e: add a step "module screen: open Planning from the list, intro on top, topics below, continue opens the next lesson", with screenshots in both themes. Update steps that unfold a module row.
 - [ ] **Step 5:** `npm test`, validator, e2e step green. Commit.
 
+### Task 6b: Back to the module screen after a lesson (Merijn, 14 Nov)
+
+A lesson, check or situation opened from the module screen returns to that module screen when it ends (today they return to the course home with `go('home')`). Opened from anywhere else, they return where they came from as now.
+
+- [ ] Tests first: the done card's back and continue actions route to `module` with the lesson's module id when the lesson was opened from the module screen; to the course home otherwise. Build `sonnet`, review `opus` (navigation is shared code).
+
+### Task 17: Complete the films that drop lesson points (Merijn, 14 Nov)
+
+The film length review (`docs/superpowers/reviews/2026-11-14-film-length-review.md`) found no padded films but many dense films that leave lesson points out; since a film replaces the reading step, the learner never sees those points. Merijn chose to complete the films, not to show the lesson text under them.
+
+- [ ] **Step 1 (design, `opus`):** per film, from the review files, decide: extend (the missing points fit within the length rules) or split (one film per lesson, when a film serves three or four lessons and misses more than about 15 points). Record the list, worst first, and any kit limit that blocks it (today `MAX_TOTAL` 300 s and the guard's 360 s per language).
+- [ ] **Step 2:** per film or split: build (`sonnet`), review (`sonnet`; it checks that every lesson point is now in the film or on a card that stays at least 4 s), render (`sonnet`), merge, upload, verify, push. Two at a time, worst first: eng.machining.cnc, eng.joining.arc, eng.joining.defects, eng.machining.drilling, eng.joining.spot, then the rest of the over-15 list, then the smaller ones.
+- Order: after the Projects intros (Task 11), unless Merijn moves it.
+
+### Task 18: Trim the four trimmable films (Merijn, 14 Nov)
+
+eng.switchgear.devices, eng.power.air, eng.ot.orderflow and eng.maintenance.tpm: remove the restatements, recaps and extras listed in the review files; eng.maintenance.tpm also gets its missing people point (Teach 4). Build `sonnet`, review `sonnet`, render `sonnet`.
+
 ### Task 7: The map on the subject home
 
 **Files:**
