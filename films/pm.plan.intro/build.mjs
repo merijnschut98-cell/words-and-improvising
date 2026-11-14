@@ -172,7 +172,7 @@ const hud = g('hud', `<rect data-k="pbg" class="pm-panel" x="322" y="12" width="
   + cueG('route', tiles) + cueG('lv1', g('l1', '')) + cueG('lv2', g('l2', '')) + cueG('lv3', g('l3', '')) + cueG('lv4', g('l4', '')) + cueG('start', g('st', ''))
   + cueG('goal', g('goalB', ''))
   + cueG('wbs', g('wbsB', '')) + cueG('deliv', g('delivB', '')) + cueG('pkg', g('pkgB', '')) + cueG('scope', g('scopeB', ''))
-  + g('barsB', '') + cueG('crit', g('critB', '')) + cueG('dep', g('depB', '')) + cueG('mile', g('mileB', ''))
+  + cueG('gantt', g('barsB', '')) + cueG('crit', g('critB', '')) + cueG('dep', g('depB', '')) + cueG('mile', g('mileB', ''))
   + cueG('range', g('rangeB', '')) + cueG('effort', g('effortB', '')) + cueG('dur', g('durB', '')) + cueG('buffer', g('bufferB', ''))
   + cueG('reg', g('regB', '')) + cueG('owner', g('ownerB', '')) + cueG('action', g('actionB', '')) + cueG('people', g('peopleB', ''))
   + cueG('plan', g('planB', '')) + cueG('loop', g('loopB', '')));
@@ -275,6 +275,7 @@ const spec = {
         { nl: 'Zo ontstaat een {t:WBS|WBS}: een boom met het project bovenaan en de deliverables daaronder.', en: 'This gives a {t:WBS|WBS}: a tree with the project on top and the deliverables below.', cue: { WBS: 'wbs' }, focus: ['wbs', 'floor'] },
         { nl: 'Onderaan het {t:Werkpakket|werkpakket}: werk dat één persoon of een klein team kan afmaken.', en: 'At the bottom the {t:Work package|work package}: work one person or a small team can finish.', cue: { Werkpakket: 'pkg' }, focus: ['pkg', 'power'] },
         { nl: '{t:Scope|Scope}: wat het project oplevert. Lijn 4 meteen ombouwen hoort er niet bij.', en: '{t:Scope|Scope}: what the project delivers. Rebuilding line 4 as well is not part of it.', cue: { Scope: 'scope' }, focus: ['scope', 'line4'] },
+        { nl: 'Bij het opdelen gebruiken we vaak een {t:WBS|WBS} en een {t:Scopeomschrijving|scopeomschrijving}.', en: 'For breaking down the work we often use a {t:WBS|WBS} and a {t:Scope statement|scope statement}.', cue: { WBS: 'wbs', Scopeomschrijving: 'scope' }, focus: ['wbs', 'scope'] },
       ],
     },
     {
@@ -284,6 +285,7 @@ const spec = {
         { nl: 'Een {t:Afhankelijkheid|afhankelijkheid}: de lijn verhuist pas als vloer en stroom klaar zijn.', en: 'A {t:Dependency|dependency}: the line moves only once the floor and the power are ready.', cue: { Afhankelijkheid: 'dep' }, focus: ['dep', 'floor', 'power'] },
         { nl: 'De nieuwe stroomaansluiting duurt het langst. Die keten is het {t:Kritiek pad|kritieke pad}.', en: 'The new power supply takes longest. That chain is the {t:Critical path|critical path}.', cue: { 'Kritiek pad': 'crit' }, focus: ['crit', 'installer', 'power'] },
         { nl: 'Een {t:Mijlpaal|mijlpaal}: na de stop beslist de sponsor of de lijn in productie gaat.', en: 'A {t:Milestone|milestone}: after the shutdown the sponsor decides if the line goes into production.', cue: { Mijlpaal: 'mile' }, focus: ['mile', 'sponsor'] },
+        { nl: 'Bij de planning gebruiken we vaak een {t:Gantt-chart|Gantt-chart} en een {t:Netwerkplanning|netwerkplanning}.', en: 'For the schedule we often use a {t:Gantt chart|Gantt chart} and a {t:Network diagram|network diagram}.', cue: { 'Gantt-chart': 'gantt', Netwerkplanning: 'dep' }, focus: ['gantt', 'crit', 'dep'] },
       ],
     },
     {
@@ -293,6 +295,7 @@ const spec = {
         { nl: 'Geen punt maar een {t:Bandbreedte|bandbreedte}: van het beste tot het slechtste geval.', en: 'Not a point but a {t:Range|range}: from the best case to the worst.', cue: { Bandbreedte: 'range' }, focus: ['range', 'crew'] },
         { nl: '{t:Inspanning|Inspanning} is uren werk, {t:Doorlooptijd|doorlooptijd} is kalendertijd.', en: '{t:Effort|Effort} is hours of work, {t:Duration|duration} is calendar time.', cue: { Inspanning: 'effort', Doorlooptijd: 'dur' }, focus: ['effort', 'dur'] },
         { nl: 'Eén zichtbare {t:Buffer|buffer} voor het eind van de stop, geen stiekeme marge in elke taak.', en: 'One visible {t:Buffer|buffer} before the end of the shutdown, no hidden padding in every task.', cue: { Buffer: 'buffer' }, focus: ['buffer', 'calendar'] },
+        { nl: 'Schatten doen we vaak met een {t:Driepuntsschatting|driepuntsschatting} en een {t:Koortsgrafiek|koortsgrafiek}.', en: 'For estimating we often use a {t:Three-point estimate|three-point estimate} and a {t:Fever chart|fever chart}.', cue: { Driepuntsschatting: 'range', Koortsgrafiek: 'buffer' }, focus: ['range', 'buffer'] },
       ],
     },
     {
@@ -302,6 +305,7 @@ const spec = {
         { nl: 'Een {t:Risicolijst|risicolijst}: de nieuwe schakelkast komt misschien te laat.', en: 'A {t:Risk register|risk register}: the new switchboard may arrive late.', cue: { Risicolijst: 'reg' }, focus: ['reg', 'switch'] },
         { nl: 'Eén {t:Risico-eigenaar|risico-eigenaar}, de inkoper. Een {t:Beheersmaatregel|beheersmaatregel}: de kast nu bestellen.', en: 'One {t:Risk owner|risk owner}, the buyer. A {t:Mitigation|mitigation}: order the switchboard now.', cue: { 'Risico-eigenaar': 'owner', Beheersmaatregel: 'action' }, focus: ['owner', 'action', 'buyer'] },
         { nl: 'En mensen: in de zomerstop wil iedereen dezelfde monteurs.', en: 'And people: in the shutdown everyone wants the same mechanics.', focus: ['people', 'crew'] },
+        { nl: 'Bij risico’s en mensen gebruiken we vaak een {t:RACI|RACI} en een {t:Resourcehistogram|resourcehistogram}.', en: 'For risk and resources we often use a {t:RACI|RACI} and a {t:Resource histogram|resource histogram}.', cue: { RACI: 'owner', Resourcehistogram: 'people' }, focus: ['owner', 'people'] },
       ],
     },
     {
@@ -345,8 +349,8 @@ const SAY = [
       en: 'A plant is building a new hall. Packing line 3 has to move there, during the summer shutdown of {n:3} weeks.' },
     { nl: 'De sponsor heeft het doel gesteld. Daar gaat deze module over. Plannen is van een doel naar een plan waar mensen in geloven.',
       en: 'The sponsor has set the goal. That is what this module is about. Planning turns a goal into a plan that people believe in.' },
-    { nl: 'We volgen dit ene project door de hele module, langs vier onderwerpen. Eerst het grote plaatje. De details en het rekenwerk komen later, in de lessen.',
-      en: 'We follow this one project through the whole module, past four topics. First the big picture. The details and the calculations come later, in the lessons.' },
+    { nl: 'We volgen dit ene project door de hele module, langs vier onderwerpen. De details en het rekenwerk komen later, in de lessen.',
+      en: 'We follow this one project through the whole module, past four topics. The details and the calculations come later, in the lessons.' },
   ],
   [ // s2 breakdown and scope
     { nl: 'Het eerste onderwerp is Opdeling en scope. Wat moet er allemaal gebeuren voordat de lijn weer draait?',
@@ -359,6 +363,8 @@ const SAY = [
       en: 'The work packages hang at the bottom. One person or a small team can do and finish each one.' },
     { nl: 'En je spreekt de scope af, wat het project wel en niet doet. Lijn 4 meteen ombouwen? Dat hoort er niet bij.',
       en: 'And you agree the scope, what the project does and does not do. Rebuild line 4 while we are at it? That is not part of it.' },
+    { nl: 'Bij het opdelen gebruiken we vaak een WBS en een scopeomschrijving.',
+      en: 'For breaking down the work we often use a WBS and a scope statement.' },
   ],
   [ // s3 schedule and critical path
     { nl: 'Het tweede onderwerp is Planning en kritiek pad. Nu zet je de resultaten in de tijd.',
@@ -369,6 +375,8 @@ const SAY = [
       en: 'The new power supply comes from an outside contractor, and it takes longest. That chain sets the end date. It is the critical path, and you watch it most closely.' },
     { nl: 'En je zet mijlpalen, momenten met een besluit. De belangrijkste komt aan het eind van de stop. Gaat de lijn in productie, of niet?',
       en: 'And you set milestones, moments with a decision. The key one comes at the end of the shutdown. Does the line go into production, or not?' },
+    { nl: 'Bij de planning gebruiken we vaak een Gantt-chart en een netwerkplanning.',
+      en: 'For the schedule we often use a Gantt chart and a network diagram.' },
   ],
   [ // s4 estimating and buffers
     { nl: 'Het derde onderwerp is Schatten en buffers. Hoe lang duurt elk stuk werk echt?',
@@ -379,6 +387,8 @@ const SAY = [
       en: 'Turn the hours into weeks as well. Effort is the number of hours of work. Duration is the time on the calendar, because the mechanics also have their normal job.' },
     { nl: 'En zet één zichtbare buffer vlak voor het eind van de stop, in plaats van stiekem wat extra in elke taak.',
       en: 'And put one visible buffer just before the end of the shutdown, instead of hiding a little extra in every task.' },
+    { nl: 'Schatten doen we vaak met een driepuntsschatting en een koortsgrafiek voor de buffer.',
+      en: 'For estimating we often use a three-point estimate and a fever chart for the buffer.' },
   ],
   [ // s5 risk and resources
     { nl: 'Het vierde onderwerp is Risico’s en mensen. Wat kan er misgaan, en wie doet wat?',
@@ -389,6 +399,8 @@ const SAY = [
       en: 'Each risk gets one owner, here the buyer. And a mitigation, something you do now. He orders the switchboard this week.' },
     { nl: 'En dan de mensen. In de zomerstop wil iedereen dezelfde monteurs.',
       en: 'And then the people. In the shutdown everyone wants the same mechanics.' },
+    { nl: 'Bij risico’s en mensen gebruiken we vaak een RACI en een resourcehistogram.',
+      en: 'For risk and resources we often use a RACI and a resource histogram.' },
   ],
   [ // s6 one plan
     { nl: 'Leg het naast elkaar en je ziet één plan. De boom geeft het werk. De planning zet het in de tijd. De schattingen geven de duur. En de risicolijst zegt wat er mis kan gaan.',
