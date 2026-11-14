@@ -24,3 +24,4 @@ Outcome: accepted (merged as delivered), sent back N times, redone.
 | 14 Nov | Film length review two2 (10 films) | sonnet | 15 | 2 min | 174,105 | accepted |
 | 14 Nov | Review module screen (v17 task 6) | opus | 75+ (report lost in a container restart, read back from its log) | about 20 min+ | 181,396+ | accepted with three navigation fixes; merged v254 |
 | 14 Nov | Film length review many1, many2, many3 (40 films) | sonnet | 19, 19, 17 | 5, 4, 3 min | 254,407, 243,647, 214,224 | accepted |
+| 14 Nov | Trim four films (Task 18) | sonnet | n/a | n/a | n/a | delivered; devices trimmed 13 percent not 23 (the rest was lesson content); in review |
