@@ -783,7 +783,14 @@ const SAY = {
     // Board, stage-gate, gate and design freeze have rules above and the rest reads right; no other film's spoken
     // text changes
     [/\bLeSS\b/g, 'Less'], [/\bSprint Planning One\b/g, 'Sprint Planning Wan'], [/\bSpotify\b/g, 'Spotifai'],
-    [/\bLean (?=budgets\b|biznis kees\b)/g, 'Lien ']],
+    [/\bLean (?=budgets\b|biznis kees\b)/g, 'Lien '],
+    // the When you're stuck module intro (pm.stuck.intro), a self-contained group at the end of the Dutch list, checked
+    // with phonemes through Piper's nl_NL-alex bridge: espeak-ng reads tussenbericht as "tussen-BEER-icht"
+    // (tˈɵsənbˌɪːrɪxt); said tussen-bericht, tˈɵsənbərˈɪxt, with the stress of bericht. Only in this film's phrase "een
+    // tussenbericht en een bandbreedte" (no other film says the word). Its other words (triangulatie, besluitenlijst,
+    // bandbreedte, weerstand, terugbelmoment, sponsorgesprek, rugdekking, kleine successen) are read right as they
+    // are; no other film's spoken text changes
+    [/\been tussenbericht en een bandbreedte\b/g, 'een tussen-bericht en een bandbreedte']],
   en: [[/\brpm\b/g, 'revolutions per minute'], [/\bmm\/min\b/g, 'millimetres per minute'], [/\bm\/min\b/g, 'metres per minute'], [/µm\b/g, 'micrometres'],
     [/€\s?(\d[\d,]*(?:\.\d+)?)/g, '$1 euros'], [/(\d)\.0(?![\d])/g, '$1'], [/(\d)\s?mm\b/g, '$1 millimetres'], [/(\d)\s?min\b/g, '$1 minutes'], [/(\d)\s?%/g, '$1 percent'],
     [/Ø\s*/g, 'diameter '], [/(\d)\+(\d)/g, '$1 plus $2'], [/\s×\s/g, ' times '], [/\s\/\s/g, ' divided by '], [/\s=\s/g, ' is '], [/°/g, ' degrees'], [/\bRa\b/g, 'R a'], [/’/g, "'"],
