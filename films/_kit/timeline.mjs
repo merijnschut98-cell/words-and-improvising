@@ -747,7 +747,13 @@ const SAY = {
     // stakeholdermap, proceseigenaar and nulmeting (the rules above), and kick-off, SCQ, 5 keer waarom,
     // vragenboom, terugverdientijd, ondernemingsraad, hypotheses and fasering are read right as they are; no other
     // film's spoken text changes
-    [/\b([Ee])n een blokkeerder kan het stoppen\b/g, '$1n een blok-keerder kan het stoppen']],
+    [/\b([Ee])n een blokkeerder kan het stoppen\b/g, '$1n een blok-keerder kan het stoppen'],
+    // the Run module intro (pm.run.intro), a self-contained group at the end of the Dutch list, checked with
+    // phonemes through Piper's nl_NL-alex bridge: espeak-ng reads impactanalyse as "-lie-se" with an s (said
+    // impact-analiese, a z) and issuelog as "is-uu-eh-log" (said isjoelog, as the pre-mortem's rule says issue).
+    // Stand-up, wijzigingslog, besluitnotitie, notulen, besluitenlijst, A3-statusrapport, escalatie and the
+    // other words of the film go through the rules above or need nothing; no other film's spoken text changes
+    [/\b([Ii])mpactanalyse\b/g, '$1mpact-analiese'], [/\b([Ii])ssuelog\b/g, '$1sjoelog']],
   en: [[/\brpm\b/g, 'revolutions per minute'], [/\bmm\/min\b/g, 'millimetres per minute'], [/\bm\/min\b/g, 'metres per minute'], [/µm\b/g, 'micrometres'],
     [/€\s?(\d[\d,]*(?:\.\d+)?)/g, '$1 euros'], [/(\d)\.0(?![\d])/g, '$1'], [/(\d)\s?mm\b/g, '$1 millimetres'], [/(\d)\s?min\b/g, '$1 minutes'], [/(\d)\s?%/g, '$1 percent'],
     [/Ø\s*/g, 'diameter '], [/(\d)\+(\d)/g, '$1 plus $2'], [/\s×\s/g, ' times '], [/\s\/\s/g, ' divided by '], [/\s=\s/g, ' is '], [/°/g, ' degrees'], [/\bRa\b/g, 'R a'], [/’/g, "'"],

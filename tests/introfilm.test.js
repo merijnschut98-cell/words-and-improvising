@@ -587,3 +587,15 @@ test('short films: the narration guard still applies', () => {
   data.scenes[0].beats[0].voice = { nl: 'Zo: dit.', en: 'Fine.' };
   assert.match(checkNarration(data).join('\n'), /a symbol the voice reads aloud, or a colon/);
 });
+
+// pm.run.intro: "rapporteren" of "Sturen en rapporteren" is 129 units measured; its tiles are 140 wide with 5 units
+// of padding a side, so the film declares tileUnits 130; at the kit default (128) the word is refused
+test('checkLabels: the word "rapporteren" of "Sturen en rapporteren" fits a tile of 130 the film declares', () => {
+  const data = resolveFilm(spec(), LESSONS, MODULES);
+  const run = clone(data);
+  run.topics[0].title.nl = 'Sturen en rapporteren';
+  assert.match(checkLabels(run, '').join('\n'), new RegExp(`a tile is ${TILE_UNITS}\\b`));
+  run.tileUnits = 130;
+  assert.deepEqual(checkLabels(run, ''), []);
+  assert.deepEqual(wrapUnits('Sturen en rapporteren', 130, CHAR_W), ['Sturen en', 'rapporteren']);
+});

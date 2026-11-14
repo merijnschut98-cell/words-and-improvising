@@ -695,6 +695,20 @@ test('speak variant: the IT and agile field film words in Dutch', () => {
   assert.equal(speakOf([en], 'en'), en);
 });
 
+// The Run module intro (pm.run.intro), checked with espeak-ng phonemes through Piper's nl bridge: it reads
+// "impactanalyse" as "-aa-na-lie-se" with an s (ˌiɪsə), "impact-analiese" as ˈɪmpɑktˌaːnaːlˈizə; and
+// "issuelog" as "is-uu-eh-log" (ˈɪsyˌeːlɔx), "isjoelog" as ˈɪʃulˌɔx, as the pre-mortem's rule says issue.
+// No other word changes; English reads both words right and needs nothing.
+test('speak variant: impactanalyse and issuelog in Dutch (the Run intro)', () => {
+  const nl = (s) => speakOf([s], 'nl');
+  assert.equal(nl('We gebruiken een wijzigingslog en een impactanalyse.'), 'We gebruiken een wijzigingslog en een impact-analiese.');
+  assert.equal(nl('Een Impactanalyse per verzoek.'), 'Een Impact-analiese per verzoek.');
+  assert.equal(nl('Het komt in de issuelog, met één eigenaar.'), 'Het komt in de isjoelog, met één eigenaar.');
+  assert.equal(nl('Een analyse van de issues.'), 'Een analyse van de isjoes.');
+  const en = 'We use an impact analysis and an issue log.';
+  assert.equal(speakOf([en], 'en'), en);
+});
+
 // DevOps in Dutch (Task 20), checked with espeak-ng phonemes through Piper's nl bridge:
 // "DevOps" is read dˈɛf ˈɔps ("def ops"); "Dev-ops" is read dˈɛvˈɔps, a v as in "developer".
 // The rule takes the word as the films write it (DevOps, DevOps-rapport, DevOpsDays,

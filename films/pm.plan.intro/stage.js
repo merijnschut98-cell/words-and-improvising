@@ -239,7 +239,9 @@ const STAGE = (() => {
     const z = b === 0 ? span(p, 0.35, 1) : 1;
     const s = lerp(MAP0.s, MAP1.s, z);
     move(E.mapG, `translate(${f1(lerp(MAP0.x, MAP1.x, z))} ${f1(lerp(MAP0.y, MAP1.y, z))}) scale(${s.toFixed(4)})`);
-    return b === 0 ? 1 : 1 - span(p, 0, 0.45);
+    // the map fades out once, in the second beat, and stays hidden after it (it must not come back at the start of
+    // every later beat, behind the grid)
+    return b === 0 ? 1 : b === 1 ? 1 - span(p, 0, 0.45) : 0;
   }
   // the columns (GRID from build.mjs, which checks the level words fit): a tile column of GRID.tile units, four
   // level columns of GRID.col from GRID.x with boxes of GRID.box. The level words stand on one line each,

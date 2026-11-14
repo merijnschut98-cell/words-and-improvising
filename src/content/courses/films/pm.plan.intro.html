@@ -1367,7 +1367,7 @@ function mapPlace(b, p) {
 const z = b === 0 ? span(p, 0.35, 1) : 1;
 const s = lerp(MAP0.s, MAP1.s, z);
 move(E.mapG, `translate(${f1(lerp(MAP0.x, MAP1.x, z))} ${f1(lerp(MAP0.y, MAP1.y, z))}) scale(${s.toFixed(4)})`);
-return b === 0 ? 1 : 1 - span(p, 0, 0.45);
+return b === 0 ? 1 : b === 1 ? 1 - span(p, 0, 0.45) : 0;
 }
 const GX = GRID.x;
 const GW = GRID.col;
