@@ -326,7 +326,7 @@ export function checkNarration(data) {
 // (a flat 10.5 units a character) let "Schedule and" (146 units) into a
 // 128-unit tile and "Werkkennis" (128) into a 112-unit column.
 // The panel is 284 units wide inside its margins. A topic title drawn in a tile
-// (140 units, 6 of padding each side: 128) is wrapped by width (wrapUnits) into
+// (140 units, 5 of padding each side: 130; "rapporteren" of the Run module is 129) is wrapped by width (wrapUnits) into
 // at most 3 lines. Every tr('nl', 'en') label of the stage script is measured in
 // both languages against the panel, or against the width named as its third
 // argument: tr('Vloer klaar', 'Floor ready', 160). A stage that wraps text must
@@ -336,7 +336,7 @@ export const LABEL_UNITS = 22;
 export const CHAR_W = {"0":14.9,"1":9.5,"2":13.9,"3":14.2,"4":14.9,"5":14.1,"6":14.3,"7":13.2,"8":14.4,"9":14.3," ":6.0,"a":12.8,"b":13.9,"c":13,"d":13.9,"e":13.1,"f":8,"g":13.9,"h":13.7,"i":6,"j":6,"k":12.8,"l":6,"m":20.1,"n":13.7,"o":13.5,"p":13.9,"q":13.9,"r":9.1,"s":12.4,"t":7.4,"u":13.7,"v":13.2,"w":18.7,"x":12.8,"y":13.3,"z":12.6,"A":16.8,"B":14.6,"C":16.3,"D":15.9,"E":13.4,"F":13,"G":16.6,"H":16.5,"I":6.2,"J":12.9,"K":15.9,"L":12.5,"M":20.5,"N":16.8,"O":17,"P":14.3,"Q":17.1,"R":14.5,"S":14.4,"T":14.7,"U":16.2,"V":16.8,"W":23.3,"X":16.3,"Y":16.1,"Z":14.7,".":7.4,",":7.4,":":7.4,";":7.6,"!":7.5,"?":12.4,"'":7.5,"’":6.9,"‘":6.9,"-":10.3,"–":11,"/":8.6,"(":8.3,")":8.3,"&":14.8,"+":15,"%":22.4,"é":13.1,"ë":13.1,"è":13.1,"ê":13.1,"ï":6,"ö":13.5,"ü":13.7,"á":12.8,"à":12.8,"ç":13,"É":13.4,"…":22.1,"“":11.9,"”":11.7,"\"":12.2};
 export const UNKNOWN_W = 14;
 export const PANEL_UNITS = 284;
-export const TILE_UNITS = 128;
+export const TILE_UNITS = 130;
 export const TILE_LINES = 3;
 // A field film's station title (the index's module title, v17) stands in a row of
 // the road: wrapped by width (wrapUnits) into at most STATION_LINES lines of

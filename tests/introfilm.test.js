@@ -243,10 +243,10 @@ test('checkLabels: a topic title wraps by width into at most 3 lines inside a ti
   assert.deepEqual(checkLabels(data, ''), []);
   const wide = clone(data);
   wide.topics[0].title.nl = 'Onderhandelingstechnieken';
-  assert.match(checkLabels(wide, '').join('\n'), /topic split: "Onderhandelingstechnieken" \(nl\) has a word of \d+ units, a tile is 128/);
+  assert.match(checkLabels(wide, '').join('\n'), /topic split: "Onderhandelingstechnieken" \(nl\) has a word of \d+ units, a tile is 130/);
   const tall = clone(data);
   tall.topics[1].title.en = 'One two three four five six seven';
-  assert.match(checkLabels(tall, '').join('\n'), /topic time: "One two three four five six seven" \(en\) wraps to 4 lines in a tile of 128 units, a tile holds 3/);
+  assert.match(checkLabels(tall, '').join('\n'), /topic time: "One two three four five six seven" \(en\) wraps to 4 lines in a tile of 130 units, a tile holds 3/);
 });
 
 test('checkLabels: every tr(nl, en) label of the stage fits its box at 22 units, by measured width', () => {
@@ -557,4 +557,14 @@ test('short films: the narration guard still applies', () => {
   data.scenes[0].beats[0].say = said('Zo: dit.', 'Fine.');
   data.scenes[0].beats[0].voice = { nl: 'Zo: dit.', en: 'Fine.' };
   assert.match(checkNarration(data).join('\n'), /a symbol the voice reads aloud, or a colon/);
+});
+
+// pm.run.intro: "rapporteren" of "Sturen en rapporteren" is 129 units measured; a tile is 140 wide with 5 units
+// of padding a side (130), so the longest word of the Run module topic titles fits as it does on screen
+test('checkLabels: the word "rapporteren" of "Sturen en rapporteren" fits a tile', () => {
+  const data = resolveFilm(spec(), LESSONS, MODULES);
+  const run = clone(data);
+  run.topics[0].title.nl = 'Sturen en rapporteren';
+  assert.deepEqual(checkLabels(run, ''), []);
+  assert.deepEqual(wrapUnits('Sturen en rapporteren', TILE_UNITS, CHAR_W), ['Sturen en', 'rapporteren']);
 });

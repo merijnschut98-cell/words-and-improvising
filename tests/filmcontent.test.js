@@ -276,7 +276,7 @@ test('every shipped intro film: each topic of its module is still on its map, na
     assert.match(checkFilm(data, { ...ctx, stageText: `${ctx.stageText}\ntr('Een veel te lange tekst voor het paneel', 'Short')` }).join('\n'), /units wide, the panel is 284/);
     const wide = clone(data);
     wide.topics[0].title.nl = 'Onderhandelingstechnieken';
-    assert.match(checkFilm(wide, ctx).join('\n'), /a tile is 128/);
+    assert.match(checkFilm(wide, ctx).join('\n'), /a tile is 130/);
   }
 });
 
