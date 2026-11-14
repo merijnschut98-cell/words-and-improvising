@@ -2893,6 +2893,9 @@ await step('topics: where you are (fixture)', async () => {
   await shotP('113-done-next-level-dark');
   await p.emulateMedia({ colorScheme: 'light' });
   await p.getByRole('button', { name: 'Terug naar de cursus' }).click();
+  // v17 Task 6b: a lesson opened from the module screen returns to it; the course home is one tap away.
+  await p.locator('.module-screen .module-continue').waitFor();
+  await p.locator('.module-screen .lesson-back').click();
   await p.locator('.course-today .today-why', { hasText: 'Draaien · Expert' }).waitFor();
   await onePrimary(p, 'course home after a topic lesson');
   await shotP('114-today-topic');
@@ -2909,6 +2912,48 @@ await step('topics: where you are (fixture)', async () => {
   // a film lesson: the figure sits in the Film step, under the film
   const src = await p.locator('.film-card .figure-frame').getAttribute('name', { timeout: 5000 });
   if (!/[?&]level=2(&|$)/.test(src)) throw new Error(`figure frame name without level=2: ${src}`);
+  await c.close();
+});
+
+// v17 Task 6b: a lesson, check or situation opened from the module screen returns to it;
+// opened from the course home's Today card it still returns to the course home.
+await step('module return: a lesson opened from the module screen ends on the module screen (fixture)', async () => {
+  const { c, p, shotP } = await topicContext(topicSeed());
+  const mod = await openTopicModule(p);
+  if (!(await mod.locator('.topic-count', { hasText: '2/4' }).count())) throw new Error('start: expected 2/4');
+  await mod.locator('.topic-row').first().locator('.path-stop').nth(2).click();
+  await p.locator('.lesson-place', { hasText: 'Draaien · Gevorderd' }).waitFor();
+  await playLesson(p, 'eng', 'machining', 'eng.machining.tools');
+  await onePrimary(p, 'lesson done (module origin)');
+  await p.locator('.lesson-done ~ .btn', { hasText: 'Terug naar de cursus' }).click();
+  await p.locator('.module-screen .topic-count', { hasText: '3/4' }).waitFor();
+  await onePrimary(p, 'module screen after a lesson');
+  await shotP('115-module-after-lesson');
+  // The next-level button keeps the origin: close the Expert lesson with x and land on the module screen.
+  await p.locator('.module-screen .module-continue').click();
+  await p.locator('.lesson .pre-card, .lesson .teach-card, .lesson .film-card').first().waitFor();
+  await p.locator('.round-top .icon-btn').first().click();
+  await p.locator('.module-screen .module-continue').waitFor();
+  // The situation after a lesson, opened from the module: its primary button returns to the module screen.
+  await p.evaluate(() => window.__app.go('situation', { subject: 'eng', moduleId: 'eng.machining', lessonId: 'eng.machining.tools', from: 'module' }));
+  await p.locator('.sit-answer').fill('Welke snijsnelheid hoort bij dit materiaal en waarom?');
+  await p.locator('.situation > .btn-primary').click();
+  await p.locator('.rubric-line input').nth(0).check();
+  await p.locator('.situation > .btn-primary').click();
+  await p.locator('.sit-result').waitFor();
+  await onePrimary(p, 'situation result (module origin)');
+  await p.locator('.situation > .btn-primary').click();
+  await p.locator('.module-screen .module-continue').waitFor();
+  await c.close();
+});
+
+await step('module return: a lesson opened from the Today card still returns to the course home (fixture)', async () => {
+  const { c, p } = await topicContext(topicSeed());
+  await p.locator('.course-today .today-go').click();
+  await p.locator('.lesson .pre-card, .lesson .teach-card, .lesson .film-card').first().waitFor();
+  await p.locator('.round-top .icon-btn').first().click();
+  await p.locator('.course-today .today-go').waitFor();
+  if (await p.locator('.module-screen').count()) throw new Error('Today lesson closed onto a module screen');
   await c.close();
 });
 

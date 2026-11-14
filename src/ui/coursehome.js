@@ -91,7 +91,7 @@ function modSummary(app, meta, tag, attrs, ...bits) {
     h('span', { class: 'module-meta' }, ...bits));
 }
 
-const openLesson = (app, meta) => (lessonId) => app.go('lesson', { subject: meta.subject, moduleId: meta.id, lessonId });
+const openLesson = (app, meta) => (lessonId) => app.go('lesson', { subject: meta.subject, moduleId: meta.id, lessonId, from: 'module' });
 
 // A topic module's topics: one row per topic with its path of levels, from the
 // index alone (no module load). A level shows once the one before it is passed
@@ -136,7 +136,7 @@ function topicModuleRow(app, meta) {
 export function moduleEnd(app, meta) {
   const end = moduleEndModel(app.state, meta, app.today());
   return h('div', { class: 'path-end' }, medalSeal(app.t, end.tier, 24),
-    checkEntry(app.t, end, () => app.go('check', { subject: meta.subject, moduleId: meta.id })));
+    checkEntry(app.t, end, () => app.go('check', { subject: meta.subject, moduleId: meta.id, from: 'module' })));
 }
 
 function moduleRow(app, meta) {

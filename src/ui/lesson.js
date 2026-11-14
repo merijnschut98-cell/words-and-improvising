@@ -1,5 +1,6 @@
 // A lesson: guess first (prequestions), read in short blocks (or, with a film,
 // watch it), see an example (not after a film: the film shows it), then the quiz. Passing unlocks the situation and the say-it round.
+import { exitTarget, nextParams } from '../core/moduleexit.js';
 import { h } from './dom.js';
 import { ico } from './icons.js';
 import { renderQuiz } from './quiz.js';
@@ -61,7 +62,9 @@ export function stepIndicator(t, phases, current, onJump = null) {
   }));
 }
 
-export function renderLesson(app, { subject, moduleId, lessonId }, root) {
+export function renderLesson(app, params, root) {
+  const { subject, moduleId, lessonId } = params;
+  const exit = () => app.go(...exitTarget(params));
   const t = app.t;
   const seq = app.navSeq;
   const title = h('div', { class: 'round-title' }, t('lessonTitle'));
@@ -69,7 +72,7 @@ export function renderLesson(app, { subject, moduleId, lessonId }, root) {
   let onLeave = null; // the plan from the done card is saved on the way out
   root.append(
     h('header', { class: 'top round-top' },
-      h('button', { class: 'icon-btn', 'aria-label': t('close'), onclick: () => app.go('home') }, ico('x')),
+      h('button', { class: 'icon-btn', 'aria-label': t('close'), onclick: exit }, ico('x')),
       title, h('div', {})),
     main);
 
@@ -78,8 +81,8 @@ export function renderLesson(app, { subject, moduleId, lessonId }, root) {
     main.replaceChildren(h('section', { class: 'card load-error' },
       h('p', {}, t('loadError')),
       h('div', { class: 'row' },
-        h('button', { class: 'btn btn-primary', onclick: () => app.go('lesson', { subject, moduleId, lessonId }) }, t('retry')),
-        h('button', { class: 'btn btn-ghost', onclick: () => app.go('home') }, t('backToCourse')))));
+        h('button', { class: 'btn btn-primary', onclick: () => app.go('lesson', nextParams(params, { subject, moduleId, lessonId })) }, t('retry')),
+        h('button', { class: 'btn btn-ghost', onclick: exit }, t('backToCourse')))));
   };
 
   app.openModuleTerms(subject, moduleId).then((mod) => {
@@ -324,7 +327,7 @@ export function renderLesson(app, { subject, moduleId, lessonId }, root) {
       if (!place) return null;
       const id = nextLesson(app.state, meta);
       if (!id || id === lesson.id || !meta.lessons.includes(id)) return null;
-      return h('button', { class: 'btn btn-ghost next-level', onclick: () => app.go('lesson', { subject, moduleId: meta.id, lessonId: id }) },
+      return h('button', { class: 'btn btn-ghost next-level', onclick: () => app.go('lesson', nextParams(params, { subject, moduleId: meta.id, lessonId: id })) },
         ico('chevron-right'), ' ', t('nextLevel', placeLabel(t, app.lang, id)));
     }
 
@@ -343,10 +346,10 @@ export function renderLesson(app, { subject, moduleId, lessonId }, root) {
       planCard(),
       guessCard(),
       explainBack(),
-      h('button', { class: 'btn btn-primary btn-big', onclick: () => app.go('situation', { subject, moduleId: meta.id, lessonId: lesson.id }) }, ico('drama'), ' ', t('openSituation')),
+      h('button', { class: 'btn btn-primary btn-big', onclick: () => app.go('situation', nextParams(params, { subject, moduleId: meta.id, lessonId: lesson.id })) }, ico('drama'), ' ', t('openSituation')),
       nextLevelBtn(),
       h('button', { class: 'btn btn-ghost', onclick: () => app.startSayIt(subject, meta.id, lesson.id) }, ico('mic'), ' ', t('openSayIt')),
-      h('button', { class: 'btn btn-ghost', onclick: () => app.go('home') }, t('backToCourse')));
+      h('button', { class: 'btn btn-ghost', onclick: exit }, t('backToCourse')));
     }
 
     draw();
