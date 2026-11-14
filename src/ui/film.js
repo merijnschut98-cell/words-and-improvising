@@ -156,7 +156,10 @@ export function filmButton(app, ref, level, { video = false, text = null } = {})
     label.textContent = t('filmClose');
   };
   wrap.append(btn);
-  figureAvailable(src()).then((ok) => { if (ok) wrap.hidden = false; else wrap.remove(); });
+  // The Film step falls back by itself (video, HTML film, text), so with `video`
+  // the button shows at once; it does not wait for the HTML page.
+  if (video) wrap.hidden = false;
+  else figureAvailable(src()).then((ok) => { if (ok) wrap.hidden = false; else wrap.remove(); });
   return wrap;
 }
 
