@@ -312,7 +312,7 @@ const spec = {
       beats: [
         { nl: 'De kaart van Projecten: de vier stations van IT en agile liggen naast elkaar.', en: 'The map of Projects: the four stations of IT and agile lie side by side.', focus: MAPS },
         { nl: 'Eerst Agile en Scrum: agile denken, Scrum, backlog en Kanban.', en: 'First Agile and Scrum: the agile mindset, Scrum, backlog and Kanban.', focus: MAPS[0] },
-        { nl: 'Dan Opschalen: SAFe en verder: SAFe, portfolio, alternatieven en hybride werken.', en: 'Then Scaling: SAFe and beyond: SAFe, portfolio, alternatives and hybrid working.', focus: MAPS[1] },
+        { nl: 'Dan Opschalen: SAFe en verder. Daar gaat het om SAFe, portfolio, alternatieven en hybride werken.', en: 'Then Scaling: SAFe and beyond. It covers SAFe, portfolio, alternatives and hybrid working.', focus: MAPS[1] },
         { nl: 'Dan DevOps en levering: de pipeline, DORA, releases en incidenten.', en: 'Then DevOps and delivery: the pipeline, DORA, releases and incidents.', focus: MAPS[2] },
         { nl: 'Tot slot IT-projecten leiden: eisen, leverancier, go-live en testen.', en: 'Finally Leading IT projects: requirements, vendor, go-live and testing.', focus: MAPS[3] },
         { nl: 'Elk station is een module met vier onderwerpen. Begin waar het nu knelt.', en: 'Each station is a module with four topics. Start where it hurts.', focus: MAPS },

@@ -188,7 +188,7 @@ const STAGE = (() => {
       () => rect(334, 108, 138, 40, 'pm-crit', 6) + txt(403, 136, 'Must', 22, 'middle', 'pm-on') + rect(480, 108, 138, 40, 'pm-card', 6) + txt(549, 136, 'Should', 22, 'middle', 'pm-txt')
         + rect(334, 156, 138, 40, 'pm-card', 6) + txt(403, 184, 'Could', 22, 'middle', 'pm-txt') + rect(480, 156, 138, 40, 'pm-out', 6) + txt(549, 184, 'Won’t', 22, 'middle', 'pm-mute'),
       // tool 2: the cutover plan, hour by hour from the freeze to the first shift
-      () => [[tr('Vr 18:00', 'Fri 18:00', 124), 'Freeze'], [tr('Za', 'Sat', 124), 'Go/no-go'], [tr('Ma 06:00', 'Mon 06:00', 124), tr('Eerste ploeg', 'First shift', 144)]]
+      () => [[tr('Vr 18:00', 'Fri 18:00', 124), 'Freeze'], [tr('Za 12:00', 'Sat 12:00', 124), 'Go/no-go'], [tr('Ma 06:00', 'Mon 06:00', 124), tr('Eerste ploeg', 'First shift', 144)]]
         .map(([t, a], i) => rect(334, 108 + i * 38, 284, 30, i === 2 ? 'pm-crit' : 'pm-card', 6) + txt(346, 130 + i * 38, t, 22, 'start', i === 2 ? 'pm-on' : 'pm-txt') + txt(470, 130 + i * 38, a, 22, 'start', i === 2 ? 'pm-on' : 'pm-txt')).join(''),
     ],
   ];
