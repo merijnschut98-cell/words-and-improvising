@@ -75,12 +75,12 @@ const STAGE = (() => {
   }
 
   // ---- the cast of hall B: who stands there, per scene. sponsor: the plant manager, who pays for the advice; lead: the
-  // team lead of the line; crew: the two operators at line 3 (their stop times are in the data of s4)
+  // team lead of the line; crew: the two operators at line 3 (whose employee stop times are in the data of s4)
   const HERE = [
-    { sponsor: 1, lead: 0, crew: 1 }, // s1 the lines stop too often
+    { sponsor: 1, lead: 0, crew: 1 }, // s1 too many jobs are cancelled
     { sponsor: 1, lead: 1, crew: 0 }, // s2 his problem, told on the floor
     { sponsor: 1, lead: 0, crew: 0 }, // s3 trust is between you and him
-    { sponsor: 1, lead: 0, crew: 1 }, // s4 the operators whose stop times are in the data
+    { sponsor: 1, lead: 0, crew: 1 }, // s4 the operators, whose stop times per employee are in the data
     { sponsor: 1, lead: 1, crew: 0 }, // s5 the results are handed over
     { sponsor: 1, lead: 1, crew: 1 }, // s6 all of them
   ];
@@ -111,10 +111,10 @@ const STAGE = (() => {
     return [0, 1, 2, 3].map((i) => rect(334 + i * 40, 50, 34, 34, i === cur ? 'pm-crit' : 'pm-tile', 6) + txt(334 + i * 40 + 17, 75, String(i + 1), 22, 'middle', i === cur ? 'pm-on' : 'pm-mute'));
   }
 
-  // ---- s1: the goal (the lines stop too often, the plant manager wants advice); then who he is and who you are
+  // ---- s1: the goal (too many jobs are still cancelled, the plant manager wants advice); then who he is and who you are
   function goalCard(a) {
     let s = rect(334, 56, 284, 92, 'pm-card', 8);
-    s += txt(346, 86, tr('Lijnen staan te vaak stil', 'Lines stop too often', 272), 22, 'start', 'pm-big');
+    s += txt(346, 86, tr('Te veel afzeggingen', 'Too many cancellations', 272), 22, 'start', 'pm-big');
     s += txt(346, 122, tr('hij vraagt jou om advies', 'he asks you for advice', 272), 22, 'start', 'pm-txt');
     return op(a, s);
   }
@@ -151,7 +151,7 @@ const STAGE = (() => {
     let opts = card2(94, tr('Twee of drie opties', 'Two or three options', 272), tr('hij kiest hoe, niet of', 'he picks how, not if', 272));
     ['A', 'B', 'C'].forEach((l, i) => { opts += rect(334 + i * 98, 168, 88, 44, i === 1 ? 'pm-crit' : 'pm-tile', 8) + txt(334 + i * 98 + 44, 198, l, 22, 'middle', i === 1 ? 'pm-on' : 'pm-txt'); });
     return { page1B: b === 0 ? op(span(p, 0.1, 0.5), page1) : '', probB: b === 1 ? op(span(p, 0.05, 0.4), prob) : '', giveB: b === 2 ? op(span(p, 0, 0.4), give) : '', optsB: b === 3 ? op(span(p, 0, 0.4), opts) : '',
-      ...tools(b, p, 4, tr('Diagnosefase', 'Diagnostic phase', 260), tr('Vaste prijs', 'Fixed price', 260)) };
+      ...tools(b, p, 4, tr('Diagnosefase', 'Diagnostic phase', 260), tr('Nulmeting', 'Baseline', 260)) };
   }
 
   // ---- s3: the trusted-advisor relationship. He has to dare to tell you what worries him; he cannot judge your method yet
@@ -171,7 +171,7 @@ const STAGE = (() => {
 
   // ---- s4: ethics and independence. Only the client pays for your advice; a supplier's money per client you send breaks it,
   // because the client can no longer tell whether it bent you; facts first, then conclusion, then advice; his data holds
-  // the stop times of operators, and what you learn there stays there.
+  // the stop times per employee, and what you learn there stays there.
   function ethicsParts(b, p) {
     const indep = card2(94, tr('Alleen de klant', 'Only the client'), tr('betaalt voor je advies', 'pays for your advice', 260), 'pm-crit')
       + card2(160, tr('Onafhankelijk', 'Independent'), tr('je advies is geld waard', 'your advice is worth it', 272));
@@ -184,7 +184,7 @@ const STAGE = (() => {
       hard += row(y, n, i === 2 ? 'pm-crit' : 'pm-card');
       if (i) hard += arrow(476, y - 16, 476, y);
     });
-    const data = card2(94, tr('Zijn data', 'His data'), tr('stoptijden per operator', 'stop times per operator', 272))
+    const data = card2(94, tr('Zijn data', 'His data'), tr('stoptijd per medewerker', 'stop times per employee', 272))
       + card2(160, tr('Wat je leert', 'What you learn'), tr('blijft bij hem', 'stays with him', 260), 'pm-crit');
     return { indepB: b === 0 ? op(span(p, 0.1, 0.5), indep) : '', feeB: b === 1 ? op(span(p, 0.05, 0.4), fee) : '', hardB: b === 2 ? op(span(p, 0, 0.4), hard) : '', dataB: b === 3 ? op(span(p, 0, 0.4), data) : '',
       ...tools(b, p, 4, tr('Dataminimalisatie', 'Data minimisation', 260), tr('Pseudonimiseren', 'Pseudonymising', 260)) };
@@ -205,10 +205,10 @@ const STAGE = (() => {
       + arrow(476, 152, 476, 176)
       + card2(180, tr('Doorverwijzing', 'Referral'), tr('van klant naar collega', 'from client to colleague', 272));
     return { handB: b === 0 ? op(span(p, 0.1, 0.5), hand) : '', nextB: b === 1 ? op(span(p, 0.05, 0.4), next) : '', knownB: b === 2 ? op(span(p, 0, 0.4), known) : '', referB: b === 3 ? op(span(p, 0, 0.4), refer) : '',
-      ...tools(b, p, 4, tr('Positionering', 'Positioning', 260), tr('Pijplijn', 'Pipeline', 260)) };
+      ...tools(b, p, 4, tr('Positionering', 'Positioning', 260), tr('Declarabele dagen', 'Billable days', 260)) };
   }
 
-  // ---- s6: one whole. The chain from the proposal to the client who comes back, and the choice he makes.
+  // ---- s6: one whole. The chain from the proposal to the client who comes back, and the choice he makes after the diagnostic phase.
   function flowParts(b, p) {
     const rows = [tr('Offerte', 'Proposal', 270), tr('Vertrouwen', 'Trust', 270), tr('Onafhankelijk advies', 'Independent advice', 270), tr('Klant komt terug', 'Client comes back', 270)];
     let flow = '';
@@ -217,7 +217,7 @@ const STAGE = (() => {
       flow += rect(334, y, 284, 36, i === 3 ? 'pm-crit' : 'pm-card', 6) + txt(346, y + 26, n, 22, 'start', i === 3 ? 'pm-on' : 'pm-txt');
       if (i) flow += arrow(476, y - 17, 476, y);
     });
-    const dec = card2(272, tr('Hij kiest een optie', 'He picks an option', 270), tr('beslist na de diagnose', 'decides after diagnosis', 272));
+    const dec = card2(272, tr('Na de diagnosefase', 'After the diagnosis', 270), tr('beslist hij over doorgaan', 'he decides if it goes on', 272));
     return { flowB: op(b === 0 ? span(p, 0, 0.5) : 1, flow), decisionB: op(b >= 1 ? span(p, 0, 0.5) : 0, dec) };
   }
 

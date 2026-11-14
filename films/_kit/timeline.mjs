@@ -828,12 +828,13 @@ const SAY = {
     [/\bsteekproef en een second opinion\b/g, 'steekproef en een sekkend opinjen'],
     // the Consulting craft module intro (pm.consult.intro), a self-contained group at the end of the Dutch list, checked with
     // phonemes through Piper's nl_NL-alex bridge: espeak-ng reads plantmanager with a soft g (plant-maa-naa-ger; said
-    // plant-menetsjer, only in "De plantmanager vraagt" as the other films' phrases above), operators as "OO-pi-raa-tors" (said
-    // ope-raators, only in "stoptijden van operators") and doorverwijzingen with a devoiced d ("toor-"; said door-verwijzingen).
+    // plant-menetsjer, only in "De plantmanager vraagt" as the other films' phrases above) and doorverwijzingen with a
+    // devoiced d ("toor-"; said door-verwijzingen).
     // Offerte, adviesvak, vertrouwensformule, diagnosefase, dagtarief, opties, dataminimalisatie, pseudonimiseren,
-    // positionering, pijplijn, succesfee, weerstand, krantentest, nederig vragen, risicoreservering, opzegclausule and hefboom
+    // positionering, nulmeting, declarabele dagen, bezettingsgraad, succesfee, weerstand, krantentest, nederig vragen,
+    // risicoreservering, opzegclausule and hefboom
     // have rules above or are read right; no other film's spoken text changes
-    [/\bDe plantmanager vraagt\b/g, 'De plant-menetsjer vraagt'], [/\bstoptijden van operators\b/g, 'stoptijden van ope-raators'],
+    [/\bDe plantmanager vraagt\b/g, 'De plant-menetsjer vraagt'],
     [/\b([Dd])oorverwijzingen\b/g, '$1oor-verwijzingen']],
   en: [[/\brpm\b/g, 'revolutions per minute'], [/\bmm\/min\b/g, 'millimetres per minute'], [/\bm\/min\b/g, 'metres per minute'], [/µm\b/g, 'micrometres'],
     [/€\s?(\d[\d,]*(?:\.\d+)?)/g, '$1 euros'], [/(\d)\.0(?![\d])/g, '$1'], [/(\d)\s?mm\b/g, '$1 millimetres'], [/(\d)\s?min\b/g, '$1 minutes'], [/(\d)\s?%/g, '$1 percent'],

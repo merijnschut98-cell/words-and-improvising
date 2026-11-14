@@ -16,10 +16,10 @@
 // (films/pm.field.portfolio), whose station for this module this intro agrees with: line 3 stands in hall B,
 // the plant manager pays for your advice, it starts with a proposal about his problem, and the station's two
 // tools, a diagnostic phase and the trust equation, are named here too. Here you are the consultant of one
-// assignment, seen from start to farewell: the plant manager's lines still stop too often, and he asks you
-// for advice. Hall B as in field film 3 (line 3 on its floor, the switchboard on the wall, the cable
+// assignment, seen from start to farewell: too many of the plant manager's planned jobs are still cancelled (the
+// problem of the lessons' own example and the goal of the programme in pm.portfolio.intro), and he asks you for advice. Hall B as in field film 3 (line 3 on its floor, the switchboard on the wall, the cable
 // connected), with its cast: the plant manager, the team lead and the two operators.
-//   s1 the assignment: line 3 stands in hall B, the lines still stop too often, the plant manager asks you for
+//   s1 the assignment: line 3 stands in hall B, too many jobs are still cancelled, the plant manager asks you for
 //      advice and pays for it; the four topics
 //   s2 Offerte en prijs: a proposal wins on its first page; his problem in his words and numbers, your
 //      approach later; the outcome, the price and what he has to deliver; two or three options   → pm.consult.proposal
@@ -27,22 +27,23 @@
 //      method yet and watches small things; ten small promises kept do more than one brilliant analysis;
 //      sometimes you advise less work than you could sell                                     → pm.consult.trust
 //   s4 Ethiek en onafhankelijkheid: only the client pays for your advice; a supplier's referral fee bends it;
-//      telling him what he does not want to hear, facts first; his data holds operators' stop times
+//      telling him what he does not want to hear, facts first; his data holds stop times per employee
 //                                                                                        → pm.consult.independence, .data
 //   s5 Klant en praktijk laten groeien: the advice is done, you hand over the results and name what else you
 //      saw; good, visible work brings the next problem; a known client costs hours, a new one months; a result
 //      people repeat in one sentence brings referrals                                         → pm.consult.account, .practice
 //   s6 one whole: a proposal about his problem, trust you earn, independent advice, a client who comes back;
-//      he picks one of your options and decides after the diagnosis whether it continues
+//      after the diagnostic phase he decides whether it continues
 //   s7 the shared Projects map with Het adviesvak lit, then the module's four topics with their levels as
 //      columns, where to start, and what each later level adds
 // Definitions as the Basis lessons word them (pm.consult.proposal, .trust, .independence, .account). Each topic
 // scene names the tools of that topic's lessons in one short sentence, without explaining them (Merijn's
 // checkpoint, 14 Nov), each a term of its lesson: a diagnostic phase (pm.consult.proposal, Basis, as field film
-// 3 names it) and a fixed price (pm.consult.pricing, Werkkennis); the trust equation (pm.consult.trust, Basis,
+// 3 names it) and the baseline (pm.consult.proposal, Basis; a fixed price is one of three pricing options, not a tool);
+// the trust equation (pm.consult.trust, Basis,
 // as field film 3 names it); data minimisation and pseudonymising (pm.consult.data, Werkkennis; the scene gives
-// their reason: his data holds operators' stop times); positioning and a pipeline (pm.consult.practice,
-// Werkkennis; the scene gives their reason: your own practice). The follow-up (pm.consult.account)
+// their reason: his data holds stop times per employee); positioning and billable days (pm.consult.practice,
+// Werkkennis; the scene gives their reason: your own practice; a sales pipeline would collide with the DevOps pipeline). The follow-up (pm.consult.account)
 // is the close intro's tool (Klantevaluatie en follow-up, pm.close) and is not named here; the NDA is a word wider than a chip
 // and stays in its lesson. The Werkkennis tools named in a Basis scene do not come back in s7, and neither does any
 // Basis term a scene named; s7 names what each later level adds and nothing a scene explained or named. Terms
@@ -99,11 +100,11 @@ const isTerm = (id, term, lang) => assert((lessons[lang].get(id).terms || []).so
 // s2: a proposal wins on its first page, with the client's problem in their words and numbers, and the method comes
 // later; then the outcome and the approach; the client commitments (what you need from them); two or three options, so
 // the client chooses how and not whether; the tools: a diagnostic phase (pm.consult.proposal, Basis, as field film 3
-// names it) and a fixed price (pm.consult.pricing, Werkkennis)
+// names it) and the baseline, the cancelled-jobs figure measured before the work starts (Basis)
 has('pm.consult.proposal', ['Een offerte wint op de eerste pagina', 'Begin met het probleem van de klant, in hun woorden en getallen', 'Je aanpak komt later', 'Dan de uitkomst en hoe je weet dat je er bent', 'Schrijf de inzet van de klant op: wat je van hen nodig hebt', 'Bied twee of drie opties, niet één', 'Een goede eerste fase is een diagnosefase']);
 has('pm.consult.proposal', ['A proposal wins on its first page', 'Start with the client’s problem in their words and numbers', 'Your method comes later', 'Then the outcome and how you will know', 'Write down the client commitments: what you need from them', 'Offer two or three options, not one', 'A good first phase is a diagnostic phase'], 'en');
 isTerm('pm.consult.proposal', 'Diagnosefase', 'nl'); isTerm('pm.consult.proposal', 'Diagnostic phase', 'en');
-isTerm('pm.consult.pricing', 'Vaste prijs', 'nl'); isTerm('pm.consult.pricing', 'Fixed price', 'en');
+isTerm('pm.consult.proposal', 'Nulmeting', 'nl'); isTerm('pm.consult.proposal', 'Baseline', 'en');
 // s3: clients judge reliability first, because they cannot yet judge your method (minutes the same day, the numbers you
 // promised); ten small promises kept do more than one brilliant analysis; intimacy is whether they dare to tell you what
 // really worries them; sometimes you advise less work than you could sell; the tool: the trust equation
@@ -126,24 +127,24 @@ isTerm('pm.consult.data', 'Data minimisation', 'en'); isTerm('pm.consult.data', 
 // s5: growing an account is doing the work so well and so visibly that the next problem comes to you; a second project
 // at a client you know costs a few hours of conversation, a new client can take months; established consultants get most
 // of their work from people who already know them; at close-out you hand over the results and name the adjacent
-// problems you saw; referrals come from results people can repeat in one sentence; the tools: positioning and a pipeline (pm.consult.practice, Werkkennis). The follow-up
+// problems you saw; referrals come from results people can repeat in one sentence; the tools: positioning and billable days (pm.consult.practice, Werkkennis). The follow-up
 // (pm.consult.account) is the close intro's tool and is not named here
 has('pm.consult.account', ['het werk zo goed en zo zichtbaar doen dat het volgende probleem vanzelf naar je toe komt', 'Een tweede project bij een klant die je kent, kost een paar uur praten; een nieuwe klant kan maanden aan gesprekken en offertes kosten', 'halen de meeste gevestigde adviseurs het grootste deel van hun werk bij mensen die hen al kennen', 'afsluiting, het laatste overleg waarin je de resultaten overdraagt', 'Aangrenzende problemen', 'resultaten die mensen in één zin kunnen navertellen']);
 has('pm.consult.account', ['doing the work so well, and so visibly, that the next problem comes to you', 'A second project at a client you know costs a few hours of conversation; a new client can take months of meetings and proposals', 'most established consultants get most of their work from people who already know them', 'close-out, the final meeting where you hand over the results', 'Adjacent problems', 'results people can repeat in one sentence'], 'en');
 has('pm.consult.practice', ['Verzamel de getallen en de toestemming bij de afsluiting', 'je pijplijn (pipeline) in de gaten: de gesprekken en offertes die werk gaan worden']);
 has('pm.consult.practice', ['Collect the numbers and the permission at close-out', 'the conversations and proposals that will become work'], 'en');
-isTerm('pm.consult.practice', 'Positionering', 'nl'); isTerm('pm.consult.practice', 'Pijplijn', 'nl');
-isTerm('pm.consult.practice', 'Positioning', 'en'); isTerm('pm.consult.practice', 'Pipeline', 'en');
+isTerm('pm.consult.practice', 'Positionering', 'nl'); isTerm('pm.consult.practice', 'Declarabele dagen', 'nl');
+isTerm('pm.consult.practice', 'Positioning', 'en'); isTerm('pm.consult.practice', 'Billable days', 'en');
 // s7: the later levels, as the lessons are titled or word them (the grid names what each adds, and nothing a scene
-// explained or named: no diagnostic phase, fixed price, trust equation, data minimisation, pseudonymising, positioning,
-// pipeline, referral fee, independence, close-out, adjacent problem, proposal, options; day rate, billable days, success fee,
-// risk allowance, the collaborative role, resistance, humble inquiry, the processor agreement, the newspaper test,
+// explained or named: no diagnostic phase, baseline, trust equation, data minimisation, pseudonymising, positioning,
+// billable days, referral fee, independence, close-out, adjacent problem, proposal, options; day rate, success fee,
+// risk allowance, utilisation, the collaborative role, resistance, humble inquiry, the processor agreement, the newspaper test,
 // the termination clause, a point of view and leverage are named here and nowhere else)
 const ADDS = [
   ['pm.consult.pricing', 'Dagtarief', 'Day rate'], ['pm.consult.valuefee', 'Succesfee', 'Success fee'], ['pm.consult.bid', 'Risicoreservering', 'Risk allowance'],
   ['pm.consult.roles', 'Samenwerkingsrol', 'Collaborative role'], ['pm.consult.resistance', 'Weerstand', 'Resistance'], ['pm.consult.humble', 'Nederig vragen', 'Humble inquiry'],
   ['pm.consult.data', 'Verwerkersovereenkomst', 'Processor agreement'], ['pm.consult.dilemmas', 'Krantentest', 'Newspaper test'], ['pm.consult.walkaway', 'Opzegclausule', 'Termination clause'],
-  ['pm.consult.practice', 'Declarabele dagen', 'Billable days'], ['pm.consult.thought', 'Standpunt', 'Point of view'], ['pm.consult.scale', 'Hefboom', 'Leverage'],
+  ['pm.consult.practice', 'Bezettingsgraad', 'Utilisation'], ['pm.consult.thought', 'Standpunt', 'Point of view'], ['pm.consult.scale', 'Hefboom', 'Leverage'],
 ];
 for (const [id, nlW, enW] of ADDS) { isTerm(id, nlW, 'nl'); isTerm(id, enW, 'en'); }
 // s7: the level words are the app's. The grid (stage.js, grid) has four level columns of GRID.col units from
@@ -319,7 +320,7 @@ const spec = {
     {
       id: 's1', level: 1, dur: DURS[0], still: 0.9, title: { nl: 'Eén opdracht, vier onderwerpen', en: 'One assignment, four topics' },
       beats: [
-        { nl: 'Lijn 3 staat in hal B, maar de lijnen staan te vaak stil. De plantmanager vraagt jou om advies.', en: 'Line 3 stands in hall B, but the lines stop too often. The plant manager asks you for advice.', focus: ['goal', 'line3', 'sponsor'] },
+        { nl: 'Lijn 3 staat in hal B, maar er worden nog te veel klussen afgezegd. De plantmanager vraagt jou om advies.', en: 'Line 3 stands in hall B, but too many jobs are still cancelled. The plant manager asks you for advice.', focus: ['goal', 'line3', 'sponsor'] },
         { nl: 'Hij betaalt voor jouw advies. Dat maakt je rol anders dan die van projectleider.', en: 'He pays for your advice. That makes your role different from a project manager’s.', focus: ['need', 'sponsor'] },
         { nl: 'We volgen de opdracht van begin tot afscheid, langs de vier onderwerpen van de module.', en: 'We follow the assignment from start to farewell, through the four topics of the module.', focus: 'route' },
       ],
@@ -330,8 +331,8 @@ const spec = {
         { nl: 'Eerste onderwerp is Offerte en prijs. Een offerte wint op de eerste pagina.', en: 'First topic is Proposal and price. A proposal wins on its first page.', focus: ['tOffer', 'page1', 'sponsor'] },
         { nl: 'Daar staat zijn probleem, in zijn eigen woorden en getallen. Je aanpak komt later.', en: 'That page holds his problem, in his own words and numbers. Your method comes later.', focus: ['prob', 'sponsor', 'teamlead'] },
         { nl: 'Dan komen de uitkomst, de prijs en wat hij zelf moet leveren.', en: 'Then come the outcome, the price and what he has to deliver himself.', focus: ['give', 'sponsor'] },
-        { nl: 'Je legt twee of drie opties voor. Dan kiest hij hoe, niet of.', en: 'You put two or three options to him. Then he chooses how, not whether.', focus: ['opts', 'sponsor'] },
-        { nl: 'Bij de offerte gebruiken we een {t:Diagnosefase|diagnosefase} en een {t:Vaste prijs|vaste prijs}.', en: 'For the proposal we use a {t:Diagnostic phase|diagnostic phase} and a {t:Fixed price|fixed price}.', cue: { Diagnosefase: 'tool1', 'Vaste prijs': 'tool2', 'Diagnostic phase': 'tool1', 'Fixed price': 'tool2' }, focus: ['tool1', 'tool2'] },
+        { nl: 'Je legt twee of drie opties voor. Dan kiest hij hoe hij het inkoopt, niet of.', en: 'You put two or three options to him. Then he chooses how to buy it, not whether.', focus: ['opts', 'sponsor'] },
+        { nl: 'Bij de offerte gebruiken we een {t:Diagnosefase|diagnosefase} en een {t:Nulmeting|nulmeting}.', en: 'For the proposal we use a {t:Diagnostic phase|diagnostic phase} and a {t:Baseline|baseline}.', cue: { Diagnosefase: 'tool1', Nulmeting: 'tool2', 'Diagnostic phase': 'tool1', Baseline: 'tool2' }, focus: ['tool1', 'tool2'] },
       ],
     },
     {
@@ -350,7 +351,7 @@ const spec = {
         { nl: 'Derde onderwerp is Ethiek en onafhankelijkheid. Alleen de klant betaalt voor je advies.', en: 'Third topic is Ethics and independence. Only the client pays for your advice.', focus: ['tEth', 'indep', 'sponsor'] },
         { nl: 'Een leverancier biedt geld per klant die je doorstuurt. De klant kan dan niet zien of het je advies buigt.', en: 'A supplier offers money for each client you send. The client can no longer tell if it bent your advice.', focus: ['fee', 'sponsor'] },
         { nl: 'Soms moet je zeggen wat hij niet wil horen. Eerst de feiten, dan je conclusie, dan je advies.', en: 'Sometimes you must tell him what he does not want to hear. Facts first, then conclusion, then advice.', focus: ['hard', 'sponsor'] },
-        { nl: 'Je ziet ook zijn cijfers en de stoptijden van operators. Wat je bij hem leert, blijft bij hem.', en: 'You also see his figures and the stop times of operators. What you learn at his plant stays there.', focus: ['data', 'crew'] },
+        { nl: 'Je ziet ook zijn cijfers en de stoptijden per medewerker. Wat je bij hem leert, blijft bij hem.', en: 'You also see his figures and the stop times per employee. What you learn at his plant stays there.', focus: ['data', 'crew'] },
         { nl: 'Voor die data gebruiken we {t:Dataminimalisatie|dataminimalisatie} en {t:Pseudonimiseren|pseudonimiseren}.', en: 'For that data we use {t:Data minimisation|data minimisation} and {t:Pseudonymise|pseudonymising}.', cue: { Dataminimalisatie: 'tool1', Pseudonimiseren: 'tool2', 'Data minimisation': 'tool1', Pseudonymise: 'tool2' }, focus: ['tool1', 'tool2'] },
       ],
     },
@@ -361,14 +362,14 @@ const spec = {
         { nl: 'Goed en zichtbaar werk brengt het volgende probleem vanzelf naar je toe.', en: 'Work done well and visibly brings the next problem to you.', focus: ['next', 'sponsor'] },
         { nl: 'Een nieuwe klant kan maanden kosten. Gevestigde adviseurs halen het meeste werk bij bekenden.', en: 'A new client can take months. Established advisors get most of their work from people they know.', focus: ['known', 'sponsor'] },
         { nl: 'Een resultaat dat mensen in één zin navertellen levert doorverwijzingen op.', en: 'A result people can repeat in one sentence brings referrals.', focus: ['refer', 'sponsor'] },
-        { nl: 'Voor je eigen praktijk gebruiken we {t:Positionering|positionering} en een {t:Pijplijn|pijplijn}.', en: 'For your own practice we use {t:Positioning|positioning} and a {t:Pipeline|pipeline}.', cue: { Positionering: 'tool1', Pijplijn: 'tool2', Positioning: 'tool1', Pipeline: 'tool2' }, focus: ['tool1', 'tool2'] },
+        { nl: 'Voor je eigen praktijk gebruiken we {t:Positionering|positionering} en {t:Declarabele dagen|declarabele dagen}.', en: 'For your own practice we use {t:Positioning|positioning} and {t:Billable days|billable days}.', cue: { Positionering: 'tool1', 'Declarabele dagen': 'tool2', Positioning: 'tool1', 'Billable days': 'tool2' }, focus: ['tool1', 'tool2'] },
       ],
     },
     {
       id: 's6', level: 1, dur: DURS[5], still: 0.9, title: { nl: 'Eén geheel', en: 'One whole' },
       beats: [
         { nl: 'Het hangt samen. Offerte, vertrouwen, onafhankelijk advies en een klant die terugkomt.', en: 'It connects. Proposal, trust, independent advice and a client who comes back.', focus: ['flow', 'sponsor', 'teamlead', 'crew'] },
-        { nl: 'Hij kiest een van je opties en beslist na de diagnose of het doorgaat.', en: 'He picks one of your options and decides after the diagnosis whether it continues.', focus: ['decision', 'sponsor', 'line3'] },
+        { nl: 'Na de diagnosefase beslist hij of het doorgaat.', en: 'After the diagnostic phase he decides whether it goes on.', focus: ['decision', 'sponsor', 'line3'] },
       ],
     },
     {
@@ -377,7 +378,7 @@ const spec = {
         { nl: 'Op de kaart van Projecten is Het adviesvak het tweede station van Portfolio en advies.', en: 'On the map of Projects, The consulting craft is the second station of Portfolio and consulting.', focus: mapCue('pm.consult') },
         { nl: 'Deze module heeft vier onderwerpen, elk met vier niveaus.', en: 'This module has four topics, each with four levels.', focus: 'route' },
         { nl: 'Begin bij Offerte en prijs, op niveau Basis.', en: 'Start with Proposal and price, at Basics level.', focus: ['tOffer', 'lv1', 'start'] },
-        { nl: 'Op Werkkennis komen dagtarief, samenwerkingsrol, verwerkersovereenkomst en declarabele dagen erbij.', en: 'At Working knowledge you add day rate, collaborative role, processor agreement and billable days.', focus: 'lv2' },
+        { nl: 'Op Werkkennis komen dagtarief, samenwerkingsrol, verwerkersovereenkomst en bezettingsgraad erbij.', en: 'At Working knowledge you add day rate, collaborative role, processor agreement and utilisation.', focus: 'lv2' },
         { nl: 'Op Gevorderd komen succesfee, weerstand, de krantentest en een standpunt erbij.', en: 'At Advanced you add success fee, resistance, the newspaper test and a point of view.', focus: 'lv3' },
         { nl: 'Op Expert komen risicoreservering, nederig vragen, de opzegclausule en hefboom erbij.', en: 'At Expert you add risk allowance, humble inquiry, the termination clause and leverage.', focus: 'lv4' },
         { nl: 'Elke les en elke film van deze module heeft een plek op deze kaart.', en: 'Every lesson and film in this module has a place on this map.', focus: null },
@@ -399,8 +400,8 @@ const spec = {
 // the end of the Dutch list, only what espeak-ng needs): see there.
 const SAY = [
   [ // s1 one assignment, four topics
-    { nl: 'Lijn 3 staat in hal B, maar de lijnen staan nog te vaak stil. De plantmanager vraagt jou om advies.',
-      en: 'Line 3 stands in hall B, but the lines still stop too often. The plant manager asks you for advice.' },
+    { nl: 'Lijn 3 staat in hal B, maar er worden nog te veel klussen afgezegd. De plantmanager vraagt jou om advies.',
+      en: 'Line 3 stands in hall B, but too many jobs are still cancelled. The plant manager asks you for advice.' },
     { nl: 'Hij betaalt voor jouw advies. Dat maakt je rol anders dan die van een projectleider.',
       en: 'He pays for your advice. That makes your role different from that of a project manager.' },
     { nl: 'We volgen de opdracht van begin tot afscheid, langs de vier onderwerpen van de module.',
@@ -413,10 +414,10 @@ const SAY = [
       en: 'That page holds his problem, in his own words and numbers. Your method comes later.' },
     { nl: 'Dan komen de uitkomst, de prijs en wat hij zelf moet leveren.',
       en: 'Then come the outcome, the price and what he has to deliver himself.' },
-    { nl: 'Je legt twee of drie opties voor. Dan kiest hij hoe het gebeurt, en niet of.',
-      en: 'You put two or three options to him. Then he chooses how it happens, and not whether.' },
-    { nl: 'Bij de offerte gebruiken we een {t:Diagnosefase|diagnosefase} en een {t:Vaste prijs|vaste prijs}.',
-      en: 'For the proposal we use a {t:Diagnostic phase|diagnostic phase} and a {t:Fixed price|fixed price}.' },
+    { nl: 'Je legt twee of drie opties voor. Dan kiest hij hoe hij het inkoopt, en niet of.',
+      en: 'You put two or three options to him. Then he chooses how to buy it, and not whether.' },
+    { nl: 'Bij de offerte gebruiken we een {t:Diagnosefase|diagnosefase} en een {t:Nulmeting|nulmeting}.',
+      en: 'For the proposal we use a {t:Diagnostic phase|diagnostic phase} and a {t:Baseline|baseline}.' },
   ],
   [ // s3 the trusted-advisor relationship
     { nl: 'Het tweede onderwerp is de relatie als vertrouwde adviseur. Hij moet durven vertellen wat hem echt zorgen baart.',
@@ -437,8 +438,8 @@ const SAY = [
       en: 'A supplier offers you money for each client you send him. Then the client can no longer tell whether it bent your advice.' },
     { nl: 'Soms moet je zeggen wat hij niet wil horen. Eerst de feiten, dan je conclusie, dan je advies.',
       en: 'Sometimes you must tell him what he does not want to hear. First the facts, then your conclusion, then your advice.' },
-    { nl: 'Je ziet ook zijn cijfers en de stoptijden van operators. Wat je bij hem leert, blijft bij hem.',
-      en: 'You also see his figures and the stop times of operators. What you learn at his plant stays there.' },
+    { nl: 'Je ziet ook zijn cijfers en de stoptijden per medewerker. Wat je bij hem leert, blijft bij hem.',
+      en: 'You also see his figures and the stop times per employee. What you learn at his plant stays there.' },
     { nl: 'Voor die data gebruiken we {t:Dataminimalisatie|dataminimalisatie} en {t:Pseudonimiseren|pseudonimiseren}.',
       en: 'For that data we use {t:Data minimisation|data minimisation} and {t:Pseudonymise|pseudonymising}.' },
   ],
@@ -451,14 +452,14 @@ const SAY = [
       en: 'A new client can take months of meetings. Established advisors therefore get most of their work from people who already know them.' },
     { nl: 'Een resultaat dat mensen in één zin kunnen navertellen levert doorverwijzingen op.',
       en: 'A result that people can repeat in one sentence brings referrals.' },
-    { nl: 'Voor je eigen praktijk gebruiken we {t:Positionering|positionering} en een {t:Pijplijn|pijplijn}.',
-      en: 'For your own practice we use {t:Positioning|positioning} and a {t:Pipeline|pipeline}.' },
+    { nl: 'Voor je eigen praktijk gebruiken we {t:Positionering|positionering} en {t:Declarabele dagen|declarabele dagen}.',
+      en: 'For your own practice we use {t:Positioning|positioning} and {t:Billable days|billable days}.' },
   ],
   [ // s6 one whole
     { nl: 'Het hangt samen. Een offerte over zijn probleem, vertrouwen dat je verdient, onafhankelijk advies en een klant die terugkomt.',
       en: 'It connects. A proposal about his problem, trust you earn, independent advice and a client who comes back.' },
-    { nl: 'Hij kiest een van je opties, en na de diagnose beslist hij of het doorgaat.',
-      en: 'He picks one of your options, and after the diagnosis he decides whether it continues.' },
+    { nl: 'Na de diagnosefase beslist hij of het doorgaat.',
+      en: 'After the diagnostic phase he decides whether it goes on.' },
   ],
   [ // s7 the map
     { nl: 'Dit is de kaart van Projecten. Het adviesvak is het tweede station van Portfolio en advies.',
@@ -467,8 +468,8 @@ const SAY = [
       en: 'This module has four topics, each with four levels.' },
     { nl: 'Begin bij offerte en prijs, op niveau Basis.',
       en: 'Start with proposal and price, at Basics level.' },
-    { nl: 'Op Werkkennis komen dagtarief, samenwerkingsrol, verwerkersovereenkomst en declarabele dagen erbij.',
-      en: 'At Working knowledge you add day rate, collaborative role, processor agreement and billable days.' },
+    { nl: 'Op Werkkennis komen dagtarief, samenwerkingsrol, verwerkersovereenkomst en bezettingsgraad erbij.',
+      en: 'At Working knowledge you add day rate, collaborative role, processor agreement and utilisation.' },
     { nl: 'Op Gevorderd komen succesfee, weerstand, de krantentest en een standpunt erbij.',
       en: 'At Advanced you add success fee, resistance, the newspaper test and a point of view.' },
     { nl: 'Op Expert komen risicoreservering, nederig vragen, de opzegclausule en hefboom erbij.',
@@ -555,8 +556,8 @@ const css = PM_CSS + HALL_CSS + `
 ` + mapStyles();
 
 const label = {
-  nl: 'Hal B van de fabriek, waar lijn 3 nu staat, zoals in de film over portfolio en advies. Op de vloer lijn 3 op zijn plek met een gestippelde omtrek; ernaast staat lijn 4. Links de stroomkast met de kabel van buiten, aan de achterwand de schakelkast, en aan de zijwand een kalender waarvan de laatste drie weken de zomerstop zijn. Per onderwerp staan er mensen: de plantmanager, die voor het advies betaalt, de teamleider en twee operators bij lijn 3. Rechts een paneel, gemarkeerd als voorbeeld of schema: de lijnen die te vaak stilstaan en de plantmanager die om advies vraagt, met de vier onderwerpen van de module als tegels; een offerte met zijn probleem op de eerste pagina, de uitkomst, de prijs en wat hij zelf levert, en twee of drie opties; vertrouwen dat hij durft te vertellen wat hem dwarszit, kleine dingen die je nakomt en minder werk adviseren dan je kunt verkopen; alleen de klant betaalt, een leverancier die geld biedt per klant, de feiten voor je conclusie en je advies, en zijn data met stoptijden van operators; resultaten overdragen, het volgende probleem dat vanzelf komt, een bekende klant tegenover een nieuwe en een resultaat in één zin; per onderwerp een of twee namen van hulpmiddelen; en de keten van offerte tot een klant die terugkomt. Aan het eind de kaart van Projecten met Het adviesvak verlicht, en de vier onderwerpen van de module met elk vier niveaus: Basis, Werkkennis, Gevorderd en Expert.',
-  en: 'Hall B of the plant, where line 3 now stands, as in the film about portfolio and consulting. On the floor line 3 in its place with a dashed outline; next to it stands line 4. At the left the power cabinet with the cable from outside, on the back wall the switchboard, and on the side wall a calendar whose last three weeks are the summer shutdown. Each topic brings people: the plant manager, who pays for the advice, the team lead and two operators at line 3. At the right a panel, marked as an example or a diagram: the lines that stop too often and the plant manager who asks for advice, with the module’s four topics as tiles; a proposal with his problem on the first page, the outcome, the price and what he delivers himself, and two or three options; trust that makes him dare to say what worries him, small things you keep to and advising less work than you could sell; only the client pays, a supplier who offers money per client, the facts before your conclusion and your advice, and his data with the stop times of operators; handing over the results, the next problem that comes by itself, a known client against a new one and a result in one sentence; one or two tool names per topic; and the chain from a proposal to a client who comes back. At the end the map of Projects with The consulting craft lit, and the module’s four topics with four levels each: Basics, Working knowledge, Advanced and Expert.',
+  nl: 'Hal B van de fabriek, waar lijn 3 nu staat, zoals in de film over portfolio en advies. Op de vloer lijn 3 op zijn plek met een gestippelde omtrek; ernaast staat lijn 4. Links de stroomkast met de kabel van buiten, aan de achterwand de schakelkast, en aan de zijwand een kalender waarvan de laatste drie weken de zomerstop zijn. Per onderwerp staan er mensen: de plantmanager, die voor het advies betaalt, de teamleider en twee operators bij lijn 3. Rechts een paneel, gemarkeerd als voorbeeld of schema: de klussen die te vaak worden afgezegd en de plantmanager die om advies vraagt, met de vier onderwerpen van de module als tegels; een offerte met zijn probleem op de eerste pagina, de uitkomst, de prijs en wat hij zelf levert, en twee of drie opties; vertrouwen dat hij durft te vertellen wat hem dwarszit, kleine dingen die je nakomt en minder werk adviseren dan je kunt verkopen; alleen de klant betaalt, een leverancier die geld biedt per klant, de feiten voor je conclusie en je advies, en zijn data met stoptijden per medewerker; resultaten overdragen, het volgende probleem dat vanzelf komt, een bekende klant tegenover een nieuwe en een resultaat in één zin; per onderwerp een of twee namen van hulpmiddelen; en de keten van offerte tot een klant die terugkomt. Aan het eind de kaart van Projecten met Het adviesvak verlicht, en de vier onderwerpen van de module met elk vier niveaus: Basis, Werkkennis, Gevorderd en Expert.',
+  en: 'Hall B of the plant, where line 3 now stands, as in the film about portfolio and consulting. On the floor line 3 in its place with a dashed outline; next to it stands line 4. At the left the power cabinet with the cable from outside, on the back wall the switchboard, and on the side wall a calendar whose last three weeks are the summer shutdown. Each topic brings people: the plant manager, who pays for the advice, the team lead and two operators at line 3. At the right a panel, marked as an example or a diagram: the jobs that are cancelled too often and the plant manager who asks for advice, with the module’s four topics as tiles; a proposal with his problem on the first page, the outcome, the price and what he delivers himself, and two or three options; trust that makes him dare to say what worries him, small things you keep to and advising less work than you could sell; only the client pays, a supplier who offers money per client, the facts before your conclusion and your advice, and his data with the stop times per employee; handing over the results, the next problem that comes by itself, a known client against a new one and a result in one sentence; one or two tool names per topic; and the chain from a proposal to a client who comes back. At the end the map of Projects with The consulting craft lit, and the module’s four topics with four levels each: Basics, Working knowledge, Advanced and Expert.',
 };
 
 const { data } = await defineFilm(spec, { svg, script: stageScript, css, kitCss: k.ISO_CSS, label });
