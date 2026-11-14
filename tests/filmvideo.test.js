@@ -10,6 +10,7 @@ import { audioTimeline, timedAt, speakOf, saidOf, parseParams, PAUSES, AUDIO_GAP
 import { wavInfo, wavFile, joinTrack, cueChunks, vttTime, vttOf, cuesOf, manifestWith, filmUrl, MANIFEST_BASE, phrasesOf, beatLayout, beatLength, cuesOfLines, spokenOf, SUB_MAX, sentenceClips, saidWordSpans, forceAlign, timedPhrases, voiceOf } from '../films/_kit/narration.mjs';
 import { listenGuard, werLimit } from '../films/_kit/listen-guard.mjs';
 import { glossCase } from '../films/_kit/build-film.mjs';
+import { NARRATION_MIN, NARRATION_WPS } from '../films/_kit/assert.mjs';
 import { videoOf, readAlong, filmDataOf } from '../src/ui/film.js';
 import { lessonPhases, lessonSteps, lessonBack } from '../src/core/course.js';
 
@@ -630,6 +631,20 @@ test('shipped subtitles: the spoken words exactly, a Dutch term’s English word
   }
 });
 
+// The shortest video a render may ship. The video follows the narration audio,
+// not the designed scene lengths, and the kit's narration floor is estimated at
+// NARRATION_WPS words a second while the Dutch voice speaks faster (voices.json:
+// about 3 words a second, 3.24 at most in the A/B). A throwaway 2-scene review
+// film (Task 4a) of 30 designed seconds and 72 words rendered 24.9 s in Dutch.
+// So this is a sanity floor for a broken or cut render, under what the kit lets
+// through, not a length rule (that is MIN_TOTAL and NARRATION_MIN in assert.mjs).
+const MIN_VIDEO_S = 15;
+const FASTEST_WPS = 3.24;
+test('the manifest floor accepts the shortest narration the kit lets through', () => {
+  const words = NARRATION_MIN * NARRATION_WPS;
+  assert.ok(MIN_VIDEO_S <= words / FASTEST_WPS, `${words} words at ${FASTEST_WPS} words a second is ${(words / FASTEST_WPS).toFixed(1)} s, under the ${MIN_VIDEO_S} s floor`);
+});
+
 test('the committed manifest: every film has nl and en, an https URL on the films bucket, sizes and durations', () => {
   const m = JSON.parse(fs.readFileSync('src/content/courses/films/manifest.json', 'utf8'));
   assert.equal(m.base, MANIFEST_BASE);
@@ -640,7 +655,7 @@ test('the committed manifest: every film has nl and en, an https URL on the film
     for (const lang of ['nl', 'en']) {
       const v = f[lang];
       assert.ok(v, `${id}: no ${lang} video`);
-      assert.ok(v.dur >= 60 && v.dur <= 360, `${id} ${lang}: ${v.dur} s`);
+      assert.ok(v.dur >= MIN_VIDEO_S && v.dur <= 360, `${id} ${lang}: ${v.dur} s`);
       assert.ok(v.bytes > 100000 && v.bytes < 60e6, `${id} ${lang}: ${v.bytes} bytes`);
       assert.ok(fs.existsSync(v.vtt) && fs.readFileSync(v.vtt, 'utf8').startsWith('WEBVTT'), `${id} ${lang}: captions ${v.vtt}`);
       assert.ok(v.scenes[0] === 0 && v.scenes.every((s, i) => i === 0 || s > v.scenes[i - 1]) && v.scenes.at(-1) < v.dur, `${id} ${lang}: scene starts`);

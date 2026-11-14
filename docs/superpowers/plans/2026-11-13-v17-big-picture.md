@@ -182,6 +182,10 @@ Merijn, 14 Nov: a video of a minute or even half a minute is enough when the con
 - [ ] **Step 1:** Tell Merijn both films are live as video: the Planning intro (open Projects, Planning) and field film 1. Ask, as multiple choice: pattern approved; approved with changes (which); not this. **No further film build starts before his answer.** Tasks 6 to 9 may run meanwhile.
 - [ ] **Step 2:** Record his answer and any changes as rulings in `docs/superpowers/plans/2026-11-11-v16-notes.md`, and update the reusable brief.
 
+### Task 5 result (14 Nov)
+
+Merijn approved the pattern ("De films zien er goed uit. Verder goed!") with one change: intro and field films name the terms and tools of each topic or station briefly, without explaining them (see "Checkpoint" in the v16 notes). The two existing films are updated and re-rendered; Tasks 10 and 11 build with this rule.
+
 ### Task 6: The module screen
 
 **Files:**
@@ -319,6 +323,15 @@ Decided 14 Nov, see the second addendum of the design. Not started before Task 1
 ### Task 16: Strategic module (later, no date)
 
 Low priority (Merijn, 14 Nov): what a senior looks at strategically, part of the project and process management area. Only after Tasks 14 and 15. Same pipeline: research pass with sources, a proposal that lists what each of the four levels teaches per topic, multiple-choice decisions, content and review, a new place on the map, a field assignment and an intro film.
+
+### Task 19: Level opener (Merijn, 14 Nov)
+
+One intro film per module stays the big picture; the levels get a short bridge instead of their own films. The first time a learner opens a lesson at a level they have not been at before in a topic (Werkkennis, Gevorderd or Expert; Basis has the module intro), a level opener appears before the lesson: a card of a few sentences, presented by Andon, saying what changes at this level, the role the learner takes (Basis: what it is; Werkkennis: what you do with it; Gevorderd: what you decide, the trade-offs; Expert: what a senior weighs), and which questions they can answer afterwards. No film by default; a 30 to 60 s film only where a level really changes the picture (for example Expert in Planning, from planning one project to the portfolio), decided per case after Merijn has used the cards.
+
+- [ ] **Step 1 (content, `sonnet`):** per topic and level 2 to 4, one opener text in nl and en (two to four sentences), written from the lessons at that level and the level definitions in design addendum 3; the review (`sonnet`) checks that each opener matches its lesson and does not teach the lesson itself.
+- [ ] **Step 2 (app, `sonnet`, review `opus` because it stores state):** tests first. `levelSeen(state, subject, topicKey, level)` and `markLevelSeen(...)` stored per subject (a small set, synced as a union like seenIntros); the lesson screen shows the opener card once, before the first step, with one filled button ("Begin" / "Start"); the guide setting hides Andon but not the card; a way to see the opener again from the module screen's level path (a small info button).
+- [ ] **Step 3:** after Merijn has used the openers, ask whether any level needs its own short film (multiple choice), starting with the Expert levels.
+- Order: after Task 8 (Andon visible), so Andon can present it.
 
 ## Not in this plan
 
