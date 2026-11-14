@@ -33,7 +33,7 @@ Outcome: accepted (merged as delivered), sent back N times, redone.
 | 14 Nov | Review: back to module screen (6b) | opus | n/a | n/a | n/a | accepted with one fix, wiring tests and e2e steps through real buttons |
 | 14 Nov | Render PM-12: pm.field.lifecycle | sonnet | n/a | n/a | n/a | accepted; one narration line padded with 'itself/zelf' to fix a cue; merged v258 |
 | 14 Nov | Render PM-11: four trimmed films | sonnet | n/a | n/a | n/a | accepted; ran two renders at once and one overwrote a manifest entry, which it rebuilt (sizes verified); merged v259 |
-| 14 Nov | Build: Projects map on subject home (Task 7) | sonnet | n/a | n/a | n/a | delivered; in review (opus); report recovered after a container restart |
+| 14 Nov | Build: Projects map on subject home (Task 7) | sonnet | n/a | n/a | n/a | accepted with fixes by two opus review runs; merged v262 |
 | 14 Nov | Build: calmer speaking home (Task 12 part 1) | sonnet | 21 | 4 min | 127,489 | accepted with fixes by two opus review runs; merged v260 |
 | 14 Nov | Kit: short films (Task 4a) | sonnet | 29 | 4 min | 118,631 | accepted with one fix by its review |
 | 14 Nov | Review: short films (4a) | opus | 47 | 11 min | 146,005 | accepted; found the video floor too high for the Dutch voice; ran a 30 s film through the real guard |
@@ -45,3 +45,5 @@ Outcome: accepted (merged as delivered), sent back N times, redone.
 | 14 Nov | Review: calmer speaking home (finish) | opus | n/a | n/a | n/a | accepted; one test gap closed; found a leftover test server serving an old worktree |
 | 14 Nov | Build field film 2 pm.field.people | sonnet | 90 | 14 min | 264,708 | accepted with fixes by its review (three non-tools replaced); merged v261 |
 | 14 Nov | Review field film 2 | sonnet | n/a | n/a | n/a | accepted |
+| 14 Nov | Review: Projects map on home (finish) | opus | 98 | 45 min | 204,881 | accepted; fixed the field film fallback; found that the two rendered videos need a re-render (dark theme, low label contrast); merged v262 |
+| 14 Nov | Build field film 3 pm.field.portfolio | sonnet | n/a | n/a | n/a | delivered (91 s designed); in review (sonnet) |

@@ -388,6 +388,111 @@ await step('subject bar switches to Engineering and Projects and back; speaking 
   await page.locator('.btn-hero').waitFor();
 });
 
+await step('Projects home: the map is the first thing; tapping Planning opens its module screen; the field film entry is there; Engineering unchanged', async () => {
+  await page.locator('.subject-tab', { hasText: 'Projecten' }).click();
+  await page.locator('.course-pm .map-card .subject-map').waitFor();
+  // the map is the first block, "Your next step" the second
+  const order = await page.evaluate(() => [...document.querySelector('.course-pm').children].map((e) => e.className.split(' ')[1] || e.className).slice(0, 3));
+  if (!/map-card/.test(await page.locator('.course-pm > :nth-child(2)').getAttribute('class'))) throw new Error(`the map is not first: ${order}`);
+  if (!/course-today/.test(await page.locator('.course-pm > :nth-child(3)').getAttribute('class'))) throw new Error(`next step is not second: ${order}`);
+  // every place is a button, 44 px at 390, the next module marked, tracks closed, no sideways scroll
+  const places = await page.locator('.course-pm .map-place').evaluateAll((gs) => gs.map((g) => {
+    const r = g.querySelector('.map-hit').getBoundingClientRect();
+    return { role: g.getAttribute('role'), tab: g.getAttribute('tabindex'), label: g.getAttribute('aria-label'), w: r.width, h: r.height };
+  }));
+  if (places.length !== 16) throw new Error(`${places.length} places`);
+  const bad = places.filter((p) => p.role !== 'button' || p.tab !== '0' || !p.label || p.w < 43.5 || p.h < 43.5);
+  if (bad.length) throw new Error(`places not buttons of 44 px: ${JSON.stringify(bad.slice(0, 2))}`);
+  if (await page.locator('.course-pm .map-place.is-next').count() !== 1) throw new Error('the next module is not marked once');
+  if (await page.locator('.course-pm details.track[open]').count() !== 0) throw new Error('a track is open on a subject with a map');
+  if (await page.evaluate(() => document.documentElement.scrollWidth > window.innerWidth)) throw new Error('sideways scroll');
+  // the field film entry: the lifecycle field only, by its title
+  await page.locator('.course-pm .field-film .film-btn').waitFor();
+  if (await page.locator('.course-pm .field-film').count() !== 1) throw new Error('more than one field film entry');
+  await page.locator('.course-pm .field-film-title', { hasText: 'Een project van begin tot eind' }).waitFor();
+  await shot('map-home-pm');
+  // the field film plays the rendered video (Piper voice, captions), the HTML film only as its fallback
+  await page.locator('.course-pm .field-film .film-btn').click();
+  await page.locator('.course-pm .field-film .film-step[data-mode="video"] video.film-video').waitFor();
+  if (await page.locator('.course-pm .field-film iframe.film-frame').count()) throw new Error('the field film opened the HTML film, not the video');
+  if (await page.locator('.btn-primary:visible').count() !== 1) throw new Error('more than one filled button with the field film open');
+  await page.locator('.course-pm .field-film .film-btn').click();
+  if (await page.locator('.course-pm .field-film .film-step').count()) throw new Error('the field film did not close');
+  // dark
+  await page.evaluate(() => window.__app.updateSettings({ theme: 'dark' }));
+  await page.waitForFunction(() => document.documentElement.dataset.theme === 'dark');
+  await shot('map-home-pm-dark');
+  await page.evaluate(() => window.__app.updateSettings({ theme: 'auto' }));
+  await page.waitForFunction(() => !document.documentElement.dataset.theme);
+  // keyboard: Enter on a focused place opens its module; a tap on Planning does too
+  await page.locator('.course-pm .map-place[data-module="pm.run"]').focus();
+  await page.keyboard.press('Enter');
+  await page.locator('.module-screen').waitFor();
+  await page.locator('.module-screen .lesson-back').click();
+  await page.locator('.course-pm .map-card').waitFor();
+  await page.locator('.course-pm .map-place[data-module="pm.plan"]').click();
+  await page.locator('.module-screen').waitFor();
+  await page.locator('.module-screen', { hasText: 'Plannen' }).waitFor();
+  await page.locator('.module-screen .lesson-back').click();
+  await page.locator('.course-pm .map-card').waitFor();
+  // Engineering: no map, today's order, the track with the next step open
+  await page.locator('.subject-tab', { hasText: 'Engineering' }).click();
+  await page.locator('.course-eng .track').first().waitFor();
+  if (await page.locator('.course-eng .map-card, .course-eng .field-film').count() !== 0) throw new Error('Engineering shows a map or field film');
+  if (!/course-today/.test(await page.locator('.course-eng > :nth-child(2)').getAttribute('class'))) throw new Error('Engineering order changed');
+  if (await page.locator('.course-eng details.track[open]').count() !== 1) throw new Error('Engineering: one track should be open');
+  await page.locator('.subject-tab', { hasText: 'Spreken' }).click();
+  await page.locator('.btn-hero').waitFor();
+});
+
+// Review (14 Nov): the field film falls back as the module intro does: no video,
+// the HTML film; no video and no HTML film, the field's blurb. The entry used to
+// wait for the HTML page and vanished without it, leaving its title alone.
+await step('offline (video and page not cached): Projects home field film falls back to the HTML film, then to the blurb', async () => {
+  const FIELD_PAGE = /\/films\/pm\.field\.lifecycle\.html/;
+  const noVideo = (r) => r.abort();
+  const noPage = (r) => r.abort();
+  // Takes the page out of the worker's cache; returns what to put back after.
+  const dropCached = () => page.evaluate(async () => {
+    const gone = [];
+    for (const k of await caches.keys()) {
+      const c = await caches.open(k);
+      for (const req of await c.keys()) if (/pm\.field\.lifecycle\.html/.test(req.url)) { await c.delete(req); gone.push([k, req.url]); }
+    }
+    return gone;
+  });
+  let dropped = [];
+  // Opens the field film and waits for the mode it should fall back to (the
+  // step shows "video" first, until the video fails); returns the mode it has.
+  const openField = async (want) => {
+    await page.locator('.subject-tab', { hasText: 'Projecten' }).click();
+    await page.locator('.course-pm .field-film-title').waitFor();
+    await page.locator('.course-pm .field-film .film-btn').waitFor({ timeout: 4000 });
+    await page.locator('.course-pm .field-film .film-btn').click();
+    await page.locator(`.course-pm .field-film .film-step[data-mode="${want}"]`).waitFor({ timeout: 5000 }).catch(() => {});
+    return page.locator('.course-pm .field-film .film-step').getAttribute('data-mode');
+  };
+  const back = async () => {
+    await page.locator('.subject-tab', { hasText: 'Spreken' }).click();
+    await page.locator('.btn-hero').waitFor();
+  };
+  try {
+    await ctx.route(FILM_URL, noVideo);
+    if (await openField('frame') !== 'frame') throw new Error('without the video the field film did not play the HTML film');
+    await back();
+    await ctx.route(FIELD_PAGE, noPage);
+    dropped = await dropCached();
+    const mode = await openField('text').catch((e) => { throw new Error(`without video and HTML film: ${e.message.split('\n')[0]}`); });
+    if (mode !== 'text') throw new Error(`without video and HTML film the mode is ${mode}, not text`);
+    await page.locator('.course-pm .field-film .film-stage', { hasText: 'de weg die elk project loopt' }).waitFor({ timeout: 3000 });
+    await back();
+  } finally {
+    await ctx.unroute(FIELD_PAGE, noPage);
+    await ctx.unroute(FILM_URL, noVideo);
+    await page.evaluate(async (list) => { for (const [k, url] of list) await (await caches.open(k)).add(url); }, dropped);
+  }
+});
+
 // Answers a lesson's quiz from the module file; the first question wrong on purpose.
 // The lesson quiz as the app builds it (v16): recall, term questions, earlier
 // levels, then the guess back as the last question.
