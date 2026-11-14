@@ -415,6 +415,30 @@ export function placeOf(lessonId, modules = MODULES) {
   return null;
 }
 
+// v17: fields group a subject's modules under one field film, the big picture
+// above the modules ("a project from start to finish"). A subject with fields
+// has every module in exactly one; `film`, when set, is the field's own id.
+// Engineering has none yet.
+export const FIELDS = [
+  { id: 'pm.field.lifecycle', subject: 'pm',
+    title: { en: 'A project from start to finish', nl: 'Een project van begin tot eind' },
+    blurb: { en: 'Intake, plan, run, land and close: the road every project walks.', nl: 'Intake, plannen, uitvoeren, landen en afsluiten: de weg die elk project loopt.' },
+    modules: ['pm.intake', 'pm.plan', 'pm.run', 'pm.land', 'pm.close'] },
+  { id: 'pm.field.people', subject: 'pm',
+    title: { en: 'People and influence', nl: 'Mensen en invloed' },
+    blurb: { en: 'When it is stuck, how you lead, negotiate, work outside your field and steer on performance.', nl: 'Als het vastloopt, hoe je leidt, onderhandelt, buiten je vak werkt en op prestaties stuurt.' },
+    modules: ['pm.stuck', 'pm.lead', 'pm.negotiate', 'pm.outside', 'pm.perform'] },
+  { id: 'pm.field.portfolio', subject: 'pm',
+    title: { en: 'Portfolio and consulting', nl: 'Portfolio en advies' },
+    blurb: { en: 'Choosing which projects to do, and advising the people who pay for them.', nl: 'Kiezen welke projecten je doet, en adviseren wie ze betaalt.' },
+    modules: ['pm.portfolio', 'pm.consult'] },
+  { id: 'pm.field.it', subject: 'pm',
+    title: { en: 'IT and agile', nl: 'IT en agile' },
+    blurb: { en: 'Agile, scaling it, DevOps and the IT project from requirements to go-live.', nl: 'Agile, opschalen, DevOps en het IT-project van eisen tot go-live.' },
+    modules: ['pm.agile', 'pm.scaled', 'pm.devops', 'pm.itproject'] },
+];
+export const fieldOf = (moduleId, fields = FIELDS) => fields.find((f) => f.modules.includes(moduleId)) || null;
+
 // One module file per language; rejects when the file can't be loaded. A
 // browser remembers a failed import, so a retry asks for a fresh URL.
 export async function loadModule(subject, moduleId, lang, attempt = 0) {
