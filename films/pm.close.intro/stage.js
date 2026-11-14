@@ -115,7 +115,7 @@ const STAGE = (() => {
     let s = rect(334, 56, 284, 100, 'pm-card', 8);
     s += txt(346, 82, tr('Doel', 'Goal', 260), 22, 'start', 'pm-mute');
     s += txt(346, 110, tr('Lijn 3 draait in hal B', 'Line 3 runs in hall B', 262), 22, 'start', 'pm-big');
-    s += txt(346, 140, tr('even snel als nu', 'as fast as now', 262), 22, 'start', 'pm-txt');
+    s += txt(346, 140, tr('even snel als vroeger', 'as fast as before', 262), 22, 'start', 'pm-txt');
     let cells = '';
     for (let i = 0; i < 12; i++) cells += rect(334 + i * 23.7, 172, 22, 26, i >= 9 ? (past ? 'pm-badge' : 'pm-crit') : 'pm-tile', 3);
     s += cells + txt(618, 218, tr('zomerstop voorbij', 'shutdown over'), 22, 'end', 'pm-mute');
@@ -129,7 +129,7 @@ const STAGE = (() => {
   // not explained). Shown in the beat of the sentence (b === at)
   function tools(b, p, at, one, two) {
     const chip = (y, label) => rect(334, y, 284, 34, 'pm-badge', 6) + txt(346, y + 25, label, 22, 'start', 'pm-txt');
-    return { tool1B: b === at ? op(span(p, 0, 0.4), chip(296, one)) : '', tool2B: b === at ? op(span(p, 0.25, 0.65), chip(338, two)) : '' };
+    return { tool1B: b === at ? op(span(p, 0, 0.4), chip(302, one)) : '', tool2B: b === at ? op(span(p, 0.25, 0.65), chip(342, two)) : '' };
   }
 
   // ---- s2: proving results. The speed before the move and now, measured the same way; every week varies a little.
