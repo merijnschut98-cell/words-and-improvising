@@ -743,6 +743,28 @@ test('speak variant: blokkeerder in the Intake intro phrase only', () => {
   assert.equal(speakOf([en], 'en'), en);
 });
 
+// The Land module intro (pm.land.intro), checked with espeak-ng phonemes through Piper's nl bridge: it reads
+// "operators" as "OO-pi-ree-aa-tors" (ˈoːpɪːrˌaːtɔrs), said ope-raators (ˈoːpərˈaːtɔrs) as the Run intro's
+// "De operators krijgen" already is; "follow-up" with a Dutch-English switch (fˈɔlɔw(en)ˈʌp(nl)), said
+// follo-ap (fˈɔloːˈɑp); "trigger" with a soft g ("tri-gher", trˈɪɣər), said trikker (trˈɪkər, as the handover
+// rule above); and "after-action review" as "afterakshon" and "ree-viw" (ˈɑftˌɛrɑkʃˈɔn, reːvˈiw), said
+// after-eksjun (ˈɑftˌɛrˈɛkʃɵn, the stress on eks as in English) and rievjoe (rˈivju, as Sprint Review). All only
+// in this film's phrases; the handover lesson's trigger, other films' operators and reviews keep their voice.
+test('speak variant: the Land intro phrases', () => {
+  const nl = (s) => speakOf([s], 'nl');
+  assert.equal(nl('Een operator die er niet bij was, volgt hem.'), 'Een ope-raator die er niet bij was, volgt hem.');
+  assert.equal(nl('Dat lukt als de operators het mee hebben vormgegeven.'), 'Dat lukt als de ope-raators het mee hebben vormgegeven.');
+  assert.equal(nl('Dat de operators anders werken is de uitkomst.'), 'Dat de ope-raators anders werken is de uitkomst.');
+  assert.equal(nl('Spreek vooraf een follow-up af en een trigger.'), 'Spreek vooraf een follo-ap af en een trikker.');
+  assert.equal(nl('We gebruiken vaak een A3-rapport en een after-action review.'), 'We gebruiken vaak een A3-rapport en een after-eksjun rievjoe.');
+  // elsewhere the words keep their voice
+  assert.equal(nl('Een operator volgt de instructie.'), 'Een operator volgt de instructie.');
+  assert.equal(nl('Plan een follow-up en een trigger.'), 'Plan een follow-up en een trigger.');
+  assert.equal(nl('Een after-action review na afloop.'), 'Een after-action review na afloop.');
+  const en = 'An operator follows it. Agree a follow-up and a trigger, then an after-action review.';
+  assert.equal(speakOf([en], 'en'), en);
+});
+
 // A stage drawn on the Dutch caption beats (beatwarp films set STAGE.nlBeats)
 // follows the caption beat on screen in English too: while English beat k
 // shows, the stage runs through Dutch beat k, so the drawing is never a beat off.
