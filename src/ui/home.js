@@ -318,6 +318,8 @@ function renderStart(app, root, showBreak, note) {
       breakCard(app, showBreak),
       startHead(app),
       flairNote(app, note),
+      // Andon right above the one begin button: "the one below" is that button.
+      guideGreeting(app, { subject: 'start' }),
       beginButton(app, cards.find((c) => c.suggested) || cards[0]),
       h('p', { class: 'start-or muted small' }, t('startOr')),
       h('div', { class: 'start-cards' }, cards.map((c) => startCard(app, c))),

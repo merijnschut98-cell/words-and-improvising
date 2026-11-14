@@ -63,7 +63,7 @@ test('guide is not rendered when settings.guide is false', () => {
 
 // ---- The guide in the quiz review and on the course home (task 20) ----
 const { renderQuiz } = await import('../src/ui/quiz.js');
-const { goalLeftLine } = await import('../src/ui/flairui.js');
+const { goalLeftText } = await import('../src/ui/flairui.js');
 const { defaultState } = await import('../src/core/storage.js');
 const tNl = translator('nl');
 const qs = [{ id: 'x#r0', q: 'q0', options: ['a', 'b', 'c', 'd'], answer: 'a', why: 'w' }, { id: 'x#r1', q: 'q1', options: ['a', 'b', 'c', 'd'], answer: 'a', why: 'w' }];
@@ -94,15 +94,11 @@ test('quiz review: all right lights the top with no line; misses light the middl
   assert.equal(b2.querySelector('.quiz-review .guide-say'), null, 'the line comes once per quiz');
 });
 
-test('course home shows goalLeft only after the first lesson of the day and while the goal is open', () => {
-  const app = (xpDays, settings = {}) => ({ t: tNl, lang: 'nl', today: () => '2026-11-02', state: { ...defaultState(), xpDays, settings: { ...defaultState().settings, ...settings } } });
-  assert.equal(goalLeftLine(app({})), null, 'nothing done today yet');
-  const el = goalLeftLine(app({ '2026-11-02': 18 }));
-  assert.match(el.textContent, /Nog 12 XP tot je dagdoel\./);
-  assert.ok(el.querySelector('.guide'));
-  assert.equal(goalLeftLine(app({ '2026-11-02': 30 })), null, 'goal reached');
-  const off = goalLeftLine(app({ '2026-11-02': 18 }, { guide: false }));
-  assert.equal(off, null, 'the line belongs to the guide');
+test('goalLeft only after the first lesson of the day and while the goal is open', () => {
+  const app = (xpDays) => ({ t: tNl, lang: 'nl', today: () => '2026-11-02', state: { ...defaultState(), xpDays } });
+  assert.equal(goalLeftText(app({})), null, 'nothing done today yet');
+  assert.equal(goalLeftText(app({ '2026-11-02': 18 })), 'Nog 12 XP tot je dagdoel.');
+  assert.equal(goalLeftText(app({ '2026-11-02': 30 })), null, 'goal reached');
 });
 
 test('settings guide off: no guide anywhere, the done card keeps its mark', () => {
@@ -198,4 +194,54 @@ test('guide sizes 72 and 96 have styles', async () => {
   const fs = await import('node:fs');
   const css = fs.readFileSync(new URL('../styles.css', import.meta.url), 'utf8');
   for (const n of [72, 96]) assert.match(css, new RegExp(`\\.guide-${n}\\b`));
+});
+
+// ---- Review (Task 8): the start screen greets too, and no home shows two guide lines ----
+const { renderHome } = await import('../src/ui/home.js');
+const promptsNl = (await import('../src/content/prompts.nl.js')).default;
+const homeApp = (subject, state) => ({
+  t: tNl, lang: 'nl', today: () => '2026-11-02', state, subject, content: promptsNl, session: null,
+  setState(s) { this.state = s; }, go() {}, setSubject() {}, openModule: () => new Promise(() => {}), dueReviews: () => [],
+});
+const renderHomeOf = (subject, state) => { const root = document.createElement('div'); renderHome(homeApp(subject, state), {}, root); return root; };
+const guideCount = (root) => ({
+  andons: root.querySelectorAll('.guide').length,
+  lines: root.querySelectorAll('.guide-say').length + root.querySelectorAll('.guide-line').length,
+});
+const halfDone = () => ({ ...stOn(), xpDays: { '2026-11-02': 18 } });
+
+test('start screen: Andon greets between the head and the one begin button; gone with the guide off', () => {
+  const main = renderHomeOf('start', stOn()).querySelector('main');
+  const kids = [...main.children];
+  const g = kids.findIndex((e) => e.classList.contains('guide-greeting'));
+  assert.ok(g >= 0, 'a greeting on the start screen');
+  assert.equal(kids[g].getAttribute('data-subject'), 'start');
+  assert.ok(kids[g].querySelector('.guide-96'));
+  assert.ok(kids.findIndex((e) => e.classList.contains('start-head-wrap')) < g, 'under the head');
+  assert.ok(kids.findIndex((e) => e.classList.contains('begin-btn')) > g, 'above the begin button');
+  const off = renderHomeOf('start', stOff());
+  assert.equal(off.querySelector('.guide-greeting'), null);
+  assert.equal(off.querySelector('.guide'), null);
+});
+
+test('every home shows at most one Andon and one guide line, also with the daily goal half done', () => {
+  for (const subject of ['start', 'speak', 'pm', 'eng']) {
+    for (const st of [stOn(), halfDone()]) {
+      const c = guideCount(renderHomeOf(subject, st));
+      assert.equal(c.andons, 1, `${subject}: ${c.andons} Andons`);
+      assert.equal(c.lines, 1, `${subject}: ${c.lines} guide lines`);
+    }
+    const st = halfDone();
+    const off = guideCount(renderHomeOf(subject, { ...st, settings: { ...st.settings, guide: false } }));
+    assert.deepEqual(off, { andons: 0, lines: 0 }, `${subject} with the guide off`);
+  }
+});
+
+test('course home with the goal half done: the greeting says how much XP is left (its one line); the day line otherwise', () => {
+  for (const subject of ['pm', 'eng']) {
+    assert.equal(renderHomeOf(subject, halfDone()).querySelector('.guide-greeting .guide-say').textContent, 'Nog 12 XP tot je dagdoel.');
+    assert.ok(tNl('guideHome').includes(renderHomeOf(subject, stOn()).querySelector('.guide-greeting .guide-say').textContent), 'nothing done yet: the day line');
+    const done = { ...stOn(), xpDays: { '2026-11-02': 30 } };
+    assert.ok(tNl('guideHome').includes(renderHomeOf(subject, done).querySelector('.guide-greeting .guide-say').textContent), 'goal reached: the day line');
+  }
 });

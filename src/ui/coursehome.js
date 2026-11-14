@@ -8,7 +8,7 @@ import { subjectMap } from './subjectmap.js';
 import { filmButton } from './film.js';
 import { courseTodayPick, moduleMastery, nextLesson, levelsDone } from '../core/course.js';
 import { pathModel, topicPath } from './pathmap.js';
-import { medalSeal, metaSeal, moduleEndModel, checkEntry, goalLeftLine, guideGreeting } from './flairui.js';
+import { medalSeal, metaSeal, moduleEndModel, checkEntry, guideGreeting } from './flairui.js';
 import { dueCount } from '../core/coursereview.js';
 import { FROM_MODULE } from '../core/moduleexit.js';
 import { moduleTier, trackProgress, openTrack } from '../core/layout.js';
@@ -185,9 +185,10 @@ function trackSection(app, subject, track, open) {
 
 // The blocks of a subject home, top to bottom. A subject with a map shows it
 // first (v17), then the next step, and a row of field films before the tracks.
+// The XP left for the daily goal is Andon's line in the greeting above these.
 export const homeOrder = (subject, hasMap) => (hasMap
-  ? ['map', 'next', 'goal', 'quick', 'due', 'fields', 'tracks']
-  : ['next', 'goal', 'quick', 'due', 'tracks']);
+  ? ['map', 'next', 'quick', 'due', 'fields', 'tracks']
+  : ['next', 'quick', 'due', 'tracks']);
 
 // The subject's fields that have a film of their own, in the order of FIELDS.
 export const fieldFilms = (subject, fields = FIELDS) => fields.filter((f) => f.subject === subject && f.film);
@@ -228,7 +229,6 @@ export function courseHome(app, subject) {
   const blocks = {
     map: () => mapCard(app, subject, map, pick),
     next: () => todayCard(app, subject, pick),
-    goal: () => goalLeftLine(app),
     // Begrippen and Mijn echte week: one compact row under the next step.
     quick: () => h('div', { class: 'quick-row' },
       h('button', { class: 'btn btn-ghost small glossary-entry', onclick: () => app.go('glossary', { subject }) }, ico('library'), ' ', t('glossary')),
@@ -241,6 +241,6 @@ export function courseHome(app, subject) {
   };
   return h('main', { class: `screen home course-home course-${subject}` },
     h('h1', { class: 'sr' }, t(`subject_${subject}`)),
-    guideGreeting(app, { subject }),
+    guideGreeting(app, { subject, goal: true }),
     ...homeOrder(subject, Boolean(map)).flatMap((k) => blocks[k]()));
 }

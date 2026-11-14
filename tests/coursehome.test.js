@@ -10,10 +10,10 @@ import { FIELDS } from '../src/content/courses/index.js';
 import { STRINGS } from '../src/i18n.js';
 
 test('homeOrder: a subject with a map shows it first, then the next step', () => {
-  assert.deepEqual(homeOrder('pm', true), ['map', 'next', 'goal', 'quick', 'due', 'fields', 'tracks']);
+  assert.deepEqual(homeOrder('pm', true), ['map', 'next', 'quick', 'due', 'fields', 'tracks']);
 });
 test('homeOrder: a subject without a map keeps today\'s order', () => {
-  assert.deepEqual(homeOrder('eng', false), ['next', 'goal', 'quick', 'due', 'tracks']);
+  assert.deepEqual(homeOrder('eng', false), ['next', 'quick', 'due', 'tracks']);
 });
 
 test('mapFor: Projects has its map, Engineering none yet', () => {

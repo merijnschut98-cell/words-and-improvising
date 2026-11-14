@@ -220,15 +220,11 @@ export function celebration(app, result, { mark = null, play = playCue, subject 
   };
 }
 
-// On the course home, under the Today card: how much XP is left for the
-// daily goal, said by the guide; only after the first XP of the day and while
-// the goal is still open.
-export function goalLeftLine(app) {
+// How much XP is left for the daily goal, as a line; only after the first XP
+// of the day and while the goal is still open, else null.
+export function goalLeftText(app) {
   const g = goalProgress(app.state, app.today());
-  if (!g.xp || g.done) return null;
-  const el = guide(app.state, { mood: 'idle', size: 32 });
-  if (!el) return null;
-  return h('div', { class: 'guide-line goal-left' }, el, h('p', { class: 'small muted' }, app.t('goalLeft', g.goal - g.xp)));
+  return !g.xp || g.done ? null : app.t('goalLeft', g.goal - g.xp);
 }
 
 // ---- Andon visible (v17 Task 8) ----
@@ -238,12 +234,16 @@ export function goalLeftLine(app) {
 
 // On a home screen, above the first card: 96 px, one line from a pool seeded
 // by the day. Null when the guide is off, so nothing is left where he stood.
-export function guideGreeting(app, { subject = null } = {}) {
+// With `goal` (the course homes) the line is the XP left for the daily goal
+// while it is open: one Andon and one line per screen, so the goal line that
+// stood under the Today card with its own small Andon is said by him here.
+export function guideGreeting(app, { subject = null, goal = false } = {}) {
   const el = guide(app.state, { mood: 'idle', size: 96 });
   if (!el) return null;
-  return h('div', { class: 'guide-greeting', 'data-subject': subject || '' },
+  const left = goal ? goalLeftText(app) : null;
+  return h('div', { class: 'guide-greeting', 'data-subject': subject || '', 'data-line': left ? 'goal' : 'day' },
     el,
-    h('p', { class: 'guide-say' }, guideLine(app.t, 'guideHome', app.today())));
+    h('p', { class: 'guide-say' }, left || guideLine(app.t, 'guideHome', app.today())));
 }
 
 // What Andon shows with a module's intro, from the state alone (pure): idle
