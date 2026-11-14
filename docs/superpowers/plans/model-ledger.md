@@ -57,3 +57,5 @@ Outcome: accepted (merged as delivered), sent back N times, redone.
 | 14 Nov | Build module intro pm.run.intro (Task 11) | sonnet | 144 | 23 min | 331,227 | accepted with fixes by its review (two tool picks, a map fade bug) |
 | 14 Nov | Build module intro pm.intake.intro (Task 11) | sonnet | 150 | 27 min | 379,094 | in review (opus, kit: optional tileUnits; clashes with the run intro's TILE_UNITS 130) |
 | 14 Nov | Review module intro pm.run.intro | opus | 76 | 17 min | 208,568 | accepted with four fixes; TILE_UNITS 130 measured safe; found the same map fade bug in the pilot |
+| 14 Nov | Render PM-14: pipeline (DevOps voice) and pm.field.it | sonnet | 38 | 45 min | 118,124 | accepted; one narration line rewritten to remove a colon pause; merged v269 |
+| 14 Nov | Review module intro pm.intake.intro | opus | 73 | 18 min | 222,687 | accepted with fixes (kit tileUnits hardened, two story reasons added); advised per-film tileUnits over a raised default |
