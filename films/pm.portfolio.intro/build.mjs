@@ -39,15 +39,15 @@
 //   s7 the shared Projects map with Programma’s en governance lit, then the module's four topics with their
 //      levels as columns, where to start, and what each later level adds
 // Definitions as the Basis lessons word them (pm.portfolio.programme, .prioritise, .governance, .benefits).
-// Each topic scene names the tools of that topic's lessons in one short sentence, without explaining them
-// (Merijn's checkpoint, 14 Nov), each a term of its lesson, from Basis or Werkkennis: a programme board
-// (programme, Basis) and MSP (msp, Werkkennis); a capacity line (prioritise, Basis, as field film 3 names it)
-// and a capacity matrix (capacity, Werkkennis); a decision log (governance, Basis, as field film 3 names it;
-// the run and stuck intros name it for their own topics, here it is this topic's tool); a benefits map and
-// a benefits profile (benefitsmap, Werkkennis). The Werkkennis tools named in a Basis scene (MSP, the
-// capacity matrix, the benefits map and the benefits profile) do not come back in s7, and neither does any
-// Basis term a scene named; s7 names what each later level adds and nothing a scene explained or named. The
-// baseline (nulmeting) is the close and plan intros' tool and is not named here. Terms come from the
+// Each topic scene names the tools of that topic's BASIS lesson in one short sentence, without explaining them
+// (Merijn's checkpoint, 14 Nov), each a term of that lesson: a programme board (programme); a capacity line
+// (prioritise, as field film 3 names it); decision rights and a decision log (governance; the decision log is
+// field film 3's tool for this module, the run and stuck intros name it for their own topics, the list of decision
+// rights is this topic's own); a baseline and a benefit owner (benefits; the baseline is also the intake and close
+// intros' tool, here it is what lets benefits be shown at all). MSP, the capacity matrix and the benefits map
+// are Werkkennis lessons, so they are what the closing map says that level adds (as pm.lead.intro does for its
+// Werkkennis methods), and no Basis scene names them. s7 names what each later level adds and nothing a scene
+// explained or named. Terms come from the
 // module's lessons and {n:} numbers from the module's text (the kit's intro mode, films/_kit/build-film.mjs);
 // the kit holds the film to its map (every topic named in a caption of its own scene, explained in two beats
 // and lit), to the narration guard and to the label fit.
@@ -101,45 +101,46 @@ const isTerm = (id, term, lang) => assert((lessons[lang].get(id).terms || []).so
 // project and the goal still holds, and it belongs in the portfolio, the full list of projects competing for the
 // same money and people, not in this programme; watermelon reporting: every project reports green on its own plan
 // while the shared goal does not move, so report the outcome number itself every month, next to the project
-// statuses; the tools: the programme board (pm.portfolio.programme, Basis) and MSP (pm.portfolio.msp, Werkkennis)
+// statuses; the tool: the programme board (pm.portfolio.programme, Basis)
 has('pm.portfolio.programme', ['Een programma is een groep projecten die je samen stuurt omdat ze één uitkomst leveren die geen van hen alleen haalt', 'een gereedheidscheck, een nieuw materiaalproces én een aanpassing in de planningstool', 'kun je één project schrappen en blijft het doel overeind, dan hoort het in het portfolio, de hele lijst projecten die om hetzelfde geld en dezelfde mensen strijden', 'Elk project meldt groen op zijn eigen plan terwijl het gezamenlijke doel niet beweegt', 'rapporteer elke maand het uitkomstgetal zelf, naast de projectstatussen']);
 has('pm.portfolio.programme', ['A programme is a group of projects run together because they deliver one outcome none of them reaches alone', 'a readiness check, a new materials process and a planning-tool change', 'if you can drop one project and the goal still holds, it belongs in the portfolio, the full list of projects competing for the same money and people', 'Each project reports green against its own plan while the shared goal doesn’t move', 'report the outcome number itself every month, next to the project statuses'], 'en');
-isTerm('pm.portfolio.programme', 'Programmaraad', 'nl'); isTerm('pm.portfolio.msp', 'MSP', 'nl');
-isTerm('pm.portfolio.programme', 'Programme board', 'en'); isTerm('pm.portfolio.msp', 'MSP', 'en');
+isTerm('pm.portfolio.programme', 'Programmaraad', 'nl');
+isTerm('pm.portfolio.programme', 'Programme board', 'en');
 // s3: the bottleneck limits how much gets done, usually a few scarce experts and not money (the lesson's two
 // process engineers); count the scarce people, not the headcount; saying no at portfolio level is never a bare
-// no, it is "not now, and here is what it would push out"; the tools: the capacity line (pm.portfolio.prioritise,
-// Basis, as field film 3 names it) and the capacity matrix (pm.portfolio.capacity, Werkkennis)
+// no, it is "not now, and here is what it would push out"; the tool: the capacity line (pm.portfolio.prioritise,
+// Basis, as field film 3 names it)
 has('pm.portfolio.prioritise', ['De bottleneck is wat bepaalt hoeveel er af komt: meestal een paar schaarse experts, niet geld', 'twee procesengineers', 'Tel de schaarse mensen, niet de headcount', 'is nooit een kaal nee', 'wat het zou verdringen']);
 has('pm.portfolio.prioritise', ['The bottleneck is the resource that limits how much gets done: usually a few scarce experts, not money', 'two process engineers', 'Count the scarce people, not the headcount', 'is never a bare no', 'what it would push out'], 'en');
-isTerm('pm.portfolio.prioritise', 'Capaciteitsstreep', 'nl'); isTerm('pm.portfolio.capacity', 'Capaciteitsmatrix', 'nl');
-isTerm('pm.portfolio.prioritise', 'Capacity line', 'en'); isTerm('pm.portfolio.capacity', 'Capacity matrix', 'en');
+isTerm('pm.portfolio.prioritise', 'Capaciteitsstreep', 'nl');
+isTerm('pm.portfolio.prioritise', 'Capacity line', 'en');
 // s4: governance is the set of agreements on who decides what, made in advance, for scope, budget, timeline and
 // people; the project lead decides within the margins, the steering group beyond, the board on anything that
 // touches strategy; a steering group that decides has decisions on the agenda, not updates, and cancels the
-// meeting when there is none; the minutes are a decision log; the tool: the decision log (pm.portfolio.governance,
+// meeting when there is none; the minutes are a decision log; the tools: decision rights and the decision log (pm.portfolio.governance,
 // Basis, as field film 3 names it; the run and stuck intros name it for their own topics)
 has('pm.portfolio.governance', ['Governance is het geheel van afspraken over wie wat beslist, vooraf vastgelegd', 'voor scope, budget, planning en mensen', 'de projectleider beslist binnen 10% op budget en twee weken op planning; daarbuiten beslist de stuurgroep', 'beslist de directie', 'Op de agenda staan besluiten, geen updates', 'zeg het overleg dan af', 'De notulen zijn een besluitenlijst']);
 has('pm.portfolio.governance', ['Governance is the set of agreements on who decides what, made in advance', 'for scope, budget, timeline and people', 'the project lead decides within 10% on budget and two weeks on timeline; the steering group decides beyond that', 'the board decides', 'The agenda lists decisions, not updates', 'cancel the meeting', 'The minutes are a decision log'], 'en');
-isTerm('pm.portfolio.governance', 'Besluitenlijst', 'nl'); isTerm('pm.portfolio.governance', 'Decision log', 'en');
+isTerm('pm.portfolio.governance', 'Beslisbevoegdheden', 'nl'); isTerm('pm.portfolio.governance', 'Besluitenlijst', 'nl');
+isTerm('pm.portfolio.governance', 'Decision rights', 'en'); isTerm('pm.portfolio.governance', 'Decision log', 'en');
 // s5: output is what the project delivers (the readiness check going live), the benefit is the measurable gain
 // for the organisation; projects deliver outputs, the line, the managers who run daily operations, owns outcomes
 // and benefits, and a benefit owner is not the project lead, who leaves; when benefits leak the project closes, the
-// team moves on and the old way creeps back within months; the tools: a benefits map and a benefits profile
-// (pm.portfolio.benefitsmap, Werkkennis, both). The baseline is the close and plan intros' tool, not named here
+// team moves on and the old way creeps back within months; the tools: a baseline and a benefit owner
+// (pm.portfolio.benefits, Basis, both terms of its glossary)
 has('pm.portfolio.benefits', ['Output: wat het project oplevert, zoals de gereedheidscheck die live gaat', 'Baten: de meetbare winst voor de organisatie', 'de lijn, de managers die de dagelijkse operatie draaien, is eigenaar van uitkomsten en baten', 'niet de projectleider, want die vertrekt', 'het project sluit, het team gaat verder, en binnen een paar maanden sluipt de oude manier terug', 'Plan het volgen van de baten voor 6 tot 12 maanden na de livegang']);
 has('pm.portfolio.benefits', ['Output: what the project delivers, such as the readiness check going live', 'Benefit: the measurable gain for the organisation', 'the line, the managers who run daily operations, owns outcomes and benefits', 'not the project lead, who leaves', 'the project closes, the team moves on, and the old way creeps back within months', 'Plan benefits tracking for 6–12 months after go-live'], 'en');
-isTerm('pm.portfolio.benefitsmap', 'Batenkaart', 'nl'); isTerm('pm.portfolio.benefitsmap', 'Batenprofiel', 'nl');
-isTerm('pm.portfolio.benefitsmap', 'Benefits map', 'en'); isTerm('pm.portfolio.benefitsmap', 'Benefits profile', 'en');
+isTerm('pm.portfolio.benefits', 'Nulmeting', 'nl'); isTerm('pm.portfolio.benefits', 'Batenhouder', 'nl');
+isTerm('pm.portfolio.benefits', 'Baseline', 'en'); isTerm('pm.portfolio.benefits', 'Benefit owner', 'en');
 // s7: the later levels, as the lessons are titled or word them (the grid names what each adds, and nothing a scene
-// explained or named: no programme board, MSP, capacity line, capacity matrix, decision log, benefits map, benefits
-// profile, programme, portfolio, bottleneck, output, benefit owner; the vision statement, real availability,
-// stage-gates, dis-benefits, the dependency register, cost of delay, pre-wiring, double counting, change
+// explained or named: no programme board, capacity line, decision rights, decision log, baseline, benefit owner,
+// programme, portfolio, bottleneck, output; MSP, the capacity matrix, stage-gates, the benefits map, the dependency
+// register, cost of delay, pre-wiring, double counting, change
 // saturation, zombie projects, independent assurance and the iron law are named here and nowhere else)
-for (const [id, word] of [['pm.portfolio.msp', 'Visie'], ['pm.portfolio.capacity', 'Echte beschikbaarheid'], ['pm.portfolio.gates', 'Stage gate'], ['pm.portfolio.benefitsmap', 'Negatieve baat'],
+for (const [id, word] of [['pm.portfolio.msp', 'MSP'], ['pm.portfolio.capacity', 'Capaciteitsmatrix'], ['pm.portfolio.gates', 'Stage gate'], ['pm.portfolio.benefitsmap', 'Batenkaart'],
   ['pm.portfolio.dependencies', 'Afhankelijkhedenregister'], ['pm.portfolio.costofdelay', 'Kosten van vertraging'], ['pm.portfolio.boardroom', 'Voorsorteren'], ['pm.portfolio.tracking', 'Dubbeltelling'],
   ['pm.portfolio.tranches', 'Veranderverzadiging'], ['pm.portfolio.balance', 'Zombieproject'], ['pm.portfolio.assurance', 'Onafhankelijke toetsing'], ['pm.portfolio.realism', 'IJzeren wet']]) has(id, [word]);
-for (const [id, word] of [['pm.portfolio.msp', 'Vision statement'], ['pm.portfolio.capacity', 'Real availability'], ['pm.portfolio.gates', 'Stage gate'], ['pm.portfolio.benefitsmap', 'Dis-benefit'],
+for (const [id, word] of [['pm.portfolio.msp', 'MSP'], ['pm.portfolio.capacity', 'Capacity matrix'], ['pm.portfolio.gates', 'Stage gate'], ['pm.portfolio.benefitsmap', 'Benefits map'],
   ['pm.portfolio.dependencies', 'Dependency register'], ['pm.portfolio.costofdelay', 'Cost of delay'], ['pm.portfolio.boardroom', 'Pre-wiring'], ['pm.portfolio.tracking', 'Double counting'],
   ['pm.portfolio.tranches', 'Change saturation'], ['pm.portfolio.balance', 'Zombie project'], ['pm.portfolio.assurance', 'Independent assurance'], ['pm.portfolio.realism', 'Iron law']]) has(id, [word], 'en');
 // s7: the level words are the app's. The grid (stage.js, grid) has four level columns of GRID.col units from
@@ -349,7 +350,7 @@ const spec = {
         { nl: 'Eerste onderwerp is Programma’s. Drie projecten halen samen één doel, minder afgezegde klussen.', en: 'First topic is Programmes. Three projects reach one goal together, fewer cancelled jobs.', focus: ['tProg', 'pgoal', 'sponsor', 'teamlead'] },
         { nl: 'Lijn 3 hoort er niet bij. Zonder die verhuizing blijft het doel overeind.', en: 'Line 3 is not part of it. Without that move the goal still stands.', focus: ['pline3', 'line3'] },
         { nl: 'Elk project meldt groen, maar het doel beweegt niet. Meld elke maand ook het getal zelf.', en: 'Each project reports green, but the goal does not move. Also report its number every month.', focus: ['pgreen', 'sponsor'] },
-        { nl: 'Bij programma’s gebruiken we een {t:Programmaraad|programmaraad} en {t:MSP|MSP}.', en: 'For programmes we use a {t:Programme board|programme board} and {t:MSP|MSP}.', cue: { Programmaraad: 'tool1', MSP: 'tool2', 'Programme board': 'tool1' }, focus: ['tool1', 'tool2'] },
+        { nl: 'Bij programma’s gebruiken we een {t:Programmaraad|programmaraad}.', en: 'For programmes we use a {t:Programme board|programme board}.', cue: { Programmaraad: 'tool1', 'Programme board': 'tool1' }, focus: ['tool1'] },
       ],
     },
     {
@@ -358,7 +359,7 @@ const spec = {
         { nl: 'Tweede onderwerp is Prioriteren en capaciteit. Het knelpunt is niet geld maar twee engineers.', en: 'Second topic is Prioritising and capacity. The bottleneck is two engineers, not money.', focus: ['tPrio', 'bottle', 'engineers'] },
         { nl: 'Tel hun dagen, niet het aantal medewerkers. Meer dagen dan dat zijn er niet.', en: 'Count their days, not the headcount. There are no more days than that.', focus: ['days', 'engineers'] },
         { nl: 'Moet een project wachten? Zeg niet nee, maar niet nu, en wat het zou verdringen.', en: 'Must a project wait? Do not say no, but not now, and what it would push out.', focus: ['notnow', 'sponsor'] },
-        { nl: 'Bij prioriteren gebruiken we een {t:Capaciteitsstreep|capaciteitsstreep} en een {t:Capaciteitsmatrix|capaciteitsmatrix}.', en: 'For prioritising we use a {t:Capacity line|capacity line} and a {t:Capacity matrix|capacity matrix}.', cue: { Capaciteitsstreep: 'tool1', Capaciteitsmatrix: 'tool2', 'Capacity line': 'tool1', 'Capacity matrix': 'tool2' }, focus: ['tool1', 'tool2'] },
+        { nl: 'Bij prioriteren gebruiken we een {t:Capaciteitsstreep|capaciteitsstreep}.', en: 'For prioritising we use a {t:Capacity line|capacity line}.', cue: { Capaciteitsstreep: 'tool1', 'Capacity line': 'tool1' }, focus: ['tool1'] },
       ],
     },
     {
@@ -367,7 +368,7 @@ const spec = {
         { nl: 'Derde onderwerp is Governance en sturen. Leg vooraf vast wie wat beslist.', en: 'Third topic is Governance and steering. Agree in advance who decides what.', focus: ['tGov', 'who', 'sponsor', 'teamlead'] },
         { nl: 'De projectleider beslist binnen zijn marges, de stuurgroep daarbuiten en de directie over strategie.', en: 'The project lead decides within the margins, the steering group beyond, the board on strategy.', focus: ['levels'] },
         { nl: 'In de stuurgroep staan besluiten op de agenda, geen updates.', en: 'The steering group has decisions on its agenda, not updates.', focus: ['agenda', 'sponsor'] },
-        { nl: 'Bij governance gebruiken we een {t:Besluitenlijst|besluitenlijst}.', en: 'For governance we use a {t:Decision log|decision log}.', cue: { Besluitenlijst: 'tool1', 'Decision log': 'tool1' }, focus: ['tool1'] },
+        { nl: 'Bij governance gebruiken we {t:Beslisbevoegdheden|beslisbevoegdheden} en een {t:Besluitenlijst|besluitenlijst}.', en: 'For governance we use {t:Decision rights|decision rights} and a {t:Decision log|decision log}.', cue: { Beslisbevoegdheden: 'tool1', Besluitenlijst: 'tool2', 'Decision rights': 'tool1', 'Decision log': 'tool2' }, focus: ['tool1', 'tool2'] },
       ],
     },
     {
@@ -376,7 +377,7 @@ const spec = {
         { nl: 'Vierde onderwerp is Baten. De check gaat live, maar de baten komen later.', en: 'Fourth topic is Benefits. The check goes live, but the benefits come later.', focus: ['tBen', 'chain', 'teamlead'] },
         { nl: 'De managers die de fabriek draaien zijn eigenaar van de baten, niet de projectleider.', en: 'The managers who run the plant own the benefits, not the project lead.', focus: ['owner', 'sponsor'] },
         { nl: 'Kijkt niemand mee, dan sluipt de oude manier terug. Volg het getal maandenlang.', en: 'If nobody watches, the old way creeps back. Follow the number for months.', focus: ['leak'] },
-        { nl: 'Bij baten gebruiken we een {t:Batenkaart|batenkaart} en een {t:Batenprofiel|batenprofiel}.', en: 'For benefits we use a {t:Benefits map|benefits map} and a {t:Benefits profile|benefits profile}.', cue: { Batenkaart: 'tool1', Batenprofiel: 'tool2', 'Benefits map': 'tool1', 'Benefits profile': 'tool2' }, focus: ['tool1', 'tool2'] },
+        { nl: 'Bij baten gebruiken we een {t:Nulmeting|nulmeting} en een {t:Batenhouder|batenhouder}.', en: 'For benefits we use a {t:Baseline|baseline} and a {t:Benefit owner|benefit owner}.', cue: { Nulmeting: 'tool1', Batenhouder: 'tool2', Baseline: 'tool1', 'Benefit owner': 'tool2' }, focus: ['tool1', 'tool2'] },
       ],
     },
     {
@@ -392,7 +393,7 @@ const spec = {
         { nl: 'Op de kaart van Projecten is Programma’s en governance het eerste station van Portfolio en advies.', en: 'On the map of Projects, Programmes and governance is the first station of Portfolio and consulting.', focus: mapCue('pm.portfolio') },
         { nl: 'Deze module heeft vier onderwerpen, elk met vier niveaus.', en: 'This module has four topics, each with four levels.', focus: 'route' },
         { nl: 'Begin bij Programma’s, op niveau Basis.', en: 'Start with Programmes, at Basics level.', focus: ['tProg', 'lv1', 'start'] },
-        { nl: 'Op Werkkennis komen de visie, echte beschikbaarheid, stage-gates en negatieve baten erbij.', en: 'At Working knowledge you add the vision statement, real availability, stage-gates and dis-benefits.', focus: 'lv2' },
+        { nl: 'Op Werkkennis komen de methode MSP, de capaciteitsmatrix, stage-gates en de batenkaart erbij.', en: 'At Working knowledge you add the MSP method, the capacity matrix, stage-gates and the benefits map.', focus: 'lv2' },
         { nl: 'Op Gevorderd komen het afhankelijkhedenregister, kosten van vertraging, voorsorteren en dubbeltelling erbij.', en: 'At Advanced you add the dependency register, cost of delay, pre-wiring and double counting.', focus: 'lv3' },
         { nl: 'Op Expert komen veranderverzadiging, zombieprojecten, onafhankelijke toetsing en de ijzeren wet erbij.', en: 'At Expert you add change saturation, zombie projects, independent assurance and the iron law.', focus: 'lv4' },
         { nl: 'Elke les en elke film van deze module heeft een plek op deze kaart.', en: 'Every lesson and film in this module has a place on this map.', focus: null },
@@ -415,22 +416,22 @@ const spec = {
 // captions show the lessons' own words (procesengineers, plantmanager).
 const SAY = [
   [ // s1 four projects, two engineers
-    { nl: 'Lijn 3 staat in hal B. Dat was het eerste van vier projecten dit jaar, de andere drie moeten nog.',
+    { nl: 'Lijn 3 staat in hal B. Dat was het eerste van vier projecten dit jaar. De andere drie moeten nog beginnen.',
       en: 'Line 3 stands in hall B. That was the first of four projects this year, and the other three still have to start.' },
-    { nl: 'De andere drie hebben dezelfde twee procesingenieurs nodig die lijn 3 verhuisden, en hetzelfde geld. Er is niet genoeg voor alles tegelijk.',
-      en: 'The other three need the same two process engineers who moved line 3, and the same money. There is not enough for everything at once.' },
+    { nl: 'De andere drie hebben dezelfde twee procesingenieurs nodig, en hetzelfde geld. Er is niet genoeg voor alles tegelijk.',
+      en: 'The other three need the same two process engineers, and the same money. There is not enough for everything at once.' },
     { nl: 'Nu adviseer je de plantmanager. We volgen dat langs de vier onderwerpen van de module.',
       en: 'Now you advise the plant manager. We follow that through the four topics of the module.' },
   ],
   [ // s2 programmes
     { nl: 'Het eerste onderwerp is programma’s. De gereedheidscheck, de planningstool en het materiaalproces halen samen één doel, minder afgezegde klussen. Geen van de drie haalt dat alleen, dus ze vormen een programma.',
       en: 'The first topic is programmes. The readiness check, the planning tool and the materials process reach one goal together, fewer cancelled jobs. None of the three reaches it alone, so they form a programme.' },
-    { nl: 'Lijn 3 hoort er niet bij, want zonder die verhuizing blijft het doel overeind. Die hoort bij het portfolio, de hele lijst projecten.',
-      en: 'Line 3 is not part of it, because without that move the goal still stands. It belongs in the portfolio, the full list of projects.' },
-    { nl: 'Elk project meldt groen op zijn eigen plan, terwijl het doel niet beweegt. Daarom meld je elke maand ook het getal van het doel zelf.',
-      en: 'Each project reports green on its own plan, while the goal does not move. So you also report the goal’s own number every month.' },
-    { nl: 'Bij programma’s gebruiken we een {t:Programmaraad|programmaraad} en {t:MSP|MSP}.',
-      en: 'For programmes we use a {t:Programme board|programme board} and {t:MSP|MSP}.' },
+    { nl: 'Lijn 3 hoort er niet bij, want zonder die verhuizing blijft het doel overeind. Die hoort bij het portfolio, alle projecten samen.',
+      en: 'Line 3 is not part of it, because without that move the goal still stands. It belongs in the portfolio, all projects together.' },
+    { nl: 'Elk project meldt groen, terwijl het doel niet beweegt. Meld daarom elke maand ook het getal van het doel zelf.',
+      en: 'Each project reports green, while the goal does not move. So also report the goal’s own number every month.' },
+    { nl: 'Bij programma’s gebruiken we een {t:Programmaraad|programmaraad}.',
+      en: 'For programmes we use a {t:Programme board|programme board}.' },
   ],
   [ // s3 prioritising and capacity
     { nl: 'Het tweede onderwerp is prioriteren en capaciteit. Het knelpunt is niet geld maar de twee procesingenieurs, want die zijn schaars.',
@@ -439,8 +440,8 @@ const SAY = [
       en: 'So count their days, not the headcount. You cannot spend more days than they have.' },
     { nl: 'Moet een project wachten, dan zeg je geen kaal nee. Je zegt niet nu, en dit is wat het zou verdringen.',
       en: 'If a project has to wait, you do not just say no. You say not now, and this is what it would push out.' },
-    { nl: 'Bij prioriteren gebruiken we een {t:Capaciteitsstreep|capaciteitsstreep} en een {t:Capaciteitsmatrix|capaciteitsmatrix}.',
-      en: 'For prioritising we use a {t:Capacity line|capacity line} and a {t:Capacity matrix|capacity matrix}.' },
+    { nl: 'Bij prioriteren gebruiken we een {t:Capaciteitsstreep|capaciteitsstreep}.',
+      en: 'For prioritising we use a {t:Capacity line|capacity line}.' },
   ],
   [ // s4 governance and steering
     { nl: 'Het derde onderwerp is governance en sturen. Wie wat beslist, leg je vooraf vast. Dat geldt voor scope, budget, planning en mensen.',
@@ -449,18 +450,18 @@ const SAY = [
       en: 'The project lead decides within the margins. Beyond that the steering group decides, and anything that touches strategy goes to the board.' },
     { nl: 'In de stuurgroep staan besluiten op de agenda, geen updates. Is er geen besluit, dan zeg je het overleg af.',
       en: 'The steering group has decisions on its agenda, not updates. If there is no decision, you cancel the meeting.' },
-    { nl: 'Bij governance gebruiken we een {t:Besluitenlijst|besluitenlijst}.',
-      en: 'For governance we use a {t:Decision log|decision log}.' },
+    { nl: 'Bij governance gebruiken we {t:Beslisbevoegdheden|beslisbevoegdheden} en een {t:Besluitenlijst|besluitenlijst}.',
+      en: 'For governance we use {t:Decision rights|decision rights} and a {t:Decision log|decision log}.' },
   ],
   [ // s5 benefits
     { nl: 'Het vierde onderwerp is baten. De gereedheidscheck gaat live, en dat is de output. Pas later dalen de afzeggingen, en de meetbare winst daarvan zijn de baten.',
       en: 'The fourth topic is benefits. The readiness check goes live, and that is the output. Only later do cancellations drop, and the measurable gain from that is the benefit.' },
     { nl: 'De managers die de fabriek draaien zijn eigenaar van de baten. Niet de projectleider, want die vertrekt.',
       en: 'The managers who run the plant own the benefits. Not the project lead, because the project lead leaves.' },
-    { nl: 'Kijkt niemand mee, dan sluit het project, gaat het team verder en sluipt de oude manier terug. Daarom volg je het getal nog maanden na de livegang.',
-      en: 'If nobody keeps watching, the project closes, the team moves on and the old way creeps back. So you follow the number for months after go-live.' },
-    { nl: 'Bij baten gebruiken we een {t:Batenkaart|batenkaart} en een {t:Batenprofiel|batenprofiel}.',
-      en: 'For benefits we use a {t:Benefits map|benefits map} and a {t:Benefits profile|benefits profile}.' },
+    { nl: 'Het project sluit en het team gaat verder. Kijkt dan niemand mee, dan sluipt de oude manier terug. Daarom volg je het getal nog maanden na de livegang.',
+      en: 'The project closes and the team moves on. If nobody keeps watching then, the old way creeps back. So you follow the number for months after go-live.' },
+    { nl: 'Bij baten gebruiken we een {t:Nulmeting|nulmeting} en een {t:Batenhouder|batenhouder}.',
+      en: 'For benefits we use a {t:Baseline|baseline} and a {t:Benefit owner|benefit owner}.' },
   ],
   [ // s6 one whole
     { nl: 'Het hangt samen. Het programma bundelt de projecten, de capaciteit bepaalt wat nu kan, en de stuurgroep besluit.',
@@ -475,8 +476,8 @@ const SAY = [
       en: 'This module has four topics, each with four levels.' },
     { nl: 'Begin bij Programma’s, op niveau Basis.',
       en: 'Start with Programmes, at Basics level.' },
-    { nl: 'Op Werkkennis komen de visie, echte beschikbaarheid, stage-gates en negatieve baten erbij.',
-      en: 'At Working knowledge you add the vision statement, real availability, stage-gates and dis-benefits.' },
+    { nl: 'Op Werkkennis komen de methode MSP, de capaciteitsmatrix, stage-gates en de batenkaart erbij.',
+      en: 'At Working knowledge you add the MSP method, the capacity matrix, stage-gates and the benefits map.' },
     { nl: 'Op Gevorderd komen het afhankelijkhedenregister, kosten van vertraging, voorsorteren en dubbeltelling erbij.',
       en: 'At Advanced you add the dependency register, cost of delay, pre-wiring and double counting.' },
     { nl: 'Op Expert komen veranderverzadiging, zombieprojecten, onafhankelijke toetsing en de ijzeren wet erbij.',

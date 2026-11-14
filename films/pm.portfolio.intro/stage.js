@@ -119,8 +119,9 @@ const STAGE = (() => {
   const yes = (y, label) => rect(334, y, 284, 38, 'pm-card', 8) + txt(346, y + 27, label, 22, 'start', 'pm-txt') + mark(592, y + 19, true);
 
   // ---- the two tool names of a topic scene, as chips under the schema (one short sentence names them; they are
-  // not explained). Shown in the beat of the sentence (b === at); a topic with one tool leaves the second out
-  function tools(b, p, at, one, two, y0 = 296) {
+  // not explained). Shown in the beat of the sentence (b === at), high in the empty panel under the strip; a topic with
+  // one tool leaves the second out
+  function tools(b, p, at, one, two, y0 = 130) {
     const chip = (y, label) => rect(334, y, 284, 34, 'pm-badge', 6) + txt(346, y + 25, label, 22, 'start', 'pm-txt');
     const y1 = y0 + 42;
     return { tool1B: b === at ? op(span(p, 0, 0.4), chip(y0, one)) : '', tool2B: b === at && two ? op(span(p, 0.25, 0.65), chip(y1, two)) : '' };
@@ -156,7 +157,7 @@ const STAGE = (() => {
       + card2(160, tr('Het doel', 'The goal'), tr('beweegt niet', 'does not move', 260))
       + card2(226, tr('Elke maand', 'Every month'), tr('meld het getal zelf', 'report the number itself', 260), 'pm-crit');
     return { pgoalB: b === 0 ? op(span(p, 0.1, 0.5), goal) : '', pline3B: b === 1 ? op(span(p, 0.05, 0.4), line3) : '', pgreenB: b === 2 ? op(span(p, 0, 0.4), green) : '',
-      ...tools(b, p, 3, tr('Programmaraad', 'Programme board', 260), tr('MSP', 'MSP', 260)) };
+      ...tools(b, p, 3, tr('Programmaraad', 'Programme board', 260)) };
   }
 
   // ---- s3: prioritising and capacity. The bottleneck is the two process engineers, not the money; count their days,
@@ -169,7 +170,7 @@ const STAGE = (() => {
     const notnow = card2(94, tr('Geen kaal nee', 'No bare no'), tr('maar niet nu', 'but not now', 260))
       + card2(160, tr('Dit verdringt', 'This pushes out', 272), tr('het materiaalproces', 'the materials process', 260), 'pm-crit');
     return { bottleB: b === 0 ? op(span(p, 0.1, 0.5), bottle) : '', daysB: b === 1 ? op(span(p, 0.05, 0.4), days) : '', notnowB: b === 2 ? op(span(p, 0, 0.4), notnow) : '',
-      ...tools(b, p, 3, tr('Capaciteitsstreep', 'Capacity line', 260), tr('Capaciteitsmatrix', 'Capacity matrix', 260)) };
+      ...tools(b, p, 3, tr('Capaciteitsstreep', 'Capacity line', 260)) };
   }
 
   // ---- s4: governance and steering. Who decides what is agreed in advance, for scope, budget, timeline and people;
@@ -185,7 +186,7 @@ const STAGE = (() => {
     const agenda = yes(94, tr('Een besluit', 'A decision', 220))
       + no(146, tr('Een update', 'An update', 220));
     return { whoB: b === 0 ? op(span(p, 0.1, 0.5), who) : '', levelsB: b === 1 ? op(span(p, 0.05, 0.4), levels) : '', agendaB: b === 2 ? op(span(p, 0, 0.4), agenda) : '',
-      ...tools(b, p, 3, tr('Besluitenlijst', 'Decision log', 260)) };
+      ...tools(b, p, 3, tr('Beslisbevoegdheden', 'Decision rights', 260), tr('Besluitenlijst', 'Decision log', 260)) };
   }
 
   // ---- s5: benefits. The check going live is an output, the cancellations that drop are the outcome, the measurable
@@ -201,7 +202,7 @@ const STAGE = (() => {
       + card2(160, tr('Oude manier', 'Old way'), tr('sluipt terug', 'creeps back', 260))
       + card2(226, tr('Getal blijven volgen', 'Keep following it', 272), tr('maanden na livegang', 'months after go-live', 260), 'pm-crit');
     return { chainB: b === 0 ? op(span(p, 0.1, 0.5), chain) : '', ownerB: b === 1 ? op(span(p, 0.05, 0.4), owner) : '', leakB: b === 2 ? op(span(p, 0, 0.4), leak) : '',
-      ...tools(b, p, 3, tr('Batenkaart', 'Benefits map', 260), tr('Batenprofiel', 'Benefits profile', 260)) };
+      ...tools(b, p, 3, tr('Nulmeting', 'Baseline', 260), tr('Batenhouder', 'Benefit owner', 260)) };
   }
 
   // ---- s6: one whole. The chain from programme to benefits, and the result for the materials process.
