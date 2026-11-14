@@ -1158,11 +1158,10 @@ details.rw-topic > summary { cursor: pointer; min-height: 44px; display: flex; a
 .field-films { display: grid; gap: 8px; }
 .field-film { display: grid; gap: 4px; }
 .field-film-title { font-weight: 600; color: var(--heading); }
-/* On a phone the map runs edge to edge in its card (as the films do): at 390 px
-   it is 390 px wide, so every place is at least 44 px (checkMap's rule). */
-@media (max-width: 479px) {
-  .map-card .subject-map-wrap { width: auto; max-width: none; margin: 0 -33px; }
-}
+/* The map sits inside the card's content box at every width, with the same inset
+   as the card's text. (It once bled to the screen edge with margin 0 -33px, which
+   ran the zones past the card's edges and, at 320 px, scrolled the page sideways.)
+   At 390 px it is 324 px wide: every place is still 58 px or more (checkMap's 44 px). */
 
 /* Andon visible (v17 Task 8): greets on the home screens, presents the module intro.
    Decoration plus one line, never a button; the row keeps its height when the line goes. */
