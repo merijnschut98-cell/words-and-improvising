@@ -92,7 +92,7 @@ export function checkFilm(data, { lessons, levelOf, wiredBy = [], module: meta, 
   if (mod) errs.push(...checkIntro(data, mod));
   // module and field films: the narration guard, and the drawn labels fit
   if (intro || data.field !== undefined) errs.push(...checkNarration(data));
-  if (intro) errs.push(...checkLabels(data, stageText));
+  if (intro || data.field !== undefined) errs.push(...checkLabels(data, stageText));
   if (!intro) for (const id of served) {
     const l = lessons.nl.get(id);
     if (!l) continue;
@@ -230,7 +230,7 @@ export function checkIntro(data, mod) {
 // a sentence (the render guard caps a pause inside a sentence at 0.4 s). Reads
 // the narration script (beat.say) in both languages.
 export const NARRATION_SYMBOLS = /[/&×=+()“”"‘<>≈→~:;%]/;
-export const NL_MISREAD = /\b(deliverable|definition of done|PMI|deadline)\b/i;
+export const NL_MISREAD = /\b(deliverables?|definitions? of done|PMI|deadlines?)\b/i;
 export const MAX_COMMAS = 2;
 export function checkNarration(data) {
   const errs = [];
@@ -285,6 +285,8 @@ export function checkLabels(data, stageText = '') {
       }
     }
   }
+  // a label in double quotes or backticks would escape the measure below
+  for (const [call] of String(stageText).matchAll(/\btr\(\s*(?:'(?:[^'\\]|\\.)*'\s*,\s*)?["`][^)]{0,60}/g)) errs.push(`label ${call.slice(0, 50)}…: write it as tr('nl', 'en') in single quotes, so its fit is measured`);
   const pairs = String(stageText).matchAll(/\btr\(\s*'((?:[^'\\]|\\.)*)'\s*,\s*'((?:[^'\\]|\\.)*)'\s*(?:,\s*(\d+)\s*)?\)/g);
   for (const [, nl, en, width] of pairs) {
     const units = width ? Number(width) : PANEL_UNITS;

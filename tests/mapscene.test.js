@@ -10,7 +10,7 @@ import { MODULES } from '../src/content/courses/index.js';
 import { STRINGS } from '../src/i18n.js';
 import pmMap from '../src/content/courses/maps/pm.js';
 import { mapSvg } from '../src/ui/subjectmap.js';
-import { mapScene, mapStyles, mapCue, levelWords } from '../films/_kit/mapscene.mjs';
+import { mapScene, mapStyles, mapCue, levelWords, lightPlaces } from '../films/_kit/mapscene.mjs';
 
 const count = (s, re) => (s.match(re) || []).length;
 
@@ -57,6 +57,31 @@ test('mapStyles: every .subject-map rule of the app, mapped to the film palette 
   assert.match(css, /\[data-theme="light"\]/);
   assert.match(css, /is-lit/);
   assert.match(css, /\.l-en/);
+});
+
+// review of the pilot (14 Nov): styles.css is the app's file, edited for the app.
+// A .subject-map rule the films cannot carry fails the build; it is never dropped.
+const fixture = (extra = '') => `${Array.from({ length: 16 }, (_, i) => `.subject-map .r${i} { fill: red; }`).join('\n')}\n${extra}`;
+test('mapStyles: a rule written over several lines is carried, not dropped', () => {
+  const css = mapStyles(fixture('.subject-map .multi,\n.subject-map .other {\n  fill: blue;\n  stroke: none;\n}\n'));
+  assert.match(css, /\.subject-map \.multi,\n\.subject-map \.other \{\n {2}fill: blue;\n {2}stroke: none;\n\}/);
+  assert.equal(count(css, /fill: red/g), 16);
+});
+test('mapStyles: a .subject-map rule it cannot carry is an error, not a silent gap', () => {
+  assert.throws(() => mapStyles(fixture('@media (max-width: 480px) { .subject-map .map-label { font-size: 18px; } }')), /inside @media/);
+  assert.throws(() => mapStyles(fixture('[data-theme="dark"] .subject-map .t-top { fill: black; }')), /does not start with \.subject-map/);
+  assert.throws(() => mapStyles(fixture('.subject-map .a, .other { fill: black; }')), /does not start with \.subject-map/);
+  assert.throws(() => mapStyles('.card { color: red; }'), /the \.subject-map rules are gone from styles\.css/);
+  // comments, the wrapper and the app's other rules are no business of the film
+  assert.doesNotThrow(() => mapStyles(fixture('/* .subject-map notes */\n.subject-map-wrap { width: 100%; }\n.card .subject-map-wrap { margin: 0; }\n@media (max-width: 480px) { .card { padding: 0; } }')));
+});
+
+test('mapScene: a highlighted place the drawing does not mark as expected is an error, not an unlit map', () => {
+  const svg = '<svg class="subject-map"><g class="map-place is-next" data-module="pm.plan" role="button"><rect class="map-hit" x="1"/></g><g class="map-place" data-module="pm.run"><rect class="map-hit" x="2"/></g></svg>';
+  const lit = lightPlaces(svg, ['pm.plan']);
+  assert.match(lit, /<g class="map-place is-next is-lit" data-module="pm\.plan" data-cue="map-plan" role="button"><rect class="map-hit" x="1"\/>/);
+  assert.match(lit, /<g class="map-place" data-module="pm\.run"><\/g>/);
+  assert.throws(() => lightPlaces('<svg><g data-module="pm.plan" class="map-place"></g></svg>', ['pm.plan']), /could not light pm\.plan/);
 });
 
 test('levelWords: the words the app uses for the four levels, per language', () => {

@@ -247,3 +247,28 @@ test('checkFilm: an intro film is held to its drawn labels', () => {
   const data = resolveFilm(spec(), LESSONS, MODULES);
   assert.match(checkFilm(data, ctx({ stageText: "tr('Een veel te lange tekst voor het paneel', 'Short')" })).join('\n'), /is 39 characters, the panel fits 27/);
 });
+
+// ---------------------------------------------------------------- review of the pilot (14 Nov): gaps a copy would inherit
+test('checkNarration: the misread Dutch words in the plural too', () => {
+  for (const w of ['deliverables', 'deadlines', 'definitions of done']) {
+    assert.match(checkNarration(narrated({ '0.0': [`De ${w} komen.`, 'Fine.'] })).join('\n'), /a word the Dutch voice misreads/, w);
+  }
+});
+
+test('checkLabels: a tr() label in double quotes or backticks is not measured, so it is an error', () => {
+  const data = resolveFilm(spec(), LESSONS, MODULES);
+  for (const src of ['tr("Een veel te lange tekst voor het paneel", "Short")', 'tr(`Lang`, `Long`)', "tr('Kort', \"Short\")"]) {
+    assert.match(checkLabels(data, src).join('\n'), /write it as tr\('nl', 'en'\)/, src);
+  }
+  // the stage's own definition and a title from the page data are no literal labels
+  assert.deepEqual(checkLabels(data, 'const tr = (nl, en) => (NL ? nl : en); tr(t.title.nl, t.title.en);'), []);
+});
+
+test('checkFilm: a field film is held to its drawn labels as well', () => {
+  const field = clone(narrated());
+  delete field.module;
+  delete field.topics;
+  field.field = 'pm.field.fx';
+  field.lessons = [];
+  assert.match(checkFilm(field, ctx({ module: undefined, stageText: "tr('Een veel te lange tekst voor het paneel', 'Short')" })).join('\n'), /is 39 characters, the panel fits 27/);
+});
