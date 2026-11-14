@@ -783,7 +783,12 @@ const SAY = {
     // Board, stage-gate, gate and design freeze have rules above and the rest reads right; no other film's spoken
     // text changes
     [/\bLeSS\b/g, 'Less'], [/\bSprint Planning One\b/g, 'Sprint Planning Wan'], [/\bSpotify\b/g, 'Spotifai'],
-    [/\bLean (?=budgets\b|biznis kees\b)/g, 'Lien ']],
+    [/\bLean (?=budgets\b|biznis kees\b)/g, 'Lien '],
+    // the IT projects intro (pm.itproject.intro), a self-contained group at the end of the Dutch list, checked with phonemes
+    // through Piper's nl_NL-alex bridge: espeak-ng reads SaaS as the letters "saa es" (said Sas, sˈɑs); the rest of the film
+    // (RFP, MVP, ERP, triage, testscript, proefmigratie, shortlist, pilot, key users, sign-off, go-live, MoSCoW, to-be-proces,
+    // requirements, UAT, hypercare, cutover) has a rule above or reads right; no other film's spoken text changes
+    [/\bSaaS\b/g, 'Sas']],
   en: [[/\brpm\b/g, 'revolutions per minute'], [/\bmm\/min\b/g, 'millimetres per minute'], [/\bm\/min\b/g, 'metres per minute'], [/µm\b/g, 'micrometres'],
     [/€\s?(\d[\d,]*(?:\.\d+)?)/g, '$1 euros'], [/(\d)\.0(?![\d])/g, '$1'], [/(\d)\s?mm\b/g, '$1 millimetres'], [/(\d)\s?min\b/g, '$1 minutes'], [/(\d)\s?%/g, '$1 percent'],
     [/Ø\s*/g, 'diameter '], [/(\d)\+(\d)/g, '$1 plus $2'], [/\s×\s/g, ' times '], [/\s\/\s/g, ' divided by '], [/\s=\s/g, ' is '], [/°/g, ' degrees'], [/\bRa\b/g, 'R a'], [/’/g, "'"],
@@ -830,7 +835,10 @@ const SAY = {
     [/\bBarry Boehm\b/g, 'Barry Beem'], [/\bDaniel Vacanti and Troy Magennis\b/g, 'Daniel Vuh-kanti and Troy Muh-ghennis'],
     [/\bDonald Reinertsen\b/g, 'Donald Rine-ertsen'], [/\bbuffers and heijunka\b/g, 'buffers and heyjoonka'],
     // the Scaling intro (pm.scaled.intro): LeSS as the word "less" (espeak-ng's English spells it "le S S")
-    [/\bLeSS\b/g, 'Less']],
+    [/\bLeSS\b/g, 'Less'],
+    // the IT projects intro (pm.itproject.intro): SaaS as the word "sass" (espeak-ng's English reads "sah S"), and UAT as
+    // letters in this film's one phrase only (it reads "you-at"; the UAT film keeps its voice)
+    [/\bSaaS\b/g, 'sass'], [/\bIn the UAT, the user acceptance test\b/g, 'In the U A T, the user acceptance test']],
 };
 export const sayable = (text, lang) => (SAY[lang] || []).reduce((s, [re, w]) => s.replace(re, w), text);
 // The words the voice says: no English gloss, and with a language, units as words.
