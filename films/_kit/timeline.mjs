@@ -697,7 +697,14 @@ const SAY = {
     // the existing "de operators" rule above, but only in this film's "getrainde operators". Schakelkast, inkoper,
     // monteurs, zomerstop and the plan words go through the rules above or need nothing; no other film's spoken
     // text changes
-    [/\bgetrainde operators\b/g, 'getrainde ope-raators']],
+    [/\bgetrainde operators\b/g, 'getrainde ope-raators'],
+    // the field film (pm.field.lifecycle), a self-contained group at the end of the Dutch list: espeak-ng reads
+    // intake as "IN-taa-ke" (checked with phonemes through Piper's nl_NL-alex bridge); said in-teek, as Dutch
+    // project people say it, only after "de" as the film says it. Operators as "OO-pi-raa-tors" (ope-raators, as
+    // the rules above, only in "De operators krijgen") and oranje with the stress on the o (o-ranje, only in "nu
+    // op oranje"). Werkinstructie, nulmeting, terugblik, stuurgroep and watermeloenproject need nothing; no
+    // other film's spoken text changes
+    [/\bde intake\b/g, 'de in-teek'], [/\bDe operators krijgen\b/g, 'De ope-raators krijgen'], [/\bnu op oranje\b/g, 'nu op o-ranje']],
   en: [[/\brpm\b/g, 'revolutions per minute'], [/\bmm\/min\b/g, 'millimetres per minute'], [/\bm\/min\b/g, 'metres per minute'], [/µm\b/g, 'micrometres'],
     [/€\s?(\d[\d,]*(?:\.\d+)?)/g, '$1 euros'], [/(\d)\.0(?![\d])/g, '$1'], [/(\d)\s?mm\b/g, '$1 millimetres'], [/(\d)\s?min\b/g, '$1 minutes'], [/(\d)\s?%/g, '$1 percent'],
     [/Ø\s*/g, 'diameter '], [/(\d)\+(\d)/g, '$1 plus $2'], [/\s×\s/g, ' times '], [/\s\/\s/g, ' divided by '], [/\s=\s/g, ' is '], [/°/g, ' degrees'], [/\bRa\b/g, 'R a'], [/’/g, "'"],

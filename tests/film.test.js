@@ -606,6 +606,25 @@ test('speak variant: the rollout and migration words in Dutch', () => {
   assert.equal(speakOf([en], 'en'), en);
 });
 
+// The field film "a project from start to finish" (pm.field.lifecycle), checked
+// with espeak-ng phonemes through Piper's nl bridge: it reads intake as
+// "IN-taa-ke" (said in-teek, as Dutch project people say it; only after "de",
+// the way the film says it), operators as "OO-pi-raa-tors" (ope-raators, as the
+// rules above, only in "De operators krijgen") and oranje with the stress on
+// the o (o-ranje, only in "nu op oranje"). Werkinstructie, nulmeting, terugblik,
+// stuurgroep, wijzigingsverzoek and watermeloenproject need nothing; English
+// needs nothing; no other film's spoken text changes
+test('speak variant: the field film words in Dutch', () => {
+  const nl = (s) => speakOf([s], 'nl');
+  assert.equal(nl('Het eerste station is de intake. Sla je de intake over, begin bij de intake.'), 'Het eerste station is de in-teek. Sla je de in-teek over, begin bij de in-teek.');
+  assert.equal(nl('De operators krijgen een werkinstructie.'), 'De ope-raators krijgen een werkinstructie.');
+  assert.equal(nl('Dus zet je de status nu op oranje.'), 'Dus zet je de status nu op o-ranje.');
+  // elsewhere the words keep their voice
+  assert.equal(nl('De Intake, een intake, de operators wachten, van oranje naar rood.'), 'De Intake, een intake, de operators wachten, van oranje naar rood.');
+  const en = 'The first station is the intake. The operators get a work instruction, so you set the status to amber now.';
+  assert.equal(speakOf([en], 'en'), en);
+});
+
 // A stage drawn on the Dutch caption beats (beatwarp films set STAGE.nlBeats)
 // follows the caption beat on screen in English too: while English beat k
 // shows, the stage runs through Dutch beat k, so the drawing is never a beat off.

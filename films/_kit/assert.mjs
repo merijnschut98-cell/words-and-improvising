@@ -41,6 +41,14 @@ export function moduleMetaTextOf(meta, lang = 'nl') {
 export function moduleTextOf(meta, lessons, lang = 'nl') {
   return [moduleMetaTextOf(meta, lang), ...(meta.lessons || []).map((id) => lessons[lang].get(id)).filter(Boolean).map(lessonTextOf)].join('\n');
 }
+// v17, a field film: the field's own title and blurb, then each of its modules'
+// text (mods: the field's modules, index entries). Its numbers must stand in the Dutch one.
+export function fieldTextOf(field, mods, lessons, lang = 'nl') {
+  return [moduleMetaTextOf(field, lang), ...mods.map((m) => moduleTextOf(m, lessons, lang))].join('\n');
+}
+
+// The cue key of a lit place of the shared map (films/_kit/mapscene.mjs): pm.plan gives "map-plan".
+export const mapCue = (moduleId) => `map-${String(moduleId).split('.').pop().replace(/[^a-z0-9]/g, '')}`;
 
 // "1.167" stands in the text as a number of its own, not inside 21.167 or 1.1675.
 export function hasNumber(text, value) {
@@ -57,14 +65,22 @@ const wholeWord = (text, word) => new RegExp(`(?<![\\p{L}\\d-])${lc(word).replac
 // entry, and stageText, the stage's drawing and script (where a card's words
 // stand); it is held to the module's text and its map instead of to per-term
 // coverage (checkIntro below).
-export function checkFilm(data, { lessons, levelOf, wiredBy = [], module: meta, stageText = '' }) {
+// A field film (v17, data.field) needs field, the field's index entry (FIELDS),
+// modules, the index's modules, and stageText: it is held to the field's road
+// (checkStations below) and its source text is the field's and its modules'.
+export function checkFilm(data, { lessons, levelOf, wiredBy = [], module: meta, field: fieldMeta, modules = [], stageText = '' }) {
   const errs = [];
   const served = new Set(data.lessons || []);
   const intro = data.module !== undefined;
   const mod = intro && meta && meta.id === data.module ? meta : null;
   if (intro && !mod) errs.push(`intro film of ${data.module}: module ${data.module} not given`);
+  const fieldFilm = data.field !== undefined;
+  const fld = fieldFilm && fieldMeta && fieldMeta.id === data.field ? fieldMeta : null;
+  if (fieldFilm && !fld) errs.push(`field film of ${data.field}: field ${data.field} not given`);
+  const fieldMods = fld ? (fld.modules || []).map((id) => modules.find((m) => m.id === id)).filter(Boolean) : [];
   for (const id of served) if (!lessons.nl.has(id) || !lessons.en.has(id)) errs.push(`served lesson ${id} does not exist`);
   if (mod) for (const id of served) if (!(mod.lessons || []).includes(id)) errs.push(`served lesson ${id} is no longer in module ${mod.id}`);
+  if (fld) for (const id of served) if (!fieldMods.some((m) => (m.lessons || []).includes(id))) errs.push(`served lesson ${id} is no longer in a module of ${fld.id}`);
   for (const id of wiredBy) if (!served.has(id)) errs.push(`${id} wires the film but is not in its lessons`);
   const scenes = data.scenes || [];
   if (scenes.length < 4 || scenes.length > 9) errs.push(`needs 4–9 scenes, has ${scenes.length}`);
@@ -90,10 +106,11 @@ export function checkFilm(data, { lessons, levelOf, wiredBy = [], module: meta, 
   // coverage: each term of each served lesson is shown at or below its level, or
   // skipped with a reason (an intro film: every topic of its module, below)
   if (mod) errs.push(...checkIntro(data, mod));
+  if (fld) errs.push(...checkStations(data, fld, modules, stageText));
   // module and field films: the narration guard, and the drawn labels fit
-  if (intro || data.field !== undefined) errs.push(...checkNarration(data));
-  if (intro || data.field !== undefined) errs.push(...checkLabels(data, stageText));
-  if (!intro) for (const id of served) {
+  if (intro || fieldFilm) errs.push(...checkNarration(data));
+  if (intro || fieldFilm) errs.push(...checkLabels(data, stageText));
+  if (!intro && !fieldFilm) for (const id of served) {
     const l = lessons.nl.get(id);
     if (!l) continue;
     const level = levelOf(id);
@@ -108,9 +125,14 @@ export function checkFilm(data, { lessons, levelOf, wiredBy = [], module: meta, 
 
   // numbers: still in the Dutch lesson text (an intro film: anywhere in its module's Dutch text)
   const modText = mod ? moduleTextOf(mod, lessons, 'nl') : '';
+  const fieldText = fld ? fieldTextOf(fld, fieldMods, lessons, 'nl') : '';
   for (const n of data.numbers || []) {
     if (intro) {
       if (mod && !hasNumber(modText, n.value)) errs.push(`number ${n.value} (scene ${n.scene}) no longer in the text of module ${mod.id}`);
+      continue;
+    }
+    if (fieldFilm) {
+      if (fld && !hasNumber(fieldText, n.value)) errs.push(`number ${n.value} (scene ${n.scene}) no longer in the text of field ${fld.id}`);
       continue;
     }
     const l = lessons.nl.get(n.lesson);
@@ -224,6 +246,48 @@ export function checkIntro(data, mod) {
   return errs;
 }
 
+// The road of a field film (v17): every module of the field is a station on it
+// (data.stations, with the title it had at build time, the scene that explains
+// it and the cue key of its part), in the order of the field, still under that
+// title, named (a whole word) in a caption of its OWN scene in both languages,
+// explained in at least two beats and shown: a beat of its scene lights its part.
+// The scenes follow the road. And the film ends on the shared map: the drawing
+// (stageText) lights exactly the field's places (mapScene's is-lit cue groups)
+// and the last scene's beats light every one of them.
+export const MIN_STATION_BEATS = 2;
+export function checkStations(data, field, modules = [], stageText = '') {
+  const errs = [];
+  const scenes = data.scenes || [];
+  const onRoad = new Map((data.stations || []).map((t) => [t.id, t]));
+  const word = (text, name) => new RegExp(`(?<![\\p{L}\\d])${lc(name).replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}(?![\\p{L}\\d])`, 'u').test(lc(text));
+  for (const id of field.modules || []) {
+    const st = onRoad.get(id);
+    if (!st) { errs.push(`module ${id} of ${field.id} is not on the film's road`); continue; }
+    const m = modules.find((x) => x.id === id);
+    const sc = scenes.find((s) => s.id === st.scene);
+    for (const lang of ['nl', 'en']) {
+      const was = (st.title || {})[lang];
+      if (m && was !== m.title[lang]) errs.push(`station ${id}: title "${was}" (${lang}) is now "${m.title[lang]}"`);
+      if (sc && was && !(sc.beats || []).some((b) => word(b.text[lang], was))) errs.push(`station ${id}: "${was}" (${lang}) is in no caption of its scene ${st.scene}`);
+    }
+    if (!sc) { errs.push(`station ${id}: no scene ${st.scene}`); continue; }
+    if (sc.beats.length < MIN_STATION_BEATS) errs.push(`station ${id}: scene ${st.scene} has ${sc.beats.length} beat${sc.beats.length === 1 ? '' : 's'}, needs at least ${MIN_STATION_BEATS}`);
+    if (!st.cue || !sc.beats.some((b) => [...(b.focus || []), ...(b.cues || [])].includes(st.cue))) errs.push(`station ${id}: no beat of scene ${st.scene} lights its part ${st.cue}`);
+  }
+  for (const st of data.stations || []) if (!(field.modules || []).includes(st.id)) errs.push(`station ${st.id} is no longer a module of ${field.id}`);
+  // the order of the road: each station's scene after the one before it
+  const at = (data.stations || []).filter((st) => (field.modules || []).includes(st.id)).map((st) => ({ st, i: scenes.findIndex((s) => s.id === st.scene) }));
+  for (let k = 1; k < at.length; k++) if (at[k].i >= 0 && at[k - 1].i >= 0 && at[k].i <= at[k - 1].i) errs.push(`station ${at[k].st.id} (scene ${at[k].st.scene}) comes before ${at[k - 1].st.id} (scene ${at[k - 1].st.scene}); the stations follow the road`);
+  // it ends on the map, with exactly the field's places lit
+  const lit = [...String(stageText).matchAll(/class="map-place[^"]*\bis-lit\b[^"]*" data-module="([^"]+)" data-cue="([^"]+)"/g)].map((x) => ({ id: x[1], cue: x[2] }));
+  for (const id of field.modules || []) if (!lit.some((p) => p.id === id && p.cue === mapCue(id))) errs.push(`the map does not light ${id}: end the film on mapScene({ subject, highlight: the field's modules })`);
+  for (const p of lit) if (!(field.modules || []).includes(p.id)) errs.push(`the map lights ${p.id}, which is no module of ${field.id}`);
+  const last = scenes[scenes.length - 1];
+  const shown = new Set(last ? last.beats.flatMap((b) => [...(b.focus || []), ...(b.cues || [])]) : []);
+  for (const id of field.modules || []) if (!shown.has(mapCue(id))) errs.push(`the last scene lights no map place ${mapCue(id)}; the film ends on the map with the field's places lit`);
+  return errs;
+}
+
 // The narration guard (v17), for every module or field film: what the voice
 // says has no symbol it would read aloud, no colon, nothing in parentheses or
 // quotes, none of the Dutch words the voice misreads, and at most two commas in
@@ -270,6 +334,8 @@ export const UNKNOWN_W = 14;
 export const PANEL_UNITS = 284;
 export const TILE_UNITS = 128;
 export const TILE_LINES = 3;
+// A field film's station title stands on one line in a row of the road (v17).
+export const STATION_UNITS = 220;
 export const textUnits = (text) => [...String(text)].reduce((a, c) => a + (CHAR_W[c] ?? UNKNOWN_W), 0);
 // Greedy word wrap of text into lines at most max units wide; a word wider than
 // max stands on a line of its own. cw: the width table (CHAR_W).
@@ -294,6 +360,13 @@ export function checkLabels(data, stageText = '') {
         const lines = wrapUnits(title, TILE_UNITS, CHAR_W).length;
         if (lines > TILE_LINES) errs.push(`topic ${t.id}: "${title}" (${lang}) wraps to ${lines} lines in a tile of ${TILE_UNITS} units, a tile holds ${TILE_LINES}`);
       }
+    }
+  }
+  for (const st of data.stations || []) {
+    for (const lang of ['nl', 'en']) {
+      const title = (st.title || {})[lang] || '';
+      const w = textUnits(title);
+      if (w > STATION_UNITS) errs.push(`station ${st.id}: "${title}" (${lang}) is ${Math.ceil(w)} units wide, a station on the road holds ${STATION_UNITS}`);
     }
   }
   // a label in double quotes or backticks would escape the measure below
