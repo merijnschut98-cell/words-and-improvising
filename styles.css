@@ -1079,3 +1079,33 @@ details.rw-topic > summary { cursor: pointer; min-height: 44px; display: flex; a
 .review-head { display: flex; align-items: center; gap: 10px; }
 .review-head .card-title { margin: 0; }
 .goal-left { margin: -4px 0 0; }
+
+/* v17: the subject map. One isometric picture per subject; every fill is a class, so both themes work.
+   Areas are soft washes of the theme colours, objects use the same three tones as the guide. */
+.subject-map-wrap { width: 100%; max-width: 640px; margin: 0 auto; }
+.subject-map { display: block; width: 100%; height: auto; -webkit-tap-highlight-color: transparent; }
+.subject-map .map-zone-area { fill: color-mix(in srgb, var(--zone, var(--line)) 30%, var(--card)); stroke: color-mix(in srgb, var(--zone, var(--line)) 55%, var(--card)); stroke-width: 1; }
+.subject-map .map-zone-label { fill: var(--heading); font: 600 14px/1 var(--font-body, system-ui, sans-serif); letter-spacing: 0.01em; }
+.subject-map .z-lifecycle { --zone: var(--accent); }
+.subject-map .z-people { --zone: var(--ok); }
+.subject-map .z-portfolio { --zone: var(--primary); }
+.subject-map .z-it { --zone: var(--secondary-fill); }
+.subject-map .map-road { fill: none; stroke: color-mix(in srgb, var(--heading) 30%, var(--card)); stroke-width: 26; stroke-linecap: butt; }
+.subject-map .map-road-line { fill: none; stroke: var(--card); stroke-width: 2; stroke-dasharray: 8 7; }
+.subject-map .map-place { cursor: pointer; outline: none; }
+.subject-map .map-hit { fill: transparent; stroke: none; pointer-events: all; }
+.subject-map .map-place:hover .map-hit { fill: color-mix(in srgb, var(--heading) 7%, transparent); }
+.subject-map .map-place:focus-visible .map-hit { stroke: var(--heading); stroke-width: 2; }
+.subject-map .map-place.is-next .map-hit { stroke: var(--accent); stroke-width: 2.5; fill: color-mix(in srgb, var(--accent) 12%, transparent); }
+.subject-map .map-label { fill: var(--heading); font: 500 15px/1 var(--font-body, system-ui, sans-serif); pointer-events: none; }
+.subject-map .map-obj path { stroke: var(--heading); stroke-width: 0.5; stroke-linejoin: round; }
+.subject-map .p-top { fill: color-mix(in srgb, var(--zone, var(--line)) 22%, var(--card)); }
+.subject-map .p-left { fill: color-mix(in srgb, var(--zone, var(--line)) 40%, var(--card)); }
+.subject-map .p-right { fill: color-mix(in srgb, var(--zone, var(--line)) 55%, var(--card)); }
+.subject-map .t-top { fill: var(--card); }
+.subject-map .t-left { fill: color-mix(in srgb, var(--line) 55%, var(--card)); }
+.subject-map .t-right { fill: var(--line); }
+.subject-map .m-top { fill: color-mix(in srgb, var(--zone, var(--accent)) 60%, var(--card)); }
+.subject-map .m-left { fill: var(--zone, var(--accent)); }
+.subject-map .m-right { fill: color-mix(in srgb, var(--zone, var(--accent)) 75%, var(--heading)); }
+.subject-map .map-road-arrow { fill: color-mix(in srgb, var(--heading) 30%, var(--card)); }
