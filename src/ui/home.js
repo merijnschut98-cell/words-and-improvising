@@ -9,7 +9,7 @@ import { MODULES } from '../content/courses/index.js';
 import TIPS from '../content/tips.js';
 import { upcoming, needsReflection, unusedSkill } from '../core/realweek.js';
 import { EVENT_ICON, fmtDay, startRehearsal } from './realweek.js';
-import { startHead, subjectTitle } from './flairui.js';
+import { startHead, subjectTitle, guideGreeting } from './flairui.js';
 import { h, DRILL_ICON, enableOnFail } from './dom.js';
 import { ico } from './icons.js';
 import { levelFromXp, isStreakAlive, daysPractised } from '../core/progress.js';
@@ -318,6 +318,8 @@ function renderStart(app, root, showBreak, note) {
       breakCard(app, showBreak),
       startHead(app),
       flairNote(app, note),
+      // Andon right above the one begin button: "the one below" is that button.
+      guideGreeting(app, { subject: 'start' }),
       beginButton(app, cards.find((c) => c.suggested) || cards[0]),
       h('p', { class: 'start-or muted small' }, t('startOr')),
       h('div', { class: 'start-cards' }, cards.map((c) => startCard(app, c))),
@@ -392,6 +394,7 @@ export function renderHome(app, _params, root) {
     h('main', { class: 'screen home speak-home' },
       h('h1', { class: 'sr' }, t('subject_speak')),
       breakCard(app, showBreak),
+      guideGreeting(app, { subject: 'speak' }),
       ...speakBands(app),
       navigator.onLine ? null : h('p', { class: 'note' }, t('offline'))),
     navBar(app, 'home'),

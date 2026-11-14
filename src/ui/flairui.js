@@ -8,7 +8,9 @@ import { isStreakAlive, levelFromXp, dayKey } from '../core/progress.js';
 import { checkOf } from '../core/modulecheck.js';
 import { celebrationOf } from '../core/flair.js';
 import { cheerOn, cueFor, play as playCue } from '../core/sound.js';
-import { guide, guideLine } from './guide.js';
+import { guide, guideLine, guideSvg, guideOn } from './guide.js';
+import { introFilm } from './film.js';
+import { introSeen } from '../core/course.js';
 import { MODULES } from '../content/courses/index.js';
 
 const CHECK_PATH = '<path class="seal-check" d="M7.5 12.5 10.5 15.5 16.5 9" />';
@@ -218,13 +220,59 @@ export function celebration(app, result, { mark = null, play = playCue, subject 
   };
 }
 
-// On the course home, under the Today card: how much XP is left for the
-// daily goal, said by the guide; only after the first XP of the day and while
-// the goal is still open.
-export function goalLeftLine(app) {
+// How much XP is left for the daily goal, as a line; only after the first XP
+// of the day and while the goal is still open, else null.
+export function goalLeftText(app) {
   const g = goalProgress(app.state, app.today());
-  if (!g.xp || g.done) return null;
-  const el = guide(app.state, { mood: 'idle', size: 32 });
+  return !g.xp || g.done ? null : app.t('goalLeft', g.goal - g.xp);
+}
+
+// ---- Andon visible (v17 Task 8) ----
+// He was there all along but small; now he greets on the home screens and
+// presents the intro on a module screen. Decoration plus at most one line,
+// never a button, hidden everywhere (no gap) when the guide is off.
+
+// On a home screen, above the first card: 96 px, one line from a pool seeded
+// by the day. Null when the guide is off, so nothing is left where he stood.
+// With `goal` (the course homes) the line is the XP left for the daily goal
+// while it is open: one Andon and one line per screen, so the goal line that
+// stood under the Today card with its own small Andon is said by him here.
+export function guideGreeting(app, { subject = null, goal = false } = {}) {
+  const el = guide(app.state, { mood: 'idle', size: 96 });
   if (!el) return null;
-  return h('div', { class: 'guide-line goal-left' }, el, h('p', { class: 'small muted' }, app.t('goalLeft', g.goal - g.xp)));
+  const left = goal ? goalLeftText(app) : null;
+  return h('div', { class: 'guide-greeting', 'data-subject': subject || '', 'data-line': left ? 'goal' : 'day' },
+    el,
+    h('p', { class: 'guide-say' }, left || guideLine(app.t, 'guideHome', app.today())));
+}
+
+// What Andon shows with a module's intro, from the state alone (pure): idle
+// with a line until the intro is seen, then the top light and no line. Null
+// for a module without an intro film or with the guide off.
+export function introGuideModel(state, meta) {
+  if (!guideOn(state) || !introFilm(meta)) return null;
+  return introSeen(state, meta.id) ? { mood: 'right', line: null } : { mood: 'idle', line: 'guideIntro' };
+}
+
+// Beside the intro heading on the module screen: 72 px, and the heading (when
+// given) in the text column with his line under it.
+export function guideIntro(app, meta, heading = null) {
+  const m = introGuideModel(app.state, meta);
+  if (!m) return null;
+  return h('div', { class: 'guide-intro', 'data-mood': m.mood },
+    guide(app.state, { mood: m.mood, size: 72 }),
+    h('div', { class: 'guide-intro-text' },
+      heading,
+      m.line ? h('p', { class: 'guide-say' }, app.t(m.line)) : null));
+}
+
+// The intro was watched while the screen is open: light the top and drop the
+// line in place (the video is not re-rendered).
+export function guideIntroSeen(el) {
+  if (!el) return;
+  const a = el.querySelector('.guide');
+  if (a) a.innerHTML = guideSvg('right');
+  const say = el.querySelector('.guide-say');
+  if (say) say.remove();
+  el.setAttribute('data-mood', 'right');
 }

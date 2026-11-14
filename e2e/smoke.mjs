@@ -393,8 +393,8 @@ await step('Projects home: the map is the first thing; tapping Planning opens it
   await page.locator('.course-pm .map-card .subject-map').waitFor();
   // the map is the first block, "Your next step" the second
   const order = await page.evaluate(() => [...document.querySelector('.course-pm').children].map((e) => e.className.split(' ')[1] || e.className).slice(0, 3));
-  if (!/map-card/.test(await page.locator('.course-pm > :nth-child(2)').getAttribute('class'))) throw new Error(`the map is not first: ${order}`);
-  if (!/course-today/.test(await page.locator('.course-pm > :nth-child(3)').getAttribute('class'))) throw new Error(`next step is not second: ${order}`);
+  if (!/map-card/.test(await page.locator('.course-pm > :nth-child(3)').getAttribute('class'))) throw new Error(`the map is not first: ${order}`);
+  if (!/course-today/.test(await page.locator('.course-pm > :nth-child(4)').getAttribute('class'))) throw new Error(`next step is not second: ${order}`);
   // every place is a button, 44 px at 390, the next module marked, tracks closed, no sideways scroll
   const places = await page.locator('.course-pm .map-place').evaluateAll((gs) => gs.map((g) => {
     const r = g.querySelector('.map-hit').getBoundingClientRect();
@@ -406,17 +406,25 @@ await step('Projects home: the map is the first thing; tapping Planning opens it
   if (await page.locator('.course-pm .map-place.is-next').count() !== 1) throw new Error('the next module is not marked once');
   if (await page.locator('.course-pm details.track[open]').count() !== 0) throw new Error('a track is open on a subject with a map');
   if (await page.evaluate(() => document.documentElement.scrollWidth > window.innerWidth)) throw new Error('sideways scroll');
-  // the field film entry: the lifecycle field only, by its title
-  await page.locator('.course-pm .field-film .film-btn').waitFor();
-  if (await page.locator('.course-pm .field-film').count() !== 1) throw new Error('more than one field film entry');
-  await page.locator('.course-pm .field-film-title', { hasText: 'Een project van begin tot eind' }).waitFor();
+  // the field film entries: one per field with a film, in FIELDS order, each a
+  // title and a film button (field films land one by one, so no fixed count)
+  const withFilm = await page.evaluate(async () => (await import('/src/content/courses/index.js')).FIELDS
+    .filter((f) => f.subject === 'pm' && f.film).map((f) => f.title.nl));
+  await page.locator('.course-pm .field-film .film-btn').first().waitFor();
+  const entries = await page.locator('.course-pm .field-film').evaluateAll((es) => es.map((e) => ({
+    title: e.querySelector('.field-film-title')?.textContent || '', buttons: e.querySelectorAll('.film-btn').length })));
+  if (JSON.stringify(entries.map((e) => e.title)) !== JSON.stringify(withFilm)) throw new Error(`field film entries ${JSON.stringify(entries.map((e) => e.title))}, expected ${JSON.stringify(withFilm)}`);
+  if (entries.some((e) => e.buttons !== 1)) throw new Error(`a field film entry without exactly one film button: ${JSON.stringify(entries)}`);
   await shot('map-home-pm');
-  // the field film plays the rendered video (Piper voice, captions), the HTML film only as its fallback
-  await page.locator('.course-pm .field-film .film-btn').click();
-  await page.locator('.course-pm .field-film .film-step[data-mode="video"] video.film-video').waitFor();
-  if (await page.locator('.course-pm .field-film iframe.film-frame').count()) throw new Error('the field film opened the HTML film, not the video');
+  // the lifecycle field film, by its title, plays the rendered video (Piper voice, captions), the HTML film only as its fallback
+  const life = page.locator('.course-pm .field-film').filter({ has: page.locator('.field-film-title', { hasText: 'Een project van begin tot eind' }) });
+  if (await life.count() !== 1) throw new Error('the lifecycle field film entry is not there once');
+  await life.locator('.film-btn').click();
+  await life.locator('.film-step[data-mode="video"] video.film-video').waitFor();
+  if (await life.locator('iframe.film-frame').count()) throw new Error('the field film opened the HTML film, not the video');
+  if (await page.locator('.course-pm .field-film .film-step').count() !== 1) throw new Error('opening one field film opened another too');
   if (await page.locator('.btn-primary:visible').count() !== 1) throw new Error('more than one filled button with the field film open');
-  await page.locator('.course-pm .field-film .film-btn').click();
+  await life.locator('.film-btn').click();
   if (await page.locator('.course-pm .field-film .film-step').count()) throw new Error('the field film did not close');
   // dark
   await page.evaluate(() => window.__app.updateSettings({ theme: 'dark' }));
@@ -439,7 +447,7 @@ await step('Projects home: the map is the first thing; tapping Planning opens it
   await page.locator('.subject-tab', { hasText: 'Engineering' }).click();
   await page.locator('.course-eng .track').first().waitFor();
   if (await page.locator('.course-eng .map-card, .course-eng .field-film').count() !== 0) throw new Error('Engineering shows a map or field film');
-  if (!/course-today/.test(await page.locator('.course-eng > :nth-child(2)').getAttribute('class'))) throw new Error('Engineering order changed');
+  if (!/course-today/.test(await page.locator('.course-eng > :nth-child(3)').getAttribute('class'))) throw new Error('Engineering order changed');
   if (await page.locator('.course-eng details.track[open]').count() !== 1) throw new Error('Engineering: one track should be open');
   await page.locator('.subject-tab', { hasText: 'Spreken' }).click();
   await page.locator('.btn-hero').waitFor();
@@ -462,15 +470,17 @@ await step('offline (video and page not cached): Projects home field film falls 
     return gone;
   });
   let dropped = [];
+  // The lifecycle field film entry, by its title (other fields have films too).
+  const life = () => page.locator('.course-pm .field-film').filter({ has: page.locator('.field-film-title', { hasText: 'Een project van begin tot eind' }) });
   // Opens the field film and waits for the mode it should fall back to (the
   // step shows "video" first, until the video fails); returns the mode it has.
   const openField = async (want) => {
     await page.locator('.subject-tab', { hasText: 'Projecten' }).click();
-    await page.locator('.course-pm .field-film-title').waitFor();
-    await page.locator('.course-pm .field-film .film-btn').waitFor({ timeout: 4000 });
-    await page.locator('.course-pm .field-film .film-btn').click();
-    await page.locator(`.course-pm .field-film .film-step[data-mode="${want}"]`).waitFor({ timeout: 5000 }).catch(() => {});
-    return page.locator('.course-pm .field-film .film-step').getAttribute('data-mode');
+    await life().locator('.field-film-title').waitFor();
+    await life().locator('.film-btn').waitFor({ timeout: 4000 });
+    await life().locator('.film-btn').click();
+    await life().locator(`.film-step[data-mode="${want}"]`).waitFor({ timeout: 5000 }).catch(() => {});
+    return life().locator('.film-step').getAttribute('data-mode');
   };
   const back = async () => {
     await page.locator('.subject-tab', { hasText: 'Spreken' }).click();
@@ -484,7 +494,7 @@ await step('offline (video and page not cached): Projects home field film falls 
     dropped = await dropCached();
     const mode = await openField('text').catch((e) => { throw new Error(`without video and HTML film: ${e.message.split('\n')[0]}`); });
     if (mode !== 'text') throw new Error(`without video and HTML film the mode is ${mode}, not text`);
-    await page.locator('.course-pm .field-film .film-stage', { hasText: 'de weg die elk project loopt' }).waitFor({ timeout: 3000 });
+    await life().locator('.film-stage', { hasText: 'de weg die elk project loopt' }).waitFor({ timeout: 3000 });
     await back();
   } finally {
     await ctx.unroute(FIELD_PAGE, noPage);
@@ -3240,6 +3250,167 @@ await step('module screen: open Verspanen from the Engineering list, the intro b
   await other.shotP('ms-module-nointro-dark');
   await other.c.close();
 });
+// v17 Task 8: Andon is visible: he greets on the home screens (96 px, one line), presents the intro on a
+// module screen (72 px, one line, beside the heading), lights his top segment once the intro has been
+// watched, and leaves no gap anywhere when the guide is off.
+await step('Andon: greets on the home screens, presents the intro on a module screen, lights up after the intro, hidden when the guide is off', async () => {
+  const { c, p, shotP } = await topicContext(topicSeed(), { entry: MACHINING_INTRO_FIXTURE, setup: introSetup });
+  await p.locator('.course-home').waitFor();
+  const sideways = () => p.evaluate(() => document.documentElement.scrollWidth > document.documentElement.clientWidth);
+  const greeting = async (where, main, { top = true } = {}) => {
+    const g = p.locator(`${main} .guide-greeting`);
+    if (await g.count() !== 1) throw new Error(`${where}: ${await g.count()} greetings`);
+    const r = await g.locator('.guide').evaluate((e) => { const b = e.getBoundingClientRect(); return { h: b.height, w: b.width }; });
+    if (Math.abs(r.h - 96) > 1) throw new Error(`${where}: Andon ${r.h}px, expected 96`);
+    if (await g.locator('.guide-say').count() !== 1) throw new Error(`${where}: not exactly one line`);
+    if (!(await g.locator('.guide-say').innerText()).trim()) throw new Error(`${where}: empty line`);
+    if (await g.locator('button, a, [role="button"]').count()) throw new Error(`${where}: Andon is interactive`);
+    if (await g.locator('.g-seg.on').count()) throw new Error(`${where}: a light is on at the greeting`);
+    // he is the first thing under the header: above the first card
+    const above = await p.evaluate(({ main }) => {
+      const m = document.querySelector(main);
+      const gr = m.querySelector('.guide-greeting').getBoundingClientRect().bottom;
+      const others = [...m.children].filter((e) => !e.classList.contains('sr') && !e.classList.contains('guide-greeting') && e.getBoundingClientRect().height > 0);
+      return others.every((e) => e.getBoundingClientRect().top >= gr - 1);
+    }, { main });
+    if (top && !above) throw new Error(`${where}: Andon is not above the first block`);
+    if (await sideways()) throw new Error(`${where}: sideways scroll`);
+  };
+  // Engineering home (no map): Andon above the next step.
+  // Light, then dark, then back to light.
+  const both = async (n) => {
+    await shotP(n);
+    await p.evaluate(() => window.__app.updateSettings({ theme: 'dark' }));
+    await p.waitForFunction(() => document.documentElement.dataset.theme === 'dark');
+    await shotP(`${n}-dark`);
+    await p.evaluate(() => window.__app.updateSettings({ theme: 'light' }));
+    await p.waitForFunction(() => document.documentElement.dataset.theme === 'light');
+  };
+  await greeting('Engineering home', '.course-eng');
+  await onePrimary(p, 'Engineering home with Andon');
+  await both('andon-eng');
+  // Speaking home: above the first band; the one filled button stays.
+  await p.locator('.subject-tab', { hasText: 'Spreken' }).click();
+  await p.locator('.speak-home').waitFor();
+  await greeting('speaking home', '.speak-home');
+  await onePrimary(p, 'speaking home with Andon');
+  await both('andon-home');
+  // Projects home: above the map card.
+  await p.locator('.subject-tab', { hasText: 'Projecten' }).click();
+  await p.locator('.course-pm .map-card').waitFor();
+  await greeting('Projects home', '.course-pm');
+  if (!/map-card/.test(await p.locator('.course-pm > :nth-child(3)').getAttribute('class'))) throw new Error('the map is not the first block under Andon');
+  await both('andon-pm');
+  // One Andon and one guide line per screen: with the daily goal half done the
+  // XP left is his line in the greeting, not a second line under the Today card.
+  const guidesOn = (main) => p.evaluate((m) => {
+    const el = document.querySelector(m);
+    return { andons: el.querySelectorAll('.guide').length, lines: el.querySelectorAll('.guide-say, .guide-line').length };
+  }, main);
+  await p.evaluate(() => { const a = window.__app; a.setState({ ...a.state, xpDays: { ...a.state.xpDays, [a.today()]: 5 } }); a.go('home'); });
+  await p.locator('.course-pm .guide-greeting[data-line="goal"]').waitFor();
+  const half = await guidesOn('.course-pm');
+  if (half.andons !== 1 || half.lines !== 1) throw new Error(`Projects home with the goal half done: ${JSON.stringify(half)}`);
+  if (!/XP/.test(await p.locator('.course-pm .guide-greeting .guide-say').innerText())) throw new Error('the greeting does not say the XP left');
+  // Start screen: Andon under the head, right above the one begin button (so
+  // not above the first block: the head stays on top).
+  await p.evaluate(() => window.__app.setSubject('start'));
+  await p.locator('.home.start .begin-btn').waitFor();
+  await greeting('start screen', '.home.start', { top: false });
+  const startOrder = await p.evaluate(() => [...document.querySelector('.home.start').children].map((e) => e.className));
+  const gi0 = startOrder.findIndex((c) => /guide-greeting/.test(c));
+  if (!(gi0 > startOrder.findIndex((c) => /start-head-wrap/.test(c)) && gi0 === startOrder.findIndex((c) => /begin-btn/.test(c)) - 1)) throw new Error(`start screen order: ${startOrder}`);
+  await onePrimary(p, 'start screen with Andon');
+  const sc = await guidesOn('.home.start');
+  if (sc.andons !== 1 || sc.lines !== 1) throw new Error(`start screen: ${JSON.stringify(sc)}`);
+  await both('andon-start');
+  await p.evaluate(() => window.__app.setSubject('pm'));
+  await p.locator('.course-pm .map-card').waitFor();
+
+  // Module screen with an intro: Andon beside the heading, idle, one line.
+  await p.locator('.subject-tab', { hasText: 'Engineering' }).click();
+  await p.locator('.course-eng').waitFor();
+  await p.locator('.module-row', { hasText: 'Verspanen' }).click();
+  const ms = p.locator('.module-screen');
+  await ms.waitFor();
+  const gi = ms.locator('.guide-intro');
+  if (await gi.count() !== 1) throw new Error('no Andon at the intro');
+  const gh = await gi.locator('.guide').evaluate((e) => e.getBoundingClientRect().height);
+  if (Math.abs(gh - 72) > 1) throw new Error(`Andon at the intro is ${gh}px, expected 72`);
+  if ((await gi.locator('.guide-say').innerText()).trim() !== 'Eerst het grote plaatje, dan de details.') throw new Error('intro line');
+  if (await gi.locator('.g-top.on').count()) throw new Error('top light on before the intro was seen');
+  if (await gi.locator('.module-intro-title').count() !== 1) throw new Error('the heading is not beside Andon');
+  const sideBySide = await gi.evaluate((e) => {
+    const a = e.querySelector('.guide').getBoundingClientRect();
+    const t = e.querySelector('.module-intro-title').getBoundingClientRect();
+    return a.right <= t.left + 1 && t.top < a.bottom && t.bottom > a.top;
+  });
+  if (!sideBySide) throw new Error('Andon is not beside the heading');
+  if (await gi.locator('button, a').count()) throw new Error('Andon at the intro is interactive');
+  await ms.locator('video.film-video').waitFor({ timeout: 8000 });
+  await both('andon-module'); // the theme change redraws the screen: mark the video after it
+  await ms.locator('video.film-video').waitFor({ timeout: 8000 });
+  await p.evaluate(() => { document.querySelector('.module-screen video.film-video').dataset.keep = '1'; });
+  const before = await ms.evaluate((el) => ({ topics: el.querySelector('.topics').getBoundingClientRect().top, intro: el.querySelector('.module-intro').getBoundingClientRect().height }));
+  await onePrimary(p, 'module screen with Andon');
+  if (await sideways()) throw new Error('module screen scrolls sideways with Andon');
+  // The video ends: his top light comes on in place, the line goes, nothing moves, the video is not re-rendered.
+  await ms.locator('video.film-video').evaluate((v) => v.dispatchEvent(new Event('ended')));
+  await ms.locator('.guide-intro .g-top.on').waitFor({ timeout: 4000 });
+  if (await gi.locator('.guide-say').count()) throw new Error('the line stays after the intro was seen');
+  if (!(await ms.locator('video.film-video').getAttribute('data-keep'))) throw new Error('the video was re-rendered');
+  const after = await ms.evaluate((el) => ({ topics: el.querySelector('.topics').getBoundingClientRect().top, intro: el.querySelector('.module-intro').getBoundingClientRect().height }));
+  if (Math.abs(after.topics - before.topics) > 1 || Math.abs(after.intro - before.intro) > 1) throw new Error(`layout jump when the light came on: ${JSON.stringify({ before, after })}`);
+  await both('andon-module-seen');
+  // A reload: seen from the start, lit, no line.
+  await p.reload();
+  await p.locator('.module-screen .guide-intro .g-top.on').waitFor({ timeout: 8000 }).catch(async () => {
+    // a reload may land on the course home; open the module again
+    await p.locator('.module-row', { hasText: 'Verspanen' }).click();
+    await p.locator('.module-screen .guide-intro .g-top.on').waitFor({ timeout: 8000 });
+  });
+  if (await p.locator('.module-screen .guide-intro .guide-say').count()) throw new Error('a seen intro shows a line');
+
+  // A module without an intro: no Andon.
+  await p.evaluate(() => window.__app.go('module', { subject: 'pm', moduleId: 'pm.intake' }));
+  await p.locator('.module-screen .module-intro-text').waitFor();
+  if (await p.locator('.module-screen .guide, .module-screen .guide-intro').count()) throw new Error('Andon on a module without an intro');
+
+  // The guide off: nothing where he stood, and no gap.
+  await p.evaluate(() => window.__app.updateSettings({ guide: false }));
+  await p.evaluate(() => window.__app.go('module', { subject: 'eng', moduleId: 'eng.machining' }));
+  await ms.waitFor();
+  if (await ms.locator('.guide, .guide-intro, .guide-say').count()) throw new Error('Andon at the intro with the guide off');
+  const gap = await ms.evaluate((el) => {
+    const head = el.querySelector('.module-head').getBoundingClientRect().bottom;
+    const intro = el.querySelector('.module-intro');
+    const title = intro.querySelector('.module-intro-title').getBoundingClientRect().top;
+    return { fromHead: intro.getBoundingClientRect().top - head, titleOffset: title - intro.getBoundingClientRect().top };
+  });
+  if (gap.fromHead > 20 || gap.titleOffset > 2) throw new Error(`a gap where Andon stood on the module screen: ${JSON.stringify(gap)}`);
+  if (await ms.locator('.module-intro > .module-intro-title').count() !== 1) throw new Error('the heading is not directly in the intro block with the guide off');
+  await onePrimary(p, 'module screen, guide off');
+  await p.evaluate(() => window.__app.go('home'));
+  await p.locator('.course-eng').waitFor();
+  const off = await p.evaluate(() => {
+    const m = document.querySelector('.course-eng');
+    const first = [...m.children].find((e) => !e.classList.contains('sr'));
+    return { n: m.querySelectorAll('.guide, .guide-greeting').length, firstClass: first.className, gap: first.getBoundingClientRect().top - m.getBoundingClientRect().top };
+  });
+  if (off.n) throw new Error('Andon on the Engineering home with the guide off');
+  if (!/course-today/.test(off.firstClass)) throw new Error(`the next step is not first with the guide off: ${off.firstClass}`);
+  if (off.gap > 40) throw new Error(`a gap of ${off.gap}px above the first card with the guide off`);
+  await p.locator('.subject-tab', { hasText: 'Spreken' }).click();
+  await p.locator('.speak-home').waitFor();
+  if (await p.locator('.speak-home .guide, .speak-home .guide-greeting').count()) throw new Error('Andon on the speaking home with the guide off');
+  await p.locator('.subject-tab', { hasText: 'Projecten' }).click();
+  await p.locator('.course-pm .map-card').waitFor();
+  if (await p.locator('.course-pm .guide, .course-pm .guide-greeting').count()) throw new Error('Andon on the Projects home with the guide off');
+  if (!/map-card/.test(await p.locator('.course-pm > :nth-child(2)').getAttribute('class'))) throw new Error('the map is not first with the guide off');
+  await both('andon-home-off');
+  await c.close();
+});
+
 
 await step('reminder meta is written for the service worker', async () => {
   const meta = await page.evaluate(async () => {
