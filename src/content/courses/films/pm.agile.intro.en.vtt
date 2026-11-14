@@ -1,0 +1,237 @@
+WEBVTT
+
+1
+00:00:00.863 --> 00:00:02.906
+Line 3 runs in hall B.
+
+2
+00:00:03.574 --> 00:00:08.311
+Now a new MES is coming, the system that runs the orders on the floor.
+
+3
+00:00:09.341 --> 00:00:11.802
+You lead that IT project for the plant manager.
+
+4
+00:00:12.527 --> 00:00:15.093
+The IT team builds the MES.
+
+5
+00:00:16.123 --> 00:00:19.583
+We follow this one project through the four topics of the module.
+
+6
+00:00:20.273 --> 00:00:22.804
+The details come later, in the lessons.
+
+7
+00:00:24.140 --> 00:00:26.532
+The first topic is the agile mindset.
+
+8
+00:00:27.313 --> 00:00:30.227
+How do you build something the operators really use?
+
+9
+00:00:31.238 --> 00:00:36.079
+In a waterfall approach the operators only see the MES at the end.
+
+10
+00:00:36.867 --> 00:00:39.793
+Then it often turns out not to be what they need.
+
+11
+00:00:40.820 --> 00:00:43.862
+Agile works in short rounds, iterations.
+
+12
+00:00:44.579 --> 00:00:47.772
+Each round delivers something small that really works.
+
+13
+00:00:48.781 --> 00:00:51.858
+The operators try it out and the team adjusts.
+
+14
+00:00:52.570 --> 00:00:55.124
+So you notice after weeks, not months.
+
+15
+00:00:56.112 --> 00:01:01.174
+For the agile mindset we often use the Agile Manifesto and a hybrid approach.
+
+16
+00:01:02.483 --> 00:01:06.616
+The second topic is Scrum, with roles, events and artefacts.
+
+17
+00:01:07.343 --> 00:01:09.340
+How does the IT team work together?
+
+18
+00:01:10.337 --> 00:01:12.694
+The team works in sprints of two weeks.
+
+19
+00:01:13.415 --> 00:01:17.780
+Each sprint it finishes something usable, and then the next one starts.
+
+20
+00:01:18.768 --> 00:01:21.659
+The Product Owner is the team lead of line 3.
+
+21
+00:01:22.342 --> 00:01:25.628
+He decides what comes first, because he knows the floor.
+
+22
+00:01:26.638 --> 00:01:29.970
+The Scrum Master helps the team and clears obstacles.
+
+23
+00:01:30.662 --> 00:01:33.077
+The Developers build the MES.
+
+24
+00:01:34.094 --> 00:01:37.751
+For Scrum we often use a Daily Scrum and a Sprint Review.
+
+25
+00:01:39.030 --> 00:01:41.619
+The third topic is Backlog and estimating.
+
+26
+00:01:42.340 --> 00:01:45.150
+What do we build first, and how long will it take?
+
+27
+00:01:46.170 --> 00:01:49.165
+The Product Owner puts all the work on one list.
+
+28
+00:01:49.934 --> 00:01:52.465
+What delivers the most is often at the top.
+
+29
+00:01:53.516 --> 00:01:58.544
+The team estimates the size relatively, by comparing with work it already knows.
+
+30
+00:01:59.557 --> 00:02:01.647
+We are honest about the end date.
+
+31
+00:02:02.407 --> 00:02:05.368
+We give a forecast with a probability and not a date,
+
+32
+00:02:05.530 --> 00:02:07.898
+based on what the team really finishes.
+
+33
+00:02:08.916 --> 00:02:13.572
+For Backlog and estimating we often use user stories and planning poker.
+
+34
+00:02:14.889 --> 00:02:16.990
+The fourth topic is Kanban and flow.
+
+35
+00:02:17.700 --> 00:02:20.695
+How do you keep requests and faults from the floor moving?
+
+36
+00:02:21.710 --> 00:02:26.215
+In Kanban every request or fault is a card that moves from left to right.
+
+37
+00:02:27.305 --> 00:02:29.534
+A card that cannot move on is blocked.
+
+38
+00:02:30.279 --> 00:02:31.916
+So you see where it stutters.
+
+39
+00:02:32.914 --> 00:02:35.898
+The time from start to done is called cycle time.
+
+40
+00:02:36.562 --> 00:02:38.791
+So you see how fast the work flows.
+
+41
+00:02:39.810 --> 00:02:43.699
+For Kanban we often use a Kanban board and a WIP limit,
+
+42
+00:02:43.874 --> 00:02:46.254
+a maximum of work in progress at once.
+
+43
+00:02:47.553 --> 00:02:48.714
+It all connects.
+
+44
+00:02:49.417 --> 00:02:52.493
+The agile mindset gives the reason, Scrum the rhythm,
+
+45
+00:02:52.633 --> 00:02:55.152
+the list of work the order and Kanban the flow.
+
+46
+00:02:56.172 --> 00:02:57.948
+Kanban starts where you are now.
+
+47
+00:02:58.661 --> 00:03:01.366
+That is why it also fits alongside Scrum.
+
+48
+00:03:02.706 --> 00:03:04.413
+This is the map of Projects.
+
+49
+00:03:05.151 --> 00:03:08.936
+Agile and Scrum is the first station of IT and agile.
+
+50
+00:03:09.921 --> 00:03:13.508
+Agile and Scrum has four topics, each with four levels.
+
+51
+00:03:14.489 --> 00:03:16.370
+Start with the agile mindset.
+
+52
+00:03:17.158 --> 00:03:21.048
+At Basics level it is about what agile is, the Scrum Team,
+
+53
+00:03:21.222 --> 00:03:23.382
+user stories and the Kanban board.
+
+54
+00:03:24.418 --> 00:03:27.030
+At Working knowledge you add the twelve principles,
+
+55
+00:03:27.216 --> 00:03:30.246
+the events, refinement and WIP limits.
+
+56
+00:03:31.273 --> 00:03:36.544
+At Advanced you add the roots of agile, the artefacts, velocity and measuring flow.
+
+57
+00:03:37.622 --> 00:03:40.954
+At Expert you add the limits of agile, Scrum for real,
+
+58
+00:03:41.058 --> 00:03:43.891
+forecasting from data and steering on flow.
+
+59
+00:03:44.897 --> 00:03:49.007
+Every lesson and every film in this module has a place on this map.
