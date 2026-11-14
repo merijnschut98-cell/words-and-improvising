@@ -903,6 +903,7 @@ export default {
     },
     {
       id: 'pm.agile.forecast',
+      film: 'pm.agile.forecast',
       title: 'Voorspellen zonder schijnzekerheid',
       pre: [
         {
@@ -1232,6 +1233,7 @@ export default {
     },
     {
       id: 'pm.agile.flowsteer',
+      film: 'pm.agile.forecast',
       title: 'Sturen op flow: verwachtingen, veroudering en bezetting',
       pre: [
         {
