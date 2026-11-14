@@ -1165,3 +1165,16 @@ test('player: the focus highlight is light blue / white in both themes, eases in
   assert.ok(rt.includes("// the beat's focus") && !page.includes("// the beat's focus"));
   assert.ok(page.includes('lightFocus();'));
 });
+
+// The IT projects module intro (pm.itproject.intro), checked with espeak-ng phonemes through Piper's bridge: Dutch reads SaaS
+// as the letters "saa es" (said Sas, sˈɑs) and English reads it as "sah S" (said sass); English reads UAT as the word
+// "you-at", so in this film's one phrase it is said as letters (the Dutch rule above already does that). RFP, MVP, ERP,
+// triage, testscript, proefmigratie, shortlist, pilot, key users, sign-off, go-live, MoSCoW, to-be-proces, requirements and
+// the rest read right or have a rule above; no other film's spoken text changes
+test('speak variant: the IT projects intro words', () => {
+  assert.equal(speakOf(['Huren heet SaaS, de leverancier draait het voor je.'], 'nl'), 'Huren heet Sas, de leverancier draait het voor je.');
+  assert.equal(speakOf(['Renting is called SaaS, the vendor runs it for you.'], 'en'), 'Renting is called sass, the vendor runs it for you.');
+  assert.equal(speakOf(['In the UAT, the user acceptance test, future users check that the MES fits.'], 'en'), 'In the U A T, the user acceptance test, future users check that the M E S fits.');
+  // elsewhere the UAT keeps its voice
+  assert.equal(speakOf(['The UAT ends with a sign-off.'], 'en'), 'The UAT ends with a sign-off.');
+});
