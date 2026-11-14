@@ -1,0 +1,269 @@
+WEBVTT
+
+1
+00:00:00.828 --> 00:00:05.124
+The IT team builds the new MES for the orders on the floor.
+
+2
+00:00:05.855 --> 00:00:08.374
+Whoever builds it also keeps it running.
+
+3
+00:00:09.389 --> 00:00:11.804
+You lead that IT project for the plant manager.
+
+4
+00:00:12.521 --> 00:00:15.772
+The next version gets a screen with the rejected pieces,
+
+5
+00:00:15.981 --> 00:00:18.326
+and it has to reach line 3 safely.
+
+6
+00:00:19.324 --> 00:00:22.760
+We follow that one version through the four topics of the module.
+
+7
+00:00:23.436 --> 00:00:25.991
+The details come later, in the lessons.
+
+8
+00:00:27.328 --> 00:00:30.521
+The first topic is the pipeline and test automation.
+
+9
+00:00:31.264 --> 00:00:34.178
+How does a change from the IT team reach the floor?
+
+10
+00:00:35.202 --> 00:00:37.617
+A pipeline is an automated conveyor.
+
+11
+00:00:38.332 --> 00:00:43.173
+Every change runs through the same steps, from building to a test environment.
+
+12
+00:00:44.215 --> 00:00:48.731
+Automated tests check every change again, without anyone having to click.
+
+13
+00:00:49.448 --> 00:00:51.805
+If one fails, the line stops.
+
+14
+00:00:52.818 --> 00:00:55.755
+For the pipeline and test automation we often
+
+15
+00:00:55.802 --> 00:00:58.460
+use version control and a test pyramid.
+
+16
+00:00:59.781 --> 00:01:04.262
+The second topic is the DORA metrics, from research into IT teams.
+
+17
+00:01:04.978 --> 00:01:07.521
+How do you know whether the IT team delivers well?
+
+18
+00:01:08.532 --> 00:01:10.355
+Two measures are about speed.
+
+19
+00:01:11.092 --> 00:01:13.646
+How often does a new version reach the floor,
+
+20
+00:01:13.809 --> 00:01:16.154
+and how long does a change take to get there?
+
+21
+00:01:17.157 --> 00:01:18.585
+Two are about stability.
+
+22
+00:01:19.283 --> 00:01:23.579
+How often does a new version go wrong, and how quickly are you back on track?
+
+23
+00:01:24.581 --> 00:01:26.822
+The best teams score well on all four.
+
+24
+00:01:27.552 --> 00:01:29.537
+So always look at all four together.
+
+25
+00:01:30.567 --> 00:01:34.387
+With DORA we often use a dashboard and a value stream map.
+
+26
+00:01:35.671 --> 00:01:39.038
+The third topic is managing environments and releases.
+
+27
+00:01:39.742 --> 00:01:42.528
+How does the new version reach line 3 safely?
+
+28
+00:01:43.539 --> 00:01:47.243
+A new version passes development, test and acceptance.
+
+29
+00:01:48.005 --> 00:01:52.266
+There the team lead of line 3 checks the screen, because he knows the floor.
+
+30
+00:01:52.967 --> 00:01:57.077
+Only then comes production, the real environment with real orders.
+
+31
+00:01:58.087 --> 00:02:00.014
+Installing is not yet releasing.
+
+32
+00:02:00.770 --> 00:02:03.522
+The screen is already in the real environment,
+
+33
+00:02:03.626 --> 00:02:06.377
+but the plant chooses when line 3 sees it.
+
+34
+00:02:07.437 --> 00:02:11.048
+How many lines a fault hits is called the blast radius.
+
+35
+00:02:11.755 --> 00:02:12.893
+You keep it small.
+
+36
+00:02:13.557 --> 00:02:16.285
+So a new version goes to one line first.
+
+37
+00:02:17.406 --> 00:02:21.946
+For managing releases we often use a feature flag and a rollback plan.
+
+38
+00:02:23.241 --> 00:02:26.968
+The fourth topic is IT service management and incidents.
+
+39
+00:02:27.694 --> 00:02:30.631
+What do you do when the MES on the floor stops?
+
+40
+00:02:31.647 --> 00:02:36.105
+If the MES stops, the operators report it to the service desk.
+
+41
+00:02:36.842 --> 00:02:41.346
+With an incident one thing counts, getting back to work as fast as possible.
+
+42
+00:02:42.359 --> 00:02:45.748
+If the same fault keeps coming back, we look for the cause.
+
+43
+00:02:46.498 --> 00:02:47.438
+That is a problem.
+
+44
+00:02:48.422 --> 00:02:52.578
+We agree with the plant how fast we respond and how fast we fix.
+
+45
+00:02:53.302 --> 00:02:56.355
+A line that is down comes before an office printer.
+
+46
+00:02:57.402 --> 00:03:00.119
+After a big outage we hold a post-mortem.
+
+47
+00:03:00.812 --> 00:03:04.632
+We look for what in the system made the error possible, not who made it.
+
+48
+00:03:05.418 --> 00:03:06.509
+That is blameless.
+
+49
+00:03:07.515 --> 00:03:11.811
+For incidents we often use a priority matrix and five whys.
+
+50
+00:03:13.114 --> 00:03:14.240
+It all connects.
+
+51
+00:03:14.951 --> 00:03:18.469
+The pipeline carries the change, DORA measures how it goes,
+
+52
+00:03:18.712 --> 00:03:23.019
+the roll-out keeps it safe and incident management catches the rest.
+
+53
+00:03:24.185 --> 00:03:26.159
+Speed and stability go together.
+
+54
+00:03:26.904 --> 00:03:31.757
+Small changes are easier to test and to recover than one big version a quarter.
+
+55
+00:03:33.098 --> 00:03:34.805
+This is the map of Projects.
+
+56
+00:03:35.535 --> 00:03:39.494
+DevOps and delivery is the third station of IT and agile.
+
+57
+00:03:40.481 --> 00:03:44.290
+DevOps and delivery has four topics, each with four levels.
+
+58
+00:03:45.329 --> 00:03:46.583
+Start with the pipeline.
+
+59
+00:03:47.304 --> 00:03:51.240
+At Basics level it is about what DevOps is, what DORA measures,
+
+60
+00:03:51.413 --> 00:03:53.375
+environments and incidents.
+
+61
+00:03:54.399 --> 00:03:57.023
+At Working knowledge you add the kinds of tests,
+
+62
+00:03:57.116 --> 00:04:00.076
+honest measuring, feature flags and availability.
+
+63
+00:04:01.077 --> 00:04:03.097
+At Advanced you add merging daily,
+
+64
+00:04:03.248 --> 00:04:07.126
+reading reports, roll-out strategies and the outage timeline.
+
+65
+00:04:08.149 --> 00:04:11.829
+At Expert you add delivering on the floor, steering with DORA,
+
+66
+00:04:11.922 --> 00:04:14.975
+fixing forward and Lean in IT operations.
+
+67
+00:04:15.980 --> 00:04:20.090
+Every lesson and every film in this module has a place on this map.

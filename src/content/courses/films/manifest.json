@@ -3183,6 +3183,68 @@
         ],
         "vtt": "src/content/courses/films/pm.close.intro.en.vtt"
       }
+    },
+    "pm.agile.intro": {
+      "poster": "src/content/courses/films/pm.agile.intro.jpg",
+      "nl": {
+        "dur": 201.7,
+        "bytes": 7504932,
+        "scenes": [
+          0,
+          20.88,
+          53.42,
+          85.44,
+          115.55,
+          144.17,
+          156.61
+        ],
+        "vtt": "src/content/courses/films/pm.agile.intro.nl.vtt"
+      },
+      "en": {
+        "dur": 230.7,
+        "bytes": 8335068,
+        "scenes": [
+          0,
+          23.71,
+          62.05,
+          98.6,
+          134.45,
+          167.11,
+          182.24
+        ],
+        "vtt": "src/content/courses/films/pm.agile.intro.en.vtt"
+      }
+    },
+    "pm.devops.intro": {
+      "poster": "src/content/courses/films/pm.devops.intro.jpg",
+      "nl": {
+        "dur": 239.6,
+        "bytes": 8756749,
+        "scenes": [
+          0,
+          24.34,
+          55.18,
+          88.09,
+          129.77,
+          174.35,
+          192.37
+        ],
+        "vtt": "src/content/courses/films/pm.devops.intro.nl.vtt"
+      },
+      "en": {
+        "dur": 261.8,
+        "bytes": 9450951,
+        "scenes": [
+          0,
+          26.89,
+          59.35,
+          95.24,
+          142.79,
+          192.67,
+          212.65
+        ],
+        "vtt": "src/content/courses/films/pm.devops.intro.en.vtt"
+      }
     }
   }
 }
