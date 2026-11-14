@@ -2884,7 +2884,7 @@
       "poster": "src/content/courses/films/pm.plan.intro.jpg",
       "nl": {
         "dur": 238.9,
-        "bytes": 9295496,
+        "bytes": 9309901,
         "scenes": [
           0,
           23.14,
@@ -2898,7 +2898,7 @@
       },
       "en": {
         "dur": 272.8,
-        "bytes": 10390176,
+        "bytes": 10406952,
         "scenes": [
           0,
           28.22,
@@ -2973,6 +2973,37 @@
           211.66
         ],
         "vtt": "src/content/courses/films/eng.power.air.en.vtt"
+      }
+    },
+    "pm.field.people": {
+      "poster": "src/content/courses/films/pm.field.people.jpg",
+      "nl": {
+        "dur": 134.3,
+        "bytes": 6774814,
+        "scenes": [
+          0,
+          16.61,
+          33.48,
+          50.19,
+          66.99,
+          84.01,
+          98.58
+        ],
+        "vtt": "src/content/courses/films/pm.field.people.nl.vtt"
+      },
+      "en": {
+        "dur": 152.7,
+        "bytes": 7480521,
+        "scenes": [
+          0,
+          20.13,
+          39.38,
+          57.22,
+          75.8,
+          96.89,
+          112.98
+        ],
+        "vtt": "src/content/courses/films/pm.field.people.en.vtt"
       }
     }
   }
