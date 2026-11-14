@@ -74,12 +74,12 @@ test('speak variant: governance, MUM-effect, keep mum and escalatieroute in Dutc
 });
 
 // espeak-ng reads agile the Dutch way ("AA-gie-le") and stresses HYbride: said
-// as the floor says them, "etsjail" and "hiebriede"; Dutch only, and the
+// as the floor says them, "edjail" and "hiebriede"; Dutch only, and the
 // moulding film's "hybride machine" (rendered video) keeps its voice
 // (pm.plan.method)
 test('speak variant: agile and hybride in Dutch', () => {
   const nl = (s) => speakOf([s], 'nl');
-  assert.equal(nl('Agile: korte rondes. Het Agile Manifesto, een agile methode.'), 'Etsjail: korte rondes. Het Etsjail Manifesto, een etsjail methode.');
+  assert.equal(nl('Agile: korte rondes. Het Agile Manifesto, een agile methode.'), 'Edjail: korte rondes. Het Edjail Manifesto, een edjail methode.');
   assert.equal(nl('De meeste projecten zijn hybride: mijlpalen. Hybride'), 'De meeste projecten zijn hiebriede: mijl-palen. Hiebriede');
   assert.equal(nl('Een hybride machine combineert beide'), 'Een hybride machine combineert beide');
   assert.equal(nl('agileren, hybrides'), 'agileren, hybrides');
@@ -237,7 +237,7 @@ test('speak variant: second opinion, timebox, Weinberg, Pink, Deci and Ryan, man
 // nl_NL-alex bridge: Product Owner, Product Backlog and Product Goal (espeak-ng
 // reads "PROO-dukt OU-ner", "BAK-loch", "GOO-al": said Prodduct Ooner, Bek-lok,
 // Gool, the goal of Dutch football), Developers ("DEE-ve-loo-pers": Di-vellopers),
-// Daily Scrum ("DAI-lie": Deeli), Sprint Review ("ree-VIEW": Rievjoe, as the
+// Daily Scrum ("DAI-lie": Deili), Sprint Review ("ree-VIEW": Rievjoe, as the
 // Harvard Business Review rule), Sprint Retrospective ("RE-tros-pek-tie-ve":
 // Retro-spektif), Scrum Guide (a Dutch "guide": Gaid), Definition of Done with a
 // capital D (through pm.outside.steering's rule: Deffi-nisjun of dun),
@@ -252,7 +252,7 @@ test('speak variant: the Scrum names and split compounds in Dutch', () => {
   const nl = (s) => speakOf([s], 'nl');
   assert.equal(nl('De Product Owner ordent de Product Backlog naar het Product Goal.'), 'De Prodduct Ooner ordent de Prodduct Bek-lok naar het Prodduct Gool.');
   assert.equal(nl('De Developers maken de Sprint Backlog en het Sprint Goal. Een Developer.'), 'De Di-vellopers maken de Sprint Bek-lok en het Sprint Gool. Een Di-velloper.');
-  assert.equal(nl('De Daily Scrum, de Sprint Review en de Sprint Retrospective.'), 'De Deeli Scrum, de Sprint Rievjoe en de Sprint Retro-spektif.');
+  assert.equal(nl('De Daily Scrum, de Sprint Review en de Sprint Retrospective.'), 'De Deili Scrum, de Sprint Rievjoe en de Sprint Retro-spektif.');
   assert.equal(nl('De Scrum Guide van Ken Schwaber en Jeff Sutherland.'), 'De Scrum Gaid van Ken Sjwaaber en Djef Sutherland.');
   assert.equal(nl('De Definition of Done. Vijf events. Events zijn vast. Refinement is geen event.'), 'De Deffi-nisjun of dun. Vijf ievents. Ievents zijn vast. Ri-fainmunt is geen ievent.');
   assert.equal(nl('De productieleider. De acceptatieomgeving.'), 'De productie-leider. De acceptatie-omgeving.');
@@ -335,7 +335,7 @@ test('speak variant: the kanban names and flow measures in Dutch', () => {
 // only; capitals as the lessons write them, and no other film's spoken text changes
 test('speak variant: the SAFe names in Dutch', () => {
   const nl = (s) => speakOf([s], 'nl');
-  assert.equal(nl('SAFe, een SAFe-rol. De Agile Release Train en de Release Train Engineer.'), 'Seef, een Seef-rol. De Etsjail Rieliez Treen en de Rieliez Treen Entsjinier.');
+  assert.equal(nl('SAFe, een SAFe-rol. De Agile Release Train en de Release Train Engineer.'), 'Seef, een Seef-rol. De Edjail Rieliez Treen en de Rieliez Treen Entsjinier.');
   assert.equal(nl('Een ART, de RTE, het ART Planning Board, de confidence vote. De Confidence vote.'), 'Een A R T, de R T E, het A R T Planning Bord, de konfidens voot. De Konfidens voot.');
   assert.equal(nl('De Business Owners, een Business Owner. ROAM. De PI-objectives, uncommitted en committed.'),
     'De Biznis Ooners, een Biznis Ooner. Room. De PI-ob-tsjektivs, un-kommittid en kommittid.');
@@ -362,7 +362,7 @@ test('speak variant: the SAFe names in Dutch', () => {
 // film's spoken text changes
 test('speak variant: the stage-gate and lead-time words in Dutch, go/kill and SOP in English', () => {
   const nl = (s) => speakOf([s], 'nl');
-  assert.equal(nl('Stage-gate en de gates. Een gate, Agile-Stage-Gate van Cooper.'), 'Steetsj-geet en de geets. Een geet, Etsjail-Steetsj-Geet van Koeper.');
+  assert.equal(nl('Stage-gate en de gates. Een gate, Agile-Stage-Gate van Cooper.'), 'Steetsj-geet en de geets. Een geet, Edjail-Steetsj-Geet van Koeper.');
   assert.equal(nl('Een go/kill-beslissing. Een long-lead item, twee long-lead items. De SOP, vanaf de SOP.'), 'Een go-kill-beslissing. Een long-lied aitem, twee long-lied aitems. De es oo pee, vanaf de es oo pee.');
   assert.equal(nl('De design freeze. Design freeze. Set-based design, naar Toyota, SAFe noemt het. De matrijsbouw.'), 'De di-zain friez. Di-zain friez. Set-beesd di-zain, naar Tojota, Seef noemt het. De matrijs-bouw.');
   assert.equal(nl('De gate-freeze-studie. Een kwaliteitspoort. Het ontwerp.'), 'De gate-freeze-studie. Een kwaliteitspoort. Het ontwerp.');
@@ -451,7 +451,7 @@ test('speak variant: the requirements and MoSCoW words in Dutch, MoSCoW, Ries an
     'Moskou sorteert: Must hev, Sjoed hev, Koed hev en Woont hev dis taim. Een Woont hev.');
   assert.equal(nl('De Musts, de Shoulds, de Coulds. Ze worden Should. Een Must.'), 'De Musts, de Sjoeds, de Koeds. Ze worden Sjoed. Een Must.');
   assert.equal(nl('Dai Clegg bij Oracle. Het Agile Business Consortium. DSDM noemt de Musts de Minimum Usable SubseT.'),
-    'Dai Clegg bij Orrekul. Het Etsjail Biznis Consortium. DSDM noemt de Musts de Minimum Joezebul Sabset.');
+    'Dai Clegg bij Orrekul. Het Edjail Biznis Consortium. DSDM noemt de Musts de Minimum Joezebul Sabset.');
   assert.equal(nl('MVP staat voor minimum viable product, van Frank Robinson. Eric Ries, The Lean Startup. De MVP-lijn.'),
     'em vee pee staat voor minimum vaaiebul prodduct, van Frank Robbinsun. Erik Ries, de Lien Startap. De em vee pee-lijn.');
   assert.equal(nl('Het to-be-proces, na de go-live, een businessanalist, voedselbatches traceren.'), 'Het toe-bie-proces, na de goo-laiv, een biznis-analist, voedselbetsjes traceren.');
@@ -722,6 +722,25 @@ test('speak variant: DevOps in Dutch is said with a v, English is left alone', (
   // other words keep their voice
   assert.equal(nl('De ontwikkelaars en operations.'), 'De ontwikkelaars en operations.');
   const en = 'DevOps joins development and operations.';
+  assert.equal(speakOf([en], 'en'), en);
+});
+
+// English IT words in the Dutch voice (Task 22), checked with espeak-ng phonemes through Piper's nl bridge and
+// the free large-v3-turbo transcript of the real voice. WIP: espeak-ng spells the capitals "vee ie pee" (heard
+// "VIP-limiet"); said "wip", as Dutch teams do (ʋˈɪp). Rollbackplan: "rol-bak-plan" (heard "rolbakplan"); said
+// "rolbek plan" (rˈɔlbɛk plˈɑn). Versiebeheer: espeak-ng reads the compound with an s ("vərsˈibəhˌɪːr"); split,
+// "versie" keeps its z (vˈɛrzibəhˈɪːr). Agile ("edjail": ɛtjɑjl) and Daily Scrum ("Deili": dˈɛɪli) are in the
+// rules of their own films above. Planning poker, DORA, post-mortem and feature flag are read right as they are.
+// English is left alone.
+test('speak variant: WIP, rollback and versiebeheer in Dutch', () => {
+  const nl = (s) => speakOf([s], 'nl');
+  assert.equal(nl('WIP is begonnen werk. Een WIP-limiet en WIP-limieten.'), 'wip is begonnen werk. Een wip-limiet en wip-limieten.');
+  assert.equal(nl('Een rollbackplan en een rollback.'), 'Een rolbek plan en een rolbek.');
+  assert.equal(nl('Versiebeheer en goed versiebeheer.'), 'Versie-beheer en goed versie-beheer.');
+  // the other words keep their voice
+  assert.equal(nl('Planning poker, DORA en een post-mortem.'), 'Planning poker, DORA en een post-mortem.');
+  assert.equal(nl('Een work in progress.'), 'Een work in progress.');
+  const en = 'The WIP limit, a rollback plan and version control.';
   assert.equal(speakOf([en], 'en'), en);
 });
 
@@ -1238,11 +1257,11 @@ test('speak variant: the IT projects intro words', () => {
 
 // The DevOps module intro (pm.devops.intro), checked with espeak-ng phonemes through Piper's nl bridge: it reads
 // "testpiramide" with the stress on "raa" (tˈɛstpirˌaːmidə, test-pi-RAA-mi-de); "test-piramiede" gives
-// tˈɛstpˌiraːmˈidə, the stress of piramide. The film's other words (versiebeheer, mediaan, feature flag, rollbackplan,
-// prioriteitsmatrix, A3, impactstraal, servicedesk, post-mortem) are read right or have rules above; English needs nothing
+// tˈɛstpˌiraːmˈidə, the stress of piramide. The film's other words (mediaan, feature flag, post-mortem, DORA; versiebeheer and rollbackplan since Task 22,
+// prioriteitsmatrix, A3, impactstraal, servicedesk) are read right or have rules above; English needs nothing
 test('speak variant: the DevOps module intro word in Dutch', () => {
   const nl = (s) => speakOf([s], 'nl');
-  assert.equal(nl('Bij tests gebruiken we vaak versiebeheer en een testpiramide.'), 'Bij tests gebruiken we vaak versiebeheer en een test-piramiede.');
+  assert.equal(nl('Bij tests gebruiken we vaak versiebeheer en een testpiramide.'), 'Bij tests gebruiken we vaak versie-beheer en een test-piramiede.');
   assert.equal(nl('De Testpiramide.'), 'De Test-piramiede.');
   const en = 'We often use version control and a test pyramid.';
   assert.equal(speakOf([en], 'en'), en);
