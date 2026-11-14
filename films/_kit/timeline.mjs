@@ -753,7 +753,19 @@ const SAY = {
     // impact-analiese, a z) and issuelog as "is-uu-eh-log" (said isjoelog, as the pre-mortem's rule says issue).
     // Stand-up, wijzigingslog, besluitnotitie, notulen, besluitenlijst, A3-statusrapport, escalatie and the
     // other words of the film go through the rules above or need nothing; no other film's spoken text changes
-    [/\b([Ii])mpactanalyse\b/g, '$1mpact-analiese'], [/\b([Ii])ssuelog\b/g, '$1sjoelog']],
+    [/\b([Ii])mpactanalyse\b/g, '$1mpact-analiese'], [/\b([Ii])ssuelog\b/g, '$1sjoelog'],
+    // the Land module intro (pm.land.intro), a self-contained group at the end of the Dutch list, checked with
+    // phonemes through Piper's nl_NL-alex bridge: espeak-ng reads follow-up with a Dutch-English switch, said
+    // follo-ap; trigger with a soft g ("tri-gher"), said trikker (as the handover rule above); after-action review
+    // as "afterakshon" and "ree-viw", said after-eksjun (stress on eks) and rievjoe (as Sprint Review). Only in
+    // this film's phrases, so pm.land.handover's trigger and other films' reviews keep their voice. The film's
+    // operators are only in "De operators krijgen" (the field film's rule above); the other sentences say
+    // "iemand", "ze" and "mensen", as the captions do, so they need no rule.
+    // Werkinstructie, vaardigheidsmatrix, trainingsrooster, communicatieplan, overdrachtschecklist, proceseigenaar,
+    // gelaagde procesaudit, KPI-bord, nulmeting, baateigenaar and A3-rapport go through the rules above or are read
+    // right as they are; no other film's spoken text changes
+    [/\bvooraf een follow-up af en een trigger\b/g, 'vooraf een follo-ap af en een trikker'],
+    [/\bA3-rapport en een after-action review\b/g, 'A3-rapport en een after-eksjun rievjoe']],
   en: [[/\brpm\b/g, 'revolutions per minute'], [/\bmm\/min\b/g, 'millimetres per minute'], [/\bm\/min\b/g, 'metres per minute'], [/µm\b/g, 'micrometres'],
     [/€\s?(\d[\d,]*(?:\.\d+)?)/g, '$1 euros'], [/(\d)\.0(?![\d])/g, '$1'], [/(\d)\s?mm\b/g, '$1 millimetres'], [/(\d)\s?min\b/g, '$1 minutes'], [/(\d)\s?%/g, '$1 percent'],
     [/Ø\s*/g, 'diameter '], [/(\d)\+(\d)/g, '$1 plus $2'], [/\s×\s/g, ' times '], [/\s\/\s/g, ' divided by '], [/\s=\s/g, ' is '], [/°/g, ' degrees'], [/\bRa\b/g, 'R a'], [/’/g, "'"],
