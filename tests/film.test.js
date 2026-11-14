@@ -787,6 +787,22 @@ test('speak variant: the Scaling intro words', () => {
   assert.equal(speakOf([en], 'en'), en);
 });
 
+// The When you're stuck module intro (pm.stuck.intro), checked with espeak-ng phonemes through Piper's nl bridge:
+// it reads "tussenbericht" as "tussen-BEER-icht" (tˈɵsənbˌɪːrɪxt, the be of bericht lengthened and stressed); said
+// "tussen-bericht" it reads tˈɵsənbərˈɪxt, the stress of bericht. Only in this film's phrase "een tussenbericht en
+// een bandbreedte": no other film says the word. The film's other words (triangulatie, besluitenlijst, bandbreedte,
+// weerstand, terugbelmoment, sponsorgesprek, rugdekking, kleine successen, escaleer, blokkeren) are read right as
+// they are, and it says "de ploeg" and "de mensen van de lijn" instead of operators; no other film's spoken text changes
+test('speak variant: the tussenbericht of the stuck intro', () => {
+  const nl = (s) => speakOf([s], 'nl');
+  assert.equal(nl('Bij niet weten gebruiken we een tussenbericht en een bandbreedte.'), 'Bij niet weten gebruiken we een tussen-bericht en een bandbreedte.');
+  // elsewhere the word keeps its voice
+  assert.equal(nl('Stuur een tussenbericht naar de klant.'), 'Stuur een tussenbericht naar de klant.');
+  assert.equal(nl('Een bericht en een bandbreedte.'), 'Een bericht en een bandbreedte.');
+  const en = 'When you do not know we use a holding statement and a range.';
+  assert.equal(speakOf([en], 'en'), en);
+});
+
 // A stage drawn on the Dutch caption beats (beatwarp films set STAGE.nlBeats)
 // follows the caption beat on screen in English too: while English beat k
 // shows, the stage runs through Dutch beat k, so the drawing is never a beat off.

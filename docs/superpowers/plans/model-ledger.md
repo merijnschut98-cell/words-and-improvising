@@ -79,3 +79,6 @@ Outcome: accepted (merged as delivered), sent back N times, redone.
 | 14 Nov | Build module intro pm.itproject.intro (Task 11) | sonnet | 111 | 16 min | 341,975 | accepted with fixes by its review |
 | 14 Nov | Review module intro pm.itproject.intro | sonnet | n/a | n/a | n/a | accepted with fixes (story aligned: bought package, our IT team builds on it; selection beat removed); merged v278 |
 | 14 Nov | Render PM-17: agile and devops intros | sonnet | 37 | 33 min | 105,516 | accepted; every guard passed first time; found English IT words the Dutch voice blurs (Agile, Daily Scrum, WIP, feature flag); merged v280 |
+| 14 Nov | Build module intro pm.stuck.intro (Task 11) | sonnet | 115 | 19 min | 357,493 | accepted with fixes by its review |
+| 14 Nov | Audit: calculations at Basis (Task 21 step 1) | sonnet | 73 | 11 min | 333,217 | accepted; Merijn then withdrew the task (simple examples stay); report kept |
+| 14 Nov | Review module intro pm.stuck.intro | sonnet | 63 | 8 min | 188,597 | accepted with fixes (two non-tools out, a reason for the team lead's resistance); merged v282 |

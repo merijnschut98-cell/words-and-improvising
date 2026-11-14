@@ -341,7 +341,10 @@ One intro film per module stays the big picture; the levels get a short bridge i
 
 espeak reads "DevOps" as "def ops" in the Dutch voice; the rendered devops films (pm.devops.pipeline, pm.devops.incident, pm.devops.postmortem) and field film 4 say it that way. Fix: one Dutch SAY rule ("DevOps" to a respelling that sounds as dev-ops, checked with Piper's espeak bridge), test first, recompute every film's spoken text, rebuild the affected pages, review (`sonnet`) and re-render the affected films in one render batch (`sonnet`). Small; do it with the next render batch that touches any devops film.
 
-### Task 21: No calculations at Basis (Merijn, 14 Nov)
+### Task 21: No calculations at Basis (Merijn, 14 Nov) — WITHDRAWN
+
+**Withdrawn the same evening (Merijn, MC):** "Ik bedenk me toch. Simpele rekenvoorbeelden mogen toch blijven." The step 1 audit ran first (137 of 176 Basis lessons, 184 of 881 Basis questions and 51 of 79 Basis films contain a calculation); its report is kept in `docs/superpowers/reviews/2026-11-14-basis-calculations-audit.md` in case a stricter rule is wanted later. Steps 2 to 4 are not done.
+
 
 Merijn: "in het basisniveau geen berekeningen. Alleen uitleg over hoe dingen werken. Berekeningen zijn pas voor hogere niveaus." MC answers: films and lesson content (lessons, practice questions, films) at Basis; a calculation found at Basis moves to the Werkkennis lesson or film of the same topic, nothing is lost.
 

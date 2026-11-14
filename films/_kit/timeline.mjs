@@ -784,6 +784,13 @@ const SAY = {
     // text changes
     [/\bLeSS\b/g, 'Less'], [/\bSprint Planning One\b/g, 'Sprint Planning Wan'], [/\bSpotify\b/g, 'Spotifai'],
     [/\bLean (?=budgets\b|biznis kees\b)/g, 'Lien '],
+    // the When you're stuck module intro (pm.stuck.intro), a self-contained group at the end of the Dutch list, checked
+    // with phonemes through Piper's nl_NL-alex bridge: espeak-ng reads tussenbericht as "tussen-BEER-icht"
+    // (tˈɵsənbˌɪːrɪxt); said tussen-bericht, tˈɵsənbərˈɪxt, with the stress of bericht. Only in this film's phrase "een
+    // tussenbericht en een bandbreedte" (no other film says the word). Its other words (triangulatie, besluitenlijst,
+    // bandbreedte, weerstand, terugbelmoment, sponsorgesprek, rugdekking, kleine successen) are read right as they
+    // are; no other film's spoken text changes
+    [/\been tussenbericht en een bandbreedte\b/g, 'een tussen-bericht en een bandbreedte'],
     // the IT projects intro (pm.itproject.intro), a self-contained group at the end of the Dutch list, checked with phonemes
     // through Piper's nl_NL-alex bridge: espeak-ng reads SaaS as the letters "saa es" (said Sas, sˈɑs); the rest of the film
     // (RFP, MVP, ERP, triage, testscript, proefmigratie, shortlist, pilot, key users, sign-off, go-live, MoSCoW, to-be-proces,
