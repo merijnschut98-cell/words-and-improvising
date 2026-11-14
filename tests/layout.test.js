@@ -170,3 +170,13 @@ test('ui.speakOpen stays on this device, like ui.drillGroups: never synced, neve
   assert.deepEqual(m.ui.speakOpen, ['quests']);
   assert.deepEqual(m.ui.drillGroups, ['pressure']);
 });
+
+test('speakLayout and toggleSpeak read an unclean ui.speakOpen safely (state that never went through load)', () => {
+  const flat = (ui) => speakLayout({ ...defaultState(), ui }).flatMap((b) => b.items).filter((i) => i.fold);
+  // A string that happens to contain a key does not open that fold; an object does not throw.
+  assert.ok(flat({ speakOpen: 'quests practice' }).every((i) => !i.open));
+  assert.ok(flat({ speakOpen: { quests: true } }).every((i) => !i.open));
+  assert.deepEqual(flat({ speakOpen: ['practice', 'evil'] }).map((i) => i.open), [false, true]);
+  assert.deepEqual(toggleSpeak({ speakOpen: 'quests' }, 'practice', true).speakOpen, ['practice']);
+  assert.deepEqual(toggleSpeak(null, 'quests', true), { speakOpen: ['quests'] });
+});
