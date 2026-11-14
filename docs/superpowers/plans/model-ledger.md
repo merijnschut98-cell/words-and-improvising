@@ -49,4 +49,5 @@ Outcome: accepted (merged as delivered), sent back N times, redone.
 | 14 Nov | Build field film 3 pm.field.portfolio | sonnet | 89 | 12 min | 290,551 | accepted with fixes by its review; merged v263 |
 | 14 Nov | Build: Andon visible (Task 8) | sonnet | n/a | n/a | n/a | delivered; in review (opus) |
 | 14 Nov | Review field film 3 | sonnet | 77 | 12 min | 201,498 | accepted |
-| 14 Nov | Build field film 4 pm.field.it | sonnet | n/a | n/a | n/a | delivered (155 s designed); in review (sonnet) |
+| 14 Nov | Build field film 4 pm.field.it | sonnet | 99 | 15 min | 349,413 | accepted with two cosmetic fixes; merged v264 |
+| 14 Nov | Review field film 4 | sonnet | n/a | n/a | n/a | accepted |
