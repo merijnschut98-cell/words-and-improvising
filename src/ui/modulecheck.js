@@ -1,5 +1,6 @@
 // The module check screen (Modulecheck, v16 flair): an intro with the guide,
 // then ten questions in one pass (no hints, no back), then the result.
+import { exitTarget } from '../core/moduleexit.js';
 import { h } from './dom.js';
 import { ico } from './icons.js';
 import { renderQuiz } from './quiz.js';
@@ -9,18 +10,20 @@ import { checkOpen, checkQuestions, applyCheck } from '../core/modulecheck.js';
 import { storedMedal } from '../core/flair.js';
 import { MODULES } from '../content/courses/index.js';
 
-export function renderCheck(app, { subject, moduleId }, root) {
+export function renderCheck(app, params, root) {
+  const { subject, moduleId } = params;
+  const exit = () => app.go(...exitTarget(params));
   const t = app.t;
   const meta = MODULES.find((m) => m.id === moduleId);
   const main = h('main', { class: 'screen check' });
   root.append(
     h('header', { class: 'top round-top' },
-      h('button', { class: 'icon-btn', 'aria-label': t('close'), onclick: () => app.go('home') }, ico('x')),
+      h('button', { class: 'icon-btn', 'aria-label': t('close'), onclick: exit }, ico('x')),
       h('div', { class: 'round-title' }, ico('flag'), ' ', t('checkTitle')), h('div', {})),
     main);
   if (!meta) { app.go('home'); return; }
   const title = meta.title[app.lang] || meta.title.en;
-  const back = () => h('button', { class: 'btn btn-ghost', onclick: () => app.go('home') }, t('backToCourse'));
+  const back = () => h('button', { class: 'btn btn-ghost', onclick: exit }, t('backToCourse'));
 
   if (!checkOpen(app.state, meta, app.today())) {
     main.replaceChildren(h('section', { class: 'card check-intro' },
@@ -71,6 +74,6 @@ export function renderCheck(app, { subject, moduleId }, root) {
       h('p', { class: 'check-score' }, t('checkScore', res.correct, res.total), res.perfect ? ` · ${t('checkPerfect')}` : ''),
       res.xp ? h('p', { class: 'xp-line xp-rise' }, `+${res.xp} XP`) : null,
       ...c.nodes.slice(1)),
-    h('button', { class: 'btn btn-primary btn-big', onclick: () => app.go('home') }, t('backToCourse')));
+    h('button', { class: 'btn btn-primary btn-big', onclick: exit }, t('backToCourse')));
   }
 }

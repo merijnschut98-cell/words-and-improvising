@@ -2,6 +2,7 @@
 // against three rubric points, or the coach grades it when there is a key.
 // After the model answer, "They push back" (where the lesson has objections):
 // two turns of holding his ground, then a rating and a calm, firm reply.
+import { exitTarget, nextParams } from '../core/moduleexit.js';
 import { h } from './dom.js';
 import { ico } from './icons.js';
 import { applySituation, paragraphs } from '../core/course.js';
@@ -11,14 +12,16 @@ import { createRecognizer, speechSupported } from '../core/speech.js';
 
 const prose = (cls, text) => h('div', { class: cls }, paragraphs(text).map((x) => h('p', {}, x)));
 
-export function renderSituation(app, { subject, moduleId, lessonId }, root) {
+export function renderSituation(app, params, root) {
+  const { subject, moduleId, lessonId } = params;
+  const exit = () => app.go(...exitTarget(params));
   const t = app.t;
   const seq = app.navSeq;
   const main = h('main', { class: 'screen situation' }, h('p', { class: 'muted loading' }, '…'));
   let rec = null;
   root.append(
     h('header', { class: 'top round-top' },
-      h('button', { class: 'icon-btn', 'aria-label': t('close'), onclick: () => app.go('home') }, ico('x')),
+      h('button', { class: 'icon-btn', 'aria-label': t('close'), onclick: exit }, ico('x')),
       h('div', { class: 'round-title' }, ico('drama'), ' ', t('sitTitle')), h('div', {})),
     main);
 
@@ -30,7 +33,7 @@ export function renderSituation(app, { subject, moduleId, lessonId }, root) {
   }).catch(() => {
     if (seq !== app.navSeq) return;
     main.replaceChildren(h('section', { class: 'card load-error' }, h('p', {}, t('loadError')),
-      h('button', { class: 'btn btn-primary', onclick: () => app.go('situation', { subject, moduleId, lessonId }) }, t('retry'))));
+      h('button', { class: 'btn btn-primary', onclick: () => app.go('situation', nextParams(params, { subject, moduleId, lessonId })) }, t('retry'))));
   });
 
   const stopRec = () => { if (rec) { rec.stop(); rec = null; } };
@@ -135,7 +138,7 @@ export function renderSituation(app, { subject, moduleId, lessonId }, root) {
       // Spread, not null: replaceChildren would render a null as text.
       ...(pushbackTurns(lesson.situation).length ? [h('button', { class: 'btn btn-ghost pb-open', onclick: () => pushback(lesson, answer) }, t('pbOpen'))] : []),
       h('button', { class: 'btn btn-ghost', onclick: () => app.startSayIt(subject, moduleId, lesson.id) }, ico('mic'), ' ', t('openSayIt')),
-      h('button', { class: 'btn btn-primary btn-big', onclick: () => app.go('home') }, t('backToCourse')));
+      h('button', { class: 'btn btn-primary btn-big', onclick: exit }, t('backToCourse')));
   }
 
   // Two objections, two replies. With a key the coach plays the other person;
@@ -204,7 +207,7 @@ export function renderSituation(app, { subject, moduleId, lessonId }, root) {
           missed ? h('p', { class: 'note' }, `${t('coachMissed')}: ${missed}`) : null,
           h('p', { class: 'muted small' }, t('pbModel')),
           h('p', { class: 'said' }, pb.model)),
-        h('button', { class: 'btn btn-primary btn-big', onclick: () => app.go('home') }, t('pbDone')));
+        h('button', { class: 'btn btn-primary btn-big', onclick: exit }, t('pbDone')));
       window.scrollTo(0, 0);
     }
 

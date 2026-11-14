@@ -7,6 +7,7 @@ import { courseTodayPick, moduleMastery, nextLesson, levelsDone } from '../core/
 import { pathModel, topicPath } from './pathmap.js';
 import { medalSeal, metaSeal, moduleEndModel, checkEntry, goalLeftLine } from './flairui.js';
 import { dueCount } from '../core/coursereview.js';
+import { FROM_MODULE } from '../core/moduleexit.js';
 import { moduleTier, trackProgress, openTrack } from '../core/layout.js';
 
 export const COURSE_ICON = { apply: 'pen-line', prep: 'calendar', due: 'repeat', lesson: 'book-open', situation: 'drama', sayIt: 'mic', maintain: 'wrench', done: 'circle-check' };
@@ -91,7 +92,7 @@ function modSummary(app, meta, tag, attrs, ...bits) {
     h('span', { class: 'module-meta' }, ...bits));
 }
 
-const openLesson = (app, meta) => (lessonId) => app.go('lesson', { subject: meta.subject, moduleId: meta.id, lessonId });
+const openLesson = (app, meta) => (lessonId) => app.go('lesson', { subject: meta.subject, moduleId: meta.id, lessonId, from: FROM_MODULE });
 
 // A topic module's topics: one row per topic with its path of levels, from the
 // index alone (no module load). A level shows once the one before it is passed
@@ -136,7 +137,7 @@ function topicModuleRow(app, meta) {
 export function moduleEnd(app, meta) {
   const end = moduleEndModel(app.state, meta, app.today());
   return h('div', { class: 'path-end' }, medalSeal(app.t, end.tier, 24),
-    checkEntry(app.t, end, () => app.go('check', { subject: meta.subject, moduleId: meta.id })));
+    checkEntry(app.t, end, () => app.go('check', { subject: meta.subject, moduleId: meta.id, from: FROM_MODULE })));
 }
 
 function moduleRow(app, meta) {
