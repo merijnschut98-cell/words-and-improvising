@@ -13,7 +13,7 @@ import { startHead, subjectTitle, guideGreeting } from './flairui.js';
 import { h, DRILL_ICON, enableOnFail } from './dom.js';
 import { ico } from './icons.js';
 import { levelFromXp, isStreakAlive, daysPractised } from '../core/progress.js';
-import { currentQuests } from '../core/quests.js';
+import { currentQuests, questTarget } from '../core/quests.js';
 import { bossAvailable } from '../core/boss.js';
 import { makePrompt } from '../core/lesson.js';
 import { subjectBar, SUBJECT_TABS } from './subjectbar.js';
@@ -58,10 +58,43 @@ function questCard(app, open) {
   return speakFold(app, 'quests', 'card quest-card', open,
     [h('h2', { class: 'card-title' }, t('questsTitle')),
       h('span', { class: 'muted small quest-reward' }, ico('snowflake'), ' ', done === items.length ? t('questsAllDone') : `${done}/${items.length} · ${t('questsReward')}`)],
-    h('div', { class: 'fold-body' }, items.map((q) => h('div', { class: `quest${q.done ? ' done' : ''}` },
-      h('span', { class: 'quest-check', 'aria-hidden': 'true' }, q.done ? ico('check') : ''),
-      h('span', {}, t(`quest_${q.id}`)),
-      h('span', { class: 'muted small' }, '+15')))));
+    h('div', { class: 'fold-body' }, items.map((q) => questRow(app, q))));
+}
+
+// Open what completes a quest. A drill or retry round starts at once; the
+// other targets go to the screen where it happens.
+export function openQuest(app, id) {
+  const go = questTarget(app.state, id);
+  if (go.kind === 'drill') return app.startDrill(go.drill);
+  if (go.kind === 'lesson') return app.startLesson();
+  if (go.kind === 'conversation') return app.go(app.state.settings.apiKey ? 'conversation' : 'settings');
+  if (go.kind === 'settings') return app.go('settings');
+  if (go.kind === 'retry') {
+    const prompt = challengePrompt({ drill: go.entry.drill, promptId: go.entry.promptId }, app.content);
+    if (prompt) {
+      app.session = null;
+      return app.go('round', { prompt, previous: { metrics: go.entry.metrics, durationS: go.entry.durationS }, modifier: null });
+    }
+  }
+  return app.startQuick();
+}
+
+// A quest to do is a button that opens it (name, reward and a chevron). A done
+// quest stays a plain row: nothing is left to complete, and a second round for
+// it would pay nothing, so a tap there would only mislead.
+function questRow(app, q) {
+  const t = app.t;
+  const label = t(`quest_${q.id}`);
+  if (q.done) {
+    return h('div', { class: 'quest done' },
+      h('span', { class: 'quest-check', 'aria-hidden': 'true' }, ico('check')),
+      h('span', {}, label),
+      h('span', { class: 'muted small' }, '+15'));
+  }
+  return h('button', { type: 'button', class: 'quest quest-go', 'data-quest': q.id, 'aria-label': `${label}, +15 XP`, onclick: () => openQuest(app, q.id) },
+    h('span', { class: 'quest-check', 'aria-hidden': 'true' }, ''),
+    h('span', {}, label),
+    h('span', { class: 'muted small' }, '+15 ', ico('chevron-right')));
 }
 
 // Learn → Practise → Own, as a small label on each drill.
@@ -312,6 +345,7 @@ function renderStart(app, root, showBreak, note) {
   const s = app.state;
   const today = app.today();
   const cards = startCards(s, today, app.content, app.lang);
+  const begin = cards.find((c) => c.suggested) || cards[0];
   root.append(
     h('header', { class: 'top' }, brandLockup()),
     h('main', { class: 'screen home start' },
@@ -319,8 +353,8 @@ function renderStart(app, root, showBreak, note) {
       startHead(app),
       flairNote(app, note),
       // Andon right above the one begin button: "the one below" is that button.
-      guideGreeting(app, { subject: 'start' }),
-      beginButton(app, cards.find((c) => c.suggested) || cards[0]),
+      guideGreeting(app, { subject: 'start', goal: true, pick: begin.subject === 'speak' ? null : begin }),
+      beginButton(app, begin),
       h('p', { class: 'start-or muted small' }, t('startOr')),
       h('div', { class: 'start-cards' }, cards.map((c) => startCard(app, c))),
       realWeekEntry(app),
@@ -394,7 +428,7 @@ export function renderHome(app, _params, root) {
     h('main', { class: 'screen home speak-home' },
       h('h1', { class: 'sr' }, t('subject_speak')),
       breakCard(app, showBreak),
-      guideGreeting(app, { subject: 'speak' }),
+      guideGreeting(app, { subject: 'speak', goal: true }),
       ...speakBands(app),
       navigator.onLine ? null : h('p', { class: 'note' }, t('offline'))),
     navBar(app, 'home'),

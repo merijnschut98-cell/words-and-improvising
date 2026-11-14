@@ -124,3 +124,20 @@ test('with a hint: correct keeps the box, wrong goes to box 1; without a hint co
   r = sched(r, q, '2026-11-06', false, 'nl', !true);
   assert.equal(r[`nl|${q}`].box, 1, 'wrong, hint or not: box 1');
 });
+
+// ---- Map highlight for the next step ----
+import { mapNextModule } from '../src/core/coursereview.js';
+import { moduleOf } from '../src/content/courses/index.js';
+
+test('mapNextModule: a review lights the module with the most questions due, a lesson its module, done nothing', () => {
+  const rev = (lesson, n) => Object.fromEntries(Array.from({ length: n }, (_, i) => [`nl|${lesson}#r${i}`, { subject: 'pm', lesson, box: 1, due: '2026-11-01' }]));
+  const reviews = { ...rev('pm.plan.a', 1), ...rev('pm.run.a', 3), ...rev('pm.lead.a', 2) };
+  const at = (pick) => mapNextModule(pick, reviews, '2026-11-02', 'pm', 'nl', moduleOf);
+  assert.equal(at({ reason: 'due', count: 6 }), 'pm.run');
+  assert.equal(at({ reason: 'lesson', moduleId: 'pm.plan' }), 'pm.plan');
+  assert.equal(at({ reason: 'maintain', questionId: 'pm.lead.a#r0' }), 'pm.lead');
+  assert.equal(at({ reason: 'done' }), null);
+  assert.equal(mapNextModule({ reason: 'due', count: 0 }, {}, '2026-11-02', 'pm', 'nl', moduleOf), null, 'nothing due: nothing lit');
+  const tie = { ...rev('pm.plan.a', 2), ...rev('pm.run.a', 2) };
+  assert.equal(mapNextModule({ reason: 'due' }, tie, '2026-11-02', 'pm', 'nl', moduleOf), 'pm.plan', 'ties: the first listed');
+});

@@ -147,14 +147,14 @@ const pass = (st, id, ts) => at(st, id, { read: ts, passed: ts });
 const box = (st, lang, lessonId, n, b = 4) => ({ ...st, courseReviews: { ...st.courseReviews, ...Object.fromEntries(Array.from({ length: n }, (_, i) => [`${lang}|${lessonId}#r${i}`, { box: b, due: '2026-12-30', lesson: lessonId, subject: 'eng' }])) } });
 const I = (s) => `eng.fx.${s}`;
 
-test('nextLesson in a topic module: current topic first, lowest unpassed level, then the next topic', () => {
+test('nextLesson in a topic module: breadth-first, the lowest unpassed level across topics, topics in index order', () => {
   const fx = fxMeta();
   let s = defaultState();
   assert.equal(nextLesson(s, fx), I('a1'), 'nothing touched');
-  assert.equal(nextLesson(pass(s, I('a1'), 10), fx), I('a2'));
+  assert.equal(nextLesson(pass(s, I('a1'), 10), fx), I('b1'), 'Basis of every topic before any Werkkennis');
   assert.equal(nextLesson(pass(s, I('a3'), 10), fx), I('a1'), 'he jumped: the lowest skipped level');
   s = pass(pass(pass(defaultState(), I('a1'), 10), I('a2'), 20), I('b1'), 30);
-  assert.equal(nextLesson(s, fx), I('b2'), 'the most recent topic');
+  assert.equal(nextLesson(s, fx), I('b2'), 'Basis of both done, a2 done: b2');
   s = at(pass(defaultState(), I('a1'), 10), I('b1'), { read: 20 });
   assert.equal(nextLesson(s, fx), I('b1'), 'read but not passed, read later');
   s = ['a1', 'a2', 'a3', 'a4'].reduce((x, id, i) => pass(x, I(id), 10 + i), defaultState());
@@ -218,13 +218,14 @@ test('courseTodayPick: a topic lesson pick carries topicId and level; determinis
   const fx = fxMeta();
   const s = pass(defaultState(), I('a1'), 5);
   const pick = courseTodayPick(s, 'eng', 'nl', DAY, [fx]);
-  assert.deepEqual(pick, { reason: 'lesson', moduleId: 'eng.fx', lessonId: I('a2'), topicId: 'a', level: 2 });
+  assert.deepEqual(pick, { reason: 'lesson', moduleId: 'eng.fx', lessonId: I('b1'), topicId: 'b', level: 1 });
   assert.deepEqual(courseTodayPick(s, 'eng', 'nl', DAY, [fx]), pick);
   const plain = { id: 'eng.flow', subject: 'eng', track: 'basics', level: 1, lessons: ['eng.flow.a'], questions: { 'eng.flow.a': 1 } };
   const p2 = courseTodayPick(defaultState(), 'eng', 'nl', DAY, [plain]);
   assert.deepEqual(p2, { reason: 'lesson', moduleId: 'eng.flow', lessonId: 'eng.flow.a' });
   assert.equal('topicId' in p2, false);
-  assert.equal(recommendedModule(s, 'eng', [plain, fx]), 'eng.fx', 'a started topic module first');
+  assert.equal(recommendedModule(s, 'eng', [plain, fx]), 'eng.flow', 'breadth-first: the first Basis lesson not passed, in module order');
+  assert.equal(recommendedModule(s, 'eng', [fx, plain]), 'eng.fx');
 });
 
 test('courseTodayPick: a prep lesson for an event carries the place too', () => {

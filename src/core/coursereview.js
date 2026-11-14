@@ -102,3 +102,22 @@ export function maintenanceQuestion(reviews, today, subject, lang, lastWeek) {
     .sort(([ka, a], [kb, b]) => (a.due < b.due ? -1 : a.due > b.due ? 1 : ka < kb ? -1 : 1));
   return owned.length ? idOf(owned[0][0]) : null;
 }
+
+// The module the map lights for a next step: a lesson step lights its module;
+// a review ("vragen ophalen") lights the module with the most questions due
+// (ties: the first in index order); a single kept question lights its own
+// module; everything done lights nothing. Pure.
+export function mapNextModule(pick, reviews, today, subject, lang, moduleOf) {
+  if (!pick || pick.reason === 'done') return null;
+  if (pick.reason === 'due') {
+    const count = {};
+    for (const q of dueCourseQuestions(reviews, today, subject, lang)) {
+      const m = moduleOf(q.lessonId);
+      if (m) count[m] = (count[m] || 0) + 1;
+    }
+    const best = Object.entries(count).sort((a, b) => b[1] - a[1])[0];
+    return best ? best[0] : null;
+  }
+  if (pick.reason === 'maintain') return moduleOf(String(pick.questionId).split('#')[0]) || null;
+  return pick.moduleId || null;
+}
