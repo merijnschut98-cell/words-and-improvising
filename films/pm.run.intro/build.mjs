@@ -19,7 +19,7 @@
 //   s1 the shutdown has begun: the hall, line 3's outline, the calendar; the
 //      sponsor; the module's four topics as a route on the panel
 //   s2 Sturen en rapporteren: the buyer reports the switchboard late, an honest
-//      status in amber, bad news early is cheap     → pm.run.status (steerco, earned)
+//      status in amber, bad news early is cheap     → pm.run.status (steerco)
 //   s3 Scope en wijzigingen: "line 4 as well?" from the team lead, scope creep, a
 //      change request with its price, the sponsor chooses → pm.run.scope (change)
 //   s4 Team en overleg: the operators and the team lead at a stand-up, the three
@@ -82,13 +82,13 @@ const LEVELS = {
 assert(JSON.stringify(MOD.topics.map((t) => [t.id, t.levels])) === JSON.stringify(Object.entries(LEVELS)), 'pm.run has the four topics and levels this film draws');
 const lessons = await allLessons();
 const has = (id, list, lang = 'nl') => { const l = lessons[lang].get(id); const text = [l.title, ...l.teach, ...(l.terms || []).map((t) => t.term)].join('\n'); for (const s of list) assert(text.includes(s), `${id} (${lang}) no longer says "${s}"`); };
-// s2: the status and its colours, bad news early, and the two tools (the A3 status report, earned value)
+// s2: the status and its colours, bad news early, and the two tools (the A3 status report, the forecast)
 has('pm.run.status', ['rood, oranje of groen', 'Oranje, risico, maar het team kan het met eigen acties herstellen', 'Slecht nieuws vroeg is goedkoop', 'een probleem neerleggen bij iemand die kan beslissen of helpen, met een voorstel']);
 has('pm.run.status', ['Bad news early is cheap'], 'en');
 has('pm.run.steerco', ['A3-statusrapport']);
 has('pm.run.steerco', ['A3 status report'], 'en');
-has('pm.run.earned', ['Verdiende waarde']);
-has('pm.run.earned', ['Earned value'], 'en');
+has('pm.run.status', ['Prognose', 'Meld een prognose, niet alleen voortgang']);
+has('pm.run.status', ['Forecast'], 'en');
 // s3: scope creep, the change request and its price; the tools (the change log, the impact analysis)
 has('pm.run.scope', ['als je toch bezig bent, kun je ook even naar lijn 4 kijken', 'Scope creep is die scope die ongemerkt groeit', 'een wijzigingsverzoek: een schriftelijk verzoek met de impact, waar de sponsor over beslist', 'wat je opgeeft om iets anders te krijgen']);
 has('pm.run.scope', ['while you’re at it, can you also look at line 4', 'a change request: a written request with its impact, which the sponsor decides on'], 'en');
@@ -97,7 +97,7 @@ has('pm.run.change', ['Change log', 'Impact analysis'], 'en');
 // s4: the three meetings, the decision note and the minutes
 has('pm.run.rhythm', ['Een project draait op drie overleggen', 'Een stand-up', 'Een wekelijks teamoverleg', 'een stuurgroep elke vier tot zes weken', 'Besluitnotitie', 'Notulen', 'besluiten, bespreken of informeren', 'besluiten en acties']);
 has('pm.run.rhythm', ['A project runs on three meetings', 'decisions and actions'], 'en');
-// s5: a risk that comes true is an issue; one owner; the issue log; escalating with a proposal; the decision log
+// s5: a risk that comes true is an issue; one owner; the issue log; escalating with a proposal; the escalation path and the decision log
 has('pm.run.issues', ['Een issue is een probleem dat nu speelt en actie vraagt', 'Als een risico werkelijkheid wordt, verhuist het van de risicolijst naar de issuelog', 'Elk issue heeft één eigenaar', 'Issuelog']);
 has('pm.run.issues', ['When a risk comes true, it moves from the risk register to the issue log', 'Every issue has one owner'], 'en');
 has('pm.run.decisions', ['Besluitenlijst', 'Escalatieroute']);
@@ -277,7 +277,7 @@ const spec = {
         { nl: 'Eerste onderwerp: Sturen en rapporteren. Hoe staat het er echt voor?', en: 'First topic: Steering and reporting. How is it really going?', focus: ['tSteer', 'switch'] },
         { nl: 'De inkoper meldt dat de schakelkast later komt. De {t:RAG-status|RAG-status} is oranje.', en: 'The buyer reports that the switchboard will be late. The {t:RAG status|RAG status} is amber.', cue: { 'RAG-status': 'status' }, focus: ['status', 'switch', 'buyer'] },
         { nl: 'Meld het de stuurgroep meteen. Slecht nieuws vroeg is goedkoop, laat is duur.', en: 'Tell the steering group at once. Bad news early is cheap, late is expensive.', focus: ['news', 'sponsor'] },
-        { nl: 'We gebruiken vaak een {t:A3-statusrapport|A3-statusrapport} en {t:Verdiende waarde|verdiende waarde}.', en: 'We often use an {t:A3 status report|A3 status report} and {t:Earned value|earned value}.', cue: { 'A3-statusrapport': 'tool1', 'Verdiende waarde': 'tool2' }, focus: ['tool1', 'tool2'] },
+        { nl: 'We gebruiken vaak een {t:A3-statusrapport|A3-statusrapport} en een {t:Prognose|prognose}.', en: 'We often use an {t:A3 status report|A3 status report} and a {t:Forecast|forecast}.', cue: { 'A3-statusrapport': 'tool1', Prognose: 'tool2' }, focus: ['tool1', 'tool2'] },
       ],
     },
     {
@@ -305,7 +305,7 @@ const spec = {
         { nl: 'Het risico komt uit. De late schakelkast is nu een {t:Issue|issue}.', en: 'The risk comes true. The late switchboard is now an {t:Issue|issue}.', cue: { Issue: 'risk' }, focus: ['risk', 'switch'] },
         { nl: 'In de {t:Issuelog|issuelog} met één {t:Eigenaar|eigenaar}, de inkoper.', en: 'In the {t:Issue log|issue log} with one {t:Owner|owner}, the buyer.', cue: { Issuelog: 'log', Eigenaar: 'log' }, focus: ['log', 'buyer'] },
         { nl: 'Lukt het niet, dan volgt {t:Escalatie|escalatie}: naar de sponsor, met een voorstel.', en: 'If that fails, {t:Escalation|escalation} follows: to the sponsor, with a proposal.', cue: { Escalatie: 'ladder' }, focus: ['ladder', 'sponsor'] },
-        { nl: 'We gebruiken vaak een {t:Issuelog|issuelog} en een {t:Besluitenlijst|besluitenlijst}.', en: 'We often use an {t:Issue log|issue log} and a {t:Decision log|decision log}.', cue: { Issuelog: 'tool1', Besluitenlijst: 'tool2' }, focus: ['tool1', 'tool2'] },
+        { nl: 'We gebruiken vaak een {t:Escalatieroute|escalatieroute} en een {t:Besluitenlijst|besluitenlijst}.', en: 'We often use an {t:Escalation path|escalation path} and a {t:Decision log|decision log}.', cue: { Escalatieroute: 'tool1', Besluitenlijst: 'tool2' }, focus: ['tool1', 'tool2'] },
       ],
     },
     {
@@ -358,8 +358,8 @@ const SAY = [
       en: 'The buyer reports that the switchboard will be late. It is a risk, but the team can still absorb it. So the status is amber.' },
     { nl: 'Meld het de stuurgroep meteen. Slecht nieuws vroeg is goedkoop. Slecht nieuws laat is duur.',
       en: 'Tell the steering group at once. Bad news early is cheap. Bad news late is expensive.' },
-    { nl: 'Bij sturen en rapporteren gebruiken we vaak een A3-statusrapport en verdiende waarde.',
-      en: 'For steering and reporting we often use an A3 status report and earned value.' },
+    { nl: 'Bij sturen en rapporteren gebruiken we vaak een A3-statusrapport en een prognose.',
+      en: 'For steering and reporting we often use an A3 status report and a forecast.' },
   ],
   [ // s3 scope and change control
     { nl: 'Het tweede onderwerp is Scope en wijzigingen. Wat hoort bij het project, en wat niet?',
@@ -390,8 +390,8 @@ const SAY = [
       en: 'It goes into the issue log, with one owner. That is the buyer, a name and not the team.' },
     { nl: 'Lukt het niet, dan escaleer je. Je legt het bij de sponsor neer, met een voorstel.',
       en: 'If that fails, you escalate. You put it with the sponsor, with a proposal.' },
-    { nl: 'Bij issues gebruiken we vaak een issuelog en een besluitenlijst.',
-      en: 'For issues we often use an issue log and a decision log.' },
+    { nl: 'Bij issues en escalatie gebruiken we vaak een escalatieroute en een besluitenlijst.',
+      en: 'For issues and escalation we often use an escalation path and a decision log.' },
   ],
   [ // s6 one rhythm
     { nl: 'Het hangt samen. Het team ziet wat er speelt. De status meldt het, en wat het team niet kan besluiten, gaat omhoog naar de sponsor.',

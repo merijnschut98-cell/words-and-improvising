@@ -142,7 +142,7 @@ const STAGE = (() => {
     let news = txt(334, 204, tr('Vroeg melden: goedkoop', 'Tell early: cheap', 284), 22, 'start', 'pm-txt') + rect(334, 212, 70, 16, 'pm-bar', 3);
     news += txt(334, 256, tr('Laat melden: duur', 'Tell late: expensive', 284), 22, 'start', 'pm-txt') + rect(334, 264, 284, 16, 'pm-crit', 3);
     return { statusB: op(b === 0 ? span(p, 0.1, 0.5) : 1, status), newsB: op(b >= 2 ? (b === 2 ? span(p, 0, 0.4) : 1) : 0, news),
-      ...tools(b, p, 3, tr('A3-statusrapport', 'A3 status report', 260), tr('Verdiende waarde', 'Earned value', 260)) };
+      ...tools(b, p, 3, tr('A3-statusrapport', 'A3 status report', 260), tr('Prognose', 'Forecast', 260)) };
   }
 
   // ---- s3: scope and change control. "Line 4 as well?", what it costs, a change request that the sponsor chooses on.
@@ -162,7 +162,8 @@ const STAGE = (() => {
 
   // ---- s4: team and meetings. The three meetings, each with what it is for; every meeting ends in decisions and actions.
   function teamParts(b, p) {
-    const row = (y, big, small) => rect(334, y, 284, 52, 'pm-card', 8) + txt(346, y + 23, big, 22, 'start', 'pm-big') + txt(346, y + 46, small, 22, 'start', 'pm-mute');
+    // two lines in a 52-unit card: baselines at 21 and 44 leave room under the descenders (g, p) of the second line
+    const row = (y, big, small) => rect(334, y, 284, 52, 'pm-card', 8) + txt(346, y + 21, big, 22, 'start', 'pm-big') + txt(346, y + 44, small, 22, 'start', 'pm-mute');
     const a = (i) => (b === 1 ? span(p, i * 0.2, i * 0.2 + 0.35) : b > 1 ? 1 : 0);
     const act = rect(334, 262, 284, 30, 'pm-crit', 6) + txt(346, 285, tr('Actie: naam en datum', 'Action: name and date', 260), 22, 'start', 'pm-on');
     return {
@@ -185,7 +186,7 @@ const STAGE = (() => {
       + rect(498, 216, 120, 34, 'pm-crit', 6) + txt(558, 241, tr('Sponsor', 'Sponsor', 112), 22, 'middle', 'pm-on');
     return { riskB: op(b === 0 ? span(p, 0.1, 0.5) * 0.45 : 1, risk), logB: op(b >= 2 ? (b === 2 ? span(p, 0, 0.4) : 1) : 0, log),
       ladderB: op(b >= 3 ? (b === 3 ? span(p, 0, 0.5) : 1) : 0, ladder),
-      ...tools(b, p, 4, tr('Issuelog', 'Issue log', 260), tr('Besluitenlijst', 'Decision log', 260)) };
+      ...tools(b, p, 4, tr('Escalatieroute', 'Escalation path', 260), tr('Besluitenlijst', 'Decision log', 260)) };
   }
 
   // ---- s6: one rhythm. The chain from the team to the status to the sponsor, and the decision that closes it.
@@ -202,7 +203,7 @@ const STAGE = (() => {
   }
 
   // ---- s7: the closing scene. ONE function. First the shared Projects map (the kit's mapScene, the very drawing
-  // of the app) with Plan lit, then zoomed to it; then the module's four topics, each with its four levels as
+  // of the app) with Run lit, then zoomed to it; then the module's four topics, each with its four levels as
   // columns (the words the app uses for the levels), the start marker on the first level of the first topic.
   const MAP0 = { s: 0.77, x: 73.6, y: 0 };
   const MAP1 = { s: 1.5, x: 320 - MAPZ[0] * 1.5, y: 200 - MAPZ[1] * 1.5 };
@@ -210,7 +211,9 @@ const STAGE = (() => {
     const z = b === 0 ? span(p, 0.35, 1) : 1;
     const s = lerp(MAP0.s, MAP1.s, z);
     move(E.mapG, `translate(${f1(lerp(MAP0.x, MAP1.x, z))} ${f1(lerp(MAP0.y, MAP1.y, z))}) scale(${s.toFixed(4)})`);
-    return b === 0 ? 1 : 1 - span(p, 0, 0.45);
+    // the map fades out once, in the second beat, and stays hidden after it (it must not come back at the start of
+    // every later beat, behind the grid)
+    return b === 0 ? 1 : b === 1 ? 1 - span(p, 0, 0.45) : 0;
   }
   // the columns (GRID from build.mjs, which checks the level words fit): a tile column of GRID.tile units, four
   // level columns of GRID.col from GRID.x with boxes of GRID.box. The level words stand on one line each,
