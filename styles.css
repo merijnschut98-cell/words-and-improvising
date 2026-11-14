@@ -627,7 +627,7 @@ input[type="password"], input[type="text"], input[type="search"], input[type="da
 /* Every disclosure: one chevron, pointing right when closed and down when open. */
 details > summary { cursor: pointer; list-style: none; }
 details > summary::-webkit-details-marker { display: none; }
-details > summary::before {
+details > summary::before, .module-link::before {
   content: ''; display: inline-block; vertical-align: middle; flex: none; justify-self: center;
   width: 7px; height: 7px; margin: 0 8px 2px 2px; border-right: 1.5px solid var(--accent-dark); border-bottom: 1.5px solid var(--accent-dark);
   transform: rotate(-45deg); transition: transform var(--motion-fast) var(--ease-standard);
@@ -716,9 +716,22 @@ details.finder summary::-webkit-details-marker { display: none; }
 .module-meta { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; }
 .module-meta .muted.small { font-family: var(--font-mono); font-size: 0.75rem; }
 .module-blurb { margin: 6px 0; }
-/* v17: the module's intro film, above the topics */
-.module > .module-intro { margin: 10px 0 14px 19px; }
+/* v17: the module screen */
+.module-link { all: unset; box-sizing: border-box; width: 100%; list-style: none; cursor: pointer; display: grid; grid-template-columns: auto 1fr; column-gap: 2px; row-gap: 4px; min-height: 44px; align-content: center; align-items: center; }
+.module-link:focus-visible { outline: 2px solid var(--primary); outline-offset: 2px; border-radius: var(--radius-sm); }
+.module-link::before { grid-row: span 2; }
+.module-link > * { grid-column: 2; }
+.module-screen { display: flex; flex-direction: column; gap: 14px; }
+.module-screen .lesson-back { align-self: flex-start; }
+.module-head { display: flex; flex-direction: column; gap: 2px; }
+.module-screen-title { margin: 0; font-family: var(--font-display); font-weight: 600; font-size: 1.5rem; line-height: 1.2; letter-spacing: var(--tracking-tight); color: var(--heading); overflow-wrap: anywhere; hyphens: auto; }
+.module-en-line { margin: 0; font-size: 0.95rem; }
+.module-field { margin: 4px 0 0; font-family: var(--font-mono); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.04em; }
 .module-intro-title { margin: 0 0 6px; }
+.module-intro-text, .module-blurb-text { margin: 0; line-height: 1.55; }
+.module-screen .topics { margin: 0; }
+.module-screen .path-end { margin: 0; }
+.module-screen .module-continue { width: 100%; margin-top: 4px; }
 .lesson-list { display: flex; flex-direction: column; gap: 4px; margin: 4px 0 8px; }
 .lesson-row { display: flex; gap: 10px; align-items: center; min-height: 44px; padding: 6px 10px; border: 1px solid var(--border-subtle); border-radius: var(--radius-sm); background: var(--card); color: var(--ink); font: inherit; text-align: left; cursor: pointer; }
 .lesson-row .ico { color: var(--muted); }

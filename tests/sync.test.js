@@ -181,7 +181,7 @@ test('v10: v9 machining progress round-trips through mergeStates unchanged (topi
   const lessons = { 'eng.machining.cutting': { read: 100, passed: 100 }, 'eng.machining.cnc': { read: 50, passed: 50 } };
   const courseReviews = Object.fromEntries([0, 1, 2, 3].map((i) => [`nl|eng.machining.cutting#r${i}`, { box: 4, due: '2026-12-30', lesson: 'eng.machining.cutting', subject: 'eng', lastSure: true }]));
   const b = mergeStates(base(), base()); // the merge normalises unrelated defaults (bests)
-  const s = { ...b, courses: { ...b.courses, eng: { lessons, sessions: [], plans: [], prepped: [], medals: {}, checks: {} } }, courseReviews }; // v16: loaded states carry medals and checks
+  const s = { ...b, courses: { ...b.courses, eng: { lessons, sessions: [], plans: [], prepped: [], medals: {}, checks: {}, seenIntros: [] } }, courseReviews }; // v16: loaded states carry medals and checks
   assert.deepEqual(mergeStates(s, s), s);
 });
 
@@ -273,4 +273,21 @@ test('settings.guide never leaves the device', () => {
   assert.equal('settings' in syncable(s), false);
   const m = mergeStates({ ...base(), settings: { ...base().settings, guide: true } }, { ...syncable(s), settings: { guide: false } });
   assert.equal(m.settings.guide, true);
+});
+
+test('seenIntros of two devices merge as a union, in either order; a state without them still merges', () => {
+  const withSeen = (list) => ({ ...base(), courses: { ...base().courses, pm: { lessons: {}, sessions: [], plans: [], prepped: [], seenIntros: list } } });
+  const m = mergeStates(withSeen(['pm.plan', 'pm.run']), withSeen(['pm.intake', 'pm.run']));
+  assert.deepEqual([...m.courses.pm.seenIntros].sort(), ['pm.intake', 'pm.plan', 'pm.run']);
+  assert.deepEqual([...mergeStates(withSeen(['pm.intake', 'pm.run']), withSeen(['pm.plan', 'pm.run'])).courses.pm.seenIntros].sort(), ['pm.intake', 'pm.plan', 'pm.run']);
+  assert.deepEqual(mergeStates(m, m).courses.pm.seenIntros, m.courses.pm.seenIntros);
+  const old = { ...base(), courses: { ...base().courses, pm: { lessons: {}, sessions: [], plans: [], prepped: [] } } };
+  assert.deepEqual(mergeStates(old, withSeen(['pm.plan'])).courses.pm.seenIntros, ['pm.plan']);
+  assert.deepEqual(mergeStates(old, old).courses.pm.seenIntros, []);
+});
+
+test('seenIntros merge is capped at 200', () => {
+  const ids = (a, b) => Array.from({ length: b - a }, (_, i) => `pm.m${a + i}`);
+  const withSeen = (list) => ({ ...base(), courses: { ...base().courses, pm: { lessons: {}, sessions: [], plans: [], prepped: [], seenIntros: list } } });
+  assert.equal(mergeStates(withSeen(ids(0, 150)), withSeen(ids(100, 250))).courses.pm.seenIntros.length, 200);
 });

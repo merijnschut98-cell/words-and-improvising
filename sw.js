@@ -4,7 +4,7 @@
 // module does not upgrade reliably. Reminder texts are precomputed by the page.
 
 const META = 'spraakwater-meta';
-const CACHE = 'vantage-point-v253';
+const CACHE = 'vantage-point-v254';
 // Films (v14b): MP4s from the public Supabase bucket, put here by the page after
 // a first full view (src/ui/film.js, cacheFilm). Never precached; kept across
 // shell versions.
@@ -44,7 +44,7 @@ const SHELL = [
   'src/content/courses/eng/drawings.en.js', 'src/content/courses/eng/drawings.nl.js', 'src/content/courses/eng/gridbasics.en.js', 'src/content/courses/eng/gridbasics.nl.js', 'src/content/courses/eng/gridops.en.js', 'src/content/courses/eng/gridops.nl.js', 'src/content/courses/eng/lines.en.js', 'src/content/courses/eng/lines.nl.js', 'src/content/courses/eng/machining.en.js', 'src/content/courses/eng/machining.nl.js', 'src/content/courses/eng/maintenance.en.js', 'src/content/courses/eng/maintenance.nl.js', 'src/content/courses/eng/moulding.en.js', 'src/content/courses/eng/moulding.nl.js', 'src/content/courses/eng/quality.en.js', 'src/content/courses/eng/quality.nl.js', 'src/content/courses/eng/transformers.en.js', 'src/content/courses/eng/transformers.nl.js', 'src/content/courses/pm/land.en.js', 'src/content/courses/pm/land.nl.js', 'src/content/courses/pm/plan.en.js', 'src/content/courses/pm/plan.nl.js', 'src/content/courses/pm/run.en.js', 'src/content/courses/pm/run.nl.js',
   'src/ui/dom.js', 'src/ui/icons.js', 'src/ui/home.js', 'src/ui/round.js', 'src/ui/feedback.js', 'src/ui/done.js', 'src/ui/conversation.js',
   'src/ui/progress.js', 'src/ui/settings.js', 'src/ui/plan.js', 'src/ui/welcome.js', 'src/ui/realweek.js', 'src/ui/weekly.js', 'src/ui/friendrate.js',
-  'src/ui/subjectbar.js', 'src/ui/coursehome.js', 'src/ui/quiz.js', 'src/ui/guide.js', 'src/ui/subjectmap.js', 'src/ui/pathmap.js', 'src/ui/flairui.js', 'src/ui/modulecheck.js', 'src/ui/figure.js', 'src/ui/film.js', 'src/ui/sync.js', 'src/ui/lesson.js', 'src/ui/due.js', 'src/ui/situation.js', 'src/ui/glossary.js', 'src/ui/apply.js', 'src/ui/listenback.js',
+  'src/ui/subjectbar.js', 'src/ui/coursehome.js', 'src/ui/quiz.js', 'src/ui/guide.js', 'src/ui/subjectmap.js', 'src/ui/pathmap.js', 'src/ui/flairui.js', 'src/ui/modulecheck.js', 'src/ui/figure.js', 'src/ui/film.js', 'src/ui/sync.js', 'src/ui/lesson.js', 'src/ui/due.js', 'src/ui/situation.js', 'src/ui/glossary.js', 'src/ui/apply.js', 'src/ui/listenback.js', 'src/ui/modulescreen.js',
 ];
 
 self.addEventListener('install', (e) => {

@@ -31,7 +31,7 @@ export function defaultState() {
     programme: null,
     friendAsks: {}, // nonce -> { promptId, drill, ts }: links sent to a friend
     friendRatings: {}, // nonce -> { clear, structured, confident, line, ts }
-    courses: { eng: { lessons: {}, sessions: [], plans: [], prepped: [], medals: {}, checks: {} }, pm: { lessons: {}, sessions: [], plans: [], prepped: [], medals: {}, checks: {} } }, // per subject: lessonId -> progress, session log, plans to use a lesson, events refreshed for
+    courses: { eng: { lessons: {}, sessions: [], plans: [], prepped: [], medals: {}, checks: {}, seenIntros: [] }, pm: { lessons: {}, sessions: [], plans: [], prepped: [], medals: {}, checks: {}, seenIntros: [] } }, // per subject: lessonId -> progress, session log, plans to use a lesson, events refreshed for
     xpDays: {}, // v16: 'YYYY-MM-DD' -> XP earned that day (last 60 days)
     dailyGoal: { xp: 30, ts: 0 }, // v16: daily goal in XP (20, 30 or 50), synced, later ts wins
     titles: {}, // v16: subject -> { rank 1..4, ts }, never lowered
@@ -103,7 +103,7 @@ export function load(backend) {
   const courses = isObject(parsed.courses) ? parsed.courses : {};
   merged.courses = Object.fromEntries(Object.keys(base.courses).map((k) => {
     const c = isObject(courses[k]) ? courses[k] : {};
-    return [k, { ...c, lessons: isObject(c.lessons) ? c.lessons : {}, sessions: Array.isArray(c.sessions) ? c.sessions : [], plans: cleanPlans(c.plans), prepped: strings(c.prepped), medals: cleanMedals(c.medals), checks: cleanChecks(c.checks) }];
+    return [k, { ...c, lessons: isObject(c.lessons) ? c.lessons : {}, sessions: Array.isArray(c.sessions) ? c.sessions : [], plans: cleanPlans(c.plans), prepped: strings(c.prepped), seenIntros: strings(c.seenIntros).slice(-200), medals: cleanMedals(c.medals), checks: cleanChecks(c.checks) }];
   }));
   merged.xpDays = cleanXpDays(parsed.xpDays);
   merged.dailyGoal = cleanGoal(parsed.dailyGoal);

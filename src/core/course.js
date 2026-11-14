@@ -182,6 +182,16 @@ export function markOpened(state, subject, lessonId, now) {
   });
 }
 
+// v17: has he watched this module's intro film to the end? Stored per subject
+// as a list of module ids (newest last, capped), synced as a union.
+const SEEN_INTROS_CAP = 200;
+const subjectOfModule = (moduleId) => String(moduleId).split('.')[0];
+export const introSeen = (state, moduleId) => ((((state.courses || {})[subjectOfModule(moduleId)]) || {}).seenIntros || []).includes(moduleId);
+export function markIntroSeen(state, moduleId) {
+  if (introSeen(state, moduleId)) return state;
+  return withSubject(state, subjectOfModule(moduleId), (c) => ({ ...c, seenIntros: [...(c.seenIntros || []), moduleId].slice(-SEEN_INTROS_CAP) }));
+}
+
 export function markSayIt(state, subject, lessonId, now) {
   return withSubject(state, subject, (c) => {
     const before = c.lessons[lessonId] || {};
