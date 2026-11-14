@@ -54,3 +54,4 @@ Outcome: accepted (merged as delivered), sent back N times, redone.
 | 14 Nov | Render PM-13: four overview films | sonnet | 66 | 89 min | 136,625 | accepted; every guard passed first time; merged v265 |
 | 14 Nov | Review: Andon visible | opus | 91 | 47 min | 193,328 | accepted; added the start-screen greeting, fixed two guide lines on one screen, fixed two e2e steps for several field films |
 | 14 Nov | DevOps pronunciation (Task 20) | sonnet | 38 | 6 min | 111,168 | accepted; no separate review (spoken text only, checked by the render's listen guard); merged v266 |
+| 14 Nov | Build module intro pm.run.intro (Task 11) | sonnet | 144 | 23 min | 331,227 | in review (opus, kit constant TILE_UNITS 128 to 130) |
