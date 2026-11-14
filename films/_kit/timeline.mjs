@@ -286,9 +286,11 @@ const SAY = {
     // pm.outside.experts says issues (isjoes) through this rule too
     [/\b([Ii])ssue(s?)\b/g, '$1sjoe$2'],
     // ways of working (pm.plan.method): espeak-ng reads agile the Dutch way, "AA-gie-le" (said as the floor says
-    // it, "etsjail", tsj for the dzj it cannot voice there), and stresses HYbride (said hie-BRIE-de); not before
+    // it, "edjail": ɛtjɑjl, the nearest it voices to the dzj of "Agile"; "etsjail" (ɛtʃɑjl, tsj) was heard
+    // as "HL", "Etchel" or "HCL" by the free large-v3-turbo transcript, 2 of 10 sentences against 5 of 10, Task 22),
+    // and stresses HYbride (said hie-BRIE-de); not before
     // "machine", so eng.moulding.machine, which has a rendered video, keeps its voice
-    [/\b([Aa])gile\b/g, (m, a) => `${a === 'A' ? 'E' : 'e'}tsjail`], [/\b([Hh])ybride\b(?! machine)/g, '$1iebriede'],
+    [/\b([Aa])gile\b/g, (m, a) => `${a === 'A' ? 'E' : 'e'}djail`], [/\b([Hh])ybride\b(?! machine)/g, '$1iebriede'],
     // breaking down the work (pm.plan.wbs): scope and scope creep as said in Dutch projects (espeak-ng reads
     // "skoo-pe" and "kreep"): skoop, kriep; and werkpakket and nachtploeg, stressed werkPAKket and nachtPLOEG,
     // split at the head (WERK-pakket, NACHT-ploeg); not before "accepteert", so pm.plan.risk's "De nachtploeg
@@ -481,7 +483,7 @@ const SAY = {
     // a two-week sprint (pm.agile.scrum): the Scrum Guide's English names as Dutch Scrum teams say them, checked
     // with espeak-ng phonemes through Piper's nl_NL-alex bridge: it reads "PROO-dukt OU-ner", "BAK-loch" and
     // "GOO-al" (said Prodduct Ooner, Bek-lok, Gool, the goal of Dutch football), "DEE-ve-loo-pers" (Di-vellopers),
-    // "DAI-lie" (Deeli), "ree-VIEW" (Rievjoe, as Harvard Business Review above), "RE-tros-pek-tie-ve"
+    // "DAI-lie" (Deili, Task 22: "Deeli" was heard as "Dilly", "Deili" is dˈɛɪli, heard as Daily 3 of 4), "ree-VIEW" (Rievjoe, as Harvard Business Review above), "RE-tros-pek-tie-ve"
     // (Retro-spektif), a Dutch "guide" (Gaid), Schwaber with sch and Jeff as "yef" (Sjwaaber, Djef), "ee-VENTS" (ievents) and
     // "ree-fie-ne-MENT" (ri-fainmunt), and it stresses productieLEIder with "ti",
     // acceptatieomGEving with "ti", sprintDOEL and, in this film's phrases only, vuistreGEL (pm.outside.disagree's
@@ -492,7 +494,7 @@ const SAY = {
     // (pm.outside.steering's "Uit de Scrum Guide" stays); ERP stays the word "erp", as the films with a video say
     // it; Definition of Done with a capital D goes through pm.outside.steering's rule above; no other film's voice changes
     [/\bProduct (?=(?:Owner|Backlog|Goal)\b)/g, 'Prodduct '], [/\bOwner\b/g, 'Ooner'], [/\bBacklog\b/g, 'Bek-lok'], [/\bGoal\b/g, 'Gool'],
-    [/\bDeveloper(s?)\b/g, 'Di-velloper$1'], [/\bDaily Scrum\b/g, 'Deeli Scrum'], [/\bSprint Review\b/g, 'Sprint Rievjoe'],
+    [/\bDeveloper(s?)\b/g, 'Di-velloper$1'], [/\bDaily Scrum\b/g, 'Deili Scrum'], [/\bSprint Review\b/g, 'Sprint Rievjoe'],
     [/\bSprint Retrospective\b/g, 'Sprint Retro-spektif'], [/\bScrum Guide (?=(?:van|schrijft|noemt)\b)/g, 'Scrum Gaid '],
     [/\bKen Schwaber en Jeff Sutherland\b/g, 'Ken Sjwaaber en Djef Sutherland'], [/\b([Ee])vent(s?)\b/g, (m, e, s) => `${e === 'E' ? 'I' : 'i'}event${s}`],
     [/\b([Rr])efinement\b/g, '$1i-fainmunt'],
@@ -556,7 +558,7 @@ const SAY = {
     // stage-gate with sprints (pm.scaled.hybrid): the stage-gate and lead-time words as Dutch product
     // developers say them, checked with espeak-ng phonemes through Piper's nl_NL-alex bridge: it reads
     // stage-gate as "staa-zje-GAA-te" and gate as "GAA-te" (said steetsj-geet, geet, tsj as in the agile rule
-    // above, which turns Agile-Stage-Gate into Etsjail-Stage-Gate first; not in eng.moulding.setting's
+    // above, which turns Agile-Stage-Gate into Edjail-Stage-Gate first; not in eng.moulding.setting's
     // gate-freeze-studie), go/kill as "go slash kill" (go-kill, as the go/no-go rule), Cooper as "koo-per"
     // (Koeper), long-lead item as "lee-at ie-tem" (long-lied aitem, as the lead time and work item rules), SOP
     // as the word "sop" before a comma (letters: es oo pee, not "S O P": a lone S is a hiss), design freeze as
@@ -606,7 +608,7 @@ const SAY = {
     // "haa-ve", "sjout", "kout" and "won" (Must hev, Sjoed hev, Koed hev, Woont hev dis taim; Shoulds and
     // Coulds as Sjoeds, Koeds; a lone Must is read right), Oracle as "OO-rak-le" (Orrekul), Business as
     // "buu-ZIE-nes" (Biznis, as the business case rule, here in the Agile Business Consortium, which the agile
-    // rule above has already made Etsjail), MVP as "em-fee-pee" (em vee pee), minimum viable product as
+    // rule above has already made Edjail), MVP as "em-fee-pee" (em vee pee), minimum viable product as
     // "vie-ab-le PROO-dukt" (vaaiebul prodduct, as Prodduct above), Robinson stressed "-SON" (Robbinsun), Eric
     // as "e-RIK" (Erik), The Lean Startup with "lee-an" (de Lien Startap, as the Lean-consultant rule), the
     // Minimum Usable SubseT as "uu-za-ble sub-se tee" (Joezebul Sabset), to-be-proces as "too-bee-ee" (toe-bie),
@@ -768,8 +770,8 @@ const SAY = {
     [/\bA3-rapport en een after-action review\b/g, 'A3-rapport en een after-eksjun rievjoe'],
     // the DevOps module intro (pm.devops.intro), a self-contained group at the end of the Dutch list, checked with
     // phonemes through Piper's nl_NL-alex bridge: espeak-ng stresses testpiramide on "raa" (test-pi-RAA-mi-de); said
-    // test-piramiede, the stress of piramide. The film's other words (versiebeheer, mediaan, feature flag, rollbackplan,
-    // prioriteitsmatrix, A3, impactstraal, servicedesk, post-mortem, DORA, MES) are read right as they are or have rules
+    // test-piramiede, the stress of piramide. The film's other words (mediaan, feature flag, post-mortem, DORA,
+    // prioriteitsmatrix, A3, impactstraal, servicedesk, MES) are read right as they are or have rules
     // above; the film does not say live, release, SLA, benchmarks or continuous integration; no other film's spoken
     // text changes
     [/\b([Tt])estpiramide\b/g, '$1est-piramiede'],
@@ -788,7 +790,20 @@ const SAY = {
     // through Piper's nl_NL-alex bridge: espeak-ng reads SaaS as the letters "saa es" (said Sas, sˈɑs); the rest of the film
     // (RFP, MVP, ERP, triage, testscript, proefmigratie, shortlist, pilot, key users, sign-off, go-live, MoSCoW, to-be-proces,
     // requirements, UAT, hypercare, cutover) has a rule above or reads right; no other film's spoken text changes
-    [/\bSaaS\b/g, 'Sas']],
+    [/\bSaaS\b/g, 'Sas'],
+    // English IT words in the Dutch voice (Task 22), a self-contained group at the end of the Dutch list, checked with
+    // phonemes through Piper's nl_NL-alex bridge and the free large-v3-turbo transcript of the voice (4 to 5 sentences
+    // per spelling). WIP: espeak-ng spells the capitals "vee ie pee" (heard "VIP-limiet", 0 of 5); said "wip" as Dutch
+    // teams do (ʋˈɪp, heard 3 of 5), also in WIP-limiet. Rollbackplan: espeak-ng reads "rol-bak-plan" (rˈɔlbɑkplˌɑn,
+    // heard "rolbakplan", 0 of 4); said "rolbek plan" (rˈɔlbɛk plˈɑn, 4 of 4), rollback alone as rolbek. Versiebeheer:
+    // espeak-ng reads the compound with an s and the stress on "-sie-" (vərsˈibəhˌɪːr, heard "versietbeheer", 3 of 5);
+    // split, "versie" keeps the z of the word alone (vˈɛrzibəhˈɪːr, 5 of 5). Agile (edjail, in the rule for
+    // pm.plan.method above) and Daily Scrum (Deili, in the Scrum rules above) are changed where they stand. Planning
+    // poker (pˈoːkər), DORA (dˈoːraː), post-mortem (pˈɔstmˈɔrtəm) and feature flag (fietsjer flag, from the feature
+    // rule above) are read right as they are: Whisper writes planning poker as one word and "Dora" as "Tora" or "DORM"
+    // only next to "meet" or "-metingen", and no other spelling does better; English needs nothing
+    [/\bWIP\b/g, 'wip'], [/\b([Rr])ollbackplan(s?)\b/g, '$1olbek plan$2'], [/\b([Rr])ollback\b/g, '$1olbek'],
+    [/\b([Vv])ersiebeheer\b/g, '$1ersie-beheer']],
   en: [[/\brpm\b/g, 'revolutions per minute'], [/\bmm\/min\b/g, 'millimetres per minute'], [/\bm\/min\b/g, 'metres per minute'], [/µm\b/g, 'micrometres'],
     [/€\s?(\d[\d,]*(?:\.\d+)?)/g, '$1 euros'], [/(\d)\.0(?![\d])/g, '$1'], [/(\d)\s?mm\b/g, '$1 millimetres'], [/(\d)\s?min\b/g, '$1 minutes'], [/(\d)\s?%/g, '$1 percent'],
     [/Ø\s*/g, 'diameter '], [/(\d)\+(\d)/g, '$1 plus $2'], [/\s×\s/g, ' times '], [/\s\/\s/g, ' divided by '], [/\s=\s/g, ' is '], [/°/g, ' degrees'], [/\bRa\b/g, 'R a'], [/’/g, "'"],
