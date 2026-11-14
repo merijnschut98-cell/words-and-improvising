@@ -1,0 +1,305 @@
+WEBVTT
+
+1
+00:00:00.810 --> 00:00:01.867
+Hoe werkt spuitgieten?
+
+2
+00:00:02.596 --> 00:00:05.232
+Deze machine maakt flessendoppen van kunststof.
+
+3
+00:00:05.913 --> 00:00:07.562
+Ze doet steeds hetzelfde rondje.
+
+4
+00:00:08.551 --> 00:00:09.793
+Links zit de sluiteenheid.
+
+5
+00:00:10.519 --> 00:00:13.805
+Die schuift de beweegbare helft van de matrijs tegen de vaste helft,
+
+6
+00:00:14.060 --> 00:00:15.790
+en houdt ze met grote kracht dicht.
+
+7
+00:00:16.822 --> 00:00:18.064
+Rechts zit de spuiteenheid.
+
+8
+00:00:18.774 --> 00:00:21.595
+Korrels uit de trechter smelten in een verwarmde cilinder,
+
+9
+00:00:21.921 --> 00:00:24.882
+en een schroef spuit de hete smelt in de gesloten matrijs.
+
+10
+00:00:25.907 --> 00:00:27.997
+In de matrijs zitten holle vormen van de dop.
+
+11
+00:00:28.639 --> 00:00:31.332
+De smelt vult ze en koelt af, tot de dop stijf is.
+
+12
+00:00:32.306 --> 00:00:36.997
+Dan gaat de matrijs open, duwen pennen de doppen eruit, en vallen ze in de bak.
+
+13
+00:00:37.715 --> 00:00:40.385
+De matrijs sluit, en het rondje begint opnieuw.
+
+14
+00:00:41.671 --> 00:00:46.384
+Dat rondje heeft zes stappen: sluiten, inspuiten, nadruk, koelen,
+
+15
+00:00:46.663 --> 00:00:48.068
+openen en uitwerpen.
+
+16
+00:00:48.769 --> 00:00:51.788
+Samen is dat de cyclustijd (cycle time), hier 30 seconden.
+
+17
+00:00:52.780 --> 00:00:55.520
+Het inspuiten zelf duurt maar 1,5 seconde.
+
+18
+00:00:56.270 --> 00:00:59.637
+De koeltijd (cooling time) is 15 seconden: de helft van de cyclus,
+
+19
+00:00:59.939 --> 00:01:01.117
+en vaak is het nog meer.
+
+20
+00:01:02.361 --> 00:01:05.414
+Elke holte (cavity) in de matrijs is een ruimte in de vorm van het product,
+
+21
+00:01:05.751 --> 00:01:07.214
+en maakt één dop per cyclus.
+
+22
+00:01:08.043 --> 00:01:09.413
+Deze matrijs heeft er 2.
+
+23
+00:01:10.366 --> 00:01:11.910
+Hij loopt op 20 seconden.
+
+24
+00:01:12.593 --> 00:01:14.799
+Een uur heeft 3.600 seconden.
+
+25
+00:01:15.511 --> 00:01:20.073
+Gedeeld door 20, maal 2 holtes, is dat 360 doppen per uur.
+
+26
+00:01:21.341 --> 00:01:22.502
+Hoe koelt een product af?
+
+27
+00:01:23.242 --> 00:01:26.377
+Water stroomt door de koelkanalen (cooling channels), gaten in het staal,
+
+28
+00:01:26.609 --> 00:01:27.921
+en voert de warmte af.
+
+29
+00:01:28.584 --> 00:01:30.465
+De kunststof stolt van buiten naar binnen.
+
+30
+00:01:31.436 --> 00:01:32.922
+Kunststof geleidt warmte slecht.
+
+31
+00:01:33.627 --> 00:01:36.471
+Twee keer zo dik is daarom ruwweg vier keer zo lang koelen.
+
+32
+00:01:37.155 --> 00:01:40.417
+Zo bepaalt één dikke bus (boss), een massief nokje voor een schroef,
+
+33
+00:01:40.661 --> 00:01:42.205
+de cyclus van het hele product.
+
+34
+00:01:43.528 --> 00:01:44.225
+Een voorbeeld.
+
+35
+00:01:44.953 --> 00:01:47.298
+Deze dop koelt 12 van zijn 20 seconden.
+
+36
+00:01:47.991 --> 00:01:52.089
+De dikste wand is 3 millimeter, en de ontwerper brengt die naar 2,4.
+
+37
+00:01:53.085 --> 00:01:56.812
+De koeltijd gaat met het kwadraat van de dikte: maal 0,64.
+
+38
+00:01:57.454 --> 00:02:02.121
+Hij zakt naar zo’n 7,7 seconden, de cyclus naar 15,7,
+
+39
+00:02:02.377 --> 00:02:06.974
+en de productie stijgt van 360 naar 459 doppen per uur.
+
+40
+00:02:07.676 --> 00:02:08.779
+Op dezelfde machine.
+
+41
+00:02:10.129 --> 00:02:13.020
+Een temperatuurregelaar (temperature control unit), een kast naast de pers,
+
+42
+00:02:13.356 --> 00:02:15.933
+verwarmt of koelt het water en pompt het door de kanalen.
+
+43
+00:02:16.908 --> 00:02:19.091
+Zo houdt hij de matrijstemperatuur (mould temperature) vast.
+
+44
+00:02:19.777 --> 00:02:22.749
+Het datablad noemt voor PA6 bijvoorbeeld 80 graden.
+
+45
+00:02:23.419 --> 00:02:25.126
+Te koud geeft een dof oppervlak.
+
+46
+00:02:26.089 --> 00:02:29.119
+Het water moet hard genoeg stromen voor turbulente stroming (turbulent flow):
+
+47
+00:02:29.398 --> 00:02:31.291
+wervelend in plaats van in laagjes.
+
+48
+00:02:32.017 --> 00:02:34.153
+Wervelend water voert veel meer warmte af.
+
+49
+00:02:35.127 --> 00:02:37.867
+Het product mag eruit op de uitwerptemperatuur (ejection temperature):
+
+50
+00:02:38.203 --> 00:02:42.220
+dan is het dikste deel stijf genoeg om eruit geduwd te worden zonder te vervormen.
+
+51
+00:02:43.514 --> 00:02:45.708
+Meer stuks per uur kan ook met meer holtes.
+
+52
+00:02:46.437 --> 00:02:50.977
+Een 4-voudige matrijs op 20 seconden maakt 720 doppen per uur.
+
+53
+00:02:51.664 --> 00:02:56.645
+Een 8-voudige loopt trager, op 24 seconden, maar maakt er 1.200.
+
+54
+00:02:57.631 --> 00:03:01.625
+Elke holte moet tegelijk en met dezelfde druk vollopen: vulbalans (fill balance).
+
+55
+00:03:02.319 --> 00:03:05.210
+Een H-patroon geeft elke holte een even lange vloeiweg.
+
+56
+00:03:06.235 --> 00:03:09.114
+In een heetkanaal blijft de kunststof vloeibaar tot aan de holtes.
+
+57
+00:03:09.874 --> 00:03:11.349
+Een naaldsluiting (valve gate) gaat verder:
+
+58
+00:03:11.732 --> 00:03:15.552
+een naald in elke spuitmond opent en sluit het aanspuitpunt op commando.
+
+59
+00:03:16.545 --> 00:03:19.784
+Een familiematrijs (family mould) maakt verschillende producten in één cyclus,
+
+60
+00:03:20.005 --> 00:03:21.387
+zoals een deksel en een bak.
+
+61
+00:03:22.048 --> 00:03:24.083
+Handig, maar ze vullen zelden gelijk.
+
+62
+00:03:25.433 --> 00:03:26.373
+Wat kost één product?
+
+63
+00:03:27.100 --> 00:03:31.268
+Neem 40 gram PP, uit een 4-voudige matrijs op 30 seconden.
+
+64
+00:03:32.030 --> 00:03:34.758
+Bij twee euro per kilo en een afkeurpercentage (scrap rate)
+
+65
+00:03:34.805 --> 00:03:37.312
+van 3 procent kost het materiaal ruim acht cent.
+
+66
+00:03:38.350 --> 00:03:39.197
+Dan de machine.
+
+67
+00:03:39.862 --> 00:03:43.763
+Het machine-uurtarief (machine hour rate) is 60 euro: wat een uur perstijd kost.
+
+68
+00:03:44.452 --> 00:03:48.945
+Bij 85 procent rendement maakt de pers 408 goede stuks per uur:
+
+69
+00:03:49.329 --> 00:03:50.838
+bijna vijftien cent per stuk.
+
+70
+00:03:51.809 --> 00:03:52.703
+Dan de matrijs.
+
+71
+00:03:53.471 --> 00:03:54.806
+De matrijsafschrijving (mould amortisation)
+
+72
+00:03:54.830 --> 00:03:58.498
+verdeelt de 80.000 euro die hij kost over een miljoen stuks:
+
+73
+00:03:58.893 --> 00:03:59.880
+acht cent per stuk.
+
+74
+00:04:00.921 --> 00:04:02.570
+Samen zo’n eenendertig cent.
+
+75
+00:04:03.292 --> 00:04:05.312
+De machinetijd is hier de grootste post,
+
+76
+00:04:05.602 --> 00:04:08.052
+dus elke seconde cyclus zie je terug in de prijs.

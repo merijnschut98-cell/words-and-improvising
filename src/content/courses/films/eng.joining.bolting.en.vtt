@@ -1,0 +1,325 @@
+WEBVTT
+
+1
+00:00:00.858 --> 00:00:04.956
+A bolted joint, cut open: a bolt and nut through two steel plates,
+
+2
+00:00:05.096 --> 00:00:06.803
+with washers that spread the pressure.
+
+3
+00:00:07.830 --> 00:00:08.666
+Tighten the nut,
+
+4
+00:00:08.852 --> 00:00:12.869
+and the bolt stretches a fraction of a millimetre: like a stiff spring,
+
+5
+00:00:13.020 --> 00:00:14.750
+it squeezes the plates together.
+
+6
+00:00:15.835 --> 00:00:17.902
+That clamping force is the preload.
+
+7
+00:00:18.662 --> 00:00:21.263
+It holds the joint together, not the torque.
+
+8
+00:00:22.041 --> 00:00:26.267
+When it is high enough, nothing slips and the nut does not work loose.
+
+9
+00:00:27.612 --> 00:00:34.090
+M10 by 1.5 is a thread 10 millimetres across, with a pitch of 1.5 millimetres.
+
+10
+00:00:34.812 --> 00:00:37.459
+That is how far the nut moves in one turn.
+
+11
+00:00:38.468 --> 00:00:43.321
+The head shows the property class, to ISO 898, part 1.
+
+12
+00:00:44.038 --> 00:00:48.775
+The first number times a hundred is the tensile strength: for eight point eight,
+
+13
+00:00:48.983 --> 00:00:50.643
+800 megapascals.
+
+14
+00:00:51.359 --> 00:00:53.031
+That is where the bolt breaks.
+
+15
+00:00:54.023 --> 00:01:00.269
+The second number gives the yield strength: eighty percent of that, 640 megapascals.
+
+16
+00:01:01.013 --> 00:01:02.975
+Above it the bolt stretches for good.
+
+17
+00:01:04.020 --> 00:01:09.279
+For ten point nine it is a thousand and 900: that one can go much tighter.
+
+18
+00:01:10.003 --> 00:01:12.964
+The nut has a class too, which must match the bolt.
+
+19
+00:01:14.351 --> 00:01:17.555
+A bolt fails in the thread, where there is less steel.
+
+20
+00:01:18.267 --> 00:01:24.095
+So engineers use the stress area: for M12, 84.3 square millimetres.
+
+21
+00:01:25.090 --> 00:01:26.866
+Force is stress times area:
+
+22
+00:01:27.029 --> 00:01:31.591
+an M12 in eight point eight yields at about 54 kilonewtons,
+
+23
+00:01:31.766 --> 00:01:34.541
+in ten point nine only at 76.
+
+24
+00:01:35.243 --> 00:01:40.328
+A mixed-up eight point eight reaches just 71 percent of that 76.
+
+25
+00:01:41.389 --> 00:01:44.163
+Against working loose, preload helps most,
+
+26
+00:01:44.361 --> 00:01:47.496
+then thread locking: an adhesive that cures in the thread.
+
+27
+00:01:48.237 --> 00:01:51.384
+In vibration tests, a spring washer does not help.
+
+28
+00:01:52.799 --> 00:01:57.513
+In the factory a nutrunner tightens the bolt: it controls torque and angle,
+
+29
+00:01:57.617 --> 00:01:59.475
+and records both for every bolt.
+
+30
+00:02:00.545 --> 00:02:02.217
+Torque is force times arm.
+
+31
+00:02:02.927 --> 00:02:08.372
+200 newtons on a wrench 25 centimetres long is 50 newton-metres.
+
+32
+00:02:09.410 --> 00:02:12.858
+About 49 newton-metres stretches an M10 in eight
+
+33
+00:02:12.940 --> 00:02:16.353
+point eight to roughly 25 kilonewtons of preload,
+
+34
+00:02:16.527 --> 00:02:18.594
+the weight of 2.5 tonnes.
+
+35
+00:02:19.355 --> 00:02:22.699
+Near 37 kilonewtons it starts to yield.
+
+36
+00:02:24.059 --> 00:02:25.951
+But torque is an indirect measure.
+
+37
+00:02:26.716 --> 00:02:31.789
+Roughly half goes into friction under the head, about 40 percent into the thread,
+
+38
+00:02:31.998 --> 00:02:34.239
+and only 10 percent stretches the bolt.
+
+39
+00:02:35.332 --> 00:02:38.212
+Oil, coating, dirt or rust change the friction:
+
+40
+00:02:38.363 --> 00:02:42.473
+the same torque gives 25 to 30 percent more or less preload.
+
+41
+00:02:43.230 --> 00:02:46.887
+An oiled bolt, tightened to the dry torque, can even yield.
+
+42
+00:02:48.288 --> 00:02:52.293
+More accurate is torque-angle: a low torque pulls the parts together,
+
+43
+00:02:52.514 --> 00:02:54.871
+then the nut turns a fixed angle further.
+
+44
+00:02:55.593 --> 00:02:57.787
+That angle is a measure of the stretch.
+
+45
+00:02:58.825 --> 00:03:02.981
+An audit measures the breakaway torque: where a tightened bolt turns further.
+
+46
+00:03:03.702 --> 00:03:08.985
+It should be near the set torque, here 50 newton-metres, plus or minus 10 percent.
+
+47
+00:03:09.788 --> 00:03:14.269
+Measured: 53, 52, 31, 54 and 52.
+
+48
+00:03:15.032 --> 00:03:16.460
+That 31 is wrong.
+
+49
+00:03:17.481 --> 00:03:20.720
+One bolt was run twice, the fourth done by feel.
+
+50
+00:03:21.418 --> 00:03:24.692
+With position control each bolt counts just once.
+
+51
+00:03:25.411 --> 00:03:28.116
+A paint mark shows whether a bolt has turned.
+
+52
+00:03:29.203 --> 00:03:34.300
+And settling: rough surfaces or paint under the head flatten, and preload is lost.
+
+53
+00:03:35.704 --> 00:03:42.392
+VDI 2230, the German guideline, works through a bolted joint step by step.
+
+54
+00:03:43.452 --> 00:03:48.293
+It captures the scatter in the tightening factor: highest divided by lowest preload.
+
+55
+00:03:49.058 --> 00:03:53.087
+On torque, with measured friction: 1.4 to 1.6.
+
+56
+00:03:54.109 --> 00:03:57.151
+The coefficient of friction, mu, matters most.
+
+57
+00:03:57.994 --> 00:04:02.383
+If it is only estimated, the factor becomes 1.6 to 2.0.
+
+58
+00:04:03.075 --> 00:04:07.765
+So measure it on the real bolts, to ISO 16047.
+
+59
+00:04:08.798 --> 00:04:14.185
+A flange needs at least 30 kilonewtons, and the bolt may take at most 50.
+
+60
+00:04:14.870 --> 00:04:19.712
+Estimated, times 1.8, the highest becomes 54: too much.
+
+61
+00:04:20.467 --> 00:04:24.438
+Measured, times 1.4, it is 42: that fits.
+
+62
+00:04:25.739 --> 00:04:31.347
+Torque-angle reaches a factor of 1.2 to 1.4, often past the yield point.
+
+63
+00:04:32.095 --> 00:04:34.556
+Such a bolt is usually not reused.
+
+64
+00:04:35.590 --> 00:04:39.305
+In yield-controlled tightening the nutrunner measures torque and angle,
+
+65
+00:04:39.433 --> 00:04:41.976
+and stops as soon as the curve bends over.
+
+66
+00:04:43.027 --> 00:04:46.974
+Most accurate is measuring bolt elongation by ultrasound.
+
+67
+00:04:47.742 --> 00:04:50.506
+Costly and slow, so for critical joints.
+
+68
+00:04:51.804 --> 00:04:56.994
+The joint diagram draws bolt and plates as two springs: steep for the stiff plates,
+
+69
+00:04:57.110 --> 00:04:58.225
+flatter for the bolt.
+
+70
+00:04:59.301 --> 00:05:04.735
+When 10 kilonewtons pull from outside, the bolt takes only a share: the load factor.
+
+71
+00:05:05.456 --> 00:05:08.254
+At 0.2 that is 2 kilonewtons.
+
+72
+00:05:09.243 --> 00:05:11.611
+The other 8 take clamp load away.
+
+73
+00:05:12.311 --> 00:05:19.590
+Of the lowest preload, 18.75 kilonewtons, 10.75 remain: the residual clamp load.
+
+74
+00:05:20.395 --> 00:05:24.900
+It must stay above zero, or the bolt takes the full alternating force.
+
+75
+00:05:25.903 --> 00:05:30.431
+Bolts almost always break by fatigue, in the first thread under the nut.
+
+76
+00:05:31.211 --> 00:05:33.231
+What counts is the stress amplitude,
+
+77
+00:05:33.394 --> 00:05:39.280
+half the stress swing: 1 kilonewton on 58 square millimetres, 17 megapascals.
+
+78
+00:05:39.978 --> 00:05:41.708
+The thread takes about 50.
+
+79
+00:05:42.730 --> 00:05:44.843
+A stronger class hardly helps there.
+
+80
+00:05:45.576 --> 00:05:49.338
+A slim bolt with a long clamp length, the thickness it clamps,
+
+81
+00:05:49.523 --> 00:05:54.179
+does: it takes less of the alternating force, and loses less to settling.

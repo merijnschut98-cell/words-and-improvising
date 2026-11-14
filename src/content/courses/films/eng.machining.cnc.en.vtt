@@ -1,0 +1,241 @@
+WEBVTT
+
+1
+00:00:00.835 --> 00:00:05.468
+CNC means that a computer drives the machine’s motors, following a program.
+
+2
+00:00:06.165 --> 00:00:07.663
+This is a machining centre.
+
+3
+00:00:08.366 --> 00:00:11.327
+The spindle is the turning shaft that holds the tool.
+
+4
+00:00:12.024 --> 00:00:15.112
+Right now it holds a probe: a measuring stylus.
+
+5
+00:00:16.129 --> 00:00:20.471
+The probe touches the fixed jaw of the vice, and then the top of the plate.
+
+6
+00:00:21.517 --> 00:00:26.231
+From that comes the work offset, G54: where the part sits on the table.
+
+7
+00:00:26.942 --> 00:00:29.879
+Every position in the program counts from that point.
+
+8
+00:00:31.219 --> 00:00:34.551
+Every tool sticks out of the spindle by a different amount.
+
+9
+00:00:35.313 --> 00:00:39.504
+So the tool offset of each tool stores its length and its radius.
+
+10
+00:00:40.510 --> 00:00:43.250
+Tool 5, a drill, touches the tool setter.
+
+11
+00:00:44.001 --> 00:00:49.341
+Its length, 121.43 millimetres, goes into the table.
+
+12
+00:00:50.104 --> 00:00:52.763
+Together those numbers are called the offsets.
+
+13
+00:00:53.785 --> 00:00:57.094
+The program itself is G-code: short commands.
+
+14
+00:00:57.787 --> 00:01:04.266
+G00 is a rapid move, G01 a straight cut, M03 starts the spindle.
+
+15
+00:01:04.951 --> 00:01:08.991
+Usually CAM software writes that code from the 3D model.
+
+16
+00:01:10.284 --> 00:01:11.654
+After every changeover,
+
+17
+00:01:11.863 --> 00:01:16.565
+the first part is measured in full before the run starts: the first-off check.
+
+18
+00:01:17.298 --> 00:01:18.273
+Is the slot right?
+
+19
+00:01:19.018 --> 00:01:20.307
+Are the holes at depth?
+
+20
+00:01:21.386 --> 00:01:23.360
+That takes 10 to 20 minutes.
+
+21
+00:01:24.068 --> 00:01:26.843
+But one wrong number repeats on every part.
+
+22
+00:01:27.576 --> 00:01:32.429
+200 parts times 35 euros is 7,000 euros of scrap.
+
+23
+00:01:33.467 --> 00:01:37.345
+A program that has already run without problems is called proven.
+
+24
+00:01:38.662 --> 00:01:42.853
+The control reads the program one line at a time, from top to bottom.
+
+25
+00:01:43.562 --> 00:01:46.847
+Each block is one step, with a number such as N10.
+
+26
+00:01:47.877 --> 00:01:49.537
+An M-code is a switch.
+
+27
+00:01:50.278 --> 00:01:58.115
+M06 changes to tool 3, M03 starts the spindle at 3,200 revolutions a minute,
+
+28
+00:01:58.300 --> 00:01:59.960
+M08 the coolant.
+
+29
+00:02:00.997 --> 00:02:08.428
+G90 switches on absolute programming: X0, Y minus 10 counts from the zero point G54.
+
+30
+00:02:09.459 --> 00:02:15.136
+With G91, incremental programming, a position counts from where the tool is now.
+
+31
+00:02:15.902 --> 00:02:18.259
+Mixing up the two is a classic crash.
+
+32
+00:02:19.248 --> 00:02:24.147
+G01 is modal: it stays active until another code replaces it.
+
+33
+00:02:24.903 --> 00:02:31.822
+Block N70 only says Y40, and still cuts straight, at 640 millimetres per minute.
+
+34
+00:02:33.173 --> 00:02:35.959
+The program describes the part, not the tool.
+
+35
+00:02:36.646 --> 00:02:43.136
+G43 H3 switches on tool length compensation: the length of tool 3 is added in.
+
+36
+00:02:44.148 --> 00:02:50.394
+With G41, cutter radius compensation, the path shifts sideways by one radius.
+
+37
+00:02:51.111 --> 00:02:57.124
+If a new cutter measures 9.98, the setter enters a radius of 4.99.
+
+38
+00:02:57.827 --> 00:02:59.986
+The same program is then still right.
+
+39
+00:03:01.052 --> 00:03:04.303
+If a bore measures 0.01 undersize,
+
+40
+00:03:04.524 --> 00:03:10.213
+the operator enters a wear offset of minus 0.005 on the radius.
+
+41
+00:03:10.896 --> 00:03:15.029
+The cutter then seems slightly smaller, so the path moves towards the wall,
+
+42
+00:03:15.226 --> 00:03:16.468
+and the bore gets bigger.
+
+43
+00:03:17.218 --> 00:03:20.562
+Half, because a radius counts twice in a diameter.
+
+44
+00:03:21.908 --> 00:03:23.057
+Now it goes wrong.
+
+45
+00:03:23.738 --> 00:03:30.600
+For the drill, the setter types 112.43, instead of 121.43.
+
+46
+00:03:31.564 --> 00:03:34.873
+The control thinks the drill is 9 millimetres shorter,
+
+47
+00:03:35.024 --> 00:03:38.426
+and sends it 9 millimetres deeper: right through the floor.
+
+48
+00:03:39.437 --> 00:03:41.794
+If it hits the vice, that is a crash.
+
+49
+00:03:42.506 --> 00:03:47.882
+Of 6 crashes in a year, 3 came from a mistyped length, 2 from a wrong H number,
+
+50
+00:03:48.068 --> 00:03:49.786
+and 1 from the zero point.
+
+51
+00:03:50.574 --> 00:03:53.209
+The program was right; the table was not.
+
+52
+00:03:54.566 --> 00:03:58.328
+CAM software turns the 3D model into a toolpath.
+
+53
+00:03:59.050 --> 00:04:02.220
+That is the route of the tool, with feeds and speeds.
+
+54
+00:04:03.258 --> 00:04:07.867
+A post-processor translates that path into the G-code of this one machine.
+
+55
+00:04:08.543 --> 00:04:10.436
+Two machines, two programs.
+
+56
+00:04:11.461 --> 00:04:15.385
+The simulation runs that code on a digital copy of the machine,
+
+57
+00:04:15.594 --> 00:04:18.044
+and catches the collision with the jaw first.
+
+58
+00:04:19.121 --> 00:04:22.407
+Then the prove-out: the first real run, block by block,
+
+59
+00:04:22.604 --> 00:04:24.253
+until the first part is good.
+
+60
+00:04:25.036 --> 00:04:29.158
+At 150 programs a year, every hour of it counts.

@@ -1,0 +1,285 @@
+WEBVTT
+
+1
+00:00:00.835 --> 00:00:04.608
+To run a process line, you mainly measure four variables: pressure,
+
+2
+00:00:04.782 --> 00:00:06.442
+temperature, flow and level.
+
+3
+00:00:07.170 --> 00:00:09.329
+On this line there is a meter for each.
+
+4
+00:00:10.354 --> 00:00:12.096
+Pressure is force per area.
+
+5
+00:00:12.816 --> 00:00:17.809
+You measure it in bar, or in kilopascals: 1 bar is 100 kilopascals.
+
+6
+00:00:18.523 --> 00:00:22.006
+American equipment often shows pounds per square inch,
+
+7
+00:00:22.181 --> 00:00:25.374
+and 1 bar is about 14.5 of those.
+
+8
+00:00:26.705 --> 00:00:28.864
+After the pump sits a pressure gauge.
+
+9
+00:00:29.583 --> 00:00:31.243
+Like almost every gauge,
+
+10
+00:00:31.429 --> 00:00:35.423
+it shows gauge pressure: the pressure relative to the air around it.
+
+11
+00:00:36.173 --> 00:00:37.903
+You write that as bar gauge.
+
+12
+00:00:38.934 --> 00:00:43.299
+The absolute pressure counts from a perfect vacuum, in bar absolute.
+
+13
+00:00:44.082 --> 00:00:47.449
+At sea level the air itself presses about 1 bar.
+
+14
+00:00:48.165 --> 00:00:52.681
+So if the gauge reads 2 bar, the absolute pressure is about 3 bar.
+
+15
+00:00:53.678 --> 00:00:57.451
+So vacuum shows up in two ways: as negative gauge pressure,
+
+16
+00:00:57.625 --> 00:00:59.262
+or as low absolute pressure.
+
+17
+00:01:00.013 --> 00:01:03.693
+Half a bar below the outside air is minus half a bar gauge,
+
+18
+00:01:03.833 --> 00:01:05.702
+or about half a bar absolute.
+
+19
+00:01:06.447 --> 00:01:09.188
+When someone quotes a pressure, ask which one.
+
+20
+00:01:10.550 --> 00:01:11.258
+Then flow.
+
+21
+00:01:11.989 --> 00:01:16.632
+That is volume per time, such as cubic metres per hour or litres per minute.
+
+22
+00:01:17.397 --> 00:01:21.031
+Or mass per time, such as kilograms or tonnes per hour.
+
+23
+00:01:22.053 --> 00:01:26.952
+The mass flow is the volume flow times the density: the mass of one cubic metre.
+
+24
+00:01:27.980 --> 00:01:31.916
+Water weighs about 1,000 kilograms per cubic metre,
+
+25
+00:01:32.032 --> 00:01:37.245
+so one cubic metre of water per hour is about 1,000 kilograms per hour.
+
+26
+00:01:37.986 --> 00:01:46.136
+A syrup of 1,250 kilograms per cubic metre gives 1,250 kilograms per hour.
+
+27
+00:01:47.211 --> 00:01:50.125
+Recipes and balances work in kilograms.
+
+28
+00:01:50.833 --> 00:01:54.699
+So always ask what a meter really shows: volume or mass.
+
+29
+00:01:56.016 --> 00:01:58.071
+There are many kinds of flow meter.
+
+30
+00:01:58.817 --> 00:02:03.275
+A magnetic flow meter measures the speed of a liquid that conducts electricity.
+
+31
+00:02:03.965 --> 00:02:06.844
+So on very pure water or on oil it fails.
+
+32
+00:02:07.913 --> 00:02:10.653
+This meter in the pipe is a Coriolis meter.
+
+33
+00:02:11.357 --> 00:02:15.258
+It vibrates a tube and reads the twist the flowing mass causes.
+
+34
+00:02:15.952 --> 00:02:19.783
+So it measures mass directly, to about 0.1 percent.
+
+35
+00:02:20.519 --> 00:02:22.562
+But it costs thousands of euros.
+
+36
+00:02:23.627 --> 00:02:27.586
+A vortex meter counts the vortices behind an obstacle in the pipe,
+
+37
+00:02:27.760 --> 00:02:29.223
+and so reads the speed.
+
+38
+00:02:29.958 --> 00:02:33.905
+A differential-pressure meter reads the pressure drop across a restriction.
+
+39
+00:02:34.922 --> 00:02:38.730
+And every meter is only as good as its last calibration:
+
+40
+00:02:38.881 --> 00:02:40.762
+the check against a known reference.
+
+41
+00:02:42.087 --> 00:02:42.749
+Then level.
+
+42
+00:02:43.457 --> 00:02:46.522
+You measure it with a pressure sensor at the bottom of the vat,
+
+43
+00:02:46.696 --> 00:02:50.656
+as here, with a radar that measures from above, or with a float on the liquid.
+
+44
+00:02:51.680 --> 00:02:55.511
+A pressure sensor really measures the weight of the column of liquid above it.
+
+45
+00:02:56.255 --> 00:02:59.854
+If the density differs from what it is set for, the height is wrong.
+
+46
+00:03:00.588 --> 00:03:03.014
+The mass that follows from it is still right.
+
+47
+00:03:04.070 --> 00:03:06.032
+Every principle has a weak spot.
+
+48
+00:03:06.779 --> 00:03:10.390
+Foam can fool a radar, and sticky product can jam a float.
+
+49
+00:03:11.280 --> 00:03:15.030
+If a level reads oddly, ask what principle the meter uses.
+
+50
+00:03:16.343 --> 00:03:18.781
+An example with this vat’s pressure sensor.
+
+51
+00:03:19.529 --> 00:03:23.789
+It is set up for water, 1,000 kilograms per cubic metre.
+
+52
+00:03:24.853 --> 00:03:31.656
+Now it holds syrup of 1,250 kilograms per cubic metre, really 2.0 metres deep.
+
+53
+00:03:32.381 --> 00:03:36.247
+The pressure at the bottom is the density times gravity times the height:
+
+54
+00:03:36.375 --> 00:03:40.090
+24,525 pascals.
+
+55
+00:03:41.068 --> 00:03:46.571
+The meter divides that pressure by the density of water, and shows 2.5 metres.
+
+56
+00:03:47.299 --> 00:03:51.084
+Half a metre too high: the high-level alarm may trip early,
+
+57
+00:03:51.293 --> 00:03:53.267
+and the tank looks fuller than it is.
+
+58
+00:03:54.269 --> 00:03:58.820
+The mass the meter implies is still right, in a tank with straight walls.
+
+59
+00:03:59.501 --> 00:04:03.321
+So enter the right density, or read the tank in kilograms.
+
+60
+00:04:04.636 --> 00:04:05.902
+Finally, temperature.
+
+61
+00:04:06.626 --> 00:04:10.028
+A difference of one degree Celsius equals one kelvin,
+
+62
+00:04:10.179 --> 00:04:12.826
+the scale that starts at absolute zero.
+
+63
+00:04:13.551 --> 00:04:16.825
+So from 20 to 80 degrees adds 60 kelvin,
+
+64
+00:04:17.069 --> 00:04:21.167
+and heat sums with differences may simply use degrees Celsius.
+
+65
+00:04:22.166 --> 00:04:27.019
+After the heat exchanger a Pt100 measures the temperature of the juice.
+
+66
+00:04:27.728 --> 00:04:31.745
+It is a platinum resistor of 100 ohms at 0 degrees,
+
+67
+00:04:31.966 --> 00:04:36.111
+accurate to a few tenths of a degree at ordinary process temperatures.
+
+68
+00:04:37.105 --> 00:04:41.819
+The other common sensor is a thermocouple: two different metals joined at the tip.
+
+69
+00:04:42.527 --> 00:04:45.070
+It has a wider range, but is less accurate.
+
+70
+00:04:46.149 --> 00:04:48.866
+The sensor sits in a thermowell in the pipe.
+
+71
+00:04:49.607 --> 00:04:54.239
+In a slow flow it can lag by minutes, and the control reacts too late.

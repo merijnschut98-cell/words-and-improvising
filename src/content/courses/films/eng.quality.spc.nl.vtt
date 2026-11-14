@@ -1,0 +1,365 @@
+WEBVTT
+
+1
+00:00:00.840 --> 00:00:02.941
+Een draaibank maakt de hele dag dezelfde as.
+
+2
+00:00:03.670 --> 00:00:08.755
+Met SPC, statistische procesbeheersing, bewaak je dat proces terwijl het draait,
+
+3
+00:00:08.975 --> 00:00:12.086
+zodat je een verandering ziet voordat er slechte delen van komen.
+
+4
+00:00:13.166 --> 00:00:17.055
+Deze assen moeten 20 millimeter dik zijn, plus-min vijf honderdste.
+
+5
+00:00:18.057 --> 00:00:20.263
+Elk uur neemt de operator een steekproef (subgroup):
+
+6
+00:00:20.496 --> 00:00:22.852
+5 assen die direct na elkaar gemaakt zijn.
+
+7
+00:00:23.512 --> 00:00:24.650
+Hij meet ze alle vijf.
+
+8
+00:00:25.674 --> 00:00:28.333
+De uitkomst gaat op de regelkaart (control chart) naast de machine:
+
+9
+00:00:28.728 --> 00:00:30.365
+een meting uitgezet in de tijd,
+
+10
+00:00:30.632 --> 00:00:32.699
+met een middellijn en twee regelgrenzen.
+
+11
+00:00:34.012 --> 00:00:36.206
+De klassieker is de X-bar- en R-kaart (X-bar/R chart).
+
+12
+00:00:36.994 --> 00:00:39.781
+Bovenaan het gemiddelde van de vijf, de X-bar.
+
+13
+00:00:40.448 --> 00:00:43.234
+Onderaan de range: de grootste min de kleinste.
+
+14
+00:00:44.230 --> 00:00:48.352
+X-bar laat zien of het midden verschuift; de range of de spreiding verandert.
+
+15
+00:00:49.395 --> 00:00:51.879
+De regelgrenzen (control limits) komen uit het proces zelf:
+
+16
+00:00:52.112 --> 00:00:53.691
+drie sigma van de gemiddelden.
+
+17
+00:00:54.407 --> 00:00:55.800
+Uit 20,000,
+
+18
+00:00:55.997 --> 00:01:04.902
+een gemiddelde range van 0,020 en de tabelconstante 0,577 volgt 19,9885 tot 20,0115.
+
+19
+00:01:05.872 --> 00:01:10.260
+Specgrenzen zijn wat de klant nodig heeft, regelgrenzen wat het proces normaal doet.
+
+20
+00:01:11.032 --> 00:01:15.084
+Spec hoort niet op deze kaart: gemiddelden spreiden minder dan losse assen.
+
+21
+00:01:16.377 --> 00:01:17.991
+Uur na uur vult de kaart zich.
+
+22
+00:01:18.671 --> 00:01:25.834
+Om tien uur 20,002, dan 20,004, 20,005 en 20,006.
+
+23
+00:01:26.898 --> 00:01:32.738
+Daarna 20,008, 20,009, en om vier uur 20,011.
+
+24
+00:01:33.438 --> 00:01:35.726
+Alles binnen de grenzen, en ver binnen spec.
+
+25
+00:01:36.747 --> 00:01:39.649
+Maar zeven keer op rij omhoog gebeurt bijna nooit bij toeval.
+
+26
+00:01:40.346 --> 00:01:43.899
+De regel zegt: zes of meer punten op rij die steeds stijgen.
+
+27
+00:01:44.676 --> 00:01:46.893
+Dit is een trend, en de regel gaat af.
+
+28
+00:01:47.866 --> 00:01:52.139
+Andere regels: één punt buiten een grens, zeven op rij aan één kant,
+
+29
+00:01:52.499 --> 00:01:54.531
+of twee van drie voorbij twee sigma.
+
+30
+00:01:55.198 --> 00:01:57.543
+Sommige fabrieken nemen acht of negen op rij.
+
+31
+00:01:58.270 --> 00:02:01.311
+Meer regels vangen meer, maar geven ook meer loos alarm.
+
+32
+00:02:02.599 --> 00:02:04.573
+Elke kaart hoort een reactieplan (reaction plan) te hebben:
+
+33
+00:02:04.968 --> 00:02:07.232
+wat doet de operator als een regel afgaat,
+
+34
+00:02:07.580 --> 00:02:08.311
+en wie belt hij?
+
+35
+00:02:09.286 --> 00:02:12.200
+Hij stopt en kijkt naar de wisselplaat, het snijpuntje.
+
+36
+00:02:12.941 --> 00:02:13.556
+Versleten.
+
+37
+00:02:14.276 --> 00:02:16.226
+Om tien over vier zit er een nieuwe in.
+
+38
+00:02:17.228 --> 00:02:20.595
+Dan de verdachte delen (suspect parts): alles sinds de laatste goede meting.
+
+39
+00:02:21.348 --> 00:02:23.461
+Die gaan apart en worden gecontroleerd.
+
+40
+00:02:24.467 --> 00:02:25.918
+Geen enkele as buiten spec.
+
+41
+00:02:26.654 --> 00:02:29.162
+Een kaart waar niemand op reageert, is behang.
+
+42
+00:02:30.469 --> 00:02:31.792
+Nu een stabiel proces.
+
+43
+00:02:32.520 --> 00:02:34.772
+De operator meet elke as en verzet na elk stuk
+
+44
+00:02:34.795 --> 00:02:36.850
+de correctie met de afwijking van dat stuk.
+
+45
+00:02:37.866 --> 00:02:39.155
+Dat is overbijsturen (tampering).
+
+46
+00:02:39.835 --> 00:02:43.155
+Elke afwijking is vooral ruis, dus wie daarop corrigeert,
+
+47
+00:02:43.376 --> 00:02:44.932
+zet er een tweede ruis bovenop.
+
+48
+00:02:45.909 --> 00:02:48.463
+Op de kaart: een zigzag van stuk tot stuk,
+
+49
+00:02:48.858 --> 00:02:51.017
+en meer spreiding dan de meetstudie verklaart.
+
+50
+00:02:52.032 --> 00:02:52.914
+Hij bedoelt het goed.
+
+51
+00:02:53.684 --> 00:02:55.507
+Ik hou hem op nominaal, zegt hij.
+
+52
+00:02:56.782 --> 00:02:59.835
+Het trechterexperiment (funnel experiment), bekend geworden door Deming,
+
+53
+00:03:00.184 --> 00:03:01.148
+laat zien waarom.
+
+54
+00:03:01.833 --> 00:03:03.598
+Knikkers vallen door een trechter op een doel.
+
+55
+00:03:04.590 --> 00:03:05.705
+Blijft de trechter stil,
+
+56
+00:03:06.053 --> 00:03:08.921
+dan landen ze in een wolk rond het doel: de gewone spreiding.
+
+57
+00:03:09.940 --> 00:03:12.401
+Verzet je hem na elke worp om de misser te corrigeren,
+
+58
+00:03:12.726 --> 00:03:15.884
+dan stijgt de standaardafwijking met zo’n 41 procent.
+
+59
+00:03:16.914 --> 00:03:18.319
+De variantie verdubbelt.
+
+60
+00:03:19.013 --> 00:03:21.718
+Dat doet ook de operator die na elk stuk bijstelt.
+
+61
+00:03:22.466 --> 00:03:24.381
+Leg het zo uit, niet als verwijt.
+
+62
+00:03:25.736 --> 00:03:28.766
+De regel: alleen bijstellen op een signaal van de kaart.
+
+63
+00:03:29.488 --> 00:03:31.322
+Daartussen laat je de machine met rust.
+
+64
+00:03:32.336 --> 00:03:35.576
+Bekende slijtage vang je op met slijtagecompensatie (wear compensation):
+
+65
+00:03:35.912 --> 00:03:36.702
+een geplande,
+
+66
+00:03:36.980 --> 00:03:39.232
+vaste correctie na een vast aantal stuks.
+
+67
+00:03:40.264 --> 00:03:42.342
+Was overbijsturen de grootste bron,
+
+68
+00:03:42.725 --> 00:03:48.228
+dan zakt de standaardafwijking na twee weken met ruwweg 30 procent; precies 29.
+
+69
+00:03:49.295 --> 00:03:51.652
+Een meting in de machine die de correctie stuurt,
+
+70
+00:03:51.884 --> 00:03:55.622
+moet bijstellen op het gemiddelde van meerdere stuks, nooit op één meting.
+
+71
+00:03:56.931 --> 00:03:59.253
+Kun je alleen tellen, dan zijn er vier kaarten.
+
+72
+00:03:59.926 --> 00:04:02.004
+De p-kaart (p chart) zet de fractie afkeur uit,
+
+73
+00:04:02.445 --> 00:04:04.535
+ook als de steekproef steeds anders groot is.
+
+74
+00:04:05.546 --> 00:04:09.226
+De np-kaart (np chart) telt de afgekeurde stuks in een steekproef van vaste grootte.
+
+75
+00:04:10.213 --> 00:04:12.594
+Tel je defecten, zoals krassen per paneel,
+
+76
+00:04:12.779 --> 00:04:14.973
+dan een c-kaart (c chart) bij even grote eenheden,
+
+77
+00:04:15.194 --> 00:04:17.017
+en een u-kaart (u chart) als de grootte wisselt.
+
+78
+00:04:18.050 --> 00:04:19.513
+Telkaarten reageren laat.
+
+79
+00:04:20.243 --> 00:04:25.851
+Bij 1 procent afkeur en steekproeven van 50 ligt de bovengrens op zo’n 5,2 procent:
+
+80
+00:04:26.095 --> 00:04:27.813
+twee foute stuks blijven binnen.
+
+81
+00:04:28.477 --> 00:04:29.452
+Meet dus als het kan.
+
+82
+00:04:30.758 --> 00:04:33.033
+Tot slot: wat stop je in één steekproef?
+
+83
+00:04:33.753 --> 00:04:35.436
+Een matrijs met 4 holtes.
+
+84
+00:04:36.190 --> 00:04:38.965
+Elk uur gaat één stuk uit elke holte samen op de kaart.
+
+85
+00:04:39.971 --> 00:04:42.943
+De R-kaart is breed en de X-bar-kaart geeft nooit een signaal,
+
+86
+00:04:43.222 --> 00:04:44.627
+maar holte 3 maakt dunne wanden.
+
+87
+00:04:45.358 --> 00:04:47.610
+De range meet hier het verschil tussen de holtes.
+
+88
+00:04:48.662 --> 00:04:51.402
+Een rationele subgroep (rational subgroup) is gemaakt van stuks vlak na elkaar,
+
+89
+00:04:51.658 --> 00:04:52.308
+uit één holte.
+
+90
+00:04:52.990 --> 00:04:54.430
+Dus een eigen kaart per holte.
+
+91
+00:04:55.450 --> 00:05:01.231
+Bereken de grenzen uit 20 tot 25 subgroepen in een stabiele periode, en zet ze vast.

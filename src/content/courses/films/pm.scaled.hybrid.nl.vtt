@@ -1,0 +1,341 @@
+WEBVTT
+
+1
+00:00:00.905 --> 00:00:03.482
+Veel fabrikanten ontwikkelen producten met stage-gate,
+
+2
+00:00:03.773 --> 00:00:06.501
+uitgewerkt door Robert Cooper vanaf de jaren tachtig.
+
+3
+00:00:07.505 --> 00:00:10.871
+Het werk loopt in fases: verkennen, de business case,
+
+4
+00:00:11.092 --> 00:00:13.263
+ontwikkelen, testen en lanceren.
+
+5
+00:00:14.266 --> 00:00:17.343
+Tussen twee fases zit een gate: een beslismoment,
+
+6
+00:00:17.587 --> 00:00:20.803
+waar de leiding kiest op basis van afgesproken resultaten.
+
+7
+00:00:21.844 --> 00:00:24.445
+Dat heet een go/kill-beslissing (go/kill decision): doorgaan,
+
+8
+00:00:24.619 --> 00:00:27.626
+stoppen, aanhouden, of een fase overdoen.
+
+9
+00:00:28.942 --> 00:00:32.054
+Voor hardware is dat niet ouderwets, maar verstandig.
+
+10
+00:00:32.797 --> 00:00:35.641
+De kosten van verandering (cost of change) stijgen naarmate je verder bent.
+
+11
+00:00:36.701 --> 00:00:39.464
+Een tekening in CAD aanpassen kost een paar uur.
+
+12
+00:00:40.141 --> 00:00:44.100
+Een geharde stalen matrijs aanpassen kan tienduizenden euro's kosten.
+
+13
+00:00:45.095 --> 00:00:48.172
+En een wijziging na levering kan een terugroepactie betekenen.
+
+14
+00:00:49.243 --> 00:00:51.774
+Daarbij komen lange levertijden voor gereedschap,
+
+15
+00:00:52.006 --> 00:00:53.597
+en eisen als de CE-markering:
+
+16
+00:00:53.864 --> 00:00:57.544
+de Europese verklaring dat een product aan de veiligheidseisen voldoet.
+
+17
+00:00:58.837 --> 00:01:02.343
+Toch is er binnen de fases veel onzekerheid: wil de klant dit echt,
+
+18
+00:01:02.587 --> 00:01:03.481
+werkt het ontwerp?
+
+19
+00:01:04.198 --> 00:01:05.034
+Daar helpt agile.
+
+20
+00:01:06.050 --> 00:01:10.357
+Cooper beschreef in tweeduizend zestien, en met Sommer in tweeduizend achttien,
+
+21
+00:01:10.647 --> 00:01:13.503
+sprints binnen de fases: Agile-Stage-Gate.
+
+22
+00:01:14.569 --> 00:01:19.654
+Sprints, korte dagelijkse overleggen, demo's en terugblikken zitten in de fases.
+
+23
+00:01:20.349 --> 00:01:22.567
+De gates blijven voor de grote investeringen.
+
+24
+00:01:23.559 --> 00:01:26.554
+Cooper meldt goede eerste resultaten in een handvol bedrijven,
+
+25
+00:01:26.752 --> 00:01:29.956
+zoals een snellere marktintroductie, maar ook worstelingen.
+
+26
+00:01:30.624 --> 00:01:31.948
+Het bewijs is nog beperkt.
+
+27
+00:01:33.270 --> 00:01:34.919
+Wat is af na een sprint met hardware?
+
+28
+00:01:35.588 --> 00:01:39.140
+Meestal geen leverbaar product, maar iets om te testen of te laten zien.
+
+29
+00:01:40.145 --> 00:01:43.894
+Een CAD-model dat je met een klant doorloopt, een 3D-geprint model,
+
+30
+00:01:44.243 --> 00:01:48.550
+een test van een prototype, of software voor de besturing op een testopstelling.
+
+31
+00:01:49.564 --> 00:01:53.198
+De vraag blijft: wat hebben we deze twee weken geleerd dat we niet wisten?
+
+32
+00:01:54.148 --> 00:01:57.654
+Voor een Lean-consultant: een gate lijkt op een kwaliteitspoort;
+
+33
+00:01:57.945 --> 00:02:01.393
+de valkuil is een papierencontrole: zijn de documenten er,
+
+34
+00:02:01.613 --> 00:02:03.285
+niet: werkt het product?
+
+35
+00:02:04.335 --> 00:02:07.284
+Vraag: wat moet er bij de volgende gate bewezen zijn,
+
+36
+00:02:07.563 --> 00:02:09.200
+en welke sprint levert dat bewijs?
+
+37
+00:02:09.950 --> 00:02:13.456
+Is het antwoord het ontwerpdossier, dan is de gate een formaliteit.
+
+38
+00:02:14.761 --> 00:02:18.558
+Een voorbeeld met bedragen ter illustratie: een nieuw pomphuis,
+
+39
+00:02:18.952 --> 00:02:22.250
+en steeds dezelfde wijziging, een andere maat van de flens.
+
+40
+00:02:23.247 --> 00:02:28.983
+In de CAD-tekening: vier uur tegen negentig euro per uur, driehonderdzestig euro.
+
+41
+00:02:29.982 --> 00:02:34.382
+Na het eerste prototype: een nieuw geprint of gefreesd prototype,
+
+42
+00:02:34.707 --> 00:02:35.984
+zo'n drieduizend euro.
+
+43
+00:02:36.979 --> 00:02:41.634
+Na de geharde matrijs: vijfendertigduizend euro, en zes weken vertraging.
+
+44
+00:02:42.639 --> 00:02:46.784
+Ontwikkelen duurt zesentwintig weken: dertien sprints van twee weken,
+
+45
+00:02:47.178 --> 00:02:51.102
+dertien kansen om fouten te vinden zolang een wijziging honderden euro's kost,
+
+46
+00:02:51.265 --> 00:02:52.263
+geen tienduizenden.
+
+47
+00:02:53.554 --> 00:02:57.072
+Een long-lead item heeft zo'n lange levertijd dat het de hele planning bepaalt.
+
+48
+00:02:58.124 --> 00:03:02.651
+Een spuitgietmatrijs, een gietstuk, een speciale motor, een chip.
+
+49
+00:03:03.402 --> 00:03:06.223
+Acht tot twintig weken voor een matrijs is niet ongewoon;
+
+50
+00:03:06.594 --> 00:03:08.347
+vraag het altijd de leverancier.
+
+51
+00:03:09.291 --> 00:03:13.239
+De start van de serieproductie heet de SOP, start of production,
+
+52
+00:03:13.633 --> 00:03:17.279
+vaak vastgelegd door een beurs, een klantcontract of een seizoen.
+
+53
+00:03:18.288 --> 00:03:21.574
+Dan terugplannen (backward planning): vanaf de SOP terugrekenen.
+
+54
+00:03:22.226 --> 00:03:27.078
+Min de validatie, min proefspuiten en correcties, min de bouw van het gereedschap,
+
+55
+00:03:27.311 --> 00:03:28.019
+min bestellen.
+
+56
+00:03:29.018 --> 00:03:32.443
+Wat overblijft is het laatste moment om het ontwerp vast te leggen:
+
+57
+00:03:32.838 --> 00:03:33.825
+de design freeze.
+
+58
+00:03:34.671 --> 00:03:37.562
+Daarna lopen wijzigingen via een formele procedure.
+
+59
+00:03:38.844 --> 00:03:40.330
+Hier botst agile met hardware.
+
+60
+00:03:41.040 --> 00:03:45.951
+Sprints willen leren en bijsturen; long-lead items vragen vroege beslissingen.
+
+61
+00:03:46.952 --> 00:03:50.655
+Beslis dus vroeg over de long-lead items, houd de rest flexibel,
+
+62
+00:03:51.015 --> 00:03:55.602
+en leg de koppelvlakken vroeg vast, zoals bevestigingspunten en aansluitingen,
+
+63
+00:03:55.903 --> 00:03:58.399
+zodat de binnenkant van een module nog kan veranderen.
+
+64
+00:03:59.397 --> 00:04:01.649
+Een tweede hulpmiddel is set-based design:
+
+65
+00:04:01.928 --> 00:04:05.782
+een paar ontwerpopties openhouden en pas afvallen bij genoeg kennis,
+
+66
+00:04:06.061 --> 00:04:08.813
+in plaats van één vroeg ontwerp steeds te repareren.
+
+67
+00:04:09.751 --> 00:04:14.180
+Het komt uit onderzoek naar Toyota in de jaren negentig, en SAFe noemt het ook.
+
+68
+00:04:15.184 --> 00:04:20.130
+In de praktijk, eerst goedkope proefmatrijzen van aluminium voor twee varianten,
+
+69
+00:04:20.351 --> 00:04:23.693
+soft tooling; daarna de geharde stalen matrijs voor de winnaar.
+
+70
+00:04:24.928 --> 00:04:27.923
+Vaak zit inkoop niet bij de sprintplanning of de PI Planning.
+
+71
+00:04:28.919 --> 00:04:32.135
+Inkoop hoort pas van een matrijs als het ontwerp bijna klaar is.
+
+72
+00:04:32.857 --> 00:04:34.273
+Dan is de levertijd al te lang.
+
+73
+00:04:35.315 --> 00:04:40.215
+Zet long-lead items als vaste mijlpalen op het planningsbord, en nodig inkoop uit.
+
+74
+00:04:41.277 --> 00:04:45.224
+Vraag in elk project met hardware: welk onderdeel heeft de langste levertijd,
+
+75
+00:04:45.491 --> 00:04:47.767
+en in welke week moet dat ontwerp uiterlijk vast?
+
+76
+00:04:49.080 --> 00:04:53.306
+Een maker van elektrische fietsen wil in week veertig de serieproductie starten;
+
+77
+00:04:53.643 --> 00:04:55.326
+het accuhuis wordt spuitgegoten.
+
+78
+00:04:56.341 --> 00:05:00.706
+Terug vanaf week veertig: validatie van de eerste serie duurt vier weken,
+
+79
+00:05:01.066 --> 00:05:03.225
+dus start uiterlijk in week zesendertig.
+
+80
+00:05:04.259 --> 00:05:07.312
+Proefspuiten en matrijscorrecties: drie weken,
+
+81
+00:05:07.649 --> 00:05:09.948
+dus de matrijs is klaar in week drieëndertig.
+
+82
+00:05:10.944 --> 00:05:15.646
+De matrijsbouw duurt volgens de offerte veertien weken: start in week negentien.
+
+83
+00:05:16.347 --> 00:05:20.724
+Bestellen en goedkeuren kost een week: design freeze uiterlijk in week achttien.
+
+84
+00:05:21.711 --> 00:05:27.505
+Controle: veertig min vier, min drie, min veertien, min een, is achttien.
+
+85
+00:05:28.243 --> 00:05:32.423
+Tot dan kan het accuhuis nog beter; de rest van de fiets blijft langer flexibel.

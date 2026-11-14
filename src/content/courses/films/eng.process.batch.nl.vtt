@@ -1,0 +1,293 @@
+WEBVTT
+
+1
+00:00:00.850 --> 00:00:03.950
+Dit mengvat werkt in batches: het maakt steeds één partij,
+
+2
+00:00:04.321 --> 00:00:05.273
+en dan begint het opnieuw.
+
+3
+00:00:06.010 --> 00:00:11.978
+Eén cyclus is vullen, opwarmen, reageren of mengen, afkoelen, legen en reinigen.
+
+4
+00:00:12.984 --> 00:00:16.200
+De batchcyclustijd (batch cycle time) is alles tussen twee starts van hetzelfde vat.
+
+5
+00:00:16.924 --> 00:00:20.813
+Dus ook het wachten: op een operator, op een labuitslag,
+
+6
+00:00:21.011 --> 00:00:22.439
+of op een vrije tank verderop.
+
+7
+00:00:23.413 --> 00:00:26.803
+De capaciteit van een vat is de batchgrootte gedeeld door de cyclustijd.
+
+8
+00:00:27.553 --> 00:00:31.071
+Een cyclus van 5 uur met 4 ton geeft 0,8 ton per uur.
+
+9
+00:00:31.714 --> 00:00:35.406
+Draait het vat dag en nacht, dan is dat zo’n 19 ton per dag.
+
+10
+00:00:36.719 --> 00:00:41.201
+Een voorbeeld: een mengvat voor verf, dat 3.000 kilo per batch maakt.
+
+11
+00:00:41.958 --> 00:00:43.502
+Vullen duurt 40 minuten.
+
+12
+00:00:44.198 --> 00:00:49.353
+Dan volgt 90 minuten dispergeren: het pigmentpoeder fijn verdelen in de vloeistof.
+
+13
+00:00:50.472 --> 00:00:55.673
+Daarna 50 minuten wachten op de uitslag van het QC-monster, 20 minuten bijstellen,
+
+14
+00:00:55.859 --> 00:00:58.634
+60 minuten aftappen en 40 minuten reinigen.
+
+15
+00:00:59.317 --> 00:01:01.616
+Samen 300 minuten: vijf uur.
+
+16
+00:01:02.590 --> 00:01:08.093
+De capaciteit is dus 3.000 kilo gedeeld door 5 uur: 600 kilo per uur.
+
+17
+00:01:09.071 --> 00:01:11.207
+Elke minuut in de cyclus telt even zwaar.
+
+18
+00:01:11.853 --> 00:01:14.895
+Ingenieurs willen graag de reactie of het mengen korter maken.
+
+19
+00:01:15.582 --> 00:01:20.365
+Maar vullen, legen, reinigen en wachten nemen vaak een derde van de cyclus in,
+
+20
+00:01:20.679 --> 00:01:22.699
+en die zijn meestal makkelijker in te korten.
+
+21
+00:01:23.375 --> 00:01:25.047
+Hier is het zelfs meer dan de helft.
+
+22
+00:01:26.342 --> 00:01:30.290
+Na het dispergeren gaat er een monster naar het lab, voor de kwaliteitscontrole.
+
+23
+00:01:30.982 --> 00:01:35.498
+Pas na de QC-vrijgave (QC release), de goedkeuring van het lab, mag de batch door.
+
+24
+00:01:36.487 --> 00:01:40.585
+Maar het lab bedient de hele locatie, dus het monster sluit achter in de rij aan.
+
+25
+00:01:41.291 --> 00:01:43.033
+Al die tijd staat het vat vol en stil.
+
+26
+00:01:43.721 --> 00:01:46.159
+Ingenieurs zeggen dan: het vat is niet traag,
+
+27
+00:01:46.414 --> 00:01:49.131
+het staat elke batch 50 minuten op het lab te wachten.
+
+28
+00:01:50.418 --> 00:01:54.179
+Dan het reinigen, met CIP: reinigen ter plaatse.
+
+29
+00:01:54.932 --> 00:01:58.647
+Een sproeikop in het vat spoelt de wanden met heet water en reinigingsmiddel,
+
+30
+00:01:58.961 --> 00:02:00.935
+en de vloeistof gaat ook door de leidingen.
+
+31
+00:02:01.641 --> 00:02:03.429
+Niemand hoeft iets uit elkaar te halen.
+
+32
+00:02:04.380 --> 00:02:06.621
+Wachten en reinigen zijn vaak de twee grote.
+
+33
+00:02:07.388 --> 00:02:10.105
+Snellere labtests, een meting in de leiding zelf,
+
+34
+00:02:10.302 --> 00:02:14.737
+of een korter reinigingsprogramma leveren dus capaciteit op, zonder nieuw vat.
+
+35
+00:02:15.778 --> 00:02:17.937
+Over reinigen discussiëren experts.
+
+36
+00:02:18.706 --> 00:02:19.902
+Reinig je na elke batch,
+
+37
+00:02:20.146 --> 00:02:24.488
+of maak je eerst een campagne: meerdere batches van hetzelfde product achter elkaar?
+
+38
+00:02:25.192 --> 00:02:29.720
+Een campagne spaart reinigingstijd, maar je moet bewijzen dat het hygiënisch blijft,
+
+39
+00:02:29.929 --> 00:02:31.450
+en je hebt langer opslag nodig.
+
+40
+00:02:32.728 --> 00:02:33.773
+Terug naar het verfvat.
+
+41
+00:02:34.545 --> 00:02:39.421
+Er komt een inline viscositeitsmeter bij: die meet in de leiding hoe dik de verf is.
+
+42
+00:02:40.188 --> 00:02:42.847
+En het lab krijgt een vast spoedmoment voor de monsters.
+
+43
+00:02:43.800 --> 00:02:47.677
+Het wachten op de kwaliteitscontrole zakt van 50 naar 15 minuten.
+
+44
+00:02:48.424 --> 00:02:51.431
+De nieuwe cyclus duurt 265 minuten.
+
+45
+00:02:52.465 --> 00:02:54.868
+Dat is vier uur en vijfentwintig minuten.
+
+46
+00:02:55.650 --> 00:03:02.221
+3.000 kilo in die tijd is 679 kilo per uur: 13 procent meer uit hetzelfde vat,
+
+47
+00:03:02.500 --> 00:03:04.520
+zonder dat iemand aan het dispergeren komt.
+
+48
+00:03:05.889 --> 00:03:08.919
+Staan er meer vaten achter elkaar, dan telt de hele fabriek.
+
+49
+00:03:09.664 --> 00:03:12.729
+Een reactor van 6 uur per batch voedt een filter van 3 uur.
+
+50
+00:03:13.422 --> 00:03:17.369
+Het filter wacht de helft van de tijd: de fabriek maakt één batch per 6 uur.
+
+51
+00:03:18.405 --> 00:03:21.679
+Zet er een tweede reactor naast, die om beurten met de eerste draait.
+
+52
+00:03:22.384 --> 00:03:25.658
+Dan komt er elke 3 uur een batch uit, zolang het filter het bijhoudt.
+
+53
+00:03:26.704 --> 00:03:29.212
+De bottleneck is de stap die de hele fabriek beperkt.
+
+54
+00:03:29.936 --> 00:03:33.581
+Deel de tijd van elke stap door het aantal parallelle vaten in die stap:
+
+55
+00:03:33.825 --> 00:03:35.752
+de langste uitkomst is de bottleneck.
+
+56
+00:03:36.418 --> 00:03:39.599
+Hier zijn beide stappen nu 3 uur, dus er is geen marge.
+
+57
+00:03:40.879 --> 00:03:42.235
+Hoe zie je waar de tijd heen gaat?
+
+58
+00:03:42.987 --> 00:03:46.656
+Batchbesturing volgt vaak de standaard ISA-88.
+
+59
+00:03:47.452 --> 00:03:50.459
+Daarin is een recept opgedeeld in steeds kleinere stappen.
+
+60
+00:03:51.448 --> 00:03:54.432
+De kleinste stap heet een fase (phase): bijvoorbeeld doseren,
+
+61
+00:03:54.652 --> 00:03:57.160
+opwarmen, aanhouden of overpompen.
+
+62
+00:03:57.861 --> 00:04:02.690
+Elke fase heeft instelwaarden, zoals een hoeveelheid, een temperatuur of een tijd.
+
+63
+00:04:03.685 --> 00:04:05.949
+Het besturingssysteem voert de fasen uit,
+
+64
+00:04:06.321 --> 00:04:08.724
+en legt elke fase vast in een batchrapport.
+
+65
+00:04:10.060 --> 00:04:11.592
+Vraag dus om de batchrapporten,
+
+66
+00:04:11.894 --> 00:04:15.110
+met de echte tijd per fase over de laatste 50 batches.
+
+67
+00:04:15.895 --> 00:04:18.740
+Het verschil tussen de snelste en de traagste batches is
+
+68
+00:04:18.786 --> 00:04:21.840
+vaak de grootste capaciteitswinst op de hele locatie.
+
+69
+00:04:22.834 --> 00:04:27.315
+Een typische valkuil: vaten die vol staan bij de ploegwissel of in de pauze,
+
+70
+00:04:27.489 --> 00:04:29.486
+omdat niemand de volgende fase start.
+
+71
+00:04:30.493 --> 00:04:32.838
+Een scherpe vraag in elke batchfabriek is daarom:
+
+72
+00:04:33.221 --> 00:04:35.833
+hoeveel minuten per batch staat dit vat te wachten op een mens,
+
+73
+00:04:36.182 --> 00:04:37.552
+het lab of een vrije tank?

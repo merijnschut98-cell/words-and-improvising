@@ -1,0 +1,397 @@
+WEBVTT
+
+1
+00:00:00.839 --> 00:00:04.229
+Kanban komt uit het Toyota-productiesysteem van Taiichi Ohno:
+
+2
+00:00:04.601 --> 00:00:06.017
+een kaart bij een bak onderdelen.
+
+3
+00:00:07.037 --> 00:00:07.629
+Bak leeg?
+
+4
+00:00:08.351 --> 00:00:10.232
+De kaart gaat terug: maak bij.
+
+5
+00:00:10.942 --> 00:00:14.484
+Verbruik trekt de productie aan: pull, geen overproductie.
+
+6
+00:00:15.477 --> 00:00:19.041
+In kenniswerk maakt Kanban de stroom van werk zichtbaar en stuurbaar;
+
+7
+00:00:19.448 --> 00:00:21.096
+David Anderson maakte het bekend.
+
+8
+00:00:22.146 --> 00:00:26.430
+De Kanban Guide noemt Kanban een strategie om de stroom van waarde te optimaliseren,
+
+9
+00:00:26.639 --> 00:00:27.904
+visueel en met pull.
+
+10
+00:00:29.156 --> 00:00:32.128
+Het kanbanbord (kanban board) heeft een kolom per stap: te doen,
+
+11
+00:00:32.522 --> 00:00:35.320
+analyse, bouwen, testen, klaar.
+
+12
+00:00:36.258 --> 00:00:38.522
+Elk werkitem (work item), een wens of een storing,
+
+13
+00:00:38.824 --> 00:00:40.298
+is een kaart die naar rechts schuift.
+
+14
+00:00:41.319 --> 00:00:44.419
+Begin waar je bent: teken het werk zoals het echt loopt.
+
+15
+00:00:45.156 --> 00:00:46.828
+Geen vaste rollen of sprints.
+
+16
+00:00:47.836 --> 00:00:53.084
+De Definition of Workflow is de gedeelde afspraak: wat een item is, begin en klaar,
+
+17
+00:00:53.351 --> 00:00:56.033
+stappen, limieten, regels en duur.
+
+18
+00:00:57.003 --> 00:01:00.684
+Kan een kaart niet verder, dan is ze geblokkeerd (blocked): een rode sticker.
+
+19
+00:01:01.401 --> 00:01:03.351
+Die kaarten tonen waar het systeem hapert.
+
+20
+00:01:04.361 --> 00:01:07.902
+Voor jou als Lean-consultant: een visueel managementbord,
+
+21
+00:01:08.239 --> 00:01:10.062
+en een geblokkeerde kaart is een andon.
+
+22
+00:01:11.350 --> 00:01:16.284
+Een eerlijk verschil: bij Toyota een standaardonderdeel, hier is elk item anders.
+
+23
+00:01:16.980 --> 00:01:18.106
+De kaart beschrijft werk.
+
+24
+00:01:19.139 --> 00:01:21.531
+Typische fout: kaarten zonder grens.
+
+25
+00:01:22.237 --> 00:01:24.698
+Dan is het een takenlijst, nog geen pullsysteem.
+
+26
+00:01:25.689 --> 00:01:26.282
+Voorbeeld:
+
+27
+00:01:26.595 --> 00:01:30.682
+bij een machinebouwer heeft de afdeling engineering veertig losse post-its.
+
+28
+00:01:31.702 --> 00:01:37.182
+De kolommen zoals het echt loopt: aangevraagd, ontwerp, controle, wacht op klant,
+
+29
+00:01:37.507 --> 00:01:38.273
+vrijgegeven.
+
+30
+00:01:39.262 --> 00:01:40.690
+Na een uur hangen alle veertig.
+
+31
+00:01:41.422 --> 00:01:46.019
+Twaalf in ontwerp, negen wachten op de klant, zes daarvan al langer dan drie weken.
+
+32
+00:01:47.013 --> 00:01:48.128
+Vier zijn geblokkeerd.
+
+33
+00:01:48.886 --> 00:01:53.681
+Begonnen: een engineer pakt de kaart; klaar: de tekening is vrijgegeven.
+
+34
+00:01:54.986 --> 00:01:58.922
+WIP is begonnen maar niet af; in de fabriek heet dat onderhanden werk.
+
+35
+00:01:59.648 --> 00:02:02.676
+Het kost geld, verbergt problemen en vertraagt.
+
+36
+00:02:03.664 --> 00:02:07.495
+Een WIP-limiet (WIP limit) is een maximum per kolom of voor het hele systeem,
+
+37
+00:02:07.727 --> 00:02:09.248
+zoals testen hooguit twee.
+
+38
+00:02:09.918 --> 00:02:10.173
+Vol?
+
+39
+00:02:10.927 --> 00:02:12.669
+Dan niets nieuws: dat is pull.
+
+40
+00:02:13.700 --> 00:02:15.430
+Vijf dingen tegelijk is schakelen,
+
+41
+00:02:15.581 --> 00:02:17.288
+en contextwisseling (context switching) kost tijd.
+
+42
+00:02:17.972 --> 00:02:21.339
+Gerald Weinberg schatte zo'n twintig procent per extra project.
+
+43
+00:02:22.360 --> 00:02:24.554
+Erger: elk item ligt langer stil.
+
+44
+00:02:25.247 --> 00:02:26.907
+Iedereen druk, de klant wacht.
+
+45
+00:02:28.234 --> 00:02:29.209
+Zit een kolom vol?
+
+46
+00:02:29.923 --> 00:02:34.509
+Pak niets nieuws, maar help rechts afmaken: swarming, samen één item.
+
+47
+00:02:35.553 --> 00:02:39.872
+Een ontwikkelaar helpt testen; een engineer doet de controle voor een collega.
+
+48
+00:02:40.579 --> 00:02:42.476
+Onwennig, maar het team levert meer.
+
+49
+00:02:43.407 --> 00:02:47.459
+Het startgetal: ongeveer het aantal mensen in de stap, of iets minder,
+
+50
+00:02:47.738 --> 00:02:48.678
+en dan bijstellen.
+
+51
+00:02:49.693 --> 00:02:52.340
+Voor jou: een supermarkt of vaste buffer.
+
+52
+00:02:53.021 --> 00:02:54.867
+Het werk hoopt zich op bij de bottleneck.
+
+53
+00:02:55.936 --> 00:03:00.301
+Fouten: limieten oprekken bij drukte, per persoon in plaats van per stap,
+
+54
+00:03:00.557 --> 00:03:02.507
+en geen afspraak als een kolom vol zit.
+
+55
+00:03:03.585 --> 00:03:05.988
+Sommigen kiezen één limiet voor het hele systeem.
+
+56
+00:03:06.745 --> 00:03:09.891
+Vraag: wat doe jij als de volgende kolom vol zit?
+
+57
+00:03:11.263 --> 00:03:14.607
+Voorbeeld: een IT-team van vijf bij een zuivelfabriek,
+
+58
+00:03:14.874 --> 00:03:16.697
+met vijftien werkitems onderhanden.
+
+59
+00:03:17.362 --> 00:03:18.674
+Een wens duurt zes weken.
+
+60
+00:03:19.659 --> 00:03:23.176
+Limieten: bouwen hooguit vier, testen hooguit twee.
+
+61
+00:03:24.186 --> 00:03:25.811
+Week één: testen zit vol.
+
+62
+00:03:26.534 --> 00:03:27.486
+Een vijfde in bouwen?
+
+63
+00:03:28.167 --> 00:03:32.277
+Nee: de ontwikkelaar helpt testen, en een item is dezelfde dag klaar.
+
+64
+00:03:33.234 --> 00:03:36.322
+Na zes weken: zes tegelijk in plaats van vijftien,
+
+65
+00:03:36.635 --> 00:03:38.504
+en een wens duurt zo'n tweeënhalve week.
+
+66
+00:03:39.835 --> 00:03:41.762
+De Kanban Guide noemt vier flowmaten.
+
+67
+00:03:42.437 --> 00:03:46.558
+Eerst de WIP en de throughput: hoeveel items er per week afkomen.
+
+68
+00:03:47.621 --> 00:03:51.046
+De work item age: hoe lang een onaf item al onderweg is.
+
+69
+00:03:52.104 --> 00:03:55.367
+En de cycle time: begin tot klaar van een afgerond item,
+
+70
+00:03:55.564 --> 00:03:57.422
+volgens je Definition of Workflow.
+
+71
+00:03:58.388 --> 00:04:02.103
+Valkuil: in Lean is cyclustijd de tijd per stuk op een station,
+
+72
+00:04:02.394 --> 00:04:03.996
+zoals vijfenveertig seconden.
+
+73
+00:04:04.669 --> 00:04:06.736
+Kanban bedoelt wat de fabriek doorlooptijd noemt.
+
+74
+00:04:07.810 --> 00:04:12.153
+Met lead time bedoelen veel teams de tijd vanaf de aanvraag, wachten inbegrepen.
+
+75
+00:04:12.862 --> 00:04:14.255
+Spreek af welke je bedoelt.
+
+76
+00:04:15.592 --> 00:04:16.532
+De wet van Little (Little’s law),
+
+77
+00:04:16.892 --> 00:04:19.528
+John Little, negentienhonderdeenenzestig:
+
+78
+00:04:19.772 --> 00:04:24.056
+gemiddelde cycle time is gemiddelde WIP gedeeld door gemiddelde throughput.
+
+79
+00:04:25.071 --> 00:04:29.111
+Twaalf items onderhanden, drie per week af: gemiddeld vier weken.
+
+80
+00:04:29.778 --> 00:04:32.182
+Het geldt voor gemiddelden, niet voor één item.
+
+81
+00:04:33.185 --> 00:04:37.422
+Halveer de WIP bij gelijke throughput, en de gemiddelde cycle time halveert.
+
+82
+00:04:38.221 --> 00:04:39.823
+Daarom werken WIP-limieten.
+
+83
+00:04:40.819 --> 00:04:42.270
+Voorwaarde: stabiel.
+
+84
+00:04:42.954 --> 00:04:46.925
+Wat binnenkomt gaat er gemiddeld uit, en de WIP blijft ongeveer gelijk.
+
+85
+00:04:47.625 --> 00:04:49.181
+Een groeiende stapel breekt het.
+
+86
+00:04:50.247 --> 00:04:55.251
+Vacanti benadrukt: een verband tussen gemiddelden achteraf, geen voorspelmachine.
+
+87
+00:04:56.254 --> 00:04:58.472
+Lean en Kanban lijken hier het meest op elkaar.
+
+88
+00:04:59.159 --> 00:05:01.051
+Fout: alleen het gemiddelde.
+
+89
+00:05:01.791 --> 00:05:04.566
+Kijk naar de spreiding: waar begint en eindigt de klok?
+
+90
+00:05:05.868 --> 00:05:08.631
+Voorbeeld: een meubelfabrikant meet acht weken.
+
+91
+00:05:09.345 --> 00:05:13.362
+Gemiddeld twaalf onderhanden, drie per week uit en drie binnen: stabiel.
+
+92
+00:05:14.368 --> 00:05:16.678
+Twaalf gedeeld door drie: vier weken.
+
+93
+00:05:17.389 --> 00:05:19.675
+Gemeten vier komma twee, dat klopt.
+
+94
+00:05:20.429 --> 00:05:21.787
+Maar voor kleine wensen te lang.
+
+95
+00:05:22.768 --> 00:05:27.900
+De WIP-limiet gaat naar zes, met nog steeds drie per week af: twee weken, de helft.
+
+96
+00:05:28.927 --> 00:05:31.400
+Bewaak wel: de throughput blijft drie per week,
+
+97
+00:05:31.806 --> 00:05:33.524
+en geen werk loopt buiten het bord om.
+
+98
+00:05:34.506 --> 00:05:35.679
+Meer dan drie per week binnen?
+
+99
+00:05:36.382 --> 00:05:40.979
+De rij vóór het bord groeit: wachttijd in de lead time, niet in de cycle time.

@@ -1,0 +1,273 @@
+/* Vantage design system tokens, copied from the vantage-design skill:
+   fonts.css, colors.css, typography.css, spacing.css and motion.css, in that
+   order, verbatim apart from one comment fix in the fonts part. Do not edit by
+   hand; copy again from the skill. Font URLs point at ../fonts/. */
+
+/* ---- tokens/fonts.css ---- */
+/* Self-hosted variable fonts. All three families are OFL-licensed
+   (see Fonts/<family>/OFL.txt; the original path here closed this comment early and dropped the roman Fraunces face), so redistribution inside the bundle is fine.
+   Self-hosted rather than CDN-linked because rendered designs only
+   receive styles.css's @import closure — a remote stylesheet that
+   fails to load silently drops the whole type system. */
+
+@font-face {
+  font-family: 'Fraunces';
+  src: url('../fonts/Fraunces-Variable.woff2') format('woff2-variations');
+  font-weight: 100 900;
+  font-stretch: 100%;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Fraunces';
+  src: url('../fonts/Fraunces-Italic-Variable.woff2') format('woff2-variations');
+  font-weight: 100 900;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Inter';
+  src: url('../fonts/Inter-Variable.woff2') format('woff2-variations');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Inter';
+  src: url('../fonts/Inter-Italic-Variable.woff2') format('woff2-variations');
+  font-weight: 100 900;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'JetBrains Mono';
+  src: url('../fonts/JetBrainsMono-Variable.woff2') format('woff2-variations');
+  font-weight: 100 800;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'JetBrains Mono';
+  src: url('../fonts/JetBrainsMono-Italic-Variable.woff2') format('woff2-variations');
+  font-weight: 100 800;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* ---- tokens/colors.css ---- */
+/* ============================================================
+   Vantage — colour tokens
+   Derived from Merijn's values palette. The six brand shades and
+   the beige are FIXED; everything else is derived to support them.
+   ============================================================ */
+
+:root {
+  /* ---- The fixed six. Deep green → navy. Do not alter. ----
+     Green  = learning & growing; stability, strength, calm, nature.
+     Navy   = trust & professionalism; authority, calm.
+     These sit at near-identical luminance (~1.03:1 against each other),
+     so they read as a GRADIENT / large-area system, not as six
+     distinguishable UI roles. Use the derived tints below for UI. */
+  --brand-1: #0B291B; /* green end — primary */
+  --brand-2: #0C2723;
+  --brand-3: #0D252B;
+  --brand-4: #0D2432;
+  --brand-5: #0E223A;
+  --brand-6: #0F2042; /* navy end — secondary */
+
+  /* Ramp as a list, for gradients and sequential chart scales */
+  --brand-ramp: #0B291B, #0C2723, #0D252B, #0D2432, #0E223A, #0F2042;
+
+  /* ---- Beige. Fixed canvas: simplicity, dependability, calm. ---- */
+  --beige-100: #F4EFE3; /* elevated surface / paper */
+  --beige-300: #EDE6D6;
+  --beige-500: #E8DFCA; /* THE canvas — fixed */
+  --beige-700: #D6CBB0; /* borders, hairlines */
+  --beige-900: #B9AC8E; /* strong border, muted marks on beige */
+
+  /* ---- Derived green tints (lifted from --brand-1) ---- */
+  --green-900: #0B291B;
+  --green-800: #123320;
+  --green-700: #1A4530;
+  --green-600: #265C40;
+  --green-500: #357554;
+  --green-300: #6BA383;
+  --green-100: #C3DACC;
+  --green-50:  #E2EDE6;
+
+  /* ---- Derived navy tints (lifted from --brand-6) ---- */
+  --navy-900: #0F2042;
+  --navy-800: #162D57;
+  --navy-700: #1F3E73;
+  --navy-600: #2B5493;
+  --navy-500: #3D6FB4;
+  --navy-300: #7EA2D0;
+  --navy-100: #C6D6EA;
+
+  /* ---- Accent: petrol. Literally --brand-3 lifted in lightness,
+     so the highlight comes from inside the ramp rather than beside it.
+     Replaces the retired gold. ---- */
+  --petrol-700: #1C5563; /* text on beige — 6.3:1, AA */
+  --petrol-500: #276F81; /* fills, graphic marks */
+  --petrol-300: #5C9FAE; /* on dark surfaces */
+
+  /* ---- Semantic hues. Earthy and desaturated so they belong to the
+     beige/deep-green world rather than shouting over it. ---- */
+  --warn-500:   #A87433; /* ochre — fills and icons */
+  --warn-700:   #6E4A1C; /* ochre — text on beige, 6.0:1, AA */
+  --danger-500: #7E3128; /* burnt brick — 6.8:1 on beige, AA */
+  --danger-300: #A9483C; /* on dark surfaces */
+
+  /* ---- Legacy neutral aliases (kept so existing code keeps working) ---- */
+  --paper-0:   var(--beige-100);
+  --paper-50:  var(--beige-500);
+  --paper-100: #DDD3BB;
+  --paper-200: var(--beige-700);
+  --bone:      #F0E9DA; /* text/marks on dark */
+
+  /* ---- Semantic surfaces ---- */
+  --surface-canvas: var(--beige-500);
+  --surface-paper:  var(--beige-100);
+  --surface-sunken: #DDD3BB;
+  --surface-canvas-inverse: var(--brand-1);
+  --surface-paper-inverse:  var(--brand-3);
+  --surface-sunken-inverse: #071C13;
+
+  /* ---- Semantic text ---- */
+  --text-heading: var(--brand-1);
+  --text-body:    #1E3328;
+  --text-muted:   #5A6B60;
+  --text-heading-inverse: var(--bone);
+  --text-body-inverse:    var(--bone);
+  --text-muted-inverse:   #9FB3A6;
+
+  /* ---- Semantic brand roles ---- */
+  --color-primary:          var(--brand-1);
+  --color-primary-inverse:  var(--green-300);
+  --color-secondary:         var(--brand-6);
+  --color-secondary-inverse: var(--navy-300);
+  --color-accent:         var(--petrol-500);
+  --color-accent-onlight: var(--petrol-700);
+  --color-success: var(--green-600);
+  --color-warning: var(--warn-500);
+  --color-warning-onlight: var(--warn-700);
+  --color-danger:  var(--danger-500);
+  --color-info:    var(--navy-600);
+
+  /* ---- Borders ---- */
+  --border-subtle:         rgba(11, 41, 27, 0.14);
+  --border-subtle-inverse: rgba(240, 233, 218, 0.16);
+
+  /* ---- Retired. Repointed, not deleted, so nothing breaks mid-migration.
+     Do not use in new work. ---- */
+  --gold-500:  var(--warn-500);
+  --gold-700:  var(--warn-700);
+  --coral-500: var(--danger-500);
+}
+
+/* ---- tokens/typography.css ---- */
+:root {
+  --font-display: 'Fraunces', ui-serif, Georgia, serif;
+  --font-body: 'Inter', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+
+  --text-xs:   12px;
+  --text-sm:   14px;
+  --text-base: 16px;
+  --text-md:   18px;
+  --text-lg:   22px;
+  --text-xl:   28px;
+  --text-2xl:  36px;
+  --text-3xl:  48px;
+  --text-4xl:  64px;
+
+  --leading-tight: 1.1;
+  --leading-snug: 1.3;
+  --leading-normal: 1.5;
+  --leading-relaxed: 1.7;
+
+  --tracking-tight: -0.01em;
+  --tracking-normal: 0;
+  --tracking-wide: 0.04em;
+  --tracking-label: 0.08em;
+}
+
+/* ---- tokens/spacing.css ---- */
+:root {
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-10: 40px;
+  --space-12: 48px;
+  --space-16: 64px;
+  --space-20: 80px;
+  --space-24: 96px;
+
+  --radius-sm: 3px;
+  --radius-md: 6px;
+  --radius-lg: 10px;
+  --radius-pill: 999px;
+
+  --shadow-card: 0 1px 2px rgba(14, 38, 32, 0.06), 0 4px 12px rgba(14, 38, 32, 0.05);
+  --shadow-card-inverse: 0 4px 16px rgba(0, 0, 0, 0.35);
+}
+
+/* ---- tokens/motion.css ---- */
+/* ============================================================
+   Vantage — motion tokens
+   Derived from the Vantage Motion Slides decks (Office/), which use
+   PowerPoint Morph (option="byObject") throughout. Morph has no true
+   web equivalent, so what transfers is the CHOREOGRAPHY and the
+   TIMING, not the mechanism.
+
+   Deck reality on 2026-08-24: the Light deck ships 2000ms on all 30
+   slides, the Dark deck 1500ms, while MOTION-SLIDES.md documents 1.4s.
+   --motion-scene below takes the documented intent as canonical.
+   ============================================================ */
+
+:root {
+  /* ---- Durations ----
+     fast/base are interface-scale (Button already transitions at 150ms).
+     scene is presentation-scale: one composed move, the slide-morph
+     equivalent. 800-2000ms all read well; below 600ms it stops feeling
+     calm and starts feeling nervous. */
+  --motion-fast:  150ms;
+  --motion-base:  260ms;
+  --motion-slow:  600ms;
+  --motion-scene: 1400ms;
+
+  /* ---- Easing ----
+     Everything decelerates into place. Nothing in this brand should
+     bounce, overshoot, or spring. */
+  --ease-standard: cubic-bezier(0.4, 0, 0.2, 1);   /* both ends — the morph-like default */
+  --ease-entrance: cubic-bezier(0.16, 1, 0.3, 1);  /* decelerate — things arriving */
+  --ease-exit:     cubic-bezier(0.7, 0, 0.84, 0);  /* accelerate — things leaving */
+
+  /* ---- Staging distances ----
+     The decks stage elements off-canvas on slide A and in place on B.
+     On the web these are the equivalent offsets to animate from. */
+  --motion-stage-x: 48px; /* enters from the side */
+  --motion-stage-y: 28px; /* rises from below */
+
+  /* ---- Stagger ----
+     Sequenced groups (cards landing, metrics rising) offset each item
+     by this much. Five items at 90ms is 360ms of spread — enough to
+     read as a sequence, short enough not to feel slow. */
+  --motion-stagger: 90ms;
+}
+
+/* Anyone who has asked the OS for less motion gets none of it. */
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --motion-fast: 1ms; --motion-base: 1ms; --motion-slow: 1ms;
+    --motion-scene: 1ms; --motion-stagger: 0ms;
+    --motion-stage-x: 0px; --motion-stage-y: 0px;
+  }
+}
+

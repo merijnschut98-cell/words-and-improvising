@@ -1,0 +1,345 @@
+WEBVTT
+
+1
+00:00:00.830 --> 00:00:05.114
+The cone of uncertainty is a model from Barry Boehm in nineteen eighty-one,
+
+2
+00:00:05.276 --> 00:00:07.459
+later worked out by Steve McConnell.
+
+3
+00:00:08.154 --> 00:00:11.218
+The earlier in a project, the wider the range.
+
+4
+00:00:12.238 --> 00:00:17.671
+At the initial idea it lands at zero point two five to four times the estimate.
+
+5
+00:00:18.435 --> 00:00:21.512
+Largely expert judgement, not hard measurement.
+
+6
+00:00:22.561 --> 00:00:27.495
+The cone only narrows if you really remove uncertainty, say with working pieces.
+
+7
+00:00:28.192 --> 00:00:29.736
+Time alone doesn't help.
+
+8
+00:00:31.104 --> 00:00:34.575
+A probabilistic forecast gives not a date but a probability,
+
+9
+00:00:34.703 --> 00:00:38.952
+say an eighty-five percent chance it is done before the first of March.
+
+10
+00:00:39.989 --> 00:00:44.250
+That's more honest, and the sponsor chooses how much certainty he wants.
+
+11
+00:00:45.270 --> 00:00:48.242
+The basis is historical data, often the throughput,
+
+12
+00:00:48.463 --> 00:00:50.646
+the items the team finishes per week.
+
+13
+00:00:51.648 --> 00:00:56.431
+Four to eight a week with sixty open gives seven and a half to fifteen weeks.
+
+14
+00:00:57.754 --> 00:01:00.796
+A Monte Carlo simulation draws random weeks
+
+15
+00:01:00.843 --> 00:01:03.397
+from the real history thousands of times,
+
+16
+00:01:03.641 --> 00:01:05.684
+until sixty items are done.
+
+17
+00:01:06.675 --> 00:01:08.997
+That gives thousands of end dates.
+
+18
+00:01:09.751 --> 00:01:14.012
+You read off when fifty percent of runs are done, and when eighty-five.
+
+19
+00:01:14.999 --> 00:01:19.469
+Daniel Vacanti and Troy Magennis made this popular in agile teams.
+
+20
+00:01:20.188 --> 00:01:23.729
+It only works if the way of working stays roughly the same.
+
+21
+00:01:25.062 --> 00:01:27.814
+NoEstimates took off around twenty twelve.
+
+22
+00:01:28.547 --> 00:01:33.575
+Stop estimating each item, cut work small and forecast by counting items.
+
+23
+00:01:34.605 --> 00:01:37.856
+Critics say you need a size for investment decisions.
+
+24
+00:01:38.866 --> 00:01:41.084
+A recurring problem is Goodhart's law.
+
+25
+00:01:41.802 --> 00:01:45.286
+When a measure becomes a target, it ceases to be a good measure.
+
+26
+00:01:46.369 --> 00:01:51.199
+Make velocity or points a target, and people serve the measure instead of the work.
+
+27
+00:01:52.266 --> 00:01:57.653
+This ties in with estimating in ranges, now from the team's own data, not a feeling.
+
+28
+00:01:58.663 --> 00:02:03.632
+In the steering committee, ask what data the date rests on and how certain it is.
+
+29
+00:02:04.374 --> 00:02:06.882
+And what does twenty percent more backlog do?
+
+30
+00:02:08.176 --> 00:02:11.903
+A team at a packaging-film maker replaces the labelling system.
+
+31
+00:02:12.602 --> 00:02:17.420
+Forty-eight small items are open, and the steering committee wants a go-live date.
+
+32
+00:02:18.485 --> 00:02:22.874
+In ten weeks the team finished fifty items, five a week on average.
+
+33
+00:02:23.888 --> 00:02:26.791
+Ten thousand runs give three in four done within
+
+34
+00:02:26.872 --> 00:02:29.566
+ten weeks and ninety-eight percent within eleven.
+
+35
+00:02:30.287 --> 00:02:32.017
+Practically all within twelve.
+
+36
+00:02:33.033 --> 00:02:34.461
+Which date do you advise?
+
+37
+00:02:35.185 --> 00:02:36.323
+First a quick sum.
+
+38
+00:02:37.055 --> 00:02:41.432
+Forty-eight divided by five is nine point six, about ten weeks,
+
+39
+00:02:41.548 --> 00:02:42.872
+matching the simulation.
+
+40
+00:02:43.884 --> 00:02:47.391
+The slowest week, three items, gives sixteen weeks,
+
+41
+00:02:47.472 --> 00:02:49.678
+but every week that slow is unlikely.
+
+42
+00:02:50.657 --> 00:02:53.977
+Within ten weeks is only about seventy-five percent.
+
+43
+00:02:54.706 --> 00:02:59.188
+For eighty-five percent certainty, advise eleven weeks as the commitment.
+
+44
+00:03:00.234 --> 00:03:04.495
+Add that ten weeks is little history, so the spread is probably wider.
+
+45
+00:03:05.244 --> 00:03:07.508
+If the list grows, the date moves.
+
+46
+00:03:08.248 --> 00:03:09.618
+We update it weekly.
+
+47
+00:03:10.933 --> 00:03:15.496
+A service level expectation is, by the Kanban Guide, an expectation.
+
+48
+00:03:16.222 --> 00:03:19.334
+It says how long an item takes, with a probability,
+
+49
+00:03:19.450 --> 00:03:21.969
+say eighty-five percent within eight days.
+
+50
+00:03:22.984 --> 00:03:25.620
+You take it from your own data with a percentile.
+
+51
+00:03:26.346 --> 00:03:29.272
+The eighty-fifth percentile of cycle times is the
+
+52
+00:03:29.353 --> 00:03:32.047
+time within which eighty-five percent were done.
+
+53
+00:03:33.062 --> 00:03:35.396
+That tells a customer more than an average.
+
+54
+00:03:36.718 --> 00:03:40.004
+With the SLE you steer daily on work item age.
+
+55
+00:03:40.718 --> 00:03:45.118
+If an item nears the limit, say seven of eight days, discuss it now.
+
+56
+00:03:46.139 --> 00:03:47.741
+Similar to a control chart,
+
+57
+00:03:47.892 --> 00:03:51.770
+where you step in before the product falls outside specification.
+
+58
+00:03:52.882 --> 00:03:58.037
+A cumulative flow diagram shows the items per step per day as stacked bands.
+
+59
+00:03:58.788 --> 00:04:01.110
+A band getting thicker is your bottleneck.
+
+60
+00:04:02.124 --> 00:04:06.141
+If arrivals and done drift apart, work in progress is growing.
+
+61
+00:04:07.199 --> 00:04:09.625
+That touches on conservation of flow.
+
+62
+00:04:10.322 --> 00:04:14.571
+What starts must on average also finish, a condition for Little's law.
+
+63
+00:04:15.881 --> 00:04:19.828
+Utilisation is the share of time people or machines are busy.
+
+64
+00:04:20.527 --> 00:04:22.141
+In the simplest queueing model,
+
+65
+00:04:22.233 --> 00:04:26.970
+waiting time grows with utilisation divided by one minus utilisation.
+
+66
+00:04:27.677 --> 00:04:32.158
+Four at eighty percent, nine at ninety and nineteen at ninety-five.
+
+67
+00:04:33.181 --> 00:04:35.247
+Those numbers hold only for that model,
+
+68
+00:04:35.341 --> 00:04:38.104
+but Donald Reinertsen showed product development
+
+69
+00:04:38.173 --> 00:04:40.879
+at high utilisation gets stuck in queues.
+
+70
+00:04:41.929 --> 00:04:45.540
+A team at a hundred percent has no room for the unexpected.
+
+71
+00:04:46.621 --> 00:04:50.731
+As a Lean consultant you know this as the reason for buffers and heijunka,
+
+72
+00:04:50.940 --> 00:04:53.634
+though knowledge work varies far more than on a line.
+
+73
+00:04:54.620 --> 00:04:58.138
+Experts argue whether to plan well below a hundred percent,
+
+74
+00:04:58.277 --> 00:05:00.796
+or reduce variation with smaller work.
+
+75
+00:05:02.124 --> 00:05:06.455
+A machine-software team at a sorting-machine maker finished twenty items,
+
+76
+00:05:06.571 --> 00:05:08.672
+on average in eight working days.
+
+77
+00:05:09.374 --> 00:05:11.023
+But what can the customer count on?
+
+78
+00:05:12.039 --> 00:05:14.802
+Eighty-five percent of twenty is seventeen.
+
+79
+00:05:15.518 --> 00:05:18.316
+The seventeenth sorted item took eleven days,
+
+80
+00:05:18.467 --> 00:05:22.763
+so the SLE becomes eighty-five percent within eleven working days.
+
+81
+00:05:23.791 --> 00:05:28.064
+One item has been nine days in testing on the machine, near that limit.
+
+82
+00:05:28.806 --> 00:05:29.990
+Discuss it today.
+
+83
+00:05:30.674 --> 00:05:32.694
+What holds it up, can someone help?
+
+84
+00:05:33.713 --> 00:05:34.967
+Look at the tail too.
+
+85
+00:05:35.648 --> 00:05:36.681
+What did those share?
+
+86
+00:05:37.436 --> 00:05:39.491
+That is often the real improvement.

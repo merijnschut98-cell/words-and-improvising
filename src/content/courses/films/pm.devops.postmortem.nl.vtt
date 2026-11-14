@@ -1,0 +1,273 @@
+WEBVTT
+
+1
+00:00:00.848 --> 00:00:03.484
+Een post-mortem, ook wel incidentreview,
+
+2
+00:00:03.797 --> 00:00:06.456
+is een gestructureerde bespreking na een grote storing.
+
+3
+00:00:07.187 --> 00:00:09.370
+Het doel: begrijpen wat er gebeurde,
+
+4
+00:00:09.671 --> 00:00:12.318
+waarom, en wat er verandert zodat het niet terugkomt.
+
+5
+00:00:13.356 --> 00:00:16.096
+Het resultaat is een kort document met een tijdlijn,
+
+6
+00:00:16.351 --> 00:00:18.487
+oorzaken en acties met een eigenaar.
+
+7
+00:00:19.427 --> 00:00:23.479
+Google maakte de aanpak breed bekend in het boek Site Reliability Engineering,
+
+8
+00:00:23.781 --> 00:00:27.635
+uit tweeduizend zestien, met een hoofdstuk over een postmortemcultuur.
+
+9
+00:00:28.961 --> 00:00:31.097
+De kern is dat de bespreking schuldvrij (blameless) is,
+
+10
+00:00:31.306 --> 00:00:34.789
+blameless: je zoekt naar wat in het systeem de fout mogelijk maakte,
+
+11
+00:00:35.091 --> 00:00:36.066
+niet naar wie hem maakte.
+
+12
+00:00:37.077 --> 00:00:40.641
+Iemand die de verkeerde knop indrukte, deed dat omdat de knop daar zat,
+
+13
+00:00:40.978 --> 00:00:43.451
+de procedure onduidelijk was of het druk was.
+
+14
+00:00:44.486 --> 00:00:46.878
+Dat is niet hetzelfde als geen verantwoordelijkheid.
+
+15
+00:00:47.613 --> 00:00:50.922
+Wie bewust regels overtreedt, wordt daarop aangesproken.
+
+16
+00:00:51.889 --> 00:00:54.838
+Maar een gewone vergissing is informatie, geen schuld.
+
+17
+00:00:56.159 --> 00:00:59.770
+Een tijdlijn is de ruggengraat: minuut voor minuut wat er gebeurde,
+
+18
+00:00:59.979 --> 00:01:01.709
+wat mensen zagen en wat ze deden.
+
+19
+00:01:02.690 --> 00:01:04.048
+Daarna zoek je oorzaken,
+
+20
+00:01:04.338 --> 00:01:07.647
+bijvoorbeeld met 5 keer waarom (5 Whys): steeds opnieuw waarom vragen,
+
+21
+00:01:07.868 --> 00:01:09.760
+tot je bij iets komt dat je kunt veranderen.
+
+22
+00:01:10.733 --> 00:01:13.450
+Taiichi Ohno maakte die methode bekend bij Toyota.
+
+23
+00:01:14.441 --> 00:01:18.946
+Pas op: bij complexe storingen zijn er vaak meerdere bijdragende oorzaken,
+
+24
+00:01:19.225 --> 00:01:20.002
+niet één wortel.
+
+25
+00:01:21.259 --> 00:01:22.687
+Twee ITIL-woorden helpen.
+
+26
+00:01:23.451 --> 00:01:26.539
+Een workaround is een tijdelijke manier om verder te werken,
+
+27
+00:01:26.806 --> 00:01:29.198
+terwijl de echte oorzaak nog niet is opgelost.
+
+28
+00:01:30.242 --> 00:01:33.173
+Bijvoorbeeld de koppeling elke ochtend handmatig herstarten.
+
+29
+00:01:34.115 --> 00:01:37.064
+Een bekende fout (known error) is een probleem waarvan de oorzaak bekend is,
+
+30
+00:01:37.308 --> 00:01:38.794
+maar dat nog niet is opgelost.
+
+31
+00:01:39.827 --> 00:01:41.835
+Die leg je vast met de workaround erbij,
+
+32
+00:01:42.114 --> 00:01:45.237
+zodat de servicedesk bij de volgende melding meteen weet wat te doen.
+
+33
+00:01:46.509 --> 00:01:50.364
+Waar experts over discussiëren: hoeveel post-mortems doe je?
+
+34
+00:01:51.096 --> 00:01:53.209
+Bij elke storing kost het te veel tijd.
+
+35
+00:01:53.920 --> 00:01:55.754
+Alleen bij de grootste mis je patronen.
+
+36
+00:01:56.774 --> 00:02:00.535
+Veel teams spreken een drempel af, bijvoorbeeld bij prioriteit een,
+
+37
+00:02:00.791 --> 00:02:03.519
+of bij elke storing die een lijn langer dan een uur stillegt.
+
+38
+00:02:04.497 --> 00:02:09.118
+Het zwakste punt is meestal de opvolging: acties zonder eigenaar en datum.
+
+39
+00:02:10.128 --> 00:02:14.145
+Een scherpe vraag: welke acties uit de vorige post-mortem zijn af?
+
+40
+00:02:15.443 --> 00:02:16.198
+Een voorbeeld.
+
+41
+00:02:16.972 --> 00:02:19.503
+Bij een fabrikant van frisdrank lag het MES,
+
+42
+00:02:19.839 --> 00:02:22.486
+het systeem dat orders en productie op de vloer bijhoudt,
+
+43
+00:02:22.695 --> 00:02:24.413
+op zaterdagochtend drie uur stil.
+
+44
+00:02:25.089 --> 00:02:26.378
+Jij begeleidt de post-mortem.
+
+45
+00:02:27.382 --> 00:02:28.079
+De tijdlijn.
+
+46
+00:02:28.785 --> 00:02:32.396
+Om tien voor zes een geplande update van het certificaat van de server.
+
+47
+00:02:33.087 --> 00:02:35.432
+Om zes uur kan de ochtendploeg niet inloggen.
+
+48
+00:02:36.457 --> 00:02:39.081
+Om twintig over zes wordt de storingsdienst gebeld.
+
+49
+00:02:39.835 --> 00:02:43.968
+Om twintig voor acht is de oorzaak gevonden, en om negen uur werkt alles weer.
+
+50
+00:02:44.939 --> 00:02:47.261
+Waarom één: waarom kon niemand inloggen?
+
+51
+00:02:47.928 --> 00:02:51.295
+Het nieuwe certificaat werd niet herkend door de scanners op de lijn.
+
+52
+00:02:52.251 --> 00:02:54.596
+Waarom twee: waarom werd het niet herkend?
+
+53
+00:02:55.304 --> 00:02:58.566
+De scanners hadden een oude lijst met vertrouwde certificaten.
+
+54
+00:02:59.590 --> 00:03:00.031
+Nu jij.
+
+55
+00:03:00.788 --> 00:03:02.634
+Ga verder met waarom drie en vier,
+
+56
+00:03:03.028 --> 00:03:05.454
+noem een workaround en twee acties met een eigenaar.
+
+57
+00:03:06.167 --> 00:03:06.864
+Denk even na.
+
+58
+00:03:08.137 --> 00:03:10.378
+Waarom drie: waarom was die lijst oud?
+
+59
+00:03:11.075 --> 00:03:15.279
+De scanners vallen onder OT, en zijn nooit meegenomen in de IT-updates.
+
+60
+00:03:16.263 --> 00:03:17.819
+Waarom vier: waarom niet?
+
+61
+00:03:18.564 --> 00:03:22.709
+Er is geen overzicht van welke apparaten van welke certificaten afhangen,
+
+62
+00:03:22.976 --> 00:03:25.751
+en IT en OT plannen hun wijzigingen apart.
+
+63
+00:03:26.765 --> 00:03:31.456
+De workaround: bij een certificaatwissel eerst de lijst op de scanners bijwerken.
+
+64
+00:03:32.433 --> 00:03:33.559
+Twee acties.
+
+65
+00:03:34.316 --> 00:03:37.973
+De OT-beheerder maakt binnen een maand een overzicht van de afhankelijkheden.
+
+66
+00:03:38.644 --> 00:03:42.289
+De IT-manager zet OT voortaan in het wijzigingsoverleg.
+
+67
+00:03:43.312 --> 00:03:47.109
+En geen schuldige: de beheerder die om tien voor zes de update deed,
+
+68
+00:03:47.398 --> 00:03:48.640
+volgde de procedure.

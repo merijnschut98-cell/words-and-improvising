@@ -1,0 +1,273 @@
+WEBVTT
+
+1
+00:00:00.846 --> 00:00:03.621
+A bakery starts a project against downtime.
+
+2
+00:00:04.317 --> 00:00:08.543
+At the kick-off you, the consultant, sit with six people in the meeting room.
+
+3
+00:00:09.246 --> 00:00:11.069
+You take 20 minutes for this.
+
+4
+00:00:12.078 --> 00:00:13.285
+You run a pre-mortem.
+
+5
+00:00:13.986 --> 00:00:18.467
+You say: imagine it is six months from now, and this project has failed.
+
+6
+00:00:19.527 --> 00:00:21.768
+Write down, alone, why it failed.
+
+7
+00:00:22.530 --> 00:00:24.817
+Everyone writes on their own first.
+
+8
+00:00:25.636 --> 00:00:30.570
+Then you collect one reason per person per round, until everything is on the board.
+
+9
+00:00:31.637 --> 00:00:34.365
+Writing alone first gets you everyone's view,
+
+10
+00:00:34.482 --> 00:00:37.187
+so the loudest voice does not set the direction.
+
+11
+00:00:37.880 --> 00:00:41.421
+Gary Klein described the method in 2007.
+
+12
+00:00:42.733 --> 00:00:43.511
+What comes up?
+
+13
+00:00:44.198 --> 00:00:48.390
+Three people write: maintenance never had time, because of the summer peak.
+
+14
+00:00:49.073 --> 00:00:53.136
+Someone else: the operators stopped logging stops after two weeks.
+
+15
+00:00:53.868 --> 00:00:55.934
+And: the new manager cancelled it.
+
+16
+00:00:56.969 --> 00:00:59.419
+Because the failure is imagined as a fact,
+
+17
+00:00:59.617 --> 00:01:02.427
+people name things they would not say otherwise.
+
+18
+00:01:03.117 --> 00:01:04.441
+The sponsor might leave.
+
+19
+00:01:05.151 --> 00:01:06.893
+The night shift won't accept it.
+
+20
+00:01:07.650 --> 00:01:09.438
+The IT change has no budget.
+
+21
+00:01:10.471 --> 00:01:14.186
+Klein cites research from 1989 here.
+
+22
+00:01:14.892 --> 00:01:15.728
+By his account,
+
+23
+00:01:15.914 --> 00:01:18.688
+looking back from an imagined future makes people
+
+24
+00:01:18.770 --> 00:01:21.614
+30 percent better at naming the right reasons.
+
+25
+00:01:22.941 --> 00:01:25.600
+Now you turn the top reasons into risks.
+
+26
+00:01:26.369 --> 00:01:29.689
+A risk is something that might happen and would hurt the project.
+
+27
+00:01:30.744 --> 00:01:32.335
+A risk register lists them.
+
+28
+00:01:33.038 --> 00:01:37.102
+Each risk gets a likelihood, an impact, meaning how bad it is,
+
+29
+00:01:37.287 --> 00:01:39.330
+an owner, and an action with a date.
+
+30
+00:01:40.375 --> 00:01:43.904
+The risk owner is one person who watches it and acts.
+
+31
+00:01:44.639 --> 00:01:45.730
+Not a department.
+
+32
+00:01:46.798 --> 00:01:49.642
+A line like: data may be poor, helps no one.
+
+33
+00:01:50.399 --> 00:01:51.189
+This one does:
+
+34
+00:01:51.328 --> 00:01:55.334
+the maintenance data from before 2023 may be
+
+35
+00:01:55.426 --> 00:01:57.911
+unusable after the move to the new system.
+
+36
+00:01:58.644 --> 00:01:59.596
+Owner: Pieter.
+
+37
+00:02:00.343 --> 00:02:02.793
+Action: a test export in week 1.
+
+38
+00:02:04.155 --> 00:02:08.822
+Many teams score likelihood and impact from 1 to 5, and multiply them.
+
+39
+00:02:09.542 --> 00:02:12.131
+A risk then scores 1 to 25.
+
+40
+00:02:13.164 --> 00:02:16.334
+Treat the score as a way to sort, not as the truth.
+
+41
+00:02:17.048 --> 00:02:19.335
+A 12 is not really worse than a 10.
+
+42
+00:02:20.321 --> 00:02:21.923
+The action is the mitigation:
+
+43
+00:02:22.039 --> 00:02:25.267
+what you do now to make the risk less likely or less harmful.
+
+44
+00:02:25.973 --> 00:02:27.320
+Monitoring is not one.
+
+45
+00:02:28.036 --> 00:02:30.091
+A test export in week 1 is.
+
+46
+00:02:31.112 --> 00:02:32.227
+Back to the bakery.
+
+47
+00:02:32.929 --> 00:02:35.971
+The summer peak: likelihood high, impact high.
+
+48
+00:02:36.672 --> 00:02:38.797
+The owner is the maintenance manager.
+
+49
+00:02:39.519 --> 00:02:44.558
+Action: plan the analysis before June, and reserve 4 hours a week per technician.
+
+50
+00:02:45.551 --> 00:02:47.978
+The logging: the owner is the shift lead.
+
+51
+00:02:48.710 --> 00:02:54.051
+Action: one-tap logging on the line terminal, the screen at the line, by week 3.
+
+52
+00:02:55.332 --> 00:02:58.153
+Most risk registers die after the kick-off.
+
+53
+00:02:58.858 --> 00:03:03.247
+Keep yours alive: only the top five are discussed in each steering group.
+
+54
+00:03:04.023 --> 00:03:07.796
+At the bakery, every steering group starts with these five.
+
+55
+00:03:08.820 --> 00:03:12.303
+And for each risk, the owner says what has happened since.
+
+56
+00:03:13.300 --> 00:03:15.552
+Add new risks as soon as you hear them.
+
+57
+00:03:16.259 --> 00:03:18.558
+You often hear them at the coffee machine.
+
+58
+00:03:19.601 --> 00:03:23.931
+When a risk comes true, it becomes an issue: a problem happening now.
+
+59
+00:03:24.649 --> 00:03:26.843
+You handle it; you don't just watch it.
+
+60
+00:03:28.242 --> 00:03:29.426
+Then the people side.
+
+61
+00:03:30.155 --> 00:03:35.171
+Some risks are sensitive, like: the plant manager doesn't really believe in this.
+
+62
+00:03:35.869 --> 00:03:39.178
+Don't write that in a register the plant manager reads.
+
+63
+00:03:40.251 --> 00:03:43.676
+Word it as a theme: sponsorship and visible support.
+
+64
+00:03:44.440 --> 00:03:48.225
+And discuss the real point one-on-one, with whoever can act on it.
+
+65
+00:03:49.257 --> 00:03:51.045
+Don't know how likely something is?
+
+66
+00:03:51.764 --> 00:03:54.678
+Say so, and plan a cheap test to find out.
+
+67
+00:03:55.782 --> 00:03:58.719
+And ask one sharp question for each top risk:
+
+68
+00:03:58.905 --> 00:04:01.552
+what would we see first if this starts to happen?

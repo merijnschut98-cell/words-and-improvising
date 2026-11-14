@@ -1,0 +1,365 @@
+WEBVTT
+
+1
+00:00:00.859 --> 00:00:03.866
+Scrum is een raamwerk voor een klein team en complexe producten:
+
+2
+00:00:04.145 --> 00:00:05.805
+de bekendste agile werkwijze.
+
+3
+00:00:06.791 --> 00:00:09.926
+De Scrum Guide van Ken Schwaber en Jeff Sutherland beschrijft het,
+
+4
+00:00:10.146 --> 00:00:11.655
+in zo'n dertien pagina's.
+
+5
+00:00:12.661 --> 00:00:16.992
+Vaste rollen, momenten en lijsten; de rest laat het bewust aan het team.
+
+6
+00:00:17.978 --> 00:00:22.541
+Werk gebeurt in sprints van hooguit een maand, vaak twee weken, direct na elkaar.
+
+7
+00:00:23.516 --> 00:00:26.558
+Elke sprint levert iets bruikbaars op, in een vast ritme.
+
+8
+00:00:27.550 --> 00:00:31.765
+Langer is riskant: het doel veroudert, problemen blijven verborgen.
+
+9
+00:00:33.015 --> 00:00:37.044
+Het Scrum Team is klein: meestal tien of minder, zonder hiërarchie.
+
+10
+00:00:38.017 --> 00:00:39.851
+Het draagt drie verantwoordelijkheden.
+
+11
+00:00:40.570 --> 00:00:42.973
+Sinds tweeduizend twintig zijn dat geen functies.
+
+12
+00:00:43.998 --> 00:00:46.715
+De Product Owner is één persoon, geen commissie.
+
+13
+00:00:47.422 --> 00:00:50.383
+Hij bewaakt de waarde: wat eerst komt, en waarom.
+
+14
+00:00:51.400 --> 00:00:56.357
+De Scrum Master helpt Scrum goed te gebruiken, en ruimt obstakels op; geen baas.
+
+15
+00:00:57.369 --> 00:01:02.001
+De Developers maken het werk: iedereen die bouwt, ook testers en analisten.
+
+16
+00:01:02.993 --> 00:01:06.627
+Voor jou als Lean-consultant: de Product Owner is de klantstem,
+
+17
+00:01:06.871 --> 00:01:08.856
+de Scrum Master een coach van het systeem.
+
+18
+00:01:10.149 --> 00:01:13.597
+In de fabriek werken vooral IT-teams zo: voor MES,
+
+19
+00:01:14.050 --> 00:01:16.674
+ERP, data en software voor machines.
+
+20
+00:01:17.693 --> 00:01:21.931
+Veelgemaakte fout: het hoofd IT als Product Owner én Scrum Master.
+
+21
+00:01:22.679 --> 00:01:24.200
+Niemand houdt hem een spiegel voor.
+
+22
+00:01:25.238 --> 00:01:29.221
+Vraag: wie beslist wat er eerst komt, en wie bewaakt hoe we werken?
+
+23
+00:01:30.222 --> 00:01:33.740
+Voorbeeld: een buizenfabrikant, een team van zeven.
+
+24
+00:01:34.441 --> 00:01:38.053
+Product Owner: de productieleider, twee dagen per week.
+
+25
+00:01:39.150 --> 00:01:42.412
+Scrum Master: een procesverbeteraar uit het Lean-team.
+
+26
+00:01:43.107 --> 00:01:44.593
+Plus vijf Developers.
+
+27
+00:01:45.616 --> 00:01:50.456
+Doel van sprint vijf: afkeur per oorzaak op een scherm melden, niet op papier.
+
+28
+00:01:51.400 --> 00:01:53.362
+Na twee weken gebruiken alle ploegen het.
+
+29
+00:01:54.087 --> 00:01:55.677
+Maandag begint sprint zes.
+
+30
+00:01:56.994 --> 00:02:02.346
+Scrum kent vijf events: vaste momenten om te plannen, inspecteren en bijsturen.
+
+31
+00:02:03.012 --> 00:02:04.452
+De sprint bevat de andere vier.
+
+32
+00:02:05.467 --> 00:02:07.824
+Elk heeft een timebox, een maximale duur.
+
+33
+00:02:08.515 --> 00:02:12.451
+Bij een maand: planning hooguit acht uur, de Daily Scrum een kwartier.
+
+34
+00:02:13.408 --> 00:02:15.602
+De Sprint Planning beantwoordt drie vragen.
+
+35
+00:02:16.305 --> 00:02:17.977
+Waarom is deze sprint waardevol?
+
+36
+00:02:18.648 --> 00:02:19.646
+Dat wordt het sprintdoel.
+
+37
+00:02:20.693 --> 00:02:21.482
+Wat kan er af?
+
+38
+00:02:22.226 --> 00:02:23.666
+Dat kiezen de Developers.
+
+39
+00:02:24.661 --> 00:02:24.916
+En hoe?
+
+40
+00:02:25.777 --> 00:02:27.673
+In stukken van meestal een dag of minder.
+
+41
+00:02:28.607 --> 00:02:32.705
+De Developers bepalen hoeveel, de Product Owner wat het belangrijkst is.
+
+42
+00:02:34.083 --> 00:02:37.183
+De Daily Scrum: een kwartier voor de Developers,
+
+43
+00:02:37.555 --> 00:02:41.142
+elke werkdag op dezelfde tijd en plek, richting het sprintdoel.
+
+44
+00:02:42.189 --> 00:02:46.101
+Geen statusoverleg voor de baas; de vorm kiest het team zelf.
+
+45
+00:02:47.128 --> 00:02:49.705
+De Sprint Review laat belanghebbenden zien wat af is;
+
+46
+00:02:49.926 --> 00:02:52.306
+samen bespreken ze wat nu het belangrijkst is.
+
+47
+00:02:53.028 --> 00:02:55.234
+Een werksessie, geen presentatie.
+
+48
+00:02:56.240 --> 00:02:59.711
+Nooit een poort: wat af is, mag eerder in gebruik.
+
+49
+00:03:00.699 --> 00:03:04.937
+In de Sprint Retrospective kijkt het team terug: de kaizenmotor van Scrum,
+
+50
+00:03:05.227 --> 00:03:06.492
+met één concrete actie.
+
+51
+00:03:07.519 --> 00:03:11.199
+Refinement is geen event: het verfijnen van de lijst loopt door.
+
+52
+00:03:12.470 --> 00:03:15.303
+Een drankenproducent met sprints van tien werkdagen.
+
+53
+00:03:15.994 --> 00:03:19.503
+Het team halveert elke timebox, een gangbare vuistregel.
+
+54
+00:03:20.493 --> 00:03:22.747
+Maandag de planning, hooguit vier uur.
+
+55
+00:03:23.701 --> 00:03:25.826
+Elke werkdag om negen uur de Daily Scrum.
+
+56
+00:03:26.833 --> 00:03:31.489
+Vrijdag week twee de Sprint Review met de ploegleiders, en de Sprint Retrospective.
+
+57
+00:03:32.459 --> 00:03:36.116
+Tien dagen een kwartier: tweeënhalf uur per persoon per sprint.
+
+58
+00:03:37.564 --> 00:03:41.233
+Drie artefacten, sinds tweeduizend twintig elk met een toezegging.
+
+59
+00:03:42.254 --> 00:03:45.749
+De Product Backlog is de geordende lijst van alles wat het product beter maakt.
+
+60
+00:03:46.441 --> 00:03:48.357
+De Product Owner bepaalt de volgorde.
+
+61
+00:03:49.367 --> 00:03:52.990
+Toezegging: het Product Goal, het doel op langere termijn.
+
+62
+00:03:53.952 --> 00:03:57.179
+De Sprint Backlog is het plan van de Developers voor deze sprint.
+
+63
+00:03:57.871 --> 00:03:59.205
+Het verandert als ze leren.
+
+64
+00:04:00.209 --> 00:04:03.925
+Toezegging: het Sprint Goal, het ene doel, dat focus geeft.
+
+65
+00:04:04.918 --> 00:04:05.557
+Te groot?
+
+66
+00:04:06.248 --> 00:04:09.684
+Ze passen de inhoud aan met de Product Owner; het doel blijft.
+
+67
+00:04:10.957 --> 00:04:15.067
+Het Increment is werkend product dat af is; soms meerdere per sprint.
+
+68
+00:04:16.055 --> 00:04:20.548
+De toezegging: de Definition of Done, wanneer werk echt af is,
+
+69
+00:04:20.711 --> 00:04:22.615
+zoals getest en geïnstalleerd.
+
+70
+00:04:23.612 --> 00:04:27.515
+Wat daar niet aan voldoet, wordt niet getoond: terug naar de Product Backlog.
+
+71
+00:04:28.462 --> 00:04:30.447
+Een kwaliteitspoort aan het eind van de lijn.
+
+72
+00:04:31.117 --> 00:04:32.069
+Half werk telt niet.
+
+73
+00:04:33.075 --> 00:04:36.988
+Is het Sprint Goal zinloos, dan mag alleen de Product Owner de sprint afbreken.
+
+74
+00:04:37.702 --> 00:04:38.306
+Zelden.
+
+75
+00:04:39.317 --> 00:04:43.043
+Fouten: vierhonderd items, een takenlijst van de baas,
+
+76
+00:04:43.369 --> 00:04:45.494
+een Definition of Done van alleen code.
+
+77
+00:04:46.535 --> 00:04:48.474
+Vraag: wat is het Product Goal?
+
+78
+00:04:49.137 --> 00:04:50.378
+Het doel van deze sprint?
+
+79
+00:04:51.114 --> 00:04:52.856
+Mag ik jullie Definition of Done zien?
+
+80
+00:04:54.148 --> 00:04:57.143
+Weegschalen in een vleesfabriek koppelen aan het MES.
+
+81
+00:04:57.905 --> 00:05:00.715
+Doel van sprint vier: lijn één stuurt gewichten.
+
+82
+00:05:01.753 --> 00:05:06.907
+De Definition of Done: getest met echte weegdata, gecontroleerd door kwaliteit,
+
+83
+00:05:07.105 --> 00:05:08.580
+op de acceptatieomgeving.
+
+84
+00:05:09.634 --> 00:05:11.283
+Van vijf items voldoen er drie.
+
+85
+00:05:11.989 --> 00:05:15.333
+Nummer vier is niet gecontroleerd, nummer vijf niet begonnen.
+
+86
+00:05:16.352 --> 00:05:17.316
+Wat laat het team zien?
+
+87
+00:05:18.016 --> 00:05:18.771
+Alleen die drie.
+
+88
+00:05:19.821 --> 00:05:22.271
+Vier en vijf gaan terug naar de Product Backlog;
+
+89
+00:05:22.480 --> 00:05:24.268
+de Product Owner bepaalt de volgorde.
+
+90
+00:05:25.289 --> 00:05:26.822
+Komen de gewichten van lijn één door?
+
+91
+00:05:27.465 --> 00:05:31.192
+Dan is het doel gehaald: een sprintdoel is sterker dan een takenlijst.

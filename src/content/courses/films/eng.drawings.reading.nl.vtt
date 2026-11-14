@@ -1,0 +1,337 @@
+WEBVTT
+
+1
+00:00:00.847 --> 00:00:04.702
+Een tekening toont een onderdeel in aanzichten: recht van voren,
+
+2
+00:00:05.027 --> 00:00:07.917
+van boven en van opzij, zonder perspectief.
+
+3
+00:00:08.571 --> 00:00:09.922
+Hier een gebogen beugel.
+
+4
+00:00:10.944 --> 00:00:13.312
+Europa gebruikt de Europese projectie (first-angle projection):
+
+5
+00:00:13.649 --> 00:00:14.810
+wat je van boven ziet,
+
+6
+00:00:15.030 --> 00:00:18.188
+komt ónder het vooraanzicht, wat je van links ziet, rechts.
+
+7
+00:00:19.206 --> 00:00:22.260
+De Verenigde Staten gebruiken de Amerikaanse projectie:
+
+8
+00:00:22.620 --> 00:00:24.442
+het bovenaanzicht staat erboven,
+
+9
+00:00:24.802 --> 00:00:26.358
+en rechts staat wat je van rechts ziet.
+
+10
+00:00:27.452 --> 00:00:30.099
+Een klein kegelsymbool in de stempel zegt welke.
+
+11
+00:00:30.847 --> 00:00:33.621
+Verwar je ze, dan maak je het onderdeel in spiegelbeeld.
+
+12
+00:00:34.949 --> 00:00:36.725
+Een doorsnede (section view) toont de binnenkant:
+
+13
+00:00:36.934 --> 00:00:39.767
+je snijdt het onderdeel in gedachten door langs de lijn A-A.
+
+14
+00:00:40.463 --> 00:00:44.898
+Arcering, dunne schuine lijntjes, markeert het doorgesneden materiaal.
+
+15
+00:00:45.860 --> 00:00:50.504
+Het 3D-plaatje in de hoek is alleen voor de oriëntatie: maten haal je er nooit uit.
+
+16
+00:00:51.523 --> 00:00:55.378
+De schaal (scale) zegt hoe groot er getekend is: één op één is ware grootte,
+
+17
+00:00:55.622 --> 00:00:58.013
+één op twee half zo groot, twee op één dubbel.
+
+18
+00:00:59.035 --> 00:01:01.392
+Meet nooit op een print: papier rekt.
+
+19
+00:01:02.148 --> 00:01:05.910
+Bij schaal één op vijf is 40 millimeter op papier in het echt 200,
+
+20
+00:01:06.119 --> 00:01:07.733
+maar lees gewoon de maat die erbij staat.
+
+21
+00:01:09.101 --> 00:01:13.466
+Je begint bij de stempel (title block), rechtsonder: tekeningnummer, benaming,
+
+22
+00:01:13.791 --> 00:01:19.712
+materiaal, schaal, projectiesymbool, wie tekende en vrijgaf, en de revisieletter.
+
+23
+00:01:20.736 --> 00:01:26.274
+Dit is een beugel van S235, een gangbaar constructiestaal, op schaal één op één,
+
+24
+00:01:26.564 --> 00:01:27.411
+revisie C.
+
+25
+00:01:28.372 --> 00:01:30.648
+Ook de algemene tolerantie (general tolerance) staat hier:
+
+26
+00:01:30.915 --> 00:01:33.422
+die geldt voor elke maat zonder eigen tolerantie.
+
+27
+00:01:34.105 --> 00:01:37.402
+Hier ISO 2768, klasse m.
+
+28
+00:01:38.413 --> 00:01:42.058
+Een maat van 50 millimeter, zoals de diepte van deze beugel,
+
+29
+00:01:42.360 --> 00:01:46.110
+mag dan tussen 49,7 en 50,3 liggen.
+
+30
+00:01:46.796 --> 00:01:49.733
+Moet het nauwer, dan krijgt de maat een eigen tolerantie.
+
+31
+00:01:51.036 --> 00:01:54.415
+Elke wijziging krijgt een nieuwe revisie (revision), met een nieuwe letter.
+
+32
+00:01:55.118 --> 00:01:57.881
+De revisietabel zegt wat er veranderde en wanneer.
+
+33
+00:01:58.910 --> 00:02:02.881
+Revisie B maakte het gat 9 millimeter in plaats van 8,5.
+
+34
+00:02:03.631 --> 00:02:09.668
+Revisie C, in januari 2025, maakte de buigradius 3 in plaats van 2.
+
+35
+00:02:10.634 --> 00:02:12.631
+Maar bij de kantbank werkte de insteller met
+
+36
+00:02:12.666 --> 00:02:15.127
+een geprinte revisie B in een plastic hoesje:
+
+37
+00:02:15.429 --> 00:02:17.693
+400 beugels met de oude radius,
+
+38
+00:02:18.076 --> 00:02:19.237
+afgekeurd bij de klant.
+
+39
+00:02:20.282 --> 00:02:23.811
+De oplossing is niet beter opletten, maar een scherm bij de machine,
+
+40
+00:02:24.137 --> 00:02:25.983
+rechtstreeks uit het PDM-systeem.
+
+41
+00:02:26.675 --> 00:02:29.241
+Dan bestaat op de vloer alleen de actuele revisie.
+
+42
+00:02:30.567 --> 00:02:34.712
+Een plus-min-tolerantie regelt alleen de maat: dit gat van 10,2,
+
+43
+00:02:35.129 --> 00:02:36.278
+nul tot plus een tiende.
+
+44
+00:02:37.006 --> 00:02:39.688
+Waar het zit en welke vorm het heeft, zegt plus-min niet.
+
+45
+00:02:40.775 --> 00:02:43.341
+Daarvoor zijn vorm- en plaatstoleranties,
+
+46
+00:02:43.573 --> 00:02:46.963
+in een tolerantiekader (feature control frame): een rijtje vakjes met een symbool,
+
+47
+00:02:47.253 --> 00:02:49.366
+een tolerantie en de referenties.
+
+48
+00:02:50.385 --> 00:02:55.761
+Lees het van links naar rechts: positie, binnen een ronde zone van 0,3 doorsnee,
+
+49
+00:02:56.109 --> 00:02:59.736
+de omcirkelde M, en de referenties A, B en C.
+
+50
+00:03:00.677 --> 00:03:04.300
+Europa en de Verenigde Staten lezen sommige tekeningen verschillend:
+
+51
+00:03:04.648 --> 00:03:07.307
+vraag eerst naar welke norm de tekening verwijst.
+
+52
+00:03:08.586 --> 00:03:10.351
+Je meet vanaf een referentievlak (datum):
+
+53
+00:03:10.594 --> 00:03:13.044
+het vlak waarop het onderdeel gepositioneerd wordt,
+
+54
+00:03:13.218 --> 00:03:15.203
+getekend als driehoekje met een letter.
+
+55
+00:03:15.903 --> 00:03:17.145
+Denk aan de hoek van een kamer.
+
+56
+00:03:18.149 --> 00:03:20.111
+Primair is A, hier het ondervlak.
+
+57
+00:03:20.796 --> 00:03:24.732
+De plaat ligt op drie steunpunten, want drie punten bepalen een vlak.
+
+58
+00:03:25.708 --> 00:03:29.295
+Secundair is B, de lange zijkant, tegen twee pennen.
+
+59
+00:03:29.992 --> 00:03:33.010
+Tertiair is C, de korte zijkant, tegen één pen.
+
+60
+00:03:33.970 --> 00:03:36.815
+De volgorde telt: zo ligt het deel in de opspanning,
+
+61
+00:03:37.035 --> 00:03:38.730
+en zo lijnt de meetmachine het uit.
+
+62
+00:03:39.426 --> 00:03:42.491
+Meet je vanaf een andere kant, dan krijg je een ander getal.
+
+63
+00:03:43.754 --> 00:03:47.446
+De plaat heeft vier gaten van 10,2 millimeter voor M10-bouten.
+
+64
+00:03:48.138 --> 00:03:49.090
+Waar moeten ze zitten?
+
+65
+00:03:50.064 --> 00:03:52.189
+Dat zegt een theoretisch exacte maat (basic dimension),
+
+66
+00:03:52.386 --> 00:03:57.518
+in een kadertje zonder plus-min: dit gat zit precies 25 van B en 40 van C.
+
+67
+00:03:58.523 --> 00:04:02.238
+De tolerantie staat in het kader: de positietolerantie (position tolerance).
+
+68
+00:04:02.918 --> 00:04:04.729
+Het hart van het gat moet binnen een ronde
+
+69
+00:04:04.764 --> 00:04:07.446
+zone van 0,3 doorsnee rond die plek liggen.
+
+70
+00:04:08.442 --> 00:04:09.092
+Waarom rond?
+
+71
+00:04:09.838 --> 00:04:12.264
+Een bout kan alle kanten op evenveel schuiven.
+
+72
+00:04:12.963 --> 00:04:16.179
+Een cirkel van 0,28 om een vierkant van plus-min
+
+73
+00:04:16.226 --> 00:04:18.943
+een tiende heeft 57 procent meer oppervlak:
+
+74
+00:04:19.175 --> 00:04:21.009
+meer goede delen worden goedgekeurd.
+
+75
+00:04:22.329 --> 00:04:24.117
+Positie meet je niet met een schuifmaat.
+
+76
+00:04:24.838 --> 00:04:29.202
+Een CMM, een 3D-meetmachine, lijnt uit op A, B en C,
+
+77
+00:04:29.551 --> 00:04:31.768
+tast het gat af met een taster en berekent het hart.
+
+78
+00:04:32.833 --> 00:04:38.824
+Het hart zit 0,12 naast in X en 0,09 in Y: samen 0,15 millimeter.
+
+79
+00:04:39.549 --> 00:04:42.985
+Als diameter is dat 0,30, precies op de grens.
+
+80
+00:04:43.968 --> 00:04:46.255
+Maar de omcirkelde M betekent MMC,
+
+81
+00:04:46.626 --> 00:04:50.237
+de maximum-materiaalvoorwaarde: de maat met het meeste materiaal,
+
+82
+00:04:50.504 --> 00:04:51.677
+bij een gat het kleinste gat.
+
+83
+00:04:52.745 --> 00:04:57.900
+Dit gat meet 10,25: 0,05 groter, en dat krijgt het als bonus.
+
+84
+00:04:58.626 --> 00:05:01.703
+De zone groeit naar 0,35, en het deel is goed.

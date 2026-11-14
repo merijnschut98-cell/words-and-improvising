@@ -1,0 +1,325 @@
+WEBVTT
+
+1
+00:00:00.841 --> 00:00:05.741
+The first test level: the partner tests its own configuration, the system test.
+
+2
+00:00:06.818 --> 00:00:11.473
+Then the chain test: a whole process across all systems, order to invoice.
+
+3
+00:00:12.510 --> 00:00:13.427
+Then the UAT,
+
+4
+00:00:13.613 --> 00:00:18.733
+the user acceptance test: future users check whether the system supports their work,
+
+5
+00:00:18.873 --> 00:00:19.790
+and accept it.
+
+6
+00:00:20.845 --> 00:00:24.816
+ISTQB, the international board for software testing,
+
+7
+00:00:24.955 --> 00:00:28.960
+described acceptance testing as formal testing against user needs,
+
+8
+00:00:29.112 --> 00:00:31.306
+requirements and business processes.
+
+9
+00:00:32.607 --> 00:00:36.392
+Key users test: experienced people from every department,
+
+10
+00:00:36.554 --> 00:00:39.712
+who help design the system and later train colleagues.
+
+11
+00:00:40.441 --> 00:00:41.370
+Not the partner.
+
+12
+00:00:42.380 --> 00:00:47.488
+They test with test scenarios from real work: a rush order during a shortage,
+
+13
+00:00:47.663 --> 00:00:50.600
+a blocked half-packed batch, a returned pallet.
+
+14
+00:00:51.662 --> 00:00:56.154
+Each scenario links back to the requirements, so every Must is tested.
+
+15
+00:00:57.484 --> 00:01:02.767
+A test script spells a scenario out: steps, input and expected result.
+
+16
+00:01:03.555 --> 00:01:05.982
+The tester notes what happened: pass or fail.
+
+17
+00:01:07.008 --> 00:01:09.864
+Use real data from the last mock migration:
+
+18
+00:01:10.015 --> 00:01:13.939
+a key user spots a familiar article with the wrong unit at once,
+
+19
+00:01:14.067 --> 00:01:15.599
+or a routing missing a step.
+
+20
+00:01:16.663 --> 00:01:20.320
+With invented data, those errors stay hidden until go-live.
+
+21
+00:01:21.648 --> 00:01:23.517
+The UAT ends with sign-off:
+
+22
+00:01:23.750 --> 00:01:27.871
+the process owners formally accept that it met the agreed criteria,
+
+23
+00:01:28.011 --> 00:01:29.950
+often tied to a partner payment.
+
+24
+00:01:31.019 --> 00:01:33.992
+It is not the training, though it helps key users learn,
+
+25
+00:01:34.177 --> 00:01:37.857
+nor the moment for new wishes: those go to the change process.
+
+26
+00:01:38.871 --> 00:01:43.364
+Often the build runs late, the UAT is squeezed from four weeks to one,
+
+27
+00:01:43.596 --> 00:01:46.475
+and key users test between their normal work.
+
+28
+00:01:47.516 --> 00:01:51.197
+Or they test only the happy path, where everything goes right.
+
+29
+00:01:52.251 --> 00:01:56.617
+Ask: who tests, how many hours a week are they freed, and with which data?
+
+30
+00:01:57.942 --> 00:02:02.551
+A food producer plans the UAT for its new ERP: four processes,
+
+31
+00:02:02.783 --> 00:02:06.824
+a hundred and twenty test scripts, awkward cases included.
+
+32
+00:02:07.886 --> 00:02:10.812
+One script takes an hour and a half on average,
+
+33
+00:02:11.033 --> 00:02:15.271
+including preparing the data: a hundred and eighty hours for round one.
+
+34
+00:02:16.276 --> 00:02:17.286
+Eight key users,
+
+35
+00:02:17.542 --> 00:02:20.177
+each freed for half of a thirty-six-hour week:
+
+36
+00:02:20.351 --> 00:02:22.801
+a hundred and forty-four hours a week.
+
+37
+00:02:23.790 --> 00:02:26.785
+So one round takes one point two five weeks.
+
+38
+00:02:27.781 --> 00:02:30.893
+Yet the project lead plans two weeks for round one,
+
+39
+00:02:31.031 --> 00:02:35.280
+with room for defects and waiting, and one week to retest what failed.
+
+40
+00:02:36.357 --> 00:02:40.421
+Backfill for the key users is arranged with the shift leaders beforehand.
+
+41
+00:02:41.799 --> 00:02:46.188
+A defect is a result that differs from the expected one, logged with steps,
+
+42
+00:02:46.315 --> 00:02:49.496
+screenshot and script ID, so others can repeat it.
+
+43
+00:02:50.584 --> 00:02:54.531
+Not every defect is a system fault: it can be wrong test data,
+
+44
+00:02:54.647 --> 00:02:57.968
+something the tester has not learned yet, or a new wish.
+
+45
+00:02:58.966 --> 00:03:00.754
+The severity is the impact.
+
+46
+00:03:01.523 --> 00:03:05.030
+One: blocking, the process cannot continue, such as shipping.
+
+47
+00:03:05.759 --> 00:03:08.058
+Two: serious, with a workaround.
+
+48
+00:03:08.842 --> 00:03:09.794
+Three: minor.
+
+49
+00:03:10.449 --> 00:03:12.527
+Four: cosmetic, such as a typo.
+
+50
+00:03:13.521 --> 00:03:18.723
+Priority is how fast to fix it: usually as severity, but a date can raise it,
+
+51
+00:03:18.908 --> 00:03:22.077
+like a label format for a customer launching next month.
+
+52
+00:03:23.331 --> 00:03:25.920
+Triage is the daily meeting where test lead,
+
+53
+00:03:26.036 --> 00:03:30.471
+partner, key users and a process owner sort new defects: a real fault?
+
+54
+00:03:31.221 --> 00:03:31.918
+How severe?
+
+55
+00:03:32.634 --> 00:03:34.004
+Who fixes it, by when?
+
+56
+00:03:35.031 --> 00:03:39.780
+For a Lean consultant it resembles an andon response: quick, close to the work,
+
+57
+00:03:40.000 --> 00:03:41.347
+with the people who know it.
+
+58
+00:03:42.176 --> 00:03:46.229
+The process owner has the last word on severity, not the partner.
+
+59
+00:03:47.269 --> 00:03:50.764
+After a fix, the tester reruns the script: a retest.
+
+60
+00:03:51.531 --> 00:03:54.143
+If it passes, the defect is closed.
+
+61
+00:03:55.170 --> 00:03:57.179
+A fix can break something elsewhere,
+
+62
+00:03:57.341 --> 00:04:00.650
+so a regression test reruns scripts that passed earlier.
+
+63
+00:04:01.374 --> 00:04:03.533
+The bigger the fix, the bigger the set.
+
+64
+00:04:04.868 --> 00:04:07.515
+The UAT ends on exit criteria:
+
+65
+00:04:07.689 --> 00:04:11.068
+conditions agreed in advance that say when it is finished.
+
+66
+00:04:12.075 --> 00:04:16.394
+For example: all scripts run, at least ninety-five percent passed,
+
+67
+00:04:16.557 --> 00:04:22.036
+no open severity one, severity two only with an accepted workaround and a fix date.
+
+68
+00:04:23.114 --> 00:04:27.340
+Ask early: who decides severity, and can the partner lower it alone?
+
+69
+00:04:28.063 --> 00:04:32.010
+If so, the criteria are only as strong as the partner wants.
+
+70
+00:04:33.305 --> 00:04:37.531
+Day eight of the UAT for a new MES at a plastics processor.
+
+71
+00:04:38.276 --> 00:04:42.131
+Of a hundred and twenty scripts, a hundred and twelve have run,
+
+72
+00:04:42.328 --> 00:04:45.997
+a hundred and one passed; twenty-three defects are open.
+
+73
+00:04:47.008 --> 00:04:51.838
+Triage finds six are no fault: three wrong test data, two a training gap,
+
+74
+00:04:52.036 --> 00:04:52.965
+one a new wish.
+
+75
+00:04:53.996 --> 00:04:59.209
+Seventeen remain: two of severity one, five of two, seven of three, three of four.
+
+76
+00:05:00.279 --> 00:05:05.108
+Those two: a work order cannot be closed, and the label misses the batch number.
+
+77
+00:05:06.139 --> 00:05:10.539
+The exit criteria ask ninety-five percent of a hundred and twenty:
+
+78
+00:05:10.713 --> 00:05:12.164
+a hundred and fourteen.
+
+79
+00:05:12.885 --> 00:05:14.661
+So thirteen more must pass.
+
+80
+00:05:15.673 --> 00:05:20.502
+Both severity ones must be fixed, retested and covered by a regression set.
+
+81
+00:05:21.258 --> 00:05:23.661
+The partner gets them first, with a date.

@@ -1,0 +1,5 @@
+{
+  "_note": "The narration voice and speed (Piper length scale: below 1 faster, above 1 slower) per language. Change the voice here only: narrate.mjs and speak.py name none. Dutch: nl_NL-alex-medium, Merijn's pick from the voice A/B of 2026-11-09 (films/_kit/voice-ab, sample E1 at 1.15), about 8 % slower at 1.27 because E1 was a little fast (measured on the A/B test paragraph: 3.24 words a second at 1.15, 2.99 at 1.27). Earlier default: nl_NL-ronnie-medium at 0.82; other candidate nl_NL-pim-medium at 0.82. A one-off listen without editing this file: node films/_kit/narrate.mjs <id> --lang nl --voice nl_NL-pim-medium:0.82 --local",
+  "nl": { "model": "nl_NL-alex-medium", "length": 1.27 },
+  "en": { "model": "en_GB-alan-medium", "length": 0.92 }
+}

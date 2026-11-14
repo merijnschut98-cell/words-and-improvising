@@ -1,0 +1,353 @@
+WEBVTT
+
+1
+00:00:00.855 --> 00:00:05.627
+Een Scrum-team telt hooguit tien mensen; een nieuwe verpakkingsmachine vraagt meer.
+
+2
+00:00:06.595 --> 00:00:11.742
+De PLC-besturing, het scherm, de camerakeuring en de koppeling met het ERP.
+
+3
+00:00:12.754 --> 00:00:17.096
+Zes teams doen prima Scrum en lopen toch vast: team A wacht op team B.
+
+4
+00:00:17.791 --> 00:00:18.882
+Een afhankelijkheid (dependency).
+
+5
+00:00:19.885 --> 00:00:23.554
+Opschalen: afspraken waarmee veel teams als één geheel leveren.
+
+6
+00:00:24.526 --> 00:00:26.302
+De bekendste aanpak: SAFe,
+
+7
+00:00:26.464 --> 00:00:30.632
+uit tweeduizend elf; versie zes is van begin tweeduizend drieëntwintig.
+
+8
+00:00:31.636 --> 00:00:34.840
+Een jaarlijkse enquête noemt SAFe al jaren het meest gebruikt.
+
+9
+00:00:35.533 --> 00:00:37.147
+Let wel: geen steekproef.
+
+10
+00:00:38.415 --> 00:00:42.607
+Het hart van SAFe: de Agile Release Train, een team van agile teams.
+
+11
+00:00:43.698 --> 00:00:47.483
+Meestal vijftig tot honderdvijfentwintig mensen, lang bij elkaar.
+
+12
+00:00:48.448 --> 00:00:53.208
+De trein vertrekt op vaste tijden; wat niet klaar is, gaat mee met de volgende.
+
+13
+00:00:54.205 --> 00:00:58.930
+Dat ritme is de cadans (cadence): alle teams plannen, bouwen en leveren tegelijk.
+
+14
+00:00:59.915 --> 00:01:04.385
+De grote cadans is het Planning Interval: de PI duurt acht tot twaalf weken.
+
+15
+00:01:05.383 --> 00:01:08.274
+Iteraties duren twee weken; de laatste,
+
+16
+00:01:08.518 --> 00:01:11.571
+de IP-iteratie (IP iteration), is voor verbeteren en plannen.
+
+17
+00:01:12.549 --> 00:01:16.833
+Net als takt op een lijn: elke twee weken samen integreren en testen.
+
+18
+00:01:17.822 --> 00:01:21.084
+Vraag: welke teams leveren samen iets werkends?
+
+19
+00:01:21.848 --> 00:01:22.626
+Dat is je trein.
+
+20
+00:01:23.970 --> 00:01:26.002
+Voorbeeld: een machinebouwer,
+
+21
+00:01:26.280 --> 00:01:30.472
+tweeënzeventig mensen op de software van een nieuwe lijn, in teams van negen.
+
+22
+00:01:31.424 --> 00:01:36.192
+Dat zijn acht teams: binnen vijftig tot honderdvijfentwintig, dus één ART.
+
+23
+00:01:37.136 --> 00:01:41.443
+Een PI van tien weken heeft vijf iteraties van twee: vier om te bouwen,
+
+24
+00:01:41.721 --> 00:01:42.882
+één IP-iteratie.
+
+25
+00:01:43.886 --> 00:01:47.601
+Per jaar vijf komma twee: zo'n vijf keer plannen alle acht teams samen.
+
+26
+00:01:48.897 --> 00:01:52.682
+PI Planning brengt de hele trein op één lijn: meestal twee dagen,
+
+27
+00:01:52.949 --> 00:01:55.016
+één zaal, in de IP-iteratie.
+
+28
+00:01:56.034 --> 00:01:58.751
+Dag één: de bedrijfscontext en de visie.
+
+29
+00:01:59.477 --> 00:02:01.532
+Wat moet het product kunnen, en waarom?
+
+30
+00:02:02.562 --> 00:02:06.870
+De teams plannen zelf, per iteratie, met hun eigen capaciteit.
+
+31
+00:02:07.905 --> 00:02:10.773
+Eind dag één zoekt de leiding waar capaciteit of voorrang knelt.
+
+32
+00:02:11.649 --> 00:02:14.238
+Dag twee: bijstellen en presenteren.
+
+33
+00:02:15.230 --> 00:02:18.896
+Elk team schrijft PI-objectives (PI objectives): korte doelen in zakelijke taal.
+
+34
+00:02:19.833 --> 00:02:20.344
+Twijfel?
+
+35
+00:02:21.069 --> 00:02:24.180
+Dan uncommitted: het telt mee, maar is geen belofte.
+
+36
+00:02:25.229 --> 00:02:26.344
+De Business Owners,
+
+37
+00:02:26.587 --> 00:02:30.349
+zakelijk verantwoordelijk, geven elk doel een waarde van één tot tien.
+
+38
+00:02:31.348 --> 00:02:33.694
+Wordt het krap, dan gaat waarde negen voor drie.
+
+39
+00:02:34.985 --> 00:02:39.025
+Afhankelijkheden komen op het ART Planning Board: teams in rijen,
+
+40
+00:02:39.328 --> 00:02:40.628
+iteraties in kolommen.
+
+41
+00:02:41.634 --> 00:02:45.477
+Een rode draad verbindt werk van team A met team B, dat erop wacht.
+
+42
+00:02:46.532 --> 00:02:51.455
+Risico's gaan door ROAM: opgelost, eigenaar, aanvaard of verkleind.
+
+43
+00:02:52.513 --> 00:02:56.832
+Tot slot de confidence vote: één tot vijf vingers voor hoe haalbaar het plan is.
+
+44
+00:02:57.866 --> 00:03:01.395
+Een regel uit trainingen: gemiddeld drie of meer is genoeg,
+
+45
+00:03:01.651 --> 00:03:03.276
+lager betekent opnieuw plannen.
+
+46
+00:03:03.923 --> 00:03:05.909
+Wie één of twee steekt, krijgt het woord.
+
+47
+00:03:06.938 --> 00:03:09.457
+Een obeya, Japans voor grote kamer.
+
+48
+00:03:10.158 --> 00:03:13.722
+Valkuil: het bord hangt vol en niemand zegt dat het niet past.
+
+49
+00:03:15.106 --> 00:03:20.388
+Voorbeeld: een team heeft vier iteraties van dertig story points: honderdtwintig.
+
+50
+00:03:21.389 --> 00:03:26.149
+Twintig procent blijft vrij voor onverwacht werk en storingen: zesennegentig punten.
+
+51
+00:03:27.153 --> 00:03:30.787
+Storing melden met één tik: veertig punten, waarde negen.
+
+52
+00:03:31.520 --> 00:03:34.794
+Rapport per ploeg: vijfendertig, waarde zes.
+
+53
+00:03:35.823 --> 00:03:39.469
+Koppeling met het nieuwe MES: dertig, waarde zeven.
+
+54
+00:03:40.165 --> 00:03:42.162
+Samen honderdvijf: past niet.
+
+55
+00:03:43.219 --> 00:03:44.670
+De koppeling wordt uncommitted.
+
+56
+00:03:45.393 --> 00:03:49.027
+Beloofd: vijfenzeventig punten, met ruimte voor uitloop.
+
+57
+00:03:50.329 --> 00:03:55.286
+De Release Train Engineer, de RTE, is een dienend leider en coach van de trein.
+
+58
+00:03:56.289 --> 00:04:00.027
+Begeleidt de events, haalt obstakels weg en stuurt op doorstroming.
+
+59
+00:04:01.049 --> 00:04:05.902
+Geen baas die taken uitdeelt; vaak een oud-programmamanager, een bekende valkuil.
+
+60
+00:04:06.877 --> 00:04:09.582
+Product Management bepaalt welke oplossingen gewenst,
+
+61
+00:04:09.722 --> 00:04:11.510
+haalbaar en levensvatbaar zijn.
+
+62
+00:04:12.502 --> 00:04:16.055
+Zij ordenen de ART Backlog: de features van de hele trein.
+
+63
+00:04:17.036 --> 00:04:20.020
+Een feature past in één PI en heeft waarde voor een gebruiker.
+
+64
+00:04:20.992 --> 00:04:24.614
+De Product Owner zit bij één team en maakt van features user stories.
+
+65
+00:04:25.953 --> 00:04:29.912
+Product Management kijkt naar markt en klant, de PO naar team en details.
+
+66
+00:04:30.928 --> 00:04:35.061
+De System Architect bewaakt de technische samenhang: architectuur,
+
+67
+00:04:35.421 --> 00:04:36.977
+koppelingen, voorbereiding.
+
+68
+00:04:38.015 --> 00:04:41.463
+Elk team heeft een Scrum Master, in SAFe zes ook Team Coach.
+
+69
+00:04:42.222 --> 00:04:44.033
+De Business Owners sturen zakelijk.
+
+70
+00:04:45.063 --> 00:04:45.876
+Let op namen:
+
+71
+00:04:46.155 --> 00:04:49.928
+een productmanager bij een machinebouwer doet vaak marketing en verkoop:
+
+72
+00:04:50.183 --> 00:04:50.880
+geen SAFe-rol.
+
+73
+00:04:51.887 --> 00:04:53.930
+Een sterke PO heeft mandaat en tijd.
+
+74
+00:04:54.635 --> 00:04:55.587
+Maar één dag per week?
+
+75
+00:04:56.344 --> 00:04:57.308
+Dan gokken teams.
+
+76
+00:04:58.342 --> 00:05:01.686
+Vraag: als team drie en Product Management het oneens zijn,
+
+77
+00:05:01.930 --> 00:05:03.451
+wie beslist, en hoe snel?
+
+78
+00:05:04.786 --> 00:05:08.768
+Voorbeeld: een producent van weegsystemen, zes teams.
+
+79
+00:05:09.542 --> 00:05:10.308
+Je kijkt een week mee.
+
+80
+00:05:11.260 --> 00:05:16.507
+De RTE, een oud-projectmanager, deelt maandag taken uit en controleert vrijdag.
+
+81
+00:05:17.595 --> 00:05:20.776
+Product Management: één persoon met een commerciële baan erbij;
+
+82
+00:05:21.055 --> 00:05:22.994
+de ART Backlog negen maanden oud.
+
+83
+00:05:24.117 --> 00:05:27.171
+Drie teams delen één PO, twee middagen per week.
+
+84
+00:05:27.903 --> 00:05:29.319
+Welke rollen zijn mis of te dun?
+
+85
+00:05:30.288 --> 00:05:32.041
+De RTE stuurt op taken,
+
+86
+00:05:32.343 --> 00:05:37.440
+dus teams leren niet plannen; Product Management heeft geen tijd; de PO is te dun.
+
+87
+00:05:38.425 --> 00:05:42.047
+Voorstel: coach de RTE, maak Product Management vrij,
+
+88
+00:05:42.361 --> 00:05:44.114
+en geef elk team een PO met mandaat.

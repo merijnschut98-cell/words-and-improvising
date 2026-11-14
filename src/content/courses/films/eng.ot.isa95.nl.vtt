@@ -1,0 +1,341 @@
+WEBVTT
+
+1
+00:00:00.847 --> 00:00:06.222
+ISA-95 is de internationale norm over hoe de systemen van een fabriek samenhangen.
+
+2
+00:00:06.871 --> 00:00:09.077
+Het eerste deel verscheen in 2000.
+
+3
+00:00:10.138 --> 00:00:15.049
+Met de niveaus spreek je één taal met IT, met OT, de techniek die machines bestuurt,
+
+4
+00:00:15.421 --> 00:00:16.605
+en met leveranciers.
+
+5
+00:00:17.321 --> 00:00:20.757
+Vijf, van nul tot vier: de verdiepingen van deze fabriek.
+
+6
+00:00:22.069 --> 00:00:26.167
+Niveau nul is het proces zelf: de kunststof die in de matrijs een dop wordt.
+
+7
+00:00:27.168 --> 00:00:31.104
+Niveau één meet en beweegt: sensoren zoals de temperatuurvoeler,
+
+8
+00:00:31.440 --> 00:00:33.611
+actuatoren zoals de koelwaterklep.
+
+9
+00:00:34.624 --> 00:00:37.399
+Niveau twee bewaakt en bestuurt: de PLC,
+
+10
+00:00:37.793 --> 00:00:40.324
+de industriële computer die de machine aanstuurt.
+
+11
+00:00:41.058 --> 00:00:43.241
+Sommige tekeningen zetten hem op niveau één.
+
+12
+00:00:44.261 --> 00:00:45.436
+Ook SCADA hoort hier.
+
+13
+00:00:46.075 --> 00:00:49.755
+Daarmee volgen en bedienen operators de hele installatie op schermen.
+
+14
+00:00:51.066 --> 00:00:56.349
+Niveau drie stuurt de productie, meestal met een MES: welke order op welke machine,
+
+15
+00:00:56.616 --> 00:00:58.996
+wat er verbruikt, gemaakt en afgekeurd is.
+
+16
+00:00:59.986 --> 00:01:04.781
+Het kwaliteitssysteem voor meetrapporten werkt per order en dienst: ook niveau drie.
+
+17
+00:01:05.809 --> 00:01:11.162
+Niveau vier is de bedrijfsplanning in het ERP, zoals SAP: klantorders,
+
+18
+00:01:11.452 --> 00:01:13.658
+inkoop, voorraad en kosten.
+
+19
+00:01:14.661 --> 00:01:17.505
+De norm gaat vooral over de grens tussen drie en vier:
+
+20
+00:01:17.877 --> 00:01:20.082
+welke informatie daar heen en weer gaat.
+
+21
+00:01:21.398 --> 00:01:23.429
+Het handigste onderscheid is de tijdschaal (timescale):
+
+22
+00:01:23.720 --> 00:01:25.798
+hoe snel beslissingen op een niveau vallen.
+
+23
+00:01:26.782 --> 00:01:31.275
+Niveau vier denkt in maanden tot dagen, niveau drie in dagen tot seconden,
+
+24
+00:01:31.565 --> 00:01:35.768
+één en twee in seconden en sneller; de voeler zelfs in milliseconden.
+
+25
+00:01:36.758 --> 00:01:38.024
+Valt een systeem een uur uit?
+
+26
+00:01:38.764 --> 00:01:43.199
+Zonder PLC staat de machine stil, zonder ERP draait de lijn meestal door.
+
+27
+00:01:44.207 --> 00:01:47.609
+Typische fout: we halen de OEE uit SAP.
+
+28
+00:01:48.244 --> 00:01:51.931
+Het ERP weet wat er geboekt is, niet wat de machine per minuut deed.
+
+29
+00:01:52.649 --> 00:01:56.759
+Vraag dus: op welk niveau ontstaat dit getal, en waar gebruiken we het?
+
+30
+00:01:58.092 --> 00:01:59.148
+Volg nu één order.
+
+31
+00:01:59.787 --> 00:02:03.978
+Het ERP maakt een productieorder (production order): 2.000 doppen van type A,
+
+32
+00:02:04.233 --> 00:02:05.197
+klaar op donderdag.
+
+33
+00:02:06.255 --> 00:02:08.786
+De stuklijst (bill of materials) zegt welke materialen erin gaan,
+
+34
+00:02:09.169 --> 00:02:12.292
+en hoeveel: 25 gram granulaat per dop.
+
+35
+00:02:12.971 --> 00:02:15.815
+2.000 maal 25 gram is 50 kilo.
+
+36
+00:02:16.800 --> 00:02:19.923
+De routing zegt welke bewerkingen, in welke volgorde,
+
+37
+00:02:20.236 --> 00:02:24.753
+waar en hoe lang: spuitgieten op machine 4, 12 seconden per cyclus.
+
+38
+00:02:26.157 --> 00:02:30.279
+Stuklijst en routing zijn stamdata (master data): vaste gegevens voor veel orders,
+
+39
+00:02:30.522 --> 00:02:33.645
+beheerd in het ERP, met een kopie in het MES.
+
+40
+00:02:34.664 --> 00:02:38.949
+Staat er 10 seconden terwijl de machine er 12 haalt, dan lijkt elke dienst te traag.
+
+41
+00:02:39.732 --> 00:02:44.237
+Vaak zijn stamdata bij de MES-invoering één keer overgenomen en nooit bijgehouden.
+
+42
+00:02:44.925 --> 00:02:47.781
+Vraag dus wie een cyclustijd aanpast, en waar.
+
+43
+00:02:48.711 --> 00:02:53.154
+Het MES verdeelt het werk over lijnen en diensten: deze order op dinsdag,
+
+44
+00:02:53.317 --> 00:02:55.096
+vroege dienst, machine 4.
+
+45
+00:02:56.038 --> 00:02:59.928
+De operator start hem op de HMI, het aanraakscherm aan de machine.
+
+46
+00:03:00.609 --> 00:03:03.117
+De PLC laadt de instellingen voor type A.
+
+47
+00:03:04.393 --> 00:03:07.864
+De PLC telt elke cyclus, SCADA toont de voortgang,
+
+48
+00:03:08.166 --> 00:03:10.174
+de historian bewaart de temperaturen.
+
+49
+00:03:11.136 --> 00:03:15.826
+Aan het eind meldt het MES 1.960 goed en 40 afkeur terug aan het ERP.
+
+50
+00:03:16.539 --> 00:03:19.163
+Orders gaan omlaag, gegevens komen omhoog.
+
+51
+00:03:20.170 --> 00:03:25.185
+Meestal heeft het ERP de order, stuklijst en voorraad, het MES de echte tijden,
+
+52
+00:03:25.452 --> 00:03:29.342
+afkeur met redenen en batches, de PLC de instellingen en de teller.
+
+53
+00:03:30.312 --> 00:03:32.658
+Dus dat staat in SAP en dat zit in de machine
+
+54
+00:03:32.716 --> 00:03:34.875
+kunnen over hetzelfde getal allebei waar zijn.
+
+55
+00:03:36.179 --> 00:03:40.208
+Netwerkbeveiligers tekenen bijna dezelfde lagen: het Purdue-model (Purdue model),
+
+56
+00:03:40.440 --> 00:03:45.188
+van begin jaren negentig, nu vooral een netwerkkaart: welk systeem waar staat,
+
+57
+00:03:45.536 --> 00:03:46.534
+en welk verkeer mag.
+
+58
+00:03:47.526 --> 00:03:49.999
+ISA-95 bouwde erop voort,
+
+59
+00:03:50.301 --> 00:03:51.497
+maar is een functiemodel (functional model):
+
+60
+00:03:51.787 --> 00:03:55.142
+welke taken er zijn en welke informatie ertussen gaat.
+
+61
+00:03:55.880 --> 00:03:58.190
+Over kabels en firewalls zegt het niets.
+
+62
+00:03:59.220 --> 00:04:02.006
+Zo’n vaste uitwisseling heet een informatiestroom (information flow),
+
+63
+00:04:02.274 --> 00:04:05.397
+zoals de productieplanning van het ERP naar het MES.
+
+64
+00:04:06.441 --> 00:04:10.690
+Bij Purdue zijn nul tot drie de fabriek, vier het kantoornetwerk van de site,
+
+65
+00:04:10.922 --> 00:04:12.431
+en vijf het bedrijfsnetwerk (enterprise network),
+
+66
+00:04:12.815 --> 00:04:14.974
+met de centrale systemen en internet.
+
+67
+00:04:16.261 --> 00:04:20.580
+Tussen drie en vier, op drie punt vijf, zit de industriële DMZ (industrial DMZ),
+
+68
+00:04:20.963 --> 00:04:22.588
+een later toegevoegd tussennetwerk.
+
+69
+00:04:23.309 --> 00:04:26.304
+Kantoor en fabriek praten ermee, niet met elkaar.
+
+70
+00:04:27.300 --> 00:04:30.144
+Niveau drie is voor een MES-leverancier een taak,
+
+71
+00:04:30.481 --> 00:04:32.977
+voor een netwerkbeheerder een plek onder de DMZ.
+
+72
+00:04:33.823 --> 00:04:37.086
+Vraag: bedoel je wat het systeem doet, of waar het staat?
+
+73
+00:04:37.830 --> 00:04:39.873
+De nummering is een gewoonte, geen wet.
+
+74
+00:04:40.927 --> 00:04:43.829
+Een cloud-MES dat orders stuurt en tellingen terugkrijgt,
+
+75
+00:04:44.027 --> 00:04:47.208
+is functioneel niveau drie, maar staat buiten niveau vijf.
+
+76
+00:04:47.887 --> 00:04:48.874
+Past Purdue dan nog?
+
+77
+00:04:49.563 --> 00:04:53.928
+De meeste experts zeggen ja, als denkkader, met nieuw verkeer via de DMZ.
+
+78
+00:04:55.028 --> 00:04:56.607
+Geen verbinding die buiten begint,
+
+79
+00:04:56.943 --> 00:05:00.867
+mag de fabriek bereiken: een connector op niveau drie zelf naar buiten,
+
+80
+00:05:01.088 --> 00:05:03.956
+naar een doorgeefluik in de DMZ dat met de cloud praat;
+
+81
+00:05:04.269 --> 00:05:05.813
+daarover komen de orders binnen.
+
+82
+00:05:06.830 --> 00:05:09.721
+De beveiligingsnorm spreekt van zones en conduits:
+
+83
+00:05:10.151 --> 00:05:13.599
+groepen apparaten en de gecontroleerde verbindingen ertussen.
+
+84
+00:05:14.305 --> 00:05:15.512
+Noteer beide kaarten,
+
+85
+00:05:15.838 --> 00:05:20.412
+en vraag bij mooie lagen de firewallregels: vaak hangt alles toch in één netwerk.

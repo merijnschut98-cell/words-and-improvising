@@ -1,0 +1,285 @@
+WEBVTT
+
+1
+00:00:00.916 --> 00:00:05.026
+This mixing vessel works in batches: it makes one lot at a time,
+
+2
+00:00:05.200 --> 00:00:06.454
+and then starts again.
+
+3
+00:00:07.197 --> 00:00:11.539
+One cycle is fill, heat, react or mix, cool, empty and clean.
+
+4
+00:00:12.538 --> 00:00:16.892
+The batch cycle time is everything between two starts of the same vessel.
+
+5
+00:00:17.565 --> 00:00:21.165
+So the waiting counts too: for an operator, for a lab result,
+
+6
+00:00:21.327 --> 00:00:23.115
+or for a free tank downstream.
+
+7
+00:00:24.096 --> 00:00:28.427
+The capacity of a vessel is the batch size divided by the cycle time.
+
+8
+00:00:29.136 --> 00:00:33.351
+A 5-hour cycle of 4 tonnes gives 0.8 tonnes per hour.
+
+9
+00:00:34.110 --> 00:00:38.533
+If the vessel runs day and night, that is about 19 tonnes per day.
+
+10
+00:00:39.847 --> 00:00:45.025
+An example: a paint mixing vessel that makes 3,000 kilograms per batch.
+
+11
+00:00:45.756 --> 00:00:47.451
+Filling takes 40 minutes.
+
+12
+00:00:48.226 --> 00:00:53.125
+Then come 90 minutes of dispersing: breaking up the pigment powder into the liquid.
+
+13
+00:00:54.150 --> 00:00:58.272
+After that, 50 minutes of waiting for the result of the QC sample,
+
+14
+00:00:58.399 --> 00:01:02.985
+20 minutes to adjust, 60 minutes to fill off and 40 minutes to clean.
+
+15
+00:01:03.694 --> 00:01:06.434
+Together 300 minutes: five hours.
+
+16
+00:01:07.426 --> 00:01:14.195
+So the capacity is 3,000 kilograms divided by 5 hours: 600 kilograms per hour.
+
+17
+00:01:15.253 --> 00:01:17.587
+Every minute in the cycle counts the same.
+
+18
+00:01:18.268 --> 00:01:21.379
+Engineers like to shorten the reaction or the mixing.
+
+19
+00:01:22.078 --> 00:01:26.397
+But filling, emptying, cleaning and waiting often take a third of the cycle,
+
+20
+00:01:26.548 --> 00:01:28.649
+and they are usually easier to cut.
+
+21
+00:01:29.456 --> 00:01:31.255
+Here it is even more than half.
+
+22
+00:01:32.541 --> 00:01:36.582
+After dispersing, a sample goes to the lab, for quality control.
+
+23
+00:01:37.277 --> 00:01:41.678
+Only after QC release, the lab’s approval, may the batch move on.
+
+24
+00:01:42.636 --> 00:01:46.955
+But the lab serves the whole site, so the sample joins the back of the queue.
+
+25
+00:01:47.631 --> 00:01:50.139
+All that time the vessel sits full and still.
+
+26
+00:01:50.886 --> 00:01:53.661
+As engineers put it: the vessel is not slow,
+
+27
+00:01:53.788 --> 00:01:57.120
+it spends 50 minutes of every batch waiting for the lab.
+
+28
+00:01:58.486 --> 00:02:01.458
+Then cleaning, with CIP: cleaning in place.
+
+29
+00:02:02.180 --> 00:02:06.650
+A spray head in the vessel rinses the walls with hot water and detergent,
+
+30
+00:02:06.836 --> 00:02:09.379
+and the liquid also runs through the pipes.
+
+31
+00:02:10.135 --> 00:02:12.295
+Nobody has to take anything apart.
+
+32
+00:02:13.376 --> 00:02:16.174
+Waiting and cleaning are often the two big ones.
+
+33
+00:02:16.874 --> 00:02:20.264
+So faster lab tests, a measurement in the pipe itself,
+
+34
+00:02:20.415 --> 00:02:24.409
+or a shorter cleaning programme add capacity, without a new vessel.
+
+35
+00:02:25.437 --> 00:02:27.329
+Experts argue about cleaning.
+
+36
+00:02:28.033 --> 00:02:29.786
+Do you clean after every batch,
+
+37
+00:02:29.972 --> 00:02:34.175
+or run a campaign first: several batches of the same product in a row?
+
+38
+00:02:34.886 --> 00:02:39.031
+A campaign saves cleaning time, but you must prove it stays hygienic,
+
+39
+00:02:39.217 --> 00:02:40.807
+and you need longer storage.
+
+40
+00:02:42.123 --> 00:02:43.481
+Back to the paint vessel.
+
+41
+00:02:44.218 --> 00:02:49.129
+An inline viscosity meter is added: it measures in the pipe how thick the paint is.
+
+42
+00:02:49.858 --> 00:02:53.295
+And the lab gets a fixed fast-track slot for the samples.
+
+43
+00:02:54.279 --> 00:02:58.250
+The wait for quality control drops from 50 to 15 minutes.
+
+44
+00:02:58.971 --> 00:03:02.361
+The new cycle takes 265 minutes.
+
+45
+00:03:03.359 --> 00:03:06.192
+That is four hours and twenty-five minutes.
+
+46
+00:03:06.917 --> 00:03:12.397
+3,000 kilograms in that time is 679 kilograms per hour:
+
+47
+00:03:12.560 --> 00:03:14.893
+13 percent more from the same vessel,
+
+48
+00:03:15.009 --> 00:03:17.203
+without anyone touching the dispersing.
+
+49
+00:03:18.504 --> 00:03:21.824
+With several vessels in a row, the whole plant counts.
+
+50
+00:03:22.562 --> 00:03:26.753
+A reactor of 6 hours per batch feeds a filter of 3 hours.
+
+51
+00:03:27.467 --> 00:03:32.076
+The filter waits half the time: the plant makes one batch every 6 hours.
+
+52
+00:03:33.110 --> 00:03:36.918
+Add a second reactor beside it, taking turns with the first.
+
+53
+00:03:37.732 --> 00:03:42.492
+Then a batch comes out every 3 hours, as long as the filter keeps pace.
+
+54
+00:03:43.506 --> 00:03:46.327
+The bottleneck is the stage that limits the whole plant.
+
+55
+00:03:47.085 --> 00:03:51.311
+Divide the time of each stage by its number of parallel vessels:
+
+56
+00:03:51.497 --> 00:03:53.563
+the longest result is the bottleneck.
+
+57
+00:03:54.259 --> 00:03:58.426
+Here both stages are now at 3 hours, so there is no margin.
+
+58
+00:03:59.827 --> 00:04:01.627
+How do you see where the time goes?
+
+59
+00:04:02.350 --> 00:04:06.193
+Batch control often follows the standard ISA-88.
+
+60
+00:04:06.962 --> 00:04:10.271
+In it, a recipe is split into ever smaller steps.
+
+61
+00:04:11.263 --> 00:04:16.441
+The smallest step is called a phase: for example charge, heat, hold or transfer.
+
+62
+00:04:17.179 --> 00:04:21.648
+Each phase has set values, such as an amount, a temperature or a time.
+
+63
+00:04:22.661 --> 00:04:27.654
+The control system runs the phases, and logs each phase in a batch report.
+
+64
+00:04:29.002 --> 00:04:30.767
+So ask for the batch reports,
+
+65
+00:04:30.929 --> 00:04:34.447
+with the actual time per phase over the last 50 batches.
+
+66
+00:04:35.149 --> 00:04:38.144
+The gap between the fastest and the slowest batches
+
+67
+00:04:38.237 --> 00:04:41.302
+is often the biggest capacity gain on the whole site.
+
+68
+00:04:42.370 --> 00:04:46.608
+A typical trap: vessels sitting full at shift change or in breaks,
+
+69
+00:04:46.770 --> 00:04:49.069
+because nobody starts the next phase.
+
+70
+00:04:50.046 --> 00:04:53.239
+So a sharp question in any batch plant is: per batch,
+
+71
+00:04:53.436 --> 00:04:58.069
+how many minutes does this vessel sit waiting for a person, the lab or a free tank?

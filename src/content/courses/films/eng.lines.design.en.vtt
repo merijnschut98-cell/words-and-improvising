@@ -1,0 +1,309 @@
+WEBVTT
+
+1
+00:00:00.835 --> 00:00:04.713
+This is an assembly line for water pumps: a row of stations,
+
+2
+00:00:04.852 --> 00:00:08.103
+workplaces where one fixed part of the work is done.
+
+3
+00:00:09.097 --> 00:00:14.008
+A conveyor, a moving belt or chain, carries the product from station to station.
+
+4
+00:00:15.026 --> 00:00:17.650
+Each station adds something: the pump housing,
+
+5
+00:00:17.894 --> 00:00:20.228
+the impeller, the cover with six screws,
+
+6
+00:00:20.402 --> 00:00:23.049
+and finally the test: then the pump is done.
+
+7
+00:00:24.043 --> 00:00:26.667
+Follow one product and count the stations.
+
+8
+00:00:27.389 --> 00:00:31.742
+Ask at each one: what is added here, and does a person or a machine do it?
+
+9
+00:00:33.111 --> 00:00:36.176
+A manual station is a person with hand tools,
+
+10
+00:00:36.327 --> 00:00:38.370
+like here at the housing and the cover.
+
+11
+00:00:39.374 --> 00:00:44.111
+Semi-automatic: the person loads and starts, and a machine does the work.
+
+12
+00:00:44.912 --> 00:00:47.373
+This press pushes the impeller into place.
+
+13
+00:00:48.372 --> 00:00:51.844
+Fully automatic, the machine does it all, like this test,
+
+14
+00:00:52.041 --> 00:00:56.708
+behind guarding: a light curtain stops the machine when someone reaches through.
+
+15
+00:00:57.721 --> 00:01:02.040
+And by the stack light, the lamp column on the machine: usually green running,
+
+16
+00:01:02.226 --> 00:01:03.979
+yellow waiting, red a fault.
+
+17
+00:01:04.756 --> 00:01:06.230
+That can differ per plant.
+
+18
+00:01:07.588 --> 00:01:11.210
+The cycle time is how long a station takes for one product.
+
+19
+00:01:11.969 --> 00:01:16.811
+With a stopwatch: 50, 55, 65 and 45 seconds.
+
+20
+00:01:17.803 --> 00:01:22.099
+The slowest station is the bottleneck: the whole line cannot go faster.
+
+21
+00:01:22.844 --> 00:01:24.806
+Products pile up in front of it.
+
+22
+00:01:25.844 --> 00:01:28.491
+Takt is the time per product to meet demand.
+
+23
+00:01:29.229 --> 00:01:32.816
+Seven hours is twenty-five thousand two hundred seconds,
+
+24
+00:01:33.061 --> 00:01:36.765
+divided by 420 pumps: 60 seconds.
+
+25
+00:01:37.771 --> 00:01:45.667
+The cover station, at 65 seconds, is above takt: 387 pumps per shift, 33 short.
+
+26
+00:01:46.456 --> 00:01:47.989
+That is where you look first.
+
+27
+00:01:49.328 --> 00:01:52.393
+In a paced line the belt moves everything on together,
+
+28
+00:01:52.520 --> 00:01:55.701
+on the takt: every station must finish in time.
+
+29
+00:01:56.716 --> 00:02:00.396
+In an unpaced line each station passes on when it is done,
+
+30
+00:02:00.559 --> 00:02:05.562
+usually on pallets over a belt that keeps running, with small queues in between.
+
+31
+00:02:06.601 --> 00:02:09.887
+A cell is a compact group of machines, often in a U,
+
+32
+00:02:10.026 --> 00:02:12.534
+with a few operators who walk with the work.
+
+33
+00:02:13.259 --> 00:02:17.404
+Cells suit many variants, paced lines high, stable volumes.
+
+34
+00:02:18.754 --> 00:02:23.572
+Four stations of about 40 seconds, with room for 1 product between them.
+
+35
+00:02:24.277 --> 00:02:28.596
+Station 3, a press-fit unit, sometimes jams for 4 minutes.
+
+36
+00:02:29.596 --> 00:02:31.697
+Without buffers the line is hard-linked:
+
+37
+00:02:31.871 --> 00:02:34.762
+stations 1 and 2 cannot pass their product on,
+
+38
+00:02:34.925 --> 00:02:36.597
+station 4 gets nothing.
+
+39
+00:02:37.322 --> 00:02:40.143
+So faster stations 1 and 2 do not help.
+
+40
+00:02:41.252 --> 00:02:43.237
+Then the availabilities multiply:
+
+41
+00:02:43.423 --> 00:02:46.673
+eight stations that can each run 95 percent
+
+42
+00:02:46.732 --> 00:02:49.680
+of the time give about 66 percent together.
+
+43
+00:02:50.691 --> 00:02:53.686
+A buffer is a small queue between two stations.
+
+44
+00:02:54.387 --> 00:02:59.751
+Size it on the stop: 240 seconds divided by 40 is 6 places.
+
+45
+00:03:00.569 --> 00:03:03.379
+Buffers absorb stops, they do not remove them.
+
+46
+00:03:04.702 --> 00:03:06.200
+Now stations A to D.
+
+47
+00:03:06.894 --> 00:03:12.072
+Press B takes 30 seconds, leak tester C 36: C is the bottleneck,
+
+48
+00:03:12.258 --> 00:03:14.685
+with a buffer of 5 places in front.
+
+49
+00:03:15.457 --> 00:03:18.116
+B stops, and C works on from the buffer.
+
+50
+00:03:19.178 --> 00:03:23.845
+Station A has finished a product, but the place after it is full: A is blocked.
+
+51
+00:03:24.910 --> 00:03:28.752
+If the stop lasts longer than 3 minutes, the buffer is empty.
+
+52
+00:03:29.442 --> 00:03:32.507
+C could work, but nothing arrives: C is starved.
+
+53
+00:03:33.842 --> 00:03:36.605
+A buffer only works if it can fill up again.
+
+54
+00:03:37.302 --> 00:03:42.747
+B makes 120 an hour, C 100: that difference is the spare capacity.
+
+55
+00:03:43.729 --> 00:03:48.303
+The buffer refills at 20 an hour: 5 places take 15 minutes.
+
+56
+00:03:49.019 --> 00:03:54.802
+With a stop every 20 minutes, B runs about 17 minutes in between, just enough.
+
+57
+00:03:55.479 --> 00:03:57.000
+Stops every ten minutes?
+
+58
+00:03:57.775 --> 00:03:59.006
+Then attack the stops.
+
+59
+00:04:00.015 --> 00:04:05.739
+All products in the stations and buffers together are the WIP, the work in progress.
+
+60
+00:04:06.733 --> 00:04:10.065
+So protect the bottleneck first: the buffer before it full,
+
+61
+00:04:10.216 --> 00:04:14.489
+against starved, the buffer after it nearly empty, against blocked.
+
+62
+00:04:15.866 --> 00:04:20.672
+A discrete-event simulation plays every product, stop and repair in time,
+
+63
+00:04:20.870 --> 00:04:21.927
+with the real spread.
+
+64
+00:04:22.943 --> 00:04:26.670
+MTBF is the average running time between two stops.
+
+65
+00:04:27.691 --> 00:04:30.454
+MTTR is the average length of a stop.
+
+66
+00:04:31.162 --> 00:04:35.550
+Does that stop data come from machine data, or is it a guess by the supplier?
+
+67
+00:04:36.598 --> 00:04:42.461
+An integrator promises 112 an hour against a target of 105.
+
+68
+00:04:43.141 --> 00:04:48.319
+But in his model every station stops for exactly 3 minutes every 2 hours.
+
+69
+00:04:49.485 --> 00:04:54.895
+Real stops last 30 seconds to 20 minutes, and fixed stops flatter the buffers.
+
+70
+00:04:55.722 --> 00:05:00.053
+Ask for real stop data, and validate the model on an existing line.
+
+71
+00:05:01.356 --> 00:05:06.116
+The quick check is Little’s law: WIP equals throughput times lead time.
+
+72
+00:05:07.097 --> 00:05:13.262
+The model holds about 40 products, at 112 an hour: 0.36 hour,
+
+73
+00:05:13.425 --> 00:05:15.608
+about 21 minutes in the line.
+
+74
+00:05:16.292 --> 00:05:17.952
+Close to the planned 20.
+
+75
+00:05:18.950 --> 00:05:20.691
+After the first few places,
+
+76
+00:05:20.854 --> 00:05:24.709
+bigger buffers often give a little more output but much more lead time.
+
+77
+00:05:25.345 --> 00:05:27.655
+So ask: where does the output level off?

@@ -1,0 +1,332 @@
+// defineFilm(): turns a film's source (scenes with marked captions, a stage
+// drawing and its script) into one standalone page with the player inlined.
+//
+// - Terms: {t:Snijsnelheid} is looked up in the served lessons; its English word
+//   comes from the English lesson at the same position. The build fails when a
+//   term is not found, or when the nl and en captions name different terms.
+//   An English name two served lessons share is looked up first in the lesson
+//   its Dutch term came from (Stakeholdermap, Stakeholderkaart: "Stakeholder map").
+// - Numbers: {n:1167} is formatted per language and must appear in the Dutch
+//   text of a served lesson. The film's model asserts it computes them.
+// - Focus (v16): each beat names the part(s) of the drawing it explains, so the
+//   player lights them white / light blue (a soft halo) while the beat is
+//   spoken and its caption shows. `focus: 'ct'` or `focus: ['ct', 'vt']` (keys
+//   of the stage's data-cue groups), or `focus: null` for an overview sentence
+//   that points at nothing. A term's cue ({t:…} with `cue: { Term: 'key' }`)
+//   joins the beat's focus. The older `cues: [...]` list still lights parts in
+//   films without a focus field. The build counts beats that light nothing and
+//   cue keys that are no data-cue group of the drawing, and prints them as
+//   warnings. A film with `strictFocus: true` (all new films) must give every
+//   beat a focus field (no `cues`, no term in an overview): then both are
+//   errors. The page data carries `focus` per beat and `strictFocus` only when
+//   the film declares them, so older films' data is unchanged.
+// - Stage text (v16, measured in the lesson view at 390 px; the app runs a film
+//   edge to edge on a phone, so the 640-unit stage is 390 px wide): at least
+//   20 font-size units in an HTML-only film (12.2 px) and at least 22 units in
+//   a film that will be rendered to video (the 1280x720 frame shows the stage
+//   at 0.9 of its width: 22 units = 12.1 px). Older films keep their sizes.
+// - Module intro film (v17): `module: 'pm.plan'` in place of `lessons`, and
+//   `topics: { breakdown: { scene: 's2', cue: 'tBreak' }, ... }`, one entry per
+//   topic of the module: the scene that explains it and the data-cue group of
+//   its part (a tile or card that carries its title). The film serves all of the
+//   module's lessons, so its terms come from any of them, and its {n:} numbers
+//   from any of them or from the module's own title, blurb and topic titles.
+//   Instead of per-term coverage it is held to the map (checkIntro in
+//   assert.mjs): every topic named (its title in a caption or on a card, in both
+//   languages) and shown (a beat of its scene lights its part). The data carries
+//   `module` and `topics` (with the titles from the index, for the stage to
+//   draw); a lesson film's data is unchanged. Its id is '<module id>.intro', the
+//   index names it (`intro:`) and sw.js precaches it (tests/intro.test.js).
+//   Notes: docs/superpowers/plans/2026-11-11-v16-notes.md, "Module intro films".
+// - Field film (v17): `field: 'pm.field.lifecycle'` (a field of FIELDS; the
+//   film's id is the field's id) in place of `lessons`, and `stations:
+//   { 'pm.intake': { scene: 's2', cue: 'st-intake' }, ... }`, one entry per
+//   module of the field: the scene that explains it and the data-cue group of
+//   its station. The film serves all lessons of the field's modules; its {n:}
+//   numbers come from them or from the field's and its modules' own text. It is
+//   held to the road (checkStations in assert.mjs): every module named in a
+//   caption of its own scene in both languages (a whole word), in the order of
+//   the road, explained in two beats and lit, and the film ends on the shared
+//   map (mapScene) with exactly the field's places lit and lit by its last scene.
+//   The narration guard and the label fit apply (station titles fit a row of the
+//   road, STATION_UNITS). The data carries `field` and `stations` (with the
+//   index's module titles); the field names it (`film:`), sw.js precaches it.
+// - Then the shared checks (coverage, language, pacing; films/_kit/assert.mjs)
+//   and the size cap. Any problem throws, so a broken film is never written.
+import { mkdirSync, writeFileSync } from 'node:fs';
+import { dirname, join } from 'node:path';
+import { fileURLToPath } from 'node:url';
+import { MODULES, FIELDS, loadModule, placeOf } from '../../src/content/courses/index.js';
+import { parseMarked, formatNumber, plainOf, speakOf } from './timeline.mjs';
+import { checkFilm, checkFocus, cueKeysOf, lessonTextOf, moduleMetaTextOf, hasNumber, narrationWords, NARRATION_WPS, MAX_BYTES, TARGET_BYTES } from './assert.mjs';
+import { pageHtml } from './player.mjs';
+
+export const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..', '..');
+
+export async function allLessons() {
+  const out = { nl: new Map(), en: new Map() };
+  for (const m of MODULES) for (const lang of ['nl', 'en']) for (const l of (await loadModule(m.subject, m.id, lang)).lessons) out[lang].set(l.id, l);
+  return out;
+}
+
+// "Turn-mill centre" → "turn-mill centre"; "C-axis" and "HSS" stay, and so does
+// a proper noun ("Taylor equation"): with the English lesson text as corpus, a
+// first word that it writes capitalised in mid-sentence (or after a sentence's
+// opening article: "A Coriolis meter") and never in lower case keeps its capital.
+// A term whose English name already carries a parenthesis ("Direct on line
+// (DOL)") is glossed with a comma, so the Dutch caption never nests brackets:
+// "Direct inschakelen (direct on line, DOL)".
+export function glossCase(term, corpus) {
+  const en = term.replace(/\s*\(([^()]+)\)$/, ', $1');
+  if (!/^[A-Z][a-z]/.test(en)) return en;
+  // a title with a later capitalised word ("Machinery Regulation") is a proper name
+  if (/\s[A-Z][a-z]/.test(en)) return en;
+  const first = en.split(/[\s-]/)[0];
+  const low = first[0].toLowerCase() + first.slice(1);
+  const esc = (w) => w.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  const proper = corpus !== undefined
+    && new RegExp(`(?:[a-z,]|\\b(?:A|An|The)) +${esc(first)}(?![A-Za-z])`).test(corpus)
+    && !new RegExp(`(^|[^A-Za-z])${esc(low)}(?![A-Za-z])`).test(corpus);
+  return proper ? en : en[0].toLowerCase() + en.slice(1);
+}
+// All English lesson text, with the term names and definitions.
+export function englishCorpus(lessons) {
+  const parts = [];
+  for (const l of lessons.en.values()) parts.push(lessonTextOf(l), ...(l.terms || []).map((t) => `${t.term}\n${t.def}`));
+  return parts.join('\n');
+}
+
+// prefer: a lesson searched first, so an English term shared by two served
+// lessons (Stakeholdermap, Stakeholderkaart: both "Stakeholder map") resolves to
+// the lesson its Dutch twin at the same position named.
+function findTerm(name, lang, served, lessons, prefer) {
+  const key = name.toLowerCase();
+  for (const id of prefer && served.includes(prefer) ? [prefer, ...served] : served) {
+    const i = (lessons[lang].get(id).terms || []).findIndex((x) => x.term.toLowerCase() === key);
+    if (i >= 0) return { lesson: id, index: i };
+  }
+  throw new Error(`term "${name}" (${lang}) is in none of the served lessons`);
+}
+
+// prefer: the lesson a scene belongs to, searched first. own: the index entries
+// whose own Dutch text (title, blurb, topic titles) is searched last: an intro
+// film's module, or a field film's field and then its modules. what: how the
+// error names them ("module pm.plan", "field pm.field.lifecycle").
+function findNumber(value, served, lessons, prefer, own = [], what = '') {
+  for (const id of prefer && served.includes(prefer) ? [prefer, ...served] : served) if (hasNumber(lessonTextOf(lessons.nl.get(id)), value)) return id;
+  for (const meta of own) if (hasNumber(moduleMetaTextOf(meta, 'nl'), value)) return meta.id;
+  throw new Error(`number ${value} is in none of the served Dutch lessons${what ? ` nor in the text of ${what}` : ''}`);
+}
+
+// An intro film's module (v17), or null for a lesson film.
+function introModule(spec, modules) {
+  if (spec.module === undefined) return null;
+  if (spec.field !== undefined) throw new Error(`film ${spec.id}: name a field, a module or lessons, not more than one`);
+  if (spec.lessons !== undefined) throw new Error(`film ${spec.id}: name a module or lessons, not both`);
+  const mod = modules.find((m) => m.id === spec.module);
+  if (!mod) throw new Error(`film ${spec.id}: unknown module ${spec.module}`);
+  return mod;
+}
+// Its map: every topic of the module, with the scene and the part that show it.
+function introTopics(spec, mod) {
+  const given = spec.topics || {};
+  for (const id of Object.keys(given)) if (!(mod.topics || []).some((t) => t.id === id)) throw new Error(`topic ${id} is no topic of ${mod.id}`);
+  return (mod.topics || []).map((t) => {
+    const g = given[t.id];
+    if (!g || !g.scene || !g.cue) throw new Error(`topic ${t.id} of ${mod.id} has no scene and cue in the film's topics`);
+    if (!spec.scenes.some((s) => s.id === g.scene)) throw new Error(`topic ${t.id}: no scene ${g.scene}`);
+    return { id: t.id, title: { nl: t.title.nl, en: t.title.en }, scene: g.scene, cue: g.cue };
+  });
+}
+
+// A field film's field (v17) and its modules in the order of the road, or null.
+// Its id is the field's id (the index names it as the field's film).
+function fieldFilm(spec, fields, modules) {
+  if (spec.field === undefined) return null;
+  if (spec.module !== undefined || spec.lessons !== undefined) throw new Error(`film ${spec.id}: name a field, a module or lessons, not more than one`);
+  const field = fields.find((f) => f.id === spec.field);
+  if (!field) throw new Error(`film ${spec.id}: unknown field ${spec.field}`);
+  if (spec.id !== field.id) throw new Error(`film ${spec.id}: a field film's id is its field id (${field.id})`);
+  const mods = field.modules.map((id) => {
+    const m = modules.find((x) => x.id === id);
+    if (!m) throw new Error(`field ${field.id}: unknown module ${id}`);
+    return m;
+  });
+  return { field, mods };
+}
+// Its road: every module of the field, with the scene and the part that show it.
+function fieldStations(spec, field, mods) {
+  const given = spec.stations || {};
+  for (const id of Object.keys(given)) if (!field.modules.includes(id)) throw new Error(`station ${id} is no module of ${field.id}`);
+  return mods.map((m) => {
+    const g = given[m.id];
+    if (!g || !g.scene || !g.cue) throw new Error(`module ${m.id} of ${field.id} has no scene and cue in the film's stations`);
+    if (!spec.scenes.some((s) => s.id === g.scene)) throw new Error(`station ${m.id}: no scene ${g.scene}`);
+    return { id: m.id, title: { nl: m.title.nl, en: m.title.en }, scene: g.scene, cue: g.cue };
+  });
+}
+
+// A beat's focus as written: a cue key, a list of them, or null (an overview).
+function focusOf(f, where) {
+  if (f === null) return null;
+  if (typeof f === 'string' && f) return [f];
+  if (Array.isArray(f) && f.length && f.every((k) => typeof k === 'string' && k)) return [...f];
+  throw new Error(`${where}: focus must be a cue key, a list of them, or null`);
+}
+
+// Resolves one film source into the data block (plan 2.4, with beats).
+// modules, fields: the index (a test passes its own), for an intro film's
+// module or a field film's field.
+export function resolveFilm(spec, lessons, modules = MODULES, fields = FIELDS) {
+  const fld = fieldFilm(spec, fields, modules);
+  const mod = introModule(spec, modules);
+  const topics = mod ? introTopics(spec, mod) : null;
+  const stations = fld ? fieldStations(spec, fld.field, fld.mods) : null;
+  const served = fld ? fld.mods.flatMap((m) => m.lessons) : mod ? mod.lessons : spec.lessons;
+  const own = fld ? [fld.field, ...fld.mods] : mod ? [mod] : [];
+  const ownWhat = fld ? `field ${fld.field.id}` : mod ? `module ${mod.id}` : '';
+  for (const id of served) if (!lessons.nl.has(id)) throw new Error(`unknown lesson ${id}`);
+  const glossed = new Set();
+  const sayGlossed = new Set();
+  const corpus = englishCorpus(lessons);
+  const glossOf = (en) => glossCase(en, corpus);
+  const numbers = [];
+  const scenes = spec.scenes.map((s, si) => {
+    const sceneTerms = [];
+    const beats = s.beats.map((b, bi) => {
+      const where = `scene ${si + 1} beat ${bi + 1}`;
+      const P = { nl: parseMarked(b.nl), en: parseMarked(b.en) };
+      const tn = P.nl.filter((p) => p.term).map((p) => findTerm(p.term, 'nl', served, lessons));
+      const te = P.en.filter((p) => p.term).map((p, i) => findTerm(p.term, 'en', served, lessons, tn[i] && tn[i].lesson));
+      if (JSON.stringify(tn) !== JSON.stringify(te)) throw new Error(`${where}: nl and en name different terms`);
+      const nn = P.nl.filter((p) => p.num).map((p) => p.num);
+      const ne = P.en.filter((p) => p.num).map((p) => p.num);
+      if (nn.join() !== ne.join()) throw new Error(`${where}: nl and en carry different numbers`);
+      const readP = b.read ? { nl: parseMarked(b.read.nl), en: parseMarked(b.read.en) } : null;
+      if (readP && readP.nl.filter((p) => p.num).map((p) => p.num).join() !== readP.en.filter((p) => p.num).map((p) => p.num).join()) throw new Error(`${where}: readout numbers differ`);
+      for (const raw of [...nn, ...(readP ? readP.nl.filter((p) => p.num).map((p) => p.num) : [])]) {
+        const value = formatNumber(raw, 'nl');
+        if (!numbers.some((n) => n.value === value)) numbers.push({ lesson: findNumber(value, served, lessons, s.lesson, own, ownWhat), value, scene: s.id });
+      }
+      // focus (v16): the part(s) of the drawing this beat explains, lit while it
+      // is spoken; a term's cue joins it. Films without it resolve as before.
+      const hasFocus = Object.prototype.hasOwnProperty.call(b, 'focus');
+      const focus = hasFocus ? focusOf(b.focus, where) : undefined;
+      if (spec.strictFocus) {
+        if (b.cues) throw new Error(`${where}: use focus, not cues`);
+        if (!hasFocus) throw new Error(`${where}: no focus (name the part(s) it explains, or focus: null for an overview)`);
+      }
+      const seg = {};
+      const cues = new Set([...(focus || []), ...(b.cues || [])]);
+      for (const lang of ['nl', 'en']) {
+        let k = 0;
+        seg[lang] = P[lang].map((p) => {
+          if (p.text !== undefined) return p.text;
+          if (p.num !== undefined) return formatNumber(p.num, lang);
+          const ref = tn[k++];
+          const key = `${ref.lesson}#${ref.index}`;
+          const cue = (b.cue || {})[lessons.nl.get(ref.lesson).terms[ref.index].term];
+          if (!cue) throw new Error(`${where}: term ${p.term} has no cue`);
+          cues.add(cue);
+          const piece = { t: p.shown, c: cue, k: key };
+          if (lang === 'nl') {
+            const en = lessons.en.get(ref.lesson).terms[ref.index].term;
+            if (!glossed.has(key) && en.toLowerCase() !== p.term.toLowerCase()) { piece.en = glossOf(en); glossed.add(key); }
+            if (!sceneTerms.some((x) => x.lesson === ref.lesson && x.index === ref.index)) {
+              sceneTerms.push({ lesson: ref.lesson, index: ref.index, nl: lessons.nl.get(ref.lesson).terms[ref.index].term, en, cue });
+            }
+          }
+          return piece;
+        });
+      }
+      if (spec.strictFocus && focus === null && tn.length) throw new Error(`${where}: an overview (focus: null) names a term; give it the term's part`);
+      const fmtRead = (lang) => readP[lang].map((p) => (p.text !== undefined ? p.text : p.num !== undefined ? formatNumber(p.num, lang) : p.shown)).join('');
+      // v14b: the narration script, a fuller spoken explanation than the
+      // caption. Same markers; its terms and numbers are checked like the
+      // caption's, and in Dutch a term carries its English word on its first
+      // use in the narration (shown in "Lees mee", never spoken).
+      let narration = {};
+      if (b.say) {
+        const S = { nl: parseMarked(b.say.nl), en: parseMarked(b.say.en) };
+        const sn = S.nl.filter((p) => p.term).map((p) => findTerm(p.term, 'nl', served, lessons));
+        const se = S.en.filter((p) => p.term).map((p, i) => findTerm(p.term, 'en', served, lessons, sn[i] && sn[i].lesson));
+        if (JSON.stringify(sn) !== JSON.stringify(se)) throw new Error(`${where}: the nl and en narration name different terms`);
+        const nums = { nl: S.nl.filter((p) => p.num).map((p) => p.num), en: S.en.filter((p) => p.num).map((p) => p.num) };
+        if (nums.nl.join() !== nums.en.join()) throw new Error(`${where}: the nl and en narration carry different numbers`);
+        for (const raw of nums.nl) {
+          const value = formatNumber(raw, 'nl');
+          if (!numbers.some((n) => n.value === value)) numbers.push({ lesson: findNumber(value, served, lessons, s.lesson, own, ownWhat), value, scene: s.id });
+        }
+        const say = {};
+        for (const lang of ['nl', 'en']) {
+          let k = 0;
+          say[lang] = S[lang].map((p) => {
+            if (p.text !== undefined) return p.text;
+            if (p.num !== undefined) return formatNumber(p.num, lang);
+            const ref = sn[k++];
+            const key = `${ref.lesson}#${ref.index}`;
+            const piece = { t: p.shown, k: key };
+            const en = lessons.en.get(ref.lesson).terms[ref.index].term;
+            if (lang === 'nl' && !sayGlossed.has(key) && en.toLowerCase() !== p.term.toLowerCase()) { piece.en = glossOf(en); sayGlossed.add(key); }
+            return piece;
+          });
+        }
+        narration = { say, voice: { nl: speakOf(say.nl, 'nl'), en: speakOf(say.en, 'en') } };
+      }
+      return {
+        seg,
+        text: { nl: plainOf(seg.nl), en: plainOf(seg.en) },
+        speak: { nl: speakOf(seg.nl, 'nl'), en: speakOf(seg.en, 'en') },
+        cues: [...cues],
+        ...(hasFocus ? { focus: focus === null && !cues.size ? null : [...cues] } : {}),
+        ...(readP ? { read: { nl: fmtRead('nl'), en: fmtRead('en') } } : {}),
+        ...(b.still !== undefined ? { still: b.still } : {}),
+        ...narration,
+      };
+    });
+    return { id: s.id, n: si + 1, level: s.level, dur: s.dur, still: s.still, title: s.title, beats, terms: sceneTerms };
+  });
+  return { id: spec.id, title: spec.title, lessons: served, scenes, skip: spec.skip || [], numbers, ...(mod ? { module: mod.id, topics } : {}), ...(fld ? { field: fld.field.id, stations } : {}), ...(spec.strictFocus ? { strictFocus: true } : {}) };
+}
+
+// Builds and writes the page; returns { data, bytes, out }.
+export async function defineFilm(spec, stage) {
+  const lessons = await allLessons();
+  const data = resolveFilm(spec, lessons);
+  // an intro film is wired by its module's index entry, not by lessons; its cards' words stand in the stage
+  const module = data.module ? MODULES.find((m) => m.id === data.module) : undefined;
+  // a field film is wired by its field's entry (film:), and held to the field and its modules
+  const field = data.field ? FIELDS.find((f) => f.id === data.field) : undefined;
+  const errs = checkFilm(data, { lessons, levelOf: (id) => (placeOf(id) || {}).level || 1, wiredBy: spec.lessons || [], module, ...(field ? { field, modules: MODULES } : {}), stageText: `${stage.svg}\n${stage.script || ''}` });
+  const focus = checkFocus(data, cueKeysOf(`${stage.svg}\n${stage.script || ''}`));
+  errs.push(...focus.errors);
+  if (errs.length) throw new Error(`film ${spec.id} fails its checks:\n  ${errs.join('\n  ')}`);
+  const beats = data.scenes.reduce((a, s) => a + s.beats.length, 0);
+  if (focus.missing.length) console.warn(`focus: ${focus.missing.length} of ${beats} beats light no part (${focus.missing.join(', ')}); give each a focus, or focus: null for an overview`);
+  if (focus.unknown.length) console.warn(`focus: ${focus.unknown.length} cue keys are no part of the drawing (${focus.unknown.join(', ')})`);
+  const html = pageHtml(data, stage);
+  const bytes = Buffer.byteLength(html);
+  if (bytes > MAX_BYTES) throw new Error(`film ${spec.id} is ${bytes} bytes, over the ${MAX_BYTES} cap`);
+  const out = join(ROOT, 'src/content/courses/films', `${spec.id}.html`);
+  mkdirSync(dirname(out), { recursive: true });
+  writeFileSync(out, html);
+  const total = data.scenes.reduce((a, s) => a + s.dur, 0);
+  console.log(`wrote ${out} · ${(bytes / 1024).toFixed(1)} KB${bytes > TARGET_BYTES ? ' (over the 300 KB target)' : ''} · ${data.scenes.length} scenes · ${total} s`);
+  return { data, bytes, out };
+}
+
+// --audit: durations, reading pace and the term coverage, per scene.
+export function auditReport(data) {
+  const lines = [];
+  let t = 0;
+  for (const s of data.scenes) {
+    const w = (lang) => s.beats.map((b) => b.text[lang]).join(' ').trim().split(/\s+/).length;
+    const sw = (lang) => s.beats.map((b) => (b.voice ? b.voice[lang] : '')).join(' ').trim().split(/\s+/).filter(Boolean).length;
+    lines.push(`${String(s.n).padStart(2)} L${s.level} ${String(s.dur).padStart(3)} s @${String(t).padStart(3)}  words nl ${w('nl')} en ${w('en')}  pace ${(w('nl') / s.dur).toFixed(2)} w/s  narration nl ${sw('nl')} en ${sw('en')} words  terms: ${s.terms.map((x) => `${x.nl}→${x.cue}`).join(', ') || '-'}`);
+    t += s.dur;
+  }
+  const est = (lang) => Math.round(narrationWords(data, lang) / NARRATION_WPS);
+  lines.push(`total ${t} s · narration about ${est('nl')} s nl, ${est('en')} s en · numbers: ${data.numbers.map((n) => `${n.value} (${n.lesson.split('.').pop()})`).join(', ')}`);
+  lines.push(`skipped: ${data.skip.length ? data.skip.map((k) => `${k.term}: ${k.reason}`).join('; ') : 'none'}`);
+  return lines.join('\n');
+}
