@@ -229,7 +229,9 @@ const segNodes = (seg) => seg.map((p) => (typeof p === 'string' ? p
   : [h('b', { class: 'term-in' }, p.t), p.en ? h('span', { class: 'term-en', lang: 'en' }, ` (${p.en})`) : null]));
 
 // The Film step's body. text(): the lesson's own text, the last fallback.
-export function filmStep(app, lesson, level, { text } = {}) {
+// onSeen (v17): called once when the video plays to its end. The HTML film
+// sends no "last scene" message to this page, so only the video reports it.
+export function filmStep(app, lesson, level, { text, onSeen = () => {} } = {}) {
   const t = app.t;
   const lang = app.lang === 'en' ? 'en' : 'nl';
   const film = parseFilmRef(lesson.film);
@@ -269,6 +271,7 @@ export function filmStep(app, lesson, level, { text } = {}) {
       class: 'film-video', controls: true, playsinline: true, preload: 'metadata', poster: vid.poster, 'aria-label': t('filmVideo'),
     }, h('track', { kind: 'captions', srclang: lang, label: t('filmCaptions'), src: vid.vtt }));
     let failed = false;
+    let seen = false;
     video.addEventListener('error', () => {
       if (failed || !video.isConnected) return;
       failed = true;
@@ -285,7 +288,7 @@ export function filmStep(app, lesson, level, { text } = {}) {
       cacheFilm(vid.url).then((ok) => { if (ok) kept(); else { keep.disabled = false; keep.replaceChildren(ico('download'), ' ', t('filmKeepFailed')); } });
     };
     Promise.resolve().then(() => globalThis.caches && globalThis.caches.open(FILMS_CACHE)).then((c) => c && c.match(vid.url)).then((hit) => { if (hit) kept(); }).catch(() => {});
-    video.addEventListener('ended', () => { cacheFilm(vid.url).then((ok) => { if (ok) kept(); }); });
+    video.addEventListener('ended', () => { if (!seen) { seen = true; onSeen(); } cacheFilm(vid.url).then((ok) => { if (ok) kept(); }); });
     video.src = vid.url;
     stage.replaceChildren(h('figure', { class: 'film-video-wrap' }, video), keep);
     box.dataset.mode = 'video';

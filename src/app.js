@@ -38,6 +38,7 @@ import { renderSituation } from './ui/situation.js';
 import { renderGlossary } from './ui/glossary.js';
 import { renderApply } from './ui/apply.js';
 import { renderListenback } from './ui/listenback.js';
+import { renderModule } from './ui/modulescreen.js';
 
 const SCREENS = {
   home: renderHome,
@@ -58,6 +59,7 @@ const SCREENS = {
   glossary: renderGlossary,
   apply: renderApply,
   listenback: renderListenback,
+  module: renderModule,
 };
 
 const storage = (() => {

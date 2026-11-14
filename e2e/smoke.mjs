@@ -239,6 +239,9 @@ await step('one filled button per screen: speaking home, course home, every less
   await page.locator('.subject-tab', { hasText: 'Engineering' }).click();
   await page.locator('.course-today .today-go').waitFor();
   await onePrimary(page, 'course home');
+  await page.evaluate(() => window.__app.go('module', { subject: 'eng', moduleId: 'eng.flow' }));
+  await page.locator('.module-screen .module-continue').waitFor();
+  await onePrimary(page, 'module screen');
   await page.evaluate(() => window.__app.go('lesson', { subject: 'eng', moduleId: 'eng.flow', lessonId: 'eng.flow.oee' }));
   await page.locator('.steps [aria-current="step"]', { hasText: 'Raden' }).waitFor();
   const labels = (await page.locator('.steps .step').allInnerTexts()).map((x) => x.trim().toUpperCase());
@@ -298,8 +301,10 @@ await step('subject bar switches to Engineering and Projects and back; speaking 
   await page.locator('.course-today .today-what', { hasText: 'Takt' }).waitFor();
   await shot('60-course-home');
   await page.locator('.module-row', { hasText: 'Capaciteit en flow' }).click();
-  await page.locator('.topic-row').nth(3).waitFor();
+  await page.locator('.module-screen .topic-row').nth(3).waitFor();
   await shot('60b-module-open');
+  await page.locator('.module-screen .lesson-back').click();
+  await page.locator('.course-home .track').first().waitFor();
   await page.locator('.subject-tab', { hasText: 'Projecten' }).click();
   await page.locator('.course-pm .track').first().waitFor();
   await page.reload();
@@ -2776,9 +2781,10 @@ async function routeModuleEntry(c, moduleId, entry) {
 }
 // A context without the service worker (it would answer before the route) and
 // with the fixture index; seeded like v9Context.
-async function topicContext(seed = {}) {
+async function topicContext(seed = {}, { entry = MACHINING_TOPIC_FIXTURE, setup = null } = {}) {
   const c = await browser.newContext({ viewport: { width: 390, height: 844 }, deviceScaleFactor: 2, serviceWorkers: 'block' });
-  await routeModuleEntry(c, 'eng.machining', MACHINING_TOPIC_FIXTURE);
+  await routeModuleEntry(c, 'eng.machining', entry);
+  if (setup) await setup(c);
   await c.route(FILM_URL, fulfillStub);
   const p = await c.newPage();
   p.on('pageerror', onPageError);
@@ -2802,16 +2808,23 @@ const topicSeed = () => {
   const courseReviews = Object.fromEntries([0, 1, 2, 3].map((i) => [`nl|eng.machining.cutting#r${i}`, { box: 4, due: '2099-01-01', lesson: 'eng.machining.cutting', subject: 'eng' }]));
   return { courses: { eng: { lessons, sessions: [] } }, courseReviews };
 };
+// v17: a topic module lives on its own screen; tap its row on the course home.
 const openTopicModule = async (p) => {
-  await p.locator('.course-home').waitFor();
-  const mod = p.locator('details.topic-module', { hasText: 'Verspanen' });
-  if (!(await mod.evaluate((d) => d.open))) await mod.locator('summary').click();
+  if (!(await p.locator('.module-screen').count())) {
+    await p.locator('.course-home').waitFor();
+    await p.locator('.module-row', { hasText: 'Verspanen' }).click();
+  }
+  const mod = p.locator('.module-screen');
   await mod.locator('.path-stop').first().waitFor();
   return mod;
 };
 
 await step('topics: the path map in a module (fixture)', async () => {
   const { c, p, shotP } = await topicContext(topicSeed());
+  // The row on the course home keeps its progress line; the topics are on the module screen.
+  await p.locator('.course-home').waitFor();
+  if (!(await p.locator('.module-row', { hasText: 'Verspanen' }).locator('.module-meta', { hasText: '2/4 niveaus' }).count())) throw new Error('no levels count in the module row');
+  if (await p.locator('.course-home .topic-row').count()) throw new Error('the course home still unfolds topics');
   const mod = await openTopicModule(p);
   const chips = mod.locator('.topic-row').first().locator('.path-stop');
   // v16: a level shows once the one before it is passed; Expert is hidden until Gevorderd is.
@@ -2827,11 +2840,10 @@ await step('topics: the path map in a module (fixture)', async () => {
   const stub = mod.locator('.topic-row').first().locator('.path-stub');
   if ((await stub.innerText()).trim() !== '+1') throw new Error(`stub: ${await stub.innerText()}`);
   if (await stub.evaluate((e) => e.tabIndex >= 0)) throw new Error('the stub is focusable');
-  if (!(await mod.locator('.module-meta', { hasText: '2/4 niveaus' }).count())) throw new Error('no levels count in the summary');
   if (!(await mod.locator('.topic-count', { hasText: '2/4' }).count())) throw new Error('no topic count');
   if (!(await mod.locator('.module-continue', { hasText: 'Verder: Draaien · Gevorderd' }).count())) throw new Error('continue does not name the level');
   if (!(await mod.locator('.path-end .medal-none').count())) throw new Error('no empty medal ring at the module end');
-  await onePrimary(p, 'course home with a topic module open');
+  await onePrimary(p, 'module screen (the continue button is the one filled button)');
   // Every stop is a 44 px target and nothing on the path overflows the card at 390 px.
   const small = await mod.locator('.path-stop').evaluateAll((els) => els.filter((e) => e.getBoundingClientRect().width < 44 || e.getBoundingClientRect().height < 44).length);
   if (small) throw new Error(`${small} stops under 44 px`);
@@ -2898,6 +2910,92 @@ await step('topics: where you are (fixture)', async () => {
   const src = await p.locator('.film-card .figure-frame').getAttribute('name', { timeout: 5000 });
   if (!/[?&]level=2(&|$)/.test(src)) throw new Error(`figure frame name without level=2: ${src}`);
   await c.close();
+});
+
+// v17: the module screen. The fixture machining module gets an intro film (a
+// stub video and a stub film page), so the intro block is real; pm.intake has
+// none and shows its blurb where the film would be.
+const MACHINING_INTRO_FIXTURE = MACHINING_TOPIC_FIXTURE.replace("track: 'discrete',", "track: 'discrete', intro: 'eng.machining.intro',");
+const PNG_1PX = Buffer.from('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkYPhfDwAChwGA60e6kgAAAABJRU5ErkJggg==', 'base64');
+const introSetup = async (c) => {
+  await c.route(/\/src\/content\/courses\/films\/manifest\.json(\?.*)?$/, async (r) => {
+    const res = await r.fetch();
+    const m = await res.json();
+    const one = { bytes: 1, vtt: 'stub-intro.vtt', dur: 2, scenes: [0] };
+    m.films = { ...m.films, 'eng.machining.intro': { poster: 'stub-intro.png', nl: one, en: one } };
+    await r.fulfill({ response: res, json: m });
+  });
+  await c.route(/\/stub-intro\.vtt$/, (r) => r.fulfill({ status: 200, contentType: 'text/vtt', body: 'WEBVTT\n\n' }));
+  await c.route(/\/stub-intro\.png$/, (r) => r.fulfill({ status: 200, contentType: 'image/png', body: PNG_1PX }));
+  await c.route(/\/src\/content\/courses\/films\/eng\.machining\.intro\.html(\?.*)?$/, (r) => r.fulfill({
+    status: 200, contentType: 'text/html',
+    body: '<!doctype html><title>intro</title><script type="application/json" id="film-data">{"scenes":[{"title":{"nl":"Het plaatje","en":"The picture"},"beats":[{"say":{"nl":["Verspanen haalt metaal weg."],"en":["Machining removes metal."]}}]}]}</script>',
+  }));
+};
+
+await step('module screen: open Verspanen from the Engineering list, the intro block is on top, topics below, continue opens the next lesson', async () => {
+  const { c, p, shotP } = await topicContext(topicSeed(), { entry: MACHINING_INTRO_FIXTURE, setup: introSetup });
+  await p.locator('.course-home').waitFor();
+  // The row keeps its progress line and now opens the module screen; nothing unfolds.
+  if (await p.locator('.course-home details.module').count()) throw new Error('a topic module still unfolds on the course home');
+  await p.locator('.module-row', { hasText: 'Verspanen' }).click();
+  const ms = p.locator('.module-screen');
+  await ms.waitFor();
+  if ((await ms.locator('h1').innerText()).trim() !== 'Verspanen') throw new Error(`title: ${await ms.locator('h1').innerText()}`);
+  if ((await ms.locator('.module-en-line').innerText()).trim() !== 'Machining') throw new Error('no English name under the Dutch title');
+  if (await ms.locator('.module-field').count()) throw new Error('an Engineering module shows a field');
+  if ((await ms.locator('.module-intro-title').innerText()).trim() !== 'Begin hier: het grote plaatje') throw new Error('intro heading');
+  const video = ms.locator('.module-intro video.film-video');
+  await video.waitFor({ timeout: 8000 });
+  // Order: title, intro block, topics, continue.
+  const tops = await ms.evaluate((el) => ['.module-screen-title', '.module-intro', '.topics', '.module-continue'].map((q) => el.querySelector(q).getBoundingClientRect().top));
+  if (!(tops[0] < tops[1] && tops[1] < tops[2] && tops[2] < tops[3])) throw new Error(`order: ${tops}`);
+  await onePrimary(p, 'module screen');
+  const cont = ms.locator('.btn-primary.module-continue');
+  if ((await cont.innerText()).trim() !== 'Verder: Draaien · Gevorderd') throw new Error(`continue: ${await cont.innerText()}`);
+  if ((await cont.boundingBox()).height < 44) throw new Error('continue under 44 px');
+  const over = await p.evaluate(() => document.documentElement.scrollWidth > document.documentElement.clientWidth);
+  if (over) throw new Error('module screen scrolls sideways');
+  // The intro counts as seen only when the video ends.
+  const seen = () => p.evaluate(() => (JSON.parse(localStorage.getItem('spraakwater:v1')).courses.eng.seenIntros || []));
+  if ((await seen()).includes('eng.machining')) throw new Error('intro seen before it played');
+  await video.evaluate((v) => v.dispatchEvent(new Event('ended')));
+  await p.waitForFunction(() => (JSON.parse(localStorage.getItem('spraakwater:v1')).courses.eng.seenIntros || []).includes('eng.machining'));
+  await shotP('ms-module-nl');
+  await p.evaluate(() => window.__app.updateSettings({ theme: 'dark' }));
+  await p.waitForFunction(() => document.documentElement.dataset.theme === 'dark');
+  await ms.locator('.module-intro video').waitFor();
+  await shotP('ms-module-dark');
+  await p.evaluate(() => window.__app.updateSettings({ theme: 'light' }));
+  // An unknown module goes to the course home.
+  await p.evaluate(() => window.__app.go('module', { subject: 'eng', moduleId: 'eng.nope' }));
+  await p.locator('.course-home').waitFor();
+  await p.locator('.module-row', { hasText: 'Verspanen' }).click();
+  await ms.waitFor();
+  // Back goes to the subject home; continue opens the next lesson.
+  await ms.locator('.lesson-back').click();
+  await p.locator('.course-home').waitFor();
+  await p.locator('.module-row', { hasText: 'Verspanen' }).click();
+  await ms.locator('.module-continue').click();
+  await p.locator('.lesson-place', { hasText: 'Draaien · Gevorderd' }).waitFor();
+  await c.close();
+
+  // A module without an intro: its field, and the blurb where the film would be.
+  const other = await topicContext({});
+  const q = other.p;
+  await q.evaluate(() => window.__app.go('module', { subject: 'pm', moduleId: 'pm.intake' }));
+  const pm = q.locator('.module-screen');
+  await pm.waitFor();
+  if (!(await pm.locator('.module-field', { hasText: 'Een project van begin tot eind' }).count())) throw new Error('no field label');
+  if (await pm.locator('.film-step, .module-intro-title').count()) throw new Error('a module without an intro shows a film');
+  if (!(await pm.locator('.module-intro-text').innerText()).trim()) throw new Error('no blurb');
+  if (!(await pm.locator('.topic-row').count())) throw new Error('no topics');
+  await onePrimary(q, 'module screen without an intro');
+  await other.shotP('ms-module-nointro-nl');
+  await q.evaluate(() => window.__app.updateSettings({ theme: 'dark' }));
+  await q.waitForFunction(() => document.documentElement.dataset.theme === 'dark');
+  await other.shotP('ms-module-nointro-dark');
+  await other.c.close();
 });
 
 await step('reminder meta is written for the service worker', async () => {
@@ -3279,23 +3377,24 @@ await step('flair: start ring and title, path map with the bronze seal, a perfec
   // Course home: the path map, the bronze seal on the module and at its end, the check flag.
   await p.locator('.start-eng').click();
   await p.locator('.course-home').waitFor();
-  const mod = p.locator('details.topic-module', { hasText: 'Capaciteit en flow' });
-  if (!(await mod.evaluate((d) => d.open))) await mod.locator('summary').click();
+  const row = p.locator('.module-row', { hasText: 'Capaciteit en flow' });
+  await row.locator('.medal-bronze', { hasText: 'Brons' }).waitFor();
+  await shotP('flair-02-course-home-390');
+  await row.click();
+  const mod = p.locator('.module-screen');
   await mod.locator('.path-end .medal-bronze').waitFor();
-  if (!(await mod.locator('summary .medal-bronze', { hasText: 'Brons' }).count())) throw new Error('no seal on the module row');
   if (!(await mod.locator('.topic-row').first().locator('.path-flag').count())) throw new Error('a finished topic has no flag');
   if (await mod.locator('.path-stub').count()) throw new Error('a finished module shows a stub');
   await mod.locator('.check-btn').waitFor();
   if (await mod.locator('.check-btn.btn-primary').count()) throw new Error('the check is a primary button');
   await mod.scrollIntoViewIfNeeded();
   await mod.screenshot({ path: `${out}/flair-02-path-medal-390.png`, animations: 'disabled' });
-  await shotP('flair-02-course-home-390');
   await dark(true);
   await mod.locator('.path-end .medal-bronze').waitFor();
-  await p.locator('details.topic-module', { hasText: 'Capaciteit en flow' }).screenshot({ path: `${out}/flair-02-path-medal-390-dark.png`, animations: 'disabled' });
+  await mod.screenshot({ path: `${out}/flair-02-path-medal-390-dark.png`, animations: 'disabled' });
   await dark(false);
   // The module check: the guide's intro, ten questions, one pass, all right.
-  await p.locator('details.topic-module', { hasText: 'Capaciteit en flow' }).locator('.check-btn').click();
+  await mod.locator('.check-btn').click();
   await p.locator('.check-intro .guide').waitFor();
   if (!(await p.locator('.check-intro', { hasText: 'Tien vragen, geen hints' }).count())) throw new Error('no guide line on the check intro');
   await onePrimary(p, 'check intro');
@@ -3339,8 +3438,8 @@ await step('flair: start ring and title, path map with the bronze seal, a perfec
   await p.emulateMedia({ reducedMotion: 'no-preference' });
   // The check is done for today.
   await p.locator('.check-done ~ .btn-primary').click();
-  const mod2 = p.locator('details.topic-module', { hasText: 'Capaciteit en flow' });
-  if (!(await mod2.evaluate((d) => d.open))) await mod2.locator('summary').click();
+  if (!(await p.locator('.module-screen').count())) await p.locator('.module-row', { hasText: 'Capaciteit en flow' }).click();
+  const mod2 = p.locator('.module-screen');
   await mod2.locator('.check-tomorrow', { hasText: 'Morgen kan het weer' }).waitFor();
   // Andon in a review: a miss lights the middle ochre, with one line.
   await p.evaluate(() => window.__app.go('due', { subject: 'eng', questionIds: ['eng.flow.takt#r0', 'eng.flow.takt#r1'] }));

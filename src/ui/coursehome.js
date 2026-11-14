@@ -8,7 +8,6 @@ import { pathModel, topicPath } from './pathmap.js';
 import { medalSeal, metaSeal, moduleEndModel, checkEntry, goalLeftLine } from './flairui.js';
 import { dueCount } from '../core/coursereview.js';
 import { moduleTier, trackProgress, openTrack } from '../core/layout.js';
-import { filmStep, introFilm } from './film.js';
 
 export const COURSE_ICON = { apply: 'pen-line', prep: 'calendar', due: 'repeat', lesson: 'book-open', situation: 'drama', sayIt: 'mic', maintain: 'wrench', done: 'circle-check' };
 
@@ -68,7 +67,7 @@ function todayCard(app, subject, pick) {
 // The meta line every module shares: difficulty (Instap / Verdieping /
 // Specialist), mastery once it is more than "learn", and progress as a bar
 // with its count.
-function moduleMeta(app, meta, count) {
+export function moduleMeta(app, meta, count) {
   const t = app.t;
   const { done, total } = levelsDone(app.state, meta);
   const m = moduleMastery(app.state, meta, app.lang);
@@ -83,62 +82,58 @@ function moduleMeta(app, meta, count) {
 
 const topicTitle = (app, topic) => topic.title[app.lang] || topic.title.en;
 
-function modSummary(app, meta, ...bits) {
-  return h('summary', { class: 'module-row' },
+// The module's title line and meta: one summary shared by the tappable row.
+function modSummary(app, meta, tag, attrs, ...bits) {
+  return h(tag, { class: 'module-row', ...attrs },
     h('span', { class: 'module-title' }, modTitle(app, meta),
       // In Dutch, the English name too: he needs both words at work.
       app.lang === 'nl' && meta.title.en && meta.title.en !== meta.title.nl ? h('span', { class: 'term-en module-en', lang: 'en' }, ` · ${meta.title.en}`) : null),
     h('span', { class: 'module-meta' }, ...bits));
 }
 
-// A topic module: one row per topic with its path of levels, from the index
-// alone (no module load). A level shows once the one before it is passed
-// (v16, topicRows); every stop shown opens its lesson.
-function topicModuleRow(app, meta) {
+const openLesson = (app, meta) => (lessonId) => app.go('lesson', { subject: meta.subject, moduleId: meta.id, lessonId });
+
+// A topic module's topics: one row per topic with its path of levels, from the
+// index alone (no module load). A level shows once the one before it is passed
+// (v16, topicRows); every stop shown opens its lesson. Shared by the module
+// screen (v17), which is where a topic module lives now.
+export function topicsSection(app, meta, model = pathModel(app.state, meta, app.lang)) {
   const t = app.t;
-  const go = (lessonId) => app.go('lesson', { subject: meta.subject, moduleId: meta.id, lessonId });
-  const model = pathModel(app.state, meta, app.lang);
-  const next = model.next;
-  const at = next ? placeOf(next, [meta]) : null;
-  const { done, total } = levelsDone(app.state, meta);
-  const rows = model.topics.map((topic, i) => {
+  const go = openLesson(app, meta);
+  return h('section', { class: 'topics' }, model.topics.map((topic, i) => {
     const title = topicTitle(app, meta.topics[i]);
     return h('div', { class: 'topic-row' },
       h('div', { class: 'topic-head' },
         h('h3', { class: 'topic-title' }, title),
         h('span', { class: 'mono topic-count' }, t('topicCount', topic.passed))),
       topicPath(t, title, topic, go));
-  });
-  const details = h('details', { class: 'module topic-module' });
-  details.append(...[
-    modSummary(app, meta, ...moduleMeta(app, meta, t('moduleLevels', done, total))),
-    h('p', { class: 'muted small module-blurb' }, meta.blurb[app.lang] || meta.blurb.en),
-    moduleIntro(app, meta, details),
-    h('section', { class: 'topics' }, rows),
-    moduleEnd(app, meta),
-    next ? h('button', { class: 'btn btn-ghost small module-continue', onclick: () => go(next) },
-      ico('play'), ' ', at ? t('moduleContinueAt', placeLabel(t, app.lang, next, [meta])) : t('moduleContinue')) : null,
-  ].filter(Boolean));
-  return details;
+  }));
 }
 
-// v17: the module's intro film, the big picture before the topics. Built the
-// first time the module opens, so the course home fetches no film it won't show.
-function moduleIntro(app, meta, details) {
-  if (!introFilm(meta)) return null;
-  const slot = h('section', { class: 'module-intro' }, h('h3', { class: 'topic-title module-intro-title' }, app.t('moduleIntro')));
-  const fill = () => {
-    if (!details.open || slot.dataset.filled) return;
-    slot.dataset.filled = '1';
-    slot.append(filmStep(app, { film: meta.intro }, null, { text: () => h('p', {}, meta.blurb[app.lang] || meta.blurb.en) }));
-  };
-  details.addEventListener('toggle', fill);
-  return slot;
+// The "continue" button to the module's next lesson, or null when none is left.
+export function continueButton(app, meta, next, cls = 'btn btn-ghost small module-continue') {
+  if (!next) return null;
+  const t = app.t;
+  const at = placeOf(next, [meta]);
+  return h('button', { class: cls, onclick: () => openLesson(app, meta)(next) },
+    ico('play'), ' ', at ? t('moduleContinueAt', placeLabel(t, app.lang, next, [meta])) : t('moduleContinue'));
+}
+
+// A topic module on the course home: a row with its title and progress that
+// opens the module screen (v17); the topics and the intro live there.
+function topicModuleRow(app, meta) {
+  const { done, total } = levelsDone(app.state, meta);
+  return h('div', { class: 'module topic-module' },
+    modSummary(app, meta, 'button', {
+      type: 'button',
+      class: 'module-row module-link',
+      onclick: () => app.go('module', { subject: meta.subject, moduleId: meta.id }),
+    }, ...moduleMeta(app, meta, app.t('moduleLevels', done, total))));
 }
 
 // Under the last topic: the module's medal (an empty ring before bronze).
 // The module check joins it once bronze is earned (v16 flair).
-function moduleEnd(app, meta) {
+export function moduleEnd(app, meta) {
   const end = moduleEndModel(app.state, meta, app.today());
   return h('div', { class: 'path-end' }, medalSeal(app.t, end.tier, 24),
     checkEntry(app.t, end, () => app.go('check', { subject: meta.subject, moduleId: meta.id })));
@@ -160,7 +155,7 @@ function moduleRow(app, meta) {
     }));
   }).catch(() => list.replaceChildren(h('p', { class: 'note' }, t('loadError'))));
   return h('details', { class: 'module', ontoggle: (e) => { if (e.currentTarget.open && !list.childElementCount) fill(); } },
-    modSummary(app, meta, ...moduleMeta(app, meta, t('moduleLessons', done, meta.lessons.length))),
+    modSummary(app, meta, 'summary', {}, ...moduleMeta(app, meta, t('moduleLessons', done, meta.lessons.length))),
     h('p', { class: 'muted small module-blurb' }, meta.blurb[app.lang] || meta.blurb.en),
     list,
     nextLesson(app.state, meta) ? h('button', {

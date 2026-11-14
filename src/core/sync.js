@@ -6,6 +6,7 @@ import { cleanPlans, strings, cleanXpDays, cleanGoal, cleanMedals, cleanSpeakMed
 const HISTORY_CAP = 200;
 const SESSIONS_CAP = 200;
 const PREPPED_CAP = 50;
+const SEEN_INTROS_CAP = 200;
 // Device-only: settings (API key, theme, language), ui state, and the reminder plan (cue and hour).
 const LOCAL_ONLY = ['settings', 'ui', 'plan'];
 
@@ -124,6 +125,8 @@ function mergeCourses(a, b) {
       checks: mergeChecks(cx.checks, cy.checks),
       // Event ids grow with time: newest first, capped like on the device.
       prepped: [...new Set([...strings(cx.prepped), ...strings(cy.prepped)])].sort().reverse().slice(0, PREPPED_CAP),
+      // v17: module ids whose intro he has watched; sorted so either order gives the same list.
+      seenIntros: [...new Set([...strings(cx.seenIntros), ...strings(cy.seenIntros)])].sort().slice(0, SEEN_INTROS_CAP),
     };
     const lm = [cx.lastMaintenance, cy.lastMaintenance].filter(Boolean).sort().pop();
     if (lm) out.lastMaintenance = lm;

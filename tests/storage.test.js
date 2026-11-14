@@ -201,15 +201,15 @@ test('finishing the welcome clears the pending flag', async () => {
 
 test('courses and courseReviews default and coerce', () => {
   const d = load(fakeBackend());
-  assert.deepEqual(d.courses, { eng: { lessons: {}, sessions: [], plans: [], prepped: [], medals: {}, checks: {} }, pm: { lessons: {}, sessions: [], plans: [], prepped: [], medals: {}, checks: {} } });
+  assert.deepEqual(d.courses, { eng: { lessons: {}, sessions: [], plans: [], prepped: [], medals: {}, checks: {}, seenIntros: [] }, pm: { lessons: {}, sessions: [], plans: [], prepped: [], medals: {}, checks: {}, seenIntros: [] } });
   assert.deepEqual(d.courseReviews, {});
   const bad = load(fakeBackend({ [KEY]: JSON.stringify({ ...defaultState(), courses: { eng: { lessons: 'x', sessions: {} } }, courseReviews: [], ui: { subject: 'cooking' } }) }));
-  assert.deepEqual(bad.courses, { eng: { lessons: {}, sessions: [], plans: [], prepped: [], medals: {}, checks: {} }, pm: { lessons: {}, sessions: [], plans: [], prepped: [], medals: {}, checks: {} } });
+  assert.deepEqual(bad.courses, { eng: { lessons: {}, sessions: [], plans: [], prepped: [], medals: {}, checks: {}, seenIntros: [] }, pm: { lessons: {}, sessions: [], plans: [], prepped: [], medals: {}, checks: {}, seenIntros: [] } });
   assert.deepEqual(bad.courseReviews, {});
   assert.equal('subject' in bad.ui, false);
   const good = { eng: { lessons: { 'eng.flow.takt': { read: 1, passed: 2 } }, sessions: [{ day: '2026-11-02', kind: 'lesson', correct: 3, total: 3, ts: 2 }], plans: [], prepped: [] }, pm: { lessons: {}, sessions: [], plans: [], prepped: [] } };
   const ok = load(fakeBackend({ [KEY]: JSON.stringify({ ...defaultState(), courses: good, courseReviews: { 'nl|eng.flow.takt#r0': { box: 2, due: '2026-11-05', lesson: 'eng.flow.takt', subject: 'eng' } }, ui: { subject: 'eng' } }) }));
-  assert.deepEqual(ok.courses, { eng: { ...good.eng, medals: {}, checks: {} }, pm: { ...good.pm, medals: {}, checks: {} } });
+  assert.deepEqual(ok.courses, { eng: { ...good.eng, medals: {}, checks: {}, seenIntros: [] }, pm: { ...good.pm, medals: {}, checks: {}, seenIntros: [] } });
   assert.equal(ok.courseReviews['nl|eng.flow.takt#r0'].box, 2);
   assert.equal(ok.ui.subject, 'eng');
 });
