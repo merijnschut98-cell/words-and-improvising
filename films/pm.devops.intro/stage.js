@@ -157,7 +157,7 @@ const STAGE = (() => {
     const all4 = rows(sp, 120, 'pm-crit', true) + rows(st, 222, 'pm-crit', true);
     return { speedB: b === 0 ? '' : b === 1 ? op(span(p, 0.1, 0.5), speed) : speed, stabB: b <= 1 ? '' : b === 2 ? op(span(p, 0.1, 0.5), stab) : stab,
       all4B: b >= 3 ? (b === 3 ? op(span(p, 0.1, 0.5), all4) : all4) : '',
-      ...tools(b, p, 4, tr('Mediaan', 'Median', 274), tr('State of DevOps-rapport', 'State of DevOps report', 274)) };
+      ...tools(b, p, 4, tr('Dashboard', 'Dashboard', 274), tr('Waardestroomanalyse', 'Value stream map', 274)) };
   }
 
   // ---- s4: release and environment management. The four environments, with the team lead checking in acceptance;
@@ -201,7 +201,7 @@ const STAGE = (() => {
     pm += rect(334, 220, 284, 34, 'pm-crit', 6) + txt(346, 245, tr('Schuldvrij', 'Blameless', 240), 22, 'start', 'pm-on');
     return { incB: b === 1 ? op(span(p, 0.1, 0.5), inc) : '', probB: b === 2 ? op(span(p, 0.1, 0.5), prob) : '', slaB: b === 3 ? op(span(p, 0.1, 0.5), sla) : '',
       pmB: b >= 4 ? (b === 4 ? op(span(p, 0.1, 0.5), pm) : pm) : '',
-      ...tools(b, p, 5, tr('Prioriteitsmatrix', 'Priority matrix', 274), tr('A3', 'A3', 274)) };
+      ...tools(b, p, 5, tr('Prioriteitsmatrix', 'Priority matrix', 274), tr('5 keer waarom', '5 whys', 274)) };
   }
 
   // ---- s6: one whole. The four topics in a row, and what they give together: small and often, fast and stable.

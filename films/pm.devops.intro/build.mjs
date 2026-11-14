@@ -44,9 +44,11 @@
 // Definitions as the Basis lessons word them (pm.devops.pipeline, .fourkeys,
 // .environments, .incident). Each topic scene names two tools of that topic's lessons in
 // one short sentence, without explaining them (Merijn's checkpoint, 14 Nov):
-// versiebeheer and testpiramide (pm.devops.pipeline, .tests), mediaan and State of
-// DevOps-rapport (.measure, .benchmark), feature flag and rollbackplan (.flags,
-// .rollback), prioriteitsmatrix and A3 (.sla, .leanops). The field film's two tools of
+// versiebeheer and testpiramide (pm.devops.pipeline, .tests), a dashboard and a
+// waardestroomanalyse (.measure, .metricsuse: the numbers go on one dashboard, and the
+// value stream from commit to production shows where the work waits), feature flag and
+// rollbackplan (.flags, .rollback), prioriteitsmatrix and 5 keer waarom (.sla,
+// .postmortem). The field film's two tools of
 // the module, Pipeline and Feature flag, are the first topic's name and the third
 // topic's tool. Terms come from the module's lessons and {n:} numbers from the module's
 // text (the kit's intro mode, films/_kit/build-film.mjs); the kit holds the film to its
@@ -109,15 +111,15 @@ has('pm.devops.pipeline', ['The heart of DevOps is the pipeline: an automated co
 has('pm.devops.tests', ['Draait hij in de pipeline, dan controleert hij elke wijziging opnieuw, zonder dat iemand hoeft te klikken', 'Testpiramide', 'Automatische test']);
 has('pm.devops.tests', ['Run in the pipeline, it checks every change again, without anyone having to click', 'Test pyramid', 'Automated test'], 'en');
 // s3: the four measures (two about speed, two about stability), the best teams score well on all four, all measures together;
-// the tools (the median, the State of DevOps report)
+// the tools (a dashboard, a value stream analysis)
 has('pm.devops.fourkeys', ['DORA staat voor DevOps Research and Assessment: een onderzoeksprogramma', 'Twee metingen gaan over snelheid', 'hoe vaak een team een nieuwe versie in productie zet, de echte systemen die gebruikers gebruiken', 'Twee metingen gaan over stabiliteit', 'de beste teams scoren op alle vier goed', 'Snelheid en stabiliteit zijn geen ruil, maar gaan samen', 'Deployfrequentie', 'Faalpercentage van wijzigingen']);
 has('pm.devops.fourkeys', ['DORA stands for DevOps Research and Assessment: a research programme', 'speed', 'how often a team puts a new version into production, the real systems that users use', 'stability', 'the best teams score well on all four', 'Speed and stability are not a trade-off but go together', 'Deployment frequency', 'Change fail rate'], 'en');
-has('pm.devops.measure', ['Voor tijden gebruik je liever de mediaan', 'Mediaan']);
-has('pm.devops.measure', ['median', 'Median'], 'en');
+has('pm.devops.measure', ['komt die op het dashboard']);
+has('pm.devops.measure', ['it goes on the dashboard'], 'en');
+has('pm.devops.metricsuse', ['Een waardestroomanalyse van de route van commit tot productie laat zien waar het wacht']);
+has('pm.devops.metricsuse', ['A value stream map of the route from commit to production shows where it waits'], 'en');
 has('pm.devops.metricsuse', ['Daarom kijk je altijd naar alle metingen samen']);
 has('pm.devops.metricsuse', ['That is why you always look at all the metrics together'], 'en');
-has('pm.devops.benchmark', ['State of DevOps-rapport']);
-has('pm.devops.benchmark', ['State of DevOps report'], 'en');
 // s4: environments (the series a version goes through, users such as team leads check in acceptance, production is the real
 // situation), deploy is not release (the company chooses when it releases), a fault should touch few lines, first one line
 // then the next; the tools (the feature flag, the rollback plan)
@@ -131,27 +133,27 @@ has('pm.devops.rollback', ['Rollbackplan']);
 has('pm.devops.rollback', ['Rollback plan'], 'en');
 // s5: ITIL (the incident, the problem), the service desk, an SLA (an agreement on how fast to respond and how fast to
 // resolve) and priority (a line that is down before a single office printer), the blameless post-mortem; the tools
-// (the priority matrix, the A3)
+// (the priority matrix, 5 times why)
 has('pm.devops.incident', ['Het MES reageert niet', 'Het doel bij een incident is: zo snel mogelijk weer werken', 'Incidenten komen binnen bij de servicedesk: het centrale meldpunt waar gebruikers storingen en vragen melden', 'Bij een probleem is het doel anders: begrijpen waarom het gebeurt, zodat het niet terugkomt']);
 has('pm.devops.incident', ['The MES doesn’t respond', 'The goal with an incident is: working again as fast as possible', 'Incidents come in at the service desk: the central point where users report outages and questions', 'With a problem the goal is different: understanding why it happens, so it doesn’t come back'], 'en');
 has('pm.devops.sla', ['een afspraak tussen een leverancier en een klant over hoe goed een dienst moet zijn', 'hoe snel er gereageerd wordt op een storing, hoe snel die opgelost is', 'Een stilstaande lijn met een spoedorder: hoge impact, hoge urgentie, prioriteit 1', 'Eén kantoorprinter die niet werkt terwijl er nog drie zijn', 'Die bepaal je vaak met een prioriteitsmatrix', 'Prioriteitsmatrix']);
 has('pm.devops.sla', ['an agreement between a supplier and a customer about how good a service must be', 'how fast', 'A stopped line with a rush order: high impact, high urgency, priority 1', 'One office printer not working while there are three others', 'You often set it with a priority matrix', 'Priority matrix'], 'en');
 has('pm.devops.postmortem', ['Een post-mortem (ook incidentreview) is een gestructureerde bespreking na een grote storing', 'de bespreking schuldvrij (blameless) is: je zoekt naar wat in het systeem de fout mogelijk maakte, niet naar wie hem maakte', 'Schuldvrij']);
 has('pm.devops.postmortem', ['A post-mortem (also incident review) is a structured discussion after a major outage', 'the discussion is blameless: you look for what in the system made the mistake possible, not for who made it', 'Blameless'], 'en');
-has('pm.devops.leanops', ['A3', 'Een A3 is een probleemoplosrapport op één vel papier van A3-formaat']);
-has('pm.devops.leanops', ['A3', 'An A3 is a problem-solving report on one sheet of A3-size paper'], 'en');
+has('pm.devops.postmortem', ['Daarna zoek je oorzaken, bijvoorbeeld met 5 keer waarom', '5 keer waarom']);
+has('pm.devops.postmortem', ['for example with the 5 Whys', '5 Whys'], 'en');
 // s6: small changes are easier to test and to recover than one big release a quarter (the lesson's own pre-question, DORA)
 has('pm.devops.fourkeys', ['omdat kleine wijzigingen makkelijker te testen en te herstellen zijn', 'zeldzame, grote deploys gaan vaker mis']);
 has('pm.devops.fourkeys', ['because small changes are easier to test and to recover', 'rare, big deployments fail more often'], 'en');
 // s7: the later levels, as the lessons are titled (the grid names what each adds)
-for (const [id, word] of [['pm.devops.pipeline', 'Wat DevOps is'], ['pm.devops.tests', 'Testautomatisering'], ['pm.devops.trunk', 'trunk-based development'], ['pm.devops.cdflow', 'fabrieksvloer'],
+for (const [id, word] of [['pm.devops.pipeline', 'Wat DevOps is'], ['pm.devops.tests', 'integratie'], ['pm.devops.trunk', 'trunk-based development'], ['pm.devops.cdflow', 'fabrieksvloer'],
   ['pm.devops.fourkeys', 'DORA'], ['pm.devops.measure', 'DORA meten'], ['pm.devops.benchmark', 'rapporten'], ['pm.devops.metricsuse', 'Sturen met DORA'],
-  ['pm.devops.environments', 'Omgevingen'], ['pm.devops.flags', 'feature flags'], ['pm.devops.strategies', 'veilig live gaan'], ['pm.devops.rollback', 'Terugdraaien'],
-  ['pm.devops.incident', 'Incident'], ['pm.devops.sla', 'SLA'], ['pm.devops.postmortem', 'post-mortem'], ['pm.devops.leanops', 'Lean in IT-beheer']]) has(id, [word]);
-for (const [id, word] of [['pm.devops.pipeline', 'What DevOps is'], ['pm.devops.tests', 'Test automation'], ['pm.devops.trunk', 'trunk-based development'], ['pm.devops.cdflow', 'factory floor'],
+  ['pm.devops.environments', 'Omgevingen'], ['pm.devops.flags', 'feature flags'], ['pm.devops.strategies', 'canary'], ['pm.devops.rollback', 'Terugdraaien'],
+  ['pm.devops.incident', 'Incident'], ['pm.devops.sla', 'beschikbaarheid'], ['pm.devops.postmortem', 'tijdlijn'], ['pm.devops.leanops', 'Lean in IT-beheer']]) has(id, [word]);
+for (const [id, word] of [['pm.devops.pipeline', 'What DevOps is'], ['pm.devops.tests', 'integration'], ['pm.devops.trunk', 'trunk-based development'], ['pm.devops.cdflow', 'factory floor'],
   ['pm.devops.fourkeys', 'DORA'], ['pm.devops.measure', 'Measuring DORA'], ['pm.devops.benchmark', 'reports'], ['pm.devops.metricsuse', 'Steering with DORA'],
-  ['pm.devops.environments', 'Environments'], ['pm.devops.flags', 'feature flags'], ['pm.devops.strategies', 'going live safely'], ['pm.devops.rollback', 'Rolling back'],
-  ['pm.devops.incident', 'Incident'], ['pm.devops.sla', 'SLA'], ['pm.devops.postmortem', 'post-mortem'], ['pm.devops.leanops', 'Lean in IT operations']]) has(id, [word], 'en');
+  ['pm.devops.environments', 'Environments'], ['pm.devops.flags', 'feature flags'], ['pm.devops.strategies', 'canary'], ['pm.devops.rollback', 'Rolling back'],
+  ['pm.devops.incident', 'Incident'], ['pm.devops.sla', 'availability'], ['pm.devops.postmortem', 'timeline'], ['pm.devops.leanops', 'Lean in IT operations']]) has(id, [word], 'en');
 // s7: the level words are the app's. The grid (stage.js, grid) has four level columns of GRID.col units from
 // GRID.x; the words stand on one line each, staggered over two rows (columns 1 and 3 high, 2 and 4 low), so a
 // word may be wider than its column but not wider than the room to the next word on its row, nor run off the stage.
@@ -332,16 +334,16 @@ const spec = {
         { nl: 'Twee metingen gaan over snelheid: hoe vaak een versie bij de vloer komt en hoe lang dat duurt.', en: 'Two measures are about speed: how often a version reaches the floor and how long it takes.', focus: ['speed', 'devs'] },
         { nl: 'Twee gaan over stabiliteit: hoe vaak het misgaat en hoe snel je herstelt.', en: 'Two are about stability: how often it goes wrong and how fast you recover.', focus: ['stab', 'devs'] },
         { nl: 'De beste teams scoren op alle vier goed. Kijk naar alle vier samen.', en: 'The best teams score well on all four. Look at all four together.', focus: ['all4', 'devs'] },
-        { nl: 'Bij DORA gebruiken we vaak een {t:Mediaan|mediaan} en het {t:State of DevOps-rapport|State of DevOps-rapport}.', en: 'With DORA we often use a {t:Median|median} and the {t:State of DevOps report|State of DevOps report}.', cue: { Mediaan: 'tool1', 'State of DevOps-rapport': 'tool2' }, focus: ['tool1', 'tool2'] },
+        { nl: 'Bij DORA gebruiken we vaak een dashboard en een waardestroomanalyse.', en: 'With DORA we often use a dashboard and a value stream map.', focus: ['tool1', 'tool2'] },
       ],
     },
     {
       id: 's4', level: 1, dur: DURS[3], still: 0.9, title: { nl: 'Veilig naar de vloer', en: 'Safely to the floor' },
       beats: [
         { nl: 'Derde onderwerp: Release- en omgevingsbeheer. Hoe komt de nieuwe versie veilig bij lijn 3?', en: 'Third topic: Release and environment management. How does the new version reach line 3 safely?', focus: ['tRel', 'line3', 'mes'] },
-        { nl: 'Een versie gaat langs ontwikkeling, test en {t:Acceptatieomgeving|acceptatie}. Dan pas volgt productie.', en: 'A version passes development, test and {t:Acceptance environment|acceptance}. Only then comes production.', cue: { Acceptatieomgeving: 'accept', 'Acceptance environment': 'accept' }, focus: ['env', 'teamlead'] },
+        { nl: 'Eerst ontwikkeling, test en {t:Acceptatieomgeving|acceptatie}. Dan pas productie, de echte omgeving.', en: 'First development, test and {t:Acceptance environment|acceptance}. Only then production, the real environment.', cue: { Acceptatieomgeving: 'accept', 'Acceptance environment': 'accept' }, focus: ['env', 'teamlead'] },
         { nl: 'Installeren is nog geen vrijgeven. De fabriek kiest wanneer lijn 3 het scherm ziet.', en: 'Installing is not yet releasing. The plant chooses when line 3 sees the screen.', focus: ['dep', 'rel', 'sponsor', 'crew'] },
-        { nl: 'Een fout raakt liefst weinig lijnen, de {t:Impactstraal|impactstraal}. Dus eerst één lijn.', en: 'A fault should touch few lines, the {t:Blast radius|blast radius}. So one line first.', cue: { Impactstraal: 'impact', 'Blast radius': 'impact' }, focus: ['impact', 'line3', 'line4'] },
+        { nl: 'Hoeveel lijnen een fout raakt, is de {t:Impactstraal|impactstraal}. Dus eerst één lijn.', en: 'How many lines a fault hits is the {t:Blast radius|blast radius}. So one line first.', cue: { Impactstraal: 'impact', 'Blast radius': 'impact' }, focus: ['impact', 'line3', 'line4'] },
         { nl: 'Bij release- en omgevingsbeheer gebruiken we vaak een {t:Feature flag|feature flag} en een {t:Rollbackplan|rollbackplan}.', en: 'For release and environment management we often use a {t:Feature flag|feature flag} and a {t:Rollback plan|rollback plan}.', cue: { 'Feature flag': 'tool1', Rollbackplan: 'tool2', 'Rollback plan': 'tool2' }, focus: ['tool1', 'tool2'] },
       ],
     },
@@ -353,7 +355,7 @@ const spec = {
         { nl: 'Komt de storing steeds terug, dan zoeken we de oorzaak: een {t:Probleem|probleem}.', en: 'If the fault keeps coming back, we look for the cause: a {t:Problem|problem}.', cue: { Probleem: 'prob', Problem: 'prob' }, focus: ['prob', 'crew'] },
         { nl: 'We maken afspraken over reageren en oplossen. Een stilstaande lijn gaat voor een printer.', en: 'We agree how fast to respond and fix. A line that is down comes before a printer.', focus: ['sla', 'crew'] },
         { nl: 'Na een grote storing een {t:Post-mortem|post-mortem}, {t:Schuldvrij|schuldvrij}: wat maakte de fout mogelijk?', en: 'After a big outage a {t:Post-mortem|post-mortem}, {t:Blameless|blameless}: what made the error possible?', cue: { 'Post-mortem': 'pm', Schuldvrij: 'pm', Blameless: 'pm' }, focus: ['pm', 'devs'] },
-        { nl: 'Bij incidenten gebruiken we vaak een {t:Prioriteitsmatrix|prioriteitsmatrix} en een {t:A3|A3}, een rapport op één vel.', en: 'For incidents we often use a {t:Priority matrix|priority matrix} and an {t:A3|A3}, a report on one sheet.', cue: { Prioriteitsmatrix: 'tool1', 'Priority matrix': 'tool1', A3: 'tool2' }, focus: ['tool1', 'tool2'] },
+        { nl: 'Bij incidenten gebruiken we vaak een {t:Prioriteitsmatrix|prioriteitsmatrix} en {t:5 keer waarom|5 keer waarom}.', en: 'For incidents we often use a {t:Priority matrix|priority matrix} and {t:5 Whys|5 whys}.', cue: { Prioriteitsmatrix: 'tool1', 'Priority matrix': 'tool1', '5 keer waarom': 'tool2', '5 Whys': 'tool2' }, focus: ['tool1', 'tool2'] },
       ],
     },
     {
@@ -369,9 +371,9 @@ const spec = {
         { nl: 'De kaart van Projecten: DevOps en levering is het derde station van IT en agile.', en: 'The map of Projects: DevOps and delivery is the third station of IT and agile.', focus: mapCue('pm.devops') },
         { nl: 'DevOps en levering heeft vier onderwerpen, elk met vier niveaus.', en: 'DevOps and delivery has four topics, each with four levels.', focus: 'route' },
         { nl: 'Begin bij de pipeline. Op niveau Basis: wat DevOps is, wat DORA meet, omgevingen en incidenten.', en: 'Start with the pipeline. At Basics level: what DevOps is, what DORA measures, environments and incidents.', focus: ['tPipe', 'lv1', 'start'] },
-        { nl: 'Op Werkkennis komen testautomatisering, eerlijk meten, feature flags en serviceafspraken erbij.', en: 'At Working knowledge you add test automation, honest measuring, feature flags and service agreements.', focus: 'lv2' },
-        { nl: 'Op Gevorderd komen dagelijks samenvoegen, rapporten lezen, veilig uitrollen en de post-mortem erbij.', en: 'At Advanced you add merging daily, reading the reports, rolling out safely and the post-mortem.', focus: 'lv3' },
-        { nl: 'Op Expert komen leveren op de fabrieksvloer, sturen met DORA, terugdraaien en Lean in IT-beheer erbij.', en: 'At Expert you add delivering on the factory floor, steering with DORA, rolling back and Lean in IT operations.', focus: 'lv4' },
+        { nl: 'Op Werkkennis komen de soorten tests, eerlijk meten, feature flags en beschikbaarheid erbij.', en: 'At Working knowledge you add the kinds of tests, honest measuring, feature flags and availability.', focus: 'lv2' },
+        { nl: 'Op Gevorderd komen dagelijks samenvoegen, rapporten lezen, uitrolstrategieën en de storingstijdlijn erbij.', en: 'At Advanced you add merging daily, reading reports, roll-out strategies and the outage timeline.', focus: 'lv3' },
+        { nl: 'Op Expert komen leveren op de vloer, sturen met DORA, vooruit herstellen en Lean in IT-beheer erbij.', en: 'At Expert you add delivering on the floor, steering with DORA, fixing forward and Lean in IT operations.', focus: 'lv4' },
         { nl: 'Elke les en elke film van deze module heeft een plek op deze kaart.', en: 'Every lesson and film in this module has a place on this map.', focus: null },
       ],
     },
@@ -387,7 +389,7 @@ const spec = {
 // (films/_kit/assert.mjs, checkNarration) holds every module film to that, and
 // the render guard caps a pause inside a sentence at 0.4 s. Each topic scene ends
 // on one short sentence naming two tools of that topic's lessons, without
-// explaining them (the A3 gets one clause, the acronym being opaque).
+// explaining them.
 // Words checked with espeak-ng phonemes through Piper's own bridge (nl_NL): most of
 // the film's words have a voice rule of an earlier film (pipeline, DevOps, State of
 // DevOps, feature flag, MES, plantmanager in "voor de plantmanager", servicedesk,
@@ -411,32 +413,32 @@ const SAY = [
       en: 'The first topic is the pipeline and test automation. How does a change from the IT team reach the floor?' },
     { nl: 'Een {t:Pipeline|pipeline} is een geautomatiseerde lopende band. Elke wijziging loopt door dezelfde stappen, van bouwen tot een testomgeving.',
       en: 'A {t:Pipeline|pipeline} is an automated conveyor. Every change runs through the same steps, from building to a test environment.' },
-    { nl: '{t:Automatische test|Automatische tests} controleren elke wijziging opnieuw, zonder dat iemand hoeft te klikken. Faalt er een, dan stopt de band en krijgt het team direct een melding.',
-      en: '{t:Automated test|Automated tests} check every change again, without anyone having to click. If one fails, the line stops and the team gets a message at once.' },
+    { nl: '{t:Automatische test|Automatische tests} controleren elke wijziging opnieuw, zonder dat iemand hoeft te klikken. Faalt er een, dan stopt de band.',
+      en: '{t:Automated test|Automated tests} check every change again, without anyone having to click. If one fails, the line stops.' },
     { nl: 'Bij pipeline en testautomatisering gebruiken we vaak versiebeheer en een testpiramide.',
       en: 'For the pipeline and test automation we often use version control and a test pyramid.' },
   ],
   [ // s3 DORA
-    { nl: 'Het tweede onderwerp zijn de DORA-metingen, uit onderzoek naar hoe goed IT-teams leveren. Hoe weet je of het IT-team goed levert?',
-      en: 'The second topic is the DORA metrics, from research into how well IT teams deliver. How do you know whether the IT team delivers well?' },
+    { nl: 'Het tweede onderwerp zijn de DORA-metingen, uit onderzoek naar IT-teams. Hoe weet je of het IT-team goed levert?',
+      en: 'The second topic is the DORA metrics, from research into IT teams. How do you know whether the IT team delivers well?' },
     { nl: 'Twee metingen gaan over snelheid. Hoe vaak komt er een nieuwe versie bij de vloer, en hoe lang duurt het van wijziging tot daar?',
       en: 'Two measures are about speed. How often does a new version reach the floor, and how long does a change take to get there?' },
     { nl: 'Twee gaan over stabiliteit. Hoe vaak gaat een nieuwe versie mis, en hoe snel ben je dan weer hersteld?',
       en: 'Two are about stability. How often does a new version go wrong, and how quickly are you back on track?' },
-    { nl: 'De beste teams scoren op alle vier goed. Kijk dus altijd naar alle vier samen, niet naar één getal.',
-      en: 'The best teams score well on all four. So always look at all four together, not at one number.' },
-    { nl: 'Bij DORA gebruiken we vaak een mediaan en het State of DevOps-rapport.',
-      en: 'With DORA we often use a median and the State of DevOps report.' },
+    { nl: 'De beste teams scoren op alle vier goed. Kijk dus altijd naar alle vier samen.',
+      en: 'The best teams score well on all four. So always look at all four together.' },
+    { nl: 'Bij DORA gebruiken we vaak een dashboard en een waardestroomanalyse.',
+      en: 'With DORA we often use a dashboard and a value stream map.' },
   ],
   [ // s4 release and environments
     { nl: 'Het derde onderwerp is het beheer van omgevingen en versies. Hoe komt de nieuwe versie veilig bij lijn 3?',
       en: 'The third topic is managing environments and releases. How does the new version reach line 3 safely?' },
-    { nl: 'Een nieuwe versie gaat eerst langs ontwikkeling, test en {t:Acceptatieomgeving|acceptatie}. Daar controleert de teamleider van lijn 3 of het scherm klopt, want hij kent de vloer. Pas daarna volgt productie, met echte orders en machines.',
-      en: 'A new version first passes development, test and {t:Acceptance environment|acceptance}. There the team lead of line 3 checks that the screen is right, because he knows the floor. Only then comes production, with real orders and machines.' },
-    { nl: 'Installeren is nog geen vrijgeven. Het scherm staat al in productie, maar de fabriek kiest wanneer lijn 3 het ziet.',
-      en: 'Installing is not yet releasing. The screen is already in production, but the plant chooses when line 3 sees it.' },
-    { nl: 'Een fout raakt liefst weinig lijnen. Dat is de {t:Impactstraal|impactstraal}. Daarom gaat een nieuwe versie eerst naar één lijn, en dan naar de rest.',
-      en: 'A fault should touch few lines. That is the {t:Blast radius|blast radius}. So a new version goes to one line first, and then to the rest.' },
+    { nl: 'Een nieuwe versie gaat langs ontwikkeling, test en {t:Acceptatieomgeving|acceptatie}. Daar controleert de teamleider van lijn 3 het scherm, want hij kent de vloer. Pas dan volgt productie, de echte omgeving met echte orders.',
+      en: 'A new version passes development, test and {t:Acceptance environment|acceptance}. There the team lead of line 3 checks the screen, because he knows the floor. Only then comes production, the real environment with real orders.' },
+    { nl: 'Installeren is nog geen vrijgeven. Het scherm staat al in de echte omgeving, maar de fabriek kiest wanneer lijn 3 het ziet.',
+      en: 'Installing is not yet releasing. The screen is already in the real environment, but the plant chooses when line 3 sees it.' },
+    { nl: 'Hoeveel lijnen een fout raakt, heet de {t:Impactstraal|impactstraal}. Die houd je klein. Daarom gaat een nieuwe versie eerst naar één lijn.',
+      en: 'How many lines a fault hits is called the {t:Blast radius|blast radius}. You keep it small. So a new version goes to one line first.' },
     { nl: 'Bij het beheer van versies gebruiken we vaak een feature flag en een rollbackplan.',
       en: 'For managing releases we often use a feature flag and a rollback plan.' },
   ],
@@ -445,14 +447,14 @@ const SAY = [
       en: 'The fourth topic is IT service management and incidents. What do you do when the MES on the floor stops?' },
     { nl: 'Valt het MES stil, dan melden de operators dat bij de servicedesk. Bij een {t:Incident|incident} telt één ding, zo snel mogelijk weer werken.',
       en: 'If the MES stops, the operators report it to the service desk. With an {t:Incident|incident} one thing counts, getting back to work as fast as possible.' },
-    { nl: 'Komt dezelfde storing steeds terug, dan zoeken we de oorzaak. Dat heet een {t:Probleem|probleem}, en het doel is dat het niet terugkomt.',
-      en: 'If the same fault keeps coming back, we look for the cause. That is a {t:Problem|problem}, and the goal is that it does not come back.' },
+    { nl: 'Komt dezelfde storing steeds terug, dan zoeken we de oorzaak. Dat heet een {t:Probleem|probleem}.',
+      en: 'If the same fault keeps coming back, we look for the cause. That is a {t:Problem|problem}.' },
     { nl: 'Over reageren en oplossen maken we afspraken met de fabriek. Een stilstaande lijn gaat voor een kantoorprinter.',
       en: 'We agree with the plant how fast we respond and how fast we fix. A line that is down comes before an office printer.' },
     { nl: 'Na een grote storing houden we een {t:Post-mortem|post-mortem}. We zoeken wat in het systeem de fout mogelijk maakte, niet wie hem maakte. Dat is {t:Schuldvrij|schuldvrij}.',
       en: 'After a big outage we hold a {t:Post-mortem|post-mortem}. We look for what in the system made the error possible, not who made it. That is {t:Blameless|blameless}.' },
-    { nl: 'Bij incidenten gebruiken we vaak een prioriteitsmatrix en een A3, een rapport op één vel.',
-      en: 'For incidents we often use a priority matrix and an A3, a report on one sheet.' },
+    { nl: 'Bij incidenten gebruiken we vaak een prioriteitsmatrix en vijf keer waarom.',
+      en: 'For incidents we often use a priority matrix and five whys.' },
   ],
   [ // s6 one whole
     { nl: 'Het hangt samen. De pipeline brengt de wijziging, DORA meet hoe het gaat, de uitrol houdt het veilig en incidentbeheer vangt de rest op.',
@@ -467,12 +469,12 @@ const SAY = [
       en: 'DevOps and delivery has four topics, each with four levels.' },
     { nl: 'Begin bij de pipeline. Op niveau Basis gaat het over wat DevOps is, wat DORA meet, omgevingen en incidenten.',
       en: 'Start with the pipeline. At Basics level it is about what DevOps is, what DORA measures, environments and incidents.' },
-    { nl: 'Op Werkkennis komen testautomatisering, eerlijk meten, feature flags en serviceafspraken erbij.',
-      en: 'At Working knowledge you add test automation, honest measuring, feature flags and service agreements.' },
-    { nl: 'Op Gevorderd komen dagelijks samenvoegen, rapporten lezen, veilig uitrollen en de post-mortem erbij.',
-      en: 'At Advanced you add merging daily, reading the reports, rolling out safely and the post-mortem.' },
-    { nl: 'Op Expert komen leveren op de fabrieksvloer, sturen met DORA, terugdraaien en Lean in IT-beheer erbij.',
-      en: 'At Expert you add delivering on the factory floor, steering with DORA, rolling back and Lean in IT operations.' },
+    { nl: 'Op Werkkennis komen de soorten tests, eerlijk meten, feature flags en beschikbaarheid erbij.',
+      en: 'At Working knowledge you add the kinds of tests, honest measuring, feature flags and availability.' },
+    { nl: 'Op Gevorderd komen dagelijks samenvoegen, rapporten lezen, uitrolstrategieën en de storingstijdlijn erbij.',
+      en: 'At Advanced you add merging daily, reading reports, roll-out strategies and the outage timeline.' },
+    { nl: 'Op Expert komen leveren op de vloer, sturen met DORA, vooruit herstellen en Lean in IT-beheer erbij.',
+      en: 'At Expert you add delivering on the floor, steering with DORA, fixing forward and Lean in IT operations.' },
     { nl: 'Elke les en elke film van deze module heeft een plek op deze kaart.',
       en: 'Every lesson and every film in this module has a place on this map.' },
   ],
