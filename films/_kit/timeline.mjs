@@ -765,7 +765,14 @@ const SAY = {
     // gelaagde procesaudit, KPI-bord, nulmeting, baateigenaar and A3-rapport go through the rules above or are read
     // right as they are; no other film's spoken text changes
     [/\bvooraf een follow-up af en een trigger\b/g, 'vooraf een follo-ap af en een trikker'],
-    [/\bA3-rapport en een after-action review\b/g, 'A3-rapport en een after-eksjun rievjoe']],
+    [/\bA3-rapport en een after-action review\b/g, 'A3-rapport en een after-eksjun rievjoe'],
+    // the DevOps module intro (pm.devops.intro), a self-contained group at the end of the Dutch list, checked with
+    // phonemes through Piper's nl_NL-alex bridge: espeak-ng stresses testpiramide on "raa" (test-pi-RAA-mi-de); said
+    // test-piramiede, the stress of piramide. The film's other words (versiebeheer, mediaan, feature flag, rollbackplan,
+    // prioriteitsmatrix, A3, impactstraal, servicedesk, post-mortem, DORA, MES) are read right as they are or have rules
+    // above; the film does not say live, release, SLA, benchmarks or continuous integration; no other film's spoken
+    // text changes
+    [/\b([Tt])estpiramide\b/g, '$1est-piramiede']],
   en: [[/\brpm\b/g, 'revolutions per minute'], [/\bmm\/min\b/g, 'millimetres per minute'], [/\bm\/min\b/g, 'metres per minute'], [/µm\b/g, 'micrometres'],
     [/€\s?(\d[\d,]*(?:\.\d+)?)/g, '$1 euros'], [/(\d)\.0(?![\d])/g, '$1'], [/(\d)\s?mm\b/g, '$1 millimetres'], [/(\d)\s?min\b/g, '$1 minutes'], [/(\d)\s?%/g, '$1 percent'],
     [/Ø\s*/g, 'diameter '], [/(\d)\+(\d)/g, '$1 plus $2'], [/\s×\s/g, ' times '], [/\s\/\s/g, ' divided by '], [/\s=\s/g, ' is '], [/°/g, ' degrees'], [/\bRa\b/g, 'R a'], [/’/g, "'"],
