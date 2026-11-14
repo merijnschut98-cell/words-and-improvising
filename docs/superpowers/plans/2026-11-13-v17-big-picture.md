@@ -350,6 +350,13 @@ Merijn: "in het basisniveau geen berekeningen. Alleen uitleg over hoe dingen wer
 - [ ] **Step 3 (`sonnet` per subject, review `sonnet`; `opus` for the validator):** move the calculations to Werkkennis (lesson text, questions, terms), rewrite the Basis lesson as explanation; keep four levels each teaching something new.
 - [ ] **Step 4:** films: rebuild the affected Basis films without the calculation scenes (shorter is fine) and add the calculation to the Werkkennis film or lesson; review and render per batch.
 
+### Task 22: English IT words in the Dutch voice (found 14 Nov, Merijn: fix now)
+
+Render PM-17's free transcript of the Dutch audio heard Agile as "Hatchel"/"HCL" (the existing rule says "etsjail"), Daily Scrum as "dilly-scrum", planning poker as "planningpoken", WIP-limiet as "VIP-limiet", feature flag as "fietsje vlag", rollbackplan as "rolbakplan", versiebeheer as "versiep beheer", postmortem as "postmoord", DORA as "DORM". Merijn chose to fix them now, as with DevOps (Task 20).
+
+- [ ] **Step 1 (`sonnet`, test first):** for each word try spellings through Piper's nl phonemizer and the real voice, transcribe with large-v3-turbo, and keep the spelling that is heard right; one commented SAY group at the end of the Dutch list; recompute every film's spoken text before and after and list the films whose audio changes.
+- [ ] **Step 2:** re-render those films in batches (one film and one language per command), upload, verify.
+
 ## Not in this plan
 
 Explain it back, knowledge on the map, and the rest of the ideas list in the spec: each gets its own design when it is picked up. The speaking formats stay parked.
