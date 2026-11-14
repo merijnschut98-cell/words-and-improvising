@@ -9,7 +9,7 @@ import { MODULES } from '../content/courses/index.js';
 import TIPS from '../content/tips.js';
 import { upcoming, needsReflection, unusedSkill } from '../core/realweek.js';
 import { EVENT_ICON, fmtDay, startRehearsal } from './realweek.js';
-import { startHead, subjectTitle } from './flairui.js';
+import { startHead, subjectTitle, guideGreeting } from './flairui.js';
 import { h, DRILL_ICON, enableOnFail } from './dom.js';
 import { ico } from './icons.js';
 import { levelFromXp, isStreakAlive, daysPractised } from '../core/progress.js';
@@ -392,6 +392,7 @@ export function renderHome(app, _params, root) {
     h('main', { class: 'screen home speak-home' },
       h('h1', { class: 'sr' }, t('subject_speak')),
       breakCard(app, showBreak),
+      guideGreeting(app, { subject: 'speak' }),
       ...speakBands(app),
       navigator.onLine ? null : h('p', { class: 'note' }, t('offline'))),
     navBar(app, 'home'),

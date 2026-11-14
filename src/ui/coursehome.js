@@ -8,7 +8,7 @@ import { subjectMap } from './subjectmap.js';
 import { filmButton } from './film.js';
 import { courseTodayPick, moduleMastery, nextLesson, levelsDone } from '../core/course.js';
 import { pathModel, topicPath } from './pathmap.js';
-import { medalSeal, metaSeal, moduleEndModel, checkEntry, goalLeftLine } from './flairui.js';
+import { medalSeal, metaSeal, moduleEndModel, checkEntry, goalLeftLine, guideGreeting } from './flairui.js';
 import { dueCount } from '../core/coursereview.js';
 import { FROM_MODULE } from '../core/moduleexit.js';
 import { moduleTier, trackProgress, openTrack } from '../core/layout.js';
@@ -241,5 +241,6 @@ export function courseHome(app, subject) {
   };
   return h('main', { class: `screen home course-home course-${subject}` },
     h('h1', { class: 'sr' }, t(`subject_${subject}`)),
+    guideGreeting(app, { subject }),
     ...homeOrder(subject, Boolean(map)).flatMap((k) => blocks[k]()));
 }

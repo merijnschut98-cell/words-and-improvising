@@ -113,3 +113,89 @@ test('settings guide off: no guide anywhere, the done card keeps its mark', () =
   assert.equal(box.querySelector('.guide'), null);
   assert.equal(box.querySelector('.guide-say'), null);
 });
+
+// ---- Andon visible (v17 Task 8): the greeting on the homes, the presenter on the module screen ----
+const { guideGreeting, guideIntro, guideIntroSeen, introGuideModel } = await import('../src/ui/flairui.js');
+const { markIntroSeen } = await import('../src/core/course.js');
+const { MODULES } = await import('../src/content/courses/index.js');
+const tEn = translator('en');
+const withIntro = { ...MODULES.find((m) => m.id === 'pm.run'), intro: 'pm.run.intro' };
+const noIntro = { ...withIntro, intro: undefined };
+const appFor = (state, t = tNl, lang = 'nl') => ({ t, lang, today: () => '2026-11-02', state });
+const stOn = () => defaultState();
+const stOff = () => ({ ...defaultState(), settings: { ...defaultState().settings, guide: false } });
+
+test('guideGreeting: Andon at 96 px with one line from the day pool; null when the guide is off', () => {
+  const el = guideGreeting(appFor(stOn()), { subject: 'speak' });
+  assert.ok(el.classList.contains('guide-greeting'));
+  const a = el.querySelector('.guide');
+  assert.ok(a.classList.contains('guide-96'));
+  assert.match(a.innerHTML, /s-idle/);
+  const lines = el.querySelectorAll('.guide-say');
+  assert.equal(lines.length, 1, 'at most one line');
+  assert.ok(tNl('guideHome').includes(lines[0].textContent));
+  assert.equal(guideGreeting(appFor(stOff()), { subject: 'speak' }), null);
+  assert.equal(guideGreeting(appFor(stOff()), { subject: 'pm' }), null);
+});
+
+test('guideGreeting: the pool is calm, in both languages, and rotates with the day', () => {
+  for (const t of [tNl, tEn]) {
+    const pool = t('guideHome');
+    assert.ok(pool.length >= 4);
+    for (const line of pool) assert.doesNotMatch(line, /!/, 'no exclamation marks');
+  }
+  assert.equal(tNl('guideHome')[0], 'Vandaag: één stap. Die hieronder.');
+  assert.equal(tEn('guideHome')[0], 'Today: one step. The one below.');
+  const seen = new Set(Array.from({ length: 12 }, (_, i) => guideLine(tNl, 'guideHome', `2026-12-${String(i + 1).padStart(2, '0')}`)));
+  assert.ok(seen.size > 1);
+});
+
+test('introGuideModel: idle with a line until the intro is seen, then the top light and no line; no intro, no Andon', () => {
+  assert.deepEqual(introGuideModel(stOn(), withIntro), { mood: 'idle', line: 'guideIntro' });
+  assert.deepEqual(introGuideModel(markIntroSeen(stOn(), 'pm.run'), withIntro), { mood: 'right', line: null });
+  assert.equal(introGuideModel(stOn(), noIntro), null);
+  assert.equal(introGuideModel(stOff(), withIntro), null);
+});
+
+test('guideIntro: 72 px, the line while unseen, lit and silent once seen; null without intro or with the guide off', () => {
+  const el = guideIntro(appFor(stOn()), withIntro);
+  const a = el.querySelector('.guide');
+  assert.ok(a.classList.contains('guide-72'));
+  assert.match(a.innerHTML, /s-idle/);
+  assert.doesNotMatch(a.innerHTML, /g-top on/);
+  assert.equal(el.querySelector('.guide-say').textContent, 'Eerst het grote plaatje, dan de details.');
+  assert.equal(guideIntro(appFor(stOn(), tEn, 'en'), withIntro).querySelector('.guide-say').textContent, 'The big picture first, then the details.');
+  const seen = guideIntro(appFor(markIntroSeen(stOn(), 'pm.run')), withIntro);
+  assert.match(seen.querySelector('.guide').innerHTML, /g-top on/);
+  assert.equal(seen.querySelector('.guide-say'), null);
+  assert.equal(guideIntro(appFor(stOn()), noIntro), null);
+  assert.equal(guideIntro(appFor(stOff()), withIntro), null);
+});
+
+test('guideIntro: the heading goes beside him; guideIntroSeen lights the top in place and drops the line', () => {
+  const heading = document.createElement('h2');
+  heading.textContent = 'Begin hier';
+  const el = guideIntro(appFor(stOn()), withIntro, heading);
+  assert.ok(el.querySelector('h2'), 'the heading is part of the block, no separate gap');
+  const guideEl = el.querySelector('.guide');
+  guideIntroSeen(el);
+  assert.equal(el.querySelector('.guide'), guideEl, 'same element, no re-render');
+  assert.match(guideEl.innerHTML, /g-top on/);
+  assert.equal(el.querySelector('.guide-say'), null);
+  assert.ok(el.querySelector('h2'));
+  guideIntroSeen(el); // idempotent
+  assert.match(guideEl.innerHTML, /g-top on/);
+});
+
+test('Andon is decoration plus one line: never a button or link, aria-hidden', () => {
+  for (const el of [guideGreeting(appFor(stOn()), { subject: 'speak' }), guideIntro(appFor(stOn()), withIntro)]) {
+    assert.equal(el.querySelectorAll('button, a').length, 0);
+    assert.equal(el.querySelector('.guide').getAttribute('aria-hidden'), 'true');
+  }
+});
+
+test('guide sizes 72 and 96 have styles', async () => {
+  const fs = await import('node:fs');
+  const css = fs.readFileSync(new URL('../styles.css', import.meta.url), 'utf8');
+  for (const n of [72, 96]) assert.match(css, new RegExp(`\\.guide-${n}\\b`));
+});

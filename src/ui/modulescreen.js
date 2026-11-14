@@ -7,6 +7,7 @@ import { metaOf, fieldOf, SUBJECTS } from '../content/courses/index.js';
 import { introSeen, markIntroSeen } from '../core/course.js';
 import { pathModel } from './pathmap.js';
 import { filmStep, introFilm, closeFilms } from './film.js';
+import { guideIntro, guideIntroSeen } from './flairui.js';
 import { topicsSection, moduleEnd, continueButton } from './coursehome.js';
 
 // The module of an id, or null (a deep link or a restored session may point at
@@ -40,12 +41,16 @@ export function renderModule(app, { subject, moduleId } = {}, root) {
   const model = moduleModel(app.state, meta, app.lang);
   const blurb = () => h('p', { class: 'module-blurb-text' }, model.blurb);
 
+  // Andon stands beside the heading with one line; the video's end lights his
+  // top segment in place. With the guide off the heading stands alone.
+  const heading = h('h2', { class: 'topic-title module-intro-title' }, t('moduleIntro'));
+  const andon = model.hasIntro ? guideIntro(app, meta, heading) : null;
   const intro = model.hasIntro
     ? h('section', { class: 'module-intro' },
-      h('h2', { class: 'topic-title module-intro-title' }, t('moduleIntro')),
+      andon || heading,
       filmStep(app, { film: meta.intro }, null, {
         text: blurb,
-        onSeen: () => app.setState(markIntroSeen(app.state, meta.id)),
+        onSeen: () => { app.setState(markIntroSeen(app.state, meta.id)); guideIntroSeen(andon); },
       }))
     : h('section', { class: 'module-intro module-intro-text' }, blurb());
 
@@ -56,7 +61,6 @@ export function renderModule(app, { subject, moduleId } = {}, root) {
       h('h1', { class: 'module-screen-title' }, model.title),
       model.titleEn ? h('p', { class: 'term-en module-en-line', lang: 'en' }, model.titleEn) : null,
       model.field ? h('p', { class: 'module-field muted small' }, model.field.title[app.lang] || model.field.title.en) : null),
-    // v17 Task 8: Andon presents the intro here, beside the film, with one line.
     intro,
     topicsSection(app, meta, { next: model.next, topics: model.topics }),
     moduleEnd(app, meta),
