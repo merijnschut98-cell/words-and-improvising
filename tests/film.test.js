@@ -1283,3 +1283,21 @@ test('speak variant: the DevOps module intro word in Dutch', () => {
   const en = 'We often use version control and a test pyramid.';
   assert.equal(speakOf([en], 'en'), en);
 });
+
+// The Consulting craft module intro (pm.consult.intro), checked with espeak-ng phonemes through Piper's nl bridge: it reads
+// plantmanager with a soft g ("plant-maa-naa-ger", said plant-menetsjer, only in "De plantmanager vraagt"), operators as
+// "OO-pi-raa-tors" (said ope-raators, only in "stoptijden van operators") and doorverwijzingen with a devoiced d
+// ("toorverwijzingen", said door-verwijzingen). Offerte, adviesvak, vertrouwensformule, diagnosefase, dagtarief, opties,
+// dataminimalisatie, pseudonimiseren, positionering, pijplijn, succesfee, weerstand, krantentest, nederig vragen,
+// risicoreservering, opzegclausule and hefboom are read right or have rules above; English needs nothing; no other
+// film's spoken text changes
+test('speak variant: the consulting module intro words in Dutch', () => {
+  const nl = (s) => speakOf([s], 'nl');
+  assert.equal(nl('De plantmanager vraagt jou om advies.'), 'De plant-menetsjer vraagt jou om advies.');
+  assert.equal(nl('Je ziet de stoptijden van operators.'), 'Je ziet de stoptijden van ope-raators.');
+  assert.equal(nl('Dat levert doorverwijzingen op.'), 'Dat levert door-verwijzingen op.');
+  // elsewhere the words keep their voice
+  assert.equal(nl('Vraag het de plantmanager. De stoptijden van de lijn.'), 'Vraag het de plantmanager. De stoptijden van de lijn.');
+  const en = 'The plant manager asks you for advice. Referrals and the stop times of operators.';
+  assert.equal(speakOf([en], 'en'), en);
+});
