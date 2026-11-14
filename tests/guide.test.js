@@ -118,14 +118,15 @@ const tEn = translator('en');
 const withIntro = { ...MODULES.find((m) => m.id === 'pm.run'), intro: 'pm.run.intro' };
 const noIntro = { ...withIntro, intro: undefined };
 const appFor = (state, t = tNl, lang = 'nl') => ({ t, lang, today: () => '2026-11-02', state });
-const stOn = () => defaultState();
+const stOn = () => ({ ...defaultState(), ui: { andonIntro: true } }); // intro already said
+const stNew = () => defaultState();
 const stOff = () => ({ ...defaultState(), settings: { ...defaultState().settings, guide: false } });
 
-test('guideGreeting: Andon at 96 px with one line from the day pool; null when the guide is off', () => {
+test('guideGreeting: Andon at 80 px with one line from the day pool; null when the guide is off', () => {
   const el = guideGreeting(appFor(stOn()), { subject: 'speak' });
   assert.ok(el.classList.contains('guide-greeting'));
   const a = el.querySelector('.guide');
-  assert.ok(a.classList.contains('guide-96'));
+  assert.ok(a.classList.contains('guide-80'));
   assert.match(a.innerHTML, /s-idle/);
   const lines = el.querySelectorAll('.guide-say');
   assert.equal(lines.length, 1, 'at most one line');
@@ -193,7 +194,7 @@ test('Andon is decoration plus one line: never a button or link, aria-hidden', (
 test('guide sizes 72 and 96 have styles', async () => {
   const fs = await import('node:fs');
   const css = fs.readFileSync(new URL('../styles.css', import.meta.url), 'utf8');
-  for (const n of [72, 96]) assert.match(css, new RegExp(`\\.guide-${n}\\b`));
+  for (const n of [72, 80, 96]) assert.match(css, new RegExp(`\\.guide-${n}\\b`));
 });
 
 // ---- Review (Task 8): the start screen greets too, and no home shows two guide lines ----
@@ -216,7 +217,7 @@ test('start screen: Andon greets between the head and the one begin button; gone
   const g = kids.findIndex((e) => e.classList.contains('guide-greeting'));
   assert.ok(g >= 0, 'a greeting on the start screen');
   assert.equal(kids[g].getAttribute('data-subject'), 'start');
-  assert.ok(kids[g].querySelector('.guide-96'));
+  assert.ok(kids[g].querySelector('.guide-80'));
   assert.ok(kids.findIndex((e) => e.classList.contains('start-head-wrap')) < g, 'under the head');
   assert.ok(kids.findIndex((e) => e.classList.contains('begin-btn')) > g, 'above the begin button');
   const off = renderHomeOf('start', stOff());
@@ -244,4 +245,94 @@ test('course home with the goal half done: the greeting says how much XP is left
     const done = { ...stOn(), xpDays: { '2026-11-02': 30 } };
     assert.ok(tNl('guideHome').includes(renderHomeOf(subject, done).querySelector('.guide-greeting .guide-say').textContent), 'goal reached: the day line');
   }
+});
+
+// ---- Andon recognisable (v17): status light, name, speech bubble, one-time introduction ----
+const { statusModel, andonIntroSeen, markAndonIntroSeen } = await import('../src/ui/guide.js');
+const dueState = (st = stOn()) => ({ ...st, courseReviews: { 'nl|q1': { subject: 'eng', lesson: 'l', box: 1, due: '2026-11-01' } } });
+
+test('statusModel: nothing due burns the bottom light, due burns the middle (ochre), goal done adds the top; pure', () => {
+  assert.deepEqual(statusModel({}), { status: 'ok', on: ['g-low'], warn: [], key: 'g-low' });
+  assert.deepEqual(statusModel({ due: 3 }), { status: 'due', on: [], warn: ['g-mid'], key: 'g-mid' });
+  assert.deepEqual(statusModel({ due: 0, goalDone: true }).on, ['g-low', 'g-top']);
+  assert.deepEqual(statusModel({ due: 2, goalDone: true }).on, ['g-top']);
+});
+
+test('guideSvg with a status: one light always on; plain moods unchanged; blink only on the status light', () => {
+  const ok = guideSvg('idle', { status: statusModel({}) });
+  assert.match(segs(ok, 'g-low'), /\bon\b/);
+  assert.doesNotMatch(segs(ok, 'g-mid'), /\b(on|warn)\b/);
+  assert.match(ok, /st-ok/);
+  const due = guideSvg('idle', { status: statusModel({ due: 1 }) });
+  assert.match(segs(due, 'g-mid'), /\bwarn\b/);
+  assert.doesNotMatch(segs(due, 'g-low'), /\bon\b/);
+  assert.match(due, /st-due/);
+  assert.doesNotMatch(due, /blink/);
+  const b = guideSvg('idle', { status: statusModel({ due: 1 }), blink: true });
+  assert.equal((b.match(/blink/g) || []).length, 1);
+  assert.match(segs(b, 'g-mid'), /blink/);
+  assert.doesNotMatch(guideSvg('idle'), /\b(on|warn|blink)\b/);
+  for (const c of ['g-top', 'g-mid', 'g-low']) assert.match(segs(guideSvg('celebrate', { status: statusModel({ due: 1 }) }), c), /\bon\b/);
+});
+
+test('greeting: speech bubble with the name under the tower, status as text for a screen reader, tower aria-hidden', () => {
+  const el = guideGreeting(appFor(stOn()), { subject: 'start' });
+  assert.equal(el.getAttribute('data-status'), 'ok');
+  const fig = el.querySelector('.guide-figure');
+  assert.equal(fig.querySelector('.guide').getAttribute('aria-hidden'), 'true');
+  assert.equal(fig.querySelector('.guide-name').textContent, 'Andon: alles op koers');
+  assert.ok(fig.querySelector('.guide-name .sr'));
+  assert.equal(el.querySelectorAll('.guide-name').length, 1);
+  assert.equal(el.querySelectorAll('.guide-say').length, 1);
+  assert.equal(guideGreeting(appFor(stOn(), tEn, 'en'), { subject: 'start' }).querySelector('.guide-name').textContent, 'Andon: all on track');
+  const waiting = guideGreeting(appFor(dueState()), { subject: 'eng' });
+  assert.equal(waiting.getAttribute('data-status'), 'due');
+  assert.match(waiting.querySelector('.guide').innerHTML, /g-mid[^"]*warn/);
+  assert.match(waiting.querySelector('.guide-name').textContent, /er staan vragen klaar/);
+  assert.equal(guideGreeting(appFor(dueState()), { subject: 'pm' }).getAttribute('data-status'), 'ok', 'a course home counts its own queue');
+  assert.equal(guideGreeting(appFor(dueState()), { subject: 'start' }).getAttribute('data-status'), 'due', 'the start screen counts all');
+  assert.match(guideGreeting(appFor({ ...stOn(), xpDays: { '2026-11-02': 30 } }), { subject: 'pm' }).querySelector('.guide').innerHTML, /g-top on/);
+});
+
+test('introduction: once per device, a short line, the status light blinks, marked at once (device-only ui flag)', () => {
+  const app = appFor(stNew());
+  let saved = null;
+  app.setState = (s) => { saved = s; app.state = s; };
+  const first = guideGreeting(app, { subject: 'start' });
+  assert.equal(first.getAttribute('data-line'), 'intro');
+  assert.equal(first.querySelector('.guide-say').textContent, 'Ik ben Andon. Ik wijs je de weg.');
+  assert.match(first.querySelector('.guide').innerHTML, /g-low[^"]*blink/);
+  assert.equal(saved.ui.andonIntro, true);
+  const second = guideGreeting(app, { subject: 'start' });
+  assert.notEqual(second.getAttribute('data-line'), 'intro');
+  assert.doesNotMatch(second.querySelector('.guide').innerHTML, /blink/);
+  assert.ok(tNl('guideHome').includes(second.querySelector('.guide-say').textContent));
+  assert.equal(guideGreeting(appFor(stNew(), tEn, 'en'), { subject: 'start' }).querySelector('.guide-say').textContent, "I'm Andon. I'll show you the way.");
+  const off = appFor(stOff());
+  let touched = false;
+  off.setState = () => { touched = true; };
+  assert.equal(guideGreeting(off, { subject: 'start' }), null);
+  assert.equal(touched, false, 'guide off: nothing is marked');
+  assert.equal(andonIntroSeen(stNew()), false);
+  const m = markAndonIntroSeen(stNew());
+  assert.equal(andonIntroSeen(m), true);
+  assert.equal(markAndonIntroSeen(m), m);
+});
+
+test('introduction: one Andon and one line on a first start, on every home', () => {
+  for (const subject of ['start', 'speak', 'pm', 'eng']) {
+    assert.deepEqual(guideCount(renderHomeOf(subject, stNew())), { andons: 1, lines: 1 }, subject);
+  }
+});
+
+test('storage keeps ui.andonIntro only as true; css has bubble, name and a blink that reduced motion switches off', async () => {
+  const fs = await import('node:fs');
+  const css = fs.readFileSync(new URL('../styles.css', import.meta.url), 'utf8');
+  for (const sel of ['.guide-figure', '.guide-name', '.guide-say::before', 'vp-blink']) assert.ok(css.includes(sel), sel);
+  assert.match(css, /prefers-reduced-motion: reduce\) \{\s*\* \{ animation: none !important/);
+  const { load } = await import('../src/core/storage.js');
+  const backend = (v) => ({ getItem: () => JSON.stringify({ ui: { andonIntro: v } }), setItem() {} });
+  assert.equal(load(backend(true)).ui.andonIntro, true);
+  assert.equal('andonIntro' in load(backend('yes')).ui, false);
+  assert.equal('andonIntro' in load({ getItem: () => null, setItem() {} }).ui, false, 'existing learners see it once');
 });

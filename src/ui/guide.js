@@ -42,9 +42,26 @@ const SEG_R = 6;
 const SEG_H = 7;
 const LIT = { idle: [], right: ['g-top'], wrong: [], celebrate: ['g-low', 'g-mid', 'g-top'] };
 
-export function guideSvg(mood = 'idle') {
-  const lit = LIT[mood] || [];
-  const seg = (cls, z0) => `<g class="g-seg ${cls}${lit.includes(cls) ? ' on' : ''}${mood === 'wrong' && cls === 'g-mid' ? ' warn' : ''}">${cyl(SEG_R, z0, z0 + SEG_H)}</g>`;
+// Andon always shows how things stand (v17 Andon visible, point 1): the
+// bottom light burns petrol when nothing waits, the middle one burns ochre
+// when reviews are due (position says it too, not the colour alone), and the
+// top one joins when today's goal is reached. Milestone moods add to these.
+// Pure: the caller counts what is due.
+export function statusModel({ due = 0, goalDone = false } = {}) {
+  const waiting = due > 0;
+  return {
+    status: waiting ? 'due' : 'ok',
+    on: [...(waiting ? [] : ['g-low']), ...(goalDone ? ['g-top'] : [])],
+    warn: waiting ? ['g-mid'] : [],
+    // The light that blinks in the introduction: the status light.
+    key: waiting ? 'g-mid' : 'g-low',
+  };
+}
+
+export function guideSvg(mood = 'idle', { status = null, blink = false } = {}) {
+  const lit = [...(LIT[mood] || []), ...(status ? status.on : [])];
+  const warnSegs = [...(mood === 'wrong' ? ['g-mid'] : []), ...(status ? status.warn : [])];
+  const seg = (cls, z0) => `<g class="g-seg ${cls}${lit.includes(cls) ? ' on' : ''}${warnSegs.includes(cls) ? ' warn' : ''}${blink && status && status.key === cls ? ' blink' : ''}">${cyl(SEG_R, z0, z0 + SEG_H)}</g>`;
   const screws = [[-7, -7], [7, -7], [7, 7], [-7, 7]].map(([x, y]) => {
     const [sx, sy] = pt(x, y, 3).split(',');
     return `<circle class="g-screw" cx="${sx}" cy="${sy}" r="0.6"/>`;
@@ -64,7 +81,7 @@ export function guideSvg(mood = 'idle') {
     `<g class="g-housing">${cyl(SEG_R + 0.5, 33.4, 34.6)}</g>`, // cap
     `<g class="g-housing">${cyl(2, 34.6, 36)}</g>`, // cap knob
   ];
-  return `<svg class="guide-svg s-${mood}" viewBox="-20 -39 40 50" aria-hidden="true" focusable="false">${parts.join('')}</svg>`;
+  return `<svg class="guide-svg s-${mood}${status ? ` st-${status.status}` : ''}" viewBox="-20 -39 40 50" aria-hidden="true" focusable="false">${parts.join('')}</svg>`;
 }
 
 // The guide is on unless he turned it off in Settings (device-only).
@@ -72,10 +89,23 @@ export const guideOn = (state) => !(state && state.settings && state.settings.gu
 
 // The guide as an element (32 px beside a line, 64 px on a done card), or
 // null when it is turned off.
-export function guide(state, { mood = 'idle', size = 32 } = {}) {
+export function guide(state, { mood = 'idle', size = 32, status = null, blink = false } = {}) {
   if (!guideOn(state)) return null;
-  return h('span', { class: `guide guide-${size}`, 'aria-hidden': 'true', html: guideSvg(mood) });
+  return h('span', { class: `guide guide-${size}`, 'aria-hidden': 'true', html: guideSvg(mood, { status, blink }) });
 }
+
+// The tower with his name under it: the drawing stays decorative, the name
+// (and, for a screen reader, how things stand) is text. Null with the guide off.
+export function guideFigure(state, { statusText = '', ...opts } = {}) {
+  const el = guide(state, opts);
+  if (!el) return null;
+  return h('span', { class: 'guide-figure' }, el,
+    h('span', { class: 'guide-name' }, 'Andon', statusText ? h('span', { class: 'sr' }, `: ${statusText}`) : null));
+}
+
+// Has he introduced himself on this device? Device-only (state.ui), see storage.
+export const andonIntroSeen = (state) => !!(state && state.ui && state.ui.andonIntro === true);
+export const markAndonIntroSeen = (state) => (andonIntroSeen(state) ? state : { ...state, ui: { ...(state.ui || {}), andonIntro: true } });
 
 function hash(s) {
   let x = 7;
