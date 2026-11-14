@@ -374,6 +374,8 @@ Render PM-17's free transcript of the Dutch audio heard Agile as "Hatchel"/"HCL"
 - Task 17: complete films with one short extra scene per lesson point they skip; longer where needed, no more.
 - Task 19: a level opener appears once per topic and level, and can be read again from the module screen.
 - Performance management subject name: chosen after the research.
+- Quest rows: make them tappable; a tap opens the lesson or practice that completes the quest.
+- MC questions from research (Task 14 and later): collect them and ask in one round the next day, not as they come in; building waits for the answers.
 
 ## Not in this plan
 
