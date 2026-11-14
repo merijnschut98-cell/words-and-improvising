@@ -654,6 +654,29 @@ const SAY = {
     [/\b([Ii])ncidentreview(s?)\b/g, '$1ncident-rievjoe$2'], [/\bSite Reliability Engineering\b/g, 'Sait Rielaaje-bilitti Entsjinieering'],
     [/\b([Pp])ostmortemcultuur\b/g, '$1ost-mortem-cultuur'], [/\b([Bb])lameless\b/g, '$1leemlus'], [/\b([Ww])orkaround(s?)\b/g, '$1urk-erraund$2'],
     [/\b([Uu])pdate(s?)\b/g, '$1pdeet$2'],
+    // forecasting and steering on flow (pm.agile.forecast): the forecasting and flow words as Dutch agile teams say
+    // them, checked with espeak-ng phonemes through Piper's nl_NL-alex bridge: it stresses onzekerheidskeGEL with
+    // the e of "bed" (onzekerheids-kegel), reads Boehm as "boehm" (Beem), Steve McConnell as "stee-ve em-see konnel"
+    // (Stiev Me-konnul), Troy Magennis as "troo-ie MAA-ge-nis" (Troj Me-gennis), NoEstimates as "es-ti-MAA-tes"
+    // (Noo-estimets), stresses verpakkingsfoLIE
+    // (verpakkings-fooli), reads labelsysteem with "laa-bel" (leebul-systeem), service level expectation as "su-ves
+    // lee-VEL" (Surrvis levvul ekspek-teesjun), cycle times as "sik-le tie-mes" (saikl taims; the cycle time rule
+    // above only reads the singular) and flow in "behoud van flow" as "flouw" (floo, as the flowmaten rule), stresses
+    // bezettingsGRAAD, wachtrijmoDEL, productontwikKEEling and, in "vastloopt in wachtrijen" only, wachtRIJen (split at the head;
+    // eng.lines.design's "kleine wachtrijen" keeps its voice), reads Donald
+    // Reinertsen as "doo-nalt REI-nert-sen" (Donnuld Rainurtsen), machinesoftware with "soft-waa-re" (machine-software,
+    // read in English, as the software-test rule above; only in "voor machinesoftware bij", so pm.agile.scrum's caption
+    // keeps its voice), a single item as "ie-tem" (aitem, as the work item age rule; only after per, zeventiende and
+    // Één and in "een item duurt" and "een item de grens", so the plural items and the kanban film's item keep their voice) and the
+    // lower-case backlog as "bak-loch" (bek-lok, as the Backlog rule; only in "meer backlog"). No other film's spoken
+    // text changes
+    [/\b([Oo])nzekerheidskegel/g, '$1nzekerheids-kegel'], [/\bBarry Boehm\b/g, 'Barry Beem'], [/\bSteve McConnell\b/g, 'Stiev Me-konnul'],
+    [/\bTroy Magennis\b/g, 'Troj Me-gennis'], [/\bNoEstimates\b/g, 'Noo-estimets'],
+    [/\b([Vv])erpakkingsfolie\b/g, '$1erpakkings-fooli'], [/\b([Ll])abelsysteem\b/g, (m, l) => `${l === 'L' ? 'L' : 'l'}eebul-systeem`],
+    [/\b([Ss])ervice level expectation\b/g, '$1urrvis levvul ekspek-teesjun'], [/\b([Cc])ycle times\b/g, (m, c) => `${c === 'C' ? 'S' : 's'}aikl taims`],
+    [/\bbehoud van flow\b/g, 'behoud van floo'], [/\b([Bb])ezettingsgraad\b/g, '$1ezettings-graad'], [/\b([Ww])achtrijmodel\b/g, '$1acht-rij-model'],
+    [/\bDonald Reinertsen\b/g, 'Donnuld Rainurtsen'], [/\b([Pp])roductontwikkeling\b/g, '$1roduct-ontwikkeling'], [/\bvastloopt in wachtrijen\b/g, 'vastloopt in wacht-rijen'],
+    [/\bvoor machinesoftware bij\b/g, 'voor machine-software bij'], [/(?<!\p{L})(per|zeventiende|Één) item\b|\been item(?= duurt| de grens)/gu, (m, w) => `${w || 'een'} aitem`], [/\bmeer backlog\b/g, 'meer bek-lok'],
     // rollout and data migration (pm.itproject.migration): the words of an ERP or MES rollout as Dutch projects say
     // them, checked with espeak-ng phonemes through Piper's nl bridge: it reads SAP Activate's phase names as
     // "pree-paa-re, eks-ploo-re, ree-aa-lie-ze" (pri-peer, ek-sploor, rie-je-laaiz; run with the Dutch u, said
@@ -713,7 +736,13 @@ const SAY = {
     // Reese (it reads "rise") and the Minimum Usable SubseT as a plain Subset (it reads "subs tee")
     [/\bMoSCoW\b/g, 'Moscow'], [/\bEric Ries\b/g, 'Eric Reese'], [/\bSubseT\b/g, 'Subset'],
     // the user acceptance test (pm.itproject.uat): ISTQB as letters (espeak-ng's English reads "ist-k-b")
-    [/\bISTQB\b/g, 'I S T Q B']],
+    [/\bISTQB\b/g, 'I S T Q B'],
+    // forecasting and steering on flow (pm.agile.forecast): the names as they sound (espeak-ng's English reads Boehm
+    // as "bohm", Vacanti as "VAY-kanti", Magennis as "MAY-jenis" and Reinertsen as "ree-in-ERT-sen"; said Beem,
+    // Vuh-kanti, Muh-ghennis, Rine-ertsen), and heijunka with its Japanese vowels after "buffers and" (it reads
+    // "HIGH-junka"; heyjoonka), so the kanban film's Vacanti and eng.lines.variants' heijunka keep their voice
+    [/\bBarry Boehm\b/g, 'Barry Beem'], [/\bDaniel Vacanti and Troy Magennis\b/g, 'Daniel Vuh-kanti and Troy Muh-ghennis'],
+    [/\bDonald Reinertsen\b/g, 'Donald Rine-ertsen'], [/\bbuffers and heijunka\b/g, 'buffers and heyjoonka']],
 };
 export const sayable = (text, lang) => (SAY[lang] || []).reduce((s, [re, w]) => s.replace(re, w), text);
 // The words the voice says: no English gloss, and with a language, units as words.

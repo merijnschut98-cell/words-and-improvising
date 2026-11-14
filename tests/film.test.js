@@ -533,6 +533,48 @@ test('speak variant: the post-mortem words in Dutch', () => {
   assert.equal(speakOf([en], 'en'), en);
 });
 
+// Forecasting and steering on flow (pm.agile.forecast): the forecasting and
+// flow words as Dutch agile teams say them, checked with espeak-ng phonemes
+// through Piper's nl_NL-alex bridge: onzekerheidskegel (stressed kə-GEL:
+// onzekerheids-kegel), Barry Boehm ("boehm": Beem), Steve McConnell ("stee-ve
+// em-see konnel": Stiev Me-konnul), Troy Magennis ("troo-ie MAA-ge-nis": Troj
+// Me-gennis), NoEstimates ("es-ti-MAA-tes": Noo-estimets), verpakkingsfolie
+// (stressed fo-LIE: verpakkings-fooli), labelsysteem ("laa-bel": leebul-systeem),
+// service level expectation ("su-ves lee-VEL": Surrvis levvul ekspek-teesjun),
+// cycle times ("sik-le tie-mes": saikl taims; cycle time has its rule already),
+// behoud van flow ("flouw": floo, as the flowmaten rule), bezettingsgraad and
+// wachtrijmodel (stressed at the end: split at the head), Donald Reinertsen
+// ("doo-nalt rei-": Donnuld Rainurtsen), productontwikkeling ("-ont-wi-kee-ling":
+// split), wachtrijen in "vastloopt in wachtrijen" (stressed -RIJ-en:
+// wacht-rijen), machinesoftware in "voor machinesoftware bij" ("soft-waa-re":
+// machine-software, read in English as in the software-test rule), a single
+// item ("ie-tem": aitem, as the work item age rule; only after per,
+// zeventiende and Één, and in "een item duurt" and "een item de grens") and the backlog in "meer backlog" ("bak-loch":
+// bek-lok, as the Backlog rule). In English Boehm as Beem, Vacanti and Magennis
+// with their stress ("VAY-kanti", "MAY-jenis": Vuh-kanti, Muh-ghennis),
+// Reinertsen as Rine-ertsen and heijunka after "buffers and" with the Japanese
+// vowels ("HIGH-junka": heyjoonka). No other film's spoken text changes
+test('speak variant: the forecasting and flow words in Dutch and English', () => {
+  const nl = (s) => speakOf([s], 'nl');
+  assert.equal(nl('De onzekerheidskegel is een model van Barry Boehm, later uitgewerkt door Steve McConnell.'),
+    'De onzekerheids-kegel is een model van Barry Beem, later uitgewerkt door Stiev Me-konnul.');
+  assert.equal(nl('Daniel Vacanti en Troy Magennis. NoEstimates kwam op gang. Een Monte Carlo-simulatie trekt weken.'),
+    'Daniel Va-kenti en Troj Me-gennis. Noo-estimets kwam op gang. Een Monte Carlo-simulatie trekt weken.');
+  assert.equal(nl('Een maker van verpakkingsfolie vervangt het labelsysteem. Twintig procent meer backlog doet.'),
+    'Een maker van verpakkings-fooli vervangt het leebul-systeem. Twintig procent meer bek-lok doet.');
+  assert.equal(nl('Een service level expectation, de cycle times, behoud van flow.'), 'Een surrvis levvul ekspek-teesjun, de saikl taims, behoud van floo.');
+  assert.equal(nl('De bezettingsgraad, het eenvoudigste wachtrijmodel. Donald Reinertsen: productontwikkeling vastloopt in wachtrijen.'),
+    'De bezettings-graad, het eenvoudigste wacht-rij-model. Donnuld Rainurtsen: product-ontwikkeling vastloopt in wacht-rijen.');
+  assert.equal(nl('Een team voor machinesoftware bij een maker. Per item, hoe lang een item duurt, nadert een item de grens, het zeventiende item. Één item staat.'),
+    'Een team voor machine-software bij een maker. Per item, hoe lang een aitem duurt, nadert een aitem de grens, het zeventiende aitem. Één aitem staat.');
+  assert.equal(nl('Schatten per item. Data en machinesoftware, kleine wachtrijen ertussen, wat een item is.'), 'Schatten per aitem. Data en machinesoftware, kleine wachtrijen ertussen, wat een item is.');
+  assert.equal(nl('De cycle time, de flow, het item, de items, een backlog, de Backlog, de folie.'), 'De saikl taim, de flow, het item, de items, een backlog, de Bek-lok, de folie.');
+  assert.equal(speakOf(['A model from Barry Boehm. Daniel Vacanti and Troy Magennis. Donald Reinertsen showed it. The reason for buffers and heijunka.'], 'en'),
+    'A model from Barry Beem. Daniel Vuh-kanti and Troy Muh-ghennis. Donald Rine-ertsen showed it. The reason for buffers and heyjoonka.');
+  const en = 'The cone of uncertainty, Steve McConnell, NoEstimates, a Monte Carlo simulation, Vacanti, heijunka, level scheduling, the service level expectation, cycle times';
+  assert.equal(speakOf([en], 'en'), en);
+});
+
 // Rollout and data migration (pm.itproject.migration): the words of an ERP or
 // MES rollout as Dutch projects say them, checked with espeak-ng phonemes
 // through Piper's nl bridge: SAP Activate's phase names ("pree-paa-re,

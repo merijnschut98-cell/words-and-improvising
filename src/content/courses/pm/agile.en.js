@@ -903,6 +903,7 @@ export default {
     },
     {
       id: 'pm.agile.forecast',
+      film: 'pm.agile.forecast',
       title: 'Forecasting without false certainty',
       pre: [
         {
@@ -1232,6 +1233,7 @@ export default {
     },
     {
       id: 'pm.agile.flowsteer',
+      film: 'pm.agile.forecast',
       title: 'Steering on flow: expectations, ageing and utilisation',
       pre: [
         {
