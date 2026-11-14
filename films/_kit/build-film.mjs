@@ -37,6 +37,10 @@
 //   `module` and `topics` (with the titles from the index, for the stage to
 //   draw); a lesson film's data is unchanged. Its id is '<module id>.intro', the
 //   index names it (`intro:`) and sw.js precaches it (tests/intro.test.js).
+//   `tileUnits` (optional, 128 to 272): the room of text in a topic's tile when the
+//   stage draws tiles wider than the pilot's 140-unit ones, because an index title
+//   has a word wider than 128 units (pm.intake.intro: Stakeholders, projectopdracht).
+//   checkLabels holds the titles to it; the page data carries it only when given.
 //   Notes: docs/superpowers/plans/2026-11-11-v16-notes.md, "Module intro films".
 // - Field film (v17): `field: 'pm.field.lifecycle'` (a field of FIELDS; the
 //   film's id is the field's id) in place of `lessons`, and `stations:
@@ -286,7 +290,7 @@ export function resolveFilm(spec, lessons, modules = MODULES, fields = FIELDS) {
     });
     return { id: s.id, n: si + 1, level: s.level, dur: s.dur, still: s.still, title: s.title, beats, terms: sceneTerms };
   });
-  return { id: spec.id, title: spec.title, lessons: served, scenes, skip: spec.skip || [], numbers, ...(mod ? { module: mod.id, topics } : {}), ...(fld ? { field: fld.field.id, stations } : {}), ...(spec.strictFocus ? { strictFocus: true } : {}) };
+  return { id: spec.id, title: spec.title, lessons: served, scenes, skip: spec.skip || [], numbers, ...(mod ? { module: mod.id, topics, ...(spec.tileUnits ? { tileUnits: spec.tileUnits } : {}) } : {}), ...(fld ? { field: fld.field.id, stations } : {}), ...(spec.strictFocus ? { strictFocus: true } : {}) };
 }
 
 // Builds and writes the page; returns { data, bytes, out }.

@@ -249,6 +249,24 @@ test('checkLabels: a topic title wraps by width into at most 3 lines inside a ti
   assert.match(checkLabels(tall, '').join('\n'), /topic time: "One two three four five six seven" \(en\) wraps to 4 lines in a tile of 128 units, a tile holds 3/);
 });
 
+test('checkLabels: a film that draws wider tiles declares tileUnits, and its titles are held to that', () => {
+  // pm.intake.intro draws its route as full-width rows, because the index titles Stakeholders (143 units) and
+  // projectopdracht (174) do not fit a 128-unit tile; the default stays 128 for every other film
+  const data = resolveFilm(spec(), LESSONS, MODULES);
+  const wide = clone(data);
+  wide.topics[0].title.nl = 'Projectopdracht';
+  assert.match(checkLabels(wide, '').join('\n'), /a tile is 128/);
+  wide.tileUnits = 272;
+  assert.deepEqual(checkLabels(wide, ''), [], 'a word of about 175 units fits a tile of 272');
+  wide.topics[0].title.nl = 'Een heleboel hele lange woorden achter elkaar in een titel van een onderwerp';
+  assert.match(checkLabels(wide, '').join('\n'), /wraps to 4 lines in a tile of 272 units/);
+  // the declared width stays inside the panel: never narrower than the default, never wider than the panel's text
+  for (const bad of [100, 273, 'wide']) assert.match(checkLabels({ ...data, tileUnits: bad }, '').join('\n'), /tileUnits must be between 128 and 272/, String(bad));
+  // the spec's tileUnits reaches the page data; without it the data has none (existing pages stay byte-identical)
+  assert.equal(data.tileUnits, undefined);
+  assert.equal(resolveFilm({ ...spec(), tileUnits: 272 }, LESSONS, MODULES).tileUnits, 272);
+});
+
 test('checkLabels: every tr(nl, en) label of the stage fits its box at 22 units, by measured width', () => {
   const data = resolveFilm(spec(), LESSONS, MODULES);
   assert.deepEqual(checkLabels(data, "tr('Lijn 4: buiten scope', 'Line 4: out of scope')"), []);

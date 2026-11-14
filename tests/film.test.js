@@ -711,6 +711,24 @@ test('speak variant: DevOps in Dutch is said with a v, English is left alone', (
   assert.equal(speakOf([en], 'en'), en);
 });
 
+// The module intro film of Intake (pm.intake.intro), checked with espeak-ng phonemes through Piper's nl bridge:
+// "blokkeerder" is read blˈɔk ɪːr dər, the long ee shortened and the stress on blok ("BLOK-i-der");
+// "blok-keerder" is read blˈɔk kˈɪːrdər, with the second stress on keer, as it is said. Only in this
+// film's phrase: pm.run.escalation and pm.intake.stakeholders keep their voice. The film's other words
+// (business case in two words, stakeholdermap, kick-off, SCQ, 5 keer waarom, vragenboom, de intake) go
+// through the rules above or are read right as they are.
+test('speak variant: blokkeerder in the Intake intro phrase only', () => {
+  const nl = (s) => speakOf([s], 'nl');
+  assert.equal(nl('En een blokkeerder kan het stoppen, ook zonder nee te zeggen.'), 'En een blok-keerder kan het stoppen, ook zonder nee te zeggen.');
+  // elsewhere the word keeps its voice
+  assert.equal(nl('Vraag de twee blokkeerders vooraf.'), 'Vraag de twee blokkeerders vooraf.');
+  assert.equal(nl('Een blokkeerder is iemand wiens belang geraakt wordt.'), 'Een blokkeerder is iemand wiens belang geraakt wordt.');
+  // the words the film leans on that already have rules
+  assert.equal(nl('Eerst komt de intake en dan een business case en een nulmeting.'), 'Eerst komt de in-teek en dan een biznis kees en een nul-meting.');
+  const en = 'And a blocker can stop it, even without saying no.';
+  assert.equal(speakOf([en], 'en'), en);
+});
+
 // A stage drawn on the Dutch caption beats (beatwarp films set STAGE.nlBeats)
 // follows the caption beat on screen in English too: while English beat k
 // shows, the stage runs through Dutch beat k, so the drawing is never a beat off.
