@@ -1,6 +1,8 @@
 // The stage of the module intro film "Lijn 3 verhuist / Line 3 moves": a pure
 // function of (scene, u). Inlined into the page after the anatomy kit and a
-// preamble from build.mjs that defines C, CAM, W, H, LV and MAPZ. The story is
+// preamble from build.mjs that defines CAM, W, H, LV, MAPZ, GRID, CW and wrapUnits
+// (the kit's measured character widths and its wrap, so the drawing wraps as the
+// kit's label check measures). The story is
 // drawn in hall B at the left: the floor and outline of line 3, line 4 that
 // stays, the power cabinet and its cable, the switchboard on the wall, and a
 // cast that changes per topic (the sponsor, the outside installer, the
@@ -12,7 +14,7 @@
 // their levels) is ONE function, closing; the map itself is the kit's mapScene.
 // Every label is a tr('nl', 'en') pair, with the width of its box as a third
 // argument where it is narrower than the panel (the kit checks that they fit).
-/* global C, CAM, W, H, LV, MAPZ, span, beatStarts */
+/* global CAM, W, H, LV, MAPZ, GRID, CW, wrapUnits, span, beatStarts */
 const STAGE = (() => {
   const svg = document.querySelector('.fp-stage svg');
   const E = {};
@@ -44,16 +46,8 @@ const STAGE = (() => {
     const head = horiz ? `M${f1(x1 - 6)} ${f1(y1 - 4)}L${f1(x1)} ${f1(y1)}L${f1(x1 - 6)} ${f1(y1 + 4)}` : `M${f1(x1 - 4)} ${f1(y1 - 6 * up)}L${f1(x1)} ${f1(y1)}L${f1(x1 + 4)} ${f1(y1 - 6 * up)}`;
     return `<path class="pm-arrow" d="M${f1(x0)} ${f1(y0)}L${f1(x1)} ${f1(y1)}${head}"/>`;
   };
-  // a title cut into lines of at most n characters (the kit's wrapLabel)
-  const wrap = (s, n) => {
-    const out = [];
-    let cur = '';
-    for (const word of s.split(' ')) {
-      if (cur && (cur + ' ' + word).length > n) { out.push(cur); cur = word; } else cur = cur ? `${cur} ${word}` : word;
-    }
-    if (cur) out.push(cur);
-    return out;
-  };
+  // a title cut into lines of at most n units of 22-unit text (the kit's wrapUnits and widths)
+  const wrap = (s, n) => wrapUnits(s, n, CW);
   const TOP = D.topics.map((t) => tr(t.title.nl, t.title.en));
   const ORDER = ['breakdown', 'schedule', 'estimate', 'resources'];
   const TITLE = ORDER.map((id) => TOP[D.topics.findIndex((t) => t.id === id)]);
@@ -108,8 +102,8 @@ const STAGE = (() => {
       if (a <= 0.01) return '';
       const x = 334 + (i % 2) * 144;
       const y = 214 + Math.floor(i / 2) * 90;
-      // 22-unit text is about 10.5 units a character: 12 characters fit a 140-unit tile, up to three lines
-      const lines = wrap(t, 12);
+      // a 140-unit tile with 6 units of padding each side holds 128 units of text, up to three lines (the kit's TILE_UNITS)
+      const lines = wrap(t, 128);
       let s = rect(x, y, 140, 84, 'pm-tile', 8) + txt(x + 132, y + 74, String(i + 1), 22, 'end', 'pm-on');
       lines.slice(0, 3).forEach((l, j) => { s += txt(x + 6, y + 24 + j * 24, l, 22, 'start', 'pm-txt'); });
       return op(a, s);
@@ -123,8 +117,8 @@ const STAGE = (() => {
   // ---- s1: the goal
   function goalCard(a, stopOn) {
     let s = rect(334, 56, 284, 92, 'pm-card', 8);
-    s += txt(346, 86, tr('Lijn 3 naar hal B', 'Line 3 to hall B', 260), 22, 'start', 'pm-big');
-    s += txt(346, 122, tr('weer draaien na de stop', 'running after the stop', 260), 22, 'start', 'pm-txt');
+    s += txt(346, 86, tr('Lijn 3 naar hal B', 'Line 3 to hall B', 272), 22, 'start', 'pm-big');
+    s += txt(346, 122, tr('weer draaien na de stop', 'running after the stop', 272), 22, 'start', 'pm-txt');
     let cells = '';
     for (let i = 0; i < 12; i++) cells += rect(334 + i * 23.7, 162, 22, 26, i >= 9 ? (stopOn ? 'pm-crit' : 'pm-badge') : 'pm-tile', 3);
     s += cells + txt(618, 206, tr('zomerstop', 'summer shutdown'), 22, 'end', 'pm-mute');
@@ -155,12 +149,13 @@ const STAGE = (() => {
   const WK = 284 / 15;
   const wx = (wk) => 334 + wk * WK;
   const TASKS = () => [
-    { id: 'v', lab: tr('Vloer', 'Floor', 150), a: 0, z: 6, row: 0 },
+    { id: 'v', lab: tr('Vloer', 'Floor', 220), a: 0, z: 6, row: 0 },
     { id: 's', lab: tr('Stroom van buiten', 'Power, outside'), a: 0, z: 12, row: 1 },
-    { id: 'l', lab: tr('Lijn verhuizen', 'Move the line', 150), a: 12, z: 13.6, row: 2 },
-    { id: 't', lab: tr('Testen', 'Testing', 150), a: 13.6, z: 14.4, row: 3 },
+    { id: 'l', lab: tr('Lijn verhuizen', 'Move the line', 220), a: 12, z: 13.6, row: 2 },
+    { id: 't', lab: tr('Testen', 'Testing', 220), a: 13.6, z: 14.4, row: 3 },
   ];
   const rowY = (r) => 104 + r * 58;
+  // each bar's label stands at the left of the panel, above its bar: up to the dependency arrows at week 12 (220 units)
   // which: 'all', 'crit' (the critical tasks) or 'rest'; the stop region and its label go with 'rest'
   function bars(show4, crit, which) {
     let s = which === 'crit' ? '' : rect(wx(12), 96, wx(15) - wx(12), 226, 'pm-stop', 4);
@@ -171,7 +166,7 @@ const STAGE = (() => {
       if (a <= 0.01) return;
       const y = rowY(i);
       const isCrit = crit && isC;
-      s += op(a, txt(Math.min(wx(t.a), 618 - 150), y + 4, t.lab, 22, 'start', isCrit ? 'pm-on' : 'pm-txt') + rect(wx(t.a), y + 12, (t.z - t.a) * WK, 16, isCrit ? 'pm-crit' : 'pm-bar', 3));
+      s += op(a, txt(334, y + 4, t.lab, 22, 'start', isCrit ? 'pm-on' : 'pm-txt') + rect(wx(t.a), y + 12, (t.z - t.a) * WK, 16, isCrit ? 'pm-crit' : 'pm-bar', 3));
     });
     return s;
   }
@@ -192,7 +187,7 @@ const STAGE = (() => {
     range += txt(334, 108, tr('Lijn verhuizen', 'Move the line', 284), 22, 'start', 'pm-txt');
     range += rect(350, 118, 250, 22, 'pm-range', 4);
     range += `<path class="pm-link" d="M455 146V172"/>`;
-    [[350, tr('best', 'best', 90), 'start', 334, 166], [455, tr('meest waarschijnlijk', 'most likely', 220), 'middle', 455, 196], [600, tr('slechtst', 'worst', 90), 'end', 618, 166]].forEach(([x, l, anchor, tx, ty]) => {
+    [[350, tr('best', 'best', 90), 'start', 334, 166], [455, tr('meest waarschijnlijk', 'most likely', 240), 'middle', 455, 196], [600, tr('slechtst', 'worst', 90), 'end', 618, 166]].forEach(([x, l, anchor, tx, ty]) => {
       range += `<circle class="pm-dia" cx="${x}" cy="129" r="7"/>` + txt(tx, ty, l, 22, anchor, 'pm-mute');
     });
     let effort = txt(334, 236, tr('Inspanning: uren werk', 'Effort: hours of work'), 22, 'start', 'pm-txt');
@@ -246,25 +241,25 @@ const STAGE = (() => {
     move(E.mapG, `translate(${f1(lerp(MAP0.x, MAP1.x, z))} ${f1(lerp(MAP0.y, MAP1.y, z))}) scale(${s.toFixed(4)})`);
     return b === 0 ? 1 : 1 - span(p, 0, 0.45);
   }
-  // the columns: a tile column of 140 units, four level columns of 112
-  const GX = 176;
-  const GW = 112;
+  // the columns (GRID from build.mjs, which checks the level words fit): a tile column of GRID.tile units, four
+  // level columns of GRID.col from GRID.x with boxes of GRID.box. The level words stand on one line each,
+  // staggered over two rows (the first and third high, the second and fourth low), so neighbours never meet.
+  const GX = GRID.x;
+  const GW = GRID.col;
+  const GB = GRID.box;
   const gridY = (i) => 70 + i * 82;
   function grid(b, p) {
     const out = { r: ['', '', '', ''], l1: '', l2: '', l3: '', l4: '', st: '' };
     const lv = ['l1', 'l2', 'l3', 'l4'];
-    LW.forEach((w, j) => {
-      // a level word is cut at 10 characters (a 112-unit column), in at most two lines
-      wrap(w, 10).slice(0, 2).forEach((l, k) => { out[lv[j]] += txt(GX + j * GW + 52, 30 + k * 24, l, 22, 'middle', 'pm-mute'); });
-    });
+    LW.forEach((w, j) => { out[lv[j]] += txt(GX + j * GW + GB / 2, 30 + (j % 2) * 24, w, 22, 'middle', 'pm-mute'); });
     TITLE.forEach((t, i) => {
       const y = gridY(i);
-      let s = rect(20, y, 140, 78, 'pm-tile', 8);
-      wrap(t, 12).slice(0, 3).forEach((l, j) => { s += txt(26, y + 24 + j * 24, l, 22, 'start', 'pm-txt'); });
+      let s = rect(20, y, GRID.tile, 78, 'pm-tile', 8);
+      wrap(t, GRID.tile - 12).slice(0, 3).forEach((l, j) => { s += txt(26, y + 24 + j * 24, l, 22, 'start', 'pm-txt'); });
       out.r[i] = b === 1 ? op(span(p, i * 0.12, i * 0.12 + 0.3), s) : s;
-      lv.forEach((k2, j) => { out[k2] += rect(GX + j * GW, y + 12, 104, 54, j === 0 ? 'pm-crit' : 'pm-lvl', 8); });
+      lv.forEach((k2, j) => { out[k2] += rect(GX + j * GW, y + 12, GB, 54, j === 0 ? 'pm-crit' : 'pm-lvl', 8); });
     });
-    out.st = rect(GX - 5, gridY(0) + 7, 114, 64, 'pm-out', 10);
+    out.st = rect(GX - 5, gridY(0) + 7, GB + 10, 64, 'pm-out', 10);
     return out;
   }
 

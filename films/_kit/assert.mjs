@@ -250,24 +250,35 @@ export function checkNarration(data) {
   return errs;
 }
 
-// Drawn panel labels (v17). Stage text is 22 units; a character of it is about
-// 10.5 units wide (measured on the pilot), so a box of w units fits
-// floor(w / 10.5) characters. The panel is 284 units wide inside its margins.
-// A topic title drawn in a tile is cut into lines of at most 12 characters (a
-// 140-unit tile) and a tile holds 3 lines. Every tr('nl', 'en') label of the
-// stage script is measured in both languages against the panel, or against the
-// width named as its third argument: tr('Vloer klaar', 'Floor ready', 178).
+// Drawn panel labels (v17). Stage text is 22 units. Widths come from CHAR_W:
+// the film font (Inter, --fp-sans) measured per character at 22 units, the wider
+// of weights 600 and 700, in Chromium (review of the pilot, 14 Nov). A sum of
+// characters ignores kerning, so it comes out a few percent over the real text,
+// never under; a character not in the table counts as UNKNOWN_W. The first rule
+// (a flat 10.5 units a character) let "Schedule and" (146 units) into a
+// 128-unit tile and "Werkkennis" (128) into a 112-unit column.
+// The panel is 284 units wide inside its margins. A topic title drawn in a tile
+// (140 units, 6 of padding each side: 128) is wrapped by width (wrapUnits) into
+// at most 3 lines. Every tr('nl', 'en') label of the stage script is measured in
+// both languages against the panel, or against the width named as its third
+// argument: tr('Vloer klaar', 'Floor ready', 160). A stage that wraps text must
+// wrap it with wrapUnits and CHAR_W (pass both into the page; wrapUnits is
+// self-contained, so its source text works as is), so the check and the drawing agree.
 export const LABEL_UNITS = 22;
-export const CHAR_UNITS = 10.5;
+export const CHAR_W = {"0":14.9,"1":9.5,"2":13.9,"3":14.2,"4":14.9,"5":14.1,"6":14.3,"7":13.2,"8":14.4,"9":14.3," ":6.0,"a":12.8,"b":13.9,"c":13,"d":13.9,"e":13.1,"f":8,"g":13.9,"h":13.7,"i":6,"j":6,"k":12.8,"l":6,"m":20.1,"n":13.7,"o":13.5,"p":13.9,"q":13.9,"r":9.1,"s":12.4,"t":7.4,"u":13.7,"v":13.2,"w":18.7,"x":12.8,"y":13.3,"z":12.6,"A":16.8,"B":14.6,"C":16.3,"D":15.9,"E":13.4,"F":13,"G":16.6,"H":16.5,"I":6.2,"J":12.9,"K":15.9,"L":12.5,"M":20.5,"N":16.8,"O":17,"P":14.3,"Q":17.1,"R":14.5,"S":14.4,"T":14.7,"U":16.2,"V":16.8,"W":23.3,"X":16.3,"Y":16.1,"Z":14.7,".":7.4,",":7.4,":":7.4,";":7.6,"!":7.5,"?":12.4,"'":7.5,"’":6.9,"‘":6.9,"-":10.3,"–":11,"/":8.6,"(":8.3,")":8.3,"&":14.8,"+":15,"%":22.4,"é":13.1,"ë":13.1,"è":13.1,"ê":13.1,"ï":6,"ö":13.5,"ü":13.7,"á":12.8,"à":12.8,"ç":13,"É":13.4,"…":22.1,"“":11.9,"”":11.7,"\"":12.2};
+export const UNKNOWN_W = 14;
 export const PANEL_UNITS = 284;
-export const TILE_CHARS = 12;
+export const TILE_UNITS = 128;
 export const TILE_LINES = 3;
-export const fitChars = (units) => Math.floor(units / CHAR_UNITS);
-export function wrapLabel(text, n) {
+export const textUnits = (text) => [...String(text)].reduce((a, c) => a + (CHAR_W[c] ?? UNKNOWN_W), 0);
+// Greedy word wrap of text into lines at most max units wide; a word wider than
+// max stands on a line of its own. cw: the width table (CHAR_W).
+export function wrapUnits(text, max, cw) {
+  const width = (s) => [...s].reduce((a, c) => a + (cw[c] === undefined ? 14 : cw[c]), 0);
   const out = [];
   let cur = '';
   for (const word of String(text).split(' ')) {
-    if (cur && (cur + ' ' + word).length > n) { out.push(cur); cur = word; } else cur = cur ? `${cur} ${word}` : word;
+    if (cur && width(`${cur} ${word}`) > max) { out.push(cur); cur = word; } else cur = cur ? `${cur} ${word}` : word;
   }
   if (cur) out.push(cur);
   return out;
@@ -277,11 +288,11 @@ export function checkLabels(data, stageText = '') {
   for (const t of data.topics || []) {
     for (const lang of ['nl', 'en']) {
       const title = (t.title || {})[lang] || '';
-      const longest = Math.max(0, ...title.split(' ').map((w) => w.length));
-      if (longest > TILE_CHARS) errs.push(`topic ${t.id}: "${title}" (${lang}) has a word of ${longest} characters, a tile fits ${TILE_CHARS}`);
+      const widest = Math.max(0, ...title.split(' ').map(textUnits));
+      if (widest > TILE_UNITS) errs.push(`topic ${t.id}: "${title}" (${lang}) has a word of ${Math.ceil(widest)} units, a tile is ${TILE_UNITS}`);
       else {
-        const lines = wrapLabel(title, TILE_CHARS).length;
-        if (lines > TILE_LINES) errs.push(`topic ${t.id}: "${title}" (${lang}) wraps to ${lines} lines at ${TILE_CHARS} characters, a tile fits ${TILE_LINES}`);
+        const lines = wrapUnits(title, TILE_UNITS, CHAR_W).length;
+        if (lines > TILE_LINES) errs.push(`topic ${t.id}: "${title}" (${lang}) wraps to ${lines} lines in a tile of ${TILE_UNITS} units, a tile holds ${TILE_LINES}`);
       }
     }
   }
@@ -290,9 +301,9 @@ export function checkLabels(data, stageText = '') {
   const pairs = String(stageText).matchAll(/\btr\(\s*'((?:[^'\\]|\\.)*)'\s*,\s*'((?:[^'\\]|\\.)*)'\s*(?:,\s*(\d+)\s*)?\)/g);
   for (const [, nl, en, width] of pairs) {
     const units = width ? Number(width) : PANEL_UNITS;
-    const room = fitChars(units);
     for (const [lang, text] of [['nl', nl], ['en', en]]) {
-      if (text.length > room) errs.push(`label "${text}" (${lang}) is ${text.length} characters, ${width ? `${units} units fit ${room}` : `the panel fits ${room}`}`);
+      const w = textUnits(text.replace(/\\(.)/g, '$1'));
+      if (w > units) errs.push(`label "${text}" (${lang}) is ${Math.ceil(w)} units wide, ${width ? `its box is ${units}` : `the panel is ${units}`}`);
     }
   }
   return errs;

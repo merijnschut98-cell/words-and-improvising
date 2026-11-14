@@ -28,9 +28,9 @@
 //   s4 Schatten en buffers: the mechanics give a range (best, most likely, worst),
 //      effort against duration, one visible buffer        → pm.plan.wbs (estimate)
 //   s5 Risico’s en mensen: the switchboard that may come late, the buyer as its one
-//      owner, a mitigation (order it now), the same mechanics wanted everywhere,
-//      and the answer to "who does what, and when": one owner per risk, with an
-//      action and a date                                  → pm.plan.risk
+//      owner, a mitigation (order it now: "who does what, and when" answered
+//      as the Basis lesson does, one owner with a dated action), and the same
+//      mechanics wanted everywhere                         → pm.plan.risk
 //   s6 one plan: line 3 stands in its outline, the switchboard hangs; the four
 //      pictures side by side, and how they feed each other (work that is not in
 //      the tree is work nobody does)
@@ -43,8 +43,8 @@
 // holds the film to its map (every topic named in a caption of its own scene,
 // explained in two beats and lit), to the narration guard and to the label fit.
 //
-// A people film in the shared pm world (films/_pm/world.mjs, read-only): "jij"
-// the consultant and the sponsor from its cast, and the buyer, the installer
+// A people film in the shared pm world (films/_pm/world.mjs, read-only): the
+// sponsor from its cast (no consultant in the room), and the buyer, the installer
 // (with a hard hat) and two mechanics drawn with pm.agile.scrum's cast
 // (films/pm.agile.scrum/cast.mjs). The things of the hall are in ./hall.mjs.
 // A panel at the right, in stage space, draws each step as a schema, labelled
@@ -57,7 +57,7 @@ import { dirname, join } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import { defineFilm, auditReport, resolveFilm, allLessons } from '../_kit/build-film.mjs';
 import { beatStarts, wordsOf, minSceneDur } from '../_kit/timeline.mjs';
-import { fitChars } from '../_kit/assert.mjs';
+import { textUnits, wrapUnits, CHAR_W } from '../_kit/assert.mjs';
 import { mapScene, mapStyles, mapCue, levelWords } from '../_kit/mapscene.mjs';
 import { pmWorld, PM_CSS } from '../_pm/world.mjs';
 import { scrumPerson } from '../pm.agile.scrum/cast.mjs';
@@ -95,15 +95,25 @@ has('pm.plan.schedule', ['pas kan beginnen als ander werk af is', 'langste keten
 // s4: the three points of the range are the lesson's own words, "meest waarschijnlijk" and "most likely"
 has('pm.plan.estimate', ['Geef een bandbreedte', 'meest waarschijnlijk', 'Inspanning (effort) is het aantal uren werk', 'doorlooptijd (duration) is de kalendertijd', 'Zet één zichtbare buffer', 'Zet niet stiekem in elke taak wat extra']);
 has('pm.plan.estimate', ['most likely'], 'en');
-// s5: who does what, and when: one owner per risk with an action and a date, nothing about roles (the RACI is Werkkennis)
+// s5: who does what, and when: one owner per risk with a dated action (the buyer orders it this week), nothing about roles (the RACI is Werkkennis)
 has('pm.plan.risk', ['Een risicolijst', 'De risico-eigenaar is één persoon', 'een actie met een datum', 'wat je nu doet om het risico kleiner']);
 has('pm.plan.risk', ['The risk owner is one person', 'an action with a date'], 'en');
 for (const [id, word] of [['pm.plan.scope', 'Scope vastleggen'], ['pm.plan.method', 'werkwijze kiezen'], ['pm.plan.techniques', 'Schatmethodes'], ['pm.plan.raci', 'Rollen'],
   ['pm.plan.network', 'Rekenen met het netwerk'], ['pm.plan.spread', 'Onzekerheid optellen'], ['pm.plan.capacity', 'capaciteit'], ['pm.plan.compress', 'bewaken'], ['pm.plan.riskvalue', 'reserves']]) has(id, [word]);
 assert(lessons.nl.get('pm.plan.scope').terms[0].def.startsWith('Wat het project oplevert'), 'Scope: what the project delivers');
-// s7: the level words are the app's, and a column of the grid is 112 units wide (10 characters)
+// s7: the level words are the app's. The grid (stage.js, grid) has four level columns of GRID.col units from
+// GRID.x; the words stand on one line each, staggered over two rows (columns 1 and 3 high, 2 and 4 low), so a
+// word may be wider than its column but not wider than the room to the next word on its row, nor run off the stage.
 const LV = { nl: levelWords('nl'), en: levelWords('en') };
-for (const lang of ['nl', 'en']) for (const word of LV[lang]) for (const part of word.split(' ')) assert(part.length <= fitChars(112), `level word "${part}" (${lang}) does not fit a 112-unit column`);
+const GRID = { x: 222, col: 100, box: 92, tile: 190 };
+for (const lang of ['nl', 'en']) {
+  const half = LV[lang].map((word) => textUnits(word) / 2);
+  const mid = (j) => GRID.x + j * GRID.col + GRID.box / 2;
+  for (let j = 0; j < 4; j++) {
+    if (j + 2 < 4) assert(half[j] + half[j + 2] + 12 <= 2 * GRID.col, `level words "${LV[lang][j]}" and "${LV[lang][j + 2]}" (${lang}) meet on their row`);
+    assert(mid(j) - half[j] >= GRID.tile + 20 && mid(j) + half[j] <= 636, `level word "${LV[lang][j]}" (${lang}) runs out of the grid`);
+  }
+}
 
 // ---------------------------------------------------------------- the world (hall B)
 const W = 640;
@@ -132,7 +142,7 @@ const calStop = `<g transform="${CAL.face}">${STOP_WEEKS.map(([a, b, c, d]) => `
 const CABLE = [[[0, 100], [32, 100], [32, 28]], [[32, 66], [190, 66], [190, 52]]];
 const cablePath = (dashed) => CABLE.map((pts) => hall.cable(pts, { dashed })).join('');
 
-// the people. "jij" and the sponsor are the pm cast; the buyer, the installer and the two mechanics are pm.agile.scrum's
+// the people. The sponsor is the pm cast; the buyer, the installer and the two mechanics are pm.agile.scrum's
 // figures, the installer with a hard hat. Each stands in a cue group; the cast that is not on stage is hidden by the stage script.
 const person = (role, x, y, along) => w.person({ x, y, role, along });
 const installer = scrumPerson(w, k, G, P, { x: 44, y: 62, key: 'installer', look: 'sm', along: 'y' });
@@ -292,7 +302,6 @@ const spec = {
         { nl: 'Een {t:Risicolijst|risicolijst}: de nieuwe schakelkast komt misschien te laat.', en: 'A {t:Risk register|risk register}: the new switchboard may arrive late.', cue: { Risicolijst: 'reg' }, focus: ['reg', 'switch'] },
         { nl: 'Eén {t:Risico-eigenaar|risico-eigenaar}, de inkoper. Een {t:Beheersmaatregel|beheersmaatregel}: de kast nu bestellen.', en: 'One {t:Risk owner|risk owner}, the buyer. A {t:Mitigation|mitigation}: order the switchboard now.', cue: { 'Risico-eigenaar': 'owner', Beheersmaatregel: 'action' }, focus: ['owner', 'action', 'buyer'] },
         { nl: 'En mensen: in de zomerstop wil iedereen dezelfde monteurs.', en: 'And people: in the shutdown everyone wants the same mechanics.', focus: ['people', 'crew'] },
-        { nl: 'Wie doet wat, en wanneer? Eén eigenaar per risico, met een actie en een datum.', en: 'Who does what, and when? One owner per risk, with an action and a date.', focus: ['owner', 'buyer'] },
       ],
     },
     {
@@ -307,7 +316,7 @@ const spec = {
       beats: [
         { nl: 'De kaart van Projecten: Plannen is het tweede station op de weg van een project.', en: 'The map of Projects: Plan is the second station on the road of a project.', focus: 'map-plan' },
         { nl: 'Plannen heeft vier onderwerpen, elk met vier niveaus.', en: 'Plan has four topics, each with four levels.', focus: 'route' },
-        { nl: 'Begin bij Opdeling en scope, op niveau Basis. Dan planning, schatten en risico’s.', en: 'Start with Breakdown and scope, at Basics level. Then schedule, estimates and risks.', focus: ['tBreak', 'start'] },
+        { nl: 'Begin bij Opdeling en scope, op niveau Basis.', en: 'Start with Breakdown and scope, at Basics level.', focus: ['tBreak', 'start'] },
         { nl: 'Werkkennis: scope vastleggen, een werkwijze kiezen, schatmethodes en rollen.', en: 'Working knowledge: fixing the scope, choosing a way of working, estimating methods and roles.', focus: 'lv2' },
         { nl: 'Gevorderd rekent: het netwerk, onzekerheid, capaciteit. Expert bewaakt en beheert reserves.', en: 'Advanced calculates: the network, uncertainty, capacity. Expert tracks and manages reserves.', focus: ['lv3', 'lv4'] },
         { nl: 'Elke les en elke film van deze module heeft een plek op deze kaart.', en: 'Every lesson and film in this module has a place on this map.', focus: null },
@@ -319,8 +328,8 @@ const spec = {
 };
 
 // ---------------------------------------------------------------- the narration
-// What the voice says, per scene and beat: the high-over picture, about 520
-// words a language. Short sentences, few colons and comma lists, no symbols the
+// What the voice says, per scene and beat: the high-over picture, about 600
+// words a language, each thing said once (trimmed of repetition in review). Short sentences, few colons and comma lists, no symbols the
 // voice would read aloud and nothing in parentheses: the kit's narration guard
 // (films/_kit/assert.mjs, checkNarration) holds every module film to that, and
 // the render guard caps a pause inside a sentence at 0.4 s. Words checked with
@@ -378,10 +387,8 @@ const SAY = [
       en: 'A risk register lists the risks. Here, for example, the new switchboard for the power supply. It may arrive late.' },
     { nl: 'Elk risico krijgt één eigenaar, hier de inkoper. En een beheersmaatregel, iets wat je nu al doet. Hij bestelt de kast deze week.',
       en: 'Each risk gets one owner, here the buyer. And a mitigation, something you do now. He orders the switchboard this week.' },
-    { nl: 'En dan de mensen. In de zomerstop wil iedereen dezelfde monteurs. Wie doet dus wat, en wanneer?',
-      en: 'And then the people. In the shutdown everyone wants the same mechanics. So who does what, and when?' },
-    { nl: 'Het antwoord begint klein. Elk risico heeft één eigenaar, met een actie en een datum.',
-      en: 'The answer starts small. Each risk has one owner, with an action and a date.' },
+    { nl: 'En dan de mensen. In de zomerstop wil iedereen dezelfde monteurs.',
+      en: 'And then the people. In the shutdown everyone wants the same mechanics.' },
   ],
   [ // s6 one plan
     { nl: 'Leg het naast elkaar en je ziet één plan. De boom geeft het werk. De planning zet het in de tijd. De schattingen geven de duur. En de risicolijst zegt wat er mis kan gaan.',
@@ -394,12 +401,12 @@ const SAY = [
       en: 'This is the map of Projects. Plan is the second station on the road of a project.' },
     { nl: 'Plannen heeft vier onderwerpen, elk met vier niveaus.',
       en: 'Plan has four topics, each with four levels.' },
-    { nl: 'Begin bovenaan, bij Opdeling en scope, op het eerste niveau. Daarna de planning, het schatten en de risico’s.',
-      en: 'Start at the top, with Breakdown and scope, at the first level. Then the schedule, the estimating and the risks.' },
+    { nl: 'Begin bovenaan, bij Opdeling en scope, op het eerste niveau.',
+      en: 'Start at the top, with Breakdown and scope, at the first level.' },
     { nl: 'Op het tweede niveau leg je de scope vast en kies je een werkwijze. Je leert schatmethodes en verdeelt de rollen.',
       en: 'At the second level you fix the scope and choose a way of working. You learn estimating methods and share out the roles.' },
-    { nl: 'Het derde niveau rekent. Je rekent het netwerk door en telt onzekerheid op, en je plant de capaciteit. Het vierde niveau bewaakt het plan en beheert de reserves.',
-      en: 'The third level calculates. You work through the network and add up uncertainty, and you plan capacity. The fourth level tracks the plan and manages the reserves.' },
+    { nl: 'Op het derde niveau reken je het netwerk door, tel je onzekerheid op en plan je de capaciteit. Het vierde niveau bewaakt het plan en beheert de reserves.',
+      en: 'At the third level you work through the network, add up uncertainty and plan capacity. The fourth level tracks the plan and manages the reserves.' },
     { nl: 'Elke les en elke film van deze module heeft een plek op deze kaart.',
       en: 'Every lesson and every film in this module has a place on this map.' },
   ],
@@ -437,11 +444,11 @@ spec.scenes.forEach((s, si) => {
 
 // ---------------------------------------------------------------- page script and styles
 const lean = (src) => src.replace(/^[ \t]*\/\/.*\n/gm, '').replace(/^[ \t]+/gm, '');
-const preamble = `const CAM = ${JSON.stringify(CAM)};\nconst W = ${W}, H = ${H};\nconst LV = ${JSON.stringify(LV)};\nconst MAPZ = ${JSON.stringify(MAPZ)};\n`;
+const preamble = `const CAM = ${JSON.stringify(CAM)};\nconst W = ${W}, H = ${H};\nconst LV = ${JSON.stringify(LV)};\nconst MAPZ = ${JSON.stringify(MAPZ)};\nconst GRID = ${JSON.stringify(GRID)};\nconst CW = ${JSON.stringify(CHAR_W)};\nconst wrapUnits = ${wrapUnits.toString()};\n`;
 const stageScript = kitScript() + '\n' + preamble + lean(readFileSync(join(HERE, 'stage.js'), 'utf8'))
   + '\n;\n' + readFileSync(join(HERE, '../_kit/beatwarp.js'), 'utf8');
 
-const PEOPLE = ':is([data-cue="jij"],[data-cue="sponsor"],[data-cue="installer"],[data-cue="buyer"],[data-cue="crew"])';
+const PEOPLE = ':is([data-cue="sponsor"],[data-cue="installer"],[data-cue="buyer"],[data-cue="crew"])';
 const css = PM_CSS + HALL_CSS + `
 .pm-panel{fill:var(--anatomy-shade-0);stroke:var(--fp-hair);stroke-width:1;opacity:.97}
 .pm-card{fill:var(--anatomy-face);stroke:var(--anatomy-mid);stroke-width:1.4;stroke-linejoin:round}
@@ -471,14 +478,13 @@ const css = PM_CSS + HALL_CSS + `
 [data-cue][data-on] .pm-cal{fill:var(--fp-focus)}
 /* dark theme: faces and hands in a light skin tone, not dark silhouettes (as pm.plan.schedule) */
 .iso:not([data-theme="light"]) ${PEOPLE}:not([data-on])>:is(.iso-solid:last-child,.iso-solid:nth-last-child(3))>:is(.iso-fill,.iso-top,.iso-shade){fill:#C9B8A3}
-.iso:not([data-theme="light"]) [data-cue="jij"]:not([data-on])>.iso-solid:nth-last-child(4)>:is(.iso-fill,.iso-top,.iso-shade){fill:#C9B8A3}
 .iso:not([data-theme="light"]) ${PEOPLE}:not([data-on])>:is(.iso-solid:last-child,.iso-solid:nth-last-child(3))>.iso-shade{fill:#A8957F}
 .iso:not([data-theme="light"]) [data-cue="sponsor"]:not([data-on])>.iso-solid:nth-last-child(2)>:is(.iso-fill,.iso-top,.iso-shade){fill:#8E9A97}
 ` + mapStyles();
 
 const label = {
-  nl: 'Hal B van de fabriek, waar lijn 3 naartoe moet. Op de vloer de nieuwe vloer van lijn 3 met een gestippelde omtrek; ernaast, vlak bij de zijwand, staat lijn 4, die blijft waar hij is. Links de stroomkast met de kabel van buiten, aan de achterwand de plek van de schakelkast als gestippelde omtrek, en aan de zijwand een kalender met weken, waarvan de laatste drie de zomerstop zijn. Jij, de adviseur in petrol, staat links vooraan. Per onderwerp komen er mensen bij: de sponsor, de installateur van buiten met een helm, de monteurs en de inkoper. Aan het eind staat lijn 3 op zijn plek en hangt de schakelkast aan de wand. Rechts een paneel, gemarkeerd als voorbeeld of schema: het doel; de vier onderwerpen van de module als tegels; een WBS met vier deliverables, werkpakketten en wat buiten de scope valt; een planning met balken, de afhankelijkheden, het kritieke pad en een mijlpaal; een bandbreedte met beste, meest waarschijnlijke en slechtste geval, inspanning tegen doorlooptijd en één buffer; een risicolijst met eigenaar en maatregel, en de monteurs; de vier plaatjes samen als één plan. Aan het eind de kaart van Projecten met Plannen verlicht, en de vier onderwerpen van de module met elk vier niveaus: Basis, Werkkennis, Gevorderd en Expert.',
-  en: 'Hall B of the plant, where line 3 has to go. On the floor the new floor of line 3 with a dashed outline; next to it, near the side wall, stands line 4, which stays where it is. At the left the power cabinet with the cable from outside, on the back wall the place of the switchboard as a dashed outline, and on the side wall a calendar of weeks, the last three of which are the summer shutdown. You, the consultant in petrol, stand at the front left. Each topic brings people: the sponsor, the outside installer in a hard hat, the mechanics and the buyer. At the end line 3 stands in place and the switchboard hangs on the wall. At the right a panel, marked as an example or a diagram: the goal; the module’s four topics as tiles; a WBS with four deliverables, work packages and what is out of scope; a schedule of bars with the dependencies, the critical path and a milestone; a range with the best, most likely and worst case, effort against duration and one buffer; a risk register with an owner and a mitigation, and the mechanics; the four pictures together as one plan. At the end the map of Projects with Plan lit, and the module’s four topics with four levels each: Basics, Working knowledge, Advanced and Expert.',
+  nl: 'Hal B van de fabriek, waar lijn 3 naartoe moet. Op de vloer de nieuwe vloer van lijn 3 met een gestippelde omtrek; ernaast, vlak bij de zijwand, staat lijn 4, die blijft waar hij is. Links de stroomkast met de kabel van buiten, aan de achterwand de plek van de schakelkast als gestippelde omtrek, en aan de zijwand een kalender met weken, waarvan de laatste drie de zomerstop zijn. Per onderwerp komen er mensen bij: de sponsor, de installateur van buiten met een helm, de monteurs en de inkoper. Aan het eind staat lijn 3 op zijn plek en hangt de schakelkast aan de wand. Rechts een paneel, gemarkeerd als voorbeeld of schema: het doel; de vier onderwerpen van de module als tegels; een WBS met vier deliverables, werkpakketten en wat buiten de scope valt; een planning met balken, de afhankelijkheden, het kritieke pad en een mijlpaal; een bandbreedte met beste, meest waarschijnlijke en slechtste geval, inspanning tegen doorlooptijd en één buffer; een risicolijst met eigenaar en maatregel, en de monteurs; de vier plaatjes samen als één plan. Aan het eind de kaart van Projecten met Plannen verlicht, en de vier onderwerpen van de module met elk vier niveaus: Basis, Werkkennis, Gevorderd en Expert.',
+  en: 'Hall B of the plant, where line 3 has to go. On the floor the new floor of line 3 with a dashed outline; next to it, near the side wall, stands line 4, which stays where it is. At the left the power cabinet with the cable from outside, on the back wall the place of the switchboard as a dashed outline, and on the side wall a calendar of weeks, the last three of which are the summer shutdown. Each topic brings people: the sponsor, the outside installer in a hard hat, the mechanics and the buyer. At the end line 3 stands in place and the switchboard hangs on the wall. At the right a panel, marked as an example or a diagram: the goal; the module’s four topics as tiles; a WBS with four deliverables, work packages and what is out of scope; a schedule of bars with the dependencies, the critical path and a milestone; a range with the best, most likely and worst case, effort against duration and one buffer; a risk register with an owner and a mitigation, and the mechanics; the four pictures together as one plan. At the end the map of Projects with Plan lit, and the module’s four topics with four levels each: Basics, Working knowledge, Advanced and Expert.',
 };
 
 const { data } = await defineFilm(spec, { svg, script: stageScript, css, kitCss: k.ISO_CSS, label });

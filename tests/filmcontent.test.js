@@ -257,9 +257,9 @@ test('every shipped intro film: each topic of its module is still on its map, na
       assert.match(checkFilm(loud, ctx).join('\n'), what, bad);
     }
     // a drawn label too long for the panel; a topic title that does not wrap into a tile
-    assert.match(checkFilm(data, { ...ctx, stageText: `${ctx.stageText}\ntr('Een veel te lange tekst voor het paneel', 'Short')` }).join('\n'), /the panel fits 27/);
+    assert.match(checkFilm(data, { ...ctx, stageText: `${ctx.stageText}\ntr('Een veel te lange tekst voor het paneel', 'Short')` }).join('\n'), /units wide, the panel is 284/);
     const wide = clone(data);
     wide.topics[0].title.nl = 'Onderhandelingstechnieken';
-    assert.match(checkFilm(wide, ctx).join('\n'), /a tile fits 12/);
+    assert.match(checkFilm(wide, ctx).join('\n'), /a tile is 128/);
   }
 });

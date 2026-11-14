@@ -9,7 +9,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { resolveFilm } from '../films/_kit/build-film.mjs';
-import { checkFilm, checkNarration, checkLabels, moduleTextOf } from '../films/_kit/assert.mjs';
+import { checkFilm, checkNarration, checkLabels, moduleTextOf, textUnits, wrapUnits, CHAR_W, TILE_UNITS } from '../films/_kit/assert.mjs';
 
 const lesson = (id, terms, teach) => ({ id, title: 'T', pre: [], recall: [], teach, example: { text: '' }, terms: terms.map((term) => ({ term, def: 'D.' })) });
 const LESSONS = {
@@ -222,30 +222,45 @@ test('checkFilm: an intro film is held to the narration guard', () => {
 });
 
 // ---------------------------------------------------------------- drawn labels fit (22-unit text)
-test('checkLabels: a topic title wraps at 12 characters into at most 3 lines inside a tile', () => {
+// Widths are measured per character in the film font (Inter at 22 units, the
+// wider of weights 600 and 700, Chromium); a flat 10.5 units a character, the
+// first rule, let "Schedule and" (146 units measured) through a 128-unit tile.
+test('textUnits and wrapUnits: measured widths, never under the real text', () => {
+  // measured in the film page: Schedule and 146.3, and critical 119.4, Werkkennis 127.9, Advanced 109.3, meest waarschijnlijk 220.1
+  for (const [s, real] of [['Schedule and', 146.3], ['and critical', 119.4], ['Werkkennis', 127.9], ['Advanced', 109.3], ['meest waarschijnlijk', 220.1]]) {
+    const est = textUnits(s);
+    assert.ok(est >= real && est <= real * 1.1, `${s}: ${est} against ${real}`);
+  }
+  assert.deepEqual(wrapUnits('Schedule and critical path', TILE_UNITS, CHAR_W), ['Schedule', 'and critical', 'path']);
+  assert.deepEqual(wrapUnits('Opdeling en scope', TILE_UNITS, CHAR_W), ['Opdeling', 'en scope']);
+  // wrapUnits is self-contained, so a stage script can carry it as source text
+  assert.deepEqual(new Function(`return ${wrapUnits.toString()}`)()('Schedule and critical path', TILE_UNITS, CHAR_W), ['Schedule', 'and critical', 'path']);
+});
+
+test('checkLabels: a topic title wraps by width into at most 3 lines inside a tile', () => {
   const data = resolveFilm(spec(), LESSONS, MODULES);
   assert.deepEqual(checkLabels(data, ''), []);
   const wide = clone(data);
   wide.topics[0].title.nl = 'Onderhandelingstechnieken';
-  assert.match(checkLabels(wide, '').join('\n'), /topic split: "Onderhandelingstechnieken" \(nl\) has a word of 25 characters, a tile fits 12/);
+  assert.match(checkLabels(wide, '').join('\n'), /topic split: "Onderhandelingstechnieken" \(nl\) has a word of \d+ units, a tile is 128/);
   const tall = clone(data);
   tall.topics[1].title.en = 'One two three four five six seven';
-  assert.match(checkLabels(tall, '').join('\n'), /topic time: "One two three four five six seven" \(en\) wraps to 4 lines at 12 characters, a tile fits 3/);
+  assert.match(checkLabels(tall, '').join('\n'), /topic time: "One two three four five six seven" \(en\) wraps to 4 lines in a tile of 128 units, a tile holds 3/);
 });
 
-test('checkLabels: every tr(nl, en) label of the stage fits its box at 22 units, 10.5 units a character', () => {
+test('checkLabels: every tr(nl, en) label of the stage fits its box at 22 units, by measured width', () => {
   const data = resolveFilm(spec(), LESSONS, MODULES);
   assert.deepEqual(checkLabels(data, "tr('Lijn 4: buiten scope', 'Line 4: out of scope')"), []);
-  assert.match(checkLabels(data, "tr('Een veel te lange tekst voor het paneel', 'Short')").join('\n'), /label "Een veel te lange tekst voor het paneel" \(nl\) is 39 characters, the panel fits 27/);
-  assert.match(checkLabels(data, "tr('Short', 'Een veel te lange tekst voor het paneel')").join('\n'), /\(en\) is 39 characters/);
+  assert.match(checkLabels(data, "tr('Een veel te lange tekst voor het paneel', 'Short')").join('\n'), /label "Een veel te lange tekst voor het paneel" \(nl\) is \d+ units wide, the panel is 284/);
+  assert.match(checkLabels(data, "tr('Short', 'Een veel te lange tekst voor het paneel')").join('\n'), /\(en\) is \d+ units wide/);
   // a narrower box names its width as a third argument
-  assert.match(checkLabels(data, "tr('Vloer klaar', 'Floor ready', 100)").join('\n'), /label "Vloer klaar" \(nl\) is 11 characters, 100 units fit 9/);
-  assert.deepEqual(checkLabels(data, "tr('Vloer klaar', 'Floor ready', 178)"), []);
+  assert.match(checkLabels(data, "tr('Vloer klaar', 'Floor ready', 100)").join('\n'), /label "Vloer klaar" \(nl\) is 1\d\d units wide, its box is 100/);
+  assert.deepEqual(checkLabels(data, "tr('Vloer klaar', 'Floor ready', 160)"), []);
 });
 
 test('checkFilm: an intro film is held to its drawn labels', () => {
   const data = resolveFilm(spec(), LESSONS, MODULES);
-  assert.match(checkFilm(data, ctx({ stageText: "tr('Een veel te lange tekst voor het paneel', 'Short')" })).join('\n'), /is 39 characters, the panel fits 27/);
+  assert.match(checkFilm(data, ctx({ stageText: "tr('Een veel te lange tekst voor het paneel', 'Short')" })).join('\n'), /units wide, the panel is 284/);
 });
 
 // ---------------------------------------------------------------- review of the pilot (14 Nov): gaps a copy would inherit
@@ -270,5 +285,5 @@ test('checkFilm: a field film is held to its drawn labels as well', () => {
   delete field.topics;
   field.field = 'pm.field.fx';
   field.lessons = [];
-  assert.match(checkFilm(field, ctx({ module: undefined, stageText: "tr('Een veel te lange tekst voor het paneel', 'Short')" })).join('\n'), /is 39 characters, the panel fits 27/);
+  assert.match(checkFilm(field, ctx({ module: undefined, stageText: "tr('Een veel te lange tekst voor het paneel', 'Short')" })).join('\n'), /units wide, the panel is 284/);
 });
