@@ -25,7 +25,19 @@ try {
       await ctx.addInitScript(([l, s]) => {
         localStorage.setItem('spraakwater:v1', JSON.stringify({ onboarded: true, xp: 40, settings: { lang: l }, ui: { subject: s } }));
       }, [lang, subject]);
-      // MAPFIT_WIDE=1: no ResizeObserver, so the app keeps the wide map (the "before" pictures); the phone checks are skipped
+      // window errors (a ResizeObserver loop shows up here) and the live ResizeObservers, to see the map's one let go
+      await ctx.addInitScript(() => {
+        window.__errs = [];
+        window.addEventListener('error', (e) => window.__errs.push(String(e.message)));
+        const RO = window.ResizeObserver;
+        if (!RO) return;
+        window.__ro = { live: 0 };
+        window.ResizeObserver = class extends RO {
+          observe(...a) { if (!this.__on) { this.__on = true; window.__ro.live++; } return super.observe(...a); }
+          disconnect() { if (this.__on) { this.__on = false; window.__ro.live--; } return super.disconnect(); }
+        };
+      });
+      // MAPFIT_WIDE=1: no ResizeObserver, so the app keeps the wide map (the "before" pictures); the layout check is skipped
       if (process.env.MAPFIT_WIDE) await ctx.addInitScript(() => { window.ResizeObserver = undefined; });
       const page = await ctx.newPage();
       await page.goto(BASE);
@@ -69,7 +81,7 @@ try {
       if (!fits) problems.push(`${tag}: map ${m.left.toFixed(1)}..${m.right.toFixed(1)} outside content box ${m.cl.toFixed(1)}..${m.cr.toFixed(1)}`);
       if (subject === 'pm') {
         // the phone layout below 460 px of card, the wide map above; labels big enough; every place a 44 px button
-        if (m.phone !== (m.cardW < 460)) problems.push(`${tag}: ${m.phone ? 'phone' : 'wide'} layout in a ${m.cardW.toFixed(0)} px card`);
+        if (!process.env.MAPFIT_WIDE && m.phone !== (m.cardW < 460)) problems.push(`${tag}: ${m.phone ? 'phone' : 'wide'} layout in a ${m.cardW.toFixed(0)} px card`);
         const need = width >= 390 ? 11 : width >= 360 ? 10 : 9;
         if (m.lab < need - 0.05) problems.push(`${tag}: place labels ${m.lab.toFixed(1)}px, need ${need}`);
         if (m.phone && m.zoneLab < need - 0.05) problems.push(`${tag}: zone labels ${m.zoneLab.toFixed(1)}px, need ${need}`);
@@ -93,7 +105,13 @@ try {
         await page.locator('.map-card .map-place[data-module="pm.plan"]').click();
         await page.locator('.module-screen').waitFor({ timeout: 4000 }).catch(() => problems.push(`${tag}: a tap on a place did not open the module`));
         report.push(`${tag}: tap and Enter open the module screen`);
+        // the home screen is gone: the map's ResizeObserver is disconnected, not left watching a detached map
+        await page.waitForTimeout(300);
+        const live = await page.evaluate(() => window.__ro && window.__ro.live);
+        if (live) problems.push(`${tag}: ${live} ResizeObserver(s) still observing after leaving the home screen`);
       }
+      const errs = await page.evaluate(() => window.__errs);
+      if (errs.length) problems.push(`${tag}: window errors: ${[...new Set(errs)].join(' | ')}`);
       await ctx.close();
     }
   }

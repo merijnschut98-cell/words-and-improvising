@@ -173,25 +173,38 @@ export function subjectMap(app, map, { onPlace, lang, next = null } = {}) {
   const wrap = document.createElement('div');
   wrap.className = 'subject-map-wrap';
   const language = lang || (app && app.lang) || (app && app.settings && app.settings.lang) || 'en';
-  const draw = (layout, swap) => {
-    const active = swap && document.activeElement;
+  // Draw (or redraw) the SVG; a redraw keeps the focused place focused.
+  const draw = (layout) => {
+    const active = document.activeElement;
     const kept = active && wrap.contains(active) && active.closest ? active.closest('.map-place') : null;
     const id = kept && kept.getAttribute('data-module');
-    wrap.innerHTML = mapSvg(map, { lang: language, next, interactive: true, layout });
+    const t = document.createElement('div');
+    t.innerHTML = mapSvg(map, { lang: language, next, interactive: true, layout });
+    const old = wrap.querySelector('svg.subject-map');
+    if (old) old.replaceWith(t.firstElementChild); else wrap.append(t.firstElementChild);
     if (id) { const again = wrap.querySelector(`.map-place[data-module="${id}"]`); if (again) again.focus(); }
   };
   let layout = null;
-  draw(layout, false);
+  draw(layout);
   // A card narrower than PHONE_BELOW gets the phone layout. The observer's first
   // report comes after layout and before the first paint, so the wide drawing is
   // never seen on a phone; later reports (rotation, resize) swap it in place.
+  // It watches a ruler of no height rather than the wrapper: a swap changes the
+  // wrapper's height, which would report again in the same frame (a "ResizeObserver
+  // loop" error). Once the map leaves the page (a report of size 0) it lets go.
   if (map.phone && typeof ResizeObserver !== 'undefined') {
-    new ResizeObserver(() => {
-      const width = wrap.clientWidth;
+    const ruler = document.createElement('div');
+    ruler.className = 'subject-map-ruler';
+    ruler.setAttribute('aria-hidden', 'true');
+    wrap.prepend(ruler);
+    const watch = new ResizeObserver(() => {
+      if (!wrap.isConnected) { watch.disconnect(); return; }
+      const width = ruler.clientWidth;
       if (!width) return;
       const want = width < PHONE_BELOW ? 'phone' : null;
-      if (want !== layout) { layout = want; draw(layout, true); }
-    }).observe(wrap);
+      if (want !== layout) { layout = want; draw(layout); }
+    });
+    watch.observe(ruler);
   }
   const fire = (g) => { if (onPlace) onPlace(g.getAttribute('data-module')); };
   wrap.addEventListener('click', (e) => {

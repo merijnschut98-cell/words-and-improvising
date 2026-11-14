@@ -43,9 +43,9 @@ const WIDE = {
 // narrower than 460 px (src/ui/subjectmap.js); the films keep the wide map. Zones
 // keep their order; the places of a zone keep theirs, row by row from the left.
 // Rows hold three short titles or two long ones; a title wraps to three lines at
-// most. `font` is the label size in view units: at 390 px (card 325 px) that is
-// 11.5 px, at 320 px (card 256 px) 9.0 px. Objects are drawn at half size, so a
-// row is little more than the 44 px a tap needs.
+// most. `font` is the label size in view units: at 390 px (card 324 px) that is
+// 11.4 px, at 320 px (card 254 px) 9.0 px. Objects are drawn at about half size,
+// so a row of 54 units is 45.7 px at 320: the 44 px a tap needs, and a margin.
 const PW = 300;
 const COLS = {
   3: { w: 89, xs: [10, 105, 200] },
@@ -71,21 +71,21 @@ function phoneLayout(sections) {
     zones.push({ field: s.field, label: s.label, path: rrect(4, y, PW - 8, h) });
     y += h + 3;
   }
-  return { view: { w: PW, h: y - 3 + 3 }, font: 10.6, lineHeight: 12, labelTop: 36, scale: 0.55, floor: 21, zoneLabel: [10, 12], arrow: 24, zones, places };
+  return { view: { w: PW, h: y }, font: 10.6, lineHeight: 12, labelTop: 36, scale: 0.55, floor: 21, zoneLabel: [10, 12], arrow: 24, zones, places };
 }
 
 const PHONE = phoneLayout([
   { field: 'pm.field.portfolio', label: WIDE.zones[0].label, rows: [
-    { cols: 2, h: 53, items: [['pm.portfolio', 'board'], ['pm.consult', 'contract']] }] },
+    { cols: 2, h: 54, items: [['pm.portfolio', 'board'], ['pm.consult', 'contract']] }] },
   { field: 'pm.field.lifecycle', label: WIDE.zones[1].label, rows: [
-    { cols: 3, h: 52, items: [['pm.intake', 'gate'], ['pm.plan', 'board'], ['pm.run', 'dashboard']] },
-    { cols: 3, h: 52, items: [['pm.land', 'road-stop'], ['pm.close', 'contract']] }] },
+    { cols: 3, h: 54, items: [['pm.intake', 'gate'], ['pm.plan', 'board'], ['pm.run', 'dashboard']] },
+    { cols: 3, h: 54, items: [['pm.land', 'road-stop'], ['pm.close', 'contract']] }] },
   { field: 'pm.field.people', label: WIDE.zones[2].label, rows: [
     { cols: 3, h: 65, items: [['pm.stuck', 'road-stop'], ['pm.lead', 'whiteboard'], ['pm.negotiate', 'handshake']] },
-    { cols: 2, h: 53, items: [['pm.outside', 'desk'], ['pm.perform', 'dashboard']] }] },
+    { cols: 2, h: 54, items: [['pm.outside', 'desk'], ['pm.perform', 'dashboard']] }] },
   { field: 'pm.field.it', label: WIDE.zones[3].label, rows: [
-    { cols: 2, h: 53, items: [['pm.agile', 'whiteboard'], ['pm.scaled', 'board']] },
-    { cols: 2, h: 53, items: [['pm.devops', 'server'], ['pm.itproject', 'desk']] }] },
+    { cols: 2, h: 54, items: [['pm.agile', 'whiteboard'], ['pm.scaled', 'board']] },
+    { cols: 2, h: 54, items: [['pm.devops', 'server'], ['pm.itproject', 'desk']] }] },
 ]);
 // Each row of the lifecycle is its own stretch of road, ended by an arrow; the
 // second row carries on from the first, the way text does.
