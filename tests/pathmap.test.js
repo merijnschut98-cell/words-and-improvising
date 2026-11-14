@@ -19,7 +19,8 @@ test('pathModel: passed and owned stops, one next stop, hidden levels counted fo
   assert.equal(takt.hidden, 1, 'Expert is not visible yet');
   assert.equal(takt.done, false);
   assert.equal(m.topics.flatMap((x) => x.stops).filter((s) => s.next).length, 1);
-  assert.equal(takt.stops[2].next, true, 'the open level of the topic he works in');
+  assert.equal(takt.stops[2].next, false, 'Basis of the other topics comes before Werkkennis of this one');
+  assert.equal(m.topics[1].stops[0].next, true, 'the next step: Basis of the next topic (breadth-first)');
   assert.deepEqual(m.topics[1].stops.map((s) => s.state), ['todo']);
   assert.equal(m.topics[1].hidden, 3);
 });
@@ -33,7 +34,7 @@ test('pathModel: a finished topic has no stub and a done flag', () => {
 });
 
 test('topicPath: stops are buttons with i18n aria-labels; the stub is not focusable and carries pathMore', () => {
-  const m = pathModel(withPassed(['eng.flow.takt']), META, 'nl');
+  const m = pathModel(withPassed(META.topics.map((x) => x.levels[0])), META, 'nl');
   const opened = [];
   const el = topicPath(t, 'Takt en lijnbalans', m.topics[0], (id) => opened.push(id));
   const stops = el.querySelectorAll('button.path-stop');
@@ -52,7 +53,7 @@ test('topicPath: stops are buttons with i18n aria-labels; the stub is not focusa
 });
 
 test('topicPath: the next stop is outlined, never a primary button', () => {
-  const m = pathModel(withPassed(['eng.flow.takt']), META, 'nl');
+  const m = pathModel(withPassed(META.topics.map((x) => x.levels[0])), META, 'nl');
   const el = topicPath(t, 'Takt', m.topics[0], () => {});
   const next = el.querySelector('.path-stop.s-next');
   assert.ok(next);

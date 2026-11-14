@@ -92,9 +92,10 @@ test('the open track is the one with the next step', () => {
   assert.equal(openTrack(s, 'pm', { reason: 'apply', moduleId: 'pm.agile' }), 'agile');
   // Without a module (due questions, done): the recommended module's track.
   assert.equal(openTrack(s, 'eng', { reason: 'due' }), 'basics');
-  // Started in Manufacturing: that module is recommended, so its track opens.
+  // Started in Manufacturing:
   const started = { ...s, courses: { ...s.courses, eng: { ...s.courses.eng, lessons: { [MODULES.find((m) => m.id === 'eng.machining').lessons[0]]: { passed: 1 } } } } };
-  assert.equal(openTrack(started, 'eng', { reason: 'due' }), 'discrete');
+  // Breadth-first: Basis of every module comes first, so one lesson in Manufacturing does not pull the next step there.
+  assert.equal(openTrack(started, 'eng', { reason: 'due' }), 'basics');
   // Everything passed: the first track.
   const all = Object.fromEntries(MODULES.filter((m) => m.subject === 'pm').flatMap((m) => m.lessons).map((id) => [id, { passed: 1 }]));
   assert.equal(openTrack({ ...s, courses: { ...s.courses, pm: { ...s.courses.pm, lessons: all } } }, 'pm', { reason: 'done' }), TRACKS.pm[0]);

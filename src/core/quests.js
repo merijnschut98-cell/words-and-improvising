@@ -105,3 +105,24 @@ export function applyQuests(state, round, today) {
   };
   return { state: next, completed };
 }
+
+// What a quest asks him to open, so the row can be a button (pure). The
+// target is a description; the app turns it into a screen:
+//   drill: a round of that drill          quick: a one-minute round
+//   retry: the latest own answer again    lesson: today's speaking lesson
+//   conversation: the live conversation   settings: where he switches language
+// 'retry' falls back to a quick round while he has no earlier answer.
+export function questTarget(state, id) {
+  const last = (state.history || []).find((e) => !e.shadow && e.promptId && e.drill && e.metrics);
+  switch (id) {
+    case 'pauseClean': return { kind: 'drill', drill: 'pause' };
+    case 'bridgeAll': return { kind: 'drill', drill: 'bridge' };
+    case 'sayAgain': return last ? { kind: 'retry', entry: last } : { kind: 'quick' };
+    case 'lesson': return { kind: 'lesson' };
+    case 'liveConvo': return { kind: 'conversation' };
+    case 'otherLang': return { kind: 'settings' };
+    case 'coldStart':
+    case 'beatYesterday':
+    default: return { kind: 'quick' };
+  }
+}

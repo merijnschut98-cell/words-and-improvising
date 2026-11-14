@@ -4,6 +4,7 @@ import { updateStreak, reconcileStreak, dayKey } from './progress.js';
 import { isoWeekKey } from './boss.js';
 import { scheduleCourseReview, dueCount, maintenanceQuestion, OWNED_BOX } from './coursereview.js';
 import { lessonOf, moduleOf, MODULES, TRACKS, topicsOf, placeOf } from '../content/courses/index.js';
+import { mapFor } from '../content/courses/maps/index.js';
 import { upcoming } from './realweek.js';
 import { creditXp, isPerfect, goalJustReached } from './xp.js';
 import { awardFlair } from './flair.js';
@@ -235,24 +236,59 @@ export function resumeLesson(state, subject, modules = MODULES) {
   return { moduleId: moduleOf(id), lessonId: id };
 }
 
+// The subject's modules in the order a learner walks them: on a map, the road
+// first (Intake, Plan, Run, Land, Close); then every other module by its
+// level (Instap, Verdieping, Specialist), in map order within a level, else
+// course order. The map draws Specialist places at the top, so map order
+// alone would put Portfolio before Agile; without a map, an Instap module
+// late in the course list (another track) still comes before any Specialist.
+export function roadOrder(subject, modules = MODULES) {
+  const own = modules.filter((m) => m.subject === subject);
+  const map = mapFor(subject);
+  const road = [...new Set(map ? (map.routes || []).flat() : [])].map((id) => own.find((m) => m.id === id)).filter(Boolean);
+  const onMap = (id) => { const i = map ? map.places.findIndex((p) => p.module === id) : -1; return i < 0 ? own.length : i; };
+  const rest = own.filter((m) => !road.includes(m))
+    .sort((a, b) => (a.level || 1) - (b.level || 1) || onMap(a.id) - onMap(b.id) || own.indexOf(a) - own.indexOf(b));
+  return [...road, ...rest];
+}
+
+// One module's lessons, breadth-first: level 1 of every topic, then level 2 of
+// every topic, and so on. A module without topics keeps its index order.
+function moduleBreadth(meta) {
+  const metaTopics = topicsOf(meta);
+  if (!metaTopics) return [...meta.lessons];
+  const depth = Math.max(0, ...metaTopics.map((t) => t.levels.length));
+  return Array.from({ length: depth }, (_, L) => metaTopics.map((t) => t.levels[L]).filter(Boolean)).flat();
+}
+
+// The subject's lessons breadth-first by level: every Basis lesson (modules in
+// road order), then every Werkkennis lesson, then Gevorderd, then Expert. He
+// does not have to master one area before taking the next step in another.
+export function breadthOrder(subject, modules = MODULES) {
+  const metas = roadOrder(subject, modules);
+  const per = metas.map(moduleBreadth);
+  const rounds = Math.max(0, ...metas.map((m) => (topicsOf(m) ? Math.max(0, ...topicsOf(m).map((t) => t.levels.length)) : 1)));
+  const out = [];
+  for (let L = 0; L < rounds; L++) {
+    metas.forEach((m, i) => {
+      const t = topicsOf(m);
+      if (t) out.push(...t.map((x) => x.levels[L]).filter(Boolean));
+      else if (L === 0) out.push(...per[i]);
+    });
+  }
+  return out;
+}
+
 // A lesson he opened and did not finish, when it is the last one he touched
-// in the module, comes first. Then, topic modules (free access): the topic he
-// touched last while it has an open level, else the first open topic in index
-// order; within it, the lowest level not passed. Depth-first: one topic from
-// Basis to Expert. Other modules: the first lesson not passed, in index order.
+// in the module, comes first. Then the lowest level not passed across the
+// module's topics (Basis of every topic before any Werkkennis), topics in
+// index order; a module without topics: the first lesson not passed.
 export function nextLesson(state, meta) {
   const lessons = passedIn(state, meta.subject);
   const done = (id) => !!(lessons[id] && lessons[id].passed);
   const recent = mostRecent(lessons, meta.lessons);
   if (recent && !done(recent) && lessons[recent].opened) return recent;
-  const metaTopics = topicsOf(meta);
-  if (metaTopics) {
-    const open = (t) => t.levels.some((id) => !done(id));
-    const current = recent && metaTopics.find((t) => t.levels.includes(recent));
-    const topic = current && open(current) ? current : metaTopics.find(open);
-    return topic ? topic.levels.find((id) => !done(id)) : null;
-  }
-  return meta.lessons.find((id) => !done(id)) || null;
+  return moduleBreadth(meta).find((id) => !done(id)) || null;
 }
 
 // One level of a topic: todo (not passed), passed, or owned (passed and every
@@ -296,21 +332,34 @@ function placed(pick, modules) {
   return p ? { ...pick, topicId: p.topicId, level: p.level } : pick;
 }
 
-// The started module he worked in last (a lesson opened, passed or
-// practised: where he left off, v16); otherwise the lowest level across
-// tracks, in index order. Null when every lesson of the subject is passed.
+// The module of the subject's next lesson, breadth-first by level (see
+// breadthOrder): Intake's Basis, then Plan's Basis, and so on, before anyone's
+// Werkkennis. Null when every lesson of the subject is passed.
 export function recommendedModule(state, subject, modules = MODULES) {
-  const open = modules.filter((m) => m.subject === subject && nextLesson(state, m));
   const lessons = passedIn(state, subject);
-  let started = null;
-  let at = 0;
-  for (const m of open) {
-    const ts = Math.max(0, ...m.lessons.map((id) => lastTouched(lessons[id])));
-    if (ts > at) { started = m; at = ts; }
-  }
-  if (started) return started.id;
-  const first = [...open].sort((a, b) => a.level - b.level || modules.indexOf(a) - modules.indexOf(b))[0];
-  return first ? first.id : null;
+  const id = breadthOrder(subject, modules).find((l) => !(lessons[l] && lessons[l].passed));
+  return id ? moduleOf(id) : null;
+}
+
+// The subject's next lesson, { moduleId, lessonId }, or null when every
+// lesson is passed: the recommended module and its next lesson. The start
+// card, the course home and the lesson end all use this one answer.
+export function nextCourseLesson(state, subject, modules = MODULES) {
+  const moduleId = recommendedModule(state, subject, modules);
+  const meta = moduleId && modules.find((m) => m.id === moduleId);
+  const lessonId = meta ? nextLesson(state, meta) : null;
+  return lessonId ? { moduleId, lessonId } : null;
+}
+
+// The "next" button at a lesson's end. Opened from the module screen it
+// stays in that module (what its continue button says, where the lesson
+// returns to); opened from a home it is the subject's next lesson, which can
+// be in another module (Intake's last Basis lesson leads to Plan's first).
+// Never the lesson itself; null when nothing is left.
+export function lessonEndNext(state, meta, lessonId, fromModule, modules = MODULES) {
+  const own = fromModule ? nextLesson(state, meta) : null;
+  const next = fromModule ? (own ? { moduleId: meta.id, lessonId: own } : null) : nextCourseLesson(state, meta.subject, modules);
+  return next && next.lessonId !== lessonId ? next : null;
 }
 
 // One next thing per course, deterministic for a state and day.
@@ -327,8 +376,8 @@ export function courseTodayPick(state, subject, lang, today, modules = MODULES) 
   if (prep) return prep;
   const due = dueCount(reviews, today, subject, lang);
   if (due >= 5) return { reason: 'due', count: due };
-  const rec = recommendedModule(state, subject, modules);
-  if (rec) return placed({ reason: 'lesson', moduleId: rec, lessonId: nextLesson(state, modules.find((m) => m.id === rec)) }, modules);
+  const rec = nextCourseLesson(state, subject, modules);
+  if (rec) return placed({ reason: 'lesson', ...rec }, modules);
   const lessons = passedIn(state, subject);
   const all = modules.filter((m) => m.subject === subject).flatMap((m) => m.lessons.map((lessonId) => ({ moduleId: m.id, lessonId })));
   const done = all.filter((x) => lessons[x.lessonId] && lessons[x.lessonId].passed);
