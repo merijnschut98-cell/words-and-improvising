@@ -55,6 +55,7 @@ import { fileURLToPath, pathToFileURL } from 'node:url';
 import { defineFilm, auditReport, resolveFilm, allLessons } from '../_kit/build-film.mjs';
 import { beatStarts, wordsOf, minSceneDur } from '../_kit/timeline.mjs';
 import { mapScene, mapStyles, mapCue } from '../_kit/mapscene.mjs';
+import { wrapUnits, CHAR_W, STATION_UNITS } from '../_kit/assert.mjs';
 import { pmWorld, PM_CSS } from '../_pm/world.mjs';
 import { scrumPerson } from '../pm.agile.scrum/cast.mjs';
 import { hallWorld, HALL_CSS } from '../pm.plan.intro/hall.mjs';
@@ -138,7 +139,7 @@ const world = [
   cueG('line3', g('line3S', hall.conveyor({ ...L3, cartons: 4 }))),
   g('pp-installer', installer + hall.hat(44, 62)),
   g('pp-buyer', scrumPerson(w, k, G, P, { x: 224, y: 96, key: 'buyer', look: 'po', along: 'x' })),
-  g('pp-crew', scrumPerson(w, k, G, P, { x: 212, y: 120, key: 'crew', look: 'dev', along: 'x' }) + scrumPerson(w, k, G, P, { x: 258, y: 112, key: 'crew', look: 'dev2', along: 'x' })),
+  g('pp-crew', scrumPerson(w, k, G, P, { x: 176, y: 66, key: 'crew', look: 'dev', along: 'x' }) + scrumPerson(w, k, G, P, { x: 278, y: 60, key: 'crew', look: 'dev2', along: 'x' })),
   cueG('line4', hall.conveyor({ ...L4, cartons: 3 })),
   g('pp-lead', person('teamlead', 150, 118, 'x')),
   g('pp-sponsor', person('sponsor', 36, 140, 'y')),
@@ -240,7 +241,7 @@ const spec = {
       beats: [
         { nl: 'Een fabriek bouwt een nieuwe hal. Lijn 3 moet erheen, in de zomerstop van {n:3} weken.', en: 'A plant is building a new hall. Line 3 must move there, in the {n:3}-week summer shutdown.', focus: ['goal', 'floor', 'calendar'] },
         { nl: 'Elk project loopt dezelfde weg, langs vijf stations.', en: 'Every project walks the same road, past five stations.', focus: 'road' },
-        { nl: 'Per station: wat er gebeurt, en wat er misgaat als je het overslaat.', en: 'At each station: what happens, and what goes wrong if you skip it.', focus: ['road', 'line3'] },
+        { nl: 'Per station: wat er gebeurt, en wat er misgaat als je het overslaat.', en: 'At each station: what happens, and what goes wrong if you skip it.', focus: 'road' },
       ],
     },
     {
@@ -273,8 +274,8 @@ const spec = {
       beats: [
         { nl: 'Het vierde station is Landen: de verandering laten beklijven.', en: 'The fourth station is Land: making the change stick.', focus: ['st-land', 'line3'] },
         { nl: 'Een {t:Werkinstructie|werkinstructie} met foto’s, en training op de vloer.', en: 'A {t:Work instruction|work instruction} with photos, and training on the floor.', cue: { Werkinstructie: 'instr' }, focus: ['instr', 'crew'] },
-        { nl: 'Dan neemt de lijn het over. {t:Adoptie|Adoptie}: werken op de nieuwe manier, ook als niemand kijkt.', en: 'Then the line takes over. {t:Adoption|Adoption}: working the new way, even when nobody is watching.', cue: { Adoptie: 'handover' }, focus: ['handover', 'teamlead'] },
-        { nl: 'Zonder landen zakt het resultaat weg zodra het project weg is.', en: 'Without landing the result slips as soon as the project has gone.', focus: 'without' },
+        { nl: 'Dan neemt de lijn het over. {t:Adoptie|Adoptie}: werken op de nieuwe manier, ook als niemand kijkt.', en: 'Then the line takes over. {t:Adoption|Adoption}: working the new way, even when nobody is watching.', cue: { Adoptie: 'crew' }, focus: ['handover', 'teamlead', 'crew'] },
+        { nl: 'Zonder landen zakt het resultaat weg, een paar maanden na het project.', en: 'Without landing the result slips, a few months after the project.', focus: 'without' },
       ],
     },
     {
@@ -322,22 +323,22 @@ const SAY = [
   [ // s2 intake
     { nl: 'Het eerste station is de intake. De vraag is, verhuis lijn 3. Je vraagt door, naar de vraag erachter. Waarom moet het, en wanneer is het gelukt?',
       en: 'The first station is the intake. The request is, move line 3. You dig deeper, to the question behind it. Why does it have to happen, and when is it done?' },
-    { nl: 'Het antwoord wordt het {t:Doel|doel}, wat er meetbaar anders moet zijn. Lijn 3 draait na de stop weer, in hal B. De sponsor is eigenaar van budget en resultaat, en beslist.',
-      en: 'The answer becomes the {t:Goal|goal}, what must be measurably different. Line 3 runs again after the shutdown, in hall B. The sponsor owns the budget and the result, and decides.' },
+    { nl: 'Het antwoord wordt het {t:Doel|doel}, wat er meetbaar anders moet zijn. Na de stop draait lijn 3 in hal B, even snel als nu. De sponsor is eigenaar van budget en resultaat, en beslist.',
+      en: 'The answer becomes the {t:Goal|goal}, what must be measurably different. After the shutdown line 3 runs in hall B, as fast as it does now. The sponsor owns the budget and the result, and decides.' },
     { nl: 'Sla je de intake over, dan los je misschien het verkeerde probleem op.',
       en: 'Skip the intake, and you may solve the wrong problem.' },
   ],
   [ // s3 plan
-    { nl: 'Het tweede station is plannen. Van het doel maak je een plan waar mensen in geloven.',
-      en: 'The second station is plan. You turn the goal into a plan that people believe in.' },
+    { nl: 'Het tweede station is Plannen. Van het doel maak je een plan waar mensen in geloven.',
+      en: 'The second station is Plan. You turn the goal into a plan that people believe in.' },
     { nl: 'Het werk, de volgorde, de duur en de risico’s. De intro van Plannen laat ze een voor een zien.',
       en: 'The work, the order, the duration and the risks. The intro of Plan shows them one by one.' },
     { nl: 'Zonder plan merk je pas in de laatste week van de stop dat de nieuwe stroom niet klaar is. Dan is het te laat.',
       en: 'Without a plan you only notice in the last week of the shutdown that the new power supply is not ready. Then it is too late.' },
   ],
   [ // s4 run
-    { nl: 'Het derde station is uitvoeren. Nu moet het project in beweging blijven.',
-      en: 'The third station is run. Now the project has to keep moving.' },
+    { nl: 'Het derde station is Uitvoeren. Nu moet het project in beweging blijven.',
+      en: 'The third station is Run. Now the project has to keep moving.' },
     { nl: 'Met een eerlijke status. De schakelkast komt later dan gepland, dus zet je de status nu op oranje.',
       en: 'With an honest status. The switchboard will arrive later than planned, so you set the status to amber now.' },
     { nl: 'Iemand vraagt of lijn 4 meteen mee kan. Dat wordt een {t:Wijzigingsverzoek|wijzigingsverzoek}, en de sponsor kiest in de stuurgroep.',
@@ -346,18 +347,18 @@ const SAY = [
       en: 'Without steering you get a watermelon project. Green outside, red inside, until it is too late.' },
   ],
   [ // s5 land
-    { nl: 'Het vierde station is landen. Lijn 3 staat, en nu moet de nieuwe manier van werken blijven.',
-      en: 'The fourth station is land. Line 3 is in place, and now the new way of working has to stick.' },
+    { nl: 'Het vierde station is Landen. Lijn 3 staat, en nu moet de nieuwe manier van werken blijven.',
+      en: 'The fourth station is Land. Line 3 is in place, and now the new way of working has to stick.' },
     { nl: 'De operators krijgen een werkinstructie met foto’s van de echte lijn, en training op de vloer.',
       en: 'The operators get a work instruction with photos of the real line, and training on the floor.' },
     { nl: 'Dan neemt de lijn het over. Het gaat om {t:Adoptie|adoptie}. Mensen werken op de nieuwe manier, ook als niemand kijkt.',
       en: 'Then the line takes over. It is about {t:Adoption|adoption}. People work the new way, even when nobody is watching.' },
-    { nl: 'Sla je dit over, dan zakt het resultaat weg zodra het project weg is.',
-      en: 'Skip this, and the result slips as soon as the project has gone.' },
+    { nl: 'Sla je dit over, dan zakt het resultaat een paar maanden na het project weer weg.',
+      en: 'Skip this, and the result slips back a few months after the project.' },
   ],
   [ // s6 close
-    { nl: 'Het laatste station is afsluiten. Het werk is klaar, het project nog niet.',
-      en: 'The last station is close. The work is done, the project is not.' },
+    { nl: 'Het laatste station is Afsluiten. Het werk is klaar, het project nog niet.',
+      en: 'The last station is Close. The work is done, the project is not.' },
     { nl: 'Je meet de lijn op dezelfde manier als in de {t:Nulmeting|nulmeting}, van voor de verhuizing. Dan tekent de sponsor.',
       en: 'You measure the line the same way as in the {t:Baseline|baseline}, from before the move. Then the sponsor signs.' },
     { nl: 'Daarna een terugblik. Wat herhalen we, en wat doen we de volgende keer anders?',
@@ -368,12 +369,12 @@ const SAY = [
   [ // s7 the map
     { nl: 'Dit is de kaart van Projecten. De vijf stations liggen op één weg. Eromheen liggen de andere delen van het vak.',
       en: 'This is the map of Projects. The five stations lie on one road. Around it lie the other parts of the field.' },
-    { nl: 'Eerst de intake en plannen, de vraag en het plan.',
-      en: 'First intake and plan, the question and the plan.' },
-    { nl: 'Dan uitvoeren en landen, het werk en de verandering.',
-      en: 'Then run and land, the work and the change.' },
-    { nl: 'Tot slot afsluiten, aantonen en leren.',
-      en: 'Finally close, proving and learning.' },
+    { nl: 'Eerst de intake en Plannen, de vraag en het plan.',
+      en: 'First the intake and Plan, the question and the plan.' },
+    { nl: 'Dan Uitvoeren en Landen, het werk en de verandering.',
+      en: 'Then Run and Land, the work and the change.' },
+    { nl: 'Tot slot Afsluiten, aantonen en leren.',
+      en: 'Finally Close, proving and learning.' },
     { nl: 'Elk station is een module met vier onderwerpen. Begin bij de intake.',
       en: 'Each station is a module with four topics. Start with the intake.' },
   ],
@@ -410,7 +411,7 @@ spec.scenes.forEach((s, si) => {
 
 // ---------------------------------------------------------------- page script and styles
 const lean = (src) => src.replace(/^[ \t]*\/\/.*\n/gm, '').replace(/^[ \t]+/gm, '');
-const preamble = `const CAM = ${JSON.stringify(CAM)};\nconst W = ${W}, H = ${H};\nconst MAPZ = ${JSON.stringify(MAPZ)};\n`;
+const preamble = `const CAM = ${JSON.stringify(CAM)};\nconst W = ${W}, H = ${H};\nconst MAPZ = ${JSON.stringify(MAPZ)};\nconst ROW = ${STATION_UNITS};\nconst CW = ${JSON.stringify(CHAR_W)};\nconst wrapUnits = ${wrapUnits.toString()};\n`;
 const stageScript = kitScript() + '\n' + preamble + lean(readFileSync(join(HERE, 'stage.js'), 'utf8'))
   + '\n;\n' + readFileSync(join(HERE, '../_kit/beatwarp.js'), 'utf8');
 
@@ -451,8 +452,8 @@ const css = PM_CSS + HALL_CSS + `
 ` + mapStyles();
 
 const label = {
-  nl: 'Hal B van de fabriek, waar lijn 3 naartoe moet, zoals in de intro van Plannen. Op de vloer de nieuwe plek van lijn 3 met een gestippelde omtrek; ernaast staat lijn 4, die blijft. Links de stroomkast met de kabel van buiten, aan de achterwand de plek van de schakelkast, en aan de zijwand een kalender waarvan de laatste drie weken de zomerstop zijn. Per station komen er mensen bij: de sponsor, de installateur van buiten met een helm, de inkoper, twee operators en de teamleider van de lijn. Later staat lijn 3 op zijn plek en hangt de schakelkast aan de wand. Rechts een paneel, gemarkeerd als voorbeeld of schema: de weg met vijf stations, Intake, Plannen, Uitvoeren, Landen en Afsluiten; per station wat er gebeurt en, gestippeld, wat er misgaat zonder. Bij Intake de vraag, de vragen erachter en het doel; bij Plannen vier tegels voor werk, tijd, duur en risico; bij Uitvoeren een status met drie lampen en een wijzigingsverzoek voor lijn 4; bij Landen een werkinstructie, training en de overdracht van project naar lijn; bij Afsluiten de nulmeting naast de meting na de stop, de handtekening van de sponsor en een terugblik. Aan het eind de kaart van Projecten met de vijf stations verlicht, eerst helemaal en dan station voor station van dichtbij.',
-  en: 'Hall B of the plant, where line 3 has to go, as in the intro of Plan. On the floor the new place of line 3 with a dashed outline; next to it stands line 4, which stays. At the left the power cabinet with the cable from outside, on the back wall the place of the switchboard, and on the side wall a calendar whose last three weeks are the summer shutdown. Each station brings people: the sponsor, the outside installer in a hard hat, the buyer, two operators and the team lead of the line. Later line 3 stands in place and the switchboard hangs on the wall. At the right a panel, marked as an example or a diagram: the road with five stations, Intake, Plan, Run, Land and Close; per station what happens and, dashed, what goes wrong without it. At Intake the request, the questions behind it and the goal; at Plan four tiles for work, time, duration and risk; at Run a status with three lights and a change request for line 4; at Land a work instruction, training and the handover from the project to the line; at Close the baseline next to the measurement after the shutdown, the sponsor’s signature and a retrospective. At the end the map of Projects with the five stations lit, first whole and then station by station up close.',
+  nl: 'Hal B van de fabriek, waar lijn 3 naartoe moet, zoals in de intro van Plannen. Op de vloer de nieuwe plek van lijn 3 met een gestippelde omtrek; ernaast staat lijn 4, die blijft. Links de stroomkast met de kabel van buiten, aan de achterwand de plek van de schakelkast, en aan de zijwand een kalender waarvan de laatste drie weken de zomerstop zijn. Per station komen er mensen bij: de sponsor, de installateur van buiten met een helm, de inkoper, twee operators en de teamleider van de lijn. Later staat lijn 3 op zijn plek en hangt de schakelkast aan de wand. Rechts een paneel, gemarkeerd als voorbeeld of schema: de weg met vijf stations, Intake, Plannen, Uitvoeren, Landen en Afsluiten; per station wat er gebeurt en, gestippeld, wat er misgaat zonder. Bij Intake de vraag, de vragen erachter en het doel; bij Plannen vier tegels voor werk, volgorde, duur en risico; bij Uitvoeren een status met drie lampen en een wijzigingsverzoek voor lijn 4; bij Landen een werkinstructie, training en de overdracht van project naar lijn; bij Afsluiten de nulmeting naast de meting na de stop, de handtekening van de sponsor en een terugblik. Aan het eind de kaart van Projecten met de vijf stations verlicht, eerst helemaal en dan station voor station van dichtbij.',
+  en: 'Hall B of the plant, where line 3 has to go, as in the intro of Plan. On the floor the new place of line 3 with a dashed outline; next to it stands line 4, which stays. At the left the power cabinet with the cable from outside, on the back wall the place of the switchboard, and on the side wall a calendar whose last three weeks are the summer shutdown. Each station brings people: the sponsor, the outside installer in a hard hat, the buyer, two operators and the team lead of the line. Later line 3 stands in place and the switchboard hangs on the wall. At the right a panel, marked as an example or a diagram: the road with five stations, Intake, Plan, Run, Land and Close; per station what happens and, dashed, what goes wrong without it. At Intake the request, the questions behind it and the goal; at Plan four tiles for work, order, duration and risk; at Run a status with three lights and a change request for line 4; at Land a work instruction, training and the handover from the project to the line; at Close the baseline next to the measurement after the shutdown, the sponsor’s signature and a retrospective. At the end the map of Projects with the five stations lit, first whole and then station by station up close.',
 };
 
 const { data } = await defineFilm(spec, { svg, script: stageScript, css, kitCss: k.ISO_CSS, label });

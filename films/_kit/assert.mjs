@@ -334,8 +334,14 @@ export const UNKNOWN_W = 14;
 export const PANEL_UNITS = 284;
 export const TILE_UNITS = 128;
 export const TILE_LINES = 3;
-// A field film's station title stands on one line in a row of the road (v17).
-export const STATION_UNITS = 220;
+// A field film's station title (the index's module title, v17) stands in a row of
+// the road: wrapped by width (wrapUnits) into at most STATION_LINES lines of
+// STATION_UNITS, from the stop's number to the panel's edge (x 380 to 616 in the
+// reference film), and no word wider than that. The longest Projects titles need
+// two lines ("Negotiating and / holding your ground"); the stage wraps them with
+// the kit's own function, as the tiles do.
+export const STATION_UNITS = 236;
+export const STATION_LINES = 2;
 export const textUnits = (text) => [...String(text)].reduce((a, c) => a + (CHAR_W[c] ?? UNKNOWN_W), 0);
 // Greedy word wrap of text into lines at most max units wide; a word wider than
 // max stands on a line of its own. cw: the width table (CHAR_W).
@@ -365,8 +371,9 @@ export function checkLabels(data, stageText = '') {
   for (const st of data.stations || []) {
     for (const lang of ['nl', 'en']) {
       const title = (st.title || {})[lang] || '';
-      const w = textUnits(title);
-      if (w > STATION_UNITS) errs.push(`station ${st.id}: "${title}" (${lang}) is ${Math.ceil(w)} units wide, a station on the road holds ${STATION_UNITS}`);
+      for (const word of title.split(' ')) if (textUnits(word) > STATION_UNITS) errs.push(`station ${st.id}: the word "${word}" (${lang}) is ${Math.ceil(textUnits(word))} units wide, a station on the road holds ${STATION_UNITS}`);
+      const lines = wrapUnits(title, STATION_UNITS, CHAR_W).length;
+      if (lines > STATION_LINES) errs.push(`station ${st.id}: "${title}" (${lang}) wraps to ${lines} lines, a station on the road holds ${STATION_LINES} lines of ${STATION_UNITS} units`);
     }
   }
   // a label in double quotes or backticks would escape the measure below

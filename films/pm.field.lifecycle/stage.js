@@ -14,9 +14,12 @@
 // function, closing; the map itself is the kit's mapScene.
 // Every label is a tr('nl', 'en') pair, with the width of its box as a third
 // argument where it is narrower than the panel (the kit checks that they fit).
-// Station titles come from the page data (the index's module titles; the kit
-// checks they fit a row of the road).
-/* global CAM, W, H, MAPZ, span, beatStarts */
+// Station titles come from the page data (the index's module titles): the kit
+// checks they wrap into two lines of a row of the road (STATION_UNITS, ROW here),
+// and the road wraps them with the kit's own wrapUnits, so drawing and check
+// agree. The road and the strip follow the number of stations (a field of two
+// modules draws two).
+/* global CAM, W, H, MAPZ, ROW, CW, wrapUnits, span, beatStarts */
 const STAGE = (() => {
   const svg = document.querySelector('.fp-stage svg');
   const E = {};
@@ -87,19 +90,23 @@ const STAGE = (() => {
     show(E.cabOff, 1 - wired);
   }
 
-  // ---- the road. s1: five rows, each a numbered stop on a dashed road with the station's title.
-  // s2 to s6: a strip of five numbered squares under the heading, the scene's own station filled.
+  // ---- the road. s1: one row per station, each a numbered stop on a dashed road with the station's title
+  // (wrapped into at most two lines of ROW units). s2 on: a strip of numbered squares under the heading, the
+  // scene's own station filled.
+  const N = TITLES.length;
   const rowY = (i) => 66 + i * 62;
   function roadRows(a4) {
     const rows = TITLES.map((t, i) => {
       const y = rowY(i);
-      return op(a4[i], `<circle class="pm-dot" cx="352" cy="${y + 20}" r="16"/>` + txt(352, y + 28, String(i + 1), 22, 'middle', 'pm-on') + txt(380, y + 28, t, 22, 'start', 'pm-big'));
+      const lines = wrapUnits(t, ROW, CW);
+      const label = lines.map((ln, j) => txt(380, y + (lines.length > 1 ? 16 + j * 26 : 28), ln, 22, 'start', 'pm-big')).join('');
+      return op(a4[i], `<circle class="pm-dot" cx="352" cy="${y + 20}" r="16"/>` + txt(352, y + 28, String(i + 1), 22, 'middle', 'pm-on') + label);
     });
-    const line = `<path class="pm-road" d="M352 ${rowY(0) + 38}V${rowY(4) + 2}"/>`;
+    const line = `<path class="pm-road" d="M352 ${rowY(0) + 38}V${rowY(N - 1) + 2}"/>`;
     return { rows, line: op(a4[0], line) };
   }
   function strip(cur) {
-    return [0, 1, 2, 3, 4].map((i) => rect(334 + i * 40, 50, 34, 34, i === cur ? 'pm-crit' : 'pm-tile', 6) + txt(334 + i * 40 + 17, 75, String(i + 1), 22, 'middle', i === cur ? 'pm-on' : 'pm-mute'));
+    return TITLES.map((t, i) => rect(334 + i * 40, 50, 34, 34, i === cur ? 'pm-crit' : 'pm-tile', 6) + txt(334 + i * 40 + 17, 75, String(i + 1), 22, 'middle', i === cur ? 'pm-on' : 'pm-mute'));
   }
   // the dashed card at the foot of each station: what goes wrong without it
   function without(text, a) {
@@ -127,7 +134,7 @@ const STAGE = (() => {
     const goal = arrow(476, 200, 476, 216) + rect(334, 218, 284, 96, 'pm-crit', 8)
       + txt(346, 246, tr('Doel', 'Goal', 140), 22, 'start', 'pm-mute') + txt(606, 246, tr('sponsor', 'sponsor', 130), 22, 'end', 'pm-on')
       + txt(346, 276, tr('lijn 3 draait in hal B', 'line 3 runs in hall B', 260), 22, 'start', 'pm-big')
-      + txt(346, 302, tr('na de zomerstop', 'after the shutdown', 260), 22, 'start', 'pm-txt');
+      + txt(346, 302, tr('even snel als nu', 'as fast as now', 260), 22, 'start', 'pm-txt');
     return {
       askB: op(b === 0 ? span(p, 0.05, 0.4) : 1, ask),
       goalB: op(b >= 1 ? (b === 1 ? span(p, 0, 0.4) : 1) : 0, goal),
@@ -135,10 +142,11 @@ const STAGE = (() => {
     };
   }
 
-  // ---- s3: plan. The pilot's four topics as four tiles (the work, the time, the duration, the risk) and the
+  // ---- s3: plan. The pilot's four topics as four tiles (the work, the order, the duration, the risk), as the
+  // narration names them, and the
   // pointer to the Planning intro.
   function plan(b, p) {
-    const T = [tr('Werk', 'Work', 128), tr('Tijd', 'Time', 128), tr('Duur', 'Duration', 128), tr('Risico', 'Risk', 128)];
+    const T = [tr('Werk', 'Work', 128), tr('Volgorde', 'Order', 128), tr('Duur', 'Duration', 128), tr('Risico', 'Risk', 128)];
     let s = '';
     T.forEach((l, i) => {
       const x = 334 + (i % 2) * 148;
@@ -234,7 +242,7 @@ const STAGE = (() => {
     cast(si, b, p);
     things(si);
     const o = Object.fromEntries(PANEL.map((k2) => [k2, '']));
-    const rd = ['', '', '', '', ''];
+    const rd = TITLES.map(() => '');
     let title = '';
     let lab = tr('voorbeeld', 'example');
     const isMap = si === 6;
@@ -248,7 +256,7 @@ const STAGE = (() => {
       } else {
         title = tr('De weg', 'The road');
         lab = tr('schema', 'diagram');
-        const r = roadRows([0, 1, 2, 3, 4].map((i) => (b > 1 ? 1 : span(p, 0.05 + i * 0.12, 0.3 + i * 0.12))));
+        const r = roadRows(TITLES.map((t, i) => (b > 1 ? 1 : span(p, 0.05 + i * 0.12, 0.3 + i * 0.12))));
         r.rows.forEach((x, i) => { rd[i] = x; });
         o.roadB = r.line;
       }

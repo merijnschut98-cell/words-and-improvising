@@ -9,7 +9,8 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { resolveFilm } from '../films/_kit/build-film.mjs';
-import { checkFilm, checkNarration, checkLabels, moduleTextOf, textUnits, wrapUnits, CHAR_W, TILE_UNITS } from '../films/_kit/assert.mjs';
+import { checkFilm, checkNarration, checkLabels, moduleTextOf, textUnits, wrapUnits, CHAR_W, TILE_UNITS, STATION_UNITS, STATION_LINES } from '../films/_kit/assert.mjs';
+import { MODULES as INDEX_MODULES, FIELDS as INDEX_FIELDS } from '../src/content/courses/index.js';
 
 const lesson = (id, terms, teach) => ({ id, title: 'T', pre: [], recall: [], teach, example: { text: '' }, terms: terms.map((term) => ({ term, def: 'D.' })) });
 const LESSONS = {
@@ -459,7 +460,28 @@ test('checkFilm: a field film is held to the narration guard and to its station 
   for (const s of loud.scenes) for (const b of s.beats) { const nl = b.text.nl; const en = b.text.en; b.say = { nl: [nl], en: [en] }; b.voice = { nl, en }; }
   loud.scenes[0].beats[0].say.nl = ['Zo: dit.'];
   assert.match(checkFilm(loud, fctx()).join('\n'), /a symbol the voice reads aloud, or a colon/);
+  // a station title wraps into at most two lines of a row of the road
+  const two = clone(data);
+  two.stations[1].title.en = 'Negotiating and holding your ground';
+  assert.deepEqual(checkLabels(two, '').filter((e) => e.startsWith('station')), []);
   const wide = clone(data);
-  wide.stations[1].title.nl = 'Uitvoeren en bijsturen van alles';
-  assert.match(checkLabels(wide, '').join('\n'), /station pm\.fy: "Uitvoeren en bijsturen van alles" \(nl\) is \d+ units wide, a station on the road holds 220/);
+  wide.stations[1].title.nl = 'Onderhandelen en voet bij stuk houden met alle partijen';
+  assert.match(checkLabels(wide, '').join('\n'), new RegExp(`station pm\\.fy: "Onderhandelen en voet bij stuk houden met alle partijen" \\(nl\\) wraps to 3 lines, a station on the road holds ${STATION_LINES} lines of ${STATION_UNITS} units`));
+  const long = clone(data);
+  long.stations[1].title.en = 'Projectportfoliomanagementsystemsrenewal';
+  assert.match(checkLabels(long, '').join('\n'), /station pm\.fy: the word "Projectportfoliomanagementsystemsrenewal" \(en\) is \d+ units wide, a station on the road holds 236/);
+});
+
+// The next field films (people, portfolio, IT) take their station titles from the
+// index; the kit's road must hold every one of them, or those films cannot be built.
+test('checkLabels: every module title of every field fits a station of the road', () => {
+  for (const f of INDEX_FIELDS) {
+    const stations = f.modules.map((id) => { const m = INDEX_MODULES.find((x) => x.id === id); return { id, title: { nl: m.title.nl, en: m.title.en } }; });
+    assert.deepEqual(checkLabels({ scenes: [], stations }, ''), [], f.id);
+  }
+  // the reference film draws a station title with the kit's own wrap
+  for (const f of INDEX_FIELDS) for (const id of f.modules) {
+    const m = INDEX_MODULES.find((x) => x.id === id);
+    for (const lang of ['nl', 'en']) assert.ok(wrapUnits(m.title[lang], STATION_UNITS, CHAR_W).length <= STATION_LINES, `${id} (${lang})`);
+  }
 });
