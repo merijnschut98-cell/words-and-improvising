@@ -32,8 +32,8 @@
 //      stop it)                                       → pm.intake.stakeholders
 //   s4 Scope en projectopdracht: the goal in one sentence, the baseline, what is
 //      in and out of scope (line 4 stays)             → pm.intake.done
-//   s5 Businesscase en voorstel: costs against benefits, no figures, then the
-//      proposal the sponsor says yes or no to         → pm.intake.value
+//   s5 Businesscase en voorstel: costs against benefits (the old hall's rent stops),
+//      no figures, then the proposal the sponsor says yes or no to         → pm.intake.value
 //   s6 together: the four feed the sponsor's decision; yes, and Plan follows
 //   s7 the shared Projects map (the kit's mapScene, as the app draws it) with
 //      Intake lit, then the module's four topics with their levels as columns,
@@ -99,8 +99,8 @@ has('pm.intake.stakeholders', ['Sponsor: eigenaar van budget en resultaat, en ka
 has('pm.intake.stakeholders', ['A stakeholder is anyone who affects the project or is affected by it', 'Sponsor: owns the budget and the result, and can decide', 'Process owner: the manager who runs the process and has to live with the change', 'works council', 'Resistance rarely sounds like'], 'en');
 has('pm.intake.done', ['Schrijf een doel in één zin', 'Eerst een nulmeting (baseline): de gemeten beginwaarde waar je later tegen vergelijkt', 'Zonder die meting kan niemand zeggen dat het gelukt is', 'Scope is wat het project omvat', 'buiten scope valt']);
 has('pm.intake.done', ['Write a one-sentence goal', 'Baseline first: the measured starting value', 'Without it nobody can say you succeeded', 'Scope is what the project covers', 'out of scope'], 'en');
-has('pm.intake.value', ['laat zien of een project het waard is: wat het kost, wat het oplevert, en hoe zeker dat is', 'Eenmalige kosten betaal je één keer', 'Vergeet de tijd van de eigen mensen niet', 'Twee operators vier uur per week', 'Baten zijn de meetbare winst']);
-has('pm.intake.value', ['shows whether a project is worth it: what it costs, what it yields, and how certain that is', 'One-off costs you pay once', 'Don’t forget your own people’s time', 'Benefits are the measurable gain'], 'en');
+has('pm.intake.value', ['laat zien of een project het waard is: wat het kost, wat het oplevert, en hoe zeker dat is', 'Eenmalige kosten betaal je één keer', 'Baten zijn de meetbare winst']);
+has('pm.intake.value', ['shows whether a project is worth it: what it costs, what it yields, and how certain that is', 'One-off costs you pay once', 'Benefits are the measurable gain'], 'en');
 has('pm.intake.proposal', ['het document waarin je de klant een aanpak, een resultaat en een prijs aanbiedt']);
 has('pm.intake.proposal', ['the document in which you offer the client an approach, a result and a price'], 'en');
 // s7: what each later level adds is the title of its lessons, in the app's words
@@ -130,6 +130,7 @@ for (const lang of ['nl', 'en']) {
 }
 
 // the topic titles in the closing grid: a tile of GRID.tile units holds GRID.tile - 12 units of text, up to three lines
+// (the film's tileUnits, so the kit's checkLabels holds the titles to it too, also after a rename without a rebuild)
 for (const t of MOD.topics) for (const lang of ['nl', 'en']) {
   const title = t.title[lang];
   assert(Math.max(...title.split(' ').map(textUnits)) <= GRID.tile - 12, `"${title}" (${lang}) has a word wider than the grid's tile`);
@@ -269,9 +270,10 @@ const spec = {
   id: 'pm.intake.intro',
   title: { nl: 'Verhuis lijn 3: van verzoek naar project', en: 'Move line 3: from request to project' },
   module: 'pm.intake',
-  // the route draws each topic in a full-width row whose text is 242 units wide (the index titles Stakeholders and
-  // projectopdracht are wider than a 128-unit tile); the kit holds the titles to it (checkLabels, data.tileUnits)
-  tileUnits: 242,
+  // the index titles Stakeholders (143 units) and projectopdracht (174) are wider than the pilot's 128-unit tile: the
+  // film declares the room of its narrowest title box, the closing grid's tile (GRID.tile less its padding), and
+  // the route's full-width rows wrap with the same width; the kit holds the titles to it (checkLabels)
+  tileUnits: GRID.tile - 12,
   // the map: per topic of pm.intake, the scene that explains it and its tile
   topics: {
     problem: { scene: 's2', cue: 'tProb' },
@@ -303,7 +305,7 @@ const spec = {
         { nl: 'Tweede onderwerp: Stakeholders en vertrouwen. Wie beslist, en wie kan het stoppen?', en: 'Second topic: Stakeholders and trust. Who decides, and who can stop it?', focus: ['tPeople', 'sponsor'] },
         { nl: 'Een {t:Stakeholder|stakeholder} is iedereen die invloed heeft op het project, of er last of baat van heeft.', en: 'A {t:Stakeholder|stakeholder} is anyone who affects the project or is affected by it.', cue: { Stakeholder: 'smap' }, focus: ['smap'] },
         { nl: 'De {t:Sponsor|sponsor} beslist. De {t:Proceseigenaar|proceseigenaar}, de teamleider, moet met de verandering leven.', en: 'The {t:Sponsor|sponsor} decides. The {t:Process owner|process owner}, the team lead, has to live with the change.', cue: { Sponsor: 'p-sponsor', Proceseigenaar: 'p-lead' }, focus: ['p-sponsor', 'p-lead', 'sponsor', 'teamlead'] },
-        { nl: 'Operators gebruiken het straks. Een {t:Blokkeerder|blokkeerder} kan het stoppen, bijvoorbeeld de ondernemingsraad.', en: 'Operators will use it. A {t:Blocker|blocker} can stop it, for example the works council.', cue: { Blokkeerder: 'p-or' }, focus: ['p-or', 'p-ops', 'crew'] },
+        { nl: 'Operators gebruiken het. Een {t:Blokkeerder|blokkeerder} kan het stoppen: de OR bij werk in de zomerstop.', en: 'Operators use it. A {t:Blocker|blocker} can stop it: the works council if people work in the shutdown.', cue: { Blokkeerder: 'p-or' }, focus: ['p-or', 'p-ops', 'crew'] },
         { nl: 'Bij de stakeholders gebruiken we vaak een {t:Stakeholdermap|stakeholdermap} en een {t:Kick-off|kick-off}.', en: 'For stakeholders we often use a {t:Stakeholder map|stakeholder map} and a {t:Kick-off|kick-off}.', cue: { Stakeholdermap: 'smap', 'Kick-off': 'sponsor' }, focus: ['smap', 'sponsor'] },
       ],
     },
@@ -321,10 +323,10 @@ const spec = {
       beats: [
         { nl: 'Vierde onderwerp: Businesscase en voorstel. Is het de moeite waard?', en: 'Fourth topic: Business case and proposal. Is it worth doing?', focus: ['tCase', 'floor'] },
         { nl: 'Een {t:Businesscase|businesscase}: wat kost het, wat levert het op, en hoe zeker is dat?', en: 'A {t:Business case|business case}: what does it cost, what does it yield, and how certain is that?', cue: { Businesscase: 'costs' }, focus: ['costs', 'benefits'] },
-        { nl: '{t:Eenmalige kosten|Eenmalige kosten} betaal je één keer. En de tijd van de operators telt mee.', en: '{t:One-off costs|One-off costs} you pay once. And the operators’ time counts too.', cue: { 'Eenmalige kosten': 'costs' }, focus: ['costs', 'power', 'switch', 'crew'] },
-        { nl: 'De {t:Baten|baten} zijn de meetbare winst, het liefst in euro’s.', en: 'The {t:Benefits|benefits} are the measurable gain, preferably in euros.', cue: { Baten: 'benefits' }, focus: ['benefits'] },
+        { nl: '{t:Eenmalige kosten|Eenmalige kosten} betaal je één keer, zoals de installateur en de schakelkast.', en: '{t:One-off costs|One-off costs} you pay once, like the installer and the switchboard.', cue: { 'Eenmalige kosten': 'costs' }, focus: ['costs', 'power', 'switch'] },
+        { nl: 'De {t:Baten|baten}: de meetbare winst, het liefst in euro’s. Hier vervalt de huur van de oude hal.', en: 'The {t:Benefits|benefits}: the measurable gain, preferably in euros. Here the rent of the old hall stops.', cue: { Baten: 'benefits' }, focus: ['benefits'] },
         { nl: 'Dan het {t:Voorstel|voorstel}: aanpak, resultaat en prijs. De sponsor zegt ja of nee.', en: 'Then the {t:Proposal|proposal}: approach, result and price. The sponsor says yes or no.', cue: { Voorstel: 'proposal' }, focus: ['proposal', 'sponsor'] },
-        { nl: 'Bij de businesscase en het voorstel gebruiken we vaak de {t:Terugverdientijd|terugverdientijd} en een {t:SCQ|SCQ}.', en: 'For the business case and the proposal we often use the {t:Payback period|payback period} and an {t:SCQ|SCQ}.', cue: { Terugverdientijd: 'costs', SCQ: 'proposal' }, focus: ['costs', 'proposal'] },
+        { nl: 'Hier gebruiken we vaak de {t:Terugverdientijd|terugverdientijd} en een {t:SCQ|SCQ} als opening.', en: 'Here we often use the {t:Payback period|payback period} and an {t:SCQ|SCQ} as the opening.', cue: { Terugverdientijd: 'costs', SCQ: 'proposal' }, focus: ['costs', 'proposal'] },
       ],
     },
     {
@@ -388,16 +390,16 @@ const SAY = [
       en: 'A {t:Stakeholder|stakeholder} is anyone who affects the project or is affected by it.' },
     { nl: 'De {t:Sponsor|sponsor} is eigenaar van budget en resultaat, en beslist. De {t:Proceseigenaar|proceseigenaar}, hier de teamleider, moet met de verandering leven.',
       en: 'The {t:Sponsor|sponsor} owns the budget and the result, and decides. The {t:Process owner|process owner}, here the team lead, has to live with the change.' },
-    { nl: 'De operators zijn de gebruikers, want hun werk verandert. En een {t:Blokkeerder|blokkeerder} kan het stoppen, ook zonder nee te zeggen. Hier is dat de ondernemingsraad.',
-      en: 'The operators are the users, because their work changes. And a {t:Blocker|blocker} can stop it, even without saying no. Here that is the works council.' },
+    { nl: 'De operators zijn de gebruikers, want hun werk verandert. En een {t:Blokkeerder|blokkeerder} kan het stoppen, ook zonder nee te zeggen. Hier is dat de ondernemingsraad, als operators in de zomerstop moeten werken.',
+      en: 'The operators are the users, because their work changes. And a {t:Blocker|blocker} can stop it, even without saying no. Here that is the works council, if operators have to work in the shutdown.' },
     { nl: 'Bij de stakeholders gebruiken we vaak een stakeholdermap en een kick-off.',
       en: 'For stakeholders we often use a stakeholder map and a kick-off.' },
   ],
   [ // s4 scope and charter
     { nl: 'Het derde onderwerp is Scope en projectopdracht. Wanneer is het af?',
       en: 'The third topic is Scope and charter. When is it done?' },
-    { nl: 'Schrijf het doel in één zin op. En doe een {t:Nulmeting|nulmeting}, want hoe snel draait lijn 3 nu? Zonder meting kan niemand zeggen dat het gelukt is.',
-      en: 'Write the goal in one sentence. And take a {t:Baseline|baseline}, because how fast does line 3 run now? Without it nobody can say it worked.' },
+    { nl: 'Schrijf het doel in één zin op. En doe een {t:Nulmeting|nulmeting}. Hoe snel draait lijn 3 nu? Zonder meting kan niemand zeggen dat het gelukt is.',
+      en: 'Write the goal in one sentence. And take a {t:Baseline|baseline}. How fast does line 3 run now? Without it nobody can say it worked.' },
     { nl: 'Dan de {t:Scope|scope}, wat het project omvat. Lijn 3 zit erin. Lijn 4 blijft staan, dat valt {t:Buiten scope|buiten scope}.',
       en: 'Then the {t:Scope|scope}, what the project covers. Line 3 is in. Line 4 stays where it is, so it is {t:Out of scope|out of scope}.' },
     { nl: 'Bij de scope gebruiken we vaak een projectopdracht en een SIPOC.',
@@ -408,14 +410,14 @@ const SAY = [
       en: 'The fourth topic is Business case and proposal. Is it worth doing?' },
     { nl: 'Een {t:Businesscase|business case} laat zien of het project het waard is. Wat kost het, wat levert het op, en hoe zeker is dat?',
       en: 'A {t:Business case|business case} shows whether the project is worth it. What does it cost, what does it yield, and how certain is that?' },
-    { nl: '{t:Eenmalige kosten|Eenmalige kosten} betaal je één keer, zoals de installateur en de nieuwe schakelkast. En de tijd van de operators telt ook mee.',
-      en: '{t:One-off costs|One-off costs} you pay once, like the installer and the new switchboard. And the operators’ time counts too.' },
-    { nl: 'De {t:Baten|baten} zijn de meetbare winst, het liefst in euro’s.',
-      en: 'The {t:Benefits|benefits} are the measurable gain, preferably in euros.' },
+    { nl: '{t:Eenmalige kosten|Eenmalige kosten} betaal je één keer, zoals de installateur en de nieuwe schakelkast.',
+      en: '{t:One-off costs|One-off costs} you pay once, like the installer and the new switchboard.' },
+    { nl: 'De {t:Baten|baten} zijn de meetbare winst, het liefst in euro’s. Hier vervalt de huur van de oude hal.',
+      en: 'The {t:Benefits|benefits} are the measurable gain, preferably in euros. Here the rent of the old hall stops.' },
     { nl: 'Daarna volgt het {t:Voorstel|voorstel}, met aanpak, resultaat en prijs. Daar zegt de sponsor ja of nee op.',
       en: 'Then comes the {t:Proposal|proposal}, with approach, result and price. The sponsor says yes or no to it.' },
-    { nl: 'Bij de business case en het voorstel gebruiken we vaak de terugverdientijd en een SCQ.',
-      en: 'For the business case and the proposal we often use the payback period and an SCQ.' },
+    { nl: 'Bij de business case en het voorstel gebruiken we vaak de terugverdientijd en een SCQ als opening.',
+      en: 'For the business case and the proposal we often use the payback period and an SCQ as the opening.' },
   ],
   [ // s6 together
     { nl: 'Samen geven ze de sponsor wat nodig is om te beslissen. Het doel, de mensen, de scope en wat het oplevert.',
@@ -424,7 +426,7 @@ const SAY = [
       en: 'It all connects. Without a goal you cannot test the scope. If the sponsor says yes, planning begins.' },
   ],
   [ // s7 the map
-    { nl: 'Dit is de kaart van Projecten. Als eerste station op de weg van een project staat de intake.',
+    { nl: 'Dit is de kaart van Projecten. Het eerste station op de weg van een project is de intake.',
       en: 'This is the map of Projects. The first station on the road of a project is the intake.' },
     { nl: 'In de intake zitten vier onderwerpen, elk met vier niveaus.',
       en: 'The intake has four topics, each with four levels.' },
@@ -432,8 +434,8 @@ const SAY = [
       en: 'Start at the top, with From question to problem, at the first level.' },
     { nl: 'Op het tweede niveau voer je het eerste gesprek, bouw je vertrouwen in de eerste weken, leg je de opdracht op één pagina vast en schrijf je het voorstel.',
       en: 'At the second level you hold the first conversation, build trust in the first weeks, put the assignment on one page and write the proposal.' },
-    { nl: 'Op het derde niveau maak je de probleemstelling scherp, maak je afspraken met de sponsor, trek je grenzen en leer je nee zeggen. Het vierde niveau werkt met hypotheses, bouwt een coalitie, bewaakt de fasering en toetst de business case.',
-      en: 'At the third level you sharpen the problem statement, make agreements with the sponsor, draw boundaries and learn to say no. The fourth level works with hypotheses, builds a coalition, controls the phasing and stress-tests the business case.' },
+    { nl: 'Op het derde niveau maak je de probleemstelling scherp, maak je afspraken met de sponsor en trek je grenzen. Op het vierde werk je met hypotheses, bouw je een coalitie en deel je het project in fases.',
+      en: 'At the third level you sharpen the problem statement, make agreements with the sponsor and draw boundaries. At the fourth you work with hypotheses, build a coalition and split the project into phases.' },
     { nl: 'Elke les en elke film van deze module heeft een plek op deze kaart.',
       en: 'Every lesson and every film in this module has a place on this map.' },
   ],
@@ -512,8 +514,8 @@ const css = PM_CSS + HALL_CSS + `
 
 
 const label = {
-  nl: 'Hal B van de fabriek, nog leeg: lijn 3 staat nog in de oude hal. Op de vloer de nieuwe plek van lijn 3 met een gestippelde omtrek; ernaast, vlak bij de zijwand, staat lijn 4, die blijft waar hij is. Links de stroomkast met de kabel van buiten, nog niet aangesloten, aan de achterwand de plek van de schakelkast als gestippelde omtrek, en aan de zijwand een kalender met weken, waarvan de laatste drie de zomerstop zijn. Per onderwerp komen er mensen bij: de sponsor, de teamleider en twee operators. Rechts een paneel, gemarkeerd als voorbeeld of schema: het verzoek van de sponsor, de weg van vraag naar project en de vier onderwerpen van de module als tegels; de vraag, waarom en wanneer, en het doel; een stakeholdermap met de sponsor, de teamleider, de operators en de ondernemingsraad; één pagina met het doel, de nulmeting en wat binnen en buiten de scope valt; kosten tegenover baten en het voorstel; de vier plaatjes samen en de weg naar de sponsor die ja zegt. Aan het eind de kaart van Projecten met Intake verlicht, en de vier onderwerpen van de module met elk vier niveaus: Basis, Werkkennis, Gevorderd en Expert.',
-  en: 'Hall B of the plant, still empty: line 3 still stands in the old hall. On the floor the new place of line 3 with a dashed outline; next to it, near the side wall, stands line 4, which stays where it is. At the left the power cabinet with the cable from outside, not connected yet, on the back wall the place of the switchboard as a dashed outline, and on the side wall a calendar of weeks, the last three of which are the summer shutdown. Each topic brings people: the sponsor, the team lead and two operators. At the right a panel, marked as an example or a diagram: the sponsor’s request, the road from question to project and the module’s four topics as tiles; the question, why and when, and the goal; a stakeholder map with the sponsor, the team lead, the operators and the works council; one page with the goal, the baseline and what is in and out of scope; costs against benefits and the proposal; the four pictures together and the road to the sponsor who says yes. At the end the map of Projects with Intake lit, and the module’s four topics with four levels each: Basics, Working knowledge, Advanced and Expert.',
+  nl: 'Hal B van de fabriek, waar lijn 3 naartoe moet: de lijn staat nog in de oude hal. Op de vloer de nieuwe plek van lijn 3 met een gestippelde omtrek; ernaast, vlak bij de zijwand, staat lijn 4, die blijft waar hij is. Links de stroomkast met de kabel van buiten, nog niet aangesloten, aan de achterwand de plek van de schakelkast als gestippelde omtrek, en aan de zijwand een kalender met weken, waarvan de laatste drie de zomerstop zijn. Per onderwerp komen er mensen bij: de sponsor, de teamleider en twee operators. Rechts een paneel, gemarkeerd als voorbeeld of schema: het verzoek van de sponsor, de weg van vraag naar project en de vier onderwerpen van de module als tegels; de vraag, waarom en wanneer, en het doel; een stakeholdermap met de sponsor, de teamleider, de operators en de ondernemingsraad; één pagina met het doel, de nulmeting en wat binnen en buiten de scope valt; de kosten tegenover de baten, de huur van de oude hal die vervalt, en het voorstel; de vier plaatjes samen en de weg naar de sponsor die ja zegt. Aan het eind de kaart van Projecten met Intake verlicht, en de vier onderwerpen van de module met elk vier niveaus: Basis, Werkkennis, Gevorderd en Expert.',
+  en: 'Hall B of the plant, where line 3 has to go: the line still stands in the old hall. On the floor the new place of line 3 with a dashed outline; next to it, near the side wall, stands line 4, which stays where it is. At the left the power cabinet with the cable from outside, not connected yet, on the back wall the place of the switchboard as a dashed outline, and on the side wall a calendar of weeks, the last three of which are the summer shutdown. Each topic brings people: the sponsor, the team lead and two operators. At the right a panel, marked as an example or a diagram: the sponsor’s request, the road from question to project and the module’s four topics as tiles; the question, why and when, and the goal; a stakeholder map with the sponsor, the team lead, the operators and the works council; one page with the goal, the baseline and what is in and out of scope; the costs against the benefits, the rent of the old hall that stops, and the proposal; the four pictures together and the road to the sponsor who says yes. At the end the map of Projects with Intake lit, and the module’s four topics with four levels each: Basics, Working knowledge, Advanced and Expert.',
 };
 
 const { data } = await defineFilm(spec, { svg, script: stageScript, css, kitCss: k.ISO_CSS, label });

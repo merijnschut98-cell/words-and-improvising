@@ -77,7 +77,7 @@ const STAGE = (() => {
 
   // ---- the cast of hall B: who stands there when. [scene, first beat]: present from that beat to the scene's end.
   // A person who stood there at the end of the scene before is there from the first frame (no blink at a cut).
-  const FROM = { sponsor: [[0, 0], [1, 0], [2, 0], [3, 0], [4, 0], [5, 0]], lead: [[2, 2], [3, 0], [5, 0]], crew: [[2, 3], [4, 2], [5, 0]] };
+  const FROM = { sponsor: [[0, 0], [1, 0], [2, 0], [3, 0], [4, 0], [5, 0]], lead: [[2, 2], [3, 0], [5, 0]], crew: [[2, 3], [5, 0]] };
   function cast(si, b, p) {
     for (const who of Object.keys(FROM)) {
       let a = 0;
@@ -88,16 +88,18 @@ const STAGE = (() => {
   }
 
   // ---- the four topic tiles
-  // the route (s1): four full-width rows, each with its number and its title (wrapped into the room of a row,
-  // D.tileUnits: the index titles Stakeholders and projectopdracht do not fit the pilot's 128-unit tile)
+  // the route (s1): four full-width rows, each with its number and its title. The index titles Stakeholders and
+  // projectopdracht do not fit the pilot's 128-unit tile, so the film declares tileUnits (D.tileUnits, the room of
+  // its narrowest title box, the closing grid's tile) and every title box wraps with it and holds three lines, as
+  // the kit's checkLabels holds the titles (a renamed title redraws from the page data without a rebuild)
   function routeTiles(show4) {
     return TITLE.map((t, i) => {
       const a = show4[i];
       if (a <= 0.01) return '';
-      const y = 60 + i * 74;
-      const lines = wrap(t, D.tileUnits);
-      let s = rect(334, y, 284, 64, 'pm-tile', 8) + `<circle class="pm-dot" cx="360" cy="${y + 32}" r="16"/>` + txt(360, y + 40, String(i + 1), 22, 'middle', 'pm-on');
-      lines.slice(0, 3).forEach((l, j) => { s += txt(386, y + (lines.length > 1 ? 27 : 39) + j * 24, l, 22, 'start', 'pm-txt'); });
+      const y = 50 + i * 82;
+      const lines = wrap(t, D.tileUnits).slice(0, 3);
+      let s = rect(334, y, 284, 78, 'pm-tile', 8) + `<circle class="pm-dot" cx="360" cy="${y + 39}" r="16"/>` + txt(360, y + 47, String(i + 1), 22, 'middle', 'pm-on');
+      lines.forEach((l, j) => { s += txt(386, y + 47 - (lines.length - 1) * 12 + j * 24, l, 22, 'start', 'pm-txt'); });
       return op(a, s);
     });
   }
@@ -187,17 +189,18 @@ const STAGE = (() => {
     };
   }
 
-  // ---- s5: business case and proposal. Costs against benefits (no figures), then the proposal.
+  // ---- s5: business case and proposal. Costs against benefits (no figures: the old hall's rent stops), then the proposal.
   function caseParts(b, p) {
     const costsHead = txt(334, 124, tr('Kosten', 'Costs', 140), 22, 'start', 'pm-big');
     const cost = (y, lab) => rect(334, y, 150, 40, 'pm-badge', 6) + txt(409, y + 27, lab, 22, 'middle', 'pm-txt');
-    const costs = costsHead + (b >= 2 ? cost(134, tr('installateur', 'installer', 138)) + cost(180, tr('schakelkast', 'switchboard', 138)) + cost(226, tr('operators', 'operators', 138)) : '');
+    const costs = costsHead + (b >= 2 ? cost(134, tr('installateur', 'installer', 138)) + cost(180, tr('schakelkast', 'switchboard', 138)) : '');
     const benHead = txt(618, 124, tr('Baten', 'Benefits', 120), 22, 'end', 'pm-big');
-    const ben = benHead + (b >= 3 ? rect(494, 134, 124, 132, 'pm-crit', 8) + txt(556, 206, tr('in euro’s', 'in euros', 112), 22, 'middle', 'pm-on') : '');
+    const ben = benHead + (b >= 3 ? rect(494, 134, 124, 132, 'pm-crit', 8) + txt(556, 176, tr('geen huur', 'no rent', 112), 22, 'middle', 'pm-on')
+      + txt(556, 202, tr('oude hal', 'old hall', 112), 22, 'middle', 'pm-on') + txt(556, 244, tr('in euro’s', 'in euros', 112), 22, 'middle', 'pm-on') : '');
     const prop = rect(334, 284, 284, 84, 'pm-card', 8) + txt(346, 314, tr('Voorstel', 'Proposal', 260), 22, 'start', 'pm-big')
       + txt(346, 350, tr('aanpak, resultaat, prijs', 'approach, result, price', 262), 22, 'start', 'pm-txt');
     return {
-      costsB: op(b >= 1 ? (b === 1 ? span(p, 0.1, 0.6) : b === 2 ? 1 : 1) : 0, costs),
+      costsB: op(b >= 1 ? (b === 1 ? span(p, 0.1, 0.6) : 1) : 0, costs),
       benefitsB: op(b >= 1 ? (b === 1 ? span(p, 0.2, 0.7) : 1) : 0, ben),
       propB: op(b >= 4 ? (b === 4 ? span(p, 0, 0.4) : 1) : 0, prop),
     };
@@ -247,7 +250,7 @@ const STAGE = (() => {
     TITLE.forEach((t, i) => {
       const y = gridY(i);
       let s = rect(20, y, GRID.tile, 78, 'pm-tile', 8);
-      wrap(t, GRID.tile - 12).slice(0, 3).forEach((l, j) => { s += txt(26, y + 24 + j * 24, l, 22, 'start', 'pm-txt'); });
+      wrap(t, D.tileUnits).slice(0, 3).forEach((l, j) => { s += txt(26, y + 24 + j * 24, l, 22, 'start', 'pm-txt'); });
       out.r[i] = b === 1 ? op(span(p, i * 0.12, i * 0.12 + 0.3), s) : s;
       lv.forEach((k2, j) => { out[k2] += rect(GX + j * GW, y + 12, GB, 54, j === 0 ? 'pm-crit' : 'pm-lvl', 8); });
     });

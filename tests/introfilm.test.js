@@ -250,21 +250,32 @@ test('checkLabels: a topic title wraps by width into at most 3 lines inside a ti
 });
 
 test('checkLabels: a film that draws wider tiles declares tileUnits, and its titles are held to that', () => {
-  // pm.intake.intro draws its route as full-width rows, because the index titles Stakeholders (143 units) and
-  // projectopdracht (174) do not fit a 128-unit tile; the default stays 128 for every other film
+  // pm.intake.intro: the index titles Stakeholders (143 units) and projectopdracht (174) do not fit the default
+  // tile; it declares the room of the narrowest box it draws a title in. The default stays for every other film,
+  // and the messages name the width in force (TILE_UNITS, not a literal, so a change of the default needs no edit)
   const data = resolveFilm(spec(), LESSONS, MODULES);
   const wide = clone(data);
   wide.topics[0].title.nl = 'Projectopdracht';
-  assert.match(checkLabels(wide, '').join('\n'), /a tile is 128/);
+  assert.match(checkLabels(wide, '').join('\n'), new RegExp(`a tile is ${TILE_UNITS}\\b`));
   wide.tileUnits = 272;
   assert.deepEqual(checkLabels(wide, ''), [], 'a word of about 175 units fits a tile of 272');
+  wide.tileUnits = 178;
+  assert.deepEqual(checkLabels(wide, ''), [], 'and one of 178');
+  wide.tileUnits = 170;
+  assert.match(checkLabels(wide, '').join('\n'), /has a word of 174 units, a tile is 170\b/, 'but not one of 170');
+  wide.tileUnits = 272;
   wide.topics[0].title.nl = 'Een heleboel hele lange woorden achter elkaar in een titel van een onderwerp';
   assert.match(checkLabels(wide, '').join('\n'), /wraps to 4 lines in a tile of 272 units/);
   // the declared width stays inside the panel: never narrower than the default, never wider than the panel's text
-  for (const bad of [100, 273, 'wide']) assert.match(checkLabels({ ...data, tileUnits: bad }, '').join('\n'), /tileUnits must be between 128 and 272/, String(bad));
-  // the spec's tileUnits reaches the page data; without it the data has none (existing pages stay byte-identical)
+  for (const bad of [0, 100, TILE_UNITS - 1, 273, 'wide', null, NaN]) assert.match(checkLabels({ ...data, tileUnits: bad }, '').join('\n'), new RegExp(`tileUnits must be between ${TILE_UNITS} and 272`), String(bad));
+  // the spec's tileUnits reaches the page data as given (0 too, so the check refuses it); without it the data has
+  // none (existing pages stay byte-identical)
   assert.equal(data.tileUnits, undefined);
+  assert.ok(!('tileUnits' in data));
   assert.equal(resolveFilm({ ...spec(), tileUnits: 272 }, LESSONS, MODULES).tileUnits, 272);
+  assert.equal(resolveFilm({ ...spec(), tileUnits: 0 }, LESSONS, MODULES).tileUnits, 0);
+  // only a module intro draws topic tiles: a field film that declares one fails, it is not silently dropped
+  assert.throws(() => fresolve({ ...fspec(), tileUnits: 200 }), /tileUnits is for a module intro film/);
 });
 
 test('checkLabels: every tr(nl, en) label of the stage fits its box at 22 units, by measured width', () => {
