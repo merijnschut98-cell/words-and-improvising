@@ -129,7 +129,7 @@ const STAGE = (() => {
 
   // ------------------------------------------------------------ HUD cards
   // where the energy goes: a schema; input 100 %, useful about 10 %, the rest heat and losses
-  function energySvg(step) {
+  function energySvg() {
     const x0 = 12;
     let out = rect(x0, 12, 300, 376);
     out += txt(x0 + 14, 42, tr('waar de stroom blijft', 'where it goes'), 20, 'start', 'pa-mute') + txt(x0 + 288, 42, SCH, 20, 'end', 'pa-mute');
@@ -137,46 +137,8 @@ const STAGE = (() => {
     const full = 264;
     out += txt(bx, 82, tr('stroom erin', 'electricity in'), 20) + rect(bx, 92, full, 22, 'pa-bar', 3) + txt(bx + full, 82, '100%', 20, 'end', 'pa-mono');
     const useful = full * C.USEFUL;
-    out += txt(bx, 150, tr('warmte', 'heat'), 20) + rect(bx, 160, full * 0.72, 22, 'pa-bar', 3);
-    if (step >= 1) out += txt(bx, 214, tr('lekken, drukverlies', 'leaks, pressure drop'), 20) + rect(bx, 224, full * 0.18, 22, 'pa-bar', 3);
+    out += txt(bx, 150, tr('warmte', 'heat'), 20) + rect(bx, 160, full * (1 - C.USEFUL), 22, 'pa-bar', 3);
     out += txt(bx, 278, tr('nuttig werk', 'useful work'), 20, 'start', 'pa-on') + rect(bx, 288, useful, 22, 'pa-acc', 3) + txt(bx + useful + 10, 306, n('zo’n 10%', 'about 10%'), 20, 'start', 'pa-big');
-    if (step >= 2) out += arrow([[bx + full * 0.72 + 8, 171], [bx + full * 0.72 + 34, 171], [bx + full * 0.72 + 34, 340], [bx + 20, 340]], 'pa-accl', 7) + txt(bx + 30, 372, tr('terugwinnen: warm water', 'recover: hot water'), 20, 'start', 'pa-on');
-    return out;
-  }
-  // the receiver's gauge, large (as eng.power.hydraulics)
-  function gaugeSvg(v, label, bar) {
-    const cx = 108;
-    const cy = 138;
-    const r = 66;
-    let out = rect(12, 12, 196, 250);
-    out += txt(26, 42, label, 21, 'start', 'pa-mute');
-    out += `<circle class="pa-dial" cx="${cx}" cy="${cy}" r="${r}"/>`;
-    for (let i = 0; i <= 20; i++) {
-      const a = ((-135 + i * 13.5) * Math.PI) / 180;
-      const r1 = i % 2 ? r - 10 : r - 18;
-      out += `<path class="${i % 2 ? 'pa-dim' : 'pa-line'}" d="M${f1(cx + (r - 4) * Math.sin(a))} ${f1(cy - (r - 4) * Math.cos(a))}L${f1(cx + r1 * Math.sin(a))} ${f1(cy - r1 * Math.cos(a))}"/>`;
-    }
-    const a0 = (-135 * Math.PI) / 180;
-    out += txt(cx + (r + 12) * Math.sin(a0) - 6, cy - (r + 12) * Math.cos(a0) + 10, '0', 22, 'middle', 'pa-big');
-    const a = ((-135 + 270 * v) * Math.PI) / 180;
-    out += `<path class="pa-accl" d="M${f1(cx - 12 * Math.sin(a))} ${f1(cy + 12 * Math.cos(a))}L${f1(cx + (r - 16) * Math.sin(a))} ${f1(cy - (r - 16) * Math.cos(a))}"/>`;
-    out += `<circle class="pa-acc" cx="${cx}" cy="${cy}" r="6"/>`;
-    out += txt(cx, cy + r + 40, bar, 24, 'middle', 'pa-big');
-    return out;
-  }
-  // ISO 8573-1: three classes, an example code
-  function isoSvg(q) {
-    const x0 = 328;
-    let out = rect(x0, 112, 300, 276);
-    out += txt(x0 + 14, 146, 'ISO 8573-1', 22, 'start', 'pa-big') + txt(x0 + 288, 146, EX, 20, 'end', 'pa-mute');
-    const rows = NL ? [['deeltjes', '2'], ['water', '4'], ['olie', '2']] : [['particles', '2'], ['water', '4'], ['oil', '2']];
-    rows.forEach(([name, cls], i) => {
-      const y = 190 + i * 40;
-      const on = q > i / 3;
-      out += txt(x0 + 18, y, name, 21, 'start', on ? 'pa-txt' : 'pa-mute') + txt(x0 + 200, y, tr('klasse', 'class'), 20, 'end', 'pa-mute') + txt(x0 + 236, y, on ? cls : '·', 24, 'middle', 'pa-big');
-    });
-    out += txt(x0 + 18, 334, '[2:4:2]', 28, 'start', 'pa-big');
-    out += txt(x0 + 18, 370, tr('lager getal = schoner', 'lower number = cleaner'), 20, 'start', 'pa-on');
     return out;
   }
   // the FRL in section: filter bowl with water, regulator with its spring and gauge, lubricator with oil drops
@@ -360,7 +322,7 @@ const STAGE = (() => {
   }
 
   // ------------------------------------------------------------ the scenes
-  const HUDS = ['energy', 'gaugeBig', 'iso', 'frlC', 'press', 'load', 'calc', 'kwh', 'list', 'cmp', 'warn', 'ask', 'tag'];
+  const HUDS = ['energy', 'frlC', 'press', 'load', 'calc', 'kwh', 'list', 'cmp', 'warn', 'ask', 'tag'];
   function render(si, u) {
     camera(si, u);
     const { b, p } = beatOf(si, u);
@@ -372,18 +334,13 @@ const STAGE = (() => {
 
     if (si === 0) {
       st.flow = allAir(b === 0 ? span(p, 0.3, 0.7) : 1);
-      vis.gaugeBig = b === 2 ? span(p, 0, 0.12) : 0;
-      if (vis.gaugeBig > 0.01) set(E.gaugeBig, gaugeSvg(0.7, tr('buffervat', 'receiver'), n('≈ 7 bar', '≈ 7 bar')));
-      st.gauge = b === 2 ? 0.7 : 0.7;
     } else if (si === 1) {
-      vis.energy = b === 2 ? 0 : 1;
-      if (vis.energy) set(E.energy, energySvg(b === 3 ? 2 : b));
-      st.flow.fhot = b >= 2 ? 1 : 0; st.flow.fcold = b >= 2 ? 1 : 0;
+      vis.energy = b === 1 ? 0 : 1;
+      if (vis.energy) set(E.energy, energySvg());
+      st.flow.fhot = b >= 1 ? 1 : 0; st.flow.fcold = b >= 1 ? 1 : 0;
     } else if (si === 2) {
       st.water = b === 0 ? 1 : 0;
       st.drain = b >= 2 ? 1 : 0;
-      vis.iso = b === 3 ? span(p, 0, 0.1) : 0;
-      if (vis.iso > 0.01) set(E.iso, isoSvg(span(p, 0.1, 0.7)));
     } else if (si === 3) {
       vis.frlC = b >= 0 ? span(u, 0.02, 0.08) : 0;
       if (vis.frlC > 0.01) set(E.frlC, frlSvg(b === 0 ? -1 : b - 1, clockS));
