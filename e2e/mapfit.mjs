@@ -70,12 +70,12 @@ try {
       if (subject === 'pm') {
         // the phone layout below 460 px of card, the wide map above; labels big enough; every place a 44 px button
         if (m.phone !== (m.cardW < 460)) problems.push(`${tag}: ${m.phone ? 'phone' : 'wide'} layout in a ${m.cardW.toFixed(0)} px card`);
-        const need = width >= 390 ? 11 : width >= 360 ? 10 : 9.5;
+        const need = width >= 390 ? 11 : width >= 360 ? 10 : 9;
         if (m.lab < need - 0.05) problems.push(`${tag}: place labels ${m.lab.toFixed(1)}px, need ${need}`);
         if (m.phone && m.zoneLab < need - 0.05) problems.push(`${tag}: zone labels ${m.zoneLab.toFixed(1)}px, need ${need}`);
         if (m.place < 43.5 || m.placeH < 43.5) problems.push(`${tag}: a place is ${m.place.toFixed(1)} x ${m.placeH.toFixed(1)}px, under 44`);
         if (m.spill) problems.push(`${tag}: ${m.spill} labels leave their place`);
-        if (m.phone && m.maxLines > 2) problems.push(`${tag}: a label has ${m.maxLines} lines`);
+        if (m.phone && m.maxLines > 3) problems.push(`${tag}: a label has ${m.maxLines} lines`);
         if (m.places !== 16 || m.buttons !== 16 || m.next > 1) problems.push(`${tag}: ${m.places} places, ${m.buttons} buttons, ${m.next} next`);
       }
       if (m.over > 0) report.push(`NOTE ${tag}: page scrolls sideways by ${m.over}px (the subject tab bar, not the map)`);

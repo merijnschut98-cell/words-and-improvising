@@ -23,7 +23,7 @@ const MAX_LINES = 4;
 // px): fewer places per row and a taller picture, so the labels can be bigger.
 export const PHONE_BELOW = 460;
 const PHONE_GLYPH = 0.56; // average glyph width in em, generous so a line never leaves its place
-const PHONE_LINES = 2;
+const PHONE_LINES = 3;
 
 // A box w × d from z0 to z1, its centre at (ox, oy). Tone set k: t (plain),
 // p (plinth) or m (a mark in the accent colour). Top, left (y+), right (x+).
@@ -99,7 +99,7 @@ function wrap(text, max, maxLines = MAX_LINES) {
   return lines;
 }
 
-// A title wrapped for a place of width w in the phone layout: two lines at most.
+// A title wrapped for a place of width w in the phone layout: three lines at most.
 export function wrapLabel(title, w, phone) {
   return wrap(title, Math.max(4, Math.floor(w / (phone.font * PHONE_GLYPH))), PHONE_LINES);
 }
@@ -117,23 +117,28 @@ export function mapSvg(full, { lang = 'en', next = null, theme = null, interacti
   const map = phone ? { subject: full.subject, ...phone } : full;
   const { w, h } = map.view;
   const byId = new Map(map.places.map((p) => [p.module, p]));
+  // the phone layout sets its own object size, floor, zone label spot and road arrow; the default keeps the constants
+  const scale = phone && phone.scale ? phone.scale : SCALE;
+  const floor = phone && phone.floor ? phone.floor : FLOOR;
+  const [zdx, zdy] = phone && phone.zoneLabel ? phone.zoneLabel : [16, 18];
+  const arrowDx = phone && phone.arrow ? phone.arrow : 40;
   const out = [`<svg class="subject-map${phone ? ' subject-map-phone' : ''}" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${w} ${h}" focusable="false"${theme ? ` data-theme="${esc(theme)}"` : ''}>`];
 
   for (const z of map.zones) {
     const box0 = pathBox(z.path) || [0, 0, 0, 0];
     out.push(`<g class="map-zone z-${slug(z.field)}"><path class="map-zone-area" d="${z.path}"/>`
-      + `<text class="map-zone-label" x="${box0[0] + 16}" y="${box0[1] + 18}">${esc(z.label[lang] || z.label.en)}</text></g>`);
+      + `<text class="map-zone-label" x="${box0[0] + zdx}" y="${box0[1] + zdy}">${esc(z.label[lang] || z.label.en)}</text></g>`);
   }
 
   for (const [a, b] of map.routes || []) {
     const p = byId.get(a);
     const q = byId.get(b);
     if (!p || !q) continue;
-    const d = `M${f(p.x + p.w / 2)} ${p.y + FLOOR} L${f(q.x + q.w / 2)} ${q.y + FLOOR}`;
+    const d = `M${f(p.x + p.w / 2)} ${p.y + floor} L${f(q.x + q.w / 2)} ${q.y + floor}`;
     out.push(`<path class="map-road" d="${d}"/><path class="map-road-line" d="${d}"/>`);
     if (!map.routes.some(([from]) => from === b)) { // the end of the road: an arrow
-      const ex = f(q.x + q.w / 2 + 40);
-      const ey = q.y + FLOOR;
+      const ex = f(q.x + q.w / 2 + arrowDx);
+      const ey = q.y + floor;
       out.push(`<path class="map-road-arrow" d="M${ex} ${ey - 10} L${f(ex + 16)} ${ey} L${ex} ${ey + 10} Z"/>`);
     }
   }
@@ -153,7 +158,7 @@ export function mapSvg(full, { lang = 'en', next = null, theme = null, interacti
     const a11y = interactive ? ` role="button" tabindex="0" aria-label="${esc(title)}"` : '';
     out.push(`<g class="map-place${p.module === next ? ' is-next' : ''}" data-module="${esc(p.module)}"${a11y}>`
       + `<rect class="map-hit" x="${p.x}" y="${p.y}" width="${p.w}" height="${p.h}" rx="10"/>`
-      + `<g class="map-obj${field ? ` z-${slug(field)}` : ''}" transform="translate(${cx} ${p.y + FLOOR}) scale(${SCALE})">`
+      + `<g class="map-obj${field ? ` z-${slug(field)}` : ''}" transform="translate(${cx} ${p.y + floor}) scale(${scale})">`
       + `<g class="map-plinth">${box(34, 26, 0, 3, 0, 0, 'p')}</g>${(OBJECTS[p.draw] || OBJECTS.desk)().join('')}</g>`
       + `<text class="map-label" text-anchor="middle">${lines.map((l, i) => `<tspan x="${cx}" y="${p.y + top + i * step}">${esc(l)}</tspan>`).join('')}</text>`
       + '</g>');

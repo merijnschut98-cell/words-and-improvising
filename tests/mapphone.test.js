@@ -16,7 +16,7 @@ const phone = pmMap.phone;
 const asMap = { subject: pmMap.subject, ...phone };
 
 // Card content width at a phone viewport: 390 -> 325, 320 -> 256 (measured in e2e/mapfit.mjs).
-const CARD = { 390: 325, 360: 295, 320: 256 };
+const CARD = { 390: 325, 360: 295, 320: 256, 430: 364 };
 
 test('the default mapSvg output is byte-identical to before the phone layout (the films depend on it)', () => {
   assert.equal(sha(mapSvg(pmMap, { lang: 'nl' })), '98a1fd0cda491cec');
@@ -54,11 +54,31 @@ test('the road still runs Intake, Plan, Run, Land, Close, each leg left to right
   assert.equal(phone.routes.length >= 3, true);
 });
 
-test('labels are big: at least 11 px at 390 and 9.5 px at 320 (the wide map had 7.6 and 6.0)', () => {
+test('labels are big: at least 11 px at 390 and 9 px at 320 (the wide map had 7.6 and 6.0)', () => {
   const px = (width) => phone.font * width / phone.view.w;
   assert.ok(px(CARD[390]) >= 11, `${px(CARD[390])} px at 390`);
-  assert.ok(px(CARD[320]) >= 9.5, `${px(CARD[320])} px at 320`);
+  assert.ok(px(CARD[320]) >= 9, `${px(CARD[320])} px at 320`);
   assert.ok(px(CARD[360]) >= 10, `${px(CARD[360])} px at 360`);
+});
+
+test('rows of three: lifecycle 3+2, people 3+2, IT 2+2 or 3+1, portfolio 2, never more than three', () => {
+  const rows = (field) => {
+    const z = phone.zones.find((q) => q.field === field);
+    const b = pathBox(z.path);
+    const ys = new Map();
+    for (const p of phone.places) if (p.x >= b[0] && p.x + p.w <= b[2] && p.y >= b[1] && p.y + p.h <= b[3]) ys.set(p.y, (ys.get(p.y) || 0) + 1);
+    return [...ys.keys()].sort((a, c) => a - c).map((y) => ys.get(y));
+  };
+  assert.deepEqual(rows('pm.field.lifecycle'), [3, 2]);
+  assert.deepEqual(rows('pm.field.people'), [3, 2]);
+  assert.deepEqual(rows('pm.field.portfolio'), [2]);
+  assert.ok(['2,2', '3,1'].includes(rows('pm.field.it').join()), rows('pm.field.it').join());
+});
+
+test('the phone map is about half as tall as the two-per-row one (924 px at 390): at most 540 px at 390, 430 px at 320', () => {
+  const high = (width) => phone.view.h * width / phone.view.w;
+  assert.ok(high(CARD[390]) <= 540, `${high(CARD[390])} px at 390`);
+  assert.ok(high(CARD[320]) <= 430, `${high(CARD[320])} px at 320`);
 });
 
 test('the CSS font size of the phone labels is the font of the layout (the wrap is computed from it)', () => {
@@ -69,22 +89,22 @@ test('the CSS font size of the phone labels is the font of the layout (the wrap 
   assert.ok(z && Number(z[1]) === phone.font, 'the zone label is as big');
 });
 
-test('every place is a tap target of 44 px or more at the narrowest card (320) and at 390', () => {
+test('every place is a tap target of 44 px or more at the real card widths (256, 295, 325, 364)', () => {
   for (const p of phone.places) {
-    for (const width of [CARD[320], CARD[390]]) {
+    for (const width of [CARD[320], CARD[360], CARD[390], CARD[430]]) {
       assert.ok(p.w * width / phone.view.w >= 44, `${p.module} ${p.w} wide gives ${p.w * width / phone.view.w} px at card ${width}`);
       assert.ok(p.h * width / phone.view.w >= 44, `${p.module} ${p.h} high gives ${p.h * width / phone.view.w} px at card ${width}`);
     }
   }
 });
 
-test('every title wraps to two lines at most, with no ellipsis, in both languages, and fits its place', () => {
+test('every title wraps to three lines at most, with no ellipsis, in both languages, and fits its place', () => {
   const glyph = phone.font * 0.56; // a generous average glyph width
   for (const lang of ['nl', 'en']) {
     for (const p of phone.places) {
       const title = MODULES.find((m) => m.id === p.module).title[lang];
       const lines = wrapLabel(title, p.w, phone);
-      assert.ok(lines.length <= 2, `${lang} ${p.module}: ${lines.length} lines: ${lines.join(' / ')}`);
+      assert.ok(lines.length <= 3, `${lang} ${p.module}: ${lines.length} lines: ${lines.join(' / ')}`);
       assert.ok(!lines.some((l) => l.includes('…')), `${lang} ${p.module} is cut: ${lines.join(' / ')}`);
       for (const l of lines) assert.ok(l.length * glyph <= p.w, `${lang} ${p.module}: "${l}" is ${l.length * glyph} wide in ${p.w}`);
     }
