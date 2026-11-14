@@ -377,6 +377,10 @@ Render PM-17's free transcript of the Dutch audio heard Agile as "Hatchel"/"HCL"
 - Quest rows: make them tappable; a tap opens the lesson or practice that completes the quest.
 - MC questions from research (Task 14 and later): collect them and ask in one round the next day, not as they come in; building waits for the answers.
 
+### Follow-up: long English map labels in film map scenes (found 14 Nov)
+
+At the closing zoom (1.5) the English label "Leading projects outside your field" wraps to four lines and touches its tile border; pm.outside.intro works around it locally (16-unit line spacing for that one label). Every film that draws this place at that zoom (notably the rendered pm.field.people) has the same issue. Fix it once in `mapScene` (films/_kit/mapscene.mjs), not in the pinned app `mapSvg`, then rebuild and re-render the affected films. `opus` review (kit).
+
 ## Not in this plan
 
 Explain it back, knowledge on the map, and the rest of the ideas list in the spec: each gets its own design when it is picked up. The speaking formats stay parked.

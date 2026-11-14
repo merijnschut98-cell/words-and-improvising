@@ -817,7 +817,15 @@ const SAY = {
     // rule above) are read right as they are: Whisper writes planning poker as one word and "Dora" as "Tora" or "DORM"
     // only next to "meet" or "-metingen", and no other spelling does better; English needs nothing
     [/\bWIP\b/g, 'wip'], [/\b([Rr])ollbackplan(s?)\b/g, '$1olbek plan$2'], [/\b([Rr])ollback\b/g, '$1olbek'],
-    [/\b([Vv])ersiebeheer\b/g, '$1ersie-beheer']],
+    [/\b([Vv])ersiebeheer\b/g, '$1ersie-beheer'],
+    // the Leading projects outside your field module intro (pm.outside.intro), a self-contained group at the end of
+    // the Dutch list, checked with phonemes through Piper's nl_NL-alex bridge: espeak-ng reads the English "second
+    // opinion" as "sekont opinion" (said sekkend opinjen, as the people field film's rule above), only after
+    // "steekproef en een" in this film's tool sentence, so the other films keep their voice. Naïeve vraag, vragenset,
+    // premortem, besliscriteria, eenrichtingsdeuren, vertrouwensformule, contextwisseling, referentieklassen,
+    // piramideprincipe, terugvertellen, watermeloenstatus, meelopen and fabrieksacceptatietest go
+    // through the rules above or are read right as they are; no other film's spoken text changes
+    [/\bsteekproef en een second opinion\b/g, 'steekproef en een sekkend opinjen']],
   en: [[/\brpm\b/g, 'revolutions per minute'], [/\bmm\/min\b/g, 'millimetres per minute'], [/\bm\/min\b/g, 'metres per minute'], [/µm\b/g, 'micrometres'],
     [/€\s?(\d[\d,]*(?:\.\d+)?)/g, '$1 euros'], [/(\d)\.0(?![\d])/g, '$1'], [/(\d)\s?mm\b/g, '$1 millimetres'], [/(\d)\s?min\b/g, '$1 minutes'], [/(\d)\s?%/g, '$1 percent'],
     [/Ø\s*/g, 'diameter '], [/(\d)\+(\d)/g, '$1 plus $2'], [/\s×\s/g, ' times '], [/\s\/\s/g, ' divided by '], [/\s=\s/g, ' is '], [/°/g, ' degrees'], [/\bRa\b/g, 'R a'], [/’/g, "'"],

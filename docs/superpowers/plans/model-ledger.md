@@ -91,3 +91,5 @@ Outcome: accepted (merged as delivered), sent back N times, redone.
 | 14 Nov | Render PM-18: stuck and lead intros | sonnet | 45 | 37 min | 108,839 | accepted; every guard passed first time; Redikal Kander and MORE PIES only roughly heard; merged v289 |
 | 14 Nov | Build module intro pm.negotiate.intro (Task 11) | sonnet | 91 | 16 min | 325,762 | accepted with fixes by its review |
 | 14 Nov | Review module intro pm.negotiate.intro | sonnet | n/a | n/a | n/a | accepted with fixes (a move and a repeated tool swapped, a reason for skipping the inspection); merged v290 |
+| 14 Nov | Build module intro pm.outside.intro (Task 11) | sonnet | 114 | 15 min | 325,295 | accepted with fixes by its review |
+| 14 Nov | Review module intro pm.outside.intro | sonnet | n/a | n/a | n/a | accepted with fixes (duplicate decision memo out, FAT given the switchboard as reason, map label workaround); merged v291 |
