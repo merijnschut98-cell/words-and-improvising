@@ -32,3 +32,40 @@ test('the next-level button keeps the origin, and only a module origin', () => {
   assert.deepEqual(nextParams({ lessonId: 'a' }, { lessonId: 'b' }), { lessonId: 'b' });
   assert.deepEqual(originOf({ from: 'today' }), {});
 });
+
+const pm = MODULES.find((x) => x.id === 'pm.plan');
+
+test('exitTarget: a known module of another subject than params.subject returns to it under its own subject', () => {
+  assert.deepEqual(exitTarget({ subject: 'eng', moduleId: pm.id, lessonId: 'x', from: 'module' }), ['module', { subject: 'pm', moduleId: pm.id }]);
+});
+
+test('exitTarget: from module survives two next-level hops and the situation after them', () => {
+  const a = { subject: 'eng', moduleId: m.id, lessonId: m.lessons[0], from: 'module' };
+  const b = nextParams(a, { subject: 'eng', moduleId: m.id, lessonId: m.lessons[1] });
+  const c = nextParams(b, { subject: 'eng', moduleId: m.id, lessonId: m.lessons[2] });
+  assert.equal(c.lessonId, m.lessons[2]);
+  assert.deepEqual(exitTarget(c), ['module', { subject: 'eng', moduleId: m.id }]);
+  const sit = nextParams(c, { subject: 'eng', moduleId: m.id, lessonId: c.lessonId });
+  assert.deepEqual(exitTarget(sit), ['module', { subject: 'eng', moduleId: m.id }]);
+});
+
+test('a situation opened from the done card of a Today-card lesson still goes home', () => {
+  const today = { subject: 'eng', moduleId: m.id, lessonId: m.lessons[0] };
+  const sit = nextParams(today, { subject: 'eng', moduleId: m.id, lessonId: m.lessons[0] });
+  assert.equal('from' in sit, false, 'no from key at all');
+  assert.deepEqual(exitTarget(sit), ['home']);
+});
+
+test('nextParams does not change what it was given', () => {
+  const a = Object.freeze({ subject: 'eng', moduleId: m.id, lessonId: 'a', from: 'module' });
+  const extra = Object.freeze({ lessonId: 'b' });
+  nextParams(a, extra);
+  assert.deepEqual(extra, { lessonId: 'b' });
+});
+
+test('exitTarget: a from that only looks like module, or null params, goes home', () => {
+  assert.deepEqual(exitTarget({ moduleId: m.id, from: 'Module' }), ['home']);
+  assert.deepEqual(exitTarget({ moduleId: m.id, from: true }), ['home']);
+  assert.deepEqual(exitTarget(null), ['home']);
+  assert.deepEqual(nextParams(null, { lessonId: 'b' }), { lessonId: 'b' });
+});

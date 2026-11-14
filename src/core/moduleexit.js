@@ -12,7 +12,8 @@ export function exitTarget(params) {
   if (p.from !== FROM_MODULE) return ['home'];
   const meta = MODULES.find((m) => m.id === p.moduleId);
   if (!meta) return ['home'];
-  return ['module', { subject: p.subject || meta.subject, moduleId: meta.id }];
+  // The module's own subject: a stale or mismatched params.subject never wins.
+  return ['module', { subject: meta.subject, moduleId: meta.id }];
 }
 
 // The origin part of the params, to spread into the next screen's params

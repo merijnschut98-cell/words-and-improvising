@@ -1,6 +1,6 @@
 // The module check screen (Modulecheck, v16 flair): an intro with the guide,
 // then ten questions in one pass (no hints, no back), then the result.
-import { exitTarget, nextParams } from '../core/moduleexit.js';
+import { exitTarget } from '../core/moduleexit.js';
 import { h } from './dom.js';
 import { ico } from './icons.js';
 import { renderQuiz } from './quiz.js';
