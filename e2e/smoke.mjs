@@ -2676,9 +2676,9 @@ await step('layout: each home at 390 px in light and dark, one primary, bands, t
   if (await p.locator('details.drill-group[open]').count()) throw new Error('groups open by default');
   const tall = await p.evaluate(() => document.documentElement.scrollHeight / window.innerHeight);
   if (tall > 2.6) throw new Error(`Spreken home is ${tall.toFixed(2)} screens tall`);
-  // The quests sit right under the next round; Terugluisteren is in the last band.
+  // The next round is on top, then the lesson; the quests fold comes last in Vandaag. Terugluisteren is in the last band.
   const order = await p.locator('.band-today > *').evaluateAll((els) => els.map((e) => e.className));
-  if (!order[1].includes('today-card') || !order[2].includes('quest-card')) throw new Error(`Vandaag order: ${order.join(' | ')}`);
+  if (!order[1].includes('today-card') || !order[2].includes('btn-hero') || !order[order.length - 1].includes('quest-card')) throw new Error(`Vandaag order: ${order.join(' | ')}`);
   await p.locator('.band-real .lb-entry').waitFor();
   // Course homes: exactly one track open, the one with the next step; Begrippen and the real week in one row.
   await p.evaluate(() => window.__app.setSubject('eng'));
