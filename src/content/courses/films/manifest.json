@@ -2844,6 +2844,41 @@
         ],
         "vtt": "src/content/courses/films/pm.itproject.migration.en.vtt"
       }
+    },
+    "pm.agile.forecast": {
+      "poster": "src/content/courses/films/pm.agile.forecast.jpg",
+      "nl": {
+        "dur": 313,
+        "bytes": 12977416,
+        "scenes": [
+          0,
+          27.86,
+          51.98,
+          76.82,
+          115.85,
+          174.98,
+          199.13,
+          234.3,
+          275.27
+        ],
+        "vtt": "src/content/courses/films/pm.agile.forecast.nl.vtt"
+      },
+      "en": {
+        "dur": 341.2,
+        "bytes": 13809268,
+        "scenes": [
+          0,
+          30.65,
+          57.31,
+          84.6,
+          127.73,
+          190.45,
+          216.27,
+          255.44,
+          301.68
+        ],
+        "vtt": "src/content/courses/films/pm.agile.forecast.en.vtt"
+      }
     }
   }
 }

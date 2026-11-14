@@ -528,8 +528,8 @@ const SAY = [
       en: 'Add that ten weeks is little history, so the spread is probably wider. If the list grows, the date moves. We update it weekly.' },
   ],
   [ // s6 the SLE; the percentile
-    { nl: 'Een {t:Service level expectation|service level expectation} is volgens de Kanban Guide een verwachting voor hoe lang een item duurt, met een kans erbij, zoals vijfentachtig procent binnen acht dagen.',
-      en: 'A {t:Service level expectation|service level expectation} is, by the Kanban Guide, an expected time for an item, with a probability, say eighty-five percent within eight days.' },
+    { nl: 'Een {t:Service level expectation|service level expectation} is volgens de Kanban Guide een verwachting. Die zegt hoe lang een item duurt, met een kans erbij, zoals vijfentachtig procent binnen acht dagen.',
+      en: 'A {t:Service level expectation|service level expectation} is, by the Kanban Guide, an expectation. It says how long an item takes, with a probability, say eighty-five percent within eight days.' },
     { nl: 'Je haalt hem uit je eigen data met een {t:Percentiel|percentiel}. Het vijfentachtigste percentiel van de cycle times is de tijd waarbinnen vijfentachtig procent klaar was.',
       en: 'You take it from your own data with a {t:Percentile|percentile}. The eighty-fifth percentile of cycle times is the time within which eighty-five percent were done.' },
     { nl: 'Dat zegt een klant meer dan een gemiddelde.',
