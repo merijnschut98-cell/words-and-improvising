@@ -3166,7 +3166,7 @@ await step('module return: a lesson opened from the Today card still returns to 
 });
 
 // v17: the module screen. The fixture machining module gets an intro film (a
-// stub video and a stub film page), so the intro block is real; pm.intake has
+// stub video and a stub film page), so the intro block is real; pm.stuck has
 // none and shows its blurb where the film would be.
 const MACHINING_INTRO_FIXTURE = MACHINING_TOPIC_FIXTURE.replace("track: 'discrete',", "track: 'discrete', intro: 'eng.machining.intro',");
 const PNG_1PX = Buffer.from('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkYPhfDwAChwGA60e6kgAAAABJRU5ErkJggg==', 'base64');
@@ -3236,10 +3236,10 @@ await step('module screen: open Verspanen from the Engineering list, the intro b
   // A module without an intro: its field, and the blurb where the film would be.
   const other = await topicContext({});
   const q = other.p;
-  await q.evaluate(() => window.__app.go('module', { subject: 'pm', moduleId: 'pm.intake' }));
+  await q.evaluate(() => window.__app.go('module', { subject: 'pm', moduleId: 'pm.stuck' }));
   const pm = q.locator('.module-screen');
   await pm.waitFor();
-  if (!(await pm.locator('.module-field', { hasText: 'Een project van begin tot eind' }).count())) throw new Error('no field label');
+  if (!(await pm.locator('.module-field', { hasText: 'Mensen en invloed' }).count())) throw new Error('no field label');
   if (await pm.locator('.film-step, .module-intro-title').count()) throw new Error('a module without an intro shows a film');
   if (!(await pm.locator('.module-intro-text').innerText()).trim()) throw new Error('no blurb');
   if (!(await pm.locator('.topic-row').count())) throw new Error('no topics');
@@ -3262,7 +3262,7 @@ await step('Andon: greets on the home screens, presents the intro on a module sc
     if (await g.count() !== 1) throw new Error(`${where}: ${await g.count()} greetings`);
     const r = await g.locator('.guide').evaluate((e) => { const b = e.getBoundingClientRect(); return { h: b.height, w: b.width }; });
     if (Math.abs(r.h - 80) > 1) throw new Error(`${where}: Andon ${r.h}px, expected 80`);
-    if ((await g.locator('.guide-name').innerText()).trim() !== 'Andon') throw new Error(`${where}: no name under the tower`);
+    if (!/^Andon\b/.test(await g.locator('.guide-name').evaluate((e) => e.firstChild && e.firstChild.textContent))) throw new Error(`${where}: no name under the tower`);
     if (await g.locator('.guide-say').count() !== 1) throw new Error(`${where}: not exactly one line`);
     if (!(await g.locator('.guide-say').innerText()).trim()) throw new Error(`${where}: empty line`);
     if (await g.locator('button, a, [role="button"]').count()) throw new Error(`${where}: Andon is interactive`);
@@ -3377,7 +3377,7 @@ await step('Andon: greets on the home screens, presents the intro on a module sc
   if (await p.locator('.module-screen .guide-intro .guide-say').count()) throw new Error('a seen intro shows a line');
 
   // A module without an intro: no Andon.
-  await p.evaluate(() => window.__app.go('module', { subject: 'pm', moduleId: 'pm.intake' }));
+  await p.evaluate(() => window.__app.go('module', { subject: 'pm', moduleId: 'pm.stuck' }));
   await p.locator('.module-screen .module-intro-text').waitFor();
   if (await p.locator('.module-screen .guide, .module-screen .guide-intro').count()) throw new Error('Andon on a module without an intro');
 

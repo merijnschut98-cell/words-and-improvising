@@ -175,7 +175,9 @@ test('guideIntro: the heading goes beside him; guideIntroSeen lights the top in 
   const el = guideIntro(appFor(stOn()), withIntro, heading);
   assert.ok(el.querySelector('h2'), 'the heading is part of the block, no separate gap');
   const guideEl = el.querySelector('.guide');
+  el.getBoundingClientRect = () => ({ height: 118 }); // the bubble makes the block taller than the tower
   guideIntroSeen(el);
+  assert.equal(el.style.minHeight, '118px', 'the block keeps its height when the bubble goes: nothing below moves');
   assert.equal(el.querySelector('.guide'), guideEl, 'same element, no re-render');
   assert.match(guideEl.innerHTML, /g-top on/);
   assert.equal(el.querySelector('.guide-say'), null);

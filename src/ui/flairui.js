@@ -300,6 +300,11 @@ export function guideIntroSeen(el) {
   const a = el.querySelector('.guide');
   if (a) a.innerHTML = guideSvg('right', { status: statusModel({ due: el.getAttribute('data-status') === 'due' ? 1 : 0 }) });
   const say = el.querySelector('.guide-say');
-  if (say) say.remove();
+  if (say) {
+    // The bubble is taller than the tower: keep the block's height so nothing below moves.
+    const r = typeof el.getBoundingClientRect === 'function' ? el.getBoundingClientRect() : null;
+    if (r && r.height > 0) el.style.minHeight = `${Math.ceil(r.height)}px`;
+    say.remove();
+  }
   el.setAttribute('data-mood', 'right');
 }
