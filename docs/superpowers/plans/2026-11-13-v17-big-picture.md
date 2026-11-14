@@ -271,6 +271,15 @@ Order, lowest level first: pm.intake; pm.run, pm.land, pm.close, pm.agile, pm.de
 
 ---
 
+### Task 14: Two new Projects modules (after the Task 5 checkpoint, parallel to Task 11)
+
+Decided 14 Nov, see the addendum of the design. Not started before Merijn's checkpoint.
+
+- [ ] **Step 1:** Research agent (`sonnet`, sources required): the coverage review against PMBOK, PRINCE2, IPMA ICB, Lean and Six Sigma practice, change management and facilitation, plus the tool landscape (Microsoft world, Azure DevOps and other families, organised by when each fits). Output: a ranked gap list and a proposed topic list for two modules, saved under `docs/superpowers/content/briefs/`.
+- [ ] **Step 2:** Bring the proposal to Merijn as multiple-choice decisions (names, topics, field and map place). Record his answers in the design addendum.
+- [ ] **Step 3:** Per module: content brief, content agent (`sonnet`) in nl and en with the usual content rules (4 topics of 4 levels, terms, recall questions, situation and say-it items, term-link test), review agent (`opus` for the first module, `sonnet` for the second), merge, push.
+- [ ] **Step 4:** Add both modules to `FIELDS` (the validator requires every module of a subject with fields to be in one) and to the map (`maps/pm.js`, new places, `checkMap` stays green), update field film 1 and re-render it, and build their module intros (Task 11 pattern).
+
 ## Not in this plan
 
 Explain it back, knowledge on the map, and the rest of the ideas list in the spec: each gets its own design when it is picked up. The speaking formats stay parked.
