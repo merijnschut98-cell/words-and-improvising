@@ -3121,6 +3121,68 @@
         ],
         "vtt": "src/content/courses/films/pm.run.intro.en.vtt"
       }
+    },
+    "pm.land.intro": {
+      "poster": "src/content/courses/films/pm.land.intro.jpg",
+      "nl": {
+        "dur": 205.5,
+        "bytes": 7905372,
+        "scenes": [
+          0,
+          16.58,
+          50.83,
+          83.82,
+          114.95,
+          148.12,
+          163.05
+        ],
+        "vtt": "src/content/courses/films/pm.land.intro.nl.vtt"
+      },
+      "en": {
+        "dur": 232.1,
+        "bytes": 8843936,
+        "scenes": [
+          0,
+          19.02,
+          59.09,
+          94.85,
+          129.88,
+          168.64,
+          185.27
+        ],
+        "vtt": "src/content/courses/films/pm.land.intro.en.vtt"
+      }
+    },
+    "pm.close.intro": {
+      "poster": "src/content/courses/films/pm.close.intro.jpg",
+      "nl": {
+        "dur": 206.5,
+        "bytes": 8197419,
+        "scenes": [
+          0,
+          20.96,
+          43.91,
+          85.63,
+          121.56,
+          146,
+          162.01
+        ],
+        "vtt": "src/content/courses/films/pm.close.intro.nl.vtt"
+      },
+      "en": {
+        "dur": 229.2,
+        "bytes": 8929639,
+        "scenes": [
+          0,
+          23.82,
+          49.87,
+          95.11,
+          136.79,
+          164.56,
+          182.59
+        ],
+        "vtt": "src/content/courses/films/pm.close.intro.en.vtt"
+      }
     }
   }
 }

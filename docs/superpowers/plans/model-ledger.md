@@ -65,3 +65,6 @@ Outcome: accepted (merged as delivered), sent back N times, redone.
 | 14 Nov | Review module intro pm.land.intro | sonnet | n/a (report read back from its log after a container restart) | n/a | n/a | accepted with four fixes (s7 to its captions, three SAY rules made unneeded by rewording) |
 | 14 Nov | Render PM-15: intake, run and plan intros | sonnet | n/a (read back from its log) | n/a | n/a | accepted; every guard passed first time; disk ran full mid-batch; merged v271 |
 | 14 Nov | Fix: subject map spilled out of its card | sonnet | n/a (read back) | n/a | n/a | accepted; cause a deliberate phone bleed in styles.css; labels smaller (7.6 px at 390), Merijn chose a phone layout next; merged v271 |
+| 14 Nov | Render PM-16: land and close intros | sonnet | 38 | 30 min | 123,964 | accepted; every guard passed first time; merged v272 |
+| 14 Nov | Build: phone layout for the subject map | sonnet | 68 | 18 min | 151,639 | sent back once by Merijn: two per row made the map 3.5 times taller; asked for three per row |
+| 14 Nov | Build module intro pm.agile.intro (Task 11) | sonnet | 154 | 23 min | 387,975 | in review (sonnet) |
