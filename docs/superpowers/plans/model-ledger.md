@@ -59,3 +59,9 @@ Outcome: accepted (merged as delivered), sent back N times, redone.
 | 14 Nov | Review module intro pm.run.intro | opus | 76 | 17 min | 208,568 | accepted with four fixes; TILE_UNITS 130 measured safe; found the same map fade bug in the pilot |
 | 14 Nov | Render PM-14: pipeline (DevOps voice) and pm.field.it | sonnet | 38 | 45 min | 118,124 | accepted; one narration line rewritten to remove a colon pause; merged v269 |
 | 14 Nov | Review module intro pm.intake.intro | opus | 73 | 18 min | 222,687 | accepted with fixes (kit tileUnits hardened, two story reasons added); advised per-film tileUnits over a raised default |
+| 14 Nov | Build module intro pm.close.intro (Task 11) | sonnet | 114 | 17 min | 339,315 | accepted with fixes by its review |
+| 14 Nov | Build module intro pm.land.intro (Task 11) | sonnet | 147 | 25 min | 342,531 | accepted with fixes by its review |
+| 14 Nov | Review module intro pm.close.intro | sonnet | 73 | 9 min | 220,029 | accepted with six small fixes (goal wording after the move, chip spacing, s7 trimmed to its captions) |
+| 14 Nov | Review module intro pm.land.intro | sonnet | n/a (report read back from its log after a container restart) | n/a | n/a | accepted with four fixes (s7 to its captions, three SAY rules made unneeded by rewording) |
+| 14 Nov | Render PM-15: intake, run and plan intros | sonnet | n/a (read back from its log) | n/a | n/a | accepted; every guard passed first time; disk ran full mid-batch; merged v271 |
+| 14 Nov | Fix: subject map spilled out of its card | sonnet | n/a (read back) | n/a | n/a | accepted; cause a deliberate phone bleed in styles.css; labels smaller (7.6 px at 390), Merijn chose a phone layout next; merged v271 |
