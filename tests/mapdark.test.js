@@ -40,5 +40,8 @@ test('label on its halo is at least 4.5:1 in the dark theme of the app and of th
     return v;
   };
   assert.ok(ratio(hex('text-heading-inverse'), hex('surface-paper-inverse')) >= 4.5, 'app, dark');
-  assert.ok(ratio('#F0E9DA', '#123039') >= 4.5, 'films, dark: anatomy-strong on anatomy-face (11.52)');
+  // the film palette's dark block (the first in player.mjs): anatomy-strong on anatomy-face (11.52 today)
+  const player = fs.readFileSync(new URL('../films/_kit/player.mjs', import.meta.url), 'utf8');
+  const film = (name) => new RegExp(`--anatomy-${name}:(#[0-9a-fA-F]{6})`).exec(player)[1];
+  assert.ok(ratio(film('strong'), film('face')) >= 4.5, 'films, dark');
 });
