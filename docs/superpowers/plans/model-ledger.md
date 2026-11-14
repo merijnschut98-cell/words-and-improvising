@@ -34,4 +34,5 @@ Outcome: accepted (merged as delivered), sent back N times, redone.
 | 14 Nov | Render PM-12: pm.field.lifecycle | sonnet | n/a | n/a | n/a | accepted; one narration line padded with 'itself/zelf' to fix a cue; merged v258 |
 | 14 Nov | Render PM-11: four trimmed films | sonnet | n/a | n/a | n/a | accepted; ran two renders at once and one overwrote a manifest entry, which it rebuilt (sizes verified); merged v259 |
 | 14 Nov | Build: Projects map on subject home (Task 7) | sonnet | n/a | n/a | n/a | delivered; in review (opus); report recovered after a container restart |
-| 14 Nov | Build: calmer speaking home (Task 12 part 1) | sonnet | n/a | n/a | n/a | delivered; in review (opus) |
+| 14 Nov | Build: calmer speaking home (Task 12 part 1) | sonnet | 21 | 4 min | 127,489 | delivered; in review (opus) |
+| 14 Nov | Kit: short films (Task 4a) | sonnet | 29 | 4 min | 118,631 | delivered; in review (opus) |
