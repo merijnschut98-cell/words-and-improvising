@@ -825,7 +825,15 @@ const SAY = {
     // premortem, besliscriteria, eenrichtingsdeuren, vertrouwensformule, contextwisseling, referentieklassen,
     // piramideprincipe, terugvertellen, watermeloenstatus, meelopen and fabrieksacceptatietest go
     // through the rules above or are read right as they are; no other film's spoken text changes
-    [/\bsteekproef en een second opinion\b/g, 'steekproef en een sekkend opinjen']],
+    [/\bsteekproef en een second opinion\b/g, 'steekproef en een sekkend opinjen'],
+    // the Programmes and governance module intro (pm.portfolio.intro), a self-contained group at the end of the Dutch
+    // list, checked with phonemes through Piper's nl_NL-alex bridge: espeak-ng reads procesingenieurs with a voiced z,
+    // "pro-ze-ingenieurs", said proces-ingenieurs (pro-SES in-zje-NJEURS), and plain managers with a hard g (MAA-naa-gers),
+    // said menetsjers as the manager rules above, only in this film's phrase "De managers die de fabriek draaien", so no
+    // other film's managers change. Programmaraad, MSP, capaciteitsstreep, capaciteitsmatrix, besluitenlijst,
+    // batenkaart, batenprofiel, stage-gates, afhankelijkhedenregister, veranderverzadiging, zombieprojecten and
+    // ijzeren wet go through the rules above or are read right as they are; no other film's spoken text changes
+    [/\b([Pp])rocesingenieurs\b/g, '$1roces-ingenieurs'], [/\b([Dd])e managers die de fabriek draaien\b/g, '$1e menetsjers die de fabriek draaien']],
   en: [[/\brpm\b/g, 'revolutions per minute'], [/\bmm\/min\b/g, 'millimetres per minute'], [/\bm\/min\b/g, 'metres per minute'], [/µm\b/g, 'micrometres'],
     [/€\s?(\d[\d,]*(?:\.\d+)?)/g, '$1 euros'], [/(\d)\.0(?![\d])/g, '$1'], [/(\d)\s?mm\b/g, '$1 millimetres'], [/(\d)\s?min\b/g, '$1 minutes'], [/(\d)\s?%/g, '$1 percent'],
     [/Ø\s*/g, 'diameter '], [/(\d)\+(\d)/g, '$1 plus $2'], [/\s×\s/g, ' times '], [/\s\/\s/g, ' divided by '], [/\s=\s/g, ' is '], [/°/g, ' degrees'], [/\bRa\b/g, 'R a'], [/’/g, "'"],

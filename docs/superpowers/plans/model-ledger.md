@@ -96,3 +96,5 @@ Outcome: accepted (merged as delivered), sent back N times, redone.
 | 14 Nov | Build: UI round (goal line, map highlight, named step, quests, 320 px bar, breadth-first next step) | sonnet | 129 | 67 min | 259,640 | accepted with fixes by its review |
 | 14 Nov | Review: UI round and breadth-first next step | opus | 134 | 42 min | 238,182 | accepted with seven fixes (module order after the road, lesson-end next agrees, no async name swap, goal line wording); merged v292 |
 | 15 Nov | Task 17 design: complete films (inventory, split rule, kit check, batches) | opus | n/a | n/a | n/a | accepted; 64 films change (27 splits), about 138 renders; six MC decisions kept for Merijn's round |
+| 15 Nov | Build module intro pm.portfolio.intro (Task 11) | sonnet | 120 | 20 min | 363,981 | accepted with fixes by its review |
+| 15 Nov | Review module intro pm.portfolio.intro | sonnet | n/a | n/a | n/a | accepted with fixes (Werkkennis tools moved to the grid, Basis tools in scenes, a causal error fixed); merged v295 |
