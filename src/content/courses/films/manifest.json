@@ -2809,6 +2809,41 @@
         ],
         "vtt": "src/content/courses/films/pm.itproject.uat.en.vtt"
       }
+    },
+    "pm.itproject.migration": {
+      "poster": "src/content/courses/films/pm.itproject.migration.jpg",
+      "nl": {
+        "dur": 307.3,
+        "bytes": 12915797,
+        "scenes": [
+          0,
+          32.66,
+          62.77,
+          90.7,
+          116.46,
+          158.99,
+          186.59,
+          226.23,
+          263.21
+        ],
+        "vtt": "src/content/courses/films/pm.itproject.migration.nl.vtt"
+      },
+      "en": {
+        "dur": 327.7,
+        "bytes": 13550858,
+        "scenes": [
+          0,
+          32.23,
+          65.41,
+          95.84,
+          122.3,
+          168.51,
+          198.88,
+          239.96,
+          280
+        ],
+        "vtt": "src/content/courses/films/pm.itproject.migration.en.vtt"
+      }
     }
   }
 }
