@@ -156,7 +156,7 @@ const STAGE = (() => {
     const loop = rect(334, 278, 136, 34, 'pm-tile', 6) + txt(402, 302, tr('Proberen', 'Try it', 124), 22, 'middle', 'pm-txt') + arrow(474, 295, 494, 295)
       + rect(498, 278, 120, 34, 'pm-crit', 6) + txt(558, 302, tr('Bijsturen', 'Adjust', 108), 22, 'middle', 'pm-on');
     return { wfB: op(b === 0 ? 0 : b === 1 ? span(p, 0.1, 0.5) : 1, wf), roundsB: op(b <= 1 ? 0 : b === 2 ? 1 : 1, rounds), loopB: b === 3 ? op(span(p, 0.1, 0.5), loop) : '',
-      ...tools(b, p, 4, tr('Hybride aanpak', 'Hybrid approach', 260), tr('Stage-gate', 'Stage-gate', 260)) };
+      ...tools(b, p, 4, tr('Agile Manifesto', 'Agile Manifesto', 260), tr('Hybride aanpak', 'Hybrid approach', 260)) };
   }
 
   // ---- s3: Scrum. A sprint of two weeks (ten workdays) with something usable at the end, and the three

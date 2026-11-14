@@ -42,7 +42,7 @@
 // Definitions as the Basis lessons word them (pm.agile.whyagile, .scrumbasics,
 // .stories, .board). Each topic scene names two tools of that topic's lessons in
 // one short sentence, without explaining them (Merijn's checkpoint, 14 Nov):
-// Hybride aanpak and Stage-gate (the agile mindset; pm.agile.fit), Daily Scrum and
+// Agile Manifesto (pm.agile.whyagile) and Hybride aanpak (pm.agile.fit), together the agile mindset, Daily Scrum and
 // Sprint Review (Scrum; pm.agile.events), User story and Planning poker (backlog;
 // pm.agile.stories, .points) and Kanbanbord and WIP-limiet (Kanban; pm.agile.board,
 // .wip). The field film's two tools of the module, Kanbanbord and Planning poker,
@@ -102,11 +102,13 @@ const has = (id, list, lang = 'nl') => { const l = lessons[lang].get(id); const 
 has('pm.agile.scrumbasics', ['In de fabriek zie je Scrum vooral bij IT-teams voor MES']);
 has('pm.agile.scrumbasics', ['In factories you mostly see Scrum in IT teams for MES'], 'en');
 // s2: the waterfall (users only know what they want when they see something, so after months it was the wrong thing),
-// short rounds with something that works, users try it and the team adjusts; the tools (a hybrid approach, a stage-gate)
+// short rounds with something that works, users try it and the team adjusts; the tools (the Agile Manifesto, a hybrid approach)
 has('pm.agile.whyagile', ['de watervalaanpak', 'Bij software weet de gebruiker dat vaak pas als hij iets ziet', 'Dan ontdek je na maanden dat je het verkeerde hebt gebouwd', 'Je werkt in korte rondes van één tot vier weken', 'Elke iteratie levert een klein stuk dat echt werkt', 'Gebruikers proberen het, reageren, en het team past het plan aan']);
 has('pm.agile.whyagile', ['the waterfall approach', 'users often only know when they see something', 'Then you find out after months that you built the wrong thing', 'You work in short rounds of one to four weeks', 'Each iteration delivers a small piece that really works', 'Users try it, react, and the team adjusts the plan'], 'en');
-has('pm.agile.fit', ['Daarom werken veel fabrikanten hybride', 'Vaak hangt dat aan een stage-gate-proces', 'Hybride aanpak', 'Stage-gate']);
-has('pm.agile.fit', ['many manufacturers work hybrid', 'Often it hangs on a stage-gate process', 'Hybrid approach', 'Stage-gate'], 'en');
+has('pm.agile.whyagile', ['Agile Manifesto']);
+has('pm.agile.fit', ['Daarom werken veel fabrikanten hybride', 'Hybride aanpak']);
+has('pm.agile.whyagile', ['Agile Manifesto'], 'en');
+has('pm.agile.fit', ['many manufacturers work hybrid', 'Hybrid approach'], 'en');
 // s3: the sprint (a fixed period of one month or less, often two weeks, something usable at the end), the three
 // accountabilities; the tools (the Daily Scrum, the Sprint Review)
 has('pm.agile.scrumbasics', ['Het werk gebeurt in sprints: vaste periodes van hooguit een maand, vaak twee weken', 'In elke sprint maakt het team iets bruikbaars af', 'De Product Owner is één persoon, geen commissie', 'wat het team als eerste doet en waarom', 'De Scrum Master helpt team en organisatie om Scrum goed te gebruiken en ruimt obstakels op', 'De Developers zijn de mensen die het werk maken']);
@@ -135,12 +137,12 @@ has('pm.agile.flowmetrics', ['Cycle time: the time from start to finish of a com
 // s7: the later levels, as the lessons are titled (the grid names what each adds)
 for (const [id, word] of [['pm.agile.principles', 'De twaalf principes'], ['pm.agile.leanroots', 'wortels'], ['pm.agile.fit', 'Wanneer agile past'],
   ['pm.agile.events', 'De vijf events'], ['pm.agile.artefacts', 'De drie artefacten'], ['pm.agile.scrumfail', 'Scrum in het echt'],
-  ['pm.agile.refine', 'Refinement'], ['pm.agile.points', 'planning poker'], ['pm.agile.forecast', 'Voorspellen'],
+  ['pm.agile.refine', 'Refinement'], ['pm.agile.points', 'Velocity'], ['pm.agile.forecast', 'Voorspellen'],
   ['pm.agile.wip', 'WIP-limieten'], ['pm.agile.flowmetrics', 'Cycle time'], ['pm.agile.flowsteer', 'Sturen op flow'],
   ['pm.agile.whyagile', 'Wat agile is'], ['pm.agile.scrumbasics', 'Scrum Team'], ['pm.agile.stories', 'User stories'], ['pm.agile.board', 'kanbanbord']]) has(id, [word]);
 for (const [id, word] of [['pm.agile.principles', 'The twelve principles'], ['pm.agile.leanroots', 'roots'], ['pm.agile.fit', 'When agile fits'],
   ['pm.agile.events', 'The five Scrum events'], ['pm.agile.artefacts', 'The three artefacts'], ['pm.agile.scrumfail', 'Scrum for real'],
-  ['pm.agile.refine', 'Refinement'], ['pm.agile.points', 'planning poker'], ['pm.agile.forecast', 'Forecasting'],
+  ['pm.agile.refine', 'Refinement'], ['pm.agile.points', 'Velocity'], ['pm.agile.forecast', 'Forecasting'],
   ['pm.agile.wip', 'WIP limits'], ['pm.agile.flowmetrics', 'Cycle time'], ['pm.agile.flowsteer', 'Steering on flow'],
   ['pm.agile.whyagile', 'What agile is'], ['pm.agile.scrumbasics', 'Scrum Team'], ['pm.agile.stories', 'User stories'], ['pm.agile.board', 'Kanban board']]) has(id, [word], 'en');
 // s7: the level words are the app's. The grid (stage.js, grid) has four level columns of GRID.col units from
@@ -333,7 +335,7 @@ const spec = {
         { nl: 'In een {t:Watervalaanpak|watervalaanpak} zien de operators het MES pas aan het eind. Dan klopt het vaak niet.', en: 'In a {t:Waterfall|waterfall} approach the operators see the MES only at the end. It often turns out wrong.', cue: { Watervalaanpak: 'wf' }, focus: ['wf', 'crew'] },
         { nl: 'Agile werkt in korte rondes, {t:Iteratie|iteraties}. Elke ronde levert iets kleins dat echt werkt.', en: 'Agile works in short rounds, {t:Iteration|iterations}. Each round delivers something small that really works.', cue: { Iteratie: 'rounds' }, focus: ['rounds', 'devs', 'mes'] },
         { nl: 'De operators proberen het uit en het team stuurt bij. Zo merk je het na weken, niet na maanden.', en: 'The operators try it out and the team adjusts. So you notice after weeks, not months.', focus: ['loop', 'crew', 'devs'] },
-        { nl: 'Bij agile denken gebruiken we vaak een {t:Hybride aanpak|hybride aanpak} en een {t:Stage-gate|stage-gate}.', en: 'For the agile mindset we often use a {t:Hybrid approach|hybrid approach} and a {t:Stage-gate|stage-gate}.', cue: { 'Hybride aanpak': 'tool1', 'Stage-gate': 'tool2' }, focus: ['tool1', 'tool2'] },
+        { nl: 'Bij agile denken gebruiken we vaak het {t:Agile Manifesto|Agile Manifesto} en een {t:Hybride aanpak|hybride aanpak}.', en: 'For the agile mindset we often use the {t:Agile Manifesto|Agile Manifesto} and a {t:Hybrid approach|hybrid approach}.', cue: { 'Agile Manifesto': 'tool1', 'Hybride aanpak': 'tool2' }, focus: ['tool1', 'tool2'] },
       ],
     },
     {
@@ -380,8 +382,8 @@ const spec = {
         { nl: 'Agile en Scrum heeft vier onderwerpen, elk met vier niveaus.', en: 'Agile and Scrum has four topics, each with four levels.', focus: 'route' },
         { nl: 'Begin bij Agile denken. Op niveau Basis: wat agile is, het Scrum Team, user stories en het kanbanbord.', en: 'Start with the agile mindset. At Basics level: what agile is, the Scrum Team, user stories, the Kanban board.', focus: ['tMind', 'lv1', 'start'] },
         { nl: 'Op Werkkennis komen de twaalf principes, de events, refinement en WIP-limieten erbij.', en: 'At Working knowledge you add the twelve principles, the events, refinement and WIP limits.', focus: 'lv2' },
-        { nl: 'Op Gevorderd komen de wortels van agile, de artefacten, planning poker en cycle time erbij.', en: 'At Advanced you add the roots of agile, the artefacts, planning poker and cycle time.', focus: 'lv3' },
-        { nl: 'Op Expert komen de grenzen van agile, Scrum in het echt, voorspellen en sturen op flow erbij.', en: 'At Expert you add the limits of agile, Scrum for real, forecasting and steering on flow.', focus: 'lv4' },
+        { nl: 'Op Gevorderd komen de wortels van agile, de artefacten, velocity en het meten van flow erbij.', en: 'At Advanced you add the roots of agile, the artefacts, velocity and measuring flow.', focus: 'lv3' },
+        { nl: 'Op Expert komen de grenzen van agile, Scrum in het echt, voorspellen met data en sturen op flow erbij.', en: 'At Expert you add the limits of agile, Scrum for real, forecasting from data and steering on flow.', focus: 'lv4' },
         { nl: 'Elke les en elke film van deze module heeft een plek op deze kaart.', en: 'Every lesson and film in this module has a place on this map.', focus: null },
       ],
     },
@@ -400,7 +402,7 @@ const spec = {
 // explaining them (Kanban's WIP limit gets one clause, the acronym being opaque).
 // Words checked with espeak-ng phonemes through Piper's own bridge (nl_NL-alex): every
 // word of this film already has a voice rule of an earlier film (agile, hybride,
-// stage-gate, Daily Scrum, Sprint Review, Product Owner, Developers, events,
+// Agile Manifesto as in pm.plan.method, Daily Scrum, Sprint Review, Product Owner, Developers, events,
 // refinement, user stories, cycle time, MES), so the film adds no SAY rule.
 const SAY = [
   [ // s1 one project, four topics
@@ -420,8 +422,8 @@ const SAY = [
       en: 'Agile works in short rounds, {t:Iteration|iterations}. Each round delivers something small that really works.' },
     { nl: 'De operators proberen het uit en het team stuurt bij. Zo merk je het na weken, niet na maanden.',
       en: 'The operators try it out and the team adjusts. So you notice after weeks, not months.' },
-    { nl: 'Bij agile denken gebruiken we vaak een hybride aanpak en een stage-gate.',
-      en: 'For the agile mindset we often use a hybrid approach and a stage-gate.' },
+    { nl: 'Bij agile denken gebruiken we vaak het Agile Manifesto en een hybride aanpak.',
+      en: 'For the agile mindset we often use the Agile Manifesto and a hybrid approach.' },
   ],
   [ // s3 Scrum
     { nl: 'Het tweede onderwerp is Scrum, met rollen, events en artefacten. Hoe werkt het IT-team samen?',
@@ -474,10 +476,10 @@ const SAY = [
       en: 'Start with the agile mindset. At Basics level it is about what agile is, the Scrum Team, user stories and the Kanban board.' },
     { nl: 'Op Werkkennis komen de twaalf principes, de events, refinement en WIP-limieten erbij.',
       en: 'At Working knowledge you add the twelve principles, the events, refinement and WIP limits.' },
-    { nl: 'Op Gevorderd komen de wortels van agile, de artefacten, planning poker en cycle time erbij.',
-      en: 'At Advanced you add the roots of agile, the artefacts, planning poker and cycle time.' },
-    { nl: 'Op Expert komen de grenzen van agile, Scrum in het echt, voorspellen en sturen op flow erbij.',
-      en: 'At Expert you add the limits of agile, Scrum for real, forecasting and steering on flow.' },
+    { nl: 'Op Gevorderd komen de wortels van agile, de artefacten, velocity en het meten van flow erbij.',
+      en: 'At Advanced you add the roots of agile, the artefacts, velocity and measuring flow.' },
+    { nl: 'Op Expert komen de grenzen van agile, Scrum in het echt, voorspellen met data en sturen op flow erbij.',
+      en: 'At Expert you add the limits of agile, Scrum for real, forecasting from data and steering on flow.' },
     { nl: 'Elke les en elke film van deze module heeft een plek op deze kaart.',
       en: 'Every lesson and every film in this module has a place on this map.' },
   ],
