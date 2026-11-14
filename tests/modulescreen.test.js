@@ -84,3 +84,47 @@ test('markIntroSeen: caps at 200, newest kept; a state without seenIntros works'
 test('the module screen has words in both languages', () => {
   for (const lang of ['en', 'nl']) for (const k of ['moduleIntro', 'moduleContinue', 'moduleContinueAt', 'backToCourse']) assert.ok(STRINGS[lang][k], `${lang}: ${k}`);
 });
+
+// ---- renderModule: navigation (review) ----
+const { renderModule } = await import('../src/ui/modulescreen.js');
+const { translator } = await import('../src/i18n.js');
+function fakeApp(state = defaultState()) {
+  const calls = [];
+  const app = {
+    t: translator('nl'), lang: 'nl', state, today: () => '2026-11-14',
+    go: (screen, params) => calls.push(['go', screen, params]),
+    setSubject: (id, screen) => calls.push(['setSubject', id, screen]),
+    setState(s) { this.state = s; },
+  };
+  return { app, calls };
+}
+const fakeRoot = () => document.createElement('div');
+
+test('renderModule: the back control goes to the module\'s own subject, whatever subject the params name', () => {
+  const { app, calls } = fakeApp();
+  const root = fakeRoot();
+  renderModule(app, { subject: 'eng', moduleId: 'pm.intake' }, root);
+  root.querySelector('.lesson-back').click();
+  assert.deepEqual(calls.at(-1).slice(0, 2), ['setSubject', 'pm']);
+});
+
+test('renderModule: an unknown module id opens the course home of the named subject, or home without one', () => {
+  const a = fakeApp();
+  renderModule(a.app, { subject: 'pm', moduleId: 'pm.gone' }, fakeRoot());
+  assert.deepEqual(a.calls.map((c) => c.slice(0, 2)), [['setSubject', 'pm']]);
+  const b = fakeApp();
+  renderModule(b.app, { moduleId: 'pm.gone' }, fakeRoot());
+  assert.deepEqual(b.calls.map((c) => c.slice(0, 2)), [['go', 'home']]);
+  const c = fakeApp();
+  renderModule(c.app, { subject: 'cooking', moduleId: 'x' }, fakeRoot());
+  assert.deepEqual(c.calls.map((x) => x.slice(0, 2)), [['go', 'home']]);
+});
+
+test('renderModule: one filled button, and a cleanup that closes the film when he leaves', () => {
+  const { app } = fakeApp();
+  const root = fakeRoot();
+  const cleanup = renderModule(app, { subject: 'pm', moduleId: 'pm.intake' }, root);
+  assert.equal(root.querySelectorAll('.btn-primary').length, 1);
+  assert.equal(typeof cleanup, 'function', 'like the lesson screen: leaving closes an open film');
+  cleanup();
+});

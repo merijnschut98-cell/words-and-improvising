@@ -3,10 +3,10 @@
 // level paths, the medal and module check, and one button that continues.
 import { h } from './dom.js';
 import { ico } from './icons.js';
-import { metaOf, fieldOf } from '../content/courses/index.js';
+import { metaOf, fieldOf, SUBJECTS } from '../content/courses/index.js';
 import { introSeen, markIntroSeen } from '../core/course.js';
 import { pathModel } from './pathmap.js';
-import { filmStep, introFilm } from './film.js';
+import { filmStep, introFilm, closeFilms } from './film.js';
 import { topicsSection, moduleEnd, continueButton } from './coursehome.js';
 
 // The module of an id, or null (a deep link or a restored session may point at
@@ -33,7 +33,9 @@ export function moduleModel(state, meta, lang) {
 
 export function renderModule(app, { subject, moduleId } = {}, root) {
   const meta = moduleFor(moduleId);
-  if (!meta) { app.go('home'); return; }
+  // A module that no longer exists: the course home of the subject he came
+  // from, or home when that is unknown too.
+  if (!meta) { if (SUBJECTS.includes(subject)) app.setSubject(subject); else app.go('home'); return; }
   const t = app.t;
   const model = moduleModel(app.state, meta, app.lang);
   const blurb = () => h('p', { class: 'module-blurb-text' }, model.blurb);
@@ -48,7 +50,7 @@ export function renderModule(app, { subject, moduleId } = {}, root) {
     : h('section', { class: 'module-intro module-intro-text' }, blurb());
 
   root.append(h('main', { class: 'screen module-screen' },
-    h('button', { class: 'btn btn-ghost small lesson-back', onclick: () => app.setSubject(subject || meta.subject) },
+    h('button', { class: 'btn btn-ghost small lesson-back', onclick: () => app.setSubject(meta.subject) },
       ico('chevron-left'), ' ', t('backToCourse')),
     h('header', { class: 'module-head' },
       h('h1', { class: 'module-screen-title' }, model.title),
@@ -59,4 +61,6 @@ export function renderModule(app, { subject, moduleId } = {}, root) {
     topicsSection(app, meta, { next: model.next, topics: model.topics }),
     moduleEnd(app, meta),
     continueButton(app, meta, model.next, 'btn btn-primary module-continue')));
+  // Leaving the screen closes an open film, as in a lesson.
+  return () => closeFilms();
 }
