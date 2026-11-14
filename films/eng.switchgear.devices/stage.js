@@ -155,16 +155,11 @@ const STAGE = (() => {
   function fzBase() {
     let out = PANEL() + txt(620, 40, SCH, 20, 'end', 'mf-mute') + txt(222, 40, tr('MS-zekering', 'MV fuse'), 20, 'start', 'mf-txt');
     out += rect(FZ.x0, FZ.y0, FZ.x1 - FZ.x0, FZ.y1 - FZ.y0, 'mf-tile', 14);
-    // the sand: a fixed scatter of grains
-    let s = 7;
-    const rnd = () => { s = (s * 16807) % 2147483647; return s / 2147483647; };
-    for (let i = 0; i < 140; i++) out += dot(lerp(FZ.x0 + 10, FZ.x1 - 10, rnd()), lerp(FZ.y0 + 8, FZ.y1 - 8, rnd()), 1.6, 'mf-sand');
     out += rect(FZ.x0 - 26, FZ.y0 - 8, 30, FZ.y1 - FZ.y0 + 16, 'mf-iron', 5) + rect(FZ.x1 - 4, FZ.y0 - 8, 30, FZ.y1 - FZ.y0 + 16, 'mf-iron', 5);
-    out += txt(FZ.x0 + 8, FZ.y1 + 34, tr('zand', 'sand'), 20, 'start', 'mf-mute');
     return out;
   }
-  // the element (melted 0..1) and the striker (out 0..1)
-  function fzIn(melt, out, clockS) {
+  // the element (melted 0..1)
+  function fzIn(melt, clockS) {
     const ym = (FZ.y0 + FZ.y1) / 2;
     const xm = (FZ.x0 + FZ.x1) / 2;
     const gap = 30 * melt;
@@ -172,10 +167,6 @@ const STAGE = (() => {
     let s = `<path class="mf-line" d="${zig(FZ.x0 + 4, xm - gap)}"/><path class="mf-line" d="${zig(xm + gap, FZ.x1 - 4)}"/>`;
     if (melt > 0.05 && melt < 0.7) s += op(1 - melt, `<path class="mf-accl" d="M${f1(xm - gap)} ${ym}L${f1(xm - gap / 3)} ${f1(ym - 8 * Math.sin(clockS * 17))}L${f1(xm + gap / 3)} ${f1(ym + 8)}L${f1(xm + gap)} ${ym}"/>`);
     s += op(1, txt(xm, FZ.y0 - 18, tr('smeltdraad', 'element'), 20, 'middle', 'mf-txt'));
-    // the striker pin in the right end cap
-    const px = FZ.x1 + 22 + 20 * out;
-    s += rect(FZ.x1 + 6, ym - 6, px - FZ.x1 - 6, 12, out > 0.5 ? 'mf-accf' : 'mf-tile', 3);
-    s += op(out, txt(612, ym + 56, tr('slagpen', 'striker'), 20, 'end', 'mf-on'));
     return s;
   }
   function fzTxt(a, b) {
@@ -342,9 +333,7 @@ const STAGE = (() => {
       // the ring switch is opened and closed again to show switching load
       if (b === 1) sw = [p > 0.35 && p < 0.75 ? 0 : 1, 1, 1];
       const melt = b === 3 ? span(p, 0.15, 0.45) : 0;
-      const out = b === 3 ? span(p, 0.45, 0.6) : 0;
-      if (b === 3 && p > 0.6) sw = [1, 1, 1 - span(p, 0.6, 0.72)];
-      set(E.fzIn, fzIn(melt, out, clockS));
+      set(E.fzIn, fzIn(melt, clockS));
       set(E.fzTxt, fzTxt(on(b, 2, p, 0.3, 0.6), b === 3 ? span(p, 0.75, 0.9) : 0));
     } else if (si === 4) {
       vis.ds = span(u, 0, 0.04);

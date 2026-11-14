@@ -292,7 +292,7 @@ const STAGE = (() => {
     o += bars(54, tr('storingen per maand', 'breakdowns a month'), C.BD, '', 30, a1);
     if (a2 > 0.01) o += grp(Math.min(1, a2 * 4), bars(226, tr('olie bijvullen, liter per maand', 'oil top-ups, litres a month'), C.OIL, '', 4.5, a2));
     if (ppl > 0.01) o += grp(ppl, txt(222, 336, tr('operators: extra werk?', 'operators: extra work?'), 21, 'start', 'mt-on') + txt(222, 366, tr('monteurs: onze rol?', 'technicians: our role?'), 21, 'start', 'mt-on'));
-    if (team > 0.01) o += grp(team, txt(222, 362, tr('onderhoud traint en kiest de controles', 'maintenance trains and picks the checks'), 20, 'start', 'mt-on'));
+    if (team > 0.01) o += grp(team, txt(222, 336, tr('monteurs trainen, controles visueel', 'technicians train, checks visual'), 20, 'start', 'mt-on') + txt(222, 366, tr('labels snel dicht', 'tags closed fast'), 20, 'start', 'mt-on'));
     return o;
   }
 

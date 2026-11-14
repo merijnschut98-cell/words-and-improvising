@@ -26,7 +26,7 @@
 // and earthing blades move with the story. Cards in stage space: a vacuum
 // interrupter with its arc and the current through a current zero (a schema),
 // the fault level against breaker ratings with the worked example, an MV fuse
-// with sand, element and striker, the three-position switch with its
+// with its element that melts, the three-position switch with its
 // interlock, air- against gas-insulated switchgear, the SF6 sums and dates, and
 // the table "what can this switch do"; example cards are labelled "voorbeeld"
 // (or "schema").
@@ -472,7 +472,7 @@ const CAM = [
 ];
 
 // ---------------------------------------------------------------- the film
-const DUR = [30, 34, 32, 34, 36, 34, 38, 16];
+const DUR = [30, 34, 32, 34, 36, 34, 38, 19];
 const C = { MIMIC, blades, FF, CB_KA, FAULT_KA, T_OPEN, FL, CB_RANGE, RMUS, KG, GWP, STOCK_T, LEAK_KG, CO2_T, dur: DUR };
 const B = (nl, en, more = {}) => ({ nl, en, ...more });
 const spec = {
@@ -647,8 +647,8 @@ const SAY = [
       'So under the EU F-gas Regulation, new switchgear up to {n:24} kilovolts may in principle no longer use SF6 from 2026, and up to {n:52} kilovolts from 2030. New types break the arc in vacuum and insulate with dry air or solid materials.'),
   ],
   [ // s8 what can it do
-    B('Een schakelinstallatie staat er {n:30} tot {n:50} jaar, dus die keuze weegt zwaar. Vraag altijd: welk type is het? En wat houdt iemand tegen die hem verkeerd gebruikt? Oudere schakelinstallaties missen een deel van de vergrendelingen.',
-      'Switchgear stays {n:30} to {n:50} years, so the choice matters. Always ask: which type is it? And what stops someone using it wrong? Older units lack some of the interlocks.'),
+    B('Een schakelinstallatie staat er {n:30} tot {n:50} jaar, dus die keuze weegt zwaar. Vraag altijd: welk type is het? Het antwoord zegt hoe hij bediend, onderhouden en vervangen wordt. En wat houdt iemand tegen die hem verkeerd gebruikt? Oudere schakelinstallaties missen een deel van de vergrendelingen.',
+      'Switchgear stays {n:30} to {n:50} years, so the choice matters. Always ask: which type is it? The answer tells you how it is operated, maintained and replaced. And what stops someone using it wrong? Older units lack some of the interlocks.'),
   ],
 ];
 // Each beat's still (reduced motion) sits late in its own share of the scene,
@@ -701,7 +701,6 @@ const css = `
 .mf-ghost{fill:none;stroke:var(--anatomy-lo);stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;opacity:.7}
 .mf-dash{fill:none;stroke:var(--fp-accent);stroke-width:2;stroke-dasharray:5 4;stroke-linecap:round}
 .mf-dot{fill:var(--anatomy-hi)}
-.mf-sand{fill:var(--anatomy-lo)}
 .mf-acc{fill:var(--fp-accent);stroke:none}
 .mf-accl{fill:none;stroke:var(--fp-accent);stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round}
 .mf-accf{fill:color-mix(in srgb,var(--fp-accent) 18%,transparent);stroke:var(--fp-accent);stroke-width:1.4}

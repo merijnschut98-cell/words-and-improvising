@@ -559,7 +559,7 @@ const spec = {
         { nl: 'Na drie maanden: storingen van {n:9} naar {n:4} per maand.', en: 'After three months: breakdowns down from {n:9} to {n:4} a month.', cues: [] },
         { nl: 'Hydraulische olie bijvullen: van {n:60} naar {n:15} liter per maand.', en: 'Hydraulic oil top-ups: down from {n:60} to {n:15} litres a month.', cues: ['tank'] },
         { nl: 'De mensenkant beslist: operators zien extra werk, monteurs vrezen voor hun rol.', en: 'The people side decides: operators see extra work, technicians fear for their role.', cues: [] },
-        { nl: 'Monteurs trainen de operators en bepalen welke controles op de lijst staan.', en: 'Technicians train the operators and decide which checks go on the list.', cues: [] },
+        { nl: 'Het werkt als monteurs de operators trainen, controles visueel zijn en labels snel gesloten worden.', en: 'It works when technicians train the operators, checks are visual and tags are closed fast.', cues: [] },
       ],
     },
     {
@@ -646,8 +646,8 @@ const SAY = [
       en: 'And hydraulic oil top-ups fall from {n:60} to {n:15} litres a month. The leaks are fixed, so the oil stays in the machine. Many plants stall exactly there, at step two or three, when the sources of dirt and leaks must actually be fixed.' },
     { nl: 'De mensenkant beslist. Operators horen: extra werk, niet mijn taak. Monteurs zijn bang hun rol te verliezen, of vertrouwen operators niet met hun machine.',
       en: 'The people side decides. Operators hear: extra work, not my job. Technicians fear losing their role, or do not trust operators with their machine.' },
-    { nl: 'Het werkt als monteurs de operators trainen en bepalen welke controles op de lijst staan, en als labels snel gesloten worden.',
-      en: 'It works when technicians train the operators and decide which checks go on the list, and when tags are closed fast.' },
+    { nl: 'Het werkt als monteurs de operators trainen, als de controles visueel zijn en als labels snel gesloten worden.',
+      en: 'It works when technicians train the operators, when checks are visual, and when tags are closed fast.' },
   ],
   [ // s8 measuring with OEE
     { nl: 'De voortgang van TPM meet je met {t:OEE|OEE}: beschikbaarheid maal prestatie maal kwaliteit.',
