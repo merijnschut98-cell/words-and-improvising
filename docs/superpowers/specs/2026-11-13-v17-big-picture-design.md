@@ -228,3 +228,7 @@ Rules for the new work:
 - Tools, formats and meetings are taught by level too: Basis names the options and when each fits, Werkkennis runs one, Gevorderd chooses between them for a given project, Expert adapts them to the organisation and to what goes wrong.
 - The module intro film shows the four levels as columns (the pilot already does) and says in a sentence what each level adds.
 - The content review checks level separation explicitly: no level repeats the one below with harder words, and a lesson at level N does not assume anything that only level N+1 teaches.
+
+## Addendum 14 Nov (4): level openers instead of level films
+
+Merijn asked whether each level needs its own intro film or one intro before Basis is enough. Decided: one intro film per module stays the big picture, and each level 2 to 4 gets a short opener card (presented by Andon, a few sentences: what changes, the role, what the learner can answer afterwards) the first time the learner enters it in a topic. Films per level only where a level really changes the picture, decided after Merijn has used the cards (Expert levels first). Reason: the big picture does not change per level, the perspective does; a film per level would mean about 160 films instead of 41, and that capacity buys more in completing the lesson films (Task 17). Plan: Task 19.
