@@ -668,7 +668,13 @@ const SAY = {
     [/\b([Ll])egacysysteem\b/g, '$1egge-sie-systeem'], [/\b([Bb])ig bang\b/g, '$1ig beng'], [/\bHershey\b/g, 'Hur-sjie'], [/\bHalloween\b/g, 'Hellowien'],
     [/\b(werk voor|resultaat tekent) de business\b/g, '$1 de biznis'], [/\bEngineering lost\b/g, 'Entsjinieering lost'], [/\b([Pp])roefrun\b/g, '$1roef-ran'],
     [/\b([Hh])oeveel records\b/g, '$1oeveel rekkords'], [/\bwordt getimed\b/g, 'wordt getaimd'], [/\bDe timing telt\b/g, 'De taiming telt'],
-    [/\b(nooit|data) live\b/g, '$1 laiv']],
+    [/\b(nooit|data) live\b/g, '$1 laiv'],
+    // the module intro film (pm.plan.intro), a self-contained group at the end of the Dutch list: espeak-ng reads
+    // operators as "OO-pi-ra-tors" (checked with phonemes through Piper's nl_NL-alex bridge); said ope-raators, as
+    // the existing "de operators" rule above, but only in this film's "getrainde operators". Schakelkast, inkoper,
+    // monteurs, zomerstop and the plan words go through the rules above or need nothing; no other film's spoken
+    // text changes
+    [/\bgetrainde operators\b/g, 'getrainde ope-raators']],
   en: [[/\brpm\b/g, 'revolutions per minute'], [/\bmm\/min\b/g, 'millimetres per minute'], [/\bm\/min\b/g, 'metres per minute'], [/µm\b/g, 'micrometres'],
     [/€\s?(\d[\d,]*(?:\.\d+)?)/g, '$1 euros'], [/(\d)\.0(?![\d])/g, '$1'], [/(\d)\s?mm\b/g, '$1 millimetres'], [/(\d)\s?min\b/g, '$1 minutes'], [/(\d)\s?%/g, '$1 percent'],
     [/Ø\s*/g, 'diameter '], [/(\d)\+(\d)/g, '$1 plus $2'], [/\s×\s/g, ' times '], [/\s\/\s/g, ' divided by '], [/\s=\s/g, ' is '], [/°/g, ' degrees'], [/\bRa\b/g, 'R a'], [/’/g, "'"],

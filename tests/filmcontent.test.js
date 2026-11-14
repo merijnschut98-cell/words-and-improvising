@@ -2,12 +2,15 @@
 // as JSON; these tests re-run the build's term, number, coverage and language
 // checks on that JSON against the current lesson text. A lesson edit that
 // removes a number or renames a term fails here until the film is rebuilt.
+// A module intro film (v17, data.module) is held to its module instead: the
+// module's title, blurb, topic titles and lesson texts, and its map (every
+// topic named and shown); a renamed or added topic fails here too.
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import { MODULES, loadModule, placeOf } from '../src/content/courses/index.js';
 import { validateModule } from '../src/content/courses/validate.js';
-import { readFilmData, checkFilm, lessonTextOf, MAX_BYTES } from '../films/_kit/assert.mjs';
+import { readFilmData, checkFilm, lessonTextOf, moduleTextOf, MAX_BYTES } from '../films/_kit/assert.mjs';
 
 const DIR = 'src/content/courses/films';
 // Films whose terms all carry the same name in both languages (pm.agile.scrum:
@@ -50,6 +53,15 @@ test('withoutNumber also removes a recall answer given as a number', () => {
   assert.ok(!lessonTextOf(withoutNumber(l, '6')).includes('6'));
 });
 
+// What a film is checked with: its lessons, and for an intro film its module's
+// index entry and the page's stage (the drawing and scripts where a card's words
+// stand, without the film data, whose captions and topic titles would always match).
+const stageOf = (html) => html.replace(/<script type="application\/json" id="film-data">[\s\S]*?<\/script>/, '');
+const ctxOf = (data, html, lessons, wiredBy = data.module ? [] : data.lessons) => ({
+  lessons, levelOf: (lid) => (placeOf(lid) || {}).level || 1, wiredBy,
+  ...(data.module ? { module: MODULES.find((m) => m.id === data.module), stageText: stageOf(html) } : {}),
+});
+
 // All lessons, both languages, by id.
 async function allLessons() {
   const out = { nl: new Map(), en: new Map() };
@@ -83,7 +95,8 @@ test('every shipped film: its terms, numbers, coverage, language and length stil
     const data = readFilmData(html);
     assert.equal(data.id, id);
     const wiredBy = [...lessons.nl.values()].filter((l) => l.film && l.film.split('#')[0] === id).map((l) => l.id);
-    const errs = checkFilm(data, { lessons, levelOf: (lid) => (placeOf(lid) || {}).level || 1, wiredBy });
+    if (data.module) assert.equal((MODULES.find((m) => m.id === data.module) || {}).intro, id, `${id}: module ${data.module} does not name it as its intro`);
+    const errs = checkFilm(data, ctxOf(data, html, lessons, wiredBy));
     assert.deepEqual(errs, [], `${id}:\n${errs.join('\n')}`);
     assert.ok(Buffer.byteLength(html) <= MAX_BYTES, `${id}: ${Buffer.byteLength(html)} bytes, over the cap`);
   }
@@ -109,21 +122,29 @@ test('films with strictFocus: every beat has a focus (or null) that names a part
 test('the sync check catches a renamed term, a removed number and a Dutch word in English', async () => {
   const lessons = await allLessons();
   for (const id of films) {
-    const data = readFilmData(fs.readFileSync(`${DIR}/${id}.html`, 'utf8'));
-    const ctx = { lessons, levelOf: (lid) => (placeOf(lid) || {}).level || 1, wiredBy: data.lessons };
+    const html = fs.readFileSync(`${DIR}/${id}.html`, 'utf8');
+    const data = readFilmData(html);
+    const ctx = ctxOf(data, html, lessons);
     // a lesson whose first term was renamed
     const t = data.scenes.flatMap((s) => s.terms)[0];
     const renamed = { nl: new Map(lessons.nl), en: lessons.en };
     const l = lessons.nl.get(t.lesson);
     renamed.nl.set(t.lesson, { ...l, terms: l.terms.map((x, i) => (i === t.index ? { ...x, term: `${x.term}x` } : x)) });
     assert.match(checkFilm(data, { ...ctx, lessons: renamed }).join('\n'), /is no longer term \d+ of/);
-    // a lesson that no longer has the number
+    // a lesson that no longer has the number (an intro film: none of its module's text has it)
     const n = data.numbers[0];
     const gone = { nl: new Map(lessons.nl), en: lessons.en };
-    const ln = lessons.nl.get(n.lesson);
-    gone.nl.set(n.lesson, withoutNumber(ln, n.value));
-    assert.ok(!lessonTextOf(gone.nl.get(n.lesson)).includes(n.value));
-    assert.ok(checkFilm(data, { ...ctx, lessons: gone }).some((e) => e.endsWith(`no longer in ${n.lesson}`)), `${id}: removed number ${n.value} not reported`);
+    if (data.module) {
+      for (const lid of ctx.module.lessons) gone.nl.set(lid, withoutNumber(lessons.nl.get(lid), n.value));
+      const mod = withoutNumber(ctx.module, n.value);
+      assert.ok(!moduleTextOf(mod, gone, 'nl').includes(n.value));
+      assert.ok(checkFilm(data, { ...ctx, module: mod, lessons: gone }).some((e) => e.endsWith(`no longer in the text of module ${mod.id}`)), `${id}: removed number ${n.value} not reported`);
+    } else {
+      const ln = lessons.nl.get(n.lesson);
+      gone.nl.set(n.lesson, withoutNumber(ln, n.value));
+      assert.ok(!lessonTextOf(gone.nl.get(n.lesson)).includes(n.value));
+      assert.ok(checkFilm(data, { ...ctx, lessons: gone }).some((e) => e.endsWith(`no longer in ${n.lesson}`)), `${id}: removed number ${n.value} not reported`);
+    }
     // a Dutch term in the English caption (a film whose terms all carry the
     // same name in both languages, as pm.agile.scrum's Scrum Guide names, has none)
     const dutch = data.scenes.flatMap((s) => s.terms).find((x) => x.nl.toLowerCase() !== x.en.toLowerCase());
@@ -149,7 +170,7 @@ test('every narrated film: each beat has a script in both languages, and the syn
   const narrated = films.map((id) => readFilmData(fs.readFileSync(`${DIR}/${id}.html`, 'utf8'))).filter((d) => d.scenes.some((s) => s.beats.some((b) => b.say)));
   assert.ok(narrated.length >= 1, 'no narrated film');
   for (const data of narrated) {
-    const ctx = { lessons, levelOf: (lid) => (placeOf(lid) || {}).level || 1, wiredBy: data.lessons };
+    const ctx = ctxOf(data, fs.readFileSync(`${DIR}/${data.id}.html`, 'utf8'), lessons);
     for (const s of data.scenes) for (const b of s.beats) for (const lang of ['nl', 'en']) assert.ok(b.say[lang].length && b.voice[lang].trim(), `${data.id} ${s.id}: ${lang} narration`);
     // a beat without a script
     const gap = JSON.parse(JSON.stringify(data));
@@ -178,5 +199,43 @@ test('every narrated film: each beat has a script in both languages, and the syn
     const short = JSON.parse(JSON.stringify(data));
     for (const s of short.scenes) for (const b of s.beats) b.voice = { nl: 'Kort.', en: 'Short.' };
     assert.match(checkFilm(short, ctx).join('\n'), /narration nl would take about \d+ s/);
+  }
+});
+
+// v17: a module intro film is held to its module's map. Every module that names
+// an intro ships it (tests/intro.test.js); here each shipped intro page is
+// rechecked: a topic renamed or added in the index, or a topic whose title no
+// caption and no card carries, fails until the film is rebuilt.
+test('every shipped intro film: each topic of its module is still on its map, named and shown', async () => {
+  const lessons = await allLessons();
+  const intros = films.map((id) => [id, fs.readFileSync(`${DIR}/${id}.html`, 'utf8')]).filter(([, html]) => readFilmData(html).module);
+  assert.ok(intros.length >= 1, 'no intro film shipped');
+  for (const [id, html] of intros) {
+    const data = readFilmData(html);
+    assert.equal(id, `${data.module}.intro`, `${id}: an intro film is named <module>.intro`);
+    const ctx = ctxOf(data, html, lessons);
+    assert.ok(ctx.module, `${id}: module ${data.module} is not in the index`);
+    assert.deepEqual(data.lessons, ctx.module.lessons, `${id}: serves all of ${data.module}'s lessons`);
+    assert.deepEqual(data.topics.map((t) => t.id), ctx.module.topics.map((t) => t.id), `${id}: one map entry per topic`);
+    // a topic renamed in the index
+    const renamed = JSON.parse(JSON.stringify(ctx.module));
+    renamed.topics[0].title.en += ' x';
+    assert.match(checkFilm(data, { ...ctx, module: renamed }).join('\n'), /topic .*: title ".*" \(en\) is now ".* x"/);
+    // a topic added to the module
+    const grown = JSON.parse(JSON.stringify(ctx.module));
+    grown.topics.push({ id: 'zz', title: { nl: 'Zz', en: 'Zz' }, levels: [] });
+    assert.match(checkFilm(data, { ...ctx, module: grown }).join('\n'), /topic zz of .* is not on the film's map/);
+    // a topic whose title is in no caption and on no card
+    const t = ctx.module.topics[0];
+    const mute = JSON.parse(JSON.stringify(data));
+    const cut = (text, title) => text.replace(new RegExp(title.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'gi'), '…');
+    for (const s of mute.scenes) for (const b of s.beats) for (const lang of ['nl', 'en']) b.text[lang] = cut(b.text[lang], t.title[lang]);
+    const noCard = cut(cut(ctx.stageText, t.title.nl), t.title.en);
+    assert.match(checkFilm(mute, { ...ctx, stageText: noCard }).join('\n'), new RegExp(`topic ${t.id}: ".*" \\(nl\\) is in no caption and on no card`));
+    // a topic whose scene lights no part of it
+    const dark = JSON.parse(JSON.stringify(data));
+    const sc = dark.scenes.find((s) => s.id === data.topics[0].scene);
+    for (const b of sc.beats) { b.cues = b.cues.filter((c) => c !== data.topics[0].cue); if (b.focus) b.focus = b.focus.filter((c) => c !== data.topics[0].cue); }
+    assert.match(checkFilm(dark, ctx).join('\n'), /no beat of scene .* lights its part/);
   }
 });
