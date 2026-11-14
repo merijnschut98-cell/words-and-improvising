@@ -2880,6 +2880,68 @@
         "vtt": "src/content/courses/films/pm.agile.forecast.en.vtt"
       }
     },
+    "pm.plan.intro": {
+      "poster": "src/content/courses/films/pm.plan.intro.jpg",
+      "nl": {
+        "dur": 222.1,
+        "bytes": 8474784,
+        "scenes": [
+          0,
+          24.82,
+          66.47,
+          102.53,
+          134.04,
+          162.59,
+          186.02
+        ],
+        "vtt": "src/content/courses/films/pm.plan.intro.nl.vtt"
+      },
+      "en": {
+        "dur": 253.1,
+        "bytes": 9449383,
+        "scenes": [
+          0,
+          30.38,
+          77.26,
+          118,
+          155.23,
+          186.12,
+          213
+        ],
+        "vtt": "src/content/courses/films/pm.plan.intro.en.vtt"
+      }
+    },
+    "pm.field.lifecycle": {
+      "poster": "src/content/courses/films/pm.field.lifecycle.jpg",
+      "nl": {
+        "dur": 162.4,
+        "bytes": 7248643,
+        "scenes": [
+          0,
+          15.83,
+          42.72,
+          61.73,
+          88.77,
+          113.76,
+          137.7
+        ],
+        "vtt": "src/content/courses/films/pm.field.lifecycle.nl.vtt"
+      },
+      "en": {
+        "dur": 188.4,
+        "bytes": 8156222,
+        "scenes": [
+          0,
+          18.81,
+          49.75,
+          73.32,
+          104.5,
+          133.11,
+          160.74
+        ],
+        "vtt": "src/content/courses/films/pm.field.lifecycle.en.vtt"
+      }
+    },
     "eng.power.air": {
       "poster": "src/content/courses/films/eng.power.air.jpg",
       "nl": {

@@ -19,14 +19,16 @@ import { existsSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { pathToFileURL } from 'node:url';
 import { ROOT } from './build-film.mjs';
+import { mapCue } from './assert.mjs';
 import { mapSvg } from '../../src/ui/subjectmap.js';
 import { STRINGS } from '../../src/i18n.js';
 
 // The words the app uses for the four levels (src/i18n.js level_1 to level_4).
 export const levelWords = (lang) => [1, 2, 3, 4].map((n) => STRINGS[lang][`level_${n}`]);
 
-// The cue key of a highlighted place: pm.plan gives "map-plan".
-export const mapCue = (moduleId) => `map-${String(moduleId).split('.').pop().replace(/[^a-z0-9]/g, '')}`;
+// The cue key of a highlighted place: pm.plan gives "map-plan" (defined in
+// assert.mjs, whose field check asks the lit places by it).
+export { mapCue };
 
 const LABEL = /<text class="map-(?:zone-)?label"[^>]*>[\s\S]*?<\/text>/g;
 

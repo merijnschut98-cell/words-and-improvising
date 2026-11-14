@@ -38,12 +38,25 @@
 //   draw); a lesson film's data is unchanged. Its id is '<module id>.intro', the
 //   index names it (`intro:`) and sw.js precaches it (tests/intro.test.js).
 //   Notes: docs/superpowers/plans/2026-11-11-v16-notes.md, "Module intro films".
+// - Field film (v17): `field: 'pm.field.lifecycle'` (a field of FIELDS; the
+//   film's id is the field's id) in place of `lessons`, and `stations:
+//   { 'pm.intake': { scene: 's2', cue: 'st-intake' }, ... }`, one entry per
+//   module of the field: the scene that explains it and the data-cue group of
+//   its station. The film serves all lessons of the field's modules; its {n:}
+//   numbers come from them or from the field's and its modules' own text. It is
+//   held to the road (checkStations in assert.mjs): every module named in a
+//   caption of its own scene in both languages (a whole word), in the order of
+//   the road, explained in two beats and lit, and the film ends on the shared
+//   map (mapScene) with exactly the field's places lit and lit by its last scene.
+//   The narration guard and the label fit apply (station titles fit a row of the
+//   road, STATION_UNITS). The data carries `field` and `stations` (with the
+//   index's module titles); the field names it (`film:`), sw.js precaches it.
 // - Then the shared checks (coverage, language, pacing; films/_kit/assert.mjs)
 //   and the size cap. Any problem throws, so a broken film is never written.
 import { mkdirSync, writeFileSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { MODULES, loadModule, placeOf } from '../../src/content/courses/index.js';
+import { MODULES, FIELDS, loadModule, placeOf } from '../../src/content/courses/index.js';
 import { parseMarked, formatNumber, plainOf, speakOf } from './timeline.mjs';
 import { checkFilm, checkFocus, cueKeysOf, lessonTextOf, moduleMetaTextOf, hasNumber, narrationWords, NARRATION_WPS, MAX_BYTES, TARGET_BYTES } from './assert.mjs';
 import { pageHtml } from './player.mjs';
@@ -95,17 +108,20 @@ function findTerm(name, lang, served, lessons, prefer) {
   throw new Error(`term "${name}" (${lang}) is in none of the served lessons`);
 }
 
-// prefer: the lesson a scene belongs to, searched first. mod: an intro film's
-// module, whose own Dutch text (title, blurb, topic titles) is searched last.
-function findNumber(value, served, lessons, prefer, mod) {
+// prefer: the lesson a scene belongs to, searched first. own: the index entries
+// whose own Dutch text (title, blurb, topic titles) is searched last: an intro
+// film's module, or a field film's field and then its modules. what: how the
+// error names them ("module pm.plan", "field pm.field.lifecycle").
+function findNumber(value, served, lessons, prefer, own = [], what = '') {
   for (const id of prefer && served.includes(prefer) ? [prefer, ...served] : served) if (hasNumber(lessonTextOf(lessons.nl.get(id)), value)) return id;
-  if (mod && hasNumber(moduleMetaTextOf(mod, 'nl'), value)) return mod.id;
-  throw new Error(`number ${value} is in none of the served Dutch lessons${mod ? ` nor in the text of module ${mod.id}` : ''}`);
+  for (const meta of own) if (hasNumber(moduleMetaTextOf(meta, 'nl'), value)) return meta.id;
+  throw new Error(`number ${value} is in none of the served Dutch lessons${what ? ` nor in the text of ${what}` : ''}`);
 }
 
 // An intro film's module (v17), or null for a lesson film.
 function introModule(spec, modules) {
   if (spec.module === undefined) return null;
+  if (spec.field !== undefined) throw new Error(`film ${spec.id}: name a field, a module or lessons, not more than one`);
   if (spec.lessons !== undefined) throw new Error(`film ${spec.id}: name a module or lessons, not both`);
   const mod = modules.find((m) => m.id === spec.module);
   if (!mod) throw new Error(`film ${spec.id}: unknown module ${spec.module}`);
@@ -123,6 +139,33 @@ function introTopics(spec, mod) {
   });
 }
 
+// A field film's field (v17) and its modules in the order of the road, or null.
+// Its id is the field's id (the index names it as the field's film).
+function fieldFilm(spec, fields, modules) {
+  if (spec.field === undefined) return null;
+  if (spec.module !== undefined || spec.lessons !== undefined) throw new Error(`film ${spec.id}: name a field, a module or lessons, not more than one`);
+  const field = fields.find((f) => f.id === spec.field);
+  if (!field) throw new Error(`film ${spec.id}: unknown field ${spec.field}`);
+  if (spec.id !== field.id) throw new Error(`film ${spec.id}: a field film's id is its field id (${field.id})`);
+  const mods = field.modules.map((id) => {
+    const m = modules.find((x) => x.id === id);
+    if (!m) throw new Error(`field ${field.id}: unknown module ${id}`);
+    return m;
+  });
+  return { field, mods };
+}
+// Its road: every module of the field, with the scene and the part that show it.
+function fieldStations(spec, field, mods) {
+  const given = spec.stations || {};
+  for (const id of Object.keys(given)) if (!field.modules.includes(id)) throw new Error(`station ${id} is no module of ${field.id}`);
+  return mods.map((m) => {
+    const g = given[m.id];
+    if (!g || !g.scene || !g.cue) throw new Error(`module ${m.id} of ${field.id} has no scene and cue in the film's stations`);
+    if (!spec.scenes.some((s) => s.id === g.scene)) throw new Error(`station ${m.id}: no scene ${g.scene}`);
+    return { id: m.id, title: { nl: m.title.nl, en: m.title.en }, scene: g.scene, cue: g.cue };
+  });
+}
+
 // A beat's focus as written: a cue key, a list of them, or null (an overview).
 function focusOf(f, where) {
   if (f === null) return null;
@@ -132,11 +175,16 @@ function focusOf(f, where) {
 }
 
 // Resolves one film source into the data block (plan 2.4, with beats).
-// modules: the index (a test passes its own), for an intro film's module.
-export function resolveFilm(spec, lessons, modules = MODULES) {
+// modules, fields: the index (a test passes its own), for an intro film's
+// module or a field film's field.
+export function resolveFilm(spec, lessons, modules = MODULES, fields = FIELDS) {
+  const fld = fieldFilm(spec, fields, modules);
   const mod = introModule(spec, modules);
   const topics = mod ? introTopics(spec, mod) : null;
-  const served = mod ? mod.lessons : spec.lessons;
+  const stations = fld ? fieldStations(spec, fld.field, fld.mods) : null;
+  const served = fld ? fld.mods.flatMap((m) => m.lessons) : mod ? mod.lessons : spec.lessons;
+  const own = fld ? [fld.field, ...fld.mods] : mod ? [mod] : [];
+  const ownWhat = fld ? `field ${fld.field.id}` : mod ? `module ${mod.id}` : '';
   for (const id of served) if (!lessons.nl.has(id)) throw new Error(`unknown lesson ${id}`);
   const glossed = new Set();
   const sayGlossed = new Set();
@@ -158,7 +206,7 @@ export function resolveFilm(spec, lessons, modules = MODULES) {
       if (readP && readP.nl.filter((p) => p.num).map((p) => p.num).join() !== readP.en.filter((p) => p.num).map((p) => p.num).join()) throw new Error(`${where}: readout numbers differ`);
       for (const raw of [...nn, ...(readP ? readP.nl.filter((p) => p.num).map((p) => p.num) : [])]) {
         const value = formatNumber(raw, 'nl');
-        if (!numbers.some((n) => n.value === value)) numbers.push({ lesson: findNumber(value, served, lessons, s.lesson, mod), value, scene: s.id });
+        if (!numbers.some((n) => n.value === value)) numbers.push({ lesson: findNumber(value, served, lessons, s.lesson, own, ownWhat), value, scene: s.id });
       }
       // focus (v16): the part(s) of the drawing this beat explains, lit while it
       // is spoken; a term's cue joins it. Films without it resolve as before.
@@ -207,7 +255,7 @@ export function resolveFilm(spec, lessons, modules = MODULES) {
         if (nums.nl.join() !== nums.en.join()) throw new Error(`${where}: the nl and en narration carry different numbers`);
         for (const raw of nums.nl) {
           const value = formatNumber(raw, 'nl');
-          if (!numbers.some((n) => n.value === value)) numbers.push({ lesson: findNumber(value, served, lessons, s.lesson, mod), value, scene: s.id });
+          if (!numbers.some((n) => n.value === value)) numbers.push({ lesson: findNumber(value, served, lessons, s.lesson, own, ownWhat), value, scene: s.id });
         }
         const say = {};
         for (const lang of ['nl', 'en']) {
@@ -238,7 +286,7 @@ export function resolveFilm(spec, lessons, modules = MODULES) {
     });
     return { id: s.id, n: si + 1, level: s.level, dur: s.dur, still: s.still, title: s.title, beats, terms: sceneTerms };
   });
-  return { id: spec.id, title: spec.title, lessons: served, scenes, skip: spec.skip || [], numbers, ...(mod ? { module: mod.id, topics } : {}), ...(spec.strictFocus ? { strictFocus: true } : {}) };
+  return { id: spec.id, title: spec.title, lessons: served, scenes, skip: spec.skip || [], numbers, ...(mod ? { module: mod.id, topics } : {}), ...(fld ? { field: fld.field.id, stations } : {}), ...(spec.strictFocus ? { strictFocus: true } : {}) };
 }
 
 // Builds and writes the page; returns { data, bytes, out }.
@@ -247,7 +295,9 @@ export async function defineFilm(spec, stage) {
   const data = resolveFilm(spec, lessons);
   // an intro film is wired by its module's index entry, not by lessons; its cards' words stand in the stage
   const module = data.module ? MODULES.find((m) => m.id === data.module) : undefined;
-  const errs = checkFilm(data, { lessons, levelOf: (id) => (placeOf(id) || {}).level || 1, wiredBy: spec.lessons || [], module, stageText: `${stage.svg}\n${stage.script || ''}` });
+  // a field film is wired by its field's entry (film:), and held to the field and its modules
+  const field = data.field ? FIELDS.find((f) => f.id === data.field) : undefined;
+  const errs = checkFilm(data, { lessons, levelOf: (id) => (placeOf(id) || {}).level || 1, wiredBy: spec.lessons || [], module, ...(field ? { field, modules: MODULES } : {}), stageText: `${stage.svg}\n${stage.script || ''}` });
   const focus = checkFocus(data, cueKeysOf(`${stage.svg}\n${stage.script || ''}`));
   errs.push(...focus.errors);
   if (errs.length) throw new Error(`film ${spec.id} fails its checks:\n  ${errs.join('\n  ')}`);
