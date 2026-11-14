@@ -307,13 +307,20 @@ test('introduction: once per device, a short line, the status light blinks, mark
   // keeps the introduction, without blinking again, and marks nothing more.
   let writes = 0;
   app.setState = (s) => { writes += 1; app.state = s; };
-  const again = guideGreeting(app, { subject: 'eng', goal: true });
+  const again = guideGreeting(app, { subject: 'start', goal: true });
   assert.equal(again.getAttribute('data-line'), 'intro', 'a redraw does not swallow the introduction');
   assert.equal(again.querySelector('.guide-say').textContent, 'Ik ben Andon. Ik wijs je de weg.');
   assert.doesNotMatch(again.querySelector('.guide').innerHTML, /blink/, 'blinks once');
   assert.equal(writes, 0, 'marked only once');
-  // Once he leaves the homes (next navigation), the day line returns.
-  leaveAndonIntro(app);
+  // Switching subject is a navigation of his own: the next home has its day line.
+  assert.notEqual(guideGreeting(app, { subject: 'eng' }).getAttribute('data-line'), 'intro', 'a subject switch ends it');
+  assert.notEqual(guideGreeting(app, { subject: 'start' }).getAttribute('data-line'), 'intro', 'and it does not come back');
+  // Leaving the homes ends it too.
+  const app2 = appFor(stNew());
+  app2.setState = (s) => { app2.state = s; };
+  guideGreeting(app2, { subject: 'pm' });
+  leaveAndonIntro(app2);
+  assert.notEqual(guideGreeting(app2, { subject: 'pm' }).getAttribute('data-line'), 'intro', 'after leaving home');
   const second = guideGreeting(app, { subject: 'start' });
   assert.notEqual(second.getAttribute('data-line'), 'intro');
   assert.doesNotMatch(second.querySelector('.guide').innerHTML, /blink/);

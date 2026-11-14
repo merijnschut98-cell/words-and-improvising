@@ -244,14 +244,16 @@ export function guideGreeting(app, { subject = null, goal = false } = {}) {
   const model = statusModel({ due: dueFor(app, subject), goalDone: goalProgress(app.state, today).done });
   // First time on this device: he introduces himself instead of the day line,
   // one light blinking briefly. Marked at once (device only), so it is said
-  // once; redraws of home in the same visit keep the line (no second blink)
-  // until he navigates away, so an automatic redraw never swallows it.
+  // once; redraws of the same home keep the line (no second blink), so an
+  // automatic redraw (sync after boot) never swallows it. A subject switch or
+  // leaving the homes (app.go) ends it.
   const first = !andonIntroSeen(app.state);
   if (first) {
-    app.andonIntroLive = true;
+    app.andonIntroLive = subject || 'home';
     if (typeof app.setState === 'function') app.setState(markAndonIntroSeen(app.state));
   }
-  const intro = first || app.andonIntroLive === true;
+  const intro = first || (!!app.andonIntroLive && app.andonIntroLive === (subject || 'home'));
+  if (!intro) app.andonIntroLive = false;
   const left = !intro && goal ? goalLeftText(app) : null;
   const kind = intro ? 'intro' : left ? 'goal' : 'day';
   const say = intro ? app.t('guideMeet') : left || guideLine(app.t, 'guideHome', today);
