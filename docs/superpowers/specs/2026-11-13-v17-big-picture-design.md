@@ -168,3 +168,18 @@ Other candidates:
 - Links between fields on the map (for example OEE in flow, maintenance and lines).
 - Listen-only mode for intros while travelling.
 - Speaking formats (plan of 12 Nov, waiting on nine answers).
+
+## Addendum 14 Nov: two new Projects modules (practice of the project and process)
+
+Merijn's observation: the Projects modules lean on communication and IT; what is missing is the practice of running a project or process. His questions: what do I do first, what second; when do I use a project management tool and which ones work well; when do I do a brown paper session, what do I prepare, how does the session itself run; when do I use other formats such as brainstorming or weekly meetings. And: "I am not yet a project or process manager expert, so I probably miss things."
+
+What the check of 14 Nov found: the process content that exists is substantial (breakdown, critical path, estimating, risk, earned value, steering committee, scope and change, handover, closing, a meeting rhythm lesson, a few kick-off mentions). What is missing: the route as a whole (the order of the first days and weeks), tools (MS Project appears in one file; Jira, Trello, Planner, Asana not at all), formats and facilitation (brown paper, brainstorming and workshops do not appear), and a catalogue of meeting types and when to use which.
+
+Decided by Merijn:
+
+- All four gaps are in scope, plus whatever a coverage review finds that he did not think of.
+- **Two new modules**, not extra topics: one about the approach and tools (route, first weeks, tools), one about formats and meetings (brown paper, workshops, brainstorming, kick-off, weekly, stand-up and others). Four topics of four levels each, like the other modules. Names and their field and map place are decided after the review below.
+- **A coverage review comes first**: a research pass against the established bodies of knowledge for project and process managers (PMBOK, PRINCE2, IPMA ICB, Lean and Six Sigma practice, change management, facilitation), reading for what a manufacturing-side project or process manager who is new to the field needs and the app does not cover. Sources required. Output: a ranked gap list and a proposed topic list for the two modules, brought to Merijn as multiple-choice decisions.
+- **Tools:** recommend a wide range, including ones Merijn does not know. The Microsoft world is in (Excel, Project, Planner, Teams, Azure DevOps and whatever else fits), next to other families (Jira, Smartsheet, Asana, Trello, monday.com, ClickUp, Notion, Confluence, Miro or Mural for workshops, and others the research finds). Organised by when each fits (size, team, kind of work), with sources; no prices or version claims that age.
+- **Timing:** after the checkpoint (Merijn has seen the pilot module intro and field film 1), in parallel with the module intros. The map and field film 1 then get places for the two new modules, which costs one extra render of film 1.
+- **Models** (see `2026-11-14-model-routing.md`): the coverage review and the tool research on `sonnet` (read-only but with synthesis); writing content on `sonnet`; the review of the first module of the new pattern on `opus`.
