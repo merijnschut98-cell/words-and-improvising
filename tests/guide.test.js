@@ -248,7 +248,7 @@ test('course home with the goal half done: the greeting says how much XP is left
 });
 
 // ---- Andon recognisable (v17): status light, name, speech bubble, one-time introduction ----
-const { statusModel, andonIntroSeen, markAndonIntroSeen } = await import('../src/ui/guide.js');
+const { statusModel, andonIntroSeen, markAndonIntroSeen, leaveAndonIntro } = await import('../src/ui/guide.js');
 const dueState = (st = stOn()) => ({ ...st, courseReviews: { 'nl|q1': { subject: 'eng', lesson: 'l', box: 1, due: '2026-11-01' } } });
 
 test('statusModel: nothing due burns the bottom light, due burns the middle (ochre), goal done adds the top; pure', () => {
@@ -303,10 +303,23 @@ test('introduction: once per device, a short line, the status light blinks, mark
   assert.equal(first.querySelector('.guide-say').textContent, 'Ik ben Andon. Ik wijs je de weg.');
   assert.match(first.querySelector('.guide').innerHTML, /g-low[^"]*blink/);
   assert.equal(saved.ui.andonIntro, true);
+  // A redraw of a home in the same visit (sync after boot, subject switch)
+  // keeps the introduction, without blinking again, and marks nothing more.
+  let writes = 0;
+  app.setState = (s) => { writes += 1; app.state = s; };
+  const again = guideGreeting(app, { subject: 'eng', goal: true });
+  assert.equal(again.getAttribute('data-line'), 'intro', 'a redraw does not swallow the introduction');
+  assert.equal(again.querySelector('.guide-say').textContent, 'Ik ben Andon. Ik wijs je de weg.');
+  assert.doesNotMatch(again.querySelector('.guide').innerHTML, /blink/, 'blinks once');
+  assert.equal(writes, 0, 'marked only once');
+  // Once he leaves the homes (next navigation), the day line returns.
+  leaveAndonIntro(app);
   const second = guideGreeting(app, { subject: 'start' });
   assert.notEqual(second.getAttribute('data-line'), 'intro');
   assert.doesNotMatch(second.querySelector('.guide').innerHTML, /blink/);
   assert.ok(tNl('guideHome').includes(second.querySelector('.guide-say').textContent));
+  // A fresh visit (new app session) with the flag stored: no introduction.
+  assert.notEqual(guideGreeting(appFor(app.state), { subject: 'start' }).getAttribute('data-line'), 'intro');
   assert.equal(guideGreeting(appFor(stNew(), tEn, 'en'), { subject: 'start' }).querySelector('.guide-say').textContent, "I'm Andon. I'll show you the way.");
   const off = appFor(stOff());
   let touched = false;
@@ -335,4 +348,16 @@ test('storage keeps ui.andonIntro only as true; css has bubble, name and a blink
   assert.equal(load(backend(true)).ui.andonIntro, true);
   assert.equal('andonIntro' in load(backend('yes')).ui, false);
   assert.equal('andonIntro' in load({ getItem: () => null, setItem() {} }).ui, false, 'existing learners see it once');
+});
+
+test('the introduction ends on the next navigation away from the homes, not on a redraw of home', async () => {
+  const fs = await import('node:fs');
+  const src = fs.readFileSync(new URL('../src/app.js', import.meta.url), 'utf8');
+  assert.match(src, /if \(screen !== 'home'\) leaveAndonIntro\(this\)/);
+});
+
+test('status on track burns the brand success green, not petrol (an andon is green when running)', async () => {
+  const fs = await import('node:fs');
+  const css = fs.readFileSync(new URL('../styles.css', import.meta.url), 'utf8');
+  assert.match(css, /\.guide-svg\.st-ok \.g-seg\.g-low\.on \.t-left \{ fill: var\(--good\); \}/);
 });

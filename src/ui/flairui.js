@@ -243,14 +243,20 @@ export function guideGreeting(app, { subject = null, goal = false } = {}) {
   const today = app.today();
   const model = statusModel({ due: dueFor(app, subject), goalDone: goalProgress(app.state, today).done });
   // First time on this device: he introduces himself instead of the day line,
-  // one light blinking briefly. Marked at once (device only), so it is said once.
-  const intro = !andonIntroSeen(app.state);
-  if (intro && typeof app.setState === 'function') app.setState(markAndonIntroSeen(app.state));
+  // one light blinking briefly. Marked at once (device only), so it is said
+  // once; redraws of home in the same visit keep the line (no second blink)
+  // until he navigates away, so an automatic redraw never swallows it.
+  const first = !andonIntroSeen(app.state);
+  if (first) {
+    app.andonIntroLive = true;
+    if (typeof app.setState === 'function') app.setState(markAndonIntroSeen(app.state));
+  }
+  const intro = first || app.andonIntroLive === true;
   const left = !intro && goal ? goalLeftText(app) : null;
   const kind = intro ? 'intro' : left ? 'goal' : 'day';
   const say = intro ? app.t('guideMeet') : left || guideLine(app.t, 'guideHome', today);
   return h('div', { class: 'guide-greeting', 'data-subject': subject || '', 'data-line': kind, 'data-status': model.status },
-    guideFigure(app.state, { mood: 'idle', size: 80, status: model, blink: intro, statusText: app.t(model.status === 'due' ? 'guideStatusDue' : 'guideStatusOk') }),
+    guideFigure(app.state, { mood: 'idle', size: 80, status: model, blink: first, statusText: app.t(model.status === 'due' ? 'guideStatusDue' : 'guideStatusOk') }),
     h('p', { class: 'guide-say' }, say));
 }
 

@@ -106,6 +106,10 @@ export function guideFigure(state, { statusText = '', ...opts } = {}) {
 // Has he introduced himself on this device? Device-only (state.ui), see storage.
 export const andonIntroSeen = (state) => !!(state && state.ui && state.ui.andonIntro === true);
 export const markAndonIntroSeen = (state) => (andonIntroSeen(state) ? state : { ...state, ui: { ...(state.ui || {}), andonIntro: true } });
+// The introduction lasts the visit to the homes it started on: a redraw
+// (sync after boot, a subject switch) keeps it; the next navigation away from
+// home ends it (app.go). Session memory on the app object, never stored.
+export const leaveAndonIntro = (app) => { if (app) app.andonIntroLive = false; };
 
 function hash(s) {
   let x = 7;

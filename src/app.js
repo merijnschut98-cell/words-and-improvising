@@ -13,6 +13,7 @@ import { dueReviews } from './core/spaced.js';
 import en from './content/prompts.en.js';
 import nl from './content/prompts.nl.js';
 import { renderHome } from './ui/home.js';
+import { leaveAndonIntro } from './ui/guide.js';
 import { renderRound } from './ui/round.js';
 import { renderFeedback } from './ui/feedback.js';
 import { renderDone } from './ui/done.js';
@@ -315,6 +316,8 @@ export const app = {
       if (needsWelcome(this.state)) screen = 'welcome';
       else if (needsWeeklyReset(this.state, new Date())) screen = 'weekly';
     }
+    // Leaving the homes ends Andon's one-time introduction (a redraw of home keeps it).
+    if (screen !== 'home') leaveAndonIntro(this);
     if (cleanup) {
       try { cleanup(); } catch { /* ignore */ }
     }
