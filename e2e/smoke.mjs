@@ -500,7 +500,8 @@ await step('pushback without a key: two objections from the lesson, self-rate 2,
   const saved = await page.evaluate(() => localStorage.getItem('spraakwater:v1'));
   await page.evaluate(() => window.__app.updateSettings({ apiKey: '' }));
   const lesson = await page.evaluate(async () => (await import('/src/content/courses/pm/intake.nl.js')).default.lessons.find((l) => l.id === 'pm.intake.ask'));
-  await page.evaluate(() => window.__app.go('situation', { subject: 'pm', moduleId: 'pm.intake', lessonId: 'pm.intake.ask' }));
+  // Opened as if from the module screen (v17 Task 6b): "Klaar" at the end returns there.
+  await page.evaluate(() => window.__app.go('situation', { subject: 'pm', moduleId: 'pm.intake', lessonId: 'pm.intake.ask', from: 'module' }));
   await page.locator('.sit-answer').fill('Waar gaan die 42 punten nu naartoe, en welke perslijn raakt jullie leveringen het meest?');
   await page.locator('.situation > .btn-primary').click();
   await page.locator('.rubric-line input').nth(1).check();
@@ -541,6 +542,7 @@ await step('pushback without a key: two objections from the lesson, self-rate 2,
   if (st.xp !== xp0) throw new Error('pushback gave XP');
   if (st.courses.pm.sessions.some((x) => x.kind !== 'situation')) throw new Error('pushback logged a session');
   await page.locator('.situation > .btn-primary', { hasText: 'Klaar' }).click();
+  await page.locator('.module-screen .module-screen-title', { hasText: 'Intake' }).waitFor();
   await restoreState(saved);
 });
 
@@ -2893,6 +2895,9 @@ await step('topics: where you are (fixture)', async () => {
   await shotP('113-done-next-level-dark');
   await p.emulateMedia({ colorScheme: 'light' });
   await p.getByRole('button', { name: 'Terug naar de cursus' }).click();
+  // v17 Task 6b: a lesson opened from the module screen returns to it; the course home is one tap away.
+  await p.locator('.module-screen .module-continue').waitFor();
+  await p.locator('.module-screen .lesson-back').click();
   await p.locator('.course-today .today-why', { hasText: 'Draaien · Expert' }).waitFor();
   await onePrimary(p, 'course home after a topic lesson');
   await shotP('114-today-topic');
@@ -2909,6 +2914,51 @@ await step('topics: where you are (fixture)', async () => {
   // a film lesson: the figure sits in the Film step, under the film
   const src = await p.locator('.film-card .figure-frame').getAttribute('name', { timeout: 5000 });
   if (!/[?&]level=2(&|$)/.test(src)) throw new Error(`figure frame name without level=2: ${src}`);
+  await c.close();
+});
+
+// v17 Task 6b: a lesson, check or situation opened from the module screen returns to it;
+// opened from the course home's Today card it still returns to the course home.
+await step('module return: a lesson opened from the module screen ends on the module screen (fixture)', async () => {
+  const { c, p, shotP } = await topicContext(topicSeed());
+  const mod = await openTopicModule(p);
+  if (!(await mod.locator('.topic-count', { hasText: '2/4' }).count())) throw new Error('start: expected 2/4');
+  await mod.locator('.topic-row').first().locator('.path-stop').nth(2).click();
+  await p.locator('.lesson-place', { hasText: 'Draaien · Gevorderd' }).waitFor();
+  await playLesson(p, 'eng', 'machining', 'eng.machining.tools');
+  await onePrimary(p, 'lesson done (module origin)');
+  // The next-level button keeps the origin: play the Expert lesson it opens.
+  await p.locator('.lesson-done ~ .next-level').click();
+  await p.locator('.lesson-place', { hasText: 'Draaien · Expert' }).waitFor();
+  await playLesson(p, 'eng', 'machining', 'eng.machining.quality');
+  // The done card's primary opens the situation; it still carries the origin, so its primary returns to the module screen.
+  await p.locator('.lesson > .btn-primary', { hasText: 'Probeer het in een situatie' }).click();
+  await p.locator('.sit-answer').fill('Welke maat valt buiten de tolerantie, en sinds wanneer?');
+  await p.locator('.situation > .btn-primary').click();
+  await p.locator('.rubric-line input').nth(0).check();
+  await p.locator('.situation > .btn-primary').click();
+  await p.locator('.sit-result').waitFor();
+  await onePrimary(p, 'situation result (module origin)');
+  await p.locator('.situation > .btn-primary').click();
+  await p.locator('.module-screen .topic-count', { hasText: '4/4' }).waitFor();
+  // Every level passed: no next lesson, so no continue button (and no filled button) on the module screen.
+  if (await p.locator('.module-screen .btn-primary').count() > 1) throw new Error('more than one primary on the module screen');
+  await shotP('115-module-after-lesson');
+  // A lesson opened from a path stop and closed with x lands on the module screen too.
+  await p.locator('.module-screen .topic-row').first().locator('.path-stop').first().click();
+  await p.locator('.lesson .pre-card, .lesson .teach-card, .lesson .film-card').first().waitFor();
+  await p.locator('.round-top .icon-btn').first().click();
+  await p.locator('.module-screen .path-stop').first().waitFor();
+  await c.close();
+});
+
+await step('module return: a lesson opened from the Today card still returns to the course home (fixture)', async () => {
+  const { c, p } = await topicContext(topicSeed());
+  await p.locator('.course-today .today-go').click();
+  await p.locator('.lesson .pre-card, .lesson .teach-card, .lesson .film-card').first().waitFor();
+  await p.locator('.round-top .icon-btn').first().click();
+  await p.locator('.course-today .today-go').waitFor();
+  if (await p.locator('.module-screen').count()) throw new Error('Today lesson closed onto a module screen');
   await c.close();
 });
 
@@ -3437,8 +3487,8 @@ await step('flair: start ring and title, path map with the bronze seal, a perfec
   await p.screenshot({ path: `${out}/flair-04-celebration-390-reduced.png`, fullPage: true });
   await p.emulateMedia({ reducedMotion: 'no-preference' });
   // The check is done for today.
+  // v17 Task 6b: opened from the module screen, the check's primary returns to it.
   await p.locator('.check-done ~ .btn-primary').click();
-  if (!(await p.locator('.module-screen').count())) await p.locator('.module-row', { hasText: 'Capaciteit en flow' }).click();
   const mod2 = p.locator('.module-screen');
   await mod2.locator('.check-tomorrow', { hasText: 'Morgen kan het weer' }).waitFor();
   // Andon in a review: a miss lights the middle ochre, with one line.
