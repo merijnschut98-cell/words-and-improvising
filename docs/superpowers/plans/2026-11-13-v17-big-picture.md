@@ -280,6 +280,19 @@ Decided 14 Nov, see the addendum of the design. Not started before Merijn's chec
 - [ ] **Step 3:** Per module: content brief, content agent (`sonnet`) in nl and en with the usual content rules (4 topics of 4 levels, terms, recall questions, situation and say-it items, term-link test), review agent (`opus` for the first module, `sonnet` for the second), merge, push.
 - [ ] **Step 4:** Add both modules to `FIELDS` (the validator requires every module of a subject with fields to be in one) and to the map (`maps/pm.js`, new places, `checkMap` stays green), update field film 1 and re-render it, and build their module intros (Task 11 pattern).
 
+### Task 15: Performance management module (after Task 14)
+
+Decided 14 Nov, see the second addendum of the design. Not started before Task 14 is done.
+
+- [ ] **Step 1:** Research agent (`sonnet`, sources required): proven and best methods and practices of performance management (hard: goals and targets, KPIs, leading and lagging indicators, dashboards and data, variation and decisions; soft: conversations, behaviour and incentives, feedback, motivation, culture), including the seeds in the addendum, and an inventory of the performance-related lessons already in `pm.perform` and in other modules. Output: a ranked list, a proposed topic structure (four levels per topic) with a mapping of every existing `pm.perform` lesson id to its new place, saved under `docs/superpowers/content/briefs/`.
+- [ ] **Step 2:** Bring the proposal to Merijn as multiple-choice decisions (name, topics, what stays in other modules). Record his answers in the addendum.
+- [ ] **Step 3:** Migration first (`sonnet`, tests first): restructure `pm.perform` under the same module id; a test proves that no lesson id is lost, every lesson sits in exactly one topic at one level, and an old saved state (progress, medals, review boxes) still loads and maps correctly. Then the new lessons per topic (content agent `sonnet`, review agent `sonnet`; `opus` for the review that touches the restructuring), merge, push.
+- [ ] **Step 4:** Update the intro film of `pm.perform` (Task 11 pattern) and the map label.
+
+### Task 16: Strategic module (later, no date)
+
+Low priority (Merijn, 14 Nov): what a senior looks at strategically, part of the project and process management area. Only after Tasks 14 and 15. Same pipeline: research pass with sources, multiple-choice proposal, content and review, a new place on the map, a field assignment and an intro film.
+
 ## Not in this plan
 
 Explain it back, knowledge on the map, and the rest of the ideas list in the spec: each gets its own design when it is picked up. The speaking formats stay parked.

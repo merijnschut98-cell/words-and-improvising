@@ -183,3 +183,29 @@ Decided by Merijn:
 - **Tools:** recommend a wide range, including ones Merijn does not know. The Microsoft world is in (Excel, Project, Planner, Teams, Azure DevOps and whatever else fits), next to other families (Jira, Smartsheet, Asana, Trello, monday.com, ClickUp, Notion, Confluence, Miro or Mural for workshops, and others the research finds). Organised by when each fits (size, team, kind of work), with sources; no prices or version claims that age.
 - **Timing:** after the checkpoint (Merijn has seen the pilot module intro and field film 1), in parallel with the module intros. The map and field film 1 then get places for the two new modules, which costs one extra render of film 1.
 - **Models** (see `2026-11-14-model-routing.md`): the coverage review and the tool research on `sonnet` (read-only but with synthesis); writing content on `sonnet`; the review of the first module of the new pattern on `opus`.
+
+## Addendum 14 Nov (2): a performance management module, and a strategic module for later
+
+### Performance management
+
+Merijn asked for a module specifically about performance management: OGSM, OKR, KPIs, dashboarding, decision-driven dashboards ("decisions drive dashboards, not the other way around"), hard and soft skills, and explicitly leading and lagging indicators and "more of what I forgot": look at which proven, best methods exist, not only what he listed.
+
+What exists today: `pm.perform` ("Sturen op prestaties", level 3, 16 lessons) covers KPIs and their definition, SMART goals, strategy maps and the balanced scorecard, hoshin kanri and catchball, Goodhart and gaming, the performance conversation, a performance board and a meeting rhythm. Not covered: OGSM (nowhere), OKR (one passing mention), leading and lagging indicators, dashboard design and visualisation, data quality and the measurement system, decision-first dashboards, accountability and ownership, the review cycle.
+
+Decided by Merijn:
+
+- A separate module for performance management, and everything that exists about it moves into it.
+- It is not limited to his list: a research pass finds the proven and best methods and brings them as multiple-choice decisions.
+- It comes after the two modules of Task 14.
+
+My call (to be confirmed with the proposal, Task 15 step 2):
+
+- **Keep the module id `pm.perform`.** Progress, medals and review boxes hang on the lesson ids, and `moduleOf` derives the module from the id prefix, so a new id would break them. The module is restructured and expanded under the same id and gets a new name ("Performance management" / "Prestatiemanagement"). Its map place stays where it is.
+- Restructuring changes which topic and level a lesson sits at (every topic has exactly four lessons as levels 1 to 4). Lesson ids stay, so nothing is lost, but a learner may find a lesson unlocked or locked differently; the migration check in Task 15 step 3 covers it.
+- Lessons about performance that live in other modules (earned value in `pm.run`, benefits in `pm.close` and `pm.portfolio`, the tier meeting) stay where they are unless they duplicate a lesson; the research pass lists them and Merijn decides.
+
+Seeds for the research, not decisions: OGSM, OKR, the balanced scorecard, hoshin kanri, The 4 Disciplines of Execution, management by objectives, KPI trees and input, output and outcome measures, leading and lagging indicators, dashboard design (Few, Tufte, Knaflic, the IBCS notation), decision-first design, data quality and governance, variation and the XmR chart (Wheeler), goal-setting theory, behaviour and incentives (Goodhart, Campbell), the performance conversation, feedback cycles, team and daily management. The research may add or drop.
+
+### Strategic module (later)
+
+Merijn: a strategic module, part of the general project and process management area, about what a senior looks at strategically. Low priority: it goes in the plan for later, with no date and no work before Tasks 14 and 15 are done. Scope, topics and name are decided when it is picked up, from a research pass like the others (seeds, unvetted: strategy formulation and what makes strategy good or bad, portfolio and capital allocation, operating model, make-buy-partner, risk appetite, scenario thinking, leading change at scale, talking to a board). It gets its own map place and intro film then.
