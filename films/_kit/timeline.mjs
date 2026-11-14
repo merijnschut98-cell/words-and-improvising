@@ -707,13 +707,11 @@ const SAY = {
     [/\bde intake\b/g, 'de in-teek'], [/\bDe operators krijgen\b/g, 'De ope-raators krijgen'], [/\bnu op oranje\b/g, 'nu op o-ranje'],
     // the tools named in the module intro and the field film (the Checkpoint of 14 Nov), a self-contained group at
     // the end of the Dutch list (checked with phonemes through Piper's nl_NL-alex bridge): scopeomschrijving as
-    // skoop-omschrijving (espeak-ng reads "skoope"), resourcehistogram as ri-sors-histogram ("REE-zoors"),
-    // businesscase as biznis kees (as the business case rule above; only in "en een businesscase", the way the film
-    // says it, so pm.scaled.hybrid's caption keeps its voice). Run chart has its rule above (run tsjart).
-    // WBS, Gantt-chart, netwerkplanning, driepuntsschatting, koortsgrafiek, RACI, SIPOC, A3-statusrapport,
-    // besluitenlijst, vaardigheidsmatrix, overdrachtschecklist and eindrapport need nothing (projectopdracht has
-    // its rule above); no other film's spoken text changes
-    [/\b([Ss])copeomschrijving/g, '$1koop-omschrijving'], [/\b([Rr])esourcehistogram\b/g, '$1i-sors-histogram'], [/\ben een businesscase\b/g, 'en een biznis kees']],
+    // skoop-omschrijving (espeak-ng reads "skoope") and resourcehistogram as ri-sors-histogram ("REE-zoors").
+    // Run chart has its rule above (run tsjart). WBS, Gantt-chart, netwerkplanning, driepuntsschatting, analoog
+    // schatten, RACI, SIPOC, A3-statusrapport, besluitenlijst, vaardigheidsmatrix, overdrachtschecklist and
+    // eindrapport need nothing (projectopdracht has its rule above); no other film's spoken text changes
+    [/\b([Ss])copeomschrijving/g, '$1koop-omschrijving'], [/\b([Rr])esourcehistogram\b/g, '$1i-sors-histogram']],
   en: [[/\brpm\b/g, 'revolutions per minute'], [/\bmm\/min\b/g, 'millimetres per minute'], [/\bm\/min\b/g, 'metres per minute'], [/µm\b/g, 'micrometres'],
     [/€\s?(\d[\d,]*(?:\.\d+)?)/g, '$1 euros'], [/(\d)\.0(?![\d])/g, '$1'], [/(\d)\s?mm\b/g, '$1 millimetres'], [/(\d)\s?min\b/g, '$1 minutes'], [/(\d)\s?%/g, '$1 percent'],
     [/Ø\s*/g, 'diameter '], [/(\d)\+(\d)/g, '$1 plus $2'], [/\s×\s/g, ' times '], [/\s\/\s/g, ' divided by '], [/\s=\s/g, ' is '], [/°/g, ' degrees'], [/\bRa\b/g, 'R a'], [/’/g, "'"],

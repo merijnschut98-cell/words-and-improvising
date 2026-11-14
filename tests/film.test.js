@@ -620,7 +620,6 @@ test('speak variant: the field film words in Dutch', () => {
   assert.equal(nl('De operators krijgen een werkinstructie.'), 'De ope-raators krijgen een werkinstructie.');
   assert.equal(nl('Dus zet je de status nu op oranje.'), 'Dus zet je de status nu op o-ranje.');
   // elsewhere the words keep their voice
-  assert.equal(nl('Het werk loopt in fases: verkennen, businesscase, ontwikkelen.'), 'Het werk loopt in fases: verkennen, businesscase, ontwikkelen.');
   assert.equal(nl('De Intake, een intake, de operators wachten, van oranje naar rood.'), 'De Intake, een intake, de operators wachten, van oranje naar rood.');
   const en = 'The first station is the intake. The operators get a work instruction, so you set the status to amber now.';
   assert.equal(speakOf([en], 'en'), en);
@@ -628,22 +627,20 @@ test('speak variant: the field film words in Dutch', () => {
 
 // The tools named in the module intro and the field film (the Checkpoint of 14 Nov), checked with espeak-ng
 // phonemes through Piper's nl bridge: scopeomschrijving is read "skoope-omschrijving" (said skoop-omschrijving,
-// as the scope rule above), resourcehistogram "REE-zoors" (said ri-sors-histogram) and businesscase
-// "bu-zi-nes-kaa-se" (said biznis kees, as the business case rule above; only in "en een businesscase", so
-// pm.scaled.hybrid keeps its voice). Run chart and projectopdracht have
-// their rules above. WBS, Gantt-chart, netwerkplanning, driepuntsschatting, koortsgrafiek, RACI, SIPOC,
-// A3-statusrapport, besluitenlijst, vaardigheidsmatrix, overdrachtschecklist and eindrapport need nothing;
+// as the scope rule above) and resourcehistogram "REE-zoors" (said ri-sors-histogram). Run chart and
+// projectopdracht have their rules above. WBS, Gantt-chart, netwerkplanning, driepuntsschatting, analoog
+// schatten, RACI, SIPOC, A3-statusrapport, besluitenlijst, vaardigheidsmatrix, overdrachtschecklist and
+// eindrapport need nothing;
 // English needs nothing; no other film's spoken text changes
 test('speak variant: the tools named in the intro and field films, in Dutch', () => {
   const nl = (s) => speakOf([s], 'nl');
   assert.equal(nl('Bij het opdelen gebruiken we vaak een WBS en een scopeomschrijving.'), 'Bij het opdelen gebruiken we vaak een WBS en een skoop-omschrijving.');
   assert.equal(nl('Bij risico’s en mensen gebruiken we vaak een RACI en een resourcehistogram.'), "Bij risico's en mensen gebruiken we vaak een RACI en een ri-sors-histogram.");
-  assert.equal(nl('Bij de intake gebruiken we vaak een projectopdracht, een SIPOC en een businesscase.'), 'Bij de in-teek gebruiken we vaak een project-opdracht, een SIPOC en een biznis kees.');
+  assert.equal(nl('Bij de intake gebruiken we vaak een projectopdracht en een SIPOC.'), 'Bij de in-teek gebruiken we vaak een project-opdracht en een SIPOC.');
   assert.equal(nl('Bij het afsluiten gebruiken we vaak een run chart en een eindrapport.'), 'Bij het afsluiten gebruiken we vaak een run tsjart en een eindrapport.');
   // elsewhere the words keep their voice
-  assert.equal(nl('Het werk loopt in fases: verkennen, businesscase, ontwikkelen.'), 'Het werk loopt in fases: verkennen, businesscase, ontwikkelen.');
   assert.equal(nl('Een Scopeomschrijving hier. Het scopedocument.'), 'Een Skoop-omschrijving hier. Het scopedocument.');
-  const en = 'We often use a scope statement, a resource histogram, a business case and a run chart.';
+  const en = 'We often use a scope statement, a resource histogram and a run chart.';
   assert.equal(speakOf([en], 'en'), en);
 });
 

@@ -295,7 +295,7 @@ const spec = {
         { nl: 'Geen punt maar een {t:Bandbreedte|bandbreedte}: van het beste tot het slechtste geval.', en: 'Not a point but a {t:Range|range}: from the best case to the worst.', cue: { Bandbreedte: 'range' }, focus: ['range', 'crew'] },
         { nl: '{t:Inspanning|Inspanning} is uren werk, {t:Doorlooptijd|doorlooptijd} is kalendertijd.', en: '{t:Effort|Effort} is hours of work, {t:Duration|duration} is calendar time.', cue: { Inspanning: 'effort', Doorlooptijd: 'dur' }, focus: ['effort', 'dur'] },
         { nl: 'Eén zichtbare {t:Buffer|buffer} voor het eind van de stop, geen stiekeme marge in elke taak.', en: 'One visible {t:Buffer|buffer} before the end of the shutdown, no hidden padding in every task.', cue: { Buffer: 'buffer' }, focus: ['buffer', 'calendar'] },
-        { nl: 'Schatten doen we vaak met een {t:Driepuntsschatting|driepuntsschatting} en een {t:Koortsgrafiek|koortsgrafiek}.', en: 'For estimating we often use a {t:Three-point estimate|three-point estimate} and a {t:Fever chart|fever chart}.', cue: { Driepuntsschatting: 'range', Koortsgrafiek: 'buffer' }, focus: ['range', 'buffer'] },
+        { nl: 'We gebruiken vaak een {t:Driepuntsschatting|driepuntsschatting} en {t:Analoog schatten|analoog schatten}.', en: 'For estimating we often use a {t:Three-point estimate|three-point estimate} and {t:Analogous estimating|analogous estimating}.', cue: { Driepuntsschatting: 'range', 'Analoog schatten': 'range' }, focus: ['range'] },
       ],
     },
     {
@@ -387,8 +387,8 @@ const SAY = [
       en: 'Turn the hours into weeks as well. Effort is the number of hours of work. Duration is the time on the calendar, because the mechanics also have their normal job.' },
     { nl: 'En zet één zichtbare buffer vlak voor het eind van de stop, in plaats van stiekem wat extra in elke taak.',
       en: 'And put one visible buffer just before the end of the shutdown, instead of hiding a little extra in every task.' },
-    { nl: 'Schatten doen we vaak met een driepuntsschatting en een koortsgrafiek voor de buffer.',
-      en: 'For estimating we often use a three-point estimate and a fever chart for the buffer.' },
+    { nl: 'Bij het schatten gebruiken we vaak een driepuntsschatting en analoog schatten.',
+      en: 'For estimating we often use a three-point estimate and analogous estimating.' },
   ],
   [ // s5 risk and resources
     { nl: 'Het vierde onderwerp is Risico’s en mensen. Wat kan er misgaan, en wie doet wat?',
