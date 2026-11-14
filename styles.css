@@ -54,6 +54,7 @@
     --tint: rgba(92, 159, 174, 0.12);
     --border-subtle: var(--border-subtle-inverse);
     --shadow-card: var(--shadow-card-inverse);
+    --map-halo: var(--card); /* v17: the subject map's lit labels sit on the card colour */
     color-scheme: dark;
   }
 }
@@ -79,6 +80,7 @@
   --tint: rgba(92, 159, 174, 0.12);
   --border-subtle: var(--border-subtle-inverse);
   --shadow-card: var(--shadow-card-inverse);
+  --map-halo: var(--card);
   color-scheme: dark;
 }
 
@@ -1111,6 +1113,7 @@ details.rw-topic > summary { cursor: pointer; min-height: 44px; display: flex; a
 .subject-map .map-place:focus-visible .map-hit { stroke: var(--heading); stroke-width: 2; }
 .subject-map .map-place.is-next .map-hit { stroke: var(--accent); stroke-width: 2.5; fill: color-mix(in srgb, var(--accent) 12%, transparent); }
 .subject-map .map-label { fill: var(--heading); font: 500 15px/1 var(--font-body, system-ui, sans-serif); pointer-events: none; }
+.subject-map .map-place.is-lit .map-label, .subject-map .map-place.is-next .map-label { stroke: var(--map-halo, none); stroke-width: 6px; stroke-linejoin: round; paint-order: stroke fill; }
 .subject-map .map-obj path { stroke: var(--heading); stroke-width: 0.5; stroke-linejoin: round; }
 .subject-map .p-top { fill: color-mix(in srgb, var(--zone, var(--line)) 22%, var(--card)); }
 .subject-map .p-left { fill: color-mix(in srgb, var(--zone, var(--line)) 40%, var(--card)); }
@@ -1122,3 +1125,15 @@ details.rw-topic > summary { cursor: pointer; min-height: 44px; display: flex; a
 .subject-map .m-left { fill: var(--zone, var(--accent)); }
 .subject-map .m-right { fill: color-mix(in srgb, var(--zone, var(--accent)) 75%, var(--heading)); }
 .subject-map .map-road-arrow { fill: color-mix(in srgb, var(--heading) 30%, var(--card)); }
+
+/* v17: the map first on a subject home, and the field films under the next step */
+.map-card { padding-bottom: 12px; }
+.map-card .map-hint { margin: 0 0 8px; }
+.field-films { display: grid; gap: 8px; }
+.field-film { display: grid; gap: 4px; }
+.field-film-title { font-weight: 600; color: var(--heading); }
+/* On a phone the map runs edge to edge in its card (as the films do): at 390 px
+   it is 390 px wide, so every place is at least 44 px (checkMap's rule). */
+@media (max-width: 479px) {
+  .map-card .subject-map-wrap { width: auto; max-width: none; margin: 0 -33px; }
+}

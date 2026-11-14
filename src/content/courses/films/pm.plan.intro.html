@@ -272,8 +272,8 @@ html[data-render="1"],html[data-render="1"] body{width:100%;height:100%;overflow
 .iso:not([data-theme="light"]) :is([data-cue="sponsor"],[data-cue="installer"],[data-cue="buyer"],[data-cue="crew"]):not([data-on])>:is(.iso-solid:last-child,.iso-solid:nth-last-child(3))>:is(.iso-fill,.iso-top,.iso-shade){fill:#C9B8A3}
 .iso:not([data-theme="light"]) :is([data-cue="sponsor"],[data-cue="installer"],[data-cue="buyer"],[data-cue="crew"]):not([data-on])>:is(.iso-solid:last-child,.iso-solid:nth-last-child(3))>.iso-shade{fill:#A8957F}
 .iso:not([data-theme="light"]) [data-cue="sponsor"]:not([data-on])>.iso-solid:nth-last-child(2)>:is(.iso-fill,.iso-top,.iso-shade){fill:#8E9A97}
-.subject-map{--card:var(--anatomy-face);--line:var(--anatomy-faint);--heading:var(--anatomy-strong);--accent:var(--fp-accent);--ok:#A87433;--primary:#276F81;--secondary-fill:#1F3E73;--font-body:var(--fp-sans)}
-.iso[data-theme="light"] .subject-map{--primary:#0B291B;--secondary-fill:#0F2042}
+.subject-map{--card:var(--anatomy-face);--line:var(--anatomy-faint);--heading:var(--anatomy-strong);--accent:var(--fp-accent);--ok:#A87433;--primary:#276F81;--secondary-fill:#1F3E73;--font-body:var(--fp-sans);--map-halo:var(--anatomy-face)}
+.iso[data-theme="light"] .subject-map{--primary:#0B291B;--secondary-fill:#0F2042;--map-halo:none}
 .subject-map .map-hit{display:none}
 .subject-map .map-place.is-lit .map-hit{display:block;fill:color-mix(in srgb,var(--fp-accent) 16%,transparent);stroke:var(--fp-accent);stroke-width:3}
 .iso[lang="en"] .subject-map .l-nl,.iso:not([lang="en"]) .subject-map .l-en{display:none}
@@ -292,6 +292,7 @@ html[data-render="1"],html[data-render="1"] body{width:100%;height:100%;overflow
 .subject-map .map-place:focus-visible .map-hit { stroke: var(--heading); stroke-width: 2; }
 .subject-map .map-place.is-next .map-hit { stroke: var(--accent); stroke-width: 2.5; fill: color-mix(in srgb, var(--accent) 12%, transparent); }
 .subject-map .map-label { fill: var(--heading); font: 500 15px/1 var(--font-body, system-ui, sans-serif); pointer-events: none; }
+.subject-map .map-place.is-lit .map-label, .subject-map .map-place.is-next .map-label { stroke: var(--map-halo, none); stroke-width: 6px; stroke-linejoin: round; paint-order: stroke fill; }
 .subject-map .map-obj path { stroke: var(--heading); stroke-width: 0.5; stroke-linejoin: round; }
 .subject-map .p-top { fill: color-mix(in srgb, var(--zone, var(--line)) 22%, var(--card)); }
 .subject-map .p-left { fill: color-mix(in srgb, var(--zone, var(--line)) 40%, var(--card)); }

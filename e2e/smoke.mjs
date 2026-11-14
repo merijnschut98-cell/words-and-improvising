@@ -313,6 +313,56 @@ await step('subject bar switches to Engineering and Projects and back; speaking 
   await page.locator('.btn-hero').waitFor();
 });
 
+await step('Projects home: the map is the first thing; tapping Planning opens its module screen; the field film entry is there; Engineering unchanged', async () => {
+  await page.locator('.subject-tab', { hasText: 'Projecten' }).click();
+  await page.locator('.course-pm .map-card .subject-map').waitFor();
+  // the map is the first block, "Your next step" the second
+  const order = await page.evaluate(() => [...document.querySelector('.course-pm').children].map((e) => e.className.split(' ')[1] || e.className).slice(0, 3));
+  if (!/map-card/.test(await page.locator('.course-pm > :nth-child(2)').getAttribute('class'))) throw new Error(`the map is not first: ${order}`);
+  if (!/course-today/.test(await page.locator('.course-pm > :nth-child(3)').getAttribute('class'))) throw new Error(`next step is not second: ${order}`);
+  // every place is a button, 44 px at 390, the next module marked, tracks closed, no sideways scroll
+  const places = await page.locator('.course-pm .map-place').evaluateAll((gs) => gs.map((g) => {
+    const r = g.querySelector('.map-hit').getBoundingClientRect();
+    return { role: g.getAttribute('role'), tab: g.getAttribute('tabindex'), label: g.getAttribute('aria-label'), w: r.width, h: r.height };
+  }));
+  if (places.length !== 16) throw new Error(`${places.length} places`);
+  const bad = places.filter((p) => p.role !== 'button' || p.tab !== '0' || !p.label || p.w < 43.5 || p.h < 43.5);
+  if (bad.length) throw new Error(`places not buttons of 44 px: ${JSON.stringify(bad.slice(0, 2))}`);
+  if (await page.locator('.course-pm .map-place.is-next').count() !== 1) throw new Error('the next module is not marked once');
+  if (await page.locator('.course-pm details.track[open]').count() !== 0) throw new Error('a track is open on a subject with a map');
+  if (await page.evaluate(() => document.documentElement.scrollWidth > window.innerWidth)) throw new Error('sideways scroll');
+  // the field film entry: the lifecycle field only, by its title
+  await page.locator('.course-pm .field-film .film-btn').waitFor();
+  if (await page.locator('.course-pm .field-film').count() !== 1) throw new Error('more than one field film entry');
+  await page.locator('.course-pm .field-film-title', { hasText: 'Een project van begin tot eind' }).waitFor();
+  await shot('map-home-pm');
+  // dark
+  await page.evaluate(() => window.__app.updateSettings({ theme: 'dark' }));
+  await page.waitForFunction(() => document.documentElement.dataset.theme === 'dark');
+  await shot('map-home-pm-dark');
+  await page.evaluate(() => window.__app.updateSettings({ theme: 'auto' }));
+  await page.waitForFunction(() => !document.documentElement.dataset.theme);
+  // keyboard: Enter on a focused place opens its module; a tap on Planning does too
+  await page.locator('.course-pm .map-place[data-module="pm.run"]').focus();
+  await page.keyboard.press('Enter');
+  await page.locator('.module-screen').waitFor();
+  await page.locator('.module-screen .lesson-back').click();
+  await page.locator('.course-pm .map-card').waitFor();
+  await page.locator('.course-pm .map-place[data-module="pm.plan"]').click();
+  await page.locator('.module-screen').waitFor();
+  await page.locator('.module-screen', { hasText: 'Plannen' }).waitFor();
+  await page.locator('.module-screen .lesson-back').click();
+  await page.locator('.course-pm .map-card').waitFor();
+  // Engineering: no map, today's order, the track with the next step open
+  await page.locator('.subject-tab', { hasText: 'Engineering' }).click();
+  await page.locator('.course-eng .track').first().waitFor();
+  if (await page.locator('.course-eng .map-card, .course-eng .field-film').count() !== 0) throw new Error('Engineering shows a map or field film');
+  if (!/course-today/.test(await page.locator('.course-eng > :nth-child(2)').getAttribute('class'))) throw new Error('Engineering order changed');
+  if (await page.locator('.course-eng details.track[open]').count() !== 1) throw new Error('Engineering: one track should be open');
+  await page.locator('.subject-tab', { hasText: 'Spreken' }).click();
+  await page.locator('.btn-hero').waitFor();
+});
+
 // Answers a lesson's quiz from the module file; the first question wrong on purpose.
 // The lesson quiz as the app builds it (v16): recall, term questions, earlier
 // levels, then the guess back as the last question.
