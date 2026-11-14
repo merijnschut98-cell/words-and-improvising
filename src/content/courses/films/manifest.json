@@ -2910,6 +2910,37 @@
         ],
         "vtt": "src/content/courses/films/pm.plan.intro.en.vtt"
       }
+    },
+    "pm.field.lifecycle": {
+      "poster": "src/content/courses/films/pm.field.lifecycle.jpg",
+      "nl": {
+        "dur": 162.4,
+        "bytes": 7248643,
+        "scenes": [
+          0,
+          15.83,
+          42.72,
+          61.73,
+          88.77,
+          113.76,
+          137.7
+        ],
+        "vtt": "src/content/courses/films/pm.field.lifecycle.nl.vtt"
+      },
+      "en": {
+        "dur": 188.4,
+        "bytes": 8156222,
+        "scenes": [
+          0,
+          18.81,
+          49.75,
+          73.32,
+          104.5,
+          133.11,
+          160.74
+        ],
+        "vtt": "src/content/courses/films/pm.field.lifecycle.en.vtt"
+      }
     }
   }
 }
