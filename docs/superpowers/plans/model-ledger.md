@@ -28,4 +28,5 @@ Outcome: accepted (merged as delivered), sent back N times, redone.
 | 14 Nov | Review four trimmed films | sonnet | 82 | 8 min | 258,354 | accepted; found a TPM over-claim, a confusing fuse drawing, a broken fiverules assert |
 | 14 Nov | Render PM-10: pm.plan.intro | sonnet | 70 | 23 min | 129,634 | accepted; no pipeline change needed; merged v255 |
 | 14 Nov | Build: back to module screen after a lesson (6b) | sonnet | 18 | 3 min | 120,151 | delivered; tests written after the code (no red run); in review (opus) |
-| 14 Nov | Build field film 1 pm.field.lifecycle and field kit | opus | 156 | 34 min | 421,376 | delivered (183 s); in review (opus) |
+| 14 Nov | Build field film 1 pm.field.lifecycle and field kit | opus | 156 | 34 min | 421,376 | accepted with fixes by its review; merged v256 |
+| 14 Nov | Review field film 1 and field kit | opus | 110 | 22 min | 268,193 | accepted; fixed a kit rule that would have blocked 6 of 11 module titles |
