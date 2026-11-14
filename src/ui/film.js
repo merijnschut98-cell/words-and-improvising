@@ -117,8 +117,10 @@ function filmFrame(app, url) {
 }
 
 // "Bekijk de film": a quiet button that opens the film inline under it. Hidden
-// until the page answers, like a figure.
-export function filmButton(app, ref, level) {
+// until the page answers, like a figure. With `video` it opens the Film step
+// (filmStep): the rendered video when the manifest has one, else the HTML film,
+// else text() (v17 review: the field film on the subject home).
+export function filmButton(app, ref, level, { video = false, text = null } = {}) {
   const t = app.t;
   const film = parseFilmRef(ref);
   const wrap = h('div', { class: 'film-wrap', hidden: true });
@@ -137,6 +139,13 @@ export function filmButton(app, ref, level) {
   btn.onclick = () => {
     if (box) { close(); return; }
     closeFilms();
+    if (video) {
+      box = h('div', { class: 'film-box' }, filmStep(app, { film: ref }, level, { text }));
+      wrap.append(box);
+      btn.setAttribute('aria-expanded', 'true');
+      label.textContent = t('filmClose');
+      return;
+    }
     const url = src();
     const frame = filmFrame(app, url);
     box = h('figure', { class: 'figure-wrap film-box' }, frame);

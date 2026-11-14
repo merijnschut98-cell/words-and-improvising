@@ -2,6 +2,7 @@
 // blocks, the map registry and the fields that have a film.
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
+import fs from 'node:fs';
 import { homeOrder, fieldFilms } from '../src/ui/coursehome.js';
 import { mapFor } from '../src/content/courses/maps/index.js';
 import pmMap from '../src/content/courses/maps/pm.js';
@@ -29,4 +30,15 @@ test('fieldFilms: only fields with a film, in the order of FIELDS', () => {
 
 test('the map heading exists in both languages', () => {
   for (const lang of ['nl', 'en']) assert.ok(STRINGS[lang].mapHeading, lang);
+});
+
+// Review (14 Nov): the marked next place kept its accent ring when focused, so a
+// keyboard user could not see focus land on it. Both rules have the same
+// specificity, so the focus rule has to come after the next-place rule.
+test('a focused place shows the focus ring, the marked next place too', () => {
+  const css = fs.readFileSync(new URL('../styles.css', import.meta.url), 'utf8');
+  const focus = css.indexOf('.subject-map .map-place:focus-visible .map-hit');
+  const next = css.indexOf('.subject-map .map-place.is-next .map-hit');
+  assert.ok(focus > 0 && next > 0, 'both rules exist');
+  assert.ok(focus > next, 'the focus rule comes after the next-place rule');
 });

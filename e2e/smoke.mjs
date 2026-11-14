@@ -336,6 +336,13 @@ await step('Projects home: the map is the first thing; tapping Planning opens it
   if (await page.locator('.course-pm .field-film').count() !== 1) throw new Error('more than one field film entry');
   await page.locator('.course-pm .field-film-title', { hasText: 'Een project van begin tot eind' }).waitFor();
   await shot('map-home-pm');
+  // the field film plays the rendered video (Piper voice, captions), the HTML film only as its fallback
+  await page.locator('.course-pm .field-film .film-btn').click();
+  await page.locator('.course-pm .field-film .film-step[data-mode="video"] video.film-video').waitFor();
+  if (await page.locator('.course-pm .field-film iframe.film-frame').count()) throw new Error('the field film opened the HTML film, not the video');
+  if (await page.locator('.btn-primary:visible').count() !== 1) throw new Error('more than one filled button with the field film open');
+  await page.locator('.course-pm .field-film .film-btn').click();
+  if (await page.locator('.course-pm .field-film .film-step').count()) throw new Error('the field film did not close');
   // dark
   await page.evaluate(() => window.__app.updateSettings({ theme: 'dark' }));
   await page.waitForFunction(() => document.documentElement.dataset.theme === 'dark');

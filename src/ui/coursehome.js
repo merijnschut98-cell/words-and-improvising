@@ -206,14 +206,15 @@ function mapCard(app, subject, map, pick) {
     }));
 }
 
-// One compact entry per field film: the field's title, then the film button
-// (the HTML film opens inline).
+// One compact entry per field film: the field's title, then the film button.
+// It opens the rendered video in place, as the module intro does; the HTML film
+// only when there is no video, the field's blurb when neither loads.
 function fieldsRow(app, subject) {
   const films = fieldFilms(subject);
   if (!films.length) return null;
   return h('section', { class: 'field-films' }, films.map((f) => h('div', { class: 'field-film' },
     h('span', { class: 'field-film-title' }, f.title[app.lang] || f.title.en),
-    filmButton(app, f.film, null))));
+    filmButton(app, f.film, null, { video: true, text: () => h('p', { class: 'muted small' }, f.blurb[app.lang] || f.blurb.en) }))));
 }
 
 export function courseHome(app, subject) {
