@@ -89,7 +89,10 @@ export function checkFilm(data, { lessons, levelOf, wiredBy = [], module: meta, 
 
   // coverage: each term of each served lesson is shown at or below its level, or
   // skipped with a reason (an intro film: every topic of its module, below)
-  if (mod) errs.push(...checkIntro(data, mod, stageText));
+  if (mod) errs.push(...checkIntro(data, mod));
+  // module and field films: the narration guard, and the drawn labels fit
+  if (intro || data.field !== undefined) errs.push(...checkNarration(data));
+  if (intro || data.field !== undefined) errs.push(...checkLabels(data, stageText));
   if (!intro) for (const id of served) {
     const l = lessons.nl.get(id);
     if (!l) continue;
@@ -193,27 +196,116 @@ export function checkFilm(data, { lessons, levelOf, wiredBy = [], module: meta, 
 
 // The map of a module intro film (v17): every topic of the module is on it
 // (data.topics, with the title it had at build time, the scene that explains it
-// and the cue key of its part), still under that title, named in a caption or
-// on a card in both languages, and shown: a beat of its scene lights its part.
-export function checkIntro(data, mod, stageText = '') {
+// and the cue key of its part), still under that title, named in a caption of
+// its OWN scene in both languages, explained in at least two beats, and shown:
+// a beat of its scene lights its part. Captions only: the stage draws a topic's
+// title from the page data at runtime, so a card never counted as a name.
+export const MIN_TOPIC_BEATS = 2;
+export function checkIntro(data, mod) {
   const errs = [];
   const scenes = data.scenes || [];
   const onMap = new Map((data.topics || []).map((t) => [t.id, t]));
-  const card = lc(stageText);
   for (const t of mod.topics || []) {
     const ft = onMap.get(t.id);
     if (!ft) { errs.push(`topic ${t.id} of ${mod.id} is not on the film's map`); continue; }
+    const sc = scenes.find((s) => s.id === ft.scene);
     for (const lang of ['nl', 'en']) {
       if ((ft.title || {})[lang] !== t.title[lang]) errs.push(`topic ${t.id}: title "${(ft.title || {})[lang]}" (${lang}) is now "${t.title[lang]}"`);
       const name = lc(t.title[lang]);
-      const said = scenes.some((s) => (s.beats || []).some((b) => lc(b.text[lang]).includes(name)));
-      if (!said && !card.includes(name)) errs.push(`topic ${t.id}: "${t.title[lang]}" (${lang}) is in no caption and on no card`);
+      if (sc && !(sc.beats || []).some((b) => lc(b.text[lang]).includes(name))) errs.push(`topic ${t.id}: "${t.title[lang]}" (${lang}) is in no caption of its scene ${ft.scene}`);
     }
-    const sc = scenes.find((s) => s.id === ft.scene);
     if (!sc) errs.push(`topic ${t.id}: no scene ${ft.scene}`);
-    else if (!ft.cue || !sc.beats.some((b) => [...(b.focus || []), ...(b.cues || [])].includes(ft.cue))) errs.push(`topic ${t.id}: no beat of scene ${ft.scene} lights its part ${ft.cue}`);
+    else {
+      if (sc.beats.length < MIN_TOPIC_BEATS) errs.push(`topic ${t.id}: scene ${ft.scene} has ${sc.beats.length} beat${sc.beats.length === 1 ? '' : 's'}, needs at least ${MIN_TOPIC_BEATS}`);
+      if (!ft.cue || !sc.beats.some((b) => [...(b.focus || []), ...(b.cues || [])].includes(ft.cue))) errs.push(`topic ${t.id}: no beat of scene ${ft.scene} lights its part ${ft.cue}`);
+    }
   }
   for (const ft of data.topics || []) if (!(mod.topics || []).some((t) => t.id === ft.id)) errs.push(`topic ${ft.id} is no topic of ${mod.id}`);
+  return errs;
+}
+
+// The narration guard (v17), for every module or field film: what the voice
+// says has no symbol it would read aloud, no colon, nothing in parentheses or
+// quotes, none of the Dutch words the voice misreads, and at most two commas in
+// a sentence (the render guard caps a pause inside a sentence at 0.4 s). Reads
+// the narration script (beat.say) in both languages.
+export const NARRATION_SYMBOLS = /[/&×=+()“”"‘<>≈→~:;%]/;
+export const NL_MISREAD = /\b(deliverables?|definitions? of done|PMI|deadlines?)\b/i;
+export const MAX_COMMAS = 2;
+export function checkNarration(data) {
+  const errs = [];
+  for (const s of data.scenes || []) {
+    (s.beats || []).forEach((b, i) => {
+      if (!b.say) return;
+      for (const lang of ['nl', 'en']) {
+        // the English gloss of a Dutch term is shown, never spoken
+        const plain = (b.say[lang] || []).map((p) => (typeof p === 'string' ? p : p.t)).join('');
+        const where = `scene ${s.id} beat ${i + 1}`;
+        if (NARRATION_SYMBOLS.test(plain)) errs.push(`narration: a symbol the voice reads aloud, or a colon, in "${plain.slice(0, 50)}" (${where}, ${lang})`);
+        if (lang === 'nl' && NL_MISREAD.test(plain)) errs.push(`narration: a word the Dutch voice misreads in "${plain.slice(0, 50)}" (${where})`);
+        for (const sentence of plain.split(/[.?!]\s+/)) if ((sentence.match(/,/g) || []).length > MAX_COMMAS) errs.push(`narration: more than two commas in "${sentence.slice(0, 50)}" (${where}, ${lang})`);
+      }
+    });
+  }
+  return errs;
+}
+
+// Drawn panel labels (v17). Stage text is 22 units. Widths come from CHAR_W:
+// the film font (Inter, --fp-sans) measured per character at 22 units, the wider
+// of weights 600 and 700, in Chromium (review of the pilot, 14 Nov). A sum of
+// characters ignores kerning, so it comes out a few percent over the real text,
+// never under; a character not in the table counts as UNKNOWN_W. The first rule
+// (a flat 10.5 units a character) let "Schedule and" (146 units) into a
+// 128-unit tile and "Werkkennis" (128) into a 112-unit column.
+// The panel is 284 units wide inside its margins. A topic title drawn in a tile
+// (140 units, 6 of padding each side: 128) is wrapped by width (wrapUnits) into
+// at most 3 lines. Every tr('nl', 'en') label of the stage script is measured in
+// both languages against the panel, or against the width named as its third
+// argument: tr('Vloer klaar', 'Floor ready', 160). A stage that wraps text must
+// wrap it with wrapUnits and CHAR_W (pass both into the page; wrapUnits is
+// self-contained, so its source text works as is), so the check and the drawing agree.
+export const LABEL_UNITS = 22;
+export const CHAR_W = {"0":14.9,"1":9.5,"2":13.9,"3":14.2,"4":14.9,"5":14.1,"6":14.3,"7":13.2,"8":14.4,"9":14.3," ":6.0,"a":12.8,"b":13.9,"c":13,"d":13.9,"e":13.1,"f":8,"g":13.9,"h":13.7,"i":6,"j":6,"k":12.8,"l":6,"m":20.1,"n":13.7,"o":13.5,"p":13.9,"q":13.9,"r":9.1,"s":12.4,"t":7.4,"u":13.7,"v":13.2,"w":18.7,"x":12.8,"y":13.3,"z":12.6,"A":16.8,"B":14.6,"C":16.3,"D":15.9,"E":13.4,"F":13,"G":16.6,"H":16.5,"I":6.2,"J":12.9,"K":15.9,"L":12.5,"M":20.5,"N":16.8,"O":17,"P":14.3,"Q":17.1,"R":14.5,"S":14.4,"T":14.7,"U":16.2,"V":16.8,"W":23.3,"X":16.3,"Y":16.1,"Z":14.7,".":7.4,",":7.4,":":7.4,";":7.6,"!":7.5,"?":12.4,"'":7.5,"’":6.9,"‘":6.9,"-":10.3,"–":11,"/":8.6,"(":8.3,")":8.3,"&":14.8,"+":15,"%":22.4,"é":13.1,"ë":13.1,"è":13.1,"ê":13.1,"ï":6,"ö":13.5,"ü":13.7,"á":12.8,"à":12.8,"ç":13,"É":13.4,"…":22.1,"“":11.9,"”":11.7,"\"":12.2};
+export const UNKNOWN_W = 14;
+export const PANEL_UNITS = 284;
+export const TILE_UNITS = 128;
+export const TILE_LINES = 3;
+export const textUnits = (text) => [...String(text)].reduce((a, c) => a + (CHAR_W[c] ?? UNKNOWN_W), 0);
+// Greedy word wrap of text into lines at most max units wide; a word wider than
+// max stands on a line of its own. cw: the width table (CHAR_W).
+export function wrapUnits(text, max, cw) {
+  const width = (s) => [...s].reduce((a, c) => a + (cw[c] === undefined ? 14 : cw[c]), 0);
+  const out = [];
+  let cur = '';
+  for (const word of String(text).split(' ')) {
+    if (cur && width(`${cur} ${word}`) > max) { out.push(cur); cur = word; } else cur = cur ? `${cur} ${word}` : word;
+  }
+  if (cur) out.push(cur);
+  return out;
+}
+export function checkLabels(data, stageText = '') {
+  const errs = [];
+  for (const t of data.topics || []) {
+    for (const lang of ['nl', 'en']) {
+      const title = (t.title || {})[lang] || '';
+      const widest = Math.max(0, ...title.split(' ').map(textUnits));
+      if (widest > TILE_UNITS) errs.push(`topic ${t.id}: "${title}" (${lang}) has a word of ${Math.ceil(widest)} units, a tile is ${TILE_UNITS}`);
+      else {
+        const lines = wrapUnits(title, TILE_UNITS, CHAR_W).length;
+        if (lines > TILE_LINES) errs.push(`topic ${t.id}: "${title}" (${lang}) wraps to ${lines} lines in a tile of ${TILE_UNITS} units, a tile holds ${TILE_LINES}`);
+      }
+    }
+  }
+  // a label in double quotes or backticks would escape the measure below
+  for (const [call] of String(stageText).matchAll(/\btr\(\s*(?:'(?:[^'\\]|\\.)*'\s*,\s*)?["`][^)]{0,60}/g)) errs.push(`label ${call.slice(0, 50)}…: write it as tr('nl', 'en') in single quotes, so its fit is measured`);
+  const pairs = String(stageText).matchAll(/\btr\(\s*'((?:[^'\\]|\\.)*)'\s*,\s*'((?:[^'\\]|\\.)*)'\s*(?:,\s*(\d+)\s*)?\)/g);
+  for (const [, nl, en, width] of pairs) {
+    const units = width ? Number(width) : PANEL_UNITS;
+    for (const [lang, text] of [['nl', nl], ['en', en]]) {
+      const w = textUnits(text.replace(/\\(.)/g, '$1'));
+      if (w > units) errs.push(`label "${text}" (${lang}) is ${Math.ceil(w)} units wide, ${width ? `its box is ${units}` : `the panel is ${units}`}`);
+    }
+  }
   return errs;
 }
 
