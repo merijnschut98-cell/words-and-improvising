@@ -204,9 +204,13 @@ test('every narrated film: each beat has a script in both languages, and the syn
 
 // v17: a module intro film is held to its module's map. Every module that names
 // an intro ships it (tests/intro.test.js); here each shipped intro page is
-// rechecked: a topic renamed or added in the index, or a topic whose title no
-// caption and no card carries, fails until the film is rebuilt.
-test('every shipped intro film: each topic of its module is still on its map, named and shown', async () => {
+// rechecked, and every topic is mutated in turn: a topic renamed or added in the
+// index, a title that the captions of its own scene do not carry, a scene with
+// one beat, a scene that lights no part of it, fails until the film is rebuilt.
+// The narration guard and the drawn labels are rechecked on the page too.
+const esc = (v) => v.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+const clone = (x) => JSON.parse(JSON.stringify(x));
+test('every shipped intro film: each topic of its module is still on its map, named, explained and shown', async () => {
   const lessons = await allLessons();
   const intros = films.map((id) => [id, fs.readFileSync(`${DIR}/${id}.html`, 'utf8')]).filter(([, html]) => readFilmData(html).module);
   assert.ok(intros.length >= 1, 'no intro film shipped');
@@ -217,25 +221,45 @@ test('every shipped intro film: each topic of its module is still on its map, na
     assert.ok(ctx.module, `${id}: module ${data.module} is not in the index`);
     assert.deepEqual(data.lessons, ctx.module.lessons, `${id}: serves all of ${data.module}'s lessons`);
     assert.deepEqual(data.topics.map((t) => t.id), ctx.module.topics.map((t) => t.id), `${id}: one map entry per topic`);
-    // a topic renamed in the index
-    const renamed = JSON.parse(JSON.stringify(ctx.module));
-    renamed.topics[0].title.en += ' x';
-    assert.match(checkFilm(data, { ...ctx, module: renamed }).join('\n'), /topic .*: title ".*" \(en\) is now ".* x"/);
+    assert.deepEqual(checkFilm(data, ctx), [], `${id}: the shipped page passes its own checks`);
     // a topic added to the module
-    const grown = JSON.parse(JSON.stringify(ctx.module));
+    const grown = clone(ctx.module);
     grown.topics.push({ id: 'zz', title: { nl: 'Zz', en: 'Zz' }, levels: [] });
     assert.match(checkFilm(data, { ...ctx, module: grown }).join('\n'), /topic zz of .* is not on the film's map/);
-    // a topic whose title is in no caption and on no card
-    const t = ctx.module.topics[0];
-    const mute = JSON.parse(JSON.stringify(data));
-    const cut = (text, title) => text.replace(new RegExp(title.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'gi'), '…');
-    for (const s of mute.scenes) for (const b of s.beats) for (const lang of ['nl', 'en']) b.text[lang] = cut(b.text[lang], t.title[lang]);
-    const noCard = cut(cut(ctx.stageText, t.title.nl), t.title.en);
-    assert.match(checkFilm(mute, { ...ctx, stageText: noCard }).join('\n'), new RegExp(`topic ${t.id}: ".*" \\(nl\\) is in no caption and on no card`));
-    // a topic whose scene lights no part of it
-    const dark = JSON.parse(JSON.stringify(data));
-    const sc = dark.scenes.find((s) => s.id === data.topics[0].scene);
-    for (const b of sc.beats) { b.cues = b.cues.filter((c) => c !== data.topics[0].cue); if (b.focus) b.focus = b.focus.filter((c) => c !== data.topics[0].cue); }
-    assert.match(checkFilm(dark, ctx).join('\n'), /no beat of scene .* lights its part/);
+    // every topic in turn, not only the first
+    for (const [ti, t] of ctx.module.topics.entries()) {
+      const at = `${id}: topic ${t.id}`;
+      const ft = data.topics.find((x) => x.id === t.id);
+      // renamed in the index
+      const renamed = clone(ctx.module);
+      renamed.topics[ti].title.en += ' x';
+      assert.match(checkFilm(data, { ...ctx, module: renamed }).join('\n'), new RegExp(`topic ${t.id}: title ".*" \\(en\\) is now ".* x"`), at);
+      // its title in no caption of its own scene (the other scenes, and any card, keep it)
+      for (const lang of ['nl', 'en']) {
+        const mute = clone(data);
+        const sc = mute.scenes.find((s) => s.id === ft.scene);
+        for (const b of sc.beats) { b.text[lang] = b.text[lang].replace(new RegExp(esc(t.title[lang]), 'gi'), '…'); b.seg[lang] = [b.text[lang]]; }
+        assert.match(checkFilm(mute, ctx).join('\n'), new RegExp(`topic ${t.id}: ".*" \\(${lang}\\) is in no caption of its scene ${ft.scene}`), `${at} (${lang})`);
+      }
+      // its scene explains it in one beat only
+      const thin = clone(data);
+      thin.scenes.find((s) => s.id === ft.scene).beats.length = 1;
+      assert.match(checkFilm(thin, ctx).join('\n'), new RegExp(`topic ${t.id}: scene ${ft.scene} has 1 beat, needs at least 2`), at);
+      // its scene lights no part of it
+      const dark = clone(data);
+      for (const b of dark.scenes.find((s) => s.id === ft.scene).beats) { b.cues = (b.cues || []).filter((c) => c !== ft.cue); if (b.focus) b.focus = b.focus.filter((c) => c !== ft.cue); }
+      assert.match(checkFilm(dark, ctx).join('\n'), /no beat of scene .* lights its part/, at);
+    }
+    // the narration guard on the shipped page: a colon, a symbol, a third comma, a misread word
+    for (const [bad, what] of [['Zo: dit.', /symbol the voice reads aloud, or a colon/], ['Dat is 5 + 3.', /symbol the voice reads aloud/], ['Een, twee, drie, vier.', /more than two commas/], ['Het deliverable komt.', /Dutch voice misreads/]]) {
+      const loud = clone(data);
+      loud.scenes[0].beats[0].say.nl = [bad];
+      assert.match(checkFilm(loud, ctx).join('\n'), what, bad);
+    }
+    // a drawn label too long for the panel; a topic title that does not wrap into a tile
+    assert.match(checkFilm(data, { ...ctx, stageText: `${ctx.stageText}\ntr('Een veel te lange tekst voor het paneel', 'Short')` }).join('\n'), /the panel fits 27/);
+    const wide = clone(data);
+    wide.topics[0].title.nl = 'Onderhandelingstechnieken';
+    assert.match(checkFilm(wide, ctx).join('\n'), /a tile fits 12/);
   }
 });

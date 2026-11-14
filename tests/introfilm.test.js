@@ -9,7 +9,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { resolveFilm } from '../films/_kit/build-film.mjs';
-import { checkFilm, moduleTextOf } from '../films/_kit/assert.mjs';
+import { checkFilm, checkNarration, checkLabels, moduleTextOf } from '../films/_kit/assert.mjs';
 
 const lesson = (id, terms, teach) => ({ id, title: 'T', pre: [], recall: [], teach, example: { text: '' }, terms: terms.map((term) => ({ term, def: 'D.' })) });
 const LESSONS = {
@@ -114,16 +114,33 @@ test('checkFilm: an intro film passes on the map, not on per-term coverage', () 
   assert.deepEqual(checkFilm(data, ctx()), []);
 });
 
-test('checkFilm: each topic is named in a caption or on a card, in both languages', () => {
+test('checkFilm: each topic is named in a caption of its OWN scene, in both languages', () => {
   const data = resolveFilm(spec(), LESSONS, MODULES);
   const noName = clone(data);
   for (const lang of ['nl', 'en']) { noName.scenes[2].beats[0].text[lang] = lang === 'nl' ? 'Onderwerp twee.' : 'Topic two.'; noName.scenes[2].beats[0].seg[lang] = [noName.scenes[2].beats[0].text[lang]]; }
-  assert.match(checkFilm(noName, ctx()).join('\n'), /topic time: "Tijd en buffers" \(nl\) is in no caption and on no card/);
-  assert.match(checkFilm(noName, ctx()).join('\n'), /topic time: "Time and buffers" \(en\) is in no caption and on no card/);
-  // a card on the stage names it as well (any case)
-  assert.deepEqual(checkFilm(noName, ctx({ stageText: "tr('Tijd en buffers', 'Time and buffers')" })), []);
+  const out = checkFilm(noName, ctx()).join('\n');
+  assert.match(out, /topic time: "Tijd en buffers" \(nl\) is in no caption of its scene s3/);
+  assert.match(out, /topic time: "Time and buffers" \(en\) is in no caption of its scene s3/);
+  // a card on the stage no longer counts: the stage draws titles from page data at runtime
+  assert.match(checkFilm(noName, ctx({ stageText: "tr('Tijd en buffers', 'Time and buffers')" })).join('\n'), /"Tijd en buffers" \(nl\) is in no caption of its scene s3/);
+  // a caption of ANOTHER scene does not count either (the closing map names every topic)
+  const elsewhere = clone(noName);
+  elsewhere.scenes[3].beats[0].text.nl = 'De kaart: Tijd en buffers.';
+  elsewhere.scenes[3].beats[0].seg.nl = [elsewhere.scenes[3].beats[0].text.nl];
+  assert.match(checkFilm(elsewhere, ctx()).join('\n'), /"Tijd en buffers" \(nl\) is in no caption of its scene s3/);
   // one language alone is not enough
-  assert.match(checkFilm(noName, ctx({ stageText: "tr('Tijd en buffers', 'Time')" })).join('\n'), /"Time and buffers" \(en\)/);
+  const onlyNl = clone(data);
+  onlyNl.scenes[2].beats[0].text.en = 'Topic two.';
+  onlyNl.scenes[2].beats[0].seg.en = ['Topic two.'];
+  assert.match(checkFilm(onlyNl, ctx()).join('\n'), /"Time and buffers" \(en\)/);
+});
+
+test('checkFilm: each topic has at least two beats in its scene', () => {
+  const data = resolveFilm(spec(), LESSONS, MODULES);
+  const thin = clone(data);
+  thin.scenes[2].beats.pop();
+  assert.match(checkFilm(thin, ctx()).join('\n'), /topic time: scene s3 has 1 beat, needs at least 2/);
+  assert.deepEqual(checkFilm(data, ctx()), []);
 });
 
 test('checkFilm: each topic is shown, a beat of its scene lights its part', () => {
@@ -158,4 +175,75 @@ test('checkFilm: an intro film drifts with its module', () => {
   assert.match(checkFilm(data, ctx({ module: blurb })).join('\n'), /number 2 \(scene s4\) no longer in the text of module pm\.fx/);
   // without its module the check cannot run
   assert.match(checkFilm(data, ctx({ module: undefined })).join('\n'), /intro film of pm\.fx: module pm\.fx not given/);
+});
+
+// ---------------------------------------------------------------- the narration guard (kit, every module and field film)
+const said = (nl, en) => ({ nl: [nl], en: [en] });
+const narrated = (edit = {}) => {
+  const data = resolveFilm(spec(), LESSONS, MODULES);
+  const out = clone(data);
+  out.scenes.forEach((s, si) => s.beats.forEach((b, bi) => {
+    const spoken = (seg) => seg.map((p) => (typeof p === 'string' ? p : p.t)).join('');
+    const nl = spoken(b.seg.nl);
+    const en = spoken(b.seg.en);
+    b.say = said(nl, en);
+    b.voice = { nl, en };
+    if (edit[`${si}.${bi}`]) { b.say = said(...edit[`${si}.${bi}`]); b.voice = { nl: edit[`${si}.${bi}`][0], en: edit[`${si}.${bi}`][1] }; }
+  }));
+  return out;
+};
+
+test('checkNarration: a plain narration passes', () => {
+  assert.deepEqual(checkNarration(narrated()), []);
+});
+
+test('checkNarration: no symbol the voice reads aloud, no colon, in either language', () => {
+  for (const bad of ['Dat kost 5 + 3 uur.', 'Zo: eerst dit.', 'Het (bijna) klaar.', 'Of dit/dat.', 'Honderd%.', 'A & B.']) {
+    assert.match(checkNarration(narrated({ '0.0': [bad, 'Fine.'] })).join('\n'), /a symbol the voice reads aloud, or a colon/, bad);
+    assert.match(checkNarration(narrated({ '0.0': ['Goed.', bad] })).join('\n'), /a symbol the voice reads aloud, or a colon/, bad);
+  }
+});
+
+test('checkNarration: at most two commas in a sentence', () => {
+  assert.deepEqual(checkNarration(narrated({ '0.0': ['Een, twee, drie. Vier, vijf.', 'One, two, three.'] })), []);
+  assert.match(checkNarration(narrated({ '0.0': ['Een, twee, drie, vier.', 'Fine.'] })).join('\n'), /more than two commas in "Een, twee, drie, vier\.?"/);
+});
+
+test('checkNarration: the words the Dutch voice misreads', () => {
+  for (const w of ['deliverable', 'definition of done', 'PMI', 'Deadline']) {
+    assert.match(checkNarration(narrated({ '0.0': [`Het ${w} komt.`, 'Fine.'] })).join('\n'), /a word the Dutch voice misreads/, w);
+  }
+  // the English narration may say them
+  assert.deepEqual(checkNarration(narrated({ '0.0': ['Goed.', 'The deliverable and the deadline.'] })), []);
+});
+
+test('checkFilm: an intro film is held to the narration guard', () => {
+  assert.match(checkFilm(narrated({ '0.0': ['Zo: dit.', 'Fine.'] }), ctx()).join('\n'), /a symbol the voice reads aloud, or a colon/);
+});
+
+// ---------------------------------------------------------------- drawn labels fit (22-unit text)
+test('checkLabels: a topic title wraps at 12 characters into at most 3 lines inside a tile', () => {
+  const data = resolveFilm(spec(), LESSONS, MODULES);
+  assert.deepEqual(checkLabels(data, ''), []);
+  const wide = clone(data);
+  wide.topics[0].title.nl = 'Onderhandelingstechnieken';
+  assert.match(checkLabels(wide, '').join('\n'), /topic split: "Onderhandelingstechnieken" \(nl\) has a word of 25 characters, a tile fits 12/);
+  const tall = clone(data);
+  tall.topics[1].title.en = 'One two three four five six seven';
+  assert.match(checkLabels(tall, '').join('\n'), /topic time: "One two three four five six seven" \(en\) wraps to 4 lines at 12 characters, a tile fits 3/);
+});
+
+test('checkLabels: every tr(nl, en) label of the stage fits its box at 22 units, 10.5 units a character', () => {
+  const data = resolveFilm(spec(), LESSONS, MODULES);
+  assert.deepEqual(checkLabels(data, "tr('Lijn 4: buiten scope', 'Line 4: out of scope')"), []);
+  assert.match(checkLabels(data, "tr('Een veel te lange tekst voor het paneel', 'Short')").join('\n'), /label "Een veel te lange tekst voor het paneel" \(nl\) is 39 characters, the panel fits 27/);
+  assert.match(checkLabels(data, "tr('Short', 'Een veel te lange tekst voor het paneel')").join('\n'), /\(en\) is 39 characters/);
+  // a narrower box names its width as a third argument
+  assert.match(checkLabels(data, "tr('Vloer klaar', 'Floor ready', 100)").join('\n'), /label "Vloer klaar" \(nl\) is 11 characters, 100 units fit 9/);
+  assert.deepEqual(checkLabels(data, "tr('Vloer klaar', 'Floor ready', 178)"), []);
+});
+
+test('checkFilm: an intro film is held to its drawn labels', () => {
+  const data = resolveFilm(spec(), LESSONS, MODULES);
+  assert.match(checkFilm(data, ctx({ stageText: "tr('Een veel te lange tekst voor het paneel', 'Short')" })).join('\n'), /is 39 characters, the panel fits 27/);
 });

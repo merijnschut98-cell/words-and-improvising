@@ -89,7 +89,10 @@ export function checkFilm(data, { lessons, levelOf, wiredBy = [], module: meta, 
 
   // coverage: each term of each served lesson is shown at or below its level, or
   // skipped with a reason (an intro film: every topic of its module, below)
-  if (mod) errs.push(...checkIntro(data, mod, stageText));
+  if (mod) errs.push(...checkIntro(data, mod));
+  // module and field films: the narration guard, and the drawn labels fit
+  if (intro || data.field !== undefined) errs.push(...checkNarration(data));
+  if (intro) errs.push(...checkLabels(data, stageText));
   if (!intro) for (const id of served) {
     const l = lessons.nl.get(id);
     if (!l) continue;
@@ -193,27 +196,103 @@ export function checkFilm(data, { lessons, levelOf, wiredBy = [], module: meta, 
 
 // The map of a module intro film (v17): every topic of the module is on it
 // (data.topics, with the title it had at build time, the scene that explains it
-// and the cue key of its part), still under that title, named in a caption or
-// on a card in both languages, and shown: a beat of its scene lights its part.
-export function checkIntro(data, mod, stageText = '') {
+// and the cue key of its part), still under that title, named in a caption of
+// its OWN scene in both languages, explained in at least two beats, and shown:
+// a beat of its scene lights its part. Captions only: the stage draws a topic's
+// title from the page data at runtime, so a card never counted as a name.
+export const MIN_TOPIC_BEATS = 2;
+export function checkIntro(data, mod) {
   const errs = [];
   const scenes = data.scenes || [];
   const onMap = new Map((data.topics || []).map((t) => [t.id, t]));
-  const card = lc(stageText);
   for (const t of mod.topics || []) {
     const ft = onMap.get(t.id);
     if (!ft) { errs.push(`topic ${t.id} of ${mod.id} is not on the film's map`); continue; }
+    const sc = scenes.find((s) => s.id === ft.scene);
     for (const lang of ['nl', 'en']) {
       if ((ft.title || {})[lang] !== t.title[lang]) errs.push(`topic ${t.id}: title "${(ft.title || {})[lang]}" (${lang}) is now "${t.title[lang]}"`);
       const name = lc(t.title[lang]);
-      const said = scenes.some((s) => (s.beats || []).some((b) => lc(b.text[lang]).includes(name)));
-      if (!said && !card.includes(name)) errs.push(`topic ${t.id}: "${t.title[lang]}" (${lang}) is in no caption and on no card`);
+      if (sc && !(sc.beats || []).some((b) => lc(b.text[lang]).includes(name))) errs.push(`topic ${t.id}: "${t.title[lang]}" (${lang}) is in no caption of its scene ${ft.scene}`);
     }
-    const sc = scenes.find((s) => s.id === ft.scene);
     if (!sc) errs.push(`topic ${t.id}: no scene ${ft.scene}`);
-    else if (!ft.cue || !sc.beats.some((b) => [...(b.focus || []), ...(b.cues || [])].includes(ft.cue))) errs.push(`topic ${t.id}: no beat of scene ${ft.scene} lights its part ${ft.cue}`);
+    else {
+      if (sc.beats.length < MIN_TOPIC_BEATS) errs.push(`topic ${t.id}: scene ${ft.scene} has ${sc.beats.length} beat${sc.beats.length === 1 ? '' : 's'}, needs at least ${MIN_TOPIC_BEATS}`);
+      if (!ft.cue || !sc.beats.some((b) => [...(b.focus || []), ...(b.cues || [])].includes(ft.cue))) errs.push(`topic ${t.id}: no beat of scene ${ft.scene} lights its part ${ft.cue}`);
+    }
   }
   for (const ft of data.topics || []) if (!(mod.topics || []).some((t) => t.id === ft.id)) errs.push(`topic ${ft.id} is no topic of ${mod.id}`);
+  return errs;
+}
+
+// The narration guard (v17), for every module or field film: what the voice
+// says has no symbol it would read aloud, no colon, nothing in parentheses or
+// quotes, none of the Dutch words the voice misreads, and at most two commas in
+// a sentence (the render guard caps a pause inside a sentence at 0.4 s). Reads
+// the narration script (beat.say) in both languages.
+export const NARRATION_SYMBOLS = /[/&×=+()“”"‘<>≈→~:;%]/;
+export const NL_MISREAD = /\b(deliverable|definition of done|PMI|deadline)\b/i;
+export const MAX_COMMAS = 2;
+export function checkNarration(data) {
+  const errs = [];
+  for (const s of data.scenes || []) {
+    (s.beats || []).forEach((b, i) => {
+      if (!b.say) return;
+      for (const lang of ['nl', 'en']) {
+        // the English gloss of a Dutch term is shown, never spoken
+        const plain = (b.say[lang] || []).map((p) => (typeof p === 'string' ? p : p.t)).join('');
+        const where = `scene ${s.id} beat ${i + 1}`;
+        if (NARRATION_SYMBOLS.test(plain)) errs.push(`narration: a symbol the voice reads aloud, or a colon, in "${plain.slice(0, 50)}" (${where}, ${lang})`);
+        if (lang === 'nl' && NL_MISREAD.test(plain)) errs.push(`narration: a word the Dutch voice misreads in "${plain.slice(0, 50)}" (${where})`);
+        for (const sentence of plain.split(/[.?!]\s+/)) if ((sentence.match(/,/g) || []).length > MAX_COMMAS) errs.push(`narration: more than two commas in "${sentence.slice(0, 50)}" (${where}, ${lang})`);
+      }
+    });
+  }
+  return errs;
+}
+
+// Drawn panel labels (v17). Stage text is 22 units; a character of it is about
+// 10.5 units wide (measured on the pilot), so a box of w units fits
+// floor(w / 10.5) characters. The panel is 284 units wide inside its margins.
+// A topic title drawn in a tile is cut into lines of at most 12 characters (a
+// 140-unit tile) and a tile holds 3 lines. Every tr('nl', 'en') label of the
+// stage script is measured in both languages against the panel, or against the
+// width named as its third argument: tr('Vloer klaar', 'Floor ready', 178).
+export const LABEL_UNITS = 22;
+export const CHAR_UNITS = 10.5;
+export const PANEL_UNITS = 284;
+export const TILE_CHARS = 12;
+export const TILE_LINES = 3;
+export const fitChars = (units) => Math.floor(units / CHAR_UNITS);
+export function wrapLabel(text, n) {
+  const out = [];
+  let cur = '';
+  for (const word of String(text).split(' ')) {
+    if (cur && (cur + ' ' + word).length > n) { out.push(cur); cur = word; } else cur = cur ? `${cur} ${word}` : word;
+  }
+  if (cur) out.push(cur);
+  return out;
+}
+export function checkLabels(data, stageText = '') {
+  const errs = [];
+  for (const t of data.topics || []) {
+    for (const lang of ['nl', 'en']) {
+      const title = (t.title || {})[lang] || '';
+      const longest = Math.max(0, ...title.split(' ').map((w) => w.length));
+      if (longest > TILE_CHARS) errs.push(`topic ${t.id}: "${title}" (${lang}) has a word of ${longest} characters, a tile fits ${TILE_CHARS}`);
+      else {
+        const lines = wrapLabel(title, TILE_CHARS).length;
+        if (lines > TILE_LINES) errs.push(`topic ${t.id}: "${title}" (${lang}) wraps to ${lines} lines at ${TILE_CHARS} characters, a tile fits ${TILE_LINES}`);
+      }
+    }
+  }
+  const pairs = String(stageText).matchAll(/\btr\(\s*'((?:[^'\\]|\\.)*)'\s*,\s*'((?:[^'\\]|\\.)*)'\s*(?:,\s*(\d+)\s*)?\)/g);
+  for (const [, nl, en, width] of pairs) {
+    const units = width ? Number(width) : PANEL_UNITS;
+    const room = fitChars(units);
+    for (const [lang, text] of [['nl', nl], ['en', en]]) {
+      if (text.length > room) errs.push(`label "${text}" (${lang}) is ${text.length} characters, ${width ? `${units} units fit ${room}` : `the panel fits ${room}`}`);
+    }
+  }
   return errs;
 }
 
