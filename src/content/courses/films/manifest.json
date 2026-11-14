@@ -2915,7 +2915,7 @@
       "poster": "src/content/courses/films/pm.field.lifecycle.jpg",
       "nl": {
         "dur": 184.6,
-        "bytes": 7923395,
+        "bytes": 8003039,
         "scenes": [
           0,
           15.79,
@@ -2929,7 +2929,7 @@
       },
       "en": {
         "dur": 214.9,
-        "bytes": 8972017,
+        "bytes": 9019402,
         "scenes": [
           0,
           19.17,
@@ -3004,6 +3004,31 @@
           112.98
         ],
         "vtt": "src/content/courses/films/pm.field.people.en.vtt"
+      }
+    },
+    "pm.field.portfolio": {
+      "poster": "src/content/courses/films/pm.field.portfolio.jpg",
+      "nl": {
+        "dur": 86.6,
+        "bytes": 4269740,
+        "scenes": [
+          0,
+          16.96,
+          38.59,
+          60.56
+        ],
+        "vtt": "src/content/courses/films/pm.field.portfolio.nl.vtt"
+      },
+      "en": {
+        "dur": 96.9,
+        "bytes": 4618770,
+        "scenes": [
+          0,
+          20.12,
+          44.13,
+          68.99
+        ],
+        "vtt": "src/content/courses/films/pm.field.portfolio.en.vtt"
       }
     }
   }
