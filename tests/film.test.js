@@ -679,6 +679,22 @@ test('speak variant: the portfolio field film words in Dutch', () => {
   assert.equal(speakOf([en], 'en'), en);
 });
 
+// The field film "IT and agile" (pm.field.it), checked with espeak-ng phonemes through
+// Piper's nl bridge: it reads the letter W as "vee" (WSJF said wee es jee ef) and
+// plantmanager with a hard g (said plant-menetsjer, only in "voor de plantmanager").
+// The IT and agile words (sprint, kanbanbord, planning poker, pipeline, feature flag,
+// go-live, cutover, MoSCoW, MES, SAFe, agile) have rules above or need nothing; English
+// needs nothing; no other film's spoken text changes
+test('speak variant: the IT and agile field film words in Dutch', () => {
+  const nl = (s) => speakOf([s], 'nl');
+  assert.equal(nl('Je gebruikt PI Planning en WSJF.'), 'Je gebruikt PI Planning en wee es jee ef.');
+  assert.equal(nl('Jij leidt dat IT-project voor de plantmanager.'), 'Jij leidt dat IT-project voor de plant-menetsjer.');
+  // elsewhere plantmanager keeps its voice
+  assert.equal(nl('Vraag het de plantmanager.'), 'Vraag het de plantmanager.');
+  const en = 'You use PI Planning and WSJF. You lead that IT project for the plant manager.';
+  assert.equal(speakOf([en], 'en'), en);
+});
+
 // A stage drawn on the Dutch caption beats (beatwarp films set STAGE.nlBeats)
 // follows the caption beat on screen in English too: while English beat k
 // shows, the stage runs through Dutch beat k, so the drawing is never a beat off.
