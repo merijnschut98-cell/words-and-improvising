@@ -14,7 +14,7 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import { MODULES, FIELDS, loadModule, placeOf } from '../src/content/courses/index.js';
 import { validateModule } from '../src/content/courses/validate.js';
-import { readFilmData, checkFilm, lessonTextOf, moduleTextOf, fieldTextOf, MAX_BYTES } from '../films/_kit/assert.mjs';
+import { readFilmData, checkFilm, lessonTextOf, moduleTextOf, fieldTextOf, MAX_BYTES, TILE_UNITS } from '../films/_kit/assert.mjs';
 
 const DIR = 'src/content/courses/films';
 // Films whose terms all carry the same name in both languages (pm.agile.scrum:
@@ -274,9 +274,16 @@ test('every shipped intro film: each topic of its module is still on its map, na
     }
     // a drawn label too long for the panel; a topic title that does not wrap into a tile
     assert.match(checkFilm(data, { ...ctx, stageText: `${ctx.stageText}\ntr('Een veel te lange tekst voor het paneel', 'Short')` }).join('\n'), /units wide, the panel is 284/);
+    // held to the width the page declares (tileUnits, pm.intake.intro) or the default, never to any width: the
+    // mutated word (306 units) is wider than any width the kit allows (at most 272), and a title of fifteen words
+    // wraps past three lines in any of them
+    const tile = data.tileUnits ?? TILE_UNITS;
     const wide = clone(data);
     wide.topics[0].title.nl = 'Onderhandelingstechnieken';
-    assert.match(checkFilm(wide, ctx).join('\n'), /a tile is 128/);
+    assert.match(checkFilm(wide, ctx).join('\n'), new RegExp(`has a word of \\d+ units, a tile is ${tile}\\b`), data.id);
+    const tall = clone(data);
+    tall.topics[0].title.en = 'one two three four five six seven eight nine ten eleven twelve thirteen fourteen fifteen';
+    assert.match(checkFilm(tall, ctx).join('\n'), new RegExp(`wraps to \\d+ lines in a tile of ${tile} units`), data.id);
   }
 });
 

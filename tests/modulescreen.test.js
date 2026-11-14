@@ -10,7 +10,8 @@ installFakeDom();
 const { moduleModel, moduleFor } = await import('../src/ui/modulescreen.js');
 const byId = (id) => MODULES.find((m) => m.id === id);
 const withIntro = { ...MODULES.find((m) => m.id === 'eng.machining'), intro: 'eng.machining.intro' };
-const noIntro = MODULES.find((m) => m.id === 'pm.intake');
+// a module as it is without its intro (pm.intake has one since the Intake intro film)
+const { intro: _intro, ...noIntro } = MODULES.find((m) => m.id === 'pm.intake');
 
 test('moduleModel: a module with an intro reports it and whether it was seen', () => {
   const s = defaultState();

@@ -738,7 +738,16 @@ const SAY = {
     // nl_NL-alex bridge: espeak-ng reads "DevOps" as dˈɛf ˈɔps ("def ops"); "Dev-ops" gives dˈɛvˈɔps, the v of
     // "developer" as Dutch IT people say it, first syllable stressed. Also inside DevOps-rapport and DevOpsDays;
     // English reads dˈɛv ˈɒps and needs nothing
-    [/\b([Dd])ev[Oo]ps/g, '$1ev-ops']],
+    [/\b([Dd])ev[Oo]ps/g, '$1ev-ops'],
+    // the module intro film of Intake (pm.intake.intro), a self-contained group at the end of the Dutch list, checked
+    // with phonemes through Piper's nl_NL-alex bridge: espeak-ng reads blokkeerder as "BLOK-i-der" (the long ee
+    // shortened, the stress on blok); said blok-keerder, with the second stress on keer, only in this film's phrase
+    // "(E)n een blokkeerder kan het stoppen", so pm.run.escalation and pm.intake.stakeholders keep their voice. The
+    // film says business case as two words (the business case rule above), de intake (the field film's rule),
+    // stakeholdermap, proceseigenaar and nulmeting (the rules above), and kick-off, SCQ, 5 keer waarom,
+    // vragenboom, terugverdientijd, ondernemingsraad, hypotheses and fasering are read right as they are; no other
+    // film's spoken text changes
+    [/\b([Ee])n een blokkeerder kan het stoppen\b/g, '$1n een blok-keerder kan het stoppen']],
   en: [[/\brpm\b/g, 'revolutions per minute'], [/\bmm\/min\b/g, 'millimetres per minute'], [/\bm\/min\b/g, 'metres per minute'], [/µm\b/g, 'micrometres'],
     [/€\s?(\d[\d,]*(?:\.\d+)?)/g, '$1 euros'], [/(\d)\.0(?![\d])/g, '$1'], [/(\d)\s?mm\b/g, '$1 millimetres'], [/(\d)\s?min\b/g, '$1 minutes'], [/(\d)\s?%/g, '$1 percent'],
     [/Ø\s*/g, 'diameter '], [/(\d)\+(\d)/g, '$1 plus $2'], [/\s×\s/g, ' times '], [/\s\/\s/g, ' divided by '], [/\s=\s/g, ' is '], [/°/g, ' degrees'], [/\bRa\b/g, 'R a'], [/’/g, "'"],

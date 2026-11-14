@@ -361,14 +361,21 @@ export function wrapUnits(text, max, cw) {
 }
 export function checkLabels(data, stageText = '') {
   const errs = [];
+  // a film whose index titles do not fit a 128-unit tile draws wider tiles and declares them (spec.tileUnits, in the
+  // page data): between the default and the panel's width less its padding, so every other film is unchanged
+  let tileUnits = TILE_UNITS;
+  if (data.tileUnits !== undefined) {
+    if (!(Number.isFinite(data.tileUnits) && data.tileUnits >= TILE_UNITS && data.tileUnits <= PANEL_UNITS - 12)) errs.push(`tileUnits must be between ${TILE_UNITS} and ${PANEL_UNITS - 12}, not ${data.tileUnits}`);
+    else tileUnits = data.tileUnits;
+  }
   for (const t of data.topics || []) {
     for (const lang of ['nl', 'en']) {
       const title = (t.title || {})[lang] || '';
       const widest = Math.max(0, ...title.split(' ').map(textUnits));
-      if (widest > TILE_UNITS) errs.push(`topic ${t.id}: "${title}" (${lang}) has a word of ${Math.ceil(widest)} units, a tile is ${TILE_UNITS}`);
+      if (widest > tileUnits) errs.push(`topic ${t.id}: "${title}" (${lang}) has a word of ${Math.ceil(widest)} units, a tile is ${tileUnits}`);
       else {
-        const lines = wrapUnits(title, TILE_UNITS, CHAR_W).length;
-        if (lines > TILE_LINES) errs.push(`topic ${t.id}: "${title}" (${lang}) wraps to ${lines} lines in a tile of ${TILE_UNITS} units, a tile holds ${TILE_LINES}`);
+        const lines = wrapUnits(title, tileUnits, CHAR_W).length;
+        if (lines > TILE_LINES) errs.push(`topic ${t.id}: "${title}" (${lang}) wraps to ${lines} lines in a tile of ${tileUnits} units, a tile holds ${TILE_LINES}`);
       }
     }
   }
