@@ -625,6 +625,21 @@ test('speak variant: the field film words in Dutch', () => {
   assert.equal(speakOf([en], 'en'), en);
 });
 
+// The field film "people and influence" (pm.field.people), checked with espeak-ng
+// phonemes through Piper's nl bridge: it reads the English "second opinion" as
+// "sekont opinion" (said sekkend opinjen, only after "vragenset en een"). SBI has
+// its rule above; BATNA, KPI-boom, mensenprobleem, vragenset and prestatiebord
+// need nothing; English needs nothing; no other film's spoken text changes
+test('speak variant: the people field film words in Dutch', () => {
+  const nl = (s) => speakOf([s], 'nl');
+  assert.equal(nl('Je gebruikt een vragenset en een second opinion.'), 'Je gebruikt een vragenset en een sekkend opinjen.');
+  assert.equal(nl('Daarbij gebruik je vaak deskundigheidsmacht en SBI.'), 'Daarbij gebruik je vaak deskundigheidsmacht en es bee ie.');
+  // elsewhere the words keep their voice
+  assert.equal(nl('Vraag een second opinion bij een BATNA.'), 'Vraag een second opinion bij een BATNA.');
+  const en = 'You often use expert power and SBI. You use a question set and a second opinion.';
+  assert.equal(speakOf([en], 'en'), en);
+});
+
 // A stage drawn on the Dutch caption beats (beatwarp films set STAGE.nlBeats)
 // follows the caption beat on screen in English too: while English beat k
 // shows, the stage runs through Dutch beat k, so the drawing is never a beat off.

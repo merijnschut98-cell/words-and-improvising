@@ -704,7 +704,12 @@ const SAY = {
     // the rules above, only in "De operators krijgen") and oranje with the stress on the o (o-ranje, only in "nu
     // op oranje"). Werkinstructie, nulmeting, terugblik, stuurgroep and watermeloenproject need nothing; no
     // other film's spoken text changes
-    [/\bde intake\b/g, 'de in-teek'], [/\bDe operators krijgen\b/g, 'De ope-raators krijgen'], [/\bnu op oranje\b/g, 'nu op o-ranje']],
+    [/\bde intake\b/g, 'de in-teek'], [/\bDe operators krijgen\b/g, 'De ope-raators krijgen'], [/\bnu op oranje\b/g, 'nu op o-ranje'],
+    // the field film (pm.field.people), a self-contained group at the end of the Dutch list: espeak-ng reads the
+    // English "second opinion" as "sekont opinion" (said sekkend opinjen), checked with phonemes through Piper's
+    // nl_NL-alex bridge; only in this film's phrase. SBI has its rule above; BATNA, KPI-boom, mensenprobleem,
+    // vragenset and prestatiebord need nothing; no other film's spoken text changes
+    [/\bvragenset en een second opinion\b/g, 'vragenset en een sekkend opinjen']],
   en: [[/\brpm\b/g, 'revolutions per minute'], [/\bmm\/min\b/g, 'millimetres per minute'], [/\bm\/min\b/g, 'metres per minute'], [/µm\b/g, 'micrometres'],
     [/€\s?(\d[\d,]*(?:\.\d+)?)/g, '$1 euros'], [/(\d)\.0(?![\d])/g, '$1'], [/(\d)\s?mm\b/g, '$1 millimetres'], [/(\d)\s?min\b/g, '$1 minutes'], [/(\d)\s?%/g, '$1 percent'],
     [/Ø\s*/g, 'diameter '], [/(\d)\+(\d)/g, '$1 plus $2'], [/\s×\s/g, ' times '], [/\s\/\s/g, ' divided by '], [/\s=\s/g, ' is '], [/°/g, ' degrees'], [/\bRa\b/g, 'R a'], [/’/g, "'"],

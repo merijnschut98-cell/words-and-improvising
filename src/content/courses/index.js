@@ -427,7 +427,7 @@ export const FIELDS = [
   { id: 'pm.field.people', subject: 'pm',
     title: { en: 'People and influence', nl: 'Mensen en invloed' },
     blurb: { en: 'When it is stuck, how you lead, negotiate, work outside your field and steer on performance.', nl: 'Als het vastloopt, hoe je leidt, onderhandelt, buiten je vak werkt en op prestaties stuurt.' },
-    modules: ['pm.stuck', 'pm.lead', 'pm.negotiate', 'pm.outside', 'pm.perform'] },
+    modules: ['pm.stuck', 'pm.lead', 'pm.negotiate', 'pm.outside', 'pm.perform'], film: 'pm.field.people' },
   { id: 'pm.field.portfolio', subject: 'pm',
     title: { en: 'Portfolio and consulting', nl: 'Portfolio en advies' },
     blurb: { en: 'Choosing which projects to do, and advising the people who pay for them.', nl: 'Kiezen welke projecten je doet, en adviseren wie ze betaalt.' },
