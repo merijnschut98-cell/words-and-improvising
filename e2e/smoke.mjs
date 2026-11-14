@@ -3171,6 +3171,25 @@ await step('module return: a lesson opened from the Today card still returns to 
   await c.close();
 });
 
+// Breadth-first: Intake's last Basis lesson, opened from the Today card, ends
+// with "next" pointing at Plannen's first Basis lesson, as the start card does.
+await step('breadth-first: the last Basis lesson of Intake leads to Plannen\'s first Basis lesson', async () => {
+  const lessons = Object.fromEntries(['pm.intake.ask', 'pm.intake.stakeholders', 'pm.intake.done'].map((id, i) => [id, { read: 1000 + i, passed: 1000 + i }]));
+  const { c, p, shotP } = await topicContext({ courses: { pm: { lessons, sessions: [] } }, ui: { subject: 'pm', andonIntro: true } });
+  await p.locator('.course-pm .course-today .today-why', { hasText: 'Businesscase en voorstel · Basis' }).waitFor();
+  if (await p.locator('.course-pm .map-place.is-next[data-module="pm.intake"]').count() !== 1) throw new Error('the map does not mark Intake');
+  await p.locator('.course-today .today-go').click();
+  await playLesson(p, 'pm', 'intake', 'pm.intake.value');
+  const next = p.locator('.next-level');
+  if ((await next.innerText()).trim() !== 'Volgende: Plannen · Opdeling en scope · Basis') throw new Error(`next: ${await next.innerText()}`);
+  await shotP('116-breadth-next-module');
+  await p.getByRole('button', { name: 'Terug naar de cursus' }).click();
+  await p.locator('.course-pm .course-today .today-why', { hasText: 'Opdeling en scope · Basis' }).waitFor();
+  if (await p.locator('.course-pm .map-place.is-next[data-module="pm.plan"]').count() !== 1) throw new Error('the map does not mark Plannen');
+  if (!/Begin met Opdeling en scope\.$/.test(await p.locator('.course-pm .guide-greeting .guide-say').innerText())) throw new Error('Andon does not name Plannen\'s first topic');
+  await c.close();
+});
+
 // v17: the module screen. The fixture machining module gets an intro film (a
 // stub video and a stub film page), so the intro block is real; pm.stuck has
 // none and shows its blurb where the film would be.
@@ -3322,7 +3341,7 @@ await step('Andon: greets on the home screens, presents the intro on a module sc
   await p.locator('.course-pm .guide-greeting .goal-line').waitFor();
   const half = await guidesOn('.course-pm');
   if (half.andons !== 1 || half.lines !== 1) throw new Error(`Projects home with the goal half done: ${JSON.stringify(half)}`);
-  if ((await p.locator('.course-pm .guide-greeting .goal-line').innerText()).trim() !== 'Dagdoel: 5 van 30 XP') throw new Error('the goal line (XP today / goal)');
+  if ((await p.locator('.course-pm .guide-greeting .goal-line').innerText()).trim() !== 'Nog 25 XP tot je dagdoel.') throw new Error('the goal line (XP left)');
   if (/XP/.test(await p.locator('.course-pm .guide-greeting .guide-say').innerText())) throw new Error('the greeting still carries the XP left');
   // Andon names the step instead of pointing below; the map marks one place.
   if (/hieronder/.test(await p.locator('.course-pm .guide-greeting .guide-say').innerText())) throw new Error('Andon points below');

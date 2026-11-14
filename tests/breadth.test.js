@@ -4,7 +4,7 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { defaultState } from '../src/core/storage.js';
 import { MODULES, topicsOf } from '../src/content/courses/index.js';
-import { nextLesson, recommendedModule, courseTodayPick, roadOrder, breadthOrder } from '../src/core/course.js';
+import { nextLesson, recommendedModule, courseTodayPick, roadOrder, breadthOrder, nextCourseLesson, lessonEndNext } from '../src/core/course.js';
 
 const meta = (id) => MODULES.find((m) => m.id === id);
 const levelOf = (m, L) => topicsOf(m).map((t) => t.levels[L]);
@@ -14,11 +14,20 @@ const stateWith = (subject, ids) => ({
 });
 const TODAY = '2026-11-02';
 
-test('roadOrder: Projects follows the road (Intake, Plan, Run, Land, Close) then the map order; Engineering the course order', () => {
+test('roadOrder: Projects follows the road (Intake, Plan, Run, Land, Close), then the other places by module level (Instap, Verdieping, Specialist), map order within a level', () => {
   const ids = roadOrder('pm').map((m) => m.id);
-  assert.deepEqual(ids.slice(0, 7), ['pm.intake', 'pm.plan', 'pm.run', 'pm.land', 'pm.close', 'pm.portfolio', 'pm.consult']);
+  assert.deepEqual(ids, ['pm.intake', 'pm.plan', 'pm.run', 'pm.land', 'pm.close',
+    'pm.agile', 'pm.devops',
+    'pm.stuck', 'pm.lead', 'pm.negotiate', 'pm.outside', 'pm.perform', 'pm.scaled', 'pm.itproject',
+    'pm.portfolio', 'pm.consult']);
   assert.equal(ids.length, MODULES.filter((m) => m.subject === 'pm').length);
-  assert.deepEqual(roadOrder('eng').map((m) => m.id), MODULES.filter((m) => m.subject === 'eng').map((m) => m.id));
+});
+
+test('roadOrder: Engineering (no map) goes by module level, course order within a level, so no L4 module comes before an L1 one', () => {
+  const eng = MODULES.filter((m) => m.subject === 'eng');
+  const ids = roadOrder('eng').map((m) => m.id);
+  assert.deepEqual(ids, [...eng].sort((a, b) => a.level - b.level || eng.indexOf(a) - eng.indexOf(b)).map((m) => m.id));
+  assert.deepEqual(ids.slice(0, 7), ['eng.flow', 'eng.quality', 'eng.process', 'eng.mechanics', 'eng.machining', 'eng.itbasics', 'eng.gridbasics']);
 });
 
 test('breadthOrder: all Basis first, then all Werkkennis, in module order', () => {
@@ -61,4 +70,51 @@ test('inside a module the lowest level across topics comes first; Engineering is
 test('everything passed: no module recommended', () => {
   const st = stateWith('pm', breadthOrder('pm'));
   assert.equal(recommendedModule(st, 'pm'), null);
+});
+
+test('real states: a fresh learner starts at Intake Basis 1; an opened unfinished lesson resumes; Run (a level-2 module on the road) gets its Basis third', () => {
+  const fresh = courseTodayPick(stateWith('pm', []), 'pm', 'nl', TODAY);
+  assert.deepEqual([fresh.moduleId, fresh.lessonId, fresh.level], ['pm.intake', levelOf(meta('pm.intake'), 0)[0], 1]);
+  // opened a Werkkennis lesson of Land and left it: that comes back first
+  const land2 = levelOf(meta('pm.land'), 1)[0];
+  const opened = stateWith('pm', [levelOf(meta('pm.intake'), 0)[0]]);
+  opened.courses.pm.lessons[land2] = { opened: 5 };
+  const back = courseTodayPick(opened, 'pm', 'nl', TODAY);
+  assert.deepEqual([back.why, back.lessonId], ['resume', land2]);
+  // Intake and Plan Basis done: Run's Basis (Run is a Verdieping module; nothing locks it)
+  const two = stateWith('pm', [...levelOf(meta('pm.intake'), 0), ...levelOf(meta('pm.plan'), 0)]);
+  assert.equal(courseTodayPick(two, 'pm', 'nl', TODAY).lessonId, levelOf(meta('pm.run'), 0)[0]);
+  // the road's Basis done: Agile's Basis (Verdieping) before Stuck (Specialist) and Portfolio
+  const road = stateWith('pm', ['pm.intake', 'pm.plan', 'pm.run', 'pm.land', 'pm.close'].flatMap((id) => levelOf(meta(id), 0)));
+  assert.equal(courseTodayPick(road, 'pm', 'nl', TODAY).moduleId, 'pm.agile');
+});
+
+test('a module without topics joins the Basis round with all its lessons in index order', () => {
+  const mods = [
+    { id: 'xx.a', subject: 'xx', level: 1, topics: [{ id: 't', levels: ['xx.a.1', 'xx.a.2'] }, { id: 'u', levels: ['xx.a.3', 'xx.a.4'] }], lessons: ['xx.a.1', 'xx.a.2', 'xx.a.3', 'xx.a.4'] },
+    { id: 'xx.b', subject: 'xx', level: 1, lessons: ['xx.b.1', 'xx.b.2'] },
+  ];
+  assert.deepEqual(breadthOrder('xx', mods), ['xx.a.1', 'xx.a.3', 'xx.b.1', 'xx.b.2', 'xx.a.2', 'xx.a.4']);
+});
+
+test('nextCourseLesson: the subject\'s next lesson breadth-first, null when all are passed', () => {
+  assert.deepEqual(nextCourseLesson(stateWith('pm', []), 'pm'), { moduleId: 'pm.intake', lessonId: levelOf(meta('pm.intake'), 0)[0] });
+  assert.deepEqual(nextCourseLesson(stateWith('pm', levelOf(meta('pm.intake'), 0)), 'pm'), { moduleId: 'pm.plan', lessonId: levelOf(meta('pm.plan'), 0)[0] });
+  assert.equal(nextCourseLesson(stateWith('pm', breadthOrder('pm')), 'pm'), null);
+});
+
+test('lesson end "next": opened from a home it follows the subject\'s next step (another module once this one\'s Basis is done); from the module screen it stays in the module', () => {
+  const intake = meta('pm.intake');
+  const basis = levelOf(intake, 0);
+  const st = stateWith('pm', basis);
+  const last = basis[basis.length - 1];
+  const pick = courseTodayPick(st, 'pm', 'nl', TODAY);
+  assert.deepEqual(lessonEndNext(st, intake, last, false), { moduleId: 'pm.plan', lessonId: levelOf(meta('pm.plan'), 0)[0] });
+  assert.deepEqual(lessonEndNext(st, intake, last, false), { moduleId: pick.moduleId, lessonId: pick.lessonId }, 'agrees with the start card');
+  assert.deepEqual(lessonEndNext(st, intake, last, true), { moduleId: 'pm.intake', lessonId: levelOf(intake, 1)[0] }, 'agrees with the module screen');
+  const mid = stateWith('pm', [basis[0]]);
+  assert.deepEqual(lessonEndNext(mid, intake, basis[0], false), { moduleId: 'pm.intake', lessonId: basis[1] });
+  assert.deepEqual(lessonEndNext(mid, intake, basis[0], true), { moduleId: 'pm.intake', lessonId: basis[1] });
+  assert.equal(lessonEndNext(stateWith('pm', breadthOrder('pm')), intake, last, false), null, 'nothing left');
+  assert.equal(lessonEndNext(stateWith('pm', []), intake, basis[0], false), null, 'never the lesson itself');
 });

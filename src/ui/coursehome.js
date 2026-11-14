@@ -5,6 +5,7 @@ import { masteryBadge, realWeekEntry, progressBar } from './home.js';
 import { MODULES, TRACKS, FIELDS, topicsOf, placeOf, moduleOf } from '../content/courses/index.js';
 import { mapFor } from '../content/courses/maps/index.js';
 import { subjectMap } from './subjectmap.js';
+import { guideOn } from './guide.js';
 import { filmButton } from './film.js';
 import { courseTodayPick, moduleMastery, nextLesson, levelsDone } from '../core/course.js';
 import { pathModel, topicPath } from './pathmap.js';
@@ -61,7 +62,8 @@ function todayCard(app, subject, pick) {
   return h('section', { class: 'card today-card course-today' },
     h('p', { class: 'today-label' }, t('courseNext')),
     what,
-    h('p', { class: 'muted small today-why' }, pickWhy(t, app.lang, pick, meta)),
+    // All done: Andon above already says the done sentence; with him off, the card says it.
+    pick.reason === 'done' && guideOn(app.state) ? null : h('p', { class: 'muted small today-why' }, pickWhy(t, app.lang, pick, meta)),
     pick.reason === 'done' ? null : h('button', {
       class: 'btn btn-primary today-go',
       onclick: (e) => { const btn = e.currentTarget; btn.disabled = true; enableOnFail(btn, openPick(app, subject, pick)); },

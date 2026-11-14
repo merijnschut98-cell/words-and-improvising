@@ -59,3 +59,9 @@ test('the quest row and the subject tabs keep 44 px tap targets, and the tabs ha
   assert.match(css, /\.subject-tab \{[^}]*min-height: 44px/);
   assert.match(css, /@media \(max-width: 359px\) \{\s*\.subject-bar/);
 });
+
+test('the drill grid can shrink at 320 px: its columns have no min-content floor and a long drill name hyphenates', () => {
+  const css = fs.readFileSync(new URL('../styles.css', import.meta.url), 'utf8');
+  assert.match(css, /\.drill-grid \{[^}]*grid-template-columns: repeat\(2, minmax\(0, 1fr\)\)/);
+  assert.match(css, /\.drill-name \{[^}]*hyphens: auto/);
+});

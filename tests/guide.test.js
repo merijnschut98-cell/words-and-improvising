@@ -240,6 +240,7 @@ test('every home shows at most one Andon and one guide line, also with the daily
     const st = halfDone();
     const off = guideCount(renderHomeOf(subject, { ...st, settings: { ...st.settings, guide: false } }));
     assert.deepEqual(off, { andons: 0, lines: 0 }, `${subject} with the guide off`);
+    assert.equal(renderHomeOf(subject, { ...st, settings: { ...st.settings, guide: false } }).querySelector('.goal-line'), null, `${subject}: no goal line with the guide off`);
   }
 });
 
@@ -251,7 +252,8 @@ test('every home with the goal half done: a separate small goal line (XP today /
     const root = renderHomeOf(subject, halfDone());
     const line = root.querySelector('.guide-greeting .goal-line');
     assert.ok(line, `${subject}: goal line`);
-    assert.equal(line.textContent, 'Dagdoel: 18 van 30 XP');
+    // The clearer wording: what is left to do, not a second "x van y" beside the ring.
+    assert.equal(line.textContent, 'Nog 12 XP tot je dagdoel.');
     assert.equal(line.tagName, 'P');
     assert.notEqual(line, root.querySelector('.guide-greeting .guide-say'), 'not Andon\'s sentence');
     assert.doesNotMatch(sayOf(root), /XP/, `${subject}: the greeting no longer carries the XP left`);
@@ -279,10 +281,43 @@ test('stepName: the topic of a lesson step, a due round by its count; nothing wh
   assert.equal(stepName(appFor(stOn()), null), null);
 });
 
+test('stepName mid-sentence: a kept question starts lower case after "Begin met" / "Start with"', () => {
+  const el = guideGreeting(appFor(stOn()), { subject: 'pm', pick: { reason: 'maintain', questionId: 'pm.plan.x#r0' } });
+  assert.equal(el.querySelector('.guide-say').textContent, 'Vandaag: één stap. Begin met één vraag om scherp te blijven.');
+  const en = guideGreeting(appFor(stOn(), tEn, 'en'), { subject: 'pm', pick: { reason: 'maintain', questionId: 'pm.plan.x#r0' } });
+  assert.equal(en.querySelector('.guide-say').textContent, 'Today: one step. Start with one question to keep it sharp.');
+});
+
+test('Andon\'s step name is final on first paint: no later swap to the lesson title (no reflow under the bubble)', async () => {
+  const plan = MODULES.find((m) => m.id === 'pm.plan');
+  const lessonId = plan.topics[0].levels[0];
+  let loads = 0;
+  const app = { ...appFor(stOn()), openModule: () => { loads += 1; return Promise.resolve({ lessons: [{ id: lessonId, title: 'Een heel andere, veel langere lestitel dan het onderwerp' }] }); } };
+  const el = guideGreeting(app, { subject: 'pm', pick: { reason: 'lesson', subject: 'pm', moduleId: 'pm.plan', lessonId } });
+  const first = el.querySelector('.guide-say').textContent;
+  await new Promise((r) => setTimeout(r, 0));
+  assert.equal(el.querySelector('.guide-say').textContent, first);
+  assert.equal(first, `Vandaag: één stap. Begin met ${plan.topics[0].title.nl}.`);
+  assert.equal(loads, 0, 'the greeting loads no module');
+});
+
 test('everything done: Andon says so with the existing done wording, not a pointer', () => {
   const el = guideGreeting(appFor(stOn()), { subject: 'pm', pick: { reason: 'done' } });
   assert.equal(el.querySelector('.guide-say').textContent, tNl('courseWhy_done'));
   assert.equal(el.getAttribute('data-line'), 'done');
+});
+
+test('everything done on the Projects home: the done sentence is said once (Andon), not again in the card under him', () => {
+  const lessons = Object.fromEntries(MODULES.filter((m) => m.subject === 'pm').flatMap((m) => m.lessons)
+    .map((id) => [id, { passed: 1, situation: { ts: 1 }, sayIt: 1 }]));
+  const st = { ...stOn(), courses: { pm: { lessons, sessions: [] } } };
+  const count = (root) => root.textContent.split(tNl('courseWhy_done')).length - 1;
+  const root = renderHomeOf('pm', st);
+  assert.equal(root.querySelector('.guide-greeting').getAttribute('data-line'), 'done');
+  assert.equal(count(root), 1);
+  assert.equal(root.querySelectorAll('.map-place.is-next').length, 0, 'the map marks nothing');
+  // with the guide off the card keeps the sentence
+  assert.equal(count(renderHomeOf('pm', { ...st, settings: { ...st.settings, guide: false } })), 1);
 });
 
 // ---- Andon recognisable (v17): status light, name, speech bubble, one-time introduction ----

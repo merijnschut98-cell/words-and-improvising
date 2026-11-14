@@ -205,16 +205,17 @@ h1.round-title { margin: 0; }
 .fill { height: 100%; background: var(--accent); border-radius: var(--radius-sm); transition: width var(--motion-slow) var(--ease-entrance); }
 
 /* Drill grid */
-.drill-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+/* minmax(0, 1fr): a long drill name ("Spreekstructuren") must not push the grid past 320 px. */
+.drill-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
 .drill {
   display: flex; flex-direction: column; align-items: flex-start; gap: 6px; text-align: left; color: var(--ink);
   background: var(--card); border: 1px solid var(--border-subtle); border-radius: var(--radius);
-  padding: 14px; box-shadow: var(--shadow-card); cursor: pointer;
+  padding: 14px; box-shadow: var(--shadow-card); cursor: pointer; min-width: 0;
   transition: border-color var(--motion-fast) var(--ease-standard);
 }
 @media (hover: hover) { .drill:hover:not(:disabled) { border-color: var(--accent); } }
 .drill-icon { font-size: 1.35rem; color: var(--accent-dark); line-height: 1; }
-.drill-name { font-weight: 600; color: var(--heading); }
+.drill-name { font-weight: 600; color: var(--heading); max-width: 100%; hyphens: auto; overflow-wrap: break-word; }
 .pips { display: inline-flex; gap: 3px; }
 .pips i { width: 14px; height: 4px; border-radius: 2px; background: var(--line); }
 .pips i.on { background: var(--accent); }
