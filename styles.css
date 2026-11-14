@@ -647,6 +647,31 @@ details[open] > summary::before { transform: rotate(45deg); }
 .band .convo-card { display: grid; grid-template-columns: auto 1fr; column-gap: 12px; row-gap: 2px; align-items: center; padding: 12px 14px; }
 .band .convo-card .drill-icon { grid-row: span 2; }
 .band .programme-card .prog-intro { margin: 4px 0 10px; }
+/* Quests and the practice drills fold shut under the next round; the summary says what is inside. */
+.speak-fold > .fold-head { display: flex; align-items: center; justify-content: space-between; gap: 8px; min-height: 44px; }
+.speak-fold > .fold-head::before { flex: none; }
+.speak-fold > .fold-head .card-title { margin: 0; flex: 1; }
+.speak-fold[open] > .fold-head { margin-bottom: 8px; }
+.quest-card > .fold-head { flex-wrap: wrap; row-gap: 0; padding: 6px 0; }
+.quest-card .quest-reward { flex-basis: 100%; max-width: none; text-align: left; padding-left: 22px; }
+.practice-fold.card { padding: 10px 14px; }
+.practice-fold .drill-groups { margin-top: 4px; }
+.speak-home .review-card {
+  padding: 12px 16px; background: var(--card); color: var(--heading); border: 1px solid var(--border-subtle); box-shadow: var(--shadow-card);
+}
+.speak-home .review-card .hero-title { font-size: 1.05rem; }
+.speak-home .review-card .hero-title .ico { color: var(--accent-dark); }
+.speak-home .review-card .hero-sub { color: var(--muted); opacity: 1; }
+.speak-home .btn-hero { padding: 12px 16px; }
+/* The weekly boss round is outlined too: the next round stays the only filled button. */
+.speak-home .boss-card {
+  padding: 12px 16px; border-radius: var(--radius); background: var(--card); color: var(--heading);
+  border: 1px solid var(--border-subtle); box-shadow: var(--shadow-card);
+}
+@media (hover: hover) { .speak-home .boss-card:hover:not(:disabled) { border-color: var(--accent); } }
+.speak-home .boss-card .hero-title { font-size: 1.05rem; }
+.speak-home .boss-card .hero-title .ico { color: var(--accent-dark); }
+.speak-home .boss-card .hero-sub { color: var(--muted); opacity: 1; }
 /* A thin progress bar (decorative; the text beside it carries the number). */
 .pbar { display: block; height: 4px; border-radius: 2px; background: var(--line); overflow: hidden; }
 .pbar > i { display: block; height: 100%; background: var(--accent); border-radius: 2px; }
