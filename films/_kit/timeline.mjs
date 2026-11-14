@@ -766,6 +766,24 @@ const SAY = {
     // right as they are; no other film's spoken text changes
     [/\bvooraf een follow-up af en een trigger\b/g, 'vooraf een follo-ap af en een trikker'],
     [/\bA3-rapport en een after-action review\b/g, 'A3-rapport en een after-eksjun rievjoe'],
+    // the DevOps module intro (pm.devops.intro), a self-contained group at the end of the Dutch list, checked with
+    // phonemes through Piper's nl_NL-alex bridge: espeak-ng stresses testpiramide on "raa" (test-pi-RAA-mi-de); said
+    // test-piramiede, the stress of piramide. The film's other words (versiebeheer, mediaan, feature flag, rollbackplan,
+    // prioriteitsmatrix, A3, impactstraal, servicedesk, post-mortem, DORA, MES) are read right as they are or have rules
+    // above; the film does not say live, release, SLA, benchmarks or continuous integration; no other film's spoken
+    // text changes
+    [/\b([Tt])estpiramide\b/g, '$1est-piramiede'],
+    // the Scaling intro (pm.scaled.intro), a self-contained group at the end of the Dutch list, checked with phonemes
+    // through Piper's nl_NL-alex bridge: espeak-ng reads LeSS as the letters "le es es" (said Less, lˈɛss), "Sprint
+    // Planning One" with the Dutch number "oone" (said Wan, ʋˈɑn), Spotify with the Dutch i (said Spotifai,
+    // spˈoːtifˌɑj; no other film says it) and Lean as "lee-an" (said Lien, as the Lean-consultant rule above) in
+    // "Lean budgets" and in "Lean business case" (which has already become "Lean biznis kees" by then) only: the other
+    // films' Lean (pm.agile.kanban's "in Lean") keeps its voice. The plant manager phrases of the film are the ones
+    // the rules above already cover (voor de plantmanager). Cross-Team Refinement, SAFe, PI Planning, ART Planning
+    // Board, stage-gate, gate and design freeze have rules above and the rest reads right; no other film's spoken
+    // text changes
+    [/\bLeSS\b/g, 'Less'], [/\bSprint Planning One\b/g, 'Sprint Planning Wan'], [/\bSpotify\b/g, 'Spotifai'],
+    [/\bLean (?=budgets\b|biznis kees\b)/g, 'Lien '],
     // the IT projects intro (pm.itproject.intro), a self-contained group at the end of the Dutch list, checked with phonemes
     // through Piper's nl_NL-alex bridge: espeak-ng reads SaaS as the letters "saa es" (said Sas, sˈɑs); the rest of the film
     // (RFP, MVP, ERP, triage, testscript, proefmigratie, shortlist, pilot, key users, sign-off, go-live, MoSCoW, to-be-proces,
@@ -816,6 +834,8 @@ const SAY = {
     // "HIGH-junka"; heyjoonka), so the kanban film's Vacanti and eng.lines.variants' heijunka keep their voice
     [/\bBarry Boehm\b/g, 'Barry Beem'], [/\bDaniel Vacanti and Troy Magennis\b/g, 'Daniel Vuh-kanti and Troy Muh-ghennis'],
     [/\bDonald Reinertsen\b/g, 'Donald Rine-ertsen'], [/\bbuffers and heijunka\b/g, 'buffers and heyjoonka'],
+    // the Scaling intro (pm.scaled.intro): LeSS as the word "less" (espeak-ng's English spells it "le S S")
+    [/\bLeSS\b/g, 'Less'],
     // the IT projects intro (pm.itproject.intro): SaaS as the word "sass" (espeak-ng's English reads "sah S"), and UAT as
     // letters in this film's one phrase only (it reads "you-at"; the UAT film keeps its voice)
     [/\bSaaS\b/g, 'sass'], [/\bIn the UAT, the user acceptance test\b/g, 'In the U A T, the user acceptance test']],

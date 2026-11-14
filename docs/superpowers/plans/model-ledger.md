@@ -72,3 +72,7 @@ Outcome: accepted (merged as delivered), sent back N times, redone.
 | 14 Nov | Fix: Pages deploy found no artifact (integrator) | opus (session) | n/a | n/a | n/a | build and deploy split into two jobs; v273 deployed |
 | 14 Nov | Build: map phone layout, three per row | sonnet | 29 | 8 min | 121,683 | accepted with three fixes by its review |
 | 14 Nov | Review: map phone layout | opus | n/a | n/a | n/a | accepted with three fixes (ResizeObserver loop error, observer leak, tap margin at 320); merged v275 |
+| 14 Nov | Build module intro pm.devops.intro (Task 11) | sonnet | 104 | 20 min | 366,441 | accepted with fixes by its review (two non-tools replaced, s7 and length trimmed) |
+| 14 Nov | Review module intro pm.devops.intro | sonnet | n/a | n/a | n/a | accepted with seven fixes; merged v276 |
+| 14 Nov | Build module intro pm.scaled.intro (Task 11) | sonnet | 91 | 16 min | 336,195 | accepted with fixes by its review |
+| 14 Nov | Review module intro pm.scaled.intro | sonnet | n/a | n/a | n/a | accepted with seven fixes (WSJF out of the scene, SAY rules 8 to 4, scales made visible); merged v277 |
