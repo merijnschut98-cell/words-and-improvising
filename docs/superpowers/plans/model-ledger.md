@@ -51,3 +51,4 @@ Outcome: accepted (merged as delivered), sent back N times, redone.
 | 14 Nov | Review field film 3 | sonnet | 77 | 12 min | 201,498 | accepted |
 | 14 Nov | Build field film 4 pm.field.it | sonnet | 99 | 15 min | 349,413 | accepted with two cosmetic fixes; merged v264 |
 | 14 Nov | Review field film 4 | sonnet | n/a | n/a | n/a | accepted |
+| 14 Nov | Render PM-13: four overview films | sonnet | 66 | 89 min | 136,625 | accepted; every guard passed first time; merged v265 |
