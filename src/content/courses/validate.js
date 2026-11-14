@@ -125,6 +125,63 @@ export function checkFields(fields, modules) {
   return errs;
 }
 
+// The bounding box [x0, y0, x1, y1] of an absolute SVG path (M L H V Q C A Z),
+// or null when it has no points. Control points count: zones are drawn with
+// plain rounded corners, so the box is the zone's extent.
+export function pathBox(d) {
+  const tokens = String(d || '').match(/[A-Za-z]|-?\d*\.?\d+(?:e-?\d+)?/g) || [];
+  const xs = [];
+  const ys = [];
+  const pairs = { M: 1, L: 1, T: 1, Q: 2, C: 3 };
+  let cmd = '';
+  let i = 0;
+  while (i < tokens.length) {
+    if (/[A-Za-z]/.test(tokens[i])) { cmd = tokens[i++]; continue; }
+    if (cmd === 'H') xs.push(+tokens[i++]);
+    else if (cmd === 'V') ys.push(+tokens[i++]);
+    else if (cmd === 'A') { xs.push(+tokens[i + 5]); ys.push(+tokens[i + 6]); i += 7; }
+    else if (pairs[cmd]) {
+      for (let k = 0; k < pairs[cmd]; k++) { xs.push(+tokens[i++]); ys.push(+tokens[i++]); }
+    } else i++;
+  }
+  return xs.length && ys.length ? [Math.min(...xs), Math.min(...ys), Math.max(...xs), Math.max(...ys)] : null;
+}
+
+// v17: a subject map. Every module of the subject is exactly one place, no
+// place names an unknown module, each place sits inside the zone of its
+// module's field, is at least 44 px wide and high on a 390 px screen, and no
+// two places overlap. Pure.
+export function checkMap(map, modules, fields) {
+  const errs = [];
+  const view = (map && map.view) || {};
+  const places = Array.isArray(map && map.places) ? map.places : [];
+  const zones = Array.isArray(map && map.zones) ? map.zones : [];
+  const mine = modules.filter((m) => m.subject === map.subject);
+  const seen = new Set();
+  for (const p of places) {
+    const at = `map ${map.subject}: place ${p.module}`;
+    if (!mine.some((m) => m.id === p.module)) { errs.push(`${at}: not a module of ${map.subject}`); continue; }
+    if (seen.has(p.module)) errs.push(`${at}: placed twice`);
+    seen.add(p.module);
+    if (p.w * 390 / view.w < 44 || p.h * 390 / view.w < 44) errs.push(`${at}: under 44 px at 390 px wide`);
+    const field = (fields || []).find((f) => f.modules.includes(p.module));
+    const zone = field && zones.find((z) => z.field === field.id);
+    const box = zone && pathBox(zone.path);
+    if (!field) errs.push(`${at}: module has no field`);
+    else if (!box) errs.push(`${at}: no zone for ${field.id}`);
+    else if (p.x < box[0] || p.y < box[1] || p.x + p.w > box[2] || p.y + p.h > box[3]) errs.push(`${at}: outside the zone of ${field.id}`);
+  }
+  for (const m of mine) if (!seen.has(m.id)) errs.push(`map ${map.subject}: module ${m.id} has no place`);
+  for (let a = 0; a < places.length; a++) {
+    for (let b = a + 1; b < places.length; b++) {
+      const p = places[a];
+      const q = places[b];
+      if (p.x < q.x + q.w && q.x < p.x + p.w && p.y < q.y + q.h && q.y < p.y + p.h) errs.push(`map ${map.subject}: ${p.module} overlaps ${q.module}`);
+    }
+  }
+  return errs;
+}
+
 // The topic table of a topic module: 2–8 topics, each a slug id unique in the
 // module, a title in both languages and exactly 4 distinct lessons as levels
 // 1–4; every lesson in exactly one topic; lessons in topic order.
