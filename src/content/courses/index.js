@@ -431,7 +431,7 @@ export const FIELDS = [
   { id: 'pm.field.portfolio', subject: 'pm',
     title: { en: 'Portfolio and consulting', nl: 'Portfolio en advies' },
     blurb: { en: 'Choosing which projects to do, and advising the people who pay for them.', nl: 'Kiezen welke projecten je doet, en adviseren wie ze betaalt.' },
-    modules: ['pm.portfolio', 'pm.consult'] },
+    modules: ['pm.portfolio', 'pm.consult'], film: 'pm.field.portfolio' },
   { id: 'pm.field.it', subject: 'pm',
     title: { en: 'IT and agile', nl: 'IT en agile' },
     blurb: { en: 'Agile, scaling it, DevOps and the IT project from requirements to go-live.', nl: 'Agile, opschalen, DevOps en het IT-project van eisen tot go-live.' },

@@ -659,6 +659,26 @@ test('speak variant: the people field film words in Dutch', () => {
   assert.equal(speakOf([en], 'en'), en);
 });
 
+// The field film "portfolio and consulting" (pm.field.portfolio), checked with
+// espeak-ng phonemes through Piper's nl bridge: it stresses adVIES... as ADvies-vak
+// (said advies-vak with the stress on vies), vertrouwensforMUle with the main stress on mu
+// (said vertrouwens-formule, stress on trou) and plantmanager with a hard g (said
+// plant-menetsjer, in the film's two phrases only). diagnosefase keeps its voice (it
+// reads right, as in the proposal film); governance, capaciteitsstreep, offerte,
+// besluitenlijst and programma's have rules or need nothing; English needs nothing;
+// no other film's spoken text changes
+test('speak variant: the portfolio field film words in Dutch', () => {
+  const nl = (s) => speakOf([s], 'nl');
+  assert.equal(nl('Het tweede station is Het adviesvak. Een adviesvak.'), 'Het tweede station is Het advies-vak. Een advies-vak.');
+  assert.equal(nl('Je gebruikt een diagnosefase en de vertrouwensformule.'), 'Je gebruikt een diagnosefase en de vertrouwens-formule.');
+  assert.equal(nl('Nu adviseer je de plantmanager welke er komen. De plantmanager betaalt.'), 'Nu adviseer je de plant-menetsjer welke er komen. De plant-menetsjer betaalt.');
+  // elsewhere the words keep their voice
+  assert.equal(nl('Eerst een diagnosefase: kort en goedkoop.'), 'Eerst een diagnosefase: kort en goedkoop.');
+  assert.equal(nl('Vraag het de plantmanager.'), 'Vraag het de plantmanager.');
+  const en = 'The second station is The consulting craft. You use a diagnostic phase and the trust equation.';
+  assert.equal(speakOf([en], 'en'), en);
+});
+
 // A stage drawn on the Dutch caption beats (beatwarp films set STAGE.nlBeats)
 // follows the caption beat on screen in English too: while English beat k
 // shows, the stage runs through Dutch beat k, so the drawing is never a beat off.
