@@ -524,17 +524,14 @@ test('course today: an unfinished lesson comes back on top, before a plan, an ev
   assert.deepEqual(courseTodayPick(s, 'eng', 'nl', day, RMODS), { reason: 'lesson', why: 'resume', moduleId: 'eng.machining', lessonId: 'eng.machining.b' });
 });
 
-test('course today: after a lesson or practice, the next lesson is in the module he worked in last', () => {
+test('course today: the next lesson follows the breadth-first order, not the module he worked in last', () => {
   const day = '2026-11-02';
-  let s = passAt(passAt(defaultState(), 'eng.flow.a', 10), 'eng.machining.a', 20);
-  assert.equal(recommendedModule(s, 'eng', RMODS), 'eng.machining', 'the module he worked in last, not the first one started');
-  assert.deepEqual(courseTodayPick(s, 'eng', 'nl', day, RMODS), { reason: 'lesson', moduleId: 'eng.machining', lessonId: 'eng.machining.b' });
-  // Practising a passed lesson (a situation) in flow brings flow back.
-  s = lessonAt(s, 'eng.flow.a', { situation: { pts: 2, ts: 30 } });
-  assert.equal(recommendedModule(s, 'eng', RMODS), 'eng.flow');
-  // So does the say-it round.
-  s = lessonAt(s, 'eng.machining.a', { sayIt: 40 });
-  assert.equal(recommendedModule(s, 'eng', RMODS), 'eng.machining');
+  const s = passAt(passAt(defaultState(), 'eng.flow.a', 10), 'eng.machining.a', 20);
+  assert.equal(recommendedModule(s, 'eng', RMODS), 'eng.flow', 'the first lesson not passed in the subject order');
+  assert.deepEqual(courseTodayPick(s, 'eng', 'nl', day, RMODS), { reason: 'lesson', moduleId: 'eng.flow', lessonId: 'eng.flow.b' });
+  // Practising a passed lesson (a situation or say-it) does not move the next step.
+  const p = lessonAt(lessonAt(s, 'eng.flow.a', { situation: { pts: 2, ts: 30 } }), 'eng.machining.a', { sayIt: 40 });
+  assert.equal(recommendedModule(p, 'eng', RMODS), 'eng.flow');
 });
 
 test('nextLesson resumes an opened, unfinished lesson in the module; otherwise the first not passed', () => {

@@ -133,10 +133,16 @@ const step = async (name, fn) => {
   if (process.env.E2E_ONLY && !name.includes(process.env.E2E_ONLY)) return;
   currentStep = name;
   try { await fn(); console.log('ok  ', name); } catch (e) {
-    console.log('FAIL', name, e.message); errors.push(`${name}: ${e.message}`);
+    console.log('FAIL', name, e.message.split('\n').slice(0, 3).join(' / ')); errors.push(`${name}: ${e.message}`);
     // What the screen showed when it failed.
     await page.screenshot({ path: `${out}/FAIL-${name.slice(0, 40).replace(/[^a-z0-9]+/gi, '-')}.png`, fullPage: true }).catch(() => {});
   }
+};
+// The next step opens its own track (breadth-first by level), so a module row in
+// another track may sit in a closed fold: open it, then tap the row.
+const clickModuleRow = async (p, text) => {
+  await p.evaluate((t) => { const r = [...document.querySelectorAll('.module-row')].find((e) => e.textContent.includes(t)); const d = r && r.closest('details.track'); if (d) d.open = true; }, text);
+  await p.locator('.module-row', { hasText: text }).click();
 };
 const shot = async (n) => {
   const text = await page.evaluate(() => document.body.innerText);
@@ -3017,7 +3023,7 @@ const topicSeed = () => {
 const openTopicModule = async (p) => {
   if (!(await p.locator('.module-screen').count())) {
     await p.locator('.course-home').waitFor();
-    await p.locator('.module-row', { hasText: 'Verspanen' }).click();
+    await clickModuleRow(p, 'Verspanen');
   }
   const mod = p.locator('.module-screen');
   await mod.locator('.path-stop').first().waitFor();
@@ -3101,11 +3107,11 @@ await step('topics: where you are (fixture)', async () => {
   // v17 Task 6b: a lesson opened from the module screen returns to it; the course home is one tap away.
   await p.locator('.module-screen .module-continue').waitFor();
   await p.locator('.module-screen .lesson-back').click();
-  await p.locator('.course-today .today-why', { hasText: 'Draaien · Expert' }).waitFor();
+  await p.locator('.course-today .today-why', { hasText: 'Takt en lijnbalans · Basis' }).waitFor();
   await onePrimary(p, 'course home after a topic lesson');
   await shotP('114-today-topic');
   await p.getByRole('button', { name: 'Overzicht' }).click();
-  await p.locator('.start-eng .start-why', { hasText: 'Draaien · Expert' }).waitFor();
+  await p.locator('.start-eng .start-why', { hasText: 'Takt en lijnbalans · Basis' }).waitFor();
   // The figure of a topic lesson gets its level: cutting is Werkkennis (2).
   await p.evaluate(() => window.__app.go('lesson', { subject: 'eng', moduleId: 'eng.machining', lessonId: 'eng.machining.cutting' }));
   const lesson = await p.evaluate(async () => (await import('/src/content/courses/eng/machining.nl.js')).default.lessons.find((l) => l.id === 'eng.machining.cutting'));
@@ -3191,7 +3197,7 @@ await step('module screen: open Verspanen from the Engineering list, the intro b
   await p.locator('.course-home').waitFor();
   // The row keeps its progress line and now opens the module screen; nothing unfolds.
   if (await p.locator('.course-home details.module').count()) throw new Error('a topic module still unfolds on the course home');
-  await p.locator('.module-row', { hasText: 'Verspanen' }).click();
+  await clickModuleRow(p, 'Verspanen');
   const ms = p.locator('.module-screen');
   await ms.waitFor();
   if ((await ms.locator('h1').innerText()).trim() !== 'Verspanen') throw new Error(`title: ${await ms.locator('h1').innerText()}`);
@@ -3223,12 +3229,12 @@ await step('module screen: open Verspanen from the Engineering list, the intro b
   // An unknown module goes to the course home.
   await p.evaluate(() => window.__app.go('module', { subject: 'eng', moduleId: 'eng.nope' }));
   await p.locator('.course-home').waitFor();
-  await p.locator('.module-row', { hasText: 'Verspanen' }).click();
+  await clickModuleRow(p, 'Verspanen');
   await ms.waitFor();
   // Back goes to the subject home; continue opens the next lesson.
   await ms.locator('.lesson-back').click();
   await p.locator('.course-home').waitFor();
-  await p.locator('.module-row', { hasText: 'Verspanen' }).click();
+  await clickModuleRow(p, 'Verspanen');
   await ms.locator('.module-continue').click();
   await p.locator('.lesson-place', { hasText: 'Draaien · Gevorderd' }).waitFor();
   await c.close();
@@ -3236,7 +3242,7 @@ await step('module screen: open Verspanen from the Engineering list, the intro b
   // A module without an intro: its field, and the blurb where the film would be.
   const other = await topicContext({});
   const q = other.p;
-  await q.evaluate(() => window.__app.go('module', { subject: 'pm', moduleId: 'pm.stuck' }));
+  await q.evaluate(() => window.__app.go('module', { subject: 'pm', moduleId: 'pm.perform' }));
   const pm = q.locator('.module-screen');
   await pm.waitFor();
   if (!(await pm.locator('.module-field', { hasText: 'Mensen en invloed' }).count())) throw new Error('no field label');
@@ -3313,10 +3319,15 @@ await step('Andon: greets on the home screens, presents the intro on a module sc
     return { andons: el.querySelectorAll('.guide').length, lines: el.querySelectorAll('.guide-say, .guide-line').length };
   }, main);
   await p.evaluate(() => { const a = window.__app; a.setState({ ...a.state, xpDays: { ...a.state.xpDays, [a.today()]: 5 } }); a.go('home'); });
-  await p.locator('.course-pm .guide-greeting[data-line="goal"]').waitFor();
+  await p.locator('.course-pm .guide-greeting .goal-line').waitFor();
   const half = await guidesOn('.course-pm');
   if (half.andons !== 1 || half.lines !== 1) throw new Error(`Projects home with the goal half done: ${JSON.stringify(half)}`);
-  if (!/XP/.test(await p.locator('.course-pm .guide-greeting .guide-say').innerText())) throw new Error('the greeting does not say the XP left');
+  if ((await p.locator('.course-pm .guide-greeting .goal-line').innerText()).trim() !== 'Dagdoel: 5 van 30 XP') throw new Error('the goal line (XP today / goal)');
+  if (/XP/.test(await p.locator('.course-pm .guide-greeting .guide-say').innerText())) throw new Error('the greeting still carries the XP left');
+  // Andon names the step instead of pointing below; the map marks one place.
+  if (/hieronder/.test(await p.locator('.course-pm .guide-greeting .guide-say').innerText())) throw new Error('Andon points below');
+  if (!/^Vandaag: één stap\. Begin met /.test(await p.locator('.course-pm .guide-greeting .guide-say').innerText())) throw new Error('Andon does not name the step');
+  if (await p.locator('.course-pm .map-place.is-next').count() !== 1) throw new Error('the map does not mark the next step');
   // Start screen: Andon under the head, right above the one begin button (so
   // not above the first block: the head stays on top).
   await p.evaluate(() => window.__app.setSubject('start'));
@@ -3335,7 +3346,7 @@ await step('Andon: greets on the home screens, presents the intro on a module sc
   // Module screen with an intro: Andon beside the heading, idle, one line.
   await p.locator('.subject-tab', { hasText: 'Engineering' }).click();
   await p.locator('.course-eng').waitFor();
-  await p.locator('.module-row', { hasText: 'Verspanen' }).click();
+  await clickModuleRow(p, 'Verspanen');
   const ms = p.locator('.module-screen');
   await ms.waitFor();
   const gi = ms.locator('.guide-intro');
@@ -3371,13 +3382,13 @@ await step('Andon: greets on the home screens, presents the intro on a module sc
   await p.reload();
   await p.locator('.module-screen .guide-intro .g-top.on').waitFor({ timeout: 8000 }).catch(async () => {
     // a reload may land on the course home; open the module again
-    await p.locator('.module-row', { hasText: 'Verspanen' }).click();
+    await clickModuleRow(p, 'Verspanen');
     await p.locator('.module-screen .guide-intro .g-top.on').waitFor({ timeout: 8000 });
   });
   if (await p.locator('.module-screen .guide-intro .guide-say').count()) throw new Error('a seen intro shows a line');
 
   // A module without an intro: no Andon.
-  await p.evaluate(() => window.__app.go('module', { subject: 'pm', moduleId: 'pm.stuck' }));
+  await p.evaluate(() => window.__app.go('module', { subject: 'pm', moduleId: 'pm.perform' }));
   await p.locator('.module-screen .module-intro-text').waitFor();
   if (await p.locator('.module-screen .guide, .module-screen .guide-intro').count()) throw new Error('Andon on a module without an intro');
 

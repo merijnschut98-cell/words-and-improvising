@@ -124,3 +124,24 @@ test('feasibility is stable through the day (a first round today does not change
   const after = currentQuests({ ...defaultState(), days: { [day]: 1 }, history: [{ ts: ts(day), lang: 'nl', metrics: { words: 30, fillerRate: 2 } }] }, day).map((q) => q.id);
   assert.deepEqual(after, before);
 });
+
+// ---- Quest rows open what completes them ----
+import { questTarget } from '../src/core/quests.js';
+
+test('questTarget: every quest in the pool has a target (drills, retry, lesson, conversation, settings, quick)', () => {
+  const s = defaultState();
+  assert.deepEqual(questTarget(s, 'pauseClean'), { kind: 'drill', drill: 'pause' });
+  assert.deepEqual(questTarget(s, 'bridgeAll'), { kind: 'drill', drill: 'bridge' });
+  assert.deepEqual(questTarget(s, 'lesson'), { kind: 'lesson' });
+  assert.deepEqual(questTarget(s, 'liveConvo'), { kind: 'conversation' });
+  assert.deepEqual(questTarget(s, 'otherLang'), { kind: 'settings' });
+  for (const id of ['coldStart', 'beatYesterday']) assert.deepEqual(questTarget(s, id), { kind: 'quick' });
+  for (const q of QUEST_POOL) assert.ok(questTarget(s, q.id).kind, q.id);
+});
+
+test('questTarget sayAgain: the latest own answer again; a quick round while there is none (shadow rounds do not count)', () => {
+  const entry = { drill: 'minute', promptId: 'm:1', metrics: { words: 50 }, durationS: 60 };
+  assert.deepEqual(questTarget(defaultState(), 'sayAgain'), { kind: 'quick' });
+  const s = { ...defaultState(), history: [{ ...entry, promptId: 's:9', shadow: true }, entry] };
+  assert.deepEqual(questTarget(s, 'sayAgain'), { kind: 'retry', entry });
+});

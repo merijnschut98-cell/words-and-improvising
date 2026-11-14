@@ -12,7 +12,7 @@ import { guide, guideLine, guideSvg, guideOn, guideFigure, statusModel, andonInt
 import { dueCount } from '../core/coursereview.js';
 import { introFilm } from './film.js';
 import { introSeen } from '../core/course.js';
-import { MODULES } from '../content/courses/index.js';
+import { MODULES, placeOf } from '../content/courses/index.js';
 
 const CHECK_PATH = '<path class="seal-check" d="M7.5 12.5 10.5 15.5 16.5 9" />';
 
@@ -228,6 +228,15 @@ export function goalLeftText(app) {
   return !g.xp || g.done ? null : app.t('goalLeft', g.goal - g.xp);
 }
 
+// The daily-goal line under Andon's bubble: "Dagdoel: 18 van 30 XP".
+// Null before the first XP of the day and once the goal is reached.
+export function goalLine(app) {
+  const left = goalLeftText(app);
+  if (!left) return null;
+  const g = goalProgress(app.state, app.today());
+  return h('p', { class: 'goal-line small muted', 'data-xp': g.xp, 'data-goal': g.goal }, app.t('goalRing', g.xp, g.goal));
+}
+
 // ---- Andon visible (v17 Task 8) ----
 // He was there all along but small; now he greets on the home screens and
 // presents the intro on a module screen. Decoration plus at most one line,
@@ -235,10 +244,25 @@ export function goalLeftText(app) {
 
 // On a home screen, above the first card: 96 px, one line from a pool seeded
 // by the day. Null when the guide is off, so nothing is left where he stood.
-// With `goal` (the course homes) the line is the XP left for the daily goal
-// while it is open: one Andon and one line per screen, so the goal line that
-// stood under the Today card with its own small Andon is said by him here.
-export function guideGreeting(app, { subject = null, goal = false } = {}) {
+// With `goal` the daily-goal line (XP today / goal) sits under the bubble as a
+// separate small line, not a second Andon sentence: one Andon and one guide
+// line per screen. It shows after the first XP of the day, while the goal is open.
+// The name of a course step, for Andon to say instead of "the one below": the
+// lesson's own title once its module is loaded, from the index until then
+// (the topic and level, else the module title). Null when there is no step.
+export function stepName(app, pick) {
+  if (!pick || pick.reason === 'done') return null;
+  if (pick.reason === 'due') return app.t('courseWhat_due', pick.count || 0);
+  if (pick.reason === 'maintain') return app.t('courseWhat_maintain');
+  const meta = pick.moduleId ? MODULES.find((m) => m.id === pick.moduleId) : null;
+  if (!meta) return null;
+  const place = pick.lessonId ? placeOf(pick.lessonId, MODULES) : null;
+  return place ? (place.topic.title[app.lang] || place.topic.title.en) : (meta.title[app.lang] || meta.title.en);
+}
+
+// `pick` is the course step the screen shows (the subject's pick, or the one
+// behind the begin button): Andon names it, or says all is done.
+export function guideGreeting(app, { subject = null, goal = false, pick = null } = {}) {
   if (!guideOn(app.state)) return null;
   const today = app.today();
   const model = statusModel({ due: dueFor(app, subject), goalDone: goalProgress(app.state, today).done });
@@ -254,12 +278,24 @@ export function guideGreeting(app, { subject = null, goal = false } = {}) {
   }
   const intro = first || (!!app.andonIntroLive && app.andonIntroLive === (subject || 'home'));
   if (!intro) app.andonIntroLive = false;
-  const left = !intro && goal ? goalLeftText(app) : null;
-  const kind = intro ? 'intro' : left ? 'goal' : 'day';
-  const say = intro ? app.t('guideMeet') : left || guideLine(app.t, 'guideHome', today);
+  const name = !intro ? stepName(app, pick) : null;
+  const allDone = !intro && pick && pick.reason === 'done';
+  const kind = intro ? 'intro' : allDone ? 'done' : name ? 'step' : 'day';
+  const say = intro ? app.t('guideMeet')
+    : allDone ? app.t('courseWhy_done')
+      : name ? app.t('guideStep', name) : guideLine(app.t, 'guideHome', today);
+  const sayNode = h('p', { class: 'guide-say' }, say);
+  // The lesson's own title lives in the module file: say it once it is loaded.
+  if (kind === 'step' && pick.lessonId && pick.reason === 'lesson' && typeof app.openModule === 'function') {
+    app.openModule(pick.subject || subject, pick.moduleId).then((mod) => {
+      const l = mod.lessons.find((x) => x.id === pick.lessonId);
+      if (l && sayNode.isConnected) sayNode.textContent = app.t('guideStep', l.title);
+    }).catch(() => {});
+  }
   return h('div', { class: 'guide-greeting', 'data-subject': subject || '', 'data-line': kind, 'data-status': model.status },
     guideFigure(app.state, { mood: 'idle', size: 80, status: model, blink: first, statusText: app.t(model.status === 'due' ? 'guideStatusDue' : 'guideStatusOk') }),
-    h('p', { class: 'guide-say' }, say));
+    sayNode,
+    goal ? goalLine(app) : null);
 }
 
 // How many reviews wait for this screen: a course home counts its own queue,

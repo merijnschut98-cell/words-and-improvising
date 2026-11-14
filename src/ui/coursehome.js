@@ -2,14 +2,14 @@
 import { h, enableOnFail } from './dom.js';
 import { ico } from './icons.js';
 import { masteryBadge, realWeekEntry, progressBar } from './home.js';
-import { MODULES, TRACKS, FIELDS, topicsOf, placeOf } from '../content/courses/index.js';
+import { MODULES, TRACKS, FIELDS, topicsOf, placeOf, moduleOf } from '../content/courses/index.js';
 import { mapFor } from '../content/courses/maps/index.js';
 import { subjectMap } from './subjectmap.js';
 import { filmButton } from './film.js';
 import { courseTodayPick, moduleMastery, nextLesson, levelsDone } from '../core/course.js';
 import { pathModel, topicPath } from './pathmap.js';
 import { medalSeal, metaSeal, moduleEndModel, checkEntry, guideGreeting } from './flairui.js';
-import { dueCount } from '../core/coursereview.js';
+import { dueCount, mapNextModule } from '../core/coursereview.js';
 import { FROM_MODULE } from '../core/moduleexit.js';
 import { moduleTier, trackProgress, openTrack } from '../core/layout.js';
 
@@ -202,7 +202,7 @@ function mapCard(app, subject, map, pick) {
     h('p', { class: 'muted small map-hint' }, t('mapHint')),
     subjectMap(app, map, {
       lang: app.lang,
-      next: pick.moduleId || null,
+      next: mapNextModule(pick, app.state.courseReviews, app.today(), subject, app.lang, moduleOf),
       onPlace: (moduleId) => app.go('module', { subject, moduleId }),
     }));
 }
@@ -241,6 +241,6 @@ export function courseHome(app, subject) {
   };
   return h('main', { class: `screen home course-home course-${subject}` },
     h('h1', { class: 'sr' }, t(`subject_${subject}`)),
-    guideGreeting(app, { subject, goal: true }),
+    guideGreeting(app, { subject, goal: true, pick: { subject, ...pick } }),
     ...homeOrder(subject, Boolean(map)).flatMap((k) => blocks[k]()));
 }
