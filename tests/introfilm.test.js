@@ -525,6 +525,12 @@ test('short films: 30 s, 2 scenes and about 60 narration words pass the build ch
   assert.deepEqual(checkFilm(data, shortCtx()), []);
 });
 
+test('short films: exactly 25 s passes, 24 s fails', () => {
+  const at = (a, b) => { const d = shortFilm(2, 15, 16); d.scenes[0].dur = a; d.scenes[1].dur = b; return checkFilm(d, shortCtx()); };
+  assert.deepEqual(at(12, 13), []);
+  assert.match(at(12, 12).join('\n'), /film is 24 s, must be 25–300/);
+});
+
 test('short films: one scene still fails, and so do ten', () => {
   assert.match(checkFilm(shortFilm(1, 30, 32), shortCtx()).join('\n'), /needs 2–9 scenes, has 1/);
   assert.match(checkFilm(shortFilm(10, 4, 7), shortCtx()).join('\n'), /needs 2–9 scenes, has 10/);
