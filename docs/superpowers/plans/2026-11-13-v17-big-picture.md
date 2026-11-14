@@ -308,7 +308,9 @@ Order, lowest level first: pm.intake; pm.run, pm.land, pm.close, pm.agile, pm.de
 
 ### Task 14: Two new Projects modules (after the Task 5 checkpoint, parallel to Task 11)
 
-Decided 14 Nov, see the addendum of the design. Not started before Merijn's checkpoint.
+Decided 14 Nov, see the addendum of the design. Not started before Merijn's checkpoint (passed 14 Nov).
+
+**Merijn's answers (MC, 14 Nov evening), binding for step 1:** the two modules are written for a consultant who leads projects at clients (often without formal power). Tool families that must be covered: Microsoft (Planner, Project, Teams, Loop), Azure DevOps and Jira, visual collaboration (Miro, Mural), Power BI and dashboards, plus whatever else matters, "in ieder geval zeker tools die grotere bedrijven gebruiken zoals ASML en Enexis" (so the research names what large Dutch high-tech and grid-operator organisations actually use, with sources, e.g. SAP, ServiceNow, Primavera, Polarion and the like, where verified). Order stays as planned: these two modules first, then performance management, strategy later.
 
 - [ ] **Step 1:** Research agent (`sonnet`, sources required): the coverage review against PMBOK, PRINCE2, IPMA ICB, Lean and Six Sigma practice, change management and facilitation, plus the tool landscape (Microsoft world, Azure DevOps and other families, organised by when each fits). Output: a ranked gap list and a proposed topic list for two modules, **with one line per topic and level on what each of the four levels teaches** (Basis, Werkkennis, Gevorderd, Expert, as defined in the design's third addendum), saved under `docs/superpowers/content/briefs/`.
 - [ ] **Step 2:** Bring the proposal to Merijn as multiple-choice decisions (names, topics, field and map place). Record his answers in the design addendum.
@@ -318,6 +320,8 @@ Decided 14 Nov, see the addendum of the design. Not started before Merijn's chec
 ### Task 15: Performance management module (after Task 14)
 
 Decided 14 Nov, see the second addendum of the design. Not started before Task 14 is done.
+
+**Changed by Merijn (MC, 14 Nov evening): performance management becomes its own subject**, a fourth subject next to Spreken, Engineering and Projecten, with several modules (OGSM, KPIs, leading and lagging indicators, dashboards and decisions, the conversations), not one rebuilt module. The research in step 1 therefore proposes a subject: its fields and modules, four levels per topic, what moves out of `pm.perform` and other modules, and its own map. Steps 2 to 4 become: MC decisions on the subject's shape, then a subject plan (an opus design step: a new subject touches the app's subject bar, home, map, sync and progress), then content per module. Still after Task 14.
 
 - [ ] **Step 1:** Research agent (`sonnet`, sources required): proven and best methods and practices of performance management (hard: goals and targets, KPIs, leading and lagging indicators, dashboards and data, variation and decisions; soft: conversations, behaviour and incentives, feedback, motivation, culture), including the seeds in the addendum, and an inventory of the performance-related lessons already in `pm.perform` and in other modules. Output: a ranked list, a proposed topic structure with **what each of the four levels teaches, per topic**, and a mapping of every existing `pm.perform` lesson id to its new place and level, saved under `docs/superpowers/content/briefs/`.
 - [ ] **Step 2:** Bring the proposal to Merijn as multiple-choice decisions (name, topics, what stays in other modules). Record his answers in the addendum.
