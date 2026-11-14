@@ -763,6 +763,30 @@ test('speak variant: the Land intro phrases', () => {
   assert.equal(speakOf([en], 'en'), en);
 });
 
+// The Scaling module intro (pm.scaled.intro), checked with espeak-ng phonemes through Piper's nl bridge: it reads
+// LeSS as the letters "le es es" (said Less, lˈɛss), "Sprint Planning One" with the Dutch number "oone" (said Wan,
+// ʋˈɑn), Spotify with the Dutch i (said Spotifai, spˈoːtifˌɑj) and Lean as "lee-an" (said Lien, as the Lean-consultant
+// rule), in "Lean budgets" and "Lean business case" only. English reads LeSS as letters too (said Less);
+// Cross-Team Refinement has its rule above, and the film's plant manager phrases are the ones the rules above cover.
+// Everything else of the film (SAFe, PI Planning, ART Planning Board, WSJF, stage-gate, gate, design freeze, Product
+// Owner, feature teams, epics, portfolio, Portfolio Kanban, terugplannen) has a rule above or reads right; no other
+// film's spoken text changes
+test('speak variant: the Scaling intro words', () => {
+  const nl = (s) => speakOf([s], 'nl');
+  assert.equal(nl('Er zijn ook LeSS en Nexus.'), 'Er zijn ook Less en Nexus.');
+  assert.equal(nl('Sprint Planning One van LeSS.'), 'Sprint Planning Wan van Less.');
+  assert.equal(nl('Het Spotify-model.'), 'Het Spotifai-model.');
+  assert.equal(nl('Het tweede onderwerp is Portfolio en Lean budgets.'), 'Het tweede onderwerp is Portfolio en Lien budgets.');
+  assert.equal(nl('We gebruiken vaak een Lean business case en een Portfolio Kanban.'), 'We gebruiken vaak een Lien biznis kees en een Portfolio Kanban.');
+  assert.equal(nl('Op Expert komen Lean budgets, de kritiek op SAFe erbij.'), 'Op Expert komen Lien budgets, de kritiek op Seef erbij.');
+  assert.equal(nl('Dat is een beslismoment voor de plantmanager.'), 'Dat is een beslismoment voor de plant-menetsjer.');
+  // elsewhere the words keep their voice
+  assert.equal(nl('Een Lean-team met een Lean aanpak.'), 'Een Lean-team met een Lean aanpak.');
+  assert.equal(speakOf(['There are also LeSS and Nexus.'], 'en'), 'There are also Less and Nexus.');
+  const en = 'Sprint Planning One of the Spotify model. The plant manager picks Lean budgets.';
+  assert.equal(speakOf([en], 'en'), en);
+});
+
 // A stage drawn on the Dutch caption beats (beatwarp films set STAGE.nlBeats)
 // follows the caption beat on screen in English too: while English beat k
 // shows, the stage runs through Dutch beat k, so the drawing is never a beat off.
@@ -1164,6 +1188,19 @@ test('player: the focus highlight is light blue / white in both themes, eases in
   // the runtime goes in without its comment lines (bytes; each page stays near its 300 KB target)
   assert.ok(rt.includes("// the beat's focus") && !page.includes("// the beat's focus"));
   assert.ok(page.includes('lightFocus();'));
+});
+
+// The IT projects module intro (pm.itproject.intro), checked with espeak-ng phonemes through Piper's bridge: Dutch reads SaaS
+// as the letters "saa es" (said Sas, sˈɑs) and English reads it as "sah S" (said sass); English reads UAT as the word
+// "you-at", so in this film's one phrase it is said as letters (the Dutch rule above already does that). RFP, MVP, ERP,
+// triage, testscript, proefmigratie, shortlist, pilot, key users, sign-off, go-live, MoSCoW, to-be-proces, requirements and
+// the rest read right or have a rule above; no other film's spoken text changes
+test('speak variant: the IT projects intro words', () => {
+  assert.equal(speakOf(['Huren heet SaaS, de leverancier draait het voor je.'], 'nl'), 'Huren heet Sas, de leverancier draait het voor je.');
+  assert.equal(speakOf(['Renting is called SaaS, the vendor runs it for you.'], 'en'), 'Renting is called sass, the vendor runs it for you.');
+  assert.equal(speakOf(['In the UAT, the user acceptance test, future users check that the MES fits.'], 'en'), 'In the U A T, the user acceptance test, future users check that the M E S fits.');
+  // elsewhere the UAT keeps its voice
+  assert.equal(speakOf(['The UAT ends with a sign-off.'], 'en'), 'The UAT ends with a sign-off.');
 });
 
 // The DevOps module intro (pm.devops.intro), checked with espeak-ng phonemes through Piper's nl bridge: it reads

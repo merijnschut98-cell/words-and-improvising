@@ -74,3 +74,7 @@ Outcome: accepted (merged as delivered), sent back N times, redone.
 | 14 Nov | Review: map phone layout | opus | n/a | n/a | n/a | accepted with three fixes (ResizeObserver loop error, observer leak, tap margin at 320); merged v275 |
 | 14 Nov | Build module intro pm.devops.intro (Task 11) | sonnet | 104 | 20 min | 366,441 | accepted with fixes by its review (two non-tools replaced, s7 and length trimmed) |
 | 14 Nov | Review module intro pm.devops.intro | sonnet | n/a | n/a | n/a | accepted with seven fixes; merged v276 |
+| 14 Nov | Build module intro pm.scaled.intro (Task 11) | sonnet | 91 | 16 min | 336,195 | accepted with fixes by its review |
+| 14 Nov | Review module intro pm.scaled.intro | sonnet | n/a | n/a | n/a | accepted with seven fixes (WSJF out of the scene, SAY rules 8 to 4, scales made visible); merged v277 |
+| 14 Nov | Build module intro pm.itproject.intro (Task 11) | sonnet | 111 | 16 min | 341,975 | accepted with fixes by its review |
+| 14 Nov | Review module intro pm.itproject.intro | sonnet | n/a | n/a | n/a | accepted with fixes (story aligned: bought package, our IT team builds on it; selection beat removed); merged v278 |
