@@ -625,6 +625,25 @@ test('speak variant: the field film words in Dutch', () => {
   assert.equal(speakOf([en], 'en'), en);
 });
 
+// The tools named in the module intro and the field film (the Checkpoint of 14 Nov), checked with espeak-ng
+// phonemes through Piper's nl bridge: scopeomschrijving is read "skoope-omschrijving" (said skoop-omschrijving,
+// as the scope rule above) and resourcehistogram "REE-zoors" (said ri-sors-histogram). Run chart and
+// projectopdracht have their rules above. WBS, Gantt-chart, netwerkplanning, driepuntsschatting, analoog
+// schatten, RACI, SIPOC, A3-statusrapport, besluitenlijst, vaardigheidsmatrix, overdrachtschecklist and
+// eindrapport need nothing;
+// English needs nothing; no other film's spoken text changes
+test('speak variant: the tools named in the intro and field films, in Dutch', () => {
+  const nl = (s) => speakOf([s], 'nl');
+  assert.equal(nl('Bij het opdelen gebruiken we vaak een WBS en een scopeomschrijving.'), 'Bij het opdelen gebruiken we vaak een WBS en een skoop-omschrijving.');
+  assert.equal(nl('Bij risico’s en mensen gebruiken we vaak een RACI en een resourcehistogram.'), "Bij risico's en mensen gebruiken we vaak een RACI en een ri-sors-histogram.");
+  assert.equal(nl('Bij de intake gebruiken we vaak een projectopdracht en een SIPOC.'), 'Bij de in-teek gebruiken we vaak een project-opdracht en een SIPOC.');
+  assert.equal(nl('Bij het afsluiten gebruiken we vaak een run chart en een eindrapport.'), 'Bij het afsluiten gebruiken we vaak een run tsjart en een eindrapport.');
+  // elsewhere the words keep their voice
+  assert.equal(nl('Een Scopeomschrijving hier. Het scopedocument.'), 'Een Skoop-omschrijving hier. Het scopedocument.');
+  const en = 'We often use a scope statement, a resource histogram and a run chart.';
+  assert.equal(speakOf([en], 'en'), en);
+});
+
 // The field film "people and influence" (pm.field.people), checked with espeak-ng
 // phonemes through Piper's nl bridge: it reads the English "second opinion" as
 // "sekont opinion" (said sekkend opinjen, only after "vragenset en een"). SBI has

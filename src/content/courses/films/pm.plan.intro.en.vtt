@@ -1,293 +1,305 @@
 WEBVTT
 
 1
-00:00:00.870 --> 00:00:02.797
+00:00:00.859 --> 00:00:02.728
 A plant is building a new hall.
 
 2
-00:00:03.500 --> 00:00:08.039
+00:00:03.430 --> 00:00:07.982
 Packing line 3 has to move there, during the summer shutdown of 3 weeks.
 
 3
-00:00:09.040 --> 00:00:10.538
+00:00:08.987 --> 00:00:10.496
 The sponsor has set the goal.
 
 4
-00:00:11.282 --> 00:00:13.337
+00:00:11.211 --> 00:00:13.312
 That is what this module is about.
 
 5
-00:00:14.118 --> 00:00:17.694
+00:00:14.088 --> 00:00:17.513
 Planning turns a goal into a plan that people believe in.
 
 6
-00:00:18.703 --> 00:00:22.824
+00:00:18.517 --> 00:00:22.639
 We follow this one project through the whole module, past four topics.
 
 7
-00:00:23.529 --> 00:00:24.853
-First the big picture.
-
-8
-00:00:25.564 --> 00:00:29.488
+00:00:23.320 --> 00:00:27.302
 The details and the calculations come later, in the lessons.
 
-9
-00:00:30.849 --> 00:00:33.078
+8
+00:00:28.649 --> 00:00:30.878
 The first topic is Breakdown and scope.
 
-10
-00:00:33.840 --> 00:00:36.185
+9
+00:00:31.650 --> 00:00:33.995
 What has to happen before the line runs again?
 
-11
-00:00:37.172 --> 00:00:39.982
+10
+00:00:34.980 --> 00:00:37.906
 Start with the deliverables, not the activities.
 
-12
-00:00:40.698 --> 00:00:43.368
+11
+00:00:38.646 --> 00:00:41.270
 What will exist at the end that someone can check?
 
-13
-00:00:44.086 --> 00:00:45.317
+12
+00:00:41.998 --> 00:00:43.240
 A floor that is ready.
 
-14
-00:00:45.993 --> 00:00:47.456
+13
+00:00:43.912 --> 00:00:45.468
 Power and compressed air.
 
-15
-00:00:48.142 --> 00:00:49.593
+14
+00:00:46.168 --> 00:00:47.747
 The line in its place.
 
-16
-00:00:50.323 --> 00:00:51.809
+15
+00:00:48.503 --> 00:00:50.036
 And trained operators.
 
-17
-00:00:52.934 --> 00:00:55.221
+16
+00:00:51.086 --> 00:00:53.420
 This gives a WBS, a tree.
 
-18
-00:00:55.880 --> 00:00:59.293
+17
+00:00:54.076 --> 00:00:57.524
 The project sits at the top, with the deliverables below it.
 
-19
-00:01:00.347 --> 00:01:02.414
+18
+00:00:58.583 --> 00:01:00.650
 The work packages hang at the bottom.
 
-20
-00:01:03.152 --> 00:01:06.740
+19
+00:01:01.405 --> 00:01:04.911
 One person or a small team can do and finish each one.
 
-21
-00:01:07.796 --> 00:01:11.442
+20
+00:01:05.940 --> 00:01:09.505
 And you agree the scope, what the project does and does not do.
 
-22
-00:01:12.158 --> 00:01:14.167
+21
+00:01:10.227 --> 00:01:12.259
 Rebuild line 4 while we are at it?
 
-23
-00:01:14.968 --> 00:01:16.361
+22
+00:01:13.026 --> 00:01:14.396
 That is not part of it.
 
+23
+00:01:15.436 --> 00:01:20.219
+For breaking down the work we often use a WBS and a scope statement.
+
 24
-00:01:17.689 --> 00:01:20.568
+00:01:21.551 --> 00:01:24.361
 The second topic is Schedule and critical path.
 
 25
-00:01:21.326 --> 00:01:23.544
+00:01:25.114 --> 00:01:27.332
 Now you put the deliverables in time.
 
 26
-00:01:24.527 --> 00:01:27.395
+00:01:28.303 --> 00:01:31.171
 Some work can only start when other work is done.
 
 27
-00:01:28.128 --> 00:01:29.498
+00:01:31.887 --> 00:01:33.234
 That is a dependency.
 
 28
-00:01:30.161 --> 00:01:34.201
+00:01:33.905 --> 00:01:38.026
 The line can only move once the floor is ready and the power is on.
 
 29
-00:01:35.206 --> 00:01:39.873
+00:01:39.040 --> 00:01:43.696
 The new power supply comes from an outside contractor, and it takes longest.
 
 30
-00:01:40.661 --> 00:01:42.600
+00:01:44.447 --> 00:01:46.421
 That chain sets the end date.
 
 31
-00:01:43.349 --> 00:01:46.692
+00:01:47.188 --> 00:01:50.612
 It is the critical path, and you watch it most closely.
 
 32
-00:01:47.713 --> 00:01:50.511
+00:01:51.621 --> 00:01:54.430
 And you set milestones, moments with a decision.
 
 33
-00:01:51.332 --> 00:01:54.037
+00:01:55.277 --> 00:01:57.912
 The key one comes at the end of the shutdown.
 
 34
-00:01:54.737 --> 00:01:57.082
+00:01:58.612 --> 00:02:00.888
 Does the line go into production, or not?
 
 35
-00:01:58.426 --> 00:02:01.073
-The third topic is Estimating and buffers.
+00:02:01.948 --> 00:02:05.919
+For the schedule we often use a Gantt chart and a network diagram.
 
 36
-00:02:01.816 --> 00:02:04.417
-How long does each piece of work really take?
+00:02:07.196 --> 00:02:09.878
+The third topic is Estimating and buffers.
 
 37
-00:02:05.452 --> 00:02:09.446
-Ask the mechanics for the best, the worst and the most likely case.
+00:02:10.666 --> 00:02:13.220
+How long does each piece of work really take?
 
 38
-00:02:10.198 --> 00:02:14.760
-Then you get a range instead of one number, and you see where the uncertainty is.
+00:02:14.272 --> 00:02:18.116
+Ask the mechanics for the best, the worst and the most likely case.
 
 39
-00:02:15.775 --> 00:02:17.935
-Turn the hours into weeks as well.
+00:02:18.898 --> 00:02:23.472
+Then you get a range instead of one number, and you see where the uncertainty is.
 
 40
-00:02:18.704 --> 00:02:20.910
-Effort is the number of hours of work.
+00:02:24.482 --> 00:02:26.618
+Turn the hours into weeks as well.
 
 41
-00:02:21.675 --> 00:02:23.718
-Duration is the time on the calendar,
+00:02:27.372 --> 00:02:29.566
+Effort is the number of hours of work.
 
 42
-00:02:23.811 --> 00:02:26.586
-because the mechanics also have their normal job.
+00:02:30.315 --> 00:02:32.405
+Duration is the time on the calendar,
 
 43
-00:02:27.618 --> 00:02:31.148
-And put one visible buffer just before the end of the shutdown,
+00:02:32.509 --> 00:02:35.237
+because the mechanics also have their normal job.
 
 44
-00:02:31.310 --> 00:02:34.317
-instead of hiding a little extra in every task.
+00:02:36.262 --> 00:02:39.850
+And put one visible buffer just before the end of the shutdown,
 
 45
-00:02:35.662 --> 00:02:38.089
-The fourth topic is Risk and resources.
+00:02:39.965 --> 00:02:42.879
+instead of hiding a little extra in every task.
 
 46
-00:02:38.801 --> 00:02:40.798
-What can go wrong, and who does what?
+00:02:43.918 --> 00:02:48.701
+For estimating we often use a three-point estimate and analogous estimating.
 
 47
-00:02:41.884 --> 00:02:43.904
-A risk register lists the risks.
+00:02:49.995 --> 00:02:52.410
+The fourth topic is Risk and resources.
 
 48
-00:02:44.605 --> 00:02:48.146
-Here, for example, the new switchboard for the power supply.
+00:02:53.129 --> 00:02:55.126
+What can go wrong, and who does what?
 
 49
-00:02:48.846 --> 00:02:50.146
-It may arrive late.
+00:02:56.209 --> 00:02:58.218
+A risk register lists the risks.
 
 50
-00:02:51.208 --> 00:02:53.715
-Each risk gets one owner, here the buyer.
+00:02:58.911 --> 00:03:02.452
+Here, for example, the new switchboard for the power supply.
 
 51
-00:02:54.437 --> 00:02:56.759
-And a mitigation, something you do now.
+00:03:03.164 --> 00:03:04.453
+It may arrive late.
 
 52
-00:02:57.478 --> 00:02:59.487
-He orders the switchboard this week.
+00:03:05.508 --> 00:03:08.051
+Each risk gets one owner, here the buyer.
 
 53
-00:03:00.503 --> 00:03:01.536
-And then the people.
+00:03:08.880 --> 00:03:11.121
+And a mitigation, something you do now.
 
 54
-00:03:02.255 --> 00:03:05.262
-In the shutdown everyone wants the same mechanics.
+00:03:11.879 --> 00:03:13.899
+He orders the switchboard this week.
 
 55
-00:03:06.556 --> 00:03:09.226
-Put it side by side and you see one plan.
+00:03:14.949 --> 00:03:16.005
+And then the people.
 
 56
-00:03:09.998 --> 00:03:11.426
-The tree gives the work.
+00:03:16.726 --> 00:03:19.617
+In the shutdown everyone wants the same mechanics.
 
 57
-00:03:12.189 --> 00:03:13.965
-The schedule puts it in time.
+00:03:20.590 --> 00:03:24.967
+For risk and resources we often use a RACI and a resource histogram.
 
 58
-00:03:14.659 --> 00:03:16.540
-The estimates give the duration.
+00:03:26.304 --> 00:03:29.044
+Put it side by side and you see one plan.
 
 59
-00:03:17.258 --> 00:03:19.696
-And the risk register says what can go wrong.
+00:03:29.784 --> 00:03:31.177
+The tree gives the work.
 
 60
-00:03:20.728 --> 00:03:22.086
-The topics hang together.
+00:03:31.943 --> 00:03:33.719
+The schedule puts it in time.
 
 61
-00:03:22.822 --> 00:03:24.610
-A mitigation is work too.
+00:03:34.419 --> 00:03:36.230
+The estimates give the duration.
 
 62
-00:03:25.340 --> 00:03:28.033
-If it is not in the tree, nobody will do it.
+00:03:36.976 --> 00:03:39.518
+And the risk register says what can go wrong.
 
 63
-00:03:28.784 --> 00:03:32.116
-So add it as a work package, and put it in the schedule.
+00:03:40.516 --> 00:03:41.839
+The topics hang together.
 
 64
-00:03:33.441 --> 00:03:35.124
-This is the map of Projects.
+00:03:42.598 --> 00:03:44.363
+A mitigation is work too.
 
 65
-00:03:35.868 --> 00:03:38.921
-Plan is the second station on the road of a project.
+00:03:45.104 --> 00:03:47.775
+If it is not in the tree, nobody will do it.
 
 66
-00:03:39.943 --> 00:03:42.764
-Plan has four topics, each with four levels.
+00:03:48.543 --> 00:03:51.841
+So add it as a work package, and put it in the schedule.
 
 67
-00:03:43.748 --> 00:03:47.452
-Start at the top, with Breakdown and scope, at the first level.
+00:03:53.154 --> 00:03:54.779
+This is the map of Projects.
 
 68
-00:03:48.530 --> 00:03:52.106
-At the second level you fix the scope and choose a way of working.
+00:03:55.527 --> 00:03:58.569
+Plan is the second station on the road of a project.
 
 69
-00:03:52.832 --> 00:03:56.164
-You learn estimating methods and share out the roles.
+00:03:59.590 --> 00:04:02.376
+Plan has four topics, each with four levels.
 
 70
-00:03:57.178 --> 00:03:59.605
-At the third level you work through the network,
+00:04:03.376 --> 00:04:07.161
+Start at the top, with Breakdown and scope, at the first level.
 
 71
-00:03:59.825 --> 00:04:02.240
-add up uncertainty and plan capacity.
+00:04:08.179 --> 00:04:11.743
+At the second level you fix the scope and choose a way of working.
 
 72
-00:04:02.928 --> 00:04:06.237
-The fourth level tracks the plan and manages the reserves.
+00:04:12.460 --> 00:04:15.734
+You learn estimating methods and share out the roles.
 
 73
-00:04:07.274 --> 00:04:11.361
+00:04:16.747 --> 00:04:19.185
+At the third level you work through the network,
+
+74
+00:04:19.394 --> 00:04:21.844
+add up uncertainty and plan capacity.
+
+75
+00:04:22.545 --> 00:04:25.877
+The fourth level tracks the plan and manages the reserves.
+
+76
+00:04:26.917 --> 00:04:31.097
 Every lesson and every film in this module has a place on this map.

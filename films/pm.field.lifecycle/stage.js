@@ -138,7 +138,7 @@ const STAGE = (() => {
     return {
       askB: op(b === 0 ? span(p, 0.05, 0.4) : 1, ask),
       goalB: op(b >= 1 ? (b === 1 ? span(p, 0, 0.4) : 1) : 0, goal),
-      withoutB: without(tr('verkeerd probleem', 'the wrong problem', 240), b >= 2 ? span(p, 0, 0.4) : 0),
+      withoutB: without(tr('verkeerd probleem', 'the wrong problem', 240), b >= 3 ? span(p, 0, 0.4) : 0),
     };
   }
 
@@ -162,7 +162,7 @@ const STAGE = (() => {
     return {
       plan4B: s,
       moreB: op(b >= 1 ? (b === 1 ? span(p, 0.3, 0.7) : 1) : 0, more),
-      withoutB: without(tr('stroom te laat klaar', 'power ready too late', 240), b >= 2 ? span(p, 0, 0.4) : 0),
+      withoutB: without(tr('stroom te laat klaar', 'power ready too late', 240), b >= 3 ? span(p, 0, 0.4) : 0),
     };
   }
 
@@ -180,7 +180,7 @@ const STAGE = (() => {
     return {
       statusB: op(b === 0 ? span(p, 0.1, 0.45) : 1, status),
       changeB: op(b === 0 ? span(p, 0.3, 0.65) * 0.45 : b === 1 ? 0.45 : 1, change),
-      withoutB: without(tr('te laat rood', 'red too late', 240), b >= 3 ? span(p, 0, 0.4) : 0),
+      withoutB: without(tr('te laat rood', 'red too late', 240), b >= 4 ? span(p, 0, 0.4) : 0),
     };
   }
 
@@ -196,7 +196,7 @@ const STAGE = (() => {
     return {
       instrB: op(b >= 1 ? (b === 1 ? span(p, 0, 0.4) : 1) : 0, instr),
       handB: op(b >= 2 ? (b === 2 ? span(p, 0, 0.4) : 1) : 0, hand),
-      withoutB: without(tr('terug naar oud', 'back to the old way', 240), b >= 3 ? span(p, 0, 0.4) : 0),
+      withoutB: without(tr('terug naar oud', 'back to the old way', 240), b >= 4 ? span(p, 0, 0.4) : 0),
     };
   }
 
@@ -213,7 +213,7 @@ const STAGE = (() => {
       proofB: op(b >= 1 ? (b === 1 ? span(p, 0, 0.3) : 1) : 0, proof),
       signB: op(b >= 1 ? (b === 1 ? span(p, 0.55, 0.85) : 1) : 0, sign),
       retroB: op(b >= 2 ? (b === 2 ? span(p, 0, 0.4) : 1) : 0, retro),
-      withoutB: without(tr('niemand weet het', 'nobody knows', 240), b >= 3 ? span(p, 0, 0.4) : 0),
+      withoutB: without(tr('niemand weet het', 'nobody knows', 240), b >= 4 ? span(p, 0, 0.4) : 0),
     };
   }
 

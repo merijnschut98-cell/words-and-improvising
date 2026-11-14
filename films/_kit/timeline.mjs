@@ -705,6 +705,13 @@ const SAY = {
     // op oranje"). Werkinstructie, nulmeting, terugblik, stuurgroep and watermeloenproject need nothing; no
     // other film's spoken text changes
     [/\bde intake\b/g, 'de in-teek'], [/\bDe operators krijgen\b/g, 'De ope-raators krijgen'], [/\bnu op oranje\b/g, 'nu op o-ranje'],
+    // the tools named in the module intro and the field film (the Checkpoint of 14 Nov), a self-contained group at
+    // the end of the Dutch list (checked with phonemes through Piper's nl_NL-alex bridge): scopeomschrijving as
+    // skoop-omschrijving (espeak-ng reads "skoope") and resourcehistogram as ri-sors-histogram ("REE-zoors").
+    // Run chart has its rule above (run tsjart). WBS, Gantt-chart, netwerkplanning, driepuntsschatting, analoog
+    // schatten, RACI, SIPOC, A3-statusrapport, besluitenlijst, vaardigheidsmatrix, overdrachtschecklist and
+    // eindrapport need nothing (projectopdracht has its rule above); no other film's spoken text changes
+    [/\b([Ss])copeomschrijving/g, '$1koop-omschrijving'], [/\b([Rr])esourcehistogram\b/g, '$1i-sors-histogram'],
     // the field film (pm.field.people), a self-contained group at the end of the Dutch list: espeak-ng reads the
     // English "second opinion" as "sekont opinion" (said sekkend opinjen), checked with phonemes through Piper's
     // nl_NL-alex bridge; only in this film's phrase. SBI has its rule above; BATNA, KPI-boom, mensenprobleem,
