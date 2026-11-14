@@ -105,14 +105,14 @@ const browser = await chromium.launch();
 const ctx = await browser.newContext({ viewport: { width: 390, height: 844 }, deviceScaleFactor: 2 });
 await ctx.addInitScript(FAKE_SPEECH);
 // Most steps click drills on the speaking home directly: on every load, open on
-// speaking (not the start screen) with "More practice" open. The start screen
+// speaking (not the start screen) with "More practice", the quests and the practice fold open. The start screen
 // itself is checked in its own context and by tapping Home.
 await ctx.addInitScript(() => {
   try {
     const st = JSON.parse(localStorage.getItem('spraakwater:v1') || 'null');
     const ui = (st && st.ui) || {};
     const subject = ui.subject && ui.subject !== 'start' ? ui.subject : 'speak';
-    if (st) localStorage.setItem('spraakwater:v1', JSON.stringify({ ...st, ui: { ...ui, moreOpen: true, subject } }));
+    if (st) localStorage.setItem('spraakwater:v1', JSON.stringify({ ...st, ui: { ...ui, moreOpen: true, speakOpen: ui.speakOpen || ['quests', 'practice'], subject } }));
   } catch { /* first run */ }
 });
 await ctx.route('https://esm.sh/**', (route) => route.fulfill({ contentType: 'application/javascript', body: FAKE_SDK }));
@@ -206,6 +206,7 @@ await step('start screen: one card per subject with its reason, streak and level
   const bands = await p5.locator('.band-title').allInnerTexts();
   if (bands.map((x) => x.trim().toUpperCase()).join('|') !== 'VANDAAG|OEFENEN|UITDAGEN|ECHT EN TERUGKIJKEN') throw new Error(`bands: ${bands}`);
   if (await p5.locator('details.drill-group[open]').count()) throw new Error('drill groups should start closed');
+  await p5.locator('details.practice-fold > summary').click();
   await p5.locator('details.group-basics > summary').click();
   await p5.waitForFunction(() => (JSON.parse(localStorage.getItem('spraakwater:v1')).ui.drillGroups || []).includes('basics'), null, { timeout: 3000 });
   for (const g of ['Basis', 'Structuur', 'Gesprek en luisteren', 'Onder druk']) await p5.locator('.group-name', { hasText: g }).waitFor();
@@ -213,7 +214,7 @@ await step('start screen: one card per subject with its reason, streak and level
   await onePrimary(p5, 'speaking home with a drill group open');
   await shot5('82-more-practice');
   await p5.reload();
-  await p5.locator('details.group-basics[open]').waitFor();
+  await p5.locator('details.practice-fold[open] details.group-basics[open]').waitFor();
   if (await p5.locator('details.group-pressure[open]').count()) throw new Error('only the opened group stays open');
   // Home in the bottom bar always returns to the overview, which stays the default after a reload.
   await p5.getByRole('button', { name: /Home/ }).click();
@@ -228,6 +229,48 @@ await step('start screen: one card per subject with its reason, streak and level
   await p5.locator('.begin-btn').click();
   await p5.locator('.intro-card').waitFor({ timeout: 5000 });
   await c5.close();
+});
+
+await step('speaking home: one next round on top, quests and practice collapsed, opened state remembered after reload', async () => {
+  const c = await browser.newContext({ viewport: { width: 390, height: 844 }, deviceScaleFactor: 2 });
+  const pg = await c.newPage();
+  pg.on('pageerror', onPageError);
+  await c.addInitScript(() => { if (!localStorage.getItem('spraakwater:v1')) localStorage.setItem('spraakwater:v1', JSON.stringify({ onboarded: true, xp: 40, ui: { subject: 'speak' } })); });
+  const snap = async (n) => { await pg.screenshot({ path: `${out}/${n}.png`, fullPage: true, animations: 'disabled' }); };
+  await pg.goto(BASE);
+  await pg.locator('.today-card .today-go').waitFor();
+  // The next round is the first card and the only filled button.
+  const first = await pg.evaluate(() => document.querySelector('.speak-home .band .card, .speak-home .band .btn').className);
+  if (!/today-card/.test(first)) throw new Error(`first card is not the next round: ${first}`);
+  await onePrimary(pg, 'speaking home, folds closed');
+  if (await pg.locator('details.speak-fold[open]').count()) throw new Error('quests and practice should start closed');
+  // Closed, each fold says what is inside in one line.
+  const q = (await pg.locator('details.quest-card > summary').innerText()).replace(/\s+/g, ' ');
+  if (!/0\/3 · alle 3 = een streak-bevriezer/.test(q)) throw new Error(`quest summary: ${q}`);
+  const pr = (await pg.locator('details.practice-fold > summary').innerText()).replace(/\s+/g, ' ');
+  if (!/16 oefeningen/.test(pr)) throw new Error(`practice summary: ${pr}`);
+  // Nothing is hidden for good: one tap each.
+  if (await pg.locator('.quest-card .quest:visible').count()) throw new Error('quests visible while closed');
+  await snap('speak-home');
+  await pg.evaluate(() => window.__app.updateSettings({ theme: 'dark' }));
+  await pg.locator('.today-card .today-go').waitFor();
+  await snap('speak-home-dark');
+  await pg.evaluate(() => window.__app.updateSettings({ theme: 'light' }));
+  await pg.locator('details.quest-card > summary').click();
+  await pg.locator('.quest-card .quest').first().waitFor({ state: 'visible' });
+  await pg.waitForFunction(() => (JSON.parse(localStorage.getItem('spraakwater:v1')).ui.speakOpen || []).includes('quests'), null, { timeout: 3000 });
+  await onePrimary(pg, 'speaking home, quests open');
+  await pg.reload();
+  await pg.locator('details.quest-card[open]').waitFor();
+  if (await pg.locator('details.practice-fold[open]').count()) throw new Error('practice should still be closed');
+  await pg.locator('details.practice-fold > summary').click();
+  await pg.locator('details.group-basics > summary').click();
+  await pg.locator('.group-basics .drill-minute').waitFor({ state: 'visible' });
+  await pg.reload();
+  await pg.locator('details.practice-fold[open]').waitFor();
+  const ui = await pg.evaluate(() => JSON.parse(localStorage.getItem('spraakwater:v1')).ui.speakOpen);
+  if (ui.join() !== 'quests,practice') throw new Error(`speakOpen: ${ui}`);
+  await c.close();
 });
 
 await step('one filled button per screen: speaking home, course home, every lesson step, due and situation', async () => {

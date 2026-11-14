@@ -3,6 +3,7 @@ import assert from 'node:assert/strict';
 import {
   SPEAK_BANDS, DRILL_GROUPS, groupProgress, openGroups, toggleGroup,
   moduleTier, trackProgress, openTrack, cleanOpenGroups,
+  speakLayout, cleanSpeakOpen, toggleSpeak,
 } from '../src/core/layout.js';
 import { DRILLS } from '../src/core/progress.js';
 import { MODULES, TRACKS } from '../src/content/courses/index.js';
@@ -15,8 +16,8 @@ test('speaking home: four bands in order, each item in exactly one band', () => 
   assert.deepEqual(SPEAK_BANDS.map((b) => b.id), ['today', 'practise', 'challenge', 'real']);
   const items = SPEAK_BANDS.flatMap((b) => b.items);
   assert.equal(new Set(items).size, items.length);
-  // The daily tasks sit right under the next round.
-  assert.deepEqual(SPEAK_BANDS[0].items.slice(0, 2), ['next', 'quests']);
+  // The next round is on top; the lesson and a due review follow, the quests come last in the band.
+  assert.deepEqual(SPEAK_BANDS[0].items, ['next', 'lesson', 'reviews', 'quests']);
   assert.deepEqual([...SPEAK_BANDS[2].items].sort(), ['boss', 'programme', 'targeted']);
   assert.deepEqual([...SPEAK_BANDS[3].items].sort(), ['conversation', 'finder', 'listen', 'realweek']);
   assert.ok(SPEAK_BANDS[1].items.includes('groups'));
@@ -102,4 +103,44 @@ test('the open track is the one with the next step', () => {
 test('Projecten has two tracks: projects and agile', () => {
   assert.deepEqual(TRACKS.pm, ['project', 'agile']);
   assert.ok(MODULES.some((m) => m.subject === 'pm' && m.track === 'agile'));
+});
+
+test('speakLayout: the next round is first and quests and practice start closed', () => {
+  const lay = speakLayout(defaultState());
+  assert.equal(lay[0].items[0].id, 'next');
+  assert.equal(lay[0].items[0].fold, null);
+  const flat = lay.flatMap((b) => b.items);
+  const quests = flat.find((i) => i.id === 'quests');
+  const groups = flat.find((i) => i.id === 'groups');
+  assert.deepEqual([quests.fold, quests.open], ['quests', false]);
+  assert.deepEqual([groups.fold, groups.open], ['practice', false]);
+  // Lesson and review are plain, visible items; nothing is dropped.
+  assert.ok(['lesson', 'reviews'].every((id) => { const i = flat.find((x) => x.id === id); return i && i.fold === null && i.open; }));
+  assert.deepEqual(flat.map((i) => i.id), SPEAK_BANDS.flatMap((b) => b.items));
+});
+
+test('speakLayout: what he opened is open, nothing else', () => {
+  const st = { ...defaultState(), ui: { speakOpen: ['practice'] } };
+  const flat = speakLayout(st).flatMap((b) => b.items);
+  assert.equal(flat.find((i) => i.id === 'groups').open, true);
+  assert.equal(flat.find((i) => i.id === 'quests').open, false);
+});
+
+test('ui.speakOpen: only known keys, once each, in order; anything else is dropped', () => {
+  assert.deepEqual(cleanSpeakOpen(['practice', 'quests', 'quests', 'x', 7]), ['quests', 'practice']);
+  assert.deepEqual(cleanSpeakOpen([]), []);
+  assert.equal(cleanSpeakOpen('quests'), null);
+  assert.equal(cleanSpeakOpen(undefined), null);
+  assert.deepEqual(toggleSpeak({ a: 1 }, 'quests', true), { a: 1, speakOpen: ['quests'] });
+  assert.deepEqual(toggleSpeak({ speakOpen: ['quests', 'practice'] }, 'quests', false).speakOpen, ['practice']);
+});
+
+test('ui.speakOpen is cleaned on load', async () => {
+  const { load, save, KEY } = await import('../src/core/storage.js');
+  const mem = new Map();
+  const be = { getItem: (k) => mem.get(k) ?? null, setItem: (k, v) => mem.set(k, v) };
+  save(be, { ...defaultState(), ui: { speakOpen: ['practice', 'bogus'] } });
+  assert.deepEqual(load(be).ui.speakOpen, ['practice']);
+  save(be, { ...defaultState(), ui: { speakOpen: 'nope' } });
+  assert.equal('speakOpen' in load(be).ui, false);
 });

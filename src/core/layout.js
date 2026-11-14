@@ -6,11 +6,42 @@ import { MODULES, TRACKS, trackOf } from '../content/courses/index.js';
 
 // The speaking home, top to bottom. Items are rendered by ui/home.js.
 export const SPEAK_BANDS = [
-  { id: 'today', items: ['next', 'quests', 'lesson', 'reviews'] },
+  { id: 'today', items: ['next', 'lesson', 'reviews', 'quests'] },
   { id: 'practise', items: ['quick', 'groups'] },
   { id: 'challenge', items: ['boss', 'programme', 'targeted'] },
   { id: 'real', items: ['realweek', 'conversation', 'finder', 'listen'] },
 ];
+
+// Items that fold shut on the speaking home, and the key that remembers them.
+const FOLDS = { quests: 'quests', groups: 'practice' };
+const SPEAK_KEYS = ['quests', 'practice'];
+
+// Known keys, once each, in order; null when not a list.
+export function cleanSpeakOpen(v) {
+  if (!Array.isArray(v)) return null;
+  return SPEAK_KEYS.filter((k) => v.includes(k));
+}
+
+export const speakOpen = (ui) => cleanSpeakOpen((ui || {}).speakOpen) || [];
+
+export function toggleSpeak(ui, key, open) {
+  const cur = new Set(speakOpen(ui));
+  if (open) cur.add(key); else cur.delete(key);
+  return { ...(ui || {}), speakOpen: SPEAK_KEYS.filter((k) => cur.has(k)) };
+}
+
+// The speaking home, ready to draw: bands in order, each item with the fold it
+// belongs to (or null) and whether it is open. Everything starts closed that folds.
+export function speakLayout(state) {
+  const opened = speakOpen(state && state.ui);
+  return SPEAK_BANDS.map((b) => ({
+    id: b.id,
+    items: b.items.map((id) => {
+      const fold = FOLDS[id] || null;
+      return { id, fold, open: fold ? opened.includes(fold) : true };
+    }),
+  }));
+}
 
 // Every drill in one group that folds open.
 export const DRILL_GROUPS = [
