@@ -1,0 +1,281 @@
+WEBVTT
+
+1
+00:00:00.837 --> 00:00:03.960
+Het IT-team bouwt het nieuwe MES voor de orders op de vloer.
+
+2
+00:00:04.652 --> 00:00:06.637
+Wie het bouwt, houdt het ook draaiend.
+
+3
+00:00:07.646 --> 00:00:10.061
+Jij leidt dat IT-project voor de plantmanager.
+
+4
+00:00:10.700 --> 00:00:13.800
+De volgende versie krijgt een scherm met de afgekeurde stuks,
+
+5
+00:00:14.172 --> 00:00:16.041
+en die moet veilig bij lijn 3 komen.
+
+6
+00:00:17.062 --> 00:00:20.406
+We volgen die ene versie langs de vier onderwerpen van de module.
+
+7
+00:00:21.166 --> 00:00:23.476
+De details komen later, in de lessen.
+
+8
+00:00:24.755 --> 00:00:28.087
+Het eerste onderwerp is de pipeline en testautomatisering.
+
+9
+00:00:28.753 --> 00:00:31.134
+Hoe komt een wijziging van het IT-team bij de vloer?
+
+10
+00:00:32.127 --> 00:00:34.809
+Een pipeline is een geautomatiseerde lopende band.
+
+11
+00:00:35.590 --> 00:00:39.932
+Elke wijziging loopt door dezelfde stappen, van bouwen tot een testomgeving.
+
+12
+00:00:40.943 --> 00:00:44.089
+Automatische tests (automated test) controleren elke wijziging opnieuw,
+
+13
+00:00:44.426 --> 00:00:45.819
+zonder dat iemand hoeft te klikken.
+
+14
+00:00:46.500 --> 00:00:48.230
+Faalt er een, dan stopt de band.
+
+15
+00:00:49.294 --> 00:00:51.976
+Bij pipeline en testautomatisering gebruiken
+
+16
+00:00:52.011 --> 00:00:54.333
+we vaak versiebeheer en een testpiramide.
+
+17
+00:00:55.595 --> 00:00:59.589
+Het tweede onderwerp zijn de DORA-metingen, uit onderzoek naar IT-teams.
+
+18
+00:01:00.245 --> 00:01:02.225
+Hoe weet je of het IT-team goed levert?
+
+19
+00:01:03.240 --> 00:01:05.028
+Twee metingen gaan over snelheid.
+
+20
+00:01:05.705 --> 00:01:07.811
+Hoe vaak komt er een nieuwe versie bij de vloer,
+
+21
+00:01:08.125 --> 00:01:10.041
+en hoe lang duurt het van wijziging tot daar?
+
+22
+00:01:11.022 --> 00:01:12.636
+Twee gaan over stabiliteit.
+
+23
+00:01:13.330 --> 00:01:17.022
+Hoe vaak gaat een nieuwe versie mis, en hoe snel ben je dan weer hersteld?
+
+24
+00:01:18.013 --> 00:01:20.161
+De beste teams scoren op alle vier goed.
+
+25
+00:01:20.876 --> 00:01:22.652
+Kijk dus altijd naar alle vier samen.
+
+26
+00:01:23.633 --> 00:01:27.232
+Bij DORA gebruiken we vaak een dashboard en een waardestroomanalyse.
+
+27
+00:01:28.496 --> 00:01:31.840
+Het derde onderwerp is het beheer van omgevingen en versies.
+
+28
+00:01:32.531 --> 00:01:34.612
+Hoe komt de nieuwe versie veilig bij lijn 3?
+
+29
+00:01:35.638 --> 00:01:37.600
+Een nieuwe versie gaat langs ontwikkeling,
+
+30
+00:01:37.948 --> 00:01:39.283
+test en acceptatie (acceptance environment).
+
+31
+00:01:40.004 --> 00:01:43.696
+Daar controleert de teamleider van lijn 3 het scherm, want hij kent de vloer.
+
+32
+00:01:44.339 --> 00:01:48.182
+Pas dan volgt productie, de echte omgeving met echte orders.
+
+33
+00:01:49.180 --> 00:01:51.119
+Installeren is nog geen vrijgeven.
+
+34
+00:01:51.786 --> 00:01:53.934
+Het scherm staat al in de echte omgeving,
+
+35
+00:01:54.212 --> 00:01:56.267
+maar de fabriek kiest wanneer lijn 3 het ziet.
+
+36
+00:01:57.284 --> 00:01:59.792
+Hoeveel lijnen een fout raakt, heet de impactstraal (blast radius).
+
+37
+00:02:00.512 --> 00:02:01.278
+Die houd je klein.
+
+38
+00:02:01.987 --> 00:02:04.065
+Daarom gaat een nieuwe versie eerst naar één lijn.
+
+39
+00:02:05.102 --> 00:02:08.887
+Bij het beheer van versies gebruiken we vaak een feature flag en een rollbackplan.
+
+40
+00:02:10.166 --> 00:02:13.634
+Het vierde onderwerp is het beheer van IT-diensten en incidenten.
+
+41
+00:02:14.348 --> 00:02:16.774
+Wat doe je als het MES op de vloer stilvalt?
+
+42
+00:02:17.841 --> 00:02:21.743
+Valt het MES stil, dan melden de operators dat bij de servicedesk.
+
+43
+00:02:22.468 --> 00:02:25.870
+Bij een incident telt één ding, zo snel mogelijk weer werken.
+
+44
+00:02:26.858 --> 00:02:30.004
+Komt dezelfde storing steeds terug, dan zoeken we de oorzaak.
+
+45
+00:02:30.725 --> 00:02:31.584
+Dat heet een probleem (problem).
+
+46
+00:02:32.584 --> 00:02:35.974
+Over reageren en oplossen maken we afspraken met de fabriek.
+
+47
+00:02:36.693 --> 00:02:38.922
+Een stilstaande lijn gaat voor een kantoorprinter.
+
+48
+00:02:39.941 --> 00:02:42.402
+Na een grote storing houden we een post-mortem.
+
+49
+00:02:43.108 --> 00:02:46.637
+We zoeken wat in het systeem de fout mogelijk maakte, niet wie hem maakte.
+
+50
+00:02:47.348 --> 00:02:48.149
+Dat is schuldvrij (blameless).
+
+51
+00:02:49.203 --> 00:02:53.476
+Bij incidenten gebruiken we vaak een prioriteitsmatrix en vijf keer waarom.
+
+52
+00:02:54.780 --> 00:02:55.546
+Het hangt samen.
+
+53
+00:02:56.248 --> 00:02:59.406
+De pipeline brengt de wijziging, DORA meet hoe het gaat,
+
+54
+00:02:59.684 --> 00:03:02.714
+de uitrol houdt het veilig en incidentbeheer vangt de rest op.
+
+55
+00:03:03.714 --> 00:03:05.850
+Snelheid en stabiliteit gaan samen.
+
+56
+00:03:06.547 --> 00:03:08.938
+Kleine wijzigingen zijn makkelijker te testen en
+
+57
+00:03:08.973 --> 00:03:11.504
+te herstellen dan één grote versie per kwartaal.
+
+58
+00:03:12.857 --> 00:03:14.262
+Dit is de kaart van Projecten.
+
+59
+00:03:15.013 --> 00:03:18.577
+DevOps en levering is het derde station van IT en agile.
+
+60
+00:03:19.578 --> 00:03:23.537
+DevOps en levering heeft vier onderwerpen, elk met vier niveaus.
+
+61
+00:03:24.559 --> 00:03:25.801
+Begin bij de pipeline.
+
+62
+00:03:26.511 --> 00:03:30.261
+Op niveau Basis gaat het over wat DevOps is, wat DORA meet,
+
+63
+00:03:30.667 --> 00:03:32.409
+omgevingen en incidenten.
+
+64
+00:03:33.385 --> 00:03:35.115
+Op Werkkennis komen de soorten tests,
+
+65
+00:03:35.452 --> 00:03:38.006
+eerlijk meten, feature flags en beschikbaarheid erbij.
+
+66
+00:03:38.992 --> 00:03:41.372
+Op Gevorderd komen dagelijks samenvoegen,
+
+67
+00:03:41.802 --> 00:03:45.924
+rapporten lezen, uitrolstrategieën en de storingstijdlijn erbij.
+
+68
+00:03:46.918 --> 00:03:50.436
+Op Expert komen leveren op de vloer, sturen met DORA,
+
+69
+00:03:50.808 --> 00:03:53.548
+vooruit herstellen en Lean in IT-beheer erbij.
+
+70
+00:03:54.525 --> 00:03:57.962
+Elke les en elke film van deze module heeft een plek op deze kaart.

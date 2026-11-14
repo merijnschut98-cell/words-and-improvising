@@ -341,6 +341,15 @@ One intro film per module stays the big picture; the levels get a short bridge i
 
 espeak reads "DevOps" as "def ops" in the Dutch voice; the rendered devops films (pm.devops.pipeline, pm.devops.incident, pm.devops.postmortem) and field film 4 say it that way. Fix: one Dutch SAY rule ("DevOps" to a respelling that sounds as dev-ops, checked with Piper's espeak bridge), test first, recompute every film's spoken text, rebuild the affected pages, review (`sonnet`) and re-render the affected films in one render batch (`sonnet`). Small; do it with the next render batch that touches any devops film.
 
+### Task 21: No calculations at Basis (Merijn, 14 Nov)
+
+Merijn: "in het basisniveau geen berekeningen. Alleen uitleg over hoe dingen werken. Berekeningen zijn pas voor hogere niveaus." MC answers: films and lesson content (lessons, practice questions, films) at Basis; a calculation found at Basis moves to the Werkkennis lesson or film of the same topic, nothing is lost.
+
+- [ ] **Step 1 (audit, `sonnet`, read-only):** every Basis lesson, its practice and check questions, and every film that covers a Basis lesson, across all three subjects: list each calculation (a sum, a formula applied to numbers, a number the learner must compute), with lesson id, film id and scene, and where it should move (the Werkkennis lesson of that topic). Also list what counts as "explaining how it works" with numbers only as illustration (a stated figure the learner does not compute), as a separate group for Merijn to rule on.
+- [ ] **Step 2:** a validator rule (test first) that flags a computing question or a formula step at level 1, so it cannot come back.
+- [ ] **Step 3 (`sonnet` per subject, review `sonnet`; `opus` for the validator):** move the calculations to Werkkennis (lesson text, questions, terms), rewrite the Basis lesson as explanation; keep four levels each teaching something new.
+- [ ] **Step 4:** films: rebuild the affected Basis films without the calculation scenes (shorter is fine) and add the calculation to the Werkkennis film or lesson; review and render per batch.
+
 ## Not in this plan
 
 Explain it back, knowledge on the map, and the rest of the ideas list in the spec: each gets its own design when it is picked up. The speaking formats stay parked.
