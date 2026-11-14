@@ -5,12 +5,16 @@
 // A module intro film (v17, data.module) is held to its module instead: the
 // module's title, blurb, topic titles and lesson texts, and its map (every
 // topic named and shown); a renamed or added topic fails here too.
+// A field film (v17, data.field) is held to its field: the field's and its
+// modules' text, and its road (every module a station, named in a caption of its
+// own scene, in the order of the road); a renamed module, a module moved to
+// another field or a module missing from the captions fails here too.
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
-import { MODULES, loadModule, placeOf } from '../src/content/courses/index.js';
+import { MODULES, FIELDS, loadModule, placeOf } from '../src/content/courses/index.js';
 import { validateModule } from '../src/content/courses/validate.js';
-import { readFilmData, checkFilm, lessonTextOf, moduleTextOf, MAX_BYTES } from '../films/_kit/assert.mjs';
+import { readFilmData, checkFilm, lessonTextOf, moduleTextOf, fieldTextOf, MAX_BYTES } from '../films/_kit/assert.mjs';
 
 const DIR = 'src/content/courses/films';
 // Films whose terms all carry the same name in both languages (pm.agile.scrum:
@@ -57,9 +61,10 @@ test('withoutNumber also removes a recall answer given as a number', () => {
 // index entry and the page's stage (the drawing and scripts where a card's words
 // stand, without the film data, whose captions and topic titles would always match).
 const stageOf = (html) => html.replace(/<script type="application\/json" id="film-data">[\s\S]*?<\/script>/, '');
-const ctxOf = (data, html, lessons, wiredBy = data.module ? [] : data.lessons) => ({
+const ctxOf = (data, html, lessons, wiredBy = data.module || data.field ? [] : data.lessons) => ({
   lessons, levelOf: (lid) => (placeOf(lid) || {}).level || 1, wiredBy,
   ...(data.module ? { module: MODULES.find((m) => m.id === data.module), stageText: stageOf(html) } : {}),
+  ...(data.field ? { field: FIELDS.find((f) => f.id === data.field), modules: MODULES, stageText: stageOf(html) } : {}),
 });
 
 // All lessons, both languages, by id.
@@ -96,6 +101,7 @@ test('every shipped film: its terms, numbers, coverage, language and length stil
     assert.equal(data.id, id);
     const wiredBy = [...lessons.nl.values()].filter((l) => l.film && l.film.split('#')[0] === id).map((l) => l.id);
     if (data.module) assert.equal((MODULES.find((m) => m.id === data.module) || {}).intro, id, `${id}: module ${data.module} does not name it as its intro`);
+    if (data.field) assert.equal((FIELDS.find((f) => f.id === data.field) || {}).film, id, `${id}: field ${data.field} does not name it as its film`);
     const errs = checkFilm(data, ctxOf(data, html, lessons, wiredBy));
     assert.deepEqual(errs, [], `${id}:\n${errs.join('\n')}`);
     assert.ok(Buffer.byteLength(html) <= MAX_BYTES, `${id}: ${Buffer.byteLength(html)} bytes, over the cap`);
@@ -134,7 +140,14 @@ test('the sync check catches a renamed term, a removed number and a Dutch word i
     // a lesson that no longer has the number (an intro film: none of its module's text has it)
     const n = data.numbers[0];
     const gone = { nl: new Map(lessons.nl), en: lessons.en };
-    if (data.module) {
+    if (data.field) {
+      const mods = ctx.field.modules.map((mid) => withoutNumber(MODULES.find((m) => m.id === mid), n.value));
+      for (const m of mods) for (const lid of m.lessons) gone.nl.set(lid, withoutNumber(lessons.nl.get(lid), n.value));
+      const fld = withoutNumber(ctx.field, n.value);
+      assert.ok(!fieldTextOf(fld, mods, gone, 'nl').includes(n.value));
+      const others = MODULES.filter((m) => !fld.modules.includes(m.id));
+      assert.ok(checkFilm(data, { ...ctx, field: fld, modules: [...others, ...mods], lessons: gone }).some((e) => e.endsWith(`no longer in the text of field ${fld.id}`)), `${id}: removed number ${n.value} not reported`);
+    } else if (data.module) {
       for (const lid of ctx.module.lessons) gone.nl.set(lid, withoutNumber(lessons.nl.get(lid), n.value));
       const mod = withoutNumber(ctx.module, n.value);
       assert.ok(!moduleTextOf(mod, gone, 'nl').includes(n.value));
@@ -261,5 +274,76 @@ test('every shipped intro film: each topic of its module is still on its map, na
     const wide = clone(data);
     wide.topics[0].title.nl = 'Onderhandelingstechnieken';
     assert.match(checkFilm(wide, ctx).join('\n'), /a tile is 128/);
+  }
+});
+
+// v17: a field film is held to its field's road. Every field that names a film
+// ships it, precached; each shipped field page is rechecked against the current
+// FIELDS and module text, and every module of its field is mutated in turn: a
+// module renamed in the index, moved to another field, or missing from the
+// captions of its own scene, fails until the film is rebuilt.
+test('every field film in the index is built and in the SHELL', () => {
+  const sw = fs.readFileSync('sw.js', 'utf8');
+  const named = FIELDS.filter((f) => f.film);
+  assert.ok(named.some((f) => f.id === 'pm.field.lifecycle'), 'pm.field.lifecycle names its film');
+  for (const f of named) {
+    const file = `${DIR}/${f.film}.html`;
+    assert.ok(fs.existsSync(file), `${f.id}: ${file} is built`);
+    assert.ok(sw.includes(`'${file}'`), `${f.id}: ${file} is in the SHELL`);
+    assert.equal(readFilmData(fs.readFileSync(file, 'utf8')).field, f.id, `${file} is the film of ${f.id}`);
+  }
+});
+
+const word = (title) => new RegExp(`(?<![\\p{L}\\d])${esc(title)}(?![\\p{L}\\d])`, 'giu');
+test('every shipped field film: each module of its field is still a station, named, explained, in order, and it ends on the map', async () => {
+  const lessons = await allLessons();
+  const fieldFilms = films.map((id) => [id, fs.readFileSync(`${DIR}/${id}.html`, 'utf8')]).filter(([, html]) => readFilmData(html).field);
+  assert.ok(fieldFilms.length >= 1, 'no field film shipped');
+  for (const [id, html] of fieldFilms) {
+    const data = readFilmData(html);
+    assert.equal(id, data.field, `${id}: a field film is named after its field`);
+    const ctx = ctxOf(data, html, lessons);
+    assert.ok(ctx.field, `${id}: field ${data.field} is not in the index`);
+    const mods = ctx.field.modules.map((mid) => MODULES.find((m) => m.id === mid));
+    assert.deepEqual(data.lessons, mods.flatMap((m) => m.lessons), `${id}: serves all lessons of its field's modules`);
+    assert.deepEqual(data.stations.map((s) => s.id), ctx.field.modules, `${id}: one station per module, in the order of the road`);
+    assert.deepEqual(checkFilm(data, ctx), [], `${id}: the shipped page passes its own checks`);
+    // a module added to the field
+    const grown = { ...ctx.field, modules: [...ctx.field.modules, 'pm.zz'] };
+    assert.match(checkFilm(data, { ...ctx, field: grown }).join('\n'), /module pm\.zz of .* is not on the film's road/);
+    for (const mid of ctx.field.modules) {
+      const at = `${id}: station ${mid}`;
+      const st = data.stations.find((x) => x.id === mid);
+      // renamed in the index
+      const renamed = MODULES.map((m) => (m.id === mid ? { ...m, title: { ...m.title, en: `${m.title.en} x` } } : m));
+      assert.match(checkFilm(data, { ...ctx, modules: renamed }).join('\n'), new RegExp(`station ${esc(mid)}: title ".*" \\(en\\) is now ".* x"`), at);
+      // moved to another field
+      const moved = { ...ctx.field, modules: ctx.field.modules.filter((x) => x !== mid) };
+      assert.match(checkFilm(data, { ...ctx, field: moved }).join('\n'), new RegExp(`station ${esc(mid)} is no longer a module of ${esc(ctx.field.id)}`), at);
+      // missing from the captions of its own scene (the map scene and the stage keep it)
+      for (const lang of ['nl', 'en']) {
+        const mute = clone(data);
+        const sc = mute.scenes.find((s) => s.id === st.scene);
+        for (const b of sc.beats) { b.text[lang] = b.text[lang].replace(word(st.title[lang]), '…'); b.seg[lang] = [b.text[lang]]; }
+        assert.match(checkFilm(mute, ctx).join('\n'), new RegExp(`station ${esc(mid)}: ".*" \\(${lang}\\) is in no caption of its scene ${st.scene}`), `${at} (${lang})`);
+      }
+      // explained in one beat only; lit by no beat
+      const thin = clone(data);
+      thin.scenes.find((s) => s.id === st.scene).beats.length = 1;
+      assert.match(checkFilm(thin, ctx).join('\n'), new RegExp(`station ${esc(mid)}: scene ${st.scene} has 1 beat, needs at least 2`), at);
+      const dark = clone(data);
+      for (const b of dark.scenes.find((s) => s.id === st.scene).beats) { b.cues = (b.cues || []).filter((c) => c !== st.cue); if (b.focus) b.focus = b.focus.filter((c) => c !== st.cue); }
+      assert.match(checkFilm(dark, ctx).join('\n'), /no beat of scene .* lights its part/, at);
+    }
+    // the map at the end: a place it no longer lights
+    const last = ctx.field.modules[ctx.field.modules.length - 1];
+    assert.match(checkFilm(data, { ...ctx, stageText: ctx.stageText.replace(` is-lit" data-module="${last}"`, `" data-module="${last}"`) }).join('\n'), new RegExp(`the map does not light ${esc(last)}`));
+    // the narration guard and the drawn labels on the shipped page
+    for (const [bad, what] of [['Zo: dit.', /symbol the voice reads aloud, or a colon/], ['Een, twee, drie, vier.', /more than two commas/], ['Het deliverable komt.', /Dutch voice misreads/]]) {
+      const loud = clone(data);
+      loud.scenes[0].beats[0].say.nl = [bad];
+      assert.match(checkFilm(loud, ctx).join('\n'), what, bad);
+    }
+    assert.match(checkFilm(data, { ...ctx, stageText: `${ctx.stageText}\ntr('Een veel te lange tekst voor het paneel', 'Short')` }).join('\n'), /units wide, the panel is 284/);
   }
 });

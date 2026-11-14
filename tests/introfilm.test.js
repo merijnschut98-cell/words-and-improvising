@@ -9,7 +9,8 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { resolveFilm } from '../films/_kit/build-film.mjs';
-import { checkFilm, checkNarration, checkLabels, moduleTextOf, textUnits, wrapUnits, CHAR_W, TILE_UNITS } from '../films/_kit/assert.mjs';
+import { checkFilm, checkNarration, checkLabels, moduleTextOf, textUnits, wrapUnits, CHAR_W, TILE_UNITS, STATION_UNITS, STATION_LINES } from '../films/_kit/assert.mjs';
+import { MODULES as INDEX_MODULES, FIELDS as INDEX_FIELDS } from '../src/content/courses/index.js';
 
 const lesson = (id, terms, teach) => ({ id, title: 'T', pre: [], recall: [], teach, example: { text: '' }, terms: terms.map((term) => ({ term, def: 'D.' })) });
 const LESSONS = {
@@ -286,4 +287,201 @@ test('checkFilm: a field film is held to its drawn labels as well', () => {
   field.field = 'pm.field.fx';
   field.lessons = [];
   assert.match(checkFilm(field, ctx({ module: undefined, stageText: "tr('Een veel te lange tekst voor het paneel', 'Short')" })).join('\n'), /units wide, the panel is 284/);
+});
+
+// ---------------------------------------------------------------- field films (v17, Task 4)
+// A field film is defined by a field of the index (FIELDS): its source text is
+// the field's title and blurb plus the title, blurb, topic titles and lessons of
+// each of its modules. Its coverage rule is the road: every module of the field
+// is a station, named in a caption of its OWN scene in both languages, in the
+// order of the road, explained in at least two beats and lit; and the film ends
+// on the shared map with exactly the field's places lit.
+const FY = {
+  id: 'pm.fy', subject: 'pm', track: 'project', level: 2,
+  title: { nl: 'Uitvoeren', en: 'Run' }, blurb: { nl: 'Het project in beweging houden.', en: 'Keep the project moving.' },
+  topics: [{ id: 'steer', title: { nl: 'Sturen', en: 'Steering' }, levels: ['pm.fy.a'] }],
+  lessons: ['pm.fy.a'],
+};
+const FLESSONS = {
+  nl: new Map([...LESSONS.nl, ['pm.fy.a', lesson('pm.fy.a', ['Stuurgroep'], ['Een stuurgroep komt elke 4 weken samen.'])]]),
+  en: new Map([...LESSONS.en, ['pm.fy.a', lesson('pm.fy.a', ['Steering committee'], ['A steering committee meets every 4 weeks.'])]]),
+};
+const FIELD = {
+  id: 'pm.field.fx', subject: 'pm', film: 'pm.field.fx',
+  title: { nl: 'Van begin tot eind', en: 'Start to finish' }, blurb: { nl: 'Plannen en uitvoeren, de weg in 5 stappen.', en: 'Plan and run, the road in 5 steps.' },
+  modules: ['pm.fx', 'pm.fy'],
+};
+const FMODULES = [MOD, FY, { id: 'pm.other', lessons: ['pm.other.c'], topics: [] }];
+const FIELDS_FX = [FIELD];
+const LIT = '<g class="map-place is-lit" data-module="pm.fx" data-cue="map-fx"></g><g class="map-place is-lit" data-module="pm.fy" data-cue="map-fy"></g>';
+const fspec = () => ({
+  id: 'pm.field.fx',
+  title: { nl: 'De weg', en: 'The road' },
+  field: 'pm.field.fx',
+  stations: { 'pm.fx': { scene: 's2', cue: 'stFx' }, 'pm.fy': { scene: 's3', cue: 'stFy' } },
+  strictFocus: true,
+  scenes: [
+    { id: 's1', level: 1, dur: 20, still: 0.9, title: { nl: 'De weg', en: 'The road' }, beats: [beat('Elk project loopt een weg, in {n:5} stappen.', 'Every project walks a road, in {n:5} steps.', 'road')] },
+    { id: 's2', level: 1, dur: 20, still: 0.9, title: { nl: 'Plannen', en: 'Plan' }, beats: [
+      beat('Het eerste station is Plannen.', 'The first station is Plan.', 'stFx'),
+      beat('Elk {t:Werkpakket|werkpakket} krijgt een eigenaar.', 'Each {t:Work package|work package} gets an owner.', 'pkg', { cue: { Werkpakket: 'pkg' } }),
+    ] },
+    { id: 's3', level: 1, dur: 20, still: 0.9, title: { nl: 'Uitvoeren', en: 'Run' }, beats: [
+      beat('Het tweede station is Uitvoeren.', 'The second station is Run.', 'stFy'),
+      beat('De {t:Stuurgroep|stuurgroep} komt elke {n:4} weken.', 'The {t:Steering committee|steering committee} meets every {n:4} weeks.', 'steer', { cue: { Stuurgroep: 'steer' } }),
+    ] },
+    { id: 's4', level: 1, dur: 20, still: 0.9, title: { nl: 'De kaart', en: 'The map' }, beats: [
+      beat('De kaart, met beide stations.', 'The map, with both stations.', ['map-fx', 'map-fy']),
+      beat('Begin bij het eerste.', 'Start with the first.', 'map-fx'),
+    ] },
+  ],
+});
+const fctx = (extra = {}) => ({ lessons: FLESSONS, levelOf: () => 1, wiredBy: [], field: FIELD, modules: FMODULES, stageText: LIT, ...extra });
+const fresolve = (s = fspec()) => resolveFilm(s, FLESSONS, FMODULES, FIELDS_FX);
+const caption = (data, si, bi, lang, text) => { data.scenes[si].beats[bi].text[lang] = text; data.scenes[si].beats[bi].seg[lang] = [text]; };
+
+test('resolveFilm: a field film is defined by its field and serves all lessons of its modules', () => {
+  const data = fresolve();
+  assert.equal(data.field, 'pm.field.fx');
+  assert.ok(!('module' in data) && !('topics' in data));
+  assert.deepEqual(data.lessons, ['pm.fx.a', 'pm.fx.b', 'pm.fy.a']);
+  assert.deepEqual(data.stations, [
+    { id: 'pm.fx', title: { nl: 'Plannen', en: 'Plan' }, scene: 's2', cue: 'stFx' },
+    { id: 'pm.fy', title: { nl: 'Uitvoeren', en: 'Run' }, scene: 's3', cue: 'stFy' },
+  ]);
+  assert.deepEqual(data.scenes[2].terms.map((t) => [t.lesson, t.nl, t.en]), [['pm.fy.a', 'Stuurgroep', 'Steering committee']]);
+  // a number from a lesson names that lesson; one only in the field's own text names the field
+  assert.deepEqual(data.numbers.map((n) => [n.value, n.lesson]), [['5', 'pm.field.fx'], ['4', 'pm.fy.a']]);
+});
+
+test('resolveFilm: a field film refuses a module or lessons as well, an unknown field, another id, and a road that is not its field', () => {
+  assert.throws(() => fresolve({ ...fspec(), module: 'pm.fx' }), /a field, a module or lessons, not more than one/);
+  assert.throws(() => fresolve({ ...fspec(), lessons: ['pm.fx.a'] }), /a field, a module or lessons, not more than one/);
+  assert.throws(() => fresolve({ ...fspec(), field: 'pm.field.nope', id: 'pm.field.nope' }), /unknown field pm\.field\.nope/);
+  assert.throws(() => fresolve({ ...fspec(), id: 'pm.field.other' }), /a field film's id is its field id/);
+  const missing = fspec();
+  delete missing.stations['pm.fy'];
+  assert.throws(() => fresolve(missing), /module pm\.fy of pm\.field\.fx has no scene and cue in the film's stations/);
+  const extra = fspec();
+  extra.stations['pm.other'] = { scene: 's2', cue: 'x' };
+  assert.throws(() => fresolve(extra), /station pm\.other is no module of pm\.field\.fx/);
+  const badScene = fspec();
+  badScene.stations['pm.fy'].scene = 's9';
+  assert.throws(() => fresolve(badScene), /station pm\.fy: no scene s9/);
+  const outside = fspec();
+  outside.scenes[0].beats[0] = beat('Een {t:Sprint|sprint}.', 'A {t:Sprint|sprint}.', 'x', { cue: { Sprint: 'x' } });
+  assert.throws(() => fresolve(outside), /term "Sprint" \(nl\) is in none of the served lessons/);
+  const num = fspec();
+  num.scenes[0].beats[0] = beat('Na {n:14} dagen.', 'After {n:14} days.', 'road');
+  assert.throws(() => fresolve(num), /number 14 is in none of the served Dutch lessons nor in the text of field pm\.field\.fx/);
+});
+
+test('checkFilm: a field film passes on its road, not on per-term coverage', () => {
+  assert.deepEqual(checkFilm(fresolve(), fctx()), []);
+});
+
+test('checkFilm: each module of the field is named in a caption of its OWN scene, in both languages', () => {
+  const data = fresolve();
+  const mute = clone(data);
+  caption(mute, 2, 0, 'nl', 'Het tweede station.');
+  caption(mute, 2, 0, 'en', 'The second station.');
+  const out = checkFilm(mute, fctx()).join('\n');
+  assert.match(out, /station pm\.fy: "Uitvoeren" \(nl\) is in no caption of its scene s3/);
+  assert.match(out, /station pm\.fy: "Run" \(en\) is in no caption of its scene s3/);
+  // the map scene naming it does not count
+  const elsewhere = clone(mute);
+  caption(elsewhere, 3, 0, 'en', 'The map, with Run.');
+  assert.match(checkFilm(elsewhere, fctx()).join('\n'), /"Run" \(en\) is in no caption of its scene s3/);
+  // a whole word: "Running" is not "Run"
+  const part = clone(data);
+  caption(part, 2, 0, 'en', 'The second station is Running.');
+  assert.match(checkFilm(part, fctx()).join('\n'), /"Run" \(en\) is in no caption of its scene s3/);
+});
+
+test('checkFilm: each station is explained in two beats and lit', () => {
+  const thin = clone(fresolve());
+  thin.scenes[2].beats.pop();
+  assert.match(checkFilm(thin, fctx()).join('\n'), /station pm\.fy: scene s3 has 1 beat, needs at least 2/);
+  const dark = clone(fresolve());
+  dark.scenes[2].beats[0].focus = ['steer'];
+  dark.scenes[2].beats[0].cues = ['steer'];
+  assert.match(checkFilm(dark, fctx()).join('\n'), /station pm\.fy: no beat of scene s3 lights its part stFy/);
+});
+
+test('checkFilm: the stations follow the order of the road', () => {
+  const s = fspec();
+  s.stations['pm.fx'].scene = 's3';
+  s.stations['pm.fy'].scene = 's2';
+  for (const [i, nl, en] of [[1, 'Het eerste station is Uitvoeren.', 'The first station is Run.'], [2, 'Het tweede station is Plannen.', 'The second station is Plan.']]) { s.scenes[i].beats[0].nl = nl; s.scenes[i].beats[0].en = en; }
+  s.scenes[1].beats[0].focus = 'stFy';
+  s.scenes[2].beats[0].focus = 'stFx';
+  assert.match(checkFilm(fresolve(s), fctx()).join('\n'), /station pm\.fy \(scene s2\) comes before pm\.fx \(scene s3\); the stations follow the road/);
+});
+
+test('checkFilm: a field film ends on the map with exactly its places lit', () => {
+  const data = fresolve();
+  // the last scene lights no place of the map
+  const dark = clone(data);
+  for (const b of dark.scenes[3].beats) { b.focus = ['road']; b.cues = ['road']; }
+  assert.match(checkFilm(dark, fctx()).join('\n'), /the last scene lights no map place map-fy/);
+  // the drawing does not light a place
+  assert.match(checkFilm(data, fctx({ stageText: LIT.split('</g>')[0] })).join('\n'), /the map does not light pm\.fy/);
+  // or lights one that is not of the field
+  assert.match(checkFilm(data, fctx({ stageText: `${LIT}<g class="map-place is-lit" data-module="pm.other" data-cue="map-other">` })).join('\n'), /the map lights pm\.other, which is no module of pm\.field\.fx/);
+});
+
+test('checkFilm: a field film drifts with its field and modules', () => {
+  const data = fresolve();
+  // a module renamed in the index
+  const renamed = clone(FY);
+  renamed.title.en = 'Execute';
+  assert.match(checkFilm(data, fctx({ modules: [MOD, renamed] })).join('\n'), /station pm\.fy: title "Run" \(en\) is now "Execute"/);
+  // a module moved to another field
+  const moved = { ...FIELD, modules: ['pm.fx'] };
+  assert.match(checkFilm(data, fctx({ field: moved })).join('\n'), /station pm\.fy is no longer a module of pm\.field\.fx/);
+  // a module added to the field
+  const grown = { ...FIELD, modules: ['pm.fx', 'pm.fy', 'pm.other'] };
+  assert.match(checkFilm(data, fctx({ field: grown })).join('\n'), /module pm\.other of pm\.field\.fx is not on the film's road/);
+  // a lesson taken out of its module
+  const shrunk = { ...FY, lessons: [] };
+  assert.match(checkFilm(data, fctx({ modules: [MOD, shrunk] })).join('\n'), /served lesson pm\.fy\.a is no longer in a module of pm\.field\.fx/);
+  // a number gone from all of the field's text
+  const gone = { nl: new Map(FLESSONS.nl), en: FLESSONS.en };
+  gone.nl.set('pm.fy.a', { ...FLESSONS.nl.get('pm.fy.a'), teach: ['Een stuurgroep komt elke maand samen.'] });
+  assert.match(checkFilm(data, fctx({ lessons: gone })).join('\n'), /number 4 \(scene s3\) no longer in the text of field pm\.field\.fx/);
+  assert.match(checkFilm(data, fctx({ field: { ...FIELD, blurb: { nl: 'De weg.', en: 'The road.' } } })).join('\n'), /number 5 \(scene s1\) no longer in the text of field pm\.field\.fx/);
+  // without its field the check cannot run
+  assert.match(checkFilm(data, fctx({ field: undefined })).join('\n'), /field film of pm\.field\.fx: field pm\.field\.fx not given/);
+});
+
+test('checkFilm: a field film is held to the narration guard and to its station titles fitting the road', () => {
+  const data = fresolve();
+  const loud = clone(data);
+  for (const s of loud.scenes) for (const b of s.beats) { const nl = b.text.nl; const en = b.text.en; b.say = { nl: [nl], en: [en] }; b.voice = { nl, en }; }
+  loud.scenes[0].beats[0].say.nl = ['Zo: dit.'];
+  assert.match(checkFilm(loud, fctx()).join('\n'), /a symbol the voice reads aloud, or a colon/);
+  // a station title wraps into at most two lines of a row of the road
+  const two = clone(data);
+  two.stations[1].title.en = 'Negotiating and holding your ground';
+  assert.deepEqual(checkLabels(two, '').filter((e) => e.startsWith('station')), []);
+  const wide = clone(data);
+  wide.stations[1].title.nl = 'Onderhandelen en voet bij stuk houden met alle partijen';
+  assert.match(checkLabels(wide, '').join('\n'), new RegExp(`station pm\\.fy: "Onderhandelen en voet bij stuk houden met alle partijen" \\(nl\\) wraps to 3 lines, a station on the road holds ${STATION_LINES} lines of ${STATION_UNITS} units`));
+  const long = clone(data);
+  long.stations[1].title.en = 'Projectportfoliomanagementsystemsrenewal';
+  assert.match(checkLabels(long, '').join('\n'), /station pm\.fy: the word "Projectportfoliomanagementsystemsrenewal" \(en\) is \d+ units wide, a station on the road holds 236/);
+});
+
+// The next field films (people, portfolio, IT) take their station titles from the
+// index; the kit's road must hold every one of them, or those films cannot be built.
+test('checkLabels: every module title of every field fits a station of the road', () => {
+  for (const f of INDEX_FIELDS) {
+    const stations = f.modules.map((id) => { const m = INDEX_MODULES.find((x) => x.id === id); return { id, title: { nl: m.title.nl, en: m.title.en } }; });
+    assert.deepEqual(checkLabels({ scenes: [], stations }, ''), [], f.id);
+  }
+  // the reference film draws a station title with the kit's own wrap
+  for (const f of INDEX_FIELDS) for (const id of f.modules) {
+    const m = INDEX_MODULES.find((x) => x.id === id);
+    for (const lang of ['nl', 'en']) assert.ok(wrapUnits(m.title[lang], STATION_UNITS, CHAR_W).length <= STATION_LINES, `${id} (${lang})`);
+  }
 });

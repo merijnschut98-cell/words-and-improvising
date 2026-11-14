@@ -423,7 +423,7 @@ export const FIELDS = [
   { id: 'pm.field.lifecycle', subject: 'pm',
     title: { en: 'A project from start to finish', nl: 'Een project van begin tot eind' },
     blurb: { en: 'Intake, plan, run, land and close: the road every project walks.', nl: 'Intake, plannen, uitvoeren, landen en afsluiten: de weg die elk project loopt.' },
-    modules: ['pm.intake', 'pm.plan', 'pm.run', 'pm.land', 'pm.close'] },
+    modules: ['pm.intake', 'pm.plan', 'pm.run', 'pm.land', 'pm.close'], film: 'pm.field.lifecycle' },
   { id: 'pm.field.people', subject: 'pm',
     title: { en: 'People and influence', nl: 'Mensen en invloed' },
     blurb: { en: 'When it is stuck, how you lead, negotiate, work outside your field and steer on performance.', nl: 'Als het vastloopt, hoe je leidt, onderhandelt, buiten je vak werkt en op prestaties stuurt.' },
