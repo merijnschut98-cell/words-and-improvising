@@ -159,7 +159,7 @@ const STAGE = (() => {
       + card2(160, tr('Referentie', 'Reference'), tr('je houdt je woord', 'you keep your word', 220)) + mark(592, 188, true)
       + txt(346, 246, tr('groeit met je werk', 'grows with your work', 260), 22, 'start', 'pm-mute');
     return { orderB: b === 0 ? op(span(p, 0.1, 0.5), order) : '', borrowB: b === 1 ? op(span(p, 0.05, 0.4), borrow) : '', ownB: b >= 2 ? op(b === 2 ? span(p, 0, 0.4) : 1, own) : '',
-      ...tools(b, p, 3, tr('Wederkerigheid', 'Reciprocity', 260), tr('Sociaal bewijs', 'Social proof', 260)) };
+      ...tools(b, p, 3, tr('Stakeholderkaart', 'Stakeholder map', 260), null) };
   }
 
   // ---- s3: feedback. The team lead walked away twice; say what a camera saw, not a label; soon, in private, with a
@@ -175,7 +175,7 @@ const STAGE = (() => {
       + rect(334, 160, 284, 38, 'pm-crit', 8) + txt(346, 187, tr('Wat speelde er?', 'What was going on?', 260), 22, 'start', 'pm-on')
       + card2(208, tr('Lijn 4 stond stil', 'Line 4 had stopped', 260), tr('hij moest erheen', 'he had to go there', 260));
     return { walkB: b === 0 ? op(span(p, 0.1, 0.5), walk) : '', labelB: b === 1 ? op(span(p, 0, 0.4), label) : '', talkB: b >= 2 ? op(b === 2 ? span(p, 0, 0.4) : 1, talk) : '',
-      ...tools(b, p, 3, tr('SBI', 'SBI', 260), tr('Radical Candor', 'Radical Candor', 260)) };
+      ...tools(b, p, 3, tr('SBI', 'SBI', 260), tr('Feedforward', 'Feedforward', 260)) };
   }
 
   // ---- s4: listening. The buyer says it is too expensive; under pressure you defend or fix, listen first; a worry underneath.
@@ -185,7 +185,7 @@ const STAGE = (() => {
     const worry = card2(166, tr('Wat houdt je bezig?', 'What is on your mind?', 260), tr('dan luisteren', 'then listen', 260))
       + card2(232, tr('Zijn budget', 'His budget'), tr('is al gekort', 'has been cut', 260), 'pm-crit');
     return { priceB: b === 0 ? op(span(p, 0.1, 0.5), price) : price, reactB: b === 1 ? op(span(p, 0, 0.4), react) : '', worryB: b >= 2 ? op(b === 2 ? span(p, 0, 0.4) : 1, worry) : '',
-      ...tools(b, p, 3, tr('Actief luisteren', 'Active listening', 260), tr('Toyota Kata', 'Toyota Kata', 260)) };
+      ...tools(b, p, 3, tr('Actief luisteren', 'Active listening', 260), tr('MORE PIES', 'MORE PIES', 260)) };
   }
 
   // ---- s5: leading teams and yourself. Monday, the youngest in the room; a first impression forms fast; act on evidence.

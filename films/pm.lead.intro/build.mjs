@@ -41,10 +41,11 @@
 //      levels as columns, where to start, and what each later level adds
 // Definitions as the Basis lessons word them (pm.lead.power, .feedback, .listen, .self). Each
 // topic scene names the tools of that topic's lessons in one short sentence, without explaining
-// them (Merijn's checkpoint, 14 Nov), each a method the lesson teaches as a term: reciprocity and
-// social proof (pm.lead.persuade), SBI (pm.lead.feedback) and Radical Candor (pm.lead.candor),
-// active listening (pm.lead.listen) and Toyota Kata (pm.lead.kata), an assertive statement and
-// reframing (pm.lead.self). The Basis lessons are taught in the scenes without naming the
+// them (Merijn's checkpoint, 14 Nov), each a method the lesson teaches as a term: the stakeholder
+// map (pm.lead.influence), SBI and feedforward (pm.lead.feedback), active listening and MORE PIES
+// (pm.lead.listen), an assertive statement and reframing (pm.lead.self). Radical Candor and Toyota
+// Kata, the Werkkennis lessons of two topics, are named in s7 as what Werkkennis adds, not here.
+// The Basis lessons are taught in the scenes without naming the
 // tools in the beat before the tool sentence; s7 names what each later level adds and nothing a
 // scene explained or named. Terms come from the module's lessons and {n:} numbers from the
 // module's text (the kit's intro mode, films/_kit/build-film.mjs); the kit holds the film to its
@@ -97,24 +98,25 @@ const has = (id, list, lang = 'nl') => { const l = lessons[lang].get(id); const 
 // a tool is a term of its lesson (a method the lesson teaches, in its glossary), in both languages
 const isTerm = (id, term, lang) => assert((lessons[lang].get(id).terms || []).some((t) => t.term === term), `${id} (${lang}) has no term "${term}"`);
 // s2: little position power, the sponsor lends a little of his and it wears thin; own expert and referent power grow
-// with your work; the tools: reciprocity and social proof (pm.lead.persuade, the Werkkennis lesson)
+// with your work; the tool: the stakeholder map (pm.lead.influence, Gevorderd), the one real tool of the topic (reciprocity
+// and social proof are principles of persuasion, not tools of their own, and are taught at Werkkennis)
 has('pm.lead.power', ['bijna geen positiemacht', 'leent je maar een beetje van zijn positiemacht', 'die slijt elke keer dat je hem gebruikt', 'Deskundigheidsmacht is zichtbare kunde', 'Referentiemacht is iemand zijn met wie mensen willen werken', 'Positiemacht', 'Deskundigheidsmacht', 'Referentiemacht']);
 has('pm.lead.power', ['almost no position power', 'only lends you a little of his position power', 'it wears thin each time you use it', 'Expert power is visible competence', 'Referent power is being someone people want to work with', 'Position power', 'Expert power', 'Referent power'], 'en');
-isTerm('pm.lead.persuade', 'Wederkerigheid', 'nl'); isTerm('pm.lead.persuade', 'Sociaal bewijs', 'nl');
-isTerm('pm.lead.persuade', 'Reciprocity', 'en'); isTerm('pm.lead.persuade', 'Social proof', 'en');
+isTerm('pm.lead.influence', 'Stakeholderkaart', 'nl'); isTerm('pm.lead.influence', 'Stakeholder map', 'en');
 // s3: behaviour, not character (what a camera would have recorded), soon and in private, then a question; the tools:
-// SBI (pm.lead.feedback, Basis) and Radical Candor (pm.lead.candor, Werkkennis)
+// SBI and feedforward (both pm.lead.feedback, Basis)
 has('pm.lead.feedback', ['Gedrag, geen karakter', 'wat een camera had opgenomen', 'Zo snel als het kan, onder vier ogen', 'Daarna een vraag']);
 has('pm.lead.feedback', ['Behaviour, not character', 'what a camera would have recorded', 'As soon as you can, in private', 'Then a question'], 'en');
 isTerm('pm.lead.feedback', 'SBI', 'nl'); isTerm('pm.lead.feedback', 'SBI', 'en');
-isTerm('pm.lead.candor', 'Radical Candor', 'nl'); isTerm('pm.lead.candor', 'Radical Candor', 'en');
+isTerm('pm.lead.feedback', 'Feedforward', 'nl'); isTerm('pm.lead.feedback', 'Feedforward', 'en');
+isTerm('pm.lead.candor', 'Radical Candor', 'nl'); isTerm('pm.lead.candor', 'Radical Candor', 'en'); // named in s7 only (Werkkennis)
 // s4: under pressure you defend or solve, listen first and let silence work; whoever attacks the project has a worry
-// underneath (workload, blame, control); the tools: active listening (pm.lead.listen, Basis) and Toyota Kata
-// (pm.lead.kata, Werkkennis)
+// underneath (workload, blame, control); the tools: active listening and MORE PIES (both pm.lead.listen, Basis)
 has('pm.lead.listen', ['Onder druk schiet je meteen in verdedigen of oplossen', 'Silence: laat stilte werken', 'Wie het project aanvalt, heeft er meestal een zorg onder: werkdruk, schuld, controle kwijtraken']);
 has('pm.lead.listen', ['Under pressure you skip straight to defending or solving', 'Silence: let it work', 'When someone attacks the project, there’s usually a worry underneath: workload, blame, losing control'], 'en');
 isTerm('pm.lead.listen', 'Actief luisteren', 'nl'); isTerm('pm.lead.listen', 'Active listening', 'en');
-isTerm('pm.lead.kata', 'Toyota Kata', 'nl'); isTerm('pm.lead.kata', 'Toyota Kata', 'en');
+isTerm('pm.lead.listen', 'MORE PIES', 'nl'); isTerm('pm.lead.listen', 'MORE PIES', 'en');
+isTerm('pm.lead.kata', 'Toyota Kata', 'nl'); isTerm('pm.lead.kata', 'Toyota Kata', 'en'); // named in s7 only (Werkkennis)
 // s5: a first impression forms fast; know your numbers, sit at the table, drop the hedge; feeling like a fraud is
 // common and you act on evidence; the tools: an assertive statement and reframing (pm.lead.self, Basis)
 has('pm.lead.self', ['Een eerste indruk ontstaat snel', 'ken je cijfers uit je hoofd', 'ga aan tafel zitten', 'laat het voorbehoud weg', 'Veel capabele mensen voelen zich een bedrieger', 'handelen op bewijs']);
@@ -122,11 +124,12 @@ has('pm.lead.self', ['First impressions form fast', 'know your numbers cold', 's
 isTerm('pm.lead.self', 'Assertieve uitspraak', 'nl'); isTerm('pm.lead.self', 'Herkaderen', 'nl');
 isTerm('pm.lead.self', 'Assertive statement', 'en'); isTerm('pm.lead.self', 'Reframing', 'en');
 // s7: the later levels, as the lessons are titled or word them (the grid names what each adds, and nothing a scene
-// explained or named as a tool: no reciprocity, SBI, active listening, assertive statement, hedge, fraud)
-for (const [id, word] of [['pm.lead.persuade', 'Manipulatie'], ['pm.lead.candor', 'Botte agressie'], ['pm.lead.kata', 'Doeltoestand'], ['pm.lead.stages', 'vier fasen'],
+// explained or named as a tool: no stakeholder map, SBI, feedforward, active listening, MORE PIES, assertive statement,
+// reframing, hedge, fraud; Radical Candor and Toyota Kata are named here and nowhere else)
+for (const [id, word] of [['pm.lead.persuade', 'Manipulatie'], ['pm.lead.candor', 'Radical Candor'], ['pm.lead.kata', 'Toyota Kata'], ['pm.lead.stages', 'vier fasen'],
   ['pm.lead.influence', 'Valuta'], ['pm.lead.difficult', 'Identiteitsgesprek'], ['pm.lead.cycle', 'Coachingscycli'], ['pm.lead.teams', 'Teamdynamiek'],
   ['pm.lead.coalition', 'Coalitie'], ['pm.lead.triggers', 'Feedback die je raakt'], ['pm.lead.situational', 'Situationeel leiderschap'], ['pm.lead.safety', 'Psychologische veiligheid']]) has(id, [word]);
-for (const [id, word] of [['pm.lead.persuade', 'Manipulation'], ['pm.lead.candor', 'Obnoxious aggression'], ['pm.lead.kata', 'Target condition'], ['pm.lead.stages', 'four stages'],
+for (const [id, word] of [['pm.lead.persuade', 'Manipulation'], ['pm.lead.candor', 'Radical Candor'], ['pm.lead.kata', 'Toyota Kata'], ['pm.lead.stages', 'four stages'],
   ['pm.lead.influence', 'Currency'], ['pm.lead.difficult', 'Identity conversation'], ['pm.lead.cycle', 'coaching cycles'], ['pm.lead.teams', 'Team dynamics'],
   ['pm.lead.coalition', 'Coalition'], ['pm.lead.triggers', 'Feedback that hits you'], ['pm.lead.situational', 'Situational Leadership'], ['pm.lead.safety', 'psychological safety']]) has(id, [word], 'en');
 // s7: the level words are the app's. The grid (stage.js, grid) has four level columns of GRID.col units from
@@ -313,7 +316,7 @@ const spec = {
         { nl: 'Eerste onderwerp is Invloed zonder macht. Je kunt de inkoper niets opdragen. Wat doe je dan?', en: 'First topic is Influence without authority. You cannot order the buyer around. What do you do then?', focus: ['tInf', 'order', 'buyer'] },
         { nl: 'De sponsor leent je een beetje {t:Positiemacht|positiemacht}, en die slijt elke keer dat je hem gebruikt.', en: 'The sponsor lends you a little {t:Position power|position power}, and it wears thin each time you use it.', cue: { Positiemacht: 'borrow', 'Position power': 'borrow' }, focus: ['borrow', 'sponsor', 'buyer'] },
         { nl: 'Je kent de lijn: {t:Deskundigheidsmacht|deskundigheidsmacht}. Je houdt je woord: {t:Referentiemacht|referentiemacht}.', en: 'You know the line: {t:Expert power|expert power}. You keep your word: {t:Referent power|referent power}.', cue: { Deskundigheidsmacht: 'own', Referentiemacht: 'own', 'Expert power': 'own', 'Referent power': 'own' }, focus: ['own', 'buyer'] },
-        { nl: 'Om te overtuigen gebruiken we {t:Wederkerigheid|wederkerigheid} en {t:Sociaal bewijs|sociaal bewijs}.', en: 'To persuade we use {t:Reciprocity|reciprocity} and {t:Social proof|social proof}.', cue: { Wederkerigheid: 'tool1', 'Sociaal bewijs': 'tool2', Reciprocity: 'tool1', 'Social proof': 'tool2' }, focus: ['tool1', 'tool2'] },
+        { nl: 'Voor invloed gebruiken we een {t:Stakeholderkaart|stakeholderkaart}.', en: 'For influence we use a {t:Stakeholder map|stakeholder map}.', cue: { Stakeholderkaart: 'tool1', 'Stakeholder map': 'tool1' }, focus: ['tool1'] },
       ],
     },
     {
@@ -322,7 +325,7 @@ const spec = {
         { nl: 'Tweede onderwerp is Feedback en moeilijke gesprekken. De teamleider liep twee keer weg tijdens de start.', en: 'Second topic is Feedback and difficult conversations. The team lead walked away twice during the start.', focus: ['tFb', 'walk', 'teamlead', 'crew'] },
         { nl: 'Zeg wat een camera zag, geen etiket. Hij liep weg, en de ploeg had geen plan.', en: 'Say what a camera saw, not a label. He walked away, and the crew had no plan.', focus: ['label', 'teamlead'] },
         { nl: 'Doe het snel, onder vier ogen, met een vraag. Lijn 4 stond stil, hij moest erheen.', en: 'Do it soon, in private, with a question. Line 4 had stopped, he had to go there.', focus: ['talk', 'teamlead'] },
-        { nl: 'Bij feedback gebruiken we {t:SBI|SBI} en {t:Radical Candor|Radical Candor}.', en: 'For feedback we use {t:SBI|SBI} and {t:Radical Candor|Radical Candor}.', cue: { SBI: 'tool1', 'Radical Candor': 'tool2' }, focus: ['tool1', 'tool2'] },
+        { nl: 'Bij feedback gebruiken we {t:SBI|SBI} en {t:Feedforward|feedforward}.', en: 'For feedback we use {t:SBI|SBI} and {t:Feedforward|feedforward}.', cue: { SBI: 'tool1', Feedforward: 'tool2' }, focus: ['tool1', 'tool2'] },
       ],
     },
     {
@@ -331,7 +334,7 @@ const spec = {
         { nl: 'Derde onderwerp is Luisteren en coachen. De inkoper vindt de schakelkast te duur.', en: 'Third topic is Listening and coaching. The buyer thinks the switchboard is too expensive.', focus: ['tCoach', 'price', 'buyer'] },
         { nl: 'Onder druk wil je verdedigen of oplossen. Luister eerst, en laat de stilte werken.', en: 'Under pressure you want to defend or fix. Listen first, and let the silence work.', focus: ['react', 'buyer'] },
         { nl: 'Wie aanvalt, heeft meestal een zorg. Bij de inkoper is het zijn gekorte budget.', en: 'Whoever attacks usually has a worry. The buyer’s is his budget, which has been cut.', focus: ['worry', 'buyer'] },
-        { nl: 'We gebruiken {t:Actief luisteren|actief luisteren} en, om te coachen, {t:Toyota Kata|Toyota Kata}.', en: 'We use {t:Active listening|active listening} and, to coach, {t:Toyota Kata|Toyota Kata}.', cue: { 'Actief luisteren': 'tool1', 'Active listening': 'tool1', 'Toyota Kata': 'tool2' }, focus: ['tool1', 'tool2'] },
+        { nl: 'We gebruiken {t:Actief luisteren|actief luisteren} en {t:MORE PIES|MORE PIES}.', en: 'We use {t:Active listening|active listening} and {t:MORE PIES|MORE PIES}.', cue: { 'Actief luisteren': 'tool1', 'Active listening': 'tool1', 'MORE PIES': 'tool2' }, focus: ['tool1', 'tool2'] },
       ],
     },
     {
@@ -340,7 +343,7 @@ const spec = {
         { nl: 'Vierde onderwerp is Teams en jezelf leiden. Maandag vertel jij de ploeg hoe de verhuizing gaat.', en: 'Fourth topic is Leading teams and yourself. On Monday you tell the crew how the move goes.', focus: ['tTeam', 'meet', 'crew', 'teamlead'] },
         { nl: 'Een eerste indruk ontstaat snel. Ken je cijfers, zit aan tafel en laat het voorbehoud weg.', en: 'A first impression forms fast. Know your numbers, sit at the table and drop the hedge.', focus: ['first', 'crew', 'teamlead'] },
         { nl: 'Voel je je een bedrieger? Handel op bewijs, niet op gevoel.', en: 'Do you feel like a fraud? Act on evidence, not on feeling.', focus: ['proof', 'crew'] },
-        { nl: 'We gebruiken een {t:Assertieve uitspraak|assertieve uitspraak} en {t:Herkaderen|herkaderen} van je zenuwen.', en: 'We use an {t:Assertive statement|assertive statement} and {t:Reframing|reframing} of your nerves.', cue: { 'Assertieve uitspraak': 'tool1', Herkaderen: 'tool2', 'Assertive statement': 'tool1', Reframing: 'tool2' }, focus: ['tool1', 'tool2'] },
+        { nl: 'We gebruiken een {t:Assertieve uitspraak|assertieve uitspraak} en het {t:Herkaderen|herkaderen} van je zenuwen.', en: 'We use an {t:Assertive statement|assertive statement} and {t:Reframing|reframing} for your nerves.', cue: { 'Assertieve uitspraak': 'tool1', Herkaderen: 'tool2', 'Assertive statement': 'tool1', Reframing: 'tool2' }, focus: ['tool1', 'tool2'] },
       ],
     },
     {
@@ -356,7 +359,7 @@ const spec = {
         { nl: 'Op de kaart van Projecten is Mensen leiden het tweede station van Mensen en invloed.', en: 'On the map of Projects, Leading people is the second station of People and influence.', focus: mapCue('pm.lead') },
         { nl: 'Deze module heeft vier onderwerpen, elk met vier niveaus.', en: 'This module has four topics, each with four levels.', focus: 'route' },
         { nl: 'Begin bij Invloed zonder macht, op niveau Basis.', en: 'Start with Influence without authority, at Basics level.', focus: ['tInf', 'lv1', 'start'] },
-        { nl: 'Op Werkkennis komen manipulatie, botte agressie, doeltoestanden en de fasen van een team erbij.', en: 'At Working knowledge you add manipulation, obnoxious aggression, target conditions and the stages of a team.', focus: 'lv2' },
+        { nl: 'Op Werkkennis komen de fasen van een team, de grens met manipulatie, Toyota Kata en Radical Candor erbij.', en: 'At Working knowledge you add the stages of a team, the line to manipulation, Toyota Kata and Radical Candor.', focus: 'lv2' },
         { nl: 'Op Gevorderd komen ruilen met valuta, het identiteitsgesprek, coachingscycli en teamdynamiek erbij.', en: 'At Advanced you add trading with currency, the identity conversation, coaching cycles and team dynamics.', focus: 'lv3' },
         { nl: 'Op Expert komen coalities, feedback die je raakt, situationeel leiderschap en psychologische veiligheid erbij.', en: 'At Expert you add coalitions, feedback that hits you, situational leadership and psychological safety.', focus: 'lv4' },
         { nl: 'Elke les en elke film van deze module heeft een plek op deze kaart.', en: 'Every lesson and film in this module has a place on this map.', focus: null },
@@ -397,8 +400,8 @@ const SAY = [
       en: 'The sponsor only lends you a little position power, and it wears thin each time you use it.' },
     { nl: 'Je cijfers kloppen en je kent de lijn. Dat is {t:Deskundigheidsmacht|deskundigheidsmacht}. Je houdt je woord, en mensen werken graag met je. Dat is {t:Referentiemacht|referentiemacht}.',
       en: 'Your numbers are right and you know the line. That is {t:Expert power|expert power}. You keep your word, and people like working with you. That is {t:Referent power|referent power}.' },
-    { nl: 'Om te overtuigen gebruiken we wederkerigheid en sociaal bewijs.',
-      en: 'To persuade we use reciprocity and social proof.' },
+    { nl: 'Voor invloed gebruiken we een stakeholderkaart.',
+      en: 'For influence we use a stakeholder map.' },
   ],
   [ // s3 feedback and difficult conversations
     { nl: 'Het tweede onderwerp is Feedback en moeilijke gesprekken. De teamleider liep twee keer weg tijdens de start van de dienst.',
@@ -407,8 +410,8 @@ const SAY = [
       en: 'Talk about behaviour, not character. Say what a camera would have recorded. He walked away, and the crew did not get the plan.' },
     { nl: 'Doe het snel en onder vier ogen, met een vraag. Wat speelde er? Lijn 4 stond stil, en hij moest erheen.',
       en: 'Do it soon and in private, with a question. What was going on? Line 4 had stopped, and he had to go there.' },
-    { nl: 'Bij feedback gebruiken we SBI en Radical Candor.',
-      en: 'For feedback we use SBI and Radical Candor.' },
+    { nl: 'Bij feedback gebruiken we SBI en feedforward.',
+      en: 'For feedback we use SBI and feedforward.' },
   ],
   [ // s4 listening and coaching
     { nl: 'Het derde onderwerp is Luisteren en coachen. De inkoper vindt de schakelkast te duur.',
@@ -417,8 +420,8 @@ const SAY = [
       en: 'Under pressure you want to defend yourself or fix it right away. Listen first, and let the silence work.' },
     { nl: 'Wie het project aanvalt, heeft meestal een zorg eronder. Bij de inkoper is dat zijn budget, dat al gekort is.',
       en: 'Whoever attacks the project usually has a worry underneath. The buyer’s is his budget, which has already been cut.' },
-    { nl: 'We gebruiken actief luisteren en, om te coachen, Toyota Kata.',
-      en: 'We use active listening and, to coach, Toyota Kata.' },
+    { nl: 'We gebruiken actief luisteren en MORE PIES.',
+      en: 'We use active listening and MORE PIES.' },
   ],
   [ // s5 leading teams and yourself
     { nl: 'Het vierde onderwerp is Teams en jezelf leiden. Maandag vertel jij de ploeg en de teamleider hoe de verhuizing gaat.',
@@ -427,8 +430,8 @@ const SAY = [
       en: 'A first impression forms fast. Know your numbers, sit at the table and drop the hedge.' },
     { nl: 'Voel je je een bedrieger? Dan handel je op bewijs, niet op gevoel.',
       en: 'Do you feel like a fraud? Then you act on evidence, not on feeling.' },
-    { nl: 'We gebruiken een assertieve uitspraak en herkaderen van je zenuwen.',
-      en: 'We use an assertive statement and reframing of your nerves.' },
+    { nl: 'We gebruiken een assertieve uitspraak en het herkaderen van je zenuwen.',
+      en: 'We use an assertive statement and reframing for your nerves.' },
   ],
   [ // s6 one whole
     { nl: 'Het hangt samen. Je bouwt eigen invloed op, geeft feedback op gedrag, en luistert naar de zorg erachter. Dan zeg je duidelijk wat je voorstelt.',
@@ -443,8 +446,8 @@ const SAY = [
       en: 'This module has four topics, each with four levels.' },
     { nl: 'Begin bij Invloed zonder macht, op niveau Basis.',
       en: 'Start with Influence without authority, at Basics level.' },
-    { nl: 'Op Werkkennis komen manipulatie, botte agressie, doeltoestanden en de fasen van een team erbij.',
-      en: 'At Working knowledge you add manipulation, obnoxious aggression, target conditions and the stages of a team.' },
+    { nl: 'Op Werkkennis komen de fasen van een team, de grens met manipulatie, Toyota Kata en Radical Candor erbij.',
+      en: 'At Working knowledge you add the stages of a team, the line to manipulation, Toyota Kata and Radical Candor.' },
     { nl: 'Op Gevorderd komen ruilen met valuta, het identiteitsgesprek, coachingscycli en teamdynamiek erbij.',
       en: 'At Advanced you add trading with currency, the identity conversation, coaching cycles and team dynamics.' },
     { nl: 'Op Expert komen coalities, feedback die je raakt, situationeel leiderschap en psychologische veiligheid erbij.',

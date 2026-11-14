@@ -799,8 +799,8 @@ const SAY = {
     // the Leading people module intro (pm.lead.intro), a self-contained group at the end of the Dutch list, checked with
     // phonemes through Piper's nl_NL-alex bridge: espeak-ng reads "Radical Candor" in the Dutch way, "RAA-dikal KAN-dor"
     // (rˈaːdikˌɑl kˈɑndɔr); said "Redikal Kander" it reads rˈeːdikˌɑl kˈɑndər, as the English name sounds. Only in this
-    // film's phrase "en Radical Candor" (SBI has its rule above and goes first; Toyota has pm.land.training's rule): no
-    // other film says the name. Its other words (wederkerigheid, sociaal bewijs, actief luisteren, Kata, herkaderen,
+    // film's phrase "en Radical Candor" (the Werkkennis sentence of the closing map; Toyota has pm.land.training's rule): no
+    // other film says the name. Its other words (stakeholderkaart, feedforward, actief luisteren, MORE PIES, Kata, herkaderen,
     // valuta, coachingscycli, psychologische) are read right as they are; no other film's spoken text changes
     [/\ben Radical Candor\b/g, 'en Redikal Kander']],
   en: [[/\brpm\b/g, 'revolutions per minute'], [/\bmm\/min\b/g, 'millimetres per minute'], [/\bm\/min\b/g, 'metres per minute'], [/µm\b/g, 'micrometres'],
