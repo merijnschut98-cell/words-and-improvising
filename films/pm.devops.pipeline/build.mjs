@@ -569,8 +569,8 @@ const SAY = [
       en: 'Change lead time: six working days from commit to production, mainly waiting for a weekly test slot.' },
     { nl: 'Het faalpercentage: twee van de acht deploys direct teruggedraaid, vijfentwintig procent. Hersteld na een uur en na drie uur.',
       en: 'Change fail rate: two of the eight rolled back at once, twenty-five percent. Recovered after one and after three hours.' },
-    { nl: 'Conclusie: het team levert redelijk vaak, maar één op de vier deploys gaat mis. Daar ligt de eerste verbetering.',
-      en: 'Conclusion: fairly frequent delivery, but one in four goes wrong. That is where to improve first.' },
+    { nl: 'De conclusie is dat het team redelijk vaak levert, maar één op de vier deploys gaat mis. Daar ligt de eerste verbetering.',
+      en: 'The conclusion is that delivery is fairly frequent, but one in four goes wrong. That is where to improve first.' },
   ],
 ];
 spec.scenes.forEach((s, si) => {
