@@ -333,6 +333,10 @@ One intro film per module stays the big picture; the levels get a short bridge i
 - [ ] **Step 3:** after Merijn has used the openers, ask whether any level needs its own short film (multiple choice), starting with the Expert levels.
 - Order: after Task 8 (Andon visible), so Andon can present it.
 
+### Task 20: DevOps pronunciation (found 14 Nov)
+
+espeak reads "DevOps" as "def ops" in the Dutch voice; the rendered devops films (pm.devops.pipeline, pm.devops.incident, pm.devops.postmortem) and field film 4 say it that way. Fix: one Dutch SAY rule ("DevOps" to a respelling that sounds as dev-ops, checked with Piper's espeak bridge), test first, recompute every film's spoken text, rebuild the affected pages, review (`sonnet`) and re-render the affected films in one render batch (`sonnet`). Small; do it with the next render batch that touches any devops film.
+
 ## Not in this plan
 
 Explain it back, knowledge on the map, and the rest of the ideas list in the spec: each gets its own design when it is picked up. The speaking formats stay parked.
