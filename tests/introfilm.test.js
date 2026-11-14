@@ -485,3 +485,70 @@ test('checkLabels: every module title of every field fits a station of the road'
     for (const lang of ['nl', 'en']) assert.ok(wrapUnits(m.title[lang], STATION_UNITS, CHAR_W).length <= STATION_LINES, `${id} (${lang})`);
   }
 });
+
+// ---------------------------------------------------------------- short films (Task 4a)
+// Merijn, 14 Nov: a film of a minute or half a minute is enough when the content
+// says so. The kit accepts 25 s, 2 scenes and about 60 narration words; every
+// per-beat, readability and narration rule still applies.
+const words = (n, w) => Array.from({ length: n }, () => w).join(' ');
+const shortSpec = (scenes = 2, dur = 15) => ({
+  id: 'pm.fx.short',
+  title: { nl: 'Kort', en: 'Short' },
+  lessons: ['pm.fx.b'],
+  strictFocus: true,
+  scenes: Array.from({ length: scenes }, (_, i) => ({
+    id: `s${i + 1}`, level: 1, dur, still: 0.9, title: { nl: `Deel ${i + 1}`, en: `Part ${i + 1}` },
+    beats: [
+      beat('Eén {t:Buffer|buffer} van {n:3} weken.', 'One {t:Buffer|buffer} of {n:3} weeks.', 'buf', { cue: { Buffer: 'buf' } }),
+      beat('Dan volgt de rest.', 'Then the rest follows.', 'rest'),
+    ],
+  })),
+});
+// every beat gets a narration script; `perBeat` words in each language
+const voiced = (data, perBeat) => {
+  const out = clone(data);
+  out.scenes.forEach((s) => s.beats.forEach((b) => {
+    const nl = `${words(perBeat, 'woord')}.`;
+    const en = `${words(perBeat, 'word')}.`;
+    b.say = said(nl, en);
+    b.voice = { nl, en };
+  }));
+  return out;
+};
+const shortCtx = () => ctx({ module: undefined });
+const shortFilm = (scenes, dur, perBeat) => voiced(resolveFilm(shortSpec(scenes, dur), LESSONS, MODULES), perBeat);
+
+test('short films: 30 s, 2 scenes and about 60 narration words pass the build checks', () => {
+  const data = shortFilm(2, 15, 16); // 4 beats x 16 = 64 words
+  assert.equal(data.scenes.length, 2);
+  assert.equal(data.scenes.reduce((a, s) => a + s.dur, 0), 30);
+  assert.deepEqual(checkFilm(data, shortCtx()), []);
+});
+
+test('short films: one scene still fails, and so do ten', () => {
+  assert.match(checkFilm(shortFilm(1, 30, 32), shortCtx()).join('\n'), /needs 2–9 scenes, has 1/);
+  assert.match(checkFilm(shortFilm(10, 4, 7), shortCtx()).join('\n'), /needs 2–9 scenes, has 10/);
+});
+
+test('short films: under 25 s, under 25 s of narration and over the caps still fail', () => {
+  assert.match(checkFilm(shortFilm(2, 11, 16), shortCtx()).join('\n'), /film is 22 s, must be 25–300/);
+  assert.match(checkFilm(shortFilm(2, 15, 10), shortCtx()).join('\n'), /narration nl would take about 16 s, must be 25–330/);
+  assert.match(checkFilm(shortFilm(2, 15, 300), shortCtx()).join('\n'), /narration nl would take about \d+ s, must be 25–330/);
+  assert.match(checkFilm(shortFilm(9, 40, 16), shortCtx()).join('\n'), /film is 360 s, must be 25–300/);
+});
+
+test('short films: a beat too short to read still fails', () => {
+  // a scene whose captions hold 20 words needs 20 / 2.5 + 2 = 10 s; 5 s is too short
+  const s = shortSpec();
+  s.scenes[0].dur = 5;
+  s.scenes[0].beats[1] = beat(`${words(11, 'dan')} klaar.`, `${words(11, 'then')} done.`, 'rest');
+  const data = voiced(resolveFilm(s, LESSONS, MODULES), 16);
+  assert.match(checkFilm(data, shortCtx()).join('\n'), /scene s1: 5 s is too short for/);
+});
+
+test('short films: the narration guard still applies', () => {
+  const data = shortFilm(2, 15, 16);
+  data.scenes[0].beats[0].say = said('Zo: dit.', 'Fine.');
+  data.scenes[0].beats[0].voice = { nl: 'Zo: dit.', en: 'Fine.' };
+  assert.match(checkNarration(data).join('\n'), /a symbol the voice reads aloud, or a colon/);
+});

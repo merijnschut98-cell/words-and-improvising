@@ -5,13 +5,17 @@ import { wordsOf, minSceneDur, plainOf } from './timeline.mjs';
 
 export const MAX_BYTES = 450 * 1024; // hard cap per page (plan 2.8)
 export const TARGET_BYTES = 300 * 1024;
-export const MIN_TOTAL = 60;
+// Task 4a (Merijn, 14 Nov): a film is as long as its content needs; 25 s, 2 scenes
+// and 25 s of narration (about 60 words) are enough.
+export const MIN_TOTAL = 25;
+export const MIN_SCENES = 2;
+export const MAX_SCENES = 9;
 // v14b: no longer capped at 150 s; Basis 3–5 min, higher levels 2–4 min.
 export const MAX_TOTAL = 300;
 // The narration's spoken length, estimated from its words (Piper voices speak
 // about 2.5 words a second); the real length comes from the audio.
 export const NARRATION_WPS = 2.5;
-export const NARRATION_MIN = 60;
+export const NARRATION_MIN = 25;
 export const NARRATION_MAX = 330;
 export const narrationWords = (data, lang) => (data.scenes || []).reduce((a, s) => a + (s.beats || []).reduce((n, b) => n + (b.voice ? wordsOf(b.voice[lang]) : 0), 0), 0);
 // 3 lines of 16 px text in the film's frame inside a lesson card on a 390 px
@@ -83,7 +87,7 @@ export function checkFilm(data, { lessons, levelOf, wiredBy = [], module: meta, 
   if (fld) for (const id of served) if (!fieldMods.some((m) => (m.lessons || []).includes(id))) errs.push(`served lesson ${id} is no longer in a module of ${fld.id}`);
   for (const id of wiredBy) if (!served.has(id)) errs.push(`${id} wires the film but is not in its lessons`);
   const scenes = data.scenes || [];
-  if (scenes.length < 4 || scenes.length > 9) errs.push(`needs 4–9 scenes, has ${scenes.length}`);
+  if (scenes.length < MIN_SCENES || scenes.length > MAX_SCENES) errs.push(`needs ${MIN_SCENES}–${MAX_SCENES} scenes, has ${scenes.length}`);
 
   // terms: still the lesson's term at that position, in both languages
   const covered = new Map(); // "lesson#index" → lowest scene level with a cue
@@ -199,7 +203,7 @@ export function checkFilm(data, { lessons, levelOf, wiredBy = [], module: meta, 
     if (lc(t.nl) !== lc(t.en) && !glossed.has(k)) errs.push(`term ${t.nl}: the Dutch caption never names its English word`);
   }
 
-  // length: each scene can be read; the film is 60–150 s
+  // length: each scene can be read; the film is MIN_TOTAL–MAX_TOTAL s
   let total = 0;
   for (const s of scenes) {
     total += s.dur;

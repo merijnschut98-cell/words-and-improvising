@@ -640,7 +640,7 @@ test('the committed manifest: every film has nl and en, an https URL on the film
     for (const lang of ['nl', 'en']) {
       const v = f[lang];
       assert.ok(v, `${id}: no ${lang} video`);
-      assert.ok(v.dur >= 60 && v.dur <= 360, `${id} ${lang}: ${v.dur} s`);
+      assert.ok(v.dur >= 25 && v.dur <= 360, `${id} ${lang}: ${v.dur} s`);
       assert.ok(v.bytes > 100000 && v.bytes < 60e6, `${id} ${lang}: ${v.bytes} bytes`);
       assert.ok(fs.existsSync(v.vtt) && fs.readFileSync(v.vtt, 'utf8').startsWith('WEBVTT'), `${id} ${lang}: captions ${v.vtt}`);
       assert.ok(v.scenes[0] === 0 && v.scenes.every((s, i) => i === 0 || s > v.scenes[i - 1]) && v.scenes.at(-1) < v.dur, `${id} ${lang}: scene starts`);
