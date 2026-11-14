@@ -43,4 +43,5 @@ Outcome: accepted (merged as delivered), sent back N times, redone.
 | 14 Nov | Review: tool names in two films (first run) | sonnet | n/a | 10 min | n/a | stopped by an accidental interruption; restarted fresh on sonnet |
 | 14 Nov | Review: tool names in two films (restart) | sonnet | n/a | n/a | n/a | accepted; merged into the render branch |
 | 14 Nov | Review: calmer speaking home (finish) | opus | n/a | n/a | n/a | accepted; one test gap closed; found a leftover test server serving an old worktree |
-| 14 Nov | Build field film 2 pm.field.people | sonnet | n/a | n/a | n/a | delivered (150 s designed); in review (sonnet) |
+| 14 Nov | Build field film 2 pm.field.people | sonnet | 90 | 14 min | 264,708 | accepted with fixes by its review (three non-tools replaced); merged v261 |
+| 14 Nov | Review field film 2 | sonnet | n/a | n/a | n/a | accepted |
