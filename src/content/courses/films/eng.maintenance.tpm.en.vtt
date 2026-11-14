@@ -1,321 +1,293 @@
 WEBVTT
 
 1
-00:00:00.837 --> 00:00:04.517
+00:00:00.846 --> 00:00:04.573
 This is the hydraulic power unit of an injection moulding machine,
 
 2
-00:00:04.715 --> 00:00:07.826
+00:00:04.771 --> 00:00:07.859
 a machine that shoots molten plastic into a mould.
 
 3
-00:00:08.597 --> 00:00:12.429
-On the oil tank stand a pump, a coupling and an electric motor.
-
-4
-00:00:13.140 --> 00:00:15.357
+00:00:08.610 --> 00:00:10.909
 Who looks after this machine every day?
 
-5
-00:00:16.345 --> 00:00:20.443
+4
+00:00:11.889 --> 00:00:16.045
 TPM, total productive maintenance, has its own answer to that.
 
-6
-00:00:21.257 --> 00:00:24.160
+5
+00:00:16.801 --> 00:00:19.761
 It came from Japan in the nineteen seventies.
 
-7
-00:00:24.870 --> 00:00:29.432
+6
+00:00:20.466 --> 00:00:25.087
 The goal is zero breakdowns, zero defects and zero accidents.
 
-8
-00:00:30.474 --> 00:00:33.760
+7
+00:00:26.125 --> 00:00:29.237
 That only works when equipment care is everyone’s job,
 
-9
-00:00:33.899 --> 00:00:36.209
+8
+00:00:29.411 --> 00:00:31.779
 not only the maintenance department’s.
 
-10
-00:00:36.908 --> 00:00:41.645
+9
+00:00:32.468 --> 00:00:37.066
 So also the job of the people who run the machine every day: the operators.
 
-11
-00:00:42.950 --> 00:00:45.841
+10
+00:00:38.389 --> 00:00:41.373
 Most plants build TPM on eight pillars.
 
-12
-00:00:46.597 --> 00:00:48.292
+11
+00:00:42.152 --> 00:00:43.917
 They include planned maintenance,
 
-13
-00:00:48.385 --> 00:00:51.601
+12
+00:00:44.010 --> 00:00:47.284
 focused improvement, quality maintenance and training.
 
-14
-00:00:52.622 --> 00:00:55.478
+13
+00:00:48.365 --> 00:00:51.163
 The best-known pillar is autonomous maintenance.
 
-15
-00:00:56.169 --> 00:00:58.944
+14
+00:00:51.853 --> 00:00:54.651
 The operators own the basic care of their machine.
 
-16
-00:00:59.705 --> 00:01:04.523
+15
+00:00:55.374 --> 00:01:00.145
 They clean, inspect, lubricate and tighten, and they report what looks wrong.
 
-17
-00:01:05.582 --> 00:01:07.707
+16
+00:01:01.212 --> 00:01:03.371
 Planned maintenance is the other half.
 
-18
-00:01:08.504 --> 00:01:11.163
+17
+00:01:04.201 --> 00:01:06.883
 With the routine work moved to the operators,
 
+18
+00:01:07.010 --> 00:01:09.204
+technicians have time for skilled work.
+
 19
-00:01:11.325 --> 00:01:14.843
-technicians have time for skilled work: condition monitoring,
+00:01:09.970 --> 00:01:11.526
+That is condition monitoring,
 
 20
-00:01:15.017 --> 00:01:18.442
+00:01:11.711 --> 00:01:15.240
 and finding the root cause of failures that keep coming back.
 
 21
-00:01:19.463 --> 00:01:23.770
+00:01:16.283 --> 00:01:20.648
 A typical split: operators do 5 to 10 minutes of checks per shift,
 
 22
-00:01:23.933 --> 00:01:26.162
+00:01:20.846 --> 00:01:23.040
 and technicians fix what they find.
 
 23
-00:01:27.476 --> 00:01:31.145
+00:01:24.364 --> 00:01:28.091
 Autonomous maintenance is usually rolled out in seven steps,
 
 24
-00:01:31.307 --> 00:01:33.246
+00:01:28.265 --> 00:01:30.192
 and the first is an initial clean.
 
 25
-00:01:33.934 --> 00:01:37.870
+00:01:30.910 --> 00:01:34.904
 With the machine safely off, the team cleans it from top to bottom,
 
 26
-00:01:37.974 --> 00:01:41.143
+00:01:35.031 --> 00:01:38.026
 including the places nobody has reached for years.
 
 27
-00:01:41.850 --> 00:01:43.905
+00:01:38.746 --> 00:01:40.801
 In this pilot it takes one shift.
 
 28
-00:01:44.939 --> 00:01:46.413
+00:01:41.842 --> 00:01:43.305
 Cleaning is inspection.
 
 29
-00:01:47.118 --> 00:01:50.532
+00:01:44.020 --> 00:01:47.340
 Clean with attention, and you see what the dirt was hiding.
 
 30
-00:01:51.234 --> 00:01:53.916
+00:01:48.113 --> 00:01:50.795
 Here the pump is leaking oil, drop by drop.
 
 31
-00:01:54.934 --> 00:01:57.035
+00:01:51.844 --> 00:01:53.887
 On the motor foot a bolt is loose.
 
 32
-00:01:57.771 --> 00:01:59.396
+00:01:54.606 --> 00:01:56.324
 The coupling guard has a crack.
 
 33
-00:02:00.129 --> 00:02:03.670
-On a dirty machine you only see that when something goes wrong.
-
-34
-00:02:04.991 --> 00:02:09.472
+00:01:57.670 --> 00:02:02.186
 Every abnormality the team finds gets a tag: a coloured card on the machine.
 
-35
-00:02:10.169 --> 00:02:12.595
+34
+00:02:02.867 --> 00:02:05.212
 It says what is wrong and who fixes it.
 
-36
-00:02:13.663 --> 00:02:17.494
+35
+00:02:06.266 --> 00:02:10.051
 After one shift, 37 tags hang on this one machine.
 
-37
-00:02:18.567 --> 00:02:23.873
+36
+00:02:11.095 --> 00:02:16.342
 They are 12 oil leaks, 9 loose bolts, 6 missing guards and 10 other faults.
 
-38
-00:02:24.653 --> 00:02:28.217
-Left alone, many of them grow into a breakdown later.
-
-39
-00:02:29.524 --> 00:02:35.387
+37
+00:02:17.723 --> 00:02:23.505
 Operators fix 21 themselves in the first week: tightening a bolt, securing a clamp,
 
-40
-00:02:35.585 --> 00:02:36.874
+38
+00:02:23.714 --> 00:02:25.061
 clearing a dirt trap.
 
-41
-00:02:37.898 --> 00:02:42.706
+39
+00:02:26.090 --> 00:02:31.211
 The other 16 go to maintenance, with a clear promise: closed within 4 weeks.
 
-42
-00:02:43.711 --> 00:02:45.511
+40
+00:02:32.217 --> 00:02:33.982
 This is what makes or breaks it.
 
-43
-00:02:46.283 --> 00:02:51.519
+41
+00:02:34.742 --> 00:02:39.932
 When tags hang for months, operators stop reporting, because nothing happens anyway.
 
-44
-00:02:52.267 --> 00:02:54.334
+42
+00:02:40.697 --> 00:02:42.764
 Then autonomous maintenance dies.
 
-45
-00:02:55.356 --> 00:03:00.174
+43
+00:02:43.765 --> 00:02:48.676
 So here is a sharp question for any plant: how many tags were hung last quarter,
 
-46
-00:03:00.371 --> 00:03:02.008
+44
+00:02:48.874 --> 00:02:50.558
 and what share of them is closed?
 
-47
-00:03:03.371 --> 00:03:06.889
+45
+00:02:51.916 --> 00:02:55.480
 After the clean comes the daily routine: CILT.
 
-48
-00:03:07.604 --> 00:03:11.482
+46
+00:02:56.191 --> 00:03:00.220
 The letters stand for clean, inspect, lubricate and tighten.
 
-49
-00:03:12.501 --> 00:03:16.959
-Clean and inspect: the operator wipes the machine down and looks for leaks,
-
-50
-00:03:17.087 --> 00:03:18.561
-cracks and loose parts.
-
-51
-00:03:19.591 --> 00:03:24.039
+47
+00:03:01.268 --> 00:03:05.691
 Lubricate: grease on the bearing, in the right place and the right amount.
 
-52
-00:03:24.780 --> 00:03:25.221
+48
+00:03:06.471 --> 00:03:06.866
 Tighten:
 
-53
-00:03:25.465 --> 00:03:28.425
+49
+00:03:07.110 --> 00:03:10.024
 a match mark painted across bolt and nut shows
 
-54
-00:03:28.518 --> 00:03:31.061
+50
+00:03:10.105 --> 00:03:12.555
 at a glance whether a bolt has worked loose.
 
-55
-00:03:32.070 --> 00:03:36.831
+51
+00:03:13.550 --> 00:03:18.299
 Good checks are visual: min and max marks on the oil glass, a coloured zone,
 
-56
-00:03:36.970 --> 00:03:39.025
+52
+00:03:18.438 --> 00:03:20.493
 often green, on the pressure gauge.
 
-57
-00:03:39.808 --> 00:03:42.734
+53
+00:03:21.294 --> 00:03:24.197
 Then anyone sees at once whether it is right.
 
-58
-00:03:43.797 --> 00:03:46.874
+54
+00:03:25.279 --> 00:03:28.437
 On this machine it is a checklist of 8 points.
 
-59
-00:03:47.598 --> 00:03:50.733
+55
+00:03:29.140 --> 00:03:32.251
 It takes 7 minutes at the start of every shift.
 
-60
-00:03:52.067 --> 00:03:55.875
+56
+00:03:33.578 --> 00:03:37.351
 After three months, breakdowns drop from 9 to 4 a month.
 
-61
-00:03:56.890 --> 00:04:00.535
-If each breakdown costs 2.5 hours on average,
-
-62
-00:04:00.756 --> 00:04:07.281
-that is five breakdowns times 2.5 hours: 12.5 hours of downtime saved a month.
-
-63
-00:04:08.294 --> 00:04:12.648
+57
+00:03:38.351 --> 00:03:42.798
 And hydraulic oil top-ups fall from 60 to 15 litres a month.
 
-64
-00:04:13.342 --> 00:04:16.489
+58
+00:03:43.492 --> 00:03:46.604
 The leaks are fixed, so the oil stays in the machine.
 
-65
-00:04:17.273 --> 00:04:20.675
+59
+00:03:47.318 --> 00:03:50.755
 Many plants stall exactly there, at step two or three,
 
-66
-00:04:20.815 --> 00:04:24.286
+60
+00:03:50.859 --> 00:03:54.249
 when the sources of dirt and leaks must actually be fixed.
 
-67
-00:04:25.348 --> 00:04:27.960
-That only works with maintenance on board.
+61
+00:03:55.301 --> 00:03:57.008
+The people side decides.
 
-68
-00:04:28.665 --> 00:04:33.088
-Technicians train the operators and decide which checks go on the list.
+62
+00:03:57.752 --> 00:04:00.619
+Operators hear: extra work, not my job.
 
-69
-00:04:33.849 --> 00:04:35.753
-Everything beyond it stays with them.
+63
+00:04:01.350 --> 00:04:05.808
+Technicians fear losing their role, or do not trust operators with their machine.
 
-70
-00:04:37.057 --> 00:04:40.122
+64
+00:04:06.829 --> 00:04:10.915
+It works when technicians train the operators, when checks are visual,
+
+65
+00:04:11.067 --> 00:04:12.890
+and when tags are closed fast.
+
+66
+00:04:14.243 --> 00:04:17.192
 You measure the progress of TPM with OEE,
 
-71
-00:04:40.285 --> 00:04:45.417
+67
+00:04:17.401 --> 00:04:22.509
 overall equipment effectiveness: availability times performance times quality.
 
-72
-00:04:46.391 --> 00:04:48.992
+68
+00:04:23.475 --> 00:04:26.145
 Fewer breakdowns give higher availability.
 
-73
-00:04:49.640 --> 00:04:54.563
+69
+00:04:26.810 --> 00:04:31.605
 Fewer micro-stops, short stops of seconds to minutes, give higher performance.
 
-74
-00:04:55.369 --> 00:04:57.958
+70
+00:04:32.334 --> 00:04:34.958
 That is how the clean shows up in the numbers.
 
-75
-00:04:58.985 --> 00:05:03.873
+71
+00:04:35.990 --> 00:04:40.936
 85 percent is often quoted as the world-class benchmark, a rule of thumb.
 
-76
-00:05:04.653 --> 00:05:07.254
+72
+00:04:41.716 --> 00:04:44.386
 Measured honestly, many plants land far lower;
 
-77
-00:05:07.405 --> 00:05:11.945
+73
+00:04:44.502 --> 00:04:49.088
 the module Capacity and flow breaks that figure down into the six big losses.
-
-78
-00:05:12.966 --> 00:05:15.800
-It is the trend that counts, not one number.
-
-79
-00:05:16.554 --> 00:05:18.249
-A short round every shift,
-
-80
-00:05:18.505 --> 00:05:23.428
-every tag closed fast: that is how caring for the machine becomes normal work.

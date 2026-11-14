@@ -31,7 +31,7 @@
 // its FRL unit (filter bowl, regulator with gauge and knob, lubricator), a
 // solenoid valve and a cylinder pushing a block, and a blow gun on its hose.
 // Leaks hiss at a header coupling, the FRL inlet and the blow-gun coupling.
-// Cards in stage space: where the energy goes (a schema), ISO 8573-1 classes, the
+// Cards in stage space: where the energy goes (a schema), the
 // FRL in section, the pressure ladder, the weekend load strip and the leak sum,
 // the year's kWh and euros, checklists; example cards are labelled "voorbeeld",
 // schematic ones "schema".
@@ -372,7 +372,7 @@ const couplings = cue('leaks', [
 const ballValve = box({ x: 163, y: HDR.y - 3, w: 6, d: 6, r: 0.6 }, 94, 100, {}, 0.3) + box({ x: 163, y: HDR.y + 3, w: 2, d: 6, r: 0.3 }, 98, 99.4, { tone: 'lo' }, 0.1);
 
 // ---------------------------------------------------------------- HUD (stage space, over the camera)
-const hud = ['energy', 'gaugeBig', 'iso', 'frlC', 'press', 'load', 'calc', 'kwh', 'list', 'cmp', 'warn', 'ask', 'tag'].map((key) => g(key, '', ` data-cue="${key}"`)).join('');
+const hud = ['energy', 'frlC', 'press', 'load', 'calc', 'kwh', 'list', 'cmp', 'warn', 'ask', 'tag'].map((key) => g(key, '', ` data-cue="${key}"`)).join('');
 
 // ---------------------------------------------------------------- the drawing, back to front
 const world = [
@@ -462,7 +462,7 @@ const CAM = [
 ];
 
 // ---------------------------------------------------------------- the film
-const DUR = [36, 34, 34, 32, 36, 36, 38, 38];
+const DUR = [20, 16, 22, 28, 33, 40, 39, 37];
 C.dur = DUR;
 const spec = {
   id: 'eng.power.air',
@@ -474,17 +474,13 @@ const spec = {
       beats: [
         { nl: 'Perslucht zit overal: cilinders, ventielen, gereedschap. Het is de duurste energie in de fabriek.', en: 'Compressed air is everywhere: cylinders, valves, tools. It is the most expensive energy in the plant.', cues: ['cyl', 'gun'] },
         { nl: 'Een motor drijft de compressor aan. Die perst buitenlucht tot zo’n {n:7} bar boven de atmosfeer.', en: 'A motor drives the compressor. It squeezes outside air to about {n:7} bar above atmospheric.', cues: ['motor', 'airend'] },
-        { nl: 'Het buffervat houdt opgeslagen energie: voor onderhoud de lucht eraf, manometer op nul.', en: 'The receiver holds stored energy: for maintenance, vent the air until the gauge reads zero.', cues: ['rcv', 'gauge', 'gaugeBig'] },
-        { nl: 'Leidingen brengen de lucht naar elke machine. Daar duwt ze een cilinder uit.', en: 'Pipes take the air to every machine. There it pushes a cylinder out.', cues: ['cyl'] },
       ],
     },
     {
       id: 's2', lesson: AIR, level: 1, dur: DUR[1], still: 0.9, title: { nl: 'Waar de stroom blijft', en: 'Where the power goes' },
       beats: [
         { nl: 'Het meeste van de stroom wordt warmte. Maar zo’n {n:10}% doet nuttig werk bij de gebruiker.', en: 'Most of the electricity becomes heat. Only about {n:10}% does useful work at the point of use.', cues: ['energy'] },
-        { nl: 'De rest: warmte in de compressor, lekken en drukverlies in het net.', en: 'The rest: heat in the compressor, leaks and pressure drop in the network.', cues: ['energy', 'airend'] },
         { nl: '{t:Warmteterugwinning|Warmteterugwinning}: de compressorwarmte maakt warm water of verwarmt de hal.', en: '{t:Heat recovery|Heat recovery}: the compressor’s heat makes hot water or heats the hall.', cue: { Warmteterugwinning: 'hrec' }, cues: ['boiler'] },
-        { nl: 'Toch blijft perslucht duur. Kijk dus eerst wat er onderweg verloren gaat.', en: 'Compressed air stays expensive all the same. So look first at what is lost on the way.', cues: ['energy'] },
       ],
     },
     {
@@ -493,7 +489,6 @@ const spec = {
         { nl: 'Samengeperste lucht bevat water. Water en olie beschadigen ventielen en cilinders.', en: 'Compressed air holds water. Water and oil damage valves and cylinders.', cues: ['rcv'] },
         { nl: 'De {t:Droger|droger} na de compressor haalt het water eruit. Anders komt er condenswater in de leidingen.', en: 'The {t:Dryer|dryer} after the compressor takes the water out. Otherwise condensate collects in the pipes.', cue: { Droger: 'dryer' } },
         { nl: 'Filters halen olie en stof eruit; een aftap loost het opgevangen water.', en: 'Filters take out oil and dust; a drain lets out the water they catch.', cues: ['filter'] },
-        { nl: 'ISO 8573-1 legt vast hoe schoon: een klasse voor deeltjes, water en olie. Lager is schoner.', en: 'ISO 8573-1 sets how clean: a class for particles, water and oil. Lower is cleaner.', cues: ['iso'] },
       ],
     },
     {
@@ -509,7 +504,7 @@ const spec = {
       id: 's5', lesson: AIR, level: 1, dur: DUR[4], still: 0.9, title: { nl: 'Druk kost energie', en: 'Pressure costs energy' },
       beats: [
         { nl: '{t:Netdruk|Netdruk}: de druk in de leidingen. Elke bar extra kost ruwweg {n:7}% meer energie.', en: '{t:Network pressure|Network pressure}: the pressure in the pipes. Each extra bar costs roughly {n:7}% more energy.', cue: { Netdruk: 'net' }, cues: ['press'] },
-        { nl: 'Hogere druk maakt elk lek groter. Dunne leidingen en vuile filters kosten ook druk.', en: 'Higher pressure makes every leak bigger. Thin pipes and dirty filters cost pressure too.', cues: ['leaks', 'press'] },
+        { nl: 'Hogere druk maakt elk lek groter.', en: 'Higher pressure makes every leak bigger.', cues: ['leaks', 'press'] },
         { nl: 'Vaak staat het hele net op {n:7} of {n:8} bar, omdat één machine dat vraagt.', en: 'Often the whole network runs at {n:7} or {n:8} bar, because one machine asks for it.', cues: ['net', 'press'] },
         { nl: 'Los die machine lokaal op, met een booster of een dikkere leiding. Dan kan het net omlaag.', en: 'Solve that machine locally, with a booster or a bigger pipe. Then the network can come down.', cues: ['press'] },
       ],
@@ -551,9 +546,7 @@ const spec = {
 // or units as symbols in the spoken text: kilowatt, kilowattuur and kubieke
 // meter are written out (espeak-ng spells kW and m³ badly), as in
 // eng.power.motor. Terms as in the power films: rendement and vermogen,
-// manometer (its stress fixed by the kit lexicon), opgeslagen energie, and
-// "vergrendelen en labelen" for lockout-tagout (eng.safety.loto,
-// eng.power.hydraulics). Dutch words checked with espeak-ng phonemes (Piper's
+// manometer (its stress fixed by the kit lexicon). Dutch words checked with espeak-ng phonemes (Piper's
 // own bridge, nl_NL-alex-medium, films/_kit/voice-ab/phon.py); see the SAY
 // notes in films/_kit/timeline.mjs for the words given a Dutch spoken form.
 const SAY = [
@@ -562,20 +555,12 @@ const SAY = [
       en: 'Compressed air is clean and handy, which is why it is everywhere: in cylinders, valves, tools and blow guns. It is also the most expensive way to deliver energy.' },
     { nl: 'Een motor drijft de compressor aan, en die perst buitenlucht samen tot zo’n {n:7} bar boven de atmosferische druk.',
       en: 'A motor drives the compressor, and it squeezes outside air to around {n:7} bar above atmospheric pressure.' },
-    { nl: 'Een buffervat dekt pieken in de vraag. Daarin zit opgeslagen energie: voor onderhoud eerst vergrendelen en labelen, de lucht eraf, en pas werken als de manometer op nul staat.',
-      en: 'A receiver tank covers peaks in demand. It holds stored energy: before maintenance, lock out and tag out, vent the air, and only start when the gauge reads zero.' },
-    { nl: 'Leidingen brengen de lucht naar elke machine. Daar doet ze haar werk: een cilinder schuift uit.',
-      en: 'Pipes take the air to every machine. There it does its work: a cylinder pushes out.' },
   ],
   [ // s2 where the power goes
-    { nl: 'Van de stroom die de compressor opneemt, wordt het meeste warmte. Maar zo’n {n:10} procent doet nuttig werk bij de gebruiker; schattingen lopen tot vijftien procent.',
-      en: 'Of the electricity the compressor takes in, most becomes heat. Only around {n:10} percent does useful work at the point of use; estimates go up to fifteen percent.' },
-    { nl: 'De rest is vooral warmte in de compressor en de nakoeler, plus lekken en drukverlies in de leidingen.',
-      en: 'The rest is mostly heat in the compressor and its aftercooler, plus leaks and pressure drop in the pipes.' },
-    { nl: '{t:Warmteterugwinning|Warmteterugwinning} haalt via een warmtewisselaar een deel terug, voor warm water of ruimteverwarming. Met een goed ontwerp is vaak de helft of meer bruikbaar, als er vraag naar warmte is.',
-      en: '{t:Heat recovery|Heat recovery} wins part of it back through a heat exchanger, for hot water or space heating. With a good design, half or more is often usable, if there is a demand for heat.' },
-    { nl: 'Toch blijft perslucht duur. Kijk dus eerst naar wat er onderweg verloren gaat.',
-      en: 'Even so, compressed air stays expensive. So look first at what is lost on the way.' },
+    { nl: 'Van de stroom die de compressor opneemt, wordt het meeste warmte. Maar zo’n {n:10} procent doet nuttig werk bij de gebruiker.',
+      en: 'Of the electricity the compressor takes in, most becomes heat. Only around {n:10} percent does useful work at the point of use.' },
+    { nl: '{t:Warmteterugwinning|Warmteterugwinning} haalt via een warmtewisselaar een deel terug, voor warm water of ruimteverwarming.',
+      en: '{t:Heat recovery|Heat recovery} wins part of it back through a heat exchanger, for hot water or space heating.' },
   ],
   [ // s3 clean and dry
     { nl: 'Buitenlucht bevat waterdamp, en na het samenpersen condenseert dat water. Water en olie beschadigen ventielen en cilinders.',
@@ -584,8 +569,6 @@ const SAY = [
       en: 'That is why a {t:Dryer|dryer} stands after the compressor, to take the water out of the air. Without a dryer, condensate collects in the pipes.' },
     { nl: 'Filters halen olie en stof eruit, en een aftap loost het opgevangen water.',
       en: 'Filters take out oil and dust, and a drain lets out the water they catch.' },
-    { nl: 'Hoe schoon de lucht moet zijn, leg je vast met ISO 8573-1: een klasse voor deeltjes, water en olie. Hoe lager het getal, hoe schoner.',
-      en: 'How clean the air must be, you set with ISO 8573-1: a class for particles, water and oil. The lower the number, the cleaner.' },
   ],
   [ // s4 at the machine
     { nl: 'Vóór elke machine zit een {t:Verzorgingseenheid|verzorgingseenheid}: filter, regelaar en olienevelaar op een rij.',
@@ -600,8 +583,8 @@ const SAY = [
   [ // s5 pressure costs energy
     { nl: 'De {t:Netdruk|netdruk} is de druk die de compressoren in de leidingen houden. Elke bar extra kost ruwweg {n:7} procent meer energie; schattingen lopen van {n:6} tot {n:8} procent.',
       en: 'The {t:Network pressure|network pressure} is the pressure the compressors keep in the pipes. Each extra bar costs roughly {n:7} percent more energy; estimates run from {n:6} to {n:8} percent.' },
-    { nl: 'Hoe hoger de druk, hoe harder elk lek blaast. En te dunne leidingen en verstopte filters kosten druk, dus moet de compressor hoger persen.',
-      en: 'The higher the pressure, the harder every leak blows. And thin pipes and clogged filters cost pressure, so the compressor has to run higher.' },
+    { nl: 'Hoe hoger de druk, hoe harder elk lek blaast.',
+      en: 'The higher the pressure, the harder every leak blows.' },
     { nl: 'Veel fabrieken draaien op {n:7} of {n:8} bar, omdat één machine dat nodig heeft. Dan betaalt de hele fabriek mee.',
       en: 'Many plants run at {n:7} or {n:8} bar, because one machine needs it. Then the whole plant pays for it.' },
     { nl: 'Los die machine lokaal op: met een booster of kleine extra compressor, een dikkere aanvoerleiding of een eigen buffervat. Dan kan het hele net omlaag.',
@@ -701,8 +684,8 @@ const css = `
 `;
 
 const label = {
-  nl: 'Een persluchtinstallatie van compressorruimte tot machine: op een frame een motor met koppelingskap en een schroefcompressor, een nakoeler met ventilator, een platenwarmtewisselaar met leidingen naar een boiler, en een bedieningskast met een lamp voor in last. Daarnaast een buffervat met manometer, veiligheidsklep en aftap, een koeldroger en een leidingfilter. Een stijgleiding en een hoofdleiding langs de achterkant lopen naar een machine met een verzorgingseenheid (filter, regelaar met manometer, olienevelaar), een ventiel en een cilinder die een blok duwt, en een blaaspistool aan een slang. Koppelingen lekken. Kaarten tonen waar de energie blijft, de luchtklassen volgens ISO 8573-1, de verzorgingseenheid in doorsnede, de druk en de energie, de lektest in het weekend, de lekrekening per jaar en lijstjes.',
-  en: 'A compressed air system from compressor room to machine: on a skid a motor with a coupling guard and a screw compressor, an aftercooler with a fan, a plate heat exchanger piped to a boiler, and a control panel with a loaded lamp. Next to it a receiver with a gauge, safety valve and drain, a refrigeration dryer and a line filter. A riser and a header along the back run to a machine with an FRL unit (filter, regulator with gauge, lubricator), a valve and a cylinder pushing a block, and a blow gun on a hose. Couplings leak. Cards show where the energy goes, the ISO 8573-1 air classes, the FRL unit in section, pressure and energy, the weekend leak test, the yearly leak bill and checklists.',
+  nl: 'Een persluchtinstallatie van compressorruimte tot machine: op een frame een motor met koppelingskap en een schroefcompressor, een nakoeler met ventilator, een platenwarmtewisselaar met leidingen naar een boiler, en een bedieningskast met een lamp voor in last. Daarnaast een buffervat met manometer, veiligheidsklep en aftap, een koeldroger en een leidingfilter. Een stijgleiding en een hoofdleiding langs de achterkant lopen naar een machine met een verzorgingseenheid (filter, regelaar met manometer, olienevelaar), een ventiel en een cilinder die een blok duwt, en een blaaspistool aan een slang. Koppelingen lekken. Kaarten tonen waar de energie blijft, de verzorgingseenheid in doorsnede, de druk en de energie, de lektest in het weekend, de lekrekening per jaar en lijstjes.',
+  en: 'A compressed air system from compressor room to machine: on a skid a motor with a coupling guard and a screw compressor, an aftercooler with a fan, a plate heat exchanger piped to a boiler, and a control panel with a loaded lamp. Next to it a receiver with a gauge, safety valve and drain, a refrigeration dryer and a line filter. A riser and a header along the back run to a machine with an FRL unit (filter, regulator with gauge, lubricator), a valve and a cylinder pushing a block, and a blow gun on a hose. Couplings leak. Cards show where the energy goes, the FRL unit in section, pressure and energy, the weekend leak test, the yearly leak bill and checklists.',
 };
 
 const { data } = await defineFilm(spec, { svg, script: stageScript, css, kitCss: k.ISO_CSS, label });

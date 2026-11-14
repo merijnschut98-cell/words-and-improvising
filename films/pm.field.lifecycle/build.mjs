@@ -333,8 +333,8 @@ const SAY = [
       en: 'The second station is Plan. You turn the goal into a plan that people believe in.' },
     { nl: 'Het werk, de volgorde, de duur en de risico’s. De intro van Plannen laat ze een voor een zien.',
       en: 'The work, the order, the duration and the risks. The intro of Plan shows them one by one.' },
-    { nl: 'Zonder plan merk je pas in de laatste week van de stop dat de nieuwe stroom niet klaar is. Dan is het te laat.',
-      en: 'Without a plan you only notice in the last week of the shutdown that the new power supply is not ready. Then it is too late.' },
+    { nl: 'Zonder plan merk je pas in de laatste week van de stop zelf dat de nieuwe stroom niet klaar is. Dan is het te laat.',
+      en: 'Without a plan you only notice in the last week of the shutdown itself that the new power supply is not ready. Then it is too late.' },
   ],
   [ // s4 run
     { nl: 'Het derde station is Uitvoeren. Nu moet het project in beweging blijven.',

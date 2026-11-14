@@ -85,8 +85,8 @@ const HERE = dirname(fileURLToPath(import.meta.url));
 // - Spiking (aanschieten): a remote tool drives a spike through the cable to
 //   prove it dead before it is cut; "bijvoorbeeld", as the lesson says.
 // The five rules are said word for word as in eng.gridops and in the films
-// that quote them (eng.switchgear.devices, eng.gridops.outage, and the rules
-// card of eng.safety.loto); the build reads those files and fails if they
+// that quote them (eng.gridops.outage and the rules card of eng.safety.loto;
+// eng.switchgear.devices no longer quotes them); the build reads those files and fails if they
 // drift apart.
 const SG = 'eng.switchgear.safety';
 const GS = 'eng.gridops.switching';
@@ -101,7 +101,7 @@ const listOf = (r) => `${r.slice(0, 4).join(', ')}, en ${r[4]}`;
 const LIST = { nl: listOf(RULES.nl), en: listOf(RULES.en).replace(', en ', ', and ') };
 {
   const read = (f) => readFileSync(join(HERE, '..', f), 'utf8');
-  for (const f of ['eng.switchgear.devices/build.mjs', 'eng.gridops.outage/build.mjs']) {
+  for (const f of ['eng.gridops.outage/build.mjs']) {
     const src = read(f);
     assert(src.includes(LIST.nl) && src.includes(LIST.en), `the five rules as in ${f}`);
   }
