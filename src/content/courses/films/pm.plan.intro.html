@@ -1172,11 +1172,11 @@ function routeTiles(show) {
 return TITLE.map((t, i) => {
 const a = show[i];
 if (a <= 0.01) return '';
-const x = 334 + (i % 2) * 148;
+const x = 334 + (i % 2) * 144;
 const y = 214 + Math.floor(i / 2) * 90;
 const lines = wrap(t, 12);
-let s = rect(x, y, 142, 84, 'pm-tile', 8) + txt(x + 8, y + 24, String(i + 1), 22, 'start', 'pm-on');
-lines.slice(0, 3).forEach((l, j) => { s += txt(x + 28, y + 24 + j * 24, l, 22, 'start', 'pm-txt'); });
+let s = rect(x, y, 140, 84, 'pm-tile', 8) + txt(x + 132, y + 74, String(i + 1), 22, 'end', 'pm-on');
+lines.slice(0, 3).forEach((l, j) => { s += txt(x + 6, y + 24 + j * 24, l, 22, 'start', 'pm-txt'); });
 return op(a, s);
 });
 }
@@ -1200,7 +1200,7 @@ const y0 = 100;
 let deliv = '';
 ROWS.forEach((r, i) => { deliv += op(span(p, i * 0.12, i * 0.12 + 0.3), rect(440, y0 + i * 44, 178, 36, 'pm-card', 6) + txt(450, y0 + i * 44 + 26, r, 22, 'start', 'pm-txt')); });
 let wbs = '';
-wbs += rect(334, y0 + 66, 82, 40, 'pm-crit', 6) + txt(375, y0 + 93, 'Lijn 3', 22, 'middle', 'pm-on');
+wbs += rect(334, y0 + 66, 82, 40, 'pm-crit', 6) + txt(375, y0 + 93, tr('Lijn 3', 'Line 3'), 22, 'middle', 'pm-on');
 let links = '';
 ROWS.forEach((r, i) => { links += `M416 ${y0 + 86}H428V${y0 + i * 44 + 18}H440`; });
 wbs += `<path class="pm-link" d="${links}"/>`;
@@ -1250,7 +1250,7 @@ function estParts(b, p) {
 let range = '';
 range += txt(334, 108, tr('Lijn verhuizen', 'Move the line'), 22, 'start', 'pm-txt');
 range += rect(350, 118, 250, 22, 'pm-range', 4);
-[[350, tr('best', 'best')], [480, tr('verwacht', 'likely')], [600, tr('slechtst', 'worst')]].forEach(([x, l], i) => {
+[[350, tr('best', 'best')], [455, tr('meestal', 'likely')], [600, tr('slechtst', 'worst')]].forEach(([x, l], i) => {
 range += `<circle class="pm-dia" cx="${x}" cy="129" r="7"/>` + txt(x, 166, l, 22, i === 0 ? 'start' : i === 2 ? 'end' : 'middle', 'pm-mute');
 });
 let effort = txt(334, 204, tr('Inspanning: uren werk', 'Effort: hours of work'), 22, 'start', 'pm-txt');
@@ -1318,7 +1318,7 @@ let title = '';
 let lab = tr('voorbeeld', 'example');
 let doc = false;
 if (si === 0) {
-title = 'Lijn 3';
+title = tr('Lijn 3', 'Line 3');
 o.goalB = goalCard(b === 0 ? span(p, 0.05, 0.4) : 1, b >= 0 && b === 0 && p > 0.5 || b > 0);
 if (b >= 2) { o.r = routeTiles([0, 1, 2, 3].map((i) => (b > 2 ? 1 : span(p, i * 0.18, i * 0.18 + 0.3)))); lab = tr('schema', 'diagram'); }
 } else if (si >= 1 && si <= 4) {
