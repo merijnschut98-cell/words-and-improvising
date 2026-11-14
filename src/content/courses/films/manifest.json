@@ -917,7 +917,7 @@
         "dur": 268.3,
         "bytes": 8389668,
         "scenes": [
-          0.0,
+          0,
           30.53,
           75.11,
           103.34,
@@ -932,7 +932,7 @@
         "dur": 290.8,
         "bytes": 8931472,
         "scenes": [
-          0.0,
+          0,
           37.94,
           83.93,
           117.23,
@@ -2883,30 +2883,30 @@
     "pm.plan.intro": {
       "poster": "src/content/courses/films/pm.plan.intro.jpg",
       "nl": {
-        "dur": 222.1,
-        "bytes": 8474784,
+        "dur": 238.9,
+        "bytes": 9295496,
         "scenes": [
           0,
-          24.82,
-          66.47,
-          102.53,
-          134.04,
-          162.59,
-          186.02
+          23.14,
+          69.17,
+          109.26,
+          145.26,
+          179.17,
+          202.61
         ],
         "vtt": "src/content/courses/films/pm.plan.intro.nl.vtt"
       },
       "en": {
-        "dur": 253.1,
-        "bytes": 9449383,
+        "dur": 272.8,
+        "bytes": 10390176,
         "scenes": [
           0,
-          30.38,
-          77.26,
-          118,
-          155.23,
-          186.12,
-          213
+          28.22,
+          81.12,
+          126.77,
+          169.57,
+          205.86,
+          232.7
         ],
         "vtt": "src/content/courses/films/pm.plan.intro.en.vtt"
       }
@@ -2914,30 +2914,30 @@
     "pm.field.lifecycle": {
       "poster": "src/content/courses/films/pm.field.lifecycle.jpg",
       "nl": {
-        "dur": 162.4,
-        "bytes": 7248643,
+        "dur": 184.6,
+        "bytes": 7923395,
         "scenes": [
           0,
-          15.83,
-          42.72,
-          61.73,
-          88.77,
-          113.76,
-          137.7
+          15.79,
+          46.78,
+          69.92,
+          102.12,
+          131.77,
+          159.9
         ],
         "vtt": "src/content/courses/films/pm.field.lifecycle.nl.vtt"
       },
       "en": {
-        "dur": 188.4,
-        "bytes": 8156222,
+        "dur": 214.9,
+        "bytes": 8972017,
         "scenes": [
           0,
-          18.81,
-          49.75,
-          73.32,
-          104.5,
-          133.11,
-          160.74
+          19.17,
+          54.54,
+          83.07,
+          120.32,
+          154.84,
+          187.34
         ],
         "vtt": "src/content/courses/films/pm.field.lifecycle.en.vtt"
       }
