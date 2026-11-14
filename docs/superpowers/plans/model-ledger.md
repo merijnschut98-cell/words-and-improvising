@@ -82,3 +82,5 @@ Outcome: accepted (merged as delivered), sent back N times, redone.
 | 14 Nov | Build module intro pm.stuck.intro (Task 11) | sonnet | 115 | 19 min | 357,493 | accepted with fixes by its review |
 | 14 Nov | Audit: calculations at Basis (Task 21 step 1) | sonnet | 73 | 11 min | 333,217 | accepted; Merijn then withdrew the task (simple examples stay); report kept |
 | 14 Nov | Review module intro pm.stuck.intro | sonnet | 63 | 8 min | 188,597 | accepted with fixes (two non-tools out, a reason for the team lead's resistance); merged v282 |
+| 14 Nov | Build module intro pm.lead.intro (Task 11) | sonnet | 100 | 16 min | 329,090 | accepted with fixes by its review |
+| 14 Nov | Review module intro pm.lead.intro | sonnet | 71 | 10 min | 205,834 | accepted with fixes (Cialdini principles out, stakeholder map in; Werkkennis tools moved to the grid); merged v284 |

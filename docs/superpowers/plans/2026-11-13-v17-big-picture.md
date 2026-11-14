@@ -364,6 +364,17 @@ Render PM-17's free transcript of the Dutch audio heard Agile as "Hatchel"/"HCL"
 - [ ] **Step 1 (`sonnet`, test first):** for each word try spellings through Piper's nl phonemizer and the real voice, transcribe with large-v3-turbo, and keep the spelling that is heard right; one commented SAY group at the end of the Dutch list; recompute every film's spoken text before and after and list the films whose audio changes.
 - [ ] **Step 2:** re-render those films in batches (one film and one language per command), upload, verify.
 
+### Merijn's answers, 14 Nov evening (MC)
+
+- Andon's "on track" light: add a true green status colour to the brand (only for on-track status: Andon, progress). Amber stays for "something waits".
+- Daily goal line: bring it back as its own line under the greeting (reverses the Task 8 review's merge of the XP left into the greeting).
+- Map highlight: when the next step is a review, light the module with the most questions due; when everything is done, light nothing and Andon says so.
+- "Die hieronder" on the Projects home: Andon names the step instead of pointing below.
+- Task 13 Engineering: build the overview map, all field films and all module intros straight through (no stop after the first field film).
+- Task 17: complete films with one short extra scene per lesson point they skip; longer where needed, no more.
+- Task 19: a level opener appears once per topic and level, and can be read again from the module screen.
+- Performance management subject name: chosen after the research.
+
 ## Not in this plan
 
 Explain it back, knowledge on the map, and the rest of the ideas list in the spec: each gets its own design when it is picked up. The speaking formats stay parked.
