@@ -268,6 +268,10 @@ Lines (pools seeded by day, like `guideLine`): home, nl "Vandaag: één stap. Di
 - [ ] **Step 4:** Playwright screenshots at 390 px, both themes: home and module screen with the guide on and off. Look at them: no gap when off.
 - [ ] **Step 5:** Checks, commit, push.
 
+### Task 8 result (14 Nov)
+
+The review changed one plan decision: on the course homes Andon's greeting carries the XP left to the daily goal, and the separate 32 px goal line under the Today card is gone, so no screen shows two guide lines. Merijn to confirm.
+
 ### Task 9: Finish the two pending deep-dive films
 
 - [ ] **Step 1:** pm.itproject.migration: relaunch the render (standard render brief; the stopped agent's worktree `agent-aabc4f8823c1702ab` had not rendered anything). Merge, upload, verify, push.

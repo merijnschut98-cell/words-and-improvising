@@ -47,8 +47,10 @@ Outcome: accepted (merged as delivered), sent back N times, redone.
 | 14 Nov | Review field film 2 | sonnet | n/a | n/a | n/a | accepted |
 | 14 Nov | Review: Projects map on home (finish) | opus | 98 | 45 min | 204,881 | accepted; fixed the field film fallback; found that the two rendered videos need a re-render (dark theme, low label contrast); merged v262 |
 | 14 Nov | Build field film 3 pm.field.portfolio | sonnet | 89 | 12 min | 290,551 | accepted with fixes by its review; merged v263 |
-| 14 Nov | Build: Andon visible (Task 8) | sonnet | n/a | n/a | n/a | delivered; in review (opus) |
+| 14 Nov | Build: Andon visible (Task 8) | sonnet | 44 | 6 min | 152,599 | accepted with fixes by its review; merged v266 |
 | 14 Nov | Review field film 3 | sonnet | 77 | 12 min | 201,498 | accepted |
 | 14 Nov | Build field film 4 pm.field.it | sonnet | 99 | 15 min | 349,413 | accepted with two cosmetic fixes; merged v264 |
 | 14 Nov | Review field film 4 | sonnet | n/a | n/a | n/a | accepted |
 | 14 Nov | Render PM-13: four overview films | sonnet | 66 | 89 min | 136,625 | accepted; every guard passed first time; merged v265 |
+| 14 Nov | Review: Andon visible | opus | 91 | 47 min | 193,328 | accepted; added the start-screen greeting, fixed two guide lines on one screen, fixed two e2e steps for several field films |
+| 14 Nov | DevOps pronunciation (Task 20) | sonnet | 38 | 6 min | 111,168 | accepted; no separate review (spoken text only, checked by the render's listen guard); merged v266 |
