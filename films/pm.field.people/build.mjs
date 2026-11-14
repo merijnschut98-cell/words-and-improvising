@@ -19,13 +19,13 @@
 //   s1 the opening: line 3 to hall B with two green lamps and a red one (people),
 //      the five people of the hall, the five stations on the road
 //   s2 Als je vastzit (pm.stuck): line 3 stands still and nobody knows why; the
-//      four kinds of stuck, as the Basis lesson names them (an unclear goal and a
-//      people problem); without it, harder pushing at the wrong problem
+//      four kinds of stuck as the Basis lesson names them; triangulation and a
+//      decision log (pm.stuck.facts); without it, harder pushing at the wrong problem
 //   s3 Mensen leiden (pm.lead): the buyer and the team lead do not report to you;
-//      expert power and SBI; without it, borrowed power that wears out
+//      SBI and active listening; without it, borrowed power that wears out
 //   s4 Onderhandelen en voet bij stuk houden (pm.negotiate): the installer cannot
-//      make the date before the shutdown; a BATNA and the interests behind the
-//      positions; without it, weak at the table
+//      make the date before the shutdown; a BATNA and a fair standard; without it,
+//      weak at the table
 //   s5 Projecten leiden buiten je vakgebied (pm.outside): one expert finds the
 //      power cabinet big enough, the other does not; a question set and a second
 //      opinion; without it, the loudest voice wins
@@ -33,8 +33,10 @@
 //      board; without it, a wall of numbers nobody reads
 //   s7 the shared Projects map (the kit's mapScene, as the app draws it) with the
 //      five stations lit, the zoom place by place at 1.5, and back out
-// The tools come from the modules' own lessons (checked below): pm.stuck.diagnose,
-// pm.lead.power and pm.lead.feedback, pm.negotiate.batna and .interests,
+// The tools come from the modules' own lessons (checked below), each a method or an
+// artefact the lesson teaches and a term of its glossary: pm.stuck.facts
+// (triangulation, decision log), pm.lead.feedback and .listen (SBI, active listening),
+// pm.negotiate.batna and .interests (BATNA, fair standard),
 // pm.outside.phasequestions and .disagree, pm.perform.tree and .board. Terms come
 // from the field's lessons (the kit's field mode, films/_kit/build-film.mjs); the
 // kit holds the film to its road (every module named in a caption of its own scene,
@@ -88,17 +90,21 @@ for (const id of ROAD) for (const lang of ['nl', 'en']) {
 }
 const lessons = await allLessons();
 const has = (id, list, lang = 'nl') => { const l = lessons[lang].get(id); const text = [l.title, ...l.teach, ...(l.terms || []).map((t) => `${t.term} ${t.def}`)].join('\n'); for (const s of list) assert(text.includes(s), `${id} (${lang}) no longer says "${s}"`); };
-// s2 stuck: four kinds of stuck (an unclear goal, a people problem), pushing harder at the wrong one
-has('pm.stuck.diagnose', ['vier soorten vastzitten', 'Onduidelijk doel: mensen zijn het oneens over wat succes is', 'Mensenprobleem: iemand wiens ja je nodig hebt', 'De klassieke fout is een doelprobleem behandelen als een mensenprobleem en harder duwen']);
-has('pm.stuck.diagnose', ['four kinds of stuck', 'Unclear goal: people disagree on what success is', 'People problem: someone whose yes you need', 'treating a goal problem as a people problem and pushing harder'], 'en');
-// s3 lead: little position power, so influence from expertise (expert power) and feedback (SBI); borrowed power wears out
-has('pm.lead.power', ['bijna geen positiemacht', 'Deskundigheidsmacht is zichtbare kunde', 'die slijt elke keer dat je hem gebruikt']);
-has('pm.lead.power', ['almost no position power', 'Expert power', 'borrowing power too often'], 'en');
+// s2 stuck: four kinds of stuck, pushing harder at the wrong one; the tools are of the Werkkennis lesson on facts
+has('pm.stuck.diagnose', ['vier soorten vastzitten', 'De klassieke fout is een doelprobleem behandelen als een mensenprobleem en harder duwen']);
+has('pm.stuck.diagnose', ['four kinds of stuck', 'treating a goal problem as a people problem and pushing harder'], 'en');
+has('pm.stuck.facts', ['Dat naast elkaar leggen heet triangulatie', 'Triangulatie Drie bronnen naast elkaar', 'Besluitenlijst Het overzicht van genomen en openstaande besluiten']);
+has('pm.stuck.facts', ['called triangulation', 'Triangulation', 'Decision log'], 'en');
+// s3 lead: little position power, so influence from your own work, with feedback (SBI) and listening; borrowed power wears out
+has('pm.lead.power', ['bijna geen positiemacht', 'die slijt elke keer dat je hem gebruikt']);
+has('pm.lead.power', ['almost no position power', 'borrowing power too often'], 'en');
 has('pm.lead.feedback', ['SBI is een opbouw voor feedback']);
 has('pm.lead.feedback', ['SBI is a feedback structure'], 'en');
-// s4 negotiate: interests behind positions, the BATNA decides how strong you stand
-has('pm.negotiate.interests', ['wie over standpunten onderhandelt, graaft zich in; wie naar belangen kijkt', 'Belang Waarom iemand het wil']);
-has('pm.negotiate.interests', ['Interest Why someone wants it'], 'en');
+has('pm.lead.listen', ['Actief luisteren', 'MORE PIES']);
+has('pm.lead.listen', ['Active listening', 'MORE PIES'], 'en');
+// s4 negotiate: positions dig you in, a fair standard instead of willpower, the BATNA decides how strong you stand
+has('pm.negotiate.interests', ['wie over standpunten onderhandelt, graaft zich in', 'Eerlijke maatstaf Een meetlat die beide partijen kunnen checken']);
+has('pm.negotiate.interests', ['Fair standard'], 'en');
 has('pm.negotiate.batna', ['Je BATNA, niet je wensen, bepaalt hoe sterk je staat']);
 has('pm.negotiate.batna', ['BATNA, not your wishes'], 'en');
 // s5 outside: the content is too deep to judge, so a question set; with two experts a second opinion; no deciding by volume
@@ -259,8 +265,8 @@ const spec = {
     {
       id: 's2', level: 1, dur: DURS[1], still: 0.9, title: { nl: 'Als je vastzit', en: 'When you’re stuck' },
       beats: [
-        { nl: 'Het eerste station is Als je vastzit: lijn 3 staat stil en niemand weet waarom.', en: 'The first station is When you’re stuck: line 3 stands still and nobody knows why.', focus: ['st-stuck', 'for', 'teamlead'] },
-        { nl: 'Vier soorten vastzitten, zoals een {t:Onduidelijk doel|onduidelijk doel} en een {t:Mensenprobleem|mensenprobleem}.', en: 'Four kinds of stuck, such as an {t:Unclear goal|unclear goal} and a {t:People problem|people problem}.', ...TOOLCUE('Onduidelijk doel', 'Mensenprobleem') },
+        { nl: 'Het eerste station is Als je vastzit: lijn 3 staat stil en niemand weet waarom. Welke van vier soorten is het?', en: 'The first station is When you’re stuck: line 3 stands still and nobody knows why. Which of four kinds is it?', focus: ['st-stuck', 'for', 'teamlead'] },
+        { nl: 'Je gebruikt {t:Triangulatie|triangulatie} en een {t:Besluitenlijst|besluitenlijst}.', en: 'You use {t:Triangulation|triangulation} and a {t:Decision log|decision log}.', ...TOOLCUE('Triangulatie', 'Besluitenlijst') },
         { nl: 'Zonder diagnose duw je harder op het verkeerde probleem.', en: 'Without a diagnosis you push harder at the wrong problem.', focus: 'without' },
       ],
     },
@@ -268,15 +274,15 @@ const spec = {
       id: 's3', level: 1, dur: DURS[2], still: 0.9, title: { nl: 'Mensen leiden', en: 'Leading people' },
       beats: [
         { nl: 'Het tweede station is Mensen leiden: invloed zonder macht, op wie niet aan jou rapporteert.', en: 'The second station is Leading people: influence without authority, over people who do not report to you.', focus: ['st-lead', 'for', 'buyer', 'teamlead'] },
-        { nl: 'Je gebruikt vaak {t:Deskundigheidsmacht|deskundigheidsmacht} en {t:SBI|SBI}.', en: 'You often use {t:Expert power|expert power} and {t:SBI|SBI}.', ...TOOLCUE('Deskundigheidsmacht', 'SBI') },
-        { nl: 'Zonder dit leen je steeds macht van de sponsor, en die slijt.', en: 'Without this you keep borrowing power from the sponsor, and it wears out.', focus: 'without' },
+        { nl: 'Je gebruikt vaak {t:SBI|SBI} en {t:Actief luisteren|actief luisteren}.', en: 'You often use {t:SBI|SBI} and {t:Active listening|active listening}.', ...TOOLCUE('SBI', 'Actief luisteren') },
+        { nl: 'Zonder eigen invloed leen je steeds macht van de sponsor, en die slijt.', en: 'Without your own influence you keep borrowing power from the sponsor, and it wears out.', focus: 'without' },
       ],
     },
     {
       id: 's4', level: 1, dur: DURS[3], still: 0.9, title: { nl: 'Onderhandelen en voet bij stuk houden', en: 'Negotiating and holding your ground' },
       beats: [
         { nl: 'Het derde station is Onderhandelen en voet bij stuk houden: de installateur haalt de datum niet.', en: 'The third station is Negotiating and holding your ground: the installer cannot make the date.', focus: ['st-negotiate', 'for', 'installer', 'calendar'] },
-        { nl: 'Je bereidt voor met een {t:BATNA|BATNA} en de {t:Belang|belangen} achter de standpunten.', en: 'You prepare with a {t:BATNA|BATNA} and the {t:Interest|interests} behind the positions.', ...TOOLCUE('BATNA', 'Belang') },
+        { nl: 'Je bereidt voor met een {t:BATNA|BATNA} en een {t:Eerlijke maatstaf|eerlijke maatstaf}.', en: 'You prepare with a {t:BATNA|BATNA} and a {t:Fair standard|fair standard}.', ...TOOLCUE('BATNA', 'Eerlijke maatstaf') },
         { nl: 'Zonder voorbereiding sta je zwak, en graaf je je in op standpunten.', en: 'Without preparation you stand weak, and you dig in on positions.', focus: 'without' },
       ],
     },
@@ -300,11 +306,11 @@ const spec = {
       id: 's7', level: 1, dur: DURS[6], still: 0.9, title: { nl: 'De kaart', en: 'The map' },
       beats: [
         { nl: 'De kaart van Projecten: de vijf stations van de mensenkant liggen op een rij.', en: 'The map of Projects: the five stations of the people side lie in a row.', focus: MAPS },
-        { nl: 'Eerst Als je vastzit: de diagnose.', en: 'First When you’re stuck: the diagnosis.', focus: MAPS[0] },
-        { nl: 'Dan Mensen leiden: invloed en feedback.', en: 'Then Leading people: influence and feedback.', focus: MAPS[1] },
-        { nl: 'Dan Onderhandelen en voet bij stuk houden: aan tafel.', en: 'Then Negotiating and holding your ground: at the table.', focus: MAPS[2] },
-        { nl: 'Dan Projecten leiden buiten je vakgebied: werken met experts.', en: 'Then Leading projects outside your field: working with experts.', focus: MAPS[3] },
-        { nl: 'Tot slot Sturen op prestaties: de cijfers die sturen.', en: 'Finally Performance management: the numbers that steer.', focus: MAPS[4] },
+        { nl: 'Eerst Als je vastzit: diagnose en herstart.', en: 'First When you’re stuck: diagnosis and restart.', focus: MAPS[0] },
+        { nl: 'Dan Mensen leiden: invloed, feedback en coachen.', en: 'Then Leading people: influence, feedback and coaching.', focus: MAPS[1] },
+        { nl: 'Dan Onderhandelen en voet bij stuk houden: van voorbereiden tot nee zeggen.', en: 'Then Negotiating and holding your ground: from preparing to saying no.', focus: MAPS[2] },
+        { nl: 'Dan Projecten leiden buiten je vakgebied: vragen stellen en werken met experts.', en: 'Then Leading projects outside your field: asking questions and working with experts.', focus: MAPS[3] },
+        { nl: 'Tot slot Sturen op prestaties: cijfers, doelen en het gesprek.', en: 'Finally Performance management: numbers, targets and the conversation.', focus: MAPS[4] },
         { nl: 'Elk station is een module met vier onderwerpen. Begin waar het nu knelt.', en: 'Each station is a module with four topics. Start where it hurts.', focus: MAPS },
       ],
     },
@@ -318,8 +324,8 @@ const spec = {
 // colons and comma lists, no symbols the voice would read aloud and nothing in parentheses (the kit's narration
 // guard, checkNarration, holds every field film to that; the render guard caps a pause inside a sentence at
 // 0.4 s). Words checked with espeak-ng phonemes through Piper's own bridge (nl_NL-alex): this film's SAY group
-// (the last of the Dutch list in films/_kit/timeline.mjs) says SBI as letters and the second opinion in the
-// English way, in these phrases only; BATNA, KPI-boom, mensenprobleem and the other names need nothing.
+// (the last of the Dutch list in films/_kit/timeline.mjs) says the second opinion in the English way, in this
+// phrase only; SBI has its rule above; BATNA, KPI-boom, triangulatie and the other names need nothing.
 const SAY = [
   [ // s1 the opening
     { nl: 'Lijn 3 verhuist naar hal B. De materialen kloppen en het plan ook, maar toch loopt het project vast.',
@@ -330,26 +336,26 @@ const SAY = [
       en: 'At each station you see what it is for, what you use, and what goes wrong without it.' },
   ],
   [ // s2 stuck
-    { nl: 'Het eerste station is voor als je vastzit. Lijn 3 staat stil, en niemand weet waarom.',
-      en: 'The first station is for when you are stuck. Line 3 stands still, and nobody knows why.' },
-    { nl: 'Je begint met vier soorten vastzitten, zoals een {t:Onduidelijk doel|onduidelijk doel} en een {t:Mensenprobleem|mensenprobleem}.',
-      en: 'You start from four kinds of stuck, such as an {t:Unclear goal|unclear goal} and a {t:People problem|people problem}.' },
+    { nl: 'Het eerste station is voor als je vastzit. Lijn 3 staat stil, en niemand weet waarom. Welke van de vier soorten vastzitten is het?',
+      en: 'The first station is for when you are stuck. Line 3 stands still, and nobody knows why. Which of the four kinds of stuck is it?' },
+    { nl: 'Je zoekt de feiten met {t:Triangulatie|triangulatie} en een {t:Besluitenlijst|besluitenlijst}.',
+      en: 'You find the facts with {t:Triangulation|triangulation} and a {t:Decision log|decision log}.' },
     { nl: 'Zonder diagnose duw je harder op het verkeerde probleem.',
       en: 'Without a diagnosis you push harder at the wrong problem.' },
   ],
   [ // s3 lead
     { nl: 'Het tweede station is Mensen leiden. De inkoper en de teamleider rapporteren niet aan jou, maar je hebt hun hulp nodig.',
       en: 'The second station is Leading people. The buyer and the team lead do not report to you, but you need their help.' },
-    { nl: 'Daarbij gebruik je vaak {t:Deskundigheidsmacht|deskundigheidsmacht} en {t:SBI|SBI}.',
-      en: 'You often use {t:Expert power|expert power} and {t:SBI|SBI}.' },
-    { nl: 'Zonder dit leen je steeds macht van de sponsor, en die slijt.',
-      en: 'Without this you keep borrowing power from the sponsor, and it wears out.' },
+    { nl: 'Daarbij gebruik je vaak {t:SBI|SBI} en {t:Actief luisteren|actief luisteren}.',
+      en: 'You often use {t:SBI|SBI} and {t:Active listening|active listening}.' },
+    { nl: 'Zonder eigen invloed leen je steeds macht van de sponsor, en die slijt.',
+      en: 'Without your own influence you keep borrowing power from the sponsor, and it wears out.' },
   ],
   [ // s4 negotiate
     { nl: 'Het derde station is Onderhandelen en voet bij stuk houden. De installateur haalt de datum voor de stop niet, en jij hebt de stroom dan nodig.',
       en: 'The third station is Negotiating and holding your ground. The installer cannot make the date before the shutdown, and you need the power by then.' },
-    { nl: 'Je bereidt voor met een {t:BATNA|BATNA} en de {t:Belang|belangen} achter de standpunten.',
-      en: 'You prepare with a {t:BATNA|BATNA} and the {t:Interest|interests} behind the positions.' },
+    { nl: 'Je bereidt voor met een {t:BATNA|BATNA} en een {t:Eerlijke maatstaf|eerlijke maatstaf}.',
+      en: 'You prepare with a {t:BATNA|BATNA} and a {t:Fair standard|fair standard}.' },
     { nl: 'Zonder voorbereiding sta je zwak, en graaf je je in op standpunten.',
       en: 'Without preparation you stand weak, and you dig in on positions.' },
   ],
@@ -362,8 +368,8 @@ const SAY = [
       en: 'Without this the loudest voice wins.' },
   ],
   [ // s6 perform
-    { nl: 'Het laatste station is Sturen op prestaties. Lijn 3 draait, en je stuurt op een paar cijfers in plaats van op gevoel.',
-      en: 'The last station is Performance management. Line 3 is running, and you steer on a few numbers instead of on gut feeling.' },
+    { nl: 'Het laatste station is Sturen op prestaties. Lijn 3 draait, en je stuurt op een paar cijfers.',
+      en: 'The last station is Performance management. Line 3 is running, and you steer on a few numbers.' },
     { nl: 'Je gebruikt een {t:KPI-boom|KPI-boom} en een {t:Prestatiebord|prestatiebord}.',
       en: 'You use a {t:KPI tree|KPI tree} and a {t:Performance board|performance board}.' },
     { nl: 'Zonder dit krijg je een muur vol cijfers die niemand leest.',
@@ -372,16 +378,16 @@ const SAY = [
   [ // s7 the map
     { nl: 'Dit is de kaart van Projecten. De vijf stations van de mensenkant liggen op een rij.',
       en: 'This is the map of Projects. The five stations of the people side lie in a row.' },
-    { nl: 'Eerst Als je vastzit, voor de diagnose.',
-      en: 'First When you are stuck, for the diagnosis.' },
-    { nl: 'Dan Mensen leiden, voor invloed en feedback.',
-      en: 'Then Leading people, for influence and feedback.' },
-    { nl: 'Dan Onderhandelen en voet bij stuk houden, voor aan tafel.',
-      en: 'Then Negotiating and holding your ground, for the table.' },
-    { nl: 'Dan Projecten leiden buiten je vakgebied, voor het werken met experts.',
-      en: 'Then Leading projects outside your field, for working with experts.' },
-    { nl: 'Tot slot Sturen op prestaties, voor de cijfers die sturen.',
-      en: 'Finally Performance management, for the numbers that steer.' },
+    { nl: 'Eerst Als je vastzit, voor diagnose en herstart.',
+      en: 'First When you are stuck, for diagnosis and restart.' },
+    { nl: 'Dan Mensen leiden, voor invloed, feedback en coachen.',
+      en: 'Then Leading people, for influence, feedback and coaching.' },
+    { nl: 'Dan Onderhandelen en voet bij stuk houden, van voorbereiden tot nee zeggen.',
+      en: 'Then Negotiating and holding your ground, from preparing to saying no.' },
+    { nl: 'Dan Projecten leiden buiten je vakgebied, voor vragen stellen en werken met experts.',
+      en: 'Then Leading projects outside your field, for asking questions and working with experts.' },
+    { nl: 'Tot slot Sturen op prestaties, voor cijfers, doelen en het gesprek.',
+      en: 'Finally Performance management, for numbers, targets and the conversation.' },
     { nl: 'Elk station is een module met vier onderwerpen. Begin waar het nu knelt.',
       en: 'Each station is a module with four topics. Start where it hurts.' },
   ],
@@ -459,8 +465,8 @@ const css = PM_CSS + HALL_CSS + `
 ` + mapStyles();
 
 const label = {
-  nl: 'Hal B van de fabriek, waar lijn 3 naartoe moet, zoals in de intro van Plannen. Op de vloer de nieuwe plek van lijn 3 met een gestippelde omtrek; ernaast staat lijn 4, die blijft. Links de stroomkast met de kabel van buiten, aan de achterwand de plek van de schakelkast, en aan de zijwand een kalender waarvan de laatste drie weken de zomerstop zijn. Eerst komen alle vijf de mensen van het verhaal in beeld: de sponsor, de installateur van buiten met een helm, de inkoper, twee operators en de teamleider van de lijn; daarna per station de mensen die erbij horen. Later staat lijn 3 op zijn plek en hangt de schakelkast aan de wand. Rechts een paneel, gemarkeerd als voorbeeld of schema. Eerst lijn 3 met drie lampen, materiaal en plan groen en mensen rood, de vijf mensen en de weg met vijf stations. Dan per station een schema, twee namen van hulpmiddelen en, gestippeld, wat er misgaat zonder: bij Als je vastzit een weg met een slagboom voor het doel, met Onduidelijk doel en Mensenprobleem; bij Mensen leiden jij en drie mensen die niet aan jou rapporteren, met Deskundigheidsmacht en SBI; bij Onderhandelen en voet bij stuk houden de installateur die later komt en jij die de stroom eerst nodig hebt, met BATNA en Belangen; bij Projecten leiden buiten je vakgebied twee experts met twee meningen en jij die de criteria kiest, met Vragenset en Second opinion; bij Sturen op prestaties een kleine KPI-boom met uren, tempo en goed, met KPI-boom en Prestatiebord. Aan het eind de kaart van Projecten met de vijf stations verlicht, eerst helemaal en dan plek voor plek van dichtbij.',
-  en: 'Hall B of the plant, where line 3 has to go, as in the intro of Plan. On the floor the new place of line 3 with a dashed outline; next to it stands line 4, which stays. At the left the power cabinet with the cable from outside, on the back wall the place of the switchboard, and on the side wall a calendar whose last three weeks are the summer shutdown. First all five people of the story come into view: the sponsor, the outside installer in a hard hat, the buyer, two operators and the team lead of the line; then, per station, the people who belong to it. Later line 3 stands in place and the switchboard hangs on the wall. At the right a panel, marked as an example or a diagram. First line 3 with three lamps, materials and plan green and people red, the five people and the road with five stations. Then per station a schema, two names of tools and, dashed, what goes wrong without it: at When you are stuck a road with a barrier before the goal, with Unclear goal and People problem; at Leading people you and three people who do not report to you, with Expert power and SBI; at Negotiating and holding your ground the installer who comes later and you who need the power first, with BATNA and Interests; at Leading projects outside your field two experts with two opinions and you who set the criteria, with Question set and Second opinion; at Performance management a small KPI tree with hours, speed and good, with KPI tree and Performance board. At the end the map of Projects with the five stations lit, first whole and then place by place up close.',
+  nl: 'Hal B van de fabriek, waar lijn 3 naartoe moet, zoals in de intro van Plannen. Op de vloer de nieuwe plek van lijn 3 met een gestippelde omtrek; ernaast staat lijn 4, die blijft. Links de stroomkast met de kabel van buiten, aan de achterwand de plek van de schakelkast, en aan de zijwand een kalender waarvan de laatste drie weken de zomerstop zijn. Eerst komen alle vijf de mensen van het verhaal in beeld: de sponsor, de installateur van buiten met een helm, de inkoper, twee operators en de teamleider van de lijn; daarna per station de mensen die erbij horen. Later staat lijn 3 op zijn plek en hangt de schakelkast aan de wand. Rechts een paneel, gemarkeerd als voorbeeld of schema. Eerst lijn 3 met drie lampen, materiaal en plan groen en mensen rood, de vijf mensen en de weg met vijf stations. Dan per station een schema, twee namen van hulpmiddelen en, gestippeld, wat er misgaat zonder: bij Als je vastzit een weg met een slagboom voor het doel, met Triangulatie en Besluitenlijst; bij Mensen leiden jij en drie mensen die niet aan jou rapporteren, met SBI en Actief luisteren; bij Onderhandelen en voet bij stuk houden de installateur die later komt en jij die de stroom eerst nodig hebt, met BATNA en Eerlijke maatstaf; bij Projecten leiden buiten je vakgebied twee experts met twee meningen en jij die de criteria kiest, met Vragenset en Second opinion; bij Sturen op prestaties een kleine KPI-boom met uren, tempo en goed, met KPI-boom en Prestatiebord. Aan het eind de kaart van Projecten met de vijf stations verlicht, eerst helemaal en dan plek voor plek van dichtbij.',
+  en: 'Hall B of the plant, where line 3 has to go, as in the intro of Plan. On the floor the new place of line 3 with a dashed outline; next to it stands line 4, which stays. At the left the power cabinet with the cable from outside, on the back wall the place of the switchboard, and on the side wall a calendar whose last three weeks are the summer shutdown. First all five people of the story come into view: the sponsor, the outside installer in a hard hat, the buyer, two operators and the team lead of the line; then, per station, the people who belong to it. Later line 3 stands in place and the switchboard hangs on the wall. At the right a panel, marked as an example or a diagram. First line 3 with three lamps, materials and plan green and people red, the five people and the road with five stations. Then per station a schema, two names of tools and, dashed, what goes wrong without it: at When you are stuck a road with a barrier before the goal, with Triangulation and Decision log; at Leading people you and three people who do not report to you, with SBI and Active listening; at Negotiating and holding your ground the installer who comes later and you who need the power first, with BATNA and Fair standard; at Leading projects outside your field two experts with two opinions and you who set the criteria, with Question set and Second opinion; at Performance management a small KPI tree with hours, speed and good, with KPI tree and Performance board. At the end the map of Projects with the five stations lit, first whole and then place by place up close.',
 };
 
 const { data } = await defineFilm(spec, { svg, script: stageScript, css, kitCss: k.ISO_CSS, label });

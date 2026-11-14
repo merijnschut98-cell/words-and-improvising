@@ -156,9 +156,9 @@ const STAGE = (() => {
       + [[334, tr('Uren', 'Hours', 90)], [431, tr('Tempo', 'Speed', 90)], [528, tr('Goed', 'Good', 90)]].map(([x, l]) => rect(x, 164, 90, 36, 'pm-card', 6) + txt(x + 45, 190, l, 22, 'middle', 'pm-txt')).join(''),
   ];
   const TOOLS = [
-    [tr('Onduidelijk doel', 'Unclear goal', 256), tr('Mensenprobleem', 'People problem', 256)],
-    [tr('Deskundigheidsmacht', 'Expert power', 256), 'SBI'],
-    ['BATNA', tr('Belangen', 'Interests', 256)],
+    [tr('Triangulatie', 'Triangulation', 256), tr('Besluitenlijst', 'Decision log', 256)],
+    ['SBI', tr('Actief luisteren', 'Active listening', 256)],
+    ['BATNA', tr('Eerlijke maatstaf', 'Fair standard', 256)],
     [tr('Vragenset', 'Question set', 256), tr('Second opinion', 'Second opinion', 256)],
     [tr('KPI-boom', 'KPI tree', 256), tr('Prestatiebord', 'Performance board', 256)],
   ];
