@@ -209,3 +209,22 @@ Seeds for the research, not decisions: OGSM, OKR, the balanced scorecard, hoshin
 ### Strategic module (later)
 
 Merijn: a strategic module, part of the general project and process management area, about what a senior looks at strategically. Low priority: it goes in the plan for later, with no date and no work before Tasks 14 and 15 are done. Scope, topics and name are decided when it is picked up, from a research pass like the others (seeds, unvetted: strategy formulation and what makes strategy good or bad, portfolio and capital allocation, operating model, make-buy-partner, risk appetite, scenario thinking, leading change at scale, talking to a board). It gets its own map place and intro film then.
+
+## Addendum 14 Nov (3): the four levels in every new module and topic
+
+Merijn: do not forget the different levels in all the new modules and topics.
+
+Every new topic has exactly four lessons as levels 1 to 4 (Basis, Werkkennis, Gevorderd, Expert; the validator already requires it), and a level is not the same text with bigger words: each level teaches something the lower one does not. For the Projects modules the levels mean (adapted from the v10 content rules):
+
+- **Basis** assumes nothing: what the thing is, what it looks like, what it is for, the words people use. A worked example.
+- **Werkkennis**: what you do with it and why, with a simple example and simple numbers.
+- **Gevorderd**: what the project or process manager decides, the trade-offs and the exceptions; a faded example.
+- **Expert**: what a senior weighs (cost, risk, people, governance, the organisation) and the questions to ask to sound credible; a faded example.
+
+Rules for the new work:
+
+- The research proposal for Tasks 14, 15 and 16 lists, **per topic, what each of the four levels teaches** (one line each), and Merijn sees that list before any content is written.
+- A topic where the four levels cannot be told apart is a sign that it is too thin or two topics are one; the proposal says so and merges or drops it.
+- Tools, formats and meetings are taught by level too: Basis names the options and when each fits, Werkkennis runs one, Gevorderd chooses between them for a given project, Expert adapts them to the organisation and to what goes wrong.
+- The module intro film shows the four levels as columns (the pilot already does) and says in a sentence what each level adds.
+- The content review checks level separation explicitly: no level repeats the one below with harder words, and a lesson at level N does not assume anything that only level N+1 teaches.

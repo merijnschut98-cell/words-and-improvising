@@ -31,5 +31,6 @@ Every `Agent` call carries an explicit `model` (`haiku`, `sonnet`, `opus` or `fa
 - Before every push: `npm test`, `node src/content/courses/validate.js`, `bash scripts/shellcheck.sh` (it checks HEAD, so commit first).
 - No model names in commit message bodies.
 - Never ask for or show secrets.
+- Content: every topic has four levels (Basis, Werkkennis, Gevorderd, Expert) and each level teaches something the lower one does not. A new module's proposal lists what each level teaches per topic before anything is written. Definitions: design addendum 3 in `docs/superpowers/specs/2026-11-13-v17-big-picture-design.md`.
 - Film length (Merijn, 14 Nov): a video is as long as its content needs. A minute, or even half a minute, is enough when that says it; do not pad a film to reach a length. Every film brief gives the length as "what the content needs", not a target to fill.
 - Film rules and the integrator notes: `docs/superpowers/plans/2026-11-11-v16-notes.md`. Current plan: `docs/superpowers/plans/2026-11-13-v17-big-picture.md`.
