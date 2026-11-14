@@ -182,6 +182,10 @@ Merijn, 14 Nov: a video of a minute or even half a minute is enough when the con
 - [ ] **Step 1:** Tell Merijn both films are live as video: the Planning intro (open Projects, Planning) and field film 1. Ask, as multiple choice: pattern approved; approved with changes (which); not this. **No further film build starts before his answer.** Tasks 6 to 9 may run meanwhile.
 - [ ] **Step 2:** Record his answer and any changes as rulings in `docs/superpowers/plans/2026-11-11-v16-notes.md`, and update the reusable brief.
 
+### Task 5 result (14 Nov)
+
+Merijn approved the pattern ("De films zien er goed uit. Verder goed!") with one change: intro and field films name the terms and tools of each topic or station briefly, without explaining them (see "Checkpoint" in the v16 notes). The two existing films are updated and re-rendered; Tasks 10 and 11 build with this rule.
+
 ### Task 6: The module screen
 
 **Files:**
