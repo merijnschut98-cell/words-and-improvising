@@ -86,6 +86,13 @@ function checkLesson(l, meta, lang, errs, tier = meta.level) {
 
 const TOPIC_ID = /^[a-z0-9]+$/;
 
+// v17: a module's intro film, played at the top of the module before its
+// topics. Named after the module, and always from the start.
+export function checkIntro(meta) {
+  if (!meta || !('intro' in meta)) return [];
+  return meta.intro === `${meta.id}.intro` ? [] : [`${meta && meta.id}: intro must be '${meta && meta.id}.intro'`];
+}
+
 // The topic table of a topic module: 2–8 topics, each a slug id unique in the
 // module, a title in both languages and exactly 4 distinct lessons as levels
 // 1–4; every lesson in exactly one topic; lessons in topic order.
@@ -132,6 +139,7 @@ export function validateModule(en, nl, meta) {
   const errs = [];
   const topical = Array.isArray(meta.topics);
   if (topical) errs.push(...checkTopics(meta));
+  errs.push(...checkIntro(meta));
   const tiers = tiersOf(meta);
   const byLang = { en, nl };
   for (const lang of ['en', 'nl']) {

@@ -676,7 +676,22 @@ const SAY = {
     [/\b([Ss])ervice level expectation\b/g, '$1urrvis levvul ekspek-teesjun'], [/\b([Cc])ycle times\b/g, (m, c) => `${c === 'C' ? 'S' : 's'}aikl taims`],
     [/\bbehoud van flow\b/g, 'behoud van floo'], [/\b([Bb])ezettingsgraad\b/g, '$1ezettings-graad'], [/\b([Ww])achtrijmodel\b/g, '$1acht-rij-model'],
     [/\bDonald Reinertsen\b/g, 'Donnuld Rainurtsen'], [/\b([Pp])roductontwikkeling\b/g, '$1roduct-ontwikkeling'], [/\bvastloopt in wachtrijen\b/g, 'vastloopt in wacht-rijen'],
-    [/\bvoor machinesoftware bij\b/g, 'voor machine-software bij'], [/(?<!\p{L})(per|zeventiende|Één) item\b|\been item(?= duurt| de grens)/gu, (m, w) => `${w || 'een'} aitem`], [/\bmeer backlog\b/g, 'meer bek-lok']],
+    [/\bvoor machinesoftware bij\b/g, 'voor machine-software bij'], [/(?<!\p{L})(per|zeventiende|Één) item\b|\been item(?= duurt| de grens)/gu, (m, w) => `${w || 'een'} aitem`], [/\bmeer backlog\b/g, 'meer bek-lok'],
+    // rollout and data migration (pm.itproject.migration): the words of an ERP or MES rollout as Dutch projects say
+    // them, checked with espeak-ng phonemes through Piper's nl bridge: it reads SAP Activate's phase names as
+    // "pree-paa-re, eks-ploo-re, ree-aa-lie-ze" (pri-peer, ek-sploor, rie-je-laaiz; run with the Dutch u, said
+    // ran; deploy has already become die-ploj through the pipeline rule above, so the phrase is matched after it),
+    // Activate as "ak-tie-VAA-te" (Ektiveet), legacysysteem as "lee-gaa-sie" (legge-sie-systeem), big bang with a
+    // Dutch a (big beng), Hershey as "her-SJEE-ie" (Hur-sjie), Halloween as "ha-lo-ween" (Hellowien), and, in this
+    // film's phrases only, business as "bu-ZIE-nes" (biznis, as the business case rule above), Engineering as
+    // "ENG-ie-nie-ring" (Entsjinieering, as the post-mortem rule above), records as "re-KORTS" (rekkords),
+    // getimed as "ge-TIE-med" (getaimd), timing as "TIE-ming" (taiming) and live as "lie-ve" (laiv); proefrun as "proef-run" (proef-ran).
+    // Stamdata, pilot, piekseizoen, go-live and MES go through the rules above; no other film's spoken text changes
+    [/\bprepare, explore, realize, die-ploj en run\b/g, 'pri-peer, ek-sploor, rie-je-laaiz, die-ploj en ran'], [/\bSAP Activate\b/g, 'SAP Ektiveet'],
+    [/\b([Ll])egacysysteem\b/g, '$1egge-sie-systeem'], [/\b([Bb])ig bang\b/g, '$1ig beng'], [/\bHershey\b/g, 'Hur-sjie'], [/\bHalloween\b/g, 'Hellowien'],
+    [/\b(werk voor|resultaat tekent) de business\b/g, '$1 de biznis'], [/\bEngineering lost\b/g, 'Entsjinieering lost'], [/\b([Pp])roefrun\b/g, '$1roef-ran'],
+    [/\b([Hh])oeveel records\b/g, '$1oeveel rekkords'], [/\bwordt getimed\b/g, 'wordt getaimd'], [/\bDe timing telt\b/g, 'De taiming telt'],
+    [/\b(nooit|data) live\b/g, '$1 laiv']],
   en: [[/\brpm\b/g, 'revolutions per minute'], [/\bmm\/min\b/g, 'millimetres per minute'], [/\bm\/min\b/g, 'metres per minute'], [/µm\b/g, 'micrometres'],
     [/€\s?(\d[\d,]*(?:\.\d+)?)/g, '$1 euros'], [/(\d)\.0(?![\d])/g, '$1'], [/(\d)\s?mm\b/g, '$1 millimetres'], [/(\d)\s?min\b/g, '$1 minutes'], [/(\d)\s?%/g, '$1 percent'],
     [/Ø\s*/g, 'diameter '], [/(\d)\+(\d)/g, '$1 plus $2'], [/\s×\s/g, ' times '], [/\s\/\s/g, ' divided by '], [/\s=\s/g, ' is '], [/°/g, ' degrees'], [/\bRa\b/g, 'R a'], [/’/g, "'"],

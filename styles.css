@@ -716,6 +716,9 @@ details.finder summary::-webkit-details-marker { display: none; }
 .module-meta { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; }
 .module-meta .muted.small { font-family: var(--font-mono); font-size: 0.75rem; }
 .module-blurb { margin: 6px 0; }
+/* v17: the module's intro film, above the topics */
+.module > .module-intro { margin: 10px 0 14px 19px; }
+.module-intro-title { margin: 0 0 6px; }
 .lesson-list { display: flex; flex-direction: column; gap: 4px; margin: 4px 0 8px; }
 .lesson-row { display: flex; gap: 10px; align-items: center; min-height: 44px; padding: 6px 10px; border: 1px solid var(--border-subtle); border-radius: var(--radius-sm); background: var(--card); color: var(--ink); font: inherit; text-align: left; cursor: pointer; }
 .lesson-row .ico { color: var(--muted); }

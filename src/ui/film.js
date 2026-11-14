@@ -21,6 +21,9 @@ export function parseFilmRef(ref) {
   return m ? { id: m[1], scene: m[2] ? Number(m[2]) : null } : null;
 }
 
+// v17: a module's intro film ({ id, scene: null }), or null.
+export const introFilm = (meta) => (meta && typeof meta.intro === 'string' ? parseFilmRef(meta.intro) : null);
+
 export const filmSrc = (id, theme, lang, { level = null, scene = null, muted = false } = {}) =>
   `src/content/courses/films/${id}.html?theme=${theme}&lang=${lang === 'en' ? 'en' : 'nl'}`
   + ([1, 2, 3, 4].includes(level) ? `&level=${level}` : '')
