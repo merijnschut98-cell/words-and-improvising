@@ -19,6 +19,11 @@ const LABEL = 74; // first baseline of the title
 const LINE = 17; // line height of the title
 const LABEL_FONT_W = 8; // average glyph width at the label size, for wrapping
 const MAX_LINES = 4;
+// The phone layout (map.phone, drawn when the card is narrower than PHONE_BELOW
+// px): fewer places per row and a taller picture, so the labels can be bigger.
+export const PHONE_BELOW = 460;
+const PHONE_GLYPH = 0.56; // average glyph width in em, generous so a line never leaves its place
+const PHONE_LINES = 3;
 
 // A box w × d from z0 to z1, its centre at (ox, oy). Tone set k: t (plain),
 // p (plinth) or m (a mark in the accent colour). Top, left (y+), right (x+).
@@ -79,19 +84,24 @@ const slug = (id) => String(id).split('.').pop().replace(/[^a-z0-9]/g, '');
 
 // Greedy word wrap to about `max` characters, at most MAX_LINES lines; a title
 // that still doesn't fit ends in an ellipsis (the full title stays in aria-label).
-function wrap(text, max) {
+function wrap(text, max, maxLines = MAX_LINES) {
   const lines = [];
   let line = '';
   for (const word of String(text).split(/\s+/).filter(Boolean)) {
     if (line && (line + ' ' + word).length > max) { lines.push(line); line = word; } else line = line ? `${line} ${word}` : word;
   }
   if (line) lines.push(line);
-  if (lines.length > MAX_LINES) {
-    const keep = lines.slice(0, MAX_LINES);
-    keep[MAX_LINES - 1] = `${keep[MAX_LINES - 1].replace(/[\s,;:.]+$/, '')}…`;
+  if (lines.length > maxLines) {
+    const keep = lines.slice(0, maxLines);
+    keep[maxLines - 1] = `${keep[maxLines - 1].replace(/[\s,;:.]+$/, '')}…`;
     return keep;
   }
   return lines;
+}
+
+// A title wrapped for a place of width w in the phone layout: three lines at most.
+export function wrapLabel(title, w, phone) {
+  return wrap(title, Math.max(4, Math.floor(w / (phone.font * PHONE_GLYPH))), PHONE_LINES);
 }
 
 const titleOf = (id, lang) => {
@@ -101,26 +111,34 @@ const titleOf = (id, lang) => {
 
 // The whole map as one SVG string. `next` lights one place; `interactive` adds
 // button semantics for the app (the film kit leaves it off). Pure.
-export function mapSvg(map, { lang = 'en', next = null, theme = null, interactive = false } = {}) {
+export function mapSvg(full, { lang = 'en', next = null, theme = null, interactive = false, layout = null } = {}) {
+  // layout 'phone' draws map.phone (when the map has one); the default is untouched.
+  const phone = layout === 'phone' && full.phone ? full.phone : null;
+  const map = phone ? { subject: full.subject, ...phone } : full;
   const { w, h } = map.view;
   const byId = new Map(map.places.map((p) => [p.module, p]));
-  const out = [`<svg class="subject-map" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${w} ${h}" focusable="false"${theme ? ` data-theme="${esc(theme)}"` : ''}>`];
+  // the phone layout sets its own object size, floor, zone label spot and road arrow; the default keeps the constants
+  const scale = phone && phone.scale ? phone.scale : SCALE;
+  const floor = phone && phone.floor ? phone.floor : FLOOR;
+  const [zdx, zdy] = phone && phone.zoneLabel ? phone.zoneLabel : [16, 18];
+  const arrowDx = phone && phone.arrow ? phone.arrow : 40;
+  const out = [`<svg class="subject-map${phone ? ' subject-map-phone' : ''}" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${w} ${h}" focusable="false"${theme ? ` data-theme="${esc(theme)}"` : ''}>`];
 
   for (const z of map.zones) {
     const box0 = pathBox(z.path) || [0, 0, 0, 0];
     out.push(`<g class="map-zone z-${slug(z.field)}"><path class="map-zone-area" d="${z.path}"/>`
-      + `<text class="map-zone-label" x="${box0[0] + 16}" y="${box0[1] + 18}">${esc(z.label[lang] || z.label.en)}</text></g>`);
+      + `<text class="map-zone-label" x="${box0[0] + zdx}" y="${box0[1] + zdy}">${esc(z.label[lang] || z.label.en)}</text></g>`);
   }
 
   for (const [a, b] of map.routes || []) {
     const p = byId.get(a);
     const q = byId.get(b);
     if (!p || !q) continue;
-    const d = `M${f(p.x + p.w / 2)} ${p.y + FLOOR} L${f(q.x + q.w / 2)} ${q.y + FLOOR}`;
+    const d = `M${f(p.x + p.w / 2)} ${p.y + floor} L${f(q.x + q.w / 2)} ${q.y + floor}`;
     out.push(`<path class="map-road" d="${d}"/><path class="map-road-line" d="${d}"/>`);
     if (!map.routes.some(([from]) => from === b)) { // the end of the road: an arrow
-      const ex = f(q.x + q.w / 2 + 40);
-      const ey = q.y + FLOOR;
+      const ex = f(q.x + q.w / 2 + arrowDx);
+      const ey = q.y + floor;
       out.push(`<path class="map-road-arrow" d="M${ex} ${ey - 10} L${f(ex + 16)} ${ey} L${ex} ${ey + 10} Z"/>`);
     }
   }
@@ -134,13 +152,15 @@ export function mapSvg(map, { lang = 'en', next = null, theme = null, interactiv
       return bx && p.x >= bx[0] && p.y >= bx[1] && p.x + p.w <= bx[2] && p.y + p.h <= bx[3];
     }) || {}).field;
     const cx = f(p.x + p.w / 2);
-    const lines = wrap(title, Math.floor((p.w + 4) / LABEL_FONT_W));
+    const lines = phone ? wrapLabel(title, p.w, phone) : wrap(title, Math.floor((p.w + 4) / LABEL_FONT_W));
+    const top = phone ? phone.labelTop : LABEL;
+    const step = phone ? phone.lineHeight : LINE;
     const a11y = interactive ? ` role="button" tabindex="0" aria-label="${esc(title)}"` : '';
     out.push(`<g class="map-place${p.module === next ? ' is-next' : ''}" data-module="${esc(p.module)}"${a11y}>`
       + `<rect class="map-hit" x="${p.x}" y="${p.y}" width="${p.w}" height="${p.h}" rx="10"/>`
-      + `<g class="map-obj${field ? ` z-${slug(field)}` : ''}" transform="translate(${cx} ${p.y + FLOOR}) scale(${SCALE})">`
+      + `<g class="map-obj${field ? ` z-${slug(field)}` : ''}" transform="translate(${cx} ${p.y + floor}) scale(${scale})">`
       + `<g class="map-plinth">${box(34, 26, 0, 3, 0, 0, 'p')}</g>${(OBJECTS[p.draw] || OBJECTS.desk)().join('')}</g>`
-      + `<text class="map-label" text-anchor="middle">${lines.map((l, i) => `<tspan x="${cx}" y="${p.y + LABEL + i * LINE}">${esc(l)}</tspan>`).join('')}</text>`
+      + `<text class="map-label" text-anchor="middle">${lines.map((l, i) => `<tspan x="${cx}" y="${p.y + top + i * step}">${esc(l)}</tspan>`).join('')}</text>`
       + '</g>');
   }
   out.push('</svg>');
@@ -153,7 +173,39 @@ export function subjectMap(app, map, { onPlace, lang, next = null } = {}) {
   const wrap = document.createElement('div');
   wrap.className = 'subject-map-wrap';
   const language = lang || (app && app.lang) || (app && app.settings && app.settings.lang) || 'en';
-  wrap.innerHTML = mapSvg(map, { lang: language, next, interactive: true });
+  // Draw (or redraw) the SVG; a redraw keeps the focused place focused.
+  const draw = (layout) => {
+    const active = document.activeElement;
+    const kept = active && wrap.contains(active) && active.closest ? active.closest('.map-place') : null;
+    const id = kept && kept.getAttribute('data-module');
+    const t = document.createElement('div');
+    t.innerHTML = mapSvg(map, { lang: language, next, interactive: true, layout });
+    const old = wrap.querySelector('svg.subject-map');
+    if (old) old.replaceWith(t.firstElementChild); else wrap.append(t.firstElementChild);
+    if (id) { const again = wrap.querySelector(`.map-place[data-module="${id}"]`); if (again) again.focus(); }
+  };
+  let layout = null;
+  draw(layout);
+  // A card narrower than PHONE_BELOW gets the phone layout. The observer's first
+  // report comes after layout and before the first paint, so the wide drawing is
+  // never seen on a phone; later reports (rotation, resize) swap it in place.
+  // It watches a ruler of no height rather than the wrapper: a swap changes the
+  // wrapper's height, which would report again in the same frame (a "ResizeObserver
+  // loop" error). Once the map leaves the page (a report of size 0) it lets go.
+  if (map.phone && typeof ResizeObserver !== 'undefined') {
+    const ruler = document.createElement('div');
+    ruler.className = 'subject-map-ruler';
+    ruler.setAttribute('aria-hidden', 'true');
+    wrap.prepend(ruler);
+    const watch = new ResizeObserver(() => {
+      if (!wrap.isConnected) { watch.disconnect(); return; }
+      const width = ruler.clientWidth;
+      if (!width) return;
+      const want = width < PHONE_BELOW ? 'phone' : null;
+      if (want !== layout) { layout = want; draw(layout); }
+    });
+    watch.observe(ruler);
+  }
   const fire = (g) => { if (onPlace) onPlace(g.getAttribute('data-module')); };
   wrap.addEventListener('click', (e) => {
     const g = e.target && e.target.closest && e.target.closest('.map-place');

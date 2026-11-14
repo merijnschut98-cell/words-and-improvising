@@ -70,3 +70,5 @@ Outcome: accepted (merged as delivered), sent back N times, redone.
 | 14 Nov | Build module intro pm.agile.intro (Task 11) | sonnet | 154 | 23 min | 387,975 | accepted with fixes by its review |
 | 14 Nov | Review module intro pm.agile.intro | sonnet | n/a | n/a | n/a | accepted with two fixes (mindset tools from the Expert lesson replaced by the Agile Manifesto; level grid no longer repeats scene content) |
 | 14 Nov | Fix: Pages deploy found no artifact (integrator) | opus (session) | n/a | n/a | n/a | build and deploy split into two jobs; v273 deployed |
+| 14 Nov | Build: map phone layout, three per row | sonnet | 29 | 8 min | 121,683 | accepted with three fixes by its review |
+| 14 Nov | Review: map phone layout | opus | n/a | n/a | n/a | accepted with three fixes (ResizeObserver loop error, observer leak, tap margin at 320); merged v275 |
