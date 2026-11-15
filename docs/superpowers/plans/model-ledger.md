@@ -195,3 +195,5 @@ Outcome: accepted (merged as delivered), sent back N times, redone.
 | 15 Nov | Review: eng.improve.intro | sonnet | ~75 | n/a | n/a | accepted with fixes (187 to 171 s, proef replaces PDCA as tool, andon cord said, operators rule test added); merged v354 |
 | 15 Nov | Build: Engineering intro eng.cost.intro | sonnet | 92 | 13 min | 323,668 | accepted with fixes by its review |
 | 15 Nov | Review: eng.cost.intro | sonnet | ~40 | n/a | n/a | accepted with fixes (179 to 173 s, payback dropped as story word, unsupported claim replaced); merged v355 |
+| 15 Nov | Build: Engineering intro eng.spc.intro | sonnet | 114 | 17 min | 319,167 | accepted with fixes by its review |
+| 15 Nov | Review: eng.spc.intro | sonnet | ~95 | incl. limit pause | n/a | accepted with fixes (capability from weighed values, kepeibiliti rule, signal hedged, 177 to 172 s); merged v356 |
