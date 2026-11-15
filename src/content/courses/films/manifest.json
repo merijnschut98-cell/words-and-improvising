@@ -3127,30 +3127,30 @@
     "pm.land.intro": {
       "poster": "src/content/courses/films/pm.land.intro.jpg",
       "nl": {
-        "dur": 205.5,
-        "bytes": 7905372,
+        "dur": 205.8,
+        "bytes": 7895962,
         "scenes": [
           0,
-          16.58,
-          50.83,
-          83.82,
-          114.95,
-          148.12,
-          163.05
+          16.45,
+          50.78,
+          83.75,
+          114.86,
+          148.31,
+          163.2
         ],
         "vtt": "src/content/courses/films/pm.land.intro.nl.vtt"
       },
       "en": {
         "dur": 232.1,
-        "bytes": 8843936,
+        "bytes": 8834288,
         "scenes": [
           0,
-          19.02,
-          59.09,
-          94.85,
-          129.88,
-          168.64,
-          185.27
+          19.16,
+          59.17,
+          95.05,
+          129.79,
+          168.69,
+          185.45
         ],
         "vtt": "src/content/courses/films/pm.land.intro.en.vtt"
       }
