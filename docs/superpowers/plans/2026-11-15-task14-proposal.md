@@ -417,3 +417,7 @@ Extras placed as one Expert line (Merijn MC12): Prosci 3-phase in A1 L4; sustain
 1. Interview round as the run; gemba walk at Basis and as the senior walk at Expert (recommended: the gemba walk is already taught in three lessons, the interview round as discovery in none)
 2. Gemba walk with the sponsor as the run; interview round at Basis only
 3. Both in one Werkkennis lesson (risk: too much for one lesson)
+
+## Merijn's answers to the proposal (15 Nov)
+
+Q1 ids pm.approach / pm.formats. Q2 keep topic A2 Methode with DMAIC as the Werkkennis run, Basis widened to the standards. Q3 four lesson films in the first build (route, Planner-style board, brown paper, whiteboard idea session) plus the two intros and the field-film re-render. Q4 module B as a station on the road between Plan and Run. Q5 no figures for now. Q6 name Engineering lessons in the text, no hard links. Q7 B4 Werkkennis run is the interview round; gemba walk at Basis and Expert.
