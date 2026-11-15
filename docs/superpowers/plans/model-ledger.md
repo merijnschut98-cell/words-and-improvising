@@ -130,3 +130,5 @@ Outcome: accepted (merged as delivered), sent back N times, redone.
 | 15 Nov | Review: eng.joining.intro | sonnet | n/a | n/a | n/a | accepted with fixes (three groups in module order, a real tool instead of a control and a result, the guard drawn with its reason); merged v315 |
 | 15 Nov | Build: Engineering intro eng.moulding.intro | sonnet | 124 | 27 min | 429,398 | accepted with fixes by its review |
 | 15 Nov | Review: eng.moulding.intro | sonnet | n/a | n/a | n/a | accepted with small fixes (reasons for lit details, cover at field-film scale, trimmed); merged v316 |
+| 15 Nov | Build: Engineering intro eng.mechanics.intro | sonnet | 109 | 20 min | 319,204 | accepted with fixes by its review |
+| 15 Nov | Review: eng.mechanics.intro | sonnet | n/a | n/a | n/a | accepted with fixes (sling with a reason, rigger no longer hides lit parts, steel rack in view); merged v317 |
