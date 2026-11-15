@@ -1519,6 +1519,33 @@ test('speak variant: the IT fundamentals intro film words in Dutch', () => {
   assert.equal(speakOf([en], 'en'), en);
 });
 
+// The module intro film "An attack on the office" (eng.cyber.intro), checked with espeak-ng phonemes through Piper's nl bridge:
+// it reads IEC 62443 as the number "tweeënzestigduizend vierhonderd drieënveertig" (said I E C zes twee vier vier drie, only in
+// "OT-beveiliging met IEC 62443"), bijlage II
+// as "ie ie" (said bijlage één en bijlage twee, only in "op in bijlage I en bijlage II"), Cyberbeveiligingswet with sieber and a
+// stress on the head of beveiliging (said Saiber-beveiligingswet, only in "heet die wet de Cyberbeveiligingswet"), phishing as
+// "fis-hing" (said fisjing, only in "Dat heet phishing" and "Werkkennis komen phishing") and patchen with a velar ch (said
+// petsjen, only in "minimale rechten, patchen"). Cybersecurity, conduits, MES, MFA, NIS2, meldknop, noodprocedure, zorgplicht,
+// incidentrespons and the level words are read right or have rules above; English needs nothing; no other film's spoken text
+// changes
+test('speak variant: the cybersecurity intro film words in Dutch', () => {
+  const nl = (s) => speakOf([s], 'nl');
+  assert.equal(nl('Het tweede onderwerp is OT-beveiliging met IEC 62443.'), 'Het tweede onderwerp is OT-beveiliging met I E C zes twee vier vier drie.');
+  assert.equal(nl('Je zoekt je sector op in bijlage I en bijlage II.'), 'Je zoekt je sector op in bijlage één en bijlage twee.');
+  assert.equal(nl('In Nederland heet die wet de Cyberbeveiligingswet.'), 'In Nederland heet die wet de Saiber-beveiligingswet.');
+  assert.equal(nl('Een nepmail is de meest gebruikte weg naar binnen. Dat heet phishing.'), 'Een nepmail is de meest gebruikte weg naar binnen. Dat heet fisjing.');
+  assert.equal(nl('Op niveau Werkkennis komen phishing, het indelen van de fabriek en voorbereiden.'), 'Op niveau Werkkennis komen fisjing, het indelen van de fabriek en voorbereiden.');
+  assert.equal(nl('Het gaat om minimale rechten, patchen in OT en herstellen.'), 'Het gaat om minimale rechten, petsjen in OT en herstellen.');
+  // elsewhere the words keep their voice
+  assert.equal(nl('De norm IEC 62443 stelt eisen aan de leverancier.'), 'De norm IEC 62443 stelt eisen aan de leverancier.');
+  assert.equal(nl('Zie bijlage II van de richtlijn.'), 'Zie bijlage II van de richtlijn.');
+  assert.equal(nl('De Cyberbeveiligingswet geldt sinds augustus.'), 'De Cyberbeveiligingswet geldt sinds augustus.');
+  assert.equal(nl('Phishing is een nepbericht.'), 'Phishing is een nepbericht.');
+  assert.equal(nl('Het patchen gebeurt in het patchvenster.'), 'Het patchen gebeurt in het patchvenster.');
+  const en = 'The second topic is OT security with IEC 62443. An attack can get in through a USB stick. That is called phishing.';
+  assert.equal(speakOf([en], 'en'), en);
+});
+
 // Render batch PM-28: words a Dutch listener would mishear in the module intro films (eng.joining, eng.mechanics,
 // eng.moulding, eng.process, eng.machining, eng.drawings), tried with Piper's nl_NL-alex voice in each film's own sentence and
 // transcribed with large-v3-turbo. Said apart: "vul eenheid" (espeak-ng reads vuleenheid with a long ue, heard "verleenheid";
@@ -1546,5 +1573,20 @@ test('speak variant: the Dutch words of the PM-28 intro films', () => {
   assert.equal(nl('Hoe werkt spuitgieten?'), 'Hoe werkt spuitgieten?');
   assert.equal(nl('De robot last een frame in 6 minuten; laden kost 4.'), 'De robot last een frame in 6 minuten; laden kost 4.');
   const en = 'The frame carries the filling unit. Injection moulding is the sixth station.';
+  assert.equal(speakOf([en], 'en'), en);
+});
+
+// The module intro film "From MES order to a running unit" (eng.ot.intro), checked with espeak-ng phonemes through Piper's nl bridge:
+// it reads unified namespace as English words read the Dutch way (said joenifaid nejmspeis, only in "beoordelen, de unified namespace").
+// The engineer is the rule for "Jij bent de engineer" above. PLC, SCADA, MES, ERP, MQTT, OPC UA, ISA-95, historian, Purdue, productieorder,
+// informatiestroom, machinebouwer, OPC-server en tags and the level words have rules above or are read right; English needs nothing;
+// no other film's spoken text changes
+test('speak variant: the OT intro film words in Dutch', () => {
+  const nl = (s) => speakOf([s], 'nl');
+  assert.equal(nl('Op niveau Expert komen de cloud, een koppeling beoordelen, de unified namespace en governance.'), 'Op niveau Expert komen de cloud, een koppeling beoordelen, de joenifaid nejmspeis en gavvernens.');
+  assert.equal(nl('Jij bent de engineer en zoekt het uit.'), 'Jij bent de entsjinier en zoekt het uit.');
+  // elsewhere the words keep their voice
+  assert.equal(nl('Een unified namespace is een idee.'), 'Een unified namespace is een idee.');
+  const en = 'You are the engineer and find out. At Expert level come the cloud, judging an interface, the unified namespace and governance.';
   assert.equal(speakOf([en], 'en'), en);
 });
