@@ -868,7 +868,16 @@ const SAY = {
     // beveiligingsrelais, loadflow, congestiemanagement and "Jij bent de engineer" have rules above; aardgarnituur,
     // stroomtang, lektest, scenario, pompkarakteristiek, platenwarmtewisselaar, schakelplan, netbedrijf and the rest
     // are read right ("met een DGA" is said d-g-a); no other film's spoken text changes
-    [/\bmet een reflectiemeter\b/g, 'met een reflexiemeter']],
+    [/\bmet een reflectiemeter\b/g, 'met een reflexiemeter'],
+    // render batch PM-26, a self-contained group at the end of the Dutch list: Whisper (large-v3-turbo) heard the Piper voice
+    // say "G-code" as "geen code", "werkstuknulpunt" as "werkstukknoppunt", "centreerboor" as "centraalboor" and "doet een
+    // lektest" as "doet het lekkerst". Several spellings were tried in the film's own sentence: "de G-code" (the article makes
+    // it heard right every time; bare G-code and gee-code after "vaak" stay "geen code"), "werkstuk nul-punt", "centreer-boor"
+    // and "lek-test". Only the machining intro's and the energy film's phrases, by what stands before the word (the nulpunt
+    // rule first, while G-code is still unchanged): eng.machining.cnc, eng.machining.drilling and eng.power.air say the words
+    // in other sentences and keep their voice
+    [/(?<=\bBij CNC gebruiken we vaak G-code en een )werkstuknulpunt\b/g, 'werkstuk nul-punt'], [/(?<=\bBij CNC gebruiken we vaak )G-code\b/g, 'de G-code'],
+    [/(?<=\bBij boren gebruiken we vaak een )centreerboor\b/g, 'centreer-boor'], [/(?<=\bdoet een )lektest\b/g, 'lek-test']],
   en: [[/\brpm\b/g, 'revolutions per minute'], [/\bmm\/min\b/g, 'millimetres per minute'], [/\bm\/min\b/g, 'metres per minute'], [/µm\b/g, 'micrometres'],
     [/€\s?(\d[\d,]*(?:\.\d+)?)/g, '$1 euros'], [/(\d)\.0(?![\d])/g, '$1'], [/(\d)\s?mm\b/g, '$1 millimetres'], [/(\d)\s?min\b/g, '$1 minutes'], [/(\d)\s?%/g, '$1 percent'],
     [/Ø\s*/g, 'diameter '], [/(\d)\+(\d)/g, '$1 plus $2'], [/\s×\s/g, ' times '], [/\s\/\s/g, ' divided by '], [/\s=\s/g, ' is '], [/°/g, ' degrees'], [/\bRa\b/g, 'R a'], [/’/g, "'"],

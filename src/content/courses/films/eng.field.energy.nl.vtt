@@ -1,273 +1,273 @@
 WEBVTT
 
 1
-00:00:00.846 --> 00:00:02.402
+00:00:00.834 --> 00:00:02.378
 Lijn 3 in hal B verhuist.
 
 2
-00:00:03.120 --> 00:00:04.966
+00:00:03.174 --> 00:00:05.020
 Op de nieuwe plek heeft hij meer stroom nodig.
 
 3
-00:00:05.970 --> 00:00:07.223
+00:00:06.013 --> 00:00:07.230
 Het net levert de stroom.
 
 4
-00:00:07.937 --> 00:00:11.942
+00:00:07.954 --> 00:00:11.785
 Via kast, transformator en schakelbord gaat hij naar de machines.
 
 5
-00:00:12.972 --> 00:00:13.936
+00:00:12.828 --> 00:00:13.803
 Jij bent de engineer.
 
 6
-00:00:14.625 --> 00:00:16.494
+00:00:14.474 --> 00:00:16.378
 Je volgt de stroom van het net tot de lijn.
 
 7
-00:00:17.479 --> 00:00:20.115
+00:00:17.360 --> 00:00:20.053
 Dat zijn zeven stations, van het net tot de planning.
 
 8
-00:00:21.374 --> 00:00:23.905
+00:00:21.312 --> 00:00:23.843
 Het eerste station is het elektriciteitsnet.
 
 9
-00:00:24.605 --> 00:00:27.031
+00:00:24.557 --> 00:00:26.879
 Het brengt de stroom van hoogspanning tot in de hal.
 
 10
-00:00:28.007 --> 00:00:29.772
+00:00:27.871 --> 00:00:29.531
 Op hoogspanning gaat weinig verloren.
 
 11
-00:00:30.467 --> 00:00:32.603
+00:00:30.201 --> 00:00:32.395
 Pas dicht bij de fabriek gaat de spanning omlaag.
 
 12
-00:00:33.613 --> 00:00:35.274
+00:00:33.403 --> 00:00:35.121
 Je kijkt op de capaciteitskaart (capacity map)
 
 13
-00:00:35.343 --> 00:00:37.584
+00:00:35.214 --> 00:00:37.431
 en sluit zo nodig een flexibel contract (flexible contract).
 
 14
-00:00:38.583 --> 00:00:41.404
+00:00:38.485 --> 00:00:41.202
 Zonder dit sta je in een vol gebied in de wachtrij voor stroom.
 
 15
-00:00:42.662 --> 00:00:45.874
+00:00:42.443 --> 00:00:45.554
 Het tweede station is schakelinstallaties en beveiliging.
 
 16
-00:00:46.601 --> 00:00:48.284
+00:00:46.253 --> 00:00:47.995
 De kast schakelt en bewaakt de stroom.
 
 17
-00:00:49.308 --> 00:00:52.617
+00:00:49.043 --> 00:00:52.387
 Bij een kortsluiting valt alleen de schakelaar het dichtst bij de fout uit.
 
 18
-00:00:53.683 --> 00:00:55.958
+00:00:53.470 --> 00:00:55.920
 De installateur stelt een beveiligingsrelais (protection relay)
 
 19
-00:00:56.028 --> 00:00:57.595
+00:00:55.978 --> 00:00:57.592
 in en werkt met een aardgarnituur (earthing set).
 
 20
-00:00:58.625 --> 00:01:02.422
+00:00:58.630 --> 00:01:02.566
 Zonder dit legt één fout de hele hal stil, of is werken aan de kast niet veilig.
 
 21
-00:01:03.722 --> 00:01:06.880
+00:01:03.819 --> 00:01:06.892
 Het derde station is transformatoren en kabels.
 
 22
-00:01:07.633 --> 00:01:10.443
+00:01:07.696 --> 00:01:10.529
 De transformator zet de spanning om voor de machines.
 
 23
-00:01:11.460 --> 00:01:14.467
+00:01:11.546 --> 00:01:14.506
 Warmte laat hem sneller verouderen, dus koelen ribben hem.
 
 24
-00:01:15.155 --> 00:01:17.268
+00:01:15.214 --> 00:01:17.234
 Een kabel gaat verder naar het schakelbord.
 
 25
-00:01:18.276 --> 00:01:21.121
+00:01:18.274 --> 00:01:20.956
 Je test de olie met een DGA en zoekt kabelfouten
 
 26
-00:01:21.144 --> 00:01:22.235
+00:01:21.003 --> 00:01:22.164
 met een reflectiemeter (reflectometer).
 
 27
-00:01:23.246 --> 00:01:27.507
+00:01:23.141 --> 00:01:27.518
 Zonder dit valt de transformator onverwacht uit, of zoek je lang naar een kabelfout.
 
 28
-00:01:28.821 --> 00:01:31.480
+00:01:28.839 --> 00:01:31.602
 Het vierde station is motoren en perslucht.
 
 29
-00:01:32.188 --> 00:01:34.104
+00:01:32.279 --> 00:01:34.334
 De motor drijft de band van lijn 3 aan.
 
 30
-00:01:35.098 --> 00:01:36.863
+00:01:35.346 --> 00:01:37.192
 De compressor perst lucht voor de lijn.
 
 31
-00:01:37.581 --> 00:01:40.252
+00:01:37.907 --> 00:01:40.578
 Dat is dure energie, en lekken kosten stroom.
 
 32
-00:01:41.293 --> 00:01:43.255
+00:01:41.615 --> 00:01:43.508
 Je meet de motorstroom met een stroomtang (clamp meter)
 
 33
-00:01:43.301 --> 00:01:44.195
+00:01:43.542 --> 00:01:44.506
 en doet een lektest (leak test).
 
 34
-00:01:45.220 --> 00:01:49.295
+00:01:45.534 --> 00:01:49.493
 Zonder dit lekt de perslucht weg en draait een te grote motor op halve kracht.
 
 35
-00:01:50.572 --> 00:01:53.684
+00:01:50.775 --> 00:01:53.852
 Het vijfde station is pompen, stroming en warmte.
 
 36
-00:01:54.419 --> 00:01:56.846
+00:01:54.577 --> 00:01:57.108
 Een pomp voert het product uit de tank naar de vuleenheid.
 
 37
-00:01:57.873 --> 00:02:00.091
+00:01:58.119 --> 00:02:00.429
 Pomp en leiding bepalen samen het debiet.
 
 38
-00:02:00.783 --> 00:02:03.442
+00:02:01.145 --> 00:02:03.804
 Een warmtewisselaar geeft warmte door zonder te mengen.
 
 39
-00:02:04.423 --> 00:02:06.083
+00:02:04.789 --> 00:02:06.484
 Je leest de pompkarakteristiek (pump curve)
 
 40
-00:02:06.141 --> 00:02:07.952
+00:02:06.554 --> 00:02:08.260
 en kiest een platenwarmtewisselaar (plate heat exchanger).
 
 41
-00:02:08.937 --> 00:02:12.513
+00:02:09.248 --> 00:02:12.777
 Zonder dit draait de pomp op het verkeerde punt en gaat energie verloren.
 
 42
-00:02:13.779 --> 00:02:16.728
+00:02:14.052 --> 00:02:17.001
 Het zesde station is netbedrijf en assetmanagement.
 
 43
-00:02:17.519 --> 00:02:20.166
+00:02:17.807 --> 00:02:20.350
 De netbeheerder verzwaart de aansluiting van de fabriek.
 
 44
-00:02:21.209 --> 00:02:24.971
+00:02:21.375 --> 00:02:25.241
 Daarna bewaakt hij het net, herstelt storingen en stuurt bij als het vol zit.
 
 45
-00:02:26.004 --> 00:02:27.242
+00:02:26.269 --> 00:02:27.476
 Hij doet een gereedheidscheck (readiness check)
 
 46
-00:02:27.288 --> 00:02:28.925
+00:02:27.511 --> 00:02:29.253
 en schakelt volgens een schakelplan (switching plan).
 
 47
-00:02:29.948 --> 00:02:34.023
+00:02:30.275 --> 00:02:34.141
 Zonder dit duurt de aansluiting langer en valt de stroom bij werk onverwacht uit.
 
 48
-00:02:35.342 --> 00:02:38.639
+00:02:35.476 --> 00:02:38.727
 Het zevende station is netplanning en de energietransitie.
 
 49
-00:02:39.373 --> 00:02:41.869
+00:02:39.427 --> 00:02:41.888
 De planner kijkt hoeveel stroom er later nodig is.
 
 50
-00:02:42.889 --> 00:02:46.407
+00:02:42.928 --> 00:02:46.515
 De vraag groeit, dus rekent hij uit waar en wanneer het net vol raakt.
 
 51
-00:02:47.371 --> 00:02:49.542
+00:02:47.500 --> 00:02:49.822
 Hij draait een loadflow (load flow) voor elk scenario.
 
 52
-00:02:50.561 --> 00:02:53.707
+00:02:50.825 --> 00:02:54.192
 Zonder dit komt de verzwaring te laat en wacht de volgende lijn op stroom.
 
 53
-00:02:55.130 --> 00:02:56.221
+00:02:55.549 --> 00:02:56.640
 Dit is de hele kaart.
 
 54
-00:02:56.938 --> 00:02:59.051
+00:02:57.338 --> 00:02:59.416
 De zeven stations liggen in één gebied.
 
 55
-00:03:00.092 --> 00:03:03.494
+00:03:00.482 --> 00:03:04.070
 Eerst het elektriciteitsnet, van vermogen tot netcongestie.
 
 56
-00:03:04.555 --> 00:03:09.130
+00:03:05.125 --> 00:03:09.710
 Dan schakelinstallaties en beveiliging, van schakelapparaten tot veilig schakelen.
 
 57
-00:03:10.179 --> 00:03:14.835
+00:03:10.751 --> 00:03:15.441
 Dan transformatoren en kabels, van de transformator tot aansluitingen.
 
 58
-00:03:15.832 --> 00:03:19.548
+00:03:16.491 --> 00:03:20.194
 Dan motoren en perslucht, van energie in de fabriek tot hydrauliek.
 
 59
-00:03:20.525 --> 00:03:24.171
+00:03:21.202 --> 00:03:24.882
 Dan pompen, stroming en warmte, van leidingen tot stoom.
 
 60
-00:03:25.172 --> 00:03:29.409
+00:03:25.893 --> 00:03:30.235
 Dan netbedrijf en assetmanagement, van aanvraag tot congestiemanagement.
 
 61
-00:03:30.414 --> 00:03:35.360
+00:03:31.259 --> 00:03:36.135
 Tot slot netplanning en de energietransitie, van belasting tot flexibiliteit.
 
 62
-00:03:36.355 --> 00:03:37.330
+00:03:37.160 --> 00:03:38.216
 Zo hangen ze samen.
 
 63
-00:03:37.995 --> 00:03:38.959
+00:03:38.857 --> 00:03:39.819
 Het net levert,
 
 64
-00:03:39.296 --> 00:03:42.976
+00:03:40.133 --> 00:03:43.906
 de schakelinstallatie beveiligt en de transformator zet de spanning om.
 
 65
-00:03:43.994 --> 00:03:46.072
+00:03:44.916 --> 00:03:47.052
 Motoren en pompen gebruiken de stroom.
 
 66
-00:03:46.812 --> 00:03:49.529
+00:03:47.796 --> 00:03:50.571
 Netbedrijf en planning zorgen dat het net blijft leveren.
 
 67
-00:03:50.523 --> 00:03:53.437
+00:03:51.576 --> 00:03:54.536
 Elk station is een module met vier niveaus per onderwerp.
 
 68
-00:03:54.099 --> 00:03:55.922
+00:03:55.239 --> 00:03:57.050
 Begin bij wat jouw lijn het meest raakt.
