@@ -396,7 +396,7 @@ const STAGE = (() => {
     if (!shown.length) return '';
     const bi = beatOf(si, u);
     const now = shown.filter((r) => r[0] === bi).pop();
-    const h = 44 + rows.length * ROWH;
+    const h = 44 + (rows.indexOf(shown[shown.length - 1]) + 1) * ROWH;
     let out = panelD(x, y, w, h) + label(x + 16, y + 28, tag, 22, 'start', true, 'fp-ink fp-label fp-dim');
     rows.forEach((r, i) => {
       const o = clamp((u - start(r)) / 0.04, 0, 1);

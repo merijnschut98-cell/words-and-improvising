@@ -398,7 +398,7 @@ export const world = [
   `<g data-cue="pend">${g('pendant', pendant)}</g>`,
   g('base', base + yways),
   g('column', column),
-  g('mag', magazine),
+  `<g data-cue="mag">${g('mag', magazine)}</g>`,
   g('saddle', saddle),
   g('table', [
     table, vice, jawFixed, plate,

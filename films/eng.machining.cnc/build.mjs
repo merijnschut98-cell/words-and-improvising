@@ -148,7 +148,7 @@ const plainWords = (src) => wordsOf(src.replace(/\{[tn]:([^{}|]*)(\|([^{}]*))?\}
 for (const s of spec.scenes) {
   const cap = Math.max(...['nl', 'en'].map((l) => s.beats.reduce((a, b) => a + plainWords(b[l]), 0)));
   const nar = s.beats.reduce((a, b) => a + plainWords(b.say.nl), 0);
-  s.dur = Math.ceil(Math.max(minSceneDur(cap), nar / 2.7));
+  s.dur = Math.ceil(Math.max(minSceneDur(cap + 6), nar / 2.7));
 }
 beatTimes(spec.scenes, plainWords, beatStarts);
 
