@@ -31,10 +31,10 @@ test('moduleModel: a module without an intro has hasIntro false and still lists 
   assert.ok(m.next);
 });
 
-test('moduleModel: field for a pm module, null for an eng module; titles in the asked language', () => {
+test('moduleModel: field for a pm and an eng module; titles in the asked language', () => {
   const pm = moduleModel(defaultState(), byId('pm.plan'), 'nl');
   assert.equal(pm.field.id, 'pm.field.lifecycle');
-  assert.equal(moduleModel(defaultState(), byId('eng.machining'), 'nl').field, null);
+  assert.equal(moduleModel(defaultState(), byId('eng.machining'), 'nl').field.id, 'eng.field.making');
   assert.equal(pm.title, byId('pm.plan').title.nl);
   assert.equal(pm.titleEn, byId('pm.plan').title.en);
   assert.equal(pm.blurb, byId('pm.plan').blurb.nl);

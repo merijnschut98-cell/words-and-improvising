@@ -31,8 +31,12 @@ const DESC = 0.22; // descender depth of the label font, as a share of its size
 const DESCENDS = /[gjpqy,;]/; // the letters that reach below the baseline
 const decode = (s) => s.replace(/&#39;/g, "'").replace(/&amp;/g, '&').replace(/&quot;/g, '"').replace(/&lt;/g, '<').replace(/&gt;/g, '>');
 
-const SUBJECTS = fs.readdirSync('src/content/courses/maps').filter((f) => f.endsWith('.js') && f !== 'index.js').map((f) => f.slice(0, -3));
-const MAPS = Object.fromEntries(await Promise.all(SUBJECTS.map(async (s) => [s, (await import(`../src/content/courses/maps/${s}.js`)).default])));
+// A map file has a default export with places; index.js (the registry) and
+// layout.js (the shared layout helpers) are not maps and have none.
+const FILES = fs.readdirSync('src/content/courses/maps').filter((f) => f.endsWith('.js')).map((f) => f.slice(0, -3));
+const LOADED = await Promise.all(FILES.map(async (s) => [s, (await import(`../src/content/courses/maps/${s}.js`)).default]));
+const MAPS = Object.fromEntries(LOADED.filter(([, m]) => m && Array.isArray(m.places)));
+const SUBJECTS = Object.keys(MAPS);
 
 // The label of one place in one language, read back from the film's drawing.
 function labelOf(svg, id, lang) {
@@ -45,8 +49,10 @@ function labelOf(svg, id, lang) {
   return { size: Number(size), lines };
 }
 
-test('mapScene labels: the maps checked include Projects', () => {
+test('mapScene labels: the maps checked include Projects and Engineering, and nothing else is skipped', () => {
   assert.ok(SUBJECTS.includes('pm'), SUBJECTS.join());
+  assert.ok(SUBJECTS.includes('eng'), SUBJECTS.join());
+  assert.deepEqual(FILES.filter((f) => !SUBJECTS.includes(f)).sort(), ['index', 'layout'], 'only the registry and the layout helpers are not maps');
 });
 
 test('mapScene labels: the label size and halo the fit assumes are the app\'s (styles.css)', () => {
