@@ -19,7 +19,7 @@
 //      take, then how it can still break and which steel to choose
 //   s2 Krachten, momenten en spanning: the frame carries the weight of the filled tank and every filling is a
 //      shock; stress is force per area, the same force is harmless to a thick bar and fatal to a thin one; the
-//      frame will hang from a lifting sling, so the working load limit on its tag      → eng.mechanics.forces (.stress)
+//      frame goes to hall B by crane, on a sling: the working load limit on its tag     → eng.mechanics.forces (.stress)
 //   s3 Materiaalsterkte en beproeving: a bar of the frame's steel goes to the lab, a machine pulls it until it
 //      breaks, the yield strength is where it bends for good and the frame stays below it; the tensile test
 //                                                                               → .strength (.testing)
@@ -150,8 +150,8 @@ const crew = (key, look, x, y, along = 'x') => {
 };
 
 const part = shop.parts({ cueG, g });
-// painted back to front: the tank, the steel rack and the test machine, the platform with the frame, the technician, the
-// table with the tools, the rigger, you
+// painted back to front: the tank and the test machine, the platform with the frame, the technician, the table, the
+// rack of bars and the tools, the rigger, you
 const world = [
   w.room(ROOM),
   part.back,
@@ -160,7 +160,7 @@ const world = [
   g('pp-tech', crew('tech', 'dev', 196, 76, 'x')),
   part.table,
   part.tools,
-  g('pp-rig', crew('rig', 'sm', 62, 92, 'x')),
+  g('pp-rig', crew('rig', 'sm', 10, 76, 'x')),
   g('pp-jij', person('jij', 20, 140, 'x')),
 ].join('');
 
@@ -237,10 +237,10 @@ const svg = compact(`<svg class="iso-svg fp-svg" viewBox="0 0 ${W} ${H}" role="i
 const cam = (x, y, z, s) => [...w.at([x, y, z]).map((v) => Math.round(v * 10) / 10), s];
 const CAM = [
   { from: cam(145, 80, 60, 1), to: cam(145, 85, 60, 1.06) }, // s1 the whole workshop: the frame and the tank
-  { from: cam(75, 55, 110, 1.45), to: cam(75, 45, 185, 1.6) }, // s2 the frame with the tank behind it, then the sling
+  { from: cam(75, 55, 110, 1.45), to: cam(60, 50, 150, 1.25) }, // s2 the frame with the tank behind it, then the sling on its beam with the rigger
   { from: cam(190, 50, 70, 1.45), to: cam(205, 50, 70, 1.4) }, // s3 the lab: the test machine and the technician
   { from: cam(106, 48, 143, 2.6), to: cam(185, 125, 95, 1.9) }, // s4 the crack in the corner, then the microscope on the table
-  { from: cam(40, 30, 30, 1.6), to: cam(150, 100, 80, 1.35) }, // s5 the rack of steel bars, then the hardness tester
+  { from: cam(32, 112, 30, 1.7), to: cam(100, 112, 60, 1.3) }, // s5 the rack of steel bars at the front left, then the hardness tester
   { from: cam(145, 85, 60, 1), to: cam(145, 85, 60, 1) }, // s6 (the map)
 ];
 
@@ -275,7 +275,7 @@ const spec = {
       beats: [
         { nl: 'Eerste onderwerp: Krachten, momenten en spanning. Het frame draagt de gevulde tank.', en: 'First topic: Forces, moments and stress. The frame carries the filled tank.', focus: ['tLoad', 'sA', 'frame', 'tank'] },
         { nl: 'Spanning is kracht per oppervlak. Dezelfde kracht is onschuldig voor een dikke staaf en fataal voor een dunne.', en: 'Stress is force per area. The same force is harmless to a thick bar and fatal to a thin one.', focus: ['sB', 'frame'] },
-        { nl: 'Het frame hangt straks aan een hijsband. We lezen vaak de {t:Werklast (WLL)|werklast} op het label.', en: 'The frame will soon hang from a sling. We often read the {t:Working load limit (WLL)|working load limit} on the tag.', ...TOOL('Werklast (WLL)'), focus: ['tool1', 'sling', 'rig'] },
+        { nl: 'Het frame gaat met een kraan naar hal B. We lezen de {t:Werklast (WLL)|werklast} van de hijsband.', en: 'The frame will soon go to hall B by crane. We read the {t:Working load limit (WLL)|working load limit} of the sling.', ...TOOL('Werklast (WLL)'), focus: ['tool1', 'sling', 'rig'] },
       ],
     },
     {
@@ -297,7 +297,7 @@ const spec = {
     {
       id: 's5', level: 1, dur: DURS[4], still: 0.9, title: { nl: 'Warmtebehandeling en materiaalkeuze', en: 'Heat treatment and material choice' },
       beats: [
-        { nl: 'Vierde onderwerp: Warmtebehandeling en materiaalkeuze. Het frame wordt constructiestaal.', en: 'Fourth topic: Heat treatment and material choice. The frame becomes structural steel.', focus: ['tChoice', 'sA', 'stock'] },
+        { nl: 'Vierde onderwerp: Warmtebehandeling en materiaalkeuze. Het frame wordt van constructiestaal.', en: 'Fourth topic: Heat treatment and material choice. The frame is made of structural steel.', focus: ['tChoice', 'sA', 'stock'] },
         { nl: 'Verhitten en afschrikken maakt staal hard maar bros. Ontlaten maakt het weer taaier.', en: 'Heating and quenching make steel hard but brittle. Tempering makes it tougher again.', focus: ['sB', 'stock'] },
         { nl: 'Bij warmtebehandeling gebruiken we vaak een {t:Hardheid|hardheidsmeting}.', en: 'For heat treatment we often use a {t:Hardness|hardness test}.', ...TOOL('Hardheid'), focus: ['tool1', 'hard'] },
         { nl: 'Het staal is gekozen en getest. Een blok ervan gaat naar de werkplaats voor de plaat.', en: 'The steel is chosen and tested. A block of it goes to the workshop for the plate.', focus: ['ship', 'stock', 'tech'] },
@@ -349,8 +349,8 @@ const SAY = [
       en: 'The first topic is Forces, moments and stress. The frame carries the weight of the filled tank. Every filling also gives a shock.' },
     { nl: 'Spanning is kracht per oppervlak. Dezelfde kracht is onschuldig voor een dikke staaf en fataal voor een dunne.',
       en: 'Stress is force per area. The same force is harmless to a thick bar and fatal to a thin one.' },
-    { nl: 'Het frame hangt straks aan een hijsband. Bij krachten lezen we vaak de werklast op het label.',
-      en: 'The frame will soon hang from a sling. For forces we often read the working load limit on the tag.' },
+    { nl: 'Het frame gaat straks met een kraan naar hal B. Daarvoor lezen we de werklast op het label van de hijsband.',
+      en: 'The frame will soon go to hall B by crane. For that we read the working load limit on the tag of the sling.' },
   ],
   [ // s3 strength and testing: a bar of the frame's steel goes to the lab, the yield strength
     { nl: 'Het tweede onderwerp is Materiaalsterkte en beproeving. Een staaf uit het staal van het frame gaat naar het lab.',
@@ -369,14 +369,14 @@ const SAY = [
       en: 'We often read a broken part with fractography.' },
   ],
   [ // s5 heat treatment and choice: structural steel for the frame, hardening and tempering, a block goes on to the workshop
-    { nl: 'Het vierde onderwerp is Warmtebehandeling en materiaalkeuze. Het frame wordt constructiestaal, want dat is sterk, stijf en goed te lassen.',
-      en: 'The fourth topic is Heat treatment and material choice. The frame becomes structural steel, because it is strong, stiff and easy to weld.' },
-    { nl: 'Een warmtebehandeling verhit staal en schrikt het af. Dan is het hard maar bros. Ontlaten maakt het weer taaier. Zo krijgen assen en tandwielen hun eigenschappen.',
-      en: 'A heat treatment heats steel and quenches it. Then it is hard but brittle. Tempering makes it tougher again. That is how shafts and gears get their properties.' },
+    { nl: 'Het vierde onderwerp is Warmtebehandeling en materiaalkeuze. Het frame wordt van constructiestaal uit het rek, want dat is sterk, stijf en goed te lassen.',
+      en: 'The fourth topic is Heat treatment and material choice. The frame is made of structural steel from the rack, because it is strong, stiff and easy to weld.' },
+    { nl: 'Een warmtebehandeling verhit staal en schrikt het af. Dan is het hard maar bros. Ontlaten maakt het weer taaier. Te hard staal is moeilijk te frezen.',
+      en: 'A heat treatment heats steel and quenches it. Then it is hard but brittle. Tempering makes it tougher again. Steel that is too hard is difficult to mill.' },
     { nl: 'Bij warmtebehandeling gebruiken we vaak een hardheidsmeting.',
       en: 'For heat treatment we often use a hardness test.' },
-    { nl: 'Het staal is gekozen en getest. Een blok ervan gaat naar de werkplaats. Daar wordt de plaat van het frame uit gemaakt.',
-      en: 'The steel is chosen and tested. A block of it goes to the workshop. The plate of the frame is made from it there.' },
+    { nl: 'Het staal is gekozen en getest. Een blok ervan gaat naar de werkplaats. Daar wordt de plaat van de eenheid uit gemaakt.',
+      en: 'The steel is chosen and tested. A block of it goes to the workshop. The plate of the unit is made from it there.' },
   ],
   [ // s6 the map: the level words of the app, as the captions show them
     { nl: 'Dit is de hele kaart. Materialen en sterkte is het eerste station van Dingen maken.',
@@ -463,8 +463,8 @@ const css = PM_CSS + WORKSHOP_CSS + `
 
 
 const label = {
-  nl: 'De werkplaats en het lab van de fabriek, op mensenmaat. Links op een werkplatform het frame van de vuleenheid van lijn 3: twee stijlen en een balk, met aan de balk de plaat met vier gaten op vier bouten en bovenop de lichte kunststof kap, met achter het frame de tank; een hijsband met een label hangt aan de kap, in de rechterhoek van het frame zit een scheur; achterin een rek met stalen staven en een trekbank voor proefstaven; vooraan een tafel met een hardheidsmeter en een microscoop met een gebroken staaf. Een laborant met een veiligheidsbril en handschoenen, een monteur met een veiligheidsbril en handschoenen, en jij, de engineer. Rechts een paneel, gemarkeerd als voorbeeld of schema: het frame onder zijn last, de sterkte van het staal, een kromme van de trekproef, een scheur in een hoek, de warmtebehandeling en de vier onderwerpen van de module; aan het eind de kaart van Engineering met Materialen en sterkte verlicht en de vier onderwerpen met hun niveaus.',
-  en: 'The workshop and the lab of the plant, at person scale. At the left on a work platform the frame of the filling unit of line 3: two uprights and a beam, with the plate with four holes on four bolts under the beam and the light plastic cover on top, with the tank behind the frame; a sling with a tag hangs from the cover, in the right corner of the frame is a crack; at the back a rack of steel bars and a tensile test machine for test bars; at the front a table with a hardness tester and a microscope with a broken bar. A lab technician in safety glasses and gloves, a fitter in safety glasses and gloves, and you, the engineer. At the right a panel, marked as an example or a diagram: the frame under its load, the strength of the steel, a curve of the tensile test, a crack in a corner, the heat treatment and the four topics of the module; at the end the Engineering map with Materials and strength lit and the four topics with their levels.',
+  nl: 'De werkplaats en het lab van de fabriek, op mensenmaat. Links op een werkplatform het frame van de vuleenheid van lijn 3: twee stijlen en een balk, met aan de balk de plaat met vier gaten op vier bouten en bovenop de lichte kunststof kap, met achter het frame de tank; een hijsband met een label hangt om de balk, in de rechterhoek van het frame zit een scheur; achterin een trekbank voor proefstaven; links vooraan een rek met stalen staven; vooraan rechts een tafel met een hardheidsmeter en een microscoop met een gebroken staaf. Een laborant met een veiligheidsbril en handschoenen, een monteur met een veiligheidsbril en handschoenen, en jij, de engineer. Rechts een paneel, gemarkeerd als voorbeeld of schema: het frame onder zijn last, de sterkte van het staal, een kromme van de trekproef, een scheur in een hoek, de warmtebehandeling en de vier onderwerpen van de module; aan het eind de kaart van Engineering met Materialen en sterkte verlicht en de vier onderwerpen met hun niveaus.',
+  en: 'The workshop and the lab of the plant, at person scale. At the left on a work platform the frame of the filling unit of line 3: two uprights and a beam, with the plate with four holes on four bolts under the beam and the light plastic cover on top, with the tank behind the frame; a sling with a tag hangs round the beam, in the right corner of the frame is a crack; at the back a tensile test machine for test bars; at the front left a rack of steel bars; at the front right a table with a hardness tester and a microscope with a broken bar. A lab technician in safety glasses and gloves, a fitter in safety glasses and gloves, and you, the engineer. At the right a panel, marked as an example or a diagram: the frame under its load, the strength of the steel, a curve of the tensile test, a crack in a corner, the heat treatment and the four topics of the module; at the end the Engineering map with Materials and strength lit and the four topics with their levels.',
 };
 
 const { data } = await defineFilm(spec, { svg, script: stageScript, css, kitCss: k.ISO_CSS, label });

@@ -3,7 +3,7 @@
 // and the anatomy kit: the frame of the filling unit (two uprights and a beam, the field film's frame, with the
 // plate on four bolts and the plastic cover) on a work platform, the tank behind it at the back wall (the field
 // film's tank, the load), a sling with its tag on the cover, the crack in the right corner, a tensile test
-// machine with a test bar, a rack of steel bars, and a table with a hardness tester and a microscope with a broken
+// machine with a test bar, a rack of steel bars at the front left, and a table with a hardness tester and a microscope with a broken
 // bar. Simple solids at person scale (the frame is 1.6 m high, a person 1.65 m), no detail the story does not
 // need. World units are centimetres, as in world.mjs.
 //
@@ -53,10 +53,13 @@ export function workshopWorld(w, k, G, P) {
   const cover = () => w.box({ x: UP.l - 6, y: UP.y - 4, w: BEAM.w + 12, d: UP.d + 8, r: 7 }, UP.beam, UP.beam + 24, { tone: 'hi' }, { steps: 4, bevel: 1.2 });
   // the tank behind the frame, at the back wall (the load of the frame)
   const tank = () => w.post(138, 20, 16, 0, 96, { tone: 'mid' }, 24) + w.post(138, 20, 16, 96, 103, { tone: 'hi' }, 24);
-  // the sling: two straps from the top of the cover to a hook, with its tag on the left strap
-  const HOOK = [73, 44, 207];
-  const sling = () => w.bar([36, 44, 184], HOOK, 0.9, { tone: 'lo' }) + w.bar([110, 44, 184], HOOK, 0.9, { tone: 'lo' })
-    + ball(HOOK, 5.5, 'hi') + w.box({ x: 48, y: 42, w: 13, d: 3, r: 0.6 }, 186, 200, { tone: 'hi' }, { steps: 1 });
+  // the sling: a strap round each end of the beam (outside the plastic cover, which could not take the weight), the two
+  // straps rising to a hook; the tag hangs on the left strap. The frame is lifted by its beam, to go to hall B
+  const HOOK = [73, 44, 208];
+  const STRAP = [[23, 44], [123, 44]];
+  const sling = () => STRAP.map(([x, y]) => w.bar([x, y, 155], [x < 70 ? UP.l : UP.r + UP.w, y, 155], 1, { tone: 'lo' })
+    + w.bar([x, y, 155], [x, y, 190], 1, { tone: 'lo' }) + w.bar([x, y, 190], HOOK, 1, { tone: 'lo' })).join('')
+    + ball(HOOK, 5, 'hi') + w.box({ x: 17, y: 42.5, w: 12, d: 3, r: 0.6 }, 164, 178, { tone: 'hi' }, { steps: 1 });
   // the crack in the right corner of the frame, where the upright meets the beam
   const CR = [[105.5, 150], [110, 142], [105.5, 134], [110, 125]];
   const crack = () => CR.slice(1).map((p, i) => w.bar([CR[i][0], FACE + 0.8, CR[i][1]], [p[0], FACE + 0.8, p[1]], 0.9, { tone: 'lo' })).join('');
@@ -70,11 +73,11 @@ export function workshopWorld(w, k, G, P) {
     w.post(TM.x + 24, TM.y + 14, 4.4, 14, 30, { tone: 'lo' }, 12), w.post(TM.x + 24, TM.y + 14, 4.4, 70, 76, { tone: 'lo' }, 12),
     w.post(TM.x + 24, TM.y + 14, 2.6, 30, 70, { tone: 'hi' }, 12),
   ].join('');
-  // the rack of steel bars: a pallet with three bars lying on it
-  const stock = () => w.box({ x: 4, y: 6, w: 36, d: 24, r: 1 }, 0, 5, { tone: 'lo' }, { steps: 1 })
-    + w.box({ x: 6, y: 8, w: 32, d: 7, r: 1 }, 5, 12, { tone: 'hi' }, { steps: 1 })
-    + w.box({ x: 6, y: 20, w: 32, d: 7, r: 1 }, 5, 12, { tone: 'hi' }, { steps: 1 })
-    + w.box({ x: 6, y: 14, w: 32, d: 7, r: 1 }, 12, 19, { tone: 'hi' }, { steps: 1 });
+  // the rack of steel bars: a pallet at the front left with a stack of round bars lying on it (3, 2 and 1)
+  const RK = { x: 2, y: 98, w: 62, d: 30 };
+  const stock = () => w.box({ ...RK, r: 1 }, 0, 5, { tone: 'lo' }, { steps: 1 })
+    + [[103.5, 9.5], [112.5, 9.5], [121.5, 9.5], [108, 18.5], [117, 18.5], [112.5, 27.5]]
+      .map(([y, z]) => w.bar([5, y, z], [61, y, z], 4.5, { tone: 'hi' })).join('');
 
   // the table: the hardness tester (a base with a test block, a column and a head with the indenter) and the microscope
   // with a broken bar under it
@@ -92,11 +95,11 @@ export function workshopWorld(w, k, G, P) {
   // the parts in painting order: back to front
   function parts({ cueG, g }) {
     return {
-      back: g('tankK', cueG('tank', tank())) + g('stockK', cueG('stock', stock())) + g('tensK', cueG('tens', tensile())),
+      back: g('tankK', cueG('tank', tank())) + g('tensK', cueG('tens', tensile())),
       platform: platform(),
       frame: cueG('frame', frame()) + cueG('plate', plate()) + cueG('cover', cover()) + g('slingK', cueG('sling', sling())) + g('crackK', cueG('crack', crack())),
       table: cueG('table', table()),
-      tools: g('t-hard', cueG('hard', hard())) + g('t-micro', cueG('micro', micro())),
+      tools: g('stockK', cueG('stock', stock())) + g('t-hard', cueG('hard', hard())) + g('t-micro', cueG('micro', micro())),
     };
   }
   return { parts, at, L };

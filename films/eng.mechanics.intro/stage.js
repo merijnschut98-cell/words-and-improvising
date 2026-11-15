@@ -78,7 +78,7 @@ const STAGE = (() => {
     const in1 = (a) => (b === 0 ? span(p, 0.05, 0.4) * a : a);
     show(E.tankK, si <= 2 ? 1 : 0);
     show(E.slingK, si === 1 && b === 2 ? span(p, 0, 0.4) : 0);
-    show(E['pp-rig'], si === 1 ? in1(1) : 0);
+    show(E['pp-rig'], si === 1 && b === 2 ? span(p, 0, 0.4) : 0);
     show(E.tensK, si === 2 ? (b === 0 ? 0 : b === 1 ? span(p, 0.05, 0.4) : 1) : 0);
     show(E['pp-tech'], si === 2 || si === 4 ? in1(1) : 0);
     show(E.crackK, si === 3 ? (b === 0 ? 0 : b === 1 ? span(p, 0.2, 0.6) : 1) : 0);
@@ -145,7 +145,7 @@ const STAGE = (() => {
     const bars = rect(404, 142, 40, 130, 'pm-bar', 3) + rect(512, 142, 14, 130, 'pm-crit', 3) + arrow(424, 100, 424, 136) + arrow(519, 100, 519, 136)
       + txt(424, 304, tr('dik', 'thick', 80), 22, 'middle', 'pm-txt') + txt(519, 304, tr('dun', 'thin', 80), 22, 'middle', 'pm-txt')
       + txt(334, 346, tr('spanning is kracht', 'stress is force', 284), 22, 'start', 'pm-big') + txt(334, 374, tr('per oppervlak', 'per area', 284), 22, 'start', 'pm-mute');
-    return { sA: fade(b, 0, p, carry, 0.05, 0.45), sB: fade(b, 1, p, bars), ...tools(b, p, 2, tr('Werklast (WLL)', 'Load limit (WLL)', 260)) };
+    return { sA: fade(b, 0, p, carry, 0.05, 0.45), sB: fade(b, 1, p, bars), ...tools(b, p, 2, tr('Werklast (WLL)', 'Working load limit', 260)) };
   }
 
   // ---- s3: strength and testing. A bar from the frame's steel goes to the lab; the curve: yield, the frame stays under it.
