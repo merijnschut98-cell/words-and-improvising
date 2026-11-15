@@ -293,7 +293,7 @@ const spec = {
     {
       id: 's1', level: 1, dur: DURS[0], still: 0.9, title: { nl: 'Het plan ligt er', en: 'The plan is ready' },
       beats: [
-        { nl: 'Het plan voor lijn 3 ligt er. Nu moeten sponsor, team en jij samen aan de slag.', en: 'The plan for line 3 is ready. Now the sponsor, the team and you have to get to work together.', focus: ['plan', 'jij', 'sponsor', 'teamlead', 'calendar'] },
+        { nl: 'Het plan voor lijn 3 ligt er. Nu gaan sponsor, team en jij aan de slag.', en: 'The plan for line 3 is ready. Now the sponsor, team and you get to work.', focus: ['plan', 'jij', 'sponsor', 'teamlead', 'calendar'] },
         { nl: 'Tussen het plan en het uitvoeren liggen overleggen en sessies.', en: 'Between the plan and the run lie meetings and sessions.', focus: ['path', 'jij'] },
         { nl: 'Vier onderwerpen, van het overleg tot de vloer.', en: 'Four topics, from the meeting to the floor.', focus: 'route' },
       ],
@@ -371,8 +371,8 @@ const SAY = [
       en: 'The plan to move line 3 to hall B is ready. Now the sponsor, the team and you have to get to work together.' },
     { nl: 'Tussen het plan en het uitvoeren liggen overleggen en sessies.',
       en: 'Between the plan and the run lie meetings and sessions.' },
-    { nl: 'We volgen dit project langs vier onderwerpen, van het overleg tot de werkvloer.',
-      en: 'We follow this project through four topics, from the meeting to the shop floor.' },
+    { nl: 'Vier onderwerpen, van het overleg tot de werkvloer.',
+      en: 'Four topics, from the meeting to the shop floor.' },
   ],
   [ // s2 which meeting when
     { nl: 'Het eerste onderwerp is Welk overleg wanneer.',
@@ -395,8 +395,8 @@ const SAY = [
       en: 'You are the {t:Facilitator|facilitator}. You lead the process and do not steer the content.' },
     { nl: 'De groep tekent het proces van lijn 3 met geeltjes op een {t:Brown paper|brown paper}.',
       en: 'The group draws the process of line 3 with sticky notes on a {t:Brown paper|brown paper}.' },
-    { nl: 'Eerst tekent de groep hoe het nu echt gaat, en niet hoe de procedure het zegt.',
-      en: 'First the group draws how it really goes, and not how the procedure says it should.' },
+    { nl: 'Eerst hoe het nu echt gaat, niet hoe de procedure het zegt.',
+      en: 'First how it really goes, not how the procedure says it should.' },
   ],
   [ // s4 ideas and decisions in a group
     { nl: 'Het derde onderwerp is Ideeën en besluiten in de groep. Hoe krijgen we de schakelkast op tijd?',
