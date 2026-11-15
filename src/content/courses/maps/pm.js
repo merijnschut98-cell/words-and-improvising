@@ -38,41 +38,7 @@ const WIDE = {
   routes: [['pm.intake', 'pm.plan'], ['pm.plan', 'pm.run'], ['pm.run', 'pm.land'], ['pm.land', 'pm.close']],
 };
 
-// The phone layout (v273): the same zones, places and road order on a narrow
-// 300-unit sheet, so the labels can be bigger. Used by the app when the card is
-// narrower than 460 px (src/ui/subjectmap.js); the films keep the wide map. Zones
-// keep their order; the places of a zone keep theirs, row by row from the left.
-// Rows hold three short titles or two long ones; a title wraps to three lines at
-// most. `font` is the label size in view units: at 390 px (card 324 px) that is
-// 11.4 px, at 320 px (card 254 px) 9.0 px. Objects are drawn at about half size,
-// so a row of 54 units is 45.7 px at 320: the 44 px a tap needs, and a margin.
-const PW = 300;
-const COLS = {
-  3: { w: 89, xs: [10, 105, 200] },
-  2: { w: 137, xs: [10, 153] },
-  1: { w: 137, xs: [81] },
-};
-const GAP = 3;
-const HEAD = 16; // the zone's label sits above the first row
-const rrect = (x, y, w, h, r = 12) => `M${x + r} ${y} H${x + w - r} Q${x + w} ${y} ${x + w} ${y + r} V${y + h - r} Q${x + w} ${y + h} ${x + w - r} ${y + h} H${x + r} Q${x} ${y + h} ${x} ${y + h - r} V${y + r} Q${x} ${y} ${x + r} ${y} Z`;
-
-function phoneLayout(sections) {
-  const zones = [];
-  const places = [];
-  let y = 3;
-  for (const s of sections) {
-    let ry = y + HEAD;
-    for (const row of s.rows) {
-      const c = COLS[row.cols];
-      row.items.forEach(([module, draw], i) => places.push({ module, x: c.xs[i], y: ry, w: c.w, h: row.h, draw }));
-      ry += row.h + GAP;
-    }
-    const h = ry - GAP + 4 - y;
-    zones.push({ field: s.field, label: s.label, path: rrect(4, y, PW - 8, h) });
-    y += h + 3;
-  }
-  return { view: { w: PW, h: y }, font: 10.6, lineHeight: 12, labelTop: 36, scale: 0.55, floor: 21, zoneLabel: [10, 12], arrow: 24, zones, places };
-}
+import { phoneLayout } from './layout.js';
 
 const PHONE = phoneLayout([
   { field: 'pm.field.portfolio', label: WIDE.zones[0].label, rows: [

@@ -31,10 +31,10 @@ test('moduleModel: a module without an intro has hasIntro false and still lists 
   assert.ok(m.next);
 });
 
-test('moduleModel: field for a pm module, null for an eng module; titles in the asked language', () => {
+test('moduleModel: field for a pm and an eng module; titles in the asked language', () => {
   const pm = moduleModel(defaultState(), byId('pm.plan'), 'nl');
   assert.equal(pm.field.id, 'pm.field.lifecycle');
-  assert.equal(moduleModel(defaultState(), byId('eng.machining'), 'nl').field, null);
+  assert.equal(moduleModel(defaultState(), byId('eng.machining'), 'nl').field.id, 'eng.field.making');
   assert.equal(pm.title, byId('pm.plan').title.nl);
   assert.equal(pm.titleEn, byId('pm.plan').title.en);
   assert.equal(pm.blurb, byId('pm.plan').blurb.nl);
@@ -128,4 +128,76 @@ test('renderModule: one filled button, and a cleanup that closes the film when h
   assert.equal(root.querySelectorAll('.btn-primary').length, 1);
   assert.equal(typeof cleanup, 'function', 'like the lesson screen: leaving closes an open film');
   cleanup();
+});
+
+// v17 Task 12 part 2: a module's title is one line; the English name sits small
+// under it (its own line), never inline after it.
+const { modSummary } = await import('../src/ui/coursehome.js');
+const { MODULES: ALL } = await import('../src/content/courses/index.js');
+const pmPlan = ALL.find((m) => m.id === 'pm.plan');
+
+test('module row (nl): title on its own line, English name on a second small line, not inline', () => {
+  const row = modSummary({ lang: 'nl' }, pmPlan, 'button', {});
+  const title = row.querySelector('.module-title');
+  assert.equal(title.textContent, pmPlan.title.nl, 'the title line holds only the Dutch title');
+  const en = row.querySelector('.module-en-line');
+  assert.ok(en, 'an English line');
+  assert.equal(en.textContent, pmPlan.title.en);
+  assert.equal(en.getAttribute('lang'), 'en');
+  assert.equal(en.getAttribute('aria-hidden'), 'true', 'screen readers get the Dutch title once, not both');
+  assert.ok(!row.querySelector('.module-en'), 'no inline English span any more');
+  const kids = row.children.map((c) => c.className);
+  assert.ok(kids.indexOf('module-title') < kids.findIndex((c) => c.includes('module-en-line')), 'English line under the title');
+});
+
+test('module row (en): only the English title, no second line', () => {
+  const row = modSummary({ lang: 'en' }, pmPlan, 'button', {});
+  assert.equal(row.querySelector('.module-title').textContent, pmPlan.title.en);
+  assert.equal(row.querySelector('.module-en-line'), null);
+});
+
+test('module row (nl): no English line when it equals the Dutch title', () => {
+  const same = { ...pmPlan, title: { nl: 'Agile', en: 'Agile' } };
+  assert.equal(modSummary({ lang: 'nl' }, same, 'button', {}).querySelector('.module-en-line'), null);
+});
+
+test('module screen: the English line is hidden from screen readers', async () => {
+  const fs = await import('node:fs');
+  const src = fs.readFileSync(new URL('../src/ui/modulescreen.js', import.meta.url), 'utf8');
+  assert.match(src, /module-en-line[^)]*aria-hidden/);
+});
+
+test('styles: a module row title is one line with an ellipsis; the English line is small and muted', async () => {
+  const fs = await import('node:fs');
+  const css = fs.readFileSync(new URL('../styles.css', import.meta.url), 'utf8');
+  const m = css.match(/\.module-row \.module-title, \.module-row \.module-en-line \{([^}]*)\}/);
+  assert.ok(m, 'one rule for title and English line');
+  assert.match(m[1], /white-space:\s*nowrap/);
+  assert.match(m[1], /text-overflow:\s*ellipsis/);
+  assert.match(m[1], /overflow:\s*hidden/);
+  const en = css.match(/\n\.module-row \.module-en-line \{([^}]*)\}/);
+  assert.ok(en && /font-size/.test(en[1]) && /var\(--muted/.test(en[1]), 'small and muted');
+});
+
+// Review of Task 12 part 2: a one-line ellipsis cut 8 of 26 Engineering titles at 320 px.
+// Phones get a slightly smaller title (still above the small-text size) and below 375 px
+// a title may take a second line (never more), so no title is ever cut off.
+test('styles: narrow screens shrink the title a little, and below 375 px let it take two lines', async () => {
+  const fs = await import('node:fs');
+  const css = fs.readFileSync(new URL('../styles.css', import.meta.url), 'utf8');
+  const small = css.match(/@media \(max-width: 479px\) \{[^@]*?\.module-row \.module-title \{([^}]*)\}/);
+  assert.ok(small, 'a phone rule for the row title');
+  const size = small[1].match(/font-size:\s*([\d.]+)rem/);
+  assert.ok(size && Number(size[1]) >= 0.875 && Number(size[1]) < 1.05, `title size ${size && size[1]}rem: smaller than 1.05, not below 0.875`);
+  const narrow = css.match(/@media \(max-width: 374px\) \{([\s\S]*?)\n\}/);
+  assert.ok(narrow, 'a rule below 375 px');
+  assert.match(narrow[1], /white-space:\s*normal/);
+  assert.match(narrow[1], /-webkit-line-clamp:\s*2/, 'two lines at most');
+  assert.match(narrow[1], /\.module-en-line/, 'the English line may wrap too');
+});
+
+test('module row: the title text is complete in the DOM (the ellipsis is only visual)', () => {
+  const long = { ...pmPlan, title: { nl: 'Veilig werken op de vloer en in het station', en: 'Safety on the floor and in the substation' } };
+  const row = modSummary({ lang: 'nl' }, long, 'button', {});
+  assert.equal(row.querySelector('.module-title').textContent, long.title.nl);
 });

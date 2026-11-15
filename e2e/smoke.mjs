@@ -381,7 +381,7 @@ await step('subject bar switches to Engineering and Projects and back; speaking 
   await page.locator('.course-home .track').first().waitFor();
   await page.locator('.course-today .today-what', { hasText: 'Takt' }).waitFor();
   await shot('60-course-home');
-  await page.locator('.module-row', { hasText: 'Capaciteit en flow' }).click();
+  await clickModuleRow(page, 'Capaciteit en flow'); // the tracks stay closed under the map
   await page.locator('.module-screen .topic-row').nth(3).waitFor();
   await shot('60b-module-open');
   await page.locator('.module-screen .lesson-back').click();
@@ -394,7 +394,7 @@ await step('subject bar switches to Engineering and Projects and back; speaking 
   await page.locator('.btn-hero').waitFor();
 });
 
-await step('Projects home: the map is the first thing; tapping Planning opens its module screen; the field film entry is there; Engineering unchanged', async () => {
+await step('Projects home: the map is the first thing; tapping Planning opens its module screen; the field film entry is there; Engineering has its map too', async () => {
   await page.locator('.subject-tab', { hasText: 'Projecten' }).click();
   await page.locator('.course-pm .map-card .subject-map').waitFor();
   // the map is the first block, "Your next step" the second
@@ -449,12 +449,25 @@ await step('Projects home: the map is the first thing; tapping Planning opens it
   await page.locator('.module-screen', { hasText: 'Plannen' }).waitFor();
   await page.locator('.module-screen .lesson-back').click();
   await page.locator('.course-pm .map-card').waitFor();
-  // Engineering: no map, today's order, the track with the next step open
+  // Engineering (Task 13): the map first, 26 buttons, four zones, no field film yet, the tracks closed; Enter and a tap open the module
   await page.locator('.subject-tab', { hasText: 'Engineering' }).click();
-  await page.locator('.course-eng .track').first().waitFor();
-  if (await page.locator('.course-eng .map-card, .course-eng .field-film').count() !== 0) throw new Error('Engineering shows a map or field film');
-  if (!/course-today/.test(await page.locator('.course-eng > :nth-child(3)').getAttribute('class'))) throw new Error('Engineering order changed');
-  if (await page.locator('.course-eng details.track[open]').count() !== 1) throw new Error('Engineering: one track should be open');
+  await page.locator('.course-eng .map-card .subject-map').waitFor();
+  if (await page.locator('.course-eng .field-film').count() !== 0) throw new Error('Engineering shows a field film');
+  if (!/map-card/.test(await page.locator('.course-eng > :nth-child(3)').getAttribute('class'))) throw new Error('Engineering: the map is not first');
+  if (await page.locator('.course-eng .map-place[role="button"]').count() !== 26) throw new Error('Engineering: not 26 places');
+  if (await page.locator('.course-eng .map-zone').count() !== 4) throw new Error('Engineering: not 4 zones');
+  if (await page.locator('.course-eng .map-place.is-next').count() !== 1) throw new Error('Engineering: the next place is not marked once');
+  if (await page.locator('.course-eng details.track[open]').count() !== 0) throw new Error('Engineering: the tracks should be closed under a map');
+  await page.locator('.course-eng .map-place[data-module="eng.machining"]').focus();
+  await page.keyboard.press('Enter');
+  await page.locator('.module-screen').waitFor();
+  await page.locator('.module-screen', { hasText: 'Verspanen' }).waitFor();
+  await page.locator('.module-screen .lesson-back').click();
+  await page.locator('.course-eng .map-card').waitFor();
+  await page.locator('.course-eng .map-place[data-module="eng.flow"]').click();
+  await page.locator('.module-screen', { hasText: 'Capaciteit en flow' }).waitFor();
+  await page.locator('.module-screen .lesson-back').click();
+  await page.locator('.course-eng .map-card').waitFor();
   await page.locator('.subject-tab', { hasText: 'Spreken' }).click();
   await page.locator('.btn-hero').waitFor();
 });
@@ -889,7 +902,8 @@ await step('films: a film lesson shows Raden · Film · Check, plays the video w
     await p.screenshot({ path: `${out}/${n}.png`, fullPage: true, animations: 'disabled' });
   };
   await p.goto(BASE);
-  await p.evaluate(() => localStorage.setItem('spraakwater:v1', JSON.stringify({ onboarded: true, ui: { subject: 'eng' } })));
+  // the opener of this level is already seen (the opener has its own step)
+  await p.evaluate(() => localStorage.setItem('spraakwater:v1', JSON.stringify({ onboarded: true, ui: { subject: 'eng' }, courses: { eng: { lessons: {}, sessions: [], seenLevels: ['eng.machining/turning#2'] } } })));
   await p.reload();
   const open = async () => {
     await p.evaluate(() => window.__app.go('lesson', { subject: 'eng', moduleId: 'eng.machining', lessonId: 'eng.machining.cutting' }));
@@ -2804,7 +2818,9 @@ await step('layout: each home at 390 px in light and dark, one primary, bands, t
   // Course homes: exactly one track open, the one with the next step; Begrippen and the real week in one row.
   await p.evaluate(() => window.__app.setSubject('eng'));
   await p.locator('.course-eng .track').first().waitFor();
-  if (await p.locator('.course-eng details.track[open]').count() !== 1) throw new Error('expected one open track');
+  // Engineering has a map now, like Projecten: the tracks stay closed and open on tap.
+  if (await p.locator('.course-eng details.track[open]').count() !== 0) throw new Error('expected no open track under the map');
+  await p.locator('details.track-basics > summary').click();
   await p.locator('details.track-basics[open] .module-row', { hasText: 'Capaciteit en flow' }).waitFor();
   await p.locator('.quick-row .glossary-entry').waitFor();
   await p.locator('.quick-row .rw-entry').waitFor();
@@ -3017,7 +3033,10 @@ async function topicContext(seed = {}, { entry = MACHINING_TOPIC_FIXTURE, setup 
 const topicSeed = () => {
   const lessons = { 'eng.machining.processes': { read: 1000, passed: 1000 }, 'eng.machining.cutting': { read: 2000, passed: 2000 } };
   const courseReviews = Object.fromEntries([0, 1, 2, 3].map((i) => [`nl|eng.machining.cutting#r${i}`, { box: 4, due: '2099-01-01', lesson: 'eng.machining.cutting', subject: 'eng' }]));
-  return { courses: { eng: { lessons, sessions: [] } }, courseReviews };
+  // Gevorderd and Expert openers of this topic are seen already (the opener step has its own seed);
+  // Werkkennis is passed, which counts as seen without an entry.
+  const seenLevels = [3, 4].map((n) => `eng.machining/turning#${n}`);
+  return { courses: { eng: { lessons, sessions: [], seenLevels } }, courseReviews };
 };
 // v17: a topic module lives on its own screen; tap its row on the course home.
 const openTopicModule = async (p) => {
@@ -3035,6 +3054,21 @@ await step('topics: the path map in a module (fixture)', async () => {
   // The row on the course home keeps its progress line; the topics are on the module screen.
   await p.locator('.course-home').waitFor();
   if (!(await p.locator('.module-row', { hasText: 'Verspanen' }).locator('.module-meta', { hasText: '2/4 niveaus' }).count())) throw new Error('no levels count in the module row');
+  // v17 Task 12: the title is one line and the English name sits small under it, not inline.
+  const rowGeo = await p.evaluate(() => [...document.querySelectorAll('.module-row')].map((r) => {
+    const t = r.querySelector('.module-title').getBoundingClientRect();
+    const e = r.querySelector('.module-en-line');
+    const eb = e && e.getBoundingClientRect();
+    const tEl = r.querySelector('.module-title');
+    return { clipped: tEl.scrollWidth > tEl.clientWidth, h: t.height, lh: parseFloat(getComputedStyle(r.querySelector('.module-title')).lineHeight) || 24, under: eb ? eb.top >= t.bottom - 1 : null, enH: eb ? eb.height : 0, hasInline: !!r.querySelector('.module-en') };
+  }));
+  if (!rowGeo.length) throw new Error('no module rows');
+  for (const g of rowGeo) {
+    if (g.clipped) throw new Error(`a module title is cut off with an ellipsis at 390 px: ${JSON.stringify(g)}`);
+    if (g.h > g.lh * 1.6) throw new Error(`a module title wraps: ${JSON.stringify(g)}`);
+    if (g.under === false || g.hasInline) throw new Error(`English name not under the title: ${JSON.stringify(g)}`);
+  }
+  if (await p.evaluate(() => document.documentElement.scrollWidth > window.innerWidth)) throw new Error('module rows scroll sideways');
   if (await p.locator('.course-home .topic-row').count()) throw new Error('the course home still unfolds topics');
   const mod = await openTopicModule(p);
   const chips = mod.locator('.topic-row').first().locator('.path-stop');
@@ -3221,7 +3255,7 @@ await step('module screen: open Verspanen from the Engineering list, the intro b
   await ms.waitFor();
   if ((await ms.locator('h1').innerText()).trim() !== 'Verspanen') throw new Error(`title: ${await ms.locator('h1').innerText()}`);
   if ((await ms.locator('.module-en-line').innerText()).trim() !== 'Machining') throw new Error('no English name under the Dutch title');
-  if (await ms.locator('.module-field').count()) throw new Error('an Engineering module shows a field');
+  if (!/^dingen maken$/i.test((await ms.locator('.module-field').innerText()).trim())) throw new Error('an Engineering module shows its field (Dingen maken)');
   if ((await ms.locator('.module-intro-title').innerText()).trim() !== 'Begin hier: het grote plaatje') throw new Error('intro heading');
   const video = ms.locator('.module-intro video.film-video');
   await video.waitFor({ timeout: 8000 });
@@ -3275,6 +3309,131 @@ await step('module screen: open Verspanen from the Engineering list, the intro b
   await other.shotP('ms-module-nointro-dark');
   await other.c.close();
 });
+// v17 Task 19: the level opener before the first lesson at Werkkennis, Gevorderd or Expert of a topic,
+// once; a slow load starts the lesson instead; a level passed before counts as seen; the module screen reads it again.
+await step('level openers: the card before the first lesson at a level, once; info button on the module screen reads it again', async () => {
+  const seed = { courses: { eng: { lessons: { 'eng.machining.processes': { read: 1000, passed: 1000 } }, sessions: [] } } };
+  const { c, p, shotP } = await topicContext(seed);
+  const seenLevels = () => p.evaluate(() => (JSON.parse(localStorage.getItem('spraakwater:v1')).courses.eng.seenLevels || []));
+  const text = (lang, level) => p.evaluate(async ([l, n]) => (await import('./src/content/courses/openers.eng.js')).default['eng.machining/turning'][n][l], [lang, level]);
+  // A slow load (here 5 s, the lesson waits 2.5 s) starts the lesson without the card, and the
+  // late answer does not draw it over the lesson. The opener stays unseen for next time.
+  await c.route('**/openers.eng.js*', async (r) => { await new Promise((res) => setTimeout(res, 5000)); await r.continue(); });
+  const mod = await openTopicModule(p);
+  const row = mod.locator('.topic-row').first();
+  const slowStart = Date.now();
+  await row.locator('.path-stop').nth(1).click();
+  await p.locator('.lesson .steps').waitFor({ timeout: 4500 });
+  if (await p.locator('.opener-card').count()) throw new Error('slow load: the card shows');
+  await p.waitForTimeout(Math.max(0, 5600 - (Date.now() - slowStart)));
+  if (await p.locator('.opener-card').count() || !(await p.locator('.lesson .steps').count())) throw new Error('slow load: the late openers replaced the lesson');
+  if ((await seenLevels()).length) throw new Error('slow load: marked seen');
+  await c.unroute('**/openers.eng.js*');
+  await p.locator('.round-top .icon-btn').click();
+  await p.locator('.module-screen').waitFor();
+  // Level 1 has no info button; level 2 has one named "Wat verandert op Werkkennis (<topic>)".
+  if (await row.locator('.path-info').count() !== 1) throw new Error(`info buttons: ${await row.locator('.path-info').count()}`);
+  const info = row.locator('.path-info');
+  if (!(await info.getAttribute('aria-label')).startsWith('Wat verandert op Werkkennis (')) throw new Error(`info name: ${await info.getAttribute('aria-label')}`);
+  const ib = await info.boundingBox();
+  if (ib.width < 44 || ib.height < 44) throw new Error(`info target ${ib.width}x${ib.height}`);
+  // Opening a lesson at level 2 the first time: the opener card first, Andon says it.
+  await row.locator('.path-stop').nth(1).click();
+  const card = p.locator('.opener-card');
+  await card.waitFor();
+  if (await p.locator('.lesson .steps').count()) throw new Error('the lesson started before the opener');
+  if (await card.locator('.guide').count() !== 1) throw new Error('Andon missing on the opener card');
+  if ((await card.locator('.guide-say').innerText()).trim() !== await text('nl', 2)) throw new Error('opener text differs from the data');
+  if ((await card.locator('.opener-title').innerText()).trim() !== 'Wat verandert op Werkkennis') throw new Error('opener title');
+  await onePrimary(p, 'opener card');
+  const begin = p.locator('.opener-begin');
+  if ((await begin.innerText()).trim() !== 'Begin') throw new Error('begin label (nl: Begin)');
+  if ((await begin.boundingBox()).height < 44) throw new Error('begin under 44 px');
+  if (await p.evaluate(() => document.documentElement.scrollWidth > document.documentElement.clientWidth)) throw new Error('opener card scrolls sideways');
+  await shotP('opener-card-light-nl');
+  // Focus is on the card's heading, so a screen reader starts there.
+  if (!(await p.evaluate(() => document.activeElement && document.activeElement.classList.contains('opener-title')))) throw new Error('focus not on the opener heading');
+  await p.setViewportSize({ width: 320, height: 700 });
+  if (await p.evaluate(() => document.documentElement.scrollWidth > document.documentElement.clientWidth)) throw new Error('opener card scrolls sideways at 320');
+  await p.setViewportSize({ width: 390, height: 844 });
+  if ((await seenLevels()).length) throw new Error('marked seen before the button');
+  // Leaving without pressing does not mark it: it shows again.
+  await p.locator('.round-top .icon-btn').click();
+  await p.locator('.module-screen').waitFor();
+  if ((await seenLevels()).length) throw new Error('marked seen by leaving');
+  await p.locator('.module-screen .topic-row').first().locator('.path-stop').nth(1).click();
+  await p.locator('.opener-card').waitFor();
+  // Dark and English.
+  await p.evaluate(() => { window.__app.updateSettings({ theme: 'dark', lang: 'en' }); window.__app.go('module', { subject: 'eng', moduleId: 'eng.machining' }); });
+  await p.waitForFunction(() => document.documentElement.dataset.theme === 'dark');
+  await p.locator('.module-screen .topic-row').first().locator('.path-stop').nth(1).click();
+  await p.locator('.opener-title', { hasText: 'What changes at Working knowledge' }).waitFor();
+  if ((await p.locator('.opener-card .guide-say').innerText()).trim() !== await text('en', 2)) throw new Error('English opener text differs from the data');
+  if ((await p.locator('.opener-begin').innerText()).trim() !== 'Start') throw new Error('English begin label (en: Start)');
+  await shotP('opener-card-dark-en');
+  await p.evaluate(() => { window.__app.updateSettings({ theme: 'light', lang: 'nl' }); window.__app.go('module', { subject: 'eng', moduleId: 'eng.machining' }); });
+  // Guide off: the card stays, without Andon.
+  await p.evaluate(() => window.__app.updateSettings({ guide: false }));
+  await p.evaluate(() => window.__app.go('module', { subject: 'eng', moduleId: 'eng.machining' }));
+  await p.locator('.module-screen .topic-row').first().locator('.path-stop').nth(1).click();
+  await p.locator('.opener-card').waitFor();
+  if (await p.locator('.opener-card .guide, .opener-card .guide-name').count()) throw new Error('Andon shows with the guide off');
+  if ((await p.locator('.opener-card .opener-text').innerText()).trim() !== await text('nl', 2)) throw new Error('guide off: text');
+  await shotP('opener-card-noguide-nl');
+  await p.evaluate(() => window.__app.updateSettings({ guide: true }));
+  // Begin: marked seen, the first step starts.
+  await p.evaluate(() => window.__app.go('module', { subject: 'eng', moduleId: 'eng.machining' }));
+  await p.locator('.module-screen .topic-row').first().locator('.path-stop').nth(1).click();
+  await p.locator('.opener-begin').click();
+  await p.locator('.lesson .steps').waitFor();
+  if (await p.locator('.opener-card').count()) throw new Error('the card stays after Begin');
+  const after = await seenLevels();
+  if (JSON.stringify(after) !== JSON.stringify(['eng.machining/turning#2'])) throw new Error(`seenLevels: ${JSON.stringify(after)}`);
+  // Second time: no card, straight to the lesson.
+  await p.evaluate(() => window.__app.go('module', { subject: 'eng', moduleId: 'eng.machining' }));
+  await p.locator('.module-screen .topic-row').first().locator('.path-stop').nth(1).click();
+  await p.locator('.lesson .steps').waitFor();
+  if (await p.locator('.opener-card').count()) throw new Error('the card shows a second time');
+  // The module screen's info button reads it again, without touching what is seen.
+  await p.evaluate(() => window.__app.go('module', { subject: 'eng', moduleId: 'eng.machining' }));
+  const ms = p.locator('.module-screen');
+  await ms.waitFor();
+  const btn = ms.locator('.topic-row').first().locator('.path-info');
+  await btn.click();
+  const inline = ms.locator('.opener-inline');
+  await inline.waitFor();
+  if ((await inline.locator('.opener-text').innerText()).trim() !== await text('nl', 2)) throw new Error('inline text');
+  if ((await btn.getAttribute('aria-expanded')) !== 'true') throw new Error('aria-expanded not set');
+  if (await ms.locator('.guide').count() > 1) throw new Error('more than one Andon on the module screen');
+  if (!(await p.evaluate(() => document.activeElement && document.activeElement.classList.contains('opener-title')))) throw new Error('focus did not move to the opener');
+  if ((await inline.locator('.opener-close').boundingBox()).height < 44) throw new Error('close under 44 px');
+  if (await p.evaluate(() => document.documentElement.scrollWidth > document.documentElement.clientWidth)) throw new Error('module screen with opener scrolls sideways');
+  await p.setViewportSize({ width: 320, height: 700 });
+  if (await p.evaluate(() => document.documentElement.scrollWidth > document.documentElement.clientWidth)) throw new Error('module screen with opener scrolls sideways at 320');
+  await p.setViewportSize({ width: 390, height: 844 });
+  if (JSON.stringify(await seenLevels()) !== JSON.stringify(['eng.machining/turning#2'])) throw new Error('the info button changed what is seen');
+  await shotP('opener-module-info-nl');
+  await inline.locator('.opener-close').click();
+  if (await ms.locator('.opener-inline').count()) throw new Error('close did not put the card away');
+  if (!(await p.evaluate(() => document.activeElement && document.activeElement.classList.contains('path-info')))) throw new Error('focus did not return to the info button');
+  await btn.click();
+  await inline.waitFor();
+  await btn.click(); // the same button again closes it
+  if (await ms.locator('.opener-inline').count()) throw new Error('second tap did not close the card');
+  // A level 1 lesson never shows an opener.
+  await ms.locator('.topic-row').first().locator('.path-stop').first().click();
+  await p.locator('.lesson .steps').waitFor();
+  if (await p.locator('.opener-card').count()) throw new Error('an opener at level 1');
+  await c.close();
+  // A learner who passed Werkkennis before the openers existed has been at that level: no card.
+  const old = await topicContext({ courses: { eng: { lessons: { 'eng.machining.processes': { read: 1000, passed: 1000 }, 'eng.machining.cutting': { read: 2000, passed: 2000 } }, sessions: [] } } });
+  const oms = await openTopicModule(old.p);
+  await oms.locator('.topic-row').first().locator('.path-stop').nth(1).click();
+  await old.p.locator('.lesson .steps').waitFor();
+  if (await old.p.locator('.opener-card').count()) throw new Error('an opener on a level passed before');
+  await old.c.close();
+});
+
 // v17 Task 8: Andon is visible: he greets on the home screens (80 px plus his name, one line in a bubble), presents the intro on a
 // module screen (72 px, one line, beside the heading), lights his top segment once the intro has been
 // watched, and leaves no gap anywhere when the guide is off.
@@ -3303,7 +3462,7 @@ await step('Andon: greets on the home screens, presents the intro on a module sc
     if (top && !above) throw new Error(`${where}: Andon is not above the first block`);
     if (await sideways()) throw new Error(`${where}: sideways scroll`);
   };
-  // Engineering home (no map): Andon above the next step.
+  // Engineering home (the map under Andon, then the next step).
   // Light, then dark, then back to light.
   const both = async (n) => {
     await shotP(n);
@@ -3433,7 +3592,7 @@ await step('Andon: greets on the home screens, presents the intro on a module sc
     return { n: m.querySelectorAll('.guide, .guide-greeting').length, firstClass: first.className, gap: first.getBoundingClientRect().top - m.getBoundingClientRect().top };
   });
   if (off.n) throw new Error('Andon on the Engineering home with the guide off');
-  if (!/course-today/.test(off.firstClass)) throw new Error(`the next step is not first with the guide off: ${off.firstClass}`);
+  if (!/map-card/.test(off.firstClass)) throw new Error(`the map is not first with the guide off: ${off.firstClass}`);
   if (off.gap > 40) throw new Error(`a gap of ${off.gap}px above the first card with the guide off`);
   await p.locator('.subject-tab', { hasText: 'Spreken' }).click();
   await p.locator('.speak-home').waitFor();
@@ -3826,6 +3985,7 @@ await step('flair: start ring and title, path map with the bronze seal, a perfec
   // Course home: the path map, the bronze seal on the module and at its end, the check flag.
   await p.locator('.start-eng').click();
   await p.locator('.course-home').waitFor();
+  await p.locator('details.track-basics > summary').click(); // the tracks stay closed under the map
   const row = p.locator('.module-row', { hasText: 'Capaciteit en flow' });
   await row.locator('.medal-bronze', { hasText: 'Brons' }).waitFor();
   await shotP('flair-02-course-home-390');
@@ -3937,6 +4097,9 @@ await step('offline after first load', async () => {
   // HTML film instead. A sandboxed frame's own navigation skips the service
   // worker, so the page goes in as srcdoc from the cache, never an empty frame.
   await page.evaluate(() => window.__app.go('lesson', { subject: 'eng', moduleId: 'eng.machining', lessonId: 'eng.machining.cutting' }));
+  // The level opener comes from the service worker cache too: the card first, Start begins the lesson.
+  await page.locator('.opener-card').waitFor({ timeout: 5000 });
+  await page.locator('.opener-begin').click();
   await page.locator('.pre-card .opt').first().click();
   await page.locator('.lesson > .pre-next').click();
   await page.frameLocator('.film-card .film-frame').locator('.fp-poster-go').waitFor({ timeout: 8000 });

@@ -744,17 +744,27 @@ details.finder summary::-webkit-details-marker { display: none; }
 .track .card-title { margin-bottom: 6px; }
 .module { border-top: 1px solid var(--border-subtle); padding: 8px 0; }
 .module:first-of-type { border-top: 0; }
-.module-row { list-style: none; cursor: pointer; display: grid; grid-template-columns: auto 1fr; column-gap: 2px; row-gap: 4px; min-height: 44px; align-content: center; align-items: center; }
+.module-row { list-style: none; cursor: pointer; display: grid; grid-template-columns: auto minmax(0, 1fr); column-gap: 2px; row-gap: 2px; min-height: 44px; align-content: center; align-items: center; }
 .module-row::before { grid-row: span 2; }
 .module-row > * { grid-column: 2; }
 .module > .module-blurb, .module > .lesson-list, .module > .btn { margin-left: 19px; }
 .module-row::-webkit-details-marker { display: none; }
+.module-row .module-title, .module-row .module-en-line { min-width: 0; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+.module-row .module-en-line { font-size: 0.8rem; line-height: 1.25; color: var(--muted, inherit); font-style: italic; }
 .module-title { font-family: var(--font-display); font-weight: 600; font-size: 1.05rem; color: var(--heading); }
+/* A title is never cut off: phones get a slightly smaller title (fits one line at 390 px),
+   and below 375 px a title or its English line may take a second line, balanced, never a third. */
+@media (max-width: 479px) {
+  .module-row .module-title { font-size: 0.9375rem; }
+}
+@media (max-width: 374px) {
+  .module-row .module-title, .module-row .module-en-line { display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; white-space: normal; text-wrap: balance; overflow-wrap: anywhere; }
+}
 .module-meta { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; }
 .module-meta .muted.small { font-family: var(--font-mono); font-size: 0.75rem; }
 .module-blurb { margin: 6px 0; }
 /* v17: the module screen */
-.module-link { all: unset; box-sizing: border-box; width: 100%; list-style: none; cursor: pointer; display: grid; grid-template-columns: auto 1fr; column-gap: 2px; row-gap: 4px; min-height: 44px; align-content: center; align-items: center; }
+.module-link { all: unset; box-sizing: border-box; width: 100%; list-style: none; cursor: pointer; display: grid; grid-template-columns: auto minmax(0, 1fr); column-gap: 2px; row-gap: 2px; min-height: 44px; align-content: center; align-items: center; }
 .module-link:focus-visible { outline: 2px solid var(--primary); outline-offset: 2px; border-radius: var(--radius-sm); }
 .module-link::before { grid-row: span 2; }
 .module-link > * { grid-column: 2; }
@@ -763,6 +773,7 @@ details.finder summary::-webkit-details-marker { display: none; }
 .module-head { display: flex; flex-direction: column; gap: 2px; }
 .module-screen-title { margin: 0; font-family: var(--font-display); font-weight: 600; font-size: 1.5rem; line-height: 1.2; letter-spacing: var(--tracking-tight); color: var(--heading); overflow-wrap: anywhere; hyphens: auto; }
 .module-en-line { margin: 0; font-size: 0.95rem; }
+.term-en.module-en-line { color: var(--muted); }
 .module-field { margin: 4px 0 0; font-family: var(--font-mono); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.04em; }
 .module-intro-title { margin: 0 0 6px; }
 .module-intro-text, .module-blurb-text { margin: 0; line-height: 1.55; }
@@ -788,7 +799,6 @@ button.term { all: unset; cursor: pointer; color: inherit; text-decoration: unde
 button.term[aria-expanded="true"] { color: var(--accent-dark); }
 button.term:focus-visible { outline: 2px solid var(--primary); outline-offset: 2px; border-radius: 2px; }
 .term-en { color: var(--accent-dark); font-style: italic; }
-.module-en { font-weight: 400; font-size: 0.9em; }
 .teach-text .term-def { margin: -0.4em 0 0.8em; padding: 8px 12px; background: var(--tint); border-radius: 6px; }
 /* Quotes and what people say: a hairline box in Fraunces italic, no coloured edge. */
 .said { margin: 12px 0 0; padding: 12px 14px; border: 1px solid var(--border-subtle); background: var(--tint); border-radius: var(--radius-sm); font-family: var(--font-display); font-style: italic; color: var(--heading); }
@@ -1065,6 +1075,23 @@ details.rw-topic > summary { cursor: pointer; min-height: 44px; display: flex; a
 .path-label { font-size: 0.7rem; line-height: 1.15; color: var(--muted); text-align: center; overflow-wrap: anywhere; }
 .path-stop.s-next + .path-label { color: var(--ink); }
 .path-next { font-family: var(--font-mono); font-size: 0.66rem; color: var(--accent-dark); }
+/* v17 Task 19: the info button under a level stop (pulled up over the label's spare space; the target stays 44 px), and the opener cards. */
+.path-info { width: 44px; height: 44px; margin-top: -8px; padding: 0; border: 0; background: transparent; display: grid; place-items: center; color: var(--muted); cursor: pointer; border-radius: 50%; }
+.path-info .ico { width: 18px; height: 18px; }
+.path-info[aria-expanded="true"] { color: var(--accent-dark); }
+.path-info:focus-visible, .opener-close:focus-visible { outline: 2px solid var(--accent); outline-offset: 0; }
+@media (hover: hover) { .path-info:hover { color: var(--accent-dark); } }
+.opener-slot:empty { display: none; }
+.opener-inline { margin: 6px 0 0; padding: 12px 14px; border-radius: var(--radius-md); border: 1px solid var(--border-subtle); background: var(--card); display: flex; flex-direction: column; align-items: flex-start; gap: 6px; }
+.opener-inline .opener-title { margin: 0; font-size: 0.95rem; color: var(--heading); }
+.opener-title:focus { outline: none; }
+.opener-text { margin: 0; line-height: 1.55; overflow-wrap: anywhere; }
+.opener-inline .opener-close { min-height: 44px; }
+.opener-card { display: block; }
+.opener-card .opener-title { margin: 0; color: var(--heading); font-size: 1.1rem; }
+.opener-card .opener-plain { display: flex; flex-direction: column; gap: 10px; }
+.opener-card .guide-say { font-size: 1rem; }
+.opener-begin { margin-top: 12px; }
 .path-stub { margin-top: 13px; padding-left: 4px; font-size: 0.75rem; color: var(--muted); }
 .path-flag { margin-top: 11px; padding-left: 2px; display: inline-flex; align-items: center; color: var(--accent-dark); }
 .path-flag .ico-check { width: 0.9em; height: 0.9em; margin-left: -2px; }
@@ -1161,6 +1188,12 @@ details.rw-topic > summary { cursor: pointer; min-height: 44px; display: flex; a
 .subject-map .m-left { fill: var(--zone, var(--accent)); }
 .subject-map .m-right { fill: color-mix(in srgb, var(--zone, var(--accent)) 75%, var(--heading)); }
 .subject-map .map-road-arrow { fill: color-mix(in srgb, var(--heading) 30%, var(--card)); }
+/* The Engineering zones (Task 13). They start with .subject-map-wrap, not .subject-map, so the film kit does not
+   carry them into the Projects films; the first Engineering film moves them into the kit's rules. */
+.subject-map-wrap .z-plant { --zone: var(--accent); }
+.subject-map-wrap .z-making { --zone: var(--primary); }
+.subject-map-wrap .z-energy { --zone: var(--ok); }
+.subject-map-wrap .z-digital { --zone: var(--secondary-fill); }
 /* v273: the phone layout (map.phone, drawn by subjectMap when the card is under 460 px): a 300-unit sheet, so 10.6 units
    are 11.4 px at 390 and 9.0 px at 320, three places to a row. These rules start with .subject-map-wrap, so the films do not carry them. */
 .subject-map-wrap .subject-map-phone { max-width: 400px; margin: 0 auto; }

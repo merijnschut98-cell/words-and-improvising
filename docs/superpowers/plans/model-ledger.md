@@ -106,3 +106,9 @@ Outcome: accepted (merged as delivered), sent back N times, redone.
 | 15 Nov | Render PM-19: Dutch re-render after the voice fix (13 films) and scaled and IT-project intros | sonnet | 110 | 3 h 18 min | 207,686 | accepted; three lines reworded to pass the guard; 'IT en agile' still heard as HL by Whisper; merged v299 |
 | 15 Nov | Kit: label fit for long map labels in mapScene | sonnet | 62 | 12 min | 185,448 | accepted with fixes by its review |
 | 15 Nov | Review: kit label fit | opus | n/a | n/a | n/a | accepted with four fixes (halo clip on descenders, markup guards, $ in replace, generic for every map); 11 films need a re-render; merged v300 |
+| 15 Nov | Task 19 step 2: level openers in the app | sonnet | 106 | 53 min | 219,150 | accepted with fixes by its review |
+| 15 Nov | Review: level openers in the app | opus | n/a | n/a | n/a | accepted with fixes (cap 1200, passed levels count as seen, 2.5 s load timeout, button labels, unique accessible names); full e2e 111/111; merged v301 |
+| 15 Nov | Task 12 part 2: module titles on one line | sonnet | 37 | 14 min | 140,292 | accepted with fixes by its review |
+| 15 Nov | Review: module titles | sonnet | n/a | n/a | n/a | accepted with a fix (no title cut off: smaller title below 480 px, two balanced lines below 375 px); full e2e 111/111; it killed a server on port 8123 that may have belonged to another agent; merged v302 |
+| 15 Nov | Task 13 step 1: Engineering subject map (four zones) | sonnet | 108 | 86 min | 257,564 | accepted with fixes by its review |
+| 15 Nov | Review: Engineering map | opus | n/a | n/a | n/a | accepted with fixes (label-fit test generic, phone map 840 to 741 px); merged v303 |

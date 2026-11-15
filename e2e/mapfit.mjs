@@ -1,4 +1,4 @@
-// The subject map must sit inside its card's content box, with the card's own
+// The subject maps (Projects and Engineering) must sit inside its card's content box, with the card's own
 // inset on both sides, at every width, theme and language.
 // Run: node e2e/mapfit.mjs [outDir]   (serves the repo on :8124)
 import { spawn, execSync } from 'node:child_process';
@@ -42,7 +42,7 @@ try {
       const page = await ctx.newPage();
       await page.goto(BASE);
       const has = await page.locator('.map-card .subject-map').first().waitFor({ timeout: 4000 }).then(() => true, () => false);
-      if (!has) { await ctx.close(); if (subject === 'pm') problems.push(`${subject} ${lang} ${scheme} ${width}: no map`); continue; }
+      if (!has) { await ctx.close(); problems.push(`${subject} ${lang} ${scheme} ${width}: no map`); continue; }
       const m = await page.evaluate(() => {
         const card = document.querySelector('.map-card');
         const cs = getComputedStyle(card);
@@ -73,13 +73,13 @@ try {
         }
         const buttons = [...card.querySelectorAll('.map-place')].filter((g) => g.getAttribute('role') === 'button' && g.getAttribute('tabindex') === '0' && g.getAttribute('aria-label')).length;
         return { cl, cr, svgL: svg.left, svgR: svg.right, left, right, lab, place, placeH, zoneLab, spill, maxLines: Math.max(...lines), buttons, places: card.querySelectorAll('.map-place').length,
-          phone: el.classList.contains('subject-map-phone'), cardW: cr - cl, h: svg.height, next: card.querySelectorAll('.map-place.is-next').length, over: document.documentElement.scrollWidth - innerWidth };
+          zones: card.querySelectorAll('.map-zone').length, phone: el.classList.contains('subject-map-phone'), cardW: cr - cl, h: svg.height, next: card.querySelectorAll('.map-place.is-next').length, over: document.documentElement.scrollWidth - innerWidth };
       });
       const tag = `${subject} ${lang} ${scheme} ${width}`;
       const eps = 0.6;
       const fits = m.svgL >= m.cl - eps && m.svgR <= m.cr + eps && m.left >= m.cl - eps && m.right <= m.cr + eps;
       if (!fits) problems.push(`${tag}: map ${m.left.toFixed(1)}..${m.right.toFixed(1)} outside content box ${m.cl.toFixed(1)}..${m.cr.toFixed(1)}`);
-      if (subject === 'pm') {
+      {
         // the phone layout below 460 px of card, the wide map above; labels big enough; every place a 44 px button
         if (!process.env.MAPFIT_WIDE && m.phone !== (m.cardW < 460)) problems.push(`${tag}: ${m.phone ? 'phone' : 'wide'} layout in a ${m.cardW.toFixed(0)} px card`);
         const need = width >= 390 ? 11 : width >= 360 ? 10 : 9;
@@ -88,7 +88,10 @@ try {
         if (m.place < 43.5 || m.placeH < 43.5) problems.push(`${tag}: a place is ${m.place.toFixed(1)} x ${m.placeH.toFixed(1)}px, under 44`);
         if (m.spill) problems.push(`${tag}: ${m.spill} labels leave their place`);
         if (m.phone && m.maxLines > 3) problems.push(`${tag}: a label has ${m.maxLines} lines`);
-        if (m.places !== 16 || m.buttons !== 16 || m.next > 1) problems.push(`${tag}: ${m.places} places, ${m.buttons} buttons, ${m.next} next`);
+        const count = subject === 'eng' ? 26 : 16;
+        if (m.places !== count || m.buttons !== count || m.next > 1) problems.push(`${tag}: ${m.places} places, ${m.buttons} buttons, ${m.next} next`);
+        // Engineering: four zones, and the first step of a new learner is marked once
+        if (subject === 'eng' && (m.zones !== 4 || m.next !== 1)) problems.push(`${tag}: ${m.zones} zones, ${m.next} next marks`);
       }
       if (m.over > 0) report.push(`NOTE ${tag}: page scrolls sideways by ${m.over}px (the subject tab bar, not the map)`);
       if (lang === 'nl' && scheme === 'light') report.push(`${tag}: ${m.phone ? 'phone' : 'wide'}, card ${m.cardW.toFixed(0)}px, map ${m.h.toFixed(0)}px high, label ${m.lab.toFixed(1)}px, zone label ${m.zoneLab.toFixed(1)}px, smallest place ${m.place.toFixed(1)} x ${m.placeH.toFixed(1)}px, map ${m.place.toFixed(1)}px, map ${m.svgL.toFixed(0)}..${m.svgR.toFixed(0)} in ${m.cl.toFixed(0)}..${m.cr.toFixed(0)}`);
@@ -97,12 +100,14 @@ try {
         await page.locator('.map-card').screenshot({ path: `${out}/${subject}-${lang}-${scheme}-${width}.png` });
       }
       // tap and keyboard open the module screen in the phone layout too
-      if (subject === 'pm' && scheme === 'light' && width === 390) {
-        await page.locator('.map-place[data-module="pm.run"]').focus();
+      if (scheme === 'light' && width === 390) {
+        const [enter, tap, name] = subject === 'eng' ? ['eng.machining', 'eng.flow', lang === 'nl' ? 'Verspanen' : 'Machining'] : ['pm.run', 'pm.plan', ''];
+        await page.locator(`.map-place[data-module="${enter}"]`).focus();
         await page.keyboard.press('Enter');
         await page.locator('.module-screen').waitFor({ timeout: 4000 }).catch(() => problems.push(`${tag}: Enter on a place did not open the module`));
+        if (name && !(await page.locator('.module-screen', { hasText: name }).count())) problems.push(`${tag}: Enter opened another module than ${enter}`);
         await page.locator('.module-screen .lesson-back').click().catch(() => {});
-        await page.locator('.map-card .map-place[data-module="pm.plan"]').click();
+        await page.locator(`.map-card .map-place[data-module="${tap}"]`).click();
         await page.locator('.module-screen').waitFor({ timeout: 4000 }).catch(() => problems.push(`${tag}: a tap on a place did not open the module`));
         report.push(`${tag}: tap and Enter open the module screen`);
         // the home screen is gone: the map's ResizeObserver is disconnected, not left watching a detached map
