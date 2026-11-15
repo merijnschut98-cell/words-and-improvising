@@ -19,10 +19,10 @@ const asMap = { subject: pmMap.subject, ...phone };
 const CARD = { 390: 324, 360: 294, 320: 254, 430: 364 };
 
 test('the default mapSvg output is byte-identical to before the phone layout (the films depend on it)', () => {
-  assert.equal(sha(mapSvg(pmMap, { lang: 'nl' })), '98a1fd0cda491cec');
-  assert.equal(sha(mapSvg(pmMap, { lang: 'en' })), '423a4988d94651c0');
-  assert.equal(sha(mapSvg(pmMap, { lang: 'nl', next: 'pm.plan', interactive: true })), 'ec32fa8e5dc12a06');
-  assert.equal(sha(mapSvg(pmMap, { lang: 'en', theme: 'dark' })), 'c814b7a705b695c0');
+  assert.equal(sha(mapSvg(pmMap, { lang: 'nl' })), 'c86efde9d3fa71cb');
+  assert.equal(sha(mapSvg(pmMap, { lang: 'en' })), '67f1ed5fddc0e094');
+  assert.equal(sha(mapSvg(pmMap, { lang: 'nl', next: 'pm.plan', interactive: true })), '6f520e64c6861951');
+  assert.equal(sha(mapSvg(pmMap, { lang: 'en', theme: 'dark' })), '34a31b988b8e729f');
 });
 
 test('the phone layout is data: same modules, same fields, valid by the rules of checkMap', () => {
@@ -42,10 +42,10 @@ test('the phone layout keeps the reading order: zones top to bottom, places left
   assert.deepEqual(order(phone), order(pmMap));
 });
 
-test('the road still runs Intake, Plan, Run, Land, Close, each leg left to right, and the same chain', () => {
+test('the road still runs Approach, Intake, Plan, Run, Land, Close, each leg left to right, and the same chain', () => {
   const flat = new Map();
   for (const [a, b] of phone.routes) flat.set(a, b);
-  const road = ['pm.intake', 'pm.plan', 'pm.run', 'pm.land', 'pm.close'];
+  const road = ['pm.approach', 'pm.intake', 'pm.plan', 'pm.run', 'pm.land', 'pm.close'];
   const at = (id) => phone.places.find((p) => p.module === id);
   for (const [a, b] of phone.routes) {
     assert.ok(road.indexOf(b) === road.indexOf(a) + 1, `${a} -> ${b} follows the road`);
@@ -61,7 +61,7 @@ test('labels are big: at least 11 px at 390 and 9 px at 320 (the wide map had 7.
   assert.ok(px(CARD[360]) >= 10, `${px(CARD[360])} px at 360`);
 });
 
-test('rows of three: lifecycle 3+2, people 3+2, IT 2+2 or 3+1, portfolio 2, never more than three', () => {
+test('rows of three: lifecycle 3+3, people 3+2, IT 2+2 or 3+1, portfolio 2, never more than three', () => {
   const rows = (field) => {
     const z = phone.zones.find((q) => q.field === field);
     const b = pathBox(z.path);
@@ -69,7 +69,7 @@ test('rows of three: lifecycle 3+2, people 3+2, IT 2+2 or 3+1, portfolio 2, neve
     for (const p of phone.places) if (p.x >= b[0] && p.x + p.w <= b[2] && p.y >= b[1] && p.y + p.h <= b[3]) ys.set(p.y, (ys.get(p.y) || 0) + 1);
     return [...ys.keys()].sort((a, c) => a - c).map((y) => ys.get(y));
   };
-  assert.deepEqual(rows('pm.field.lifecycle'), [3, 2]);
+  assert.deepEqual(rows('pm.field.lifecycle'), [3, 3]);
   assert.deepEqual(rows('pm.field.people'), [3, 2]);
   assert.deepEqual(rows('pm.field.portfolio'), [2]);
   assert.ok(['2,2', '3,1'].includes(rows('pm.field.it').join()), rows('pm.field.it').join());
@@ -125,8 +125,8 @@ test('the labels sit inside their place: the last baseline plus its descent is a
 test('mapSvg with layout phone: the phone drawing, with the same classes, buttons and next mark', () => {
   const svg = mapSvg(pmMap, { lang: 'nl', next: 'pm.plan', interactive: true, layout: 'phone' });
   assert.match(svg, new RegExp(`^<svg class="subject-map subject-map-phone" [^>]*viewBox="0 0 ${phone.view.w} ${phone.view.h}"`));
-  assert.equal((svg.match(/class="map-place/g) || []).length, 16);
-  assert.equal((svg.match(/role="button" tabindex="0"/g) || []).length, 16);
+  assert.equal((svg.match(/class="map-place/g) || []).length, 17);
+  assert.equal((svg.match(/role="button" tabindex="0"/g) || []).length, 17);
   assert.match(svg, /class="map-place is-next" data-module="pm\.plan"/);
   assert.equal((svg.match(/is-next/g) || []).length, 1);
   for (const lang of ['nl', 'en']) {

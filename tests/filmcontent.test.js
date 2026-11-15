@@ -61,10 +61,19 @@ test('withoutNumber also removes a recall answer given as a number', () => {
 // index entry and the page's stage (the drawing and scripts where a card's words
 // stand, without the film data, whose captions and topic titles would always match).
 const stageOf = (html) => html.replace(/<script type="application\/json" id="film-data">[\s\S]*?<\/script>/, '');
+// A module added to a field before its field film is re-rendered: the shipped film does not know the
+// module yet, so it is held to the field without it. Remove the entry when the film is re-rendered
+// (Task 14: pm.approach is the first station of pm.field.lifecycle, the re-render comes with its films).
+const PENDING_RERENDER = { 'pm.field.lifecycle': ['pm.approach'] };
+const fieldOfFilm = (id) => {
+  const f = FIELDS.find((x) => x.id === id);
+  const pending = PENDING_RERENDER[id] || [];
+  return f && pending.length ? { ...f, modules: f.modules.filter((m) => !pending.includes(m)) } : f;
+};
 const ctxOf = (data, html, lessons, wiredBy = data.module || data.field ? [] : data.lessons) => ({
   lessons, levelOf: (lid) => (placeOf(lid) || {}).level || 1, wiredBy,
   ...(data.module ? { module: MODULES.find((m) => m.id === data.module), stageText: stageOf(html) } : {}),
-  ...(data.field ? { field: FIELDS.find((f) => f.id === data.field), modules: MODULES, stageText: stageOf(html) } : {}),
+  ...(data.field ? { field: fieldOfFilm(data.field), modules: MODULES, stageText: stageOf(html) } : {}),
 });
 
 // All lessons, both languages, by id.

@@ -18,7 +18,7 @@ test('the shipped fields are valid and cover every pm module exactly once', () =
 
 test('the four pm fields group the modules as agreed with Merijn (13 Nov)', () => {
   const by = Object.fromEntries(FIELDS.map((f) => [f.id, f.modules]));
-  assert.deepEqual(by['pm.field.lifecycle'], ['pm.intake', 'pm.plan', 'pm.run', 'pm.land', 'pm.close']);
+  assert.deepEqual(by['pm.field.lifecycle'], ['pm.approach', 'pm.intake', 'pm.plan', 'pm.run', 'pm.land', 'pm.close']);
   assert.deepEqual(by['pm.field.people'], ['pm.stuck', 'pm.lead', 'pm.negotiate', 'pm.outside', 'pm.perform']);
   assert.deepEqual(by['pm.field.portfolio'], ['pm.portfolio', 'pm.consult']);
   assert.deepEqual(by['pm.field.it'], ['pm.agile', 'pm.scaled', 'pm.devops', 'pm.itproject']);

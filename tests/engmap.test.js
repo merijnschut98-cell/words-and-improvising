@@ -29,9 +29,9 @@ const placesOf = (m, field) => {
 };
 
 test('Projects is untouched: its map data and its default drawing are pinned', () => {
-  assert.equal(sha(JSON.stringify(pmMap)), '66ea68dfdaec591d');
-  assert.equal(sha(mapSvg(pmMap, { lang: 'nl' })), '98a1fd0cda491cec');
-  assert.equal(sha(mapSvg(pmMap, { lang: 'en', theme: 'dark' })), 'c814b7a705b695c0');
+  assert.equal(sha(JSON.stringify(pmMap)), 'b00cbfcc13bc5009');
+  assert.equal(sha(mapSvg(pmMap, { lang: 'nl' })), 'c86efde9d3fa71cb');
+  assert.equal(sha(mapSvg(pmMap, { lang: 'en', theme: 'dark' })), '34a31b988b8e729f');
 });
 
 test('four Engineering fields cover all 26 modules, each in exactly one, and the validator is happy', () => {
