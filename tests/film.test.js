@@ -1547,3 +1547,33 @@ test('speak variant: the cybersecurity intro film words in Dutch', () => {
   const en = 'The second topic is OT security with IEC 62443. An attack can get in through a USB stick. That is called phishing.';
   assert.equal(speakOf([en], 'en'), en);
 });
+
+// Render batch PM-28: words a Dutch listener would mishear in the module intro films (eng.joining, eng.mechanics,
+// eng.moulding, eng.process, eng.machining, eng.drawings), tried with Piper's nl_NL-alex voice in each film's own sentence and
+// transcribed with large-v3-turbo. Said apart: "vul eenheid" (espeak-ng reads vuleenheid with a long ue, heard "verleenheid";
+// 3 of 4 sentences heard right, against 0 of 3 for vul-eenheid and 0 of 4 for vulleenheid), "freem" for frame (it reads
+// "fraame", heard "framen", "vramen"; 3 of 3 against 1 of 3), "Spuit-gieten" at the start of the moulding intro's closing
+// sentence (3 of 3 against 0 of 3; it stresses the wrong syllable, heard "Spijt te gieten"), "spuit-unit" and "sluit-unit" in the
+// intro's machine sentence (2 of 3 and 2 of 2 against 1 of 3 and 1 of 2) and "hardheids-meting" in the intro's tool sentence
+// (5 of 5 against 4 of 5). Only these phrases: the other films' hardheidsmeting, spuitunit, spuitgieten and frame keep their voice
+test('speak variant: the Dutch words of the PM-28 intro films', () => {
+  const nl = (s) => speakOf([s], 'nl');
+  assert.equal(nl('Daar komt de kap voor de vuleenheid van lijn 3 uit.'), 'Daar komt de kap voor de vul eenheid van lijn 3 uit.');
+  assert.equal(nl('Vier onderwerpen volgen de Vuleenheid.'), 'Vier onderwerpen volgen de Vul eenheid.');
+  // the machining intro's closing sentence: with "vul eenheid" its comma pause came out at 0.44 s (the guard's limit is 0.4 s),
+  // with "vul-eenheid" at 0.38 s
+  assert.equal(nl('Hij gaat naar hal B, naar de vuleenheid van lijn 3.'), 'Hij gaat naar hal B, naar de vul-eenheid van lijn 3.');
+  assert.equal(nl('Het frame draagt het gewicht van de gevulde tank.'), 'Het freem draagt het gewicht van de gevulde tank.');
+  assert.equal(nl('De kunststof kap gaat met lijm op het stalen frame.'), 'De kunststof kap gaat met lijm op het stalen freem.');
+  assert.equal(nl('Nu kunnen de makers verder, want frame, plaat en tank staan samen op één tekening.'), 'Nu kunnen de makers verder, want freem, plaat en tank staan samen op één tekening.');
+  assert.equal(nl('Spuitgieten is het zesde station van Dingen maken.'), 'Spuit-gieten is het zesde station van Dingen maken.');
+  assert.equal(nl('De spuitunit smelt de kunststof en de sluitunit houdt de matrijs vast.'), 'De spuit-unit smelt de kunststof en de sluit-unit houdt de matrijs vast.');
+  assert.equal(nl('Bij warmte-behandeling gebruiken we vaak een hardheidsmeting.'), 'Bij warmte-behandeling gebruiken we vaak een hardheids-meting.');
+  // elsewhere the words keep their voice
+  assert.equal(nl('Je test het staal met een trek-proef en een hardheidsmeting.'), 'Je test het staal met een trek-proef en een hardheidsmeting.');
+  assert.equal(nl('Links de spuitunit, die de kunststof smelt.'), 'Links de spuitunit, die de kunststof smelt.');
+  assert.equal(nl('Hoe werkt spuitgieten?'), 'Hoe werkt spuitgieten?');
+  assert.equal(nl('De robot last een frame in 6 minuten; laden kost 4.'), 'De robot last een frame in 6 minuten; laden kost 4.');
+  const en = 'The frame carries the filling unit. Injection moulding is the sixth station.';
+  assert.equal(speakOf([en], 'en'), en);
+});
