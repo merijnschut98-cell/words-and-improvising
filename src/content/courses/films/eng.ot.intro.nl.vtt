@@ -1,0 +1,181 @@
+WEBVTT
+
+1
+00:00:00.841 --> 00:00:02.629
+Op het MES in hal B staat een order.
+
+2
+00:00:03.304 --> 00:00:05.881
+De vuleenheid van lijn 3 vult dozen uit de tank.
+
+3
+00:00:06.926 --> 00:00:08.969
+Wat gebeurt er tussen die order en de machine?
+
+4
+00:00:09.665 --> 00:00:11.569
+Jij bent de engineer en zoekt het uit.
+
+5
+00:00:12.625 --> 00:00:16.735
+ISA-95 beschrijft hoe de systemen van een fabriek samenhangen,
+
+6
+00:00:16.991 --> 00:00:18.791
+van de machine tot het bedrijfssysteem.
+
+7
+00:00:19.830 --> 00:00:21.734
+Vier onderwerpen volgen die keten.
+
+8
+00:00:22.483 --> 00:00:24.283
+Eerst de niveaus en de systemen.
+
+9
+00:00:25.272 --> 00:00:28.477
+Daarna hoe ze praten, waar data blijft en wie ze beheert.
+
+10
+00:00:29.788 --> 00:00:33.468
+Het eerste onderwerp is ISA-95 en het Purdue-model.
+
+11
+00:00:34.152 --> 00:00:36.602
+Elk systeem hoort op een van vijf niveaus.
+
+12
+00:00:37.635 --> 00:00:41.989
+De fotocel bij de band is niveau 1 en de PLC in de kast niveau 2.
+
+13
+00:00:42.964 --> 00:00:46.180
+Het MES is niveau 3 en het ERP niveau 4.
+
+14
+00:00:47.133 --> 00:00:50.744
+Je tekent de informatiestroom (information flow) tussen het MES en het ERP.
+
+15
+00:00:52.005 --> 00:00:56.127
+Het tweede onderwerp is PLC, SCADA, MES en ERP.
+
+16
+00:00:56.816 --> 00:00:58.362
+Eén order loopt door alle vier.
+
+17
+00:00:59.271 --> 00:01:01.001
+Het ERP weet wat de klant wil.
+
+18
+00:01:01.749 --> 00:01:05.893
+Het MES verdeelt het werk, SCADA bewaakt en de PLC stuurt de machine.
+
+19
+00:01:06.887 --> 00:01:10.475
+Een order gaat via de kabel en de netwerkkast omlaag naar de PLC.
+
+20
+00:01:11.174 --> 00:01:13.101
+De telling gaat omhoog naar het MES.
+
+21
+00:01:14.154 --> 00:01:17.126
+Je volgt de productieorder (production order) van het ERP tot de PLC.
+
+22
+00:01:18.423 --> 00:01:22.382
+Het derde onderwerp is OPC UA, MQTT en de historian.
+
+23
+00:01:23.086 --> 00:01:25.443
+Systemen praten in afgesproken talen.
+
+24
+00:01:26.441 --> 00:01:29.181
+OPC UA is een standaard voor machinedata.
+
+25
+00:01:29.862 --> 00:01:32.230
+MQTT is een licht berichtenprotocol.
+
+26
+00:01:33.268 --> 00:01:36.565
+De historian bewaart meetwaarden jarenlang en toont ze als trend.
+
+27
+00:01:37.606 --> 00:01:39.707
+Je richt een OPC-server (OPC server) en tags in.
+
+28
+00:01:40.967 --> 00:01:43.879
+Het vierde onderwerp is IT-OT-convergentie.
+
+29
+00:01:44.611 --> 00:01:47.421
+Kantoor-IT en de techniek op de vloer groeien samen.
+
+30
+00:01:48.428 --> 00:01:49.229
+Wie beheert wat?
+
+31
+00:01:49.941 --> 00:01:54.120
+IT beheert netwerk en servers, automatisering de PLC.
+
+32
+00:01:55.112 --> 00:01:58.770
+Je schakelt de machinebouwer (machine builder) in, want die levert de besturing mee.
+
+33
+00:01:59.747 --> 00:02:03.218
+Dan komt de order bij de eenheid aan en gaat de telling terug naar het MES.
+
+34
+00:02:04.644 --> 00:02:05.492
+De hele kaart.
+
+35
+00:02:06.241 --> 00:02:09.318
+Dit is het tweede station van Automatisering en IT.
+
+36
+00:02:10.307 --> 00:02:12.014
+Elk onderwerp heeft vier niveaus.
+
+37
+00:02:13.030 --> 00:02:17.117
+Begin bij De vijf niveaus van ISA-95 op niveau Basis.
+
+38
+00:02:17.853 --> 00:02:19.560
+Die laat zien hoe alles samenhangt.
+
+39
+00:02:20.589 --> 00:02:23.213
+Op niveau Werkkennis komen twee kaarten van de fabriek,
+
+40
+00:02:23.596 --> 00:02:27.079
+orders omlaag, machinedata en patchen met levenscycli.
+
+41
+00:02:28.090 --> 00:02:32.617
+Op niveau Gevorderd komen de vier werkgebieden, de koppeling met het MES,
+
+42
+00:02:33.059 --> 00:02:35.033
+MQTT en wijzigingsbeheer.
+
+43
+00:02:36.040 --> 00:02:40.962
+Op niveau Expert komen de cloud, een koppeling beoordelen, de unified namespace.
+
+44
+00:02:41.664 --> 00:02:42.523
+Ook governance.
+
+45
+00:02:43.545 --> 00:02:46.958
+Elke les en elke film van deze module heeft een plek op deze kaart.
