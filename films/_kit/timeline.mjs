@@ -988,7 +988,14 @@ const SAY = {
     // pm.agile.forecast), only in the two phrases that name the module ("station is Capaciteit en flow", "Eerst Capaciteit en
     // flow"). Takttijd, stilstandregistratie, turflijst, afwijkingsrapport, CMMS (letters), CILT and LMRA (the rules above),
     // vergrendelen en labelen, lijnbalans, omstellen and teamleider are read right; no other film's spoken text changes
-    [/(?<=\b(?:station is|Eerst) )Capaciteit en flow\b/g, 'Capaciteit en flouw']],
+    [/(?<=\b(?:station is|Eerst) )Capaciteit en flow\b/g, 'Capaciteit en flouw'],
+    // the module intro film "Capacity and flow" (eng.flow.intro), a self-contained group at the end of the Dutch list, checked with
+    // phonemes through Piper's nl_NL-alex bridge: espeak-ng reads flow as "flaw" (flɔw; said flouw, as the field film's rule above), only
+    // in the intro's own sentence ("De module Capaciteit en flow"), and yamazumi with the Dutch u (jˈaːmaːzˌymi; said jamazoemi), only
+    // in "in een yamazumi" (lowercase, so the lesson's "Een Yamazumi" and the lessons' films keep their voice). Takt, bottleneck, OEE
+    // (letters, the rule above), ploegenrooster, stilstandregistratie, omstelkar, seriegrootte, bezettingsgraad (the rule above),
+    // pareto, SMED-workshop, teamleider and the level words are read right; no other film's spoken text changes
+    [/(?<=\bDe module )Capaciteit en flow\b/g, 'Capaciteit en flouw'], [/(?<=\bin een )yamazumi\b/g, 'jamazoemi']],
   en: [[/\brpm\b/g, 'revolutions per minute'], [/\bmm\/min\b/g, 'millimetres per minute'], [/\bm\/min\b/g, 'metres per minute'], [/µm\b/g, 'micrometres'],
     [/€\s?(\d[\d,]*(?:\.\d+)?)/g, '$1 euros'], [/(\d)\.0(?![\d])/g, '$1'], [/(\d)\s?mm\b/g, '$1 millimetres'], [/(\d)\s?min\b/g, '$1 minutes'], [/(\d)\s?%/g, '$1 percent'],
     [/Ø\s*/g, 'diameter '], [/(\d)\+(\d)/g, '$1 plus $2'], [/\s×\s/g, ' times '], [/\s\/\s/g, ' divided by '], [/\s=\s/g, ' is '], [/°/g, ' degrees'], [/\bRa\b/g, 'R a'], [/’/g, "'"],
