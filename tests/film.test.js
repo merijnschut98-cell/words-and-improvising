@@ -1626,3 +1626,22 @@ test('speak variant: Radical Candor and MORE PIES of the lead intro, PM-30', () 
   const en = 'We use active listening and MORE PIES, and at Working knowledge Toyota Kata and Radical Candor.';
   assert.equal(speakOf([en], 'en'), en);
 });
+
+// The module intro film Approach and tools (pm.approach.intro), checked with espeak-ng phonemes through Piper's nl bridge:
+// Lean as "lee-an" (lˈeːɑn) is said Lien (lˈin) in the list of method families, Six Sigma as "sik sigma" (sˈɪk) gets its s
+// back (Sikss, sˈɪks), and DMAIC as the letters a Dutch quality team says (dee em aa ie see; espeak-ng reads the word
+// "dmaik", mɛ tmˈɑjk). Each rule keeps to the intro's own two phrases (the list of the families after agile, and DMAIC with the
+// steps of Six Sigma), and toolfamilies is said toel-families as the planningstool rule says its tool (espeak-ng reads "tool" as tˈoːl, tolfamilies), so
+// the lessons, the other films and the English track keep their voice; no other film's spoken text changes
+test('speak variant: the method words of the approach intro', () => {
+  const nl = (s) => speakOf([s], 'nl');
+  assert.equal(nl('Er zijn vier methodefamilies en een mengvorm. Voorspellend, agile, Lean en Six Sigma.'), 'Er zijn vier methodefamilies en een mengvorm. Voorspellend, edjail, Lien en Sikss Sigma.');
+  assert.equal(nl('Een terugkerend probleem met data pak je aan met DMAIC, de stappen van Six Sigma.'), 'Een terugkerend probleem met data pak je aan met dee em aa ie see, de stappen van Sikss Sigma.');
+  assert.equal(nl('Denk in toolfamilies, een soort gereedschap per soort werk.'), 'Denk in toel-families, een soort gereedschap per soort werk.');
+  // elsewhere the names keep their voice
+  assert.equal(nl('Six Sigma verbetert met data, Lean met kleine experimenten.'), 'Six Sigma verbetert met data, Lean met kleine experimenten.');
+  assert.equal(nl('Lean en Six Sigma horen bij de verbeterfamilies.'), 'Lean en Six Sigma horen bij de verbeterfamilies.');
+  assert.equal(nl('DMAIC heeft vijf stappen.'), 'DMAIC heeft vijf stappen.');
+  const en = 'There are four method families and a mix. Predictive, agile, Lean and Six Sigma. A recurring problem you tackle with DMAIC, the steps of Six Sigma.';
+  assert.equal(speakOf([en], 'en'), en);
+});

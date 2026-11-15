@@ -172,3 +172,5 @@ Outcome: accepted (merged as delivered), sent back N times, redone.
 | 15 Nov | Review: pm.formats | opus | ~80 | ~15 min | n/a | accepted with fixes (IAF names fetched, works council consent, Diehl & Stroebe, shared definitions, 13 giveaway answers rebalanced, Dutch); uneven seven-tile row kept; merged v340 |
 | 15 Nov | Build: Engineering map plant-zone split + zone track list | sonnet | 52 | 11 min | 170,367 | done except MAP_H in 20 film builds (blocked by its brief); accepted with fixes by its review |
 | 15 Nov | Review: Engineering map plant-zone split | opus | 125 | 67 min | 219,474 | accepted with fixes (own terracotta zone token, film builds read the sheet from engMap.view, e2e zone list, field films say five zones); merged v341 |
+| 15 Nov | Build: Projects intro pm.approach.intro | sonnet | 155 | 22 min | 415,025 | accepted with fixes by its review |
+| 15 Nov | Review: pm.approach.intro | sonnet | ~48 | ~25 min | n/a | accepted with fixes (recap scene cut, 184 to 165 s, hedges, sticky notes, spreadsheet rule dropped); merged v342 |
