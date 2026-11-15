@@ -187,3 +187,5 @@ Outcome: accepted (merged as delivered), sent back N times, redone.
 | 15 Nov | Review: eng.field.better | sonnet | 51 | 7.4 min | 206,952 | accepted with fixes (np-chart story made a pass/fail count, 192 to 186 s, you at the run film position); merged v349 |
 | 15 Nov | Build: Engineering intro eng.quality.intro | sonnet | 78 | 11 min | 281,581 | accepted with fixes by its review |
 | 15 Nov | Review: eng.quality.intro | sonnet | ~40 | n/a | n/a | accepted with fixes (X-bar/R-kaart replaces turflijst for SPC, Cpk wording, quarantine mark visible); merged v351 |
+| 15 Nov | Build: Engineering intro eng.maintenance.intro | sonnet | 98 | 12 min | 294,440 | accepted with fixes by its review |
+| 15 Nov | Review: eng.maintenance.intro | sonnet | ~75 | ~25 min | n/a | accepted with two small fixes (operators stress rule, map zoom keeps the zone name); merged v352 |
