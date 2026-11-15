@@ -839,6 +839,23 @@ test('speak variant: Radical Candor of the lead intro', () => {
   assert.equal(speakOf([en], 'en'), en);
 });
 
+// The Leading projects outside your field module intro (pm.outside.intro), checked with espeak-ng phonemes through
+// Piper's nl bridge: it reads the English "second opinion" as "sekont opinion" (said sekkend opinjen), as the people
+// field film's rule says it, here only after "steekproef en een" (that rule serves "vragenset en een" only, and the
+// disagreement and steering films keep their voice). The film's other words (naïeve vraag, vragenset, premortem,
+// besliscriteria, eenrichtingsdeuren, vertrouwensformule, contextwisseling, referentieklassen, piramideprincipe,
+// terugvertellen, watermeloenstatus, meelopen, fabrieksacceptatietest, PLC-programmeur) go through
+// the rules above or are read right as they are; English needs nothing; no other film's spoken text changes
+test('speak variant: second opinion of the outside intro', () => {
+  const nl = (s) => speakOf([s], 'nl');
+  assert.equal(nl('Met experts gebruiken we een steekproef en een second opinion.'), 'Met experts gebruiken we een steekproef en een sekkend opinjen.');
+  // elsewhere the words keep their voice
+  assert.equal(nl('Vraag een second opinion bij een BATNA.'), 'Vraag een second opinion bij een BATNA.');
+  assert.equal(nl('Vraag een steekproef bij een second opinion.'), 'Vraag een steekproef bij een second opinion.');
+  const en = 'With experts we use a spot check and a second opinion.';
+  assert.equal(speakOf([en], 'en'), en);
+});
+
 // A stage drawn on the Dutch caption beats (beatwarp films set STAGE.nlBeats)
 // follows the caption beat on screen in English too: while English beat k
 // shows, the stage runs through Dutch beat k, so the drawing is never a beat off.
@@ -1264,5 +1281,39 @@ test('speak variant: the DevOps module intro word in Dutch', () => {
   assert.equal(nl('Bij tests gebruiken we vaak versiebeheer en een testpiramide.'), 'Bij tests gebruiken we vaak versie-beheer en een test-piramiede.');
   assert.equal(nl('De Testpiramide.'), 'De Test-piramiede.');
   const en = 'We often use version control and a test pyramid.';
+  assert.equal(speakOf([en], 'en'), en);
+});
+
+// The Programmes and governance module intro (pm.portfolio.intro), checked with espeak-ng phonemes through Piper's nl
+// bridge: it reads "procesingenieurs" with a voiced z, "pro-ze-ingenieurs" (prˈoːsəzˌɪŋ...); said "proces-ingenieurs"
+// (proːsˈɛsˌɪnzjənjˈøːrs, pro-SES in-zje-NJEURS), and plain "managers" with a hard g (mˈaːnaːɣərs), said "menetsjers" as the
+// manager rules above say it, only in this film's phrase "De managers die de fabriek draaien", so no other film's
+// managers change. The film's other words (programmaraad, MSP, capaciteitsstreep, capaciteitsmatrix, besluitenlijst,
+// batenkaart, batenprofiel, gereedheidscheck, planningstool, governance, stage-gates, afhankelijkhedenregister,
+// veranderverzadiging, zombieprojecten, ijzeren wet) go through the rules above or are read right; English needs
+// nothing
+test('speak variant: the Programmes and governance intro words', () => {
+  const nl = (s) => speakOf([s], 'nl');
+  assert.equal(nl('Het knelpunt is niet geld maar de twee procesingenieurs, want die zijn schaars.'), 'Het knelpunt is niet geld maar de twee proces-ingenieurs, want die zijn schaars.');
+  assert.equal(nl('De managers die de fabriek draaien zijn eigenaar van de baten.'), 'De menetsjers die de fabriek draaien zijn eigenaar van de baten.');
+  // elsewhere the words keep their voice
+  assert.equal(nl('De managers van de afdeling beslissen.'), 'De managers van de afdeling beslissen.');
+  const en = 'The bottleneck is the two process engineers. The managers who run the plant own the benefits.';
+  assert.equal(speakOf([en], 'en'), en);
+});
+
+// The Consulting craft module intro (pm.consult.intro), checked with espeak-ng phonemes through Piper's nl bridge: it reads
+// plantmanager with a soft g ("plant-maa-naa-ger", said plant-menetsjer, only in "De plantmanager vraagt") and
+// doorverwijzingen with a devoiced d ("toorverwijzingen", said door-verwijzingen). Offerte, adviesvak, vertrouwensformule, diagnosefase, dagtarief, opties,
+// dataminimalisatie, pseudonimiseren, positionering, nulmeting, declarabele dagen, bezettingsgraad, succesfee, weerstand,
+// krantentest, nederig vragen, risicoreservering, opzegclausule and hefboom are read right or have rules above; English needs nothing; no other
+// film's spoken text changes
+test('speak variant: the consulting module intro words in Dutch', () => {
+  const nl = (s) => speakOf([s], 'nl');
+  assert.equal(nl('De plantmanager vraagt jou om advies.'), 'De plant-menetsjer vraagt jou om advies.');
+  assert.equal(nl('Dat levert doorverwijzingen op.'), 'Dat levert door-verwijzingen op.');
+  // elsewhere the words keep their voice
+  assert.equal(nl('Vraag het de plantmanager. Je ziet de stoptijden per medewerker.'), 'Vraag het de plantmanager. Je ziet de stoptijden per medewerker.');
+  const en = 'The plant manager asks you for advice. Referrals and the stop times per employee.';
   assert.equal(speakOf([en], 'en'), en);
 });

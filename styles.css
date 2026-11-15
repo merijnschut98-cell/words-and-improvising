@@ -205,16 +205,17 @@ h1.round-title { margin: 0; }
 .fill { height: 100%; background: var(--accent); border-radius: var(--radius-sm); transition: width var(--motion-slow) var(--ease-entrance); }
 
 /* Drill grid */
-.drill-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+/* minmax(0, 1fr): a long drill name ("Spreekstructuren") must not push the grid past 320 px. */
+.drill-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
 .drill {
   display: flex; flex-direction: column; align-items: flex-start; gap: 6px; text-align: left; color: var(--ink);
   background: var(--card); border: 1px solid var(--border-subtle); border-radius: var(--radius);
-  padding: 14px; box-shadow: var(--shadow-card); cursor: pointer;
+  padding: 14px; box-shadow: var(--shadow-card); cursor: pointer; min-width: 0;
   transition: border-color var(--motion-fast) var(--ease-standard);
 }
 @media (hover: hover) { .drill:hover:not(:disabled) { border-color: var(--accent); } }
 .drill-icon { font-size: 1.35rem; color: var(--accent-dark); line-height: 1; }
-.drill-name { font-weight: 600; color: var(--heading); }
+.drill-name { font-weight: 600; color: var(--heading); max-width: 100%; hyphens: auto; overflow-wrap: break-word; }
 .pips { display: inline-flex; gap: 3px; }
 .pips i { width: 14px; height: 4px; border-radius: 2px; background: var(--line); }
 .pips i.on { background: var(--accent); }
@@ -458,6 +459,9 @@ audio { width: 100%; margin-top: 4px; }
 .quest-reward { font-family: var(--font-mono); font-size: 0.72rem; text-align: right; max-width: 55%; }
 .quest { display: grid; grid-template-columns: 24px 1fr auto; gap: 10px; align-items: center; padding: 8px 0; font-size: 0.95rem; }
 /* Divider only between quests (the first quest follows the title row). */
+button.quest-go { width: 100%; min-height: 44px; border: 0; border-radius: var(--radius-sm); background: transparent; color: inherit; font: inherit; font-size: 0.95rem; text-align: left; cursor: pointer; }
+button.quest-go .muted.small { display: inline-flex; align-items: center; gap: 2px; }
+@media (hover: hover) { button.quest-go:hover { background: var(--tint); } }
 .quest + .quest { border-top: 1px solid var(--border-subtle); }
 .quest .muted.small { font-family: var(--font-mono); font-size: 0.75rem; }
 .quest-check { width: 22px; height: 22px; border-radius: var(--radius-sm); border: 1px solid var(--border-subtle); display: grid; place-items: center; font-size: 0.85rem; color: var(--on-primary); }
@@ -729,6 +733,12 @@ details.finder summary::-webkit-details-marker { display: none; }
   transition: background-color var(--motion-fast) var(--ease-standard), color var(--motion-fast) var(--ease-standard);
 }
 /* Selected subject: outlined and tinted, so the screen's one filled button stays the only fill. */
+.subject-tab { min-width: 0; padding: 0 8px; }
+/* 320 px: three tabs with an icon and a word each overflowed by about 23 px. Tighter bar and tabs, tabs sized by their word; 44 px tall, the label stays 0.85rem. */
+@media (max-width: 359px) {
+  .subject-bar { gap: 4px; padding-left: 10px; padding-right: 10px; }
+  .subject-tab { flex: 1 1 auto; gap: 4px; padding: 0 6px; font-size: 0.85rem; }
+}
 .subject-tab.on { border-color: var(--accent); background: var(--tint); color: var(--heading); font-weight: 600; }
 .subject-tab.on .ico { color: var(--accent-dark); }
 .track .card-title { margin-bottom: 6px; }
@@ -1175,7 +1185,8 @@ details.rw-topic > summary { cursor: pointer; min-height: 44px; display: flex; a
 .guide-72 { height: 72px; }
 .guide-80 { height: 80px; }
 .guide-96 { height: 96px; }
-.guide-greeting { display: flex; align-items: center; gap: 12px; margin: 6px 0 4px; }
+.guide-greeting { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; margin: 6px 0 4px; }
+.guide-greeting .goal-line { flex: 1 1 100%; margin: -4px 0 0; }
 .guide-figure { display: inline-flex; flex-direction: column; align-items: center; gap: 2px; flex: none; }
 .guide-name { font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.06em; color: var(--heading); line-height: 1.2; }
 /* The line sits in a speech bubble whose tail points at the tower. */

@@ -88,3 +88,17 @@ Outcome: accepted (merged as delivered), sent back N times, redone.
 | 14 Nov | Review: Andon recognisable | opus | n/a | about 45 min | n/a | accepted with three fixes (intro swallowed by the sync redraw, true green from the brand's success colour, layout jump); merged v286 |
 | 14 Nov | Research: two new Projects modules (Task 14 step 1) | sonnet | n/a | n/a | n/a | accepted; 12 MC decisions kept for Merijn's round the next day |
 | 14 Nov | Task 22: English IT words in the Dutch voice | sonnet | 82 | 49 min | 198,550 | accepted; Agile, Daily Scrum, WIP, rollback, versiebeheer fixed; 13 rendered films need a re-render; merged v288 |
+| 14 Nov | Render PM-18: stuck and lead intros | sonnet | 45 | 37 min | 108,839 | accepted; every guard passed first time; Redikal Kander and MORE PIES only roughly heard; merged v289 |
+| 14 Nov | Build module intro pm.negotiate.intro (Task 11) | sonnet | 91 | 16 min | 325,762 | accepted with fixes by its review |
+| 14 Nov | Review module intro pm.negotiate.intro | sonnet | n/a | n/a | n/a | accepted with fixes (a move and a repeated tool swapped, a reason for skipping the inspection); merged v290 |
+| 14 Nov | Build module intro pm.outside.intro (Task 11) | sonnet | 114 | 15 min | 325,295 | accepted with fixes by its review |
+| 14 Nov | Review module intro pm.outside.intro | sonnet | n/a | n/a | n/a | accepted with fixes (duplicate decision memo out, FAT given the switchboard as reason, map label workaround); merged v291 |
+| 14 Nov | Build: UI round (goal line, map highlight, named step, quests, 320 px bar, breadth-first next step) | sonnet | 129 | 67 min | 259,640 | accepted with fixes by its review |
+| 14 Nov | Review: UI round and breadth-first next step | opus | 134 | 42 min | 238,182 | accepted with seven fixes (module order after the road, lesson-end next agrees, no async name swap, goal line wording); merged v292 |
+| 15 Nov | Task 17 design: complete films (inventory, split rule, kit check, batches) | opus | n/a | n/a | n/a | accepted; 64 films change (27 splits), about 138 renders; six MC decisions kept for Merijn's round |
+| 15 Nov | Build module intro pm.portfolio.intro (Task 11) | sonnet | 120 | 20 min | 363,981 | accepted with fixes by its review |
+| 15 Nov | Review module intro pm.portfolio.intro | sonnet | n/a | n/a | n/a | accepted with fixes (Werkkennis tools moved to the grid, Basis tools in scenes, a causal error fixed); merged v295 |
+| 15 Nov | Build module intro pm.consult.intro (Task 11) | sonnet | 121 | 15 min | 330,894 | accepted with fixes by its review |
+| 15 Nov | Review module intro pm.consult.intro | sonnet | 72 | 9 min | 231,228 | accepted with fixes (client problem aligned with portfolio intro, two non-tools replaced, a SAY rule made unneeded); merged v296 |
+| 15 Nov | Task 19 step 1: level opener texts (528) | sonnet | 43 | 14 min | 270,606 | accepted with fixes by its review |
+| 15 Nov | Review: level opener texts | sonnet | n/a | n/a | n/a | accepted with fixes (68 content or term fixes, all openings varied); found that node validate.js did nothing from the command line and made it run every check; merged v297 |

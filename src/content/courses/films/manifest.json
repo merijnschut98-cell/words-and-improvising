@@ -3246,6 +3246,68 @@
         "vtt": "src/content/courses/films/pm.devops.intro.en.vtt"
       }
     },
+    "pm.stuck.intro": {
+      "poster": "src/content/courses/films/pm.stuck.intro.jpg",
+      "nl": {
+        "dur": 199.1,
+        "bytes": 7974936,
+        "scenes": [
+          0,
+          20.67,
+          53.72,
+          81.35,
+          112.87,
+          138.49,
+          157.5
+        ],
+        "vtt": "src/content/courses/films/pm.stuck.intro.nl.vtt"
+      },
+      "en": {
+        "dur": 214.8,
+        "bytes": 8525955,
+        "scenes": [
+          0,
+          24.3,
+          60.07,
+          91.09,
+          125.55,
+          152.33,
+          173.42
+        ],
+        "vtt": "src/content/courses/films/pm.stuck.intro.en.vtt"
+      }
+    },
+    "pm.lead.intro": {
+      "poster": "src/content/courses/films/pm.lead.intro.jpg",
+      "nl": {
+        "dur": 192.8,
+        "bytes": 8395381,
+        "scenes": [
+          0,
+          24.84,
+          51.46,
+          80.64,
+          105.29,
+          129.21,
+          150.59
+        ],
+        "vtt": "src/content/courses/films/pm.lead.intro.nl.vtt"
+      },
+      "en": {
+        "dur": 211.4,
+        "bytes": 9147226,
+        "scenes": [
+          0,
+          27,
+          56.6,
+          88.15,
+          115.73,
+          141.81,
+          166.28
+        ],
+        "vtt": "src/content/courses/films/pm.lead.intro.en.vtt"
+      }
+    },
     "pm.scaled.intro": {
       "poster": "src/content/courses/films/pm.scaled.intro.jpg",
       "en": {

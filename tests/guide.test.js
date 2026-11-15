@@ -111,7 +111,7 @@ test('settings guide off: no guide anywhere, the done card keeps its mark', () =
 });
 
 // ---- Andon visible (v17 Task 8): the greeting on the homes, the presenter on the module screen ----
-const { guideGreeting, guideIntro, guideIntroSeen, introGuideModel } = await import('../src/ui/flairui.js');
+const { guideGreeting, guideIntro, guideIntroSeen, introGuideModel, stepName } = await import('../src/ui/flairui.js');
 const { markIntroSeen } = await import('../src/core/course.js');
 const { MODULES } = await import('../src/content/courses/index.js');
 const tEn = translator('en');
@@ -138,11 +138,14 @@ test('guideGreeting: Andon at 80 px with one line from the day pool; null when t
 test('guideGreeting: the pool is calm, in both languages, and rotates with the day', () => {
   for (const t of [tNl, tEn]) {
     const pool = t('guideHome');
-    assert.ok(pool.length >= 4);
-    for (const line of pool) assert.doesNotMatch(line, /!/, 'no exclamation marks');
+    assert.ok(pool.length >= 3);
+    for (const line of [...pool, t('guideStep', 'X')]) {
+      assert.doesNotMatch(line, /!/, 'no exclamation marks');
+      assert.doesNotMatch(line, /hieronder|\bbelow\b|\bthe one\b|die onder/i, 'never points down the page: he names the step');
+    }
   }
-  assert.equal(tNl('guideHome')[0], 'Vandaag: één stap. Die hieronder.');
-  assert.equal(tEn('guideHome')[0], 'Today: one step. The one below.');
+  assert.equal(tNl('guideStep', 'Wie beslist, wie kan het stoppen'), 'Vandaag: één stap. Begin met Wie beslist, wie kan het stoppen.');
+  assert.equal(tEn('guideStep', 'Who decides'), 'Today: one step. Start with Who decides.');
   const seen = new Set(Array.from({ length: 12 }, (_, i) => guideLine(tNl, 'guideHome', `2026-12-${String(i + 1).padStart(2, '0')}`)));
   assert.ok(seen.size > 1);
 });
@@ -237,16 +240,84 @@ test('every home shows at most one Andon and one guide line, also with the daily
     const st = halfDone();
     const off = guideCount(renderHomeOf(subject, { ...st, settings: { ...st.settings, guide: false } }));
     assert.deepEqual(off, { andons: 0, lines: 0 }, `${subject} with the guide off`);
+    assert.equal(renderHomeOf(subject, { ...st, settings: { ...st.settings, guide: false } }).querySelector('.goal-line'), null, `${subject}: no goal line with the guide off`);
   }
 });
 
-test('course home with the goal half done: the greeting says how much XP is left (its one line); the day line otherwise', () => {
-  for (const subject of ['pm', 'eng']) {
-    assert.equal(renderHomeOf(subject, halfDone()).querySelector('.guide-greeting .guide-say').textContent, 'Nog 12 XP tot je dagdoel.');
-    assert.ok(tNl('guideHome').includes(renderHomeOf(subject, stOn()).querySelector('.guide-greeting .guide-say').textContent), 'nothing done yet: the day line');
-    const done = { ...stOn(), xpDays: { '2026-11-02': 30 } };
-    assert.ok(tNl('guideHome').includes(renderHomeOf(subject, done).querySelector('.guide-greeting .guide-say').textContent), 'goal reached: the day line');
+const sayOf = (root) => root.querySelector('.guide-greeting .guide-say').textContent;
+const isDayOrStep = (txt) => tNl('guideHome').includes(txt) || /^Vandaag: één stap\. Begin met /.test(txt) || txt === tNl('courseWhy_done');
+
+test('every home with the goal half done: a separate small goal line (XP today / goal) under the bubble; the bubble is never the XP left', () => {
+  for (const subject of ['start', 'speak', 'pm', 'eng']) {
+    const root = renderHomeOf(subject, halfDone());
+    const line = root.querySelector('.guide-greeting .goal-line');
+    assert.ok(line, `${subject}: goal line`);
+    // The clearer wording: what is left to do, not a second "x van y" beside the ring.
+    assert.equal(line.textContent, 'Nog 12 XP tot je dagdoel.');
+    assert.equal(line.tagName, 'P');
+    assert.notEqual(line, root.querySelector('.guide-greeting .guide-say'), 'not Andon\'s sentence');
+    assert.doesNotMatch(sayOf(root), /XP/, `${subject}: the greeting no longer carries the XP left`);
+    assert.ok(isDayOrStep(sayOf(root)), `${subject}: ${sayOf(root)}`);
+    assert.equal(renderHomeOf(subject, stOn()).querySelector('.goal-line'), null, 'nothing done yet: no goal line');
+    assert.equal(renderHomeOf(subject, { ...stOn(), xpDays: { '2026-11-02': 30 } }).querySelector('.goal-line'), null, 'goal reached: no goal line');
   }
+});
+
+test('Andon names the step instead of pointing below (Projects and Engineering homes, the start screen)', () => {
+  for (const subject of ['pm', 'eng']) {
+    const root = renderHomeOf(subject, stOn());
+    assert.match(sayOf(root), /^Vandaag: één stap\. Begin met \S/, subject);
+    assert.doesNotMatch(sayOf(root), /hieronder/);
+    assert.equal(root.querySelector('.guide-greeting').getAttribute('data-line'), 'step');
+  }
+  assert.doesNotMatch(sayOf(renderHomeOf('start', stOn())), /hieronder|below/);
+});
+
+test('stepName: the topic of a lesson step, a due round by its count; nothing when done', () => {
+  const lesson = { reason: 'lesson', moduleId: 'pm.plan', lessonId: MODULES.find((m) => m.id === 'pm.plan').lessons[0] };
+  assert.ok(stepName(appFor(stOn()), lesson).length > 3);
+  assert.equal(stepName(appFor(stOn()), { reason: 'due', count: 7 }), '7 vragen om op te halen');
+  assert.equal(stepName(appFor(stOn()), { reason: 'done' }), null);
+  assert.equal(stepName(appFor(stOn()), null), null);
+});
+
+test('stepName mid-sentence: a kept question starts lower case after "Begin met" / "Start with"', () => {
+  const el = guideGreeting(appFor(stOn()), { subject: 'pm', pick: { reason: 'maintain', questionId: 'pm.plan.x#r0' } });
+  assert.equal(el.querySelector('.guide-say').textContent, 'Vandaag: één stap. Begin met één vraag om scherp te blijven.');
+  const en = guideGreeting(appFor(stOn(), tEn, 'en'), { subject: 'pm', pick: { reason: 'maintain', questionId: 'pm.plan.x#r0' } });
+  assert.equal(en.querySelector('.guide-say').textContent, 'Today: one step. Start with one question to keep it sharp.');
+});
+
+test('Andon\'s step name is final on first paint: no later swap to the lesson title (no reflow under the bubble)', async () => {
+  const plan = MODULES.find((m) => m.id === 'pm.plan');
+  const lessonId = plan.topics[0].levels[0];
+  let loads = 0;
+  const app = { ...appFor(stOn()), openModule: () => { loads += 1; return Promise.resolve({ lessons: [{ id: lessonId, title: 'Een heel andere, veel langere lestitel dan het onderwerp' }] }); } };
+  const el = guideGreeting(app, { subject: 'pm', pick: { reason: 'lesson', subject: 'pm', moduleId: 'pm.plan', lessonId } });
+  const first = el.querySelector('.guide-say').textContent;
+  await new Promise((r) => setTimeout(r, 0));
+  assert.equal(el.querySelector('.guide-say').textContent, first);
+  assert.equal(first, `Vandaag: één stap. Begin met ${plan.topics[0].title.nl}.`);
+  assert.equal(loads, 0, 'the greeting loads no module');
+});
+
+test('everything done: Andon says so with the existing done wording, not a pointer', () => {
+  const el = guideGreeting(appFor(stOn()), { subject: 'pm', pick: { reason: 'done' } });
+  assert.equal(el.querySelector('.guide-say').textContent, tNl('courseWhy_done'));
+  assert.equal(el.getAttribute('data-line'), 'done');
+});
+
+test('everything done on the Projects home: the done sentence is said once (Andon), not again in the card under him', () => {
+  const lessons = Object.fromEntries(MODULES.filter((m) => m.subject === 'pm').flatMap((m) => m.lessons)
+    .map((id) => [id, { passed: 1, situation: { ts: 1 }, sayIt: 1 }]));
+  const st = { ...stOn(), courses: { pm: { lessons, sessions: [] } } };
+  const count = (root) => root.textContent.split(tNl('courseWhy_done')).length - 1;
+  const root = renderHomeOf('pm', st);
+  assert.equal(root.querySelector('.guide-greeting').getAttribute('data-line'), 'done');
+  assert.equal(count(root), 1);
+  assert.equal(root.querySelectorAll('.map-place.is-next').length, 0, 'the map marks nothing');
+  // with the guide off the card keeps the sentence
+  assert.equal(count(renderHomeOf('pm', { ...st, settings: { ...st.settings, guide: false } })), 1);
 });
 
 // ---- Andon recognisable (v17): status light, name, speech bubble, one-time introduction ----

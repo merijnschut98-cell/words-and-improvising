@@ -1,11 +1,11 @@
 // A lesson: guess first (prequestions), read in short blocks (or, with a film,
 // watch it), see an example (not after a film: the film shows it), then the quiz. Passing unlocks the situation and the say-it round.
-import { exitTarget, nextParams } from '../core/moduleexit.js';
+import { exitTarget, nextParams, FROM_MODULE } from '../core/moduleexit.js';
 import { h } from './dom.js';
 import { ico } from './icons.js';
 import { renderQuiz } from './quiz.js';
 import { celebration } from './flairui.js';
-import { applyLesson, markOpened, nextLesson, savePlanDraft, commitPlanDraft, newPlanId, lessonPhases, lessonSteps, lessonQuiz, guessFeedback, lessonBack, paragraphs, linkTerms, glossary } from '../core/course.js';
+import { applyLesson, markOpened, lessonEndNext, savePlanDraft, commitPlanDraft, newPlanId, lessonPhases, lessonSteps, lessonQuiz, guessFeedback, lessonBack, paragraphs, linkTerms, glossary } from '../core/course.js';
 import { metaOf, placeOf } from '../content/courses/index.js';
 import { placeLabel } from './coursehome.js';
 import { runExplain, runExplainBack } from '../core/coursecoach.js';
@@ -322,13 +322,18 @@ export function renderLesson(app, params, root) {
       return h('details', { class: 'card explain-back' }, h('summary', {}, t('ebTitle')), body);
     }
 
-    // In a topic module: the suggested next level, quiet (the primary stays the situation).
+    // In a topic module: the suggested next lesson, quiet (the primary stays the
+    // situation). From the module screen the module's own next; from a home the
+    // subject's next step, as the start card says (another module's title first).
     function nextLevelBtn() {
       if (!place) return null;
-      const id = nextLesson(app.state, meta);
-      if (!id || id === lesson.id || !meta.lessons.includes(id)) return null;
-      return h('button', { class: 'btn btn-ghost next-level', onclick: () => app.go('lesson', nextParams(params, { subject, moduleId: meta.id, lessonId: id })) },
-        ico('chevron-right'), ' ', t('nextLevel', placeLabel(t, app.lang, id)));
+      const next = lessonEndNext(app.state, meta, lesson.id, (params || {}).from === FROM_MODULE);
+      if (!next) return null;
+      const other = next.moduleId !== meta.id ? metaOf(next.moduleId) : null;
+      const at = placeLabel(t, app.lang, next.lessonId);
+      const label = other ? [other.title[app.lang] || other.title.en, at].filter(Boolean).join(' · ') : at;
+      return h('button', { class: 'btn btn-ghost next-level', onclick: () => app.go('lesson', nextParams(params, { subject, moduleId: next.moduleId, lessonId: next.lessonId })) },
+        ico('chevron-right'), ' ', t('nextLevel', label));
     }
 
     // The done card: the celebration lives inside it (v16 flair); a retake
