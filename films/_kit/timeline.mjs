@@ -1012,7 +1012,14 @@ const SAY = {
     // FMECA above) only in the film's phrase that names the topic ("Het derde onderwerp is PDCA en de A3"), and 8D as "acht tee" (ˈɑx tˈeː, the
     // d is lost after acht; said acht-dee, ɑxtdˈeː) only in its phrase "de 8D en een sessie", so the lessons and the other films keep
     // their voice. Ohno-cirkel, waaromboom, andon, kaizen, A3 (aa drie) and the level words are read right; no other film's spoken text changes
-    [/(?<=\bderde onderwerp is )PDCA en de A3\b/g, 'P D C A en de A3'], [/\bde 8D en een sessie\b/g, 'de acht-dee en een sessie']],
+    [/(?<=\bderde onderwerp is )PDCA en de A3\b/g, 'P D C A en de A3'], [/\bde 8D en een sessie\b/g, 'de acht-dee en een sessie'],
+    // the module intro film for Cost engineering (eng.cost.intro), a self-contained group at the end of the Dutch list, checked with
+    // phonemes through Piper's nl_NL-alex bridge: espeak-ng reads Lean as "lee-an" (lˈeːɑn; said Lien, as the Lean-consultant rule above)
+    // only in the film's phrase that names the topic ("vierde onderwerp is Lean accounting"), and overheadopslag as "overhee-aad-opslag"
+    // (ˌoːvərhˈeːaːdˌɔpslɑx; said overhed-opslag, ˌoːvərhˈɛdˈɔpslɑx) only in its phrase "met een overheadopslag", so the lessons and the
+    // other films keep their voice. Kostprijs, faalkosten, kasbesparing, dekkingsbijdrage (the rule above), terugverdientijd and the
+    // level words are read right; no other film's spoken text changes
+    [/(?<=\bvierde onderwerp is )Lean accounting\b/g, 'Lien accounting'], [/(?<=\bmet een )overheadopslag\b/g, 'overhed-opslag']],
   en: [[/\brpm\b/g, 'revolutions per minute'], [/\bmm\/min\b/g, 'millimetres per minute'], [/\bm\/min\b/g, 'metres per minute'], [/µm\b/g, 'micrometres'],
     [/€\s?(\d[\d,]*(?:\.\d+)?)/g, '$1 euros'], [/(\d)\.0(?![\d])/g, '$1'], [/(\d)\s?mm\b/g, '$1 millimetres'], [/(\d)\s?min\b/g, '$1 minutes'], [/(\d)\s?%/g, '$1 percent'],
     [/Ø\s*/g, 'diameter '], [/(\d)\+(\d)/g, '$1 plus $2'], [/\s×\s/g, ' times '], [/\s\/\s/g, ' divided by '], [/\s=\s/g, ' is '], [/°/g, ' degrees'], [/\bRa\b/g, 'R a'], [/’/g, "'"],

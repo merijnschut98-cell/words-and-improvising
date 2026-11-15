@@ -1738,3 +1738,20 @@ test('speak variant: the maintenance intro film says operators right in Dutch', 
   // elsewhere the word keeps its voice
   assert.equal(nl('Operators bedienen de machine. Trekt een operator aan het koord.'), 'Operators bedienen de machine. Trekt een operator aan het koord.');
 });
+
+// The module intro film for Cost engineering (eng.cost.intro), checked with espeak-ng phonemes through Piper's nl_NL-alex bridge:
+// Lean is read "lee-an" (lˈeːɑn; said Lien, as the Lean-consultant rule), only in the intro's phrase that names the topic ("vierde onderwerp
+// is Lean accounting"), and overheadopslag as "overhee-aad-opslag" (ˌoːvərhˈeːaːdˌɔpslɑx; said overhed-opslag, ˌoːvərhˈɛdˈɔpslɑx), only in
+// the intro's phrase "met een overheadopslag", so the lessons and the other films keep their voice. Kostprijs, faalkosten, kasbesparing,
+// dekkingsbijdrage (the rule above), terugverdientijd and the level words are read right; English needs nothing; no other film's spoken
+// text changes
+test('speak variant: the cost engineering intro film words in Dutch', () => {
+  const nl = (s) => speakOf([s], 'nl');
+  assert.equal(nl('Het vierde onderwerp is Lean accounting en besparingen. Je rekent verspilling om in geld.'), 'Het vierde onderwerp is Lien accounting en besparingen. Je rekent verspilling om in geld.');
+  assert.equal(nl('De indirecte kosten verdeel je vaak met een overheadopslag.'), 'De indirecte kosten verdeel je vaak met een overhed-opslag.');
+  // elsewhere the words keep their voice
+  assert.equal(nl('Lean accounting is een andere manier van rekenen. De Lean accounting en besparingen.'), 'Lean accounting is een andere manier van rekenen. De Lean accounting en besparingen.');
+  assert.equal(nl('Een overheadopslag op arbeidsuren. De overheadopslag is een sleutel.'), 'Een overheadopslag op arbeidsuren. De overheadopslag is een sleutel.');
+  const en = 'The fourth topic is Lean accounting and savings. You spread indirect costs with an overhead surcharge.';
+  assert.equal(speakOf([en], 'en'), en);
+});
