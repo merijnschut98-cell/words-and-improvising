@@ -4,7 +4,7 @@
 // and its wrap, so the drawing wraps as the kit's label check measures). The story is drawn in the
 // plant's workshop at the left: the frame of the filling unit on a work platform (two uprights and a beam,
 // then its welds, the plate on four bolts and the plastic cover), a MIG/MAG welder with a gas bottle, a spot
-// welder with its control, a table with the tool of each topic, and the weld cell with a robot, a jig and a
+// welder, a guard of two thin sheets, a table with the tool of each topic, and the weld cell with a robot, a jig and a
 // light curtain; a welder, two workers and you, the engineer, come and go. The panel at the right draws each
 // beat as a schema, labelled "voorbeeld" (the frame's job) or "schema" (the module's map). Every part a
 // sentence lights is a static data-cue group (build.mjs); this script only fills the panel and shows or hides
@@ -72,27 +72,10 @@ const STAGE = (() => {
     move(E.world, `translate(${f1(160 - s * ox)} ${f1(200 - s * oy)}) scale(${s.toFixed(4)})`);
   }
 
-  // ---- the room: who stands there and what has happened to the plate, per scene (si) and beat (b).
-  // s1 the block lies on its pallet; s3 it sits in the vise (b0), is milled into the plate (b1), s4 gets its four holes,
-  // s7 is measured on the table (from b1) with the drawing beside it, and you take it to hall B (b3)
-  function room(si, b, p) {
-    show(E['pp-opL'], si === 1 && b >= 1 ? (b === 1 ? span(p, 0, 0.35) : 1) : 0);
-    show(E['pp-opM'], si >= 2 && si <= 6 ? (si === 2 && b === 0 ? span(p, 0, 0.35) : 1) : 0);
-    show(E['pp-jij'], si === 0 || (si === 6 && b >= 1) ? 1 : 0);
-    show(E.stockK, si <= 1 ? 1 : 0);
-    show(E.blankK, si === 2 && b === 0 ? 1 : 0);
-    const inVise = (si === 2 && b >= 1) || (si >= 3 && si <= 5) || (si === 6 && b < 1);
-    show(E.plateK, inVise ? (si === 2 && b === 1 ? span(p, 0, 0.35) : 1) : 0);
-    show(E.holesK, inVise && (si >= 4 || (si === 3 && b >= 1)) ? (si === 3 && b === 1 ? span(p, 0.2, 0.7) : 1) : 0);
-    show(E.datumK, si === 4 && b >= 2 ? 1 : 0);
-    show(E.spEnd, si === 2 ? 1 : 0);
-    show(E.spDrill, (si === 3 && b !== 2) || (si >= 4 && si <= 6) ? 1 : 0);
-    show(E.spCentre, si === 3 && b === 2 ? 1 : 0);
-    show(E.plateTK, si === 6 && b >= 1 ? (b === 1 ? span(p, 0, 0.35) : 1) : 0);
-  }
-
   // ---- the room: who stands there and what has happened to the frame, per scene (si) and beat (b).
-  // s1 the frame stands in loose parts; s2 the welder joins its corners (b1: the welds); s3 the spot welder; s4 the
+  // s1 the frame stands in loose parts; s2 the welder joins its corners (b1: the welds); s3 the guard of two thin
+  // sheets stands in front of the lower frame and stays (it is hidden while the robot welds the bare frame, s7 b0 to
+  // b2, and comes back with the plate and the cover); s4 the
   // fitter checks the welds; s5 the plate hangs on four bolts; s6 the cover sits on the beam; s7 the robot welds the
   // bare frame in its jig, then (b3) the finished unit with plate and cover and you take it to hall B
   function room(si, b, p) {
@@ -101,6 +84,7 @@ const STAGE = (() => {
     show(E.torchK, si === 1 ? in1(1) : 0);
     show(E.arcK, si === 1 && b === 1 ? 1 : 0);
     show(E.weldsK, si === 1 ? (b === 0 ? 0 : b === 1 ? span(p, 0.3, 0.7) : 1) : si >= 2 ? 1 : 0);
+    show(E.guardK, si === 2 ? in1(1) : si >= 3 && si <= 5 ? 1 : si === 6 && b === 3 ? span(p, 0, 0.4) : 0);
     show(E.lensK, si === 2 && b >= 1 ? 1 : 0);
     show(E['pp-wrk'], si >= 2 && si <= 5 ? (si === 2 ? in1(1) : 1) : 0);
     show(E.plateK, si === 4 ? in1(1) : si === 5 ? 1 : si === 6 && b === 3 ? span(p, 0, 0.4) : 0);
@@ -117,21 +101,21 @@ const STAGE = (() => {
   }
 
   // ---- the six topic tiles
-  // the route (s1, the last two beats): the module's six topics in two groups, the map before the detail. The three
-  // about welding (topics 1 to 3) and the three about bolts, glue and the cell (topics 4 to 6), each row with its number and
-  // its index title, wrapped by the kit's widths into 244 units left of the number; a title of two lines (Weld defects and
-  // inspection, Bonding and mechanical joining) gets a taller row. The second group ends at most at y 376 (the first ends at 208, the second heading stands at 230)
-  function routeGroup(first, head, a) {
-    let y = first === 0 ? 66 : 230;
-    let s = txt(334, y, head, 22, 'start', 'pm-mute');
-    y += 8;
-    for (let i = first; i < first + 3; i++) {
+  // the route (s1, the last two beats): the module's six topics in three groups, in the module's order, the map before
+  // the detail: the three about welding, the two about joining without melting and the last about the cell. Each row has its
+  // number and its index title, wrapped by the kit's widths into 244 units left of the number; a title of two lines (Weld
+  // defects and inspection, Bonding and mechanical joining) gets a taller row. A group with a heading starts below it; the
+  // last group is one row and needs none. The rows end at y 375, inside the panel (388)
+  function routeGroup(y, first, count, head, a) {
+    let s = '';
+    if (head) { s += txt(334, y + 20, head, 22, 'start', 'pm-mute'); y += 26; }
+    for (let i = first; i < first + count; i++) {
       const lines = wrap(TITLE[i], 244);
       if (lines.length > 2) throw new Error(`route row ${TITLE[i]} wraps to ${lines.length} lines`);
       const h = lines.length === 1 ? 34 : 56;
       s += rect(334, y, 284, h, 'pm-tile', 6) + txt(610, y + 25, String(i + 1), 22, 'end', 'pm-on');
       lines.forEach((l, j) => { s += txt(346, y + 25 + j * 22, l, 22, 'start', 'pm-txt'); });
-      y += h + 6;
+      y += h + 3;
     }
     return op(a, s);
   }
@@ -181,7 +165,8 @@ const STAGE = (() => {
     return { chain: fade(b, 0, p, corner, 0.1, 0.5), arcS: fade(b, 1, p, arc), ...tools(b, p, 2, tr('MIG/MAG', 'MIG/MAG', 260), tr('TIG', 'TIG', 260)) };
   }
 
-  // ---- s3: spot welding. A guard of thin steel, two overlapping sheets; a gun squeezes them and current melts a nugget.
+  // ---- s3: spot welding. A guard of two thin overlapping sheets, joined with spot welds, keeps hands away from the product;
+  // a gun squeezes two sheets and current melts a nugget; the tip dresser (the small cutter that reshapes the copper tips).
   function spotParts(b, p) {
     const guard = rect(366, 106, 150, 110, 'pm-card', 4) + rect(436, 150, 150, 110, 'pm-card', 4)
       + [[452, 186], [476, 186], [500, 186]].map(([x, y]) => circ(x, y, 7, 'pm-crit')).join('')
@@ -189,7 +174,7 @@ const STAGE = (() => {
     const gun = rect(446, 100, 40, 54, 'pm-badge', 5) + rect(446, 222, 40, 54, 'pm-badge', 5) + plate(396, 160, 140, 24) + plate(396, 184, 140, 24)
       + `<ellipse class="pm-crit" cx="466" cy="184" rx="22" ry="11"/>` + arrow(466, 76, 466, 98) + arrow(466, 300, 466, 278)
       + txt(334, 336, tr('knijpen en stroom', 'squeeze and current', 284), 22, 'start', 'pm-big');
-    return { spotP: fade(b, 0, p, guard, 0.05, 0.45), spotS: fade(b, 1, p, gun), ...tools(b, p, 2, tr('Stepper', 'Stepper', 260), tr('Kapafdruk', 'Tip imprint', 260)) };
+    return { spotP: fade(b, 0, p, guard, 0.05, 0.45), spotS: fade(b, 1, p, gun), ...tools(b, p, 2, tr('Kappenfrees', 'Tip dresser', 260)) };
   }
 
   // ---- s4: defects and inspection. The weld is checked; a gap inside grows under load.
@@ -298,8 +283,8 @@ const STAGE = (() => {
       if (b === 1) o.melt = op(span(p, 0.05, 0.4), meltDrawing());
       if (b >= 2) {
         lab = tr('schema', 'diagram');
-        o.cutters = routeGroup(0, tr('Lassen', 'Welding', 284), b === 2 ? span(p, 0.05, 0.4) : 1);
-        if (b === 3) o.support = routeGroup(3, tr('Bouten, lijm en serie', 'Bolts, glue and series', 284), span(p, 0.05, 0.4));
+        o.cutters = routeGroup(48, 0, 3, tr('Lassen', 'Welding', 284), b === 2 ? span(p, 0.05, 0.4) : 1);
+        if (b === 3) o.support = routeGroup(213, 3, 2, tr('Zonder smelten', 'Without melting', 284), span(p, 0.05, 0.4)) + routeGroup(341, 5, 1, '', span(p, 0.05, 0.4));
       }
     } else if (si >= 1 && si <= 6) {
       title = [tr('Booglassen', 'Arc welding', 150), tr('Puntlassen', 'Spot welding', 150), tr('Lasfouten', 'Defects', 150), tr('Bouten', 'Bolts', 150), tr('Lijmen', 'Bonding', 150), tr('Productie', 'Production', 150)][si - 1];

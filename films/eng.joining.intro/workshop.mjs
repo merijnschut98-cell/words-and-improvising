@@ -2,8 +2,9 @@
 // verbindingen / One frame, six ways of joining" (eng.joining.intro), drawn with the shared pm world
 // (films/_pm/world.mjs, read-only) and the anatomy kit: the frame of the filling unit (two uprights
 // and a beam, the field film's frame) on a work platform, with its welds, the plate hung from the
-// beam on four bolts and the plastic cover on top; a MIG/MAG welder with a gas bottle; a pedestal spot
-// welder with its control; a table with the tools of the topics; the robot and the jig of the weld
+// beam on four bolts and the plastic cover on top, and the guard of two thin sheets spot welded together in front
+// of the lower frame, where the product falls through the plate into the cartons; a MIG/MAG welder with a gas
+// bottle; a pedestal spot welder; a table with the tools of the topics; the robot and the jig of the weld
 // cell; a light curtain. Simple solids at person scale (the frame is 1.6 m high, a person 1.65 m), no
 // detail the story does not need. World units are centimetres, as in world.mjs.
 //
@@ -28,13 +29,13 @@ export function workshopWorld(w, k, G, P) {
   const at = (p) => k.iso(p, P);
   const f1 = (v) => (Math.round(v * 10) / 10).toString();
   const rectD = (u0, v0, u1, v1) => `M${f1(u0)} ${f1(v0)}H${f1(u1)}V${f1(v1)}H${f1(u0)}Z`;
-  const ball = (c, r, tone = 'hi') => S(G.sphereOf(c, r, P, { steps: 20 }), { tone, crease: 'none' });
+  const ball = (c, r, tone = 'hi') => S(G.sphereOf(c, r, P, { steps: 10 }), { tone, crease: 'none' });
   const poly = (pts) => 'M' + pts.map((p) => at(p).map(f1).join(' ')).join('L');
 
   // ---- where things stand (cm). The frame of the filling unit stands on a work platform at the left: two
   // uprights and a beam across at the top (the field film's frame, 150 high, the beam to 160). A MIG/MAG welder
   // (power source with the wire feeder on it, and the gas bottle) stands right of it, the pedestal spot welder
-  // at the back right with its control, the table with the tools of the topics at the front right.
+  // at the back right, the table with the tools of the topics at the front right.
   const UP = { l: 34, r: 104, y: 40, w: 8, d: 8, top: 150, beam: 160, z0: 5 };
   const BEAM = { x: UP.l, y: UP.y, w: UP.r + UP.w - UP.l, d: UP.d };
   const FACE = UP.y + UP.d; // the front face of the frame, where the plate hangs
@@ -94,24 +95,20 @@ export function workshopWorld(w, k, G, P) {
   const sheets = () => w.box({ x: 202, y: 18, w: 26, d: 22, r: 0.4 }, 106, 108.4, { tone: 'lo' }, { steps: 1 })
     + w.box({ x: 208, y: 18, w: 26, d: 22, r: 0.4 }, 108.4, 110.8, { tone: 'hi' }, { steps: 1 });
   const lens = () => Dt([[SP.tipX, SP.y + 5], [SP.tipX + 8, SP.y - 1], [SP.tipX + 8, SP.y + 11]].map(([x, y]) => at([x, y, 111])), { size: 2.5, tone: 'hi' });
-  // the control of the spot welder, with the stepper curve on its screen (a staircase of rising current)
-  const control = () => {
-    const body = w.box({ x: 266, y: 14, w: 16, d: 28, r: 1 }, 0, 112, { tone: 'mid' }, { steps: 1, bevel: 0.4 });
-    const stairs = [[-39, -76], [-36, -76], [-36, -80], [-33, -80], [-33, -84], [-30, -84], [-30, -88], [-27, -88], [-27, -92], [-24, -92], [-24, -96], [-21, -96]];
-    const path = 'M' + stairs.map(([u, v]) => `${u} ${v}`).join('L');
-    const screen = `<g transform="${w.planeX(282.4)}"><path class="pm-screen" d="${rectD(-41, -101, -19, -73)}"/><path class="pm-code" d="${path}"/></g>`;
-    return { body, screen };
-  };
+  // the guard (invented, with its reason from the field film: the product falls through the plate into the cartons, so
+  // hands stay away from that place): two thin sheets in front of the lower frame, the right one over the left, joined by
+  // a column of spot welds along the overlap. It ends under the plate, so it never hides the plate or its bolts.
+  const guard = () => w.box({ x: 40, y: 58, w: 36, d: 1.6, r: 0.3 }, 8, 92, { tone: 'lo' }, { steps: 1 })
+    + w.box({ x: 70, y: 59.6, w: 36, d: 1.6, r: 0.3 }, 8, 92, { tone: 'mid' }, { steps: 1 })
+    + Dt([20, 40, 60, 80].map((z) => at([73, 61.4, z])), { size: 2.2, tone: 'hi' });
 
   // the table with the tools of the topics (one set per scene, shown by the stage script)
   const table = () => w.table(TABLE);
   // the drawing is not here: the frame is the field film's. On the table: the tool of each topic.
   const tig = () => w.bar([146, 128, TABLE.h + 3], [176, 128, TABLE.h + 8], 1.8, { tone: 'lo' }) + w.bar([176, 128, TABLE.h + 8], [184, 128, TABLE.h + 10], 1.1, { tone: 'hi' })
     + w.box({ x: 252, y: 122, w: 16, d: 12, r: 2 }, 0, 6, { tone: 'lo' }, { steps: 1 }) + w.bar([260, 124, 6], [260, 132, 12], 3, { tone: 'mid' });
-  const print = () => {
-    const s = w.sheet({ x: SHEET.x + 4, y: SHEET.y, z: SHEET.z, lines: 0 });
-    return s.svg + `<g transform="${s.face}"><circle class="pm-rule" cx="10.5" cy="9" r="4.4"/><circle class="pm-rule" cx="10.5" cy="9" r="2.2"/><path class="pm-rule" d="M3 19H18M3 21.6H14"/></g>`;
-  };
+  // the tip dresser (kappenfrees): a short body on the table with a small cutter on top
+  const dresser = () => w.post(152, 130, 5.5, TABLE.h, TABLE.h + 9, { tone: 'mid' }, 14) + w.post(152, 130, 3, TABLE.h + 9, TABLE.h + 14, { tone: 'hi' }, 12);
   const pen = () => w.post(150, 132, 3.4, TABLE.h, TABLE.h + 17, { tone: 'hi' }, 12) + w.post(150, 132, 2.2, TABLE.h + 17, TABLE.h + 21, { tone: 'lo' }, 10);
   const ut = () => {
     const body = w.box({ x: 172, y: 122, w: 22, d: 16, r: 1 }, TABLE.h, TABLE.h + 12, { tone: 'mid' }, { steps: 1, bevel: 0.4 });
@@ -124,12 +121,10 @@ export function workshopWorld(w, k, G, P) {
   const mixer = () => w.box({ x: 146, y: 126, w: 30, d: 12, r: 1.5 }, TABLE.h + 4, TABLE.h + 16, { tone: 'mid' }, { steps: 1 })
     + w.post(152, 140, 2.2, TABLE.h, TABLE.h + 9, { tone: 'lo' }, 10)
     + w.bar([176, 132, TABLE.h + 10], [196, 132, TABLE.h + 10], 3.4, { tone: 'hi' })
-    + w.bar([196, 132, TABLE.h + 10], [222, 132, TABLE.h + 10], 1.8, { tone: 'lo' })
-    + Dt([199, 203, 207, 211, 215, 219].map((x) => at([x, 132, TABLE.h + 12])), { size: 1.1, tone: 'hi' });
+    + w.bar([196, 132, TABLE.h + 10], [222, 132, TABLE.h + 10], 1.8, { tone: 'lo' });
 
-  // the weld cell: the jig (stops at the feet, clamps at the beam ends) and the robot with its torch at the corner
-  const jig = () => [UP.l, UP.r].map((x) => w.box({ x: x - 4, y: UP.y - 4, w: UP.w + 8, d: 3, r: 0.5 }, UP.z0, UP.z0 + 17, { tone: 'lo' }, { steps: 1 })
-    + w.box({ x: x - 4, y: UP.y + UP.d + 1, w: UP.w + 8, d: 3, r: 0.5 }, UP.z0, UP.z0 + 17, { tone: 'lo' }, { steps: 1 })).join('')
+  // the weld cell: the jig (a stop in front of each foot, clamps at the beam ends) and the robot with its torch at the corner
+  const jig = () => [UP.l, UP.r].map((x) => w.box({ x: x - 4, y: UP.y + UP.d + 1, w: UP.w + 8, d: 3, r: 0.5 }, UP.z0, UP.z0 + 17, { tone: 'lo' }, { steps: 1 })).join('')
     + w.box({ x: UP.l - 9, y: UP.y + 1, w: 7, d: 6, r: 0.8 }, UP.top + 1, UP.beam - 1, { tone: 'lo' }, { steps: 1 })
     + w.box({ x: UP.r + UP.w + 2, y: UP.y + 1, w: 7, d: 6, r: 0.8 }, UP.top + 1, UP.beam - 1, { tone: 'lo' }, { steps: 1 });
   const robot = () => {
@@ -151,18 +146,16 @@ export function workshopWorld(w, k, G, P) {
 
   // the parts in painting order: back to front
   function parts({ cueG, g }) {
-    const c = control();
     return {
       back: cueG('spot', spot()) + cueG('sheets', sheets()) + cueG('tips', tips()) + g('lensK', cueG('lens', lens())),
-      control: c.body + cueG('stepper', c.screen),
       mig: cueG('mig', mig()),
       platform: cueG('posit', platform()),
       frame: g('jigK', cueG('jig', jig())) + cueG('frame', frame()) + g('plateK', cueG('plate', plate()) + cueG('bolts', bolts()))
-        + g('coverK', cueG('cover', cover()) + cueG('bead', bead())) + g('weldsK', cueG('welds', welds())),
+        + g('coverK', cueG('cover', cover()) + cueG('bead', bead())) + g('weldsK', cueG('welds', welds())) + g('guardK', cueG('guard', guard())),
       robot: g('robotK', cueG('robot', robot())),
       welder: (x, y) => g('pp-welder', welder(x, y)) + g('torchK', cueG('torch', torch())) + g('arcK', cueG('arc', arc())),
       table: cueG('table', table()),
-      tools: g('t-tig', cueG('tig', tig())) + g('t-spot', cueG('print', print())) + g('t-def', cueG('pen', pen()) + cueG('ut', ut()))
+      tools: g('t-tig', cueG('tig', tig())) + g('t-spot', cueG('dresser', dresser())) + g('t-def', cueG('pen', pen()) + cueG('ut', ut()))
         + g('t-bolt', cueG('nut', nut())) + g('t-glue', cueG('mix', mixer())),
       curtain: g('curtainK', cueG('curtain', curtain())),
     };

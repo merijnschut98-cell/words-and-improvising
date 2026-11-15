@@ -15,12 +15,14 @@
 // beam and a plastic cover on top; without the welding fixture the frame warps) is joined in the plant's
 // workshop, at person scale, and every topic of the module has its place in that one job:
 //   s1 the frame in loose parts, what joining is (welding melts the edges together, bolts and glue do
-//      it without melting) and the map before any detail: six topics follow the frame, three of them
-//      are about welding and what goes wrong in it, three about bolts, glue and welding in production
+//      it without melting) and the map before any detail: six topics follow the frame, in three
+//      groups in the module's order: three about welding and what goes wrong in it, two about bolts
+//      and glue (joining without melting) and the last about welding in production
 //   s2 Booglassen: the corners of the frame are welded; the arc melts the edges, the weld pool sets,
 //      the shielding gas keeps the air away; MIG/MAG and TIG                    → eng.joining.arc
-//   s3 Puntlassen: a guard of thin steel in front of the frame, two overlapping sheets joined with spot
-//      welds so nobody reaches the holes; a stepper and a tip imprint           → .spot (.spotwear)
+//   s3 Puntlassen: a guard of two thin overlapping sheets, joined with spot welds, in front of the lower
+//      frame: the product will fall through the plate into the cartons (the field film and the
+//      machining intro), so hands stay away from that place; the tip dresser     → .spot
 //   s4 Lasfouten en inspectie: a weld can look good outside and hide a gap inside, which grows under
 //      load, so the welds are tested; dye penetrant and ultrasonic testing      → .defects (.inspection)
 //   s5 Boutverbindingen: the plate hangs from the beam on four bolts, so it can come off for service;
@@ -97,11 +99,9 @@ has('eng.joining.bonding', ['They join different materials, such as aluminium to
 has('eng.joining.arc', ['het smeltbad, dat stolt tot de las', 'Lucht moet weg blijven van het smeltbad', 'stroomt er beschermgas uit de toorts', 'MIG/MAG: een draad', 'TIG: een puntige elektrode van wolfraam']);
 has('eng.joining.arc', ['the weld pool, that freezes into the weld', 'Air must stay away from the weld pool', 'a shielding gas flows out of the torch', 'MIG/MAG: a reel of wire', 'TIG: a pointed electrode of tungsten'], 'en');
 has('eng.joining.arc', ['MIG/MAG', 'TIG']);
-// s3: spot welding: a weld gun squeezes two sheets between copper electrodes, current, a nugget; the stepper, the tip imprint of the Werkkennis lesson
-has('eng.joining.spot', ['Weerstandspuntlassen verbindt twee of drie overlappende stalen platen op losse punten', 'knijpt de platen tussen twee koperen elektroden', 'tot er een laslens ontstaat', 'Geen toevoegmateriaal, geen gas', 'Stepper']);
-has('eng.joining.spot', ['Resistance spot welding joins two or three overlapping steel sheets at single points', 'squeezes the sheets between two copper electrodes', 'until a nugget forms', 'No filler, no gas', 'Stepper'], 'en');
-has('eng.joining.spotwear', ['Kapafdruk', 'De insteller controleert het frezen met een kapafdruk']);
-has('eng.joining.spotwear', ['Tip imprint', 'The setter checks the dressing with a tip imprint'], 'en');
+// s3: spot welding: a guard of two overlapping thin sheets joined with spot welds; a weld gun squeezes the sheets between copper electrodes, current, a nugget; the tip dresser (kappenfrees) of the Basis lesson
+has('eng.joining.spot', ['Weerstandspuntlassen verbindt twee of drie overlappende stalen platen op losse punten', 'knijpt de platen tussen twee koperen elektroden', 'tot er een laslens ontstaat', 'zwaait de tang naar de kappenfrees, een kleine frees', 'Kappenfrezen']);
+has('eng.joining.spot', ['Resistance spot welding joins two or three overlapping steel sheets at single points', 'squeezes the sheets between two copper electrodes', 'until a nugget forms', 'swings to the tip dresser, a small cutter', 'Tip dressing'], 'en');
 // s4: defects: a weld can look perfect outside and hide a gap inside that grows under repeated load; dye penetrant and ultrasonic testing (Werkkennis)
 has('eng.joining.defects', ['een las kan er van buiten perfect uitzien en binnenin een platte, scheurachtige spleet verbergen', 'Onder herhaalde belasting groeit die uit tot een scheur']);
 has('eng.joining.defects', ['a weld can look perfect outside and hide a flat, crack-like gap inside', 'Under repeated load it grows into a crack'], 'en');
@@ -169,12 +169,11 @@ const crew = (key, look, x, y, along = 'x') => {
 };
 
 const part = shop.parts({ cueG, g });
-// painted back to front: the spot welder and its control, the MIG/MAG welder, the platform with the frame, the robot, the
+// painted back to front: the spot welder, the MIG/MAG welder, the platform with the frame, the robot, the
 // welder, the people, the table with the tools, the light curtain, you
 const world = [
   w.room(ROOM),
   part.back,
-  part.control,
   part.mig,
   part.platform,
   part.frame,
@@ -262,7 +261,7 @@ const cam = (x, y, z, s) => [...w.at([x, y, z]).map((v) => Math.round(v * 10) / 
 const CAM = [
   { from: cam(145, 80, 60, 1), to: cam(145, 85, 60, 1.06) }, // s1 the whole workshop: the frame in loose parts
   { from: cam(118, 50, 135, 1.7), to: cam(150, 85, 90, 1.25) }, // s2 the welder at the corner, then the welder set and the table
-  { from: cam(228, 34, 100, 1.65), to: cam(190, 85, 90, 1.3) }, // s3 the spot welder and its control, then the table
+  { from: cam(75, 60, 60, 1.45), to: cam(200, 70, 95, 1.45) }, // s3 the guard on the frame, then the spot welder and the table
   { from: cam(105, 60, 135, 1.45), to: cam(160, 100, 100, 1.35) }, // s4 the welds, then the table
   { from: cam(80, 66, 125, 1.6), to: cam(140, 100, 100, 1.4) }, // s5 the plate on the beam, then the table
   { from: cam(80, 50, 150, 1.55), to: cam(170, 100, 100, 1.35) }, // s6 the cover on the beam, then the table
@@ -295,7 +294,7 @@ const spec = {
         { nl: 'In de werkplaats staat het frame van de vuleenheid. Het bestaat nog uit losse delen.', en: 'In the workshop stands the frame of the filling unit. It is still made of loose parts.', focus: ['flow', 'frame', 'jij'] },
         { nl: 'Lassen verbindt delen door de randen samen te smelten. Bouten en lijm doen het zonder smelten.', en: 'Welding joins parts by melting their edges together. Bolts and glue do it without melting.', focus: 'melt' },
         { nl: 'Zes onderwerpen volgen het frame. Drie gaan over lassen en wat daarin misgaat.', en: 'Six topics follow the frame. Three are about welding and what goes wrong in it.', focus: 'cutters' },
-        { nl: 'De andere drie gaan over bouten, lijm en lassen in productie.', en: 'The other three are about bolts, glue and welding in production.', focus: 'support' },
+        { nl: 'Twee gaan over bouten en lijm, verbinden zonder smelten. De laatste gaat over lassen in productie.', en: 'Two are about bolts and glue, joining without melting. The last is about welding in production.', focus: 'support' },
       ],
     },
     {
@@ -309,9 +308,9 @@ const spec = {
     {
       id: 's3', level: 1, dur: DURS[2], still: 0.9, title: { nl: 'Puntlassen', en: 'Spot welding' },
       beats: [
-        { nl: 'Tweede onderwerp: Puntlassen. Een scherm van dun staal houdt handen bij de plaat weg.', en: 'Second topic: Spot welding. A guard of thin steel keeps hands away from the plate.', focus: ['tSpot', 'spotP', 'spot', 'sheets'] },
+        { nl: 'Tweede onderwerp: Puntlassen. Een scherm van dun staal houdt handen bij het product weg.', en: 'Second topic: Spot welding. A guard of thin steel keeps hands away from the product.', focus: ['tSpot', 'spotP', 'guard'] },
         { nl: 'Een tang knijpt de platen samen en stuurt er stroom door. Zo smelt een laslens.', en: 'A gun squeezes the sheets together and sends current through. That melts a nugget.', focus: ['spotS', 'tips', 'sheets', 'lens'] },
-        { nl: 'Bij puntlassen gebruiken we vaak een {t:Stepper|stepper} en een {t:Kapafdruk|kapafdruk}.', en: 'For spot welding we often use a {t:Stepper|stepper} and a {t:Tip imprint|tip imprint}.', ...TOOL('Stepper', 'Kapafdruk'), focus: ['tool1', 'tool2', 'stepper', 'print'] },
+        { nl: 'Bij puntlassen gebruiken we vaak een {t:Kappenfrezen|kappenfrees}.', en: 'For spot welding we often use a {t:Tip dressing|tip dresser}.', ...TOOL('Kappenfrezen'), focus: ['tool1', 'dresser'] },
       ],
     },
     {
@@ -344,7 +343,7 @@ const spec = {
         { nl: 'Zesde onderwerp: Lassen in productie. Een robot last de hoeken van elk frame.', en: 'Sixth topic: Welding in production. A robot welds the corners of every frame.', focus: ['tProd', 'cellS', 'robot', 'curtain'] },
         { nl: 'De delen moeten op hun plek blijven. Anders trekt het frame krom.', en: 'The parts have to stay in place. Otherwise the frame warps.', focus: ['jigS', 'frame', 'welds'] },
         { nl: 'Bij productie gebruiken we vaak een {t:Lasmal|lasmal} en een {t:Positioner|positioner}.', en: 'For production we often use a {t:Welding fixture|welding fixture} and a {t:Positioner|positioner}.', ...TOOL('Lasmal', 'Positioner'), focus: ['tool1', 'tool2', 'jig', 'posit'] },
-        { nl: 'Het frame is klaar, met plaat en kap. Het gaat naar hal B.', en: 'The frame is done, with plate and cover. It goes to hall B.', focus: ['ship', 'frame', 'plate', 'cover', 'jij'] },
+        { nl: 'Het frame is klaar, met plaat, scherm en kap. Het gaat naar hal B.', en: 'The frame is done, with plate, guard and cover. It goes to hall B.', focus: ['ship', 'frame', 'plate', 'guard', 'cover', 'jij'] },
       ],
     },
     {
@@ -383,40 +382,40 @@ const SAY = [
       en: 'In the workshop of the plant stands the frame of the filling unit for line 3. Two uprights and a beam, still loose.' },
     { nl: 'Lassen verbindt metalen delen door de randen samen te smelten. Bouten en lijm doen het zonder smelten.',
       en: 'Welding joins metal parts by melting their edges together. Bolts and glue do it without melting.' },
-    { nl: 'Zes onderwerpen volgen het frame. Drie gaan over lassen. Booglassen, puntlassen en de fouten in een las.',
-      en: 'Six topics follow the frame. Three are about welding. Arc welding, spot welding and the defects in a weld.' },
-    { nl: 'De andere drie gaan over bouten en lijm, en over lassen in productie.',
-      en: 'The other three are about bolts and glue, and about welding in production.' },
+    { nl: 'Zes onderwerpen volgen het frame. Drie gaan over lassen en wat daarin misgaat.',
+      en: 'Six topics follow the frame. Three are about welding and what goes wrong in it.' },
+    { nl: 'Twee gaan over bouten en lijm, verbinden zonder smelten. De laatste gaat over lassen in productie.',
+      en: 'Two are about bolts and glue, joining without melting. The last is about welding in production.' },
   ],
   [ // s2 arc welding: the corners of the frame (the field film: welded at the corners)
     { nl: 'Het eerste onderwerp is Booglassen. Een lasser last de hoeken van het frame aan elkaar, met een boog.',
       en: 'The first topic is Arc welding. A welder joins the corners of the frame, with an arc.' },
-    { nl: 'De boog smelt de randen van de delen. Het {t:Smeltbad|smeltbad} stolt tot de las. Beschermgas houdt de lucht weg, anders komen er gasbelletjes in de las.',
-      en: 'The arc melts the edges of the parts. The {t:Weld pool|weld pool} sets into the weld. Shielding gas keeps the air away, or gas bubbles end up in the weld.' },
+    { nl: 'De boog smelt de randen van de delen. Het {t:Smeltbad|smeltbad} stolt tot de las. Beschermgas houdt de lucht weg.',
+      en: 'The arc melts the edges of the parts. The {t:Weld pool|weld pool} sets into the weld. Shielding gas keeps the air away.' },
     { nl: 'Bij booglassen gebruiken we vaak MIG of MAG, en TIG.',
       en: 'For arc welding we often use MIG or MAG, and TIG.' },
   ],
   [ // s3 spot welding: a guard of two overlapping thin sheets
-    { nl: 'Het tweede onderwerp is Puntlassen. Een scherm van twee dunne platen houdt handen weg bij de gaten van de plaat.',
-      en: 'The second topic is Spot welding. A guard of two thin sheets keeps hands away from the holes of the plate.' },
-    { nl: 'Een lastang knijpt de platen samen tussen koperen elektroden en stuurt er stroom door. Waar ze elkaar raken smelt een laslens, zonder gas en zonder toevoegmateriaal.',
-      en: 'A weld gun squeezes the sheets together between copper electrodes and sends current through. Where they touch a nugget melts, without gas and without filler.' },
-    { nl: 'Bij puntlassen gebruiken we vaak een stepper en een kapafdruk.',
-      en: 'For spot welding we often use a stepper and a tip imprint.' },
+    { nl: 'Het tweede onderwerp is Puntlassen. Het product valt straks door de plaat in de dozen. Een scherm van twee dunne platen houdt daar handen weg.',
+      en: 'The second topic is Spot welding. The product will fall through the plate into the cartons. A guard of two thin sheets keeps hands away there.' },
+    { nl: 'Een lastang knijpt de platen samen tussen koperen elektroden en stuurt er stroom door. Waar ze elkaar raken smelt een laslens.',
+      en: 'A weld gun squeezes the sheets together between copper electrodes and sends current through. Where they touch a nugget melts.' },
+    { nl: 'Bij puntlassen gebruiken we vaak een kappenfrees.',
+      en: 'For spot welding we often use a tip dresser.' },
   ],
   [ // s4 defects and inspection: the gap that hides inside, the welds of the frame are tested
     { nl: 'Het derde onderwerp is Lasfouten en inspectie. Voordat het frame de eenheid gaat dragen, controleren we de lassen.',
       en: 'The third topic is Weld defects and inspection. Before the frame has to carry the unit, we check the welds.' },
-    { nl: 'Een las kan er van buiten perfect uitzien en binnenin een spleet verbergen. Onder belasting groeit die uit tot een scheur. Die fout wil je dus vinden.',
-      en: 'A weld can look perfect outside and hide a gap inside. Under load it grows into a crack. So you want to find that defect.' },
+    { nl: 'Een las kan er van buiten perfect uitzien en binnenin een spleet verbergen. Onder belasting groeit die uit tot een scheur.',
+      en: 'A weld can look perfect outside and hide a gap inside. Under load it grows into a crack.' },
     { nl: 'Bij lasfouten testen we vaak met penetrantonderzoek en ultrasoon onderzoek.',
       en: 'For weld defects we often test with dye penetrant and ultrasonic testing.' },
   ],
   [ // s5 bolted joints: the plate hangs on four bolts, so it can come off for service
     { nl: 'Het vierde onderwerp is Boutverbindingen. De plaat hangt met vier bouten aan de balk. Zo kan hij voor onderhoud weer los.',
       en: 'The fourth topic is Bolted joints. The plate hangs from the beam on four bolts. That way it can come off again for service.' },
-    { nl: 'Een boutverbinding heeft een bout, een moer en een sluitring. Op de kop staat de sterkteklasse, en die zegt hoe sterk de bout is.',
-      en: 'A bolted joint has a bolt, a nut and a washer. The head shows the property class, and that says how strong the bolt is.' },
+    { nl: 'Een boutverbinding heeft een bout, een moer en een sluitring. De sterkteklasse op de kop zegt hoe sterk de bout is.',
+      en: 'A bolted joint has a bolt, a nut and a washer. The property class on the head says how strong the bolt is.' },
     { nl: 'Bij bouten gebruiken we vaak een schroefspindel.',
       en: 'For bolts we often use a nutrunner.' },
   ],
@@ -431,26 +430,26 @@ const SAY = [
   [ // s7 welding in production: the robot cell, the parts stay in place (the field film: without it the frame warps)
     { nl: 'Het zesde onderwerp is Lassen in productie. Voor een serie last een robot de hoeken, in een afgeschermde cel.',
       en: 'The sixth topic is Welding in production. For a series a robot welds the corners, in a fenced cell.' },
-    { nl: 'De delen moeten op hun plek blijven. Warmte zet het metaal uit en afkoelen laat het krimpen, anders trekt het frame krom.',
-      en: 'The parts have to stay in place. Heat expands the metal and cooling shrinks it, or the frame warps.' },
+    { nl: 'De delen moeten op hun plek blijven. Anders trekt het frame krom door de warmte van het lassen.',
+      en: 'The parts have to stay in place. Otherwise the heat of welding warps the frame.' },
     { nl: 'Bij productie gebruiken we vaak een lasmal en een positioner.',
       en: 'For production we often use a welding fixture and a positioner.' },
-    { nl: 'Het frame is klaar, met plaat en kap. Het gaat naar hal B, naar lijn 3.',
-      en: 'The frame is done, with plate and cover. It goes to hall B, to line 3.' },
+    { nl: 'Het frame is klaar, met plaat, scherm en kap. Het gaat naar hal B, naar lijn 3.',
+      en: 'The frame is done, with plate, guard and cover. It goes to hall B, to line 3.' },
   ],
   [ // s8 the map: the level words of the app, as the captions show them
     { nl: 'Dit is de hele kaart. Lassen en verbinden is het vijfde station van Dingen maken.',
       en: 'This is the whole map. Welding and joining is the fifth station of Making things.' },
     { nl: 'Elk onderwerp heeft vier niveaus.',
       en: 'Every topic has four levels.' },
-    { nl: 'Begin bij Booglassen, op niveau Basis. Die eerste les laat zien hoe een boog twee delen aan elkaar maakt.',
-      en: 'Start with Arc welding, at Basics level. That first lesson shows how an arc joins two parts.' },
-    { nl: 'Op niveau Werkkennis stel je lasparameters in en onderhoud je kappen. Je inspecteert lassen en werkt met het aanhaalmoment. Ook lijm je in productie en kies je een lasvolgorde.',
-      en: 'At Working knowledge level you set weld parameters and care for the tips. You inspect welds and work with torque. You also bond in production and choose a welding sequence.' },
-    { nl: 'Op niveau Gevorderd leg je lassen vast op papier en controleer je laspunten. Je kiest het kwaliteitsniveau en de aandraaimethode, bewaakt het klinken en rekent de kosten van een meter las uit.',
-      en: 'At Advanced level you put welds on paper and check spot welds. You choose the quality level and the tightening method, monitor riveting and work out the cost of a metre of weld.' },
-    { nl: 'Op niveau Expert weet je wat warmte met het staal doet en lees je het lasvenster. Je zoekt terugkerende fouten, ontwerpt boutverbindingen, kiest de verbindingsmethode en bewaakt de laskwaliteit als systeem.',
-      en: 'At Expert level you know what heat does to the steel and read the weld lobe. You look for recurring defects, design bolted joints, choose the joining method and guard weld quality as a system.' },
+    { nl: 'Begin bij Booglassen, op niveau Basis. Die les laat zien hoe een boog delen aan elkaar smelt.',
+      en: 'Start with Arc welding, at Basics level. That lesson shows how an arc melts parts together.' },
+    { nl: 'Op niveau Werkkennis stel je lasparameters in en onderhoud je de kappen. Je inspecteert lassen, werkt met het aanhaalmoment, lijmt in productie en kiest de lasvolgorde.',
+      en: 'At Working knowledge level you set weld parameters and maintain the tips. You inspect welds, work with torque, bond in production and choose the welding sequence.' },
+    { nl: 'Op niveau Gevorderd leg je lassen vast op papier en controleer je laspunten. Je kiest het kwaliteitsniveau en de aandraaimethode, plaatst klinknagels en rekent de kosten van een las uit.',
+      en: 'At Advanced level you put welds on paper and check spot welds. You choose the quality level and the tightening method, place rivets and work out the cost of a weld.' },
+    { nl: 'Op niveau Expert weet je wat warmte met het staal doet en lees je het lasvenster. Je zoekt terugkerende fouten, ontwerpt boutverbindingen, kiest de methode en bewaakt de laskwaliteit.',
+      en: 'At Expert level you know what heat does to the steel and read the weld lobe. You look for recurring defects, design bolted joints, choose the method and guard weld quality.' },
     { nl: 'Elke les en elke film van deze module heeft een plek op deze kaart.',
       en: 'Every lesson and every film in this module has a place on this map.' },
   ],
@@ -523,8 +522,8 @@ const css = PM_CSS + WORKSHOP_CSS + `
 
 
 const label = {
-  nl: 'De werkplaats van de fabriek, op mensenmaat. Links op een werkplatform het frame van de vuleenheid van lijn 3: twee stijlen en een balk, met aan de balk de plaat met vier gaten op vier bouten en bovenop de lichte kunststof kap; rechts ervan een MIG/MAG-lasapparaat met een gasfles, achter in de hoek een puntlasmachine met een besturing, vooraan een tafel met het gereedschap per onderwerp en een lichtscherm voor de lascel met een robot en een lasmal. Een lasser met een lashelm en handschoenen, twee werknemers met een veiligheidsbril en handschoenen, en jij, de engineer. Rechts een paneel, gemarkeerd als voorbeeld of schema: het frame in losse delen en de zes onderwerpen van de module als route in twee groepen, het lassen met wat daarin misgaat en de verbindingen zonder smelten en de lascel, elk met zijn schema: booglassen, puntlassen, lasfouten en inspectie, boutverbindingen, lijmen en mechanisch verbinden, en lassen in productie, met per onderwerp de namen van een of twee hulpmiddelen, en het frame dat naar hal B gaat. Aan het eind de kaart van Engineering met Lassen en verbinden verlicht, en de zes onderwerpen met hun vier niveaus.',
-  en: 'The workshop of the plant, at person scale. At the left on a work platform the frame of the filling unit of line 3: two uprights and a beam, with the plate with four holes on four bolts under the beam and the light plastic cover on top; at its right a MIG/MAG welder with a gas bottle, at the back corner a spot welder with a control, at the front a table with the tool of each topic and a light curtain for the weld cell with a robot and a welding fixture. A welder in a welding helmet and gloves, two workers in safety glasses and gloves, and you, the engineer. At the right a panel, marked as an example or a diagram: the frame in loose parts and the six topics of the module as a route in two groups, the welding with what goes wrong in it and the joints without melting and the weld cell, each with its diagram: arc welding, spot welding, weld defects and inspection, bolted joints, bonding and mechanical joining, and welding in production, with the names of one or two tools per topic, and the frame going to hall B. At the end the map of Engineering with Welding and joining lit, and the six topics with their four levels.',
+  nl: 'De werkplaats van de fabriek, op mensenmaat. Links op een werkplatform het frame van de vuleenheid van lijn 3: twee stijlen en een balk, met aan de balk de plaat met vier gaten op vier bouten en bovenop de lichte kunststof kap; rechts ervan een MIG/MAG-lasapparaat met een gasfles, achter in de hoek een puntlasmachine, voor het onderste deel van het frame een scherm van twee dunne platen, vooraan een tafel met het gereedschap per onderwerp en een lichtscherm voor de lascel met een robot en een lasmal. Een lasser met een lashelm en handschoenen, twee werknemers met een veiligheidsbril en handschoenen, en jij, de engineer. Rechts een paneel, gemarkeerd als voorbeeld of schema: het frame in losse delen en de zes onderwerpen van de module als route in drie groepen: het lassen met wat daarin misgaat, de verbindingen zonder smelten en de lassen in productie, elk met zijn schema: booglassen, puntlassen, lasfouten en inspectie, boutverbindingen, lijmen en mechanisch verbinden, en lassen in productie, met per onderwerp de namen van een of twee hulpmiddelen, en het frame dat naar hal B gaat. Aan het eind de kaart van Engineering met Lassen en verbinden verlicht, en de zes onderwerpen met hun vier niveaus.',
+  en: 'The workshop of the plant, at person scale. At the left on a work platform the frame of the filling unit of line 3: two uprights and a beam, with the plate with four holes on four bolts under the beam and the light plastic cover on top; at its right a MIG/MAG welder with a gas bottle, at the back corner a spot welder, in front of the lower frame a guard of two thin sheets, at the front a table with the tool of each topic and a light curtain for the weld cell with a robot and a welding fixture. A welder in a welding helmet and gloves, two workers in safety glasses and gloves, and you, the engineer. At the right a panel, marked as an example or a diagram: the frame in loose parts and the six topics of the module as a route in three groups: the welding with what goes wrong in it, the joints without melting and welding in production, each with its diagram: arc welding, spot welding, weld defects and inspection, bolted joints, bonding and mechanical joining, and welding in production, with the names of one or two tools per topic, and the frame going to hall B. At the end the map of Engineering with Welding and joining lit, and the six topics with their four levels.',
 };
 
 const { data } = await defineFilm(spec, { svg, script: stageScript, css, kitCss: k.ISO_CSS, label });

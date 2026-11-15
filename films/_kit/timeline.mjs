@@ -871,11 +871,11 @@ const SAY = {
     [/\bmet een reflectiemeter\b/g, 'met een reflexiemeter'],
     // the module intro film "Welding and joining" (eng.joining.intro), a self-contained group at the end of the Dutch list,
     // checked with phonemes through Piper's nl_NL-alex bridge: espeak-ng stresses schroefspindel on "-del" (said
-    // schroef-spindul) and reads kapafdruk with a long a (said kap-afdruk), only in the intro's two tool sentences ("vaak
-    // een schroefspindel", "en een kapafdruk"). MIG, MAG and TIG have a rule above; booglassen, puntlassen, laslens,
-    // penetrantonderzoek, ultrasoon onderzoek, statische menger, lasmal, positioner, stepper, clinchen and the level
-    // words are read right; no other film's spoken text changes
-    [/\bvaak een schroefspindel\b/g, 'vaak een schroef-spindul'], [/\ben een kapafdruk\b/g, 'en een kap-afdruk']],
+    // schroef-spindul) and puts the stress of kappenfrees on "frees" (said kappen-frees, both words stressed), only in the
+    // intro's two tool sentences ("vaak een schroefspindel", "vaak een kappenfrees"). MIG, MAG and TIG have a rule above;
+    // booglassen, puntlassen, laslens, penetrantonderzoek, ultrasoon onderzoek, statische menger, lasmal, positioner, clinchen
+    // and the level words are read right; no other film's spoken text changes
+    [/\bvaak een schroefspindel\b/g, 'vaak een schroef-spindul'], [/\bvaak een kappenfrees\b/g, 'vaak een kappen-frees']],
   en: [[/\brpm\b/g, 'revolutions per minute'], [/\bmm\/min\b/g, 'millimetres per minute'], [/\bm\/min\b/g, 'metres per minute'], [/µm\b/g, 'micrometres'],
     [/€\s?(\d[\d,]*(?:\.\d+)?)/g, '$1 euros'], [/(\d)\.0(?![\d])/g, '$1'], [/(\d)\s?mm\b/g, '$1 millimetres'], [/(\d)\s?min\b/g, '$1 minutes'], [/(\d)\s?%/g, '$1 percent'],
     [/Ø\s*/g, 'diameter '], [/(\d)\+(\d)/g, '$1 plus $2'], [/\s×\s/g, ' times '], [/\s\/\s/g, ' divided by '], [/\s=\s/g, ' is '], [/°/g, ' degrees'], [/\bRa\b/g, 'R a'], [/’/g, "'"],
