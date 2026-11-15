@@ -3280,16 +3280,16 @@
     "pm.lead.intro": {
       "poster": "src/content/courses/films/pm.lead.intro.jpg",
       "nl": {
-        "dur": 192.9,
-        "bytes": 8357337,
+        "dur": 193.8,
+        "bytes": 8409766,
         "scenes": [
           0,
-          24.69,
-          51.22,
-          80.24,
-          104.92,
-          128.92,
-          150.26
+          24.73,
+          51.62,
+          80.59,
+          105.58,
+          129.76,
+          151.23
         ],
         "vtt": "src/content/courses/films/pm.lead.intro.nl.vtt"
       },
