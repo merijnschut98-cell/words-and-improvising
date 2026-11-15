@@ -154,7 +154,19 @@ const cablePath = (dashed) => CABLE.map((pts) => hall.cable(pts, { dashed })).jo
 
 // the people: the sponsor and the team lead of the line are the pm cast; the installer, the buyer and the two
 // operators are pm.agile.scrum's figures. Each stands in a cue group; the stage script shows each when the story needs it.
-const person = (role, x, y, along) => w.person({ x, y, role, along });
+// Page size: a person is about 12 KB and the page may not pass 300,000 bytes. At 390 px the shoes (the first and third solid of a person)
+// are a few pixels, so each keeps its outline and edge but not its shading; the arms lose their shading too and the faint crease lines
+// of the rounded solids are left out (the lessons' and the other films' people keep all of it). Together this saves about 14 KB.
+const flatShoes = (svg) => {
+  let n = 0;
+  return svg.replace(/<path class="iso-line iso-crease"[^>]*>/g, '').replace(/<g class="iso-solid">[\s\S]*?<\/g>/g, (m) => {
+    n += 1;
+    if (n === 1 || n === 3) return `<g class="iso-solid">${m.match(/<path class="iso-fill"[^>]*>/)[0]}${m.match(/<path class="iso-line iso-edge"[^>]*>/)[0]}</g>`;
+    return n === 5 || n === 7 || n === 8 ? m.replace(/<path class="iso-shade"[^>]*>/g, '') : m; // the arms (and the tie or the neck): no shading
+  });
+};
+const person = (role, x, y, along) => flatShoes(w.person({ x, y, role, along }));
+const cast = (o) => flatShoes(scrumPerson(w, k, G, P, o));
 // the back wall between the cabinet and the switchboard's place carries the task board (s2) and the brown paper (s5), one at a
 // time; the desk of the client's planner stands in front at the right, with a laptop (s2) or the pre-read (s5) on it
 // (plain shapes, not the pilot's whiteboard and table with their tray, markers and legs: the page stays under 300,000 bytes)
@@ -171,10 +183,10 @@ const CARDS = [3, 3, 2].map((n, c) => {
 const TASKBOARD = BOARD + `<g transform="${w.planeY(2.8)}">${CARDS}</g>`;
 const NOTES = [[0, 172], [1, 150], [2, 172], [3, 150], [4, 172], [5, 150]].map(([c, z]) => `<path class="pm-note" d="${w.rectD(66 + c * 23, -z, 87 + c * 23, -(z - 17))}"/>`).join('');
 const PAPER = `<g transform="${w.planeY(1.4)}"><path class="pm-brown" d="${w.rectD(62, -204, 204, -112)}"/></g><g transform="${w.planeY(2.2)}">${NOTES}</g>`;
-const DESK = w.box({ x: 196, y: 98, w: 66, d: 32, r: 2 }, 66, 74, { tone: 'mid' }, { steps: 2 }) + w.box({ x: 206, y: 104, w: 46, d: 20, r: 1 }, 0, 66, { tone: 'lo' }, { steps: 1 });
+const DESK = w.box({ x: 196, y: 98, w: 66, d: 32, r: 2 }, 66, 74, { tone: 'mid' }, { steps: 2 }) + w.box({ x: 198, y: 100, w: 4, d: 28, r: 0.6 }, 0, 66, { tone: 'lo' }, { steps: 1 }) + w.box({ x: 256, y: 100, w: 4, d: 28, r: 0.6 }, 0, 66, { tone: 'lo' }, { steps: 1 });
 const LAPTOP = w.box({ x: 218, y: 106, w: 24, d: 18, r: 1 }, 74, 75.2, { tone: 'mid' }, { steps: 1 }) + w.box({ x: 218, y: 104, w: 24, d: 1.6, r: 0.4 }, 75, 90, { tone: 'lo' }, { steps: 1 });
 const PREREAD = w.sheet({ x: 203, y: 100, z: 74, lines: 6 }).svg;
-const installer = scrumPerson(w, k, G, P, { x: 44, y: 62, key: 'installer', look: 'sm', along: 'y' });
+const installer = cast({ x: 44, y: 62, key: 'installer', look: 'sm', along: 'y' });
 
 const world = [
   w.room(ROOM),
@@ -186,8 +198,8 @@ const world = [
   cueG('switch', g('swG', hall.switchboardGhost(SWB)) + g('swS', hall.switchboard(SWB))),
   cueG('line3', g('line3S', hall.conveyor({ ...L3, cartons: 4 }))),
   g('pp-installer', installer + hall.hat(44, 62)),
-  g('pp-buyer', scrumPerson(w, k, G, P, { x: 224, y: 96, key: 'buyer', look: 'po', along: 'x' })),
-  g('pp-crew', scrumPerson(w, k, G, P, { x: 176, y: 66, key: 'crew', look: 'dev', along: 'x' }) + scrumPerson(w, k, G, P, { x: 278, y: 60, key: 'crew', look: 'dev2', along: 'x' })),
+  g('pp-buyer', cast({ x: 224, y: 96, key: 'buyer', look: 'po', along: 'x' })),
+  g('pp-crew', cast({ x: 176, y: 66, key: 'crew', look: 'dev', along: 'x' }) + cast({ x: 278, y: 60, key: 'crew', look: 'dev2', along: 'x' })),
   cueG('line4', hall.conveyor({ ...L4, cartons: 3 })),
   g('pp-lead', person('teamlead', 150, 118, 'x')),
   g('pp-desk', cueG('desk', DESK) + g('pp-laptop', cueG('laptop', LAPTOP)) + g('pp-sheet', cueG('preread', PREREAD))),
@@ -398,20 +410,20 @@ const SAY = [
       en: 'At each station you see what happens, and what goes wrong if you skip it.' },
   ],
   [ // s2 approach and tools
-    { nl: 'Het eerste station is Aanpak en gereedschap. Jij kiest hoe je het project aanpakt, nog voor de intake begint.',
-      en: 'The first station is Approach and tools. You choose how to run the project, before the intake even begins.' },
-    { nl: 'De verhuizing past bij een voorspellende aanpak. Eerst plannen, dan uitvoeren. De sponsor geeft het {t:Mandaat|mandaat}, de bevoegdheid om te starten.',
-      en: 'The move suits a predictive approach. Plan first, then run. The sponsor gives the {t:Mandate|mandate}, the authority to start.' },
+    { nl: 'Het eerste station is Aanpak en gereedschap. Hier kies je hoe je het project aanpakt.',
+      en: 'The first station is Approach and tools. Here you choose how to run the project.' },
+    { nl: 'De verhuizing past bij een voorspellende aanpak, eerst plannen en dan uitvoeren. De sponsor geeft het {t:Mandaat|mandaat}.',
+      en: 'The move suits a predictive approach, plan first and then run. The sponsor gives the {t:Mandate|mandate}.' },
     { nl: 'Bij de aanpak gebruiken we vaak een takenbord en een ERP.',
       en: 'With the approach we often use a task board and an ERP.' },
     { nl: 'Zonder aanpak begin je zonder route, en kiest ieder zijn eigen gereedschap.',
       en: 'Without an approach you start without a route, and everyone picks their own tools.' },
   ],
   [ // s3 intake
-    { nl: 'Het tweede station is de intake. De vraag is, verhuis lijn 3. Je vraagt door, naar de vraag erachter. Waarom moet het, en wanneer is het gelukt?',
-      en: 'The second station is the intake. The request is, move line 3. You dig deeper, to the question behind it. Why does it have to happen, and when is it done?' },
-    { nl: 'Het antwoord wordt het {t:Doel|doel}, wat er meetbaar anders moet zijn. Na de stop draait lijn 3 in hal B, even snel als nu. De sponsor is eigenaar van budget en resultaat, en beslist.',
-      en: 'The answer becomes the {t:Goal|goal}, what must be measurably different. After the shutdown line 3 runs in hall B, as fast as it does now. The sponsor owns the budget and the result, and decides.' },
+    { nl: 'Het tweede station is de intake. De vraag is, verhuis lijn 3. Je vraagt door naar de vraag erachter. Waarom, en wanneer is het gelukt?',
+      en: 'The second station is the intake. The request is, move line 3. You dig deeper to the question behind it. Why, and when is it done?' },
+    { nl: 'Het antwoord wordt het {t:Doel|doel}, wat er meetbaar anders moet zijn. Na de stop draait lijn 3 in hal B, even snel als nu. De sponsor beslist.',
+      en: 'The answer becomes the {t:Goal|goal}, what must be measurably different. After the shutdown line 3 runs in hall B, as fast as it does now. The sponsor decides.' },
     { nl: 'Bij de intake gebruiken we vaak een projectopdracht en een SIPOC.',
       en: 'At intake we often use a project charter and a SIPOC.' },
     { nl: 'Sla je de intake over, dan los je misschien het verkeerde probleem op.',
@@ -420,16 +432,16 @@ const SAY = [
   [ // s4 plan
     { nl: 'Het derde station is Plannen. Van het doel maak je een plan waar mensen in geloven.',
       en: 'The third station is Plan. You turn the goal into a plan that people believe in.' },
-    { nl: 'Het werk, de volgorde, de duur en de risico’s. De intro van Plannen laat ze een voor een zien.',
-      en: 'The work, the order, the duration and the risks. The intro of Plan shows them one by one.' },
+    { nl: 'Het werk, de volgorde, de duur en de risico’s. De intro van Plannen laat ze zien.',
+      en: 'The work, the order, the duration and the risks. The intro of Plan shows them.' },
     { nl: 'Bij het plannen gebruiken we vaak een WBS en het kritieke pad.',
       en: 'When planning we often use a WBS and the critical path.' },
-    { nl: 'Zonder plan merk je pas in de laatste week van de stop zelf dat de nieuwe stroom niet klaar is. Dan is het te laat.',
-      en: 'Without a plan you only notice in the last week of the shutdown itself that the new power supply is not ready. Then it is too late.' },
+    { nl: 'Zonder plan merk je pas in de laatste week van de stop dat de nieuwe stroom niet klaar is.',
+      en: 'Without a plan you only notice in the last week of the shutdown that the new power supply is not ready.' },
   ],
   [ // s5 formats and meetings
-    { nl: 'Het vierde station is Werkvormen en overleggen. Het plan ligt er, en nu moeten sponsor, team en jij samen aan de slag.',
-      en: 'The fourth station is Formats and meetings. The plan is ready, and now the sponsor, the team and you have to work together.' },
+    { nl: 'Het vierde station is Werkvormen en overleggen. Het plan ligt er. Nu moet de groep samenwerken.',
+      en: 'The fourth station is Formats and meetings. The plan is ready. Now the group has to work together.' },
     { nl: 'Elke {t:Overlegvorm|overlegvorm} heeft een doel en deelnemers, een duur en een opbrengst.',
       en: 'Each {t:Meeting format|meeting format} has a purpose and participants, a duration and an output.' },
     { nl: 'Bij werkvormen gebruiken we vaak een voorleesstuk en een brown paper.',
@@ -440,26 +452,26 @@ const SAY = [
   [ // s6 run
     { nl: 'Het vijfde station is Uitvoeren. Nu moet het project in beweging blijven.',
       en: 'The fifth station is Run. Now the project has to keep moving.' },
-    { nl: 'Met een eerlijke status. De schakelkast komt later dan gepland, dus zet je de status nu op oranje.',
-      en: 'With an honest status. The switchboard will arrive later than planned, so you set the status to amber now.' },
-    { nl: 'Iemand vraagt of lijn 4 meteen mee kan. Dat wordt een {t:Wijzigingsverzoek|wijzigingsverzoek}, en de sponsor kiest in de stuurgroep.',
-      en: 'Someone asks whether line 4 can come along too. That becomes a {t:Change request|change request}, and the sponsor chooses in the steering group.' },
+    { nl: 'Houd de status eerlijk. De schakelkast komt later dan gepland, dus nu op oranje.',
+      en: 'Keep the status honest. The switchboard comes later than planned, so amber now.' },
+    { nl: 'Iemand vraagt of lijn 4 meteen mee kan. Dat wordt een {t:Wijzigingsverzoek|wijzigingsverzoek}, en de sponsor kiest.',
+      en: 'Someone asks whether line 4 can come along too. That becomes a {t:Change request|change request}, and the sponsor chooses.' },
     { nl: 'Bij het uitvoeren gebruiken we vaak een A3-statusrapport en een besluitenlijst.',
       en: 'When running the project we often use an A3 status report and a decision log.' },
-    { nl: 'Zonder sturing krijg je een watermeloenproject. Groen van buiten, rood van binnen, tot het te laat is.',
-      en: 'Without steering you get a watermelon project. Green outside, red inside, until it is too late.' },
+    { nl: 'Zonder sturing krijg je een watermeloenproject, groen van buiten en rood van binnen.',
+      en: 'Without steering you get a watermelon project, green outside and red inside.' },
   ],
   [ // s7 land
     { nl: 'Het zesde station is Landen. Lijn 3 staat, en nu moet de nieuwe manier van werken blijven.',
       en: 'The sixth station is Land. Line 3 is in place, and now the new way of working has to stick.' },
     { nl: 'De operators krijgen een werkinstructie met foto’s van de echte lijn, en training op de vloer.',
       en: 'The operators get a work instruction with photos of the real line, and training on the floor.' },
-    { nl: 'Dan neemt de lijn het over. Het gaat om {t:Adoptie|adoptie}. Mensen werken op de nieuwe manier, ook als niemand kijkt.',
-      en: 'Then the line takes over. It is about {t:Adoption|adoption}. People work the new way, even when nobody is watching.' },
+    { nl: 'Dan neemt de lijn het over. Dat is {t:Adoptie|adoptie}. Mensen werken op de nieuwe manier, ook als niemand kijkt.',
+      en: 'Then the line takes over. That is {t:Adoption|adoption}. People work the new way, even when nobody is watching.' },
     { nl: 'Bij het landen gebruiken we vaak een vaardigheidsmatrix en een overdrachtschecklist.',
       en: 'When landing the change we often use a skills matrix and a handover checklist.' },
-    { nl: 'Sla je dit over, dan zakt het resultaat een paar maanden na het project weer weg.',
-      en: 'Skip this, and the result slips back a few months after the project.' },
+    { nl: 'Sla je dit over, dan zakt het resultaat na een paar maanden weg.',
+      en: 'Skip this, and the result slips away after a few months.' },
   ],
   [ // s8 close
     { nl: 'Het laatste station is Afsluiten. Het werk is klaar, het project nog niet.',
@@ -470,12 +482,12 @@ const SAY = [
       en: 'Then a retrospective. What do we repeat, and what do we do differently next time?' },
     { nl: 'Bij het afsluiten gebruiken we vaak een run chart en een eindrapport.',
       en: 'When closing we often use a run chart and a closing report.' },
-    { nl: 'Zonder afsluiten weet niemand of het werkte. En het volgende project maakt dezelfde fouten.',
-      en: 'Without closing, nobody knows whether it worked. And the next project makes the same mistakes.' },
+    { nl: 'Zonder afsluiten weet niemand of het werkte, en maakt het volgende project dezelfde fouten.',
+      en: 'Without closing nobody knows whether it worked, and the next project makes the same mistakes.' },
   ],
   [ // s9 the map
-    { nl: 'Dit is de kaart van Projecten. De zeven stations liggen op één weg. Eromheen liggen de andere delen van het vak.',
-      en: 'This is the map of Projects. The seven stations lie on one road. Around it lie the other parts of the field.' },
+    { nl: 'Dit is de kaart van Projecten. De zeven stations liggen op één weg.',
+      en: 'This is the map of Projects. The seven stations lie on one road.' },
     { nl: 'Eerst Aanpak en de intake, de route en de vraag.',
       en: 'First Approach and the intake, the route and the question.' },
     { nl: 'Dan Plannen en Werkvormen, het plan en de samenwerking.',
