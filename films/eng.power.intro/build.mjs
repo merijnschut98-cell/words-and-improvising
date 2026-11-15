@@ -330,7 +330,7 @@ const spec = {
     {
       id: 's5', level: 1, dur: DURS[4], still: 0.9, title: { nl: 'Perslucht', en: 'Compressed air' },
       beats: [
-        { nl: 'Vierde onderwerp: Perslucht en hydrauliek. Perslucht is dure energie.', en: 'Fourth topic: Compressed air and hydraulics. Compressed air is costly energy.', focus: ['tFl', 'airS', 'air'] },
+        { nl: 'Vierde onderwerp: Perslucht en hydrauliek. Perslucht is dure energie. Zo’n {n:10} procent doet werk.', en: 'Fourth topic: Compressed air and hydraulics. Compressed air is costly energy. Around {n:10} percent does work.', focus: ['tFl', 'airS', 'air'] },
         { nl: 'Lekken zijn het grote verlies. Vaak ontsnapt {n:20} tot {n:30} procent.', en: 'Leaks are the big loss. Often {n:20} to {n:30} percent escapes.', focus: ['leakS', 'air'] },
         { nl: 'Met een {t:Lektest|lektest} zie je in het weekend hoeveel lucht weglekt.', en: 'A {t:Leak test|leak test} shows at the weekend how much air leaks away.', ...TOOL('Lektest'), focus: ['tool1', 'testS', 'air'] },
         { nl: 'Hydrauliek gebruikt olie onder hoge druk voor grote krachten.', en: 'Hydraulics uses oil under high pressure for large forces.', focus: ['hydS'] },
@@ -398,8 +398,8 @@ const SAY = [
       en: 'A {t:VFD|VFD} changes the frequency and so the speed, smoothly. That lets the belt of line 3 run faster or slower.' },
   ],
   [ // s5 compressed air and hydraulics: costly energy, the leaks, the leak test, the oil; the story ends where the field film picks it up
-    { nl: 'Het vierde onderwerp is Perslucht en hydrauliek. Perslucht is de duurste manier om energie in een fabriek rond te brengen.',
-      en: 'The fourth topic is Compressed air and hydraulics. Compressed air is the most expensive way to deliver energy in a plant.' },
+    { nl: 'Het vierde onderwerp is Perslucht en hydrauliek. Perslucht is de duurste manier om energie in een fabriek rond te brengen. Zo’n {n:10} procent doet nuttig werk, de rest wordt warmte.',
+      en: 'The fourth topic is Compressed air and hydraulics. Compressed air is the most expensive way to deliver energy in a plant. Around {n:10} percent does useful work and the rest becomes heat.' },
     { nl: 'Lekken zijn het grote verlies. Zonder lekprogramma ontsnapt vaak {n:20} tot {n:30} procent van wat de compressor levert.',
       en: 'Leaks are the big loss. Without a leak programme often {n:20} to {n:30} percent of the compressor output escapes.' },
     { nl: 'Met een {t:Lektest|lektest} meet je in het weekend, bij stilstaande productie, hoeveel lucht weglekt.',
