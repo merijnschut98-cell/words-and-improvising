@@ -83,7 +83,7 @@ export function renderModule(app, { subject, moduleId } = {}, root) {
       ico('chevron-left'), ' ', t('backToCourse')),
     h('header', { class: 'module-head' },
       h('h1', { class: 'module-screen-title' }, model.title),
-      model.titleEn ? h('p', { class: 'term-en module-en-line', lang: 'en' }, model.titleEn) : null,
+      model.titleEn ? h('p', { class: 'term-en module-en-line', lang: 'en', 'aria-hidden': 'true' }, model.titleEn) : null,
       model.field ? h('p', { class: 'module-field muted small' }, model.field.title[app.lang] || model.field.title.en) : null),
     intro,
     topicsEl,

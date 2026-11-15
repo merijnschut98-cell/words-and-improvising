@@ -3039,6 +3039,19 @@ await step('topics: the path map in a module (fixture)', async () => {
   // The row on the course home keeps its progress line; the topics are on the module screen.
   await p.locator('.course-home').waitFor();
   if (!(await p.locator('.module-row', { hasText: 'Verspanen' }).locator('.module-meta', { hasText: '2/4 niveaus' }).count())) throw new Error('no levels count in the module row');
+  // v17 Task 12: the title is one line and the English name sits small under it, not inline.
+  const rowGeo = await p.evaluate(() => [...document.querySelectorAll('.module-row')].map((r) => {
+    const t = r.querySelector('.module-title').getBoundingClientRect();
+    const e = r.querySelector('.module-en-line');
+    const eb = e && e.getBoundingClientRect();
+    return { h: t.height, lh: parseFloat(getComputedStyle(r.querySelector('.module-title')).lineHeight) || 24, under: eb ? eb.top >= t.bottom - 1 : null, enH: eb ? eb.height : 0, hasInline: !!r.querySelector('.module-en') };
+  }));
+  if (!rowGeo.length) throw new Error('no module rows');
+  for (const g of rowGeo) {
+    if (g.h > g.lh * 1.6) throw new Error(`a module title wraps: ${JSON.stringify(g)}`);
+    if (g.under === false || g.hasInline) throw new Error(`English name not under the title: ${JSON.stringify(g)}`);
+  }
+  if (await p.evaluate(() => document.documentElement.scrollWidth > window.innerWidth)) throw new Error('module rows scroll sideways');
   if (await p.locator('.course-home .topic-row').count()) throw new Error('the course home still unfolds topics');
   const mod = await openTopicModule(p);
   const chips = mod.locator('.topic-row').first().locator('.path-stop');

@@ -129,3 +129,52 @@ test('renderModule: one filled button, and a cleanup that closes the film when h
   assert.equal(typeof cleanup, 'function', 'like the lesson screen: leaving closes an open film');
   cleanup();
 });
+
+// v17 Task 12 part 2: a module's title is one line; the English name sits small
+// under it (its own line), never inline after it.
+const { modSummary } = await import('../src/ui/coursehome.js');
+const { MODULES: ALL } = await import('../src/content/courses/index.js');
+const pmPlan = ALL.find((m) => m.id === 'pm.plan');
+
+test('module row (nl): title on its own line, English name on a second small line, not inline', () => {
+  const row = modSummary({ lang: 'nl' }, pmPlan, 'button', {});
+  const title = row.querySelector('.module-title');
+  assert.equal(title.textContent, pmPlan.title.nl, 'the title line holds only the Dutch title');
+  const en = row.querySelector('.module-en-line');
+  assert.ok(en, 'an English line');
+  assert.equal(en.textContent, pmPlan.title.en);
+  assert.equal(en.getAttribute('lang'), 'en');
+  assert.equal(en.getAttribute('aria-hidden'), 'true', 'screen readers get the Dutch title once, not both');
+  assert.ok(!row.querySelector('.module-en'), 'no inline English span any more');
+  const kids = row.children.map((c) => c.className);
+  assert.ok(kids.indexOf('module-title') < kids.findIndex((c) => c.includes('module-en-line')), 'English line under the title');
+});
+
+test('module row (en): only the English title, no second line', () => {
+  const row = modSummary({ lang: 'en' }, pmPlan, 'button', {});
+  assert.equal(row.querySelector('.module-title').textContent, pmPlan.title.en);
+  assert.equal(row.querySelector('.module-en-line'), null);
+});
+
+test('module row (nl): no English line when it equals the Dutch title', () => {
+  const same = { ...pmPlan, title: { nl: 'Agile', en: 'Agile' } };
+  assert.equal(modSummary({ lang: 'nl' }, same, 'button', {}).querySelector('.module-en-line'), null);
+});
+
+test('module screen: the English line is hidden from screen readers', async () => {
+  const fs = await import('node:fs');
+  const src = fs.readFileSync(new URL('../src/ui/modulescreen.js', import.meta.url), 'utf8');
+  assert.match(src, /module-en-line[^)]*aria-hidden/);
+});
+
+test('styles: a module row title is one line with an ellipsis; the English line is small and muted', async () => {
+  const fs = await import('node:fs');
+  const css = fs.readFileSync(new URL('../styles.css', import.meta.url), 'utf8');
+  const m = css.match(/\.module-row \.module-title, \.module-row \.module-en-line \{([^}]*)\}/);
+  assert.ok(m, 'one rule for title and English line');
+  assert.match(m[1], /white-space:\s*nowrap/);
+  assert.match(m[1], /text-overflow:\s*ellipsis/);
+  assert.match(m[1], /overflow:\s*hidden/);
+  const en = css.match(/\n\.module-row \.module-en-line \{([^}]*)\}/);
+  assert.ok(en && /font-size/.test(en[1]) && /var\(--muted/.test(en[1]), 'small and muted');
+});
