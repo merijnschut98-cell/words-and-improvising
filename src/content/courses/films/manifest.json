@@ -3096,30 +3096,30 @@
     "pm.run.intro": {
       "poster": "src/content/courses/films/pm.run.intro.jpg",
       "nl": {
-        "dur": 189.7,
-        "bytes": 7325983,
+        "dur": 193.1,
+        "bytes": 7444378,
         "scenes": [
           0,
-          18.72,
-          46.11,
-          75.97,
-          100.6,
-          133.55,
-          151.16
+          19.08,
+          46.31,
+          77.49,
+          102.77,
+          136.25,
+          153.54
         ],
         "vtt": "src/content/courses/films/pm.run.intro.nl.vtt"
       },
       "en": {
-        "dur": 213.6,
-        "bytes": 8145440,
+        "dur": 213.8,
+        "bytes": 8166554,
         "scenes": [
           0,
-          22.05,
-          52.08,
-          88.23,
-          116.38,
-          152.18,
-          171.95
+          22.11,
+          52.1,
+          88.4,
+          116.26,
+          152.22,
+          172.14
         ],
         "vtt": "src/content/courses/films/pm.run.intro.en.vtt"
       }
