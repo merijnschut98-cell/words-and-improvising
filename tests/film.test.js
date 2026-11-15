@@ -1626,3 +1626,56 @@ test('speak variant: Radical Candor and MORE PIES of the lead intro, PM-30', () 
   const en = 'We use active listening and MORE PIES, and at Working knowledge Toyota Kata and Radical Candor.';
   assert.equal(speakOf([en], 'en'), en);
 });
+
+// The module intro film Approach and tools (pm.approach.intro), checked with espeak-ng phonemes through Piper's nl bridge:
+// Lean as "lee-an" (lˈeːɑn) is said Lien (lˈin) in the list of method families, Six Sigma as "sik sigma" (sˈɪk) gets its s
+// back (Sikss, sˈɪks), and DMAIC as the letters a Dutch quality team says (dee em aa ie see; espeak-ng reads the word
+// "dmaik", mɛ tmˈɑjk). Each rule keeps to the intro's own two phrases (the list of the families after agile, and DMAIC with the
+// steps of Six Sigma), and toolfamilies is said toel-families as the planningstool rule says its tool (espeak-ng reads "tool" as tˈoːl, tolfamilies), so
+// the lessons, the other films and the English track keep their voice; no other film's spoken text changes
+test('speak variant: the method words of the approach intro', () => {
+  const nl = (s) => speakOf([s], 'nl');
+  assert.equal(nl('Er zijn vier methodefamilies en een mengvorm. Voorspellend, agile, Lean en Six Sigma.'), 'Er zijn vier methodefamilies en een mengvorm. Voorspellend, edjail, Lien en Sikss Sigma.');
+  assert.equal(nl('Een terugkerend probleem met data pak je aan met DMAIC, de stappen van Six Sigma.'), 'Een terugkerend probleem met data pak je aan met dee em aa ie see, de stappen van Sikss Sigma.');
+  assert.equal(nl('Denk in toolfamilies, een soort gereedschap per soort werk.'), 'Denk in toel-families, een soort gereedschap per soort werk.');
+  // elsewhere the names keep their voice
+  assert.equal(nl('Six Sigma verbetert met data, Lean met kleine experimenten.'), 'Six Sigma verbetert met data, Lean met kleine experimenten.');
+  assert.equal(nl('Lean en Six Sigma horen bij de verbeterfamilies.'), 'Lean en Six Sigma horen bij de verbeterfamilies.');
+  assert.equal(nl('DMAIC heeft vijf stappen.'), 'DMAIC heeft vijf stappen.');
+  const en = 'There are four method families and a mix. Predictive, agile, Lean and Six Sigma. A recurring problem you tackle with DMAIC, the steps of Six Sigma.';
+  assert.equal(speakOf([en], 'en'), en);
+});
+
+// The module intro film Formats and meetings (pm.formats.intro), checked with espeak-ng phonemes through Piper's nl bridge:
+// "brown paper" is read with the Dutch o of "bron" (brˈɔwn pˈaːpər) and said braun peeper (brˈʌʊn pˈeːpər, as a Dutch coach
+// says it), and "whiteboard" as "wiete-bord" (ʋhˈitəbˌoːɑrd) and said wajtbord (ʋˈɑjtbɔrd). Each rule keeps to the intro's
+// own phrase (the brown paper the group draws on, the digital whiteboard it works on), so the lessons and the other films
+// and the English track keep their voice; no other film's spoken text changes
+test('speak variant: the brown paper and the whiteboard of the formats intro', () => {
+  const nl = (s) => speakOf([s], 'nl');
+  assert.equal(nl('De groep tekent het proces van lijn 3 met geeltjes op een brown paper.'), 'De groep tekent het proces van lijn 3 met geeltjes op een braun peeper.');
+  assert.equal(nl('Dat doen we op een digitaal whiteboard, een gedeeld bord met geeltjes.'), 'Dat doen we op een digitaal wajtbord, een gedeeld bord met geeltjes.');
+  // elsewhere the words keep their voice
+  assert.equal(nl('Een brown paper is een lang vel papier.'), 'Een brown paper is een lang vel papier.');
+  assert.equal(nl('Een whiteboard met veel post-its.'), 'Een whiteboard met veel post-its.');
+  assert.equal(nl('Een digitaal whiteboard is een gedeeld bord.'), 'Een digitaal whiteboard is een gedeeld bord.');
+  const en = 'The group draws the process of line 3 with sticky notes on a brown paper. We do that on an online whiteboard.';
+  assert.equal(speakOf([en], 'en'), en);
+});
+
+// The field film "Keeping the plant running" (eng.field.run), checked with espeak-ng phonemes through Piper's nl_NL-alex
+// bridge: it reads flow as "flaw" (flɔw; said flouw, as the flow rule of pm.agile.forecast), only in the film's two phrases
+// that name the module ("Het eerste station is Capaciteit en flow" and "Eerst Capaciteit en flow"). Takttijd,
+// stilstandregistratie, turflijst, afwijkingsrapport, CMMS (letters), CILT (the rule above), LMRA (the rule above),
+// vergrendelen en labelen, lijnbalans, omstellen, teamleider and "Jij bent de engineer" are read right or have rules
+// above; English needs nothing; no other film's spoken text changes
+test('speak variant: the plant-running field film words in Dutch', () => {
+  const nl = (s) => speakOf([s], 'nl');
+  assert.equal(nl('Het eerste station is Capaciteit en flow. Lijn 3 moet genoeg dozen maken.'), 'Het eerste station is Capaciteit en flouw. Lijn 3 moet genoeg dozen maken.');
+  assert.equal(nl('Eerst Capaciteit en flow, van takt en lijnbalans tot omstellen en seriegrootte.'), 'Eerst Capaciteit en flouw, van takt en lijnbalans tot omstellen en seriegrootte.');
+  // elsewhere the word keeps its voice
+  assert.equal(nl('Capaciteit en flow is een module.'), 'Capaciteit en flow is een module.');
+  assert.equal(nl('Dan Capaciteit en flow.'), 'Dan Capaciteit en flow.');
+  const en = 'The first station is Capacity and flow. First Capacity and flow.';
+  assert.equal(speakOf([en], 'en'), en);
+});

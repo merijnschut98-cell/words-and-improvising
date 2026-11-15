@@ -125,7 +125,10 @@ import { readFileSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import { defineFilm, auditReport, resolveFilm, allLessons } from '../_kit/build-film.mjs';
-import { NARRATION_WPS, MAX_TOTAL } from '../_kit/assert.mjs';
+import { NARRATION_WPS } from '../_kit/assert.mjs';
+// The designed length this film's scenes are sized against: 300 s, the kit's cap when it was built (the
+// kit's MAX_TOTAL is 360 s since Task 17). A builder who extends the film may raise it up to MAX_TOTAL.
+const SIZE_TOTAL = 300;
 import { beatStarts, minSceneDur, wordsOf, sayable } from '../_kit/timeline.mjs';
 import { pmWorld, PM_CSS } from '../_pm/world.mjs';
 import { scrumPerson } from '../pm.agile.scrum/cast.mjs';
@@ -534,7 +537,7 @@ for (const scene of SAY) for (const line of scene) for (const lang of ['nl', 'en
 {
   const said = SAY.map((s) => Math.max(...['nl', 'en'].map((lang) => s.reduce((a, l) => a + wordsOf(plainSay(l[lang])), 0))));
   const all = said.reduce((a, b) => a + b, 0);
-  const TOTAL = Math.min(MAX_TOTAL, Math.round(all / NARRATION_WPS));
+  const TOTAL = Math.min(SIZE_TOTAL, Math.round(all / NARRATION_WPS));
   spec.scenes.forEach((s, si) => {
     const cap = Math.max(...['nl', 'en'].map((lang) => minSceneDur(wordsOf(s.beats.map((b) => plainSay(b[lang])).join(' ')) + 4)));
     s.dur = Math.max(Math.ceil(cap), Math.floor((said[si] / all) * TOTAL));
@@ -544,7 +547,7 @@ for (const scene of SAY) for (const line of scene) for (const lang of ['nl', 'en
   spec.scenes.map((s, si) => [si, (said[si] / all) * TOTAL - s.dur]).sort((x, y) => y[1] - x[1])
     .slice(0, Math.max(0, left)).forEach(([si]) => { spec.scenes[si].dur += 1; });
   const total = spec.scenes.reduce((a, s) => a + s.dur, 0);
-  if (total > MAX_TOTAL) throw new Error(`film is ${total} s, over ${MAX_TOTAL} (words per scene ${said.join(' ')}, all ${all})`);
+  if (total > SIZE_TOTAL) throw new Error(`film is ${total} s, over ${SIZE_TOTAL} (words per scene ${said.join(' ')}, all ${all})`);
 }
 // each beat's still (reduced motion) sits late in its own share of the scene;
 // and every beat holds at least 4 s in both languages, so a card-only point is

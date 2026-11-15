@@ -249,7 +249,7 @@ export const MODULES = [
     ],
     lessons: ['eng.gridplanning.demand', 'eng.gridplanning.loadflow', 'eng.gridplanning.forecast', 'eng.gridplanning.timeseries', 'eng.gridplanning.criteria', 'eng.gridplanning.structures', 'eng.gridplanning.redundancy', 'eng.gridplanning.riskdesign', 'eng.gridplanning.plan', 'eng.gridplanning.investment', 'eng.gridplanning.prioritise', 'eng.gridplanning.execution', 'eng.gridplanning.alternatives', 'eng.gridplanning.flex', 'eng.gridplanning.storage', 'eng.gridplanning.deferral'],
     questions: { 'eng.gridplanning.demand': 4, 'eng.gridplanning.loadflow': 4, 'eng.gridplanning.forecast': 4, 'eng.gridplanning.timeseries': 4, 'eng.gridplanning.criteria': 4, 'eng.gridplanning.structures': 4, 'eng.gridplanning.redundancy': 4, 'eng.gridplanning.riskdesign': 4, 'eng.gridplanning.plan': 4, 'eng.gridplanning.investment': 4, 'eng.gridplanning.prioritise': 4, 'eng.gridplanning.execution': 4, 'eng.gridplanning.alternatives': 4, 'eng.gridplanning.flex': 4, 'eng.gridplanning.storage': 4, 'eng.gridplanning.deferral': 4 } },
-  { id: 'pm.approach', subject: 'pm', track: 'project', level: 1, title: { en: 'Approach and tools', nl: 'Aanpak en gereedschap' }, blurb: { en: 'Your project’s route, the method that fits it, and the tools you choose or find at the client.', nl: 'De route van je project, de methode die erbij past en de tools die je kiest of bij de klant aantreft.' },
+  { id: 'pm.approach', subject: 'pm', track: 'project', level: 1, intro: 'pm.approach.intro', title: { en: 'Approach and tools', nl: 'Aanpak en gereedschap' }, blurb: { en: 'Your project’s route, the method that fits it, and the tools you choose or find at the client.', nl: 'De route van je project, de methode die erbij past en de tools die je kiest of bij de klant aantreft.' },
     topics: [
       { id: 'route', title: { en: 'The route: what first, what next', nl: 'De route: wat eerst, wat daarna' }, levels: ['pm.approach.route', 'pm.approach.takeover', 'pm.approach.tailor', 'pm.approach.clientroute'] },
       { id: 'method', title: { en: 'Choosing an approach', nl: 'Een aanpak kiezen' }, levels: ['pm.approach.families', 'pm.approach.dmaic', 'pm.approach.choose', 'pm.approach.translate'] },
@@ -276,7 +276,7 @@ export const MODULES = [
     ],
     lessons: ['pm.plan.wbs', 'pm.plan.scope', 'pm.plan.products', 'pm.plan.control', 'pm.plan.schedule', 'pm.plan.method', 'pm.plan.network', 'pm.plan.compress', 'pm.plan.estimate', 'pm.plan.techniques', 'pm.plan.spread', 'pm.plan.chain', 'pm.plan.risk', 'pm.plan.raci', 'pm.plan.capacity', 'pm.plan.riskvalue'],
     questions: { 'pm.plan.wbs': 4, 'pm.plan.scope': 4, 'pm.plan.products': 4, 'pm.plan.control': 4, 'pm.plan.schedule': 4, 'pm.plan.method': 4, 'pm.plan.network': 4, 'pm.plan.compress': 4, 'pm.plan.estimate': 4, 'pm.plan.techniques': 4, 'pm.plan.spread': 4, 'pm.plan.chain': 4, 'pm.plan.risk': 4, 'pm.plan.raci': 4, 'pm.plan.capacity': 4, 'pm.plan.riskvalue': 4 } },
-  { id: 'pm.formats', subject: 'pm', track: 'project', level: 2, title: { en: 'Formats and meetings', nl: 'Werkvormen en overleggen' }, blurb: { en: 'Kick-off, workshop, brown paper, brainstorm and the shop floor: which format when, and how to prepare and lead it.', nl: 'Kick-off, werksessie, brown paper, brainstorm en de vloer op: welk format wanneer, en hoe je het voorbereidt en leidt.' },
+  { id: 'pm.formats', subject: 'pm', track: 'project', level: 2, intro: 'pm.formats.intro', title: { en: 'Formats and meetings', nl: 'Werkvormen en overleggen' }, blurb: { en: 'Kick-off, workshop, brown paper, brainstorm and the shop floor: which format when, and how to prepare and lead it.', nl: 'Kick-off, werksessie, brown paper, brainstorm en de vloer op: welk format wanneer, en hoe je het voorbereidt en leidt.' },
     topics: [
       { id: 'meetings', title: { en: 'Which meeting when', nl: 'Welk overleg wanneer' }, levels: ['pm.formats.catalogue', 'pm.formats.kickoff', 'pm.formats.system', 'pm.formats.governance'] },
       { id: 'workshop', title: { en: 'Designing and leading a workshop', nl: 'Een werksessie ontwerpen en leiden' }, levels: ['pm.formats.workshop', 'pm.formats.brownpaper', 'pm.formats.design', 'pm.formats.facilitation'] },
@@ -458,7 +458,7 @@ export const FIELDS = [
   { id: 'eng.field.run', subject: 'eng',
     title: { en: 'Keeping the plant running', nl: 'De fabriek draaiend houden' },
     blurb: { en: 'Flow, quality, maintenance and safety: keeping a plant making good parts, safely, shift after shift.', nl: 'Flow, kwaliteit, onderhoud en veiligheid: een fabriek die dag na dag goede producten maakt, veilig.' },
-    modules: ['eng.flow', 'eng.quality', 'eng.maintenance', 'eng.safety'] },
+    modules: ['eng.flow', 'eng.quality', 'eng.maintenance', 'eng.safety'], film: 'eng.field.run' },
   { id: 'eng.field.better', subject: 'eng',
     title: { en: 'Making the plant better', nl: 'De fabriek beter maken' },
     blurb: { en: 'Problem solving, SPC, cost and reliability: finding what holds a plant back and making it better, for less.', nl: 'Probleemoplossen, SPC, kostprijs en betrouwbaarheid: vinden wat een fabriek tegenhoudt en haar beter maken, voor minder geld.' },

@@ -967,7 +967,28 @@ const SAY = {
     // "molpies" and "modpies"; "More paiz" (mˈoːrə pˈɑjs, "more pies") "morepies", "more pice" or "more pais" 6 of 6. Each rule
     // keeps to the intro's own phrase (it runs after the earlier rules for the two names), so pm.intake.firsttalk and
     // pm.outside.jargon keep their voice for MORE PIES; no other film's spoken text changes
-    [/\ben Redikal Kander\b/g, 'en Rèddikal Kender'], [/(?<=\bactief luisteren en )Mor pais\b/g, 'More paiz']],
+    [/\ben Redikal Kander\b/g, 'en Rèddikal Kender'], [/(?<=\bactief luisteren en )Mor pais\b/g, 'More paiz'],
+    // the module intro film Approach and tools (pm.approach.intro), a self-contained group at the end of the Dutch list, checked with
+    // phonemes through Piper's nl_NL-alex bridge: espeak-ng reads Lean as "lee-an" (lˈeːɑn; said Lien, lˈin, as the Lean-consultant
+    // rule above), Six Sigma as "sik sigma" (sˈɪk; said Sikss Sigma, sˈɪks sˈɪɣmaː) and DMAIC as the word "dmaik" (mɛ tmˈɑjk; said as
+    // the letters, dee em aa ie see, tˈeː ˈɛm ˈaː ˈi sˈeː). Each rule keeps to the intro's own phrase (the list of the families after
+    // agile, which has become edjail by now, and DMAIC with the steps of Six Sigma), so the lessons and the other films keep their
+    // voice; no other film's spoken text changes
+    [/(?<=\bVoorspellend, edjail, )Lean en Six Sigma\b/g, 'Lien en Sikss Sigma'], [/\bmet DMAIC, de stappen van Six Sigma\b/g, 'met dee em aa ie see, de stappen van Sikss Sigma'],
+    // and toolfamilies (espeak-ng reads tool as tˈoːl, "tole") as toel-families, as the planningstool rule says its tool, only after "Denk in"
+    [/(?<=\bDenk in )toolfamilies\b/g, 'toel-families'],
+    // the module intro film Formats and meetings (pm.formats.intro), a self-contained group at the end of the Dutch list, checked with
+    // phonemes through Piper's nl_NL-alex bridge: espeak-ng reads brown paper with the Dutch o of "bron" (brˈɔwn pˈaːpər; said braun peeper,
+    // brˈʌʊn pˈeːpər, as a Dutch coach says it) and whiteboard as "wiete-bord" (ʋhˈitəbˌoːɑrd; said wajtbord, ʋˈɑjtbɔrd). Each rule keeps to
+    // the intro's own phrase (the paper the group draws the process on, the digital whiteboard it works on), so the lessons and the other
+    // films keep their voice; no other film's spoken text changes
+    [/(?<=\bmet geeltjes op een )brown paper\b/g, 'braun peeper'], [/(?<=\bDat doen we op een digitaal )whiteboard\b/g, 'wajtbord'],
+    // the field film "Keeping the plant running" (eng.field.run), a self-contained group at the end of the Dutch list, checked with
+    // phonemes through Piper's nl_NL-alex bridge: espeak-ng reads flow as "flaw" (flɔw; said flouw, flˈʌʊ, as the flow rule of
+    // pm.agile.forecast), only in the two phrases that name the module ("station is Capaciteit en flow", "Eerst Capaciteit en
+    // flow"). Takttijd, stilstandregistratie, turflijst, afwijkingsrapport, CMMS (letters), CILT and LMRA (the rules above),
+    // vergrendelen en labelen, lijnbalans, omstellen and teamleider are read right; no other film's spoken text changes
+    [/(?<=\b(?:station is|Eerst) )Capaciteit en flow\b/g, 'Capaciteit en flouw']],
   en: [[/\brpm\b/g, 'revolutions per minute'], [/\bmm\/min\b/g, 'millimetres per minute'], [/\bm\/min\b/g, 'metres per minute'], [/µm\b/g, 'micrometres'],
     [/€\s?(\d[\d,]*(?:\.\d+)?)/g, '$1 euros'], [/(\d)\.0(?![\d])/g, '$1'], [/(\d)\s?mm\b/g, '$1 millimetres'], [/(\d)\s?min\b/g, '$1 minutes'], [/(\d)\s?%/g, '$1 percent'],
     [/Ø\s*/g, 'diameter '], [/(\d)\+(\d)/g, '$1 plus $2'], [/\s×\s/g, ' times '], [/\s\/\s/g, ' divided by '], [/\s=\s/g, ' is '], [/°/g, ' degrees'], [/\bRa\b/g, 'R a'], [/’/g, "'"],
