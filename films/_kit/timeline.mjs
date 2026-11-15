@@ -828,12 +828,12 @@ const SAY = {
     [/\bsteekproef en een second opinion\b/g, 'steekproef en een sekkend opinjen'],
     // the Programmes and governance module intro (pm.portfolio.intro), a self-contained group at the end of the Dutch
     // list, checked with phonemes through Piper's nl_NL-alex bridge: espeak-ng reads procesingenieurs with a voiced z,
-    // "pro-ze-ingenieurs", said proces-ingenieurs (pro-SES in-zje-NJEURS), and plain managers with a hard g (MAA-naa-gers),
+    // "pro-ze-ingenieurs", said "proces ingenieurs" as two words (pro-SES in-zje-NJEURS; the hyphen was run together by the listen guard, PM-20), and plain managers with a hard g (MAA-naa-gers),
     // said menetsjers as the manager rules above, only in this film's phrase "De managers die de fabriek draaien", so no
     // other film's managers change. Programmaraad, MSP, capaciteitsstreep, capaciteitsmatrix, besluitenlijst,
     // batenkaart, batenprofiel, stage-gates, afhankelijkhedenregister, veranderverzadiging, zombieprojecten and
     // ijzeren wet go through the rules above or are read right as they are; no other film's spoken text changes
-    [/\b([Pp])rocesingenieurs\b/g, '$1roces-ingenieurs'], [/\b([Dd])e managers die de fabriek draaien\b/g, '$1e menetsjers die de fabriek draaien'],
+    [/\b([Pp])rocesingenieurs\b/g, '$1roces ingenieurs'], [/\b([Dd])e managers die de fabriek draaien\b/g, '$1e menetsjers die de fabriek draaien'],
     // the Consulting craft module intro (pm.consult.intro), a self-contained group at the end of the Dutch list, checked with
     // phonemes through Piper's nl_NL-alex bridge: espeak-ng reads plantmanager with a soft g (plant-maa-naa-ger; said
     // plant-menetsjer, only in "De plantmanager vraagt" as the other films' phrases above) and doorverwijzingen with a
