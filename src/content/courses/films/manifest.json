@@ -4014,8 +4014,8 @@
     "eng.ot.intro": {
       "poster": "src/content/courses/films/eng.ot.intro.jpg",
       "en": {
-        "dur": 183.8,
-        "bytes": 6534420,
+        "dur": 184.9,
+        "bytes": 6544654,
         "scenes": [
           0,
           32.83,
@@ -4025,6 +4025,19 @@
           138.17
         ],
         "vtt": "src/content/courses/films/eng.ot.intro.en.vtt"
+      },
+      "nl": {
+        "dur": 168.7,
+        "bytes": 6097126,
+        "scenes": [
+          0,
+          29.36,
+          51.58,
+          78.01,
+          100.57,
+          124.16
+        ],
+        "vtt": "src/content/courses/films/eng.ot.intro.nl.vtt"
       }
     },
     "eng.cyber.intro": {
@@ -4087,6 +4100,35 @@
           135.9
         ],
         "vtt": "src/content/courses/films/eng.lines.intro.en.vtt"
+      }
+    },
+    "eng.industry40.intro": {
+      "poster": "src/content/courses/films/eng.industry40.intro.jpg",
+      "en": {
+        "dur": 148.7,
+        "bytes": 5128467,
+        "scenes": [
+          0,
+          27.26,
+          42.87,
+          58.72,
+          75.58,
+          100.73
+        ],
+        "vtt": "src/content/courses/films/eng.industry40.intro.en.vtt"
+      },
+      "nl": {
+        "dur": 137,
+        "bytes": 4842771,
+        "scenes": [
+          0,
+          23.58,
+          38.24,
+          52.43,
+          67.97,
+          89.54
+        ],
+        "vtt": "src/content/courses/films/eng.industry40.intro.nl.vtt"
       }
     }
   }
