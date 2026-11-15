@@ -14,7 +14,7 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import { MODULES, FIELDS, loadModule, placeOf } from '../src/content/courses/index.js';
 import { validateModule } from '../src/content/courses/validate.js';
-import { readFilmData, checkFilm, checkPointsGate, checkPageSize, lessonTextOf, moduleTextOf, fieldTextOf, MAX_BYTES, TILE_UNITS } from '../films/_kit/assert.mjs';
+import { readFilmData, checkFilm, checkPointsGate, checkPageSize, BYTES_BEFORE, lessonTextOf, moduleTextOf, fieldTextOf, MAX_BYTES, TILE_UNITS } from '../films/_kit/assert.mjs';
 
 const DIR = 'src/content/courses/films';
 // Films whose terms all carry the same name in both languages (pm.agile.scrum:
@@ -129,7 +129,7 @@ test('every shipped film: its terms, numbers, coverage, language and length stil
     const errs = checkFilm(data, ctxOf(data, html, lessons, wiredBy));
     assert.deepEqual(errs, [], `${id}:\n${errs.join('\n')}`);
     assert.ok(Buffer.byteLength(html) <= MAX_BYTES, `${id}: ${Buffer.byteLength(html)} bytes, over the cap`);
-    // Task 17: a page with points stays under the 300 KB target (three extended films: their size before plus 25 KB)
+    // Task 17: a page with points stays under the 300 KB target (an extended film near or over it: its size before plus 25 KB)
     assert.deepEqual(checkPageSize(data, Buffer.byteLength(html)), [], id);
   }
 });
@@ -141,7 +141,12 @@ test('every shipped film: its terms, numbers, coverage, language and length stil
 // whose page has points leaves it, a retired id leaves it, no film outside the Task 17 inventory joins it).
 // When it is empty, the file and this gate go.
 const PENDING = JSON.parse(fs.readFileSync('tests/fixtures/points-pending.json', 'utf8'));
-const INVENTORY = JSON.parse(fs.readFileSync('docs/superpowers/reviews/2026-11-15-task17-films.json', 'utf8')).films.map((f) => f.film);
+const INVENTORY_FILMS = JSON.parse(fs.readFileSync('docs/superpowers/reviews/2026-11-15-task17-films.json', 'utf8')).films;
+const INVENTORY = INVENTORY_FILMS.map((f) => f.film);
+test('Task 17 page size: the 25 KB growth allowance is only for films that are extended or only claimed, never a split one', () => {
+  const action = new Map(INVENTORY_FILMS.map((f) => [f.film, f.action]));
+  for (const id of Object.keys(BYTES_BEFORE)) assert.ok(['extend', 'extend+room', 'none'].includes(action.get(id)), `${id}: ${action.get(id) || 'not in the inventory'}`);
+});
 test('Task 17 gate: every lesson film claims its lesson points or is still pending, and the pending list only shrinks', () => {
   const pages = new Map(films.map((id) => [id, readFilmData(fs.readFileSync(`${DIR}/${id}.html`, 'utf8'))]));
   const errs = checkPointsGate(pages, PENDING.films, INVENTORY);

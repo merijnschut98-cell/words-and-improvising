@@ -11,19 +11,13 @@ export const MIN_TOTAL = 25;
 export const MIN_SCENES = 2;
 // Task 17, step K (Merijn, D1): one extra scene per lesson with gaps, up to 12 scenes (was 9).
 export const MAX_SCENES = 12;
-// Task 17, step K: the designed length (FILM_TOTAL_MAX) and the narration
+// Task 17, step K: the designed length (MAX_TOTAL) and the narration
 // (NARRATION_MAX) may reach the 360 s a rendered video may last per language
 // (tests/filmvideo.test.js); were 300 and 330 s, set for the old "3 to 5
 // minutes" rule. A film is still as long as its content needs: caps, not targets.
-export const FILM_TOTAL_MAX = 360;
-// MAX_TOTAL keeps the old cap, 300 s, as a sizing value only (checkFilm holds a
-// film to FILM_TOTAL_MAX): ten pm lesson films (agile.backlog, agile.forecast,
-// devops.incident, devops.pipeline, devops.postmortem, itproject.cutover,
-// itproject.migration, itproject.mvp, itproject.uat, scaled.hybrid) size their
-// scenes with Math.min(MAX_TOTAL, words / 2.5) in their build, so raising it
-// would change seven of their pages. A builder who completes one of them may
-// import FILM_TOTAL_MAX there instead.
-export const MAX_TOTAL = 300;
+// Ten pm lesson films size their scenes against the old 300 s; they keep it as
+// their own SIZE_TOTAL, so their pages did not change.
+export const MAX_TOTAL = 360;
 // The narration's spoken length, estimated from its words (Piper voices speak
 // about 2.5 words a second); the real length comes from the audio.
 export const NARRATION_WPS = 2.5;
@@ -225,7 +219,7 @@ export function checkFilm(data, { lessons, levelOf, wiredBy = [], module: meta, 
     if (lc(t.nl) !== lc(t.en) && !glossed.has(k)) errs.push(`term ${t.nl}: the Dutch caption never names its English word`);
   }
 
-  // length: each scene can be read; the film is MIN_TOTAL–FILM_TOTAL_MAX s
+  // length: each scene can be read; the film is MIN_TOTAL–MAX_TOTAL s
   let total = 0;
   for (const s of scenes) {
     total += s.dur;
@@ -238,7 +232,7 @@ export function checkFilm(data, { lessons, levelOf, wiredBy = [], module: meta, 
     s.beats.forEach((b, i) => { if (b.still !== undefined && !(b.still >= 0 && b.still <= 1)) errs.push(`scene ${s.id} beat ${i + 1}: still must be in 0..1`); });
     if (![1, 2, 3, 4].includes(s.level)) errs.push(`scene ${s.id}: level must be 1–4`);
   }
-  if (total < MIN_TOTAL || total > FILM_TOTAL_MAX) errs.push(`film is ${total} s, must be ${MIN_TOTAL}–${FILM_TOTAL_MAX}`);
+  if (total < MIN_TOTAL || total > MAX_TOTAL) errs.push(`film is ${total} s, must be ${MIN_TOTAL}–${MAX_TOTAL}`);
   return errs;
 }
 
@@ -504,7 +498,10 @@ export function fingerprint(text) {
 // first 6 letters).
 export const POINT_STOP = new Set(('alleen alles andere anders boven daarom daarna daarbij daarmee dames dezelfde doordat dus eerst eigen elke enkele erger even gaat geeft hebben heeft hierbij hoeveel hoewel iedere iemand ieder kunnen komen krijgt laten maakt maken meeste minder misschien moeten mogen nadat namelijk niets nodig omdat onder ongeveer staat steeds terwijl tegen tussen vaak veel verder vooral waarom wanneer welke wordt worden zelfs zonder zoals zullen zitten zeker eerste tweede derde vierde jouw jullie hebt hadden zouden zodat zowel zelf houdt staan gaan doet doen weten welk precies echte echt goede grote kleine nieuwe nieuw andere ander keer twee drie vier waar waarbij daar hier want maar niet ook nooit altijd vraag vragen antwoord').split(' '));
 const pointWords = (s) => String(s).toLowerCase().match(/[\p{L}][\p{L}-]*/gu) || [];
-export const pointStems = (s) => [...new Set(pointWords(s).filter((w) => w.length >= 5 && !POINT_STOP.has(w)).map((w) => w.replace(/-/g, '').slice(0, 6)))];
+// Codes and acronyms count as content words whatever their length (G49, C45, IP65, OEE, PLC, WIP): they
+// are often the whole point of a short chunk ("G49 en G40 zetten ze weer uit.").
+const pointCodes = (s) => (String(s).match(/(?<![\p{L}\d])(?:\p{Lu}{2,}\d*|\p{Lu}+\d+[\p{L}\d]*)(?![\p{L}\d])/gu) || []).map((w) => w.toLowerCase());
+export const pointStems = (s) => [...new Set([...pointWords(s).filter((w) => w.length >= 5 && !POINT_STOP.has(w)).map((w) => w.replace(/-/g, '').slice(0, 6)), ...pointCodes(s)])];
 export function pointNumbers(s) {
   const out = new Set();
   for (const m of String(s).matchAll(/(?<![\p{L}\d])(\d{1,3}(?:\.\d{3})+|\d+)(?:,(\d+))?/gu)) {
@@ -517,7 +514,12 @@ export const pointSentences = (chunk) => String(chunk).split(/(?<=[.?!])\s+(?=[A
 // What a beat says or shows in Dutch: its caption, its readout and its narration as written.
 export const beatTextNl = (b) => [b.text && b.text.nl, b.read && b.read.nl, b.say && Array.isArray(b.say.nl) ? b.say.nl.map((p) => (typeof p === 'string' ? p : p.t)).join('') : ''].filter(Boolean).join('\n');
 // Why the beats do not plausibly carry the point ('' when they do): at least half of its distinctive
-// numbers, and two of its content stems (one for a one-sentence point). The review checks the meaning.
+// numbers, and a fifth of its content stems, at least two (one for a one-sentence point). The review
+// checks the meaning. Tuned in the step K review on the 2,998 points of the 96 lesson films: with a flat
+// two stems a beat picked at random from the same film passed for 11 % of the points (27 % of the
+// one-sentence points without numbers); with a fifth, 5 % (11 %), and every point the inventory found
+// carried still passes on one or two of its film's beats as often as before (1,954 of 1,989).
+export const POINT_STEM_SHARE = 0.2;
 export function pointGap(text, beats) {
   const said = beats.map(beatTextNl).join('\n');
   const why = [];
@@ -527,7 +529,7 @@ export function pointGap(text, beats) {
   if (nums.length && (nums.length - missing.length) * 2 < nums.length) why.push(`numbers ${missing.join(' ')} not said or shown`);
   const stems = pointStems(text);
   const heard = new Set(pointStems(said));
-  const need = Math.min(stems.length, pointSentences(text).length > 1 ? 2 : 1);
+  const need = Math.min(stems.length, Math.max(pointSentences(text).length > 1 ? 2 : 1, Math.ceil(POINT_STEM_SHARE * stems.length)));
   const got = stems.filter((x) => heard.has(x)).length;
   if (got < need) why.push(`${got} of its words, needs ${need}`);
   return why.join('; ');
@@ -612,16 +614,23 @@ export function checkPoints(data, { lessons, wiredBy = [] }) {
   return errs;
 }
 
-// Page size (Task 17): the 300 KB target is a failure for a page with points, so a split film stays
-// under it. The three films that are extended and were over it before Task 17 may grow 25 KB (plan,
-// risk 4); a split film keeps no allowance, also where it keeps the old id.
-export const OVER_TARGET_BEFORE = { 'eng.machining.overview': 353316, 'eng.moulding.cycle': 332170, 'eng.machining.milling': 324274 };
+// Page size (Task 17): a page with points stays at or under the 300 KB target, so a split film stays under
+// it. A film that is extended (or only gets its claims) may instead grow 25 KB from its size before Task 17
+// (plan, table 2.2 and risk 4): BYTES_BEFORE pins that size for the 13 such films (inventory actions extend,
+// extend+room, none) whose size before plus 25 KB passes the target; for every other one the target is the
+// larger limit. A split film keeps no allowance, also where it keeps the old id (tests/filmcontent.test.js
+// checks that no split film of the inventory is listed here).
+export const BYTES_BEFORE = {
+  'eng.gridbasics.path': 286111, 'eng.gridops.outage': 282058, 'eng.gridplanning.flex': 288954, 'eng.machining.milling': 324274,
+  'eng.machining.overview': 353316, 'eng.machining.turning': 295984, 'eng.machining.workholding': 287099, 'eng.moulding.cycle': 332170,
+  'eng.ot.isa95': 282763, 'eng.power.drives': 289176, 'eng.safety.loto': 292774, 'pm.land.adoption': 290088, 'pm.run.rhythm': 282283,
+};
 export const POINTS_GROWTH = 25 * 1024;
-export const pointsByteLimit = (id) => (OVER_TARGET_BEFORE[id] ? OVER_TARGET_BEFORE[id] + POINTS_GROWTH : TARGET_BYTES);
+export const pointsByteLimit = (id) => Math.max(TARGET_BYTES, (BYTES_BEFORE[id] || 0) + POINTS_GROWTH);
 export function checkPageSize(data, bytes) {
   if (bytes > MAX_BYTES) return [`film ${data.id} is ${bytes} bytes, over the ${MAX_BYTES} cap`];
   const limit = pointsByteLimit(data.id);
-  if (data.points !== undefined && bytes > limit) return [`film ${data.id} is ${bytes} bytes; a page with points stays at or under ${limit} (${OVER_TARGET_BEFORE[data.id] ? 'its size before Task 17 plus 25 KB' : 'the 300 KB target'})`];
+  if (data.points !== undefined && bytes > limit) return [`film ${data.id} is ${bytes} bytes; a page with points stays at or under ${limit} (${limit > TARGET_BYTES ? 'its size before Task 17 plus 25 KB' : 'the 300 KB target'})`];
   return [];
 }
 
@@ -722,17 +731,22 @@ function closeOf(text, i) {
 // The source of a named function of the stage script: a declaration (function name(...) {...}) or an
 // arrow assigned to a const, let or var, with a block or an expression body. null when not found.
 // The source with its comments blanked (same length), so a comment never reads as a declaration.
+// One stage is scanned many times (once per named function and helper), so the last result is kept.
+let uncommentedLast = { text: null, out: '' };
 function uncommented(text) {
-  let out = '';
+  if (uncommentedLast.text === text) return uncommentedLast.out;
+  const out = [];
+  let from = 0;
   for (let i = 0; i < text.length;) {
     const c = text[i];
-    if (c === '"' || c === "'" || c === '`') { const e = skipQuoted(text, i); out += text.slice(i, e); i = e; continue; }
+    if (c === '"' || c === "'" || c === '`') { i = skipQuoted(text, i); continue; }
     const k = skipComment(text, i);
-    if (k !== i) { out += text.slice(i, k).replace(/[^\n]/g, ' '); i = k; continue; }
-    out += c;
+    if (k !== i) { out.push(text.slice(from, i), text.slice(i, k).replace(/[^\n]/g, ' ')); from = i = k; continue; }
     i++;
   }
-  return out;
+  out.push(text.slice(from));
+  uncommentedLast = { text, out: out.join('') };
+  return uncommentedLast.out;
 }
 export function stageFnSource(src, name) {
   const text = String(src);
@@ -759,7 +773,9 @@ export function stageFnSource(src, name) {
     if (';,)]}'.includes(c)) break;
     if (c === '\n') {
       const before = text.slice(i, j).trimEnd().slice(-1);
-      const after = text.slice(j).trimStart()[0] || '';
+      const next = /\S/g;
+      next.lastIndex = j;
+      const after = (next.exec(text) || [''])[0];
       if (!/[+\-*/=?:,(&|.]/.test(before) && !/[+\-*/?:.&|]/.test(after)) break;
     }
     j++;
@@ -768,7 +784,11 @@ export function stageFnSource(src, name) {
 }
 // Literals that are no label: anchors, language codes and class lists (every word hyphenated).
 const NO_LABEL = /^(?:start|middle|end|nl|en|[\w]+(?:-[\w]+)+(?:\s+[\w]+(?:-[\w]+)+)*)$/;
-const labelLike = (s) => /\p{L}/u.test(s) && !NO_LABEL.test(s.trim());
+// A label whose every word is a unit or an acronym reads the same in both languages ('kg', '0 bar',
+// 'MES → ERP'): it needs no tr() pair (the step K review found these on the legacy stages).
+const UNITS = new Set('mm cm m km µm g kg t s ms min h u bar mbar pa kpa mpa n nm kn w kw mw kwh mwh v kv a ma hz khz rpm l ml m2 m3 mm2 eur'.split(' '));
+const sameInBothLanguages = (s) => (s.match(/[\p{L}][\p{L}\d]*/gu) || []).every((w) => UNITS.has(w.toLowerCase()) || /^\p{Lu}[\p{Lu}\d]{1,5}$/u.test(w));
+const labelLike = (s) => /\p{L}/u.test(s) && !NO_LABEL.test(s.trim()) && !sameInBothLanguages(s);
 // The string literals (and the static parts of template literals) in a stretch of source.
 function literalsIn(text) {
   const out = [];
@@ -786,6 +806,14 @@ function literalsIn(text) {
     i = k !== i ? k : i + 1;
   }
   return out;
+}
+// The functions of a stage that draw a <text> (tr excepted), kept for the last stage asked.
+let helpersLast = { src: null, out: [] };
+function textHelpers(src) {
+  if (helpersLast.src === src) return helpersLast.out;
+  const names = new Set([...uncommented(src).matchAll(/\bfunction\s+([\w$]+)\s*\(|\b(?:const|let|var)\s+([\w$]+)\s*=\s*(?:async\s*)?(?:\([^()]*\)|[\w$]+)\s*=>/g)].map((m) => m[1] || m[2]));
+  helpersLast = { src, out: [...names].filter((n) => n !== 'tr' && (stageFnSource(src, n) || '').includes('<text')) };
+  return helpersLast.out;
 }
 // The drawn labels of a stage function that are not tr('nl', 'en') pairs: text written into a
 // <text> element, and label-like literals passed to a function of the stage that draws a <text>.
@@ -805,11 +833,9 @@ export function untranslatedLabels(fnSrc, stageText = '') {
   const found = [];
   for (const m of body.matchAll(/<text\b[^>]*>([^<]*)<\/text>/g)) {
     const t = m[1].replace(/\$\{[^}]*\}/g, '').trim();
-    if (/\p{L}/u.test(t)) found.push(t);
+    if (/\p{L}/u.test(t) && !sameInBothLanguages(t)) found.push(t);
   }
-  const src = String(stageText || fnSrc);
-  const names = new Set([...uncommented(src).matchAll(/\bfunction\s+([\w$]+)\s*\(|\b(?:const|let|var)\s+([\w$]+)\s*=\s*(?:async\s*)?(?:\([^()]*\)|[\w$]+)\s*=>/g)].map((m) => m[1] || m[2]));
-  const helpers = [...names].filter((n) => n !== 'tr' && (stageFnSource(src, n) || '').includes('<text'));
+  const helpers = textHelpers(String(stageText || fnSrc));
   for (const h of helpers) {
     for (const m of body.matchAll(new RegExp(`(?<![\\w$.])${h.replace(/[$]/g, '\\$')}\\s*\\(`, 'g'))) {
       if (/function\s*$/.test(body.slice(0, m.index))) continue;

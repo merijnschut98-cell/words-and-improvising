@@ -16,7 +16,7 @@ import assert from 'node:assert/strict';
 import { resolveFilm } from '../films/_kit/build-film.mjs';
 import {
   checkFilm, checkPoints, checkScope, checkPointsGate, checkPageSize, pointsOf, fingerprint, stageFnSource,
-  pointsByteLimit, TARGET_BYTES, MAX_SCENES, MAX_TOTAL, FILM_TOTAL_MAX, NARRATION_MAX,
+  pointsByteLimit, TARGET_BYTES, MAX_SCENES, MAX_TOTAL, NARRATION_MAX, pointGap,
 } from '../films/_kit/assert.mjs';
 
 const FILM = 'eng.fx.film';
@@ -220,6 +220,21 @@ test('checkPoints: a claim on a beat without the point\'s numbers or words fails
   assert.doesNotMatch(errsOf(resolveFilm(said, LESSONS)), /eng\.fx\.cut#t1\.1/);
 });
 
+test('pointGap: a long point needs a fifth of its words, so a beat that only mentions two of them does not carry it', () => {
+  // five sentences, 16 content words: a fifth is 4
+  const point = 'Een draaifreescentrum combineert draaien en frezen in één opspanning. De tegenspil neemt het werkstuk over. '
+    + 'Daardoor bewerkt de machine ook de achterkant zonder handwerk. Een staafaanvoer duwt materiaal door. '
+    + 'Zo draait de cel onbemand door de nachtploeg.';
+  const beat = (nl) => ({ text: { nl }, say: { nl: [nl] } });
+  assert.match(pointGap(point, [beat('Het deel valt er klaar af, met compleetbewerking op het draaifreescentrum en de tegenspil.')]), /2 of its words, needs 4/);
+  assert.equal(pointGap(point, [beat('Het draaifreescentrum draait en freest in één opspanning; de tegenspil pakt de achterkant.'), beat('Een staafaanvoer houdt de cel in de nachtploeg onbemand aan het werk.')]), '');
+  // a short point still needs two words, a one-sentence one one
+  assert.equal(pointGap('Voeding per tand bepaalt de spaandikte.', [beat('De spaandikte hangt af van de voeding.')]), '');
+  // codes and acronyms are words, whatever their length
+  assert.equal(pointGap('G49 en G40 zetten ze weer uit.', [beat('Met G49 en G40 gaan de correcties uit.')]), '');
+  assert.match(pointGap('G49 en G40 zetten ze weer uit.', [beat('Daarna gaan de correcties uit.')]), /0 of its words, needs 1/);
+});
+
 test('checkPoints: data checked alone carries no key twice and no key of a lesson the film does not serve', () => {
   const data = resolveFilm(spec(), LESSONS);
   const twice = clone(data);
@@ -313,8 +328,20 @@ test('checkScope: an added stage label without tr() fails, a tr() label too wide
   assert.match(checkScope(scoped({ stageFns: ['extraCut'] }), branch).join('\n'), /stage function extraCut: the label 'Snijkant' is not written as tr/);
   const drawn = STAGE.replace("label(10, 60, tr('Snijkant', 'Cutting edge'))", '`<text x="1" y="2">Snijkant</text>`');
   assert.match(checkScope(scoped({ stageFns: ['extraCut'] }), drawn).join('\n'), /stage function extraCut: the label 'Snijkant' is not written as tr/);
+  // units and acronyms read the same in both languages: no tr() pair needed (seen on the legacy stages)
+  const units = STAGE.replace("label(10, 60, tr('Snijkant', 'Cutting edge'))", "label(10, 60, '0 bar') + label(10, 80, 'MES → ERP') + `<text x=\"1\" y=\"2\">kg</text>`");
+  assert.deepEqual(checkScope(scoped({ stageFns: ['extraCut'] }), units), []);
   // checkFilm needs the stage for it
   assert.match(errsOf(scoped({ stageFns: ['extraCut'] }), { stageText: '' }), /checkScope: stage function extraCut is not in the stage script/);
+});
+
+test('checkScope: a legacy-sized stage (300 functions, about 300 KB) is scanned once, not once per function', () => {
+  const fns = Array.from({ length: 300 }, (_, i) => `  // helper ${i}\n  function f${i}(x) { return label(${i}, 2, tr('Tekst ${i}', 'Text ${i}')) + '${'x'.repeat(900)}'; }`).join('\n');
+  const big = STAGE.replace('  return { legacy', `${fns}\n  return { legacy`);
+  assert.ok(big.length > 280000);
+  const t = Date.now();
+  assert.deepEqual(checkScope(scoped({ stageFns: ['extraFeed', 'extraCut', 'f150'] }), big), []);
+  assert.ok(Date.now() - t < 3000, `${Date.now() - t} ms`);
 });
 
 test('stageFnSource: a function declaration or an arrow, up to its end', () => {
@@ -344,9 +371,7 @@ const longFilm = (scenes, dur, words) => {
 const limitErrs = (data) => checkFilm(data, { lessons: lessonsOf(CUT), levelOf, wiredBy: [] }).join('\n');
 test('the limits: 330 s designed, 12 scenes and 880 words pass; 13 scenes or 361 s fail', () => {
   assert.equal(MAX_SCENES, 12);
-  assert.equal(FILM_TOTAL_MAX, 360);
-  // the old cap stays as the sizing value ten pm builds read, so their pages do not change
-  assert.equal(MAX_TOTAL, 300);
+  assert.equal(MAX_TOTAL, 360);
   assert.equal(NARRATION_MAX, 360);
   assert.equal(limitErrs(longFilm(12, 27.5, 880)), '');
   assert.match(limitErrs(longFilm(13, 25, 880)), /needs 2–12 scenes, has 13/);
@@ -356,8 +381,10 @@ test('the limits: 330 s designed, 12 scenes and 880 words pass; 13 scenes or 361
   assert.match(limitErrs(longFilm(12, 27.5, 905)), /narration nl would take about 362 s, must be 25–360/);
 });
 
-test('page size: a page with points stays under the 300 KB target; the three extended films over it grow at most 25 KB', () => {
+test('page size: a page with points stays under the 300 KB target; an extended film near or over it grows at most 25 KB', () => {
   assert.equal(pointsByteLimit('eng.fx.film'), TARGET_BYTES);
+  // 296 KB before: 25 KB of growth, not the 4 KB the target would leave
+  assert.equal(pointsByteLimit('eng.machining.turning'), 295984 + 25 * 1024);
   assert.equal(pointsByteLimit('eng.moulding.cycle'), 332170 + 25 * 1024);
   assert.equal(pointsByteLimit('eng.machining.overview'), 353316 + 25 * 1024);
   assert.equal(pointsByteLimit('eng.machining.milling'), 324274 + 25 * 1024);
