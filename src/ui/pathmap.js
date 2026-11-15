@@ -50,7 +50,7 @@ export function topicPath(t, topicTitle, topic, go, onInfo = null) {
       s.next ? h('span', { class: 'path-next' }, t('chipNext')) : null,
       // v17 Task 19: read what changes at this level again (levels 2 to 4 only).
       onInfo && s.level >= 2 ? h('button', {
-        type: 'button', class: 'path-info', 'aria-label': t('openerChanges', label), 'aria-expanded': 'false',
+        type: 'button', class: 'path-info', 'aria-label': `${t('openerChanges', label)} (${topicTitle})`, 'aria-expanded': 'false',
         'data-level': String(s.level), onclick: (e) => onInfo(s.level, e.currentTarget),
       }, ico('info')) : null));
   });

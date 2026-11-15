@@ -103,7 +103,7 @@ export function load(backend) {
   const courses = isObject(parsed.courses) ? parsed.courses : {};
   merged.courses = Object.fromEntries(Object.keys(base.courses).map((k) => {
     const c = isObject(courses[k]) ? courses[k] : {};
-    return [k, { ...c, lessons: isObject(c.lessons) ? c.lessons : {}, sessions: Array.isArray(c.sessions) ? c.sessions : [], plans: cleanPlans(c.plans), prepped: strings(c.prepped), seenIntros: strings(c.seenIntros).slice(-200), seenLevels: strings(c.seenLevels).slice(-400), medals: cleanMedals(c.medals), checks: cleanChecks(c.checks) }];
+    return [k, { ...c, lessons: isObject(c.lessons) ? c.lessons : {}, sessions: Array.isArray(c.sessions) ? c.sessions : [], plans: cleanPlans(c.plans), prepped: strings(c.prepped), seenIntros: strings(c.seenIntros).slice(-200), seenLevels: strings(c.seenLevels).slice(-1200), medals: cleanMedals(c.medals), checks: cleanChecks(c.checks) }];
   }));
   merged.xpDays = cleanXpDays(parsed.xpDays);
   merged.dailyGoal = cleanGoal(parsed.dailyGoal);

@@ -3018,8 +3018,9 @@ async function topicContext(seed = {}, { entry = MACHINING_TOPIC_FIXTURE, setup 
 const topicSeed = () => {
   const lessons = { 'eng.machining.processes': { read: 1000, passed: 1000 }, 'eng.machining.cutting': { read: 2000, passed: 2000 } };
   const courseReviews = Object.fromEntries([0, 1, 2, 3].map((i) => [`nl|eng.machining.cutting#r${i}`, { box: 4, due: '2099-01-01', lesson: 'eng.machining.cutting', subject: 'eng' }]));
-  // the level openers of this topic are seen already (the opener step has its own seed)
-  const seenLevels = [2, 3, 4].map((n) => `eng.machining/turning#${n}`);
+  // Gevorderd and Expert openers of this topic are seen already (the opener step has its own seed);
+  // Werkkennis is passed, which counts as seen without an entry.
+  const seenLevels = [3, 4].map((n) => `eng.machining/turning#${n}`);
   return { courses: { eng: { lessons, sessions: [], seenLevels } }, courseReviews };
 };
 // v17: a topic module lives on its own screen; tap its row on the course home.
@@ -3278,20 +3279,32 @@ await step('module screen: open Verspanen from the Engineering list, the intro b
   await other.shotP('ms-module-nointro-dark');
   await other.c.close();
 });
-// v17 Task 8: Andon is visible: he greets on the home screens (80 px plus his name, one line in a bubble), presents the intro on a
-// module screen (72 px, one line, beside the heading), lights his top segment once the intro has been
-// watched, and leaves no gap anywhere when the guide is off.
+// v17 Task 19: the level opener before the first lesson at Werkkennis, Gevorderd or Expert of a topic,
+// once; a slow load starts the lesson instead; a level passed before counts as seen; the module screen reads it again.
 await step('level openers: the card before the first lesson at a level, once; info button on the module screen reads it again', async () => {
   const seed = { courses: { eng: { lessons: { 'eng.machining.processes': { read: 1000, passed: 1000 } }, sessions: [] } } };
   const { c, p, shotP } = await topicContext(seed);
   const seenLevels = () => p.evaluate(() => (JSON.parse(localStorage.getItem('spraakwater:v1')).courses.eng.seenLevels || []));
   const text = (lang, level) => p.evaluate(async ([l, n]) => (await import('./src/content/courses/openers.eng.js')).default['eng.machining/turning'][n][l], [lang, level]);
+  // A slow load (here 5 s, the lesson waits 2.5 s) starts the lesson without the card, and the
+  // late answer does not draw it over the lesson. The opener stays unseen for next time.
+  await c.route('**/openers.eng.js*', async (r) => { await new Promise((res) => setTimeout(res, 5000)); await r.continue(); });
   const mod = await openTopicModule(p);
   const row = mod.locator('.topic-row').first();
-  // Level 1 has no info button; level 2 has one named "Wat verandert op Werkkennis".
+  const slowStart = Date.now();
+  await row.locator('.path-stop').nth(1).click();
+  await p.locator('.lesson .steps').waitFor({ timeout: 4500 });
+  if (await p.locator('.opener-card').count()) throw new Error('slow load: the card shows');
+  await p.waitForTimeout(Math.max(0, 5600 - (Date.now() - slowStart)));
+  if (await p.locator('.opener-card').count() || !(await p.locator('.lesson .steps').count())) throw new Error('slow load: the late openers replaced the lesson');
+  if ((await seenLevels()).length) throw new Error('slow load: marked seen');
+  await c.unroute('**/openers.eng.js*');
+  await p.locator('.round-top .icon-btn').click();
+  await p.locator('.module-screen').waitFor();
+  // Level 1 has no info button; level 2 has one named "Wat verandert op Werkkennis (<topic>)".
   if (await row.locator('.path-info').count() !== 1) throw new Error(`info buttons: ${await row.locator('.path-info').count()}`);
   const info = row.locator('.path-info');
-  if ((await info.getAttribute('aria-label')) !== 'Wat verandert op Werkkennis') throw new Error(`info name: ${await info.getAttribute('aria-label')}`);
+  if (!(await info.getAttribute('aria-label')).startsWith('Wat verandert op Werkkennis (')) throw new Error(`info name: ${await info.getAttribute('aria-label')}`);
   const ib = await info.boundingBox();
   if (ib.width < 44 || ib.height < 44) throw new Error(`info target ${ib.width}x${ib.height}`);
   // Opening a lesson at level 2 the first time: the opener card first, Andon says it.
@@ -3304,10 +3317,15 @@ await step('level openers: the card before the first lesson at a level, once; in
   if ((await card.locator('.opener-title').innerText()).trim() !== 'Wat verandert op Werkkennis') throw new Error('opener title');
   await onePrimary(p, 'opener card');
   const begin = p.locator('.opener-begin');
-  if ((await begin.innerText()).trim() !== 'Start') throw new Error('begin label');
+  if ((await begin.innerText()).trim() !== 'Begin') throw new Error('begin label (nl: Begin)');
   if ((await begin.boundingBox()).height < 44) throw new Error('begin under 44 px');
   if (await p.evaluate(() => document.documentElement.scrollWidth > document.documentElement.clientWidth)) throw new Error('opener card scrolls sideways');
   await shotP('opener-card-light-nl');
+  // Focus is on the card's heading, so a screen reader starts there.
+  if (!(await p.evaluate(() => document.activeElement && document.activeElement.classList.contains('opener-title')))) throw new Error('focus not on the opener heading');
+  await p.setViewportSize({ width: 320, height: 700 });
+  if (await p.evaluate(() => document.documentElement.scrollWidth > document.documentElement.clientWidth)) throw new Error('opener card scrolls sideways at 320');
+  await p.setViewportSize({ width: 390, height: 844 });
   if ((await seenLevels()).length) throw new Error('marked seen before the button');
   // Leaving without pressing does not mark it: it shows again.
   await p.locator('.round-top .icon-btn').click();
@@ -3321,7 +3339,7 @@ await step('level openers: the card before the first lesson at a level, once; in
   await p.locator('.module-screen .topic-row').first().locator('.path-stop').nth(1).click();
   await p.locator('.opener-title', { hasText: 'What changes at Working knowledge' }).waitFor();
   if ((await p.locator('.opener-card .guide-say').innerText()).trim() !== await text('en', 2)) throw new Error('English opener text differs from the data');
-  if ((await p.locator('.opener-begin').innerText()).trim() !== 'Begin') throw new Error('English begin label');
+  if ((await p.locator('.opener-begin').innerText()).trim() !== 'Start') throw new Error('English begin label (en: Start)');
   await shotP('opener-card-dark-en');
   await p.evaluate(() => { window.__app.updateSettings({ theme: 'light', lang: 'nl' }); window.__app.go('module', { subject: 'eng', moduleId: 'eng.machining' }); });
   // Guide off: the card stays, without Andon.
@@ -3360,6 +3378,9 @@ await step('level openers: the card before the first lesson at a level, once; in
   if (!(await p.evaluate(() => document.activeElement && document.activeElement.classList.contains('opener-title')))) throw new Error('focus did not move to the opener');
   if ((await inline.locator('.opener-close').boundingBox()).height < 44) throw new Error('close under 44 px');
   if (await p.evaluate(() => document.documentElement.scrollWidth > document.documentElement.clientWidth)) throw new Error('module screen with opener scrolls sideways');
+  await p.setViewportSize({ width: 320, height: 700 });
+  if (await p.evaluate(() => document.documentElement.scrollWidth > document.documentElement.clientWidth)) throw new Error('module screen with opener scrolls sideways at 320');
+  await p.setViewportSize({ width: 390, height: 844 });
   if (JSON.stringify(await seenLevels()) !== JSON.stringify(['eng.machining/turning#2'])) throw new Error('the info button changed what is seen');
   await shotP('opener-module-info-nl');
   await inline.locator('.opener-close').click();
@@ -3374,8 +3395,18 @@ await step('level openers: the card before the first lesson at a level, once; in
   await p.locator('.lesson .steps').waitFor();
   if (await p.locator('.opener-card').count()) throw new Error('an opener at level 1');
   await c.close();
+  // A learner who passed Werkkennis before the openers existed has been at that level: no card.
+  const old = await topicContext({ courses: { eng: { lessons: { 'eng.machining.processes': { read: 1000, passed: 1000 }, 'eng.machining.cutting': { read: 2000, passed: 2000 } }, sessions: [] } } });
+  const oms = await openTopicModule(old.p);
+  await oms.locator('.topic-row').first().locator('.path-stop').nth(1).click();
+  await old.p.locator('.lesson .steps').waitFor();
+  if (await old.p.locator('.opener-card').count()) throw new Error('an opener on a level passed before');
+  await old.c.close();
 });
 
+// v17 Task 8: Andon is visible: he greets on the home screens (80 px plus his name, one line in a bubble), presents the intro on a
+// module screen (72 px, one line, beside the heading), lights his top segment once the intro has been
+// watched, and leaves no gap anywhere when the guide is off.
 await step('Andon: greets on the home screens, presents the intro on a module screen, lights up after the intro, hidden when the guide is off', async () => {
   const { c, p, shotP } = await topicContext(topicSeed(), { entry: MACHINING_INTRO_FIXTURE, setup: introSetup });
   await p.locator('.course-home').waitFor();

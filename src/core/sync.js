@@ -7,7 +7,7 @@ const HISTORY_CAP = 200;
 const SESSIONS_CAP = 200;
 const PREPPED_CAP = 50;
 const SEEN_INTROS_CAP = 200;
-const SEEN_LEVELS_CAP = 400; // as in course.js (v17 level openers)
+const SEEN_LEVELS_CAP = 1200; // as in course.js (v17 level openers)
 // Device-only: settings (API key, theme, language), ui state, and the reminder plan (cue and hour).
 const LOCAL_ONLY = ['settings', 'ui', 'plan'];
 

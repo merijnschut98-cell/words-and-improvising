@@ -5,7 +5,7 @@ import { h } from './dom.js';
 import { ico } from './icons.js';
 import { renderQuiz } from './quiz.js';
 import { celebration } from './flairui.js';
-import { applyLesson, markOpened, levelSeen, markLevelSeen, openerToShow, lessonEndNext, savePlanDraft, commitPlanDraft, newPlanId, lessonPhases, lessonSteps, lessonQuiz, guessFeedback, lessonBack, paragraphs, linkTerms, glossary } from '../core/course.js';
+import { applyLesson, markOpened, openerDue, markLevelSeen, openerToShow, openerWithin, lessonEndNext, savePlanDraft, commitPlanDraft, newPlanId, lessonPhases, lessonSteps, lessonQuiz, guessFeedback, lessonBack, paragraphs, linkTerms, glossary } from '../core/course.js';
 import { metaOf, placeOf, loadOpeners } from '../content/courses/index.js';
 import { openerCard } from './opener.js';
 import { placeLabel } from './coursehome.js';
@@ -62,6 +62,9 @@ export function stepIndicator(t, phases, current, onJump = null) {
     return h('li', { class: `step step-${st.state}`, 'aria-current': st.state === 'current' ? 'step' : null }, ...[].concat(inner));
   }));
 }
+
+// How long the lesson waits for the level openers to load before it starts without one.
+export const OPENER_WAIT = 2500;
 
 export function renderLesson(app, params, root) {
   const { subject, moduleId, lessonId } = params;
@@ -361,12 +364,14 @@ export function renderLesson(app, params, root) {
     // v17 Task 19: the first time he opens a lesson at level 2 to 4 of a topic,
     // the level opener comes before the first step. Pressing its button marks
     // it seen and starts the lesson; leaving without pressing leaves it unseen.
-    // The texts load on demand; if they cannot, the lesson just starts.
+    // A level he passed before the openers existed counts as seen. The texts
+    // load on demand (from the cache offline); if they cannot, or take longer
+    // than OPENER_WAIT, the lesson just starts and the opener waits for next time.
     const topicKey = place ? `${place.moduleId}/${place.topicId}` : null;
-    if (!place || place.level < 2 || levelSeen(app.state, subject, topicKey, place.level)) { draw(); return; }
-    loadOpeners(subject).catch(() => null).then((openers) => {
+    if (!place || !openerDue(app.state, subject, topicKey, place.level, lesson.id)) { draw(); return; }
+    openerWithin(() => loadOpeners(subject), OPENER_WAIT).then((openers) => {
       if (seq !== app.navSeq) return;
-      const text = openerToShow(app.state, subject, topicKey, place.level, openers, app.lang);
+      const text = openerToShow(app.state, subject, topicKey, place.level, openers, app.lang, lesson.id);
       if (!text) { draw(); return; }
       window.scrollTo(0, 0);
       const nodes = openerCard(app, {

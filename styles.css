@@ -1065,8 +1065,8 @@ details.rw-topic > summary { cursor: pointer; min-height: 44px; display: flex; a
 .path-label { font-size: 0.7rem; line-height: 1.15; color: var(--muted); text-align: center; overflow-wrap: anywhere; }
 .path-stop.s-next + .path-label { color: var(--ink); }
 .path-next { font-family: var(--font-mono); font-size: 0.66rem; color: var(--accent-dark); }
-/* v17 Task 19: the info button under a level stop, and the opener cards. */
-.path-info { width: 44px; height: 44px; padding: 0; border: 0; background: transparent; display: grid; place-items: center; color: var(--muted); cursor: pointer; border-radius: 50%; }
+/* v17 Task 19: the info button under a level stop (pulled up over the label's spare space; the target stays 44 px), and the opener cards. */
+.path-info { width: 44px; height: 44px; margin-top: -8px; padding: 0; border: 0; background: transparent; display: grid; place-items: center; color: var(--muted); cursor: pointer; border-radius: 50%; }
 .path-info .ico { width: 18px; height: 18px; }
 .path-info[aria-expanded="true"] { color: var(--accent-dark); }
 .path-info:focus-visible, .opener-close:focus-visible { outline: 2px solid var(--accent); outline-offset: 0; }

@@ -62,9 +62,10 @@ export function renderModule(app, { subject, moduleId } = {}, root) {
   const topicsEl = topicsSection(app, meta, { next: model.next, topics: model.topics }, (topic, level, btn) => {
     const slot = topicsEl.querySelector(`.opener-slot[data-topic="${topic.id}"]`);
     if (!slot) return;
+    // Only this topic's buttons: another topic's card may stay open.
     const close = () => {
       slot.replaceChildren();
-      topicsEl.querySelectorAll(`.path-info`).forEach((b) => b.setAttribute('aria-expanded', 'false'));
+      slot.parentNode.querySelectorAll('.path-info').forEach((b) => b.setAttribute('aria-expanded', 'false'));
       if (typeof btn.focus === 'function') btn.focus();
     };
     if (btn.getAttribute('aria-expanded') === 'true') { close(); return; }

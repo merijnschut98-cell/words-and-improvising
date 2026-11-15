@@ -5,7 +5,7 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { defaultState, load } from '../src/core/storage.js';
 import { mergeStates } from '../src/core/sync.js';
-import { levelSeen, markLevelSeen, openerToShow, SEEN_LEVELS_CAP } from '../src/core/course.js';
+import { levelSeen, markLevelSeen, openerToShow, openerWithin, SEEN_LEVELS_CAP } from '../src/core/course.js';
 import { MODULES, loadOpeners } from '../src/content/courses/index.js';
 
 const KEY = 'spraakwater:v1';
@@ -46,9 +46,33 @@ test('markLevelSeen caps the list, newest kept', () => {
   assert.equal(levelSeen(s, 'eng', 'eng.m0/t', 2), false);
 });
 
-test('the cap is big enough for every topic and level 2 to 4 of the biggest subject', () => {
+// The cap must never bite on real ids: a sorted union trimmed to the cap drops
+// ids alphabetically, not the oldest, so a learner's seen openers would come
+// back. Twice the real number leaves room for the subjects to grow; this test
+// trips long before the cap can be reached.
+test('the cap is at least twice every topic and level 2 to 4 of the biggest subject', () => {
   const per = (sub) => MODULES.filter((m) => m.subject === sub).reduce((n, m) => n + (m.topics || []).reduce((k, t) => k + Math.max(0, (t.levels || []).length - 1), 0), 0);
-  for (const sub of ['eng', 'pm']) assert.ok(per(sub) <= SEEN_LEVELS_CAP, `${sub}: ${per(sub)} openers fit in ${SEEN_LEVELS_CAP}`);
+  for (const sub of ['eng', 'pm']) assert.ok(per(sub) * 2 <= SEEN_LEVELS_CAP, `${sub}: ${per(sub)} openers, twice that fits in ${SEEN_LEVELS_CAP}`);
+});
+
+test('sync: two devices that each saw every real opener of a subject keep all of them', async () => {
+  for (const sub of ['eng', 'pm']) {
+    const all = Object.entries(await loadOpeners(sub)).flatMap(([k, v]) => Object.keys(v).map((n) => `${k}#${n}`));
+    const half = Math.floor(all.length / 2);
+    const withSeen = (list) => ({ ...defaultState(), courses: { ...defaultState().courses, [sub]: { ...defaultState().courses[sub], seenLevels: list } } });
+    const merged = mergeStates(withSeen(all.slice(0, half + 10)), withSeen(all.slice(half - 10))).courses[sub].seenLevels;
+    assert.equal(merged.length, all.length, `${sub}: nothing trimmed`);
+    const loaded = load(fakeBackend({ [KEY]: JSON.stringify(withSeen(merged)) }));
+    assert.equal(loaded.courses[sub].seenLevels.length, all.length, `${sub}: storage keeps them all`);
+  }
+});
+
+test('the cap in storage and sync is the one in course.js', async () => {
+  const { readFile } = await import('node:fs/promises');
+  const sync = await readFile(new URL('../src/core/sync.js', import.meta.url), 'utf8');
+  const storage = await readFile(new URL('../src/core/storage.js', import.meta.url), 'utf8');
+  assert.match(sync, new RegExp(`SEEN_LEVELS_CAP = ${SEEN_LEVELS_CAP}\\b`));
+  assert.match(storage, new RegExp(`seenLevels: strings\\(c\\.seenLevels\\)\\.slice\\(-${SEEN_LEVELS_CAP}\\)`));
 });
 
 test('defaults and sanitising: seenLevels is a list of strings, per subject, capped', () => {
@@ -79,7 +103,7 @@ test('sync: seenLevels of two devices merge as a union, in either order; old sta
   assert.deepEqual(mergeStates(old, old).courses.pm.seenLevels, []);
   const ids = (x, y) => Array.from({ length: y - x }, (_, i) => `eng.m${String(x + i).padStart(4, '0')}/t#2`);
   const big = (list) => ({ ...base(), courses: { ...base().courses, eng: { ...base().courses.eng, seenLevels: list } } });
-  assert.equal(mergeStates(big(ids(0, 300)), big(ids(200, 500))).courses.eng.seenLevels.length, SEEN_LEVELS_CAP);
+  assert.equal(mergeStates(big(ids(0, SEEN_LEVELS_CAP - 100)), big(ids(SEEN_LEVELS_CAP - 300, SEEN_LEVELS_CAP + 100))).courses.eng.seenLevels.length, SEEN_LEVELS_CAP);
 });
 
 test('openerToShow: a level 2 to 4 with a text that is not seen yet shows; everything else does not', () => {
@@ -94,6 +118,32 @@ test('openerToShow: a level 2 to 4 with a text that is not seen yet shows; every
   const s1 = markLevelSeen(s0, 'pm', 'pm.intake/problem', 2);
   assert.equal(openerToShow(s1, 'pm', 'pm.intake/problem', 2, OP, 'nl'), null, 'seen: not again');
   assert.equal(openerToShow(s1, 'pm', 'pm.intake/problem', 3, OP, 'nl'), 'Tekst drie.', 'another level still shows');
+});
+
+// "The first time he opens a lesson at a level he has not been at before": a
+// learner who passed that level before the openers existed has been there.
+// Only passing counts: opening the lesson (which happens before the card) does not.
+test('openerToShow: not for a level whose lesson he has already passed; opening it does not count', () => {
+  const s0 = defaultState();
+  const passed = { ...s0, courses: { ...s0.courses, pm: { ...s0.courses.pm, lessons: { 'pm.intake.x': { passed: 5, read: 5 } } } } };
+  assert.equal(openerToShow(passed, 'pm', 'pm.intake/problem', 2, OP, 'nl', 'pm.intake.x'), null, 'passed before: no card');
+  const opened = { ...s0, courses: { ...s0.courses, pm: { ...s0.courses.pm, lessons: { 'pm.intake.x': { opened: 5 } } } } };
+  assert.equal(openerToShow(opened, 'pm', 'pm.intake/problem', 2, OP, 'nl', 'pm.intake.x'), 'Tekst twee.', 'only opened: the card still shows');
+  assert.equal(openerToShow(passed, 'pm', 'pm.intake/problem', 2, OP, 'nl', 'pm.intake.other'), 'Tekst twee.', 'another lesson passed: not this one');
+});
+
+// A slow load must not hold the lesson: after the wait the lesson starts (null)
+// and a late answer changes nothing. One answer only, so one render.
+test('openerWithin: the openers when they come in time, null on a timeout or a failure, never twice', async () => {
+  assert.deepEqual(await openerWithin(() => Promise.resolve(OP), 50), OP);
+  assert.equal(await openerWithin(() => new Promise(() => {}), 20), null, 'never answers: null after the wait');
+  assert.equal(await openerWithin(() => Promise.reject(new Error('offline')), 50), null, 'fails: null');
+  assert.equal(await openerWithin(() => { throw new Error('sync throw'); }, 50), null, 'throws: null');
+  let late;
+  const slow = openerWithin(() => new Promise((r) => { late = r; }), 10);
+  assert.equal(await slow, null);
+  late(OP); // too late: the promise has settled already
+  assert.equal(await slow, null);
 });
 
 test('loadOpeners: the subject file loads and gives the shipped shape; an unknown subject rejects', async () => {
@@ -121,7 +171,7 @@ test('openerCard: Andon says the text, one filled button; with the guide off the
   assert.equal(on.querySelector('.guide-say').textContent, 'Tekst twee.');
   assert.equal(on.querySelector('.opener-title').textContent, 'Wat verandert op Werkkennis');
   assert.equal(on.querySelectorAll('.btn-primary').length, 1);
-  assert.equal(on.querySelector('.btn-primary').textContent, 'Start');
+  assert.equal(on.querySelector('.btn-primary').textContent, 'Begin', 'nl: Begin');
   on.querySelector('.btn-primary').click();
   assert.equal(began, 1);
   const off = wrap(openerCard(appFor({ ...defaultState(), settings: { ...defaultState().settings, guide: false } }, 'en'), { subject: 'pm', level: 4, text: 'Text four.', onBegin: () => {} }));
@@ -129,7 +179,7 @@ test('openerCard: Andon says the text, one filled button; with the guide off the
   assert.equal(off.querySelector('.guide-say'), null);
   assert.equal(off.querySelector('.opener-text').textContent, 'Text four.');
   assert.equal(off.querySelector('.opener-title').textContent, 'What changes at Expert');
-  assert.equal(off.querySelector('.btn-primary').textContent, 'Begin');
+  assert.equal(off.querySelector('.btn-primary').textContent, 'Start', 'en: Start');
 });
 
 test('openerInline has no Andon, a heading and a close button', () => {
@@ -148,10 +198,11 @@ test('topicPath: an info button on levels 2 to 4 only, named "What changes at <l
   const opened = []; const info = [];
   const el = topicPath(translator('nl'), 'Takt', m.topics[0], (id) => opened.push(id), (level) => info.push(level));
   const btns = el.querySelectorAll('button.path-info');
-  assert.deepEqual([...btns].map((b) => b.getAttribute('aria-label')), ['Wat verandert op Werkkennis', 'Wat verandert op Gevorderd', 'Wat verandert op Expert']);
+  // The topic is in the name: every topic has the same three buttons.
+  assert.deepEqual([...btns].map((b) => b.getAttribute('aria-label')), ['Wat verandert op Werkkennis (Takt)', 'Wat verandert op Gevorderd (Takt)', 'Wat verandert op Expert (Takt)']);
   btns[1].click();
   assert.deepEqual(info, [3]);
   assert.deepEqual(opened, []);
-  assert.equal(topicPath(translator('en'), 'Takt', m.topics[0], () => {}, () => {}).querySelectorAll('button.path-info')[0].getAttribute('aria-label'), 'What changes at Working knowledge');
+  assert.equal(topicPath(translator('en'), 'Takt', m.topics[0], () => {}, () => {}).querySelectorAll('button.path-info')[0].getAttribute('aria-label'), 'What changes at Working knowledge (Takt)');
   assert.equal(topicPath(translator('nl'), 'Takt', m.topics[0], () => {}).querySelectorAll('button.path-info').length, 0, 'no handler: no buttons');
 });
