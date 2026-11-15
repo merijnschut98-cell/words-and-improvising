@@ -13,6 +13,7 @@ import pmMap from '../src/content/courses/maps/pm.js';
 import { mapSvg, wrapLabel, MAP_OBJECTS } from '../src/ui/subjectmap.js';
 import { homeOrder } from '../src/ui/coursehome.js';
 import { mapStyles } from '../films/_kit/mapscene.mjs';
+import { textUnits } from '../films/_kit/assert.mjs';
 
 const sha = (s) => createHash('sha256').update(s).digest('hex').slice(0, 16);
 const CSS = fs.readFileSync(new URL('../styles.css', import.meta.url), 'utf8');
@@ -46,7 +47,8 @@ test('the zones group what the modules teach, and each zone lists its modules by
   const by = Object.fromEntries(efields.map((f) => [f.id, f.modules]));
   assert.deepEqual(by['eng.field.plant'], ['eng.flow', 'eng.quality', 'eng.maintenance', 'eng.safety', 'eng.spc', 'eng.cost', 'eng.improve', 'eng.reliability']);
   assert.deepEqual(by['eng.field.making'], ['eng.mechanics', 'eng.machining', 'eng.process', 'eng.drawings', 'eng.joining', 'eng.moulding']);
-  assert.deepEqual(by['eng.field.energy'], ['eng.gridbasics', 'eng.fluids', 'eng.power', 'eng.transformers', 'eng.switchgear', 'eng.gridops', 'eng.gridplanning']);
+  // the grid first (basics, switchgear, transformers), then the plant's energy users, then running and planning the grid
+  assert.deepEqual(by['eng.field.energy'], ['eng.gridbasics', 'eng.switchgear', 'eng.transformers', 'eng.power', 'eng.fluids', 'eng.gridops', 'eng.gridplanning']);
   assert.deepEqual(by['eng.field.digital'], ['eng.itbasics', 'eng.ot', 'eng.cyber', 'eng.lines', 'eng.industry40']);
   for (const f of efields) {
     const levels = f.modules.map((id) => MODULES.find((m) => m.id === id).level);
@@ -109,10 +111,40 @@ test('every title wraps to three lines or fewer, uncut, fits its place and sits 
   }
 });
 
-test('the phone map is long but bounded: 26 places in at most 860 px at 390 and 680 px at 320', () => {
+test('the phone map is as compact as its labels allow: 26 places in at most 750 px at 390 and 590 px at 320', () => {
+  // Merijn chose the compact Projects phone map (three to a row, 532 px at 390) over a long one;
+  // Engineering has 26 places to Projects' 20, so about 690 px would be the same density.
   const high = (w) => phone.view.h * w / phone.view.w;
-  assert.ok(high(CARD[390]) <= 860, `${high(CARD[390])}`);
-  assert.ok(high(CARD[320]) <= 680, `${high(CARD[320])}`);
+  assert.ok(high(CARD[390]) <= 750, `${high(CARD[390])}`);
+  assert.ok(high(CARD[320]) <= 590, `${high(CARD[320])}`);
+});
+
+test('the phone map uses rows of three wherever the titles allow: ten rows for 26 places', () => {
+  const rows = new Set(phone.places.map((p) => p.y));
+  assert.equal(rows.size, 10);
+});
+
+test('Projects keeps its phone columns: the wider three-column place is Engineering\'s own', () => {
+  const widths = (m) => [...new Set(m.phone.places.map((p) => p.w))].sort((a, b) => a - b);
+  assert.deepEqual(widths(pmMap), [89, 137]);
+  assert.ok(widths(engMap).includes(90));
+});
+
+test('wide map: every label line fits its place at the app\'s 15-unit label, in both languages', () => {
+  // the wrap counts characters (8 units each); the stage font's width table catches a line of wide
+  // glyphs that counts short, like "Pompen, stroming en" (157 units) in a place of 148
+  const bad = [];
+  for (const lang of ['nl', 'en']) {
+    const svg = mapSvg(engMap, { lang });
+    for (const p of engMap.places) {
+      const g = svg.slice(svg.indexOf(`data-module="${p.module}"`)).split('</text>')[0];
+      for (const [, line] of g.matchAll(/<tspan[^>]*>([^<]*)<\/tspan>/g)) {
+        const w = (textUnits(line.replace(/&amp;/g, '&')) * 15) / 22;
+        if (w > p.w) bad.push(`${lang} ${p.module}: "${line}" ${w.toFixed(1)} in ${p.w}`);
+      }
+    }
+  }
+  assert.deepEqual(bad, []);
 });
 
 test('mapSvg draws Engineering: wide and phone, 26 buttons, one next mark, zone labels in both languages', () => {

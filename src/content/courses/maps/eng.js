@@ -15,8 +15,9 @@ const LABEL = {
 const sec = (field, rows) => ({ field, label: LABEL[field], rows });
 
 // The wide layout: three places to a row (200 units, 24 characters a line; a row
-// of two is centred). Only the last row of the energy band has four (148 units,
-// 19 characters), whose titles are short enough.
+// of two is centred). Only the first row of the energy band has four (148 units,
+// 19 characters), whose titles are short enough; "Pompen, stroming en" is not,
+// so eng.fluids sits in the row of three under it.
 const WIDE = wideLayout('eng', [
   sec('eng.field.plant', [
     { h: 104, items: [['eng.flow', 'conveyor'], ['eng.quality', 'gate'], ['eng.maintenance', 'desk']] },
@@ -26,32 +27,34 @@ const WIDE = wideLayout('eng', [
     { h: 104, items: [['eng.mechanics', 'beam'], ['eng.machining', 'machine'], ['eng.process', 'tank']] },
     { h: 104, items: [['eng.drawings', 'desk'], ['eng.joining', 'weld'], ['eng.moulding', 'press']] }]),
   sec('eng.field.energy', [
-    { h: 104, items: [['eng.gridbasics', 'pylon'], ['eng.fluids', 'pump'], ['eng.power', 'motor']] },
-    { h: 120, items: [['eng.transformers', 'transformer'], ['eng.switchgear', 'cabinet'], ['eng.gridops', 'dashboard'], ['eng.gridplanning', 'board']] }]),
+    { h: 120, items: [['eng.gridbasics', 'pylon'], ['eng.switchgear', 'cabinet'], ['eng.transformers', 'transformer'], ['eng.power', 'motor']] },
+    { h: 104, items: [['eng.fluids', 'pump'], ['eng.gridops', 'dashboard'], ['eng.gridplanning', 'board']] }]),
   sec('eng.field.digital', [
     { h: 104, items: [['eng.itbasics', 'server'], ['eng.ot', 'cabinet'], ['eng.cyber', 'lock']] },
     { h: 104, items: [['eng.lines', 'arm'], ['eng.industry40', 'dashboard']] }]),
 ]);
 
-// The phone layout (see layout.js): three places to a row where every title
-// has words of 14 characters or fewer, otherwise two.
+// The phone layout (see layout.js): ten rows. Three places of 90 units to a row
+// (15 characters a line) where every word of both titles fits, otherwise two of
+// 137. The energy zone keeps its three long Dutch words (elektriciteitsnet,
+// schakelinstallaties, energietransitie) in rows of two, with the three titles
+// that fit between them. A row is 54 units (a tap of 45.7 px at 320 px), 65 when
+// a title takes three lines.
 const PHONE = phoneLayout([
   sec('eng.field.plant', [
     { cols: 3, h: 54, items: [['eng.flow', 'conveyor'], ['eng.quality', 'gate'], ['eng.maintenance', 'desk']] },
     { cols: 3, h: 65, items: [['eng.safety', 'road-stop'], ['eng.spc', 'whiteboard'], ['eng.cost', 'contract']] },
     { cols: 2, h: 54, items: [['eng.improve', 'board'], ['eng.reliability', 'dashboard']] }]),
   sec('eng.field.making', [
-    { cols: 2, h: 54, items: [['eng.mechanics', 'beam'], ['eng.machining', 'machine']] },
-    { cols: 2, h: 54, items: [['eng.process', 'tank'], ['eng.drawings', 'desk']] },
-    { cols: 2, h: 54, items: [['eng.joining', 'weld'], ['eng.moulding', 'press']] }]),
+    { cols: 3, h: 65, items: [['eng.mechanics', 'beam'], ['eng.machining', 'machine'], ['eng.process', 'tank']] },
+    { cols: 3, h: 54, items: [['eng.drawings', 'desk'], ['eng.joining', 'weld'], ['eng.moulding', 'press']] }]),
   sec('eng.field.energy', [
-    { cols: 2, h: 54, items: [['eng.gridbasics', 'pylon'], ['eng.fluids', 'pump']] },
-    { cols: 2, h: 54, items: [['eng.power', 'motor'], ['eng.transformers', 'transformer']] },
-    { cols: 2, h: 54, items: [['eng.switchgear', 'cabinet'], ['eng.gridops', 'dashboard']] },
-    { cols: 1, h: 54, items: [['eng.gridplanning', 'board']] }]),
+    { cols: 2, h: 54, items: [['eng.gridbasics', 'pylon'], ['eng.switchgear', 'cabinet']] },
+    { cols: 3, h: 65, items: [['eng.transformers', 'transformer'], ['eng.power', 'motor'], ['eng.fluids', 'pump']] },
+    { cols: 2, h: 54, items: [['eng.gridops', 'dashboard'], ['eng.gridplanning', 'board']] }]),
   sec('eng.field.digital', [
     { cols: 3, h: 54, items: [['eng.itbasics', 'server'], ['eng.ot', 'cabinet'], ['eng.cyber', 'lock']] },
     { cols: 2, h: 54, items: [['eng.lines', 'arm'], ['eng.industry40', 'dashboard']] }]),
-]);
+], { cols: { 3: { w: 90, xs: [10, 105, 200] } } });
 
 export default { ...WIDE, phone: PHONE };
