@@ -1520,23 +1520,16 @@ test('speak variant: the IT fundamentals intro film words in Dutch', () => {
 });
 
 // The module intro film "From MES order to a running unit" (eng.ot.intro), checked with espeak-ng phonemes through Piper's nl bridge:
-// it reads engineer with the Dutch ng (said entsjinier, only in "Jij zoekt het uit, als engineer", as the rule for "Jij bent de
-// engineer" above), patcht with the x of "lachen" and patch with the long a of "paats" (said petsjt, vrijgegeven petsj and
-// petsj-venster, only in the film's own sentences "Op kantoor patcht IT" and "vrijgegeven patch in een patchvenster") and unified
-// namespace as English words read the Dutch way (said joenifaid nejmspeis, only in "beoordelen, de unified namespace"). PLC, SCADA, MES, ERP,
-// MQTT, OPC UA, ISA-95, historian, Purdue, productieorder, terugmelding, OPC-server en tags and the level words have rules above or
-// are read right; English needs nothing; no other film's spoken text changes
+// it reads unified namespace as English words read the Dutch way (said joenifaid nejmspeis, only in "beoordelen, de unified namespace").
+// The engineer is the rule for "Jij bent de engineer" above. PLC, SCADA, MES, ERP, MQTT, OPC UA, ISA-95, historian, Purdue, productieorder,
+// informatiestroom, machinebouwer, OPC-server en tags and the level words have rules above or are read right; English needs nothing;
+// no other film's spoken text changes
 test('speak variant: the OT intro film words in Dutch', () => {
   const nl = (s) => speakOf([s], 'nl');
-  assert.equal(nl('Jij zoekt het uit, als engineer.'), 'Jij zoekt het uit, als entsjinier.');
-  assert.equal(nl('Op kantoor patcht IT vaak elke maand.'), 'Op kantoor petsjt IT vaak elke maand.');
-  assert.equal(nl('Je plant een vrijgegeven patch in een patchvenster.'), 'Je plant een vrijgegeven petsj in een petsj-venster.');
   assert.equal(nl('Op niveau Expert komen de cloud, een koppeling beoordelen, de unified namespace en governance.'), 'Op niveau Expert komen de cloud, een koppeling beoordelen, de joenifaid nejmspeis en gavvernens.');
+  assert.equal(nl('Jij bent de engineer en zoekt het uit.'), 'Jij bent de entsjinier en zoekt het uit.');
   // elsewhere the words keep their voice
-  assert.equal(nl('De engineer leest de tekening.'), 'De engineer leest de tekening.');
-  assert.equal(nl('Een patch staat in de les.'), 'Een patch staat in de les.');
-  assert.equal(nl('Het patchvenster staat in de les.'), 'Het patchvenster staat in de les.');
   assert.equal(nl('Een unified namespace is een idee.'), 'Een unified namespace is een idee.');
-  const en = 'You find out, as the engineer. In the office IT often patches every month. You plan a qualified patch in a patch window.';
+  const en = 'You are the engineer and find out. At Expert level come the cloud, judging an interface, the unified namespace and governance.';
   assert.equal(speakOf([en], 'en'), en);
 });

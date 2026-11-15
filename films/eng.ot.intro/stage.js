@@ -126,16 +126,16 @@ const STAGE = (() => {
 
   // ---- s2: the five levels, level 4 at the top. lvLow: levels 2, 1 and 0; lvHigh: levels 4 and 3. The level number at the left,
   // its name beside it.
-  function levelRows(rows) {
-    return rows.map(([n, name]) => rect(334, 100 + (4 - n) * 46, 284, 40, 'pm-tile', 6) + txt(346, 128 + (4 - n) * 46, String(n), 22, 'start', 'pm-mute') + txt(380, 128 + (4 - n) * 46, name, 22, 'start', 'pm-txt')).join('');
+  function levelRows(rows, named) {
+    return rows.map(([n, name]) => rect(334, 100 + (4 - n) * 46, 284, 40, 'pm-tile', 6) + txt(346, 128 + (4 - n) * 46, String(n), 22, 'start', 'pm-mute') + (named ? txt(380, 128 + (4 - n) * 46, name, 22, 'start', 'pm-txt') : '')).join('');
   }
-  const lowRows = () => levelRows([[2, 'PLC'], [1, tr('fotocel', 'photo eye', 230)], [0, tr('het proces', 'the process', 230)]]);
-  const highRows = () => levelRows([[4, 'ERP'], [3, 'MES']]);
+  const lowRows = (named) => levelRows([[2, 'PLC'], [1, tr('fotocel', 'photo eye', 230)], [0, '']], named);
+  const highRows = (named) => levelRows([[4, 'ERP'], [3, 'MES']], named);
 
   // ---- s3: the systems from ERP at the top to PLC at the bottom, each with what it is for; then the order's arrow down
   // (right of the rows) and what is made going up
-  function sysDrawing() {
-    const row = (y, name, role) => rect(334, y, 250, 44, 'pm-card', 8) + txt(346, y + 30, name, 22, 'start', 'pm-big') + txt(436, y + 30, role, 22, 'start', 'pm-mute');
+  function sysDrawing(roles) {
+    const row = (y, name, role) => rect(334, y, 250, 44, 'pm-card', 8) + txt(346, y + 30, name, 22, 'start', 'pm-big') + (roles ? txt(436, y + 30, role, 22, 'start', 'pm-mute') : '');
     return row(100, 'ERP', tr('bedrijf', 'business', 140)) + row(152, 'MES', tr('productie', 'production', 140)) + row(204, 'SCADA', tr('bewaken', 'monitoring', 140)) + row(256, 'PLC', tr('machine', 'machine', 140));
   }
   const downDrawing = () => arrow(600, 104, 600, 296) + txt(334, 336, tr('order omlaag', 'order down', 260), 22, 'start', 'pm-big');
@@ -158,17 +158,10 @@ const STAGE = (() => {
       + txt(334, 304, tr('waarde en tijd', 'value and time', 284), 22, 'start', 'pm-mute');
   }
 
-  // ---- s5: who looks after what; a patch every month in the office against the floor, where a restart stops the line;
-  // the story's end
+  // ---- s5: who looks after what (IT, automation; the machine builder is the tool chip); the story's end
   function ownDrawing() {
     const card = (y, name, what) => rect(334, y, 284, 62, 'pm-card', 8) + txt(346, y + 26, name, 22, 'start', 'pm-big') + txt(346, y + 52, what, 22, 'start', 'pm-mute');
-    return card(100, 'IT', tr('netwerk en servers', 'network and servers', 260)) + card(172, tr('Automatisering', 'Automation', 260), tr('de PLC en SCADA', 'the PLC and SCADA', 260)) + card(244, tr('Machinebouwer', 'Machine builder', 260), tr('levert de besturing', 'supplies the controls', 260));
-  }
-  function patchDrawing() {
-    let s = txt(334, 112, tr('kantoor, elke maand', 'office, every month', 284), 22, 'start', 'pm-mute');
-    for (let i = 0; i < 6; i++) s += rect(334 + i * 50, 124, 34, 34, 'pm-bar', 4);
-    s += txt(334, 214, tr('vloer, de lijn draait', 'floor, the line runs', 284), 22, 'start', 'pm-mute') + rect(334, 228, 284, 34, 'pm-bar', 4) + rect(500, 228, 54, 34, 'pm-crit', 4);
-    return s + txt(334, 302, tr('herstart stopt de lijn', 'a restart stops the line', 284), 22, 'start', 'pm-big');
+    return card(100, 'IT', tr('netwerk en servers', 'network and servers', 260)) + card(172, tr('Automatisering', 'Automation', 260), tr('de PLC en SCADA', 'the PLC and SCADA', 260));
   }
   function runDrawing() {
     return rect(334, 120, 284, 44, 'pm-card', 8) + txt(346, 150, tr('het MES telt mee', 'the MES counts along', 260), 22, 'start', 'pm-big') + arrow(476, 216, 476, 172)
@@ -240,21 +233,21 @@ const STAGE = (() => {
       if (si === 1) {
         lab = tr('schema', 'diagram');
         const a = b === 0 ? span(p, 0.1, 0.5) : 1;
-        if (b <= 2) Object.assign(o, { lvLow: op(a, lowRows()), lvHigh: op(a, highRows()) });
-        Object.assign(o, tools(b, p, 3, 'ISA-95', tr('Purdue-model', 'Purdue model', 260)));
+        if (b <= 2) Object.assign(o, { lvLow: op(a, lowRows(b >= 1)), lvHigh: op(a, highRows(b >= 2)) });
+        Object.assign(o, tools(b, p, 3, tr('Informatiestroom', 'Information flow', 260)));
         if (b === 3) lab = tr('voorbeeld', 'example');
       }
       if (si === 2) {
-        if (b <= 1) lab = tr('schema', 'diagram');
-        Object.assign(o, { sysS: b <= 3 ? op(b === 0 ? span(p, 0.1, 0.5) : 1, sysDrawing()) : '', downS: stay(b, 2, 3, p, downDrawing()), upS: fade(b, 3, p, upDrawing()), ...tools(b, p, 4, tr('Productieorder', 'Production order', 260), tr('Terugmelding', 'Confirmation', 260)) });
+        if (b <= 2) lab = tr('schema', 'diagram');
+        Object.assign(o, { sysS: b <= 2 ? op(b === 0 ? span(p, 0.1, 0.5) : 1, sysDrawing(b >= 1)) : '', downS: fade(b, 2, p, downDrawing(), 0.05, 0.3), upS: b === 2 ? op(span(p, 0.5, 0.8), upDrawing()) : '', ...tools(b, p, 3, tr('Productieorder', 'Production order', 260)) });
       }
       if (si === 3) {
         if (b >= 1 && b <= 2) lab = tr('schema', 'diagram');
         Object.assign(o, { talkS: stay(b, 0, 1, p, talkDrawing(), 0.1, 0.5), protoS: fade(b, 1, p, protoDrawing(), 0.1, 0.5), histS: fade(b, 2, p, histDrawing(), 0.1, 0.5), ...tools(b, p, 3, tr('OPC-server', 'OPC server', 260), tr('Tag', 'Tag', 260)) });
       }
       if (si === 4) {
-        if (b <= 2) lab = tr('schema', 'diagram');
-        Object.assign(o, { joinS: fade(b, 0, p, joinDrawing(), 0.1, 0.5), ownS: fade(b, 1, p, ownDrawing(), 0.1, 0.5), patchS: fade(b, 2, p, patchDrawing(), 0.1, 0.5), runS: fade(b, 4, p, runDrawing()), ...tools(b, p, 3, tr('Vrijgegeven patch', 'Qualified patch', 260), tr('Patchvenster', 'Patch window', 260)) });
+        if (b <= 1) lab = tr('schema', 'diagram');
+        Object.assign(o, { joinS: fade(b, 0, p, joinDrawing(), 0.1, 0.5), ownS: fade(b, 1, p, ownDrawing(), 0.1, 0.5), runS: fade(b, 3, p, runDrawing()), ...tools(b, p, 2, tr('Machinebouwer', 'Machine builder', 260)) });
       }
     }
     let pbg = 'x="322" y="12" width="308" height="376"';
