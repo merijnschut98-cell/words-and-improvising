@@ -1518,3 +1518,32 @@ test('speak variant: the IT fundamentals intro film words in Dutch', () => {
   const en = 'The fourth topic is Software and APIs. With a query you read which orders are in it.';
   assert.equal(speakOf([en], 'en'), en);
 });
+
+// The module intro film "An attack on the office" (eng.cyber.intro), checked with espeak-ng phonemes through Piper's nl bridge:
+// it reads IEC 62443 as the number "tweeënzestigduizend vierhonderd drieënveertig" (said I E C zes twee vier vier drie, only in
+// "OT-beveiliging met IEC 62443"), usb-stick as the word "uzb" (said U S B-stick, only in "een nepmail, een usb-stick"), bijlage II
+// as "ie ie" (said bijlage één en bijlage twee, only in "op in bijlage I en bijlage II"), Cyberbeveiligingswet with sieber and a
+// stress on the head of beveiliging (said Saiber-beveiligingswet, only in "heet die wet de Cyberbeveiligingswet"), phishing as
+// "fis-hing" (said fisjing, only in "Dat heet phishing" and "Werkkennis komen phishing") and patchen with a velar ch (said
+// petsjen, only in "minimale rechten, patchen"). Cybersecurity, conduits, MES, MFA, NIS2, meldknop, noodprocedure, zorgplicht,
+// incidentrespons and the level words are read right or have rules above; English needs nothing; no other film's spoken text
+// changes
+test('speak variant: the cybersecurity intro film words in Dutch', () => {
+  const nl = (s) => speakOf([s], 'nl');
+  assert.equal(nl('Het tweede onderwerp is OT-beveiliging met IEC 62443.'), 'Het tweede onderwerp is OT-beveiliging met I E C zes twee vier vier drie.');
+  assert.equal(nl('Een aanval kan binnenkomen via een nepmail, een usb-stick of toegang op afstand.'), 'Een aanval kan binnenkomen via een nepmail, een U S B-stick of toegang op afstand.');
+  assert.equal(nl('Je zoekt je sector op in bijlage I en bijlage II.'), 'Je zoekt je sector op in bijlage één en bijlage twee.');
+  assert.equal(nl('In Nederland heet die wet de Cyberbeveiligingswet.'), 'In Nederland heet die wet de Saiber-beveiligingswet.');
+  assert.equal(nl('Een nepmail is de meest gebruikte weg naar binnen. Dat heet phishing.'), 'Een nepmail is de meest gebruikte weg naar binnen. Dat heet fisjing.');
+  assert.equal(nl('Op niveau Werkkennis komen phishing, het indelen van de fabriek en voorbereiden.'), 'Op niveau Werkkennis komen fisjing, het indelen van de fabriek en voorbereiden.');
+  assert.equal(nl('Het gaat om minimale rechten, patchen in OT en herstellen.'), 'Het gaat om minimale rechten, petsjen in OT en herstellen.');
+  // elsewhere the words keep their voice
+  assert.equal(nl('De norm IEC 62443 stelt eisen aan de leverancier.'), 'De norm IEC 62443 stelt eisen aan de leverancier.');
+  assert.equal(nl('Een usb-stick brengt malware binnen.'), 'Een usb-stick brengt malware binnen.');
+  assert.equal(nl('Zie bijlage II van de richtlijn.'), 'Zie bijlage II van de richtlijn.');
+  assert.equal(nl('De Cyberbeveiligingswet geldt sinds augustus.'), 'De Cyberbeveiligingswet geldt sinds augustus.');
+  assert.equal(nl('Phishing is een nepbericht.'), 'Phishing is een nepbericht.');
+  assert.equal(nl('Het patchen gebeurt in het patchvenster.'), 'Het patchen gebeurt in het patchvenster.');
+  const en = 'The second topic is OT security with IEC 62443. An attack can get in through a USB stick. That is called phishing.';
+  assert.equal(speakOf([en], 'en'), en);
+});

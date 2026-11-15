@@ -919,7 +919,19 @@ const SAY = {
     // with a v for the w and a long vowel (said kwiri), each only in the intro's own sentences ("Software en API's", "Met een
     // query lees je"). Router, server, virtual machine, cloud, webapplicatie, SQL, ERP and MES are read right; no other film's
     // spoken text changes
-    [/\bSoftware en API's\b/g, "Software en A P I's"], [/\b([Mm])et een query lees je\b/g, '$1et een kwiri lees je']],
+    [/\bSoftware en API's\b/g, "Software en A P I's"], [/\b([Mm])et een query lees je\b/g, '$1et een kwiri lees je'],
+    // the module intro film "An attack on the office" (eng.cyber.intro), a self-contained group at the end of the Dutch list,
+    // checked with phonemes through Piper's nl_NL-alex bridge: espeak-ng reads IEC 62443 as the number "tweeënzestigduizend
+    // vierhonderd drieënveertig" (said I E C zes twee vier vier drie), usb-stick as the word "uzb" (said U S B-stick), bijlage II
+    // as "ie ie" and bijlage I with a schwa (said bijlage één en bijlage twee), Cyberbeveiligingswet with sieber and a stress on
+    // the head of beveiliging (said Saiber-beveiligingswet), phishing as "fis-hing" (said fisjing) and patchen with a velar ch
+    // (said petsjen), each only in the intro's own sentences ("OT-beveiliging met IEC 62443", "een nepmail, een usb-stick",
+    // "op in bijlage I en bijlage II", "heet die wet de Cyberbeveiligingswet", "Dat heet phishing", "Werkkennis komen phishing",
+    // "minimale rechten, patchen"). Cybersecurity, conduits, zones, MES, MFA, NIS2, meldknop, noodprocedure, zorgplicht,
+    // incidentrespons and the level words are read right or have rules above; no other film's spoken text changes
+    [/(?<=\bOT-beveiliging met )IEC 62443\b/g, 'I E C zes twee vier vier drie'], [/(?<=\bvia een nepmail, een )usb-stick\b/g, 'U S B-stick'],
+    [/(?<=\bop in )bijlage I en bijlage II\b/g, 'bijlage één en bijlage twee'], [/(?<=\bheet die wet de )Cyberbeveiligingswet\b/g, 'Saiber-beveiligingswet'],
+    [/(?<=\bDat heet )phishing\b/g, 'fisjing'], [/(?<=\bWerkkennis komen )phishing\b/g, 'fisjing'], [/(?<=\bminimale rechten, )patchen\b/g, 'petsjen']],
   en: [[/\brpm\b/g, 'revolutions per minute'], [/\bmm\/min\b/g, 'millimetres per minute'], [/\bm\/min\b/g, 'metres per minute'], [/µm\b/g, 'micrometres'],
     [/€\s?(\d[\d,]*(?:\.\d+)?)/g, '$1 euros'], [/(\d)\.0(?![\d])/g, '$1'], [/(\d)\s?mm\b/g, '$1 millimetres'], [/(\d)\s?min\b/g, '$1 minutes'], [/(\d)\s?%/g, '$1 percent'],
     [/Ø\s*/g, 'diameter '], [/(\d)\+(\d)/g, '$1 plus $2'], [/\s×\s/g, ' times '], [/\s\/\s/g, ' divided by '], [/\s=\s/g, ' is '], [/°/g, ' degrees'], [/\bRa\b/g, 'R a'], [/’/g, "'"],
