@@ -191,3 +191,5 @@ Outcome: accepted (merged as delivered), sent back N times, redone.
 | 15 Nov | Review: eng.maintenance.intro | sonnet | ~75 | ~25 min | n/a | accepted with two small fixes (operators stress rule, map zoom keeps the zone name); merged v352 |
 | 15 Nov | Build: Engineering intro eng.safety.intro | sonnet | 96 | 15 min | 302,610 | accepted with fixes by its review |
 | 15 Nov | Review: eng.safety.intro | sonnet | ~75 | ~40 min | n/a | accepted with fixes (LMRA tied to the plan, electrical work and permit pointer beat, start advice corrected); merged v353 |
+| 15 Nov | Build: Engineering intro eng.improve.intro | sonnet | 103 | 18 min | 315,670 | accepted with fixes by its review |
+| 15 Nov | Review: eng.improve.intro | sonnet | ~75 | n/a | n/a | accepted with fixes (187 to 171 s, proef replaces PDCA as tool, andon cord said, operators rule test added); merged v354 |
