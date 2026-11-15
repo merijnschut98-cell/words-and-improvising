@@ -238,16 +238,7 @@ const hud = g('hud', `<rect data-k="pbg" class="pm-panel" x="322" y="12" width="
   + cueG('flow', g('flowB', '')) + cueG('decision', g('decisionB', '')));
 // the shared map, Projecten leiden buiten je vakgebied lit, in the stage (the film's closing scene; the stage script moves and fades it)
 const OUT_PLACE = pmMap.places.find((p) => p.module === 'pm.outside');
-// The English label of this place is four lines of 17 units from y 326 (Leading, projects, outside your, field): the last
-// line's descenders and the lit halo reach the tile's bottom border (y 382), which shows at the 1.5 zoom of the closing
-// scene. mapSvg is pinned and the app's own, so this film closes its label up to 16 units a line (baselines 323 to 371),
-// which keeps it clear of the border and of the desk above it; the build asserts the drawing it edits and that it fits.
-const LABEL_EN = [326, 343, 360, 377].map((y, i) => `<tspan x="${OUT_PLACE.x + OUT_PLACE.w / 2}" y="${y}">${['Leading', 'projects', 'outside your', 'field'][i]}</tspan>`).join('');
-const LABEL_EN_FIT = [323, 339, 355, 371].map((y, i) => `<tspan x="${OUT_PLACE.x + OUT_PLACE.w / 2}" y="${y}">${['Leading', 'projects', 'outside your', 'field'][i]}</tspan>`).join('');
-assert(OUT_PLACE.y + OUT_PLACE.h - 371 >= 8, 'the closed-up English label keeps 8 units clear of the tile border');
-const MAP0_SVG = await mapScene({ subject: 'pm', highlight: ['pm.outside'] });
-assert(MAP0_SVG.split(LABEL_EN).length === 2, 'the shared map draws the English label of Leading projects outside your field as this film expects');
-const MAP = MAP0_SVG.replace(LABEL_EN, LABEL_EN_FIT).replace('<svg class="subject-map"', '<svg class="subject-map" width="640" height="520"');
+const MAP = (await mapScene({ subject: 'pm', highlight: ['pm.outside'] })).replace('<svg class="subject-map"', '<svg class="subject-map" width="640" height="520"');
 const MAPZ = [OUT_PLACE.x + OUT_PLACE.w / 2, OUT_PLACE.y + OUT_PLACE.h / 2];
 assert(MAP.includes(`data-cue="${mapCue('pm.outside')}"`), 'the map lights pm.outside as a cue group');
 

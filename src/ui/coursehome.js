@@ -89,11 +89,13 @@ export function moduleMeta(app, meta, count) {
 const topicTitle = (app, topic) => topic.title[app.lang] || topic.title.en;
 
 // The module's title line and meta: one summary shared by the tappable row.
-function modSummary(app, meta, tag, attrs, ...bits) {
+export function modSummary(app, meta, tag, attrs, ...bits) {
+  // In Dutch, the English name sits small under the title (he needs both words
+  // at work); aria-hidden so a screen reader says the Dutch title once.
+  const en = app.lang === 'nl' && meta.title.en && meta.title.en !== meta.title.nl ? meta.title.en : null;
   return h(tag, { class: 'module-row', ...attrs },
-    h('span', { class: 'module-title' }, modTitle(app, meta),
-      // In Dutch, the English name too: he needs both words at work.
-      app.lang === 'nl' && meta.title.en && meta.title.en !== meta.title.nl ? h('span', { class: 'term-en module-en', lang: 'en' }, ` · ${meta.title.en}`) : null),
+    h('span', { class: 'module-title' }, modTitle(app, meta)),
+    en ? h('span', { class: 'term-en module-en-line', lang: 'en', 'aria-hidden': 'true' }, en) : null,
     h('span', { class: 'module-meta' }, ...bits));
 }
 
@@ -103,7 +105,7 @@ const openLesson = (app, meta) => (lessonId) => app.go('lesson', { subject: meta
 // index alone (no module load). A level shows once the one before it is passed
 // (v16, topicRows); every stop shown opens its lesson. Shared by the module
 // screen (v17), which is where a topic module lives now.
-export function topicsSection(app, meta, model = pathModel(app.state, meta, app.lang)) {
+export function topicsSection(app, meta, model = pathModel(app.state, meta, app.lang), onInfo = null) {
   const t = app.t;
   const go = openLesson(app, meta);
   return h('section', { class: 'topics' }, model.topics.map((topic, i) => {
@@ -112,7 +114,8 @@ export function topicsSection(app, meta, model = pathModel(app.state, meta, app.
       h('div', { class: 'topic-head' },
         h('h3', { class: 'topic-title' }, title),
         h('span', { class: 'mono topic-count' }, t('topicCount', topic.passed))),
-      topicPath(t, title, topic, go));
+      topicPath(t, title, topic, go, onInfo ? (level, btn) => onInfo(topic, level, btn) : null),
+      onInfo ? h('div', { class: 'opener-slot', 'data-topic': topic.id }) : null);
   }));
 }
 

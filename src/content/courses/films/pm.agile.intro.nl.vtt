@@ -1,245 +1,245 @@
 WEBVTT
 
 1
-00:00:00.840 --> 00:00:02.048
+00:00:00.836 --> 00:00:02.020
 Lijn 3 draait in hal B.
 
 2
-00:00:02.736 --> 00:00:06.868
+00:00:02.730 --> 00:00:06.945
 Nu komt er een nieuw MES, het systeem dat de orders op de vloer aanstuurt.
 
 3
-00:00:07.894 --> 00:00:10.262
+00:00:07.934 --> 00:00:10.256
 Jij leidt dat IT-project voor de plantmanager.
 
 4
-00:00:10.912 --> 00:00:12.839
+00:00:10.942 --> 00:00:12.846
 Het IT-team bouwt het MES.
 
 5
-00:00:13.841 --> 00:00:17.080
+00:00:13.878 --> 00:00:17.140
 We volgen dit ene project langs de vier onderwerpen van de module.
 
 6
-00:00:17.836 --> 00:00:20.020
+00:00:17.893 --> 00:00:20.204
 De details komen later, in de lessen.
 
 7
-00:00:21.281 --> 00:00:23.246
+00:00:21.473 --> 00:00:23.412
 Het eerste onderwerp is Agile denken.
 
 8
-00:00:23.925 --> 00:00:26.305
+00:00:24.082 --> 00:00:26.427
 Hoe bouw je iets wat de operators echt gebruiken?
 
 9
-00:00:27.301 --> 00:00:30.877
+00:00:27.423 --> 00:00:31.034
 In een watervalaanpak (waterfall) zien de operators het MES pas aan het eind.
 
 10
-00:00:31.661 --> 00:00:33.611
+00:00:31.796 --> 00:00:33.886
 Dan blijkt vaak dat het niet is wat ze nodig hebben.
 
 11
-00:00:34.604 --> 00:00:37.274
+00:00:34.873 --> 00:00:37.660
 Agile werkt in korte rondes, iteraties (iteration).
 
 12
-00:00:38.006 --> 00:00:40.212
+00:00:38.421 --> 00:00:40.673
 Elke ronde levert iets kleins dat echt werkt.
 
 13
-00:00:41.260 --> 00:00:44.174
+00:00:41.739 --> 00:00:44.723
 De operators proberen het uit en het team stuurt bij.
 
 14
-00:00:44.894 --> 00:00:47.134
+00:00:45.487 --> 00:00:47.565
 Zo merk je het na weken, niet na maanden.
 
 15
-00:00:48.188 --> 00:00:52.565
+00:00:48.620 --> 00:00:52.985
 Bij agile denken gebruiken we vaak het Agile Manifesto en een hybride aanpak.
 
 16
-00:00:53.834 --> 00:00:57.909
+00:00:54.227 --> 00:00:58.279
 Het tweede onderwerp is Scrum, met rollen, events en artefacten.
 
 17
-00:00:58.592 --> 00:00:59.997
+00:00:58.945 --> 00:01:00.361
 Hoe werkt het IT-team samen?
 
 18
-00:01:00.936 --> 00:01:02.886
+00:01:01.344 --> 00:01:03.434
 Het team werkt in sprints van twee weken.
 
 19
-00:01:03.587 --> 00:01:06.931
+00:01:04.149 --> 00:01:07.480
 Elke sprint maakt het iets bruikbaars af, en dan begint de volgende.
 
 20
-00:01:07.922 --> 00:01:10.383
+00:01:08.476 --> 00:01:10.856
 De Product Owner is de teamleider van lijn 3.
 
 21
-00:01:11.091 --> 00:01:13.564
+00:01:11.537 --> 00:01:14.100
 Hij bepaalt wat eerst komt, want hij kent de vloer.
 
 22
-00:01:14.510 --> 00:01:17.413
+00:01:15.029 --> 00:01:17.897
 De Scrum Master helpt het team en ruimt obstakels op.
 
 23
-00:01:18.161 --> 00:01:20.309
+00:01:18.595 --> 00:01:20.824
 De Developers bouwen het MES.
 
 24
-00:01:21.480 --> 00:01:24.603
+00:01:21.970 --> 00:01:25.256
 Bij Scrum gebruiken we vaak een Daily Scrum en een Sprint Review.
 
 25
-00:01:25.855 --> 00:01:27.956
+00:01:26.492 --> 00:01:28.546
 Het derde onderwerp is Backlog en schatten.
 
 26
-00:01:28.640 --> 00:01:30.590
+00:01:29.222 --> 00:01:31.312
 Wat bouwen we eerst, en hoe lang duurt het?
 
 27
-00:01:31.572 --> 00:01:33.673
+00:01:32.294 --> 00:01:34.384
 De Product Owner zet al het werk op één lijst.
 
 28
-00:01:34.380 --> 00:01:36.888
+00:01:35.116 --> 00:01:37.612
 Wat het meest oplevert, staat vaak bovenaan.
 
 29
-00:01:37.828 --> 00:01:39.662
+00:01:38.593 --> 00:01:40.392
 Het team schat de grootte relatief (relative estimation),
 
 30
-00:01:39.906 --> 00:01:41.787
+00:01:40.624 --> 00:01:42.493
 door te vergelijken met werk dat het al kent.
 
 31
-00:01:42.794 --> 00:01:44.350
+00:01:43.548 --> 00:01:45.150
 Over de einddatum zijn we eerlijk.
 
 32
-00:01:45.063 --> 00:01:47.594
+00:01:45.869 --> 00:01:48.377
 We geven een voorspelling met een kans en geen datum,
 
 33
-00:01:47.838 --> 00:01:49.858
+00:01:48.574 --> 00:01:50.629
 op basis van wat het team echt afmaakt.
 
 34
-00:01:50.917 --> 00:01:54.690
+00:01:51.692 --> 00:01:55.396
 Bij Backlog en schatten gebruiken we vaak user stories en planning poker.
 
 35
-00:01:55.950 --> 00:01:58.083
+00:01:56.678 --> 00:01:58.721
 Het vierde onderwerp is Kanban en flow.
 
 36
-00:01:58.715 --> 00:02:01.292
+00:01:59.334 --> 00:02:02.014
 Hoe houd je wensen en storingen van de vloer in beweging?
 
 37
-00:02:02.322 --> 00:02:05.910
+00:02:03.072 --> 00:02:06.845
 Bij Kanban schuift elke wens of storing als kaart van links naar rechts.
 
 38
-00:02:06.964 --> 00:02:09.332
+00:02:07.896 --> 00:02:10.358
 Een kaart die niet verder kan, is geblokkeerd (blocked).
 
 39
-00:02:10.076 --> 00:02:11.318
+00:02:11.037 --> 00:02:12.221
 Zo zie je waar het hapert.
 
 40
-00:02:12.330 --> 00:02:14.501
+00:02:13.214 --> 00:02:15.362
 De tijd van begin tot klaar heet cycle time.
 
 41
-00:02:15.191 --> 00:02:16.700
+00:02:16.048 --> 00:02:17.627
 Zo zie je hoe snel het werk stroomt.
 
 42
-00:02:17.781 --> 00:02:21.102
+00:02:18.657 --> 00:02:21.617
 Bij Kanban gebruiken we vaak een kanbanbord en een WIP-limiet,
 
 43
-00:02:21.438 --> 00:02:23.330
+00:02:21.977 --> 00:02:23.823
 een maximum aan werk dat tegelijk loopt.
 
 44
-00:02:24.585 --> 00:02:25.340
+00:02:25.126 --> 00:02:25.962
 Het hangt samen.
 
 45
-00:02:26.038 --> 00:02:28.604
+00:02:26.677 --> 00:02:29.254
 Agile denken geeft de reden, Scrum het ritme,
 
 46
-00:02:29.010 --> 00:02:31.297
+00:02:29.660 --> 00:02:32.005
 de lijst met werk de volgorde en Kanban de stroom.
 
 47
-00:02:32.295 --> 00:02:33.700
+00:02:33.001 --> 00:02:34.290
 Kanban begint waar je nu bent.
 
 48
-00:02:34.446 --> 00:02:35.746
+00:02:35.103 --> 00:02:36.427
 Daarom past het ook naast Scrum.
 
 49
-00:02:37.054 --> 00:02:38.470
+00:02:37.807 --> 00:02:39.200
 Dit is de kaart van Projecten.
 
 50
-00:02:39.170 --> 00:02:42.618
+00:02:39.900 --> 00:02:43.279
 Agile en Scrum is het eerste station van IT en agile.
 
 51
-00:02:43.643 --> 00:02:47.080
+00:02:44.229 --> 00:02:47.585
 Agile en Scrum heeft vier onderwerpen, elk met vier niveaus.
 
 52
-00:02:48.079 --> 00:02:49.414
+00:02:48.664 --> 00:02:50.022
 Begin bij Agile denken.
 
 53
-00:02:50.147 --> 00:02:53.653
+00:02:50.718 --> 00:02:54.306
 Op niveau Basis gaat het over wat agile is, het Scrum Team,
 
 54
-00:02:54.025 --> 00:02:55.709
+00:02:54.700 --> 00:02:56.418
 user stories en het kanbanbord.
 
 55
-00:02:56.696 --> 00:02:58.937
+00:02:57.403 --> 00:02:59.702
 Op Werkkennis komen de twaalf principes,
 
 56
-00:02:59.169 --> 00:03:02.083
+00:02:59.876 --> 00:03:02.639
 de events, refinement en WIP-limieten erbij.
 
 57
-00:03:03.065 --> 00:03:05.213
+00:03:03.641 --> 00:03:05.789
 Op Gevorderd komen de wortels van agile,
 
 58
-00:03:05.607 --> 00:03:08.602
+00:03:06.091 --> 00:03:09.353
 de artefacten, velocity en het meten van flow erbij.
 
 59
-00:03:09.617 --> 00:03:12.914
+00:03:10.331 --> 00:03:13.675
 Op Expert komen de grenzen van agile, Scrum in het echt,
 
 60
-00:03:13.134 --> 00:03:15.595
+00:03:13.884 --> 00:03:16.461
 voorspellen met data en sturen op flow erbij.
 
 61
-00:03:16.595 --> 00:03:20.032
+00:03:17.430 --> 00:03:21.041
 Elke les en elke film van deze module heeft een plek op deze kaart.

@@ -1,0 +1,225 @@
+WEBVTT
+
+1
+00:00:00.835 --> 00:00:06.501
+The new MES, the system that runs the orders on the floor, has to go to more lines.
+
+2
+00:00:07.311 --> 00:00:10.121
+One IT team is too small for the whole system.
+
+3
+00:00:11.137 --> 00:00:13.331
+You lead the project for the plant manager.
+
+4
+00:00:14.044 --> 00:00:15.565
+More IT teams join.
+
+5
+00:00:16.578 --> 00:00:19.852
+We follow this project through the four topics of the module.
+
+6
+00:00:21.149 --> 00:00:23.320
+The first topic is SAFe basics.
+
+7
+00:00:24.043 --> 00:00:26.470
+How do you make many teams work as one whole?
+
+8
+00:00:27.421 --> 00:00:30.823
+Each team can work fine and the whole still gets stuck.
+
+9
+00:00:31.561 --> 00:00:33.198
+Team A waits for team B.
+
+10
+00:00:33.890 --> 00:00:35.620
+That is called a dependency.
+
+11
+00:00:36.576 --> 00:00:40.163
+SAFe puts the teams on a train, the Agile Release Train.
+
+12
+00:00:40.886 --> 00:00:45.042
+The teams stay together for a long time and build one product together.
+
+13
+00:00:46.107 --> 00:00:49.323
+The train works to one fixed rhythm, the cadence.
+
+14
+00:00:50.024 --> 00:00:53.832
+All teams plan, build and deliver at the same moments.
+
+15
+00:00:54.823 --> 00:00:58.666
+For SAFe we often use PI Planning, the planning with all teams,
+
+16
+00:00:58.863 --> 00:01:00.616
+and the ART Planning Board.
+
+17
+00:01:01.947 --> 00:01:05.198
+The second topic is Portfolio and Lean budgets.
+
+18
+00:01:05.895 --> 00:01:08.937
+Which work do the teams get, and who pays for it?
+
+19
+00:01:09.996 --> 00:01:14.280
+All the development investments of the plant together are called the portfolio.
+
+20
+00:01:15.025 --> 00:01:16.662
+The MES is one of them.
+
+21
+00:01:17.689 --> 00:01:22.577
+With project funding each project gets its own budget and a temporary team.
+
+22
+00:01:23.265 --> 00:01:26.365
+SAFe funds the train, and the work comes to the train.
+
+23
+00:01:27.346 --> 00:01:31.131
+A few strategic themes give the direction for the plant manager.
+
+24
+00:01:32.127 --> 00:01:36.887
+For the portfolio we often use a Lean business case and a Portfolio Kanban.
+
+25
+00:01:38.165 --> 00:01:40.986
+The third topic is Alternatives and criticism.
+
+26
+00:01:41.719 --> 00:01:45.423
+SAFe is not the only way, there are also LeSS and Nexus.
+
+27
+00:01:46.605 --> 00:01:48.497
+LeSS takes things away instead.
+
+28
+00:01:49.216 --> 00:01:52.467
+All teams share one Product Owner and one backlog.
+
+29
+00:01:53.515 --> 00:01:55.280
+It works with feature teams.
+
+30
+00:01:55.983 --> 00:01:59.431
+Such a team builds a customer function from start to finish.
+
+31
+00:02:00.448 --> 00:02:05.626
+Alternatives include Sprint Planning One of LeSS and Cross-Team Refinement of Nexus.
+
+32
+00:02:06.911 --> 00:02:10.336
+The fourth topic is Hybrid, stage-gate plus agile.
+
+33
+00:02:11.032 --> 00:02:12.495
+What if hardware joins in?
+
+34
+00:02:13.518 --> 00:02:16.804
+The MES gets a link to scales on the lines.
+
+35
+00:02:17.550 --> 00:02:21.566
+That is hardware, and with hardware the cost of change rises fast.
+
+36
+00:02:22.608 --> 00:02:24.791
+In stage-gate you work in stages.
+
+37
+00:02:25.518 --> 00:02:29.872
+Between two stages sits a gate, a decision moment for the plant manager.
+
+38
+00:02:30.896 --> 00:02:33.845
+Within each stage the teams work in sprints.
+
+39
+00:02:34.568 --> 00:02:36.670
+The gates stay for the big decisions.
+
+40
+00:02:37.667 --> 00:02:41.765
+For hybrid work we often use backward planning and a design freeze,
+
+41
+00:02:41.881 --> 00:02:42.903
+fixing the design.
+
+42
+00:02:44.200 --> 00:02:45.349
+It all connects.
+
+43
+00:02:46.072 --> 00:02:49.497
+SAFe basics gives the train, the portfolio the budget,
+
+44
+00:02:49.729 --> 00:02:53.108
+the alternatives other ways and hybrid work the hardware.
+
+45
+00:02:54.152 --> 00:02:57.821
+Scaling means agreements that let many teams deliver as one.
+
+46
+00:02:59.193 --> 00:03:00.876
+This is the map of Projects.
+
+47
+00:03:01.626 --> 00:03:04.784
+Scaling is the second station of IT and agile.
+
+48
+00:03:05.792 --> 00:03:08.637
+Scaling has four topics, each with four levels.
+
+49
+00:03:09.631 --> 00:03:11.268
+Start with SAFe basics.
+
+50
+00:03:12.001 --> 00:03:17.074
+At Basics level it is about why scale, value streams, LeSS and stage-gate.
+
+51
+00:03:18.176 --> 00:03:23.122
+At Working knowledge you add PI Planning, epics, Nexus and long lead times.
+
+52
+00:03:24.119 --> 00:03:27.706
+At Advanced you add the roles, scoring with WSJF,
+
+53
+00:03:27.915 --> 00:03:30.666
+the Spotify model and integration points.
+
+54
+00:03:31.685 --> 00:03:34.344
+At Expert you add the four configurations,
+
+55
+00:03:34.588 --> 00:03:38.884
+Lean budgets, the criticism of SAFe and steering a hybrid approach.
+
+56
+00:03:39.915 --> 00:03:44.106
+Every lesson and every film in this module has a place on this map.

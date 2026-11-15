@@ -505,8 +505,8 @@ const SAY = [
   [ // s4 the Lean view; CI/CD; the factory
     { nl: 'Voor een Lean-consultant bekend: een pipeline werkt als standaardwerk voor software: dezelfde route, een voorspelbare uitkomst.',
       en: 'For a Lean consultant, familiar: a pipeline works like standard work for software, the same route, a predictable outcome.' },
-    { nl: 'Stoppen bij een fout is jidoka, de Toyota-gedachte dat een machine stopt zodra er iets misgaat: geen fouten doorgeven.',
-      en: 'Stopping at a fault is jidoka, the Toyota idea that a machine stops as soon as something goes wrong: no faults passed on.' },
+    { nl: 'Stoppen bij een fout is jidoka. Dat is de Toyota-gedachte dat een machine stopt zodra er iets misgaat: geen fouten doorgeven.',
+      en: 'Stopping at a fault is jidoka. That is the Toyota idea that a machine stops as soon as something goes wrong: no faults passed on.' },
     { nl: 'Kleine commits lijken op kleine series: minder tussenvoorraad, sneller zien wat fout gaat.',
       en: 'Small commits are like small batches: less work in between, faults seen sooner.' },
     { nl: 'In offertes heet dit vaak CI/CD: continuous integration en continuous delivery. Die komen later.',
@@ -557,8 +557,8 @@ const SAY = [
       en: 'The Lean view: lead time is like lead time in a value stream, change fail rate like first pass yield, the share right first time, but reversed.' },
     { nl: 'Je hoort: wij deployen één keer per kwartaal, dan gaat er minder mis. DORA laat vaak het omgekeerde zien: zeldzame, grote deploys gaan vaker mis en herstellen langzamer.',
       en: 'You hear: we deploy once a quarter, so less goes wrong. DORA often shows the reverse: rare, big deployments fail more often and recover more slowly.' },
-    { nl: 'Vraag een IT-team: hoe vaak zetten jullie iets in productie, en hoe vaak moet je direct ingrijpen? Weet niemand het, dan wordt er nog niet gemeten.',
-      en: 'Ask an IT team: how often do you deploy to production, and how often must you step in straight after? If nobody knows, nothing is measured yet.' },
+    { nl: 'Vraag een IT-team. Hoe vaak zetten jullie iets in productie, en hoe vaak moet je direct ingrijpen? Weet niemand het, dan wordt er nog niet gemeten.',
+      en: 'Ask an IT team. How often do you deploy to production, and how often must you step in straight after? If nobody knows, nothing is measured yet.' },
   ],
   [ // s9 the confectionery plant
     { nl: 'Een voorbeeld: het IT-team van een snoepfabriek koppelt ERP en MES; jij verzamelt vier weken cijfers.',
