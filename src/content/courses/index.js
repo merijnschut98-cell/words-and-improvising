@@ -276,6 +276,15 @@ export const MODULES = [
     ],
     lessons: ['pm.plan.wbs', 'pm.plan.scope', 'pm.plan.products', 'pm.plan.control', 'pm.plan.schedule', 'pm.plan.method', 'pm.plan.network', 'pm.plan.compress', 'pm.plan.estimate', 'pm.plan.techniques', 'pm.plan.spread', 'pm.plan.chain', 'pm.plan.risk', 'pm.plan.raci', 'pm.plan.capacity', 'pm.plan.riskvalue'],
     questions: { 'pm.plan.wbs': 4, 'pm.plan.scope': 4, 'pm.plan.products': 4, 'pm.plan.control': 4, 'pm.plan.schedule': 4, 'pm.plan.method': 4, 'pm.plan.network': 4, 'pm.plan.compress': 4, 'pm.plan.estimate': 4, 'pm.plan.techniques': 4, 'pm.plan.spread': 4, 'pm.plan.chain': 4, 'pm.plan.risk': 4, 'pm.plan.raci': 4, 'pm.plan.capacity': 4, 'pm.plan.riskvalue': 4 } },
+  { id: 'pm.formats', subject: 'pm', track: 'project', level: 2, title: { en: 'Formats and meetings', nl: 'Werkvormen en overleggen' }, blurb: { en: 'Kick-off, workshop, brown paper, brainstorm and the shop floor: which format when, and how to prepare and lead it.', nl: 'Kick-off, werksessie, brown paper, brainstorm en de vloer op: welk format wanneer, en hoe je het voorbereidt en leidt.' },
+    topics: [
+      { id: 'meetings', title: { en: 'Which meeting when', nl: 'Welk overleg wanneer' }, levels: ['pm.formats.catalogue', 'pm.formats.kickoff', 'pm.formats.system', 'pm.formats.governance'] },
+      { id: 'workshop', title: { en: 'Designing and leading a workshop', nl: 'Een werksessie ontwerpen en leiden' }, levels: ['pm.formats.workshop', 'pm.formats.brownpaper', 'pm.formats.design', 'pm.formats.facilitation'] },
+      { id: 'ideas', title: { en: 'Ideas and decisions in a group', nl: 'Ideeën en besluiten in de groep' }, levels: ['pm.formats.diverge', 'pm.formats.session', 'pm.formats.decide', 'pm.formats.legitimacy'] },
+      { id: 'floor', title: { en: 'Formats on the floor', nl: 'Werkvormen op de vloer' }, levels: ['pm.formats.floor', 'pm.formats.interviews', 'pm.formats.demo', 'pm.formats.kaizenevent'] },
+    ],
+    lessons: ['pm.formats.catalogue', 'pm.formats.kickoff', 'pm.formats.system', 'pm.formats.governance', 'pm.formats.workshop', 'pm.formats.brownpaper', 'pm.formats.design', 'pm.formats.facilitation', 'pm.formats.diverge', 'pm.formats.session', 'pm.formats.decide', 'pm.formats.legitimacy', 'pm.formats.floor', 'pm.formats.interviews', 'pm.formats.demo', 'pm.formats.kaizenevent'],
+    questions: { 'pm.formats.catalogue': 4, 'pm.formats.kickoff': 4, 'pm.formats.system': 4, 'pm.formats.governance': 4, 'pm.formats.workshop': 4, 'pm.formats.brownpaper': 4, 'pm.formats.design': 4, 'pm.formats.facilitation': 4, 'pm.formats.diverge': 4, 'pm.formats.session': 4, 'pm.formats.decide': 4, 'pm.formats.legitimacy': 4, 'pm.formats.floor': 4, 'pm.formats.interviews': 4, 'pm.formats.demo': 4, 'pm.formats.kaizenevent': 4 } },
   { id: 'pm.run', subject: 'pm', track: 'project', level: 2, intro: 'pm.run.intro', title: { en: 'Run', nl: 'Uitvoeren' }, blurb: { en: 'Keep a project moving: steering and status, scope and change, the team and its meetings, issues and escalation.', nl: 'Een project in beweging houden: sturen en status, scope en wijzigingen, het team en zijn overleggen, issues en escalatie.' },
     topics: [
       { id: 'steer', title: { en: 'Steering and reporting', nl: 'Sturen en rapporteren' }, levels: ['pm.run.status', 'pm.run.steerco', 'pm.run.earned', 'pm.run.exception'] },
@@ -427,13 +436,13 @@ export function placeOf(lessonId, modules = MODULES) {
 // v17: fields group a subject's modules under one field film, the big picture
 // above the modules ("a project from start to finish"). A subject with fields
 // has every module in exactly one; `film`, when set, is the field's own id.
-// Engineering's four fields have no film yet (the field films come next); each
+// Engineering's five fields (15 Nov: the plant zone became run and better; two fields have a film so far); each
 // lists its modules by level, which is also the reading order of the map.
 export const FIELDS = [
   { id: 'pm.field.lifecycle', subject: 'pm',
     title: { en: 'A project from start to finish', nl: 'Een project van begin tot eind' },
-    blurb: { en: 'Approach, intake, plan, run, land and close: the road every project walks.', nl: 'Aanpak, intake, plannen, uitvoeren, landen en afsluiten: de weg die elk project loopt.' },
-    modules: ['pm.approach', 'pm.intake', 'pm.plan', 'pm.run', 'pm.land', 'pm.close'], film: 'pm.field.lifecycle' },
+    blurb: { en: 'Approach, intake, plan, formats, run, land and close: the road every project walks.', nl: 'Aanpak, intake, plannen, werkvormen, uitvoeren, landen en afsluiten: de weg die elk project loopt.' },
+    modules: ['pm.approach', 'pm.intake', 'pm.plan', 'pm.formats', 'pm.run', 'pm.land', 'pm.close'], film: 'pm.field.lifecycle' },
   { id: 'pm.field.people', subject: 'pm',
     title: { en: 'People and influence', nl: 'Mensen en invloed' },
     blurb: { en: 'When it is stuck, how you lead, negotiate, work outside your field and steer on performance.', nl: 'Als het vastloopt, hoe je leidt, onderhandelt, buiten je vak werkt en op prestaties stuurt.' },
@@ -446,10 +455,14 @@ export const FIELDS = [
     title: { en: 'IT and agile', nl: 'IT en agile' },
     blurb: { en: 'Agile, scaling it, DevOps and the IT project from requirements to go-live.', nl: 'Agile, opschalen, DevOps en het IT-project van eisen tot go-live.' },
     modules: ['pm.agile', 'pm.scaled', 'pm.devops', 'pm.itproject'], film: 'pm.field.it' },
-  { id: 'eng.field.plant', subject: 'eng',
-    title: { en: 'A plant that runs well', nl: 'Een fabriek die goed draait' },
-    blurb: { en: 'Flow, quality, maintenance and safety, then problem solving, SPC, cost and reliability: keeping a plant making good parts, safely and for less.', nl: 'Flow, kwaliteit, onderhoud en veiligheid, dan probleemoplossen, SPC, kostprijs en betrouwbaarheid: een fabriek goede producten laten maken, veilig en voor minder.' },
-    modules: ['eng.flow', 'eng.quality', 'eng.maintenance', 'eng.safety', 'eng.spc', 'eng.cost', 'eng.improve', 'eng.reliability'] },
+  { id: 'eng.field.run', subject: 'eng',
+    title: { en: 'Keeping the plant running', nl: 'De fabriek draaiend houden' },
+    blurb: { en: 'Flow, quality, maintenance and safety: keeping a plant making good parts, safely, shift after shift.', nl: 'Flow, kwaliteit, onderhoud en veiligheid: een fabriek die dag na dag goede producten maakt, veilig.' },
+    modules: ['eng.flow', 'eng.quality', 'eng.maintenance', 'eng.safety'] },
+  { id: 'eng.field.better', subject: 'eng',
+    title: { en: 'Making the plant better', nl: 'De fabriek beter maken' },
+    blurb: { en: 'Problem solving, SPC, cost and reliability: finding what holds a plant back and making it better, for less.', nl: 'Probleemoplossen, SPC, kostprijs en betrouwbaarheid: vinden wat een fabriek tegenhoudt en haar beter maken, voor minder geld.' },
+    modules: ['eng.improve', 'eng.spc', 'eng.cost', 'eng.reliability'] },
   { id: 'eng.field.making', subject: 'eng',
     title: { en: 'Making things', nl: 'Dingen maken' },
     blurb: { en: 'Materials and strength, machining, process plants, drawings, welding and moulding: how a part or a product is designed, read and made.', nl: 'Materialen en sterkte, verspanen, procesfabrieken, tekeningen, lassen en spuitgieten: hoe een onderdeel of product wordt ontworpen, gelezen en gemaakt.' },

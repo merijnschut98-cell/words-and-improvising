@@ -17,7 +17,7 @@ const count = (s, re) => (s.match(re) || []).length;
 test('mapScene: the shared map, one place per module, both languages in the same drawing', async () => {
   const svg = await mapScene({ subject: 'pm', highlight: ['pm.plan'] });
   assert.match(svg, /^<svg class="subject-map"/);
-  assert.equal(count(svg, /class="map-place/g), 17);
+  assert.equal(count(svg, /class="map-place/g), 18);
   for (const m of MODULES.filter((x) => x.subject === 'pm')) assert.match(svg, new RegExp(`data-module="${m.id.replace('.', '\\.')}"`));
   // each label exists in both languages, hidden by the page language
   assert.match(svg, /class="l-nl"[^]*Plannen/);
@@ -94,13 +94,13 @@ test('levelWords: the words the app uses for the four levels, per language', () 
 // (the app wraps the map), which the kit does not carry. A film of a subject with zones asks for them with
 // mapStyles(css, subject): the rules for that subject's zones only, rewritten to start with .subject-map. Without a
 // subject the output is byte for byte what it was, so no Projects film page changes.
-const zoneFixture = (extra = '') => `${fixture('')}\n.subject-map-wrap .z-plant { --zone: var(--accent); }\n.subject-map-wrap .z-making { --zone: var(--primary); }\n.subject-map-wrap .z-energy { --zone: var(--ok); }\n.subject-map-wrap .z-digital { --zone: var(--secondary-fill); }\n.subject-map-wrap .subject-map-phone { max-width: 400px; }\n${extra}`;
+const zoneFixture = (extra = '') => `${fixture('')}\n.subject-map-wrap .z-run { --zone: var(--accent); }\n.subject-map-wrap .z-better { --zone: var(--zone-better); }\n.subject-map-wrap .z-making { --zone: var(--primary); }\n.subject-map-wrap .z-energy { --zone: var(--ok); }\n.subject-map-wrap .z-digital { --zone: var(--secondary-fill); }\n.subject-map-wrap .subject-map-phone { max-width: 400px; }\n${extra}`;
 test('mapStyles(css, subject): the zone colours of that subject, scoped to .subject-map', () => {
   const plain = mapStyles(zoneFixture());
-  assert.doesNotMatch(plain, /z-(plant|making|energy|digital)/, 'no subject, no zone rules: Projects pages stay as they are');
+  assert.doesNotMatch(plain, /z-(run|better|making|energy|digital)/, 'no subject, no zone rules: Projects pages stay as they are');
   assert.equal(mapStyles(zoneFixture(), 'pm'), plain, 'a subject without zone colours adds nothing');
   const eng = mapStyles(zoneFixture(), 'eng');
-  for (const [z, v] of [['plant', 'accent'], ['making', 'primary'], ['energy', 'ok'], ['digital', 'secondary-fill']]) assert.match(eng, new RegExp(`\\.subject-map \\.z-${z} \\{ --zone: var\\(--${v}\\); \\}`));
+  for (const [z, v] of [['run', 'accent'], ['better', 'zone-better'], ['making', 'primary'], ['energy', 'ok'], ['digital', 'secondary-fill']]) assert.match(eng, new RegExp(`\\.subject-map \\.z-${z} \\{ --zone: var\\(--${v}\\); \\}`));
   assert.doesNotMatch(eng, /subject-map-wrap/);
   assert.doesNotMatch(eng, /subject-map-phone/, 'only the zone rules, not the phone layout');
   assert.ok(eng.startsWith(plain.trimEnd()), 'the plain rules come first, unchanged');

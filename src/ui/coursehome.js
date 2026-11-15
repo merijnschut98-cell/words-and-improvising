@@ -188,6 +188,29 @@ function trackSection(app, subject, track, open) {
     mods.map((m) => moduleRow(app, m)));
 }
 
+// 15 Nov (Merijn): under a map the list groups the modules by the map's zones (the fields), in the map's order and
+// with its names, not by the old tracks. null without a map: the tracks stay.
+export function zoneGroups(subject, map, fields = FIELDS, modules = MODULES) {
+  if (!map) return null;
+  return map.zones.map((z) => {
+    const field = fields.find((f) => f.id === z.field);
+    return { field, label: z.label, modules: field.modules.map((id) => modules.find((m) => m.id === id)) };
+  });
+}
+
+// One zone of the map: the same fold as a track, titled with the zone's name.
+function zoneSection(app, group, open) {
+  const t = app.t;
+  const { done, total } = trackProgress(app.state, group.modules);
+  const slug = group.field.id.split('.').pop();
+  return h('details', { class: `card track track-zone zone-${slug}`, open },
+    h('summary', { class: 'track-head' },
+      h('h2', { class: 'card-title' }, group.label[app.lang] || group.label.en),
+      h('span', { class: 'track-meta muted small' }, t('trackModules', group.modules.length), ' · ', t('trackDone', done, total)),
+      progressBar(total ? done / total : 0)),
+    group.modules.map((m) => moduleRow(app, m)));
+}
+
 // The blocks of a subject home, top to bottom. A subject with a map shows it
 // first (v17), then the next step, and a row of field films before the tracks.
 // The XP left for the daily goal is Andon's line in the greeting above these.
@@ -230,7 +253,8 @@ export function courseHome(app, subject) {
   const pick = courseTodayPick(app.state, subject, app.lang, app.today());
   // With a map the tracks stay closed: the map is the way in.
   const first = map ? null : openTrack(app.state, subject, pick);
-  const tracks = TRACKS[subject].map((track) => trackSection(app, subject, track, track === first));
+  const zones = zoneGroups(subject, map);
+  const tracks = zones ? zones.map((g) => zoneSection(app, g, false)) : TRACKS[subject].map((track) => trackSection(app, subject, track, track === first));
   const blocks = {
     map: () => mapCard(app, subject, map, pick),
     next: () => todayCard(app, subject, pick),

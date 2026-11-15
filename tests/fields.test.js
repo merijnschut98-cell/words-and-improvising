@@ -18,7 +18,7 @@ test('the shipped fields are valid and cover every pm module exactly once', () =
 
 test('the four pm fields group the modules as agreed with Merijn (13 Nov)', () => {
   const by = Object.fromEntries(FIELDS.map((f) => [f.id, f.modules]));
-  assert.deepEqual(by['pm.field.lifecycle'], ['pm.approach', 'pm.intake', 'pm.plan', 'pm.run', 'pm.land', 'pm.close']);
+  assert.deepEqual(by['pm.field.lifecycle'], ['pm.approach', 'pm.intake', 'pm.plan', 'pm.formats', 'pm.run', 'pm.land', 'pm.close']);
   assert.deepEqual(by['pm.field.people'], ['pm.stuck', 'pm.lead', 'pm.negotiate', 'pm.outside', 'pm.perform']);
   assert.deepEqual(by['pm.field.portfolio'], ['pm.portfolio', 'pm.consult']);
   assert.deepEqual(by['pm.field.it'], ['pm.agile', 'pm.scaled', 'pm.devops', 'pm.itproject']);
@@ -59,7 +59,8 @@ test('checkFields: titles and blurbs in both languages', () => {
 test('fieldOf finds the field of a module, or null', () => {
   assert.equal(fieldOf('pm.plan').id, 'pm.field.lifecycle');
   assert.equal(fieldOf('pm.itproject').id, 'pm.field.it');
-  assert.equal(fieldOf('eng.flow').id, 'eng.field.plant');
+  assert.equal(fieldOf('eng.flow').id, 'eng.field.run');
+  assert.equal(fieldOf('eng.reliability').id, 'eng.field.better');
   assert.equal(fieldOf('eng.industry40').id, 'eng.field.digital');
   assert.equal(fieldOf('nope'), null);
 });

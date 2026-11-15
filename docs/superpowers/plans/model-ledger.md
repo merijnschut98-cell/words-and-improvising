@@ -168,3 +168,7 @@ Outcome: accepted (merged as delivered), sent back N times, redone.
 | 15 Nov | Build: Task 14 module pm.approach | sonnet | 116 | 28 min | 447,090 | accepted with fixes by its review |
 | 15 Nov | Review: pm.approach | opus | 112 | 15 min | 314,632 | accepted with fixes (PMBOK, Microsoft and ASQ facts corrected to sources, shared definitions identical, eight giveaway answers rebalanced, Dutch); merged v338 |
 | 15 Nov | Voice PM-30: Radical Candor (Rèddikal Kender), MORE PIES (More paiz) in pm.lead.intro; Dutch track re-rendered | sonnet | 54 | 36 min | 160,917 | accepted; guard passed; same MORE PIES fix for pm.intake.firsttalk and pm.outside.jargon left for the next Projects render batch (integrator decision); merged v339 |
+| 15 Nov | Build: Task 14 module pm.formats | sonnet | 130 | 31 min | 445,001 | accepted with fixes by its review |
+| 15 Nov | Review: pm.formats | opus | ~80 | ~15 min | n/a | accepted with fixes (IAF names fetched, works council consent, Diehl & Stroebe, shared definitions, 13 giveaway answers rebalanced, Dutch); uneven seven-tile row kept; merged v340 |
+| 15 Nov | Build: Engineering map plant-zone split + zone track list | sonnet | 52 | 11 min | 170,367 | done except MAP_H in 20 film builds (blocked by its brief); accepted with fixes by its review |
+| 15 Nov | Review: Engineering map plant-zone split | opus | 125 | 67 min | 219,474 | accepted with fixes (own terracotta zone token, film builds read the sheet from engMap.view, e2e zone list, field films say five zones); merged v341 |

@@ -177,6 +177,62 @@ export default {
       en: 'When you reach Expert, a senior puts risks in money and reserves. It is about chance times consequence, what you escalate and what goes into a reserve. After this you can back up a risk reserve.',
     },
   },
+  'pm.formats/meetings': {
+    2: {
+      nl: 'Op Werkkennis ontwerp je een kick-off en leid je hem. Je kiest wie er komt en wie spreekt, stuurt een voorleesstuk vooraf en legt aan het eind vast wat is afgesproken. Daarna kun je een kick-off korter maken zonder dat er iets verloren gaat.',
+      en: 'At Working knowledge you design a kick-off and lead it. You choose who comes and who speaks, send a pre-read beforehand and record at the end what was agreed. Afterwards you can make a kick-off shorter without losing anything.',
+    },
+    3: {
+      nl: 'Met Gevorderd ontwerp je het hele overlegsysteem van één project. Je bekijkt welke overleggen besluiten, afstemming en leren dekken en welke je samenvoegt of door een bericht vervangt. Daarna kun je een project met te veel overleg snoeien en uitzonderingen als een steeds afzeggende sponsor opvangen.',
+      en: 'With Advanced you design the whole meeting system of one project. You check which meetings cover decisions, coordination and learning and which you merge or replace by a message. Afterwards you can prune a project with too many meetings and handle exceptions such as a sponsor who keeps cancelling.',
+    },
+    4: {
+      nl: 'Bij Expert zie je een overleg als governance. Je weegt wie er in de zaal zit, wat vooraf is voorbereid en hoeveel overleg een klant aankan. Daarna kun je een overlegaudit doen en bepalen wanneer je voorzit en wanneer de klant dat zelf doet.',
+      en: 'With Expert you see a meeting as governance. You weigh who is in the room, what was prepared beforehand and how much meeting load a client can bear. Afterwards you can run a meeting audit and decide when you chair and when the client does it themselves.',
+    },
+  },
+  'pm.formats/workshop': {
+    2: {
+      nl: 'Op Werkkennis houd je een brown-papersessie van begin tot eind. Je nodigt een persoon per rol uit, tekent het proces van links naar rechts en markeert overdrachten en wachttijden. Daarna kun je een proces met een groep in kaart brengen en de kaart laten valideren.',
+      en: 'At Working knowledge you run a brown paper session from start to finish. You invite one person per role, draw the process from left to right and mark hand-offs and waiting times. Afterwards you can map a process with a group and have the map validated.',
+    },
+    3: {
+      nl: 'Met Gevorderd kies je de opzet van een sessie voor een concrete situatie. Je weegt groepsgrootte, duur, online of in de zaal en de rol van de sponsor. Daarna kun je zeggen wanneer brown paper de verkeerde keuze is en wat je dan gebruikt.',
+      en: 'With Advanced you choose the set-up of a session for a concrete situation. You weigh group size, duration, online or in the room and the role of the sponsor. Afterwards you can say when brown paper is the wrong choice and what you use instead.',
+    },
+    4: {
+      nl: 'Bij Expert gaat faciliteren over afspraken, macht en vakmanschap. Je contracteert de uitkomst met de sponsor voordat je ja zegt en bewaakt je neutraliteit. Daarna kun je beoordelen wanneer een sessie eerlijk kan en wanneer je een externe facilitator inschakelt.',
+      en: 'With Expert facilitating is about agreements, power and craft. You contract the outcome with the sponsor before you say yes and guard your neutrality. Afterwards you can judge when a session can be honest and when you bring in an outside facilitator.',
+    },
+  },
+  'pm.formats/ideas': {
+    2: {
+      nl: 'Op Werkkennis leid je een ideeënsessie op een digitaal bord. Je bereidt een kader voor, laat stil schrijven met verborgen geeltjes en rondt af met een stemronde en eigenaren. Daarna kun je een korte sessie leiden die in het plan eindigt.',
+      en: 'At Working knowledge you lead an idea session on an online board. You prepare a frame, have people write silently with hidden notes and finish with a voting round and owners. Afterwards you can lead a short session that ends in the plan.',
+    },
+    3: {
+      nl: 'Met Gevorderd kies je het besluitformat naar wie het besluit bezit. Je vergelijkt adviesbesluit, consent, meerderheid en consensus en bepaalt wie in de zaal hoort. Daarna kun je besluiten van verschillend gewicht een eigen besluitvorm geven.',
+      en: 'With Advanced you choose the decision format by who owns the decision. You compare advice process, consent, majority and consensus and decide who belongs in the room. Afterwards you can give decisions of different weight a decision rule of their own.',
+    },
+    4: {
+      nl: 'Bij Expert gaat het om legitimiteit en vertrouwen. Je weegt wat schijninspraak kost en geeft een sessie een eerlijk mandaat. Daarna kun je een sessie afwijzen of anders opzetten als het besluit al vaststaat.',
+      en: 'With Expert it is about legitimacy and trust. You weigh what consultation theatre costs and give a session an honest mandate. Afterwards you can turn down a session or set it up differently when the decision is already fixed.',
+    },
+  },
+  'pm.formats/floor': {
+    2: {
+      nl: 'Op Werkkennis houd je een interviewronde aan het begin van een project. Je kiest mensen over lagen heen, gebruikt een leidraad met open vragen en geeft de thema’s terug aan de groep. Daarna kun je een reeks gesprekken plannen en omzetten in enkele heldere thema’s.',
+      en: 'At Working knowledge you run an interview round at the start of a project. You choose people across levels, use a guide with open questions and play the themes back to the group. Afterwards you can plan a series of conversations and turn them into a few clear themes.',
+    },
+    3: {
+      nl: 'Met Gevorderd ontwerp je een demo op de vloer en kies je tussen de werkvormen op de vloer. Je vraagt om feedback in plaats van goedkeuring en houdt rekening met ploegendienst en veiligheidsregels. Daarna kun je per moment in een project de passende werkvorm kiezen.',
+      en: 'With Advanced you design a demo on the floor and choose between the floor formats. You ask for feedback instead of approval and take shift work and safety rules into account. Afterwards you can choose the fitting format for each moment in a project.',
+    },
+    4: {
+      nl: 'Bij Expert weeg je wat een kaizen-event de organisatie kost. Je regelt wie de mensen vrijmaakt, wie de opvolging doet en wanneer je nee zegt. Daarna kun je ook een bezoek van directeuren aan de vloer zo inrichten dat het niet verandert in een inspectieronde.',
+      en: 'With Expert you weigh what a kaizen event costs the organisation. You arrange who frees up the people, who does the follow-up and when you say no. Afterwards you can also arrange a visit by directors to the floor so that it does not turn into an inspection tour.',
+    },
+  },
   'pm.run/steer': {
     2: {
       nl: 'Met Werkkennis bereid je een stuurgroep voor. Je zorgt dat besluiten bovenaan de agenda staan en dat niemand verrast wordt. Aan het eind kun je beantwoorden wat nemawashi in een project is en hoe je een rode mijlpaal aankondigt.',
