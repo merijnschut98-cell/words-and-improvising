@@ -2271,18 +2271,18 @@
     "pm.outside.jargon": {
       "poster": "src/content/courses/films/pm.outside.jargon.jpg",
       "nl": {
-        "dur": 323.6,
-        "bytes": 11367736,
+        "dur": 323.1,
+        "bytes": 11347430,
         "scenes": [
           0,
-          16.92,
-          49.97,
-          76.68,
-          125.38,
-          173.96,
-          195.51,
-          234.56,
-          272.51
+          17.12,
+          49.89,
+          76.71,
+          125.26,
+          173.76,
+          195.09,
+          234.45,
+          272.22
         ],
         "vtt": "src/content/courses/films/pm.outside.jargon.nl.vtt"
       },
@@ -2930,16 +2930,18 @@
         "vtt": "src/content/courses/films/pm.field.lifecycle.nl.vtt"
       },
       "en": {
-        "dur": 214.9,
-        "bytes": 9019402,
+        "dur": 251.4,
+        "bytes": 10715082,
         "scenes": [
           0,
-          19.17,
-          54.54,
-          83.07,
-          120.32,
-          154.84,
-          187.34
+          18.92,
+          42.99,
+          75.25,
+          100.38,
+          123.94,
+          156.53,
+          190.51,
+          222.07
         ],
         "vtt": "src/content/courses/films/pm.field.lifecycle.en.vtt"
       }
