@@ -1,0 +1,193 @@
+WEBVTT
+
+1
+00:00:00.844 --> 00:00:03.770
+Op kantoor tekent de ontwerper de vuleenheid voor lijn 3.
+
+2
+00:00:04.553 --> 00:00:06.550
+In de werkplaats maakt de maker de plaat ervan.
+
+3
+00:00:07.583 --> 00:00:10.079
+Een tekening zegt de maker wat hij moet maken en hoe nauw.
+
+4
+00:00:10.783 --> 00:00:13.778
+Een regelkring houdt het niveau in de tank op zijn streefwaarde.
+
+5
+00:00:14.857 --> 00:00:16.831
+Vier onderwerpen volgen de vuleenheid.
+
+6
+00:00:17.626 --> 00:00:20.192
+De eerste twee gaan over de tekening voor de maker.
+
+7
+00:00:21.217 --> 00:00:23.121
+De laatste twee gaan over het schema van de
+
+8
+00:00:23.145 --> 00:00:25.687
+installatie en de regeling die haar op waarde houdt.
+
+9
+00:00:26.986 --> 00:00:29.864
+Het eerste onderwerp is Een technische tekening lezen.
+
+10
+00:00:30.593 --> 00:00:32.927
+De maker was er niet bij en heeft alleen de tekening.
+
+11
+00:00:33.896 --> 00:00:38.830
+De plaat staat getekend in aanzichten, van voren, van boven en van opzij.
+
+12
+00:00:39.576 --> 00:00:42.641
+De maker leest de maten, want een print kan verkleind zijn.
+
+13
+00:00:43.627 --> 00:00:45.961
+Daarbij lezen we eerst de stempel rechtsonder,
+
+14
+00:00:46.251 --> 00:00:48.387
+want daar staat de revisie van de tekening.
+
+15
+00:00:49.673 --> 00:00:52.773
+Het tweede onderwerp is Toleranties en GD en T.
+
+16
+00:00:53.505 --> 00:00:56.976
+De vier gaten van de plaat moeten op de vier bouten van het frame passen.
+
+17
+00:00:57.968 --> 00:01:01.892
+Elke maat mag een klein stukje afwijken, en dat stukje is de tolerantie.
+
+18
+00:01:02.620 --> 00:01:04.964
+Staat een gat te ver weg, dan past de bout niet.
+
+19
+00:01:06.012 --> 00:01:07.974
+Daarbij lezen we het tolerantiekader.
+
+20
+00:01:08.917 --> 00:01:11.529
+Het zegt vanaf welke referenties (datum) de maker meet.
+
+21
+00:01:12.219 --> 00:01:14.761
+Zo meten de maker en de klant op dezelfde manier.
+
+22
+00:01:15.982 --> 00:01:20.208
+Het derde onderwerp is P en I D’s, schema’s en het besturingssysteem.
+
+23
+00:01:20.891 --> 00:01:22.946
+De tank levert het product aan de vuleenheid.
+
+24
+00:01:23.981 --> 00:01:26.605
+Een P en I D laat zien wat met wat verbonden is,
+
+25
+00:01:26.930 --> 00:01:28.846
+en hoe het gemeten en geregeld wordt.
+
+26
+00:01:29.595 --> 00:01:32.114
+Bij de tank is dat een niveaumeter en een regelklep.
+
+27
+00:01:33.111 --> 00:01:35.514
+Daarbij lezen we het tagnummer van elk instrument.
+
+28
+00:01:36.565 --> 00:01:39.096
+De operator loopt langs de tank met de tekening.
+
+29
+00:01:39.830 --> 00:01:42.083
+Een klep die er niet op staat, is een verrassing.
+
+30
+00:01:43.390 --> 00:01:46.234
+Het vierde onderwerp is Regelkringen en PID.
+
+31
+00:01:46.969 --> 00:01:50.893
+Bij elke vulling zakt het niveau in de tank, maar het moet op zijn waarde blijven.
+
+32
+00:01:51.897 --> 00:01:53.348
+Een sensor meet het niveau.
+
+33
+00:01:54.046 --> 00:01:58.040
+De regelaar vergelijkt het met de streefwaarde en stuurt de klep open of dicht.
+
+34
+00:01:59.088 --> 00:02:01.410
+Daarbij gebruiken we vaak een PID-regelaar.
+
+35
+00:02:02.376 --> 00:02:03.920
+Het niveau blijft op zijn waarde.
+
+36
+00:02:04.658 --> 00:02:09.163
+Nu kunnen de makers verder, want frame, plaat en tank staan samen op één tekening.
+
+37
+00:02:10.539 --> 00:02:11.642
+Dit is de hele kaart.
+
+38
+00:02:12.341 --> 00:02:15.673
+Tekeningen en regeling is het vierde station van Dingen maken.
+
+39
+00:02:16.636 --> 00:02:18.250
+Elk onderwerp heeft vier niveaus.
+
+40
+00:02:19.342 --> 00:02:22.906
+Begin bij Een technische tekening lezen, op niveau Basis.
+
+41
+00:02:23.639 --> 00:02:26.170
+Die les laat zien waar je op een tekening begint.
+
+42
+00:02:27.207 --> 00:02:31.421
+Op niveau Werkkennis gaat het over samenstellingstekeningen, GD en T,
+
+43
+00:02:31.793 --> 00:02:34.069
+de PLC en het gevoel achter regelen.
+
+44
+00:02:35.047 --> 00:02:38.263
+Op niveau Gevorderd gaat het over schroefdraad en ruwheid,
+
+45
+00:02:38.541 --> 00:02:42.060
+vormtoleranties, elektrische schema’s en inregelen.
+
+46
+00:02:43.009 --> 00:02:45.668
+Op niveau Expert gaat het over tekeningbeheer,
+
+47
+00:02:46.062 --> 00:02:49.522
+tekeninggeschillen, beveiligingen en kringprestaties.
+
+48
+00:02:50.516 --> 00:02:53.895
+Elke les en elke film van deze module heeft een plek op deze kaart.

@@ -3749,6 +3749,267 @@
         ],
         "vtt": "src/content/courses/films/eng.process.intro.en.vtt"
       }
+    },
+    "eng.drawings.intro": {
+      "poster": "src/content/courses/films/eng.drawings.intro.jpg",
+      "nl": {
+        "dur": 175.6,
+        "bytes": 7113224,
+        "scenes": [
+          0,
+          26.59,
+          49.25,
+          75.56,
+          102.98,
+          130.01
+        ],
+        "vtt": "src/content/courses/films/eng.drawings.intro.nl.vtt"
+      },
+      "en": {
+        "dur": 187.7,
+        "bytes": 7411910,
+        "scenes": [
+          0,
+          29.48,
+          53.07,
+          80.9,
+          111.27,
+          140.35
+        ],
+        "vtt": "src/content/courses/films/eng.drawings.intro.en.vtt"
+      }
+    },
+    "eng.gridbasics.intro": {
+      "poster": "src/content/courses/films/eng.gridbasics.intro.jpg",
+      "nl": {
+        "dur": 154.2,
+        "bytes": 5431137,
+        "scenes": [
+          0,
+          21.32,
+          43.19,
+          58.41,
+          82.53,
+          111.09
+        ],
+        "vtt": "src/content/courses/films/eng.gridbasics.intro.nl.vtt"
+      },
+      "en": {
+        "dur": 166.5,
+        "bytes": 5626036,
+        "scenes": [
+          0,
+          22.13,
+          46.01,
+          62.26,
+          88.35,
+          120.4
+        ],
+        "vtt": "src/content/courses/films/eng.gridbasics.intro.en.vtt"
+      }
+    },
+    "eng.transformers.intro": {
+      "poster": "src/content/courses/films/eng.transformers.intro.jpg",
+      "nl": {
+        "dur": 159,
+        "bytes": 6023162,
+        "scenes": [
+          0,
+          19.18,
+          40.35,
+          64.28,
+          86.38,
+          115.35
+        ],
+        "vtt": "src/content/courses/films/eng.transformers.intro.nl.vtt"
+      },
+      "en": {
+        "dur": 172,
+        "bytes": 6336657,
+        "scenes": [
+          0,
+          20.22,
+          43.88,
+          69.46,
+          94.36,
+          125.08
+        ],
+        "vtt": "src/content/courses/films/eng.transformers.intro.en.vtt"
+      }
+    },
+    "eng.switchgear.intro": {
+      "poster": "src/content/courses/films/eng.switchgear.intro.jpg",
+      "nl": {
+        "dur": 168.2,
+        "bytes": 6374765,
+        "scenes": [
+          0,
+          25.12,
+          45.47,
+          66.08,
+          91.28,
+          121.96
+        ],
+        "vtt": "src/content/courses/films/eng.switchgear.intro.nl.vtt"
+      },
+      "en": {
+        "dur": 181,
+        "bytes": 6579304,
+        "scenes": [
+          0,
+          28.07,
+          50.06,
+          75.39,
+          102.54,
+          134.89
+        ],
+        "vtt": "src/content/courses/films/eng.switchgear.intro.en.vtt"
+      }
+    },
+    "eng.power.intro": {
+      "poster": "src/content/courses/films/eng.power.intro.jpg",
+      "nl": {
+        "dur": 167.7,
+        "bytes": 6472930,
+        "scenes": [
+          0,
+          22.96,
+          42.6,
+          66.65,
+          90.84,
+          121.57
+        ],
+        "vtt": "src/content/courses/films/eng.power.intro.nl.vtt"
+      },
+      "en": {
+        "dur": 179.6,
+        "bytes": 6763246,
+        "scenes": [
+          0,
+          24.96,
+          45.65,
+          72.19,
+          97.54,
+          132.52
+        ],
+        "vtt": "src/content/courses/films/eng.power.intro.en.vtt"
+      }
+    },
+    "eng.fluids.intro": {
+      "poster": "src/content/courses/films/eng.fluids.intro.jpg",
+      "nl": {
+        "dur": 155.4,
+        "bytes": 5818202,
+        "scenes": [
+          0,
+          31.25,
+          52.47,
+          71.94,
+          89.11,
+          110.78
+        ],
+        "vtt": "src/content/courses/films/eng.fluids.intro.nl.vtt"
+      },
+      "en": {
+        "dur": 167.4,
+        "bytes": 6077956,
+        "scenes": [
+          0,
+          33.17,
+          56.58,
+          76.16,
+          95.71,
+          121.09
+        ],
+        "vtt": "src/content/courses/films/eng.fluids.intro.en.vtt"
+      }
+    },
+    "eng.gridops.intro": {
+      "poster": "src/content/courses/films/eng.gridops.intro.jpg",
+      "nl": {
+        "dur": 157.8,
+        "bytes": 5683808,
+        "scenes": [
+          0,
+          21.59,
+          42.1,
+          64.28,
+          89.8,
+          112.9
+        ],
+        "vtt": "src/content/courses/films/eng.gridops.intro.nl.vtt"
+      },
+      "en": {
+        "dur": 166.1,
+        "bytes": 5713904,
+        "scenes": [
+          0,
+          23.99,
+          45.56,
+          68.52,
+          96.52,
+          119.98
+        ],
+        "vtt": "src/content/courses/films/eng.gridops.intro.en.vtt"
+      }
+    },
+    "eng.gridplanning.intro": {
+      "poster": "src/content/courses/films/eng.gridplanning.intro.jpg",
+      "en": {
+        "dur": 161.1,
+        "bytes": 5483979,
+        "scenes": [
+          0,
+          25.68,
+          48.76,
+          70.95,
+          91.2,
+          116.52
+        ],
+        "vtt": "src/content/courses/films/eng.gridplanning.intro.en.vtt"
+      },
+      "nl": {
+        "dur": 149.8,
+        "bytes": 5163665,
+        "scenes": [
+          0,
+          23.5,
+          43.64,
+          63.32,
+          82.86,
+          106.74
+        ],
+        "vtt": "src/content/courses/films/eng.gridplanning.intro.nl.vtt"
+      }
+    },
+    "eng.itbasics.intro": {
+      "poster": "src/content/courses/films/eng.itbasics.intro.jpg",
+      "nl": {
+        "dur": 143.1,
+        "bytes": 5059028,
+        "scenes": [
+          0,
+          24.42,
+          40.83,
+          58.77,
+          75.32,
+          99.88
+        ],
+        "vtt": "src/content/courses/films/eng.itbasics.intro.nl.vtt"
+      },
+      "en": {
+        "dur": 159.6,
+        "bytes": 5511032,
+        "scenes": [
+          0,
+          27.44,
+          45.9,
+          67.62,
+          86.58,
+          113.58
+        ],
+        "vtt": "src/content/courses/films/eng.itbasics.intro.en.vtt"
+      }
     }
   }
 }
