@@ -2914,16 +2914,18 @@
     "pm.field.lifecycle": {
       "poster": "src/content/courses/films/pm.field.lifecycle.jpg",
       "nl": {
-        "dur": 184.6,
-        "bytes": 8003039,
+        "dur": 228.2,
+        "bytes": 10091932,
         "scenes": [
           0,
-          15.79,
-          46.78,
-          69.92,
-          102.12,
-          131.77,
-          159.9
+          16.48,
+          39.69,
+          68.96,
+          90.69,
+          112.67,
+          142.36,
+          171.94,
+          200.56
         ],
         "vtt": "src/content/courses/films/pm.field.lifecycle.nl.vtt"
       },
@@ -4129,6 +4131,35 @@
           89.54
         ],
         "vtt": "src/content/courses/films/eng.industry40.intro.nl.vtt"
+      }
+    },
+    "pm.approach.intro": {
+      "poster": "src/content/courses/films/pm.approach.intro.jpg",
+      "nl": {
+        "dur": 158.6,
+        "bytes": 6485528,
+        "scenes": [
+          0,
+          21.55,
+          51.89,
+          76.59,
+          96.95,
+          119.71
+        ],
+        "vtt": "src/content/courses/films/pm.approach.intro.nl.vtt"
+      },
+      "en": {
+        "dur": 168.9,
+        "bytes": 6832168,
+        "scenes": [
+          0,
+          25.33,
+          57.56,
+          82.05,
+          104.5,
+          129.14
+        ],
+        "vtt": "src/content/courses/films/pm.approach.intro.en.vtt"
       }
     }
   }
