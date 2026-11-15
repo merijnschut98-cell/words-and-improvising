@@ -222,7 +222,7 @@ const STAGE = (() => {
   // of the app) with this module lit, then zoomed to it; then the module's four topics, each with its four levels as
   // columns (the words the app uses for the levels), the start marker on the first level of the first topic.
   const MAP0 = { s: 0.77, x: 73.6, y: 0 };
-  const MAP1 = { s: 1.7, x: 320 - MAPZ[0] * 1.7, y: 200 - MAPZ[1] * 1.7 };
+  const MAP1 = { s: 1.5, x: 320 - MAPZ[0] * 1.5, y: 200 - MAPZ[1] * 1.5 };
   function mapPlace(b, p) {
     const z = b === 0 ? span(p, 0.35, 1) : 1;
     const s = lerp(MAP0.s, MAP1.s, z);

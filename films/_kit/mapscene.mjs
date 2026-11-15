@@ -11,6 +11,8 @@
 //  - each highlighted module is a lit place (class is-lit) and a cue group
 //    (data-cue="map-<module slug>", see mapCue), so a beat can focus it in the
 //    focus colours; every other place keeps only its drawing and label;
+//  - the labels of the lit places are fitted to their tiles (fitLabel, "Label fit"
+//    below); every other label is the app's;
 //  - no buttons, no tab stops: a film is not interactive.
 // mapStyles returns the app's own .subject-map rules (read from styles.css, so a
 // change to the map reaches the films at their next build) with the app's colour
@@ -19,7 +21,7 @@ import { existsSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { pathToFileURL } from 'node:url';
 import { ROOT } from './build-film.mjs';
-import { mapCue } from './assert.mjs';
+import { mapCue, textUnits } from './assert.mjs';
 import { mapSvg } from '../../src/ui/subjectmap.js';
 import { STRINGS } from '../../src/i18n.js';
 
@@ -29,6 +31,73 @@ export const levelWords = (lang) => [1, 2, 3, 4].map((n) => STRINGS[lang][`level
 // The cue key of a highlighted place: pm.plan gives "map-plan" (defined in
 // assert.mjs, whose field check asks the lit places by it).
 export { mapCue };
+
+// The zoom every film closes its map on (1.5). Labels are fitted for it (fitLabels).
+export const MAP_ZOOM = 1.5;
+
+
+// Label fit (the follow-up of v17). The app draws every label at 15 units from
+// the first baseline 74, 17 units a line, and wraps by a count of characters, so
+// a long title (Leading projects outside your field, four lines in a tile 130
+// high; Negotiating and, as wide as its tile) touches its tile, which a film
+// shows with the lit outline at the closing zoom. mapSvg is the app's and
+// pinned, so the fit is done here, on the film's own drawing, for the lit
+// places only: the label is set a little smaller and, when it has two or more
+// lines, closer in line spacing (its first baseline stays where the app puts it,
+// under the object), until it keeps FIT_CLEAR units from the tile's sides and
+// bottom. A label that already fits
+// is left as the app draws it, byte for byte.
+const LABEL_SIZE = 15; // styles.css .map-label
+const LABEL_TOP = 74; // the app's first baseline in a tile (subjectmap.js LABEL)
+const LABEL_LINE = 17; // the app's line height
+const FIT_CLEAR = 6; // units to the tile's sides and, for a block of lines, its bottom
+const FIT_RAISE = 3; // the first baseline moves up this far only when a short tile cannot hold the lines otherwise
+const FIT_MIN = 0.85; // a fitted label is at least this share of the map's label size
+const DESC = 0.22; // descender depth of the label font, as a share of its size
+const decode = (t) => t.replace(/&#39;/g, "'").replace(/&amp;/g, '&').replace(/&quot;/g, '"').replace(/&lt;/g, '<').replace(/&gt;/g, '>');
+
+// widths: each line's width at LABEL_SIZE units; w, h: the tile. Returns null when
+// the app's drawing fits, else { size, top, step } for the lines; throws when no
+// label size within FIT_MIN fits.
+export function fitLabel(widths, w, h) {
+  const n = widths.length;
+  let size = Math.min(LABEL_SIZE, (LABEL_SIZE * (w - 2 * FIT_CLEAR)) / Math.max(...widths));
+  const room = (sz) => h - FIT_CLEAR - DESC * sz; // the lowest baseline a block of lines may have
+  // lines n, first baseline top: the largest size (up to the one asked) whose lines, 1.05 of the size apart at the
+  // closest, end within room
+  const stack = (top, sz) => {
+    const s = n > 1 ? Math.min(sz, (h - FIT_CLEAR - top) / ((n - 1) * 1.05 + DESC)) : sz;
+    return { size: s, top, step: n > 1 ? Math.min(LABEL_LINE, Math.max(1.05 * s, (room(s) - top) / (n - 1))) : LABEL_LINE };
+  };
+  let { top, step } = { top: LABEL_TOP, step: LABEL_LINE };
+  if (n > 1 && top + (n - 1) * step > room(size)) {
+    ({ size, top, step } = stack(LABEL_TOP, size));
+    // a tile too short for two lines at the app's baseline: the first baseline moves up, by 3 units at most
+    if (size < LABEL_SIZE * FIT_MIN) ({ size, top, step } = stack(LABEL_TOP - FIT_RAISE, Math.min(LABEL_SIZE, (LABEL_SIZE * (w - 2 * FIT_CLEAR)) / Math.max(...widths))));
+  }
+  if (size < LABEL_SIZE * FIT_MIN - 1e-9) throw new Error(`mapScene: a label of ${n} line(s) does not fit a tile of ${w} by ${h} at ${Math.round(LABEL_SIZE * FIT_MIN * 10) / 10} units or more`);
+  if (size >= LABEL_SIZE - 1e-9 && top === LABEL_TOP && step === LABEL_LINE) return null;
+  const r = (v) => Math.round(v * 100) / 100;
+  return { size: r(Math.floor(size * 100) / 100), top: r(top), step: r(Math.floor(step * 100) / 100) };
+}
+
+// svg: the app's map in one language; places: the map's places to fit. The label of
+// each is rewritten in place (font-size on its text, new baselines on its tspans).
+function fitLabels(svg, places) {
+  let out = svg;
+  for (const p of places) {
+    const re = new RegExp(`(data-module="${p.module.replace(/\./g, '\\.')}"[^]*?)<text class="map-label" text-anchor="middle">([^]*?)</text>`);
+    const m = re.exec(out);
+    if (!m) throw new Error(`mapScene: could not find the label of ${p.module}`);
+    const lines = [...m[2].matchAll(/<tspan x="([\d.]+)" y="([\d.]+)">([^<]*)<\/tspan>/g)];
+    if (!lines.length) throw new Error(`mapScene: the label of ${p.module} has no lines`);
+    const fit = fitLabel(lines.map((l) => (textUnits(decode(l[3])) * LABEL_SIZE) / 22), p.w, p.h);
+    if (!fit) continue;
+    const tspans = lines.map((l, i) => `<tspan x="${l[1]}" y="${Math.round((p.y + fit.top + i * fit.step) * 100) / 100}">${l[3]}</tspan>`).join('');
+    out = out.replace(re, `$1<text class="map-label" text-anchor="middle" style="font-size:${fit.size}px">${tspans}</text>`);
+  }
+  return out;
+}
 
 const LABEL = /<text class="map-(?:zone-)?label"[^>]*>[\s\S]*?<\/text>/g;
 
@@ -52,8 +121,9 @@ export async function mapScene({ subject, highlight = [] }) {
   if (!existsSync(file)) throw new Error(`mapScene: no map for subject ${subject}`);
   const map = (await import(pathToFileURL(file).href)).default;
   for (const id of highlight) if (!map.places.some((p) => p.module === id)) throw new Error(`mapScene: ${id} is no place of the ${subject} map`);
-  const nl = mapSvg(map, { lang: 'nl' });
-  const en = mapSvg(map, { lang: 'en' });
+  const lit = map.places.filter((p) => highlight.includes(p.module));
+  const nl = fitLabels(mapSvg(map, { lang: 'nl' }), lit);
+  const en = fitLabels(mapSvg(map, { lang: 'en' }), lit);
   const pairs = [nl.match(LABEL) || [], en.match(LABEL) || []];
   if (pairs[0].length !== pairs[1].length || !pairs[0].length) throw new Error('mapScene: the two languages draw different labels');
   let i = 0;
