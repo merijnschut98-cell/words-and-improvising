@@ -74,6 +74,8 @@ const SAY = {
     [/\bPFMEA\b/g, 'P F M E A'],
     // the go/no-go gauge and gauge R&R without "slash" or "ampersand": gaat, gaat niet; R en R
     [/\b([Gg])aat\/gaat-niet\b/g, '$1aat, gaat niet'], [/\bR&R\b/g, 'R en R'],
+    // capability as the English loan the floor says (espeak-ng reads the Dutch spelling "kaa-paa-bili-tie"): kepeibiliti
+    [/\b([Cc])apability/g, (m, c) => `${c === 'C' ? 'K' : 'k'}epeibiliti`],
     // I/O without "slash"; OEE, MES and HMI as letters (espeak-ng says "oe", the word "mes", "hmie"); CE needs
     // nothing: espeak-ng already spells it in CE-markering. But a lone S with a word after it ("M E S in", "M E
     // S-leverancier") is read as a bare hiss, the clitic 's (phon.py, 2026-11-11): there MES is "em ee es"
@@ -1006,6 +1008,24 @@ const SAY = {
     // Ohno-cirkel, waaromboom, eerstestukcontrole, np-kaart, faalkosten, kasbesparing, risicomatrix, kaizen and SPC are read right;
     // no other film's spoken text changes
     [/(?<=\ben maakt een )FMECA\b/g, 'F M E C A'],
+    // the module intro film for Maintenance (eng.maintenance.intro), a self-contained group at the end of the Dutch list: espeak-ng
+    // reads operators as "OO-pi-ra-tors" (checked with phonemes through Piper's nl_NL-alex bridge); said ope-raators, as the rules
+    // above, only in this film's one sentence ("Operators doen zelf de basiszorg"), so the other films keep their voice. Badkuipkromme,
+    // multimomentopname, CILT-standaard (the rule above) and CMMS are read right; no other film's spoken text changes
+    [/\bOperators doen zelf\b/g, 'Ope-raators doen zelf'],
+    // the module intro film for Engineering problem solving (eng.improve.intro), a self-contained group at the end of the Dutch list,
+    // checked with phonemes through Piper's nl_NL-alex bridge: espeak-ng reads PDCA as the word "pdka" (pdkˈaː; said as letters, as
+    // FMECA above) only in the film's phrase that names the topic ("Het derde onderwerp is PDCA en de A3"), and 8D as "acht tee" (ˈɑx tˈeː, the
+    // d is lost after acht; said acht-dee, ɑxtdˈeː) only in its phrase "de 8D en een sessie", so the lessons and the other films keep
+    // their voice. Ohno-cirkel, waaromboom, andon, kaizen, A3 (aa drie) and the level words are read right; no other film's spoken text changes
+    [/(?<=\bderde onderwerp is )PDCA en de A3\b/g, 'P D C A en de A3'], [/\bde 8D en een sessie\b/g, 'de acht-dee en een sessie'],
+    // the module intro film for Cost engineering (eng.cost.intro), a self-contained group at the end of the Dutch list, checked with
+    // phonemes through Piper's nl_NL-alex bridge: espeak-ng reads Lean as "lee-an" (lˈeːɑn; said Lien, as the Lean-consultant rule above)
+    // only in the film's phrase that names the topic ("vierde onderwerp is Lean accounting"), and overheadopslag as "overhee-aad-opslag"
+    // (ˌoːvərhˈeːaːdˌɔpslɑx; said overhed-opslag, ˌoːvərhˈɛdˈɔpslɑx) only in its phrase "met een overheadopslag", so the lessons and the
+    // other films keep their voice. Kostprijs, faalkosten, kasbesparing, dekkingsbijdrage (the rule above), terugverdientijd and the
+    // level words are read right; no other film's spoken text changes
+    [/(?<=\bvierde onderwerp is )Lean accounting\b/g, 'Lien accounting'], [/(?<=\bmet een )overheadopslag\b/g, 'overhed-opslag'],
     // the first-talk and jargon films (PM-32), a narrow group at the end of the Dutch list: MORE PIES as "More paiz", the voice the
     // Leading people intro has since PM-30 (the "Mor pais" rule above is kept for any other sentence), one rule per sentence of
     // pm.intake.firsttalk ("De checklist MORE PIES komt uit de crisisonderhandeling") and pm.outside.jargon ("uit MORE PIES:" and

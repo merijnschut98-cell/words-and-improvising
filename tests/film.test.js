@@ -1743,3 +1743,61 @@ test('speak variant: the plant-improving field film FMECA', () => {
   assert.equal(nl('Een machine-FMEA en een FMECA.'), 'Een machine-FMEA en een FMECA.');
   assert.equal(en('An FMECA adds a criticality rating to each failure mode.'), 'An FMECA adds a criticality rating to each failure mode.');
 });
+
+// The module intro film "Engineering problem solving" (eng.improve.intro), checked with espeak-ng phonemes through Piper's nl_NL-alex
+// bridge and the English voice: PDCA is read as the word "pdka" in Dutch (pdkˈaː; said as letters), only in the intro's
+// phrase that names the topic ("derde onderwerp is PDCA en de A3"), and 8D as "acht tee" (ˈɑx tˈeː, the d is lost after acht; said acht-dee
+// with a hyphen, ɑxtdˈeː), only in the intro's phrase "de 8D en een sessie", so the lessons and the other films keep their voice.
+// Ohno-cirkel, waaromboom, andon, kaizen, A3 (aa drie), de fix verifiëren and the level words are read right; English needs
+// nothing; no other film's spoken text changes
+test('speak variant: the engineering problem solving intro film words in Dutch', () => {
+  const nl = (s) => speakOf([s], 'nl');
+  assert.equal(nl('Het derde onderwerp is PDCA en de A3. Een verbetering is een experiment.'), 'Het derde onderwerp is P D C A en de A3. Een verbetering is een experiment.');
+  assert.equal(nl('Op niveau Gevorderd komen meten voor je concludeert, de 8D en een sessie begeleiden.'), 'Op niveau Gevorderd komen meten voor je concludeert, de acht-dee en een sessie begeleiden.');
+  // elsewhere the words keep their voice
+  assert.equal(nl('PDCA is een cyclus. De PDCA en de A3 horen bij elkaar. Dat rondje heet PDCA en je draait het.'), 'PDCA is een cyclus. De PDCA en de A3 horen bij elkaar. Dat rondje heet PDCA en je draait het.');
+  assert.equal(nl('De 8D is een rapport. Een 8D en een sessie.'), 'De 8D is een rapport. Een 8D en een sessie.');
+  const en = 'The third topic is PDCA and the A3. The 8D and a session.';
+  assert.equal(speakOf([en], 'en'), en);
+});
+
+// The module intro film for Maintenance (eng.maintenance.intro): espeak-ng reads "Operators" as "OO-pi-ra-tors" (checked with phonemes
+// through Piper's nl_NL-alex bridge); said Ope-raators, only in the film's one sentence "Operators doen zelf de basiszorg", so
+// the other films keep their voice (the eng.improve intro's "een operator" is read right and is not touched)
+test('speak variant: the maintenance intro film says operators right in Dutch', () => {
+  const nl = (s) => speakOf([s], 'nl');
+  assert.equal(nl('Het tweede onderwerp is TPM en autonoom onderhoud. Operators doen zelf de basiszorg.'), 'Het tweede onderwerp is TPM en autonoom onderhoud. Ope-raators doen zelf de basiszorg.');
+  // elsewhere the word keeps its voice
+  assert.equal(nl('Operators bedienen de machine. Trekt een operator aan het koord.'), 'Operators bedienen de machine. Trekt een operator aan het koord.');
+});
+
+// The module intro film for Cost engineering (eng.cost.intro), checked with espeak-ng phonemes through Piper's nl_NL-alex bridge:
+// Lean is read "lee-an" (lˈeːɑn; said Lien, as the Lean-consultant rule), only in the intro's phrase that names the topic ("vierde onderwerp
+// is Lean accounting"), and overheadopslag as "overhee-aad-opslag" (ˌoːvərhˈeːaːdˌɔpslɑx; said overhed-opslag, ˌoːvərhˈɛdˈɔpslɑx), only in
+// the intro's phrase "met een overheadopslag", so the lessons and the other films keep their voice. Kostprijs, faalkosten, kasbesparing,
+// dekkingsbijdrage (the rule above), terugverdientijd and the level words are read right; English needs nothing; no other film's spoken
+// text changes
+test('speak variant: the cost engineering intro film words in Dutch', () => {
+  const nl = (s) => speakOf([s], 'nl');
+  assert.equal(nl('Het vierde onderwerp is Lean accounting en besparingen. Je rekent verspilling om in geld.'), 'Het vierde onderwerp is Lien accounting en besparingen. Je rekent verspilling om in geld.');
+  assert.equal(nl('De indirecte kosten verdeel je vaak met een overheadopslag.'), 'De indirecte kosten verdeel je vaak met een overhed-opslag.');
+  // elsewhere the words keep their voice
+  assert.equal(nl('Lean accounting is een andere manier van rekenen. De Lean accounting en besparingen.'), 'Lean accounting is een andere manier van rekenen. De Lean accounting en besparingen.');
+  assert.equal(nl('Een overheadopslag op arbeidsuren. De overheadopslag is een sleutel.'), 'Een overheadopslag op arbeidsuren. De overheadopslag is een sleutel.');
+  const en = 'The fourth topic is Lean accounting and savings. You spread indirect costs with an overhead surcharge.';
+  assert.equal(speakOf([en], 'en'), en);
+});
+
+// The module intro film for Reliability and asset strategy (eng.reliability.intro), checked with espeak-ng phonemes through Piper's
+// nl_NL-alex bridge and the English voice. It adds no SAY rule: FMECA is said as letters by the rule of the field film "Making the plant
+// better" (the same phrase "en maakt een FMECA", "and make an FMECA"); FMEA (read "fmeea") and failure-finding (read "fajluure") are said
+// in a variant of the beat, so the lessons and the other films keep their voice. Weibull-fit, risicomatrix, RCM, operationele
+// beschikbaarheid and the level words are read right; no other film's spoken text changes
+test('speak: the reliability intro film needs no SAY rule of its own', () => {
+  const nl = (s) => speakOf([s], 'nl');
+  assert.equal(nl('Je zet de onderdelen in een risicomatrix en maakt een FMECA.'), 'Je zet de onderdelen in een risicomatrix en maakt een F M E C A.');
+  assert.equal(speakOf(['You put the parts in a risk matrix and make an FMECA.'], 'en'), 'You put the parts in a risk matrix and make an F M E C A.');
+  // the film's own words keep their voice, so no rule touches them
+  for (const s of ['Het patroon in de storingsdata zie je met een Weibull-fit.', 'Het derde onderwerp is RCM en assetstrategie.', 'Je rekent de operationele beschikbaarheid uit.', 'Die test je met een failure-finding-taak.', 'Het tweede onderwerp is FMEA en kritikaliteit.']) assert.equal(nl(s), s);
+  for (const s of ['You see the pattern in the failure data with a Weibull fit.', 'You test it with a failure-finding task.', 'You work out the operational availability.']) assert.equal(speakOf([s], 'en'), s);
+});
