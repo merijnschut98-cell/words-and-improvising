@@ -4161,6 +4161,35 @@
         ],
         "vtt": "src/content/courses/films/pm.approach.intro.en.vtt"
       }
+    },
+    "pm.formats.intro": {
+      "poster": "src/content/courses/films/pm.formats.intro.jpg",
+      "nl": {
+        "dur": 167.1,
+        "bytes": 7317782,
+        "scenes": [
+          0,
+          16.07,
+          44.72,
+          69.47,
+          98.98,
+          125.58
+        ],
+        "vtt": "src/content/courses/films/pm.formats.intro.nl.vtt"
+      },
+      "en": {
+        "dur": 179,
+        "bytes": 7720176,
+        "scenes": [
+          0,
+          16.68,
+          47.48,
+          74.59,
+          107.3,
+          136.18
+        ],
+        "vtt": "src/content/courses/films/pm.formats.intro.en.vtt"
+      }
     }
   }
 }
