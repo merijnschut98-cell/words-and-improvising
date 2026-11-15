@@ -104,3 +104,5 @@ Outcome: accepted (merged as delivered), sent back N times, redone.
 | 15 Nov | Review: level opener texts | sonnet | n/a | n/a | n/a | accepted with fixes (68 content or term fixes, all openings varied); found that node validate.js did nothing from the command line and made it run every check; merged v297 |
 | 15 Nov | Render PM-20: negotiate, outside, portfolio, consult intros | sonnet | 63 | 63 min | 128,531 | accepted; every guard passed first time; procesingenieurs still unclear; merged v298 |
 | 15 Nov | Render PM-19: Dutch re-render after the voice fix (13 films) and scaled and IT-project intros | sonnet | 110 | 3 h 18 min | 207,686 | accepted; three lines reworded to pass the guard; 'IT en agile' still heard as HL by Whisper; merged v299 |
+| 15 Nov | Kit: label fit for long map labels in mapScene | sonnet | 62 | 12 min | 185,448 | accepted with fixes by its review |
+| 15 Nov | Review: kit label fit | opus | n/a | n/a | n/a | accepted with four fixes (halo clip on descenders, markup guards, $ in replace, generic for every map); 11 films need a re-render; merged v300 |

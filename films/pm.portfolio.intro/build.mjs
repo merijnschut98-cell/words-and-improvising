@@ -233,23 +233,7 @@ const hud = g('hud', `<rect data-k="pbg" class="pm-panel" x="322" y="12" width="
   + cueG('flow', g('flowB', '')) + cueG('decision', g('decisionB', '')));
 // the shared map, Programma’s en governance lit, in the stage (the film's closing scene; the stage script moves and fades it)
 const PF_PLACE = pmMap.places.find((p) => p.module === 'pm.portfolio');
-// The label of this place is as wide as its tile (213 units in Dutch and 218 in English of the tile's 220, at the map's 15-unit
-// label), so at the closing zoom its ends touch the tile's edges and its halo. mapSvg is pinned and the app's own, so this film
-// sets the two labels at 13 units (inline style on their text) and zooms to 1.7 instead of 1.5: the label is still 22 units
-// on the stage (13 * 1.7), the tile is 374 of the stage's 640 wide, and the build asserts the drawing it edits and the room
-// that is left on each side of the label; the baseline moves up two units so the descenders keep 4 units clear of the tile's
-// bottom border at the larger zoom.
-const LABEL_STYLE = 13;
-const LABEL_Y = 96; // 2 units up: 7 units under the baseline to the tile's bottom border (103), the plinth ends at 86
-const labelNl = '<text class="map-label" text-anchor="middle"><tspan x="210" y="98">Programma’s en governance</tspan></text>';
-const labelEn = '<text class="map-label" text-anchor="middle"><tspan x="210" y="98">Programmes and governance</tspan></text>';
-const MAP0_SVG = await mapScene({ subject: 'pm', highlight: ['pm.portfolio'] });
-assert(MAP0_SVG.split(labelNl).length === 2 && MAP0_SVG.split(labelEn).length === 2, 'the shared map draws the labels of Programma’s en governance as this film expects');
-assert(PF_PLACE.x + PF_PLACE.w / 2 === 210, 'the place is centred on x 210, as the labels are');
-for (const t of ['Programma’s en governance', 'Programmes and governance']) assert((PF_PLACE.w - (textUnits(t) * LABEL_STYLE) / 22) / 2 >= 14, `"${t}" has 14 units clear on each side of the label at ${LABEL_STYLE} units`);
-const fitLabel = (l) => l.replace('<text ', `<text style="font-size:${LABEL_STYLE}px" `).replace('y="98"', `y="${LABEL_Y}"`);
-const MAP = MAP0_SVG.replace(labelNl, fitLabel(labelNl)).replace(labelEn, fitLabel(labelEn))
-  .replace('<svg class="subject-map"', '<svg class="subject-map" width="640" height="520"');
+const MAP = (await mapScene({ subject: 'pm', highlight: ['pm.portfolio'] })).replace('<svg class="subject-map"', '<svg class="subject-map" width="640" height="520"');
 const MAPZ = [PF_PLACE.x + PF_PLACE.w / 2, PF_PLACE.y + PF_PLACE.h / 2];
 assert(MAP.includes(`data-cue="${mapCue('pm.portfolio')}"`), 'the map lights pm.portfolio as a cue group');
 
