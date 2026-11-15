@@ -959,7 +959,15 @@ const SAY = {
     // dashboard", pm.devops.intro and the lessons keep their voice. PLC-kast, MES, AI, KPI, machinedata, dataplatform,
     // anomaliedetectie, digitale tweelingen and the level words are read right; no other film's spoken text changes
     [/(?<=\bde PLC-kast met een )edge gateway\b/g, 'etsj geitwee'], [/(?<=\bvolg je de lijn op een )dashboard\b/g, 'desjbord'],
-    [/(?<=\bde cijfers op in een )datawarehouse\b/g, 'data wèrhaus'], [/(?<=\bWerkkennis komen machinedata, )Power BI\b/g, 'Pauwer B I']],
+    [/(?<=\bde cijfers op in een )datawarehouse\b/g, 'data wèrhaus'], [/(?<=\bWerkkennis komen machinedata, )Power BI\b/g, 'Pauwer B I'],
+    // the Leading people intro (pm.lead.intro), PM-30, a self-contained group at the end of the Dutch list, checked with phonemes
+    // through Piper's nl_NL-alex bridge and the large-v3-turbo transcript of the voice (5 to 6 spellings, 4 to 6 takes each): the
+    // two names as a Dutch coach says them in English. "Redikal Kander" (rˈeːdikˌɑl kˈɑndər) was heard "Radical Kander" 2 of 4 and
+    // "Redi Kalkander" 2 of 4; "Rèddikal Kender" (rˈɛdikˌɑl kˈɛndər) "Radical Kender" 5 of 6. "Mor pais" (mˈɔr pˈɑjs) was heard
+    // "molpies" and "modpies"; "More paiz" (mˈoːrə pˈɑjs, "more pies") "morepies", "more pice" or "more pais" 6 of 6. Each rule
+    // keeps to the intro's own phrase (it runs after the earlier rules for the two names), so pm.intake.firsttalk and
+    // pm.outside.jargon keep their voice for MORE PIES; no other film's spoken text changes
+    [/\ben Redikal Kander\b/g, 'en Rèddikal Kender'], [/(?<=\bactief luisteren en )Mor pais\b/g, 'More paiz']],
   en: [[/\brpm\b/g, 'revolutions per minute'], [/\bmm\/min\b/g, 'millimetres per minute'], [/\bm\/min\b/g, 'metres per minute'], [/µm\b/g, 'micrometres'],
     [/€\s?(\d[\d,]*(?:\.\d+)?)/g, '$1 euros'], [/(\d)\.0(?![\d])/g, '$1'], [/(\d)\s?mm\b/g, '$1 millimetres'], [/(\d)\s?min\b/g, '$1 minutes'], [/(\d)\s?%/g, '$1 percent'],
     [/Ø\s*/g, 'diameter '], [/(\d)\+(\d)/g, '$1 plus $2'], [/\s×\s/g, ' times '], [/\s\/\s/g, ' divided by '], [/\s=\s/g, ' is '], [/°/g, ' degrees'], [/\bRa\b/g, 'R a'], [/’/g, "'"],
