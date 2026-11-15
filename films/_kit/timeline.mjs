@@ -876,6 +876,22 @@ const SAY = {
     // booglassen, puntlassen, laslens, penetrantonderzoek, ultrasoon onderzoek, statische menger, lasmal, positioner, clinchen
     // and the level words are read right; no other film's spoken text changes
     [/\bvaak een schroefspindel\b/g, 'vaak een schroef-spindul'], [/\bvaak een kappenfrees\b/g, 'vaak een kappen-frees'],
+    // render batch PM-26, a self-contained group at the end of the Dutch list: Whisper (large-v3-turbo) heard the Piper voice
+    // say "G-code" as "geen code", "werkstuknulpunt" as "werkstukknoppunt", "centreerboor" as "centraalboor" and "doet een
+    // lektest" as "doet het lekkerst". Several spellings were tried in the film's own sentence: "de G-code" (the article makes
+    // it heard right every time; bare G-code and gee-code after "vaak" stay "geen code"), "werkstuk nul-punt", "centreer-boor"
+    // and "lek-test". Only the machining intro's and the energy film's phrases, by what stands before the word (the nulpunt
+    // rule first, while G-code is still unchanged): eng.machining.cnc, eng.machining.drilling and eng.power.air say the words
+    // in other sentences and keep their voice
+    [/(?<=\bBij CNC gebruiken we vaak G-code en een )werkstuknulpunt\b/g, 'werkstuk nul-punt'], [/(?<=\bBij CNC gebruiken we vaak )G-code\b/g, 'de G-code'],
+    [/(?<=\bBij boren gebruiken we vaak een )centreerboor\b/g, 'centreer-boor'], [/(?<=\bdoet een )lektest\b/g, 'lek-test'],
+    // the module intro film "Process engineering basics" (eng.process.intro), a self-contained group at the end of the Dutch
+    // list, checked with phonemes through Piper's nl_NL-alex bridge: espeak-ng reads cascaderegeling as "kaskaadiereegeling"
+    // (said cascade-regeling) and pinch-analyse with the ch of "lachen" (said pintsj-analyse), only in the intro's closing
+    // level sentences ("buffertanks, cascaderegeling, standaardiseren", "pinch-analyse en knelpunten"). Batch and unit
+    // operations and Coriolismeter have rules above; Pt100, blokschema, apparaatcode, massabalans, proeffabriek, vuleenheid,
+    // kolf, ketel and the level words are read right; no other film's spoken text changes
+    [/\bcascaderegeling, standaardiseren\b/g, 'cascade-regeling, standaardiseren'], [/\bpinch-analyse en knelpunten\b/g, 'pintsj-analyse en knelpunten'],
     // the module intro film "From drawing to control" (eng.drawings.intro), a self-contained group at the end of the Dutch
     // list, checked with phonemes through Piper's nl_NL-alex bridge: espeak-ng reads tagnummer with the Dutch g of "tag"
     // (tach-nummer; said tek-nummer) and stresses operator on the first syllable (said ope-raator), only in the intro's two
