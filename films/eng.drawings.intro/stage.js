@@ -130,7 +130,7 @@ const STAGE = (() => {
     + (act ? path(`M${x + 12} ${y}H${x + 29}`, 'pm-link') + circ(x + 40, y, 11, cls) : '');
   // an instrument bubble: a circle with its letters and loop number, optionally in a square (on the screen of the control system)
   const bubble = (x, y, r, a, b2, square) => (square ? rect(x - 36, y - 36, 72, 72, 'pm-card', 6) : '') + circ(x, y, r, square ? 'pm-tile' : 'pm-card')
-    + txt(x, y - 2, a, 22, 'middle', 'pm-txt') + txt(x, y + 21, b2, 22, 'middle', 'pm-txt');
+    + (a ? txt(x, y - 2, a, 22, 'middle', 'pm-txt') + txt(x, y + 21, b2, 22, 'middle', 'pm-txt') : '');
 
   // ---- s1: the drawing and the loop, and what the module is about
   // from a drawing to a plate: the sheet with its front view, side view and title block, then the plate with four holes
@@ -185,16 +185,16 @@ const STAGE = (() => {
     return t;
   }
 
-  // ---- s4: the P&ID of the tank. First the equipment and the pipes, then the instruments with their tag numbers and the signal lines.
+  // ---- s4: the P&ID of the tank. First the equipment and the pipes, then the instruments as empty bubbles with the signal lines (the tag numbers are drawn in the beat that names them, in tools).
   function pidDrawing(full) {
     let s = rect(420, 160, 80, 120, 'pm-card', 12) + txt(460, 226, 'T-101', 22, 'middle', 'pm-txt')
       + path('M460 96V112M460 140V160', 'pm-pipe') + valve(460, 126, full)
       + path('M460 280V344H600', 'pm-pipe') + circ(528, 344, 15, 'pm-card') + path('M522 336L538 344L522 352Z', 'pm-chip') + path('M594 337L604 344L594 351', 'pm-arrow')
       + txt(528, 378, 'P-101', 22, 'middle', 'pm-mute');
     if (full) {
-      s += path('M406 215H420', 'pm-link') + bubble(376, 215, 30, 'LT', '101', false) + bubble(576, 206, 30, 'LIC', '101', true)
+      s += path('M406 215H420', 'pm-link') + bubble(376, 215, 30, '', '', false) + bubble(576, 206, 30, '', '', true)
         + path('M376 245V300H576V242', 'pm-dash') + path('M576 170V100H500V115', 'pm-dash')
-        + txt(438, 134, 'LV 101', 22, 'end', 'pm-mute');
+        ;
     }
     return s;
   }

@@ -30,7 +30,7 @@
 //      operator walks along the tank with the drawing, a valve that is not on it is a surprise
 //                                                                               → .pid (.plc)
 //   s5 Regelkringen en PID: every filling lowers the level; a sensor measures it, the controller compares it with the
-//      target and steers the valve; a PID controller is set up; the level stays at its value and frame, plate and
+//      target and steers the valve; a PID controller is used; the level stays at its value and frame, plate and
 //      tank stand together on one drawing (where the field film picks the story up)
 //                                                                               → .loop (.pid_control)
 //   s6 the shared Engineering map (the kit's mapScene) with Drawings and control lit, then the module's four
@@ -315,7 +315,7 @@ const spec = {
       beats: [
         { nl: 'Vierde onderwerp: Regelkringen en PID. Bij elke vulling zakt het niveau in de tank.', en: 'Fourth topic: Control loops and PID. With every filling the level in the tank drops.', focus: ['tCtl', 'sA', 'tank', 'screen'] },
         { nl: 'Een sensor meet het niveau. De regelaar vergelijkt het met de streefwaarde en stuurt de klep.', en: 'A sensor measures the level. The controller compares it with the target and steers the valve.', focus: ['sB', 'lt', 'screen', 'valve'] },
-        { nl: 'We stellen vaak een {t:P, I, D|PID-regelaar} in.', en: 'We often set up a {t:P, I, D|PID controller}.', ...TOOL('P, I, D'), focus: ['tool1', 'screen', 'op'] },
+        { nl: 'We gebruiken vaak een {t:P, I, D|PID-regelaar}.', en: 'We often use a {t:P, I, D|PID controller}.', ...TOOL('P, I, D'), focus: ['tool1', 'screen', 'op'] },
         { nl: 'Het niveau blijft op zijn waarde. Frame, plaat en tank staan nu samen op één tekening.', en: 'The level stays at its value. Frame, plate and tank now stand together on one drawing.', focus: ['ship', 'tank', 'sheet'] },
       ],
     },
@@ -324,7 +324,7 @@ const spec = {
       beats: [
         { nl: 'De hele kaart: Tekeningen en regeling is het vierde station van Dingen maken.', en: 'The whole map: Drawings and control is the fourth station of Making things.', focus: mapCue('eng.drawings') },
         { nl: 'Elk onderwerp heeft vier niveaus.', en: 'Every topic has four levels.', focus: 'route' },
-        { nl: 'Begin bij Een technische tekening lezen, op niveau Basis. Die les laat zien hoe je een tekening leest.', en: 'Start with Reading a technical drawing, at Basics level. That lesson shows how to read a drawing.', focus: ['tDraw', 'start'] },
+        { nl: 'Begin bij Een technische tekening lezen, op niveau Basis. Die les laat zien waar je op een tekening begint.', en: 'Start with Reading a technical drawing, at Basics level. That lesson shows where to begin on a drawing.', focus: ['tDraw', 'start'] },
         { nl: 'Op niveau Werkkennis: samenstellingstekeningen, GD&T, de PLC en het gevoel achter regelen.', en: 'At Working knowledge level: assembly drawings, GD&T, the PLC and the feel for control.', focus: 'lv2' },
         { nl: 'Op niveau Gevorderd: schroefdraad en ruwheid, vormtoleranties, elektrische schema’s en inregelen.', en: 'At Advanced level: threads and roughness, form tolerances, electrical diagrams and tuning a loop.', focus: 'lv3' },
         { nl: 'Op niveau Expert: tekeningbeheer, tekeninggeschillen, beveiligingen en kringprestaties.', en: 'At Expert level: drawing control, drawing disputes, protection functions and loop performance.', focus: 'lv4' },
@@ -393,8 +393,8 @@ const SAY = [
       en: 'The fourth topic is Control loops and PID. With every filling the level in the tank drops, but it has to stay at its value.' },
     { nl: 'Een sensor meet het niveau. De regelaar vergelijkt het met de streefwaarde en stuurt de klep open of dicht.',
       en: 'A sensor measures the level. The controller compares it with the target and opens or closes the valve.' },
-    { nl: 'Daarbij stellen we vaak een PID-regelaar in.',
-      en: 'There we often set up a PID controller.' },
+    { nl: 'Daarbij gebruiken we vaak een PID-regelaar.',
+      en: 'There we often use a PID controller.' },
     { nl: 'Het niveau blijft op zijn waarde. Nu kunnen de makers verder, want frame, plaat en tank staan samen op één tekening.',
       en: 'The level stays at its value. Now the makers can go on, because frame, plate and tank are together on one drawing.' },
   ],
@@ -403,8 +403,8 @@ const SAY = [
       en: 'This is the whole map. Drawings and control is the fourth station of Making things.' },
     { nl: 'Elk onderwerp heeft vier niveaus.',
       en: 'Every topic has four levels.' },
-    { nl: 'Begin bij Een technische tekening lezen, op niveau Basis. Die les laat zien hoe je een tekening leest.',
-      en: 'Start with Reading a technical drawing, at Basics level. That lesson shows how to read a drawing.' },
+    { nl: 'Begin bij Een technische tekening lezen, op niveau Basis. Die les laat zien waar je op een tekening begint.',
+      en: 'Start with Reading a technical drawing, at Basics level. That lesson shows where to begin on a drawing.' },
     { nl: 'Op niveau Werkkennis gaat het over samenstellingstekeningen, GD en T, de PLC en het gevoel achter regelen.',
       en: 'At Working knowledge level it is about assembly drawings, G D and T, the PLC and the feel for control.' },
     { nl: 'Op niveau Gevorderd gaat het over schroefdraad en ruwheid, vormtoleranties, elektrische schema’s en inregelen.',
