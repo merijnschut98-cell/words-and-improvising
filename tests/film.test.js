@@ -1342,6 +1342,26 @@ test('speak variant: the making field film words in Dutch', () => {
   assert.equal(speakOf([en], 'en'), en);
 });
 
+// The field film "Automation and IT" (eng.field.digital), checked with espeak-ng phonemes through Piper's nl_NL-alex
+// bridge: it reads Cybersecurity as "sie-ber-see-ku-ri-ti" (said Saibersikjoeriti), switch with the x of "lachen" (said
+// switsj), VLAN as one word "vlan" (said vee-lan, also in English), tags with that x (said tèks), and edge gateway as
+// "edge-gaa-te-waaj" (said etsj geitwee) and a lone dashboard as "dasj-boo-art" (said desjbord). The phrase rules keep
+// to this film's sentences, since pm.devops.intro and others say dashboard in the singular. PLC, SCADA, IT, OT, IP-adres,
+// OPC-server, zones and conduits (rule above), poka-yoke, foto-elektrische sensor, ISA-95, ERP and the MES (rule above)
+// are read right; no other film's spoken text changes
+test('speak variant: the digital field film words in Dutch and English', () => {
+  const nl = (s) => speakOf([s], 'nl');
+  assert.equal(nl('Het derde station is Cybersecurity.'), 'Het derde station is Saibersikjoeriti.');
+  assert.equal(nl('Je gebruikt een switch en een VLAN.'), 'Je gebruikt een switsj en een vee-lan.');
+  assert.equal(nl('Je gebruikt een OPC-server en tags.'), 'Je gebruikt een OPC-server en tèks.');
+  assert.equal(nl('Je gebruikt een edge gateway en een dashboard.'), 'Je gebruikt een etsj geitwee en een desjbord.');
+  // elsewhere the words keep their voice
+  assert.equal(nl('Bij DORA gebruiken we vaak een dashboard en een waardestroomanalyse.'), 'Bij DORA gebruiken we vaak een dashboard en een waardestroomanalyse.');
+  assert.equal(nl('Een switch in de kast. Hang een tag aan het slot, met tags erbij.'), 'Een switch in de kast. Hang een tag aan het slot, met tags erbij.');
+  assert.equal(speakOf(['You use a switch and a VLAN.'], 'en'), 'You use a switch and a vee-lan.');
+  assert.equal(speakOf(['A switch on the wall, and a VLAN on it.'], 'en'), 'A switch on the wall, and a VLAN on it.');
+});
+
 // The field film "Energy and the grid" (eng.field.energy), checked with espeak-ng phonemes through Piper's nl bridge: it
 // reads reflectiemeter with "reflek-tie" (a Dutch engineer says "reflexie"; said reflexiemeter, only in this film's phrase
 // "met een reflectiemeter"). Offerte, installateur, wachtrij, capaciteitskaart, beveiligingsrelais, loadflow, engineer

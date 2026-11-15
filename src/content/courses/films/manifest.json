@@ -3493,6 +3493,39 @@
         ],
         "vtt": "src/content/courses/films/pm.itproject.intro.en.vtt"
       }
+    },
+    "eng.field.making": {
+      "poster": "src/content/courses/films/eng.field.making.jpg",
+      "nl": {
+        "dur": 206,
+        "bytes": 8225266,
+        "scenes": [
+          0,
+          22.02,
+          38.12,
+          54.7,
+          75.26,
+          94.36,
+          111.98,
+          128.43
+        ],
+        "vtt": "src/content/courses/films/eng.field.making.nl.vtt"
+      },
+      "en": {
+        "dur": 227.9,
+        "bytes": 9048976,
+        "scenes": [
+          0,
+          24.65,
+          43.72,
+          62.13,
+          84.44,
+          106.74,
+          127.25,
+          146.24
+        ],
+        "vtt": "src/content/courses/films/eng.field.making.en.vtt"
+      }
     }
   }
 }

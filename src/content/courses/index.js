@@ -452,7 +452,7 @@ export const FIELDS = [
   { id: 'eng.field.digital', subject: 'eng',
     title: { en: 'Automation and IT', nl: 'Automatisering en IT' },
     blurb: { en: 'IT fundamentals, IT and OT on the shop floor, cybersecurity, lines and automation, and data for digital manufacturing.', nl: 'IT-fundamenten, IT en OT op de fabrieksvloer, cybersecurity, lijnen en automatisering, en data voor digitale productie.' },
-    modules: ['eng.itbasics', 'eng.ot', 'eng.cyber', 'eng.lines', 'eng.industry40'] },
+    modules: ['eng.itbasics', 'eng.ot', 'eng.cyber', 'eng.lines', 'eng.industry40'], film: 'eng.field.digital' },
 ];
 export const fieldOf = (moduleId, fields = FIELDS) => fields.find((f) => f.modules.includes(moduleId)) || null;
 

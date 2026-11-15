@@ -853,6 +853,15 @@ const SAY = {
     // above or are read right; no other film's spoken text changes
     [/\b([Ee]en|[Hh]et) frame(?=, een plaat| moet de hele| bestaat uit| na maanden| krom)/g, '$1 freem'], [/\bFrame(?=, plaat en tank)/g, 'Freem'],
     [/\bJij bent de engineer\b/g, 'Jij bent de entsjinier'],
+    // the field film "Automation and IT" (eng.field.digital), a self-contained group at the end of the Dutch list, checked
+    // with phonemes through Piper's nl_NL-alex bridge: espeak-ng reads Cybersecurity as "sie-ber-see-ku-ri-ti" (said
+    // Saibersikjoeriti), switch with the x of "lachen" (said switsj), VLAN as the word "vlan" (said vee-lan), tags with that
+    // x (said tèks), edge gateway as "edge-gaa-te-waaj" (said etsj geitwee) and a lone dashboard as "dasj-boo-art" (said
+    // desjbord). The phrase rules keep to this film's own sentences (pm.devops.intro says dashboard in the singular and
+    // other films say switch and tag). PLC, SCADA, IT, OT, OPC-server, zones and conduits and the MES have rules above or are
+    // read right. No other film's spoken text changes
+    [/\bCybersecurity\b/g, 'Saibersikjoeriti'], [/\bgebruikt een switch en een VLAN\b/g, 'gebruikt een switsj en een vee-lan'],
+    [/\bOPC-server en tags\b/g, 'OPC-server en tèks'], [/\bgebruikt een edge gateway en een dashboard\b/g, 'gebruikt een etsj geitwee en een desjbord'],
     // the field film "Energy and the grid" (eng.field.energy), a self-contained group at the end of the Dutch list, checked
     // with phonemes through Piper's nl_NL-alex bridge: espeak-ng reads reflectiemeter as "reflek-tie-meter" (said
     // reflexiemeter, only in "met een reflectiemeter"). Offerte, installateur, wachtrij, capaciteitskaart,
@@ -909,7 +918,9 @@ const SAY = {
     [/\bLeSS\b/g, 'Less'],
     // the IT projects intro (pm.itproject.intro): SaaS as the word "sass" (espeak-ng's English reads "sah S"), and UAT as
     // letters in this film's one phrase only (it reads "you-at"; the UAT film keeps its voice)
-    [/\bSaaS\b/g, 'sass'], [/\bIn the UAT, the user acceptance test\b/g, 'In the U A T, the user acceptance test']],
+    [/\bSaaS\b/g, 'sass'], [/\bIn the UAT, the user acceptance test\b/g, 'In the U A T, the user acceptance test'],
+    // the field film "Automation and IT" (eng.field.digital): VLAN as "vee-lan" (espeak-ng reads the word "vlan")
+    [/\bswitch and a VLAN\b/g, 'switch and a vee-lan']],
 };
 export const sayable = (text, lang) => (SAY[lang] || []).reduce((s, [re, w]) => s.replace(re, w), text);
 // The words the voice says: no English gloss, and with a language, units as words.
