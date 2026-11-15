@@ -1377,3 +1377,20 @@ test('speak variant: the energy field film words in Dutch', () => {
   const en = 'You find cable faults with a reflectometer. You are the engineer.';
   assert.equal(speakOf([en], 'en'), en);
 });
+
+// The module intro film "One frame, six ways of joining" (eng.joining.intro), checked with espeak-ng phonemes through Piper's
+// nl bridge: it stresses schroefspindel on the last syllable ("schroefspinDEL"; said schroef-spindul) and puts the stress of
+// kappenfrees on frees ("kappenFREES"; said kappen-frees, both words stressed), both only in the intro's tool sentences. The rest of
+// its words are read right (MIG, MAG and TIG have a rule above; penetrantonderzoek, ultrasoon onderzoek, statische menger, lasmal
+// and positioner are fine); no other film's spoken text changes (the bolting film keeps "een schroefspindel draait", the spot film
+// its kappenfrees)
+test('speak variant: the joining intro film words in Dutch', () => {
+  const nl = (s) => speakOf([s], 'nl');
+  assert.equal(nl('Bij bouten gebruiken we vaak een schroefspindel.'), 'Bij bouten gebruiken we vaak een schroef-spindul.');
+  assert.equal(nl('Bij puntlassen gebruiken we vaak een kappenfrees.'), 'Bij puntlassen gebruiken we vaak een kappen-frees.');
+  // elsewhere the words keep their voice
+  assert.equal(nl('In de fabriek draait een schroefspindel de bout aan.'), 'In de fabriek draait een schroefspindel de bout aan.');
+  assert.equal(nl('De kappenfrees snijdt de kap weer rond.'), 'De kappenfrees snijdt de kap weer rond.');
+  const en = 'For bolts we often use a nutrunner. For spot welding we often use a tip dresser.';
+  assert.equal(speakOf([en], 'en'), en);
+});
