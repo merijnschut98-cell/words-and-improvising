@@ -276,6 +276,15 @@ export const MODULES = [
     ],
     lessons: ['pm.plan.wbs', 'pm.plan.scope', 'pm.plan.products', 'pm.plan.control', 'pm.plan.schedule', 'pm.plan.method', 'pm.plan.network', 'pm.plan.compress', 'pm.plan.estimate', 'pm.plan.techniques', 'pm.plan.spread', 'pm.plan.chain', 'pm.plan.risk', 'pm.plan.raci', 'pm.plan.capacity', 'pm.plan.riskvalue'],
     questions: { 'pm.plan.wbs': 4, 'pm.plan.scope': 4, 'pm.plan.products': 4, 'pm.plan.control': 4, 'pm.plan.schedule': 4, 'pm.plan.method': 4, 'pm.plan.network': 4, 'pm.plan.compress': 4, 'pm.plan.estimate': 4, 'pm.plan.techniques': 4, 'pm.plan.spread': 4, 'pm.plan.chain': 4, 'pm.plan.risk': 4, 'pm.plan.raci': 4, 'pm.plan.capacity': 4, 'pm.plan.riskvalue': 4 } },
+  { id: 'pm.formats', subject: 'pm', track: 'project', level: 2, title: { en: 'Formats and meetings', nl: 'Werkvormen en overleggen' }, blurb: { en: 'Kick-off, workshop, brown paper, brainstorm and the shop floor: which format when, and how to prepare and lead it.', nl: 'Kick-off, werksessie, brown paper, brainstorm en de vloer op: welk format wanneer, en hoe je het voorbereidt en leidt.' },
+    topics: [
+      { id: 'meetings', title: { en: 'Which meeting when', nl: 'Welk overleg wanneer' }, levels: ['pm.formats.catalogue', 'pm.formats.kickoff', 'pm.formats.system', 'pm.formats.governance'] },
+      { id: 'workshop', title: { en: 'Designing and leading a workshop', nl: 'Een werksessie ontwerpen en leiden' }, levels: ['pm.formats.workshop', 'pm.formats.brownpaper', 'pm.formats.design', 'pm.formats.facilitation'] },
+      { id: 'ideas', title: { en: 'Ideas and decisions in a group', nl: 'Ideeën en besluiten in de groep' }, levels: ['pm.formats.diverge', 'pm.formats.session', 'pm.formats.decide', 'pm.formats.legitimacy'] },
+      { id: 'floor', title: { en: 'Formats on the floor', nl: 'Werkvormen op de vloer' }, levels: ['pm.formats.floor', 'pm.formats.interviews', 'pm.formats.demo', 'pm.formats.kaizenevent'] },
+    ],
+    lessons: ['pm.formats.catalogue', 'pm.formats.kickoff', 'pm.formats.system', 'pm.formats.governance', 'pm.formats.workshop', 'pm.formats.brownpaper', 'pm.formats.design', 'pm.formats.facilitation', 'pm.formats.diverge', 'pm.formats.session', 'pm.formats.decide', 'pm.formats.legitimacy', 'pm.formats.floor', 'pm.formats.interviews', 'pm.formats.demo', 'pm.formats.kaizenevent'],
+    questions: { 'pm.formats.catalogue': 4, 'pm.formats.kickoff': 4, 'pm.formats.system': 4, 'pm.formats.governance': 4, 'pm.formats.workshop': 4, 'pm.formats.brownpaper': 4, 'pm.formats.design': 4, 'pm.formats.facilitation': 4, 'pm.formats.diverge': 4, 'pm.formats.session': 4, 'pm.formats.decide': 4, 'pm.formats.legitimacy': 4, 'pm.formats.floor': 4, 'pm.formats.interviews': 4, 'pm.formats.demo': 4, 'pm.formats.kaizenevent': 4 } },
   { id: 'pm.run', subject: 'pm', track: 'project', level: 2, intro: 'pm.run.intro', title: { en: 'Run', nl: 'Uitvoeren' }, blurb: { en: 'Keep a project moving: steering and status, scope and change, the team and its meetings, issues and escalation.', nl: 'Een project in beweging houden: sturen en status, scope en wijzigingen, het team en zijn overleggen, issues en escalatie.' },
     topics: [
       { id: 'steer', title: { en: 'Steering and reporting', nl: 'Sturen en rapporteren' }, levels: ['pm.run.status', 'pm.run.steerco', 'pm.run.earned', 'pm.run.exception'] },
@@ -432,8 +441,8 @@ export function placeOf(lessonId, modules = MODULES) {
 export const FIELDS = [
   { id: 'pm.field.lifecycle', subject: 'pm',
     title: { en: 'A project from start to finish', nl: 'Een project van begin tot eind' },
-    blurb: { en: 'Approach, intake, plan, run, land and close: the road every project walks.', nl: 'Aanpak, intake, plannen, uitvoeren, landen en afsluiten: de weg die elk project loopt.' },
-    modules: ['pm.approach', 'pm.intake', 'pm.plan', 'pm.run', 'pm.land', 'pm.close'], film: 'pm.field.lifecycle' },
+    blurb: { en: 'Approach, intake, plan, formats, run, land and close: the road every project walks.', nl: 'Aanpak, intake, plannen, werkvormen, uitvoeren, landen en afsluiten: de weg die elk project loopt.' },
+    modules: ['pm.approach', 'pm.intake', 'pm.plan', 'pm.formats', 'pm.run', 'pm.land', 'pm.close'], film: 'pm.field.lifecycle' },
   { id: 'pm.field.people', subject: 'pm',
     title: { en: 'People and influence', nl: 'Mensen en invloed' },
     blurb: { en: 'When it is stuck, how you lead, negotiate, work outside your field and steer on performance.', nl: 'Als het vastloopt, hoe je leidt, onderhandelt, buiten je vak werkt en op prestaties stuurt.' },

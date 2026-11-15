@@ -87,7 +87,7 @@ try {
         if (m.place < 43.5 || m.placeH < 43.5) problems.push(`${tag}: a place is ${m.place.toFixed(1)} x ${m.placeH.toFixed(1)}px, under 44`);
         if (m.spill) problems.push(`${tag}: ${m.spill} labels leave their place`);
         if (m.phone && m.maxLines > 3) problems.push(`${tag}: a label has ${m.maxLines} lines`);
-        const count = subject === 'eng' ? 26 : 16;
+        const count = subject === 'eng' ? 26 : 18;
         if (m.places !== count || m.buttons !== count || m.next > 1) problems.push(`${tag}: ${m.places} places, ${m.buttons} buttons, ${m.next} next`);
         // Engineering: four zones, and the first step of a new learner is marked once
         if (subject === 'eng' && (m.zones !== 4 || m.next !== 1)) problems.push(`${tag}: ${m.zones} zones, ${m.next} next marks`);
