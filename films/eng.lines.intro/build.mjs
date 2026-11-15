@@ -26,8 +26,8 @@
 //      before any detail: six topics in three groups (the line and its robots; what keeps it running well: error-proofing,
 //      variants, control; the business case)
 //   s2 Lijnontwerp: follow one carton and count the stations (Basis, .linebasics); the slowest station sets the pace of
-//      the line (the bottleneck); the tool is the conveyor, the most tool-like term of a topic that teaches reading a line
-//      (no instrument or document among its terms; the stopwatch is in the text, not a term)
+//      the line (the bottleneck); the tool is the signal tower (Basis, .linebasics), the one real thing you read off a line
+//      (the conveyor is only the belt that is already in the room; cycle time and takt are measures, the stopwatch is in the text)
 //   s3 Robots: an arm with usually six axes and a gripper (Basis, .robotbasics); a robot could put the cartons on the belt;
 //      the tool is the teach pendant (you teach positions with it)
 //   s4 Foutvrij maken: the unit fills only when a carton stands under the plate, the sensor pair sees it, without it
@@ -36,10 +36,12 @@
 //   s5 Varianten en omstellen: a variant is a version of the same product, changeover is switching to the next one and the
 //      line makes nothing meanwhile (Basis, .variants); the tool is the recipe (Werkkennis, .linechange)
 //   s6 Besturing en data: a machine has eyes, a brain and hands: sensor, PLC, actuator (Basis, .plc); the PLC is known from
-//      the other digital modules, this module adds the logic for the line; the tool is the ladder diagram (Basis, .plc).
+//      eng.ot.intro (it sends no word of the OT stack here), this module adds the logic for the line; the tool is the
+//      ladder diagram (Basis, .plc).
 //      Machine safety is the Werkkennis level of this topic and is said in the closing, not as a tool
 //   s7 Businesscase: whether automating pays depends on labour, volume, variation and quality (Basis, .autobasics); the
-//      tool is the payback time (Werkkennis, .payback); the story ends where the field film picks it up (the numbers of
+//      tool is the payback time (Werkkennis, .payback: the calculation that answers whether the cell earns its cost back,
+//      "reken uit"; the business case itself is the topic's name, and Basis has only measures and a company); the story ends where the field film picks it up (the numbers of
 //      the line), in the last topic scene
 //   s8 the shared Engineering map (the kit's mapScene) with Lines and automation lit, then the module's six topics with
 //      their levels as columns, where to start, and what each later level adds, in the app's level words
@@ -90,9 +92,9 @@ has('eng.lines.linebasics', ['Een assemblagelijn (assembly line) is een rij stat
 has('eng.lines.linebasics', ['An assembly line is a row of stations', 'workplaces where one fixed part of the work is done'], 'en');
 assert(MOD.blurb.nl.includes('Assemblagelijnen ontwerpen en verbeteren met automatisering'), 'the module blurb (nl) says what it is for');
 assert(MOD.blurb.en.includes('Designing and improving assembly lines with automation'), 'the module blurb (en) says what it is for');
-// s2: follow one product and count the stations; the slowest station sets the pace; the conveyor
-has('eng.lines.linebasics', ['volg dan één product van begin tot eind. Tel de stations', 'Het station met de langste cyclustijd is de bottleneck: de hele lijn kan niet sneller dan dat station', 'Transportband Een bewegende band of ketting']);
-has('eng.lines.linebasics', ['follow one product from start to finish. Count the stations', 'The station with the longest cycle time is the bottleneck: the whole line can go no faster than that station', 'Conveyor A moving belt or chain'], 'en');
+// s2: follow one product and count the stations; the slowest station sets the pace; the signal tower
+has('eng.lines.linebasics', ['volg dan één product van begin tot eind. Tel de stations', 'Het station met de langste cyclustijd is de bottleneck: de hele lijn kan niet sneller dan dat station', 'Signaalzuil De lampenpaal op een machine']);
+has('eng.lines.linebasics', ['follow one product from start to finish. Count the stations', 'The station with the longest cycle time is the bottleneck: the whole line can go no faster than that station', 'Stack light The lamp column on a machine'], 'en');
 // s3: an arm with usually six axes and a gripper; the teach pendant
 has('eng.lines.robotbasics', ['Een industriële robot is een arm op een vaste voet', 'De meeste robots op een lijn hebben er zes', 'een grijper', 'Posities leer je in met de teach pendant']);
 has('eng.lines.robotbasics', ['An industrial robot is an arm on a fixed base', 'Most robots on a line have six', 'a gripper', 'Positions are taught with the teach pendant'], 'en');
@@ -200,7 +202,7 @@ const world = [
 // schemas of each beat. The shared map (the kit's mapScene) sits under the panel; its place Lines and automation is a
 // cue group of its own (map-lines).
 const TILE = { design: 'tDesign', robots: 'tRobots', errorproof: 'tErr', variants: 'tVar', control: 'tCtl', business: 'tBiz' };
-const PANEL = ['flowS', 'defS', 'grpA', 'grpB', 'grpC', 'staS', 'botS', 'robS', 'errS', 'eyeS', 'spillS', 'varS', 'chgS', 'ctlS', 'logS', 'bizS', 'fourS', 'payS', 'nextS',
+const PANEL = ['flowS', 'defS', 'grpA', 'grpB', 'grpC', 'staS', 'botS', 'robS', 'errS', 'eyeS', 'spillS', 'varS', 'chgS', 'ctlS', 'logS', 'fourS', 'payS', 'nextS',
   'tool1', 'tool2', 'lv1', 'lv2', 'lv3', 'lv4', 'start'];
 const tiles = ORDER.map((id, i) => cueG(TILE[id], g(`r${i}`, ''))).join('');
 const hud = g('hud', '<rect data-k="pbg" class="pm-panel" x="322" y="12" width="308" height="376" rx="10"/>' + g('pHead', '')
@@ -299,19 +301,19 @@ const spec = {
     {
       id: 's1', level: 1, dur: DURS[0], still: 0.9, title: { nl: 'De lijn en de route', en: 'The line and the route' },
       beats: [
-        { nl: 'Lijn 3 is een rij stations. Op elk station gebeurt één vast deel van het werk.', en: 'Line 3 is a row of stations. At each station one fixed part of the work happens.', focus: ['flowS', 'unit', 'line3'] },
+        { nl: 'Lijn 3 is een rij stations. Elk station doet één vast deel van het werk.', en: 'Line 3 is a row of stations. Each station does one fixed part of the work.', focus: ['flowS', 'unit', 'line3'] },
         { nl: 'Lijnen en automatisering leert je lijnen ontwerpen en verbeteren met automatisering.', en: 'Lines and automation teaches you to design and improve lines with automation.', focus: ['defS', 'line3'] },
-        { nl: 'Eerst de lijn zelf, met zijn ontwerp en zijn robots.', en: 'First the line itself, with its design and its robots.', focus: 'grpA' },
-        { nl: 'Dan wat de lijn goed laat draaien. Foutvrij maken, varianten en besturing.', en: 'Then what keeps the line running well. Error-proofing, variants and control.', focus: 'grpB' },
-        { nl: 'Tot slot de businesscase. Loont automatiseren wel?', en: 'Last the business case. Does automating pay off?', focus: 'grpC' },
+        { nl: 'Eerst de lijn zelf, met ontwerp en robots.', en: 'First the line itself, with design and robots.', focus: 'grpA' },
+        { nl: 'Dan wat hem goed laat draaien. Foutvrij maken, varianten en besturing.', en: 'Then what keeps it running well. Error-proofing, variants and control.', focus: 'grpB' },
+        { nl: 'Tot slot de businesscase.', en: 'Last the business case.', focus: 'grpC' },
       ],
     },
     {
       id: 's2', level: 1, dur: DURS[1], still: 0.9, title: { nl: 'Lijnontwerp', en: 'Line design' },
       beats: [
-        { nl: 'Het eerste onderwerp is Lijnontwerp. Je volgt één doos van begin tot eind en telt de stations.', en: 'The first topic is Line design. You follow one carton from start to end and count the stations.', focus: ['tDesign', 'staS', 'line3'] },
+        { nl: 'Het eerste onderwerp is Lijnontwerp. Je volgt één doos en telt de stations.', en: 'The first topic is Line design. You follow one carton and count the stations.', focus: ['tDesign', 'staS', 'line3'] },
         { nl: 'Het langzaamste station bepaalt hoe snel de hele lijn kan.', en: 'The slowest station decides how fast the whole line can go.', focus: ['botS', 'unit'] },
-        { nl: 'Voor het transport kies je bijvoorbeeld een {t:Transportband|transportband}.', en: 'For transport you might pick a {t:Conveyor|conveyor}.', ...TOOL('Transportband'), focus: ['tool1', 'line3'] },
+        { nl: 'Op een {t:Signaalzuil|signaalzuil} lees je af of een station draait, wacht of storing heeft.', en: 'On a {t:Stack light|stack light} you read whether a station is running, waiting or faulted.', ...TOOL('Signaalzuil'), focus: ['tool1', 'staS', 'line3'] },
       ],
     },
     {
@@ -326,8 +328,7 @@ const spec = {
       id: 's4', level: 1, dur: DURS[3], still: 0.9, title: { nl: 'Foutvrij maken', en: 'Error-proofing' },
       beats: [
         { nl: 'Het derde onderwerp is Foutvrij maken. De eenheid vult alleen als er een doos onder de plaat staat.', en: 'The third topic is Error-proofing. The unit only fills when a carton stands under the plate.', focus: ['tErr', 'errS', 'unit'] },
-        { nl: 'Twee sensoren over de band kijken of die doos er is.', en: 'Two sensors across the belt check that the carton is there.', focus: ['eyeS', 'sensor'] },
-        { nl: 'Staat er geen doos, dan loopt product de band op.', en: 'If there is no carton, product runs onto the belt.', focus: ['spillS', 'spill'] },
+        { nl: 'Twee sensoren zien of die doos er is. Anders loopt product de band op.', en: 'Two sensors see if that carton is there. Otherwise product runs onto the belt.', focus: ['eyeS', 'sensor', 'spillS', 'spill'] },
         { nl: 'Daartegen gebruik je {t:Poka-yoke|poka-yoke} en een {t:Interlock|interlock}.', en: 'Against this you use {t:Poka-yoke|poka-yoke} and an {t:Interlock|interlock}.', ...TOOL('Poka-yoke', 'Interlock'), focus: ['tool1', 'tool2', 'sensor'] },
       ],
     },
@@ -336,24 +337,22 @@ const spec = {
       beats: [
         { nl: 'Het vierde onderwerp is Varianten en omstellen. Een variant is een versie van hetzelfde product.', en: 'The fourth topic is Variants and changeover. A variant is a version of the same product.', focus: ['tVar', 'varS'] },
         { nl: 'Omstellen is wisselen naar de volgende variant. Zolang dat duurt, maakt de lijn niks.', en: 'Changeover is switching to the next variant. While it lasts, the line makes nothing.', focus: ['chgS', 'line3'] },
-        { nl: 'Daarvoor laadt de machine een {t:Recept|recept} met de instellingen.', en: 'For that the machine loads a {t:Recipe|recipe} with the settings.', ...TOOL('Recept'), focus: ['tool1', 'unit'] },
+        { nl: 'Daarvoor laadt de machine een {t:Recept|recept} met instellingen zoals snelheid en posities.', en: 'For that the machine loads a {t:Recipe|recipe} with settings like speed and positions.', ...TOOL('Recept'), focus: ['tool1', 'unit'] },
       ],
     },
     {
       id: 's6', level: 1, dur: DURS[5], still: 0.9, title: { nl: 'Besturing en data', en: 'Control and data' },
       beats: [
         { nl: 'Het vijfde onderwerp is Besturing en data. Een machine heeft ogen, een brein en handen.', en: 'The fifth topic is Control and data. A machine has eyes, a brain and hands.', focus: ['tCtl', 'ctlS'] },
-        { nl: 'De sensoren aan de band zijn de ogen. De PLC in de besturingskast is het brein.', en: 'The sensors at the belt are the eyes. The PLC in the control cabinet is the brain.', focus: ['ctlS', 'sensor', 'plc'] },
-        { nl: 'De PLC ken je al. Hier gaat het om de logica van de lijn.', en: 'You know the PLC already. Here it is about the logic of the line.', focus: ['logS', 'plc'] },
-        { nl: 'Die logica schrijf je als {t:Ladderdiagram|ladderdiagram}.', en: 'You write that logic as a {t:Ladder diagram|ladder diagram}.', ...TOOL('Ladderdiagram'), focus: ['tool1', 'plc'] },
+        { nl: 'Dat zijn de sensoren, de PLC in de kast en de actuatoren.', en: 'Those are the sensors, the PLC in the cabinet and the actuators.', focus: ['ctlS', 'sensor', 'plc'] },
+        { nl: 'De PLC ken je al. Hier schrijf je de logica van de lijn als {t:Ladderdiagram|ladderdiagram}.', en: 'You know the PLC already. Here you write the logic of the line as a {t:Ladder diagram|ladder diagram}.', ...TOOL('Ladderdiagram'), focus: ['tool1', 'logS', 'plc'] },
       ],
     },
     {
       id: 's7', level: 1, dur: DURS[6], still: 0.9, title: { nl: 'Businesscase', en: 'Business case' },
       beats: [
-        { nl: 'Het zesde onderwerp is Businesscase. Of automatiseren loont, hangt af van vier vragen.', en: 'The sixth topic is Business case. Whether automating pays depends on four questions.', focus: ['tBiz', 'bizS'] },
-        { nl: 'Het gaat om arbeid, volume, variatie en kwaliteit.', en: 'It comes down to labour, volume, variation and quality.', focus: ['fourS'] },
-        { nl: 'Of het zich terugbetaalt, reken je uit met de {t:Terugverdientijd|terugverdientijd}.', en: 'Whether it pays back, you work out with the {t:Payback time|payback time}.', ...TOOL('Terugverdientijd'), focus: ['tool1', 'payS'] },
+        { nl: 'Het zesde onderwerp is Businesscase. Het draait om arbeid, volume, variatie en kwaliteit.', en: 'The sixth topic is Business case. It comes down to labour, volume, variation and quality.', focus: ['tBiz', 'fourS'] },
+        { nl: 'Investering gedeeld door besparing per jaar. Zo reken je de {t:Terugverdientijd|terugverdientijd} uit.', en: 'Investment divided by saving per year. That is how you work out the {t:Payback time|payback time}.', ...TOOL('Terugverdientijd'), focus: ['tool1', 'payS'] },
         { nl: 'Zo draait lijn 3 geautomatiseerd. Daarna ga jij verder met de cijfers van de lijn.', en: 'That is how line 3 runs automated. Then you move on to the numbers of the line.', focus: ['nextS', 'jij'] },
       ],
     },
@@ -450,8 +449,8 @@ const css = PM_CSS + HALL_CSS + `
 
 
 const label = {
-  nl: 'Hal B van de fabriek, waar lijn 3 draait. Over het begin van de band staat de nieuwe vuleenheid, met een plaat boven de dozen. Tegen de achterwand een besturingskast, en over de band twee sensoren met een gestippelde straal bij de doos onder de plaat. Jij, de engineer, staat vooraan rechts. Rechts een paneel, gemarkeerd als voorbeeld of schema: een rij stations, wat de module is, de route in drie groepen, stations met een doos die meeloopt, het langzaamste station, een transportband, een robotarm met grijper en een teach pendant, een doos onder de plaat, twee sensoren, product op de band, poka-yoke en een interlock, twee varianten en een omstelgat, een recept met instellingen, sensor, PLC en actuator, de logica van de lijn als ladderdiagram, vier vragen over automatiseren, de terugverdientijd en wat daarna komt. Aan het eind de hele kaart van Engineering met Lijnen en automatisering verlicht, en de zes onderwerpen van de module met elk vier niveaus: Basis, Werkkennis, Gevorderd en Expert.',
-  en: 'Hall B of the factory, where line 3 runs. Over the start of the belt stands the new filling unit, with a plate above the cartons. Against the back wall a control cabinet, and across the belt two sensors with a dashed beam at the carton under the plate. You, the engineer, stand at the front right. At the right a panel, marked as an example or a diagram: a row of stations, what the module is, the route in three groups, stations with a carton moving along, the slowest station, a conveyor, a robot arm with a gripper and a teach pendant, a carton under the plate, two sensors, product on the belt, poka-yoke and an interlock, two variants and a changeover gap, a recipe with settings, sensor, PLC and actuator, the logic of the line as a ladder diagram, four questions about automating, the payback time and what comes next. At the end the whole map of Engineering with Lines and automation lit, and the module’s six topics with four levels each: Basics, Working knowledge, Advanced and Expert.',
+  nl: 'Hal B van de fabriek, waar lijn 3 draait. Over het begin van de band staat de nieuwe vuleenheid, met een plaat boven de dozen. Tegen de achterwand een besturingskast, en over de band twee sensoren met een gestippelde straal bij de doos onder de plaat. Jij, de engineer, staat vooraan rechts. Rechts een paneel, gemarkeerd als voorbeeld of schema: een rij stations, wat de module is, de route in drie groepen, stations met een doos die meeloopt, het langzaamste station, een signaalzuil, een robotarm met grijper en een teach pendant, een doos onder de plaat, twee sensoren, product op de band, poka-yoke en een interlock, twee varianten en een omstelgat, een recept met snelheid en posities, sensor, PLC en actuator, de logica van de lijn als ladderdiagram, vier vragen over automatiseren, de terugverdientijd en wat daarna komt. Aan het eind de hele kaart van Engineering met Lijnen en automatisering verlicht, en de zes onderwerpen van de module met elk vier niveaus: Basis, Werkkennis, Gevorderd en Expert.',
+  en: 'Hall B of the factory, where line 3 runs. Over the start of the belt stands the new filling unit, with a plate above the cartons. Against the back wall a control cabinet, and across the belt two sensors with a dashed beam at the carton under the plate. You, the engineer, stand at the front right. At the right a panel, marked as an example or a diagram: a row of stations, what the module is, the route in three groups, stations with a carton moving along, the slowest station, a stack light, a robot arm with a gripper and a teach pendant, a carton under the plate, two sensors, product on the belt, poka-yoke and an interlock, two variants and a changeover gap, a recipe with speed and positions, sensor, PLC and actuator, the logic of the line as a ladder diagram, four questions about automating, the payback time and what comes next. At the end the whole map of Engineering with Lines and automation lit, and the module’s six topics with four levels each: Basics, Working knowledge, Advanced and Expert.',
 };
 
 const { data } = await defineFilm(spec, { svg, script: stageScript, css, kitCss: k.ISO_CSS, label });

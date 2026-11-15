@@ -72,11 +72,11 @@ const STAGE = (() => {
   // ---- the room: you come in at the route of the opening and again at the end of the last topic (the story picks up
   // there). The sensors stand from the second beat of the error-proofing scene on (the sentence that names them), the
   // product on the belt only in the beat that says it, the PLC cabinet from the second beat of the control scene on
-  function room(si, b) {
+  function room(si, b, p) {
     show(E['o-eye'], (si === 3 && b >= 1) || (si > 3 && si < 7) ? 1 : 0);
-    show(E['o-spill'], si === 3 && b === 2 ? 1 : 0);
+    show(E['o-spill'], si === 3 && b === 1 && p >= 0.55 ? 1 : 0);
     show(E['o-plc'], (si === 5 && b >= 1) || si === 6 ? 1 : 0);
-    show(E['pp-jij'], (si === 0 && b >= 2) || (si === 6 && b === 3) ? 1 : 0);
+    show(E['pp-jij'], (si === 0 && b >= 2) || (si === 6 && b === 2) ? 1 : 0);
   }
 
   // ---- the route (s1, the last three beats): the module's six topics in three groups, the map before the detail. Each
@@ -133,7 +133,7 @@ const STAGE = (() => {
       + txt(346, 222, tr('verbeteren', 'improving', 260), 22, 'start', 'pm-mute');
   }
 
-  // ---- s2: follow one carton along three stations; the slowest station sets the pace; the conveyor.
+  // ---- s2: follow one carton along three stations; the slowest station sets the pace; the signal tower.
   function stationsDrawing(p) {
     const xs = [334, 440, 546];
     const chain = xs.map((x, i) => rect(x, 130, 72, 60, 'pm-card', 8) + txt(x + 36, 168, String(i + 1), 22, 'middle', 'pm-big')).join('') + arrow(408, 160, 438, 160) + arrow(514, 160, 544, 160);
@@ -145,8 +145,10 @@ const STAGE = (() => {
     return bars.map((bw, i) => txt(346, 134 + i * 46, tr('Station ' + (i + 1), 'Station ' + (i + 1), 100), 22, 'start', i === 1 ? 'pm-big' : 'pm-txt') + rect(450, 112 + i * 46, bw, 30, i === 1 ? 'pm-crit' : 'pm-bar', 5)).join('')
       + txt(334, 276, tr('bepaalt het tempo', 'sets the pace', 284), 22, 'start', 'pm-mute');
   }
-  function beltDrawing() {
-    return rect(334, 224, 284, 16, 'pm-bar', 4) + [350, 420, 490].map((x) => rect(x, 196, 30, 26, 'pm-tile', 4)).join('') + arrow(560, 262, 600, 262);
+  // a signal tower: three lamps on a base, read from the top (fault, waiting, running)
+  function towerDrawing() {
+    const w3 = [[tr('storing', 'fault', 150)], [tr('wacht', 'waiting', 150)], [tr('draait', 'running', 150)]];
+    return [0, 1, 2].map((i) => rect(350, 160 + i * 42, 44, 42, 'pm-card', 6) + txt(412, 189 + i * 42, w3[i][0], 22, 'start', 'pm-txt')).join('') + rect(340, 286, 64, 12, 'pm-bar', 4);
   }
 
   // ---- s3: a robot arm (base, link, link, wrist, gripper), a carton set down at the start of a belt, the teach pendant.
@@ -182,17 +184,15 @@ const STAGE = (() => {
       + txt(480, 206, tr('omstellen', 'changeover', 140), 22, 'middle', 'pm-txt') + txt(334, 262, tr('de lijn maakt niks', 'the line makes nothing', 284), 22, 'start', 'pm-mute');
   }
   function settingsDrawing() {
-    return tile(176, 'Snelheid', 'Speed') + tile(218, 'Posities', 'Positions') + tile(260, 'Checks', 'Checks');
+    return tile(176, 'Snelheid', 'Speed') + tile(218, 'Posities', 'Positions');
   }
 
   // ---- s6: sensor, PLC and actuator (eyes, brain, hands), the logic of the line, one rung of a ladder diagram.
+  // the first beat says only eyes, brain and hands; the second names sensor, PLC and actuator (nothing is labelled before it is named)
   function controlDrawing(b) {
     const hot = b === 1 ? [0, 1] : [];
     const cards = [['Sensor', 'Sensor', 'de ogen', 'the eyes'], ['PLC', 'PLC', 'het brein', 'the brain'], ['Actuator', 'Actuator', 'de handen', 'the hands']];
-    return cards.map((c, i) => card2(92 + i * 80, c[0], c[1], c[2], c[3], hot.includes(i) ? 'pm-crit' : 'pm-card')).join('') + arrow(476, 154, 476, 170) + arrow(476, 234, 476, 250);
-  }
-  function logicDrawing() {
-    return card2(100, 'De logica', 'The logic', 'wanneer doet wat', 'when to do what', 'pm-crit');
+    return cards.map((c, i) => (b === 0 ? card1(100 + i * 80, c[2], c[3]) : card2(92 + i * 80, c[0], c[1], c[2], c[3], hot.includes(i) ? 'pm-crit' : 'pm-card'))).join('') + arrow(476, b === 0 ? 148 : 154, 476, b === 0 ? 176 : 170) + arrow(476, b === 0 ? 228 : 234, 476, b === 0 ? 256 : 250);
   }
   function rungDrawing() {
     return path('M346 190V300M606 190V300M346 245H416M444 245H526M554 245H606', 'pm-link') + path('M416 227V263M444 227V263', 'pm-arrow') + dot(540, 245, 14)
@@ -200,9 +200,6 @@ const STAGE = (() => {
   }
 
   // ---- s7: whether automating pays (four questions), the payback time, and where the story goes on.
-  function bizDrawing() {
-    return card2(100, 'Automatiseren?', 'Automate?', 'vier vragen', 'four questions', 'pm-crit');
-  }
   function fourDrawing() {
     return tile(100, 'Arbeid', 'Labour') + tile(142, 'Volume', 'Volume') + tile(184, 'Variatie', 'Variation') + tile(226, 'Kwaliteit', 'Quality');
   }
@@ -258,7 +255,7 @@ const STAGE = (() => {
   function render(si, u) {
     const { b, p } = beatOf(si, u);
     camera(si, u, b, p);
-    room(si, b);
+    room(si, b, p);
     const o = { r: ['', '', '', '', '', ''] };
     for (const k2 of KEYS) o[k2] = '';
     let title = '';
@@ -280,12 +277,12 @@ const STAGE = (() => {
     } else if (si >= 1 && si <= 6) {
       title = HEAD[si - 1][0];
       o.r = strip(si - 1);
-      if (si === 1) Object.assign(o, { staS: b === 0 ? op(span(p, 0.05, 0.4), stationsDrawing(p)) : b === 2 ? op(span(p, 0.3, 0.7), beltDrawing()) : '', botS: fade(b, 1, p, bottleDrawing(), 0.1, 0.5), ...tools(b, p, 2, tr('Transportband', 'Conveyor', 260)) });
+      if (si === 1) Object.assign(o, { staS: b === 0 ? op(span(p, 0.05, 0.4), stationsDrawing(p)) : b === 2 ? op(span(p, 0.3, 0.7), towerDrawing()) : '', botS: fade(b, 1, p, bottleDrawing(), 0.1, 0.5), ...tools(b, p, 2, tr('Signaalzuil', 'Stack light', 260)) });
       if (si === 2) Object.assign(o, { robS: op(span(p, 0.05, 0.4), armDrawing(b, p)), ...tools(b, p, 2, tr('Teach pendant', 'Teach pendant', 260)) });
-      if (si === 3) Object.assign(o, { errS: fade(b, 0, p, errDrawing(), 0.1, 0.5), eyeS: fade(b, 1, p, eyesDrawing(), 0.1, 0.5), spillS: fade(b, 2, p, spillDrawing(), 0.1, 0.5), ...tools(b, p, 3, tr('Poka-yoke', 'Poka-yoke', 260), tr('Interlock', 'Interlock', 260)) });
+      if (si === 3) Object.assign(o, { errS: fade(b, 0, p, errDrawing(), 0.1, 0.5), eyeS: b === 1 ? op(Math.min(span(p, 0.05, 0.3), 1 - span(p, 0.5, 0.62)), eyesDrawing()) : '', spillS: b === 1 ? op(span(p, 0.55, 0.7), spillDrawing()) : '', ...tools(b, p, 2, tr('Poka-yoke', 'Poka-yoke', 260), tr('Interlock', 'Interlock', 260)) });
       if (si === 4) Object.assign(o, { varS: b === 0 ? op(span(p, 0.05, 0.4), variantsDrawing()) : b === 2 ? op(span(p, 0.3, 0.7), settingsDrawing()) : '', chgS: fade(b, 1, p, changeDrawing(), 0.1, 0.5), ...tools(b, p, 2, tr('Recept', 'Recipe', 260)) });
-      if (si === 5) Object.assign(o, { ctlS: b <= 1 ? op(span(p, 0.05, 0.4), controlDrawing(b)) : '', logS: b === 2 ? op(span(p, 0.05, 0.4), logicDrawing()) : b === 3 ? op(span(p, 0.3, 0.7), rungDrawing()) : '', ...tools(b, p, 3, tr('Ladderdiagram', 'Ladder diagram', 260)) });
-      if (si === 6) Object.assign(o, { bizS: fade(b, 0, p, bizDrawing(), 0.1, 0.5), fourS: fade(b, 1, p, fourDrawing(), 0.1, 0.5), payS: b === 2 ? op(span(p, 0.3, 0.7), payDrawing()) : '', nextS: fade(b, 3, p, nextDrawing(), 0.1, 0.5), ...tools(b, p, 2, tr('Terugverdientijd', 'Payback time', 260)) });
+      if (si === 5) Object.assign(o, { ctlS: b <= 1 ? op(span(p, 0.05, 0.4), controlDrawing(b)) : '', logS: b === 2 ? op(span(p, 0.3, 0.7), rungDrawing()) : '', ...tools(b, p, 2, tr('Ladderdiagram', 'Ladder diagram', 260)) });
+      if (si === 6) Object.assign(o, { fourS: fade(b, 0, p, fourDrawing(), 0.1, 0.5), payS: b === 1 ? op(span(p, 0.3, 0.7), payDrawing()) : '', nextS: fade(b, 2, p, nextDrawing(), 0.1, 0.5), ...tools(b, p, 1, tr('Terugverdientijd', 'Payback time', 260)) });
     }
     let pbg = 'x="322" y="12" width="308" height="376"';
     if (closing) {
