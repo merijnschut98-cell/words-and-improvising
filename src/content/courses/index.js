@@ -444,7 +444,7 @@ export const FIELDS = [
   { id: 'eng.field.making', subject: 'eng',
     title: { en: 'Making things', nl: 'Dingen maken' },
     blurb: { en: 'Materials and strength, machining, process plants, drawings, welding and moulding: how a part or a product is designed, read and made.', nl: 'Materialen en sterkte, verspanen, procesfabrieken, tekeningen, lassen en spuitgieten: hoe een onderdeel of product wordt ontworpen, gelezen en gemaakt.' },
-    modules: ['eng.mechanics', 'eng.machining', 'eng.process', 'eng.drawings', 'eng.joining', 'eng.moulding'] },
+    modules: ['eng.mechanics', 'eng.machining', 'eng.process', 'eng.drawings', 'eng.joining', 'eng.moulding'], film: 'eng.field.making' },
   { id: 'eng.field.energy', subject: 'eng',
     title: { en: 'Energy and the grid', nl: 'Energie en het net' },
     blurb: { en: 'The grid and its transformers, switchgear and operations, up to planning the transition, with the pumps, heat and motors that use the energy in a plant.', nl: 'Het net met zijn transformatoren, schakelinstallaties en bedrijfsvoering, tot netplanning en energietransitie, met de pompen, warmte en motoren die de energie in een fabriek gebruiken.' },

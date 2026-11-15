@@ -28,7 +28,9 @@ test('fieldFilms: only fields with a film, in the order of FIELDS', () => {
   assert.deepEqual(fieldFilms('pm').map((f) => f.film), FIELDS.filter((f) => f.subject === 'pm' && f.film).map((f) => f.film));
   assert.ok(fieldFilms('pm').some((f) => f.film === 'pm.field.lifecycle'));
   assert.ok(fieldFilms('pm', [{ id: 'pm.field.x', subject: 'pm', modules: [] }]).length === 0, 'a field without a film is left out');
-  assert.deepEqual(fieldFilms('eng'), []);
+  // Engineering: the same, one field at a time (the zone Making things has its film since 15 Nov)
+  assert.deepEqual(fieldFilms('eng').map((f) => f.film), FIELDS.filter((f) => f.subject === 'eng' && f.film).map((f) => f.film));
+  assert.ok(fieldFilms('eng').some((f) => f.film === 'eng.field.making'));
   assert.equal(fieldFilms('pm').length, FIELDS.filter((f) => f.subject === 'pm' && f.film).length);
 });
 
