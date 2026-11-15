@@ -856,12 +856,12 @@ const SAY = {
     // the field film "Automation and IT" (eng.field.digital), a self-contained group at the end of the Dutch list, checked
     // with phonemes through Piper's nl_NL-alex bridge: espeak-ng reads Cybersecurity as "sie-ber-see-ku-ri-ti" (said
     // Saibersikjoeriti), switch with the x of "lachen" (said switsj), VLAN as the word "vlan" (said vee-lan), tags with that
-    // x (said tèks), edge gateway as "edge-gaa-te-waaj" (said etsj geitwee) and a lone dashboard as "dasj-boo-art" (said
+    // x, heard "tax" (said tekz, the k-s of "teks"), edge gateway as "edge-gaa-te-waaj" (said etsj geitwee) and a lone dashboard as "dasj-boo-art" (said
     // desjbord). The phrase rules keep to this film's own sentences (pm.devops.intro says dashboard in the singular and
     // other films say switch and tag). PLC, SCADA, IT, OT, OPC-server, zones and conduits and the MES have rules above or are
     // read right. No other film's spoken text changes
     [/\bCybersecurity\b/g, 'Saibersikjoeriti'], [/\bgebruikt een switch en een VLAN\b/g, 'gebruikt een switsj en een vee-lan'],
-    [/\bOPC-server en tags\b/g, 'OPC-server en tèks'], [/\bgebruikt een edge gateway en een dashboard\b/g, 'gebruikt een etsj geitwee en een desjbord'],
+    [/\bOPC-server en tags\b/g, 'OPC-server en tekz'], [/\bgebruikt een edge gateway en een dashboard\b/g, 'gebruikt een etsj geitwee en een desjbord'],
     // the field film "Energy and the grid" (eng.field.energy), a self-contained group at the end of the Dutch list, checked
     // with phonemes through Piper's nl_NL-alex bridge: espeak-ng reads reflectiemeter as "reflek-tie-meter" (said
     // reflexiemeter, only in "met een reflectiemeter"). Installateur, wachtrij, capaciteitskaart, gereedheidscheck,

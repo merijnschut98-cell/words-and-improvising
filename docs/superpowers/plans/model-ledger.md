@@ -124,3 +124,4 @@ Outcome: accepted (merged as delivered), sent back N times, redone.
 | 15 Nov | Review: eng.field.energy | opus | 144 | 20 min | 311,286 | accepted with fixes (station label must shorten its own title, two non-tools replaced, trimmed to ~3:05); merged v310 |
 | 15 Nov | Build: first Engineering module intro eng.machining.intro | sonnet | 149 | 36 min | 446,105 | accepted with fixes by its review |
 | 15 Nov | Review: eng.machining.intro | opus | 89 | 15 min | 239,841 | accepted with fixes (the map first, a real tool instead of a material, machinists not office staff, trimmed to ~3:05); wrote the rules for the next 25 intros; merged v311 |
+| 15 Nov | PM-24: tags/gateway voice and Dutch re-render of eng.field.digital | sonnet | 69 | 30 min | 147,934 | accepted; tags fixed, gateway close; merged v313 |
