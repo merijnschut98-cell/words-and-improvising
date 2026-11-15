@@ -4159,6 +4159,35 @@
         ],
         "vtt": "src/content/courses/films/eng.field.run.en.vtt"
       }
+    },
+    "eng.field.better": {
+      "poster": "src/content/courses/films/eng.field.better.jpg",
+      "nl": {
+        "dur": 160.1,
+        "bytes": 7308494,
+        "scenes": [
+          0,
+          23.67,
+          43.65,
+          67.75,
+          89.08,
+          110.5
+        ],
+        "vtt": "src/content/courses/films/eng.field.better.nl.vtt"
+      },
+      "en": {
+        "dur": 176.7,
+        "bytes": 7825240,
+        "scenes": [
+          0,
+          26.1,
+          48.52,
+          75.26,
+          99.22,
+          122.69
+        ],
+        "vtt": "src/content/courses/films/eng.field.better.en.vtt"
+      }
     }
   }
 }
