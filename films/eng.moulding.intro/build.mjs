@@ -346,7 +346,7 @@ const spec = {
         { nl: 'Zesde onderwerp: Matrijzen. De matrijs is het dure deel en past alleen bij deze kap.', en: 'Sixth topic: Moulds. The mould is the costly part and fits only this cover.', focus: ['tMould', 'mouldS', 'trolley'] },
         { nl: 'Je onderhoudt de matrijs voordat hij stukgaat. Anders krijg je later braam.', en: 'You service the mould before it breaks. Otherwise flash comes later.', focus: ['careS', 'trolley'] },
         { nl: 'Bij matrijzen gebruiken we vaak een {t:Heetkanaal|heetkanaal} en een {t:Shotteller|shotteller}.', en: 'For moulds we often use a {t:Hot runner|hot runner} and a {t:Shot counter|shot counter}.', ...TOOL('Heetkanaal', 'Shotteller'), focus: ['tool1', 'tool2', 'hotrunner', 'counter'] },
-        { nl: 'De kap is goed. Hij gaat naar hal B, naar de vuleenheid van lijn 3.', en: 'The cover is good. It goes to hall B, to the filling unit of line 3.', focus: ['ship', 'cover', 'jij'] },
+        { nl: 'De kap is goed. Hij gaat naar de vuleenheid van lijn 3 in hal B.', en: 'The cover is good. It goes to the filling unit of line 3 in hall B.', focus: ['ship', 'cover', 'jij'] },
       ],
     },
     {
@@ -433,8 +433,8 @@ const SAY = [
       en: 'You service the mould before it breaks. Otherwise you get flash on the cover later.' },
     { nl: 'Bij matrijzen gebruiken we vaak een heetkanaal en een shotteller, die telt hoe vaak hij sluit.',
       en: 'For moulds we often use a hot runner and a shot counter, which counts how often it closes.' },
-    { nl: 'De kap is goed. Hij gaat naar hal B, naar de vuleenheid van lijn 3.',
-      en: 'The cover is good. It goes to hall B, to the filling unit of line 3.' },
+    { nl: 'De kap is goed. Hij gaat naar de vuleenheid van lijn 3 in hal B.',
+      en: 'The cover is good. It goes to the filling unit of line 3 in hall B.' },
   ],
   [ // s8 the map: the level words of the app, as the captions show them
     { nl: 'Dit is de hele kaart. Spuitgieten is het zesde station van Dingen maken.',
