@@ -45,21 +45,29 @@ export const MAP_ZOOM = 1.5;
 // places only: the label is set a little smaller and, when it has two or more
 // lines, closer in line spacing (its first baseline stays where the app puts it,
 // under the object), until it keeps FIT_CLEAR units from the tile's sides and
-// bottom. A label that already fits
-// is left as the app draws it, byte for byte.
+// bottom. A single line stays on the app's baseline unless it descends (g, p, y)
+// so far into a short tile that its halo would bite the lit outline: then it
+// moves up just enough for HALO_CLEAR, by FIT_RAISE at most. A label that
+// already fits is left as the app draws it, byte for byte.
 const LABEL_SIZE = 15; // styles.css .map-label
 const LABEL_TOP = 74; // the app's first baseline in a tile (subjectmap.js LABEL)
 const LABEL_LINE = 17; // the app's line height
+// A lit label has a halo 3 units beyond its ink (stroke-width 6px) and the lit
+// outline is a 3-unit stroke on the tile border, 1.5 units inside it: at 4.5 units
+// from the border the halo meets the outline, 6 leaves 1.5 units of air.
 const FIT_CLEAR = 6; // units to the tile's sides and, for a block of lines, its bottom
+const HALO_CLEAR = 4.5; // units under a single line's ink: its halo stays off the lit outline
 const FIT_RAISE = 3; // the first baseline moves up this far only when a short tile cannot hold the lines otherwise
 const FIT_MIN = 0.85; // a fitted label is at least this share of the map's label size
-const DESC = 0.22; // descender depth of the label font, as a share of its size
+const DESC = 0.22; // descender depth of the label font (Inter 500, g p y), as a share of its size
+const DESCENDS = /[gjpqy,;]/; // the letters that reach below the baseline
 const decode = (t) => t.replace(/&#39;/g, "'").replace(/&amp;/g, '&').replace(/&quot;/g, '"').replace(/&lt;/g, '<').replace(/&gt;/g, '>');
 
-// widths: each line's width at LABEL_SIZE units; w, h: the tile. Returns null when
-// the app's drawing fits, else { size, top, step } for the lines; throws when no
-// label size within FIT_MIN fits.
-export function fitLabel(widths, w, h) {
+// widths: each line's width at LABEL_SIZE units; w, h: the tile; descends: the
+// (single) line has letters below its baseline. Returns null when the app's
+// drawing fits, else { size, top, step } for the lines; throws when no label size
+// within FIT_MIN, or no raise within FIT_RAISE, fits.
+export function fitLabel(widths, w, h, descends = true) {
   const n = widths.length;
   let size = Math.min(LABEL_SIZE, (LABEL_SIZE * (w - 2 * FIT_CLEAR)) / Math.max(...widths));
   const room = (sz) => h - FIT_CLEAR - DESC * sz; // the lowest baseline a block of lines may have
@@ -75,6 +83,11 @@ export function fitLabel(widths, w, h) {
     // a tile too short for two lines at the app's baseline: the first baseline moves up, by 3 units at most
     if (size < LABEL_SIZE * FIT_MIN) ({ size, top, step } = stack(LABEL_TOP - FIT_RAISE, Math.min(LABEL_SIZE, (LABEL_SIZE * (w - 2 * FIT_CLEAR)) / Math.max(...widths))));
   }
+  // one line: its descenders and their halo stay off the lit outline (a short tile, 79 high, holds 74 + 3.3 only just)
+  if (n === 1 && descends && top + DESC * size > h - HALO_CLEAR) {
+    top = Math.floor((h - HALO_CLEAR - DESC * size) * 100) / 100;
+    if (top < LABEL_TOP - FIT_RAISE) throw new Error(`mapScene: a descending label does not fit a tile ${h} high within a raise of ${FIT_RAISE} units`);
+  }
   if (size < LABEL_SIZE * FIT_MIN - 1e-9) throw new Error(`mapScene: a label of ${n} line(s) does not fit a tile of ${w} by ${h} at ${Math.round(LABEL_SIZE * FIT_MIN * 10) / 10} units or more`);
   if (size >= LABEL_SIZE - 1e-9 && top === LABEL_TOP && step === LABEL_LINE) return null;
   const r = (v) => Math.round(v * 100) / 100;
@@ -83,18 +96,28 @@ export function fitLabel(widths, w, h) {
 
 // svg: the app's map in one language; places: the map's places to fit. The label of
 // each is rewritten in place (font-size on its text, new baselines on its tspans).
-function fitLabels(svg, places) {
+// It reads the app's markup (mapSvg's place group and label, see subjectmap.js)
+// and fails the build on anything it does not expect: a label it cannot find or
+// read, or baselines other than LABEL_TOP and LABEL_LINE (tests/maplabels.test.js).
+export function fitLabels(svg, places) {
   let out = svg;
   for (const p of places) {
-    const re = new RegExp(`(data-module="${p.module.replace(/\./g, '\\.')}"[^]*?)<text class="map-label" text-anchor="middle">([^]*?)</text>`);
+    const re = new RegExp(`(data-module="${p.module.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}"[^]*?)<text class="map-label" text-anchor="middle">([^]*?)</text>`);
     const m = re.exec(out);
     if (!m) throw new Error(`mapScene: could not find the label of ${p.module}`);
     const lines = [...m[2].matchAll(/<tspan x="([\d.]+)" y="([\d.]+)">([^<]*)<\/tspan>/g)];
     if (!lines.length) throw new Error(`mapScene: the label of ${p.module} has no lines`);
-    const fit = fitLabel(lines.map((l) => (textUnits(decode(l[3])) * LABEL_SIZE) / 22), p.w, p.h);
+    if (lines.length !== m[2].split('<tspan').length - 1) throw new Error(`mapScene: could not read every line of the label of ${p.module}`);
+    lines.forEach((l, i) => {
+      const want = p.y + LABEL_TOP + i * LABEL_LINE;
+      if (Math.abs(Number(l[2]) - want) > 0.01) throw new Error(`mapScene: the app draws line ${i + 1} of ${p.module} on baseline ${l[2]}, the label fit assumes ${want} (LABEL_TOP, LABEL_LINE)`);
+    });
+    const texts = lines.map((l) => decode(l[3]));
+    const fit = fitLabel(texts.map((t) => (textUnits(t) * LABEL_SIZE) / 22), p.w, p.h, texts.some((t) => DESCENDS.test(t)));
     if (!fit) continue;
     const tspans = lines.map((l, i) => `<tspan x="${l[1]}" y="${Math.round((p.y + fit.top + i * fit.step) * 100) / 100}">${l[3]}</tspan>`).join('');
-    out = out.replace(re, `$1<text class="map-label" text-anchor="middle" style="font-size:${fit.size}px">${tspans}</text>`);
+    const style = fit.size < LABEL_SIZE ? ` style="font-size:${fit.size}px"` : '';
+    out = out.replace(re, (all, head) => `${head}<text class="map-label" text-anchor="middle"${style}>${tspans}</text>`);
   }
   return out;
 }
