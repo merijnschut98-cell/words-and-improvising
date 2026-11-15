@@ -4130,6 +4130,35 @@
         ],
         "vtt": "src/content/courses/films/eng.industry40.intro.nl.vtt"
       }
+    },
+    "eng.field.run": {
+      "poster": "src/content/courses/films/eng.field.run.jpg",
+      "nl": {
+        "dur": 158,
+        "bytes": 6460235,
+        "scenes": [
+          0,
+          24.79,
+          46.54,
+          67.6,
+          89.83,
+          110.93
+        ],
+        "vtt": "src/content/courses/films/eng.field.run.nl.vtt"
+      },
+      "en": {
+        "dur": 173.9,
+        "bytes": 6892769,
+        "scenes": [
+          0,
+          28.76,
+          52.19,
+          76.34,
+          100.05,
+          122.81
+        ],
+        "vtt": "src/content/courses/films/eng.field.run.en.vtt"
+      }
     }
   }
 }
