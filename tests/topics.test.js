@@ -225,7 +225,8 @@ test('courseTodayPick: a topic lesson pick carries topicId and level; determinis
   assert.deepEqual(p2, { reason: 'lesson', moduleId: 'eng.flow', lessonId: 'eng.flow.a' });
   assert.equal('topicId' in p2, false);
   assert.equal(recommendedModule(s, 'eng', [plain, fx]), 'eng.flow', 'breadth-first: the first Basis lesson not passed, in module order');
-  assert.equal(recommendedModule(s, 'eng', [fx, plain]), 'eng.fx');
+  // Engineering has a map now: a module on it (eng.flow) comes before one that is not (the fixture), whatever the list order
+  assert.equal(recommendedModule(s, 'eng', [fx, plain]), 'eng.flow');
 });
 
 test('courseTodayPick: a prep lesson for an event carries the place too', () => {

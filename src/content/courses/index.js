@@ -418,7 +418,8 @@ export function placeOf(lessonId, modules = MODULES) {
 // v17: fields group a subject's modules under one field film, the big picture
 // above the modules ("a project from start to finish"). A subject with fields
 // has every module in exactly one; `film`, when set, is the field's own id.
-// Engineering has none yet.
+// Engineering's four fields have no film yet (the field films come next); each
+// lists its modules by level, which is also the reading order of the map.
 export const FIELDS = [
   { id: 'pm.field.lifecycle', subject: 'pm',
     title: { en: 'A project from start to finish', nl: 'Een project van begin tot eind' },
@@ -436,6 +437,22 @@ export const FIELDS = [
     title: { en: 'IT and agile', nl: 'IT en agile' },
     blurb: { en: 'Agile, scaling it, DevOps and the IT project from requirements to go-live.', nl: 'Agile, opschalen, DevOps en het IT-project van eisen tot go-live.' },
     modules: ['pm.agile', 'pm.scaled', 'pm.devops', 'pm.itproject'], film: 'pm.field.it' },
+  { id: 'eng.field.plant', subject: 'eng',
+    title: { en: 'A plant that runs well', nl: 'Een fabriek die goed draait' },
+    blurb: { en: 'Flow, quality, maintenance and safety, then problem solving, SPC, cost and reliability: keeping a plant making good parts, safely and for less.', nl: 'Flow, kwaliteit, onderhoud en veiligheid, dan probleemoplossen, SPC, kostprijs en betrouwbaarheid: een fabriek goede producten laten maken, veilig en voor minder.' },
+    modules: ['eng.flow', 'eng.quality', 'eng.maintenance', 'eng.safety', 'eng.spc', 'eng.cost', 'eng.improve', 'eng.reliability'] },
+  { id: 'eng.field.making', subject: 'eng',
+    title: { en: 'Making things', nl: 'Dingen maken' },
+    blurb: { en: 'Materials and strength, machining, process plants, drawings, welding and moulding: how a part or a product is designed, read and made.', nl: 'Materialen en sterkte, verspanen, procesfabrieken, tekeningen, lassen en spuitgieten: hoe een onderdeel of product wordt ontworpen, gelezen en gemaakt.' },
+    modules: ['eng.mechanics', 'eng.machining', 'eng.process', 'eng.drawings', 'eng.joining', 'eng.moulding'] },
+  { id: 'eng.field.energy', subject: 'eng',
+    title: { en: 'Energy and the grid', nl: 'Energie en het net' },
+    blurb: { en: 'The grid and its transformers, switchgear and operations, up to planning the transition, with the pumps, heat and motors that use the energy in a plant.', nl: 'Het net met zijn transformatoren, schakelinstallaties en bedrijfsvoering, tot netplanning en energietransitie, met de pompen, warmte en motoren die de energie in een fabriek gebruiken.' },
+    modules: ['eng.gridbasics', 'eng.fluids', 'eng.power', 'eng.transformers', 'eng.switchgear', 'eng.gridops', 'eng.gridplanning'] },
+  { id: 'eng.field.digital', subject: 'eng',
+    title: { en: 'Automation and IT', nl: 'Automatisering en IT' },
+    blurb: { en: 'IT fundamentals, IT and OT on the shop floor, cybersecurity, lines and automation, and data for digital manufacturing.', nl: 'IT-fundamenten, IT en OT op de fabrieksvloer, cybersecurity, lijnen en automatisering, en data voor digitale productie.' },
+    modules: ['eng.itbasics', 'eng.ot', 'eng.cyber', 'eng.lines', 'eng.industry40'] },
 ];
 export const fieldOf = (moduleId, fields = FIELDS) => fields.find((f) => f.modules.includes(moduleId)) || null;
 

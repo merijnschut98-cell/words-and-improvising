@@ -381,7 +381,7 @@ await step('subject bar switches to Engineering and Projects and back; speaking 
   await page.locator('.course-home .track').first().waitFor();
   await page.locator('.course-today .today-what', { hasText: 'Takt' }).waitFor();
   await shot('60-course-home');
-  await page.locator('.module-row', { hasText: 'Capaciteit en flow' }).click();
+  await clickModuleRow(page, 'Capaciteit en flow'); // the tracks stay closed under the map
   await page.locator('.module-screen .topic-row').nth(3).waitFor();
   await shot('60b-module-open');
   await page.locator('.module-screen .lesson-back').click();
@@ -394,7 +394,7 @@ await step('subject bar switches to Engineering and Projects and back; speaking 
   await page.locator('.btn-hero').waitFor();
 });
 
-await step('Projects home: the map is the first thing; tapping Planning opens its module screen; the field film entry is there; Engineering unchanged', async () => {
+await step('Projects home: the map is the first thing; tapping Planning opens its module screen; the field film entry is there; Engineering has its map too', async () => {
   await page.locator('.subject-tab', { hasText: 'Projecten' }).click();
   await page.locator('.course-pm .map-card .subject-map').waitFor();
   // the map is the first block, "Your next step" the second
@@ -449,12 +449,25 @@ await step('Projects home: the map is the first thing; tapping Planning opens it
   await page.locator('.module-screen', { hasText: 'Plannen' }).waitFor();
   await page.locator('.module-screen .lesson-back').click();
   await page.locator('.course-pm .map-card').waitFor();
-  // Engineering: no map, today's order, the track with the next step open
+  // Engineering (Task 13): the map first, 26 buttons, four zones, no field film yet, the tracks closed; Enter and a tap open the module
   await page.locator('.subject-tab', { hasText: 'Engineering' }).click();
-  await page.locator('.course-eng .track').first().waitFor();
-  if (await page.locator('.course-eng .map-card, .course-eng .field-film').count() !== 0) throw new Error('Engineering shows a map or field film');
-  if (!/course-today/.test(await page.locator('.course-eng > :nth-child(3)').getAttribute('class'))) throw new Error('Engineering order changed');
-  if (await page.locator('.course-eng details.track[open]').count() !== 1) throw new Error('Engineering: one track should be open');
+  await page.locator('.course-eng .map-card .subject-map').waitFor();
+  if (await page.locator('.course-eng .field-film').count() !== 0) throw new Error('Engineering shows a field film');
+  if (!/map-card/.test(await page.locator('.course-eng > :nth-child(3)').getAttribute('class'))) throw new Error('Engineering: the map is not first');
+  if (await page.locator('.course-eng .map-place[role="button"]').count() !== 26) throw new Error('Engineering: not 26 places');
+  if (await page.locator('.course-eng .map-zone').count() !== 4) throw new Error('Engineering: not 4 zones');
+  if (await page.locator('.course-eng .map-place.is-next').count() !== 1) throw new Error('Engineering: the next place is not marked once');
+  if (await page.locator('.course-eng details.track[open]').count() !== 0) throw new Error('Engineering: the tracks should be closed under a map');
+  await page.locator('.course-eng .map-place[data-module="eng.machining"]').focus();
+  await page.keyboard.press('Enter');
+  await page.locator('.module-screen').waitFor();
+  await page.locator('.module-screen', { hasText: 'Verspanen' }).waitFor();
+  await page.locator('.module-screen .lesson-back').click();
+  await page.locator('.course-eng .map-card').waitFor();
+  await page.locator('.course-eng .map-place[data-module="eng.flow"]').click();
+  await page.locator('.module-screen', { hasText: 'Capaciteit en flow' }).waitFor();
+  await page.locator('.module-screen .lesson-back').click();
+  await page.locator('.course-eng .map-card').waitFor();
   await page.locator('.subject-tab', { hasText: 'Spreken' }).click();
   await page.locator('.btn-hero').waitFor();
 });
@@ -2804,7 +2817,9 @@ await step('layout: each home at 390 px in light and dark, one primary, bands, t
   // Course homes: exactly one track open, the one with the next step; Begrippen and the real week in one row.
   await p.evaluate(() => window.__app.setSubject('eng'));
   await p.locator('.course-eng .track').first().waitFor();
-  if (await p.locator('.course-eng details.track[open]').count() !== 1) throw new Error('expected one open track');
+  // Engineering has a map now, like Projecten: the tracks stay closed and open on tap.
+  if (await p.locator('.course-eng details.track[open]').count() !== 0) throw new Error('expected no open track under the map');
+  await p.locator('details.track-basics > summary').click();
   await p.locator('details.track-basics[open] .module-row', { hasText: 'Capaciteit en flow' }).waitFor();
   await p.locator('.quick-row .glossary-entry').waitFor();
   await p.locator('.quick-row .rw-entry').waitFor();
@@ -3221,7 +3236,7 @@ await step('module screen: open Verspanen from the Engineering list, the intro b
   await ms.waitFor();
   if ((await ms.locator('h1').innerText()).trim() !== 'Verspanen') throw new Error(`title: ${await ms.locator('h1').innerText()}`);
   if ((await ms.locator('.module-en-line').innerText()).trim() !== 'Machining') throw new Error('no English name under the Dutch title');
-  if (await ms.locator('.module-field').count()) throw new Error('an Engineering module shows a field');
+  if (!/^dingen maken$/i.test((await ms.locator('.module-field').innerText()).trim())) throw new Error('an Engineering module shows its field (Dingen maken)');
   if ((await ms.locator('.module-intro-title').innerText()).trim() !== 'Begin hier: het grote plaatje') throw new Error('intro heading');
   const video = ms.locator('.module-intro video.film-video');
   await video.waitFor({ timeout: 8000 });
@@ -3303,7 +3318,7 @@ await step('Andon: greets on the home screens, presents the intro on a module sc
     if (top && !above) throw new Error(`${where}: Andon is not above the first block`);
     if (await sideways()) throw new Error(`${where}: sideways scroll`);
   };
-  // Engineering home (no map): Andon above the next step.
+  // Engineering home (the map under Andon, then the next step).
   // Light, then dark, then back to light.
   const both = async (n) => {
     await shotP(n);
@@ -3433,7 +3448,7 @@ await step('Andon: greets on the home screens, presents the intro on a module sc
     return { n: m.querySelectorAll('.guide, .guide-greeting').length, firstClass: first.className, gap: first.getBoundingClientRect().top - m.getBoundingClientRect().top };
   });
   if (off.n) throw new Error('Andon on the Engineering home with the guide off');
-  if (!/course-today/.test(off.firstClass)) throw new Error(`the next step is not first with the guide off: ${off.firstClass}`);
+  if (!/map-card/.test(off.firstClass)) throw new Error(`the map is not first with the guide off: ${off.firstClass}`);
   if (off.gap > 40) throw new Error(`a gap of ${off.gap}px above the first card with the guide off`);
   await p.locator('.subject-tab', { hasText: 'Spreken' }).click();
   await p.locator('.speak-home').waitFor();
@@ -3826,6 +3841,7 @@ await step('flair: start ring and title, path map with the bronze seal, a perfec
   // Course home: the path map, the bronze seal on the module and at its end, the check flag.
   await p.locator('.start-eng').click();
   await p.locator('.course-home').waitFor();
+  await p.locator('details.track-basics > summary').click(); // the tracks stay closed under the map
   const row = p.locator('.module-row', { hasText: 'Capaciteit en flow' });
   await row.locator('.medal-bronze', { hasText: 'Brons' }).waitFor();
   await shotP('flair-02-course-home-390');

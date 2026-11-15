@@ -1163,6 +1163,12 @@ details.rw-topic > summary { cursor: pointer; min-height: 44px; display: flex; a
 .subject-map .map-road-arrow { fill: color-mix(in srgb, var(--heading) 30%, var(--card)); }
 /* v273: the phone layout (map.phone, drawn by subjectMap when the card is under 460 px): a 300-unit sheet, so 10.6 units
    are 11.4 px at 390 and 9.0 px at 320, three places to a row. These rules start with .subject-map-wrap, so the films do not carry them. */
+/* The Engineering zones (Task 13). They start with .subject-map-wrap, not .subject-map, so the film kit does not
+   carry them into the Projects films; the first Engineering film moves them into the kit's rules. */
+.subject-map-wrap .z-plant { --zone: var(--accent); }
+.subject-map-wrap .z-making { --zone: var(--primary); }
+.subject-map-wrap .z-energy { --zone: var(--ok); }
+.subject-map-wrap .z-digital { --zone: var(--secondary-fill); }
 .subject-map-wrap .subject-map-phone { max-width: 400px; margin: 0 auto; }
 .subject-map-wrap .subject-map-phone .map-label { font-size: 10.6px; }
 .subject-map-wrap .subject-map-phone .map-zone-label { font-size: 10.6px; }

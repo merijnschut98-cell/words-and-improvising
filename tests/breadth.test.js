@@ -4,6 +4,7 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { defaultState } from '../src/core/storage.js';
 import { MODULES, topicsOf } from '../src/content/courses/index.js';
+import { mapFor } from '../src/content/courses/maps/index.js';
 import { nextLesson, recommendedModule, courseTodayPick, roadOrder, breadthOrder, nextCourseLesson, lessonEndNext } from '../src/core/course.js';
 
 const meta = (id) => MODULES.find((m) => m.id === id);
@@ -23,11 +24,12 @@ test('roadOrder: Projects follows the road (Intake, Plan, Run, Land, Close), the
   assert.equal(ids.length, MODULES.filter((m) => m.subject === 'pm').length);
 });
 
-test('roadOrder: Engineering (no map) goes by module level, course order within a level, so no L4 module comes before an L1 one', () => {
+test('roadOrder: Engineering has a map but no road, so it goes by module level, map order within a level (no L4 module before an L1 one)', () => {
   const eng = MODULES.filter((m) => m.subject === 'eng');
+  const at = (id) => mapFor('eng').places.findIndex((p) => p.module === id);
   const ids = roadOrder('eng').map((m) => m.id);
-  assert.deepEqual(ids, [...eng].sort((a, b) => a.level - b.level || eng.indexOf(a) - eng.indexOf(b)).map((m) => m.id));
-  assert.deepEqual(ids.slice(0, 7), ['eng.flow', 'eng.quality', 'eng.process', 'eng.mechanics', 'eng.machining', 'eng.itbasics', 'eng.gridbasics']);
+  assert.deepEqual(ids, [...eng].sort((a, b) => a.level - b.level || at(a.id) - at(b.id)).map((m) => m.id));
+  assert.deepEqual(ids.slice(0, 7), ['eng.flow', 'eng.quality', 'eng.mechanics', 'eng.machining', 'eng.process', 'eng.gridbasics', 'eng.itbasics']);
 });
 
 test('breadthOrder: all Basis first, then all Werkkennis, in module order', () => {
