@@ -1593,7 +1593,7 @@ test('speak variant: the OT intro film words in Dutch', () => {
 
 // The module intro film "Data and digital manufacturing" (eng.industry40.intro), checked with espeak-ng phonemes through Piper's nl bridge:
 // it reads edge gateway as "edge-gaa-te-waaj" (said etsj geitwee), a lone dashboard as "dasj-boo-art" (said desjbord), datawarehouse
-// with the Dutch "waarhuis" (said data weerhaus) and Power BI as "pooer" (said Pauwer B I). The phrase rules keep to the intro's own
+// with the English "ware" (a Dutch "weer" would be heard as the word for weather) (said data wèrhaus) and Power BI as "pooer" (said Pauwer B I). The phrase rules keep to the intro's own
 // sentences, so the field film's "gebruikt een edge gateway en een dashboard", pm.devops.intro's dashboard and the lessons keep their voice.
 // PLC-kast, MES, AI, KPI, machinedata, dataplatform, anomaliedetectie, digitale tweelingen and the level words are read right; English needs nothing;
 // no other film's spoken text changes
@@ -1601,7 +1601,7 @@ test('speak variant: the data and digital manufacturing intro film words in Dutc
   const nl = (s) => speakOf([s], 'nl');
   assert.equal(nl('Je leest ze uit de PLC-kast met een edge gateway.'), 'Je leest ze uit de PLC-kast met een etsj geitwee.');
   assert.equal(nl('Daarvoor volg je de lijn op een dashboard.'), 'Daarvoor volg je de lijn op een desjbord.');
-  assert.equal(nl('Je slaat de cijfers op in een datawarehouse.'), 'Je slaat de cijfers op in een data weerhaus.');
+  assert.equal(nl('Je slaat de cijfers op in een datawarehouse.'), 'Je slaat de cijfers op in een data wèrhaus.');
   assert.equal(nl('Op niveau Werkkennis komen machinedata, Power BI, van bron tot rapport en voorspellend onderhoud.'), 'Op niveau Werkkennis komen machinedata, Pauwer B I, van bron tot rapport en voorspellend onderhoud.');
   // elsewhere the words keep their voice
   assert.equal(nl('Het datawarehouse van de fabriek. Een edge gateway op de kast. Een dashboard met Power BI.'), 'Het datawarehouse van de fabriek. Een edge gateway op de kast. Een dashboard met Power BI.');

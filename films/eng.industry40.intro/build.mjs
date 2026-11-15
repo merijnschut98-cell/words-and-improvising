@@ -290,9 +290,9 @@ const spec = {
       id: 's1', level: 1, dur: DURS[0], still: 0.9, title: { nl: 'De cijfers van lijn 3', en: 'The numbers of line 3' },
       beats: [
         { nl: 'Lijn 3 maakt cijfers. Data en digitale productie leert je van die cijfers beslissingen te maken.', en: 'Line 3 makes numbers. Data and digital manufacturing teaches you to turn those numbers into decisions.', focus: ['flowS', 'line3', 'unit'] },
-        { nl: 'De cijfers van de eenheid gaan naar het MES en naar een scherm bij de lijn.', en: 'The unit’s numbers go to the MES and to a screen by the line.', focus: ['goS', 'mes', 'screen'] },
+        { nl: 'De cijfers van de eenheid gaan naar het MES en naar een scherm bij de lijn.', en: 'The unit’s numbers go to the MES and to a screen by the line.', focus: ['goS', 'unit', 'mes', 'screen'] },
         { nl: 'Jij bent de engineer. Je begint bij de cijfers zelf, met datakwaliteit en dashboards.', en: 'You are the engineer. You start with the numbers themselves, with data quality and dashboards.', focus: ['grpA', 'jij'] },
-        { nl: 'Daarna komt wat ze verder brengt, met integratie en AI en modellen.', en: 'Then comes what carries them further, with integration and AI and models.', focus: 'grpB' },
+        { nl: 'Daarna komt wat ze verder brengt, met integratie en met AI en modellen.', en: 'Then comes what carries them further, with integration and with AI and models.', focus: 'grpB' },
       ],
     },
     {
@@ -323,7 +323,7 @@ const spec = {
       id: 's5', level: 1, dur: DURS[4], still: 0.9, title: { nl: 'AI en modellen', en: 'AI and models' },
       beats: [
         { nl: 'Het vierde onderwerp is AI en modellen. Een model leert een patroon uit voorbeelden.', en: 'The fourth topic is AI and models. A model learns a pattern from examples.', focus: ['tAI', 'mlS'] },
-        { nl: 'Een model is zo goed als zijn data. Van storingen heb je vaak weinig voorbeelden.', en: 'A model is only as good as its data. Of failures you often have few examples.', focus: ['dataS'] },
+        { nl: 'Een model is zo goed als zijn data. Van storingen heb je vaak weinig voorbeelden.', en: 'A model is only as good as its data. You often have few examples of failures.', focus: ['dataS'] },
         { nl: 'Je laat {t:Anomaliedetectie|anomaliedetectie} markeren wat afwijkt. Een afwijking is niet altijd kapot.', en: 'You let {t:Anomaly detection|anomaly detection} flag what deviates. A deviation is not always broken.', ...TOOL('Anomaliedetectie'), focus: ['tool1', 'anomS'] },
         { nl: 'Zo worden de cijfers van lijn 3 beslissingen.', en: 'That is how the numbers of line 3 become decisions.', focus: ['nextS', 'screen', 'jij'] },
       ],
@@ -336,7 +336,7 @@ const spec = {
         { nl: 'Begin op niveau Basis met de zes dimensies van datakwaliteit. Ze geven woorden voor wat er mis is.', en: 'Start at Basics level with the six dimensions of data quality. They give words for what is wrong.', focus: ['tQual', 'start'] },
         { nl: 'Op niveau Werkkennis komen machinedata, Power BI, van bron tot rapport en voorspellend onderhoud.', en: 'At Working knowledge level come machine data, Power BI, from source to report and predictive maintenance.', focus: 'lv2' },
         { nl: 'Op niveau Gevorderd komen stamdata en MES, het scherm op de vloer, eigenaarschap en AI-inspectie.', en: 'At Advanced level come master data and MES, the floor screen, ownership and AI inspection.', focus: 'lv3' },
-        { nl: 'Op niveau Expert komen datakwaliteitsregels, alertmoeheid, de businesscase en digitale tweelingen.', en: 'At Expert level come data quality rules, alert fatigue, the business case and digital twins.', focus: 'lv4' },
+        { nl: 'Op niveau Expert komen datakwaliteit managen, alertmoeheid, de businesscase en digitale tweelingen.', en: 'At Expert level come managing data quality, alert fatigue, the business case and digital twins.', focus: 'lv4' },
         { nl: 'Elke les en elke film van deze module heeft een plek op deze kaart.', en: 'Every lesson and every film in this module has a place on this map.', focus: null },
       ],
     },
