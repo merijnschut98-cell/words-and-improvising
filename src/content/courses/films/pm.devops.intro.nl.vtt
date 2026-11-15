@@ -1,281 +1,281 @@
 WEBVTT
 
 1
-00:00:00.837 --> 00:00:03.960
+00:00:00.808 --> 00:00:03.885
 Het IT-team bouwt het nieuwe MES voor de orders op de vloer.
 
 2
-00:00:04.652 --> 00:00:06.637
+00:00:04.570 --> 00:00:06.486
 Wie het bouwt, houdt het ook draaiend.
 
 3
-00:00:07.646 --> 00:00:10.061
+00:00:07.463 --> 00:00:09.881
 Jij leidt dat IT-project voor de plantmanager.
 
 4
-00:00:10.700 --> 00:00:13.800
+00:00:10.555 --> 00:00:13.550
 De volgende versie krijgt een scherm met de afgekeurde stuks,
 
 5
-00:00:14.172 --> 00:00:16.041
+00:00:13.899 --> 00:00:15.733
 en die moet veilig bij lijn 3 komen.
 
 6
-00:00:17.062 --> 00:00:20.406
+00:00:16.747 --> 00:00:20.033
 We volgen die ene versie langs de vier onderwerpen van de module.
 
 7
-00:00:21.166 --> 00:00:23.476
+00:00:20.745 --> 00:00:23.054
 De details komen later, in de lessen.
 
 8
-00:00:24.755 --> 00:00:28.087
+00:00:24.364 --> 00:00:27.719
 Het eerste onderwerp is de pipeline en testautomatisering.
 
 9
-00:00:28.753 --> 00:00:31.134
+00:00:28.405 --> 00:00:30.777
 Hoe komt een wijziging van het IT-team bij de vloer?
 
 10
-00:00:32.127 --> 00:00:34.809
+00:00:31.771 --> 00:00:34.453
 Een pipeline is een geautomatiseerde lopende band.
 
 11
-00:00:35.590 --> 00:00:39.932
+00:00:35.210 --> 00:00:39.401
 Elke wijziging loopt door dezelfde stappen, van bouwen tot een testomgeving.
 
 12
-00:00:40.943 --> 00:00:44.089
+00:00:40.405 --> 00:00:43.528
 Automatische tests (automated test) controleren elke wijziging opnieuw,
 
 13
-00:00:44.426 --> 00:00:45.819
+00:00:43.923 --> 00:00:45.339
 zonder dat iemand hoeft te klikken.
 
 14
-00:00:46.500 --> 00:00:48.230
+00:00:46.126 --> 00:00:47.821
 Faalt er een, dan stopt de band.
 
 15
-00:00:49.294 --> 00:00:51.976
+00:00:48.927 --> 00:00:51.632
 Bij pipeline en testautomatisering gebruiken
 
 16
-00:00:52.011 --> 00:00:54.333
+00:00:51.655 --> 00:00:54.023
 we vaak versiebeheer en een testpiramide.
 
 17
-00:00:55.595 --> 00:00:59.589
+00:00:55.265 --> 00:00:59.363
 Het tweede onderwerp zijn de DORA-metingen, uit onderzoek naar IT-teams.
 
 18
-00:01:00.245 --> 00:01:02.225
+00:01:00.022 --> 00:01:02.028
 Hoe weet je of het IT-team goed levert?
 
 19
-00:01:03.240 --> 00:01:05.028
+00:01:03.045 --> 00:01:04.879
 Twee metingen gaan over snelheid.
 
 20
-00:01:05.705 --> 00:01:07.811
+00:01:05.581 --> 00:01:07.724
 Hoe vaak komt er een nieuwe versie bij de vloer,
 
 21
-00:01:08.125 --> 00:01:10.041
+00:01:08.061 --> 00:01:09.930
 en hoe lang duurt het van wijziging tot daar?
 
 22
-00:01:11.022 --> 00:01:12.636
+00:01:10.918 --> 00:01:12.543
 Twee gaan over stabiliteit.
 
 23
-00:01:13.330 --> 00:01:17.022
+00:01:13.227 --> 00:01:17.042
 Hoe vaak gaat een nieuwe versie mis, en hoe snel ben je dan weer hersteld?
 
 24
-00:01:18.013 --> 00:01:20.161
+00:01:18.012 --> 00:01:20.079
 De beste teams scoren op alle vier goed.
 
 25
-00:01:20.876 --> 00:01:22.652
+00:01:20.793 --> 00:01:22.569
 Kijk dus altijd naar alle vier samen.
 
 26
-00:01:23.633 --> 00:01:27.232
+00:01:23.554 --> 00:01:27.246
 Bij DORA gebruiken we vaak een dashboard en een waardestroomanalyse.
 
 27
-00:01:28.496 --> 00:01:31.840
+00:01:28.521 --> 00:01:31.900
 Het derde onderwerp is het beheer van omgevingen en versies.
 
 28
-00:01:32.531 --> 00:01:34.612
+00:01:32.648 --> 00:01:34.784
 Hoe komt de nieuwe versie veilig bij lijn 3?
 
 29
-00:01:35.638 --> 00:01:37.600
+00:01:35.827 --> 00:01:37.824
 Een nieuwe versie gaat langs ontwikkeling,
 
 30
-00:01:37.948 --> 00:01:39.283
+00:01:38.172 --> 00:01:39.519
 test en acceptatie (acceptance environment).
 
 31
-00:01:40.004 --> 00:01:43.696
+00:01:40.246 --> 00:01:44.029
 Daar controleert de teamleider van lijn 3 het scherm, want hij kent de vloer.
 
 32
-00:01:44.339 --> 00:01:48.182
+00:01:44.661 --> 00:01:48.445
 Pas dan volgt productie, de echte omgeving met echte orders.
 
 33
-00:01:49.180 --> 00:01:51.119
+00:01:49.424 --> 00:01:51.432
 Installeren is nog geen vrijgeven.
 
 34
-00:01:51.786 --> 00:01:53.934
+00:01:52.106 --> 00:01:54.289
 Het scherm staat al in de echte omgeving,
 
 35
-00:01:54.212 --> 00:01:56.267
+00:01:54.567 --> 00:01:56.622
 maar de fabriek kiest wanneer lijn 3 het ziet.
 
 36
-00:01:57.284 --> 00:01:59.792
+00:01:57.609 --> 00:02:00.093
 Hoeveel lijnen een fout raakt, heet de impactstraal (blast radius).
 
 37
-00:02:00.512 --> 00:02:01.278
+00:02:00.838 --> 00:02:01.511
 Die houd je klein.
 
 38
-00:02:01.987 --> 00:02:04.065
+00:02:02.192 --> 00:02:04.351
 Daarom gaat een nieuwe versie eerst naar één lijn.
 
 39
-00:02:05.102 --> 00:02:08.887
+00:02:05.346 --> 00:02:09.061
 Bij het beheer van versies gebruiken we vaak een feature flag en een rollbackplan.
 
 40
-00:02:10.166 --> 00:02:13.634
+00:02:10.351 --> 00:02:13.922
 Het vierde onderwerp is het beheer van IT-diensten en incidenten.
 
 41
-00:02:14.348 --> 00:02:16.774
+00:02:14.612 --> 00:02:16.899
 Wat doe je als het MES op de vloer stilvalt?
 
 42
-00:02:17.841 --> 00:02:21.743
+00:02:17.968 --> 00:02:21.775
 Valt het MES stil, dan melden de operators dat bij de servicedesk.
 
 43
-00:02:22.468 --> 00:02:25.870
+00:02:22.486 --> 00:02:25.853
 Bij een incident telt één ding, zo snel mogelijk weer werken.
 
 44
-00:02:26.858 --> 00:02:30.004
+00:02:26.832 --> 00:02:30.014
 Komt dezelfde storing steeds terug, dan zoeken we de oorzaak.
 
 45
-00:02:30.725 --> 00:02:31.584
+00:02:30.768 --> 00:02:31.627
 Dat heet een probleem (problem).
 
 46
-00:02:32.584 --> 00:02:35.974
+00:02:32.651 --> 00:02:36.087
 Over reageren en oplossen maken we afspraken met de fabriek.
 
 47
-00:02:36.693 --> 00:02:38.922
+00:02:36.817 --> 00:02:39.104
 Een stilstaande lijn gaat voor een kantoorprinter.
 
 48
-00:02:39.941 --> 00:02:42.402
+00:02:40.091 --> 00:02:42.413
 Na een grote storing houden we een post-mortem.
 
 49
-00:02:43.108 --> 00:02:46.637
+00:02:43.127 --> 00:02:46.587
 We zoeken wat in het systeem de fout mogelijk maakte, niet wie hem maakte.
 
 50
-00:02:47.348 --> 00:02:48.149
+00:02:47.307 --> 00:02:48.131
 Dat is schuldvrij (blameless).
 
 51
-00:02:49.203 --> 00:02:53.476
+00:02:49.154 --> 00:02:53.485
 Bij incidenten gebruiken we vaak een prioriteitsmatrix en vijf keer waarom.
 
 52
-00:02:54.780 --> 00:02:55.546
+00:02:54.792 --> 00:02:55.535
 Het hangt samen.
 
 53
-00:02:56.248 --> 00:02:59.406
+00:02:56.288 --> 00:02:59.330
 De pipeline brengt de wijziging, DORA meet hoe het gaat,
 
 54
-00:02:59.684 --> 00:03:02.714
+00:02:59.643 --> 00:03:02.748
 de uitrol houdt het veilig en incidentbeheer vangt de rest op.
 
 55
-00:03:03.714 --> 00:03:05.850
+00:03:03.730 --> 00:03:05.913
 Snelheid en stabiliteit gaan samen.
 
 56
-00:03:06.547 --> 00:03:08.938
+00:03:06.644 --> 00:03:09.035
 Kleine wijzigingen zijn makkelijker te testen en
 
 57
-00:03:08.973 --> 00:03:11.504
+00:03:09.070 --> 00:03:11.508
 te herstellen dan één grote versie per kwartaal.
 
 58
-00:03:12.857 --> 00:03:14.262
+00:03:12.883 --> 00:03:14.276
 Dit is de kaart van Projecten.
 
 59
-00:03:15.013 --> 00:03:18.577
+00:03:14.997 --> 00:03:18.697
 DevOps en levering is het derde station van IT en agile.
 
 60
-00:03:19.578 --> 00:03:23.537
+00:03:19.686 --> 00:03:23.657
 DevOps en levering heeft vier onderwerpen, elk met vier niveaus.
 
 61
-00:03:24.559 --> 00:03:25.801
+00:03:24.689 --> 00:03:25.885
 Begin bij de pipeline.
 
 62
-00:03:26.511 --> 00:03:30.261
+00:03:26.561 --> 00:03:30.299
 Op niveau Basis gaat het over wat DevOps is, wat DORA meet,
 
 63
-00:03:30.667 --> 00:03:32.409
+00:03:30.671 --> 00:03:32.459
 omgevingen en incidenten.
 
 64
-00:03:33.385 --> 00:03:35.115
+00:03:33.438 --> 00:03:35.214
 Op Werkkennis komen de soorten tests,
 
 65
-00:03:35.452 --> 00:03:38.006
+00:03:35.539 --> 00:03:38.105
 eerlijk meten, feature flags en beschikbaarheid erbij.
 
 66
-00:03:38.992 --> 00:03:41.372
+00:03:39.072 --> 00:03:41.475
 Op Gevorderd komen dagelijks samenvoegen,
 
 67
-00:03:41.802 --> 00:03:45.924
+00:03:41.859 --> 00:03:46.039
 rapporten lezen, uitrolstrategieën en de storingstijdlijn erbij.
 
 68
-00:03:46.918 --> 00:03:50.436
+00:03:47.038 --> 00:03:50.568
 Op Expert komen leveren op de vloer, sturen met DORA,
 
 69
-00:03:50.808 --> 00:03:53.548
+00:03:50.916 --> 00:03:53.666
 vooruit herstellen en Lean in IT-beheer erbij.
 
 70
-00:03:54.525 --> 00:03:57.962
+00:03:54.630 --> 00:03:58.241
 Elke les en elke film van deze module heeft een plek op deze kaart.

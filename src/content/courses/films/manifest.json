@@ -1696,18 +1696,18 @@
     "pm.run.rhythm": {
       "poster": "src/content/courses/films/pm.run.rhythm.jpg",
       "nl": {
-        "dur": 337.9,
-        "bytes": 13275896,
+        "dur": 337,
+        "bytes": 13282394,
         "scenes": [
           0,
-          27.14,
-          63.14,
-          89.02,
-          130.87,
-          158.74,
-          208.79,
-          244.08,
-          284.56
+          27.63,
+          63.77,
+          89.77,
+          131.51,
+          159.19,
+          208.91,
+          243.99,
+          283.75
         ],
         "vtt": "src/content/courses/films/pm.run.rhythm.nl.vtt"
       },
@@ -1964,16 +1964,16 @@
     "pm.plan.method": {
       "poster": "src/content/courses/films/pm.plan.method.jpg",
       "nl": {
-        "dur": 218.6,
-        "bytes": 7514521,
+        "dur": 219,
+        "bytes": 7556082,
         "scenes": [
           0,
-          33.82,
-          66.33,
-          94.22,
-          123.89,
-          160.07,
-          187.23
+          33.54,
+          66.1,
+          94.1,
+          124.13,
+          160.57,
+          187.72
         ],
         "vtt": "src/content/courses/films/pm.plan.method.nl.vtt"
       },
@@ -2096,18 +2096,18 @@
     "pm.outside.questions": {
       "poster": "src/content/courses/films/pm.outside.questions.jpg",
       "nl": {
-        "dur": 342,
-        "bytes": 12428065,
+        "dur": 340.6,
+        "bytes": 12374866,
         "scenes": [
           0,
-          27.28,
-          56.02,
-          83.27,
-          129.61,
-          172.99,
-          225.35,
-          254.73,
-          299.62
+          27.02,
+          55.27,
+          82.38,
+          129.21,
+          172.24,
+          224.26,
+          253.47,
+          297.96
         ],
         "vtt": "src/content/courses/films/pm.outside.questions.nl.vtt"
       },
@@ -2440,18 +2440,18 @@
     "pm.agile.scrum": {
       "poster": "src/content/courses/films/pm.agile.scrum.jpg",
       "nl": {
-        "dur": 332.9,
-        "bytes": 13594238,
+        "dur": 333.9,
+        "bytes": 13540496,
         "scenes": [
           0,
-          32.6,
-          69.71,
-          116.53,
-          153.59,
-          192.02,
-          217.04,
-          250.53,
-          293.68
+          33.21,
+          70.76,
+          117.17,
+          154.5,
+          193,
+          218.08,
+          252.04,
+          294.76
         ],
         "vtt": "src/content/courses/films/pm.agile.scrum.nl.vtt"
       },
@@ -2475,18 +2475,18 @@
     "pm.agile.kanban": {
       "poster": "src/content/courses/films/pm.agile.kanban.jpg",
       "nl": {
-        "dur": 342.6,
-        "bytes": 16982035,
+        "dur": 339.3,
+        "bytes": 16920090,
         "scenes": [
           0,
-          28.74,
-          70.9,
-          114.52,
-          147.79,
-          190.79,
-          219.4,
-          255.15,
-          305.41
+          28.78,
+          70.36,
+          113.98,
+          146.36,
+          189.47,
+          218.13,
+          253.4,
+          302.15
         ],
         "vtt": "src/content/courses/films/pm.agile.kanban.nl.vtt"
       },
@@ -2545,18 +2545,18 @@
     "pm.scaled.pi": {
       "poster": "src/content/courses/films/pm.scaled.pi.jpg",
       "nl": {
-        "dur": 345.8,
-        "bytes": 16335945,
+        "dur": 346.3,
+        "bytes": 16416588,
         "scenes": [
           0,
-          38,
-          83.49,
-          108.46,
-          154.54,
-          194.61,
-          229.87,
-          265.52,
-          304.32
+          38.27,
+          83.24,
+          108.14,
+          154.03,
+          194.47,
+          230.2,
+          265.91,
+          304.96
         ],
         "vtt": "src/content/courses/films/pm.scaled.pi.nl.vtt"
       },
@@ -2580,18 +2580,18 @@
     "pm.scaled.hybrid": {
       "poster": "src/content/courses/films/pm.scaled.hybrid.jpg",
       "nl": {
-        "dur": 334.1,
-        "bytes": 13170779,
+        "dur": 335.1,
+        "bytes": 13124541,
         "scenes": [
           0,
-          28.49,
-          58.4,
-          92.83,
-          134.31,
-          173.11,
-          218.44,
-          264.49,
-          288.64
+          28.64,
+          58.96,
+          93.68,
+          135.76,
+          174.16,
+          219.05,
+          264.96,
+          289.19
         ],
         "vtt": "src/content/courses/films/pm.scaled.hybrid.nl.vtt"
       },
@@ -2615,34 +2615,34 @@
     "pm.devops.pipeline": {
       "poster": "src/content/courses/films/pm.devops.pipeline.jpg",
       "nl": {
-        "dur": 329.1,
-        "bytes": 13354220,
+        "dur": 330.8,
+        "bytes": 13430650,
         "scenes": [
           0,
-          27.76,
-          50.13,
-          81.71,
-          133.41,
-          171.97,
-          217.58,
-          258.08,
-          290.35
+          27.74,
+          50.16,
+          81.77,
+          134,
+          172.74,
+          218.11,
+          259.22,
+          291.63
         ],
         "vtt": "src/content/courses/films/pm.devops.pipeline.nl.vtt"
       },
       "en": {
-        "dur": 333.1,
-        "bytes": 13408196,
+        "dur": 334.6,
+        "bytes": 13520497,
         "scenes": [
           0,
-          29.45,
-          51.27,
-          84.42,
-          136.17,
-          175.49,
-          221.13,
-          261.99,
-          293.37
+          29.26,
+          51.11,
+          84.24,
+          137.32,
+          176.58,
+          222.33,
+          262.82,
+          294.89
         ],
         "vtt": "src/content/courses/films/pm.devops.pipeline.en.vtt"
       }
@@ -2683,18 +2683,18 @@
     "pm.itproject.mvp": {
       "poster": "src/content/courses/films/pm.itproject.mvp.jpg",
       "nl": {
-        "dur": 322.7,
-        "bytes": 13547990,
+        "dur": 323.2,
+        "bytes": 13576153,
         "scenes": [
           0,
-          26.71,
-          68.21,
-          107.67,
-          146.98,
-          176.02,
-          201.13,
-          226.09,
-          275.54
+          26.46,
+          67.82,
+          107.84,
+          147.3,
+          176.42,
+          200.86,
+          226.05,
+          275.59
         ],
         "vtt": "src/content/courses/films/pm.itproject.mvp.nl.vtt"
       },
@@ -2848,18 +2848,18 @@
     "pm.agile.forecast": {
       "poster": "src/content/courses/films/pm.agile.forecast.jpg",
       "nl": {
-        "dur": 313,
-        "bytes": 12977416,
+        "dur": 313.6,
+        "bytes": 12948546,
         "scenes": [
           0,
-          27.86,
-          51.98,
-          76.82,
-          115.85,
-          174.98,
-          199.13,
-          234.3,
-          275.27
+          28.1,
+          52.29,
+          77.12,
+          116.05,
+          175.34,
+          199.19,
+          234.83,
+          275.99
         ],
         "vtt": "src/content/courses/films/pm.agile.forecast.nl.vtt"
       },
@@ -3034,15 +3034,15 @@
     "pm.field.it": {
       "poster": "src/content/courses/films/pm.field.it.jpg",
       "nl": {
-        "dur": 144,
-        "bytes": 6670941,
+        "dur": 144.3,
+        "bytes": 6648931,
         "scenes": [
           0,
-          20.71,
-          41.01,
-          61.25,
-          81.92,
-          102.75
+          21.02,
+          41.3,
+          61.35,
+          82.23,
+          103.22
         ],
         "vtt": "src/content/courses/films/pm.field.it.nl.vtt"
       },
@@ -3187,16 +3187,16 @@
     "pm.agile.intro": {
       "poster": "src/content/courses/films/pm.agile.intro.jpg",
       "nl": {
-        "dur": 201.7,
-        "bytes": 7504932,
+        "dur": 202.7,
+        "bytes": 7532573,
         "scenes": [
           0,
-          20.88,
-          53.42,
-          85.44,
-          115.55,
-          144.17,
-          156.61
+          21.07,
+          53.83,
+          86.09,
+          116.25,
+          144.7,
+          157.3
         ],
         "vtt": "src/content/courses/films/pm.agile.intro.nl.vtt"
       },
@@ -3218,15 +3218,15 @@
     "pm.devops.intro": {
       "poster": "src/content/courses/films/pm.devops.intro.jpg",
       "nl": {
-        "dur": 239.6,
-        "bytes": 8756749,
+        "dur": 239.9,
+        "bytes": 8729735,
         "scenes": [
           0,
-          24.34,
-          55.18,
-          88.09,
-          129.77,
-          174.35,
+          23.93,
+          54.85,
+          88.11,
+          129.95,
+          174.34,
           192.37
         ],
         "vtt": "src/content/courses/films/pm.devops.intro.nl.vtt"
@@ -3244,6 +3244,68 @@
           212.65
         ],
         "vtt": "src/content/courses/films/pm.devops.intro.en.vtt"
+      }
+    },
+    "pm.scaled.intro": {
+      "poster": "src/content/courses/films/pm.scaled.intro.jpg",
+      "en": {
+        "dur": 225.8,
+        "bytes": 8950005,
+        "scenes": [
+          0,
+          20.72,
+          61.51,
+          97.74,
+          126.48,
+          163.76,
+          178.72
+        ],
+        "vtt": "src/content/courses/films/pm.scaled.intro.en.vtt"
+      },
+      "nl": {
+        "dur": 207.3,
+        "bytes": 8279399,
+        "scenes": [
+          0,
+          19.46,
+          55.92,
+          88.69,
+          113.45,
+          148.64,
+          162.5
+        ],
+        "vtt": "src/content/courses/films/pm.scaled.intro.nl.vtt"
+      }
+    },
+    "pm.itproject.intro": {
+      "poster": "src/content/courses/films/pm.itproject.intro.jpg",
+      "nl": {
+        "dur": 215.8,
+        "bytes": 7956487,
+        "scenes": [
+          0,
+          23.8,
+          53.4,
+          88.67,
+          115.51,
+          151.99,
+          167.43
+        ],
+        "vtt": "src/content/courses/films/pm.itproject.intro.nl.vtt"
+      },
+      "en": {
+        "dur": 231.7,
+        "bytes": 8531230,
+        "scenes": [
+          0,
+          27.21,
+          58.1,
+          96.53,
+          126.1,
+          165.13,
+          182.33
+        ],
+        "vtt": "src/content/courses/films/pm.itproject.intro.en.vtt"
       }
     }
   }
