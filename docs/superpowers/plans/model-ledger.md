@@ -176,3 +176,5 @@ Outcome: accepted (merged as delivered), sent back N times, redone.
 | 15 Nov | Review: pm.approach.intro | sonnet | ~48 | ~25 min | n/a | accepted with fixes (recap scene cut, 184 to 165 s, hedges, sticky notes, spreadsheet rule dropped); merged v342 |
 | 15 Nov | Task 17 step K: points kit | opus | 82 | 26 min | 291,167 | accepted with fixes by its review |
 | 15 Nov | Review: Task 17 step K | opus | ~75 | ~45 min | n/a | accepted with fixes (one MAX_TOTAL 360, size allowance for all extended films, stronger point check, unit/acronym labels exempt, checkScope 1000x faster); merged v344 |
+| 15 Nov | Build: Projects intro pm.formats.intro | sonnet | 113 | 22 min | 326,204 | accepted with fixes by its review |
+| 15 Nov | Review: pm.formats.intro | sonnet | ~60 | n/a | n/a | accepted with small trims (171 to 169 s); merged v345 |

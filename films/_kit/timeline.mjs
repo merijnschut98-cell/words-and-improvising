@@ -976,7 +976,13 @@ const SAY = {
     // voice; no other film's spoken text changes
     [/(?<=\bVoorspellend, edjail, )Lean en Six Sigma\b/g, 'Lien en Sikss Sigma'], [/\bmet DMAIC, de stappen van Six Sigma\b/g, 'met dee em aa ie see, de stappen van Sikss Sigma'],
     // and toolfamilies (espeak-ng reads tool as tˈoːl, "tole") as toel-families, as the planningstool rule says its tool, only after "Denk in"
-    [/(?<=\bDenk in )toolfamilies\b/g, 'toel-families']],
+    [/(?<=\bDenk in )toolfamilies\b/g, 'toel-families'],
+    // the module intro film Formats and meetings (pm.formats.intro), a self-contained group at the end of the Dutch list, checked with
+    // phonemes through Piper's nl_NL-alex bridge: espeak-ng reads brown paper with the Dutch o of "bron" (brˈɔwn pˈaːpər; said braun peeper,
+    // brˈʌʊn pˈeːpər, as a Dutch coach says it) and whiteboard as "wiete-bord" (ʋhˈitəbˌoːɑrd; said wajtbord, ʋˈɑjtbɔrd). Each rule keeps to
+    // the intro's own phrase (the paper the group draws the process on, the digital whiteboard it works on), so the lessons and the other
+    // films keep their voice; no other film's spoken text changes
+    [/(?<=\bmet geeltjes op een )brown paper\b/g, 'braun peeper'], [/(?<=\bDat doen we op een digitaal )whiteboard\b/g, 'wajtbord']],
   en: [[/\brpm\b/g, 'revolutions per minute'], [/\bmm\/min\b/g, 'millimetres per minute'], [/\bm\/min\b/g, 'metres per minute'], [/µm\b/g, 'micrometres'],
     [/€\s?(\d[\d,]*(?:\.\d+)?)/g, '$1 euros'], [/(\d)\.0(?![\d])/g, '$1'], [/(\d)\s?mm\b/g, '$1 millimetres'], [/(\d)\s?min\b/g, '$1 minutes'], [/(\d)\s?%/g, '$1 percent'],
     [/Ø\s*/g, 'diameter '], [/(\d)\+(\d)/g, '$1 plus $2'], [/\s×\s/g, ' times '], [/\s\/\s/g, ' divided by '], [/\s=\s/g, ' is '], [/°/g, ' degrees'], [/\bRa\b/g, 'R a'], [/’/g, "'"],
