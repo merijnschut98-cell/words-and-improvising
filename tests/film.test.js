@@ -1755,3 +1755,17 @@ test('speak variant: the cost engineering intro film words in Dutch', () => {
   const en = 'The fourth topic is Lean accounting and savings. You spread indirect costs with an overhead surcharge.';
   assert.equal(speakOf([en], 'en'), en);
 });
+
+// The module intro film for Reliability and asset strategy (eng.reliability.intro), checked with espeak-ng phonemes through Piper's
+// nl_NL-alex bridge and the English voice. It adds no SAY rule: FMECA is said as letters by the rule of the field film "Making the plant
+// better" (the same phrase "en maakt een FMECA", "and make an FMECA"); FMEA (read "fmeea") and failure-finding (read "fajluure") are said
+// in a variant of the beat, so the lessons and the other films keep their voice. Weibull-fit, risicomatrix, RCM, operationele
+// beschikbaarheid and the level words are read right; no other film's spoken text changes
+test('speak: the reliability intro film needs no SAY rule of its own', () => {
+  const nl = (s) => speakOf([s], 'nl');
+  assert.equal(nl('Je zet de onderdelen in een risicomatrix en maakt een FMECA.'), 'Je zet de onderdelen in een risicomatrix en maakt een F M E C A.');
+  assert.equal(speakOf(['You put the parts in a risk matrix and make an FMECA.'], 'en'), 'You put the parts in a risk matrix and make an F M E C A.');
+  // the film's own words keep their voice, so no rule touches them
+  for (const s of ['Het patroon in de storingsdata zie je met een Weibull-fit.', 'Het derde onderwerp is RCM en assetstrategie.', 'Je rekent de operationele beschikbaarheid uit.', 'Die test je met een failure-finding-taak.', 'Het tweede onderwerp is FMEA en kritikaliteit.']) assert.equal(nl(s), s);
+  for (const s of ['You see the pattern in the failure data with a Weibull fit.', 'You test it with a failure-finding task.', 'You work out the operational availability.']) assert.equal(speakOf([s], 'en'), s);
+});
