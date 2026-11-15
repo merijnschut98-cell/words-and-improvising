@@ -1,0 +1,245 @@
+WEBVTT
+
+1
+00:00:00.859 --> 00:00:03.854
+Line 3 in hall B gets a new filling unit.
+
+2
+00:00:04.619 --> 00:00:07.928
+It fills the cartons on the belt with product from the tank.
+
+3
+00:00:08.987 --> 00:00:12.168
+The unit has a frame, a plate, a tank and a cover.
+
+4
+00:00:13.321 --> 00:00:14.447
+You are the engineer.
+
+5
+00:00:15.142 --> 00:00:17.592
+You follow the unit from material to line.
+
+6
+00:00:18.629 --> 00:00:20.196
+That makes six stations.
+
+7
+00:00:20.898 --> 00:00:23.731
+From strength and machining to welding and moulding.
+
+8
+00:00:25.085 --> 00:00:27.941
+The first station is Materials and strength.
+
+9
+00:00:28.628 --> 00:00:30.787
+The frame has to carry the whole unit.
+
+10
+00:00:31.842 --> 00:00:34.536
+You choose a steel that can take more than the load.
+
+11
+00:00:35.599 --> 00:00:39.175
+You check the steel with a tensile test and a hardness test.
+
+12
+00:00:40.205 --> 00:00:42.864
+Without this the frame can break after months.
+
+13
+00:00:44.170 --> 00:00:46.074
+The second station is Machining.
+
+14
+00:00:46.778 --> 00:00:49.007
+The plate is cut from a block of steel.
+
+15
+00:00:50.051 --> 00:00:54.068
+A machine cuts metal away until the shape and the holes are right.
+
+16
+00:00:55.123 --> 00:00:57.561
+You use an end mill and a twist drill.
+
+17
+00:00:58.577 --> 00:01:01.282
+Without this the holes are not where they should be.
+
+18
+00:01:02.557 --> 00:01:05.843
+The third station is Process engineering basics.
+
+19
+00:01:06.537 --> 00:01:09.196
+What is in the tank comes from a process plant.
+
+20
+00:01:10.314 --> 00:01:14.423
+There the product goes from unit to unit, in batches or continuously.
+
+21
+00:01:15.406 --> 00:01:18.668
+You use a process flow diagram and a mass balance.
+
+22
+00:01:19.674 --> 00:01:23.470
+Without this nobody knows what flows, or where product is lost.
+
+23
+00:01:24.875 --> 00:01:27.627
+The fourth station is Drawings and control.
+
+24
+00:01:28.303 --> 00:01:31.426
+Frame, plate and tank come together on one drawing.
+
+25
+00:01:32.434 --> 00:01:37.066
+Whoever reads it sees the shape, the sizes and how exact it must be.
+
+26
+00:01:38.048 --> 00:01:41.159
+You read the title block and the feature control frame.
+
+27
+00:01:42.152 --> 00:01:45.890
+Without this maker and customer each measure in their own way.
+
+28
+00:01:47.179 --> 00:01:49.698
+The fifth station is Welding and joining.
+
+29
+00:01:50.393 --> 00:01:53.052
+The frame is made of parts that must be joined.
+
+30
+00:01:54.080 --> 00:01:55.984
+The seam melts and sets again.
+
+31
+00:01:56.748 --> 00:01:58.350
+Then the parts are one piece.
+
+32
+00:01:59.367 --> 00:02:03.639
+You weld with MIG or MAG, and use a welding fixture.
+
+33
+00:02:04.668 --> 00:02:06.375
+Without this the frame warps.
+
+34
+00:02:07.681 --> 00:02:10.235
+The sixth station is Injection moulding.
+
+35
+00:02:10.930 --> 00:02:13.275
+The cover of the unit is made of plastic.
+
+36
+00:02:14.329 --> 00:02:18.102
+Molten plastic goes into a mould and cools into a cover.
+
+37
+00:02:19.171 --> 00:02:21.423
+You use a hot runner and a setting sheet.
+
+38
+00:02:22.468 --> 00:02:25.394
+Without this the cover gets flash or sink marks.
+
+39
+00:02:26.686 --> 00:02:27.917
+This is the whole map.
+
+40
+00:02:28.633 --> 00:02:32.000
+The six stations of Making things lie in one zone.
+
+41
+00:02:33.031 --> 00:02:35.051
+First Materials and strength.
+
+42
+00:02:35.742 --> 00:02:40.166
+It covers forces, material strength, fatigue and heat treatment.
+
+43
+00:02:41.315 --> 00:02:42.139
+Then Machining.
+
+44
+00:02:42.871 --> 00:02:45.019
+It covers turning, milling and drilling.
+
+45
+00:02:45.742 --> 00:02:48.470
+Also CNC, tooling and workholding.
+
+46
+00:02:49.561 --> 00:02:51.813
+Then Process engineering basics.
+
+47
+00:02:52.519 --> 00:02:56.746
+It covers process types, control, balances and batch capacity.
+
+48
+00:02:57.830 --> 00:02:59.560
+Then Drawings and control.
+
+49
+00:03:00.239 --> 00:03:05.138
+It covers reading drawings, tolerances, diagrams and control loops.
+
+50
+00:03:06.215 --> 00:03:07.771
+Then Welding and joining.
+
+51
+00:03:08.459 --> 00:03:12.162
+It covers arc welding, spot welding and weld defects.
+
+52
+00:03:12.873 --> 00:03:16.205
+Also bolts, adhesives and welding in production.
+
+53
+00:03:17.302 --> 00:03:19.020
+Finally Injection moulding.
+
+54
+00:03:19.709 --> 00:03:22.694
+It covers the machine, the cycle and plastics.
+
+55
+00:03:23.393 --> 00:03:25.645
+Also defects, setting and moulds.
+
+56
+00:03:26.651 --> 00:03:28.021
+That is how they connect.
+
+57
+00:03:28.773 --> 00:03:32.802
+At strength you pick the material, and the drawing fixes the sizes.
+
+58
+00:03:33.813 --> 00:03:36.553
+Machining, welding and moulding make the parts.
+
+59
+00:03:37.233 --> 00:03:39.346
+The process plant makes what goes in.
+
+60
+00:03:40.354 --> 00:03:43.628
+Each station is a module with four levels per topic.
+
+61
+00:03:44.373 --> 00:03:46.242
+Start with the part you have to make.
