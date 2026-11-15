@@ -21,7 +21,7 @@
 // installer of the Projects films. Added for this film, each with its reason in the narration:
 // the cable that comes through the left wall (the connection to the grid), a transformer between
 // cabinet and switchboard (it steps the voltage down for the machines; its ribs cool it), a
-// cable route from the transformer up the wall to the switchboard, a motor in front of the belt
+// cable route from the transformer up the wall to the switchboard, a motor on the front of the belt's bench
 // (it drives the belt), a compressor with a hose to the line (compressed air), and a pump on the
 // pipe from the tank to the filling unit. Each station is one part of the chain:
 //   s1 the opening: line 3 moves and needs more power; the chain grid, cabinet, transformer,
@@ -45,15 +45,18 @@
 //      filling unit; pump and pipe fix the flow, a heat exchanger passes on heat; a pump curve
 //      and a plate heat exchanger (eng.fluids.pumps, .heat); without it the pump runs off its
 //      duty point
-//   s7 Netbedrijf en assetmanagement (eng.gridops): the grid operator delivers the connection,
-//      watches the grid, fixes outages and steers a full grid; an offer and a switching plan
-//      (eng.gridops.request, .switching); without it the connection takes longer and a job
-//      drops the power unexpectedly
+//   s7 Netbedrijf en assetmanagement (eng.gridops): the grid operator upgrades the plant's
+//      connection, watches the grid, fixes outages and steers a full grid; a readiness check
+//      and a switching plan (eng.gridops.chain, .switching: tools of the field work, not the
+//      offer, which is a document); without it the connection takes longer and a job drops
+//      the power unexpectedly
 //   s8 Netplanning en de energietransitie (eng.gridplanning): the planner looks at how much
-//      power is needed later and where the grid gets full; a load flow and clipping
-//      (eng.gridplanning.loadflow, .alternatives); without it the upgrade comes too late
+//      power is needed later and where the grid gets full; a load flow for each scenario
+//      (eng.gridplanning.loadflow, .investment: the planner's own instruments, not clipping,
+//      a measure for solar farms); without it the upgrade comes too late
 //   s9 the shared Engineering map (the kit's mapScene) with the seven stations lit: the whole
-//      map, the zone, place by place at 1.5, then back to the zone for two beats on how the
+//      map, the zone, place by place at 1.5 (one short line per place, its first and last
+//      topic), then back to the zone for two beats on how the
 //      stations connect, and where to start
 // The tools come from the modules' own lessons (checked below), each a term of its glossary, at
 // Basis or Working knowledge level, and each in ONE module of the zone only (the capacity map is
@@ -152,9 +155,12 @@ has('eng.fluids.pumps', ['Werkpunt Snijpunt van pomp- en leidingkarakteristiek',
 has('eng.fluids.pumps', ['Pump curve', 'Duty point'], 'en');
 has('eng.fluids.heat', ['brengt warmte van een warme stroom naar een koude via een wand, zonder dat ze mengen', 'Platenwarmtewisselaar Compacte wisselaar']);
 has('eng.fluids.heat', ['through a wall, without mixing them', 'Plate heat exchanger'], 'en');
-// s7 grid operations: a connection starts with a request and an offer; the switching plan; the wrong order drops customers; the operator watches, repairs and steers
-has('eng.gridops.request', ['Een aansluiting begint met een aanvraag', 'Offerte Het aanbod van de netbeheerder na een complete aanvraag']);
-has('eng.gridops.request', ['A connection starts with a request to the regional grid operator', 'Offer'], 'en');
+// s7 grid operations: the operator reinforces the connection; the readiness check before a job; the switching plan; the
+// wrong order drops customers; the operator watches, repairs and steers
+has('eng.gridops.workload', ['Verzwaring Het net sterker maken']);
+has('eng.gridops.workload', ['Reinforcement Making the grid stronger'], 'en');
+has('eng.gridops.chain', ['Gereedheidscheck Controle dat ontwerp, vergunning, materiaal, schakelplan en ploeg klaar zijn']);
+has('eng.gridops.chain', ['Readiness check Check that design, permit, material, switching plan and crew are all ready'], 'en');
 has('eng.gridops.switching', ['Schakelplan Stap-voor-stap-script', 'de verkeerde volgorde kan klanten laten uitvallen']);
 has('eng.gridops.switching', ['Switching plan Step-by-step script', 'the wrong order can drop customers'], 'en');
 has('eng.gridops.chain', ['Doorlooptijd is de kalendertijd van aanvraag tot werkende aansluiting']);
@@ -163,13 +169,14 @@ has('eng.gridops.outage', ['Het bedrijfsvoeringscentrum, dat het net dag en nach
 has('eng.gridops.outage', ['The control room, the team that watches and switches the grid around the clock'], 'en');
 has('eng.gridops.cmbasics', ['Congestiemanagement betekent afname of invoeding op piekmomenten sturen']);
 has('eng.gridops.cmbasics', ['Congestion management means steering offtake or feed-in at peak moments'], 'en');
-// s8 grid planning: how much power flows at once, later; the load flow; clipping instead of building
+// s8 grid planning: how much power flows at once, later; the load flow, run for each scenario, shows where and when the
+// grid gets too full
 has('eng.gridplanning.demand', ['Elke netplanning begint met de vraag hoeveel vermogen er straks tegelijk loopt']);
 has('eng.gridplanning.demand', ['All grid planning starts with how much power will flow at the same moment'], 'en');
 has('eng.gridplanning.loadflow', ['Loadflow Berekening van stromen en spanningen in elk deel van het net', 'Nederlandse netplanners rekenen dat in tools als Vision of PowerFactory']);
 has('eng.gridplanning.loadflow', ['Load flow A calculation of the currents and voltages in every part of the grid', 'grid planners run it in tools such as Vision or PowerFactory'], 'en');
-has('eng.gridplanning.alternatives', ['Aftoppen Een zonnepark aansluiten op een deel van zijn piekvermogen', 'kan het zonder bouwen, of later?']);
-has('eng.gridplanning.alternatives', ['Clipping Connecting a solar farm', 'can it be done without building, or later?'], 'en');
+has('eng.gridplanning.investment', ['Scenario Een samenhangend beeld van toekomstige vraag en opwek']);
+has('eng.gridplanning.investment', ['Scenario A consistent picture of future demand and generation'], 'en');
 has('eng.gridplanning.investment', ['Draai loadflows per scenario per jaar en je ziet waar en wanneer elke asset over zijn grens gaat']);
 has('eng.gridplanning.investment', ['Run load flows per scenario per year and you see where and when each asset goes over its limit'], 'en');
 
@@ -201,8 +208,8 @@ const PLATE = { z0: 100, z1: 146 };
 const TANK = { x: 142, y: 34, r: 17, h: 112 };
 const PIPE = { y: 29, z: 118, rise: 180 };
 const PUMP = { x: 162, y: 32 };
-const MOTOR = { x0: 222, x1: 252, y: 60, z: 24, r: 9 };
-const COMP = { x: 236, y: 98 };
+const MOTOR = { x0: 238, x1: 264, y: 59, z: 40, r: 8 };
+const COMP = { x: 242, y: 138 };
 
 // the cables: from the left wall to the cabinet (as in the Projects films), cabinet to transformer, and the run from the
 // transformer along the back wall at the height of the switchboard (a cable tray) to the switchboard
@@ -210,48 +217,50 @@ const cabA = hall.cable([[0, 100], [32, 100], [32, 28]]);
 const cabB = hall.cable([[52, 13], [TRAFO.x, 13]]);
 const wallEntry = w.box({ x: 0, y: 86, w: 10, d: 28, r: 1.5 }, 0, 40, { tone: 'lo' }, { steps: 2 })
   + w.box({ x: 10, y: 96, w: 3, d: 8, r: 1 }, 0, 10, { tone: 'mid' }, { steps: 1 });
-const tray = w.box({ x: TRAFO.x + TRAFO.w - 10, y: 0, w: SWB.x - (TRAFO.x + TRAFO.w - 10) + 20, d: 4, r: 0.6 }, 98, 104, { tone: 'lo' }, { steps: 2 })
-  + w.box({ x: TRAFO.x + TRAFO.w - 10, y: 0, w: 5, d: 4, r: 0.6 }, TRAFO.h, 104, { tone: 'lo' } , { steps: 2 });
+const tray = w.box({ x: TRAFO.x + TRAFO.w - 10, y: 0, w: SWB.x - (TRAFO.x + TRAFO.w - 10) + 20, d: 4, r: 0.6 }, 98, 104, { tone: 'lo' }, { steps: 1 })
+  + w.box({ x: TRAFO.x + TRAFO.w - 10, y: 0, w: 5, d: 4, r: 0.6 }, TRAFO.h, 104, { tone: 'lo' } , { steps: 1 });
 
 // the transformer: a tank on a base, three bushings on top where the cable connects, and cooling ribs on its front
-const bushings = [0, 1, 2].map((i) => w.post(TRAFO.x + 12 + i * 15, TRAFO.y + 16, 3.4, TRAFO.h, TRAFO.h + 14, { tone: 'hi' }, 14)).join('');
-const ribs = [0, 1, 2, 3, 4].map((i) => w.box({ x: TRAFO.x + 6 + i * 10, y: TRAFO.y + TRAFO.d, w: 5, d: 9, r: 0.8 }, 12, TRAFO.h - 6, { tone: 'lo' }, { steps: 1 })).join('');
-const trafo = w.box({ x: TRAFO.x, y: TRAFO.y, w: TRAFO.w, d: TRAFO.d, r: 2 }, 6, TRAFO.h, { tone: 'mid' }, { steps: 3, bevel: 0.5 })
+const bushings = [0, 1, 2].map((i) => w.post(TRAFO.x + 12 + i * 15, TRAFO.y + 16, 3.4, TRAFO.h, TRAFO.h + 14, { tone: 'hi' }, 10)).join('');
+const ribs = [0, 1, 2, 3, 4].map((i) => w.box({ x: TRAFO.x + 6 + i * 10, y: TRAFO.y + TRAFO.d, w: 5, d: 9, r: 0 }, 12, TRAFO.h - 6, { tone: 'lo' }, { steps: 0 })).join('');
+const trafo = w.box({ x: TRAFO.x, y: TRAFO.y, w: TRAFO.w, d: TRAFO.d, r: 2 }, 6, TRAFO.h, { tone: 'mid' }, { steps: 2 })
   + w.box({ x: TRAFO.x - 3, y: TRAFO.y - 2, w: TRAFO.w + 6, d: TRAFO.d + 4, r: 1 }, 0, 6, { tone: 'lo' }, { steps: 1 }) + ribs + bushings;
 
-// the filling unit of eng.field.making (frame, plate), the tank with its pipe and the pump on the pipe
+// the filling unit of eng.field.making (frame, plate, cover), the tank with its pipe and the pump on the pipe
 const frame = [
   w.box({ x: UX, y: 5, w: 9, d: 9, r: 1 }, 0, FRAME.top, { tone: 'mid' }, { steps: 2 }),
   w.box({ x: UX, y: 52, w: 9, d: 9, r: 1 }, 0, FRAME.top, { tone: 'mid' }, { steps: 2 }),
   w.box({ x: UX, y: 5, w: 9, d: 56, r: 1 }, FRAME.top, FRAME.beam, { tone: 'mid' }, { steps: 2 }),
 ].join('');
 const plate = w.box({ x: UX + 9, y: L3.y, w: 3.2, d: 36, r: 0.6 }, PLATE.z0, PLATE.z1, { tone: 'mid' }, { steps: 2 });
+// the light plastic cover on the beam, as in the other Engineering field films
+const cover = w.box({ x: UX - 7, y: 12, w: 23, d: 42, r: 7 }, FRAME.beam, FRAME.beam + 24, { tone: 'hi' }, { steps: 2 });
 // the tank's pipe leaves at the foot of the tank along the floor, passes the pump, rises behind the belt's end of the
 // bench (at x 180, clear of it) and runs over to the plate of the filling unit
-const tank = w.post(TANK.x, TANK.y, TANK.r, 0, TANK.h, { tone: 'mid' }, 28)
-  + w.post(TANK.x, TANK.y, TANK.r - 4, TANK.h, TANK.h + 5, { tone: 'lo' }, 24)
-  + w.box({ x: TANK.x + TANK.r - 2, y: PIPE.y, w: PIPE.rise + 6 - (TANK.x + TANK.r - 2), d: 6, r: 2 }, 10, 20, { tone: 'lo' }, { steps: 2 })
-  + w.box({ x: PIPE.rise, y: PIPE.y, w: 6, d: 6, r: 2 }, 10, PIPE.z + 8, { tone: 'lo' }, { steps: 2 })
-  + w.box({ x: PIPE.rise, y: PIPE.y, w: UX + 9 - PIPE.rise, d: 6, r: 2 }, PIPE.z, PIPE.z + 8, { tone: 'lo' }, { steps: 2 });
+const tank = w.post(TANK.x, TANK.y, TANK.r, 0, TANK.h, { tone: 'mid' }, 22)
+  + w.post(TANK.x, TANK.y, TANK.r - 4, TANK.h, TANK.h + 5, { tone: 'lo' }, 18)
+  + w.box({ x: TANK.x + TANK.r - 2, y: PIPE.y, w: PIPE.rise + 6 - (TANK.x + TANK.r - 2), d: 6, r: 2 }, 10, 20, { tone: 'lo' }, { steps: 1 })
+  + w.box({ x: PIPE.rise, y: PIPE.y, w: 6, d: 6, r: 2 }, 10, PIPE.z + 8, { tone: 'lo' }, { steps: 1 })
+  + w.box({ x: PIPE.rise, y: PIPE.y, w: UX + 9 - PIPE.rise, d: 6, r: 2 }, PIPE.z, PIPE.z + 8, { tone: 'lo' }, { steps: 1 });
 // the pump on the floor pipe: a volute (a horizontal drum) with its terminal box
-const pump = k.solidSvg(G.disc(0, 16, 12, G.frameOf([PUMP.x, PUMP.y, 18], [1, 0, 0], [0, 1, 0], [0, 0, 1]), P, { steps: 24 }), { tone: 'hi', crease: 'none' })
-  + w.post(PUMP.x + 8, PUMP.y, 8, 28, 62, { tone: 'mid' }, 18)
-  + w.post(PUMP.x + 8, PUMP.y, 5, 62, 68, { tone: 'lo' }, 14);
+const pump = k.solidSvg(G.disc(0, 16, 12, G.frameOf([PUMP.x, PUMP.y, 18], [1, 0, 0], [0, 1, 0], [0, 0, 1]), P, { steps: 18 }), { tone: 'hi', crease: 'none' })
+  + w.post(PUMP.x + 8, PUMP.y, 8, 28, 62, { tone: 'mid' }, 14)
+  + w.post(PUMP.x + 8, PUMP.y, 5, 62, 68, { tone: 'lo' }, 10);
 
-// the motor in front of the belt: a horizontal drum with a terminal box on top, a foot, and a drive up to the belt
-const motor = w.box({ x: MOTOR.x0 + 4, y: MOTOR.y - 8, w: MOTOR.x1 - MOTOR.x0 - 8, d: 16, r: 1 }, 0, 6, { tone: 'lo' }, { steps: 1 })
-  + k.solidSvg(G.disc(0, MOTOR.x1 - MOTOR.x0, MOTOR.r, G.frameOf([MOTOR.x0, MOTOR.y, MOTOR.z], [1, 0, 0], [0, 1, 0], [0, 0, 1]), P, { steps: 28 }), { tone: 'mid', crease: 'none' })
-  + w.box({ x: MOTOR.x0 + 10, y: MOTOR.y - 5, w: 12, d: 10, r: 1.4 }, MOTOR.z + MOTOR.r - 1, MOTOR.z + MOTOR.r + 7, { tone: 'hi' }, { steps: 1 })
-  + w.box({ x: MOTOR.x0 + 12, y: L3.y + L3.dep, w: 5, d: MOTOR.y - L3.y - L3.dep - 2, r: 0.8 }, MOTOR.z, 56, { tone: 'lo' }, { steps: 1 });
+// the motor on the front of the belt's bench, just under the belt: a horizontal drum on a bracket, with a terminal box
+// on top. The compressor stands in front of the room and to the right, so it hides neither the motor nor the belt
+const motor = w.box({ x: MOTOR.x0 + 8, y: L3.y + L3.dep, w: 10, d: MOTOR.y - L3.y - L3.dep - MOTOR.r + 1, r: 0.6 }, MOTOR.z - 6, MOTOR.z + 6, { tone: 'lo' }, { steps: 1 })
+  + k.solidSvg(G.disc(0, MOTOR.x1 - MOTOR.x0, MOTOR.r, G.frameOf([MOTOR.x0, MOTOR.y, MOTOR.z], [1, 0, 0], [0, 1, 0], [0, 0, 1]), P, { steps: 20 }), { tone: 'mid', crease: 'none' })
+  + w.box({ x: MOTOR.x0 + 8, y: MOTOR.y - 5, w: 10, d: 10, r: 1.4 }, MOTOR.z + MOTOR.r - 1, MOTOR.z + MOTOR.r + 6, { tone: 'hi' }, { steps: 1 });
 
-// the compressor at the front right: a horizontal air tank on two legs with the motor and pump block on top, and a hose
-// along the floor to the line
+// the compressor at the front right of the room: a horizontal air tank on two legs with the motor and pump block on top,
+// and a hose along the floor to the line, where it connects left of the motor
 const comp = w.box({ x: COMP.x + 6, y: COMP.y + 4, w: 6, d: 20, r: 1 }, 0, 12, { tone: 'lo' }, { steps: 1 })
   + w.box({ x: COMP.x + 34, y: COMP.y + 4, w: 6, d: 20, r: 1 }, 0, 12, { tone: 'lo' }, { steps: 1 })
-  + k.solidSvg(G.disc(0, 44, 14, G.frameOf([COMP.x, COMP.y + 14, 26], [1, 0, 0], [0, 1, 0], [0, 0, 1]), P, { steps: 28 }), { tone: 'mid', crease: 'none' })
+  + k.solidSvg(G.disc(0, 44, 14, G.frameOf([COMP.x, COMP.y + 14, 26], [1, 0, 0], [0, 1, 0], [0, 0, 1]), P, { steps: 20 }), { tone: 'mid', crease: 'none' })
   + w.box({ x: COMP.x + 10, y: COMP.y + 6, w: 24, d: 16, r: 2 }, 38, 54, { tone: 'hi' }, { steps: 2 });
-const hose = hall.cable([[COMP.x + 22, COMP.y + 4], [COMP.x + 22, 66], [266, 66], [266, L3.y + L3.dep + 2]], { dashed: false })
-  + w.box({ x: 262, y: L3.y + L3.dep, w: 8, d: 6, r: 1 }, 36, 52, { tone: 'hi' }, { steps: 1 });
+const hose = hall.cable([[COMP.x + 22, COMP.y + 4], [COMP.x + 22, 78], [228, 78], [228, L3.y + L3.dep + 2]], { dashed: false })
+  + w.box({ x: 224, y: L3.y + L3.dep, w: 8, d: 6, r: 1 }, 36, 52, { tone: 'hi' }, { steps: 1 });
 
 const INST = { x: 16, y: 70 };
 const installer = scrumPerson(w, k, G, P, { x: INST.x, y: INST.y, key: 'installer', look: 'sm', along: 'y' });
@@ -266,7 +275,7 @@ const world = [
   cueG('tank', tank),
   cueG('pump', pump),
   cueG('line3', hall.conveyor({ ...L3, cartons: 4 })),
-  cueG('unit', frame + plate),
+  cueG('unit', frame + plate + cover),
   cueG('motor', motor),
   cueG('air', comp + hose),
   g('pp-installer', installer + hall.hat(INST.x, INST.y)),
@@ -376,14 +385,14 @@ const spec = {
         { nl: 'Lijn 3 in hal B verhuist. Op de nieuwe plek heeft hij meer stroom nodig.', en: 'Line 3 in hall B is moving. At its new place it needs more power.', focus: ['flow', 'line3'] },
         { nl: 'Het net levert de stroom. Via kast, transformator en schakelbord gaat hij naar de machines.', en: 'The grid supplies the power. Through cabinet, transformer and switchboard it reaches the machines.', focus: ['goal', 'net', 'cab', 'trafo', 'swb', 'motor'] },
         { nl: 'Jij bent de engineer en volgt de stroom van het net tot de lijn.', en: 'You are the engineer and follow the power from the grid to the line.', focus: ['route', 'jij', 'line3'] },
-        { nl: 'Zeven stations, van het net en schakelen tot bedrijfsvoering en planning.', en: 'Seven stations, from the grid and switching to operations and planning.', focus: 'road' },
+        { nl: 'Zeven stations, van het net tot de planning.', en: 'Seven stations, from the grid to planning.', focus: 'road' },
       ],
     },
     {
       id: 's2', level: 1, dur: DURS[1], still: 0.9, title: { nl: 'Het elektriciteitsnet', en: 'The electricity grid' },
       beats: [
         { nl: 'Het eerste station is het elektriciteitsnet. Het brengt de stroom van hoogspanning tot in de hal.', en: 'The first station is the electricity grid. It brings the power from high voltage into the hall.', focus: ['st-gridbasics', 'for', 'net'] },
-        { nl: 'Op hoogspanning gaat weinig verloren. Dicht bij de fabriek gaat de spanning stap voor stap omlaag.', en: 'At high voltage little is lost. Close to the plant the voltage steps down.', focus: ['for', 'net'] },
+        { nl: 'Op hoogspanning gaat weinig verloren. Pas dicht bij de fabriek gaat de spanning omlaag.', en: 'At high voltage little is lost. Only close to the plant does the voltage step down.', focus: ['for', 'net'] },
         { nl: 'Je kijkt op de {t:Capaciteitskaart|capaciteitskaart} en sluit zo nodig een {t:Flexibel contract|flexibel contract}.', en: 'You check the {t:Capacity map|capacity map} and sign a {t:Flexible contract|flexible contract} if needed.', ...TOOLCUE('Capaciteitskaart', 'Flexibel contract') },
         { nl: 'Zonder dit sta je in een vol gebied in de wachtrij voor stroom.', en: 'Without this you wait in a queue for power in a full area.', focus: 'without' },
       ],
@@ -392,7 +401,7 @@ const spec = {
       id: 's3', level: 1, dur: DURS[2], still: 0.9, title: { nl: 'Schakelinstallaties en beveiliging', en: 'Switchgear and protection' },
       beats: [
         { nl: 'Het tweede station is schakelinstallaties en beveiliging. De kast schakelt en bewaakt de stroom.', en: 'The second station is switchgear and protection. The cabinet switches and guards the power.', focus: ['st-switchgear', 'for', 'cab'] },
-        { nl: 'Bij een kortsluiting schakelt alleen de schakelaar die er het dichtst bij zit uit.', en: 'In a short circuit only the breaker closest to the fault trips.', focus: ['for', 'cab'] },
+        { nl: 'Bij een kortsluiting valt alleen de schakelaar het dichtst bij de fout uit.', en: 'In a short circuit only the breaker closest to the fault trips.', focus: ['for', 'cab'] },
         { nl: 'De installateur gebruikt een {t:Beveiligingsrelais|beveiligingsrelais} en een {t:Aardgarnituur|aardgarnituur}.', en: 'The installer uses a {t:Protection relay|protection relay} and an {t:Earthing set|earthing set}.', ...TOOLCUE('Beveiligingsrelais', 'Aardgarnituur', ['installer']) },
         { nl: 'Zonder dit legt één fout de hele hal stil, of is werken aan de kast niet veilig.', en: 'Without this one fault shuts down the whole hall, or work on the cabinet is not safe.', focus: 'without' },
       ],
@@ -401,17 +410,17 @@ const spec = {
       id: 's4', level: 1, dur: DURS[3], still: 0.9, title: { nl: 'Transformatoren en kabels', en: 'Transformers and cables' },
       beats: [
         { nl: 'Het derde station is transformatoren en kabels. De transformator zet de spanning om voor de machines.', en: 'The third station is transformers and cables. The transformer converts the voltage for the machines.', focus: ['st-transformers', 'for', 'trafo'] },
-        { nl: 'Warmte laat hem sneller verouderen, dus koelen ribben hem. Een kabel voert naar het schakelbord.', en: 'Heat ages it faster, so ribs cool it. A cable leads on to the switchboard.', focus: ['for', 'trafo', 'swb'] },
+        { nl: 'Warmte laat hem sneller verouderen, dus koelen ribben hem. Een kabel gaat verder naar het schakelbord.', en: 'Heat ages it faster, so ribs cool it. A cable runs on to the switchboard.', focus: ['for', 'trafo', 'swb'] },
         { nl: 'Je test de olie met een {t:DGA|DGA} en zoekt kabelfouten met een {t:Reflectiemeter|reflectiemeter}.', en: 'You test the oil with a {t:DGA|DGA} and find cable faults with a {t:Reflectometer|reflectometer}.', ...TOOLCUE('DGA', 'Reflectiemeter', ['trafo']) },
-        { nl: 'Zonder dit raakt de transformator oververhit, of valt een kabel zonder waarschuwing uit.', en: 'Without this the transformer overheats, or a cable fails without warning.', focus: 'without' },
+        { nl: 'Zonder dit valt de transformator onverwacht uit, of zoek je lang naar een kabelfout.', en: 'Without this the transformer fails unexpectedly, or you search long for a cable fault.', focus: 'without' },
       ],
     },
     {
       id: 's5', level: 1, dur: DURS[4], still: 0.9, title: { nl: 'Motoren en perslucht', en: 'Motors and fluid power' },
       beats: [
         { nl: 'Het vierde station is motoren en perslucht. De motor drijft de band van lijn 3 aan.', en: 'The fourth station is motors and fluid power. The motor drives the belt of line 3.', focus: ['st-power', 'for', 'motor', 'line3'] },
-        { nl: 'De compressor perst lucht voor de lijn. Dat is dure energie, en lekken kosten stroom.', en: 'The compressor squeezes air for the line. It is costly energy, and leaks waste power.', focus: ['for', 'air'] },
-        { nl: 'Je meet de motorstroom met een {t:Stroomtang|stroomtang} en doet een {t:Lektest|lektest} op de perslucht.', en: 'You measure the motor current with a {t:Clamp meter|clamp meter} and run a {t:Leak test|leak test} on the air.', ...TOOLCUE('Stroomtang', 'Lektest', ['motor', 'air']) },
+        { nl: 'De compressor perst lucht voor de lijn. Dat is dure energie, en lekken kosten stroom.', en: 'The compressor compresses air for the line. That is costly energy, and leaks waste power.', focus: ['for', 'air'] },
+        { nl: 'Je meet de motorstroom met een {t:Stroomtang|stroomtang} en doet een {t:Lektest|lektest}.', en: 'You measure the motor current with a {t:Clamp meter|clamp meter} and run a {t:Leak test|leak test}.', ...TOOLCUE('Stroomtang', 'Lektest', ['motor', 'air']) },
         { nl: 'Zonder dit lekt de perslucht weg en draait een te grote motor op halve kracht.', en: 'Without this the air leaks away and an oversized motor runs at half load.', focus: 'without' },
       ],
     },
@@ -419,7 +428,7 @@ const spec = {
       id: 's6', level: 1, dur: DURS[5], still: 0.9, title: { nl: 'Pompen, stroming en warmte', en: 'Pumps, flow and heat' },
       beats: [
         { nl: 'Het vijfde station is pompen, stroming en warmte. Een pomp voert het product uit de tank naar de vuleenheid.', en: 'The fifth station is pumps, flow and heat. A pump feeds the product from the tank to the filling unit.', focus: ['st-fluids', 'for', 'tank', 'pump', 'unit'] },
-        { nl: 'Pomp en leiding samen leggen het debiet vast. Een warmtewisselaar geeft warmte door zonder te mengen.', en: 'Pump and pipe together fix the flow. A heat exchanger passes on heat without mixing.', focus: ['for', 'tank', 'pump'] },
+        { nl: 'Pomp en leiding bepalen samen het debiet. Een warmtewisselaar geeft warmte door zonder te mengen.', en: 'Pump and pipe together fix the flow. A heat exchanger passes on heat without mixing.', focus: ['for', 'tank', 'pump'] },
         { nl: 'Je leest de {t:Pompkarakteristiek|pompkarakteristiek} en kiest een {t:Platenwarmtewisselaar|platenwarmtewisselaar}.', en: 'You read the {t:Pump curve|pump curve} and pick a {t:Plate heat exchanger|plate heat exchanger}.', ...TOOLCUE('Pompkarakteristiek', 'Platenwarmtewisselaar', ['pump']) },
         { nl: 'Zonder dit draait de pomp op het verkeerde punt en gaat energie verloren.', en: 'Without this the pump runs at the wrong point and energy is lost.', focus: 'without' },
       ],
@@ -427,9 +436,9 @@ const spec = {
     {
       id: 's7', level: 1, dur: DURS[6], still: 0.9, title: { nl: 'Netbedrijf en assetmanagement', en: 'Grid operations and assets' },
       beats: [
-        { nl: 'Het zesde station is netbedrijf en assetmanagement. De netbeheerder levert de aansluiting van lijn 3.', en: 'The sixth station is grid operations and assets. The grid operator delivers the connection for line 3.', focus: ['st-gridops', 'for', 'net'] },
-        { nl: 'Daarna bewaakt hij het net, herstelt storingen en stuurt bij als het vol zit.', en: 'After that he watches the grid, fixes outages and steers when it is full.', focus: ['for', 'net'] },
-        { nl: 'Je krijgt een {t:Offerte|offerte} en het netbedrijf werkt met een {t:Schakelplan|schakelplan}.', en: 'You get an {t:Offer|offer} and the grid operator works with a {t:Switching plan|switching plan}.', ...TOOLCUE('Offerte', 'Schakelplan', ['net']) },
+        { nl: 'Het zesde station is netbedrijf en assetmanagement. De netbeheerder verzwaart de aansluiting van de fabriek.', en: 'The sixth station is grid operations and assets. The grid operator upgrades the plant’s connection.', focus: ['st-gridops', 'for', 'net'] },
+        { nl: 'Daarna bewaakt hij het net, herstelt storingen en stuurt bij als het vol zit.', en: 'After that it watches the grid, fixes outages and steers when it is full.', focus: ['for', 'net'] },
+        { nl: 'Hij doet een {t:Gereedheidscheck|gereedheidscheck} en schakelt volgens een {t:Schakelplan|schakelplan}.', en: 'It runs a {t:Readiness check|readiness check} and switches by a {t:Switching plan|switching plan}.', ...TOOLCUE('Gereedheidscheck', 'Schakelplan', ['net']) },
         { nl: 'Zonder dit duurt de aansluiting langer en valt de stroom bij werk onverwacht uit.', en: 'Without this the connection takes longer and the power drops unexpectedly during work.', focus: 'without' },
       ],
     },
@@ -437,22 +446,22 @@ const spec = {
       id: 's8', level: 1, dur: DURS[7], still: 0.9, title: { nl: 'Netplanning en de energietransitie', en: 'Grid planning and the transition' },
       beats: [
         { nl: 'Het zevende station is netplanning en de energietransitie. De planner kijkt hoeveel stroom er later nodig is.', en: 'The seventh station is grid planning and the transition. The planner looks at how much power is needed later.', focus: ['st-gridplanning', 'for', 'net', 'line3'] },
-        { nl: 'Er komt steeds meer vraag bij, dus hij rekent uit waar en wanneer het net te vol raakt.', en: 'Demand keeps growing, so he works out where and when the grid gets too full.', focus: ['for', 'net'] },
-        { nl: 'Hij draait een {t:Loadflow|loadflow} en weegt {t:Aftoppen|aftoppen} af tegen bouwen.', en: 'He runs a {t:Load flow|load flow} and weighs {t:Clipping|clipping} against building.', ...TOOLCUE('Loadflow', 'Aftoppen', ['net']) },
+        { nl: 'De vraag groeit, dus rekent hij uit waar en wanneer het net vol raakt.', en: 'Demand grows, so he works out where and when the grid fills up.', focus: ['for', 'net'] },
+        { nl: 'Hij draait een {t:Loadflow|loadflow} voor elk {t:Scenario|scenario}.', en: 'He runs a {t:Load flow|load flow} for each {t:Scenario|scenario}.', ...TOOLCUE('Loadflow', 'Scenario', ['net']) },
         { nl: 'Zonder dit komt de verzwaring te laat en wacht de volgende lijn op stroom.', en: 'Without this the upgrade comes too late and the next line waits for power.', focus: 'without' },
       ],
     },
     {
       id: 's9', level: 1, dur: DURS[8], still: 0.9, title: { nl: 'De kaart', en: 'The map' },
       beats: [
-        { nl: 'De hele kaart: de zeven stations van Energie en het net liggen in één gebied.', en: 'The whole map: the seven stations of Energy and the grid lie in one zone.', focus: MAPS },
-        { nl: 'Eerst het elektriciteitsnet: vermogen, het net van hoog naar laag, regels en netcongestie.', en: 'First the electricity grid: power, the grid from high to low, rules and congestion.', focus: MAPS[0] },
-        { nl: 'Dan schakelinstallaties en beveiliging: schakelapparaten, stations, beveiliging en veilig schakelen.', en: 'Then switchgear and protection: switching devices, stations, protection and safe switching.', focus: MAPS[1] },
-        { nl: 'Dan transformatoren en kabels: de transformator, conditie, kabelstoringen en aansluitingen.', en: 'Then transformers and cables: the transformer, condition, cable faults and connections.', focus: MAPS[2] },
-        { nl: 'Dan motoren en perslucht: energie in de fabriek, motoren, aandrijvingen en perslucht.', en: 'Then motors and fluid power: plant energy, motors, drives and compressed air.', focus: MAPS[3] },
-        { nl: 'Dan pompen, stroming en warmte: leidingen, pompen, warmtewisselaars en stoom.', en: 'Then pumps, flow and heat: pipes, pumps, heat exchangers and steam.', focus: MAPS[4] },
-        { nl: 'Dan netbedrijf en assetmanagement: aansluiten, werk in het veld, storingen en congestiemanagement.', en: 'Then grid operations and assets: connecting, field work, outages and congestion management.', focus: MAPS[5] },
-        { nl: 'Tot slot netplanning en de energietransitie: belasting, netontwerp, investeren en flexibiliteit.', en: 'Finally grid planning and the transition: load, grid design, investing and flexibility.', focus: MAPS[6] },
+        { nl: 'De hele kaart: de zeven stations liggen in één gebied.', en: 'The whole map: the seven stations lie in one zone.', focus: MAPS },
+        { nl: 'Eerst het elektriciteitsnet: van vermogen tot netcongestie.', en: 'First the electricity grid: from power to congestion.', focus: MAPS[0] },
+        { nl: 'Dan schakelinstallaties en beveiliging: van schakelapparaten tot veilig schakelen.', en: 'Then switchgear and protection: from switching devices to safe switching.', focus: MAPS[1] },
+        { nl: 'Dan transformatoren en kabels: van de transformator tot aansluitingen.', en: 'Then transformers and cables: from the transformer to connections.', focus: MAPS[2] },
+        { nl: 'Dan motoren en perslucht: van energie in de fabriek tot hydrauliek.', en: 'Then motors and fluid power: from plant energy to hydraulics.', focus: MAPS[3] },
+        { nl: 'Dan pompen, stroming en warmte: van leidingen tot stoom.', en: 'Then pumps, flow and heat: from pipes to steam.', focus: MAPS[4] },
+        { nl: 'Dan netbedrijf en assetmanagement: van aanvraag tot congestiemanagement.', en: 'Then grid operations and assets: from request to congestion management.', focus: MAPS[5] },
+        { nl: 'Tot slot netplanning en de energietransitie: van belasting tot flexibiliteit.', en: 'Finally grid planning and the transition: from load to flexibility.', focus: MAPS[6] },
         { nl: 'Zo hangen ze samen: het net levert, de schakelinstallatie beveiligt en de transformator zet om.', en: 'How they connect: the grid supplies, the switchgear protects and the transformer converts.', focus: [MAPS[0], MAPS[1], MAPS[2]] },
         { nl: 'Motoren en pompen gebruiken de stroom. Netbedrijf en planning zorgen dat het net blijft leveren.', en: 'Motors and pumps use the power. Operations and planning keep the grid able to supply it.', focus: [MAPS[3], MAPS[4], MAPS[5], MAPS[6]] },
         { nl: 'Elk station is een module met vier niveaus per onderwerp. Begin bij wat jouw lijn het meest raakt.', en: 'Each station is a module with four levels per topic. Start with what touches your line most.', focus: MAPS },
@@ -477,14 +486,14 @@ const SAY = [
       en: 'The grid supplies the power. Through cabinet, transformer and switchboard it reaches the machines.' },
     { nl: 'Jij bent de engineer. Je volgt de stroom van het net tot de lijn.',
       en: 'You are the engineer. You follow the power from the grid to the line.' },
-    { nl: 'Dat zijn zeven stations. Van het net en het schakelen tot de bedrijfsvoering en de planning.',
-      en: 'That makes seven stations. From the grid and switching to operations and planning.' },
+    { nl: 'Dat zijn zeven stations, van het net tot de planning.',
+      en: 'That makes seven stations, from the grid to planning.' },
   ],
   [ // s2 gridbasics
     { nl: 'Het eerste station is het elektriciteitsnet. Het brengt de stroom van hoogspanning tot in de hal.',
       en: 'The first station is the electricity grid. It brings the power from high voltage into the hall.' },
-    { nl: 'Op hoogspanning gaat weinig verloren. Dicht bij de fabriek gaat de spanning stap voor stap omlaag.',
-      en: 'At high voltage little is lost. Close to the plant the voltage steps down.' },
+    { nl: 'Op hoogspanning gaat weinig verloren. Pas dicht bij de fabriek gaat de spanning omlaag.',
+      en: 'At high voltage little is lost. Only close to the plant does the voltage step down.' },
     { nl: 'Je kijkt op de {t:Capaciteitskaart|capaciteitskaart} en sluit zo nodig een {t:Flexibel contract|flexibel contract}.',
       en: 'You check the {t:Capacity map|capacity map} and sign a {t:Flexible contract|flexible contract} if needed.' },
     { nl: 'Zonder dit sta je in een vol gebied in de wachtrij voor stroom.',
@@ -493,80 +502,80 @@ const SAY = [
   [ // s3 switchgear
     { nl: 'Het tweede station is schakelinstallaties en beveiliging. De kast schakelt en bewaakt de stroom.',
       en: 'The second station is switchgear and protection. The cabinet switches and guards the power.' },
-    { nl: 'Bij een kortsluiting schakelt alleen de schakelaar die er het dichtst bij zit uit.',
+    { nl: 'Bij een kortsluiting valt alleen de schakelaar het dichtst bij de fout uit.',
       en: 'In a short circuit only the breaker closest to the fault trips.' },
-    { nl: 'De installateur stelt een {t:Beveiligingsrelais|beveiligingsrelais} in. En hij werkt met een {t:Aardgarnituur|aardgarnituur}.',
-      en: 'The installer sets a {t:Protection relay|protection relay}. And he works with an {t:Earthing set|earthing set}.' },
-    { nl: 'Zonder dit legt één fout de hele hal stil. Of is werken aan de kast niet veilig.',
-      en: 'Without this one fault shuts down the whole hall. Or work on the cabinet is not safe.' },
+    { nl: 'De installateur stelt een {t:Beveiligingsrelais|beveiligingsrelais} in en werkt met een {t:Aardgarnituur|aardgarnituur}.',
+      en: 'The installer sets a {t:Protection relay|protection relay} and works with an {t:Earthing set|earthing set}.' },
+    { nl: 'Zonder dit legt één fout de hele hal stil, of is werken aan de kast niet veilig.',
+      en: 'Without this one fault shuts down the whole hall, or work on the cabinet is not safe.' },
   ],
   [ // s4 transformers
     { nl: 'Het derde station is transformatoren en kabels. De transformator zet de spanning om voor de machines.',
       en: 'The third station is transformers and cables. The transformer converts the voltage for the machines.' },
-    { nl: 'Warmte laat hem sneller verouderen. Daarom koelen ribben hem. Een kabel voert naar het schakelbord.',
-      en: 'Heat ages it faster. So ribs cool it. A cable leads on to the switchboard.' },
-    { nl: 'Je test de olie met een {t:DGA|DGA}. Kabelfouten zoek je met een {t:Reflectiemeter|reflectiemeter}.',
-      en: 'You test the oil with a {t:DGA|DGA}. You find cable faults with a {t:Reflectometer|reflectometer}.' },
-    { nl: 'Zonder dit raakt de transformator oververhit. Of valt een kabel zonder waarschuwing uit.',
-      en: 'Without this the transformer overheats. Or a cable fails without warning.' },
+    { nl: 'Warmte laat hem sneller verouderen, dus koelen ribben hem. Een kabel gaat verder naar het schakelbord.',
+      en: 'Heat ages it faster, so ribs cool it. A cable runs on to the switchboard.' },
+    { nl: 'Je test de olie met een {t:DGA|DGA} en zoekt kabelfouten met een {t:Reflectiemeter|reflectiemeter}.',
+      en: 'You test the oil with a {t:DGA|DGA} and find cable faults with a {t:Reflectometer|reflectometer}.' },
+    { nl: 'Zonder dit valt de transformator onverwacht uit, of zoek je lang naar een kabelfout.',
+      en: 'Without this the transformer fails unexpectedly, or you search long for a cable fault.' },
   ],
   [ // s5 power
     { nl: 'Het vierde station is motoren en perslucht. De motor drijft de band van lijn 3 aan.',
       en: 'The fourth station is motors and fluid power. The motor drives the belt of line 3.' },
-    { nl: 'De compressor perst lucht voor de lijn. Dat is dure energie. En lekken kosten stroom.',
-      en: 'The compressor squeezes air for the line. It is costly energy. And leaks waste power.' },
-    { nl: 'Je meet de motorstroom met een {t:Stroomtang|stroomtang}. En je doet een {t:Lektest|lektest} op de perslucht.',
-      en: 'You measure the motor current with a {t:Clamp meter|clamp meter}. And you run a {t:Leak test|leak test} on the air.' },
-    { nl: 'Zonder dit lekt de perslucht weg. En draait een te grote motor op halve kracht.',
-      en: 'Without this the air leaks away. And an oversized motor runs at half load.' },
+    { nl: 'De compressor perst lucht voor de lijn. Dat is dure energie, en lekken kosten stroom.',
+      en: 'The compressor compresses air for the line. That is costly energy, and leaks waste power.' },
+    { nl: 'Je meet de motorstroom met een {t:Stroomtang|stroomtang} en doet een {t:Lektest|lektest}.',
+      en: 'You measure the motor current with a {t:Clamp meter|clamp meter} and run a {t:Leak test|leak test}.' },
+    { nl: 'Zonder dit lekt de perslucht weg en draait een te grote motor op halve kracht.',
+      en: 'Without this the air leaks away and an oversized motor runs at half load.' },
   ],
   [ // s6 fluids
     { nl: 'Het vijfde station is pompen, stroming en warmte. Een pomp voert het product uit de tank naar de vuleenheid.',
       en: 'The fifth station is pumps, flow and heat. A pump feeds the product from the tank to the filling unit.' },
-    { nl: 'Pomp en leiding samen leggen het debiet vast. Een warmtewisselaar geeft warmte door zonder te mengen.',
+    { nl: 'Pomp en leiding bepalen samen het debiet. Een warmtewisselaar geeft warmte door zonder te mengen.',
       en: 'Pump and pipe together fix the flow. A heat exchanger passes on heat without mixing.' },
-    { nl: 'Je leest de {t:Pompkarakteristiek|pompkarakteristiek}. En je kiest een {t:Platenwarmtewisselaar|platenwarmtewisselaar}.',
-      en: 'You read the {t:Pump curve|pump curve}. And you pick a {t:Plate heat exchanger|plate heat exchanger}.' },
-    { nl: 'Zonder dit draait de pomp op het verkeerde punt. En gaat energie verloren.',
-      en: 'Without this the pump runs at the wrong point. And energy is lost.' },
+    { nl: 'Je leest de {t:Pompkarakteristiek|pompkarakteristiek} en kiest een {t:Platenwarmtewisselaar|platenwarmtewisselaar}.',
+      en: 'You read the {t:Pump curve|pump curve} and pick a {t:Plate heat exchanger|plate heat exchanger}.' },
+    { nl: 'Zonder dit draait de pomp op het verkeerde punt en gaat energie verloren.',
+      en: 'Without this the pump runs at the wrong point and energy is lost.' },
   ],
   [ // s7 gridops
-    { nl: 'Het zesde station is netbedrijf en assetmanagement. De netbeheerder levert de aansluiting van lijn 3.',
-      en: 'The sixth station is grid operations and assets. The grid operator delivers the connection for line 3.' },
+    { nl: 'Het zesde station is netbedrijf en assetmanagement. De netbeheerder verzwaart de aansluiting van de fabriek.',
+      en: 'The sixth station is grid operations and assets. The grid operator upgrades the connection of the plant.' },
     { nl: 'Daarna bewaakt hij het net, herstelt storingen en stuurt bij als het vol zit.',
-      en: 'After that he watches the grid, fixes outages and steers when it is full.' },
-    { nl: 'Je krijgt een {t:Offerte|offerte}. En het netbedrijf werkt met een {t:Schakelplan|schakelplan}.',
-      en: 'You get an {t:Offer|offer}. And the grid operator works with a {t:Switching plan|switching plan}.' },
-    { nl: 'Zonder dit duurt de aansluiting langer. En valt de stroom bij werk onverwacht uit.',
-      en: 'Without this the connection takes longer. And the power drops unexpectedly during work.' },
+      en: 'After that it watches the grid, fixes outages and steers when it is full.' },
+    { nl: 'Hij doet een {t:Gereedheidscheck|gereedheidscheck} en schakelt volgens een {t:Schakelplan|schakelplan}.',
+      en: 'It runs a {t:Readiness check|readiness check} and switches by a {t:Switching plan|switching plan}.' },
+    { nl: 'Zonder dit duurt de aansluiting langer en valt de stroom bij werk onverwacht uit.',
+      en: 'Without this the connection takes longer and the power drops unexpectedly during work.' },
   ],
   [ // s8 gridplanning
     { nl: 'Het zevende station is netplanning en de energietransitie. De planner kijkt hoeveel stroom er later nodig is.',
       en: 'The seventh station is grid planning and the transition. The planner looks at how much power is needed later.' },
-    { nl: 'Er komt steeds meer vraag bij. Dus rekent hij uit waar en wanneer het net te vol raakt.',
-      en: 'Demand keeps growing. So he works out where and when the grid gets too full.' },
-    { nl: 'Hij draait een {t:Loadflow|loadflow}. En hij weegt {t:Aftoppen|aftoppen} af tegen bouwen.',
-      en: 'He runs a {t:Load flow|load flow}. And he weighs {t:Clipping|clipping} against building.' },
-    { nl: 'Zonder dit komt de verzwaring te laat. En wacht de volgende lijn op stroom.',
-      en: 'Without this the upgrade comes too late. And the next line waits for power.' },
+    { nl: 'De vraag groeit, dus rekent hij uit waar en wanneer het net vol raakt.',
+      en: 'Demand grows, so he works out where and when the grid fills up.' },
+    { nl: 'Hij draait een {t:Loadflow|loadflow} voor elk {t:Scenario|scenario}.',
+      en: 'He runs a {t:Load flow|load flow} for each {t:Scenario|scenario}.' },
+    { nl: 'Zonder dit komt de verzwaring te laat en wacht de volgende lijn op stroom.',
+      en: 'Without this the upgrade comes too late and the next line waits for power.' },
   ],
-  [ // s9 the map
-    { nl: 'Dit is de hele kaart. De zeven stations van Energie en het net liggen in één gebied.',
-      en: 'This is the whole map. The seven stations of Energy and the grid lie in one zone.' },
-    { nl: 'Eerst het elektriciteitsnet. Daar gaat het om vermogen, het net van hoog naar laag, regels en netcongestie.',
-      en: 'First the electricity grid. It covers power, the grid from high to low, rules and congestion.' },
-    { nl: 'Dan schakelinstallaties en beveiliging. Daar gaat het om schakelapparaten, stations, beveiliging en veilig schakelen.',
-      en: 'Then switchgear and protection. It covers switching devices, stations, protection and safe switching.' },
-    { nl: 'Dan transformatoren en kabels. Daar gaat het om de transformator, conditie, kabelstoringen en aansluitingen.',
-      en: 'Then transformers and cables. It covers the transformer, condition, cable faults and connections.' },
-    { nl: 'Dan motoren en perslucht. Daar gaat het om energie in de fabriek, motoren, aandrijvingen en perslucht.',
-      en: 'Then motors and fluid power. It covers plant energy, motors, drives and compressed air.' },
-    { nl: 'Dan pompen, stroming en warmte. Daar gaat het om leidingen, pompen, warmtewisselaars en stoom.',
-      en: 'Then pumps, flow and heat. It covers pipes, pumps, heat exchangers and steam.' },
-    { nl: 'Dan netbedrijf en assetmanagement. Daar gaat het om aansluiten, werk in het veld, storingen en congestiemanagement.',
-      en: 'Then grid operations and assets. It covers connecting, field work, outages and congestion management.' },
-    { nl: 'Tot slot netplanning en de energietransitie. Daar gaat het om belasting, netontwerp, investeren en flexibiliteit.',
-      en: 'Finally grid planning and the transition. It covers load, grid design, investing and flexibility.' },
+  [ // s9 the map: one short line per place, then how the stations connect
+    { nl: 'Dit is de hele kaart. De zeven stations liggen in één gebied.',
+      en: 'This is the whole map. The seven stations lie in one zone.' },
+    { nl: 'Eerst het elektriciteitsnet, van vermogen tot netcongestie.',
+      en: 'First the electricity grid, from power to congestion.' },
+    { nl: 'Dan schakelinstallaties en beveiliging, van schakelapparaten tot veilig schakelen.',
+      en: 'Then switchgear and protection, from switching devices to safe switching.' },
+    { nl: 'Dan transformatoren en kabels, van de transformator tot aansluitingen.',
+      en: 'Then transformers and cables, from the transformer to connections.' },
+    { nl: 'Dan motoren en perslucht, van energie in de fabriek tot hydrauliek.',
+      en: 'Then motors and fluid power, from plant energy to hydraulics.' },
+    { nl: 'Dan pompen, stroming en warmte, van leidingen tot stoom.',
+      en: 'Then pumps, flow and heat, from pipes to steam.' },
+    { nl: 'Dan netbedrijf en assetmanagement, van aanvraag tot congestiemanagement.',
+      en: 'Then grid operations and assets, from request to congestion management.' },
+    { nl: 'Tot slot netplanning en de energietransitie, van belasting tot flexibiliteit.',
+      en: 'Finally grid planning and the transition, from load to flexibility.' },
     { nl: 'Zo hangen ze samen. Het net levert, de schakelinstallatie beveiligt en de transformator zet de spanning om.',
       en: 'That is how they connect. The grid supplies, the switchgear protects and the transformer converts the voltage.' },
     { nl: 'Motoren en pompen gebruiken de stroom. Netbedrijf en planning zorgen dat het net blijft leveren.',
@@ -641,8 +650,8 @@ const css = PM_CSS + HALL_CSS + `
 ` + mapStyles(undefined, 'eng');
 
 const label = {
-  nl: 'Hal B van de fabriek, waar lijn 3 op zijn nieuwe plek draait. Langs de achterwand van links naar rechts de stroomkast, een transformator met koelribben, een tank met een leiding en pomp naar een vuleenheid boven het begin van de band van lijn 3, en rechts boven de lijn het schakelbord. Door de linkerwand komt de kabel van het net binnen; een kabel loopt van de kast naar de transformator en vanaf de transformator langs de muur naar het schakelbord. Voor de band staat een motor die de band aandrijft, rechtsvoor een compressor met een slang naar de lijn. Een installateur staat bij de kast en jij, de engineer, staat in het midden. Rechts een paneel, gemarkeerd als voorbeeld of schema. Eerst de verhuizing van lijn 3 en de stroom die erbij moet, dan de keten van net tot machine, de route en de weg met zeven stations. Dan per station een schema, twee namen van hulpmiddelen en, gestippeld, wat er misgaat zonder: bij het elektriciteitsnet de spanningsniveaus en een capaciteitskaart en een flexibel contract; bij schakelinstallaties en beveiliging een schakelaar, een beveiligingsrelais en een aardgarnituur; bij transformatoren en kabels een transformator, gas-in-olie-analyse en een reflectiemeter; bij motoren en perslucht een motor, een compressor, een stroomtang en een lektest; bij pompen, stroming en warmte een pomp met pompkarakteristiek en een platenwarmtewisselaar; bij netbedrijf en assetmanagement een aanvraag, een offerte en een schakelplan; bij netplanning een loadflow en aftoppen. Aan het eind de kaart van Engineering: eerst het hele net van vier gebieden, dan het gebied Energie en het net met de zeven stations verlicht, dan plek voor plek van dichtbij, en weer het gebied.',
-  en: 'Hall B of the plant, where line 3 runs at its new place. Along the back wall from left to right the power cabinet, a transformer with cooling ribs, a tank with a pipe and a pump to a filling unit over the start of the belt of line 3, and at the right above the line the switchboard. The cable from the grid comes in through the left wall; a cable runs from the cabinet to the transformer and from the transformer along the wall to the switchboard. In front of the belt stands a motor that drives it, at the front right a compressor with a hose to the line. An installer stands by the cabinet and you, the engineer, stand in the middle. At the right a panel, marked as an example or a diagram. First the move of line 3 and the power it needs, then the chain from grid to machine, the route and the road with seven stations. Then per station a schema, two names of tools and, dashed, what goes wrong without it: at the electricity grid the voltage levels and a capacity map and a flexible contract; at switchgear and protection a switch, a protection relay and an earthing set; at transformers and cables a transformer, dissolved gas analysis and a reflectometer; at motors and fluid power a motor, a compressor, a clamp meter and a leak test; at pumps, flow and heat a pump with its pump curve and a plate heat exchanger; at grid operations and assets a request, an offer and a switching plan; at grid planning a load flow and clipping. At the end the map of Engineering: first the whole map of four zones, then the zone Energy and the grid with the seven stations lit, then place by place up close, and the zone again.',
+  nl: 'Hal B van de fabriek, waar lijn 3 op zijn nieuwe plek draait. Langs de achterwand van links naar rechts de stroomkast, een transformator met koelribben, een tank met een leiding en pomp naar een vuleenheid boven het begin van de band van lijn 3, en rechts boven de lijn het schakelbord. Door de linkerwand komt de kabel van het net binnen; een kabel loopt van de kast naar de transformator en vanaf de transformator langs de muur naar het schakelbord. Aan de voorkant van de band zit een motor die de band aandrijft, rechtsvoor staat een compressor met een slang naar de lijn. Een installateur staat bij de kast en jij, de engineer, verschijnt links vooraan als de route begint. Rechts een paneel, gemarkeerd als voorbeeld of schema. Eerst de verhuizing van lijn 3 en de stroom die erbij moet, dan de keten van net tot machine, de route en de weg met zeven stations. Dan per station een schema, twee namen van hulpmiddelen en, gestippeld, wat er misgaat zonder: bij het elektriciteitsnet de spanningsniveaus en een capaciteitskaart en een flexibel contract; bij schakelinstallaties en beveiliging een schakelaar, een beveiligingsrelais en een aardgarnituur; bij transformatoren en kabels een transformator, gas-in-olie-analyse en een reflectiemeter; bij motoren en perslucht een motor, een compressor, een stroomtang en een lektest; bij pompen, stroming en warmte een pomp met pompkarakteristiek en een platenwarmtewisselaar; bij netbedrijf en assetmanagement een aanvraag, een verzwaring, een gereedheidscheck en een schakelplan; bij netplanning een loadflow en scenario’s. Aan het eind de kaart van Engineering: eerst de hele kaart met vier gebieden, dan het gebied Energie en het net met de zeven stations verlicht, dan plek voor plek van dichtbij, en weer het gebied.',
+  en: 'Hall B of the plant, where line 3 runs at its new place. Along the back wall from left to right the power cabinet, a transformer with cooling ribs, a tank with a pipe and a pump to a filling unit over the start of the belt of line 3, and at the right above the line the switchboard. The cable from the grid comes in through the left wall; a cable runs from the cabinet to the transformer and from the transformer along the wall to the switchboard. On the front of the belt sits a motor that drives it, at the front right stands a compressor with a hose to the line. An installer stands by the cabinet and you, the engineer, appear at the front left when the route begins. At the right a panel, marked as an example or a diagram. First the move of line 3 and the power it needs, then the chain from grid to machine, the route and the road with seven stations. Then per station a schema, two names of tools and, dashed, what goes wrong without it: at the electricity grid the voltage levels and a capacity map and a flexible contract; at switchgear and protection a switch, a protection relay and an earthing set; at transformers and cables a transformer, dissolved gas analysis and a reflectometer; at motors and fluid power a motor, a compressor, a clamp meter and a leak test; at pumps, flow and heat a pump with its pump curve and a plate heat exchanger; at grid operations and assets a request, an upgrade, a readiness check and a switching plan; at grid planning a load flow and scenarios. At the end the map of Engineering: first the whole map of four zones, then the zone Energy and the grid with the seven stations lit, then place by place up close, and the zone again.',
 };
 
 const { data } = await defineFilm(spec, { svg, script: stageScript, css, kitCss: k.ISO_CSS, label });

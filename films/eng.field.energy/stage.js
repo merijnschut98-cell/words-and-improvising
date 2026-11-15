@@ -64,7 +64,7 @@ const STAGE = (() => {
   }
 
   // ---- the road. s1 beat 3: one row per station, each a numbered stop on a dashed road with the station's title
-  // (wrapped into at most two lines of ROW units). s2 to s7: a strip of numbered squares under the heading.
+  // (wrapped into at most two lines of ROW units). s2 to s8: a strip of numbered squares under the heading.
   const N = TITLES.length;
   // the rows have the height of their lines: a one-line title 32 units, a two-line title 50 (the lines 24 apart)
   const ROWS = (() => { let y = 50; return TITLES.map((t) => { const lines = wrapUnits(t, ROW, CW); const r = { y, lines, h: lines.length > 1 ? 50 : 32 }; y += r.h; return r; }); })();
@@ -183,12 +183,12 @@ const STAGE = (() => {
         + arrow(346, 128, 422, 128) + arrow(516, 190, 606, 190) + '<path class="pm-arrow" d="M346 192H422M516 130H606"/>',
     ],
     [ // s7 Grid operations and assets
-      // request, offer, connection
-      () => step(108, tr('Aanvraag', 'Request', 270)) + down(108) + step(148, tr('Offerte', 'Offer', 270)) + down(148) + step(188, tr('Aansluiting', 'Connection', 270), 'pm-crit', 'pm-on'),
+      // request, upgrade, connection
+      () => step(108, tr('Aanvraag', 'Request', 270)) + down(108) + step(148, tr('Verzwaren', 'Upgrade', 270)) + down(148) + step(188, tr('Aansluiting', 'Connection', 270), 'pm-crit', 'pm-on'),
       // watch, repair, steer
       () => row(108, tr('Net bewaken', 'Watch the grid', 270)) + row(148, tr('Storing herstellen', 'Fix an outage', 270)) + row(188, tr('Piek bijsturen', 'Steer the peak', 270), 'pm-crit', 'pm-on'),
-      // tool 1: the offer, a sheet with lines, a price and a stamp
-      () => rect(430, 108, 120, 104, 'pm-tile', 5) + '<path class="pm-link" d="M446 128H534M446 142H534M446 156H516"/>' + rect(446, 174, 50, 22, 'pm-card', 3) + '<circle class="pm-crit" cx="524" cy="186" r="12"/>',
+      // tool 1: the readiness check, four lines (design, permit, material, crew) each ticked
+      () => [0, 1, 2, 3].map((i) => rect(400, 110 + i * 26, 20, 20, 'pm-tile', 3) + `<path class="pm-acc" d="M404 ${120 + i * 26}l5 5 8-10"/>` + rect(430, 116 + i * 26, 130, 8, 'pm-card', 3)).join(''),
       // tool 2: the switching plan, numbered steps
       () => [0, 1, 2].map((i) => `<circle class="pm-dot" cx="352" cy="${126 + i * 34}" r="12"/>` + txt(352, 134 + i * 34, String(i + 1), 22, 'middle', 'pm-txt') + rect(376, 114 + i * 34, 242, 24, i === 1 ? 'pm-crit' : 'pm-tile', 4)).join(''),
     ],
@@ -203,8 +203,8 @@ const STAGE = (() => {
       // tool 1: the load flow, a network with one line loaded to the limit
       () => '<path class="pm-link" d="M366 160L440 120L514 160L588 120M440 120V190L514 160"/><path class="pm-acc" d="M440 190L514 160"/>'
         + [[366, 160], [440, 120], [514, 160], [588, 120], [440, 190]].map(([x, y]) => `<circle class="pm-dot" cx="${x}" cy="${y}" r="8"/>`).join(''),
-      // tool 2: clipping, the top of the peak cut off at a limit
-      () => '<path class="pm-link" d="M346 200C400 200 420 116 476 116S552 200 606 200"/><path class="pm-road" d="M346 144H606"/><path class="pm-acc" d="M442 144H510"/>',
+      // tool 2: the scenarios, three pictures of the demand to come (low, middle, high) against the limit of the grid
+      () => '<path class="pm-link" d="M346 108V200H606"/><path class="pm-road" d="M350 140H606"/><path class="pm-link" d="M356 190C440 186 520 176 590 168M356 190C440 182 520 150 590 112"/><path class="pm-acc" d="M356 190C440 184 520 164 590 140"/>',
     ],
   ];
   const TOOLS = [
@@ -213,13 +213,13 @@ const STAGE = (() => {
     [tr('DGA-olietest', 'DGA oil test', 244), tr('Reflectiemeter', 'Reflectometer', 244)],
     [tr('Stroomtang', 'Clamp meter', 244), tr('Lektest', 'Leak test', 244)],
     [tr('Pompkarakteristiek', 'Pump curve', 244), tr('Platenwisselaar', 'Plate exchanger', 244)],
-    [tr('Offerte', 'Offer', 244), tr('Schakelplan', 'Switching plan', 244)],
-    [tr('Loadflow', 'Load flow', 244), tr('Aftoppen', 'Clipping', 244)],
+    [tr('Gereedheidscheck', 'Readiness check', 244), tr('Schakelplan', 'Switching plan', 244)],
+    [tr('Loadflow', 'Load flow', 244), tr('Scenario', 'Scenario', 244)],
   ];
   const WITHOUT = [
     tr('wachtrij voor stroom', 'queue for power', 244),
     tr('één fout, alles uit', 'one fault, all off', 244),
-    tr('oververhit, kabelfout', 'overheats, cable fault', 244),
+    tr('uitval, lang zoeken', 'outage, long search', 244),
     tr('lekken, te grote motor', 'leaks, big motor', 244),
     tr('pomp op fout punt', 'pump off its point', 244),
     tr('late aansluiting', 'late connection', 244),
@@ -243,7 +243,7 @@ const STAGE = (() => {
     };
   }
 
-  // ---- s8: the closing scene. ONE function. The shared Engineering map (the kit's mapScene, the very drawing of
+  // ---- s9: the closing scene. ONE function. The shared Engineering map (the kit's mapScene, the very drawing of
   // the app) with the seven stations lit: first the whole map, which shows the four zones, then the energy zone, then
   // the zoom moves place by place (at 1.5 a lit place's label is 22 units), and at the end back out to the zone.
   // A view is { s, x, y }: the map scaled by s, its origin at (x, y) of the stage. At 1.5 the view is clamped
@@ -277,7 +277,9 @@ const STAGE = (() => {
     show(E.world, isMap ? 0 : 1);
     show(E.mapG, isMap ? 1 : 0);
     show(E.hud, isMap ? 0 : 1);
-    show(E['pp-jij'], si === 0 ? 1 : 0); // you stand in the middle of the hall in the opening only
+    // you, at the front left of the hall, from the route of the opening on: in the first two beats you would stand in
+    // front of the lit cable through the wall
+    show(E['pp-jij'], si === 0 && b >= 2 ? (b === 2 ? span(p, 0, 0.15) : 1) : 0);
     show(E['pp-installer'], si === 2 ? 1 : 0); // the installer stands by the cabinet while the station of the switchgear is told
     if (si === 0) {
       const t = [tr('De verhuizing', 'The move'), tr('De keten', 'The chain'), tr('De route', 'The route'), tr('De weg', 'The road')][b];
