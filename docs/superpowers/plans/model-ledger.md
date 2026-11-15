@@ -144,3 +144,11 @@ Outcome: accepted (merged as delivered), sent back N times, redone.
 | 15 Nov | Render PM-27: joining, moulding, mechanics, process intros | sonnet | 69 | 63 min | 150,374 | accepted; two Dutch comma pauses reworded; several words heard poorly (vuleenheid, MIG, spuitgieten, unit operations, hardheidsmeting, FEM-plot); merged v323 |
 | 15 Nov | Build: Engineering intro eng.switchgear.intro | sonnet | 91 | 17 min | 286,880 | accepted with fixes by its review |
 | 15 Nov | Review: eng.switchgear.intro | sonnet | 72 | 13 min | 221,025 | accepted with fixes (hall B agrees with field film and transformers intro, RMU said of a netstation, installer tests the relay, you touch nothing); merged v323 |
+| 15 Nov | Build: Engineering intro eng.power.intro | sonnet | 68 | 12 min | 291,182 | accepted with fixes by its review |
+| 15 Nov | Review: eng.power.intro | sonnet | 62 | 9.3 min | 176,121 | accepted with one fix (the drawn 10 % label now said in the narration); merged v324 |
+| 15 Nov | Build: Engineering intro eng.fluids.intro | sonnet | 113 | 19 min | 370,127 | accepted with fixes by its review |
+| 15 Nov | Review: eng.fluids.intro | sonnet | ~75 | n/a | n/a | accepted with fixes (exchanger moved off the motor and hose so hall B agrees, Moody gives the friction factor, hedges, curves cross at the duty point); merged v326 |
+| 15 Nov | Build: Engineering intro eng.gridops.intro | sonnet | 85 | 16 min | 329,591 | accepted with fixes by its review |
+| 15 Nov | Review: eng.gridops.intro | sonnet | ~45 | n/a | n/a | accepted with fixes (Gevorderd risk beat cut, planner renamed werkvoorbereider, dark hall hedged, drawn labels named); merged v327 |
+| 15 Nov | Build: Engineering intro eng.gridplanning.intro | sonnet | 97 | 17 min | 354,264 | accepted with fixes by its review |
+| 15 Nov | Review: eng.gridplanning.intro | sonnet | ~60 | n/a | n/a | accepted with fixes (dashed cable given a reason, design topic one tool, CSC chip with full word, labels named, camera); merged v328 |

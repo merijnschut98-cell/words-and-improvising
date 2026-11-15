@@ -1466,6 +1466,43 @@ test('speak variant: the gridbasics intro film says hoofd-zekering in its tool s
   assert.equal(speakOf([en], 'en'), en);
 });
 
+// The module intro film "The pipe to line 3" (eng.fluids.intro), checked with espeak-ng phonemes through Piper's nl bridge: it
+// reads Moody with a long Dutch oo (mooddie; said Moedi-diagram, as the English name is said on the floor) and utilities with the
+// Dutch ü (ütilitsis; said joetilletiez), both only in the intro's own sentences ("af in het Moody-diagram", "koelwater zijn
+// utilities", "onderwerp is Stoom en utilities"). Pompkarakteristiek, platenwarmtewisselaar, condenspot, debiet, drukval, cavitatie,
+// energiecase, toerenregeling and warmteterugwinning are read right or have rules above; English needs nothing; no other film's
+// spoken text changes
+test('speak variant: the fluids intro film words in Dutch', () => {
+  const nl = (s) => speakOf([s], 'nl');
+  assert.equal(nl('Bij turbulente stroming lees je de wrijvingsfactor af in het Moody-diagram.'), 'Bij turbulente stroming lees je de wrijvingsfactor af in het Moedi-diagram.');
+  assert.equal(nl('Stoom en koelwater zijn utilities. Het proces heeft ze nodig.'), 'Stoom en koelwater zijn joetilletiez. Het proces heeft ze nodig.');
+  assert.equal(nl('Het vierde onderwerp is Stoom en utilities. Stoom brengt de warmte.'), 'Het vierde onderwerp is Stoom en joetilletiez. Stoom brengt de warmte.');
+  // elsewhere the words keep their voice
+  assert.equal(nl('Het Moody-diagram staat in de les.'), 'Het Moody-diagram staat in de les.');
+  assert.equal(nl('De utilities van de fabriek zijn stoom en koelwater.'), 'De utilities van de fabriek zijn stoom en koelwater.');
+  const en = 'For turbulent flow you read the friction factor from the Moody chart. Steam and cooling water are utilities.';
+  assert.equal(speakOf([en], 'en'), en);
+});
+
+// The module intro film "Why line 3 has to wait" (eng.gridplanning.intro), checked with espeak-ng phonemes through Piper's nl
+// bridge: it stresses investeringsplanning and investeringsplan on the first syllable (IN-ves-te-rings-plan; said in-ves-terings-plan,
+// as the rule for "investering die niet nodig" does) and reads spanningsbudget with the Dutch g in budget ("buddegat"; said
+// spannings-budget), all three only in the intro's own sentences ("onderwerp is Investeringsplanning", "vast in het
+// investeringsplan", "verdeelt hij het spanningsbudget"). Loadflow, N-1, congestiemanagement and capaciteitssturingscontract have rules
+// above; netplanner, scenario, gelijktijdigheid, redundantie, prognose and the level words are read right;
+// English needs nothing; no other film's spoken text changes
+test('speak variant: the grid planning intro film words in Dutch', () => {
+  const nl = (s) => speakOf([s], 'nl');
+  assert.equal(nl('Het derde onderwerp is Investeringsplanning. Er zijn meer knelpunten.'), 'Het derde onderwerp is In-ves-terings-planning. Er zijn meer knelpunten.');
+  assert.equal(nl('Hij rekent met een scenario en legt het vast in het investeringsplan.'), 'Hij rekent met een scenario en legt het vast in het in-ves-terings-plan.');
+  assert.equal(nl('Voor de toets op spanning verdeelt hij het spanningsbudget over het net.'), 'Voor de toets op spanning verdeelt hij het spannings-budget over het net.');
+  // elsewhere the words keep their voice
+  assert.equal(nl('Het investeringsplan staat in de les.'), 'Het investeringsplan staat in de les.');
+  assert.equal(nl('Het spanningsbudget is een deel van de band.'), 'Het spanningsbudget is een deel van de band.');
+  const en = 'He calculates with a scenario and records it in the investment plan. He shares out the voltage budget.';
+  assert.equal(speakOf([en], 'en'), en);
+});
+
 // Render batch PM-28: words a Dutch listener would mishear in the module intro films (eng.joining, eng.mechanics,
 // eng.moulding, eng.process, eng.machining, eng.drawings), tried with Piper's nl_NL-alex voice in each film's own sentence and
 // transcribed with large-v3-turbo. Said apart: "vul eenheid" (espeak-ng reads vuleenheid with a long ue, heard "verleenheid";

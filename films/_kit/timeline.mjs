@@ -898,6 +898,22 @@ const SAY = {
     // sentences ("lezen we het tagnummer", "De operator loopt"). P&ID is written "P en I D" in its narration; GD en T, PID,
     // PLC, stempel, tolerantiekader, niveaumeter, regelklep and streefwaarde are read right; no other film's spoken text changes
     [/\blezen we het tagnummer\b/g, 'lezen we het tek-nummer'], [/\bDe operator loopt\b/g, 'De ope-raator loopt'],
+    // the module intro film "The pipe to line 3" (eng.fluids.intro), a self-contained group at the end of the Dutch list,
+    // checked with phonemes through Piper's nl_NL-alex bridge: espeak-ng reads Moody with a long Dutch oo (said Moodi; a Dutch
+    // engineer says Moedi) and utilities with the Dutch ü (said ütilitsis; said joetilletiez), only in the intro's own
+    // sentences ("af in het Moody-diagram", "koelwater zijn utilities", "onderwerp is Stoom en utilities"). Pompkarakteristiek,
+    // platenwarmtewisselaar, condenspot, debiet, drukval, cavitatie, energiecase, tekortschietende and the level words are read
+    // right; toerenregeling and warmteterugwinning have rules above; no other film's spoken text changes
+    [/(?<=\baf in het )Moody-diagram\b/g, 'Moedi-diagram'], [/(?<=\bkoelwater zijn )utilities\b/g, 'joetilletiez'],
+    [/(?<=\bonderwerp is Stoom en )utilities\b/g, 'joetilletiez'],
+    // the module intro film "Why line 3 has to wait" (eng.gridplanning.intro), a self-contained group at the end of the Dutch
+    // list, checked with phonemes through Piper's nl bridge: espeak-ng stresses investeringsplanning and investeringsplan on
+    // the first syllable (said in-ves-terings-plan, as "investering die niet nodig" above) and reads the g of budget as a
+    // Dutch g ("buddegat"; said spannings-budget), only in the intro's own sentences ("onderwerp is Investeringsplanning",
+    // "vast in het investeringsplan", "verdeelt hij het spanningsbudget"). Loadflow, N-1, congestiemanagement and
+    // capaciteitssturingscontract have rules above; netplanner, scenario and the rest are read right
+    [/(?<=\bonderwerp is )Investeringsplanning\b/g, 'In-ves-terings-planning'], [/(?<=\bvast in het )investeringsplan\b/g, 'in-ves-terings-plan'],
+    [/(?<=\bverdeelt hij het )spanningsbudget\b/g, 'spannings-budget'],
     // the module intro films' words a Dutch listener would mishear (render batch PM-28; Piper's nl_NL-alex voice in each film's own
     // sentence, transcribed with large-v3-turbo, the spelling heard right most often): espeak-ng reads vuleenheid with a long ue
     // (heard "verleenheid"; "vul eenheid" 3 of 4, vul-eenheid 0 of 3), frame as "fraame" (heard "framen", "vramen"; "freem" 3 of 3,
