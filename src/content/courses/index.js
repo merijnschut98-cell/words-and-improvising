@@ -7,7 +7,7 @@ export const SUBJECTS = ['eng', 'pm'];
 export const TRACKS = { eng: ['basics', 'discrete', 'grid', 'it'], pm: ['project', 'agile'] };
 
 export const MODULES = [
-  { id: 'eng.flow', subject: 'eng', track: 'basics', level: 1, title: { en: 'Capacity and flow', nl: 'Capaciteit en flow' }, blurb: { en: 'Takt, bottlenecks, OEE: how much a line can make and why it doesn’t.', nl: 'Takt, bottlenecks, OEE: hoeveel een lijn kan maken en waarom dat niet lukt.' },
+  { id: 'eng.flow', subject: 'eng', track: 'basics', level: 1, intro: 'eng.flow.intro', title: { en: 'Capacity and flow', nl: 'Capaciteit en flow' }, blurb: { en: 'Takt, bottlenecks, OEE: how much a line can make and why it doesn’t.', nl: 'Takt, bottlenecks, OEE: hoeveel een lijn kan maken en waarom dat niet lukt.' },
     topics: [
       { id: 'takt', title: { en: 'Takt and line balance', nl: 'Takt en lijnbalans' }, levels: ['eng.flow.takt', 'eng.flow.balance', 'eng.flow.precedence', 'eng.flow.staffing'] },
       { id: 'bottleneck', title: { en: 'Bottleneck and capacity', nl: 'Bottleneck en capaciteit' }, levels: ['eng.flow.bottleneck', 'eng.flow.capacity', 'eng.flow.toc', 'eng.flow.throughput'] },
@@ -458,11 +458,11 @@ export const FIELDS = [
   { id: 'eng.field.run', subject: 'eng',
     title: { en: 'Keeping the plant running', nl: 'De fabriek draaiend houden' },
     blurb: { en: 'Flow, quality, maintenance and safety: keeping a plant making good parts, safely, shift after shift.', nl: 'Flow, kwaliteit, onderhoud en veiligheid: een fabriek die dag na dag goede producten maakt, veilig.' },
-    modules: ['eng.flow', 'eng.quality', 'eng.maintenance', 'eng.safety'] },
+    modules: ['eng.flow', 'eng.quality', 'eng.maintenance', 'eng.safety'], film: 'eng.field.run' },
   { id: 'eng.field.better', subject: 'eng',
     title: { en: 'Making the plant better', nl: 'De fabriek beter maken' },
     blurb: { en: 'Problem solving, SPC, cost and reliability: finding what holds a plant back and making it better, for less.', nl: 'Probleemoplossen, SPC, kostprijs en betrouwbaarheid: vinden wat een fabriek tegenhoudt en haar beter maken, voor minder geld.' },
-    modules: ['eng.improve', 'eng.spc', 'eng.cost', 'eng.reliability'] },
+    modules: ['eng.improve', 'eng.spc', 'eng.cost', 'eng.reliability'], film: 'eng.field.better' },
   { id: 'eng.field.making', subject: 'eng',
     title: { en: 'Making things', nl: 'Dingen maken' },
     blurb: { en: 'Materials and strength, machining, process plants, drawings, welding and moulding: how a part or a product is designed, read and made.', nl: 'Materialen en sterkte, verspanen, procesfabrieken, tekeningen, lassen en spuitgieten: hoe een onderdeel of product wordt ontworpen, gelezen en gemaakt.' },

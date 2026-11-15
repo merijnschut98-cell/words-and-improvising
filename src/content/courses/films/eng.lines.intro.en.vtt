@@ -1,0 +1,193 @@
+WEBVTT
+
+1
+00:00:00.883 --> 00:00:03.112
+Line 3 is a row of stations.
+
+2
+00:00:03.835 --> 00:00:06.563
+Each station does one fixed part of the work.
+
+3
+00:00:07.630 --> 00:00:12.564
+Lines and automation teaches you to design and improve lines with automation.
+
+4
+00:00:13.563 --> 00:00:16.989
+First the line itself, with design and robots.
+
+5
+00:00:18.086 --> 00:00:19.781
+Then what keeps it running well.
+
+6
+00:00:20.498 --> 00:00:22.820
+Error-proofing, variants and control.
+
+7
+00:00:23.832 --> 00:00:25.249
+Last the business case.
+
+8
+00:00:26.565 --> 00:00:28.469
+The first topic is Line design.
+
+9
+00:00:29.172 --> 00:00:32.005
+You follow one carton and count the stations.
+
+10
+00:00:32.999 --> 00:00:36.703
+The slowest station decides how fast the whole line can go.
+
+11
+00:00:37.725 --> 00:00:41.881
+On a stack light you read whether a station is running, waiting or faulted.
+
+12
+00:00:43.230 --> 00:00:45.076
+The second topic is Robots.
+
+13
+00:00:45.795 --> 00:00:49.139
+A robot is an arm with usually six axes and a gripper.
+
+14
+00:00:50.185 --> 00:00:53.424
+A robot could place the cartons at the start of the belt.
+
+15
+00:00:54.497 --> 00:00:56.958
+You teach positions with a teach pendant.
+
+16
+00:00:58.297 --> 00:01:00.213
+The third topic is Error-proofing.
+
+17
+00:01:00.929 --> 00:01:04.226
+The unit only fills when a carton stands under the plate.
+
+18
+00:01:05.299 --> 00:01:07.691
+Two sensors see if that carton is there.
+
+19
+00:01:08.408 --> 00:01:10.707
+Otherwise product runs onto the belt.
+
+20
+00:01:11.793 --> 00:01:14.626
+Against this you use poka-yoke and an interlock.
+
+21
+00:01:16.014 --> 00:01:18.673
+The fourth topic is Variants and changeover.
+
+22
+00:01:19.426 --> 00:01:22.061
+A variant is a version of the same product.
+
+23
+00:01:23.099 --> 00:01:25.595
+Changeover is switching to the next variant.
+
+24
+00:01:26.367 --> 00:01:28.840
+While it lasts, the line makes nothing.
+
+25
+00:01:29.884 --> 00:01:34.284
+For that the machine loads a recipe with settings like speed and positions.
+
+26
+00:01:35.590 --> 00:01:37.947
+The fifth topic is Control and data.
+
+27
+00:01:38.704 --> 00:01:41.445
+A machine has eyes, a brain and hands.
+
+28
+00:01:42.490 --> 00:01:46.797
+Those are the sensors, the PLC in the cabinet and the actuators.
+
+29
+00:01:47.803 --> 00:01:49.788
+You know the PLC already.
+
+30
+00:01:50.460 --> 00:01:53.780
+Here you write the logic of the line as a ladder diagram.
+
+31
+00:01:55.076 --> 00:01:57.189
+The sixth topic is Business case.
+
+32
+00:01:57.936 --> 00:02:01.605
+It comes down to labour, volume, variation and quality.
+
+33
+00:02:02.626 --> 00:02:05.029
+Investment divided by saving per year.
+
+34
+00:02:05.791 --> 00:02:08.229
+That is how you work out the payback time.
+
+35
+00:02:09.273 --> 00:02:11.815
+That is how line 3 runs automated.
+
+36
+00:02:12.626 --> 00:02:15.064
+Then you move on to the numbers of the line.
+
+37
+00:02:16.333 --> 00:02:17.111
+The whole map.
+
+38
+00:02:17.890 --> 00:02:22.464
+Lines and automation is the fourth station of Automation and IT.
+
+39
+00:02:23.456 --> 00:02:25.743
+Each of the six topics has four levels.
+
+40
+00:02:26.760 --> 00:02:29.372
+Start at Basics level with reading a line.
+
+41
+00:02:30.062 --> 00:02:31.873
+It shows where the rest fits.
+
+42
+00:02:32.906 --> 00:02:37.399
+At Working knowledge level come line types and robots, sensors and changeover,
+
+43
+00:02:37.527 --> 00:02:38.967
+safety and investment.
+
+44
+00:02:40.043 --> 00:02:43.120
+At Advanced level come buffers and robot cells,
+
+45
+00:02:43.294 --> 00:02:46.591
+choosing sensors, OEE and the business case.
+
+46
+00:02:47.625 --> 00:02:52.315
+At Expert level come simulation and vision, error-proofing and sequencing,
+
+47
+00:02:52.408 --> 00:02:53.940
+micro-stops and risk.
+
+48
+00:02:54.996 --> 00:02:59.141
+Every lesson and every film in this module has a place on this map.
