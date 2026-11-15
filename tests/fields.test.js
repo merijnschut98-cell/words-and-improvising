@@ -59,7 +59,8 @@ test('checkFields: titles and blurbs in both languages', () => {
 test('fieldOf finds the field of a module, or null', () => {
   assert.equal(fieldOf('pm.plan').id, 'pm.field.lifecycle');
   assert.equal(fieldOf('pm.itproject').id, 'pm.field.it');
-  assert.equal(fieldOf('eng.flow').id, 'eng.field.plant');
+  assert.equal(fieldOf('eng.flow').id, 'eng.field.run');
+  assert.equal(fieldOf('eng.reliability').id, 'eng.field.better');
   assert.equal(fieldOf('eng.industry40').id, 'eng.field.digital');
   assert.equal(fieldOf('nope'), null);
 });

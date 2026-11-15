@@ -460,7 +460,7 @@ await step('Projects home: the map is the first thing; tapping Planning opens it
   if (JSON.stringify(engEntries) !== JSON.stringify(engFilms)) throw new Error(`Engineering field film entries ${JSON.stringify(engEntries)}, expected ${JSON.stringify(engFilms)}`);
   if (!/map-card/.test(await page.locator('.course-eng > :nth-child(3)').getAttribute('class'))) throw new Error('Engineering: the map is not first');
   if (await page.locator('.course-eng .map-place[role="button"]').count() !== 26) throw new Error('Engineering: not 26 places');
-  if (await page.locator('.course-eng .map-zone').count() !== 4) throw new Error('Engineering: not 4 zones');
+  if (await page.locator('.course-eng .map-zone').count() !== 5) throw new Error('Engineering: not 5 zones');
   if (await page.locator('.course-eng .map-place.is-next').count() !== 1) throw new Error('Engineering: the next place is not marked once');
   if (await page.locator('.course-eng details.track[open]').count() !== 0) throw new Error('Engineering: the tracks should be closed under a map');
   await page.locator('.course-eng .map-place[data-module="eng.machining"]').focus();

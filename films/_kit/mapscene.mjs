@@ -196,17 +196,22 @@ const MAP_SEL = /\.subject-map(?![\w-])/;
 // them, and a film of that subject asks for them: mapStyles(css, 'eng'). Projects has no such rules and keeps
 // its page byte for byte. A zone of the map without its rule in styles.css fails the build (tests/mapscene.test.js
 // checks this list against the map).
-const ZONES = { eng: ['plant', 'making', 'energy', 'digital'] };
+const ZONES = { eng: ['run', 'better', 'making', 'energy', 'digital'] };
+// The zone "better" is coloured with the app's --bad (burnt brick); the film palette has no such variable, so an
+// Engineering film gets it with its zone rules (the Projects pages stay byte for byte): danger-300 on the dark face,
+// danger-500 in light, as in the app.
+const ZONE_VARS = { eng: '.subject-map{--bad:#A9483C}\n.iso[data-theme="light"] .subject-map{--bad:#7E3128}' };
 function zoneRules(css, subject) {
   if (subject === undefined) return '';
   // a misspelt subject ('Eng', a field id) would quietly drop the zone colours: only a subject of the index counts
   if (!SUBJECTS.includes(subject)) throw new Error(`mapStyles: no subject ${subject} (one of ${SUBJECTS.join(', ')})`);
   if (!ZONES[subject]) return '';
   const found = new Map(topRules(css).filter(([sel]) => /^\.subject-map-wrap \.z-[a-z]+$/.test(sel)).map(([sel, raw]) => [sel.split('.z-')[1], raw]));
-  return ZONES[subject].map((z) => {
+  const rules = ZONES[subject].map((z) => {
     if (!found.has(z)) throw new Error(`mapStyles: no colour for the zone ${z} of ${subject} in styles.css (.subject-map-wrap .z-${z})`);
     return found.get(z).replace('.subject-map-wrap ', '.subject-map ');
-  }).join('\n');
+  });
+  return [ZONE_VARS[subject], ...rules].join('\n');
 }
 export function mapStyles(css = readFileSync(join(ROOT, 'styles.css'), 'utf8'), subject = undefined) {
   const rules = [];

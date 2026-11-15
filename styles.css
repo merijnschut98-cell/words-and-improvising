@@ -1190,8 +1190,9 @@ details.rw-topic > summary { cursor: pointer; min-height: 44px; display: flex; a
 .subject-map .map-road-arrow { fill: color-mix(in srgb, var(--heading) 30%, var(--card)); }
 /* The Engineering zones (Task 13). They start with .subject-map-wrap, not .subject-map, so the film kit does not
    carry them into the Projects films; an Engineering film asks for them with mapStyles(css, 'eng'), which
-   rewrites exactly these four rules to start with .subject-map (films/_kit/mapscene.mjs). */
-.subject-map-wrap .z-plant { --zone: var(--accent); }
+   rewrites exactly these five rules to start with .subject-map (films/_kit/mapscene.mjs). */
+.subject-map-wrap .z-run { --zone: var(--accent); }
+.subject-map-wrap .z-better { --zone: var(--bad); }
 .subject-map-wrap .z-making { --zone: var(--primary); }
 .subject-map-wrap .z-energy { --zone: var(--ok); }
 .subject-map-wrap .z-digital { --zone: var(--secondary-fill); }

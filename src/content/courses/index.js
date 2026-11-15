@@ -418,7 +418,7 @@ export function placeOf(lessonId, modules = MODULES) {
 // v17: fields group a subject's modules under one field film, the big picture
 // above the modules ("a project from start to finish"). A subject with fields
 // has every module in exactly one; `film`, when set, is the field's own id.
-// Engineering's four fields have no film yet (the field films come next); each
+// Engineering's five fields (15 Nov: the plant zone became run and better; two fields have a film so far); each
 // lists its modules by level, which is also the reading order of the map.
 export const FIELDS = [
   { id: 'pm.field.lifecycle', subject: 'pm',
@@ -437,10 +437,14 @@ export const FIELDS = [
     title: { en: 'IT and agile', nl: 'IT en agile' },
     blurb: { en: 'Agile, scaling it, DevOps and the IT project from requirements to go-live.', nl: 'Agile, opschalen, DevOps en het IT-project van eisen tot go-live.' },
     modules: ['pm.agile', 'pm.scaled', 'pm.devops', 'pm.itproject'], film: 'pm.field.it' },
-  { id: 'eng.field.plant', subject: 'eng',
-    title: { en: 'A plant that runs well', nl: 'Een fabriek die goed draait' },
-    blurb: { en: 'Flow, quality, maintenance and safety, then problem solving, SPC, cost and reliability: keeping a plant making good parts, safely and for less.', nl: 'Flow, kwaliteit, onderhoud en veiligheid, dan probleemoplossen, SPC, kostprijs en betrouwbaarheid: een fabriek goede producten laten maken, veilig en voor minder.' },
-    modules: ['eng.flow', 'eng.quality', 'eng.maintenance', 'eng.safety', 'eng.spc', 'eng.cost', 'eng.improve', 'eng.reliability'] },
+  { id: 'eng.field.run', subject: 'eng',
+    title: { en: 'Keeping the plant running', nl: 'De fabriek draaiend houden' },
+    blurb: { en: 'Flow, quality, maintenance and safety: keeping a plant making good parts, safely, shift after shift.', nl: 'Flow, kwaliteit, onderhoud en veiligheid: een fabriek die dag na dag goede producten maakt, veilig.' },
+    modules: ['eng.flow', 'eng.quality', 'eng.maintenance', 'eng.safety'] },
+  { id: 'eng.field.better', subject: 'eng',
+    title: { en: 'Making the plant better', nl: 'De fabriek beter maken' },
+    blurb: { en: 'Problem solving, SPC, cost and reliability: finding what holds a plant back and making it better, for less.', nl: 'Probleemoplossen, SPC, kostprijs en betrouwbaarheid: vinden wat een fabriek tegenhoudt en haar beter maken, voor minder geld.' },
+    modules: ['eng.improve', 'eng.spc', 'eng.cost', 'eng.reliability'] },
   { id: 'eng.field.making', subject: 'eng',
     title: { en: 'Making things', nl: 'Dingen maken' },
     blurb: { en: 'Materials and strength, machining, process plants, drawings, welding and moulding: how a part or a product is designed, read and made.', nl: 'Materialen en sterkte, verspanen, procesfabrieken, tekeningen, lassen en spuitgieten: hoe een onderdeel of product wordt ontworpen, gelezen en gemaakt.' },
