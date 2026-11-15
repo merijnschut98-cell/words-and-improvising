@@ -184,8 +184,9 @@ const STAGE = (() => {
       + txt(334, 208, tr('Goede stuks', 'Good parts', 150), 22, 'start', 'pm-big') + txt(618, 208, tr('Verlies', 'Loss', 90), 22, 'end', 'pm-mute');
   }
   function lossDrawing() {
-    return tile(100, 'Storingen', 'Breakdowns') + tile(142, 'Omstellen en afstellen', 'Setups and adjustments') + tile(184, 'Microstops', 'Small stops')
-      + tile(226, 'Verlaagde snelheid', 'Reduced speed') + tile(268, 'Opstartafkeur', 'Start-up rejects') + tile(310, 'Productieafkeur', 'Production rejects');
+    // six rows, the six big losses; only the two the sentence names carry a label (breakdowns, rejects), the four between are blank
+    const blank = (y) => rect(334, y, 284, 34, 'pm-out', 6);
+    return tile(100, 'Storingen', 'Breakdowns') + blank(142) + blank(184) + blank(226) + blank(268) + tile(310, 'Afkeur', 'Rejects');
   }
   function logDrawing() {
     let s = rect(334, 172, 284, 160, 'pm-card', 8) + txt(346, 204, tr('Tijd', 'Time', 64), 22, 'start', 'pm-mute') + txt(418, 204, tr('Duur', 'Duration', 96), 22, 'start', 'pm-mute') + txt(522, 204, tr('Oorzaak', 'Cause', 94), 22, 'start', 'pm-mute');

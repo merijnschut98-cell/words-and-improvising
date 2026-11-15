@@ -308,7 +308,7 @@ const spec = {
       beats: [
         { nl: 'Het derde onderwerp is OEE en verliezen. OEE meet hoeveel geplande tijd opgaat aan goede stuks.', en: 'The third topic is OEE and losses. OEE measures how much planned time goes into good parts.', focus: ['tOee', 'oeeS'] },
         { nl: 'De rest verlies je aan de zes grote verliezen, van storingen tot afkeur.', en: 'You lose the rest to the six big losses, from breakdowns to rejects.', focus: ['lossS'] },
-        { nl: 'OEE zegt niet waarom. Op het bord aan de wand houd je een {t:Stilstandregistratie|stilstandregistratie} bij.', en: 'OEE does not say why. On the board on the wall you keep a {t:Downtime log|downtime log}.', ...TOOL('Stilstandregistratie'), focus: ['tool1', 'logS', 'board'] },
+        { nl: 'OEE zegt niet waarom. Op het bord noteer je tijd, duur en oorzaak in een {t:Stilstandregistratie|stilstandregistratie}.', en: 'OEE does not say why. On the board you note time, duration and cause in a {t:Downtime log|downtime log}.', ...TOOL('Stilstandregistratie'), focus: ['tool1', 'logS', 'board'] },
       ],
     },
     {
