@@ -71,7 +71,7 @@ const STAGE = (() => {
   // on (he fades in while the first sentence is said); you stand in the hall in the opening scene only.
   function room(si, b, p) {
     show(E['pp-jij'], si === 0 ? 1 : 0);
-    show(E['pp-planner'], si === 0 ? (b === 0 ? span(p, 0.3, 0.7) : 1) : si <= 4 ? 1 : 0);
+    show(E['pp-planner'], si === 0 ? (b === 0 ? 0 : b === 1 ? span(p, 0.1, 0.6) : 1) : si <= 4 ? 1 : 0);
   }
 
   // ---- the four topic tiles
@@ -99,7 +99,9 @@ const STAGE = (() => {
   // tool names as chips high in the panel under the strip (one short sentence names them; they are not
   // explained). Shown in the beat of the sentence (b === at); a topic with one tool leaves the second out
   function tools(b, p, at, one, two) {
-    const chip = (y, label) => rect(334, y, 284, 34, 'pm-badge', 6) + txt(342, y + 25, label, 22, 'start', 'pm-txt');
+    const chip = (y, label) => (Array.isArray(label)
+      ? rect(334, y, 284, 58, 'pm-badge', 6) + txt(342, y + 25, label[0], 22, 'start', 'pm-txt') + txt(342, y + 49, label[1], 22, 'start', 'pm-txt')
+      : rect(334, y, 284, 34, 'pm-badge', 6) + txt(342, y + 25, label, 22, 'start', 'pm-txt'));
     return { tool1: b === at ? op(span(p, 0, 0.4), chip(110, one)) : '', tool2: b === at && two ? op(span(p, 0.25, 0.65), chip(152, two)) : '' };
   }
   const fade = (b, i, p, body, a = 0.05, z = 0.4) => (b === i ? op(span(p, a, z), body) : '');
@@ -241,21 +243,21 @@ const STAGE = (() => {
     let hudA = 1;
     let mapA = 0;
     if (si === 0) {
-      title = b >= 2 ? tr('De route', 'The route') : tr('Lijn 3', 'Line 3');
-      if (b === 0) o.waitS = op(span(p, 0.05, 0.4), waitDrawing());
-      if (b === 1) o.nowS = op(span(p, 0.05, 0.4), nowDrawing());
-      if (b >= 2) {
+      title = b >= 3 ? tr('De route', 'The route') : tr('Lijn 3', 'Line 3');
+      if (b <= 1) o.waitS = op(b === 0 ? span(p, 0.05, 0.4) : 1, waitDrawing());
+      if (b === 2) o.nowS = op(span(p, 0.05, 0.4), nowDrawing());
+      if (b >= 3) {
         lab = tr('schema', 'diagram');
-        o.grpA = routeGroup(0, tr('Vraag en reserve', 'Demand and reserve', 284), b === 2 ? span(p, 0.05, 0.4) : 1);
-        if (b === 3) o.grpB = routeGroup(2, tr('Bouwen en tijd kopen', 'Building and buying time', 284), span(p, 0.05, 0.4));
+        o.grpA = routeGroup(0, tr('Vraag en reserve', 'Demand and reserve', 284), b === 3 ? span(p, 0.05, 0.4) : 1);
+        if (b === 4) o.grpB = routeGroup(2, tr('Bouwen en tijd kopen', 'Building and buying time', 284), span(p, 0.05, 0.4));
       }
     } else if (si >= 1 && si <= 4) {
       title = [tr('Belasting', 'Load', 150), tr('Ontwerp', 'Design', 150), tr('Plan', 'Plan', 150), tr('Flexibiliteit', 'Flexibility', 150)][si - 1];
       o.r = strip(si - 1);
       if (si === 1) Object.assign(o, { gelS: fade(b, 0, p, gelDrawing(), 0.1, 0.5), growS: fade(b, 1, p, growDrawing()), ...tools(b, p, 2, tr('Loadflow', 'Load flow', 260)) });
-      if (si === 2) Object.assign(o, { critS: fade(b, 0, p, critDrawing(), 0.1, 0.5), ringS: b === 1 ? ringDrawing(p) : '', ...tools(b, p, 2, tr('Spanningsbudget', 'Voltage budget', 260), tr('Stationskoppeling', 'Inter-station link', 260)) });
+      if (si === 2) Object.assign(o, { critS: fade(b, 0, p, critDrawing(), 0.1, 0.5), ringS: b === 1 ? ringDrawing(p) : '', ...tools(b, p, 2, tr('Spanningsbudget', 'Voltage budget', 260)) });
       if (si === 3) Object.assign(o, { qS: fade(b, 0, p, qDrawing(), 0.1, 0.5), rkS: fade(b, 1, p, rkDrawing()), rnS: fade(b, 2, p, rnDrawing()), ...tools(b, p, 3, tr('Scenario', 'Scenario', 260), tr('Investeringsplan', 'Investment plan', 260)) });
-      if (si === 4) Object.assign(o, { altS: fade(b, 0, p, altDrawing(), 0.1, 0.5), curveS: fade(b, 1, p, curveDrawing()), timeS: fade(b, 3, p, timeDrawing()), ...tools(b, p, 2, tr('CSC', 'CSC', 260)) });
+      if (si === 4) Object.assign(o, { altS: fade(b, 0, p, altDrawing(), 0.1, 0.5), curveS: fade(b, 1, p, curveDrawing()), timeS: fade(b, 3, p, timeDrawing()), ...tools(b, p, 2, [tr('Capaciteitssturings-', 'Capacity steering', 260), tr('contract (CSC)', 'contract (CSC)', 260)]) });
     }
     let pbg = 'x="322" y="12" width="308" height="376"';
     if (closing) {

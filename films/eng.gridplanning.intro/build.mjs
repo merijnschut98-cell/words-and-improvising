@@ -30,8 +30,8 @@
 //      grows and line 3 comes on top; a load flow shows what current runs through the cable to hall B
 //      (Werkkennis, .loadflow)                                                          → .demand (.loadflow)
 //   s3 Netontwerp en redundantie: every design passes four checks and one asks what happens when something fails;
-//      a ring feeds hall B from the other side; the voltage budget (Basis, .criteria) and an inter-station link
-//      (Werkkennis, .structures)                                                        → .criteria (.structures)
+//      a ring feeds hall B from the other side; the voltage budget (Basis, .criteria), the one tool of the topic
+//      (the inter-station link is a thing built, not a tool: dropped in review)          → .criteria
 //   s4 Investeringsplanning: more bottlenecks than people and money, so they are ranked on risk, waiting customers
 //      and how ready the solution is; line 3's connection may be later in the order; the planner calculates with
 //      a scenario (Werkkennis, .investment) and records it in the investment plan (Basis, .plan)  → .plan (.investment)
@@ -46,12 +46,12 @@
 // sentence); the tools are real things of the topic at Basis or Working knowledge level, one short sentence each,
 // not explained. Tools (the field film's station names loadflow and scenario, which agree with s2 and s4): load and
 // forecasting: load flow (Werkkennis; the one tool of the topic, simultaneity is a share and the forecast is
-// Gevorderd); design: voltage budget (Basis) and inter-station link (Werkkennis; the topic has no device, these are
-// its most tool-like terms, a method and a link between two substations); investment: scenario (Werkkennis) and
-// investment plan (Basis, a document); flexibility: capacity steering contract (Basis, the chip says CSC as the
-// term's own abbreviation; the long word does not fit a chip), the one real tool of the topic (clipping is a
+// Gevorderd); design: voltage budget (Basis; the topic has no device, this is its one tool-like term, a method the
+// designer uses for the voltage check; the inter-station link is a thing built, so it is not named); investment:
+// scenario (Werkkennis) and investment plan (Basis, a document); flexibility: capacity steering contract (Basis, the chip is two lines, the
+// full word and the abbreviation), the one real tool of the topic (clipping is a
 // measure for solar farms, GOPACS is the gridops intro's, the time-dependent contract is the gridbasics intro's
-// flexible contract). The Werkkennis tools named in a scene (load flow, inter-station link, scenario) do not come
+// flexible contract). The Werkkennis tools named in a scene (load flow, scenario) do not come
 // back in the closing grid, which says what each level adds in the lessons' own words. The story ends where the
 // field film picks it up: the heavier connection is in the plan and the next line waits, but line 3 can run.
 // Definitions as the Basis lessons word them (eng.gridplanning.demand, .criteria, .plan, .alternatives). Terms come
@@ -269,7 +269,7 @@ const CAM = [
   { from: cam(150, 40, 60, 1.25), to: cam(70, 70, 50, 1.3), at: 2 }, // s2 line 3 and the load, then (b2) the cable to hall B
   { from: cam(70, 70, 50, 1.3), to: cam(60, 70, 55, 1.4), at: 1 }, // s3 the cable, the cabinet, then (b1) the two cables
   { from: cam(140, 75, 50, 1.0), to: cam(140, 80, 50, 1.04) }, // s4 the whole hall: the planner and line 3
-  { from: cam(150, 60, 50, 1.3), to: cam(180, 50, 55, 1.4), at: 3 }, // s5 the hall, then (b3) line 3
+  { from: cam(150, 60, 50, 1.3), to: cam(140, 70, 55, 1.0), at: 3 }, // s5 the hall, then (b3) the whole hall: line 3 runs and the dashed cable still waits
   { from: cam(150, 70, 60, 1), to: cam(150, 70, 60, 1) }, // s6 (the map)
 ];
 
@@ -293,7 +293,8 @@ const spec = {
     {
       id: 's1', level: 1, dur: DURS[0], still: 0.9, title: { nl: 'Lijn 3 wacht', en: 'Line 3 waits' },
       beats: [
-        { nl: 'Lijn 3 in hal B heeft een zwaardere aansluiting nodig. Een netplanner zoekt uit waarom die moet wachten.', en: 'Line 3 in hall B needs a heavier connection. A grid planner finds out why it has to wait.', focus: ['waitS', 'newc', 'line3', 'jij'] },
+        { nl: 'Lijn 3 in hal B heeft een zwaardere aansluiting nodig. Die ligt er nog niet.', en: 'Line 3 in hall B needs a heavier connection. It is not there yet.', focus: ['waitS', 'newc', 'line3', 'jij'] },
+        { nl: 'Een netplanner zoekt uit waarom die moet wachten.', en: 'A grid planner finds out why it has to wait.', focus: ['waitS', 'planner'] },
         { nl: 'Elke netplanning begint met de vraag hoeveel vermogen er straks tegelijk loopt.', en: 'All grid planning starts with how much power will flow at the same moment.', focus: ['nowS', 'planner', 'line3'] },
         { nl: 'Vier onderwerpen volgen zijn werk. Eerst wat er komt en of het net een storing doorstaat.', en: 'Four topics follow his work. First what is coming and whether the grid survives a failure.', focus: 'grpA' },
         { nl: 'Daarna wat er gebouwd wordt en hoe je tijd koopt.', en: 'Then what gets built and how you buy time.', focus: 'grpB' },
@@ -303,7 +304,7 @@ const spec = {
       id: 's2', level: 1, dur: DURS[1], still: 0.9, title: { nl: 'Belasting', en: 'Load' },
       beats: [
         { nl: 'Eerste onderwerp: Belasting en prognose. Gelijktijdigheid: het deel van ieders maximum dat tegelijk optreedt.', en: 'First topic: Load and forecasting. Simultaneity is the share of everyone’s maximum that occurs at once.', focus: ['tLoad', 'gelS', 'line3'] },
-        { nl: 'Daarna kijkt de planner vooruit. De vraag groeit en lijn 3 komt erbovenop.', en: 'Then the planner looks ahead. Demand grows and line 3 comes on top.', focus: ['growS', 'line3', 'planner'] },
+        { nl: 'Daarna kijkt de planner vooruit. De vraag groeit en lijn 3 komt erbovenop. Zo komt de grens in zicht.', en: 'Then the planner looks ahead. Demand grows and line 3 comes on top. So the limit comes into view.', focus: ['growS', 'line3', 'planner'] },
         { nl: 'Hij draait een {t:Loadflow|loadflow} en ziet welke stroom door de kabel naar hal B loopt.', en: 'He runs a {t:Load flow|load flow} and sees what current runs through the cable to hall B.', ...TOOL('Loadflow'), focus: ['tool1', 'net'] },
       ],
     },
@@ -312,7 +313,7 @@ const spec = {
       beats: [
         { nl: 'Tweede onderwerp: Netontwerp en redundantie. Eén van de vier toetsen vraagt wat er gebeurt als iets uitvalt.', en: 'Second topic: Network design and redundancy. One of four checks asks what happens when something fails.', focus: ['tDesign', 'critS', 'cab'] },
         { nl: 'Een ring geeft reserve. Valt een kabel uit, dan voedt de andere kant hal B.', en: 'A ring gives reserve. If a cable fails, the other side feeds hall B.', focus: ['ringS', 'net', 'newc'] },
-        { nl: 'Je verdeelt het {t:Spanningsbudget|spanningsbudget} en legt een {t:Stationskoppeling|stationskoppeling} aan.', en: 'You share out the {t:Voltage budget|voltage budget} and add an {t:Inter-station link|inter-station link}.', ...TOOL('Spanningsbudget', 'Stationskoppeling'), focus: ['tool1', 'tool2', 'newc'] },
+        { nl: 'Voor de toets op spanning verdeelt hij het {t:Spanningsbudget|spanningsbudget} over het net.', en: 'For the voltage check he shares out the {t:Voltage budget|voltage budget} across the grid.', ...TOOL('Spanningsbudget'), focus: ['tool1', 'net'] },
       ],
     },
     {
@@ -341,7 +342,7 @@ const spec = {
         { nl: 'Begin bij Van woning tot station op niveau Basis. Daar begint elke netplanning.', en: 'Start with From home to station at Basics level. That is where all grid planning begins.', focus: ['tLoad', 'start'] },
         { nl: 'Op niveau Werkkennis komen stroom en spanning in het net, de ring, de knelpunten en congestiemanagement.', en: 'At Working knowledge level come current and voltage, the ring, bottlenecks and congestion management.', focus: 'lv2' },
         { nl: 'Op niveau Gevorderd komen de prognose per station, N-1, prioriteren en batterijen.', en: 'At Advanced level come the forecast per station, N-1, prioritising and batteries.', focus: 'lv3' },
-        { nl: 'Op niveau Expert gaat het om tijdreeksen, ontwerpen op risico, het bouwen zelf en de waarde van uitstel.', en: 'At Expert level it is about time series, risk-based design, building itself and the value of deferral.', focus: 'lv4' },
+        { nl: 'Op niveau Expert komen tijdreeksen, ontwerpen op risico, van plan naar gebouwd net en de waarde van uitstel.', en: 'At Expert level come time series, risk-based design, from plan to built grid and the value of deferral.', focus: 'lv4' },
         { nl: 'Elke les en elke film van deze module heeft een plek op deze kaart.', en: 'Every lesson and every film in this module has a place on this map.', focus: null },
       ],
     },
@@ -360,8 +361,10 @@ const spec = {
 // has to wait), line 3 (it needs the power), the planner by the wall (a grid planner finds out why it waits).
 const SAY = [
   [ // s1 line 3 waits for a heavier connection: planning starts with the power at one moment, the map in two groups
-    { nl: 'Lijn 3 in hal B heeft een zwaardere aansluiting nodig. Een netplanner zoekt uit waarom die moet wachten.',
-      en: 'Line 3 in hall B needs a heavier connection. A grid planner finds out why it has to wait.' },
+    { nl: 'Lijn 3 in hal B heeft een zwaardere aansluiting nodig. Die ligt er nog niet.',
+      en: 'Line 3 in hall B needs a heavier connection. It is not there yet.' },
+    { nl: 'Een netplanner zoekt uit waarom die moet wachten.',
+      en: 'A grid planner finds out why it has to wait.' },
     { nl: 'Elke netplanning begint met de vraag hoeveel vermogen er straks tegelijk loopt.',
       en: 'All grid planning starts with how much power will flow at the same moment.' },
     { nl: 'Vier onderwerpen volgen zijn werk. Eerst wat er komt en of het net een storing doorstaat.',
@@ -372,8 +375,8 @@ const SAY = [
   [ // s2 load and forecasting: simultaneity, growth, the load flow
     { nl: 'Het eerste onderwerp is Belasting en prognose. Gelijktijdigheid is het deel van ieders maximum dat tegelijk optreedt.',
       en: 'The first topic is Load and forecasting. Simultaneity is the share of everyone’s maximum that occurs at once.' },
-    { nl: 'Daarna kijkt de planner vooruit. De vraag groeit en lijn 3 komt erbovenop.',
-      en: 'Then the planner looks ahead. Demand grows and line 3 comes on top.' },
+    { nl: 'Daarna kijkt de planner vooruit. De vraag groeit en lijn 3 komt erbovenop. Zo komt de grens in zicht.',
+      en: 'Then the planner looks ahead. Demand grows and line 3 comes on top. So the limit comes into view.' },
     { nl: 'Hij draait een {t:Loadflow|loadflow} en ziet welke stroom door de kabel naar hal B loopt.',
       en: 'He runs a {t:Load flow|load flow} and sees what current runs through the cable to hall B.' },
   ],
@@ -382,8 +385,8 @@ const SAY = [
       en: 'The second topic is Network design and redundancy. Every design passes four checks. One asks what happens when something fails.' },
     { nl: 'Een ring geeft reserve. Valt een kabel uit, dan voedt de andere kant hal B.',
       en: 'A ring gives reserve. If a cable fails, the other side feeds hall B.' },
-    { nl: 'Je verdeelt het {t:Spanningsbudget|spanningsbudget} en legt een {t:Stationskoppeling|stationskoppeling} aan.',
-      en: 'You share out the {t:Voltage budget|voltage budget} and add an {t:Inter-station link|inter-station link}.' },
+    { nl: 'Voor de toets op spanning verdeelt hij het {t:Spanningsbudget|spanningsbudget} over het net.',
+      en: 'For the voltage check he shares out the {t:Voltage budget|voltage budget} across the grid.' },
   ],
   [ // s4 investment planning: too many bottlenecks, the ranking, line 3 later in the order, the scenario and the plan
     { nl: 'Het derde onderwerp is Investeringsplanning. Er zijn meer knelpunten dan mensen en geld.',
@@ -416,8 +419,8 @@ const SAY = [
       en: 'At Working knowledge level come current and voltage, the ring, bottlenecks and congestion management.' },
     { nl: 'Op niveau Gevorderd komen de prognose per station, N-1, prioriteren en batterijen.',
       en: 'At Advanced level come the forecast per station, N-1, prioritising and batteries.' },
-    { nl: 'Op niveau Expert gaat het om tijdreeksen, ontwerpen op risico, het bouwen zelf en de waarde van uitstel.',
-      en: 'At Expert level it is about time series, risk-based design, building itself and the value of deferral.' },
+    { nl: 'Op niveau Expert komen tijdreeksen, ontwerpen op risico, van plan naar gebouwd net en de waarde van uitstel.',
+      en: 'At Expert level come time series, risk-based design, from plan to built grid and the value of deferral.' },
     { nl: 'Elke les en elke film van deze module heeft een plek op deze kaart.',
       en: 'Every lesson and every film in this module has a place on this map.' },
   ],
