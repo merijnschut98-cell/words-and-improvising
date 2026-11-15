@@ -54,7 +54,7 @@ test('checkMap rejects a place outside the zone of its field', () => {
 test('mapSvg: one map-place per pm module, titles in the asked language', () => {
   const nl = mapSvg(pmMap, { lang: 'nl' });
   const en = mapSvg(pmMap, { lang: 'en' });
-  assert.equal((nl.match(/class="map-place/g) || []).length, 16);
+  assert.equal((nl.match(/class="map-place/g) || []).length, 17);
   for (const m of MODULES.filter((x) => x.subject === 'pm')) {
     assert.match(nl, new RegExp(`data-module="${m.id.replace('.', '\\.')}"`));
   }
@@ -82,6 +82,6 @@ test('mapSvg: every title fits its label without an ellipsis, in both languages'
 test('mapSvg: interactive adds button semantics, static does not', () => {
   assert.doesNotMatch(mapSvg(pmMap, { lang: 'en' }), /role="button"|tabindex/);
   const svg = mapSvg(pmMap, { lang: 'en', interactive: true });
-  assert.equal((svg.match(/role="button" tabindex="0"/g) || []).length, 16);
+  assert.equal((svg.match(/role="button" tabindex="0"/g) || []).length, 17);
   assert.match(svg, /aria-label="Plan"/);
 });

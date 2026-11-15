@@ -249,6 +249,15 @@ export const MODULES = [
     ],
     lessons: ['eng.gridplanning.demand', 'eng.gridplanning.loadflow', 'eng.gridplanning.forecast', 'eng.gridplanning.timeseries', 'eng.gridplanning.criteria', 'eng.gridplanning.structures', 'eng.gridplanning.redundancy', 'eng.gridplanning.riskdesign', 'eng.gridplanning.plan', 'eng.gridplanning.investment', 'eng.gridplanning.prioritise', 'eng.gridplanning.execution', 'eng.gridplanning.alternatives', 'eng.gridplanning.flex', 'eng.gridplanning.storage', 'eng.gridplanning.deferral'],
     questions: { 'eng.gridplanning.demand': 4, 'eng.gridplanning.loadflow': 4, 'eng.gridplanning.forecast': 4, 'eng.gridplanning.timeseries': 4, 'eng.gridplanning.criteria': 4, 'eng.gridplanning.structures': 4, 'eng.gridplanning.redundancy': 4, 'eng.gridplanning.riskdesign': 4, 'eng.gridplanning.plan': 4, 'eng.gridplanning.investment': 4, 'eng.gridplanning.prioritise': 4, 'eng.gridplanning.execution': 4, 'eng.gridplanning.alternatives': 4, 'eng.gridplanning.flex': 4, 'eng.gridplanning.storage': 4, 'eng.gridplanning.deferral': 4 } },
+  { id: 'pm.approach', subject: 'pm', track: 'project', level: 1, title: { en: 'Approach and tools', nl: 'Aanpak en gereedschap' }, blurb: { en: 'Your project’s route, the method that fits it, and the tools you choose or find at the client.', nl: 'De route van je project, de methode die erbij past en de tools die je kiest of bij de klant aantreft.' },
+    topics: [
+      { id: 'route', title: { en: 'The route: what first, what next', nl: 'De route: wat eerst, wat daarna' }, levels: ['pm.approach.route', 'pm.approach.takeover', 'pm.approach.tailor', 'pm.approach.clientroute'] },
+      { id: 'method', title: { en: 'Choosing an approach', nl: 'Een aanpak kiezen' }, levels: ['pm.approach.families', 'pm.approach.dmaic', 'pm.approach.choose', 'pm.approach.translate'] },
+      { id: 'tools', title: { en: 'Choosing tools', nl: 'Gereedschap kiezen' }, levels: ['pm.approach.toolfamilies', 'pm.approach.board', 'pm.approach.toolchoice', 'pm.approach.toolcost'] },
+      { id: 'enterprise', title: { en: 'Tools at large organisations', nl: 'Gereedschap bij grote organisaties' }, levels: ['pm.approach.systems', 'pm.approach.guest', 'pm.approach.recordof', 'pm.approach.landscape'] },
+    ],
+    lessons: ['pm.approach.route', 'pm.approach.takeover', 'pm.approach.tailor', 'pm.approach.clientroute', 'pm.approach.families', 'pm.approach.dmaic', 'pm.approach.choose', 'pm.approach.translate', 'pm.approach.toolfamilies', 'pm.approach.board', 'pm.approach.toolchoice', 'pm.approach.toolcost', 'pm.approach.systems', 'pm.approach.guest', 'pm.approach.recordof', 'pm.approach.landscape'],
+    questions: { 'pm.approach.route': 4, 'pm.approach.takeover': 4, 'pm.approach.tailor': 4, 'pm.approach.clientroute': 4, 'pm.approach.families': 4, 'pm.approach.dmaic': 4, 'pm.approach.choose': 4, 'pm.approach.translate': 4, 'pm.approach.toolfamilies': 4, 'pm.approach.board': 4, 'pm.approach.toolchoice': 4, 'pm.approach.toolcost': 4, 'pm.approach.systems': 4, 'pm.approach.guest': 4, 'pm.approach.recordof': 4, 'pm.approach.landscape': 4 } },
   { id: 'pm.intake', subject: 'pm', track: 'project', level: 1, intro: 'pm.intake.intro', title: { en: 'Intake', nl: 'Intake' }, blurb: { en: 'From the client’s question to a project worth doing.', nl: 'Van de vraag van de klant naar een project dat het waard is.' },
     topics: [
       { id: 'problem', title: { en: 'From question to problem', nl: 'Van vraag naar probleem' }, levels: ['pm.intake.ask', 'pm.intake.firsttalk', 'pm.intake.problemstatement', 'pm.intake.issuetree'] },
@@ -423,8 +432,8 @@ export function placeOf(lessonId, modules = MODULES) {
 export const FIELDS = [
   { id: 'pm.field.lifecycle', subject: 'pm',
     title: { en: 'A project from start to finish', nl: 'Een project van begin tot eind' },
-    blurb: { en: 'Intake, plan, run, land and close: the road every project walks.', nl: 'Intake, plannen, uitvoeren, landen en afsluiten: de weg die elk project loopt.' },
-    modules: ['pm.intake', 'pm.plan', 'pm.run', 'pm.land', 'pm.close'], film: 'pm.field.lifecycle' },
+    blurb: { en: 'Approach, intake, plan, run, land and close: the road every project walks.', nl: 'Aanpak, intake, plannen, uitvoeren, landen en afsluiten: de weg die elk project loopt.' },
+    modules: ['pm.approach', 'pm.intake', 'pm.plan', 'pm.run', 'pm.land', 'pm.close'], film: 'pm.field.lifecycle' },
   { id: 'pm.field.people', subject: 'pm',
     title: { en: 'People and influence', nl: 'Mensen en invloed' },
     blurb: { en: 'When it is stuck, how you lead, negotiate, work outside your field and steer on performance.', nl: 'Als het vastloopt, hoe je leidt, onderhandelt, buiten je vak werkt en op prestaties stuurt.' },

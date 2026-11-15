@@ -17,7 +17,7 @@ const count = (s, re) => (s.match(re) || []).length;
 test('mapScene: the shared map, one place per module, both languages in the same drawing', async () => {
   const svg = await mapScene({ subject: 'pm', highlight: ['pm.plan'] });
   assert.match(svg, /^<svg class="subject-map"/);
-  assert.equal(count(svg, /class="map-place/g), 16);
+  assert.equal(count(svg, /class="map-place/g), 17);
   for (const m of MODULES.filter((x) => x.subject === 'pm')) assert.match(svg, new RegExp(`data-module="${m.id.replace('.', '\\.')}"`));
   // each label exists in both languages, hidden by the page language
   assert.match(svg, /class="l-nl"[^]*Plannen/);

@@ -107,7 +107,7 @@ test('mapScene labels: a label that already fits stays the app label, and only l
   assert.equal(labelOf(svg, 'pm.plan', 'nl').size, BASE, 'Plannen fits and is not restyled');
   assert.ok(!svg.includes('font-size'), 'nothing else in the drawing is restyled');
   // the long English label of pm.outside, not lit here, is the app's own four lines of 17 units
-  assert.deepEqual(labelOf(svg, 'pm.outside', 'en').lines.map((l) => l.y), [326, 343, 360, 377]);
+  assert.deepEqual(labelOf(svg, 'pm.outside', 'en').lines.map((l) => l.y), [349, 366, 383, 400]);
   // the label of pm.portfolio, not lit here, stays on the app's baseline although it descends
   assert.deepEqual(labelOf(svg, 'pm.portfolio', 'en').lines.map((l) => l.y), [98]);
 });

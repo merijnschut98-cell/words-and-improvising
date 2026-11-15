@@ -9,6 +9,62 @@
 // Two to four sentences, no colons, no numbers from the lesson, at most 320
 // characters per language (tests/openers.test.js, validate.js checkOpeners).
 export default {
+  'pm.approach/route': {
+    2: {
+      nl: 'Op Werkkennis neem je een lopend project over. Je spreekt de sponsor en het team, leest de stukken in vaste volgorde en zoekt wat de route nog mist. Straks kun je uitleggen wat je de eerste twee dagen doet en waarom je niet meteen verandert.',
+      en: 'At Working knowledge you take over a running project. You talk to the sponsor and the team, read the documents in a fixed order and look for what the route still lacks. Afterwards you can explain what you do in the first two days and why you do not change things at once.',
+    },
+    3: {
+      nl: 'Met Gevorderd bepaal je hoeveel route een project nodig heeft. Je voegt fasen samen waar het kan en laat vier dingen nooit vallen. Daarna kun je een klein en een groot project een eigen route geven en dat onderbouwen.',
+      en: 'With Advanced you decide how much route a project needs. You merge stages where you can and never drop four things. Afterwards you can give a small and a large project a route of its own and justify it.',
+    },
+    4: {
+      nl: 'Bij Expert werk je binnen de route van de klant. Je stelt het PMO de goede vragen voordat je zelf iets voorstelt en je durft ook niet beginnen als antwoord te geven. Dan kun je onderhandelen over gates, sjablonen en toleranties.',
+      en: 'With Expert you work within the client’s route. You ask the PMO the right questions before you propose anything and you dare to give not starting as an answer. Then you can negotiate about gates, templates and tolerances.',
+    },
+  },
+  'pm.approach/method': {
+    2: {
+      nl: 'Op Werkkennis draai je een DMAIC op een klein probleem. Je loopt de vijf fasen langs en weet wat elke fase oplevert. Daarna kun je uitleggen wanneer een A3, een kaizenevent of DMAIC de juiste maat heeft.',
+      en: 'At Working knowledge you run a DMAIC on a small problem. You walk through the five phases and know what each one delivers. Afterwards you can explain when an A3, a kaizen event or DMAIC is the right size.',
+    },
+    3: {
+      nl: 'Met Gevorderd kies je de methode voor dit ene project. Je beantwoordt vijf vragen en zoekt zo nodig een hybride vorm. Daarna kun je drie cases een eigen aanpak geven en zeggen welke antwoorden de doorslag gaven.',
+      en: 'With Advanced you choose the method for this one project. You answer five questions and look for a hybrid form where needed. Afterwards you can give three cases an approach of their own and say which answers decided it.',
+    },
+    4: {
+      nl: 'Bij Expert werk je in de methode van de klant. Je vertaalt tussen woorden zonder de kern te verliezen en herkent methodetheater. Dan kun je een klant die een bepaalde methode eist toch de korte feedback geven die het werk nodig heeft.',
+      en: 'With Expert you work in the client’s method. You translate between words without losing the core and recognise method theatre. Then you can still give a client who demands a certain method the short feedback the work needs.',
+    },
+  },
+  'pm.approach/tools': {
+    2: {
+      nl: 'Bij Werkkennis richt je een takenbord in het eerste uur in. Je maakt kolommen naar het werk en geeft elke kaart een eigenaar, een datum en een klaar-criterium. Straks kun je een weekoverleg vanuit het bord leiden zonder alle kaarten voor te lezen.',
+      en: 'With Working knowledge you set up a task board in the first hour. You make columns by the work and give each card an owner, a date and a done criterion. Afterwards you can run a weekly meeting from the board without reading out all the cards.',
+    },
+    3: {
+      nl: 'Op Gevorderd kies je de tool voor dit project. Je weegt omvang, de regels van de klant en wat het team al gebruikt. Daarna kun je drie projecten elk een eigen keuze geven en uitleggen welke eis beslist.',
+      en: 'At Advanced you choose the tool for this project. You weigh size, the client’s rules and what the team already uses. Afterwards you can give three projects a choice of their own and explain which requirement decides.',
+    },
+    4: {
+      nl: 'Met Expert weeg je wat een tool echt kost. Het gaat om wildgroei, dataverblijf, dubbele invoer en wie de tool na jouw vertrek beheert. Dan kun je een klant die zijn eigen tools meebrengt de juiste vragen stellen.',
+      en: 'With Expert you weigh what a tool really costs. It is about sprawl, data residency, double entry and who maintains the tool after you leave. Then you can ask a client who brings his own tools the right questions.',
+    },
+  },
+  'pm.approach/enterprise': {
+    2: {
+      nl: 'Op Werkkennis werk je als gast in de systemen van de klant. Je leest een backlogbord en zet geboekte uren naast de voortgang. Daarna kun je zeggen wat die twee samen vertellen en waar je een wijziging meldt.',
+      en: 'At Working knowledge you work as a guest in the client’s systems. You read a backlog board and put booked hours next to progress. Afterwards you can say what the two tell you together and where you report a change.',
+    },
+    3: {
+      nl: 'Met Gevorderd beslis je wat waar leeft. Je legt vast welk systeem de bron is en voorkomt dubbele invoer. Dan kun je uitzoeken waarom een bord groen en een rapport rood is, zonder te gokken.',
+      en: 'With Advanced you decide what lives where. You record which system is the source and prevent double entry. Then you can find out why a board is green and a report is red, without guessing.',
+    },
+    4: {
+      nl: 'Bij Expert kijk je als senior naar het hele landschap. Je zoekt de data-eigenaar, weegt leveranciersrisico en vraagt hoe technische wijzigingen jou bereiken. Daarna kun je de controller, het PMO en de IT-eigenaar de goede vragen stellen.',
+      en: 'With Expert you look at the whole landscape as a senior. You look for the data owner, weigh vendor risk and ask how engineering changes reach you. Afterwards you can ask the controller, the PMO and the IT owner the right questions.',
+    },
+  },
   'pm.intake/problem': {
     2: {
       nl: 'Op Werkkennis voer je het eerste gesprek. Je geeft het verhaal van de opdrachtgever terug in eigen woorden en vraagt door als iemand kort antwoordt. Straks kun je beantwoorden waarom je parafraseert en wat je doet als alles in het rapport zou staan.',

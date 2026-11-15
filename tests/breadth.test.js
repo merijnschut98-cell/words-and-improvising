@@ -15,9 +15,9 @@ const stateWith = (subject, ids) => ({
 });
 const TODAY = '2026-11-02';
 
-test('roadOrder: Projects follows the road (Intake, Plan, Run, Land, Close), then the other places by module level (Instap, Verdieping, Specialist), map order within a level', () => {
+test('roadOrder: Projects follows the road (Approach, Intake, Plan, Run, Land, Close), then the other places by module level (Instap, Verdieping, Specialist), map order within a level', () => {
   const ids = roadOrder('pm').map((m) => m.id);
-  assert.deepEqual(ids, ['pm.intake', 'pm.plan', 'pm.run', 'pm.land', 'pm.close',
+  assert.deepEqual(ids, ['pm.approach', 'pm.intake', 'pm.plan', 'pm.run', 'pm.land', 'pm.close',
     'pm.agile', 'pm.devops',
     'pm.stuck', 'pm.lead', 'pm.negotiate', 'pm.outside', 'pm.perform', 'pm.scaled', 'pm.itproject',
     'pm.portfolio', 'pm.consult']);
@@ -36,13 +36,13 @@ test('breadthOrder: all Basis first, then all Werkkennis, in module order', () =
   const order = breadthOrder('pm');
   const basis = roadOrder('pm').flatMap((m) => levelOf(m, 0));
   assert.deepEqual(order.slice(0, basis.length), basis);
-  assert.deepEqual(order.slice(basis.length, basis.length + 4), levelOf(meta('pm.intake'), 1));
+  assert.deepEqual(order.slice(basis.length, basis.length + 4), levelOf(meta('pm.approach'), 1));
   assert.equal(order.length, new Set(order).size);
   assert.equal(order.length, MODULES.filter((m) => m.subject === 'pm').reduce((n, m) => n + m.lessons.length, 0));
 });
 
-test('all Basis lessons of Intake done: next is Plan\'s first Basis lesson, not Intake Werkkennis', () => {
-  const st = stateWith('pm', levelOf(meta('pm.intake'), 0));
+test('all Basis lessons of Approach and Intake done: next is Plan\'s first Basis lesson, not Intake Werkkennis', () => {
+  const st = stateWith('pm', [...levelOf(meta('pm.approach'), 0), ...levelOf(meta('pm.intake'), 0)]);
   assert.equal(recommendedModule(st, 'pm'), 'pm.plan');
   assert.equal(nextLesson(st, meta('pm.plan')), levelOf(meta('pm.plan'), 0)[0]);
   const pick = courseTodayPick(st, 'pm', 'nl', TODAY);
@@ -52,13 +52,13 @@ test('all Basis lessons of Intake done: next is Plan\'s first Basis lesson, not 
   assert.equal(nextLesson(st, meta('pm.intake')), levelOf(meta('pm.intake'), 1)[0]);
 });
 
-test('all Basis lessons of the subject done: next is Intake\'s first Werkkennis lesson', () => {
+test('all Basis lessons of the subject done: next is Approach\'s first Werkkennis lesson', () => {
   const basis = roadOrder('pm').flatMap((m) => levelOf(m, 0));
   const st = stateWith('pm', basis);
   const pick = courseTodayPick(st, 'pm', 'nl', TODAY);
-  assert.equal(pick.moduleId, 'pm.intake');
-  assert.equal(pick.lessonId, levelOf(meta('pm.intake'), 1)[0]);
-  assert.equal(nextLesson(st, meta('pm.intake')), pick.lessonId);
+  assert.equal(pick.moduleId, 'pm.approach');
+  assert.equal(pick.lessonId, levelOf(meta('pm.approach'), 1)[0]);
+  assert.equal(nextLesson(st, meta('pm.approach')), pick.lessonId);
 });
 
 test('inside a module the lowest level across topics comes first; Engineering is breadth-first too', () => {
@@ -74,20 +74,20 @@ test('everything passed: no module recommended', () => {
   assert.equal(recommendedModule(st, 'pm'), null);
 });
 
-test('real states: a fresh learner starts at Intake Basis 1; an opened unfinished lesson resumes; Run (a level-2 module on the road) gets its Basis third', () => {
+test('real states: a fresh learner starts at Approach Basis 1; an opened unfinished lesson resumes; Run (a level-2 module on the road) gets its Basis third', () => {
   const fresh = courseTodayPick(stateWith('pm', []), 'pm', 'nl', TODAY);
-  assert.deepEqual([fresh.moduleId, fresh.lessonId, fresh.level], ['pm.intake', levelOf(meta('pm.intake'), 0)[0], 1]);
+  assert.deepEqual([fresh.moduleId, fresh.lessonId, fresh.level], ['pm.approach', levelOf(meta('pm.approach'), 0)[0], 1]);
   // opened a Werkkennis lesson of Land and left it: that comes back first
   const land2 = levelOf(meta('pm.land'), 1)[0];
-  const opened = stateWith('pm', [levelOf(meta('pm.intake'), 0)[0]]);
+  const opened = stateWith('pm', [levelOf(meta('pm.approach'), 0)[0]]);
   opened.courses.pm.lessons[land2] = { opened: 5 };
   const back = courseTodayPick(opened, 'pm', 'nl', TODAY);
   assert.deepEqual([back.why, back.lessonId], ['resume', land2]);
-  // Intake and Plan Basis done: Run's Basis (Run is a Verdieping module; nothing locks it)
-  const two = stateWith('pm', [...levelOf(meta('pm.intake'), 0), ...levelOf(meta('pm.plan'), 0)]);
+  // Approach, Intake and Plan Basis done: Run's Basis (Run is a Verdieping module; nothing locks it)
+  const two = stateWith('pm', [...levelOf(meta('pm.approach'), 0), ...levelOf(meta('pm.intake'), 0), ...levelOf(meta('pm.plan'), 0)]);
   assert.equal(courseTodayPick(two, 'pm', 'nl', TODAY).lessonId, levelOf(meta('pm.run'), 0)[0]);
   // the road's Basis done: Agile's Basis (Verdieping) before Stuck (Specialist) and Portfolio
-  const road = stateWith('pm', ['pm.intake', 'pm.plan', 'pm.run', 'pm.land', 'pm.close'].flatMap((id) => levelOf(meta(id), 0)));
+  const road = stateWith('pm', ['pm.approach', 'pm.intake', 'pm.plan', 'pm.run', 'pm.land', 'pm.close'].flatMap((id) => levelOf(meta(id), 0)));
   assert.equal(courseTodayPick(road, 'pm', 'nl', TODAY).moduleId, 'pm.agile');
 });
 
@@ -100,23 +100,23 @@ test('a module without topics joins the Basis round with all its lessons in inde
 });
 
 test('nextCourseLesson: the subject\'s next lesson breadth-first, null when all are passed', () => {
-  assert.deepEqual(nextCourseLesson(stateWith('pm', []), 'pm'), { moduleId: 'pm.intake', lessonId: levelOf(meta('pm.intake'), 0)[0] });
-  assert.deepEqual(nextCourseLesson(stateWith('pm', levelOf(meta('pm.intake'), 0)), 'pm'), { moduleId: 'pm.plan', lessonId: levelOf(meta('pm.plan'), 0)[0] });
+  assert.deepEqual(nextCourseLesson(stateWith('pm', []), 'pm'), { moduleId: 'pm.approach', lessonId: levelOf(meta('pm.approach'), 0)[0] });
+  assert.deepEqual(nextCourseLesson(stateWith('pm', levelOf(meta('pm.approach'), 0)), 'pm'), { moduleId: 'pm.intake', lessonId: levelOf(meta('pm.intake'), 0)[0] });
   assert.equal(nextCourseLesson(stateWith('pm', breadthOrder('pm')), 'pm'), null);
 });
 
 test('lesson end "next": opened from a home it follows the subject\'s next step (another module once this one\'s Basis is done); from the module screen it stays in the module', () => {
-  const intake = meta('pm.intake');
+  const intake = meta('pm.approach');
   const basis = levelOf(intake, 0);
   const st = stateWith('pm', basis);
   const last = basis[basis.length - 1];
   const pick = courseTodayPick(st, 'pm', 'nl', TODAY);
-  assert.deepEqual(lessonEndNext(st, intake, last, false), { moduleId: 'pm.plan', lessonId: levelOf(meta('pm.plan'), 0)[0] });
+  assert.deepEqual(lessonEndNext(st, intake, last, false), { moduleId: 'pm.intake', lessonId: levelOf(meta('pm.intake'), 0)[0] });
   assert.deepEqual(lessonEndNext(st, intake, last, false), { moduleId: pick.moduleId, lessonId: pick.lessonId }, 'agrees with the start card');
-  assert.deepEqual(lessonEndNext(st, intake, last, true), { moduleId: 'pm.intake', lessonId: levelOf(intake, 1)[0] }, 'agrees with the module screen');
+  assert.deepEqual(lessonEndNext(st, intake, last, true), { moduleId: 'pm.approach', lessonId: levelOf(intake, 1)[0] }, 'agrees with the module screen');
   const mid = stateWith('pm', [basis[0]]);
-  assert.deepEqual(lessonEndNext(mid, intake, basis[0], false), { moduleId: 'pm.intake', lessonId: basis[1] });
-  assert.deepEqual(lessonEndNext(mid, intake, basis[0], true), { moduleId: 'pm.intake', lessonId: basis[1] });
+  assert.deepEqual(lessonEndNext(mid, intake, basis[0], false), { moduleId: 'pm.approach', lessonId: basis[1] });
+  assert.deepEqual(lessonEndNext(mid, intake, basis[0], true), { moduleId: 'pm.approach', lessonId: basis[1] });
   assert.equal(lessonEndNext(stateWith('pm', breadthOrder('pm')), intake, last, false), null, 'nothing left');
   assert.equal(lessonEndNext(stateWith('pm', []), intake, basis[0], false), null, 'never the lesson itself');
 });

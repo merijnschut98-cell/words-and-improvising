@@ -61,10 +61,31 @@ test('withoutNumber also removes a recall answer given as a number', () => {
 // index entry and the page's stage (the drawing and scripts where a card's words
 // stand, without the film data, whose captions and topic titles would always match).
 const stageOf = (html) => html.replace(/<script type="application\/json" id="film-data">[\s\S]*?<\/script>/, '');
+// A module added to a field before its field film is re-rendered: the shipped film does not know the
+// module yet, so it is held to the field without it. Remove the entry when the film is re-rendered
+// (Task 14: pm.approach is the first station of pm.field.lifecycle, the re-render comes with its films).
+const PENDING_RERENDER = { 'pm.field.lifecycle': ['pm.approach'] };
+const fieldOfFilm = (id) => {
+  const f = FIELDS.find((x) => x.id === id);
+  const pending = PENDING_RERENDER[id] || [];
+  return f && pending.length ? { ...f, modules: f.modules.filter((m) => !pending.includes(m)) } : f;
+};
+test('PENDING_RERENDER only holds a field film that really does not show the module yet', () => {
+  for (const [id, pending] of Object.entries(PENDING_RERENDER)) {
+    const f = FIELDS.find((x) => x.id === id);
+    assert.ok(f && f.film === id, `${id}: not a field film`);
+    for (const m of pending) {
+      assert.ok(f.modules.includes(m), `${id}: ${m} is not in the field, drop it from PENDING_RERENDER`);
+      const stage = stageOf(fs.readFileSync(`${DIR}/${id}.html`, 'utf8'));
+      const title = MODULES.find((x) => x.id === m).title;
+      assert.ok(!stage.includes(title.nl) && !stage.includes(title.en), `${id} now shows ${m}: re-rendered, so remove it from PENDING_RERENDER`);
+    }
+  }
+});
 const ctxOf = (data, html, lessons, wiredBy = data.module || data.field ? [] : data.lessons) => ({
   lessons, levelOf: (lid) => (placeOf(lid) || {}).level || 1, wiredBy,
   ...(data.module ? { module: MODULES.find((m) => m.id === data.module), stageText: stageOf(html) } : {}),
-  ...(data.field ? { field: FIELDS.find((f) => f.id === data.field), modules: MODULES, stageText: stageOf(html) } : {}),
+  ...(data.field ? { field: fieldOfFilm(data.field), modules: MODULES, stageText: stageOf(html) } : {}),
 });
 
 // All lessons, both languages, by id.

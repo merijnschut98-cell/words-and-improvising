@@ -165,3 +165,5 @@ Outcome: accepted (merged as delivered), sent back N times, redone.
 | 15 Nov | Render PM-29: nine Engineering intros (drawings, seven energy, itbasics) | sonnet | 78+ | 2 h 15 min incl. limit pause | 182,923 | accepted; 18 guards passed; one gridplanning line shortened for a cue split; 9 of 37 tool words heard poorly (not chased); merged v336 |
 | 15 Nov | Build: Engineering intro eng.industry40.intro | sonnet | 83 | 13 min | 309,448 | accepted with fixes by its review |
 | 15 Nov | Review: eng.industry40.intro | sonnet | ~75 | n/a | n/a | accepted with small fixes (unit lit with its card, wèrhaus spelling, en wording, Expert title); merged v337 |
+| 15 Nov | Build: Task 14 module pm.approach | sonnet | 116 | 28 min | 447,090 | accepted with fixes by its review |
+| 15 Nov | Review: pm.approach | opus | 112 | 15 min | 314,632 | accepted with fixes (PMBOK, Microsoft and ASQ facts corrected to sources, shared definitions identical, eight giveaway answers rebalanced, Dutch); merged v338 |
