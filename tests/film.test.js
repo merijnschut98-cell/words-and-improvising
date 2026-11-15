@@ -1621,9 +1621,25 @@ test('speak variant: Radical Candor and MORE PIES of the lead intro, PM-30', () 
   assert.equal(nl('Op Werkkennis komen de fasen van een team, de grens met manipulatie, Toyota Kata en Radical Candor erbij.'), 'Op Werkkennis komen de fasen van een team, de grens met manipulatie, Tojota Kata en Rèddikal Kender erbij.');
   assert.equal(nl('We gebruiken actief luisteren en MORE PIES.'), 'We gebruiken actief luisteren en More paiz.');
   // elsewhere the names keep their voice
-  assert.equal(nl('De checklist MORE PIES komt uit de crisisonderhandeling.'), 'De checklist Mor pais komt uit de crisisonderhandeling.');
+  assert.equal(nl('Gebruik MORE PIES bij het luisteren.'), 'Gebruik Mor pais bij het luisteren.'); // PM-32 widened the rule for the first-talk and jargon films
   assert.equal(nl('Radical Candor is een model van Kim Scott.'), 'Radical Candor is een model van Kim Scott.');
   const en = 'We use active listening and MORE PIES, and at Working knowledge Toyota Kata and Radical Candor.';
+  assert.equal(speakOf([en], 'en'), en);
+});
+
+// Batch PM-32: the same voice for MORE PIES in the two films that still said "Mor pais" (Merijn, 15 Nov: "Mor pais" in
+// pm.intake.firsttalk, 1 sentence, and pm.outside.jargon, 2 sentences, against "More paiz" in pm.lead.intro). The PM-30 approach,
+// widened: one narrow group of three rules at the end of the Dutch list, each tied to the sentence it belongs to, so the
+// other films and the English track keep their voice; no other film's spoken text changes
+test('speak variant: MORE PIES as More paiz in the first-talk and jargon films, PM-32', () => {
+  const nl = (s) => speakOf([s], 'nl');
+  assert.equal(nl('De checklist MORE PIES komt uit de crisisonderhandeling.'), 'De checklist More paiz komt uit de crisisonderhandeling.');
+  assert.equal(nl('Dat zijn stilte en doorvragen uit MORE PIES: zwijg even, vraag dan dieper.'), 'Dat zijn stilte en doorvragen uit More paiz: zwijg even, vraag dan dieper.');
+  assert.equal(nl('MORE PIES is een lijst voor actief luisteren: luisteren om te begrijpen, niet om te antwoorden.'), 'More paiz is een lijst voor actief luisteren: luisteren om te begrijpen, niet om te antwoorden.');
+  // the lead intro keeps its own rule, other sentences keep "Mor pais"
+  assert.equal(nl('We gebruiken actief luisteren en MORE PIES.'), 'We gebruiken actief luisteren en More paiz.');
+  assert.equal(nl('Gebruik MORE PIES bij het luisteren.'), 'Gebruik Mor pais bij het luisteren.');
+  const en = 'MORE PIES is a checklist for active listening. The checklist MORE PIES comes from crisis negotiation.';
   assert.equal(speakOf([en], 'en'), en);
 });
 
