@@ -1694,4 +1694,19 @@ test('speak variant: the capacity and flow intro film words in Dutch', () => {
   assert.equal(nl('Capaciteit en flow is een module. Het standaardplaatje is een Yamazumi. Een Yamazumi laat zien welke balk uitsteekt.'), 'Capaciteit en flow is een module. Het standaardplaatje is een Yamazumi. Een Yamazumi laat zien welke balk uitsteekt.');
   const en = 'The module Capacity and flow. You draw the work per station in a yamazumi.';
   assert.equal(speakOf([en], 'en'), en);
+
+// The field film "Making the plant better" (eng.field.better), checked with espeak-ng phonemes through Piper's nl_NL-alex
+// bridge and the English voice: FMECA is read as the word "fmeeka" in Dutch (fmˈeːkaː) and "ef-meka" in English
+// (ˈɛfmˈɛkə); it is said as letters, in the one phrase of the film that names it ("en maakt een FMECA", "and make an
+// FMECA"). Ohno-cirkel, waaromboom, eerstestukcontrole, np-kaart, faalkosten, kasbesparing, risicomatrix, kaizen and SPC
+// are read right; no other film's spoken text changes
+test('speak variant: the plant-improving field film FMECA', () => {
+  const nl = (s) => speakOf([s], 'nl');
+  assert.equal(nl('Je zet de onderdelen in een risicomatrix en maakt een FMECA.'), 'Je zet de onderdelen in een risicomatrix en maakt een F M E C A.');
+  const en = (s) => speakOf([s], 'en');
+  assert.equal(en('You put the parts in a risk matrix and make an FMECA.'), 'You put the parts in a risk matrix and make an F M E C A.');
+  // elsewhere the word keeps its voice
+  assert.equal(nl('Een FMECA voegt een kritikaliteitsscore toe.'), 'Een FMECA voegt een kritikaliteitsscore toe.');
+  assert.equal(nl('Een machine-FMEA en een FMECA.'), 'Een machine-FMEA en een FMECA.');
+  assert.equal(en('An FMECA adds a criticality rating to each failure mode.'), 'An FMECA adds a criticality rating to each failure mode.');
 });
