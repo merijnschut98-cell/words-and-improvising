@@ -239,7 +239,8 @@ const STAGE = (() => {
     // you and the team lead come in at the second beat of the opening, where the shift is over; before that you would hide
     // the belt the first beat lights. In the second scene you stand in the chalk circle from the second beat on and the team
     // lead is gone; in the other scenes you would hide the tank, the board or the table
-    show(E['pp-jij'], (si === 0 || si === 1) && b >= 1 ? 1 : 0);
+    show(E['pp-jij0'], si === 0 && b >= 1 ? 1 : 0);
+    show(E['pp-jij'], si === 1 && b >= 1 ? 1 : 0);
     show(E['pp-teamlead'], si === 0 && b >= 1 ? 1 : 0);
     // each thing of the room shows from the scene of its station: the chalk circle and the why tree from the second, the scale
     // and the chart from the third, the crate and the laptop with the case from the fourth, the risk matrix and the FMECA from the fifth

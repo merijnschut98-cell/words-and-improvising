@@ -21,7 +21,7 @@
 //      for yourself where it happens and look for the cause; an Ohno circle and a why tree
 //      (eng.improve.gemba, eng.improve.fishbone); without it you treat the symptom and the problem can come back
 //   s3 Meten en SPC verdiept (eng.spc): follow the fill weight with data, not by feel; cartons are weighed at the
-//      end of the belt and a chart shows what the process does by itself; a first-off check and an np chart
+//      end of the belt (one first after a changeover, then equal batches) and the too-light ones are counted per batch; a first-off check and an np chart
 //      (eng.spc.floor, eng.spc.charts); without it you react to routine noise or miss a real change
 //   s4 Kostprijs en investeringen (eng.cost): know what the problem costs and what the fix may cost; a too-light
 //      carton goes in the bin and costs money, a fix costs money too; the cost of poor quality and a cash saving
@@ -146,7 +146,10 @@ const cueG = (name, body) => `<g data-cue="${name}">${body}</g>`;
 // the check table at the end of the belt with a scale and a carton on it, and the control chart on the back wall at the
 // right (third); a crate with the bad cartons at the end of the belt and the table with the laptop and the sheet of the
 // case at the front left (fourth); the risk matrix and the FMECA sheet on the side wall (fifth). You and the team lead
-// stand in front in the opening; in the second scene you stand in the circle.
+// stand in front in the opening (at the same spots as in eng.field.run: pp-jij0 beside the team lead); in the second scene you stand in the
+// circle (pp-jij, the same cue). The weighing is a pass/fail count: after a changeover one carton is weighed first (the first-off check), then
+// batches of equal size, and the too-light ones are counted per batch, which is what an np chart plots (the lesson: the number defective at a
+// fixed sample size); the chart on the wall and the panel schema show those counts, not the weights.
 const BELT = { x: 130, y: 16, len: 130, dep: 34 };
 const UX = 152; // x of the uprights and the beam
 const FRAME = { top: 150, beam: 160 };
@@ -258,6 +261,7 @@ const world = [
   g('o-tree', cueG('tree', treeBoard)),
   g('o-lap', cueG('laptop', laptopTable)),
   g('pp-teamlead', person('teamlead', 128, 132, 'x')),
+  g('pp-jij0', person('jij', 188, 132, 'x')),
   g('pp-jij', person('jij', RING.x, RING.y, 'x')),
 ].join('');
 
@@ -361,10 +365,10 @@ const spec = {
     {
       id: 's1', level: 1, dur: DURS[0], still: 0.9, title: { nl: 'Na de dienst op lijn 3', en: 'After the shift on line 3' },
       beats: [
-        { nl: 'Op lijn 3 komen telkens te lichte dozen uit de vuleenheid. De dienst is voorbij, dus nu is er tijd.', en: 'On line 3 too-light cartons keep coming out of the filling unit. The shift is over, so now there is time.', focus: ['flow', 'unit', 'tank', 'line3'] },
-        { nl: 'Jij bent de engineer. Met de teamleider blijf je na de dienst om het echt op te lossen.', en: 'You are the engineer. With the team lead you stay after the shift to fix it for good.', focus: ['shift', 'jij', 'teamlead', 'unit'] },
+        { nl: 'Op lijn 3 komen telkens te lichte dozen uit de vuleenheid.', en: 'On line 3 too-light cartons keep coming out of the filling unit.', focus: ['flow', 'unit', 'tank', 'line3'] },
+        { nl: 'Jij bent de engineer. Na de dienst blijf je met de teamleider om het echt op te lossen.', en: 'You are the engineer. After the shift you stay with the team lead to fix it for good.', focus: ['shift', 'jij', 'teamlead', 'unit'] },
         { nl: 'Dat vraagt vier dingen. De oorzaak vinden, het proces lezen, de kosten kennen en de lijn betrouwbaarder maken.', en: 'That takes four things. Find the cause, read the process, know the cost and make the line more reliable.', focus: 'route' },
-        { nl: 'Dat zijn vier stations. Van probleemoplossen en meten tot kosten en betrouwbaarheid.', en: 'That makes four stations. From problem solving and measuring to cost and reliability.', focus: 'road' },
+        { nl: 'Dat zijn vier stations, van probleemoplossen tot betrouwbaarheid.', en: 'That makes four stations, from problem solving to reliability.', focus: 'road' },
       ],
     },
     {
@@ -380,9 +384,9 @@ const spec = {
       id: 's3', level: 1, dur: DURS[2], still: 0.9, title: { nl: 'Meten en SPC verdiept', en: 'Measurement and SPC in depth' },
       beats: [
         { nl: 'Het tweede station is Meten en SPC verdiept. Je volgt het vulgewicht met data en niet op gevoel.', en: 'The second station is Measurement and SPC in depth. You follow the fill weight with data, not by feel.', focus: ['st-spc', 'for', 'line3'] },
-        { nl: 'Aan het eind van de band weeg je dozen. Een kaart laat zien wat het proces uit zichzelf doet.', en: 'At the end of the belt you weigh cartons. A chart shows what the process does on its own.', focus: ['for', 'scale', 'chart'] },
-        { nl: 'Je doet een {t:Eerstestukcontrole|eerstestukcontrole} en zet de te lichte dozen uit op een {t:np-kaart|np-kaart}.', en: 'You do a {t:First-off check|first-off check} and plot the too-light cartons on an {t:np chart|np chart}.', ...TOOLCUE('Eerstestukcontrole', 'np-kaart', ['scale', 'chart']) },
-        { nl: 'Zonder dit reageer je op gewone ruis, of mis je een echte verandering.', en: 'Without this you react to routine noise, or you miss a real change.', focus: 'without' },
+        { nl: 'Na een omstelling weeg je eerst één doos. Daarna weeg je steeds evenveel dozen en tel je de te lichte.', en: 'After a changeover you weigh one carton first. Then you weigh equal batches and count the too-light ones.', focus: ['for', 'scale', 'chart'] },
+        { nl: 'Je doet een {t:Eerstestukcontrole|eerstestukcontrole} en zet dat aantal uit op een {t:np-kaart|np-kaart}.', en: 'You do a {t:First-off check|first-off check} and plot that count on an {t:np chart|np chart}.', ...TOOLCUE('Eerstestukcontrole', 'np-kaart', ['scale', 'chart']) },
+        { nl: 'Zonder dit kun je reageren op gewone ruis of een echte verandering missen.', en: 'Without this you can react to routine noise or miss a real change.', focus: 'without' },
       ],
     },
     {
@@ -431,14 +435,14 @@ const spec = {
 // eerstestukcontrole, np-kaart, faalkosten, kasbesparing, risicomatrix, kaizen, SPC) is read right.
 const SAY = [
   [ // s1 the opening
-    { nl: 'Op lijn 3 in hal B komen telkens te lichte dozen uit de vuleenheid. De dienst is voorbij, dus nu is er tijd.',
-      en: 'On line 3 in hall B too-light cartons keep coming out of the filling unit. The shift is over, so now there is time.' },
-    { nl: 'Jij bent de engineer. Met de teamleider blijf je na de dienst om het echt op te lossen.',
-      en: 'You are the engineer. With the team lead you stay after the shift to fix it for good.' },
+    { nl: 'Op lijn 3 in hal B komen telkens te lichte dozen uit de vuleenheid.',
+      en: 'On line 3 in hall B too-light cartons keep coming out of the filling unit.' },
+    { nl: 'Jij bent de engineer. Na de dienst blijf je met de teamleider om het echt op te lossen.',
+      en: 'You are the engineer. After the shift you stay with the team lead to fix it for good.' },
     { nl: 'Dat vraagt vier dingen. De oorzaak vinden, het proces lezen, de kosten kennen en de lijn betrouwbaarder maken.',
       en: 'That takes four things. Find the cause, read the process, know the cost and make the line more reliable.' },
-    { nl: 'Dat zijn vier stations. Van probleemoplossen en meten tot kosten en betrouwbaarheid.',
-      en: 'That makes four stations. From problem solving and measuring to cost and reliability.' },
+    { nl: 'Dat zijn vier stations, van probleemoplossen tot betrouwbaarheid.',
+      en: 'That makes four stations, from problem solving to reliability.' },
   ],
   [ // s2 improve
     { nl: 'Het eerste station is Technisch probleemoplossen. Je zoekt de grondoorzaak van de te lichte dozen.',
@@ -453,12 +457,12 @@ const SAY = [
   [ // s3 spc
     { nl: 'Het tweede station is Meten en SPC verdiept. Je volgt het vulgewicht met data en niet op gevoel.',
       en: 'The second station is Measurement and SPC in depth. You follow the fill weight with data, not by feel.' },
-    { nl: 'Aan het eind van de band weeg je dozen. Een kaart laat zien wat het proces uit zichzelf doet.',
-      en: 'At the end of the belt you weigh cartons. A chart shows what the process does on its own.' },
-    { nl: 'Je doet een {t:Eerstestukcontrole|eerstestukcontrole} en zet de te lichte dozen uit op een {t:np-kaart|np-kaart}.',
-      en: 'You do a {t:First-off check|first-off check} and plot the too-light cartons on an {t:np chart|np chart}.' },
-    { nl: 'Zonder dit reageer je op gewone ruis, of mis je een echte verandering.',
-      en: 'Without this you react to routine noise, or you miss a real change.' },
+    { nl: 'Na een omstelling weeg je eerst één doos. Daarna weeg je steeds evenveel dozen en tel je de te lichte.',
+      en: 'After a changeover you weigh one carton first. Then you weigh equal batches and count the too-light ones.' },
+    { nl: 'Je doet een {t:Eerstestukcontrole|eerstestukcontrole} en zet dat aantal uit op een {t:np-kaart|np-kaart}.',
+      en: 'You do a {t:First-off check|first-off check} and plot that count on an {t:np chart|np chart}.' },
+    { nl: 'Zonder dit kun je reageren op gewone ruis of een echte verandering missen.',
+      en: 'Without this you can react to routine noise or miss a real change.' },
   ],
   [ // s4 cost
     { nl: 'Het derde station is Kostprijs en investeringen. Je wilt weten wat het probleem kost.',
