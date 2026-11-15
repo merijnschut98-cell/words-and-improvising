@@ -259,6 +259,14 @@ export function checkIntro(data, mod) {
 // (stageText) lights exactly the field's places (mapScene's is-lit cue groups)
 // and the last scene's beats light every one of them.
 export const MIN_STATION_BEATS = 2;
+// a station label's words are words of the title, in their order (case and punctuation aside)
+const wordsIn = (t) => lc(String(t || '')).split(/[^\p{L}\d]+/u).filter(Boolean);
+function shortens(label, title) {
+  const want = wordsIn(label);
+  let i = 0;
+  for (const wd of wordsIn(title)) if (i < want.length && wd === want[i]) i++;
+  return want.length > 0 && i === want.length;
+}
 export function checkStations(data, field, modules = [], stageText = '') {
   const errs = [];
   const scenes = data.scenes || [];
@@ -274,6 +282,8 @@ export function checkStations(data, field, modules = [], stageText = '') {
       if (m && was !== m.title[lang]) errs.push(`station ${id}: title "${was}" (${lang}) is now "${m.title[lang]}"`);
       // a station with a label is named by the label (a shorter name for the road), else by its title
       const named = (st.label && st.label[lang]) || was;
+      // a label only shortens the module's own title (its words, in their order), so it cannot name another module
+      if (st.label && m && !shortens(st.label[lang], m.title[lang])) errs.push(`station ${id}: the label "${st.label[lang]}" (${lang}) is no shortening of the title "${m.title[lang]}"; keep words of the title, in their order`);
       if (sc && named && !(sc.beats || []).some((b) => word(b.text[lang], named))) errs.push(`station ${id}: "${named}" (${lang}) is in no caption of its scene ${st.scene}`);
     }
     if (!sc) { errs.push(`station ${id}: no scene ${st.scene}`); continue; }

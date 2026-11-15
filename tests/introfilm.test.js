@@ -505,27 +505,51 @@ test('checkFilm: a field film is held to the narration guard and to its station 
 // A station label (15 Nov, eng.field.energy): a title that does not fit a station of the road
 // ("Motoren, aandrijvingen en perslucht") gets a shorter label in the film only. The index title
 // stays; the film names the label in its caption, the road draws it and the fit is held to it.
+// The fixture's second module gets a title too long for the purpose of the test; the label keeps words of it.
+const FY_LONG = { ...FY, title: { nl: 'Uitvoeren en bijsturen', en: 'Run and steer' } };
+const LMODULES = [MOD, FY_LONG, { id: 'pm.other', lessons: ['pm.other.c'], topics: [] }];
 const labelled = (label) => { const s = fspec(); s.stations['pm.fy'] = { ...s.stations['pm.fy'], label }; return s; };
+const lresolve = (label) => resolveFilm(labelled(label), FLESSONS, LMODULES, FIELDS_FX);
 test('resolveFilm: a station may carry a label, a short name for the road, in both languages', () => {
-  const data = fresolve(labelled({ nl: 'Doen', en: 'Do' }));
-  assert.deepEqual(data.stations[1], { id: 'pm.fy', title: { nl: 'Uitvoeren', en: 'Run' }, label: { nl: 'Doen', en: 'Do' }, scene: 's3', cue: 'stFy' });
+  const data = lresolve({ nl: 'Bijsturen', en: 'Steer' });
+  assert.deepEqual(data.stations[1], { id: 'pm.fy', title: { nl: 'Uitvoeren en bijsturen', en: 'Run and steer' }, label: { nl: 'Bijsturen', en: 'Steer' }, scene: 's3', cue: 'stFy' });
   assert.ok(!('label' in data.stations[0]), 'a station without a label has none in the data');
-  for (const bad of [{ nl: 'Doen' }, { nl: 'Doen', en: '' }, 'Doen', { nl: 5, en: 'Do' }, null]) assert.throws(() => fresolve(labelled(bad)), /station pm\.fy: a label needs a Dutch and an English text/, JSON.stringify(bad));
+  for (const bad of [{ nl: 'Bijsturen' }, { nl: 'Bijsturen', en: '' }, 'Bijsturen', { nl: 5, en: 'Steer' }, null]) assert.throws(() => lresolve(bad), /station pm\.fy: a label needs a Dutch and an English text/, JSON.stringify(bad));
 });
 
 test('checkFilm: a labelled station is named by its label in the caption of its own scene, not by the index title', () => {
-  const data = fresolve(labelled({ nl: 'Doen', en: 'Do' }));
-  const out = checkFilm(data, fctx()).join('\n');
-  assert.match(out, /station pm\.fy: "Doen" \(nl\) is in no caption of its scene s3/);
-  assert.match(out, /station pm\.fy: "Do" \(en\) is in no caption of its scene s3/);
+  const data = lresolve({ nl: 'Bijsturen', en: 'Steer' });
+  const ctx = fctx({ modules: LMODULES });
+  const out = checkFilm(data, ctx).join('\n');
+  assert.match(out, /station pm\.fy: "Bijsturen" \(nl\) is in no caption of its scene s3/);
+  assert.match(out, /station pm\.fy: "Steer" \(en\) is in no caption of its scene s3/);
   const named = clone(data);
-  caption(named, 2, 0, 'nl', 'Het tweede station is Doen.');
-  caption(named, 2, 0, 'en', 'The second station is Do.');
-  assert.deepEqual(checkFilm(named, fctx()), []);
+  caption(named, 2, 0, 'nl', 'Het tweede station is Bijsturen.');
+  caption(named, 2, 0, 'en', 'The second station is Steer.');
+  assert.deepEqual(checkFilm(named, ctx), []);
   // the index title is still checked for drift
-  const renamed = clone(FY);
-  renamed.title.en = 'Execute';
-  assert.match(checkFilm(named, fctx({ modules: [MOD, renamed] })).join('\n'), /station pm\.fy: title "Run" \(en\) is now "Execute"/);
+  const renamed = clone(FY_LONG);
+  renamed.title.en = 'Execute and steer';
+  assert.match(checkFilm(named, fctx({ modules: [MOD, renamed] })).join('\n'), /station pm\.fy: title "Run and steer" \(en\) is now "Execute and steer"/);
+});
+
+// A label only shortens the module's own title: its words are words of the title, in their order. So a label cannot
+// put another module's name (or any other name) on a station, while the station's id and title say something else.
+test('checkFilm: a station label is a shortening of its index title, never another name', () => {
+  for (const [label, lang, shown] of [
+    [{ nl: 'Plannen', en: 'Steer' }, 'nl', 'Plannen'], // the other station's name
+    [{ nl: 'Bijsturen', en: 'Plan' }, 'en', 'Plan'],
+    [{ nl: 'Bijsturen en uitvoeren', en: 'Steer' }, 'nl', 'Bijsturen en uitvoeren'], // the title's words, out of order
+    [{ nl: 'Bijsturen', en: 'Run steering' }, 'en', 'Run steering'], // part of a word is not a word
+  ]) {
+    const data = lresolve(label);
+    for (const l of ['nl', 'en']) caption(data, 2, 0, l, `${l === 'nl' ? 'Het tweede station is' : 'The second station is'} ${label[l]}.`);
+    assert.match(checkFilm(data, fctx({ modules: LMODULES })).join('\n'), new RegExp(`station pm\\.fy: the label "${shown}" \\(${lang}\\) is no shortening of the title "[^"]+"`), JSON.stringify(label));
+  }
+  // the title's own words, in order, with its punctuation dropped: as eng.power's "Motoren, aandrijvingen en perslucht"
+  const ok = lresolve({ nl: 'Uitvoeren', en: 'Run steer' });
+  for (const l of ['nl', 'en']) caption(ok, 2, 0, l, `Station ${ok.stations[1].label[l]}.`);
+  assert.deepEqual(checkFilm(ok, fctx({ modules: LMODULES })), []);
 });
 
 test('checkLabels: the road is held to the label of a labelled station, not to its index title', () => {
