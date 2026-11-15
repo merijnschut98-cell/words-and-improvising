@@ -20,7 +20,7 @@ export default {
       teach: [
         'A project has several meeting formats. Each format has a purpose, participants, a duration and an output. A meeting is meant to share or to decide; a workshop is meant to make something together, such as a list, a map or a plan.\n\nYou see the difference at the end: after a meeting there are decisions and agreements, after a workshop there is something the group made.',
         'The meetings every project has, briefly described. Kick-off: the project starts, 60 to 90 minutes, with goal, roles and first steps as output. Stand-up: 15 minutes daily at the board. Weekly: 30 to 60 minutes, the team’s progress and problems. Steering group: every few weeks, the sponsor takes decisions.\n\nThe full treatment is in A meeting rhythm that works and Preparing the steering group in Run; tiered meetings on the floor are in Tiered meetings and escalation in Land.',
-        'Three formats you plan deliberately. A review or demo shows the working result to the people who will use it, as soon as there is something to show. A retrospective looks at the way of working: see A retrospective people learn from in Close. The five Scrum events in Agile and Scrum are the agile equivalent.\n\nA sponsor check-in is short, often 30 minutes, every two to four weeks.',
+        'Three formats you plan deliberately. A review or demo shows the working result to the people who will use it, as soon as there is something to show. A retrospective looks at the way of working: see A retrospective people learn from in Close. The five Scrum events in Agile and Scrum are the agile equivalent.\n\nA sponsor check-in is short, 20 to 30 minutes, every two to four weeks.',
         'The workshop is the format that is underrated most. It takes two to three hours, has one goal and delivers one visible output. How to design and lead one is in the next topic of this module.\n\nEvery meeting has a meeting output you can point to: a decision, a list, a map, an agreement. If you cannot name the output, the meeting is a candidate to cancel or to replace by a message.',
       ],
       example: {
@@ -126,8 +126,8 @@ export default {
       recall: [
         {
           q: 'What is a pre-read for a kick-off?',
-          options: ['The presentation the sponsor gives in the room', 'The report sent out afterwards', 'A short text participants read beforehand, so the room is for agreements', 'A full project plan of twenty pages'],
-          answer: 'A short text participants read beforehand, so the room is for agreements',
+          options: ['The presentation the sponsor gives in the room to explain the why', 'The report with decisions and actions sent within a day afterwards', 'A short text people read beforehand, so the room goes to agreements', 'The full project plan, read beforehand and approved in the room'],
+          answer: 'A short text people read beforehand, so the room goes to agreements',
           why: 'The pre-read takes over the explanation, so the kick-off has time for agreements.',
         },
         {
@@ -135,7 +135,7 @@ export default {
           options: [
             'Goal sentence, roles, meeting rhythm, working agreements and first three actions',
             'Budget, risk list, schedule, estimate and communication plan for the whole project',
-            'Team photo, name tags, lunch, agenda and new meeting dates for the coming month',
+            'Project plan, milestones, budget, steering group members and the first report to the sponsor',
             'Scope, cost, quality, time and a final report for the board',
           ],
           answer: 'Goal sentence, roles, meeting rhythm, working agreements and first three actions',
@@ -198,8 +198,8 @@ export default {
       pre: [
         {
           q: 'A project has nine fixed meetings and nobody has time left to work. What is the best first step?',
-          options: ['Make all meetings a quarter of an hour shorter', 'Move the meetings to early morning', 'Ask the team which meeting is least useful', 'Check per meeting which decision, coordination or lesson it produces'],
-          answer: 'Check per meeting which decision, coordination or lesson it produces',
+          options: ['Make all meetings a quarter of an hour shorter, to free time each week', 'Bundle the meetings on two fixed days, so the rest stays free', 'Let the team vote on the least useful meeting and cancel it', 'Check per meeting whether it yields a decision, coordination or a lesson'],
+          answer: 'Check per meeting whether it yields a decision, coordination or a lesson',
           why: 'Only when you know what each meeting does can you see what is double or missing.',
         },
       ],
@@ -229,7 +229,7 @@ export default {
             'Whoever is remote gets the first word on every agenda item',
             'The people in the room hold the meeting and the rest only watch on a screen',
             'If one person is remote, everyone joins on their own screen',
-            'Hybrid meetings are only allowed if a professional camera crew is present',
+            'Whoever is remote gets the minutes afterwards instead of taking part',
           ],
           answer: 'If one person is remote, everyone joins on their own screen',
           why: 'With everyone on their own screen, all participants have the same position.',
@@ -244,7 +244,7 @@ export default {
         },
         {
           q: 'Which form fits best for a meeting in which a conflict must be discussed?',
-          options: ['A meeting in the room, with a conversation', 'An asynchronous round by messages', 'A one-page written update', 'A webinar with listeners only'],
+          options: ['A meeting in the room, with a conversation', 'An asynchronous round by messages in a set time', 'A one-page written update with both positions', 'A video call with cameras off to lower the tension'],
           answer: 'A meeting in the room, with a conversation',
           why: 'A conflict needs conversation and tone; asynchronous or written works for information and simple choices.',
         },
@@ -304,7 +304,7 @@ export default {
       ],
       example: {
         kind: 'faded',
-        text: 'The management team of a manufacturer (eight people) spends 22 hours a week together in meetings, in a working week of 40 hours. You see: a daily production meeting, a weekly department meeting, a weekly status meeting about an improvement programme, and two meetings nobody knows who started. The director says: “It is busy, but we need it.”',
+        text: 'The management team of a manufacturer (eight people) each spend 22 hours a week in meetings, in a working week of 40 hours. You see: a daily production meeting, a weekly department meeting, a weekly status meeting about an improvement programme, and two meetings nobody knows who started. The director says: “It is busy, but we need it.”',
         ask: 'Write the questions for a meeting audit and make a first proposal. Who chairs, and what do you measure?',
         reveal: 'Questions per meeting: what is the output of the last four weeks (which decisions), who is in without a role, who is the owner, what happens if it stops for four weeks, and what is double? First proposal for a four-week trial: stop the two meetings without an owner or output, replace the status meeting by a written update, and one afternoon a week without meetings.\n\nThe director picks a chair and an owner for the trial; you coach. You measure meeting hours per week and the number of decisions. If the decisions do not fall, the meeting evidently was not needed.',
       },
@@ -323,8 +323,8 @@ export default {
         },
         {
           q: 'How do you prevent pre-wiring from looking like backroom politics?',
-          options: ['You leave it out, the decision has to fall in the room', 'You only do it with the sponsor and nobody else', 'You do it by an email to everyone with a deadline', 'You say openly that you speak to key people separately and why'],
-          answer: 'You say openly that you speak to key people separately and why',
+          options: ['You leave it out, the decision has to fall in the room', 'You only do it with the sponsor and with nobody else', 'You do it by an email to everyone with a deadline', 'You say openly that you see key people separately and why'],
+          answer: 'You say openly that you see key people separately and why',
           why: 'Being open about the pre-talks removes the backroom look.',
         },
         {
@@ -340,10 +340,10 @@ export default {
           options: [
             'Always, so the rhythm stays exactly the same for everyone as before',
             'Never, because an outsider never chairs and must leave it to the client',
-            'In a conflict or when the client is a party',
+            'In a conflict or when the owner is a party',
             'Only in the first week of the project, after that the client carries it',
           ],
-          answer: 'In a conflict or when the client is a party',
+          answer: 'In a conflict or when the owner is a party',
           why: 'A party cannot be a neutral chair; then you keep it for now.',
         },
       ],
@@ -431,7 +431,7 @@ export default {
       situation: {
         scene: 'You work at a manufacturer. The department manager says: “Schedule a two-hour session with the whole department, twenty people, to talk about the planning.” You have no purpose, no output and no owner.',
         ask: 'What do you say?',
-        model: '“Gladly. To make it a good two hours, I first want to know what should be there afterwards, so we invite the right people. If it is a chosen routine, six to eight people fit better than twenty. Can we talk for a quarter of an hour to write down purpose and output?”',
+        model: '“Gladly. To make it a good session, I first want to know what should be there afterwards, so we invite the right people. If it is a chosen routine, six to eight people fit better than twenty. Can we talk for a quarter of an hour to write down purpose and output?”',
         rubric: ['Says yes and keeps the pace up', 'Asks about purpose and output before the participant list', 'Proposes a short, concrete next step'],
         pushback: {
           lines: ['“Everyone has to be there, otherwise part of them will feel excluded.”', '“I do not want you to decide it for me afterwards.”'],
@@ -530,7 +530,7 @@ export default {
         rubric: ['Makes the difference visible without choosing', 'Puts both versions on the map', 'Proposes to check how often each occurs'],
         pushback: {
           lines: ['“This takes time. We just need one version.”', '“If it is not right, that is your mistake, not mine.”'],
-          model: '“I take that seriously. We will not finish two versions, it only takes two minutes. This is not about blame but about seeing what really happens. If we pick one version when there are two, the improvement will later miss half of the work.”',
+          model: '“I take that seriously. We will not work out both versions now; putting them up takes two minutes. This is not about blame but about seeing what really happens. If we pick one version when there are two, the improvement will later miss half of the work.”',
           rubric: ['Takes the time pressure seriously', 'Takes the blame question away', 'Explains the risk of picking one version'],
         },
       },
@@ -568,7 +568,7 @@ export default {
       pre: [
         {
           q: 'A process is carried out by 18 people at three locations. What is the biggest problem if you hold one brown paper session in one room?',
-          options: ['There is too little paper for 18 people', 'The group is too big for one wall and has to travel for it', 'There are too few sticky notes in the colour for problems', 'The locations do not like the date'],
+          options: ['Three to five metres of paper is too short for the whole process', 'The group is too big for one wall and has to travel for it', 'There is no time to redraw the map clean the same day', 'The sponsor can only be present at one of the three sites'],
           answer: 'The group is too big for one wall and has to travel for it',
           why: 'One wall suits some six to twelve people; a larger group falls into subgroups or silence.',
         },
@@ -589,8 +589,8 @@ export default {
       recall: [
         {
           q: 'What is the two-role problem?',
-          options: ['Two participants both want to take the floor', 'A session has two owners who disagree', 'You are facilitator and content expert at once and steer without noticing', 'The sponsor and you both have an agenda'],
-          answer: 'You are facilitator and content expert at once and steer without noticing',
+          options: ['Two participants want the floor at once and the rest goes quiet', 'A session has two owners who disagree about the goal', 'You lead and are also an expert, and steer without noticing', 'The sponsor and you each have your own aim for the session'],
+          answer: 'You lead and are also an expert, and steer without noticing',
           why: 'Whoever is also the expert adds their own answers unintentionally instead of leading the process.',
         },
         {
@@ -667,8 +667,9 @@ export default {
         },
       ],
       teach: [
-        'Facilitating begins before the session, with a contract. Agree with the sponsor the aim of the session (contracting the outcome): what is fixed, what is open, what happens to the output and who decides. Put it on one page. If everything is fixed, it is not a workshop but a presentation, and you call it that.',
-        'Neutrality means you lead the process and do not steer the answer. You can break it with a leading question, a sticky note of your own, or the order in which you let people speak. If you have a stake, say so or hand the session over.\n\nThe IAF competencies of the International Association of Facilitators name six areas: client relationships, planning group processes, creating a participatory environment, guiding the group to outcomes, maintaining professional knowledge and a professional attitude. Use them as a checklist for your own practice.',
+        'Facilitating begins before the session, with a contract. Agree with the sponsor what the session is about; that is called contracting the outcome: what is fixed, what is open, what happens to the output and who decides. Put it on one page. If everything is fixed, it is not a workshop but a presentation, and you call it that.',
+        'Neutrality means you lead the process and do not steer the answer. You can break it with a leading question, a sticky note of your own, or the order in which you let people speak. If you have a stake, say so or hand the session over.',
+        'The IAF competencies of the International Association of Facilitators name six areas: creating collaborative client relationships, planning appropriate group processes, creating and sustaining a participatory environment, guiding the group to appropriate and useful outcomes, building and maintaining professional knowledge, and modelling a positive professional attitude. Use them as a checklist for your own practice.',
         'An honest description of a process makes teams vulnerable: handovers, waiting times and detours quickly point at people. Weigh who pays for the honesty. Create psychological safety with rules: it is about the process, not about people, no names go in the output, and it is agreed beforehand who sees the paper afterwards. How to build safety is in Building psychological safety in Leading people.',
         'Who owns the output afterwards? An output without an owner dies. Name the owner beforehand and agree when they come back with an answer.\n\nWhen do you bring in an outside facilitator? When you are part of the problem yourself, when you know the content too well to stay neutral, or when the hierarchy or the tension (a reorganisation, a conflict) is too high. An outsider is then safer for everybody.',
       ],
@@ -682,8 +683,8 @@ export default {
       recall: [
         {
           q: 'What do you record when you contract a session with the sponsor?',
-          options: ['What is fixed, what is open, what happens to the output and who decides', 'The menu, the room and the number of participants', 'The name of the facilitator and their hourly rate', 'Only the date and the subject'],
-          answer: 'What is fixed, what is open, what happens to the output and who decides',
+          options: ['What is fixed or open, who decides and what happens to the output', 'The agenda per block, the formats and who leads which block', 'Who comes, how long it takes and who sends the invitation', 'Which outcome the sponsor wants and how you lead the group to it'],
+          answer: 'What is fixed or open, who decides and what happens to the output',
           why: 'That way all parties know what the group can influence and what it cannot.',
         },
         {
@@ -742,7 +743,7 @@ export default {
         },
         {
           term: 'Psychological safety',
-          def: 'The shared sense in a group that you can speak up or admit a mistake without being punished or mocked.',
+          def: 'The shared belief that people can admit mistakes and disagree without being punished for it (Edmondson).',
         },
       ],
     },
@@ -759,7 +760,7 @@ export default {
       ],
       teach: [
         'Creative group work has two beats, which you keep separate: first diverge, then converge (choose). Whoever judges while collecting cuts off ideas before they are worked out. Osborn (Applied Imagination, 1953) gave two principles: deferring judgment and aiming for many ideas. The four rules you sometimes see are worded differently; stick to these two.',
-        'An open brainstorm has a problem: only one person speaks at a time. The others wait for their turn, hold on to their idea, forget it or let it go. That is called production blocking. Diehl and Stroebe (1987) found that this was often the main reason groups produce fewer ideas than the same people separately. Later analyses dispute how large the effect is, so say “often” and not “always”.',
+        'An open brainstorm has a problem: only one person speaks at a time. The others wait for their turn, hold on to their idea, forget it or let it go. That is called production blocking. Diehl and Stroebe (1987) found in their experiments that this explained most of why groups produce fewer ideas than as many people working apart. Fear of being judged and free riding played a smaller part. Still say “often” and not “always”: it depends on the group and the task.',
         'Silent writing (also brainwriting) solves that. Everyone writes ideas alone on sticky notes for five minutes. Then you share them, group similar ideas and name the groups: affinity grouping. Quiet people count and a high position steers less.\n\nChoosing can be done with dots; see Designing a retrospective in Close for dot voting. For a root-cause session, writing ideas silently before the expert speaks is in Facilitating a root-cause session in the module Engineering problem solving in Engineering.',
         'A group method helps if you need many angles or knowledge, or if people must carry the result. Let one person simply decide if the answer is already known, the decision is that person’s, or the question is simple or urgent.\n\nIf you ask a group for ideas when the decision has been taken already, that is fake. Legitimacy and consultation theatre is about that later.',
       ],
@@ -865,7 +866,7 @@ export default {
       recall: [
         {
           q: 'Why do you switch on private mode during silent writing?',
-          options: ['So the tool uses less memory', 'So a first idea from others does not steer the rest', 'So the facilitator does not look along', 'So notes do not disappear by accident'],
+          options: ['So the tool uses less memory and computing power', 'So a first idea from others does not steer the rest', 'So the facilitator cannot look along on the board', 'So notes do not disappear by accident during writing'],
           answer: 'So a first idea from others does not steer the rest',
           why: 'Without private mode a first visible idea gets copied or steers the others.',
         },
@@ -951,7 +952,7 @@ export default {
         kind: 'faded',
         text: 'Four decisions in one project at a manufacturer:\n1. On which day does the team hold the weekly meeting?\n2. Which colours does the planning board get?\n3. Which of two suppliers delivers the new machine, which will last ten years?\n4. Does a department switch to shift work?',
         ask: 'For each decision choose a decision format and say who must be in the room.',
-        reveal: '1. The team lead decides after a quick poll in the chat; small and reversible. 2. A majority by dots by the team, two minutes; it affects their daily work and is easy to revisit. 3. The director is the owner, with an advice process: advice from maintenance, purchasing, finance and operators, at the table or by consent on the requirements. Hard to reverse, so real input. 4. This decision is not the group’s: management decides, with an advice procedure that also includes the employees and, where needed, the works council; check what applies by law.',
+        reveal: '1. The team lead decides after a quick poll in the chat; small and reversible. 2. A majority by dots by the team, two minutes; it affects their daily work and is easy to revisit. 3. The director is the owner, with an advice process: advice from maintenance, purchasing, finance and operators, at the table or by consent on the requirements. Hard to reverse, so real input. 4. This decision is not the group’s: management decides, after input from the employees, and the works council has a formal role on working hours; check what applies by law.',
       },
       said: 'What you hear in projects: “We will just vote on it, then it is fair.”',
       recall: [
@@ -982,7 +983,7 @@ export default {
         },
         {
           q: 'What does an owner do in an advice process?',
-          options: ['Asks advice from those affected and then decides alone', 'Lets the group vote and then follows the result closely', 'Waits until everyone agrees with the proposal', 'Delegates the decision to the facilitator of the session'],
+          options: ['Asks advice from those affected and then decides alone', 'Lets the group vote and follows the majority', 'Waits until everyone can live with it and then decides', 'Gives the decision to whoever gave the most advice'],
           answer: 'Asks advice from those affected and then decides alone',
           why: 'The owner stays responsible, but decides only after real input.',
         },
@@ -1006,7 +1007,7 @@ export default {
         },
         {
           term: 'Consensus',
-          def: 'A decision everyone can live with and everyone supports.',
+          def: 'A decision everyone can live with, including those for whom it is not the first choice.',
         },
         {
           term: 'Advice process',
@@ -1065,7 +1066,7 @@ export default {
         },
         {
           q: 'What is the mandate of a session?',
-          options: ['What the group may decide, advise on or only hear', 'The sponsor’s permission to use the room', 'The budget the session costs', 'The list of invitees and their roles'],
+          options: ['What the group may decide, advise on or only hear', 'The sponsor’s permission to hold the session at all', 'The budget and time the session may cost', 'The list of invitees and the role of each'],
           answer: 'What the group may decide, advise on or only hear',
           why: 'The mandate says beforehand where the group’s input may count.',
         },
@@ -1073,11 +1074,11 @@ export default {
           q: 'What does closing the loop mean here?',
           options: [
             'You send the participants a photo of the board with all the notes',
-            'You send the minutes of the session to the sponsor',
-            'You repeat the session with a different group to compare',
-            'The owner reports within an agreed time what was adopted and why not',
+            'You send the minutes of the session to the sponsor within a week',
+            'You ask the participants afterwards how they liked the session',
+            'The owner says in time what was adopted and why',
           ],
-          answer: 'The owner reports within an agreed time what was adopted and why not',
+          answer: 'The owner says in time what was adopted and why',
           why: 'Closing the loop shows that the input counted, even if not everything was adopted.',
         },
         {
@@ -1136,8 +1137,8 @@ export default {
       ],
       teach: [
         'Reports and meetings show what people say; the shop floor shows what happens. A project lead has four formats outside the meeting room: the gemba walk, the interview round, the demo and the kaizen event. Each has a purpose, participants, a duration and an output, and each fits a different moment in the route.',
-        'The gemba walk: going to the place where work happens, looking and asking, before you do anything. The Lean Enterprise Institute describes it as direct observation and inquiry to understand the current situation before you act. Duration: 30 to 60 minutes, with you and the supervisor. Output: notes of what you saw and a list of questions.\n\nHow to look is in Go and see: the gemba in the module Engineering problem solving in Engineering; a leader’s fixed round is in Leader standard work and the gemba walk in Land.',
-        'The interview round: one-to-one conversations with people at different levels. Eight to ten conversations of 45 minutes; output: themes and quotes. The demo: showing the working result to the people who will work with it, at the place where they use it; 30 to 60 minutes; output: a list of reactions.\n\nThe kaizen event: a team improves one area for a few days, often three to five; output: a changed area and a follow-up list. See Kaizen: every day and in events.',
+        'The gemba walk is a leader’s fixed round of the floor. As project lead you join one: looking and asking where the work happens, before you do anything. The Lean Enterprise Institute describes it as direct observation and inquiry to understand the current situation before you act. Duration: 30 to 60 minutes. Output: notes and a list of questions.\n\nHow to look is in Go and see: the gemba in the module Engineering problem solving in Engineering; the fixed round in Leader standard work and the gemba walk in Land.',
+        'The interview round: one-to-one conversations with people at different levels. Eight to ten conversations of 45 minutes; output: themes and quotes. The demo: showing the working result to the people who will work with it, at the place where they use it; 30 to 60 minutes; output: a list of reactions.\n\nThe kaizen event: a team improves one area for a few days, often three to five; output: a changed area and a follow-up list. See Kaizen: every day and in events in the module Engineering problem solving in Engineering.',
         'When does which format fit? Gemba walk and interview round at the start, in Intake and Plan: learning what exists. The demo during Run: showing what has been built. The kaizen event when an area is understood and a team can change it.\n\nThey complement each other: first look, then ask, then build and show, then improve with a team.',
       ],
       example: {
@@ -1148,8 +1149,8 @@ export default {
       recall: [
         {
           q: 'What is a gemba walk?',
-          options: ['A tour for visitors to the factory', 'Going to the place where the work happens, looking and asking before you act', 'An inspection of the safety rules', 'A walk by management to thank employees'],
-          answer: 'Going to the place where the work happens, looking and asking before you act',
+          options: ['A tour along the line to show visitors how the process runs', 'Going to look and ask where the work happens, before you act', 'A round of the workplaces to check the safety rules', 'A walk by management along the floor to thank the employees'],
+          answer: 'Going to look and ask where the work happens, before you act',
           why: 'The gemba walk is meant to understand the current situation before you do anything.',
         },
         {
@@ -1224,7 +1225,7 @@ export default {
         },
       ],
       teach: [
-        'An interview round at the start of a project produces themes you find nowhere in documents. Choose eight to ten people across levels and roles (sample across levels): operators, planners, a team lead, a manager, someone from the process before or after. Ask the sponsor for a list and add two yourself. A common practice in consulting assignments; there is no fixed standard.',
+        'An interview round at the start of a project produces themes you find nowhere in documents. Choose eight to ten people across levels and roles, a sample across levels: operators, planners, a team lead, a manager, someone from the process before or after. Ask the sponsor for a list and add two yourself. A common practice in consulting assignments; there is no fixed standard.',
         'Make an interview guide with five open questions. For example: What does a normal week look like? What do you run into? What goes well and should stay? What would you change first? Whom else should I talk to? Duration: 45 minutes. Listen, ask follow-up questions and do not propose solutions yourself.',
         'Write in the other person’s words, not in your own interpretation. Agree beforehand how anonymous it is: you report themes and quotes without names, and only you read the notes. Plan 30 minutes after each conversation to finish the notes.\n\nBe honest if you cannot promise something, for example that in the case of a crime or a safety risk you must report something.',
         'Then theming: put each point on a note, group them into about five themes, count how many people named each theme and pick one quote per theme. Present this in one playback session of an hour to the whole group: themes, counts, quotes. Ask: what do you recognise, what do you miss? No solutions yet.\n\nFor a review with interviews in an independent examination: see Leading a project review in When you’re stuck.',
@@ -1237,7 +1238,7 @@ export default {
       recall: [
         {
           q: 'Why do you write in the other person’s words?',
-          options: ['Because your interpretation colours the picture later', 'Because it makes the conversations shorter', 'Because the other person cannot then look back', 'Because it is prescribed in a standard'],
+          options: ['Because your interpretation colours the picture later', 'Because it makes the conversations shorter and smoother', 'Because the other person cannot look it up again later', 'Because a standard for interviews prescribes it'],
           answer: 'Because your interpretation colours the picture later',
           why: 'Quotes and own words keep the content close to what was said.',
         },
@@ -1328,10 +1329,10 @@ export default {
           options: [
             'Feedback is written and approval is always given orally',
             'Feedback comes from the sponsor and approval comes from the operators',
-            'Feedback asks what can be better, approval is elsewhere',
+            'Feedback asks what can be better, approval falls elsewhere',
             'There is no difference; both words mean that someone agrees',
           ],
-          answer: 'Feedback asks what can be better, approval is elsewhere',
+          answer: 'Feedback asks what can be better, approval falls elsewhere',
           why: 'The demo is a working session for improvement; a gate is another moment.',
         },
         {
@@ -1348,8 +1349,8 @@ export default {
         },
         {
           q: 'What do you use the Scrum Guide for here?',
-          options: ['As a prescription for every demo on the floor', 'As the starting point that a review is a working session and not a gate', 'As proof that demos are mandatory in manufacturing', 'As a list of roles for the production manager'],
-          answer: 'As the starting point that a review is a working session and not a gate',
+          options: ['As a prescription that every demo on the floor must follow', 'As a starting point: a review is a working session, not a gate', 'As proof that demos are mandatory in manufacturing', 'As a list of roles that attend every review'],
+          answer: 'As a starting point: a review is a working session, not a gate',
           why: 'The Scrum Guide describes the review as a working session; we take that as a starting point, not a prescription.',
         },
       ],
@@ -1391,7 +1392,7 @@ export default {
         {
           q: 'A production manager says: “Let us do a kaizen week next month.” What do you ask first?',
           options: [
-            'Who has to take a photo of it for the company’s annual report',
+            'Which room is free that week for the team to work in',
             'How the room is arranged and where the lunch comes from',
             'Who the best facilitator in the whole company is for this week',
             'Who takes over the improvements afterwards and frees up the people',

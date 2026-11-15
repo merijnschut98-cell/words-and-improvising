@@ -20,7 +20,7 @@ export default {
       teach: [
         'Een project heeft meerdere overlegvormen (meeting formats). Elke vorm heeft een doel, deelnemers, een duur en een opbrengst (output). Een overleg is bedoeld om te delen of te besluiten; een werksessie (workshop) is bedoeld om samen iets te maken, zoals een lijst, een kaart of een plan.\n\nHet verschil zie je aan het eind: na een overleg liggen er besluiten en afspraken, na een werksessie ligt er iets dat de groep gemaakt heeft.',
         'De overleggen die elk project kent, kort beschreven. Kick-off: het project start, 60 tot 90 minuten, met doel, rollen en eerste stappen als opbrengst. Stand-up: dagelijks 15 minuten bij het bord. Weekoverleg: 30 tot 60 minuten, de voortgang en problemen van het team. Stuurgroep: elke paar weken, de sponsor neemt besluiten.\n\nDe volledige uitwerking staat in Een overlegritme dat werkt en De stuurgroep voorbereiden in Uitvoeren; het getrapte overleg op de vloer in Getrapt overleg en escaleren in Landen.',
-        'Drie vormen plan je bewust. Een review of demo laat het werkende resultaat zien aan de mensen die het gaan gebruiken, zodra er iets te laten zien is. Een terugblik (retrospective) kijkt naar de manier van werken: zie Een terugblik waar mensen van leren in Afsluiten. De vijf events van Scrum in Agile en Scrum zijn het agile equivalent.\n\nEen sponsorgesprek (sponsor check-in) is kort, vaak 30 minuten, om de twee tot vier weken.',
+        'Drie vormen plan je bewust. Een review of demo laat het werkende resultaat zien aan de mensen die het gaan gebruiken, zodra er iets te laten zien is. Een terugblik (retrospective) kijkt naar de manier van werken: zie Een terugblik waar mensen van leren in Afsluiten. De vijf events van Scrum in Agile en Scrum zijn het agile equivalent.\n\nEen sponsorgesprek (sponsor check-in) is kort, 20 tot 30 minuten, om de twee tot vier weken.',
         'De werksessie is de vorm die het meest wordt onderschat. Ze duurt twee tot drie uur, heeft één doel en levert één zichtbare uitkomst op. Hoe je er een ontwerpt en leidt, staat in het volgende onderwerp van deze module.\n\nElk overleg heeft een opbrengst van een overleg (meeting output) die je kunt aanwijzen: een besluit, een lijst, een kaart, een afspraak. Kun je de opbrengst niet noemen, dan is het overleg een kandidaat om te schrappen of te vervangen door een bericht.',
       ],
       example: {
@@ -131,8 +131,8 @@ export default {
       recall: [
         {
           q: 'Wat is een voorleesstuk (pre-read) voor een kick-off?',
-          options: ['De presentatie die de sponsor in de zaal houdt', 'Het verslag dat na afloop wordt verstuurd', 'Een korte tekst die deelnemers vooraf lezen, zodat de zaal voor afspraken is', 'Een volledig projectplan van twintig pagina’s'],
-          answer: 'Een korte tekst die deelnemers vooraf lezen, zodat de zaal voor afspraken is',
+          options: ['De presentatie die de sponsor in de zaal houdt om het waarom uit te leggen', 'Het verslag met besluiten en acties dat binnen een dag na afloop wordt verstuurd', 'Een korte tekst die deelnemers vooraf lezen, zodat de zaal naar afspraken gaat', 'Het volledige projectplan, dat iedereen vooraf leest en in de zaal goedkeurt'],
+          answer: 'Een korte tekst die deelnemers vooraf lezen, zodat de zaal naar afspraken gaat',
           why: 'Het voorleesstuk neemt de uitleg over, zodat de kick-off tijd heeft voor afspraken.',
         },
         {
@@ -140,7 +140,7 @@ export default {
           options: [
             'Doelzin, rollen, overlegritme, werkafspraken en de eerste drie acties',
             'Budget, risicolijst, planning, begroting en communicatieplan van het hele project',
-            'Teamfoto, naamkaartjes, lunch, agenda en nieuwe vergaderdata voor de komende maand',
+            'Projectplan, mijlpalen, begroting, stuurgroepleden en de eerste rapportage aan de sponsor',
             'Scope, kosten, kwaliteit, tijd en een eindrapport voor de directie',
           ],
           answer: 'Doelzin, rollen, overlegritme, werkafspraken en de eerste drie acties',
@@ -203,8 +203,8 @@ export default {
       pre: [
         {
           q: 'Een project heeft negen vaste overleggen en niemand heeft nog tijd om te werken. Wat is de beste eerste stap?',
-          options: ['Alle overleggen een kwartier korter maken', 'De overleggen verplaatsen naar de vroege ochtend', 'Het team vragen welk overleg het minst nuttig is', 'Per overleg nagaan welk besluit, welke afstemming of welke les het oplevert'],
-          answer: 'Per overleg nagaan welk besluit, welke afstemming of welke les het oplevert',
+          options: ['Alle overleggen een kwartier korter maken, zodat er elke week tijd vrijkomt', 'De overleggen bundelen op twee vaste dagen, zodat de rest vrij blijft', 'Het team laten stemmen welk overleg het minst nuttig is en dat schrappen', 'Per overleg nagaan of het een besluit, afstemming of een les oplevert'],
+          answer: 'Per overleg nagaan of het een besluit, afstemming of een les oplevert',
           why: 'Pas als je weet wat elk overleg doet, kun je zien wat dubbel is of ontbreekt.',
         },
       ],
@@ -234,7 +234,7 @@ export default {
             'Wie op afstand zit, krijgt als eerste het woord in elke agendapunt',
             'De mensen in de zaal vergaderen en de rest kijkt alleen mee op een scherm',
             'Zit er één op afstand, dan doet iedereen mee op een eigen scherm',
-            'Hybride overleg is alleen toegestaan als er een professionele cameraploeg aanwezig is',
+            'Wie op afstand zit, krijgt achteraf de notulen in plaats van mee te praten',
           ],
           answer: 'Zit er één op afstand, dan doet iedereen mee op een eigen scherm',
           why: 'Door iedereen op een eigen scherm te zetten, hebben alle deelnemers dezelfde positie.',
@@ -309,7 +309,7 @@ export default {
       ],
       example: {
         kind: 'faded',
-        text: 'Het managementteam van een maakbedrijf (acht mensen) zit samen 22 uur per week in overleg van een werkweek van 40 uur. Je ziet: een dagelijks productieoverleg, een wekelijks afdelingsoverleg, een wekelijks statusoverleg over een verbeterprogramma, en twee overleggen waar niemand weet wie ze begonnen is. De directeur zegt: “Het is druk, maar we hebben het nodig.”',
+        text: 'Het managementteam van een maakbedrijf (acht mensen) zit elk 22 uur per week in overleg, van een werkweek van 40 uur. Je ziet: een dagelijks productieoverleg, een wekelijks afdelingsoverleg, een wekelijks statusoverleg over een verbeterprogramma, en twee overleggen waar niemand weet wie ze begonnen is. De directeur zegt: “Het is druk, maar we hebben het nodig.”',
         ask: 'Schrijf de vragen voor een overlegaudit en doe een eerste voorstel. Wie zit voor, en wat meet je?',
         reveal: 'Vragen per overleg: wat is de opbrengst in de laatste vier weken (welke besluiten), wie zit erin zonder rol, wie is de eigenaar, wat gebeurt er als het vier weken stopt, en wat ligt er dubbel? Eerste voorstel voor een proef van vier weken: de twee overleggen zonder eigenaar of opbrengst stoppen, het statusoverleg vervangen door een schriftelijke update, en een middag per week zonder overleg.\n\nDe directeur kiest een voorzitter en een eigenaar van de proef; jij coacht. Je meet vergaderuren per week en het aantal besluiten. Als de besluiten niet dalen, is het overleg blijkbaar niet nodig geweest.',
       },
@@ -350,10 +350,10 @@ export default {
           options: [
             'Altijd, zodat het ritme voor iedereen precies hetzelfde blijft als vroeger',
             'Nooit, want een externe zit nooit voor en moet de klant het overlaten',
-            'Bij een conflict of als de klant zelf partij is',
+            'Bij een conflict of als de eigenaar zelf partij is',
             'Alleen in de eerste week van het project, daarna draagt de klant het',
           ],
-          answer: 'Bij een conflict of als de klant zelf partij is',
+          answer: 'Bij een conflict of als de eigenaar zelf partij is',
           why: 'Een partij kan geen neutraal voorzitter zijn; dan houd jij het even.',
         },
       ],
@@ -441,7 +441,7 @@ export default {
       situation: {
         scene: 'Je werkt bij een maakbedrijf. De afdelingsmanager zegt: “Plan een sessie van twee uur met de hele afdeling, twintig mensen, om het te hebben over de planning.” Je hebt geen doel, geen uitkomst en geen eigenaar.',
         ask: 'Wat zeg je?',
-        model: '“Graag. Om er een goed uur van te maken, wil ik eerst weten wat er na afloop moet liggen, zodat we de goede mensen vragen. Als het een gekozen routine is, passen zes tot acht mensen beter dan twintig. Kunnen we een kwartier bellen om doel en uitkomst op te schrijven?”',
+        model: '“Graag. Om er een goede sessie van te maken, wil ik eerst weten wat er na afloop moet liggen, zodat we de goede mensen vragen. Als het een gekozen routine is, passen zes tot acht mensen beter dan twintig. Kunnen we een kwartier bellen om doel en uitkomst op te schrijven?”',
         rubric: ['Zegt ja en houdt de vaart erin', 'Vraagt naar doel en uitkomst voor de deelnemerslijst', 'Stelt een korte, concrete volgende stap voor'],
         pushback: {
           lines: ['“Iedereen moet erbij zijn, anders voelt een deel zich buitengesloten.”', '“Ik wil niet dat jij het straks voor mij bepaalt.”'],
@@ -497,7 +497,7 @@ export default {
       ],
       example: {
         kind: 'worked',
-        text: 'Een brown paper sessie bij een netbeheerder over de werkvoorbereiding van storingsherstel. Tien mensen: vier planners, twee monteurs, een werkvoorbereider, een inkoper, de teamleider en iemand van de klantenservice. Vier meter papier, gele geeltjes voor stappen, roze voor problemen.\n\nAgenda van 180 minuten: 15 openen, 15 grenzen en regels, 70 stappen plakken, 10 pauze, 30 problemen en vragen, 25 valideren, 15 afsluiten.\n\nResultaat: 23 stappen, 7 overdrachten en 4 plekken waar het werk wacht op een handtekening. Je tekent het de volgende dag schoon, stuurt het rond, en plant de sessie over de gewenste situatie.',
+        text: 'Een brown-papersessie bij een netbeheerder over de werkvoorbereiding van storingsherstel. Tien mensen: vier planners, twee monteurs, een werkvoorbereider, een inkoper, de teamleider en iemand van de klantenservice. Vier meter papier, gele geeltjes voor stappen, roze voor problemen.\n\nAgenda van 180 minuten: 15 openen, 15 grenzen en regels, 70 stappen plakken, 10 pauze, 30 problemen en vragen, 25 valideren, 15 afsluiten.\n\nResultaat: 23 stappen, 7 overdrachten en 4 plekken waar het werk wacht op een handtekening. Je tekent het de volgende dag schoon, stuurt het rond, en plant de sessie over de gewenste situatie.',
       },
       said: 'Wat je hoort in projecten: “Zo gaat het nooit in de praktijk. Dit is hoe het in de procedure staat.”',
       recall: [
@@ -527,28 +527,28 @@ export default {
           hint: 'Deel het aantal overdrachten door het totaal aantal stappen.',
         },
         {
-          q: 'Hoeveel mensen nodig je zo ongeveer uit voor een brown papersessie?',
-          options: ['Twee of drie, zodat het snel gaat', 'Vier of vijf, zodat iedereen veel kan zeggen', 'Zestien of meer, zodat alle afdelingen erbij zijn', 'Zes tot twaalf, een per rol'],
-          answer: 'Zes tot twaalf, een per rol',
+          q: 'Hoeveel mensen nodig je ongeveer uit voor een brown-papersessie?',
+          options: ['Twee of drie, zodat het snel gaat', 'Vier of vijf, zodat iedereen veel kan zeggen', 'Zestien of meer, zodat alle afdelingen erbij zijn', 'Zes tot twaalf, één per rol'],
+          answer: 'Zes tot twaalf, één per rol',
           why: 'Zes tot twaalf past rond één muur en dekt de rollen in het proces.',
         },
       ],
       situation: {
-        scene: 'Je leidt een brown papersessie bij een maakbedrijf. Na een uur zegt de teamleider: “Zo gaat het niet echt. Dat stuk van de planning wordt anders gedaan.” Een planner antwoordt dat het wel zo gaat.',
+        scene: 'Je leidt een brown-papersessie bij een maakbedrijf. Na een uur zegt de teamleider: “Zo gaat het niet echt. Dat stuk van de planning wordt anders gedaan.” Een planner antwoordt dat het wel zo gaat.',
         ask: 'Wat doe je op dat moment?',
         model: '“Het lijkt erop dat jullie het verschillend zien. Mag ik beide versies op de kaart zetten, de ene met geel en de andere met een tweede kleur, met erbij wie het zo doet? Dan kijken we straks hoe vaak elk voorkomt, en waar het verschil zit.”',
         rubric: ['Maakt het verschil zichtbaar zonder te kiezen', 'Zet beide versies op de kaart', 'Stelt voor te kijken hoe vaak elk voorkomt'],
         pushback: {
           lines: ['“Dit kost tijd. Wij moeten gewoon één versie hebben.”', '“Als het niet klopt, is dat jullie fout, niet de mijne.”'],
-          model: '“Ik neem dat serieus. Twee versies maken we niet af, het kost maar twee minuten. Het gaat niet om schuld, maar om zien wat er echt gebeurt. Als we één versie kiezen terwijl er twee zijn, mist de verbetering later de helft van het werk.”',
+          model: '“Ik neem dat serieus. We werken de twee versies nu niet uit; ze erop zetten kost twee minuten. Het gaat niet om schuld, maar om zien wat er echt gebeurt. Als we één versie kiezen terwijl er twee zijn, mist de verbetering later de helft van het werk.”',
           rubric: ['Neemt de tijdsdruk serieus', 'Haalt de schuldvraag weg', 'Legt het risico uit van één versie kiezen'],
         },
       },
-      sayIt: 'Leg in 60 seconden uit hoe je een brown papersessie voorbereidt en leidt.',
+      sayIt: 'Leg in 60 seconden uit hoe je een brown-papersessie voorbereidt en leidt.',
       terms: [
         {
           term: 'Brown paper',
-          def: 'Een lange vel papier op de muur waarop een groep met geeltjes een proces van links naar rechts tekent.',
+          def: 'Een lang vel papier op de muur waarop een groep met geeltjes een proces van links naar rechts tekent.',
         },
         {
           term: 'Huidige situatie',
@@ -577,8 +577,8 @@ export default {
       title: 'Ontwerpkeuzes voor een sessie',
       pre: [
         {
-          q: 'Een proces wordt door 18 mensen op drie locaties uitgevoerd. Wat is het grootste probleem als je één brown papersessie in één zaal houdt?',
-          options: ['Er is te weinig papier voor 18 mensen', 'De groep is te groot voor één muur en moet ervoor reizen', 'Er zijn te weinig geeltjes in de kleur voor problemen', 'De locaties vinden de datum niet leuk'],
+          q: 'Een proces wordt door 18 mensen op drie locaties uitgevoerd. Wat is het grootste probleem als je één brown-papersessie in één zaal houdt?',
+          options: ['Drie tot vijf meter papier is te kort voor het hele proces', 'De groep is te groot voor één muur en moet ervoor reizen', 'Er is geen tijd om de kaart dezelfde dag schoon te tekenen', 'De sponsor kan maar op één van de drie locaties aanwezig zijn'],
           answer: 'De groep is te groot voor één muur en moet ervoor reizen',
           why: 'Eén muur trekt zo’n zes tot twaalf mensen; een grotere groep valt in subgroepen of in stilte.',
         },
@@ -593,19 +593,19 @@ export default {
         kind: 'faded',
         text: 'Een proces voor het plannen van onderhoud wordt uitgevoerd door 18 mensen op drie vestigingen, zes per vestiging. De sponsor wil “een sessie waarin we het proces vastleggen en verbeteren”. Reistijd tussen de vestigingen is twee uur. Een van de vestigingen werkt in ploegen. Je bent zelf ook deskundige over het systeem waarin het onderhoud wordt vastgelegd.',
         ask: 'Kies groepsgrootte, vorm, aantal sessies en rollen. Wat doe je met jezelf als deskundige?',
-        reveal: 'Niet één grote sessie. Drie lokale brown papersessies van zes mensen op de eigen vestiging, op een tijdstip dat bij de ploegen past, elk drie uur. Daarna één online sessie van 90 minuten met twee of drie vertegenwoordigers per vestiging om de drie kaarten op een digitaal bord naast elkaar te leggen en de verschillen te bespreken.\n\nRollen: iemand van elke vestiging scribent; jij faciliteert de online sessie en laat de lokale sessies door de teamleiders leiden na een korte instructie, zodat je niet je eigen antwoord stuurt. De sponsor opent de online sessie en komt voor het slot terug.',
+        reveal: 'Niet één grote sessie. Drie lokale brown-papersessies van zes mensen op de eigen vestiging, op een tijdstip dat bij de ploegen past, elk drie uur. Daarna één online sessie van 90 minuten met twee of drie vertegenwoordigers per vestiging om de drie kaarten op een digitaal bord naast elkaar te leggen en de verschillen te bespreken.\n\nRollen: iemand van elke vestiging scribent; jij faciliteert de online sessie en laat de lokale sessies door de teamleiders leiden na een korte instructie, zodat je niet je eigen antwoord stuurt. De sponsor opent de online sessie en komt voor het slot terug.',
       },
       said: 'Wat je hoort in projecten: “Dan houden we gewoon één grote sessie met iedereen.”',
       recall: [
         {
           q: 'Wat is het tweerollenprobleem?',
           options: [
-            'Twee deelnemers willen allebei het woord voeren',
-            'Een sessie heeft twee eigenaars die het oneens zijn',
-            'Je bent facilitator en inhoudelijk deskundige tegelijk en stuurt zonder het te merken',
-            'De sponsor en jij hebben allebei een agenda',
+            'Twee deelnemers willen tegelijk het woord en de rest zwijgt',
+            'Een sessie heeft twee eigenaars die het oneens zijn over het doel',
+            'Je leidt en bent ook deskundige, en stuurt zonder het te merken',
+            'De sponsor en jij hebben elk een eigen doel voor de sessie',
           ],
-          answer: 'Je bent facilitator en inhoudelijk deskundige tegelijk en stuurt zonder het te merken',
+          answer: 'Je leidt en bent ook deskundige, en stuurt zonder het te merken',
           why: 'Wie ook deskundige is, voegt onbedoeld eigen antwoorden toe in plaats van het proces te leiden.',
         },
         {
@@ -682,8 +682,9 @@ export default {
         },
       ],
       teach: [
-        'Faciliteren begint voor de sessie met een contract. Spreek met de sponsor het doel van de sessie af (uitkomst contracteren): wat staat vast, wat is open, wat gebeurt er met de uitkomst en wie beslist. Leg het op een pagina vast. Staat alles vast, dan is het geen werksessie maar een presentatie, en noem je het zo.',
-        'Neutraliteit (neutrality) betekent dat je het proces leidt en het antwoord niet stuurt. Je kunt dat breken met een sturende vraag, een eigen geeltje, of de volgorde waarin je mensen aan het woord laat. Heb je een belang, zeg het of draag de sessie over.\n\nDe IAF-competenties van de International Association of Facilitators noemen zes gebieden: klantrelaties, groepsprocessen plannen, een deelnemende omgeving scheppen, de groep naar uitkomsten leiden, vakkennis onderhouden en een professionele houding. Gebruik ze als checklist voor je eigen praktijk.',
+        'Faciliteren begint voor de sessie met een contract. Spreek met de sponsor af waar de sessie over gaat; dat heet uitkomst contracteren (contracting the outcome): wat staat vast, wat is open, wat gebeurt er met de uitkomst en wie beslist. Leg het op een pagina vast. Staat alles vast, dan is het geen werksessie maar een presentatie, en noem je het zo.',
+        'Neutraliteit (neutrality) betekent dat je het proces leidt en het antwoord niet stuurt. Je kunt dat breken met een sturende vraag, een eigen geeltje, of de volgorde waarin je mensen aan het woord laat. Heb je een belang, zeg het of draag de sessie over.',
+        'De IAF-competenties van de International Association of Facilitators noemen zes gebieden: samenwerkende klantrelaties opbouwen, passende groepsprocessen plannen, een deelnemende omgeving scheppen en vasthouden, de groep naar passende en bruikbare uitkomsten leiden, vakkennis opbouwen en onderhouden, en een positieve professionele houding voorleven. Gebruik ze als checklist voor je eigen praktijk.',
         'Een eerlijke procesbeschrijving maakt teams kwetsbaar: overdrachten, wachttijden en omwegen wijzen snel naar mensen. Weeg wie voor de eerlijkheid betaalt. Zorg voor psychologische veiligheid (psychological safety) met regels: het gaat over het proces, niet over personen, er staan geen namen in de uitkomst en vooraf is afgesproken wie het papier straks ziet. Hoe je veiligheid opbouwt, staat in Psychologische veiligheid opbouwen in Mensen leiden.',
         'Wie bezit de uitkomst erna? Een uitkomst zonder eigenaar sterft. Noem de eigenaar vooraf en spreek af wanneer die terugkomt met een antwoord.\n\nWanneer haal je een externe facilitator? Als jij zelf deel van het probleem bent, als je de inhoud te goed kent om neutraal te blijven, of als de hiërarchie of de spanning (een reorganisatie, een conflict) te hoog is. Dan is een buitenstaander veiliger voor iedereen.',
       ],
@@ -697,8 +698,8 @@ export default {
       recall: [
         {
           q: 'Wat leg je vast als je een sessie met de sponsor contracteert?',
-          options: ['Wat vaststaat, wat open is, wat er met de uitkomst gebeurt en wie beslist', 'Het menu, de zaal en het aantal deelnemers', 'De naam van de facilitator en zijn uurtarief', 'Alleen de datum en het onderwerp'],
-          answer: 'Wat vaststaat, wat open is, wat er met de uitkomst gebeurt en wie beslist',
+          options: ['Wat vast en wat open is, wie beslist en wat er met de uitkomst gebeurt', 'De agenda per blok, de werkvormen en wie welk blok van de dag begeleidt', 'Wie er komen, hoe lang het duurt en wie de uitnodiging verstuurt', 'Welke uitkomst de sponsor wil en hoe je de groep daarheen leidt'],
+          answer: 'Wat vast en wat open is, wie beslist en wat er met de uitkomst gebeurt',
           why: 'Zo weten alle partijen waar de groep invloed op heeft en waar niet.',
         },
         {
@@ -757,7 +758,7 @@ export default {
         },
         {
           term: 'Psychologische veiligheid',
-          def: 'Het gedeelde gevoel in een groep dat je iets kunt zeggen of een fout kunt toegeven zonder gestraft of uitgelachen te worden.',
+          def: 'Het gedeelde gevoel dat je fouten kunt toegeven en het oneens kunt zijn zonder daarvoor gestraft te worden (Edmondson).',
         },
       ],
     },
@@ -779,7 +780,7 @@ export default {
       ],
       teach: [
         'Creatief groepswerk heeft twee slagen, die je gescheiden houdt: eerst divergeren, dan convergeren (kiezen). Wie al tijdens het verzamelen oordeelt, snijdt ideeën af voordat ze zijn uitgewerkt. Osborn (Applied Imagination, 1953) gaf twee principes: oordeel uitstellen (deferring judgment) en streven naar veel ideeën. De vier regels die je soms ziet, worden verschillend verwoord; houd het bij deze twee.',
-        'Een open brainstorm heeft een probleem: er praat er maar één tegelijk. De anderen wachten op hun beurt, houden hun idee vast, vergeten het of laten het varen. Dat heet productieblokkade (production blocking). Diehl en Stroebe (1987) vonden dat dit vaak de belangrijkste reden was dat groepen minder ideeën opleveren dan dezelfde mensen apart. Latere analyses betwisten hoe groot het effect is, dus zeg “vaak” en niet “altijd”.',
+        'Een open brainstorm heeft een probleem: er praat er maar één tegelijk. De anderen wachten op hun beurt, houden hun idee vast, vergeten het of laten het varen. Dat heet productieblokkade (production blocking). Diehl en Stroebe (1987) vonden in hun experimenten dat dit het grootste deel verklaarde van waarom groepen minder ideeën opleveren dan even veel mensen die apart werken. Angst voor een oordeel en meeliften speelden een kleinere rol. Zeg toch “vaak” en niet “altijd”: het hangt af van de groep en de taak.',
         'Stil schrijven (silent writing, ook brainwriting) lost dat op. Iedereen schrijft vijf minuten alleen ideeën op geeltjes. Daarna deel je ze, groepeer je gelijke ideeën en geef je de groepen een naam: clusteren (affinity grouping). Stille mensen tellen mee en een hoge functie stuurt minder.\n\nKiezen kan met stippen; zie Een terugblik ontwerpen in Afsluiten voor stippenstemmen. Voor een grondoorzaaksessie staat het stille schrijven van ideeën vóór de deskundige spreekt in Een grondoorzaaksessie begeleiden in de module Technisch probleemoplossen in Engineering.',
         'Een groepsmethode helpt als je veel invalshoeken of kennis nodig hebt, of als mensen het resultaat moeten dragen. Laat één persoon gewoon beslissen als het antwoord al bekend is, het besluit van die persoon is, of de vraag eenvoudig of dringend is.\n\nVraag je een groep om ideeën terwijl het besluit al genomen is, dan is dat nep. Daar gaat Legitimiteit en schijninspraak later over.',
       ],
@@ -910,7 +911,7 @@ export default {
         },
         {
           q: 'Welke werkvorm gebruik je in een zaal zonder tool in ongeveer een kwartier?',
-          options: ['1-2-4-All: alleen, in paren, in viertallen en samen', 'Een brown papersessie van drie uur met de hele afdeling', 'Een open brainstorm onder leiding van de manager', 'Een stemming met handopsteken, zonder voorbereiding vooraf'],
+          options: ['1-2-4-All: alleen, in paren, in viertallen en samen', 'Een brown-papersessie van drie uur met de hele afdeling', 'Een open brainstorm onder leiding van de manager', 'Een stemming met handopsteken, zonder voorbereiding vooraf'],
           answer: '1-2-4-All: alleen, in paren, in viertallen en samen',
           why: '1-2-4-All laat eerst mensen alleen en in kleine groepjes denken, voordat de hele groep praat.',
         },
@@ -922,7 +923,7 @@ export default {
         rubric: ['Neemt de opmerking serieus zonder defensief te worden', 'Maakt de stemuitslag transparant', 'Biedt ruimte om te herstellen voor de keuze'],
         pushback: {
           lines: ['“De stemming is toch niet anoniem; je ziet wie waar stemt.”', '“Ik stem niet meer mee als het toch al vaststaat.”'],
-          model: '“Goed dat u dit zegt. Ik zet de stemmen om naar een anonieme weergave en doe de ronde opnieuw als u dat wilt. Er staat niets vast; de top drie krijgen vandaag eigenaren, maar de sponsor besluit pas na deze sessie wat ze met de uitkomst doen.”',
+          model: '“Goed dat je dit zegt. Ik zet de stemmen om naar een anonieme weergave en doe de ronde opnieuw als je dat wilt. Er staat niets vast; de top drie krijgen vandaag eigenaren, maar de sponsor besluit pas na deze sessie wat ze met de uitkomst doen.”',
           rubric: ['Erkent de zorg over anonimiteit', 'Biedt een oplossing in de tool', 'Is eerlijk over wat vaststaat en wat niet'],
         },
       },
@@ -971,7 +972,7 @@ export default {
         kind: 'faded',
         text: 'Vier besluiten in één project bij een maakbedrijf:\n1. Op welke dag houdt het team het weekoverleg?\n2. Welke kleuren krijgt het planbord?\n3. Welke van twee leveranciers levert de nieuwe machine, die tien jaar meegaat?\n4. Gaat een afdeling over op ploegendienst?',
         ask: 'Kies per besluit een besluitformat en zeg wie in de zaal moet zitten.',
-        reveal: '1. De teamleider beslist na een snelle peiling in de chat; klein en terug te draaien. 2. Een meerderheid via stippen door het team, twee minuten; het raakt hun dagelijks werk en is makkelijk te herzien. 3. De directeur is eigenaar, met een adviesbesluit: advies van onderhoud, inkoop, financiën en operators, aan tafel of via consent op de eisen. Moeilijk terug te draaien, dus echte inbreng. 4. Dit besluit ligt niet bij de groep: de directie beslist, met een adviesprocedure die ook de medewerkers en, waar nodig, de ondernemingsraad omvat; vraag na wat wettelijk geldt.',
+        reveal: '1. De teamleider beslist na een snelle peiling in de chat; klein en terug te draaien. 2. Een meerderheid via stippen door het team, twee minuten; het raakt hun dagelijks werk en is makkelijk te herzien. 3. De directeur is eigenaar, met een adviesbesluit: advies van onderhoud, inkoop, financiën en operators, aan tafel of via consent op de eisen. Moeilijk terug te draaien, dus echte inbreng. 4. Dit besluit ligt niet bij de groep: de directie beslist, na inbreng van de medewerkers, en de ondernemingsraad heeft bij werktijden een formele rol; vraag na wat wettelijk geldt.',
       },
       said: 'Wat je hoort in projecten: “We stemmen er gewoon over, dan is het eerlijk.”',
       recall: [
@@ -1002,7 +1003,7 @@ export default {
         },
         {
           q: 'Wat doet een eigenaar in een adviesbesluit?',
-          options: ['Vraagt advies aan wie het raakt en besluit dan zelf', 'Laat de groep stemmen en volgt de uitkomst', 'Wacht tot iedereen het eens is', 'Delegeert het besluit aan de facilitator'],
+          options: ['Vraagt advies aan wie het raakt en besluit dan zelf', 'Laat de groep stemmen en volgt de meerderheid', 'Wacht tot iedereen ermee kan leven en besluit dan', 'Legt het besluit bij wie het meeste advies gaf'],
           answer: 'Vraagt advies aan wie het raakt en besluit dan zelf',
           why: 'De eigenaar blijft verantwoordelijk, maar besluit pas na echte inbreng.',
         },
@@ -1026,7 +1027,7 @@ export default {
         },
         {
           term: 'Consensus',
-          def: 'Een besluit waar iedereen mee kan leven en dat iedereen steunt.',
+          def: 'Een besluit waar iedereen mee kan leven, ook wie het niet de eerste keus vindt.',
         },
         {
           term: 'Adviesbesluit',
@@ -1093,11 +1094,11 @@ export default {
           q: 'Wat bedoelt terugkoppeling hier?',
           options: [
             'Je stuurt de deelnemers een foto van het bord met alle geeltjes',
-            'Je stuurt de notulen van de sessie aan de sponsor',
-            'Je herhaalt de sessie met een andere groep om te vergelijken',
-            'De eigenaar meldt binnen een afgesproken tijd wat is overgenomen en waarom niet',
+            'Je stuurt de notulen van de sessie binnen een week aan de sponsor',
+            'Je vraagt de deelnemers na afloop hoe ze de sessie vonden',
+            'De eigenaar laat op tijd weten wat is overgenomen en waarom',
           ],
-          answer: 'De eigenaar meldt binnen een afgesproken tijd wat is overgenomen en waarom niet',
+          answer: 'De eigenaar laat op tijd weten wat is overgenomen en waarom',
           why: 'Terugkoppeling laat zien dat de inbreng telde, ook als niet alles is overgenomen.',
         },
         {
@@ -1156,8 +1157,8 @@ export default {
       ],
       teach: [
         'Rapporten en overleg laten zien wat mensen zeggen; de werkvloer laat zien wat er gebeurt. Een projectleider heeft vier werkvormen buiten de vergaderzaal: de gembawalk, de interviewronde, de demo en het kaizen-event. Elk heeft een doel, deelnemers, een duur en een opbrengst, en elk past bij een ander moment in de route.',
-        'De gembawalk (gemba walk): naar de plek gaan waar het werk gebeurt, kijken en vragen, voordat je iets doet. Het Lean Enterprise Institute omschrijft het als direct kijken en vragen om de huidige situatie te begrijpen vóór je handelt. Duur: 30 tot 60 minuten, met jou en de leidinggevende. Opbrengst: notities van wat je zag en een lijst vragen.\n\nHoe je kijkt staat in Ga kijken: de gemba in de module Technisch probleemoplossen in Engineering; de vaste ronde van een leidinggevende in Leiderstandaardwerk en de gembawalk in Landen.',
-        'De interviewronde (interview round): losse gesprekken met mensen uit verschillende lagen. Acht tot tien gesprekken van 45 minuten; opbrengst: thema’s en citaten. De demo: het werkende resultaat laten zien aan de mensen die ermee gaan werken, op de plek waar ze het gebruiken; 30 tot 60 minuten; opbrengst: een lijst met reacties.\n\nHet kaizen-event: een team verbetert een paar dagen, vaak drie tot vijf, één gebied; opbrengst: een veranderd gebied en een opvolglijst. Zie Kaizen: elke dag en in events.',
+        'De gembawalk (gemba walk) is de vaste ronde van een leidinggevende over de vloer. Als projectleider loop je er een mee: kijken en vragen waar het werk gebeurt, voordat je iets doet. Het Lean Enterprise Institute omschrijft het als direct kijken en vragen om de huidige situatie te begrijpen vóór je handelt. Duur: 30 tot 60 minuten. Opbrengst: notities en een lijst vragen.\n\nHoe je kijkt, staat in Ga kijken: de gemba in de module Technisch probleemoplossen in Engineering; de vaste ronde in Leiderstandaardwerk en de gembawalk in Landen.',
+        'De interviewronde (interview round): losse gesprekken met mensen uit verschillende lagen. Acht tot tien gesprekken van 45 minuten; opbrengst: thema’s en citaten. De demo: het werkende resultaat laten zien aan de mensen die ermee gaan werken, op de plek waar ze het gebruiken; 30 tot 60 minuten; opbrengst: een lijst met reacties.\n\nHet kaizen-event: een team verbetert een paar dagen, vaak drie tot vijf, één gebied; opbrengst: een veranderd gebied en een opvolglijst. Zie Kaizen: elke dag en in events in de module Technisch probleemoplossen in Engineering.',
         'Wanneer past welke werkvorm? Gembawalk en interviewronde aan het begin, in Intake en Plannen: leren wat er is. De demo tijdens Uitvoeren: laten zien wat er gebouwd is. Het kaizen-event als een gebied begrepen is en een team het kan veranderen.\n\nZe vullen elkaar aan: eerst kijken, dan vragen, dan bouwen en laten zien, dan met een team verbeteren.',
       ],
       example: {
@@ -1169,12 +1170,12 @@ export default {
         {
           q: 'Wat is een gembawalk?',
           options: [
-            'Een rondleiding voor bezoekers van de fabriek',
-            'Naar de plek gaan waar het werk gebeurt, kijken en vragen vóór je handelt',
-            'Een controle van de veiligheidsvoorschriften',
-            'Een wandeling van de directie om medewerkers te bedanken',
+            'Een rondleiding langs de lijn om bezoekers het proces te laten zien',
+            'Gaan kijken en vragen waar het werk gebeurt, voordat je iets doet',
+            'Een ronde langs de werkplekken om de veiligheidsregels te controleren',
+            'Een wandeling van de directie om de medewerkers te bedanken',
           ],
-          answer: 'Naar de plek gaan waar het werk gebeurt, kijken en vragen vóór je handelt',
+          answer: 'Gaan kijken en vragen waar het werk gebeurt, voordat je iets doet',
           why: 'De gembawalk is bedoeld om de huidige situatie te begrijpen vóór je iets doet.',
         },
         {
@@ -1249,7 +1250,7 @@ export default {
         },
       ],
       teach: [
-        'Een interviewronde aan het begin van een project levert thema’s op die je nergens in documenten vindt. Kies acht tot tien mensen over lagen en rollen heen (steekproef over lagen, sample across levels): uitvoerders, planners, een teamleider, een manager, iemand uit het proces ervoor of erna. Vraag de sponsor om een lijst en voeg er twee zelf aan toe. Een gangbare werkwijze in adviesopdrachten; er is geen vaste norm.',
+        'Een interviewronde aan het begin van een project levert thema’s op die je nergens in documenten vindt. Kies acht tot tien mensen over lagen en rollen heen, een steekproef over lagen (sample across levels): uitvoerders, planners, een teamleider, een manager, iemand uit het proces ervoor of erna. Vraag de sponsor om een lijst en voeg er twee zelf aan toe. Een gangbare werkwijze in adviesopdrachten; er is geen vaste norm.',
         'Maak een interviewleidraad (interview guide) met vijf open vragen. Bijvoorbeeld: Hoe ziet een gewone week eruit? Waar loop je tegenaan? Wat gaat goed en moet blijven? Wat zou je als eerste veranderen? Met wie moet ik nog praten? Duur: 45 minuten. Luister, stel vervolgvragen en stel zelf geen oplossingen voor.',
         'Schrijf op in de woorden van de ander, niet in je eigen interpretatie. Spreek vooraf af hoe anoniem het is: je rapporteert thema’s en citaten zonder namen, en alleen jij leest de notities. Plan na elk gesprek 30 minuten om de notities af te maken.\n\nZeg het eerlijk als je iets niet kunt beloven, bijvoorbeeld dat je bij strafbare feiten of een veiligheidsrisico iets moet melden.',
         'Daarna thematiseren (theming): zet elk punt op een geeltje, groepeer ze in ongeveer vijf thema’s, tel hoeveel mensen elk thema noemden en kies bij elk thema één citaat. Presenteer dit in één terugkoppelsessie (playback session) van een uur aan de hele groep: thema’s, aantallen, citaten. Vraag: wat herkennen jullie, wat missen jullie? Doe nog geen oplossingen.\n\nVoor een review met interviews in een onafhankelijke doorlichting: zie Een projectreview leiden in Als je vastzit.',
@@ -1262,7 +1263,7 @@ export default {
       recall: [
         {
           q: 'Waarom schrijf je in de woorden van de ander op?',
-          options: ['Omdat je interpretatie later het beeld kleurt', 'Omdat het de gesprekken korter maakt', 'Omdat de ander dan niet kan terugkijken', 'Omdat het voorgeschreven is in een norm'],
+          options: ['Omdat je interpretatie later het beeld kleurt', 'Omdat het de gesprekken korter en vlotter maakt', 'Omdat de ander het dan later niet kan terugzien', 'Omdat een norm voor interviews het zo voorschrijft'],
           answer: 'Omdat je interpretatie later het beeld kleurt',
           why: 'Citaten en eigen woorden houden de inhoud dichtbij wat gezegd werd.',
         },
@@ -1295,11 +1296,11 @@ export default {
       situation: {
         scene: 'Je doet een interviewronde bij een maakbedrijf. Een operator zegt halverwege: “Ik vertel het je, maar zeg het alsjeblieft niet tegen mijn teamleider.” Je weet dat de teamleider de lijst met namen van de geïnterviewden heeft.',
         ask: 'Wat doe je?',
-        model: '“Dank dat u het zegt. Ik rapporteer alleen thema’s en citaten zonder namen, en ik laat niets bij uw teamleider achter dat naar u terug te leiden is. Als een citaat te herkenbaar zou zijn, laat ik het weg of vraag ik eerst uw toestemming. Wilt u dat zo?”',
+        model: '“Goed dat je het zegt. Ik rapporteer alleen thema’s en citaten zonder namen, en ik laat niets bij je teamleider achter dat naar jou terug te leiden is. Als een citaat te herkenbaar zou zijn, laat ik het weg of vraag ik eerst je toestemming. Is dat goed zo?”',
         rubric: ['Erkent de zorg over vertrouwelijkheid', 'Legt uit hoe je anoniem rapporteert', 'Biedt controle over te herkenbare citaten'],
         pushback: {
           lines: ['“Maar je laat toch wel zien wie wat zei als de manager erom vraagt?”', '“Anonimiteit is nep, want iedereen kent elkaars woorden.”'],
-          model: '“Nee, dat heb ik vooraf met de manager afgesproken: alleen thema’s en citaten zonder namen. Is een citaat te herkenbaar, dan laat ik het weg of vraag ik toestemming. Mocht de manager erop aandringen, dan zeg ik dat ik het niet kan geven, en ik vertel u dat.”',
+          model: '“Nee, dat heb ik vooraf met de manager afgesproken: alleen thema’s en citaten zonder namen. Is een citaat te herkenbaar, dan laat ik het weg of vraag ik toestemming. Mocht de manager erop aandringen, dan zeg ik dat ik het niet kan geven, en ik vertel jou dat.”',
           rubric: ['Maakt de afspraak met de manager duidelijk', 'Erkent dat citaten herkenbaar kunnen zijn', 'Belooft transparant te zijn over druk'],
         },
       },
@@ -1353,10 +1354,10 @@ export default {
           options: [
             'Feedback is schriftelijk en goedkeuring is altijd mondeling gegeven',
             'Feedback komt van de sponsor en goedkeuring komt van de operators',
-            'Feedback vraagt wat beter kan, goedkeuring is elders',
+            'Feedback vraagt wat beter kan, goedkeuring valt elders',
             'Er is geen verschil; beide woorden betekenen dat iemand akkoord is',
           ],
-          answer: 'Feedback vraagt wat beter kan, goedkeuring is elders',
+          answer: 'Feedback vraagt wat beter kan, goedkeuring valt elders',
           why: 'De demo is een werksessie voor verbetering; een poort is een ander moment.',
         },
         {
@@ -1373,8 +1374,8 @@ export default {
         },
         {
           q: 'Waarvoor gebruik je de Scrum Guide hier?',
-          options: ['Als voorschrift voor elke demo op de vloer', 'Als uitgangspunt dat een review een werksessie is en geen poort', 'Als bewijs dat demo’s in de maakindustrie verplicht zijn', 'Als lijst van rollen voor de productiemanager'],
-          answer: 'Als uitgangspunt dat een review een werksessie is en geen poort',
+          options: ['Als voorschrift dat elke demo op de vloer moet volgen', 'Als uitgangspunt: een review is een werksessie, geen poort', 'Als bewijs dat demo’s in de maakindustrie verplicht zijn', 'Als lijst van rollen die bij elke review aanwezig zijn'],
+          answer: 'Als uitgangspunt: een review is een werksessie, geen poort',
           why: 'De Scrum Guide beschrijft de review als werksessie; dat nemen we als uitgangspunt over, geen voorschrift.',
         },
       ],
@@ -1416,7 +1417,7 @@ export default {
         {
           q: 'Een productiemanager zegt: “Laten we volgende maand een kaizenweek doen.” Wat vraag je als eerste?',
           options: [
-            'Wie er een foto van moet maken voor het jaarverslag van het bedrijf',
+            'Welke ruimte er die week vrij is om het team in te laten werken',
             'Hoe de zaal wordt ingericht en waar de lunch vandaan komt',
             'Wie de beste facilitator van het hele bedrijf is voor deze week',
             'Wie na afloop de verbeteringen overneemt en de mensen vrijmaakt',
