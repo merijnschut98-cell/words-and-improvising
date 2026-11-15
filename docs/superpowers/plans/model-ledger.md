@@ -115,3 +115,4 @@ Outcome: accepted (merged as delivered), sent back N times, redone.
 | 15 Nov | Render PM-21: 11 films re-rendered for the map-label fit; procesingenieurs fixed | sonnet | 86 | 2 h | 170,737 | accepted; every guard passed first time; merged v304 |
 | 15 Nov | Build: Engineering field film eng.field.making | sonnet | 150 | 29 min | 449,586 | accepted with fixes by its review |
 | 15 Nov | Review: eng.field.making | opus | n/a | n/a | n/a | accepted with fixes (person-scale drawing, a reason for the cartons, mass balance instead of a shared tool, how the stations connect); merged v305 |
+| 15 Nov | e2e: free port per run (in-process server) | sonnet | 35 | 90 min | 104,068 | accepted without a separate review (test infrastructure; two parallel mapfit runs and a full smoke 111/111 passed); merged v306 |

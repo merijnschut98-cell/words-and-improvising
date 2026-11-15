@@ -1,7 +1,8 @@
 // The subject maps (Projects and Engineering) must sit inside its card's content box, with the card's own
 // inset on both sides, at every width, theme and language.
-// Run: node e2e/mapfit.mjs [outDir]   (serves the repo on :8124)
-import { spawn, execSync } from 'node:child_process';
+// Run: node e2e/mapfit.mjs [outDir]   (free port, see e2e/serve.mjs; E2E_PORT overrides)
+import { startServer } from './serve.mjs';
+import { execSync } from 'node:child_process';
 import { createRequire } from 'node:module';
 import fs from 'node:fs';
 
@@ -11,10 +12,8 @@ try { playwright = require('playwright'); } catch { playwright = require(`${exec
 const { chromium } = playwright;
 const out = process.argv[2] || 'e2e/out-mapfit';
 fs.mkdirSync(out, { recursive: true });
-const PORT = process.env.E2E_PORT || '8124';
-const server = spawn('python3', ['-m', 'http.server', PORT], { stdio: 'ignore' });
-await new Promise((r) => setTimeout(r, 800));
-const BASE = `http://localhost:${PORT}/`;
+const server = await startServer();
+const BASE = server.base;
 const browser = await chromium.launch();
 const problems = [];
 const report = [];
@@ -120,7 +119,7 @@ try {
       await ctx.close();
     }
   }
-} finally { await browser.close(); server.kill(); }
+} finally { await browser.close(); server.stop(); }
 console.log(report.join('\n'));
 if (problems.length) { console.log(`\nFAIL (${problems.length}):\n${problems.join('\n')}`); process.exit(1); }
 console.log('\nmapfit ok');
