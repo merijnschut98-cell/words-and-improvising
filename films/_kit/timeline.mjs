@@ -884,7 +884,14 @@ const SAY = {
     // rule first, while G-code is still unchanged): eng.machining.cnc, eng.machining.drilling and eng.power.air say the words
     // in other sentences and keep their voice
     [/(?<=\bBij CNC gebruiken we vaak G-code en een )werkstuknulpunt\b/g, 'werkstuk nul-punt'], [/(?<=\bBij CNC gebruiken we vaak )G-code\b/g, 'de G-code'],
-    [/(?<=\bBij boren gebruiken we vaak een )centreerboor\b/g, 'centreer-boor'], [/(?<=\bdoet een )lektest\b/g, 'lek-test']],
+    [/(?<=\bBij boren gebruiken we vaak een )centreerboor\b/g, 'centreer-boor'], [/(?<=\bdoet een )lektest\b/g, 'lek-test'],
+    // the module intro film "Process engineering basics" (eng.process.intro), a self-contained group at the end of the Dutch
+    // list, checked with phonemes through Piper's nl_NL-alex bridge: espeak-ng reads cascaderegeling as "kaskaadiereegeling"
+    // (said cascade-regeling) and pinch-analyse with the ch of "lachen" (said pintsj-analyse), only in the intro's closing
+    // level sentences ("buffertanks, cascaderegeling, standaardiseren", "pinch-analyse en knelpunten"). Batch and unit
+    // operations and Coriolismeter have rules above; Pt100, blokschema, apparaatcode, massabalans, proeffabriek, vuleenheid,
+    // kolf, ketel and the level words are read right; no other film's spoken text changes
+    [/\bcascaderegeling, standaardiseren\b/g, 'cascade-regeling, standaardiseren'], [/\bpinch-analyse en knelpunten\b/g, 'pintsj-analyse en knelpunten']],
   en: [[/\brpm\b/g, 'revolutions per minute'], [/\bmm\/min\b/g, 'millimetres per minute'], [/\bm\/min\b/g, 'metres per minute'], [/µm\b/g, 'micrometres'],
     [/€\s?(\d[\d,]*(?:\.\d+)?)/g, '$1 euros'], [/(\d)\.0(?![\d])/g, '$1'], [/(\d)\s?mm\b/g, '$1 millimetres'], [/(\d)\s?min\b/g, '$1 minutes'], [/(\d)\s?%/g, '$1 percent'],
     [/Ø\s*/g, 'diameter '], [/(\d)\+(\d)/g, '$1 plus $2'], [/\s×\s/g, ' times '], [/\s\/\s/g, ' divided by '], [/\s=\s/g, ' is '], [/°/g, ' degrees'], [/\bRa\b/g, 'R a'], [/’/g, "'"],

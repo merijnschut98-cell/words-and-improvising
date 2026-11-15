@@ -132,3 +132,6 @@ Outcome: accepted (merged as delivered), sent back N times, redone.
 | 15 Nov | Review: eng.moulding.intro | sonnet | n/a | n/a | n/a | accepted with small fixes (reasons for lit details, cover at field-film scale, trimmed); merged v316 |
 | 15 Nov | Build: Engineering intro eng.mechanics.intro | sonnet | 109 | 20 min | 319,204 | accepted with fixes by its review |
 | 15 Nov | Review: eng.mechanics.intro | sonnet | n/a | n/a | n/a | accepted with fixes (sling with a reason, rigger no longer hides lit parts, steel rack in view); merged v317 |
+| 15 Nov | Build: Engineering intro eng.process.intro | sonnet | 95 | 17 min | 332,941 | accepted with fixes by its review |
+| 15 Nov | Voice fix PM-26: G-code, werkstuknulpunt, centreerboor, lektest; re-render two Dutch tracks | sonnet | n/a | n/a | n/a | accepted; listen guard passed; merged v318 |
+| 15 Nov | Review: eng.process.intro | sonnet | 55 | 7.5 min | 193,840 | accepted with fixes (processchema replaces apparaatcode as tool, unit operations named, sacks given a reason); merged v318 |

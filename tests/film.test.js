@@ -1417,3 +1417,20 @@ test('speak variant: the machining intro and energy field film words in Dutch', 
   const en = 'For CNC we often use G-code and a work offset. A center drill and a leak test.';
   assert.equal(speakOf([en], 'en'), en);
 });
+
+// The module intro film "From kettle to tank" (eng.process.intro), checked with espeak-ng phonemes through Piper's nl bridge:
+// espeak-ng reads cascaderegeling as "kaskaadiereegeling" (cascadeer-: dˌɪːrəɣ; said cascade-regeling) and pinch-analyse with
+// the ch of "lachen" (pinx; said pintsj-analyse), both only in the closing level sentences ("buffertanks, cascaderegeling,
+// standaardiseren", "pinch-analyse en knelpunten"). The rest of its words are read right (batch and unit operations and
+// Coriolismeter have rules above; Pt100, blokschema, apparaatcode, massabalans, proeffabriek, vuleenheid, kolf, ketel and the
+// level words are fine); no other film's spoken text changes
+test('speak variant: the process intro film words in Dutch', () => {
+  const nl = (s) => speakOf([s], 'nl');
+  assert.equal(nl('Op niveau Gevorderd komen buffertanks, cascaderegeling, standaardiseren en het plannen van meer producten.'), 'Op niveau Gevorderd komen buffertanks, cascade-regeling, standaardiseren en het plannen van meer producten.');
+  assert.equal(nl('Op niveau Expert gaat het om opstartverlies, minder spreiding, pinch-analyse en knelpunten wegnemen.'), 'Op niveau Expert gaat het om opstartverlies, minder spreiding, pintsj-analyse en knelpunten wegnemen.');
+  // elsewhere the words keep their voice
+  assert.equal(nl('Een cascaderegeling stuurt de klep.'), 'Een cascaderegeling stuurt de klep.');
+  assert.equal(nl('De pinch-analyse laat zien waar warmte weglekt.'), 'De pinch-analyse laat zien waar warmte weglekt.');
+  const en = 'At Expert level it is about start-up losses, less variation, pinch analysis and removing bottlenecks.';
+  assert.equal(speakOf([en], 'en'), en);
+});
