@@ -1645,3 +1645,20 @@ test('speak variant: the method words of the approach intro', () => {
   const en = 'There are four method families and a mix. Predictive, agile, Lean and Six Sigma. A recurring problem you tackle with DMAIC, the steps of Six Sigma.';
   assert.equal(speakOf([en], 'en'), en);
 });
+
+// The module intro film Formats and meetings (pm.formats.intro), checked with espeak-ng phonemes through Piper's nl bridge:
+// "brown paper" is read with the Dutch o of "bron" (brˈɔwn pˈaːpər) and said braun peeper (brˈʌʊn pˈeːpər, as a Dutch coach
+// says it), and "whiteboard" as "wiete-bord" (ʋhˈitəbˌoːɑrd) and said wajtbord (ʋˈɑjtbɔrd). Each rule keeps to the intro's
+// own phrase (the brown paper the group draws on, the digital whiteboard it works on), so the lessons and the other films
+// and the English track keep their voice; no other film's spoken text changes
+test('speak variant: the brown paper and the whiteboard of the formats intro', () => {
+  const nl = (s) => speakOf([s], 'nl');
+  assert.equal(nl('De groep tekent het proces van lijn 3 met geeltjes op een brown paper.'), 'De groep tekent het proces van lijn 3 met geeltjes op een braun peeper.');
+  assert.equal(nl('Dat doen we op een digitaal whiteboard, een gedeeld bord met geeltjes.'), 'Dat doen we op een digitaal wajtbord, een gedeeld bord met geeltjes.');
+  // elsewhere the words keep their voice
+  assert.equal(nl('Een brown paper is een lang vel papier.'), 'Een brown paper is een lang vel papier.');
+  assert.equal(nl('Een whiteboard met veel post-its.'), 'Een whiteboard met veel post-its.');
+  assert.equal(nl('Een digitaal whiteboard is een gedeeld bord.'), 'Een digitaal whiteboard is een gedeeld bord.');
+  const en = 'The group draws the process of line 3 with sticky notes on a brown paper. We do that on an online whiteboard.';
+  assert.equal(speakOf([en], 'en'), en);
+});
