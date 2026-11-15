@@ -1711,3 +1711,21 @@ test('speak variant: the plant-improving field film FMECA', () => {
   assert.equal(nl('Een machine-FMEA en een FMECA.'), 'Een machine-FMEA en een FMECA.');
   assert.equal(en('An FMECA adds a criticality rating to each failure mode.'), 'An FMECA adds a criticality rating to each failure mode.');
 });
+
+// The module intro film "Engineering problem solving" (eng.improve.intro), checked with espeak-ng phonemes through Piper's nl_NL-alex
+// bridge and the English voice: PDCA is read as the word "pdka" in Dutch (pdkˈaː; said as letters), only in the intro's two
+// phrases that name it ("derde onderwerp is PDCA en de A3", "heet PDCA en"), and 8D as "acht tee" (ˈɑx tˈeː, the d is lost after acht; said acht-dee
+// with a hyphen, ɑxtdˈeː), only in the intro's phrase "de 8D en een sessie", so the lessons and the other films keep their voice.
+// Ohno-cirkel, waaromboom, andon, kaizen, A3 (aa drie), de fix verifiëren and the level words are read right; English needs
+// nothing; no other film's spoken text changes
+test('speak variant: the engineering problem solving intro film words in Dutch', () => {
+  const nl = (s) => speakOf([s], 'nl');
+  assert.equal(nl('Het derde onderwerp is PDCA en de A3. Een verbetering is een experiment.'), 'Het derde onderwerp is P D C A en de A3. Een verbetering is een experiment.');
+  assert.equal(nl('Dat rondje heet PDCA en je draait het steeds opnieuw.'), 'Dat rondje heet P D C A en je draait het steeds opnieuw.');
+  assert.equal(nl('Op niveau Gevorderd komen meten voor je concludeert, de 8D en een sessie begeleiden.'), 'Op niveau Gevorderd komen meten voor je concludeert, de acht-dee en een sessie begeleiden.');
+  // elsewhere the words keep their voice
+  assert.equal(nl('PDCA is een cyclus. De PDCA en de A3 horen bij elkaar. Het PDCA heet zo.'), 'PDCA is een cyclus. De PDCA en de A3 horen bij elkaar. Het PDCA heet zo.');
+  assert.equal(nl('De 8D is een rapport. Een 8D en een sessie.'), 'De 8D is een rapport. Een 8D en een sessie.');
+  const en = 'The third topic is PDCA and the A3. That round is called PDCA and the 8D and a session.';
+  assert.equal(speakOf([en], 'en'), en);
+});
