@@ -1694,6 +1694,7 @@ test('speak variant: the capacity and flow intro film words in Dutch', () => {
   assert.equal(nl('Capaciteit en flow is een module. Het standaardplaatje is een Yamazumi. Een Yamazumi laat zien welke balk uitsteekt.'), 'Capaciteit en flow is een module. Het standaardplaatje is een Yamazumi. Een Yamazumi laat zien welke balk uitsteekt.');
   const en = 'The module Capacity and flow. You draw the work per station in a yamazumi.';
   assert.equal(speakOf([en], 'en'), en);
+});
 
 // The field film "Making the plant better" (eng.field.better), checked with espeak-ng phonemes through Piper's nl_NL-alex
 // bridge and the English voice: FMECA is read as the word "fmeeka" in Dutch (fmˈeːkaː) and "ef-meka" in English
