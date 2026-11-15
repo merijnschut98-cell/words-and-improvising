@@ -2823,21 +2823,31 @@ await step('layout: each home at 390 px in light and dark, one primary, bands, t
   // Course homes: exactly one track open, the one with the next step; Begrippen and the real week in one row.
   await p.evaluate(() => window.__app.setSubject('eng'));
   await p.locator('.course-eng .track').first().waitFor();
-  // Engineering has a map now, like Projecten: the tracks stay closed and open on tap.
+  // Engineering has a map now, like Projecten: the list under it is the map's zones (15 Nov), closed, open on tap.
   if (await p.locator('.course-eng details.track[open]').count() !== 0) throw new Error('expected no open track under the map');
-  await p.locator('details.track-basics > summary').click();
-  await p.locator('details.track-basics[open] .module-row', { hasText: 'Capaciteit en flow' }).waitFor();
+  // the zone folds: the map's names, in the map's order, each counting its field's modules
+  const zoneList = async (subject) => {
+    const want = await p.evaluate(async (s) => { const [{ mapFor }, { FIELDS }] = await Promise.all([import('/src/content/courses/maps/index.js'), import('/src/content/courses/index.js')]);
+      return mapFor(s).zones.map((z) => ({ name: z.label.nl, n: FIELDS.find((f) => f.id === z.field).modules.length })); }, subject);
+    const got = await p.locator(`.course-${subject} details.track-zone`).evaluateAll((ds) => ds.map((d) => ({ name: d.querySelector('summary h2').textContent, n: d.querySelectorAll(':scope > :not(summary)').length })));
+    if (JSON.stringify(got) !== JSON.stringify(want)) throw new Error(`${subject} zone list ${JSON.stringify(got)}, expected ${JSON.stringify(want)}`);
+  };
+  await zoneList('eng');
+  if (await p.locator('.course-eng details.track-zone').count() !== await p.locator('.course-eng details.track').count()) throw new Error('an old track is still listed under the Engineering map');
+  await p.locator('details.zone-run > summary').click();
+  await p.locator('details.zone-run[open] .module-row', { hasText: 'Capaciteit en flow' }).waitFor();
   await p.locator('.quick-row .glossary-entry').waitFor();
   await p.locator('.quick-row .rw-entry').waitFor();
   const tiers = await p.locator('.course-eng details.track[open] .module-meta .tier').allInnerTexts();
   if (!tiers.length || tiers.some((x) => !/^(INSTAP|VERDIEPING|SPECIALIST)$/i.test(x.trim()))) throw new Error(`module tiers: ${[...new Set(tiers)]}`);
   if (await p.locator('.course-eng .module-meta', { hasText: /Werkkennis|Gevorderd/i }).count()) throw new Error('a module label uses a topic level name');
-  // Projecten: two tracks, a collapsed one opens on tap.
+  // Projecten: the map's zones too, a collapsed one opens on tap.
   await p.evaluate(() => window.__app.setSubject('pm'));
   await p.locator('.course-pm .track').first().waitFor();
-  if (await p.locator('.course-pm details.track').count() !== 2) throw new Error('Projecten should have two tracks');
-  await p.locator('details.track-agile > summary').click();
-  await p.locator('details.track-agile[open] .module-row').first().waitFor();
+  await zoneList('pm');
+  if (await p.locator('.course-pm details.track-zone').count() !== await p.locator('.course-pm details.track').count()) throw new Error('an old track is still listed under the Projecten map');
+  await p.locator('details.zone-it > summary').click();
+  await p.locator('details.zone-it[open] .module-row').first().waitFor();
   await shotP('98-home-pm-agile-open');
   await c.close();
 });
@@ -3990,7 +4000,7 @@ await step('flair: start ring and title, path map with the bronze seal, a perfec
   // Course home: the path map, the bronze seal on the module and at its end, the check flag.
   await p.locator('.start-eng').click();
   await p.locator('.course-home').waitFor();
-  await p.locator('details.track-basics > summary').click(); // the tracks stay closed under the map
+  await p.locator('details.zone-run > summary').click(); // the zone folds stay closed under the map
   const row = p.locator('.module-row', { hasText: 'Capaciteit en flow' });
   await row.locator('.medal-bronze', { hasText: 'Brons' }).waitFor();
   await shotP('flair-02-course-home-390');

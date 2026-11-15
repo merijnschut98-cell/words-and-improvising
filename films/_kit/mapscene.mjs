@@ -197,10 +197,11 @@ const MAP_SEL = /\.subject-map(?![\w-])/;
 // its page byte for byte. A zone of the map without its rule in styles.css fails the build (tests/mapscene.test.js
 // checks this list against the map).
 const ZONES = { eng: ['run', 'better', 'making', 'energy', 'digital'] };
-// The zone "better" is coloured with the app's --bad (burnt brick); the film palette has no such variable, so an
-// Engineering film gets it with its zone rules (the Projects pages stay byte for byte): danger-300 on the dark face,
-// danger-500 in light, as in the app.
-const ZONE_VARS = { eng: '.subject-map{--bad:#A9483C}\n.iso[data-theme="light"] .subject-map{--bad:#7E3128}' };
+// The zone "better" has its own app token, --zone-better (terracotta: brick warmed with ochre, not the error colour
+// --bad); the film palette has no such variable, so an Engineering film gets it with its zone rules (the Projects
+// pages stay byte for byte). The values are the app's two color-mix results (styles.css; tests/engmap.test.js
+// recomputes them from brand/tokens.css): lifted with bone on the dark face, plain in light.
+const ZONE_VARS = { eng: '.subject-map{--zone-better:#BB7A61}\n.iso[data-theme="light"] .subject-map{--zone-better:#8B452B}' };
 function zoneRules(css, subject) {
   if (subject === undefined) return '';
   // a misspelt subject ('Eng', a field id) would quietly drop the zone colours: only a subject of the index counts

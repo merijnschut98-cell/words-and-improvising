@@ -1,4 +1,4 @@
-// Task 13 step 1: the Engineering map, the same way Projects has one. Four zones
+// Task 13 step 1: the Engineering map, the same way Projects has one. Five zones (four until the 15 Nov split)
 // (fields) group the 26 modules; the map has a wide and a phone layout, no road
 // (Engineering has no natural order), and adds nothing to what Projects draws.
 import { test } from 'node:test';
@@ -175,12 +175,37 @@ test('the five zones have colours in the app styles, in rules the film kit does 
 
 test('the five zones read: run, better, making, energy, digital; the new zone has its own colour', () => {
   assert.deepEqual(engMap.zones.map((z) => z.field), ['eng.field.run', 'eng.field.better', 'eng.field.making', 'eng.field.energy', 'eng.field.digital']);
-  assert.match(CSS, /\.subject-map-wrap \.z-better \{ --zone: var\(--bad\); \}/);
+  // review (15 Nov): its own token, not the error colour --bad
+  assert.match(CSS, /\.subject-map-wrap \.z-better \{ --zone: var\(--zone-better\); \}/);
   const colours = [...CSS.matchAll(/\.subject-map-wrap \.z-([a-z]+) \{ --zone: ([^;]+);/g)].map((m) => m[2]);
   assert.equal(new Set(colours).size, colours.length, 'no two zones share a colour');
-  // the film pages carry --bad for the eng zones only (Projects pages stay as they are)
-  assert.match(mapStyles(undefined, 'eng'), /\.subject-map\{--bad:/);
-  assert.doesNotMatch(mapStyles(), /--bad/);
+  assert.ok(!colours.some((c) => /--(bad|good|ok-text)\b/.test(c)), 'no zone borrows a status colour other than the palette fills');
+  // the film pages carry --zone-better for the eng zones only (Projects pages stay as they are)
+  assert.match(mapStyles(undefined, 'eng'), /\.subject-map\{--zone-better:/);
+  assert.doesNotMatch(mapStyles(), /--zone-better/);
+});
+
+test('--zone-better: the app and the film kit hold the same terracotta, in light and dark, and it reads on the map', () => {
+  const TOK = fs.readFileSync(new URL('../brand/tokens.css', import.meta.url), 'utf8');
+  const tok = (n) => { const m = TOK.match(new RegExp(`--${n}:\\s*(#[0-9A-Fa-f]{6})`)); assert.ok(m, n); return [1, 3, 5].map((i) => parseInt(m[1].slice(i, i + 2), 16)); };
+  const mix = (a, b, p) => a.map((v, i) => v * p + b[i] * (1 - p));
+  const hex = (c) => `#${c.map((v) => Math.round(v).toString(16).padStart(2, '0')).join('')}`.toUpperCase();
+  // the app's definitions, read back so a change to one side fails here
+  const defs = [...CSS.matchAll(/--zone-better: ([^;]+);/g)].map((m) => m[1]);
+  assert.deepEqual([...new Set(defs)], [
+    'color-mix(in srgb, var(--danger-500) 70%, var(--warn-500))',
+    'color-mix(in srgb, color-mix(in srgb, var(--danger-300) 70%, var(--warn-500)) 75%, var(--bone))']);
+  assert.equal(defs.length, 3, 'light, and both dark blocks');
+  const light = hex(mix(tok('danger-500'), tok('warn-500'), 0.7));
+  const dark = hex(mix(mix(tok('danger-300'), tok('warn-500'), 0.7), tok('bone'), 0.75));
+  const kit = mapStyles(undefined, 'eng');
+  assert.match(kit, new RegExp(`\\.subject-map\\{--zone-better:${dark}\\}`));
+  assert.match(kit, new RegExp(`\\.iso\\[data-theme="light"\\] \\.subject-map\\{--zone-better:${light}\\}`));
+  // a graphic mark (the place's front face is the zone colour itself) needs 3:1 on the card, in both themes
+  const lum = (c) => { const [r, g, b] = c.map((v) => { const s = v / 255; return s <= 0.04045 ? s / 12.92 : ((s + 0.055) / 1.055) ** 2.4; }); return 0.2126 * r + 0.7152 * g + 0.0722 * b; };
+  const ratio = (a, b) => { const [x, y] = [lum(a), lum(b)].sort((p, q) => q - p); return (x + 0.05) / (y + 0.05); };
+  assert.ok(ratio(mix(tok('danger-500'), tok('warn-500'), 0.7), tok('beige-100')) >= 3, 'light: on paper');
+  assert.ok(ratio(mix(mix(tok('danger-300'), tok('warn-500'), 0.7), tok('bone'), 0.75), tok('brand-3')) >= 3, 'dark: on the ramp card');
 });
 
 test('the new files are in the service worker shell', () => {
