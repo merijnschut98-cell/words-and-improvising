@@ -51,7 +51,7 @@
 // scene, explained in two beats and lit), to the narration guard and to the label fit.
 //
 // A film in the shared pm world (films/_pm/world.mjs, read-only): the person of the cast (you, the engineer),
-// the table, the sheet and the room, with pm.agile.scrum's figures for the three operators, given safety glasses
+// the table, the sheet and the room, with pm.agile.scrum's figure for the operator, given safety glasses
 // (crew below). The press and its things are this film's own simple solids (films/eng.moulding.intro/moulding.mjs).
 // A panel at the right, in stage space, draws each step as a schema, labelled "voorbeeld" (the cover's job) or
 // "schema" (the module's map).
@@ -156,7 +156,7 @@ const shop = mouldingWorld(w, k, G, P);
 const g = (key, body, extra = '') => `<g data-k="${key}"${extra}>${body}</g>`;
 const cueG = (name, body) => `<g data-cue="${name}">${body}</g>`;
 const person = (role, x, y, along) => w.person({ x, y, role, along });
-// The three operators: pm.agile.scrum's figures (imported, not copied) without the laptop, in a dark work jacket
+// The operator: pm.agile.scrum's figure (imported, not copied) without the laptop, in a dark work jacket
 // (look sm) or a mid-tone one (look dev), each with safety glasses: a dark band round the head at eye height,
 // drawn over the head, so they read as people at the press and not as office staff.
 const crew = (key, look, x, y, along = 'x') => {
@@ -176,8 +176,8 @@ const JIJP = { 4: [136, 142], 6: [136, 142] };
 const shiftOf = (from, to) => w.at([...to, 0]).map((v, i) => Math.round((v - w.at([...from, 0])[i]) * 10) / 10);
 const OPSHIFT = Object.fromEntries(Object.entries(OPP).map(([si, to]) => [si, shiftOf(OP0, to)]));
 const JIJSHIFT = Object.fromEntries(Object.entries(JIJP).map(([si, to]) => [si, shiftOf(JIJ0, to)]));
-// painted back to front: the press, the bin of granules, the temperature control unit, the control, the stand with the
-// boundary sample, the operators, the trolley with the mould, the table, you
+// painted back to front: the press, the bin of granules, the temperature control unit, the control,
+// the operator, the trolley with the mould, the table (with the cover and the boundary sample), you
 const world = [
   w.room(ROOM),
   part.press,
@@ -319,7 +319,7 @@ const spec = {
     {
       id: 's4', level: 1, dur: DURS[3], still: 0.9, title: { nl: 'Kunststoffen', en: 'Plastics' },
       beats: [
-        { nl: 'Derde onderwerp: Kunststoffen. Ze smelten bij verwarmen en worden weer vast.', en: 'Third topic: Plastics. They melt when heated and set again when cooled.', focus: ['tMat', 'thermoS', 'granules'] },
+        { nl: 'Derde onderwerp: Kunststoffen. De korrels smelten bij verwarmen en worden weer vast.', en: 'Third topic: Plastics. The granules melt when heated and set again when cooled.', focus: ['tMat', 'thermoS', 'granules'] },
         { nl: 'De kap is van polycarbonaat, helder en bijna onbreekbaar. Het neemt water op.', en: 'The cover is polycarbonate, clear and hard to break. It absorbs water.', focus: ['pcS', 'cover'] },
         { nl: 'Daarom gebruiken we vaak een droger voor de korrels.', en: 'So we often use a dryer for the granules.', focus: ['tool1', 'dryer'] },
       ],
@@ -335,7 +335,7 @@ const spec = {
     {
       id: 's6', level: 1, dur: DURS[5], still: 0.9, title: { nl: 'Procesinstelling', en: 'Process setting' },
       beats: [
-        { nl: 'Vijfde onderwerp: Procesinstelling. Vijf groepen instellingen bepalen het product.', en: 'Fifth topic: Process setting. Five groups of settings decide the part.', focus: ['tSet', 'fiveS', 'screen'] },
+        { nl: 'Vijfde onderwerp: Procesinstelling. Op het scherm bepalen vijf groepen instellingen het product.', en: 'Fifth topic: Process setting. On the screen, five groups of settings decide the part.', focus: ['tSet', 'fiveS', 'screen'] },
         { nl: 'Ze beïnvloeden elkaar. Daarom draait de insteller niet zomaar aan één ervan.', en: 'They affect each other. So the setter does not just turn one of them.', focus: ['linkS', 'screen'] },
         { nl: 'Bij het instellen starten we met de {t:Instelkaart|instelkaart} voor deze matrijs op deze pers.', en: 'For setting we start with the {t:Setting sheet|setting sheet} for this mould on this press.', ...TOOL('Instelkaart'), focus: ['tool1', 'card'] },
       ],
@@ -356,8 +356,8 @@ const spec = {
         { nl: 'Elk onderwerp heeft vier niveaus.', en: 'Every topic has four levels.', focus: 'route' },
         { nl: 'Begin bij De machine, op niveau Basis. Die les laat zien hoe een pers werkt.', en: 'Start with The machine, at Basics level. That lesson shows how a press works.', focus: ['tMach', 'start'] },
         { nl: 'Werkkennis: schroef, koelen, soorten kunststof, foutoorzaken, procesvenster en de matrijs van binnen.', en: 'Working knowledge: screw, cooling, plastic families, causes of defects, process window and inside the mould.', focus: 'lv2' },
-        { nl: 'Gevorderd: pers kiezen, meer holtes, drogen, kromtrekken, drie studies en matrijsonderhoud.', en: 'Advanced: choosing a press, more cavities, drying, warpage, three studies and mould maintenance.', focus: 'lv3' },
-        { nl: 'Expert: soorten persen, kostprijs, glasvezel en recyclaat, blijvende oplossingen, valideren, nieuwe matrijs.', en: 'Expert: kinds of presses, part cost, glass fibre and recyclate, lasting fixes, validating, a new mould.', focus: 'lv4' },
+        { nl: 'Gevorderd: pers kiezen, meer holtes, kromtrekken, drie studies en matrijsonderhoud.', en: 'Advanced: choosing a press, more cavities, warpage, three studies and mould maintenance.', focus: 'lv3' },
+        { nl: 'Expert: soorten persen, kostprijs, glasvezel en recyclaat, blijvende oplossingen en valideren.', en: 'Expert: kinds of presses, part cost, glass fibre and recyclate, lasting fixes and validating.', focus: 'lv4' },
         { nl: 'Elke les en elke film van deze module heeft een plek op deze kaart.', en: 'Every lesson and film in this module has a place on this map.', focus: null },
       ],
     },
@@ -377,25 +377,25 @@ const spec = {
 // the setting sheet (the settings affect each other), the shot counter (it tells when the mould needs service).
 const SAY = [
   [ // s1 one cover, six topics: what injection moulding is, the three that make the cover and the three that keep it right
-    { nl: 'In de spuitgieterij van de fabriek staat een pers. Daar komt de kap voor de vuleenheid van lijn 3 uit.',
-      en: 'In the moulding shop of the plant stands a press. The cover for the filling unit of line 3 comes out of it.' },
+    { nl: 'In de spuitgieterij staat een pers. Daar komt de kap voor de vuleenheid van lijn 3 uit.',
+      en: 'In the moulding shop stands a press. The cover for the filling unit of line 3 comes out of it.' },
     { nl: 'Een spuitgietmachine maakt kunststof producten door gesmolten kunststof in een stalen matrijs te spuiten en te laten stollen.',
       en: 'An injection moulding machine makes plastic parts by injecting molten plastic into a steel mould and letting it set.' },
-    { nl: 'Zes onderwerpen volgen de kap, van pers tot matrijs. De machine, de cyclus en de kunststoffen maken hem.',
-      en: 'Six topics follow the cover, from press to mould. The machine, the cycle and the plastics make it.' },
+    { nl: 'Zes onderwerpen volgen de kap. De machine, de cyclus en de kunststoffen maken hem.',
+      en: 'Six topics follow the cover. The machine, the cycle and the plastics make it.' },
     { nl: 'Fouten, procesinstelling en matrijzen zorgen dat elke kap goed is.',
       en: 'Defects, process setting and moulds make sure every cover is good.' },
   ],
   [ // s2 the machine: the injection unit melts, the clamp unit holds the mould shut, the mould fits between the tie bars
     { nl: 'Het eerste onderwerp is De machine. De spuitunit smelt de kunststof en de sluitunit houdt de matrijs vast.',
       en: 'The first topic is The machine. The injection unit melts the plastic and the clamp unit holds the mould.' },
-    { nl: 'De {t:Sluitkracht|sluitkracht} houdt de matrijs dicht tegen de druk van de kunststof. Te weinig geeft braam op de kap.',
-      en: 'The {t:Clamp force|clamp force} keeps the mould shut against the pressure of the plastic. Too little gives flash on the cover.' },
+    { nl: 'De {t:Sluitkracht|sluitkracht} houdt de matrijs dicht tegen de druk. Te weinig geeft braam op de kap.',
+      en: 'The {t:Clamp force|clamp force} keeps the mould shut against the pressure. Too little gives flash on the cover.' },
     { nl: 'Bij de machine kijken we naar de geleidekolommen. De matrijs moet ertussen passen.',
       en: 'For the machine we look at the tie bars. The mould has to fit between them.' },
   ],
   [ // s3 cycle and output
-    { nl: 'Het tweede onderwerp is Cyclus en output. Een cyclus loopt van het ene sluiten van de matrijs tot het volgende.',
+    { nl: 'Het tweede onderwerp is Cyclus en output. Een cyclus loopt van sluiten tot weer sluiten.',
       en: 'The second topic is Cycle and output. A cycle runs from one closing of the mould to the next.' },
     { nl: 'Het koelen duurt meestal het langst. Daarom bepaalt het hoeveel kappen je per uur maakt.',
       en: 'The cooling usually takes longest. So it decides how many covers you make per hour.' },
@@ -403,8 +403,8 @@ const SAY = [
       en: 'For cooling we often use cooling channels and a temperature control unit.' },
   ],
   [ // s4 plastics: thermoplastics, the cover plastic takes up water, so the granules are dried
-    { nl: 'Het derde onderwerp is Kunststoffen. Het zijn thermoplasten, die smelten bij verwarmen en weer vast worden bij afkoelen.',
-      en: 'The third topic is Plastics. They are thermoplastics, which melt when heated and set when cooled.' },
+    { nl: 'Het derde onderwerp is Kunststoffen. De korrels zijn thermoplasten. Ze smelten bij verwarmen en worden weer vast.',
+      en: 'The third topic is Plastics. The granules are thermoplastics. They melt when heated and set again when cooled.' },
     { nl: 'De kap is van polycarbonaat, helder en bijna onbreekbaar. Maar het neemt water op uit de lucht.',
       en: 'The cover is polycarbonate, clear and hard to break. But it absorbs water from the air.' },
     { nl: 'Daarom gebruiken we bij kunststoffen vaak een droger voor de korrels.',
@@ -415,12 +415,12 @@ const SAY = [
       en: 'The fourth topic is Defects. On a cover you can see flash or a sink mark.' },
     { nl: 'Braam is kunststof waar het niet hoort. Een inzakplek is een deukje boven een dik deel.',
       en: 'Flash is plastic where it should not be. A sink mark is a dent above a thick section.' },
-    { nl: 'Bij fouten vergelijken we met een grensmonster. Zo oordeelt elke dienst hetzelfde over een kap.',
-      en: 'For defects we compare with a boundary sample. So every shift judges a cover the same way.' },
+    { nl: 'Bij fouten vergelijken we met een grensmonster. Zo oordeelt elke dienst hetzelfde.',
+      en: 'For defects we compare with a boundary sample. So every shift judges the same.' },
   ],
   [ // s6 process setting
-    { nl: 'Het vijfde onderwerp is Procesinstelling. Vijf groepen instellingen bepalen het product.',
-      en: 'The fifth topic is Process setting. Five groups of settings decide the part.' },
+    { nl: 'Het vijfde onderwerp is Procesinstelling. Op het scherm bepalen vijf groepen instellingen het product.',
+      en: 'The fifth topic is Process setting. On the screen, five groups of settings decide the part.' },
     { nl: 'Ze beïnvloeden elkaar. Daarom draait de insteller niet zomaar aan één ervan.',
       en: 'They affect each other. So the setter does not just turn one of them.' },
     { nl: 'Bij het instellen starten we met de instelkaart voor deze matrijs op deze pers.',
@@ -431,8 +431,8 @@ const SAY = [
       en: 'The sixth topic is Moulds. The mould is the costly part, made for this cover only.' },
     { nl: 'Je onderhoudt de matrijs voordat hij stuk gaat. Anders krijg je later braam op de kap.',
       en: 'You service the mould before it breaks. Otherwise you get flash on the cover later.' },
-    { nl: 'Bij matrijzen gebruiken we vaak een heetkanaal en een shotteller, die de cycli telt.',
-      en: 'For moulds we often use a hot runner and a shot counter, which counts the cycles.' },
+    { nl: 'Bij matrijzen gebruiken we vaak een heetkanaal en een shotteller, die telt hoe vaak hij sluit.',
+      en: 'For moulds we often use a hot runner and a shot counter, which counts how often it closes.' },
     { nl: 'De kap is goed. Hij gaat naar hal B, naar de vuleenheid van lijn 3.',
       en: 'The cover is good. It goes to hall B, to the filling unit of line 3.' },
   ],
@@ -443,12 +443,12 @@ const SAY = [
       en: 'Every topic has four levels.' },
     { nl: 'Begin bij De machine, op niveau Basis. Die eerste les laat een hele cyclus van de pers zien.',
       en: 'Start with The machine, at Basics level. That first lesson shows one whole cycle of the press.' },
-    { nl: 'Op niveau Werkkennis leer je de schroef en het koelen kennen, en de soorten kunststof. Je zoekt de oorzaak van een fout, stelt het procesvenster in en kijkt in de matrijs.',
-      en: 'At Working knowledge level you learn the screw and the cooling, and the plastic families. You look for the cause of a defect, set the process window and look inside the mould.' },
-    { nl: 'Op niveau Gevorderd kies je de juiste pers en weeg je meer holtes tegen een snellere cyclus. Je droogt in detail en pakt kromtrekken aan. Daarna komen drie studies en het matrijsonderhoud.',
-      en: 'At Advanced level you choose the right press and weigh more cavities against a faster cycle. You dry in detail and tackle warpage. Then come three studies and the mould maintenance.' },
-    { nl: 'Op niveau Expert ken je alle soorten persen en reken je uit wat een product kost. Je werkt met glasvezel en recyclaat, lost fouten blijvend op en valideert het proces. Een nieuwe matrijs begeleid je tot de vrijgave.',
-      en: 'At Expert level you know all kinds of presses and work out what a part costs. You work with glass fibre and recyclate, solve defects for good and validate the process. You guide a new mould to release.' },
+    { nl: 'Op niveau Werkkennis komen de schroef, het koelen en de soorten kunststof. Je zoekt de oorzaak van een fout, stelt het procesvenster in en kijkt in de matrijs.',
+      en: 'At Working knowledge level come the screw, the cooling and the plastic families. You look for the cause of a defect, set the process window and look inside the mould.' },
+    { nl: 'Op niveau Gevorderd kies je de juiste pers, weeg je meer holtes af en pak je kromtrekken aan. Daarna komen drie studies en het matrijsonderhoud.',
+      en: 'At Advanced level you choose the right press, weigh more cavities and tackle warpage. Then come three studies and the mould maintenance.' },
+    { nl: 'Op niveau Expert ken je alle soorten persen en reken je de kostprijs uit. Je werkt met glasvezel en recyclaat, lost fouten blijvend op en valideert het proces.',
+      en: 'At Expert level you know all kinds of presses and work out the part cost. You work with glass fibre and recyclate, solve defects for good and validate the process.' },
     { nl: 'Elke les en elke film van deze module heeft een plek op deze kaart.',
       en: 'Every lesson and every film in this module has a place on this map.' },
   ],
@@ -490,7 +490,7 @@ const preamble = `const CAM = ${JSON.stringify(CAM)};\nconst OPSHIFT = ${JSON.st
 const stageScript = kitScript() + '\n' + preamble + lean(readFileSync(join(HERE, 'stage.js'), 'utf8'))
   + '\n;\n' + readFileSync(join(HERE, '../_kit/beatwarp.js'), 'utf8');
 
-const PEOPLE = ':is([data-cue="jij"],[data-cue="opP"],[data-cue="opD"],[data-cue="opT"])';
+const PEOPLE = ':is([data-cue="jij"],[data-cue="opP"])';
 const css = PM_CSS + MOULDING_CSS + `
 .pm-panel{fill:var(--anatomy-shade-0);stroke:var(--fp-hair);stroke-width:1;opacity:.97}
 .pm-card{fill:var(--anatomy-face);stroke:var(--anatomy-mid);stroke-width:1.4;stroke-linejoin:round}
@@ -520,8 +520,8 @@ const css = PM_CSS + MOULDING_CSS + `
 ` + mapStyles(undefined, 'eng');
 
 const label = {
-  nl: 'De spuitgieterij van de fabriek, op mensenmaat. Langs de achterwand een spuitgietmachine: links de sluitunit met de matrijs tussen twee platen op vier geleidekolommen, rechts de spuitunit met een cilinder, een trechter met een droger erboven en de aandrijving. Voor de machine een temperatuurregelaar met een slang naar de matrijs, een besturing met een scherm, een bak met kunststofkorrels, een standaard met het grensmonster, een tafel met de instelkaart en de kap, en vooraan links een wagen met een geopende matrijs met een heetkanaal en een shotteller. Een operator bij de pers, een bij de droger en een bij de wagen, allemaal met een veiligheidsbril, en jij, de engineer. Rechts een paneel, gemarkeerd als voorbeeld of schema: de kap van de vuleenheid van lijn 3 die uit korrels in een matrijs ontstaat, de zes onderwerpen van de module als route in twee groepen, de drie die de kap maken en de drie die hem goed houden, elk met zijn schema: de machine, de cyclus, de kunststoffen, de fouten, de procesinstelling en de matrijzen, met per onderwerp de namen van een of twee hulpmiddelen, en de goede kap die naar hal B gaat. Aan het eind de hele kaart van Engineering met Spuitgieten verlicht, en de zes onderwerpen van de module met elk vier niveaus: Basis, Werkkennis, Gevorderd en Expert.',
-  en: 'The moulding shop of the plant, at person scale. Along the back wall an injection moulding machine: at the left the clamp unit with the mould between two platens on four tie bars, at the right the injection unit with a barrel, a hopper with a dryer on top and the drive. In front of the machine a temperature control unit with a hose to the mould, a control with a screen, a bin of plastic granules, a stand with the boundary sample, a table with the setting sheet and the cover, and at the front left a trolley with an opened mould with a hot runner and a shot counter. An operator at the press, one at the dryer and one at the trolley, all in safety glasses, and you, the engineer. At the right a panel, marked as an example or a diagram: the cover of the filling unit of line 3 that comes from granules in a mould, the six topics of the module as a route in two groups, the three that make the cover and the three that keep it right, each with its diagram: the machine, the cycle, the plastics, the defects, the process setting and the moulds, with the names of one or two tools per topic, and the good cover going to hall B. At the end the whole map of Engineering with Injection moulding lit, and the module’s six topics with four levels each: Basics, Working knowledge, Advanced and Expert.',
+  nl: 'De spuitgieterij van de fabriek, op mensenmaat. Langs de achterwand een spuitgietmachine: links de sluitunit met de matrijs tussen twee platen op vier geleidekolommen, rechts de spuitunit met een cilinder, een trechter met een droger erboven en de aandrijving. Voor de machine een temperatuurregelaar met een slang naar de matrijs, een besturing met een scherm, een bak met kunststofkorrels, een tafel met de instelkaart, de kap en het grensmonster, en vooraan links een wagen met een geopende matrijs met een heetkanaal en een shotteller. Een operator met een veiligheidsbril die van de pers naar de droger, de besturing en de wagen loopt, en jij, de engineer. Rechts een paneel, gemarkeerd als voorbeeld of schema: de kap van de vuleenheid van lijn 3 die uit korrels in een matrijs ontstaat, de zes onderwerpen van de module als route in twee groepen, de drie die de kap maken en de drie die hem goed houden, elk met zijn schema: de machine, de cyclus, de kunststoffen, de fouten, de procesinstelling en de matrijzen, met per onderwerp de namen van een of twee hulpmiddelen, en de goede kap die naar hal B gaat. Aan het eind de hele kaart van Engineering met Spuitgieten verlicht, en de zes onderwerpen van de module met elk vier niveaus: Basis, Werkkennis, Gevorderd en Expert.',
+  en: 'The moulding shop of the plant, at person scale. Along the back wall an injection moulding machine: at the left the clamp unit with the mould between two platens on four tie bars, at the right the injection unit with a barrel, a hopper with a dryer on top and the drive. In front of the machine a temperature control unit with a hose to the mould, a control with a screen, a bin of plastic granules, a table with the setting sheet, the cover and the boundary sample, and at the front left a trolley with an opened mould with a hot runner and a shot counter. An operator in safety glasses who walks from the press to the dryer, the control and the trolley, and you, the engineer. At the right a panel, marked as an example or a diagram: the cover of the filling unit of line 3 that comes from granules in a mould, the six topics of the module as a route in two groups, the three that make the cover and the three that keep it right, each with its diagram: the machine, the cycle, the plastics, the defects, the process setting and the moulds, with the names of one or two tools per topic, and the good cover going to hall B. At the end the whole map of Engineering with Injection moulding lit, and the module’s six topics with four levels each: Basics, Working knowledge, Advanced and Expert.',
 };
 
 const { data } = await defineFilm(spec, { svg, script: stageScript, css, kitCss: k.ISO_CSS, label });

@@ -40,7 +40,7 @@ export function mouldingWorld(w, k, G, P) {
   const BAR_Z = [82, 126];
   const MOULD = { y: 18, d: 24, z0: 92, z1: 116 };
   const TABLE = { x: 150, y: 112, w: 112, d: 46, h: 74 };
-  const COVER = { x: 180, y: 118, w: 42, d: 24, z1: 92 }; // the finished cover on the table
+  const COVER = { x: 180, y: 118, w: 42, d: 24, z1: 98 }; // the finished cover on the table
   const SHEET = { x: 154, y: 118, z: TABLE.h };
   const SAMPLE = { x: 232, y: 124, w: 28, d: 18 }; // the boundary sample: a cover on the limit between good and bad, kept at the machine
 

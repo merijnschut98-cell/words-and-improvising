@@ -4,8 +4,8 @@
 // drawing wraps as the kit's label check measures). The story is drawn in the plant's moulding shop at the
 // left: a press along the back wall (the clamp unit with the mould on four tie bars, the injection unit with a
 // hopper and a dryer), a temperature control unit with a hose to the mould, a control with a screen, a bin of
-// granules, a table with the setting sheet and the cover, a stand with the boundary sample and a trolley with a
-// mould opened for maintenance; two operators and you, the engineer, come and go. The panel at the right draws
+// granules, a table with the setting sheet, the cover and the boundary sample and a trolley with a
+// mould opened for maintenance; an operator and you, the engineer, come and go. The panel at the right draws
 // each beat as a schema, labelled "voorbeeld" (the cover's job) or "schema" (the module's map). Every part a
 // sentence lights is a static data-cue group (build.mjs); this script only fills the panel and shows or hides
 // the room's moving parts. The closing scene (the shared Engineering map, then the module's six topics with
