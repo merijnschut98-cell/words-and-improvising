@@ -897,7 +897,15 @@ const SAY = {
     // (tach-nummer; said tek-nummer) and stresses operator on the first syllable (said ope-raator), only in the intro's two
     // sentences ("lezen we het tagnummer", "De operator loopt"). P&ID is written "P en I D" in its narration; GD en T, PID,
     // PLC, stempel, tolerantiekader, niveaumeter, regelklep and streefwaarde are read right; no other film's spoken text changes
-    [/\blezen we het tagnummer\b/g, 'lezen we het tek-nummer'], [/\bDe operator loopt\b/g, 'De ope-raator loopt']],
+    [/\blezen we het tagnummer\b/g, 'lezen we het tek-nummer'], [/\bDe operator loopt\b/g, 'De ope-raator loopt'],
+    // the module intro film "The pipe to line 3" (eng.fluids.intro), a self-contained group at the end of the Dutch list,
+    // checked with phonemes through Piper's nl_NL-alex bridge: espeak-ng reads Moody with a long Dutch oo (said Moodi; a Dutch
+    // engineer says Moedi) and utilities with the Dutch ü (said ütilitsis; said joetilletiez), only in the intro's own
+    // sentences ("af in het Moody-diagram", "koelwater zijn utilities", "onderwerp is Stoom en utilities"). Pompkarakteristiek,
+    // platenwarmtewisselaar, condenspot, debiet, drukval, cavitatie, energiecase, tekortschietende and the level words are read
+    // right; toerenregeling and warmteterugwinning have rules above; no other film's spoken text changes
+    [/(?<=\baf in het )Moody-diagram\b/g, 'Moedi-diagram'], [/(?<=\bkoelwater zijn )utilities\b/g, 'joetilletiez'],
+    [/(?<=\bonderwerp is Stoom en )utilities\b/g, 'joetilletiez']],
   en: [[/\brpm\b/g, 'revolutions per minute'], [/\bmm\/min\b/g, 'millimetres per minute'], [/\bm\/min\b/g, 'metres per minute'], [/µm\b/g, 'micrometres'],
     [/€\s?(\d[\d,]*(?:\.\d+)?)/g, '$1 euros'], [/(\d)\.0(?![\d])/g, '$1'], [/(\d)\s?mm\b/g, '$1 millimetres'], [/(\d)\s?min\b/g, '$1 minutes'], [/(\d)\s?%/g, '$1 percent'],
     [/Ø\s*/g, 'diameter '], [/(\d)\+(\d)/g, '$1 plus $2'], [/\s×\s/g, ' times '], [/\s\/\s/g, ' divided by '], [/\s=\s/g, ' is '], [/°/g, ' degrees'], [/\bRa\b/g, 'R a'], [/’/g, "'"],

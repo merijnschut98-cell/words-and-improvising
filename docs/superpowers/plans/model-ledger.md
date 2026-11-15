@@ -146,3 +146,5 @@ Outcome: accepted (merged as delivered), sent back N times, redone.
 | 15 Nov | Review: eng.switchgear.intro | sonnet | 72 | 13 min | 221,025 | accepted with fixes (hall B agrees with field film and transformers intro, RMU said of a netstation, installer tests the relay, you touch nothing); merged v323 |
 | 15 Nov | Build: Engineering intro eng.power.intro | sonnet | 68 | 12 min | 291,182 | accepted with fixes by its review |
 | 15 Nov | Review: eng.power.intro | sonnet | 62 | 9.3 min | 176,121 | accepted with one fix (the drawn 10 % label now said in the narration); merged v324 |
+| 15 Nov | Build: Engineering intro eng.fluids.intro | sonnet | 113 | 19 min | 370,127 | accepted with fixes by its review |
+| 15 Nov | Review: eng.fluids.intro | sonnet | ~75 | n/a | n/a | accepted with fixes (exchanger moved off the motor and hose so hall B agrees, Moody gives the friction factor, hedges, curves cross at the duty point); merged v326 |
