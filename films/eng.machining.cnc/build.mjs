@@ -62,7 +62,7 @@ const spec = {
       id: 's4', lesson: L1, level: 1, still: 0.9, title: { nl: 'Van model tot besturing', en: 'From model to control' },
       beats: [
         { nl: 'CAM (computer-aided manufacturing) maakt van het 3D-model de G-code.', en: 'CAM (computer-aided manufacturing) turns the 3D model into G-code.', focus: ['card'], points: ['t2.2'],
-          say: { nl: 'De meeste programma’s maak je in CAM-software. Die zet het 3D-model van het onderdeel om in G-code.', en: 'Most programs are written in CAM software. It turns the 3D model of the part into G-code.' } },
+          say: { nl: 'De meeste programma’s maak je in CAM-software. Die zet het 3D-model van het onderdeel om in de G-code.', en: 'Most programs are written in CAM software. It turns the 3D model of the part into G-code.' } },
         { nl: 'De G-code gaat naar de besturing: Fanuc, Siemens of Heidenhain.', en: 'The G-code goes to the control: Fanuc, Siemens or Heidenhain.', focus: ['pend', 'card'], points: ['t2.2'],
           say: { nl: 'Die G-code gaat naar de besturing, de computer op de machine. Bekende merken zijn Fanuc, Siemens en Heidenhain.', en: 'That G-code goes to the control, the computer on the machine. Well-known makes are Fanuc, Siemens and Heidenhain.' } },
       ],
