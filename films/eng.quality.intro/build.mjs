@@ -17,8 +17,8 @@
 // must be good, that at the end of the belt a check table with a check sheet and a marked quarantine place wait, that a bad
 // carton is set apart, and that the tools are the check sheet and the nonconformance report). This film follows HOW LINE 3
 // KEEPS EVERY CARTON GOOD THROUGH A SHIFT, topic by topic, in the room of the field film: the belt with its cartons, the filling
-// unit over it, the check table at the end of the belt (at the sentence that names the check sheet), the marked quarantine place
-// on the floor in front of it (at the sentence that sets a bad carton apart), you and the team lead at the front. The tolerance,
+// unit over it, the check table at the end of the belt (at the sentence that has a few cartons measured there), the marked quarantine place
+// on the floor in front of it (at the sentence that sets a bad carton apart), you and the team lead at the front (a little further left than in the field film, so that you no longer cover the quarantine mark). The tolerance,
 // the spread, the control chart and the report are schemas in the panel; the field film's room has no scale, no gauge and no
 // chart, so none is drawn there.
 //   s1 every carton that leaves line 3 must be good; the module is about how engineers talk about good parts (the module's
@@ -32,8 +32,11 @@
 //      process can stay inside the tolerance (Werkkennis, .capability); the topic has no real tool at Basis or Werkkennis, so
 //      the most tool-like term is the Cpk (Werkkennis, .capability: the index worked out from the spread and the nearest limit)
 //   s4 SPC en regelkaarten: SPC is watching a running process so you see a change before it makes bad parts (Werkkennis, .spc);
-//      a control chart plots measurements over time with a centre line and two control limits (Werkkennis, .spc); the tool is
-//      the check sheet (turflijst, Basis, .datatools), the field film's own tool, kept on the check table at the end of the belt
+//      a control chart plots measurements over time with a centre line and two control limits (Werkkennis, .spc); a few cartons
+//      are measured at the check table at the end of the belt and written down (the sheet on the table); the tool is the X-bar/R
+//      chart (Werkkennis, .spc: "the classic" chart of subgroup averages and ranges). Review: the builder's tool, the check sheet
+//      (turflijst, .datatools), is a data tool of the Basis lesson, not SPC itself, and the field film's own tool; the np chart
+//      belongs to eng.field.better, so the topic's own classic chart is the tool and the turflijst is no tool of this film
 //   s5 Risico en beheersing: a nonconforming part must first stop moving (Basis, .nonconform); quarantine sets it aside and marks
 //      it (Basis, .nonconform), the marked place on the floor; the tool is the nonconformance report (afwijkingsrapport, Basis,
 //      .nonconform), the field film's other tool. The story ends here: you and the team lead keep every carton good all shift
@@ -41,7 +44,7 @@
 //      columns, where to start, and what each later level adds, in the app's level words
 // Per the review of the lines, industry40, gridplanning and flow intros: one clear tool per topic; drop what is not needed;
 // nothing labelled before it is named; a Werkkennis tool named in a scene (caliper, Cpk) is not named again in the closing grid;
-// the tools of no other intro are repeated (no other intro names one of these). The second topic has no real tool at Basis or
+// the tools of no other intro are repeated (no other intro names one of these; the micrometer of eng.machining.intro is not the caliper). The second topic has no real tool at Basis or
 // Werkkennis (reported). FMEA is not named in the voice (espeak-ng reads it "fmeea", with no vowel for f and m); the closing grid
 // says what it is for ("de risico's vóór de start").
 //
@@ -93,11 +96,11 @@ has('eng.quality.variation', ['Geen twee onderdelen zijn gelijk', 'Engineers bes
 has('eng.quality.variation', ['No two parts are identical', 'Engineers describe that variation'], 'en');
 has('eng.quality.capability', ['Procesgeschiktheid (capability) zegt of een proces binnen de tolerantie kan blijven', 'je vergelijkt de spreiding van het proces met de breedte van de tolerantie', 'Cpk telt het centreren mee: de afstand van het gemiddelde tot de dichtstbijzijnde specgrens']);
 has('eng.quality.capability', ['Capability says whether a process can stay inside the tolerance', 'it compares the spread of the process with the width of the tolerance', 'Cpk adds the centring: the distance from the mean to the nearest spec limit'], 'en');
-// s4: SPC watches a running process; the control chart; the check sheet
+// s4: SPC watches a running process; the control chart; the X-bar/R chart of subgroup averages and ranges
 has('eng.quality.spc', ['betekent een proces met eenvoudige statistiek in de gaten houden terwijl het draait, zodat je een verandering ziet voordat er slechte delen van komen', 'een meting uitgezet in de tijd, met een middellijn en twee regelgrenzen']);
 has('eng.quality.spc', ['means watching a process with simple statistics while it runs, so you see a change before it makes bad parts', 'a measurement plotted over time, with a centre line and two control limits'], 'en');
-has('eng.quality.datatools', ['De turflijst (check sheet) is de eenvoudigste: een formulier naast de machine waarop de operator met een streepje noteert welke fout hij ziet']);
-has('eng.quality.datatools', ['The check sheet is the simplest: a form next to the machine on which the operator makes a tally mark for each defect he sees'], 'en');
+has('eng.quality.spc', ['De klassieker is de X-bar/R-kaart', 'je zet het gemiddelde (X-bar) en de range (R, grootste min kleinste) uit', 'X-bar laat zien of het midden verschuift']);
+has('eng.quality.spc', ['The classic is the X-bar/R chart', 'plot their average (X-bar) and their range (R, largest minus smallest)', 'X-bar shows whether the centre moves'], 'en');
 // s5: a nonconforming part stops moving; quarantine; the nonconformance report
 has('eng.quality.nonconform', ['Een afwijkend deel dat ontdekt is, moet eerst stoppen met bewegen', 'Quarantaine (quarantine) betekent: apart zetten en duidelijk markeren', 'Alles komt in een afwijkingsrapport (nonconformance report, NCR): wat, hoeveel']);
 has('eng.quality.nonconform', ['A nonconforming part that has been found must first stop moving', 'Quarantine means setting it aside and marking it clearly', 'Everything goes into a nonconformance report (NCR): what, how many'], 'en');
@@ -169,7 +172,7 @@ const quarantine = hall.floorMark(QZ)
   + w.box({ x: QZ.x + 15, y: QZ.y + 20, w: 20, d: 18, r: 1 }, 0.4, 20.4, { tone: 'hi' }, { steps: 1 })
   + w.box({ x: QZ.x + 16, y: QZ.y + 20, w: 20, d: 18, r: 1 }, 20.4, 40.4, { tone: 'hi' }, { steps: 1 });
 
-// painted back to front: the belt and the unit, the check table (shown from the sentence that names the check sheet noted on it),
+// painted back to front: the belt and the unit, the check table (shown from the sentence that has a few cartons measured and written down on it),
 // the quarantine place (from the sentence that sets a bad carton apart), you and the team lead (from the sentence that names you)
 const world = [
   w.room(ROOM),
@@ -177,8 +180,8 @@ const world = [
   cueG('unit', frame + plate + cover),
   g('o-sheet', cueG('checksheet', checkTable)),
   g('o-quar', cueG('quarantine', quarantine)),
-  g('pp-teamlead', person('teamlead', 128, 132, 'x')),
-  g('pp-jij', person('jij', 188, 132, 'x')),
+  g('pp-teamlead', person('teamlead', 110, 132, 'x')),
+  g('pp-jij', person('jij', 174, 132, 'x')),
 ].join('');
 
 // ---------------------------------------------------------------- the panel (stage space)
@@ -186,7 +189,7 @@ const world = [
 // four topic tiles (the route, one square of the strip, a row of the grid), the level columns and the schemas of each beat. The
 // shared map (the kit's mapScene) sits under the panel; its place Quality is a cue group of its own (map-quality).
 const TILE = { tolerances: 'tTol', capability: 'tVar', spc: 'tSpc', risk: 'tRisk' };
-const PANEL = ['goodS', 'askS', 'shiftS', 'grpA', 'grpB', 'tolS', 'limS', 'calS', 'varS', 'capS', 'cpkS', 'spcS', 'chartS', 'sheetS', 'badS', 'quaS', 'ncrS', 'endS',
+const PANEL = ['goodS', 'askS', 'shiftS', 'grpA', 'grpB', 'tolS', 'limS', 'calS', 'varS', 'capS', 'cpkS', 'spcS', 'chartS', 'subS', 'xbarS', 'badS', 'quaS', 'ncrS', 'endS',
   'tool1', 'lv1', 'lv2', 'lv3', 'lv4', 'start'];
 const tiles = ORDER.map((id, i) => cueG(TILE[id], g(`r${i}`, ''))).join('');
 const hud = g('hud', '<rect data-k="pbg" class="pm-panel" x="322" y="12" width="308" height="376" rx="10"/>' + g('pHead', '')
@@ -299,7 +302,7 @@ const spec = {
       beats: [
         { nl: 'Het tweede onderwerp is Spreiding en procesgeschiktheid. Geen twee dozen zijn precies gelijk.', en: 'The second topic is Variation and capability. No two cartons are exactly alike.', focus: ['tVar', 'varS', 'line3', 'unit'] },
         { nl: 'Procesgeschiktheid zegt of lijn 3 binnen de tolerantie kan blijven.', en: 'Capability says whether line 3 can stay within the tolerance.', focus: ['capS', 'line3'] },
-        { nl: 'Je rekent het uit met de {t:Cpk|Cpk}.', en: 'You work it out with the {t:Cpk|Cpk}.', ...TOOL('Cpk'), focus: ['tool1', 'cpkS'] },
+        { nl: 'Dat druk je uit in de {t:Cpk|Cpk}.', en: 'You express that as the {t:Cpk|Cpk}.', ...TOOL('Cpk'), focus: ['tool1', 'cpkS'] },
       ],
     },
     {
@@ -307,7 +310,8 @@ const spec = {
       beats: [
         { nl: 'Het derde onderwerp is SPC en regelkaarten. Je ziet een verandering voordat er foute dozen komen.', en: 'The third topic is SPC and control charts. You see a change before bad cartons appear.', focus: ['tSpc', 'spcS', 'line3'] },
         { nl: 'Een regelkaart zet metingen uit in de tijd, met een middellijn en twee regelgrenzen.', en: 'A control chart plots measurements over time, with a centre line and two control limits.', focus: ['chartS', 'line3'] },
-        { nl: 'Aan het eind van de band noteer je fouten op een {t:Turflijst|turflijst}.', en: 'At the end of the belt you note faults on a {t:Check sheet|check sheet}.', ...TOOL('Turflijst'), focus: ['tool1', 'sheetS', 'checksheet'] },
+        { nl: 'Aan de tafel aan het eind van de band meet je een paar dozen en schrijf je ze op.', en: 'At the table at the end of the belt you measure a few cartons and write them down.', focus: ['subS', 'checksheet'] },
+        { nl: 'Je zet het gemiddelde en de range van die dozen uit op een {t:X-bar/R-kaart|X-bar/R-kaart}.', en: 'You plot the average and the range of those cartons on an {t:X-bar/R chart|X-bar/R chart}.', ...TOOL('X-bar/R-kaart'), focus: ['tool1', 'xbarS', 'checksheet'] },
       ],
     },
     {
@@ -340,9 +344,14 @@ const spec = {
 // What the voice says is what the captions show (as in the other module intros): short sentences, few commas, no colons
 // and no symbols the voice would read aloud. Each topic scene ends on one short sentence naming the tool of that topic's
 // lessons, without explaining it. Every drawn detail has its reason in the narration: the belt and the unit (line 3), the
-// check table (the check sheet noted on it), the quarantine place (the bad carton set apart), you and the team lead (the ones
+// check table (the readings written on it), the quarantine place (the bad carton set apart), you and the team lead (the ones
 // who keep every carton good for the shift).
 spec.scenes.forEach((s) => s.beats.forEach((b) => { b.say = { nl: b.nl, en: b.en }; }));
+// the voice says the chart as "X-bar- en R-kaart" and "X-bar and R chart" (no slash read aloud), as the lesson film eng.quality.spc does
+{
+  const b = spec.scenes[3].beats[3];
+  b.say = { nl: b.nl.replace('{t:X-bar/R-kaart|X-bar/R-kaart}', '{t:X-bar/R-kaart|X-bar- en R-kaart}'), en: b.en.replace('{t:X-bar/R chart|X-bar/R chart}', '{t:X-bar/R chart|X-bar and R chart}') };
+}
 // Each scene's length from its share of the Dutch narration, never shorter than its captions need.
 {
   const plainSay = (src) => src.replace(/\{t:[^|}]*\|([^}]*)\}/g, '$1').replace(/\{n:([^}]*)\}/g, '$1');
@@ -410,8 +419,8 @@ const css = PM_CSS + HALL_CSS + `
 
 
 const label = {
-  nl: 'Hal B van de fabriek, waar lijn 3 draait. Aan de achterwand de band van lijn 3 met dozen; boven het begin van de band staat de vuleenheid, ongeveer zo hoog als een mens: een stalen frame met een plaat boven de dozen en bovenop een lichte kunststof kap. Aan het eind van de band een tafel met een turflijst, en daarvoor op de vloer een gemarkeerde plek met twee dozen. Voor in de hal staan jij, de engineer, en de teamleider. Rechts een paneel, gemarkeerd als voorbeeld of schema: een doos die goed of fout is, drie vragen over goede onderdelen, een dienst van lijn 3, de route in twee groepen, een tolerantieveld met een ondergrens en een bovengrens, een schuifmaat om een doos, een rij dozen die om een gemiddelde spreiden, die spreiding binnen de tolerantie, een Cpk met de afstand tot de dichtste grens, punten in de tijd, een regelkaart met een middellijn en twee regelgrenzen, een turflijst met streepjes, een foute doos op de band, een doos in quarantaine, een afwijkingsrapport en een dienst met goede dozen voor de klant. Aan het eind de hele kaart van Engineering met Kwaliteit verlicht, en de vier onderwerpen van de module met elk vier niveaus: Basis, Werkkennis, Gevorderd en Expert.',
-  en: 'Hall B of the plant, where line 3 runs. Along the back wall the belt of line 3 with cartons; over the start of the belt stands the filling unit, about as tall as a person: a steel frame with a plate above the cartons and a light plastic cover on top. At the end of the belt a table with a check sheet, and in front of it on the floor a marked place with two cartons. At the front of the hall stand you, the engineer, and the team lead. At the right a panel, marked as an example or a diagram: a carton that is good or bad, three questions about good parts, a shift of line 3, the route in two groups, a tolerance band with a lower and an upper limit, a caliper round a carton, a row of cartons spreading around an average, that spread within the tolerance, a Cpk with the distance to the nearest limit, points in time, a control chart with a centre line and two control limits, a check sheet with tally marks, a bad carton on the belt, a carton in quarantine, a nonconformance report and a shift with good cartons for the customer. At the end the whole map of Engineering with Quality lit, and the module’s four topics with four levels each: Basics, Working knowledge, Advanced and Expert.',
+  nl: 'Hal B van de fabriek, waar lijn 3 draait. Aan de achterwand de band van lijn 3 met dozen; boven het begin van de band staat de vuleenheid, ongeveer zo hoog als een mens: een stalen frame met een plaat boven de dozen en bovenop een lichte kunststof kap. Aan het eind van de band een tafel met een blad om metingen op te schrijven, en daarvoor op de vloer een gemarkeerde plek met twee dozen. Voor in de hal staan jij, de engineer, en de teamleider. Rechts een paneel, gemarkeerd als voorbeeld of schema: een doos die goed of fout is, drie vragen over goede onderdelen, een dienst van lijn 3, de route in twee groepen, een tolerantieveld met een ondergrens en een bovengrens, een schuifmaat om een doos, een rij dozen die om een gemiddelde spreiden, die spreiding binnen de tolerantie, een Cpk met de afstand tot de dichtste grens, punten in de tijd, een regelkaart met een middellijn en twee regelgrenzen, een rij dozen met hun metingen, een X-bar/R-kaart met het gemiddelde boven en de range onder, een foute doos op de band, een doos in quarantaine, een afwijkingsrapport en een dienst met goede dozen voor de klant. Aan het eind de hele kaart van Engineering met Kwaliteit verlicht, en de vier onderwerpen van de module met elk vier niveaus: Basis, Werkkennis, Gevorderd en Expert.',
+  en: 'Hall B of the plant, where line 3 runs. Along the back wall the belt of line 3 with cartons; over the start of the belt stands the filling unit, about as tall as a person: a steel frame with a plate above the cartons and a light plastic cover on top. At the end of the belt a table with a sheet to write readings on, and in front of it on the floor a marked place with two cartons. At the front of the hall stand you, the engineer, and the team lead. At the right a panel, marked as an example or a diagram: a carton that is good or bad, three questions about good parts, a shift of line 3, the route in two groups, a tolerance band with a lower and an upper limit, a caliper round a carton, a row of cartons spreading around an average, that spread within the tolerance, a Cpk with the distance to the nearest limit, points in time, a control chart with a centre line and two control limits, a row of cartons with their readings, an X-bar/R chart with the average above and the range below, a bad carton on the belt, a carton in quarantine, a nonconformance report and a shift with good cartons for the customer. At the end the whole map of Engineering with Quality lit, and the module’s four topics with four levels each: Basics, Working knowledge, Advanced and Expert.',
 };
 
 const { data } = await defineFilm(spec, { svg, script: stageScript, css, kitCss: k.ISO_CSS, label });

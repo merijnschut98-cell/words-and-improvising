@@ -71,7 +71,7 @@ const STAGE = (() => {
 
   // ---- the room: you and the team lead come in at the sentence that names you (the opening's third beat) and again at the
   // end of the last topic (where the shift ends with every carton good). The check table stands from the sentence that names
-  // the check sheet kept on it (the third beat of the SPC scene), the quarantine place from the sentence that sets a bad
+  // the check sheet kept on it (the third beat of the SPC scene, where a few cartons are measured and written down), the quarantine place from the sentence that sets a bad
   // carton apart (the second beat of the risk scene)
   function room(si, b) {
     show(E['o-sheet'], (si === 3 && b >= 2) || si === 4 ? 1 : 0);
@@ -180,8 +180,9 @@ const STAGE = (() => {
     return lims(156) + bell(410, true) + path(`M${410 + 3 * 30 + 13} 176H${LIM.r}M${LIM.r - 6} 171L${LIM.r} 176L${LIM.r - 6} 181`, 'pm-arrow');
   }
 
-  // ---- s4: SPC follows a running process; a control chart has a centre line and two control limits and shows a change; the
-  // check sheet (the chip above) is a form with tally marks, kept on the table at the end of the belt.
+  // ---- s4: SPC follows a running process; a control chart has a centre line and two control limits and shows a change; a few
+  // cartons are measured at the table at the end of the belt and written down; the X-bar/R chart (the chip above) plots their
+  // average and their range.
   const DOTS = [[466, 206], [494, 190], [522, 214], [550, 198], [578, 188], [606, 120]];
   function spcDrawing() {
     // points in time, joined by a line
@@ -196,18 +197,22 @@ const STAGE = (() => {
       + txt(334, 142, tr('regelgrens', 'control limit', 130), 22, 'start', 'pm-mute') + txt(334, 192, tr('middellijn', 'centre line', 130), 22, 'start', 'pm-mute')
       + path('M334 290H618M610 285L618 290L610 295', 'pm-arrow');
   }
-  function sheetDrawing() {
-    // a form with rows of tally marks, four strokes and a slash to a group
-    let s = rect(334, 172, 284, 168, 'pm-card', 8);
-    [0, 1, 2].forEach((r) => {
-      const y = 206 + r * 44;
-      s += path(`M346 ${y}h64`, 'pm-link');
-      for (let gi = 0; gi < 2 - (r === 2 ? 1 : 0); gi++) {
-        const x = 440 + gi * 84;
-        s += path([0, 1, 2, 3].map((i) => `M${x + i * 12} ${y - 16}v26`).join('') + `M${x - 6} ${y + 4}L${x + 42} ${y - 8}`, 'pm-link');
-      }
-    });
-    return s;
+  function subDrawing() {
+    // a few cartons in a row, measured one after another and written down
+    let s = '';
+    for (let i = 0; i < 5; i++) s += rect(334 + i * 58, 190, 50, 44, 'pm-card', 6) + path(`M${343 + i * 58} 258h32`, 'pm-link');
+    return s + txt(334, 304, tr('een paar dozen', 'a few cartons', 284), 22, 'start', 'pm-mute');
+  }
+  function xbarDrawing() {
+    // the X-bar chart (the average of each few cartons) above the R chart (their range): centre line and limits, points over time
+    const xs = [440, 480, 520, 560, 600];
+    const top = [200, 188, 210, 194, 204];
+    const low = [326, 304, 322, 332, 310];
+    return txt(334, 206, 'X-bar', 22, 'start', 'pm-mute') + txt(334, 326, 'R', 22, 'start', 'pm-mute')
+      + path('M420 200H618', 'pm-link') + path('M420 168H618M420 232H618', 'pm-dash')
+      + path(`M${xs.map((x, i) => `${x} ${top[i]}`).join('L')}`, 'pm-link') + xs.map((x, i) => dot(x, top[i], 6)).join('')
+      + path('M420 318H618', 'pm-link') + path('M420 288H618', 'pm-dash')
+      + path(`M${xs.map((x, i) => `${x} ${low[i]}`).join('L')}`, 'pm-link') + xs.map((x, i) => dot(x, low[i], 6)).join('');
   }
 
   // ---- s5: a bad carton must first stop moving; set aside in the marked place it is in quarantine; the nonconformance report
@@ -298,7 +303,7 @@ const STAGE = (() => {
       o.r = strip(si - 1);
       if (si === 1) Object.assign(o, { tolS: fade(b, 0, p, tolDrawing(), 0.1, 0.5), limS: fade(b, 1, p, limDrawing(), 0.1, 0.5), calS: b === 2 ? op(span(p, 0.3, 0.7), calDrawing()) : '', ...tools(b, p, 2, tr('Schuifmaat', 'Caliper', 260)) });
       if (si === 2) Object.assign(o, { varS: fade(b, 0, p, varDrawing(), 0.1, 0.5), capS: fade(b, 1, p, capDrawing(), 0.1, 0.5), cpkS: b === 2 ? op(span(p, 0.3, 0.7), cpkDrawing()) : '', ...tools(b, p, 2, tr('Cpk', 'Cpk', 260)) });
-      if (si === 3) Object.assign(o, { spcS: fade(b, 0, p, spcDrawing(), 0.1, 0.5), chartS: fade(b, 1, p, chartDrawing(), 0.1, 0.5), sheetS: b === 2 ? op(span(p, 0.3, 0.7), sheetDrawing()) : '', ...tools(b, p, 2, tr('Turflijst', 'Check sheet', 260)) });
+      if (si === 3) Object.assign(o, { spcS: fade(b, 0, p, spcDrawing(), 0.1, 0.5), chartS: fade(b, 1, p, chartDrawing(), 0.1, 0.5), subS: fade(b, 2, p, subDrawing(), 0.1, 0.5), xbarS: b === 3 ? op(span(p, 0.3, 0.7), xbarDrawing()) : '', ...tools(b, p, 3, tr('X-bar/R-kaart', 'X-bar/R chart', 260)) });
       if (si === 4) Object.assign(o, { badS: fade(b, 0, p, badDrawing(), 0.1, 0.5), quaS: fade(b, 1, p, quaDrawing(), 0.1, 0.5), ncrS: b === 2 ? op(span(p, 0.3, 0.7), ncrDrawing()) : '', endS: fade(b, 3, p, endDrawing(), 0.1, 0.5), ...tools(b, p, 2, tr('Afwijkingsrapport', 'Nonconformance report', 260)) });
     }
     let pbg = 'x="322" y="12" width="308" height="376"';
