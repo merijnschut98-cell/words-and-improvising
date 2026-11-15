@@ -62,7 +62,8 @@ export function workshopWorld(w, k, G, P) {
   const spCentre = () => w.post(SPINDLE[0], SPINDLE[1], 2.4, 96, 112, { tone: 'hi' }, 12);
 
   // the wall of tools: a board, two rows of three holders; each holder carries a tool tip. The four tools the film
-  // names hang at the front of the rows (face mill, end mill, centre drill, twist drill), two more are spares.
+  // names hang at the front of the rows (face mill, end mill, centre drill, twist drill), two more are spares
+  // (the sister tools of s6).
   const RACK_X = [122, 136, 150];
   const RACK_Y = 8;
   const rackBoard = () => w.box({ x: 110, y: 0, w: 48, d: 4, r: 1 }, 66, 186, { tone: 'lo' }, { steps: 2 });

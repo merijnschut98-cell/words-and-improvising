@@ -17,28 +17,33 @@
 // the plant's workshop. It is cut from a block of steel, at person scale, and every
 // topic of the module has its place in that one job:
 //   s1 the block, the drawing (the plate with four holes, and why four holes), what
-//      machining is (cutting material away until the shape of the drawing is left), the
-//      module's six topics as a route                       → eng.machining.processes
-//   s2 Draaien: the pipe of the tank joins the plate with a round part, made on the lathe;
-//      the workpiece turns and a still tool moves along it; the diameter has to be right
-//      or the pipe does not fit; a carbide insert              → .processes (.cutting)
+//      machining is (cutting material away in small curls until the shape of the drawing is
+//      left), and the map before any detail: six topics follow the plate, three of them are the
+//      ways of cutting (turning, milling, drilling) and every cut needs the other three (the
+//      program, the tool, the workholding with measuring)              → eng.machining.processes
+//   s2 Draaien: the pipe of the tank meets the back of the plate (as in eng.field.making) through
+//      a round connector, made on the lathe; the workpiece turns and a still tool moves along it;
+//      a carbide insert (the cutting lesson, Werkkennis)            → .processes (.cutting)
 //   s3 Frezen: the tool turns and the workpiece is held on the table; first the top is
 //      made flat, then the tool follows the outline; a face mill and an end mill
 //                                                              → .processes, .mill
-//   s4 Boren: the four holes (the product has to fall into a carton); a drill can wander,
-//      so a dimple first; a centre drill and a twist drill    → .processes, .drill
-//   s5 CNC-programma: a computer drives the machine from a program; the machine has to
-//      know where the plate lies; G-code and the work offset (workpiece zero)
-//                                                              → .cnc
-//   s6 Gereedschap: the cutting edge peels a chip, gets hot, has to stay hard, has to
-//      suit the material; cemented carbide and a tool holder   → .toolbasics
+//   s4 Boren: the four holes, each above a carton; a centre drill and a twist drill
+//                                                              → .processes, .drill
+//   s5 CNC-programma: a computer drives the machine from a program, line by line; the machine has
+//      to know where the plate lies; G-code and the work offset (workpiece zero) → .cnc
+//   s6 Gereedschap: the cutting edge peels a chip, gets hot, has to stay hard and suit the
+//      material; a tool holder and a sister tool (the spare on the tool wall; Werkkennis)
+//                                                              → .toolbasics (.tools)
 //   s7 Opspanning en meten: the plate is held in the same place every time, then measured
-//      against the drawing; a fixture and a micrometer        → .fixtures (.quality)
-//   s8 how they hang together: turning, milling and drilling cut; the program, the tool and
-//      the holding are needed at every cut; the plate goes to hall B
-//   s9 the shared Engineering map (the kit's mapScene) with Machining lit, then the
+//      against the drawing; a fixture and a micrometer; the plate goes to hall B
+//                                                              → .fixtures (.quality)
+//   s8 the shared Engineering map (the kit's mapScene) with Machining lit, then the
 //      module's six topics with their levels as columns, where to start, and what each
-//      later level adds
+//      later level adds, in the app's level words
+// Review (15 Nov): how the topics hang together is said once, in s1, before any detail (the
+// builder's eighth scene said it after the six topics and is gone); lesson detail cut (the
+// diameter of the connector, drill wander and the dimple, the material groups); cemented carbide
+// (a tool material) is replaced by the sister tool.
 // Definitions as the Basis lessons word them (eng.machining.processes, .cnc, .drill, .mill,
 // .toolbasics, .fixtures). Each topic scene names one or two tools of that topic's lessons in
 // one short sentence, without explaining them (Merijn's checkpoint, 14 Nov): the end mill
@@ -50,7 +55,7 @@
 //
 // A film in the shared pm world (films/_pm/world.mjs, read-only): the person of the cast
 // (you, the engineer), the table, the sheet and the room, with pm.agile.scrum's figures for
-// the two operators. The machines are this film's own simple solids (films/eng.machining.intro/
+// the two machinists, given safety glasses (crew below). The machines are this film's own simple solids (films/eng.machining.intro/
 // workshop.mjs). A panel at the right, in stage space, draws each step as a schema, labelled
 // "voorbeeld" (the plate's job) or "schema" (the module's map).
 //
@@ -78,7 +83,7 @@ const HERE = dirname(fileURLToPath(import.meta.url));
 
 // ---------------------------------------------------------------- the module
 // The map this film draws, asserted against the index (the build fails if the
-// module's topics or levels move): s9 names what each later level adds.
+// module's topics or levels move): s8 names what each later level adds.
 const assert = (ok, what) => { if (!ok) throw new Error(`model: ${what}`); };
 const MOD = MODULES.find((m) => m.id === 'eng.machining');
 const LEVELS = {
@@ -114,20 +119,25 @@ has('eng.machining.drill', ['A drill that starts on a flat surface slides a frac
 // s5: CNC (a computer drives the motors from a program), the program is G-code, the work offset tells where the workpiece lies
 has('eng.machining.cnc', ['betekent dat een computer de motoren van de machine aanstuurt, volgens een programma', 'Het programma is G-code: een lijst korte commando', 'Het werkstuknulpunt (G54) vertelt de machine waar het werkstuk op de tafel ligt', 'G-code', 'Werkstuknulpunt']);
 has('eng.machining.cnc', ['means a computer drives the machine’s motors, following a program', 'The program is G-code: a list of short commands', 'The work offset (G54) tells the machine where the part sits on the table', 'Work offset'], 'en');
-// s6: tooling (a hard, sharp edge peels a chip, it gets hot and has to stay hard, the material group), carbide and the holder
-has('eng.machining.toolbasics', ['Snijgereedschap is een harde, scherpe kant die een spaan van een zachter werkstuk afschilt', 'Die snijkant wordt erg heet, dus het gereedschapsmateriaal moet hard blijven als het heet is', 'P, blauw: staal', 'N, groen: aluminium', 'Hardmetaal', 'Gereedschapshouder']);
-has('eng.machining.toolbasics', ['A cutting tool is a hard, sharp edge that peels a chip off a softer workpiece', 'so the tool material must stay hard when hot', 'P, blue: steel', 'Cemented carbide', 'Tool holder'], 'en');
+// s6: tooling (a hard, sharp edge peels a chip, it gets hot and has to stay hard, the material group), the holder
+has('eng.machining.toolbasics', ['Snijgereedschap is een harde, scherpe kant die een spaan van een zachter werkstuk afschilt', 'Die snijkant wordt erg heet, dus het gereedschapsmateriaal moet hard blijven als het heet is', 'P, blauw: staal', 'Gereedschapshouder', 'Het stalen lichaam dat de wisselplaat vastklemt']);
+has('eng.machining.toolbasics', ['A cutting tool is a hard, sharp edge that peels a chip off a softer workpiece', 'so the tool material must stay hard when hot', 'P, blue: steel', 'Tool holder'], 'en');
+// s6: the sister tool of the Werkkennis lesson (a spare identical tool that takes over), hung on the tool wall as a spare
+has('eng.machining.tools', ['Zustergereedschap', 'Een identiek reservegereedschap']);
+has('eng.machining.tools', ['Sister tool'], 'en');
+// s8: the first Turning lesson shows the whole family of processes (where to start)
+has('eng.machining.processes', ['Draaien, frezen, boren, slijpen']);
 // s7: workholding (the same place every time, firm against the cutting forces) and measuring; a fixture and a micrometer
 has('eng.machining.fixtures', ['Opspanning is hoe het werkstuk vastgehouden wordt', 'het werkstuk elke keer op precies dezelfde plek leggen en het stevig vasthouden tegen de snijkrachten', 'Mal']);
 has('eng.machining.fixtures', ['Workholding is how the part is held', 'put the part in exactly the same place every time and hold it firmly against the cutting forces', 'Fixture'], 'en');
 has('eng.machining.quality', ['Micrometer']);
 has('eng.machining.quality', ['Micrometer'], 'en');
-// s9: the later levels, as the lessons are titled (the grid names what each adds)
+// s8: the later levels, as the lessons are titled (the grid names what each adds)
 for (const [id, word] of [['eng.machining.cutting', 'Snijsnelheid, voeding en snedediepte'], ['eng.machining.millfeeds', 'Snijwaarden bij frezen'], ['eng.machining.holes', 'Gaten op maat'], ['eng.machining.gcode', 'programma lezen'],
   ['eng.machining.tools', 'Slijtage'], ['eng.machining.quality', 'meten'], ['eng.machining.turnfinish', 'Nadraaien'], ['eng.machining.millstrategy', 'Freesstrategie'], ['eng.machining.deephole', 'Diep boren'],
-  ['eng.machining.offsets', 'crashes'], ['eng.machining.toollife', 'Standtijd'], ['eng.machining.metrology', 'meetonzekerheid'], ['eng.machining.turncell', 'in één opspanning'], ['eng.machining.fiveaxis', 'Vijfassig frezen'],
+  ['eng.machining.offsets', 'Correcties'], ['eng.machining.toollife', 'Standtijd'], ['eng.machining.metrology', 'meetonzekerheid'], ['eng.machining.turncell', 'in één opspanning'], ['eng.machining.fiveaxis', 'Vijfassig frezen'],
   ['eng.machining.holequality', 'positie'], ['eng.machining.cam', 'CAM'], ['eng.machining.toolcost', 'per stuk'], ['eng.machining.capable', 'capabel']]) has(id, [word]);
-// s9: the level words are the app's. The grid (stage.js, grid) has four level columns of GRID.col units from
+// s8: the level words are the app's. The grid (stage.js, grid) has four level columns of GRID.col units from
 // GRID.x; the words stand on one line each, staggered over two rows (columns 1 and 3 high, 2 and 4 low), so a
 // word may be wider than its column but not wider than the room to the next word on its row, nor run off the stage.
 const LV = { nl: levelWords('nl'), en: levelWords('en') };
@@ -154,7 +164,15 @@ const shop = workshopWorld(w, k, G, P);
 const g = (key, body, extra = '') => `<g data-k="${key}"${extra}>${body}</g>`;
 const cueG = (name, body) => `<g data-cue="${name}">${body}</g>`;
 const person = (role, x, y, along) => w.person({ x, y, role, along });
-const crew = (key, look, x, y, along = 'x') => scrumPerson(w, k, G, P, { x, y, key, look, along });
+// The two machinists: pm.agile.scrum's figures (imported, not copied) without the laptop, in a dark work jacket
+// (look sm) or a mid-tone one (look dev), each with safety glasses: a dark band round the head at eye height,
+// drawn over the head, so they read as people at the machines and not as office staff.
+const crew = (key, look, x, y, along = 'x') => {
+  const fig = scrumPerson(w, k, G, P, { x, y, key, look, along });
+  const glasses = w.post(x + 0.5, y + 0.5, 11.9, 158, 162.5, { tone: 'lo' }, 28);
+  if (!fig.endsWith('</g>')) throw new Error('cast: a figure is one group');
+  return fig.slice(0, -4) + glasses + '</g>';
+};
 
 const part = shop.parts({ cueG, g });
 // painted back to front: the mill and the people in front of it, the wall of tools, the control, the lathe, the pallet,
@@ -162,7 +180,7 @@ const part = shop.parts({ cueG, g });
 const world = [
   w.room(ROOM),
   part.mill,
-  g('pp-opM', crew('opM', 'dev2', 12, 62, 'y')),
+  g('pp-opM', crew('opM', 'sm', 12, 62, 'y')),
   part.rack,
   part.control,
   part.lathe,
@@ -177,7 +195,7 @@ const world = [
 // schemas of each beat. The shared Engineering map (the kit's mapScene) sits under the panel; its place Machining
 // is a cue group of its own (map-machining).
 const TILE = { turning: 'tTurn', milling: 'tMill', drilling: 'tBore', cnc: 'tCnc', tooling: 'tTool', workholding: 'tWork' };
-const PANEL = ['flow', 'plate', 'cut', 'chain', 'turnS', 'size', 'millS', 'plan', 'drillS', 'holesP', 'wander', 'codeS', 'pathS', 'datumP', 'edgeS', 'heatS', 'gradeS', 'holdS', 'measP', 'cutters', 'support', 'ship',
+const PANEL = ['flow', 'plate', 'cut', 'chain', 'turnS', 'millS', 'plan', 'drillS', 'holesP', 'codeS', 'pathS', 'datumP', 'edgeS', 'heatS', 'holdS', 'measP', 'cutters', 'support', 'ship',
   'tool1', 'tool2', 'lv1', 'lv2', 'lv3', 'lv4', 'start'];
 const tiles = ORDER.map((id, i) => cueG(TILE[id], g(`r${i}`, ''))).join('');
 const hud = g('hud', '<rect data-k="pbg" class="pm-panel" x="322" y="12" width="308" height="376" rx="10"/>' + g('pHead', '')
@@ -250,14 +268,13 @@ const CAM = [
   { from: cam(70, 50, 90, 1.7), to: cam(92, 36, 100, 1.65) }, // s4 the plate and the drill, then the tool wall
   { from: cam(80, 60, 100, 1.4), to: cam(88, 62, 100, 1.5) }, // s5 the machine and its control
   { from: cam(120, 30, 120, 1.7), to: cam(125, 30, 120, 1.9) }, // s6 the tool wall
-  { from: cam(70, 88, 75, 1.35), to: cam(70, 92, 75, 1.45) }, // s7 the vise and the table with the plate and the drawing
-  { from: cam(145, 80, 60, 1.05), to: cam(145, 85, 60, 1) }, // s8 the whole workshop
-  { from: cam(145, 85, 60, 1), to: cam(145, 85, 60, 1) }, // s9 (the map)
+  { from: cam(70, 88, 75, 1.35), to: cam(110, 90, 70, 1.15) }, // s7 the vise and the table with the plate and the drawing, then you with the plate
+  { from: cam(145, 85, 60, 1), to: cam(145, 85, 60, 1) }, // s8 (the map)
 ];
 
 // ---------------------------------------------------------------- the film
 const TOOL = (a, b) => ({ cue: { [a]: 'tool1', ...(b ? { [b]: 'tool2' } : {}) } });
-const DURS = Array(9).fill(30);
+const DURS = Array(8).fill(30);
 const spec = {
   id: 'eng.machining.intro',
   title: { nl: 'De plaat in de werkplaats: van blok tot meting', en: 'The plate in the workshop: from block to measurement' },
@@ -280,15 +297,15 @@ const spec = {
         { nl: 'In de werkplaats ligt een blok staal. Daaruit komt de plaat van de vuleenheid.', en: 'In the workshop lies a block of steel. The plate of the filling unit comes from it.', focus: ['flow', 'stock', 'jij'] },
         { nl: 'De tekening vraagt vier gaten. Het product loopt erdoor naar de dozen.', en: 'The drawing asks for four holes. The product runs through them into the cartons.', focus: ['plate', 'sheet'] },
         { nl: 'Verspanen is een onderdeel maken door materiaal weg te snijden.', en: 'Machining is making a part by cutting away material.', focus: ['cut', 'stock'] },
-        { nl: 'Zes onderwerpen volgen de plaat, van blok tot meting.', en: 'Six topics follow the plate, from block to measurement.', focus: 'route' },
+        { nl: 'Draaien, frezen en boren zijn de drie manieren van snijden.', en: 'Turning, milling and drilling are the three ways of cutting.', focus: 'cutters' },
+        { nl: 'Elke snede vraagt een programma, gereedschap en opspanning met meten.', en: 'Every cut needs a program, a tool and workholding with measuring.', focus: 'support' },
       ],
     },
     {
       id: 's2', level: 1, dur: DURS[1], still: 0.9, title: { nl: 'Draaien', en: 'Turning' },
       beats: [
-        { nl: 'Eerste onderwerp: Draaien. Een rond onderdeel voor de pijp van de tank.', en: 'First topic: Turning. A round part for the pipe of the tank.', focus: ['tTurn', 'chain', 'lathe'] },
+        { nl: 'Eerste onderwerp: Draaien. Een rond aansluitstuk voor de pijp van de tank.', en: 'First topic: Turning. A round connector for the pipe of the tank.', focus: ['tTurn', 'chain', 'lathe'] },
         { nl: 'Het werkstuk draait en een stilstaande beitel beweegt erlangs.', en: 'The workpiece turns and a stationary tool moves along it.', focus: ['turnS', 'bar'] },
-        { nl: 'De diameter moet kloppen, anders past de pijp niet.', en: 'The diameter has to be right, or the pipe does not fit.', focus: ['size', 'bar'] },
         { nl: 'Bij draaien gebruiken we vaak een {t:Wisselplaat|wisselplaat}.', en: 'For turning we often use a {t:Carbide insert|carbide insert}.', ...TOOL('Wisselplaat'), focus: ['tool1', 'insert'] },
       ],
     },
@@ -303,9 +320,8 @@ const spec = {
     {
       id: 's4', level: 1, dur: DURS[3], still: 0.9, title: { nl: 'Boren', en: 'Drilling' },
       beats: [
-        { nl: 'Derde onderwerp: Boren. De plaat krijgt vier gaten.', en: 'Third topic: Drilling. The plate gets four holes.', focus: ['tBore', 'drillS', 'plateM'] },
+        { nl: 'Derde onderwerp: Boren. Een draaiende boor maakt de vier gaten.', en: 'Third topic: Drilling. A rotating drill makes the four holes.', focus: ['tBore', 'drillS', 'plateM'] },
         { nl: 'Elk gat moet op zijn plek zitten, boven een doos.', en: 'Every hole has to be in its place, above a carton.', focus: ['holesP', 'holes'] },
-        { nl: 'Een boor kan weglopen. Zet daarom eerst een kuiltje.', en: 'A drill can wander. So make a small dimple first.', focus: ['wander', 'holes'] },
         { nl: 'Bij boren gebruiken we vaak een {t:Centreerboor|centreerboor} en een {t:Spiraalboor|spiraalboor}.', en: 'For drilling we often use a {t:Centre drill|centre drill} and a {t:Twist drill|twist drill}.', ...TOOL('Centreerboor', 'Spiraalboor'), focus: ['tool1', 'tool2', 'tCentre', 'tTwist'] },
       ],
     },
@@ -314,7 +330,7 @@ const spec = {
       beats: [
         { nl: 'Vierde onderwerp: CNC-programma. Een computer stuurt de machine.', en: 'Fourth topic: CNC programming. A computer drives the machine.', focus: ['tCnc', 'codeS', 'screen'] },
         { nl: 'Elke regel van het programma is één beweging van het gereedschap.', en: 'Every line of the program is one move of the tool.', focus: ['pathS', 'screen'] },
-        { nl: 'De machine moet weten waar de plaat ligt, anders zit alles ernaast.', en: 'The machine has to know where the plate lies, or everything ends up off.', focus: ['datumP', 'plateM'] },
+        { nl: 'De machine moet weten waar de plaat ligt, anders zitten de gaten ernaast.', en: 'The machine has to know where the plate lies, or the holes end up off.', focus: ['datumP', 'plateM'] },
         { nl: 'Bij CNC gebruiken we vaak {t:G-code|G-code} en een {t:Werkstuknulpunt|werkstuknulpunt}.', en: 'For CNC we often use {t:G-code|G-code} and a {t:Work offset|work offset}.', ...TOOL('G-code', 'Werkstuknulpunt'), focus: ['tool1', 'tool2', 'screen', 'datum'] },
       ],
     },
@@ -322,35 +338,27 @@ const spec = {
       id: 's6', level: 1, dur: DURS[5], still: 0.9, title: { nl: 'Gereedschap', en: 'Tooling' },
       beats: [
         { nl: 'Vijfde onderwerp: Gereedschap. De snijkant schilt een spaan af.', en: 'Fifth topic: Tooling. The cutting edge peels off a chip.', focus: ['tTool', 'edgeS', 'rack'] },
-        { nl: 'De snijkant wordt heet, dus het gereedschap moet hard blijven.', en: 'The edge gets hot, so the tool has to stay hard.', focus: ['heatS', 'rack'] },
-        { nl: 'Het gereedschap moet bij het materiaal passen, hier staal.', en: 'The tool has to suit the material, here steel.', focus: ['gradeS', 'rack'] },
-        { nl: 'We gebruiken vaak {t:Hardmetaal|hardmetaal} en een {t:Gereedschapshouder|gereedschapshouder}.', en: 'We often use {t:Cemented carbide|cemented carbide} and a {t:Tool holder|tool holder}.', ...TOOL('Hardmetaal', 'Gereedschapshouder'), focus: ['tool1', 'tool2', 'tFace', 'tEnd', 'tCentre', 'tTwist', 'spare', 'holders'] },
+        { nl: 'De snijkant wordt heet, blijft hard en past bij het staal.', en: 'The edge gets hot, stays hard and suits the steel.', focus: ['heatS', 'rack'] },
+        { nl: 'We gebruiken vaak een {t:Gereedschapshouder|gereedschapshouder} en een {t:Zustergereedschap|zustergereedschap}.', en: 'We often use a {t:Tool holder|tool holder} and a {t:Sister tool|sister tool}.', ...TOOL('Gereedschapshouder', 'Zustergereedschap'), focus: ['tool1', 'tool2', 'holders', 'spare'] },
       ],
     },
     {
       id: 's7', level: 1, dur: DURS[6], still: 0.9, title: { nl: 'Opspanning en meten', en: 'Workholding and measuring' },
       beats: [
-        { nl: 'Zesde onderwerp: Opspanning en meten. Eerst vast, dan meten.', en: 'Sixth topic: Workholding and measuring. First held, then measured.', focus: ['tWork', 'holdS', 'vise'] },
-        { nl: 'De opspanning houdt de plaat elke keer op dezelfde plek, stevig vast.', en: 'The workholding keeps the plate in the same place every time, firmly.', focus: ['holdS', 'vise'] },
+        { nl: 'Zesde onderwerp: Opspanning en meten. Elke keer dezelfde plek, stevig vast.', en: 'Sixth topic: Workholding and measuring. The same place every time, held firmly.', focus: ['tWork', 'holdS', 'vise'] },
         { nl: 'Daarna meet je of de plaat klopt met de tekening.', en: 'Then you measure whether the plate matches the drawing.', focus: ['measP', 'plateT', 'sheet'] },
         { nl: 'Bij opspanning en meten gebruiken we vaak een {t:Mal|mal} en een {t:Micrometer|micrometer}.', en: 'For workholding and measuring we often use a {t:Fixture|fixture} and a {t:Micrometer|micrometer}.', ...TOOL('Mal', 'Micrometer'), focus: ['tool1', 'tool2', 'vise', 'mic'] },
-      ],
-    },
-    {
-      id: 's8', level: 1, dur: DURS[7], still: 0.9, title: { nl: 'Eén werkplaats', en: 'One workshop' },
-      beats: [
-        { nl: 'Draaien, frezen en boren snijden. De rest heb je bij elke snede nodig.', en: 'Turning, milling and drilling cut. You need the rest at every cut.', focus: ['cutters', 'support'] },
         { nl: 'De plaat is gemeten en goed. Hij gaat naar hal B.', en: 'The plate is measured and good. It goes to hall B.', focus: ['ship', 'plateT', 'jij'] },
       ],
     },
     {
-      id: 's9', level: 1, dur: DURS[8], still: 0.9, title: { nl: 'De kaart', en: 'The map' },
+      id: 's8', level: 1, dur: DURS[7], still: 0.9, title: { nl: 'De kaart', en: 'The map' },
       beats: [
         { nl: 'De hele kaart: Verspanen is het tweede station van Dingen maken.', en: 'The whole map: Machining is the second station of Making things.', focus: 'map-machining' },
-        { nl: 'Verspanen heeft zes onderwerpen, elk met vier niveaus.', en: 'Machining has six topics, each with four levels.', focus: 'route' },
-        { nl: 'Begin bij Draaien, op niveau Basis.', en: 'Start with Turning, at Basics level.', focus: ['tTurn', 'start'] },
+        { nl: 'Elk onderwerp heeft vier niveaus.', en: 'Every topic has four levels.', focus: 'route' },
+        { nl: 'Begin bij Draaien, op niveau Basis. Die les toont alle manieren van verspanen.', en: 'Start with Turning, at Basics level. That lesson shows all the ways of machining.', focus: ['tTurn', 'start'] },
         { nl: 'Werkkennis: snijwaarden, gaten op maat, een programma lezen, slijtage en meten.', en: 'Working knowledge: cutting data, holes to size, reading a program, wear and measuring.', focus: 'lv2' },
-        { nl: 'Gevorderd: afwerking, freesstrategie, diepe gaten, crashes, standtijd en meetonzekerheid.', en: 'Advanced: finishing, milling strategy, deep holes, crashes, tool life and measurement uncertainty.', focus: 'lv3' },
+        { nl: 'Gevorderd: afwerking, freesstrategie, diepe gaten, correcties, standtijd en meetonzekerheid.', en: 'Advanced: finishing, milling strategy, deep holes, offsets, tool life and measurement uncertainty.', focus: 'lv3' },
         { nl: 'Expert: één opspanning, gatpositie, CAM, kosten per stuk en een capabel proces.', en: 'Expert: one setup, hole position, CAM, cost per part and a capable process.', focus: 'lv4' },
         { nl: 'Elke les en elke film van deze module heeft een plek op deze kaart.', en: 'Every lesson and film in this module has a place on this map.', focus: null },
       ],
@@ -372,93 +380,83 @@ const spec = {
 // drill wanders), the datum (the machine has to know where the plate lies), the vise
 // (the same place every time) and the measuring (the holes must stand above the cartons).
 const SAY = [
-  [ // s1 one plate, six topics
+  [ // s1 one plate, six topics: what machining is, the family of three ways of cutting and the three things every cut needs
     { nl: 'In de werkplaats van de fabriek ligt een blok staal. Daaruit komt de plaat voor de vuleenheid van lijn 3.',
       en: 'In the workshop of the plant lies a block of steel. The plate for the filling unit of line 3 comes from it.' },
     { nl: 'De tekening vraagt een plaat met vier gaten. Het product loopt erdoor naar de dozen op de band.',
       en: 'The drawing asks for a plate with four holes. The product runs through them into the cartons on the belt.' },
-    { nl: 'Verspanen betekent een onderdeel maken door materiaal weg te snijden, in kleine krulletjes. Tot de vorm van de tekening overblijft.',
-      en: 'Machining means making a part by cutting away material, in small curls. Until the shape of the drawing is left.' },
-    { nl: 'Verspanen heeft zes onderwerpen. We volgen de plaat langs alle zes, van het blok tot de meting.',
-      en: 'Machining has six topics. We follow the plate through all six, from the block to the measurement.' },
+    { nl: 'Verspanen betekent een onderdeel maken door materiaal weg te snijden in kleine krulletjes, tot de vorm van de tekening overblijft.',
+      en: 'Machining means making a part by cutting away material in small curls, until the shape on the drawing is left.' },
+    { nl: 'Zes onderwerpen volgen de plaat, van blok tot meting. Draaien, frezen en boren zijn de drie manieren van snijden.',
+      en: 'Six topics follow the plate, from block to measurement. Turning, milling and drilling are the three ways of cutting.' },
+    { nl: 'De andere drie heb je bij elke snede nodig. Dat zijn het programma, het gereedschap en de opspanning met het meten.',
+      en: 'You need the other three at every cut. They are the program, the tool and the workholding with measuring.' },
   ],
-  [ // s2 turning
-    { nl: 'Het eerste onderwerp is {t:Draaien|Draaien}. De pijp van de tank sluit aan op de plaat met een rond onderdeel. Dat maak je op een draaibank.',
-      en: 'The first topic is {t:Turning|Turning}. The pipe of the tank joins the plate with a round part. You make that on a lathe.' },
-    { nl: 'Het werkstuk draait en een stilstaande beitel beweegt erlangs. Zo maak je ronde vormen, zoals assen en bussen.',
-      en: 'The workpiece turns and a stationary tool moves along it. That makes round shapes, like shafts and bushes.' },
-    { nl: 'De diameter moet kloppen. Anders past de pijp niet in de plaat.',
-      en: 'The diameter has to be right. Otherwise the pipe does not fit into the plate.' },
+  [ // s2 turning: the pipe of the tank meets the back of the plate (eng.field.making) through a round connector
+    { nl: 'Het eerste onderwerp is {t:Draaien|Draaien}. De pijp van de tank komt achter op de plaat, met een rond aansluitstuk. Dat maak je op een draaibank.',
+      en: 'The first topic is {t:Turning|Turning}. The pipe of the tank meets the back of the plate with a round connector. You make that on a lathe.' },
+    { nl: 'Het werkstuk draait en een stilstaande beitel beweegt erlangs. Zo maak je ronde vormen.',
+      en: 'The workpiece turns and a stationary tool moves along it. That makes round shapes.' },
     { nl: 'Bij draaien gebruiken we vaak een wisselplaat.',
       en: 'For turning we often use a carbide insert.' },
   ],
   [ // s3 milling
-    { nl: 'Het tweede onderwerp is Frezen. Nu draait het gereedschap en ligt het werkstuk vast op de tafel. Zo krijgt de plaat zijn vorm.',
-      en: 'The second topic is Milling. Now the tool turns and the workpiece is held on the table. That is how the plate gets its shape.' },
-    { nl: 'Eerst maak je de bovenkant vlak, zodat de plaat strak tegen het frame ligt. Dan volgt het gereedschap de omtrek van de tekening.',
-      en: 'First you make the top flat, so the plate sits snug against the frame. Then the tool follows the outline of the drawing.' },
+    { nl: 'Het tweede onderwerp is Frezen. Nu draait het gereedschap en ligt het werkstuk vast op de tafel.',
+      en: 'The second topic is Milling. Now the tool turns and the workpiece is held on the table.' },
+    { nl: 'Eerst maak je de bovenkant vlak, zodat de plaat strak tegen het frame ligt. Dan volgt het gereedschap de omtrek.',
+      en: 'First you make the top flat, so the plate sits snug against the frame. Then the tool follows the outline.' },
     { nl: 'Bij frezen gebruiken we vaak een vlakfrees en een vingerfrees.',
       en: 'For milling we often use a face mill and an end mill.' },
   ],
   [ // s4 drilling
-    { nl: 'Het derde onderwerp is Boren. De plaat krijgt vier gaten. Een draaiende boor maakt ze, meestal op dezelfde freesmachine.',
-      en: 'The third topic is Drilling. The plate gets four holes. A rotating drill makes them, usually on the same milling machine.' },
-    { nl: 'Elk gat moet op zijn plek zitten. Het product moet precies in een doos vallen.',
-      en: 'Every hole has to be in its place. The product has to fall exactly into a carton.' },
-    { nl: 'Een boor die op een vlak oppervlak begint, glijdt een fractie opzij. Dat heet weglopen. Zet daarom eerst een kuiltje.',
-      en: 'A drill that starts on a flat surface slides sideways a little. That is called wander. So make a small dimple first.' },
+    { nl: 'Het derde onderwerp is Boren. Een draaiende boor maakt de vier gaten, meestal op dezelfde freesmachine.',
+      en: 'The third topic is Drilling. A rotating drill makes the four holes, usually on the same milling machine.' },
+    { nl: 'Elk gat moet op zijn plek zitten, zodat het product precies in een doos valt.',
+      en: 'Every hole has to be in its place, so the product falls exactly into a carton.' },
     { nl: 'Bij boren gebruiken we vaak een centreerboor en een spiraalboor.',
       en: 'For drilling we often use a centre drill and a twist drill.' },
   ],
   [ // s5 CNC
     { nl: 'Het vierde onderwerp is CNC-programma. Een computer stuurt de motoren van de machine aan, volgens een programma.',
       en: 'The fourth topic is CNC programming. A computer drives the motors of the machine, following a program.' },
-    { nl: 'Elke regel van het programma is één beweging van het gereedschap. Zo volgt de machine elke keer dezelfde baan.',
-      en: 'Every line of the program is one move of the tool. So the machine follows the same path every time.' },
-    { nl: 'De machine moet weten waar de plaat op de tafel ligt. Klopt dat niet, dan zitten de gaten ernaast of botst het gereedschap.',
-      en: 'The machine has to know where the plate lies on the table. If that is wrong, the holes end up off or the tool crashes.' },
+    { nl: 'Elke regel van het programma is één beweging van het gereedschap. Zo wordt elke plaat hetzelfde.',
+      en: 'Every line of the program is one move of the tool. So every plate comes out the same.' },
+    { nl: 'De machine moet weten waar de plaat op de tafel ligt. Anders zitten de gaten ernaast.',
+      en: 'The machine has to know where the plate lies on the table. Otherwise the holes end up in the wrong place.' },
     { nl: 'Bij CNC gebruiken we vaak G-code en een werkstuknulpunt.',
       en: 'For CNC we often use G-code and a work offset.' },
   ],
-  [ // s6 tooling
+  [ // s6 tooling (the voice says zuster-gereedschap with a hyphen: espeak-ng reads the closed compound as zuster-gie-reedschap)
     { nl: 'Het vijfde onderwerp is Gereedschap. De snijkant is een harde, scherpe kant die een spaan van de plaat afschilt.',
       en: 'The fifth topic is Tooling. The cutting edge is a hard, sharp edge that peels a chip off the plate.' },
-    { nl: 'Die snijkant wordt erg heet. Daarom moet het gereedschap hard blijven als het heet is.',
-      en: 'That edge gets very hot. So the tool has to stay hard when it is hot.' },
-    { nl: 'Het gereedschap moet bij het materiaal passen. Voor staal kies je een andere soort dan voor aluminium.',
-      en: 'The tool has to suit the material. For steel you choose a different grade than for aluminium.' },
-    { nl: 'Bij gereedschap gebruiken we vaak hardmetaal en een gereedschapshouder.',
-      en: 'For tooling we often use cemented carbide and a tool holder.' },
+    { nl: 'Die snijkant wordt heet en moet dan hard blijven. En hij moet bij het materiaal passen, hier staal.',
+      en: 'That edge gets hot and has to stay hard. And it has to suit the material, here steel.' },
+    { nl: 'Bij gereedschap gebruiken we vaak een gereedschapshouder. En een zuster-gereedschap, dat als reserve klaarhangt.',
+      en: 'For tooling we often use a tool holder. And a sister tool, which hangs ready as a spare.' },
   ],
-  [ // s7 workholding and measuring
-    { nl: 'Het zesde onderwerp is Opspanning en meten. Eerst moet de plaat vaststaan, en daarna meet je of hij klopt.',
-      en: 'The sixth topic is Workholding and measuring. First the plate has to be held, and then you measure whether it is right.' },
-    { nl: 'De opspanning houdt de plaat elke keer op precies dezelfde plek. Ook houdt hij de plaat stevig tegen de snijkrachten, zonder dat de plaat buigt.',
-      en: 'The workholding keeps the plate in exactly the same place every time. It also holds the plate firmly against the cutting forces, without bending it.' },
+  [ // s7 workholding and measuring, and the plate leaves the workshop
+    { nl: 'Het zesde onderwerp is Opspanning en meten. De opspanning houdt de plaat elke keer op precies dezelfde plek, stevig tegen de snijkrachten.',
+      en: 'The sixth topic is Workholding and measuring. The workholding keeps the plate in exactly the same place every time, firmly against the cutting forces.' },
     { nl: 'Daarna meet je of de plaat klopt met de tekening. Anders staan de gaten niet boven de dozen.',
       en: 'Then you measure whether the plate matches the drawing. Otherwise the holes do not stand above the cartons.' },
     { nl: 'Bij opspanning en meten gebruiken we vaak een mal en een micrometer.',
       en: 'For workholding and measuring we often use a fixture and a micrometer.' },
-  ],
-  [ // s8 one workshop
-    { nl: 'Het hangt samen. Draaien, frezen en boren zijn de manieren van snijden. Programma, gereedschap en opspanning heb je bij elke snede nodig.',
-      en: 'It all connects. Turning, milling and drilling are the ways of cutting. You need the program, the tool and the holding at every cut.' },
     { nl: 'De plaat is gemeten en goed. Hij gaat naar hal B, naar de vuleenheid van lijn 3.',
       en: 'The plate is measured and good. It goes to hall B, to the filling unit of line 3.' },
   ],
-  [ // s9 the map
+  [ // s8 the map: the level words of the app, as the captions show them
     { nl: 'Dit is de hele kaart. Verspanen is het tweede station van Dingen maken.',
       en: 'This is the whole map. Machining is the second station of Making things.' },
-    { nl: 'Verspanen heeft zes onderwerpen, elk met vier niveaus.',
-      en: 'Machining has six topics, each with four levels.' },
-    { nl: 'Begin bij Draaien, op het eerste niveau. Die les laat zien wat verspanen is.',
-      en: 'Start with Turning, at the first level. That lesson shows what machining is.' },
-    { nl: 'Op het tweede niveau kies je snijwaarden en maak je gaten op maat. Je leest een programma, volgt de slijtage en meet wat eruit komt.',
-      en: 'At the second level you choose cutting data and make holes to size. You read a program, follow the wear and measure what comes out.' },
-    { nl: 'Op het derde niveau beheers je de afwerking, de freesbaan en diepe gaten. Je begrijpt crashes en rekent met standtijd en meetonzekerheid.',
-      en: 'At the third level you master the finish, the milling path and deep holes. You understand crashes and work with tool life and measurement uncertainty.' },
-    { nl: 'Op het vierde niveau werk je in één opspanning en bewaak je de gatpositie. Je programmeert met CAM, rekent de kosten per stuk uit en maakt het proces capabel.',
-      en: 'At the fourth level you work in one setup and guard the hole position. You program with CAM, work out the cost per part and make the process capable.' },
+    { nl: 'Elk onderwerp heeft vier niveaus.',
+      en: 'Every topic has four levels.' },
+    { nl: 'Begin bij Draaien, op niveau Basis. Die eerste les laat alle manieren van verspanen zien.',
+      en: 'Start with Turning, at Basics level. That first lesson shows all the ways of machining.' },
+    { nl: 'Op niveau Werkkennis kies je snijwaarden en maak je gaten op maat. Je leest een programma, volgt de slijtage en meet het werkstuk.',
+      en: 'At Working knowledge level you choose cutting data and make holes to size. You read a program, follow the wear and measure the part.' },
+    { nl: 'Op niveau Gevorderd komen afwerking, freesstrategie en diepe gaten. Daarna correcties, standtijd en meetonzekerheid.',
+      en: 'At Advanced level come finishing, milling strategy and deep holes. Then offsets, tool life and measurement uncertainty.' },
+    { nl: 'Op niveau Expert werk je in één opspanning en bewaak je de gatpositie. Je gebruikt CAM, rekent de kosten per stuk uit en maakt het proces capabel.',
+      en: 'At Expert level you work in one setup and guard the hole position. You use CAM, work out the cost per part and make the process capable.' },
     { nl: 'Elke les en elke film van deze module heeft een plek op deze kaart.',
       en: 'Every lesson and every film in this module has a place on this map.' },
   ],
@@ -530,8 +528,8 @@ const css = PM_CSS + WORKSHOP_CSS + `
 ` + mapStyles(undefined, 'eng');
 
 const label = {
-  nl: 'De werkplaats van de fabriek, op mensenmaat. Links een freesmachine met een bankschroef en een plaat, daarnaast een wand met gereedschap in houders; rechts een draaibank met een stang; een besturing met een scherm; een pallet met een blok staal; vooraan een tafel met de tekening van de plaat, de gemeten plaat en een micrometer. Een operator bij de draaibank en een bij de freesmachine, en jij, de engineer. Rechts een paneel, gemarkeerd als voorbeeld of schema: de plaat van de vuleenheid van lijn 3 met vier gaten, die uit een blok staal wordt gesneden, en de zes onderwerpen van de module als route, elk met zijn schema: draaien, frezen, boren, het CNC-programma, gereedschap, en opspanning en meten, met per onderwerp de namen van een of twee hulpmiddelen. Aan het eind de hele kaart van Engineering met Verspanen verlicht, en de zes onderwerpen van de module met elk vier niveaus: Basis, Werkkennis, Gevorderd en Expert.',
-  en: 'The workshop of the plant, at person scale. At the left a milling machine with a vise and a plate, next to it a wall with tools in holders; at the right a lathe with a bar; a control with a screen; a pallet with a block of steel; at the front a table with the drawing of the plate, the measured plate and a micrometer. An operator at the lathe and one at the milling machine, and you, the engineer. At the right a panel, marked as an example or a diagram: the plate of the filling unit of line 3 with four holes, cut from a block of steel, and the six topics of the module as a route, each with its diagram: turning, milling, drilling, the CNC program, tooling, and workholding and measuring, with the names of one or two tools per topic. At the end the whole map of Engineering with Machining lit, and the module’s six topics with four levels each: Basics, Working knowledge, Advanced and Expert.',
+  nl: 'De werkplaats van de fabriek, op mensenmaat. Links een freesmachine met een bankschroef en een plaat, daarnaast een wand met gereedschap in houders; rechts een draaibank met een stang; een besturing met een scherm; een pallet met een blok staal; vooraan een tafel met de tekening van de plaat, de gemeten plaat en een micrometer. Een verspaner bij de draaibank en een bij de freesmachine, allebei met een veiligheidsbril, en jij, de engineer. Rechts een paneel, gemarkeerd als voorbeeld of schema: de plaat van de vuleenheid van lijn 3 met vier gaten, die uit een blok staal wordt gesneden, en de zes onderwerpen van de module als route in twee groepen, de drie manieren van snijden en de drie dingen die elke snede nodig heeft, elk met zijn schema: draaien, frezen, boren, het CNC-programma, gereedschap, en opspanning en meten, met per onderwerp de namen van een of twee hulpmiddelen, en de gemeten plaat die naar hal B gaat. Aan het eind de hele kaart van Engineering met Verspanen verlicht, en de zes onderwerpen van de module met elk vier niveaus: Basis, Werkkennis, Gevorderd en Expert.',
+  en: 'The workshop of the plant, at person scale. At the left a milling machine with a vise and a plate, next to it a wall with tools in holders; at the right a lathe with a bar; a control with a screen; a pallet with a block of steel; at the front a table with the drawing of the plate, the measured plate and a micrometer. A machinist at the lathe and one at the milling machine, both in safety glasses, and you, the engineer. At the right a panel, marked as an example or a diagram: the plate of the filling unit of line 3 with four holes, cut from a block of steel, and the six topics of the module as a route in two groups, the three ways of cutting and the three things every cut needs, each with its diagram: turning, milling, drilling, the CNC program, tooling, and workholding and measuring, with the names of one or two tools per topic, and the measured plate going to hall B. At the end the whole map of Engineering with Machining lit, and the module’s six topics with four levels each: Basics, Working knowledge, Advanced and Expert.',
 };
 
 const { data } = await defineFilm(spec, { svg, script: stageScript, css, kitCss: k.ISO_CSS, label });

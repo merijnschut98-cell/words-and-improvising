@@ -73,36 +73,40 @@ const STAGE = (() => {
 
   // ---- the room: who stands there and what has happened to the plate, per scene (si) and beat (b).
   // s1 the block lies on its pallet; s3 it sits in the vise (b0), is milled into the plate (b1), s4 gets its four holes,
-  // s7 is measured on the table (from b2) with the drawing beside it
+  // s7 is measured on the table (from b1) with the drawing beside it, and you take it to hall B (b3)
   function room(si, b, p) {
     show(E['pp-opL'], si === 1 && b >= 1 ? (b === 1 ? span(p, 0, 0.35) : 1) : 0);
     show(E['pp-opM'], si >= 2 && si <= 6 ? (si === 2 && b === 0 ? span(p, 0, 0.35) : 1) : 0);
-    show(E['pp-jij'], si === 0 || (si === 6 && b >= 2) || si === 7 ? 1 : 0);
+    show(E['pp-jij'], si === 0 || (si === 6 && b >= 1) ? 1 : 0);
     show(E.stockK, si <= 1 ? 1 : 0);
     show(E.blankK, si === 2 && b === 0 ? 1 : 0);
-    const inVise = (si === 2 && b >= 1) || (si >= 3 && si <= 5) || (si === 6 && b < 2);
+    const inVise = (si === 2 && b >= 1) || (si >= 3 && si <= 5) || (si === 6 && b < 1);
     show(E.plateK, inVise ? (si === 2 && b === 1 ? span(p, 0, 0.35) : 1) : 0);
     show(E.holesK, inVise && (si >= 4 || (si === 3 && b >= 1)) ? (si === 3 && b === 1 ? span(p, 0.2, 0.7) : 1) : 0);
     show(E.datumK, si === 4 && b >= 2 ? 1 : 0);
     show(E.spEnd, si === 2 ? 1 : 0);
     show(E.spDrill, (si === 3 && b !== 2) || (si >= 4 && si <= 6) ? 1 : 0);
     show(E.spCentre, si === 3 && b === 2 ? 1 : 0);
-    show(E.plateTK, (si === 6 && b >= 2) || si === 7 ? (si === 6 && b === 2 ? span(p, 0, 0.35) : 1) : 0);
+    show(E.plateTK, si === 6 && b >= 1 ? (b === 1 ? span(p, 0, 0.35) : 1) : 0);
   }
 
   // ---- the six topic tiles
-  // the route (s1, last beat): a column of six rows, each with its number and title (wider than the grid's tiles, so a
-  // title never wraps into more lines there)
-  function routeRows(a) {
-    return TITLE.map((t, i) => {
-      if (a[i] <= 0.01) return '';
-      const y = 62 + i * 54;
-      const lines = wrap(t, 240).slice(0, 2);
-      let s = rect(334, y, 284, 50, 'pm-tile', 8) + txt(610, y + 32, String(i + 1), 22, 'end', 'pm-on');
-      const y0 = lines.length === 1 ? y + 32 : y + 21;
-      lines.forEach((l, j) => { s += txt(344, y0 + j * 22, l, 22, 'start', 'pm-txt'); });
-      return op(a[i], s);
-    });
+  // the route (s1, the last two beats): the module's six topics in two groups, the map before the detail. The three ways
+  // of cutting (topics 1 to 3) and the three things every cut needs (topics 4 to 6), each row with its number and its
+  // index title, wrapped by the kit's widths into 240 units left of the number; a title of two lines (Workholding and
+  // measuring) gets a taller row. The second group ends at most at y 376 (three rows, one of them of two lines)
+  function routeGroup(first, head, a) {
+    let y = first === 0 ? 74 : 232;
+    let s = txt(334, y, head, 22, 'start', 'pm-mute');
+    y += 8;
+    for (let i = first; i < first + 3; i++) {
+      const lines = wrap(TITLE[i], 240).slice(0, 2);
+      const h = lines.length === 1 ? 34 : 56;
+      s += rect(334, y, 284, h, 'pm-tile', 6) + txt(610, y + 25, String(i + 1), 22, 'end', 'pm-on');
+      lines.forEach((l, j) => { s += txt(346, y + 25 + j * 22, l, 22, 'start', 'pm-txt'); });
+      y += h + 6;
+    }
+    return op(a, s);
   }
   // the topic strip (s2 to s7): six small numbered squares, the scene's own one filled
   function strip(cur) {
@@ -141,19 +145,17 @@ const STAGE = (() => {
       + txt(334, 250, tr('materiaal weg', 'material removed', 284), 22, 'start', 'pm-big') + txt(334, 280, tr('tot de vorm klopt', 'until the shape fits', 284), 22, 'start', 'pm-mute');
   }
 
-  // ---- s2: turning. The pipe of the tank joins the plate with a round part; the workpiece turns and a still tool moves
-  // along it; the diameter has to be right.
+  // ---- s2: turning. The pipe of the tank meets the back of the plate with a round connector; the workpiece turns and a
+  // still tool moves along it.
   function turnParts(b, p) {
     const row = (y, label, cls) => rect(334, y, 284, 40, cls, 6) + txt(346, y + 28, label, 22, 'start', cls === 'pm-crit' ? 'pm-on' : 'pm-txt');
-    const chain = row(100, tr('Tank en pijp', 'Tank and pipe', 260), 'pm-card') + arrow(476, 144, 476, 156) + row(160, tr('Rond onderdeel', 'Round part', 260), 'pm-crit')
+    const chain = row(100, tr('Tank en pijp', 'Tank and pipe', 260), 'pm-card') + arrow(476, 144, 476, 156) + row(160, tr('Rond aansluitstuk', 'Round connector', 260), 'pm-crit')
       + arrow(476, 204, 476, 216) + row(220, tr('Plaat', 'Plate', 260), 'pm-card');
     const spin = circ(420, 190, 56, 'pm-card') + circ(420, 190, 6, 'pm-chip')
       + path('M420 116A74 74 0 0 0 346 190', 'pm-arrow') + path('M340 182L346 192L353 182', 'pm-arrow')
       + rect(476, 176, 56, 28, 'pm-crit', 4)
       + txt(334, 288, tr('werkstuk draait', 'workpiece turns', 284), 22, 'start', 'pm-txt') + txt(334, 318, tr('beitel staat stil', 'tool stands still', 284), 22, 'start', 'pm-txt');
-    const size = rect(350, 130, 150, 90, 'pm-bar', 6) + rect(500, 150, 70, 50, 'pm-bar', 4) + path('M570 150H606M570 200H606', 'pm-link') + `<path class="pm-arrow" d="M596 154V196M591 162L596 154L601 162M591 188L596 196L601 188"/>`
-      + txt(334, 270, tr('de diameter klopt', 'the diameter is right', 284), 22, 'start', 'pm-big') + txt(334, 300, tr('de pijp moet passen', 'the pipe must fit', 284), 22, 'start', 'pm-mute');
-    return { chain: fade(b, 0, p, chain, 0.1, 0.5), turnS: fade(b, 1, p, spin), size: fade(b, 2, p, size), ...tools(b, p, 3, tr('Wisselplaat', 'Carbide insert', 260)) };
+    return { chain: fade(b, 0, p, chain, 0.1, 0.5), turnS: fade(b, 1, p, spin), ...tools(b, p, 2, tr('Wisselplaat', 'Carbide insert', 260)) };
   }
 
   // ---- s3: milling. The tool turns, the workpiece is held; first the top is made flat, then the outline.
@@ -167,17 +169,13 @@ const STAGE = (() => {
     return { millS: fade(b, 0, p, mill, 0.05, 0.45), plan: fade(b, 1, p, plan), ...tools(b, p, 2, tr('Vlakfrees', 'Face mill', 260), tr('Vingerfrees', 'End mill', 260)) };
   }
 
-  // ---- s4: drilling. Four holes, each in its place above a carton; a drill wanders unless a dimple comes first.
+  // ---- s4: drilling. Four holes, each in its place above a carton.
   function drillParts(b, p) {
     const drill = rect(350, 250, 220, 26, 'pm-bar', 4) + rect(380, 250, 18, 26, 'pm-hole', 2) + rect(450, 130, 22, 120, 'pm-crit', 3) + path('M450 250L461 268L472 250Z', 'pm-crit')
       + path('M434 122A32 12 0 0 1 488 122', 'pm-arrow') + path('M482 114L489 122L480 127', 'pm-arrow')
       + txt(334, 318, tr('de boor draait', 'the drill turns', 284), 22, 'start', 'pm-txt');
-    const wander = txt(334, 118, tr('weglopen', 'wander', 284), 22, 'start', 'pm-big')
-      + rect(404, 130, 18, 52, 'pm-card', 3) + rect(344, 182, 200, 24, 'pm-bar', 4) + path('M413 186H468', 'pm-dash') + path('M462 180L470 186L462 192', 'pm-arrow')
-      + txt(334, 250, tr('eerst een kuiltje', 'dimple first', 284), 22, 'start', 'pm-big')
-      + rect(404, 262, 18, 52, 'pm-crit', 3) + rect(344, 314, 200, 24, 'pm-bar', 4) + path('M404 314L413 328L422 314Z', 'pm-hole');
-    return { drillS: fade(b, 0, p, drill, 0.05, 0.45), holesP: fade(b, 1, p, holesDrawing(tr('elk gat boven een doos', 'each hole over a carton', 284), 40)), wander: fade(b, 2, p, wander),
-      ...tools(b, p, 3, tr('Centreerboor', 'Centre drill', 260), tr('Spiraalboor', 'Twist drill', 260)) };
+    return { drillS: fade(b, 0, p, drill, 0.05, 0.45), holesP: fade(b, 1, p, holesDrawing(tr('elk gat boven een doos', 'each hole over a carton', 284), 40)),
+      ...tools(b, p, 2, tr('Centreerboor', 'Centre drill', 260), tr('Spiraalboor', 'Twist drill', 260)) };
   }
 
   // ---- s5: CNC. A computer drives the machine from a program; every line is one move; the machine has to know where the
@@ -194,20 +192,19 @@ const STAGE = (() => {
       ...tools(b, p, 3, tr('G-code', 'G-code', 260), tr('Werkstuknulpunt', 'Work offset', 260)) };
   }
 
-  // ---- s6: tooling. The edge peels a chip, gets hot, has to stay hard and has to suit the material.
+  // ---- s6: tooling. The edge peels a chip; it gets hot, has to stay hard and has to suit the material (here steel).
   function toolParts(b, p) {
     const wedge = path('M452 232L538 232L538 146L494 146Z', 'pm-crit');
     const edge = rect(344, 232, 230, 46, 'pm-bar', 6) + wedge + path('M446 232C436 214 448 194 464 198C476 202 474 218 460 216', 'pm-arrow')
       + txt(334, 322, tr('snijkant en spaan', 'edge and chip', 284), 22, 'start', 'pm-big');
     const heat = rect(344, 232, 230, 46, 'pm-bar', 6) + wedge
       + ['M470 138q-8-10 0-20t0-20', 'M494 138q-8-10 0-20t0-20', 'M518 138q-8-10 0-20t0-20'].map((d) => path(d, 'pm-heat')).join('')
-      + txt(334, 310, tr('de snijkant wordt heet', 'the edge gets hot', 284), 22, 'start', 'pm-big') + txt(334, 340, tr('en blijft hard', 'and stays hard', 284), 22, 'start', 'pm-mute');
-    const row = (y, letter, label) => rect(334, y, 284, 64, 'pm-card', 8) + rect(346, y + 12, 40, 40, 'pm-crit', 6) + txt(366, y + 41, letter, 22, 'middle', 'pm-on') + txt(400, y + 40, label, 22, 'start', 'pm-txt');
-    const grade = row(100, 'P', tr('staal', 'steel', 200)) + row(184, 'N', tr('aluminium', 'aluminium', 200)) + txt(334, 288, tr('elk materiaal zijn soort', 'each material, its grade', 284), 22, 'start', 'pm-big');
-    return { edgeS: fade(b, 0, p, edge, 0.05, 0.45), heatS: fade(b, 1, p, heat), gradeS: fade(b, 2, p, grade), ...tools(b, p, 3, tr('Hardmetaal', 'Cemented carbide', 260), tr('Gereedschapshouder', 'Tool holder', 260)) };
+      + txt(334, 310, tr('heet en toch hard', 'hot and still hard', 284), 22, 'start', 'pm-big') + txt(334, 340, tr('past bij staal', 'suits steel', 284), 22, 'start', 'pm-mute');
+    return { edgeS: fade(b, 0, p, edge, 0.05, 0.45), heatS: fade(b, 1, p, heat), ...tools(b, p, 2, tr('Gereedschapshouder', 'Tool holder', 260), tr('Zustergereedschap', 'Sister tool', 260)) };
   }
 
-  // ---- s7: workholding and measuring. The plate is held in the same place every time; then it is measured against the drawing.
+  // ---- s7: workholding and measuring. The plate is held in the same place every time; then it is measured against the
+  // drawing; then it goes to hall B.
   function holdParts(b, p) {
     const hold = rect(384, 150, 150, 90, 'pm-card', 8) + path('M372 138H550V252H372Z', 'pm-dash') + rect(350, 130, 28, 130, 'pm-lvl', 4) + rect(540, 130, 28, 130, 'pm-lvl', 4)
       + arrow(332, 195, 346, 195) + arrow(590, 195, 574, 195)
@@ -216,20 +213,13 @@ const STAGE = (() => {
     const meas = plateOutline(334) + plateOutline(492) + rect(466, 144, 20, 5, 'pm-bar', 2) + rect(466, 158, 20, 5, 'pm-bar', 2)
       + txt(397, 232, tr('tekening', 'drawing', 126), 22, 'middle', 'pm-txt') + txt(555, 232, tr('plaat', 'plate', 126), 22, 'middle', 'pm-txt')
       + txt(334, 286, tr('klopt dat?', 'do they match?', 284), 22, 'start', 'pm-big');
-    return { holdS: b <= 1 ? op(b === 0 ? span(p, 0.05, 0.45) : 1, hold) : '', measP: fade(b, 2, p, meas), ...tools(b, p, 3, tr('Mal', 'Fixture', 260), tr('Micrometer', 'Micrometer', 260)) };
+    // under the topic strip (which ends at y 84)
+    const ship = rect(334, 104, 284, 50, 'pm-card', 8) + txt(346, 136, tr('Gemeten en goed', 'Measured and good', 260), 22, 'start', 'pm-big')
+      + arrow(476, 160, 476, 190) + rect(334, 194, 284, 66, 'pm-crit', 8) + txt(346, 222, tr('Hal B, lijn 3', 'Hall B, line 3', 260), 22, 'start', 'pm-on') + txt(346, 248, tr('de vuleenheid', 'the filling unit', 260), 22, 'start', 'pm-on');
+    return { holdS: fade(b, 0, p, hold), measP: fade(b, 1, p, meas), ...tools(b, p, 2, tr('Mal', 'Fixture', 260), tr('Micrometer', 'Micrometer', 260)), ship: fade(b, 3, p, ship) };
   }
 
-  // ---- s8: one workshop. Three ways of cutting; three things behind every cut. Then the plate goes to hall B.
-  function togetherParts(b, p) {
-    const row = (y, label) => rect(334, y, 284, 34, 'pm-tile', 6) + txt(346, y + 25, label, 22, 'start', 'pm-txt');
-    const cutters = txt(334, 74, tr('Snijden', 'Cutting', 284), 22, 'start', 'pm-mute') + row(82, tr('Draaien', 'Turning', 260)) + row(122, tr('Frezen', 'Milling', 260)) + row(162, tr('Boren', 'Drilling', 260));
-    const support = txt(334, 232, tr('Bij elke snede', 'At every cut', 284), 22, 'start', 'pm-mute') + row(240, tr('CNC-programma', 'CNC program', 260)) + row(280, tr('Gereedschap', 'Tooling', 260)) + row(320, tr('Opspanning, meten', 'Holding, measuring', 260));
-    const ship = rect(334, 80, 284, 50, 'pm-card', 8) + txt(346, 112, tr('Gemeten en goed', 'Measured and good', 260), 22, 'start', 'pm-big')
-      + arrow(476, 136, 476, 166) + rect(334, 170, 284, 66, 'pm-crit', 8) + txt(346, 198, tr('Hal B, lijn 3', 'Hall B, line 3', 260), 22, 'start', 'pm-on') + txt(346, 224, tr('de vuleenheid', 'the filling unit', 260), 22, 'start', 'pm-on');
-    return { cutters: b === 0 ? op(span(p, 0.05, 0.4), cutters) : '', support: b === 0 ? op(span(p, 0.3, 0.65), support) : '', ship: b === 1 ? op(span(p, 0.05, 0.4), ship) : '' };
-  }
-
-  // ---- s9: the closing scene. ONE function. First the shared Engineering map (the kit's mapScene, the very drawing of
+  // ---- s8: the closing scene. ONE function. First the shared Engineering map (the kit's mapScene, the very drawing of
   // the app) with Machining lit, the whole sheet and then zoomed to the lit place at 1.5; then the module's six topics, each
   // with its four levels as columns (the words the app uses for the levels), the start marker on the first level of the first topic.
   const MAP0 = { s: H / MAPSZ[1], x: (W - MAPSZ[0] * H / MAPSZ[1]) / 2, y: 0 };
@@ -274,24 +264,24 @@ const STAGE = (() => {
     for (const k2 of KEYS) o[k2] = '';
     let title = '';
     let lab = tr('voorbeeld', 'example');
-    const closing = si === 8;
+    const closing = si === 7;
     show(E.world, closing ? 0 : 1);
     let hudA = 1;
     let mapA = 0;
     if (si === 0) {
-      title = b === 3 ? tr('De route', 'The route') : tr('De plaat', 'The plate');
+      title = b >= 3 ? tr('De route', 'The route') : tr('De plaat', 'The plate');
       if (b === 0) o.flow = op(span(p, 0.05, 0.4), plateFlow());
       if (b === 1) o.plate = op(span(p, 0.05, 0.4), holesDrawing(tr('product door de gaten', 'product through the holes', 284)));
       if (b === 2) o.cut = op(span(p, 0.05, 0.4), cutDrawing());
-      if (b === 3) { o.r = routeRows([0, 1, 2, 3, 4, 5].map((i) => span(p, i * 0.1, i * 0.1 + 0.3))); lab = tr('schema', 'diagram'); }
+      if (b >= 3) {
+        lab = tr('schema', 'diagram');
+        o.cutters = routeGroup(0, tr('Manieren van snijden', 'Ways of cutting', 284), b === 3 ? span(p, 0.05, 0.4) : 1);
+        if (b === 4) o.support = routeGroup(3, tr('Bij elke snede', 'At every cut', 284), span(p, 0.05, 0.4));
+      }
     } else if (si >= 1 && si <= 6) {
       title = [tr('Draaien', 'Turning', 150), tr('Frezen', 'Milling', 150), tr('Boren', 'Drilling', 150), tr('CNC', 'CNC', 150), tr('Gereedschap', 'Tooling', 150), tr('Opspanning', 'Workholding', 150)][si - 1];
       o.r = strip(si - 1);
       Object.assign(o, [turnParts, millParts, drillParts, cncParts, toolParts, holdParts][si - 1](b, p));
-    } else if (si === 7) {
-      title = tr('Eén werkplaats', 'One workshop');
-      lab = tr('schema', 'diagram');
-      Object.assign(o, togetherParts(b, p));
     }
     let pbg = 'x="322" y="12" width="308" height="376"';
     if (closing) {
