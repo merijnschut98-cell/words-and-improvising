@@ -144,3 +144,5 @@ Outcome: accepted (merged as delivered), sent back N times, redone.
 | 15 Nov | Render PM-27: joining, moulding, mechanics, process intros | sonnet | 69 | 63 min | 150,374 | accepted; two Dutch comma pauses reworded; several words heard poorly (vuleenheid, MIG, spuitgieten, unit operations, hardheidsmeting, FEM-plot); merged v323 |
 | 15 Nov | Build: Engineering intro eng.switchgear.intro | sonnet | 91 | 17 min | 286,880 | accepted with fixes by its review |
 | 15 Nov | Review: eng.switchgear.intro | sonnet | 72 | 13 min | 221,025 | accepted with fixes (hall B agrees with field film and transformers intro, RMU said of a netstation, installer tests the relay, you touch nothing); merged v323 |
+| 15 Nov | Build: Engineering intro eng.power.intro | sonnet | 68 | 12 min | 291,182 | accepted with fixes by its review |
+| 15 Nov | Review: eng.power.intro | sonnet | 45 | ~28 min | n/a | accepted with one fix (the drawn 10 % label now said in the narration); merged v324 |
