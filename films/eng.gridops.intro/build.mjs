@@ -17,21 +17,21 @@
 // switching plan; without this the connection takes longer and a job drops the power unexpectedly. This film is
 // line 3's bigger connection seen from inside the grid operator, in the same hall B (the cable through the left
 // wall to the power cabinet, line 3 at the right), with two people of the operator: the technician of the gridbasics
-// intro (hard hat, at the wall where the cable enters) and a planner. Every topic of the module has its place on that
+// intro (hard hat, at the wall where the cable enters) and a work preparer (the lesson's word; not "planner", who is the gridplanning station's figure in the field film). Every topic of the module has its place on that
 // one job:
 //   s1 line 3 gets a heavier connection and that is the grid operator's work (the five core tasks as
 //      eng.gridbasics.roles words them: connect customers, maintain the grid, restore outages); the map before
 //      any detail: four topics in two groups, the request and the field work (topics 1 and 2), then the daily work
 //      of outages and a full grid (topics 3 and 4)                                  → eng.gridops.request, eng.gridbasics.roles
 //   s2 Van aanvraag tot aansluiting: the plant applies and gets an offer; work preparation (permit, material,
-//      planning) is the planner's; before the job is planned the planner runs a readiness check (the field film's
+//      planning) is the work preparer's; before the job is planned the work preparer runs a readiness check (the field film's
 //      tool; Werkkennis, .chain)                                                     → .request (.chain)
 //   s3 Werk in het veld: a heavier cable to hall B is work for the crew; the crew switches a part of the grid off
 //      and the wrong order can drop customers; the technician switches by a switching plan (the field film's
 //      tool; Werkkennis, .switching)                                                 → .workload (.switching)
 //   s4 Storingen en assetrisico: a cable fails and the plant is dark; the control room sees it and switches round;
 //      the technician reads the fault indicators and the control room closes the normally open point (Basis,
-//      .outage); then the operator ranks cables and stations by risk to decide what to inspect, repair or replace
+//      .outage); the plant hangs on the ring below the fault, so it is dark until the point is closed (hedged: "can be")
 //                                                                                    → .outage (.assets)
 //   s5 Congestiemanagement in de bedrijfsvoering: at peak moments the grid is full; a team steers offtake and
 //      feed-in and buys flexibility through GOPACS (Basis, .cmbasics); the grid keeps running while line 3 gets its
@@ -47,8 +47,8 @@
 // (it says commissioning, safe switching, the fault service and the congestion study, not the check or the plan); the
 // closing grid has one beat per later level in the app's level words; the story ends where the field film picks it up
 // (the grid keeps running while line 3 gets its heavier connection), in the last topic scene.
-// Topic 3's Werkkennis lesson (the fault service) has no tool, so its tools are the two Basis ones; the risk matrix
-// belongs to Gevorderd (.assets) and is not named as a tool: the scene says only that the operator ranks parts by risk.
+// Topic 3's Werkkennis lesson (the fault service) has no tool, so its tools are the two Basis ones; asset risk
+// (the risk ranking and matrix, Gevorderd .assets) is not taught here: the closing grid names asset management at Gevorderd.
 // Not used as tools: the offer (a document, the field film's own remark), the KLIC notification (a step before digging,
 // one tool is enough), the congestion study (the Werkkennis title the grid names) and the contracts (the gridbasics intro's
 // flexibel contract).
@@ -58,7 +58,7 @@
 // explained in two beats and lit), its narration guard and its label fit.
 //
 // A film in the shared pm world (films/_pm/world.mjs, read-only): hall B as in the energy field film (the shared hall
-// of films/pm.plan.intro/hall.mjs), with pm.agile.scrum's figures for the technician and the planner (not edited). The
+// of films/pm.plan.intro/hall.mjs), with pm.agile.scrum's figures for the technician and the work preparer (not edited). The
 // film's own things (the wall entry) are simple solids drawn here. A panel at the right, in stage space, draws each
 // step as a schema, labelled "voorbeeld" (line 3's way) or "schema" (the module's map).
 //
@@ -175,7 +175,7 @@ const cueG = (name, body) => `<g data-cue="${name}">${body}</g>`;
 
 // where things stand (cm), as in the energy field film: the power cabinet at the back wall at the left (x 12), the cable
 // from the grid through the left wall (y 86 to 114) to the cabinet, line 3 at the right (x 186). The technician of the
-// grid operator by the wall entry (as in the gridbasics intro) and the planner in the hall.
+// grid operator by the wall entry (as in the gridbasics intro) and the work preparer in the hall.
 const CAB = { x: 12, w: 40, d: 26, h: 124 };
 const L3 = { x: 186, y: 16, len: 84, dep: 34 };
 const cabA = hall.cable([[0, 100], [32, 100], [32, 28]]);
@@ -187,7 +187,7 @@ const tech = scrumPerson(w, k, G, P, { x: TECH.x, y: TECH.y, key: 'tech', look: 
 const planner = scrumPerson(w, k, G, P, { x: PLAN.x, y: PLAN.y, key: 'planner', look: 'po', along: 'y' });
 
 // painted back to front (large x and small y are far): the cable and the cabinet, the line, the people (the technician
-// at the wall, the planner)
+// at the wall, the work preparer)
 const world = [
   w.room(ROOM),
   cueG('net', wallEntry + cabA),
@@ -203,7 +203,7 @@ const world = [
 // schemas of each beat. The shared Engineering map (the kit's mapScene) sits under the panel; its place Netbedrijf
 // en assetmanagement is a cue group of its own (map-gridops).
 const TILE = { connect: 'tConn', field: 'tField', outage: 'tOut', congestion: 'tCong' };
-const PANEL = ['flowS', 'taskS', 'grpA', 'grpB', 'reqS', 'prepS', 'checkS', 'reinfS', 'stepS', 'planS', 'ringS', 'ctrS', 'ring2S', 'riskS',
+const PANEL = ['flowS', 'taskS', 'grpA', 'grpB', 'reqS', 'prepS', 'checkS', 'reinfS', 'stepS', 'planS', 'ringS', 'ctrS', 'ring2S',
   'peakS', 'steerS', 'gopS', 'endS', 'tool1', 'tool2', 'lv1', 'lv2', 'lv3', 'lv4', 'start'];
 const tiles = ORDER.map((id, i) => cueG(TILE[id], g(`r${i}`, ''))).join('');
 const hud = g('hud', '<rect data-k="pbg" class="pm-panel" x="322" y="12" width="308" height="376" rx="10"/>' + g('pHead', '')
@@ -272,7 +272,7 @@ const svg = compact(`<svg class="iso-svg fp-svg" viewBox="0 0 ${W} ${H}" role="i
 const cam = (x, y, z, s) => [...w.at([x, y, z]).map((v) => Math.round(v * 10) / 10), s];
 const CAM = [
   { from: cam(140, 70, 50, 1.0), to: cam(140, 75, 50, 1.05) }, // s1 the whole hall: the cable, the cabinet, line 3, both people
-  { from: cam(95, 60, 50, 1.1), to: cam(90, 55, 50, 1.2), at: 1 }, // s2 the planner and the cabinet
+  { from: cam(95, 60, 50, 1.1), to: cam(90, 55, 50, 1.2), at: 1 }, // s2 the work preparer and the cabinet
   { from: cam(80, 80, 50, 1.1), to: cam(75, 75, 50, 1.2), at: 1 }, // s3 the cable, the technician and the cabinet
   { from: cam(130, 80, 50, 1.1), to: cam(130, 80, 50, 1.1) }, // s4 the dark hall
   { from: cam(140, 75, 50, 1.0), to: cam(140, 75, 50, 1.0) }, // s5 the whole hall: line 3 and the people at the end
@@ -313,26 +313,26 @@ const spec = {
       id: 's2', level: 1, dur: DURS[1], still: 0.9, title: { nl: 'Aansluiting', en: 'Connection' },
       beats: [
         { nl: 'Eerste onderwerp: Van aanvraag tot aansluiting. De fabriek vraagt aan en krijgt een offerte.', en: 'First topic: From request to connection. The plant applies and gets an offer.', focus: ['tConn', 'reqS'] },
-        { nl: 'Dan volgt de werkvoorbereiding met vergunning, materiaal en planning. De planner regelt dat.', en: 'Then comes work preparation with permit, material and planning. The planner arranges it.', focus: ['prepS', 'planner'] },
-        { nl: 'De planner doet een {t:Gereedheidscheck|gereedheidscheck} voor de klus begint.', en: 'The planner runs a {t:Readiness check|readiness check} before the job starts.', ...TOOL('Gereedheidscheck'), focus: ['tool1', 'checkS', 'planner'] },
+        { nl: 'Dan volgt de werkvoorbereiding met vergunning, materiaal en planning. De werkvoorbereider regelt dat.', en: 'Then comes work preparation with permit, material and planning. The work preparer arranges it.', focus: ['prepS', 'planner'] },
+        { nl: 'De werkvoorbereider doet een {t:Gereedheidscheck|gereedheidscheck} voor de klus begint.', en: 'The work preparer runs a {t:Readiness check|readiness check} before the job starts.', ...TOOL('Gereedheidscheck'), focus: ['tool1', 'checkS', 'planner'] },
       ],
     },
     {
       id: 's3', level: 1, dur: DURS[2], still: 0.9, title: { nl: 'Veldwerk', en: 'Field work' },
       beats: [
         { nl: 'Tweede onderwerp: Werk in het veld. Een zwaardere kabel naar hal B is werk voor de ploeg.', en: 'Second topic: Field work. A heavier cable to hall B is work for the crew.', focus: ['tField', 'reinfS', 'net'] },
-        { nl: 'Daarvoor schakelt de ploeg een stuk net uit. De verkeerde volgorde kan klanten laten uitvallen.', en: 'For that the crew switches a part of the grid off. The wrong order can drop customers.', focus: ['stepS', 'tech'] },
+        { nl: 'Daarvoor schakelt de ploeg een stuk net uit, maakt het veilig en schakelt het weer in.', en: 'For that the crew switches a part of the grid off, makes it safe and switches it back on.', focus: ['stepS', 'tech'] },
+        { nl: 'De verkeerde volgorde kan klanten laten uitvallen.', en: 'The wrong order can drop customers.', focus: ['stepS', 'tech'] },
         { nl: 'De monteur schakelt volgens een {t:Schakelplan|schakelplan}, stap voor stap.', en: 'The technician switches by a {t:Switching plan|switching plan}, step by step.', ...TOOL('Schakelplan'), focus: ['tool1', 'planS', 'tech'] },
       ],
     },
     {
       id: 's4', level: 1, dur: DURS[3], still: 0.9, title: { nl: 'Storing', en: 'Outage' },
       beats: [
-        { nl: 'Derde onderwerp: Storingen en assetrisico. Valt een kabel uit, dan zit de fabriek zonder stroom.', en: 'Third topic: Outages and asset risk. If a cable fails, the plant is without power.', focus: ['tOut', 'ringS'] },
+        { nl: 'Derde onderwerp: Storingen en assetrisico. Valt een kabel uit, dan kan de fabriek zonder stroom zitten.', en: 'Third topic: Outages and asset risk. If a cable fails, the plant can be without power.', focus: ['tOut', 'ringS'] },
         { nl: 'Het bedrijfsvoeringscentrum bewaakt het net dag en nacht. Een uitschakeling ziet het binnen seconden.', en: 'The control room watches the grid day and night. It sees a trip within seconds.', focus: 'ctrS' },
         { nl: 'De monteur leest de {t:Kortsluitverklikker|kortsluitverklikkers} af.', en: 'The technician reads the {t:Fault indicator|fault indicators}.', ...TOOL('Kortsluitverklikker'), focus: 'tool1' },
         { nl: 'Dan sluit het centrum het {t:Normaal openpunt|normaal openpunt}.', en: 'Then the centre closes the {t:Normally open point|normally open point}.', ...{ cue: { 'Normaal openpunt': 'tool2' } }, focus: 'tool2' },
-        { nl: 'Daarna rangschikt de netbeheerder kabels en stations op risico, kans op falen maal effect.', en: 'Then the grid operator ranks cables and stations by risk, the likelihood of failure times its consequence.', focus: 'riskS' },
       ],
     },
     {
@@ -368,7 +368,7 @@ const spec = {
 // inside a sentence at 0.4 s. Each topic scene ends on one short sentence naming the tools of that topic's lessons,
 // without explaining them. Every drawn detail has its reason in the narration: the cable through the wall (the grid
 // brings the power into the hall), the cabinet (where the cable ends), line 3 (it asks for the heavier connection),
-// the technician at the wall (the grid operator's crew works there and switches), the planner (he prepares the job and
+// the technician at the wall (the grid operator's crew works there and switches), the work preparer (he prepares the job and
 // runs the readiness check), the dark hall (the plant is without power while the cable is down).
 const SAY = [
   [ // s1 line 3 gets a heavier connection, the grid operator's tasks, the map in two groups
@@ -384,30 +384,30 @@ const SAY = [
   [ // s2 from request to connection: the offer, work preparation, the readiness check
     { nl: 'Het eerste onderwerp is Van aanvraag tot aansluiting. De fabriek vraagt aan en krijgt een offerte.',
       en: 'The first topic is From request to connection. The plant applies and gets an offer.' },
-    { nl: 'Dan volgt de werkvoorbereiding met vergunning, materiaal en planning. De planner regelt dat.',
-      en: 'Then comes work preparation with permit, material and planning. The planner arranges it.' },
-    { nl: 'De planner doet een {t:Gereedheidscheck|gereedheidscheck} voor de klus begint. Zo komt de ploeg niet voor niets.',
-      en: 'The planner runs a {t:Readiness check|readiness check} before the job starts. So the crew does not come for nothing.' },
+    { nl: 'Dan volgt de werkvoorbereiding met vergunning, materiaal en planning. De werkvoorbereider regelt dat.',
+      en: 'Then comes work preparation with permit, material and planning. The work preparer arranges it.' },
+    { nl: 'De werkvoorbereider doet een {t:Gereedheidscheck|gereedheidscheck} voor de klus begint. Zo komt de ploeg niet voor niets.',
+      en: 'The work preparer runs a {t:Readiness check|readiness check} before the job starts. So the crew does not come for nothing.' },
   ],
   [ // s3 field work: the heavier cable, switching a part of the grid off in the right order, the switching plan
     { nl: 'Het tweede onderwerp is Werk in het veld. Een zwaardere kabel naar hal B is werk voor de ploeg.',
       en: 'The second topic is Field work. A heavier cable to hall B is work for the crew.' },
-    { nl: 'Daarvoor schakelt de ploeg een stuk net uit. De verkeerde volgorde kan klanten laten uitvallen.',
-      en: 'For that the crew switches a part of the grid off. The wrong order can drop customers.' },
+    { nl: 'Daarvoor schakelt de ploeg een stuk net uit, maakt het veilig en schakelt het weer in.',
+      en: 'For that the crew switches a part of the grid off, makes it safe and switches it back on.' },
+    { nl: 'De verkeerde volgorde kan klanten laten uitvallen.',
+      en: 'The wrong order can drop customers.' },
     { nl: 'De monteur schakelt volgens een {t:Schakelplan|schakelplan}, stap voor stap. Zo werkt de ploeg veilig.',
       en: 'The technician switches by a {t:Switching plan|switching plan}, step by step. So the crew works safely.' },
   ],
-  [ // s4 outages and asset risk: the dark plant, the control room, the two tools, the ranking by risk
-    { nl: 'Het derde onderwerp is Storingen en assetrisico. Valt een kabel uit, dan zit de fabriek zonder stroom.',
-      en: 'The third topic is Outages and asset risk. If a cable fails, the plant is without power.' },
+  [ // s4 outages and asset risk: the plant that can be dark, the control room, the two tools
+    { nl: 'Het derde onderwerp is Storingen en assetrisico. Valt een kabel uit, dan kan de fabriek zonder stroom zitten.',
+      en: 'The third topic is Outages and asset risk. If a cable fails, the plant can be without power.' },
     { nl: 'Het bedrijfsvoeringscentrum bewaakt het net dag en nacht. Een uitschakeling ziet het binnen seconden.',
       en: 'The control room watches the grid day and night. It sees a trip within seconds.' },
     { nl: 'De monteur leest de {t:Kortsluitverklikker|kortsluitverklikkers} af. Zo ziet hij welk stuk kabel kapot is.',
       en: 'The technician reads the {t:Fault indicator|fault indicators}. So he sees which piece of cable is broken.' },
-    { nl: 'Dan sluit het centrum het {t:Normaal openpunt|normaal openpunt}. Zo krijgen de meeste klanten weer stroom.',
-      en: 'Then the centre closes the {t:Normally open point|normally open point}. So most customers have power again.' },
-    { nl: 'Daarna rangschikt de netbeheerder kabels en stations op risico, kans op falen maal effect. Zo beslist hij wat hij eerst inspecteert, repareert of vervangt.',
-      en: 'Then the grid operator ranks cables and stations by risk, the likelihood of failure times its consequence. So it decides what to inspect, repair or replace first.' },
+    { nl: 'Dan sluit het centrum het {t:Normaal openpunt|normaal openpunt}. Zo krijgt de fabriek weer stroom.',
+      en: 'Then the centre closes the {t:Normally open point|normally open point}. So the plant has power again.' },
   ],
   [ // s5 congestion management in operations, and the story ends where the field film picks it up
     { nl: 'Het vierde onderwerp is Congestiemanagement in de bedrijfsvoering. Op piekmomenten zit het net vol.',
@@ -505,8 +505,8 @@ const css = PM_CSS + HALL_CSS + `
 ` + mapStyles(undefined, 'eng');
 
 const label = {
-  nl: 'Hal B van de fabriek, waar lijn 3 op zijn nieuwe plek draait. Door de linkerwand komt de kabel van het net binnen, naar de stroomkast langs de achterwand. Rechts de verpakkingslijn met dozen. Een monteur van de netbeheerder in een helm bij de muur waar de kabel binnenkomt, en een planner van de netbeheerder in de hal. Bij een storing wordt de hal donker. Rechts een paneel, gemarkeerd als voorbeeld of schema: de weg van lijn 3 naar een zwaardere aansluiting, de taken van een netbeheerder, de stappen van aanvraag tot offerte en werkvoorbereiding, een zwaardere kabel en het uit- en inschakelen in stappen, een middenspanningsring met een kabelfout, een normaal openpunt en kortsluitverklikkers, een rangschikking van kabels en stations op risico, een dagcurve met een piek boven de grens en de inkoop van flexibiliteit, met per onderwerp de naam van een of twee hulpmiddelen. Aan het eind de hele kaart van Engineering met Netbedrijf en assetmanagement verlicht, en de vier onderwerpen van de module met elk vier niveaus: Basis, Werkkennis, Gevorderd en Expert.',
-  en: 'Hall B of the factory, where line 3 runs at its new place. Through the left wall the cable from the grid comes in, to the power cabinet along the back wall. At the right the packing line with cartons. A technician of the grid operator in a hard hat by the wall where the cable enters, and a planner of the grid operator in the hall. In an outage the hall goes dark. At the right a panel, marked as an example or a diagram: the way from line 3 to a heavier connection, the tasks of a grid operator, the steps from request to offer and work preparation, a heavier cable and switching off and on in steps, a medium-voltage ring with a cable fault, a normally open point and fault indicators, cables and stations ranked by risk, a day curve with a peak above the limit and the purchase of flexibility, with the names of one or two tools per topic. At the end the whole map of Engineering with Grid operations and assets lit, and the module’s four topics with four levels each: Basics, Working knowledge, Advanced and Expert.',
+  nl: 'Hal B van de fabriek, waar lijn 3 op zijn nieuwe plek draait. Door de linkerwand komt de kabel van het net binnen, naar de stroomkast langs de achterwand. Rechts de verpakkingslijn met dozen. Een monteur van de netbeheerder in een helm bij de muur waar de kabel binnenkomt, en een werkvoorbereider van de netbeheerder in de hal. Bij een storing wordt de hal donker. Rechts een paneel, gemarkeerd als voorbeeld of schema: de weg van lijn 3 naar een zwaardere aansluiting, de taken van een netbeheerder, de stappen van aanvraag tot offerte en werkvoorbereiding, een zwaardere kabel en het uit- en inschakelen in stappen, een middenspanningsring met een kabelfout, een normaal openpunt en kortsluitverklikkers, een dagcurve met een piek boven de grens en de inkoop van flexibiliteit, met per onderwerp de naam van een of twee hulpmiddelen. Aan het eind de hele kaart van Engineering met Netbedrijf en assetmanagement verlicht, en de vier onderwerpen van de module met elk vier niveaus: Basis, Werkkennis, Gevorderd en Expert.',
+  en: 'Hall B of the factory, where line 3 runs at its new place. Through the left wall the cable from the grid comes in, to the power cabinet along the back wall. At the right the packing line with cartons. A technician of the grid operator in a hard hat by the wall where the cable enters, and a work preparer of the grid operator in the hall. In an outage the hall goes dark. At the right a panel, marked as an example or a diagram: the way from line 3 to a heavier connection, the tasks of a grid operator, the steps from request to offer and work preparation, a heavier cable and switching off and on in steps, a medium-voltage ring with a cable fault, a normally open point and fault indicators, a day curve with a peak above the limit and the purchase of flexibility, with the names of one or two tools per topic. At the end the whole map of Engineering with Grid operations and assets lit, and the module’s four topics with four levels each: Basics, Working knowledge, Advanced and Expert.',
 };
 
 const { data } = await defineFilm(spec, { svg, script: stageScript, css, kitCss: k.ISO_CSS, label });

@@ -144,15 +144,15 @@ const STAGE = (() => {
   // the readiness check: a list that has to be ticked before the job is planned, under the chip
   function checkDrawing() {
     const row = (y, a, b) => rect(334, y, 284, 36, 'pm-tile', 6) + txt(346, y + 26, tr(a, b, 220), 22, 'start', 'pm-txt') + path(`M572 ${y + 19}l7 8l15 -16`, 'pm-tick');
-    return row(172, 'Ontwerp', 'Design') + row(214, 'Vergunning', 'Permit') + row(256, 'Materiaal', 'Material') + row(298, 'Ploeg', 'Crew');
+    return row(180, 'Vergunning', 'Permit') + row(226, 'Materiaal', 'Material') + row(272, 'Ploeg', 'Crew');
   }
 
   // ---- s3: field work: the heavier cable, switching a part of the grid off in order, the switching plan.
   const reinfDrawing = () => card(100, 'Zwaardere kabel', 'Heavier cable', 'naar hal B', 'to hall B', 'pm-crit') + arrow(476, 162, 476, 190) + card(194, 'Klus voor de ploeg', 'Job for the crew', 'verzwaring van het net', 'upgrade of the grid');
-  function stepDrawing() {
+  function stepDrawing(order) {
     const row = (y, n, a, b) => rect(334, y, 284, 44, 'pm-tile', 8) + txt(346, y + 31, String(n), 22, 'start', 'pm-on') + txt(378, y + 31, tr(a, b, 230), 22, 'start', 'pm-txt');
-    return row(100, 1, 'Uitschakelen', 'Switch off') + arrow(476, 146, 476, 156) + row(158, 2, 'Veilig maken', 'Make safe') + arrow(476, 204, 476, 214) + row(216, 3, 'Terugschakelen', 'Switch back')
-      + txt(334, 318, tr('de volgorde telt', 'the order counts', 284), 22, 'start', 'pm-mute');
+    return row(100, 1, 'Uitschakelen', 'Switch off') + arrow(476, 146, 476, 156) + row(158, 2, 'Veilig maken', 'Make safe') + arrow(476, 204, 476, 214) + row(216, 3, 'Weer inschakelen', 'Switch back on')
+      + (order ? txt(334, 318, tr('de volgorde telt', 'the order counts', 284), 22, 'start', 'pm-mute') : '');
   }
   // the switching plan: a sheet with numbered lines, under the chip
   function planDrawing() {
@@ -177,7 +177,7 @@ const STAGE = (() => {
     const yF = mid + sp * 0.45;
     const yR2 = mid + sp * 0.72;
     const node = (x, y, lit) => rect(x - 8, y - 8, 16, 16, lit ? 'pm-lamp' : 'pm-tile', 3);
-    let s = rect(M - 76, subY, 152, 34, 'pm-card', 6) + txt(M, subY + 25, tr('Onderstation', 'Substation', 140), 22, 'middle', 'pm-big');
+    let s = rect(M - 76, subY, 152, 34, 'pm-card', 6) + txt(M, subY + 25, tr('Het net', 'The grid', 140), 22, 'middle', 'pm-big');
     s += path(`M${M - 76} ${mid}H${L}V${bot}H${closed ? M : M - 10}`, 'pm-link');
     s += path(`M${M + 76} ${mid}H${R}V${f1(yF - 14)}`, 'pm-link') + path(`M${R - 9} ${f1(yF - 9)}l18 18M${R - 9} ${f1(yF + 9)}l18 -18`, 'pm-gap');
     s += path(`M${R} ${f1(yF + 14)}V${bot}H${closed ? M : M + 10}`, closed ? 'pm-live' : 'pm-link');
@@ -195,12 +195,6 @@ const STAGE = (() => {
   }
   // the ring under the two chips (y 110 to 186), the fault indicator of the last station that sparked lit
   const ring2Drawing = (closed) => ring(198, 366, true, closed);
-  // assets ranked by risk: three rows, the longest bar the highest risk
-  function riskDrawing() {
-    const row = (y, n, a, b, wd, cls) => txt(346, y + 22, tr(a, b, 220), 22, 'start', 'pm-txt') + txt(610, y + 22, String(n), 22, 'end', 'pm-big') + rect(346, y + 32, wd, 16, cls, 4);
-    return row(100, 1, 'Oude kabel', 'Old cable', 250, 'pm-crit') + row(160, 2, 'Station', 'Station', 150, 'pm-bar') + row(220, 3, 'Nieuwe kabel', 'New cable', 70, 'pm-bar')
-      + txt(334, 326, tr('kans op falen', 'likelihood of failure', 284), 22, 'start', 'pm-mute') + txt(334, 352, tr('maal effect', 'times consequence', 284), 22, 'start', 'pm-mute');
-  }
 
   // ---- s5: a day curve with a peak above the limit, the team steering it down, buying flexibility, the grid keeps running.
   const HS = [34, 30, 38, 60, 96, 128, 136, 116, 70, 44, 36, 32];
@@ -289,8 +283,8 @@ const STAGE = (() => {
       title = [tr('Aansluiting', 'Connection', 150), tr('Veldwerk', 'Field work', 150), tr('Storing', 'Outage', 150), tr('Een vol net', 'A full grid', 150)][si - 1];
       o.r = strip(si - 1);
       if (si === 1) Object.assign(o, { reqS: fade(b, 0, p, reqDrawing(), 0.1, 0.5), prepS: fade(b, 1, p, prepDrawing(), 0.1, 0.5), checkS: fade(b, 2, p, checkDrawing(), 0.25, 0.65), ...tools(b, p, 2, tr('Gereedheidscheck', 'Readiness check', 260)) });
-      if (si === 2) Object.assign(o, { reinfS: fade(b, 0, p, reinfDrawing(), 0.1, 0.5), stepS: fade(b, 1, p, stepDrawing(), 0.1, 0.5), planS: fade(b, 2, p, planDrawing(), 0.25, 0.65), ...tools(b, p, 2, tr('Schakelplan', 'Switching plan', 260)) });
-      if (si === 3) Object.assign(o, { ringS: fade(b, 0, p, ringDrawing(), 0.1, 0.5), ctrS: fade(b, 1, p, ctrDrawing(), 0.1, 0.5), ring2S: b === 2 ? op(span(p, 0.3, 0.7), ring2Drawing(false)) : b === 3 ? ring2Drawing(p > 0.45) : '', riskS: fade(b, 4, p, riskDrawing(), 0.1, 0.5),
+      if (si === 2) Object.assign(o, { reinfS: fade(b, 0, p, reinfDrawing(), 0.1, 0.5), stepS: b === 1 ? fade(b, 1, p, stepDrawing(false), 0.1, 0.5) : b === 2 ? stepDrawing(true) : '', planS: fade(b, 3, p, planDrawing(), 0.25, 0.65), ...tools(b, p, 3, tr('Schakelplan', 'Switching plan', 260)) });
+      if (si === 3) Object.assign(o, { ringS: fade(b, 0, p, ringDrawing(), 0.1, 0.5), ctrS: fade(b, 1, p, ctrDrawing(), 0.1, 0.5), ring2S: b === 2 ? op(span(p, 0.3, 0.7), ring2Drawing(false)) : b === 3 ? ring2Drawing(p > 0.45) : '',
         tool1: b === 2 ? op(span(p, 0, 0.4), chip1) : b === 3 ? chip1 : '', tool2: b === 3 ? op(span(p, 0, 0.4), chip2) : '' });
       if (si === 4) Object.assign(o, { peakS: fade(b, 0, p, peakDrawing(), 0.1, 0.5), steerS: fade(b, 1, p, steerDrawing(), 0.1, 0.6), gopS: fade(b, 2, p, gopDrawing(), 0.25, 0.65), endS: fade(b, 3, p, endDrawing(), 0.1, 0.5), ...tools(b, p, 2, tr('GOPACS', 'GOPACS', 260)) });
     }
