@@ -976,7 +976,13 @@ const SAY = {
     // voice; no other film's spoken text changes
     [/(?<=\bVoorspellend, edjail, )Lean en Six Sigma\b/g, 'Lien en Sikss Sigma'], [/\bmet DMAIC, de stappen van Six Sigma\b/g, 'met dee em aa ie see, de stappen van Sikss Sigma'],
     // and toolfamilies (espeak-ng reads tool as tˈoːl, "tole") as toel-families, as the planningstool rule says its tool, only after "Denk in"
-    [/(?<=\bDenk in )toolfamilies\b/g, 'toel-families']],
+    [/(?<=\bDenk in )toolfamilies\b/g, 'toel-families'],
+    // the field film "Keeping the plant running" (eng.field.run), a self-contained group at the end of the Dutch list, checked with
+    // phonemes through Piper's nl_NL-alex bridge: espeak-ng reads flow as "flaw" (flɔw; said flouw, flˈʌʊ, as the flow rule of
+    // pm.agile.forecast), only in the two phrases that name the module ("station is Capaciteit en flow", "Eerst Capaciteit en
+    // flow"). Takttijd, stilstandregistratie, turflijst, afwijkingsrapport, CMMS (letters), CILT and LMRA (the rules above),
+    // vergrendelen en labelen, lijnbalans, omstellen and teamleider are read right; no other film's spoken text changes
+    [/(?<=\b(?:station is|Eerst) )Capaciteit en flow\b/g, 'Capaciteit en flouw']],
   en: [[/\brpm\b/g, 'revolutions per minute'], [/\bmm\/min\b/g, 'millimetres per minute'], [/\bm\/min\b/g, 'metres per minute'], [/µm\b/g, 'micrometres'],
     [/€\s?(\d[\d,]*(?:\.\d+)?)/g, '$1 euros'], [/(\d)\.0(?![\d])/g, '$1'], [/(\d)\s?mm\b/g, '$1 millimetres'], [/(\d)\s?min\b/g, '$1 minutes'], [/(\d)\s?%/g, '$1 percent'],
     [/Ø\s*/g, 'diameter '], [/(\d)\+(\d)/g, '$1 plus $2'], [/\s×\s/g, ' times '], [/\s\/\s/g, ' divided by '], [/\s=\s/g, ' is '], [/°/g, ' degrees'], [/\bRa\b/g, 'R a'], [/’/g, "'"],
