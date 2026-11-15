@@ -3557,6 +3557,74 @@
         ],
         "vtt": "src/content/courses/films/eng.field.digital.en.vtt"
       }
+    },
+    "eng.field.energy": {
+      "poster": "src/content/courses/films/eng.field.energy.jpg",
+      "nl": {
+        "dur": 237.6,
+        "bytes": 10981579,
+        "scenes": [
+          0,
+          20.97,
+          42.26,
+          63.31,
+          88.4,
+          110.14,
+          133.35,
+          154.91,
+          174.55
+        ],
+        "vtt": "src/content/courses/films/eng.field.energy.nl.vtt"
+      },
+      "en": {
+        "dur": 257.3,
+        "bytes": 11238766,
+        "scenes": [
+          0,
+          23.34,
+          46.82,
+          69.79,
+          96.84,
+          121.39,
+          145.79,
+          170.68,
+          193.23
+        ],
+        "vtt": "src/content/courses/films/eng.field.energy.en.vtt"
+      }
+    },
+    "eng.machining.intro": {
+      "poster": "src/content/courses/films/eng.machining.intro.jpg",
+      "nl": {
+        "dur": 210.2,
+        "bytes": 8116771,
+        "scenes": [
+          0,
+          36.42,
+          54.41,
+          72.68,
+          89.29,
+          114.83,
+          136.11,
+          162.08
+        ],
+        "vtt": "src/content/courses/films/eng.machining.intro.nl.vtt"
+      },
+      "en": {
+        "dur": 226.8,
+        "bytes": 8674607,
+        "scenes": [
+          0,
+          39.78,
+          59.81,
+          79.11,
+          97.85,
+          124.38,
+          145.6,
+          176.21
+        ],
+        "vtt": "src/content/courses/films/eng.machining.intro.en.vtt"
+      }
     }
   }
 }
