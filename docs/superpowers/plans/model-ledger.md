@@ -152,3 +152,5 @@ Outcome: accepted (merged as delivered), sent back N times, redone.
 | 15 Nov | Review: eng.gridops.intro | sonnet | ~45 | n/a | n/a | accepted with fixes (Gevorderd risk beat cut, planner renamed werkvoorbereider, dark hall hedged, drawn labels named); merged v327 |
 | 15 Nov | Build: Engineering intro eng.gridplanning.intro | sonnet | 97 | 17 min | 354,264 | accepted with fixes by its review |
 | 15 Nov | Review: eng.gridplanning.intro | sonnet | ~60 | n/a | n/a | accepted with fixes (dashed cable given a reason, design topic one tool, CSC chip with full word, labels named, camera); merged v328 |
+| 15 Nov | Build: Engineering intro eng.itbasics.intro | sonnet | 115 | 17 min | 326,712 | accepted with fixes by its review |
+| 15 Nov | Review: eng.itbasics.intro | sonnet | 85 | 10.6 min | 204,465 | accepted with fixes (seven tools to four, firewall left to cyber, virtuele machine and query, two SAY rules dropped, you at the field-film spot); merged v329 |

@@ -913,7 +913,13 @@ const SAY = {
     // "vast in het investeringsplan", "verdeelt hij het spanningsbudget"). Loadflow, N-1, congestiemanagement and
     // capaciteitssturingscontract have rules above; netplanner, scenario and the rest are read right
     [/(?<=\bonderwerp is )Investeringsplanning\b/g, 'In-ves-terings-planning'], [/(?<=\bvast in het )investeringsplan\b/g, 'in-ves-terings-plan'],
-    [/(?<=\bverdeelt hij het )spanningsbudget\b/g, 'spannings-budget']],
+    [/(?<=\bverdeelt hij het )spanningsbudget\b/g, 'spannings-budget'],
+    // the module intro film "The order to line 3" (eng.itbasics.intro), a self-contained group at the end of the Dutch list,
+    // checked with phonemes through Piper's nl_NL-alex bridge: espeak-ng reads API's as the word "apis" (said A P I's) and query
+    // with a v for the w and a long vowel (said kwiri), each only in the intro's own sentences ("Software en API's", "Met een
+    // query lees je"). Router, server, virtual machine, cloud, webapplicatie, SQL, ERP and MES are read right; no other film's
+    // spoken text changes
+    [/\bSoftware en API's\b/g, "Software en A P I's"], [/\b([Mm])et een query lees je\b/g, '$1et een kwiri lees je']],
   en: [[/\brpm\b/g, 'revolutions per minute'], [/\bmm\/min\b/g, 'millimetres per minute'], [/\bm\/min\b/g, 'metres per minute'], [/µm\b/g, 'micrometres'],
     [/€\s?(\d[\d,]*(?:\.\d+)?)/g, '$1 euros'], [/(\d)\.0(?![\d])/g, '$1'], [/(\d)\s?mm\b/g, '$1 millimetres'], [/(\d)\s?min\b/g, '$1 minutes'], [/(\d)\s?%/g, '$1 percent'],
     [/Ø\s*/g, 'diameter '], [/(\d)\+(\d)/g, '$1 plus $2'], [/\s×\s/g, ' times '], [/\s\/\s/g, ' divided by '], [/\s=\s/g, ' is '], [/°/g, ' degrees'], [/\bRa\b/g, 'R a'], [/’/g, "'"],

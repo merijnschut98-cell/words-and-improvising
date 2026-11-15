@@ -1502,3 +1502,19 @@ test('speak variant: the grid planning intro film words in Dutch', () => {
   const en = 'He calculates with a scenario and records it in the investment plan. He shares out the voltage budget.';
   assert.equal(speakOf([en], 'en'), en);
 });
+
+// The module intro film "The order to line 3" (eng.itbasics.intro), checked with espeak-ng phonemes through Piper's nl bridge: it
+// reads API’s as the word "apis" (said A P I's, only in the topic's own sentence "Software en API’s") and query with a v for
+// the w and a long vowel (said kwiri, only in "Met een query lees je"). Router, server, virtuele machine, cloud, webapplicatie,
+// SQL, ERP, MES and the level words are read right; English needs nothing; no other film's spoken text changes
+test('speak variant: the IT fundamentals intro film words in Dutch', () => {
+  const nl = (s) => speakOf([s], 'nl');
+  assert.equal(nl('Het vierde onderwerp is Software en API’s.'), 'Het vierde onderwerp is Software en A P I\'s.');
+  assert.equal(nl('Met een query lees je welke orders erin staan.'), 'Met een kwiri lees je welke orders erin staan.');
+  assert.equal(nl('Meestal open je het MES als webapplicatie in de browser.'), 'Meestal open je het em ee es als webapplicatie in de browser.');
+  // elsewhere the words keep their voice
+  assert.equal(nl('De API’s van het ERP zijn open.'), 'De API\'s van het ERP zijn open.');
+  assert.equal(nl('Een query is één vraag aan de database.'), 'Een query is één vraag aan de database.');
+  const en = 'The fourth topic is Software and APIs. With a query you read which orders are in it.';
+  assert.equal(speakOf([en], 'en'), en);
+});
