@@ -897,7 +897,21 @@ const SAY = {
     // (tach-nummer; said tek-nummer) and stresses operator on the first syllable (said ope-raator), only in the intro's two
     // sentences ("lezen we het tagnummer", "De operator loopt"). P&ID is written "P en I D" in its narration; GD en T, PID,
     // PLC, stempel, tolerantiekader, niveaumeter, regelklep and streefwaarde are read right; no other film's spoken text changes
-    [/\blezen we het tagnummer\b/g, 'lezen we het tek-nummer'], [/\bDe operator loopt\b/g, 'De ope-raator loopt']],
+    [/\blezen we het tagnummer\b/g, 'lezen we het tek-nummer'], [/\bDe operator loopt\b/g, 'De ope-raator loopt'],
+    // the module intro films' words a Dutch listener would mishear (render batch PM-28; Piper's nl_NL-alex voice in each film's own
+    // sentence, transcribed with large-v3-turbo, the spelling heard right most often): espeak-ng reads vuleenheid with a long ue
+    // (heard "verleenheid"; "vul eenheid" 3 of 4, vul-eenheid 0 of 3), frame as "fraame" (heard "framen", "vramen"; "freem" 3 of 3,
+    // 1 of 3), Spuitgieten with the stress on "gie" (heard "Spijt te gieten"; "Spuit-gieten" 3 of 3, 0 of 3), spuitunit and sluitunit
+    // with one stress ("spuit-unit" 2 of 3, 1 of 3; "sluit-unit" 2 of 2, 1 of 2) and hardheidsmeting with a voiced d ("hardheids-meting"
+    // 5 of 5, 4 of 5). vuleenheid and "het frame" (also "stalen frame", "want frame,") only occur in the intro and field films, which
+    // are all rebuilt; the other words only in the phrases of the intros ("Spuitgieten is het zesde station", "De spuitunit smelt",
+    // "vaak een hardheidsmeting"), so the moulding machine film, the field film and "6 frames per uur" keep their voice. MIG/MAG
+    // (heard "IG" once in a sentence, "MIG" in 2 of 3), positioner, lijm, droger, hal B, staalnamen, FEM-plot, materiaal and unit
+    // operations are read right by the voice (phonemes) and heard right by a second transcription: no rule
+    [/(?<=\bnaar hal B, naar de )vuleenheid\b/g, 'vul-eenheid'], [/\b([Vv])uleenheid\b/g, '$1ul eenheid'], [/\b([Hh]et |stalen |want )frame\b/g, '$1freem'],
+    [/\bSpuitgieten is het zesde station\b/g, 'Spuit-gieten is het zesde station'],
+    [/\bDe spuitunit smelt de kunststof en de sluitunit\b/g, 'De spuit-unit smelt de kunststof en de sluit-unit'],
+    [/(?<=\bgebruiken we vaak een )hardheidsmeting\b/g, 'hardheids-meting']],
   en: [[/\brpm\b/g, 'revolutions per minute'], [/\bmm\/min\b/g, 'millimetres per minute'], [/\bm\/min\b/g, 'metres per minute'], [/µm\b/g, 'micrometres'],
     [/€\s?(\d[\d,]*(?:\.\d+)?)/g, '$1 euros'], [/(\d)\.0(?![\d])/g, '$1'], [/(\d)\s?mm\b/g, '$1 millimetres'], [/(\d)\s?min\b/g, '$1 minutes'], [/(\d)\s?%/g, '$1 percent'],
     [/Ø\s*/g, 'diameter '], [/(\d)\+(\d)/g, '$1 plus $2'], [/\s×\s/g, ' times '], [/\s\/\s/g, ' divided by '], [/\s=\s/g, ' is '], [/°/g, ' degrees'], [/\bRa\b/g, 'R a'], [/’/g, "'"],
