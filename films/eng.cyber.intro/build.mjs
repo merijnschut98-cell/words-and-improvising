@@ -31,15 +31,15 @@
 //   s2 De basis: in the office confidentiality often comes first, in the plant availability and safety (the CIA lesson,
 //      Basis); a fake mail is the most common way in, phishing (Werkkennis, .phishing); one tool, the report button,
 //      the one-click way to send a suspicious mail to IT. No tool at Basis (.cia holds concepts only)
-//   s3 OT-beveiliging met IEC 62443: the standard for plant, integrator and supplier (Basis, .iec62443); a fake mail,
-//      a USB stick or remote access can bring an attack in (the lessons: USB and 4G as invisible conduits, remote access
-//      as a way in); the line gets its own floor with one guarded link from the network cabinet to the control cabinet,
+//   s3 OT-beveiliging met IEC 62443: the standard for plant, integrator and supplier (Basis, .iec62443); the way in
+//      (a fake mail) was shown in s2, so this scene goes straight to the defence (review: the ways-in beat was lesson detail
+//      and cost two speech rules); the line gets its own floor with one guarded link from the network cabinet to the control cabinet,
 //      so an infection from the office does not simply get onto the line (defence in depth, .iec62443); the field film's
 //      tools, zones and conduits (Werkkennis, .zones), as the gate and the marked floor the room already draws. The
 //      firewall is no term of any cyber lesson (it is a layer in the Basis text and a term of IT fundamentals), so it
 //      is not a tool here
-//   s4 NIS2 en de wet: NIS2 and the Cybersecurity Act; a duty of care, a reporting obligation, a registration
-//      obligation, and the board responsible itself (Basis, .nis2); an attack that stops line 3 may call for a report
+//   s4 NIS2 en de wet: NIS2 and the Cybersecurity Act; a duty of care, a reporting obligation and a registration
+//      obligation (Basis, .nis2; the board is Gevorderd, the duty of care in practice); an attack that stops line 3 may call for a report
 //      (a significant incident is one that causes or may cause serious disruption, .reporting); whether the plant is covered
 //      depends on sector and size (Werkkennis, .scope); the tools are the two annexes of NIS2, the lists you look your
 //      sector up in (the topic has no device or method of its own)
@@ -111,13 +111,11 @@ has('eng.cyber.cia', ['Op kantoor staat vertrouwelijkheid vaak voorop', 'In de f
 has('eng.cyber.cia', ['In the office, confidentiality often comes first', 'In the plant, availability and safety come first'], 'en');
 has('eng.cyber.phishing', ['Phishing is een nepbericht', 'Het is de meest gebruikte manier om binnen te komen', 'Met een meldknop (report button) in Outlook stuur je een verdachte mail met één klik naar IT']);
 has('eng.cyber.phishing', ['Phishing is a fake message', 'It is the most common way in', 'With a report button in Outlook you send a suspicious email to IT in one click'], 'en');
-// s3: the standard for plant, integrator and supplier; USB sticks and remote access as ways in; defence in depth; a zone and a conduit
+// s3: the standard for plant, integrator and supplier; defence in depth; a zone and a conduit
 has('eng.cyber.iec62443', ['voor fabriek, integrator en leverancier', 'Valt één laag weg, dan houdt de volgende de aanvaller nog op']);
 has('eng.cyber.iec62443', ['for plant, integrator and supplier', 'If one layer fails, the next still holds the attacker up'], 'en');
-has('eng.cyber.zones', ['Of usb-sticks en een 4G-modem als onzichtbare conduits', 'Zone Groep apparaten met dezelfde beveiligingseisen, zoals één productielijn', 'Conduit Gecontroleerde verbinding tussen twee zones', 'Houd kantoor (IT) en besturing (OT) gescheiden']);
-has('eng.cyber.zones', ['Or USB sticks and a 4G modem as invisible conduits', 'Zone Group of devices with the same security requirements, such as one production line', 'Conduit Controlled connection between two zones', 'Keep the office (IT) and control (OT) apart'], 'en');
-has('eng.cyber.otpatch', ['komt slecht beveiligde toegang op afstand steeds terug als manier om binnen te komen']);
-has('eng.cyber.otpatch', ['poorly secured remote access keeps coming back as a way in'], 'en');
+has('eng.cyber.zones', ['Zone Groep apparaten met dezelfde beveiligingseisen, zoals één productielijn', 'Conduit Gecontroleerde verbinding tussen twee zones', 'Houd kantoor (IT) en besturing (OT) gescheiden']);
+has('eng.cyber.zones', ['Zone Group of devices with the same security requirements, such as one production line', 'Conduit Controlled connection between two zones', 'Keep the office (IT) and control (OT) apart'], 'en');
 // s4: the law, its duties, the board, the incident that may need a report, sector and size, the annexes
 has('eng.cyber.nis2', ['NIS2 is een Europese richtlijn', 'In Nederland heet die wet de Cyberbeveiligingswet', 'De zorgplicht (duty of care)', 'De meldplicht (reporting obligation): ernstige incidenten snel melden', 'De registratieplicht (registration obligation)', 'Daarbovenop is het bestuur zelf verantwoordelijk']);
 has('eng.cyber.nis2', ['NIS2 is a European directive', 'In the Netherlands that law is the Dutch Cybersecurity Act', 'The duty of care', 'The reporting obligation', 'The registration obligation', 'the board itself is responsible'], 'en');
@@ -229,7 +227,7 @@ const world = [
 // schemas of each beat. The shared map (the kit's mapScene) sits under the panel; its place Cybersecurity is a cue
 // group of its own (map-cyber).
 const TILE = { basics: 'tBasics', ot: 'tOT', rules: 'tRules', response: 'tResp' };
-const PANEL = ['flowS', 'defS', 'grpA', 'grpB', 'ciaS', 'phishS', 'normS', 'waysS', 'zoneS', 'lawS', 'dutyS', 'stopS', 'scopeS', 'incS', 'cycS',
+const PANEL = ['flowS', 'defS', 'grpA', 'grpB', 'ciaS', 'phishS', 'normS', 'zoneS', 'lawS', 'dutyS', 'stopS', 'scopeS', 'incS', 'cycS',
   'tool1', 'tool2', 'lv1', 'lv2', 'lv3', 'lv4', 'start'];
 const tiles = ORDER.map((id, i) => cueG(TILE[id], g(`r${i}`, ''))).join('');
 const hud = g('hud', '<rect data-k="pbg" class="pm-panel" x="322" y="12" width="308" height="376" rx="10"/>' + g('pHead', '')
@@ -333,7 +331,7 @@ const spec = {
       id: 's2', level: 1, dur: DURS[1], still: 0.9, title: { nl: 'De basis', en: 'Basics' },
       beats: [
         { nl: 'Het eerste onderwerp is De basis. Op kantoor staat vertrouwelijkheid vaak voorop.', en: 'The first topic is Basics. In the office, confidentiality often comes first.', focus: ['tBasics', 'ciaS'] },
-        { nl: 'In de fabriek gaan beschikbaarheid en veiligheid voor. De lijn mag niet stilvallen.', en: 'In the plant, availability and safety come first. The line must not stop.', focus: ['ciaS', 'line3', 'unit'] },
+        { nl: 'In de fabriek gaan beschikbaarheid en veiligheid voor.', en: 'In the plant, availability and safety come first.', focus: ['ciaS', 'line3', 'unit'] },
         { nl: 'Een nepmail is de meest gebruikte weg naar binnen. Dat heet phishing.', en: 'A fake mail is the most common way in. That is called phishing.', focus: ['phishS'] },
         { nl: 'Met een {t:Meldknop|meldknop} stuur je een verdachte mail met één klik naar IT.', en: 'With a {t:Report button|report button} you send a suspicious mail to IT in one click.', ...TOOL('Meldknop'), focus: ['tool1'] },
       ],
@@ -342,7 +340,6 @@ const spec = {
       id: 's3', level: 1, dur: DURS[2], still: 0.9, title: { nl: 'OT-beveiliging', en: 'OT security' },
       beats: [
         { nl: 'Het tweede onderwerp is OT-beveiliging met IEC 62443. Een norm voor fabriek, integrator en leverancier.', en: 'The second topic is OT security with IEC 62443. A standard for plant, integrator and supplier.', focus: ['tOT', 'normS'] },
-        { nl: 'Een aanval kan binnenkomen via een nepmail, een usb-stick of toegang op afstand.', en: 'An attack can get in through a fake mail, a USB stick or remote access.', focus: ['waysS', 'line3'] },
         { nl: 'Lijn 3 krijgt een eigen stuk vloer. Eén bewaakte verbinding loopt van de netwerkkast naar de besturingskast.', en: 'Line 3 gets a floor area of its own. One guarded link runs from the network cabinet to the control cabinet.', focus: ['zoneS', 'zone', 'netcab', 'plc', 'conduit'] },
         { nl: 'Zo komt een infectie van kantoor niet zomaar de lijn op.', en: 'So an infection from the office does not simply get onto the line.', focus: ['zoneS', 'conduit', 'zone'] },
         { nl: 'Je deelt de fabriek in met {t:Zone|zones} en {t:Conduit|conduits}.', en: 'You lay out the plant with {t:Zone|zones} and {t:Conduit|conduits}.', ...TOOL('Zone', 'Conduit'), focus: ['tool1', 'tool2', 'zone', 'conduit'] },
@@ -352,7 +349,7 @@ const spec = {
       id: 's4', level: 1, dur: DURS[3], still: 0.9, title: { nl: 'NIS2 en de wet', en: 'NIS2 and the law' },
       beats: [
         { nl: 'Het derde onderwerp is NIS2 en de wet. In Nederland heet die wet de Cyberbeveiligingswet.', en: 'The third topic is NIS2 and the law. In the Netherlands that law is the Cybersecurity Act.', focus: ['tRules', 'lawS'] },
-        { nl: 'De wet kent een zorgplicht, een meldplicht en een registratieplicht. Het bestuur is zelf verantwoordelijk.', en: 'The law has a duty of care, a reporting duty and a registration duty. The board is itself responsible.', focus: ['dutyS'] },
+        { nl: 'De wet kent een zorgplicht, een meldplicht en een registratieplicht.', en: 'The law has a duty of care, a reporting duty and a registration duty.', focus: ['dutyS'] },
         { nl: 'Een aanval die lijn 3 stilzet, kan een melding vragen.', en: 'An attack that stops line 3 may call for a report.', focus: ['stopS', 'line3'] },
         { nl: 'Of de fabriek eronder valt, hangt af van sector en omvang.', en: 'Whether the plant is covered depends on sector and size.', focus: ['scopeS'] },
         { nl: 'Je zoekt je sector op in {t:Bijlage I|bijlage I} en {t:Bijlage II|bijlage II}.', en: 'You look up your sector in {t:Annex I|Annex I} and {t:Annex II|Annex II}.', ...TOOL('Bijlage I', 'Bijlage II'), focus: ['tool1', 'tool2'] },
@@ -408,18 +405,16 @@ const SAY = [
   [ // s2 the basics: office and plant weigh differently, a fake mail, the report button
     { nl: 'Het eerste onderwerp is De basis. Op kantoor staat vertrouwelijkheid vaak voorop.',
       en: 'The first topic is Basics. In the office, confidentiality often comes first.' },
-    { nl: 'In de fabriek gaan beschikbaarheid en veiligheid voor. De lijn mag niet stilvallen.',
-      en: 'In the plant, availability and safety come first. The line must not stop.' },
+    { nl: 'In de fabriek gaan beschikbaarheid en veiligheid voor.',
+      en: 'In the plant, availability and safety come first.' },
     { nl: 'Een nepmail is de meest gebruikte weg naar binnen. Dat heet phishing.',
       en: 'A fake mail is the most common way in. That is called phishing.' },
     { nl: 'Met een {t:Meldknop|meldknop} stuur je een verdachte mail met één klik naar IT.',
       en: 'With a {t:Report button|report button} you send a suspicious mail to IT in one click.' },
   ],
-  [ // s3 OT security: the standard, the ways in, the floor of its own and the guarded link, zones and conduits
+  [ // s3 OT security: the standard, the floor of its own and the guarded link, zones and conduits
     { nl: 'Het tweede onderwerp is OT-beveiliging met IEC 62443. Een norm voor fabriek, integrator en leverancier.',
       en: 'The second topic is OT security with IEC 62443. A standard for plant, integrator and supplier.' },
-    { nl: 'Een aanval kan binnenkomen via een nepmail, een usb-stick of toegang op afstand.',
-      en: 'An attack can get in through a fake mail, a USB stick or remote access.' },
     { nl: 'Lijn 3 krijgt een eigen stuk vloer. Eén bewaakte verbinding loopt van de netwerkkast naar de besturingskast.',
       en: 'Line 3 gets a floor area of its own. One guarded link runs from the network cabinet to the control cabinet.' },
     { nl: 'Zo komt een infectie van kantoor niet zomaar de lijn op.',
@@ -430,8 +425,8 @@ const SAY = [
   [ // s4 NIS2 and the law
     { nl: 'Het derde onderwerp is NIS2 en de wet. In Nederland heet die wet de Cyberbeveiligingswet.',
       en: 'The third topic is NIS2 and the law. In the Netherlands that law is the Cybersecurity Act.' },
-    { nl: 'De wet kent een zorgplicht, een meldplicht en een registratieplicht. Het bestuur is zelf verantwoordelijk.',
-      en: 'The law has a duty of care, a reporting duty and a registration duty. The board is itself responsible.' },
+    { nl: 'De wet kent een zorgplicht, een meldplicht en een registratieplicht.',
+      en: 'The law has a duty of care, a reporting duty and a registration duty.' },
     { nl: 'Een aanval die lijn 3 stilzet, kan een melding vragen.',
       en: 'An attack that stops line 3 may call for a report.' },
     { nl: 'Of de fabriek eronder valt, hangt af van sector en omvang.',
@@ -535,8 +530,8 @@ const css = PM_CSS + HALL_CSS + `
 ` + mapStyles(undefined, 'eng');
 
 const label = {
-  nl: 'Hal B van de fabriek, waar lijn 3 draait. Over het begin van de band staat de nieuwe vuleenheid, met een plaat boven de dozen. In de hoek achter links de netwerkkast met poorten op de deur, een besturingskast tegen de achterwand, een kabel tussen die twee met een bewaakte schakel erop, en een gemarkeerd stuk vloer rond de lijn. Een kabel loopt ook naar de tafel vooraan links met de laptop van het MES. Jij, de engineer, staat vooraan rechts. Rechts een paneel, gemarkeerd als voorbeeld of schema: kantoor en lijn 3 met een aanval, kantoor en fabriek met wat voorop staat, een nepmail die tot een klik leidt, de norm voor fabriek, integrator en leverancier, de wegen naar binnen, een eigen zone voor de lijn met één bewaakte verbinding, de wet met zijn plichten, een aanval die de lijn stilzet, sector en omvang, de fasen van incidentrespons, met per onderwerp de naam van een of twee hulpmiddelen. Aan het eind de hele kaart van Engineering met Cybersecurity verlicht, en de vier onderwerpen van de module met elk vier niveaus: Basis, Werkkennis, Gevorderd en Expert.',
-  en: 'Hall B of the factory, where line 3 runs. Over the start of the belt stands the new filling unit, with a plate above the cartons. In the back left corner the network cabinet with ports on its door, a control cabinet against the back wall, a cable between the two with a guard on it, and a marked area of floor round the line. A cable also runs to the table at the front left with the MES laptop. You, the engineer, stand at the front right. At the right a panel, marked as an example or a diagram: the office and line 3 with an attack, the office and the plant with what comes first, a fake mail that leads to a click, the standard for plant, integrator and supplier, the ways in, a zone of its own for the line with one guarded link, the law with its obligations, an attack that stops the line, sector and size, the phases of incident response, with the names of one or two tools per topic. At the end the whole map of Engineering with Cybersecurity lit, and the module’s four topics with four levels each: Basics, Working knowledge, Advanced and Expert.',
+  nl: 'Hal B van de fabriek, waar lijn 3 draait. Over het begin van de band staat de nieuwe vuleenheid, met een plaat boven de dozen. In de hoek achter links de netwerkkast met poorten op de deur, een besturingskast tegen de achterwand, een kabel tussen die twee met een bewaakte schakel erop, en een gemarkeerd stuk vloer rond de lijn. Een kabel loopt ook naar de tafel vooraan links met de laptop van het MES. Jij, de engineer, staat vooraan rechts. Rechts een paneel, gemarkeerd als voorbeeld of schema: kantoor en lijn 3 met een aanval, kantoor en fabriek met wat voorop staat, een nepmail die tot een klik leidt, de norm voor fabriek, integrator en leverancier, een eigen zone voor de lijn met één bewaakte verbinding, de wet met zijn plichten, een aanval die de lijn stilzet, sector en omvang, de fasen van incidentrespons, met per onderwerp de naam van een of twee hulpmiddelen. Aan het eind de hele kaart van Engineering met Cybersecurity verlicht, en de vier onderwerpen van de module met elk vier niveaus: Basis, Werkkennis, Gevorderd en Expert.',
+  en: 'Hall B of the factory, where line 3 runs. Over the start of the belt stands the new filling unit, with a plate above the cartons. In the back left corner the network cabinet with ports on its door, a control cabinet against the back wall, a cable between the two with a guard on it, and a marked area of floor round the line. A cable also runs to the table at the front left with the MES laptop. You, the engineer, stand at the front right. At the right a panel, marked as an example or a diagram: the office and line 3 with an attack, the office and the plant with what comes first, a fake mail that leads to a click, the standard for plant, integrator and supplier, a zone of its own for the line with one guarded link, the law with its obligations, an attack that stops the line, sector and size, the phases of incident response, with the names of one or two tools per topic. At the end the whole map of Engineering with Cybersecurity lit, and the module’s four topics with four levels each: Basics, Working knowledge, Advanced and Expert.',
 };
 
 const { data } = await defineFilm(spec, { svg, script: stageScript, css, kitCss: k.ISO_CSS, label });

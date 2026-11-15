@@ -922,14 +922,14 @@ const SAY = {
     [/\bSoftware en API's\b/g, "Software en A P I's"], [/\b([Mm])et een query lees je\b/g, '$1et een kwiri lees je'],
     // the module intro film "An attack on the office" (eng.cyber.intro), a self-contained group at the end of the Dutch list,
     // checked with phonemes through Piper's nl_NL-alex bridge: espeak-ng reads IEC 62443 as the number "tweeënzestigduizend
-    // vierhonderd drieënveertig" (said I E C zes twee vier vier drie), usb-stick as the word "uzb" (said U S B-stick), bijlage II
-    // as "ie ie" and bijlage I with a schwa (said bijlage één en bijlage twee), Cyberbeveiligingswet with sieber and a stress on
-    // the head of beveiliging (said Saiber-beveiligingswet), phishing as "fis-hing" (said fisjing) and patchen with a velar ch
-    // (said petsjen), each only in the intro's own sentences ("OT-beveiliging met IEC 62443", "een nepmail, een usb-stick",
-    // "op in bijlage I en bijlage II", "heet die wet de Cyberbeveiligingswet", "Dat heet phishing", "Werkkennis komen phishing",
+    // vierhonderd drieënveertig" (said I E C zes twee vier vier drie), bijlage II as "ie ie" and bijlage I with a schwa
+    // (said bijlage één en bijlage twee), Cyberbeveiligingswet with sieber and a stress on the head of beveiliging (said
+    // Saiber-beveiligingswet, as the Cybersecurity rule above says Saiber), phishing as "fis-hing" (said fisjing) and
+    // patchen with a velar ch (said petsjen), each only in the intro's own sentences ("OT-beveiliging met IEC 62443", "op in
+    // bijlage I en bijlage II", "heet die wet de Cyberbeveiligingswet", "Dat heet phishing", "Werkkennis komen phishing",
     // "minimale rechten, patchen"). Cybersecurity, conduits, zones, MES, MFA, NIS2, meldknop, noodprocedure, zorgplicht,
     // incidentrespons and the level words are read right or have rules above; no other film's spoken text changes
-    [/(?<=\bOT-beveiliging met )IEC 62443\b/g, 'I E C zes twee vier vier drie'], [/(?<=\bvia een nepmail, een )usb-stick\b/g, 'U S B-stick'],
+    [/(?<=\bOT-beveiliging met )IEC 62443\b/g, 'I E C zes twee vier vier drie'],
     [/(?<=\bop in )bijlage I en bijlage II\b/g, 'bijlage één en bijlage twee'], [/(?<=\bheet die wet de )Cyberbeveiligingswet\b/g, 'Saiber-beveiligingswet'],
     [/(?<=\bDat heet )phishing\b/g, 'fisjing'], [/(?<=\bWerkkennis komen )phishing\b/g, 'fisjing'], [/(?<=\bminimale rechten, )patchen\b/g, 'petsjen'],
     // the module intro films' words a Dutch listener would mishear (render batch PM-28; Piper's nl_NL-alex voice in each film's own

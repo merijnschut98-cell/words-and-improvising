@@ -72,10 +72,10 @@ const STAGE = (() => {
 
   // ---- the room: you come in at the route of the opening and again at the end of the last topic (the story picks up
   // there); before that you would stand in front of the unit a beat lights. The network cabinet, the control cabinet and
-  // the cable stand from the third beat of the OT scene on, the zone and its gate with them (the sentence that names the
+  // the cable stand from the second beat of the OT scene on, the zone and its gate with them (the sentence that names the
   // link gives each its reason). The MES table stands where the MES is named (s5, the fourth beat): it would hide the gate
   function room(si, b) {
-    const net = si > 2 || (si === 2 && b >= 2) ? 1 : 0;
+    const net = si > 2 || (si === 2 && b >= 1) ? 1 : 0;
     show(E['o-net'], net);
     show(E['o-zone'], net);
     show(E['o-gate'], net);
@@ -138,13 +138,10 @@ const STAGE = (() => {
     return card1(100, 'Nepmail', 'Fake mail') + arrow(476, 148, 476, 176) + card1(180, 'Een klik', 'A click') + arrow(476, 228, 476, 256) + card1(260, 'Binnen', 'Inside', 'pm-crit');
   }
 
-  // ---- s3: the standard, the ways in, the line's own floor with one guarded link.
+  // ---- s3: the standard, the line's own floor with one guarded link.
   function normDrawing() {
     return rect(334, 100, 284, 180, 'pm-card', 8) + txt(346, 134, 'IEC 62443', 22, 'start', 'pm-big')
       + tile(148, 'Fabriek', 'Plant', 'pm-tile', 236, 346, 260) + tile(190, 'Integrator', 'Integrator', 'pm-tile', 236, 346, 260) + tile(232, 'Leverancier', 'Supplier', 'pm-tile', 236, 346, 260);
-  }
-  function waysDrawing() {
-    return tile(100, 'Nepmail', 'Fake mail') + tile(144, 'Usb-stick', 'USB stick') + tile(188, 'Toegang op afstand', 'Remote access') + arrow(476, 226, 476, 256) + card1(260, 'Lijn 3', 'Line 3', 'pm-crit');
   }
   // the network cabinet at the top (it carries the office network), the one guarded link, the dashed zone of line 3 with the
   // control cabinet and the unit in it; in the next beat the infection is stopped at the guard
@@ -159,11 +156,10 @@ const STAGE = (() => {
 
   // ---- s4: the law, its obligations and the board, an attack that stops the line, sector and size.
   function lawDrawing() {
-    return card2(100, 'NIS2', 'NIS2', 'Europese richtlijn', 'European directive') + arrow(476, 164, 476, 192) + card2(196, 'De wet', 'The law', 'Cbw', 'Cbw', 'pm-crit');
+    return card1(100, 'NIS2', 'NIS2') + arrow(476, 148, 476, 176) + card2(180, 'De wet', 'The law', 'Cyberbeveiligingswet', 'Cybersecurity Act', 'pm-crit');
   }
   function dutyDrawing() {
-    return tile(100, 'Zorgplicht', 'Duty of care') + tile(144, 'Meldplicht', 'Reporting') + tile(188, 'Registratieplicht', 'Registration') + card1(240, 'Het bestuur', 'The board', 'pm-crit')
-      + txt(334, 312, tr('is zelf verantwoordelijk', 'is responsible itself', 284), 22, 'start', 'pm-mute');
+    return tile(100, 'Zorgplicht', 'Duty of care') + tile(144, 'Meldplicht', 'Reporting') + tile(188, 'Registratieplicht', 'Registration');
   }
   function stopDrawing() {
     return card1(100, 'Lijn 3 staat stil', 'Line 3 is down') + arrow(476, 148, 476, 176) + card1(180, 'Melding?', 'Report?', 'pm-crit') + txt(334, 260, tr('als het ernstig is', 'if it is serious', 284), 22, 'start', 'pm-mute');
@@ -245,7 +241,7 @@ const STAGE = (() => {
       title = [tr('De basis', 'Basics', 165), tr('OT-beveiliging', 'OT security', 165), tr('NIS2', 'NIS2', 165), tr('Respons', 'Response', 165)][si - 1];
       o.r = strip(si - 1);
       if (si === 1) Object.assign(o, { ciaS: b <= 1 ? op(span(p, 0.05, 0.4), ciaDrawing(b)) : '', phishS: fade(b, 2, p, phishDrawing(), 0.1, 0.5), ...tools(b, p, 3, tr('Meldknop', 'Report button', 260)) });
-      if (si === 2) Object.assign(o, { normS: fade(b, 0, p, normDrawing(), 0.1, 0.5), waysS: fade(b, 1, p, waysDrawing(), 0.1, 0.5), zoneS: b === 2 || b === 3 ? op(span(p, 0.05, 0.4), zoneDrawing(b === 3)) : '', ...tools(b, p, 4, tr('Zone', 'Zone', 260), tr('Conduit', 'Conduit', 260)) });
+      if (si === 2) Object.assign(o, { normS: fade(b, 0, p, normDrawing(), 0.1, 0.5), zoneS: b === 1 || b === 2 ? op(span(p, 0.05, 0.4), zoneDrawing(b === 2)) : '', ...tools(b, p, 3, tr('Zone', 'Zone', 260), tr('Conduit', 'Conduit', 260)) });
       if (si === 3) Object.assign(o, { lawS: fade(b, 0, p, lawDrawing(), 0.1, 0.5), dutyS: fade(b, 1, p, dutyDrawing(), 0.1, 0.5), stopS: fade(b, 2, p, stopDrawing(), 0.1, 0.5), scopeS: fade(b, 3, p, scopeDrawing(), 0.1, 0.5), ...tools(b, p, 4, tr('Bijlage I', 'Annex I', 260), tr('Bijlage II', 'Annex II', 260)) });
       if (si === 4) Object.assign(o, { incS: fade(b, 0, p, incDrawing(), 0.1, 0.5), cycS: b === 1 || b === 2 ? op(span(p, 0.05, 0.4), cycDrawing(b === 2 ? 2 : -1)) : '', flowS: b === 4 ? op(span(p, 0.05, 0.4), flowDrawing(100)) : '', ...tools(b, p, 3, tr('Noodprocedure', 'Manual fallback', 260), '', NL ? '' : 'procedure') });
     }
