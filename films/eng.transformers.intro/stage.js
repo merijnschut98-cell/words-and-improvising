@@ -139,7 +139,7 @@ const STAGE = (() => {
     const coilR = rect(530, 172, 36, 54, 'pm-lvl', 5);
     return core + coilL + coilR + txt(404, 126, '10 kV', 22, 'middle', 'pm-big') + txt(548, 126, '400 V', 22, 'middle', 'pm-big')
       + txt(476, 205, tr('kern', 'core', 100), 22, 'middle', 'pm-mute')
-      + txt(334, 304, tr('windingen links en rechts', 'turns left and right', 284), 22, 'start', 'pm-mute') + txt(334, 332, tr('bepalen de verhouding', 'set the ratio', 284), 22, 'start', 'pm-big');
+      + txt(334, 304, tr('de wikkelingen', 'the windings', 284), 22, 'start', 'pm-mute') + txt(334, 332, tr('bepalen de verhouding', 'set the ratio', 284), 22, 'start', 'pm-big');
   }
 
   // ---- s3: heat and life span; a day with a short peak.
@@ -255,7 +255,7 @@ const STAGE = (() => {
         if (b === 3) o.grpB = routeGroup(2, tr('Kabels en aansluiting', 'Cables and connection', 284), span(p, 0.05, 0.4));
       }
     } else if (si >= 1 && si <= 4) {
-      title = [tr('Trafo', 'Transformer', 150), tr('Conditie', 'Condition', 150), tr('Kabels', 'Cables', 150), tr('Aansluiting', 'Connection', 150)][si - 1];
+      title = [tr('Transformator', 'Transformer', 170), tr('Conditie', 'Condition', 150), tr('Kabels', 'Cables', 150), tr('Aansluiting', 'Connection', 150)][si - 1];
       o.r = strip(si - 1);
       if (si === 1) Object.assign(o, { convS: fade(b, 0, p, convDrawing(), 0.1, 0.5), coilS: fade(b, 1, p, coilDrawing()), ...tools(b, p, 2, tr('Aftakschakelaar', 'Tap changer', 260)) });
       if (si === 2) Object.assign(o, { lifeS: fade(b, 0, p, lifeDrawing(), 0.1, 0.5), profS: fade(b, 1, p, profDrawing()), ...tools(b, p, 2, tr('DGA', 'DGA', 260)) });

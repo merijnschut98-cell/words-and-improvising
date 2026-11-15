@@ -292,7 +292,7 @@ const CAM = [
   { from: cam(95, 30, 45, 1.6), to: cam(105, 25, 45, 1.8) }, // s2 the transformer, with its tap changer on its side
   { from: cam(95, 30, 45, 1.5), to: cam(100, 25, 45, 1.65) }, // s3 the transformer with its ribs
   { from: cam(30, 80, 40, 1.5), to: cam(75, 40, 40, 1.3) }, // s4 the cable through the wall, then toward the transformer
-  { from: cam(95, 40, 50, 1.3), to: cam(150, 40, 80, 1.0), at: 4 }, // s5 the transformer, then (b4) the run to the switchboard
+  { from: cam(95, 40, 50, 1.3), to: cam(165, 40, 80, 1.2), at: 3 }, // s5 the transformer, then (b4) the run to the switchboard
   { from: cam(150, 70, 60, 1), to: cam(150, 70, 60, 1) }, // s6 (the map)
 ];
 // People are moved, in stage units, to where each scene needs them; the base places are INST and JIJ above.
@@ -322,7 +322,7 @@ const spec = {
       beats: [
         { nl: 'Hal B krijgt zijn stroom van een kabel en een transformator.', en: 'Hall B gets its power from a cable and a transformer.', focus: ['flowS', 'net', 'trafo', 'jij'] },
         { nl: 'Een transformator zet de ene wisselspanning om in een andere.', en: 'A transformer changes one AC voltage into another.', focus: ['defS', 'trafo'] },
-        { nl: 'Vier onderwerpen volgen die weg. Eerst de transformator en hoe zwaar je hem belast.', en: 'Four topics follow that path. First the transformer and how heavily you load it.', focus: 'grpA' },
+        { nl: 'Vier onderwerpen volgen die weg. Eerst de transformator en hoe hij veroudert.', en: 'Four topics follow that path. First the transformer and how it ages.', focus: 'grpA' },
         { nl: 'Dan de kabels en hoe een aansluiting wordt gebouwd en geleverd.', en: 'Then the cables and how a connection is built and supplied.', focus: 'grpB' },
       ],
     },
@@ -346,7 +346,7 @@ const spec = {
       id: 's4', level: 1, dur: DURS[3], still: 0.9, title: { nl: 'Kabels', en: 'Cables' },
       beats: [
         { nl: 'Derde onderwerp: Kabels en kabelstoringen. In Nederland liggen bijna alle kabels onder de grond.', en: 'Third topic: Cables and cable faults. In the Netherlands almost all cables lie underground.', focus: ['tCab', 'cabS', 'net', 'cabB'] },
-        { nl: 'Kabelstukken zitten aan elkaar met moffen. Die zijn met de hand gemaakt en het zwakke punt.', en: 'Cable lengths are linked with joints. They are made by hand and the weak spot.', focus: ['mofS', 'net'] },
+        { nl: 'Kabelstukken zitten aan elkaar met moffen. Die zijn met de hand gemaakt en vormen het zwakke punt.', en: 'Cable lengths are linked with joints. They are made by hand and form the weak spot.', focus: ['mofS', 'net'] },
         { nl: 'Valt een kabel uit, dan zoek je de plek eerst met een {t:Reflectiemeter|reflectiemeter}.', en: 'If a cable fails, you first pre-locate the spot with a {t:Reflectometer|reflectometer}.', ...TOOL('Reflectiemeter'), focus: ['tool1', 'faultS', 'net'] },
       ],
     },
@@ -367,7 +367,7 @@ const spec = {
         { nl: 'Begin bij Hoe een transformator werkt op niveau Basis. Die les laat zien hoe de spanning omlaag gaat.', en: 'Start with How a transformer works at Basics level. That lesson shows how the voltage goes down.', focus: ['tTr', 'start'] },
         { nl: 'Op niveau Werkkennis gaat het om het netstation, hoe ver je mag belasten, kabelstoringen en standaardisatie.', en: 'At Working knowledge level it is about the substation, how far you may load, cable faults and standardisation.', focus: 'lv2' },
         { nl: 'Op niveau Gevorderd gaat het om verliezen, de olie lezen, kabels testen en transformatoren inkopen.', en: 'At Advanced level it is about losses, reading the oil, testing cables and buying transformers.', focus: 'lv3' },
-        { nl: 'Op niveau Expert gaat het om de spanning, de staat van het bestand, de kabelbelasting en de vervangingsgolf.', en: 'At Expert level it is about the voltage, the state of the fleet, the cable loading and the replacement wave.', focus: 'lv4' },
+        { nl: 'Op niveau Expert komen de spanning, het hele bestand, hoeveel stroom een kabel aankan en de vervangingsgolf.', en: 'At Expert level come the voltage, the fleet view, how much current a cable carries and the replacement wave.', focus: 'lv4' },
         { nl: 'Elke les en elke film van deze module heeft een plek op deze kaart.', en: 'Every lesson and every film in this module has a place on this map.', focus: null },
       ],
     },
@@ -391,8 +391,8 @@ const SAY = [
       en: 'Hall B gets its power from a cable and a transformer.' },
     { nl: 'Een transformator zet de ene wisselspanning om in een andere.',
       en: 'A transformer changes one AC voltage into another.' },
-    { nl: 'Vier onderwerpen volgen die weg. Eerst de transformator en hoe zwaar je hem belast.',
-      en: 'Four topics follow that path. First the transformer and how heavily you load it.' },
+    { nl: 'Vier onderwerpen volgen die weg. Eerst de transformator en hoe hij veroudert.',
+      en: 'Four topics follow that path. First the transformer and how it ages.' },
     { nl: 'Dan de kabels en hoe een aansluiting wordt gebouwd en geleverd.',
       en: 'Then the cables and how a connection is built and supplied.' },
   ],
@@ -405,8 +405,8 @@ const SAY = [
       en: 'With the {t:Tap changer|tap changer} you adjust that ratio in small steps, usually with the power off.' },
   ],
   [ // s3 loading, ageing and condition: heat, the load profile, the oil
-    { nl: 'Het tweede onderwerp is Belasting, veroudering en conditie. Warmte breekt het papier in de wikkelingen langzaam af.',
-      en: 'The second topic is Loading, ageing and condition. Heat slowly breaks down the paper in the windings.' },
+    { nl: 'Het tweede onderwerp is Belasting, veroudering en conditie. Warmte breekt het papier in de wikkelingen langzaam af. Daarom heeft hij koelribben.',
+      en: 'The second topic is Loading, ageing and condition. Heat slowly breaks down the paper in the windings. That is why it has cooling ribs.' },
     { nl: 'Een korte piek doet weinig kwaad. Weken te hoog kosten veel levensduur, dus je kijkt naar het hele belastingprofiel.',
       en: 'A short peak does little harm. Weeks too high cost a lot of life, so you look at the whole load profile.' },
     { nl: 'Bij een grote transformator zegt de olie veel over zijn gezondheid. Je test hem met een {t:DGA|DGA}.',
@@ -415,8 +415,8 @@ const SAY = [
   [ // s4 cables and cable faults: underground, the joints, the reflectometer
     { nl: 'Het derde onderwerp is Kabels en kabelstoringen. In Nederland loopt bijna alle middenspanning en laagspanning door kabels onder de grond.',
       en: 'The third topic is Cables and cable faults. In the Netherlands almost all medium voltage and low voltage runs through underground cables.' },
-    { nl: 'Kabelstukken zitten aan elkaar met moffen. Die zijn met de hand gemaakt en het zwakke punt.',
-      en: 'Cable lengths are linked with joints. They are made by hand and are the weak spot.' },
+    { nl: 'Kabelstukken zitten aan elkaar met moffen. Die zijn met de hand gemaakt en vormen het zwakke punt.',
+      en: 'Cable lengths are linked with joints. They are made by hand and form the weak spot.' },
     { nl: 'Valt een kabel uit, dan zoek je de plek eerst met een {t:Reflectiemeter|reflectiemeter}. Zo weet je ongeveer waar je moet graven.',
       en: 'If a cable fails, you first pre-locate the spot with a {t:Reflectometer|reflectometer}. That tells you roughly where to dig.' },
   ],
@@ -425,8 +425,8 @@ const SAY = [
       en: 'The fourth topic is Connections, standards and supply. A new connection goes through five steps, from request to execution.' },
     { nl: 'Het werk zelf duurt vaak maar een of twee dagen. De rest is wachten, bijvoorbeeld op een vergunning of een transformator.',
       en: 'The work itself often takes only one or two days. The rest is waiting, for example for a permit or a transformer.' },
-    { nl: 'Netbeheerders kiezen standaarden en sluiten een {t:Raamovereenkomst|raamovereenkomst} voor wat ze nodig hebben.',
-      en: 'Operators choose standards and sign a {t:Framework agreement|framework agreement} for what they need.' },
+    { nl: 'Om sneller te leveren kiezen netbeheerders standaarden en sluiten ze een {t:Raamovereenkomst|raamovereenkomst}.',
+      en: 'To deliver faster, operators choose standards and sign a {t:Framework agreement|framework agreement}.' },
     { nl: 'Dan sluit de installateur de kabels aan. De stroom gaat naar het schakelbord.',
       en: 'Then the installer connects the cables. The power goes to the switchboard.' },
   ],
@@ -441,8 +441,8 @@ const SAY = [
       en: 'At Working knowledge level it is about the substation, how far you may load, cable faults and standardisation.' },
     { nl: 'Op niveau Gevorderd gaat het om verliezen, de olie lezen, kabels testen en transformatoren inkopen.',
       en: 'At Advanced level it is about losses, reading the oil, testing cables and buying transformers.' },
-    { nl: 'Op niveau Expert gaat het om de spanning, de staat van het bestand, de kabelbelasting en de vervangingsgolf.',
-      en: 'At Expert level it is about the voltage, the state of the fleet, the cable loading and the replacement wave.' },
+    { nl: 'Op niveau Expert gaat het om de spanning, het hele bestand, hoeveel stroom een kabel aankan en de vervangingsgolf.',
+      en: 'At Expert level it is about the voltage, the fleet view, how much current a cable can carry and the replacement wave.' },
     { nl: 'Elke les en elke film van deze module heeft een plek op deze kaart.',
       en: 'Every lesson and every film in this module has a place on this map.' },
   ],
