@@ -159,3 +159,4 @@ Outcome: accepted (merged as delivered), sent back N times, redone.
 | 15 Nov | Review: eng.ot.intro | sonnet | 61 | 8.7 min | 214,442 | accepted with fixes (eight tools to four, patching left to cyber, 203 to 182 s, labels only when named, three SAY rules dropped); merged v331 |
 | 15 Nov | Build: Engineering intro eng.cyber.intro | sonnet | 102 | 18 min | 377,465 | accepted with fixes by its review |
 | 15 Nov | Review: eng.cyber.intro | sonnet | 72 | 9.5 min | 195,743 | accepted with fixes (ways-in beat and board sentence cut, 191 to 181 s, law card as narrated, usb rule dropped); merged v332 |
+| 15 Nov | Proposal: Task 14 two Projects modules (pm.approach, pm.formats) | opus | 46 | 8.3 min | 207,331 | proposal written; seven questions to Merijn |
