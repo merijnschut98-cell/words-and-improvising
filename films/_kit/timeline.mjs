@@ -905,7 +905,15 @@ const SAY = {
     // platenwarmtewisselaar, condenspot, debiet, drukval, cavitatie, energiecase, tekortschietende and the level words are read
     // right; toerenregeling and warmteterugwinning have rules above; no other film's spoken text changes
     [/(?<=\baf in het )Moody-diagram\b/g, 'Moedi-diagram'], [/(?<=\bkoelwater zijn )utilities\b/g, 'joetilletiez'],
-    [/(?<=\bonderwerp is Stoom en )utilities\b/g, 'joetilletiez']],
+    [/(?<=\bonderwerp is Stoom en )utilities\b/g, 'joetilletiez'],
+    // the module intro film "Why line 3 has to wait" (eng.gridplanning.intro), a self-contained group at the end of the Dutch
+    // list, checked with phonemes through Piper's nl bridge: espeak-ng stresses investeringsplanning and investeringsplan on
+    // the first syllable (said in-ves-terings-plan, as "investering die niet nodig" above) and reads the g of budget as a
+    // Dutch g ("buddegat"; said spannings-budget), only in the intro's own sentences ("onderwerp is Investeringsplanning",
+    // "vast in het investeringsplan", "verdeelt hij het spanningsbudget"). Loadflow, N-1, congestiemanagement and
+    // capaciteitssturingscontract have rules above; netplanner, scenario and the rest are read right
+    [/(?<=\bonderwerp is )Investeringsplanning\b/g, 'In-ves-terings-planning'], [/(?<=\bvast in het )investeringsplan\b/g, 'in-ves-terings-plan'],
+    [/(?<=\bverdeelt hij het )spanningsbudget\b/g, 'spannings-budget']],
   en: [[/\brpm\b/g, 'revolutions per minute'], [/\bmm\/min\b/g, 'millimetres per minute'], [/\bm\/min\b/g, 'metres per minute'], [/µm\b/g, 'micrometres'],
     [/€\s?(\d[\d,]*(?:\.\d+)?)/g, '$1 euros'], [/(\d)\.0(?![\d])/g, '$1'], [/(\d)\s?mm\b/g, '$1 millimetres'], [/(\d)\s?min\b/g, '$1 minutes'], [/(\d)\s?%/g, '$1 percent'],
     [/Ø\s*/g, 'diameter '], [/(\d)\+(\d)/g, '$1 plus $2'], [/\s×\s/g, ' times '], [/\s\/\s/g, ' divided by '], [/\s=\s/g, ' is '], [/°/g, ' degrees'], [/\bRa\b/g, 'R a'], [/’/g, "'"],

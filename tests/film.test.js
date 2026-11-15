@@ -1483,3 +1483,22 @@ test('speak variant: the fluids intro film words in Dutch', () => {
   const en = 'For turbulent flow you read the friction factor from the Moody chart. Steam and cooling water are utilities.';
   assert.equal(speakOf([en], 'en'), en);
 });
+
+// The module intro film "Why line 3 has to wait" (eng.gridplanning.intro), checked with espeak-ng phonemes through Piper's nl
+// bridge: it stresses investeringsplanning and investeringsplan on the first syllable (IN-ves-te-rings-plan; said in-ves-terings-plan,
+// as the rule for "investering die niet nodig" does) and reads spanningsbudget with the Dutch g in budget ("buddegat"; said
+// spannings-budget), all three only in the intro's own sentences ("onderwerp is Investeringsplanning", "vast in het
+// investeringsplan", "verdeelt hij het spanningsbudget"). Loadflow, N-1, congestiemanagement and capaciteitssturingscontract have rules
+// above; netplanner, scenario, gelijktijdigheid, redundantie, prognose and the level words are read right;
+// English needs nothing; no other film's spoken text changes
+test('speak variant: the grid planning intro film words in Dutch', () => {
+  const nl = (s) => speakOf([s], 'nl');
+  assert.equal(nl('Het derde onderwerp is Investeringsplanning. Er zijn meer knelpunten.'), 'Het derde onderwerp is In-ves-terings-planning. Er zijn meer knelpunten.');
+  assert.equal(nl('Hij rekent met een scenario en legt het vast in het investeringsplan.'), 'Hij rekent met een scenario en legt het vast in het in-ves-terings-plan.');
+  assert.equal(nl('Voor de toets op spanning verdeelt hij het spanningsbudget over het net.'), 'Voor de toets op spanning verdeelt hij het spannings-budget over het net.');
+  // elsewhere the words keep their voice
+  assert.equal(nl('Het investeringsplan staat in de les.'), 'Het investeringsplan staat in de les.');
+  assert.equal(nl('Het spanningsbudget is een deel van de band.'), 'Het spanningsbudget is een deel van de band.');
+  const en = 'He calculates with a scenario and records it in the investment plan. He shares out the voltage budget.';
+  assert.equal(speakOf([en], 'en'), en);
+});
