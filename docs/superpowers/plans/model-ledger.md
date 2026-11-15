@@ -128,3 +128,5 @@ Outcome: accepted (merged as delivered), sent back N times, redone.
 | 15 Nov | Render PM-25: eng.field.energy and eng.machining.intro | sonnet | n/a | n/a | n/a | accepted; every guard passed first time; lektest, G-code, werkstuknulpunt heard poorly; merged v314 |
 | 15 Nov | Build: Engineering intro eng.joining.intro | sonnet | 119 | 24 min | 403,659 | accepted with fixes by its review |
 | 15 Nov | Review: eng.joining.intro | sonnet | n/a | n/a | n/a | accepted with fixes (three groups in module order, a real tool instead of a control and a result, the guard drawn with its reason); merged v315 |
+| 15 Nov | Build: Engineering intro eng.moulding.intro | sonnet | 124 | 27 min | 429,398 | accepted with fixes by its review |
+| 15 Nov | Review: eng.moulding.intro | sonnet | n/a | n/a | n/a | accepted with small fixes (reasons for lit details, cover at field-film scale, trimmed); merged v316 |
