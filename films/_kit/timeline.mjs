@@ -74,6 +74,8 @@ const SAY = {
     [/\bPFMEA\b/g, 'P F M E A'],
     // the go/no-go gauge and gauge R&R without "slash" or "ampersand": gaat, gaat niet; R en R
     [/\b([Gg])aat\/gaat-niet\b/g, '$1aat, gaat niet'], [/\bR&R\b/g, 'R en R'],
+    // capability as the English loan the floor says (espeak-ng reads the Dutch spelling "kaa-paa-bili-tie"): kepeibiliti
+    [/\b([Cc])apability/g, (m, c) => `${c === 'C' ? 'K' : 'k'}epeibiliti`],
     // I/O without "slash"; OEE, MES and HMI as letters (espeak-ng says "oe", the word "mes", "hmie"); CE needs
     // nothing: espeak-ng already spells it in CE-markering. But a lone S with a word after it ("M E S in", "M E
     // S-leverancier") is read as a bare hiss, the clitic 's (phon.py, 2026-11-11): there MES is "em ee es"
