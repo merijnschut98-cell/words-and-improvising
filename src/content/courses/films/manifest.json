@@ -4010,6 +4010,126 @@
         ],
         "vtt": "src/content/courses/films/eng.itbasics.intro.en.vtt"
       }
+    },
+    "eng.ot.intro": {
+      "poster": "src/content/courses/films/eng.ot.intro.jpg",
+      "en": {
+        "dur": 184.9,
+        "bytes": 6544654,
+        "scenes": [
+          0,
+          32.83,
+          57.72,
+          88.4,
+          112.79,
+          138.17
+        ],
+        "vtt": "src/content/courses/films/eng.ot.intro.en.vtt"
+      },
+      "nl": {
+        "dur": 168.7,
+        "bytes": 6097126,
+        "scenes": [
+          0,
+          29.36,
+          51.58,
+          78.01,
+          100.57,
+          124.16
+        ],
+        "vtt": "src/content/courses/films/eng.ot.intro.nl.vtt"
+      }
+    },
+    "eng.cyber.intro": {
+      "poster": "src/content/courses/films/eng.cyber.intro.jpg",
+      "nl": {
+        "dur": 159.7,
+        "bytes": 5972660,
+        "scenes": [
+          0,
+          21.7,
+          40.55,
+          64.83,
+          88.75,
+          117.19
+        ],
+        "vtt": "src/content/courses/films/eng.cyber.intro.nl.vtt"
+      },
+      "en": {
+        "dur": 178,
+        "bytes": 6442865,
+        "scenes": [
+          0,
+          24.7,
+          46.84,
+          75,
+          101.42,
+          132.92
+        ],
+        "vtt": "src/content/courses/films/eng.cyber.intro.en.vtt"
+      }
+    },
+    "eng.lines.intro": {
+      "poster": "src/content/courses/films/eng.lines.intro.jpg",
+      "nl": {
+        "dur": 170.6,
+        "bytes": 6061446,
+        "scenes": [
+          0,
+          24.26,
+          39.15,
+          52.72,
+          68.43,
+          87.31,
+          105.15,
+          125.24
+        ],
+        "vtt": "src/content/courses/films/eng.lines.intro.nl.vtt"
+      },
+      "en": {
+        "dur": 180.8,
+        "bytes": 6269384,
+        "scenes": [
+          0,
+          26.12,
+          42.8,
+          57.86,
+          75.58,
+          95.16,
+          114.64,
+          135.9
+        ],
+        "vtt": "src/content/courses/films/eng.lines.intro.en.vtt"
+      }
+    },
+    "eng.industry40.intro": {
+      "poster": "src/content/courses/films/eng.industry40.intro.jpg",
+      "en": {
+        "dur": 148.7,
+        "bytes": 5128467,
+        "scenes": [
+          0,
+          27.26,
+          42.87,
+          58.72,
+          75.58,
+          100.73
+        ],
+        "vtt": "src/content/courses/films/eng.industry40.intro.en.vtt"
+      },
+      "nl": {
+        "dur": 137,
+        "bytes": 4842771,
+        "scenes": [
+          0,
+          23.58,
+          38.24,
+          52.43,
+          67.97,
+          89.54
+        ],
+        "vtt": "src/content/courses/films/eng.industry40.intro.nl.vtt"
+      }
     }
   }
 }

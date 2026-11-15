@@ -180,3 +180,4 @@ Outcome: accepted (merged as delivered), sent back N times, redone.
 | 15 Nov | Review: pm.formats.intro | sonnet | ~60 | n/a | n/a | accepted with small trims (171 to 169 s); merged v345 |
 | 15 Nov | Build: Engineering field film eng.field.run | sonnet | 128 | 18 min | 371,720 | accepted with fixes by its review |
 | 15 Nov | Review: eng.field.run | sonnet | ~45 | ~25 min | n/a | accepted with small fixes (takt is worked out, je watches, hedges, the switch named); merged v346 |
+| 15 Nov | Render PM-31: ot, cyber, lines, industry40 intros | sonnet | 84 | 59 min | 151,811 | accepted; all guards passed; two closing lines split for a cue break; 6 tool words heard poorly (not chased); merged v347 |

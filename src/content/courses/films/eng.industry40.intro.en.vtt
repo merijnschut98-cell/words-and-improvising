@@ -1,0 +1,149 @@
+WEBVTT
+
+1
+00:00:00.870 --> 00:00:02.519
+Line 3 makes numbers.
+
+2
+00:00:03.233 --> 00:00:08.272
+Data and digital manufacturing teaches you to turn those numbers into decisions.
+
+3
+00:00:09.275 --> 00:00:13.466
+The unit’s numbers go to the MES and to a screen by the line.
+
+4
+00:00:14.442 --> 00:00:15.615
+You are the engineer.
+
+5
+00:00:16.442 --> 00:00:20.656
+You start with the numbers themselves, with data quality and dashboards.
+
+6
+00:00:21.737 --> 00:00:26.381
+Then comes what carries them further, with integration and with AI and models.
+
+7
+00:00:27.689 --> 00:00:29.756
+The first topic is Data quality.
+
+8
+00:00:30.444 --> 00:00:32.963
+Good data are fit for the use you have in mind.
+
+9
+00:00:34.004 --> 00:00:37.626
+The unit’s numbers have to be on time and they have to be right.
+
+10
+00:00:38.671 --> 00:00:42.026
+You read them from the PLC cabinet with an edge gateway.
+
+11
+00:00:43.305 --> 00:00:46.614
+The second topic is Dashboards and visual management.
+
+12
+00:00:47.413 --> 00:00:50.327
+A KPI shows whether you are on track for a goal.
+
+13
+00:00:51.305 --> 00:00:54.382
+You want to see that number by the line at a glance.
+
+14
+00:00:55.365 --> 00:00:57.815
+For that you follow the line on a dashboard.
+
+15
+00:00:59.162 --> 00:01:01.124
+The third topic is Integration.
+
+16
+00:01:01.850 --> 00:01:06.667
+Every number is born somewhere, such as in the PLC or in the MES.
+
+17
+00:01:07.675 --> 00:01:11.251
+A data platform brings those sources together for reports.
+
+18
+00:01:12.257 --> 00:01:14.718
+You store the numbers in a data warehouse.
+
+19
+00:01:16.012 --> 00:01:18.566
+The fourth topic is AI and models.
+
+20
+00:01:19.265 --> 00:01:21.854
+A model learns a pattern from examples.
+
+21
+00:01:22.869 --> 00:01:25.493
+A model is only as good as its data.
+
+22
+00:01:26.208 --> 00:01:28.727
+You often have few examples of failures.
+
+23
+00:01:29.759 --> 00:01:32.696
+You let anomaly detection flag what deviates.
+
+24
+00:01:33.415 --> 00:01:35.737
+A deviation is not always broken.
+
+25
+00:01:36.741 --> 00:01:39.876
+That is how the numbers of line 3 become decisions.
+
+26
+00:01:41.163 --> 00:01:41.918
+The whole map.
+
+27
+00:01:42.661 --> 00:01:48.327
+Data and digital manufacturing is the fifth and last station of Automation and IT.
+
+28
+00:01:49.316 --> 00:01:51.499
+Each of the four topics has four levels.
+
+29
+00:01:52.521 --> 00:01:56.422
+Start at Basics level with the six dimensions of data quality.
+
+30
+00:01:57.117 --> 00:01:58.835
+They give words for what is wrong.
+
+31
+00:01:59.857 --> 00:02:04.710
+At Working knowledge level come machine data, Power BI, from source to report.
+
+32
+00:02:05.479 --> 00:02:07.244
+Also predictive maintenance.
+
+33
+00:02:08.257 --> 00:02:12.646
+At Advanced level come master data and MES, the floor screen,
+
+34
+00:02:12.867 --> 00:02:14.643
+ownership and AI inspection.
+
+35
+00:02:15.662 --> 00:02:18.390
+At Expert level come managing data quality,
+
+36
+00:02:18.588 --> 00:02:21.885
+alert fatigue, the business case and digital twins.
+
+37
+00:02:22.907 --> 00:02:27.052
+Every lesson and every film in this module has a place on this map.
