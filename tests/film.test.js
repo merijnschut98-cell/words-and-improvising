@@ -1394,3 +1394,21 @@ test('speak variant: the joining intro film words in Dutch', () => {
   const en = 'For bolts we often use a nutrunner. For spot welding we often use a tip dresser.';
   assert.equal(speakOf([en], 'en'), en);
 });
+
+// The module intro film "From drawing to control" (eng.drawings.intro), checked with espeak-ng phonemes through Piper's nl
+// bridge: it reads tagnummer with the Dutch g of "tag" (tach-nummer; said tek-nummer, as the English "tag" is said on the
+// floor) and stresses operator on the first syllable (OO-pe-raa-tor; said ope-raator), both only in the intro's own sentences
+// ("lezen we het tagnummer", "De operator loopt"). P&ID is written "P en I D" in the narration (the voice reads "P en ID" as
+// "pee en its"); GD&T ("GD en T"), PID, PLC, stempel, tolerantiekader, niveaumeter, regelklep, streefwaarde and the
+// level words are read right; English needs nothing; no other film's spoken text changes (the tag of a drawing keeps its voice
+// elsewhere, the operators of the other films keep theirs)
+test('speak variant: the drawings intro film words in Dutch', () => {
+  const nl = (s) => speakOf([s], 'nl');
+  assert.equal(nl('Daarbij lezen we het tagnummer van elk instrument.'), 'Daarbij lezen we het tek-nummer van elk instrument.');
+  assert.equal(nl('De operator loopt langs de tank met de tekening.'), 'De ope-raator loopt langs de tank met de tekening.');
+  // elsewhere the words keep their voice
+  assert.equal(nl('Het tagnummer staat op het instrument.'), 'Het tagnummer staat op het instrument.');
+  assert.equal(nl('De operator zet de klep dicht.'), 'De operator zet de klep dicht.');
+  const en = 'There we read the tag number of every instrument. The operator walks along the tank.';
+  assert.equal(speakOf([en], 'en'), en);
+});
