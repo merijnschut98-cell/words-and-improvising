@@ -148,3 +148,5 @@ Outcome: accepted (merged as delivered), sent back N times, redone.
 | 15 Nov | Review: eng.power.intro | sonnet | 62 | 9.3 min | 176,121 | accepted with one fix (the drawn 10 % label now said in the narration); merged v324 |
 | 15 Nov | Build: Engineering intro eng.fluids.intro | sonnet | 113 | 19 min | 370,127 | accepted with fixes by its review |
 | 15 Nov | Review: eng.fluids.intro | sonnet | ~75 | n/a | n/a | accepted with fixes (exchanger moved off the motor and hose so hall B agrees, Moody gives the friction factor, hedges, curves cross at the duty point); merged v326 |
+| 15 Nov | Build: Engineering intro eng.gridops.intro | sonnet | 85 | 16 min | 329,591 | accepted with fixes by its review |
+| 15 Nov | Review: eng.gridops.intro | sonnet | ~45 | n/a | n/a | accepted with fixes (Gevorderd risk beat cut, planner renamed werkvoorbereider, dark hall hedged, drawn labels named); merged v327 |
