@@ -2883,30 +2883,30 @@
     "pm.plan.intro": {
       "poster": "src/content/courses/films/pm.plan.intro.jpg",
       "nl": {
-        "dur": 244.4,
-        "bytes": 9415341,
+        "dur": 244.2,
+        "bytes": 9453573,
         "scenes": [
           0,
           24.41,
-          71.38,
-          112.11,
-          148.57,
-          183.75,
-          207.17
+          71.48,
+          111.89,
+          148.26,
+          183.61,
+          206.95
         ],
         "vtt": "src/content/courses/films/pm.plan.intro.nl.vtt"
       },
       "en": {
-        "dur": 274,
-        "bytes": 10341723,
+        "dur": 273.1,
+        "bytes": 10400758,
         "scenes": [
           0,
-          28.33,
-          81.46,
-          127.72,
-          170.48,
-          206.83,
-          233.81
+          28.1,
+          80.52,
+          126.59,
+          169.62,
+          205.93,
+          232.88
         ],
         "vtt": "src/content/courses/films/pm.plan.intro.en.vtt"
       }
