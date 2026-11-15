@@ -36,3 +36,6 @@ Other: station label "Motoren en perslucht"; process intro tank stays; fix "Radi
 "The rest of the day make decisions yourself unless it really needs me. Then you can ask tomorrow." Merijn is away until tomorrow. Decide and record each decision in the ledger or plan; collect only questions that truly need him, below, for one MC round on 16 Nov. Work stops at 23:59 Amsterdam.
 
 ### Questions for 16 Nov
+1. **DMAIC in the Dutch voice** (pm.approach.intro): now read as letters "dee em aa ie see". Keep, or "dee-mee-ik" as some Lean people say it?
+2. **Zone colour** for "De fabriek beter maken": terracotta (own token, chosen in the map review). Keep, or another colour?
+3. **Convergence tool in the IT/OT intro**: "machinebouwer" (a person, the most tool-like Basis term). Keep, or another term?

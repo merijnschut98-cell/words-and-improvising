@@ -174,3 +174,5 @@ Outcome: accepted (merged as delivered), sent back N times, redone.
 | 15 Nov | Review: Engineering map plant-zone split | opus | 125 | 67 min | 219,474 | accepted with fixes (own terracotta zone token, film builds read the sheet from engMap.view, e2e zone list, field films say five zones); merged v341 |
 | 15 Nov | Build: Projects intro pm.approach.intro | sonnet | 155 | 22 min | 415,025 | accepted with fixes by its review |
 | 15 Nov | Review: pm.approach.intro | sonnet | ~48 | ~25 min | n/a | accepted with fixes (recap scene cut, 184 to 165 s, hedges, sticky notes, spreadsheet rule dropped); merged v342 |
+| 15 Nov | Task 17 step K: points kit | opus | 82 | 26 min | 291,167 | accepted with fixes by its review |
+| 15 Nov | Review: Task 17 step K | opus | ~75 | ~45 min | n/a | accepted with fixes (one MAX_TOTAL 360, size allowance for all extended films, stronger point check, unit/acronym labels exempt, checkScope 1000x faster); merged v344 |
