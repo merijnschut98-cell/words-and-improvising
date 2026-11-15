@@ -1,233 +1,233 @@
 WEBVTT
 
 1
-00:00:00.874 --> 00:00:02.894
+00:00:00.874 --> 00:00:02.917
 Line 3 runs in hall B.
 
 2
-00:00:03.584 --> 00:00:08.298
+00:00:03.597 --> 00:00:08.346
 Now a new MES is coming, the system that runs the orders on the floor.
 
 3
-00:00:09.324 --> 00:00:11.785
+00:00:09.360 --> 00:00:11.879
 You lead that IT project for the plant manager.
 
 4
-00:00:12.490 --> 00:00:16.426
+00:00:12.581 --> 00:00:16.517
 The IT team builds the MES out and keeps it running.
 
 5
-00:00:17.428 --> 00:00:20.946
+00:00:17.527 --> 00:00:21.103
 We follow the project from the first requirement to real use,
 
 6
-00:00:21.166 --> 00:00:23.012
+00:00:21.312 --> 00:00:23.111
 through the four topics of the module.
 
 7
-00:00:23.704 --> 00:00:26.316
+00:00:23.796 --> 00:00:26.350
 The details come later, in the lessons.
 
 8
-00:00:27.646 --> 00:00:30.247
+00:00:27.677 --> 00:00:30.150
 The first topic is Requirements and scope.
 
 9
-00:00:30.986 --> 00:00:33.180
+00:00:30.935 --> 00:00:33.222
 What must the MES actually do?
 
 10
-00:00:34.213 --> 00:00:39.217
+00:00:34.227 --> 00:00:39.161
 A requirement is something the MES must do, written so that you can check it.
 
 11
-00:00:40.240 --> 00:00:44.640
+00:00:40.215 --> 00:00:44.580
 You write them with people who know the work, like the team lead of line 3.
 
 12
-00:00:45.644 --> 00:00:48.175
+00:00:45.599 --> 00:00:48.107
 Not everything fits in the first version.
 
 13
-00:00:48.880 --> 00:00:51.515
+00:00:48.811 --> 00:00:51.493
 What must be in at go-live, and what can wait?
 
 14
-00:00:52.540 --> 00:00:57.230
+00:00:52.507 --> 00:00:57.162
 For requirements we use MoSCoW and a to-be process, the work as it will run.
 
 15
-00:00:58.526 --> 00:01:02.311
+00:00:58.451 --> 00:01:02.144
 The second topic is Choosing a vendor, SaaS and contracts.
 
 16
-00:01:03.161 --> 00:01:04.868
+00:01:02.856 --> 00:01:04.644
 Where does the MES come from?
 
 17
-00:01:05.896 --> 00:01:08.555
+00:01:05.667 --> 00:01:08.337
 You rarely build an MES yourself.
 
 18
-00:01:09.252 --> 00:01:11.075
+00:01:09.026 --> 00:01:10.779
 You buy a package or rent it.
 
 19
-00:01:11.826 --> 00:01:15.007
+00:01:11.557 --> 00:01:14.610
 Renting is called SaaS, the vendor runs it for you.
 
 20
-00:01:16.014 --> 00:01:18.115
+00:01:15.615 --> 00:01:17.647
 The software vendor makes the package.
 
 21
-00:01:18.846 --> 00:01:21.679
+00:01:18.370 --> 00:01:21.098
 The implementation partner sets it up for you.
 
 22
-00:01:22.651 --> 00:01:25.832
+00:01:22.067 --> 00:01:25.259
 Put in one table who does what, our IT team too.
 
 23
-00:01:26.556 --> 00:01:29.238
+00:01:25.976 --> 00:01:28.611
 Otherwise one points at the other later.
 
 24
-00:01:30.259 --> 00:01:35.658
+00:01:29.616 --> 00:01:34.956
 For choosing we use an RFP, the request for a proposal, and a scoring matrix.
 
 25
-00:01:36.972 --> 00:01:42.453
+00:01:36.250 --> 00:01:41.718
 The third topic is ERP and MES implementation, from migration to hypercare.
 
 26
-00:01:43.180 --> 00:01:45.479
+00:01:42.442 --> 00:01:44.718
 How does the MES really go live?
 
 27
-00:01:46.476 --> 00:01:50.528
+00:01:45.734 --> 00:01:49.925
 Go-live is the day the new MES becomes the official system.
 
 28
-00:01:51.251 --> 00:01:53.677
+00:01:50.645 --> 00:01:53.106
 The old system then does no new work.
 
 29
-00:01:54.785 --> 00:01:57.269
+00:01:54.186 --> 00:01:56.647
 A big bang switches everything at once.
 
 30
-00:01:57.951 --> 00:02:01.155
+00:01:57.329 --> 00:02:00.534
 Phased goes line by line, with less risk per step.
 
 31
-00:02:02.160 --> 00:02:05.167
+00:02:01.554 --> 00:02:04.596
 For roll-out we use a pilot and a mock migration.
 
 32
-00:02:06.545 --> 00:02:08.844
+00:02:05.902 --> 00:02:08.247
 The fourth topic is Testing and adoption.
 
 33
-00:02:09.585 --> 00:02:13.103
+00:02:08.975 --> 00:02:12.423
 Before go-live, does the MES really fit the work?
 
 34
-00:02:14.154 --> 00:02:19.924
+00:02:13.490 --> 00:02:19.237
 In the UAT, the user acceptance test, future users check that the MES fits.
 
 35
-00:02:20.937 --> 00:02:26.579
+00:02:20.227 --> 00:02:25.742
 Key users, like the team lead of line 3, test with situations from the real work.
 
 36
-00:02:27.613 --> 00:02:30.620
+00:02:26.776 --> 00:02:29.795
 After the test the process owners sign the sign-off.
 
 37
-00:02:31.377 --> 00:02:33.478
+00:02:30.560 --> 00:02:32.661
 Then the MES is accepted.
 
 38
-00:02:34.549 --> 00:02:35.629
+00:02:33.716 --> 00:02:34.842
 And after go-live?
 
 39
-00:02:36.361 --> 00:02:39.043
+00:02:35.573 --> 00:02:38.255
 Without use the MES delivers nothing.
 
 40
-00:02:40.068 --> 00:02:44.248
+00:02:39.299 --> 00:02:43.537
 For testing we use a test script and triage, sorting the defects.
 
 41
-00:02:45.567 --> 00:02:46.705
+00:02:44.842 --> 00:02:45.957
 It all connects.
 
 42
-00:02:47.392 --> 00:02:52.245
+00:02:46.653 --> 00:02:51.599
 First the requirements and the vendor, then the test, the go-live and the use.
 
 43
-00:02:53.259 --> 00:02:55.047
+00:02:52.629 --> 00:02:54.371
 Everything points at go-live.
 
 44
-00:02:55.982 --> 00:02:58.977
+00:02:55.108 --> 00:02:58.104
 Choose that day carefully, not in your busiest time.
 
 45
-00:02:59.657 --> 00:03:01.468
+00:02:58.783 --> 00:03:00.467
 A mistake costs most then.
 
 46
-00:03:02.779 --> 00:03:04.462
+00:03:01.759 --> 00:03:03.384
 This is the map of Projects.
 
 47
-00:03:05.198 --> 00:03:09.308
+00:03:04.102 --> 00:03:08.119
 Leading IT projects is the fourth station of IT and agile.
 
 48
-00:03:10.327 --> 00:03:14.367
+00:03:09.168 --> 00:03:13.092
 Leading IT projects has four topics, each with four levels.
 
 49
-00:03:15.389 --> 00:03:17.351
+00:03:14.099 --> 00:03:16.096
 Start with Requirements and scope.
 
 50
-00:03:18.131 --> 00:03:20.720
+00:03:16.839 --> 00:03:19.428
 At Basics level it is about a requirement,
 
 51
-00:03:20.860 --> 00:03:23.855
+00:03:19.591 --> 00:03:22.714
 SaaS, the roll-out and the user acceptance test.
 
 52
-00:03:24.950 --> 00:03:27.411
+00:03:23.767 --> 00:03:26.159
 At Working knowledge you add the MVP,
 
 53
-00:03:27.574 --> 00:03:31.162
+00:03:26.298 --> 00:03:29.955
 vendor selection, data migration and exit criteria.
 
 54
-00:03:32.207 --> 00:03:35.505
+00:03:31.002 --> 00:03:34.264
 At Advanced you add standard or custom, the total cost,
 
 55
-00:03:35.714 --> 00:03:37.525
+00:03:34.450 --> 00:03:36.273
 the cutover weekend and training.
 
 56
-00:03:38.552 --> 00:03:41.629
+00:03:37.330 --> 00:03:40.499
 At Expert you add a fixed date with flexible scope,
 
 57
-00:03:41.814 --> 00:03:44.740
+00:03:40.685 --> 00:03:43.634
 the contract, hypercare and measuring adoption.
 
 58
-00:03:45.749 --> 00:03:49.940
+00:03:44.688 --> 00:03:48.752
 Every lesson and every film in this module has a place on this map.
