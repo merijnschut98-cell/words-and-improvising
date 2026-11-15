@@ -437,7 +437,7 @@ const SAY = [
     { nl: 'Bij het plannen gebruiken we vaak een WBS en het kritieke pad.',
       en: 'When planning we often use a WBS and the critical path.' },
     { nl: 'Zonder plan merk je pas in de laatste week van de stop dat de nieuwe stroom niet klaar is.',
-      en: 'Without a plan you only notice in the last week of the shutdown that the new power supply is not ready.' },
+      en: 'Without a plan, you only notice in the last week of the shutdown that the new power supply is not ready.' },
   ],
   [ // s5 formats and meetings
     { nl: 'Het vierde station is Werkvormen en overleggen. Het plan ligt er. Nu moet de groep samenwerken.',
