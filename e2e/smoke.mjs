@@ -1,6 +1,10 @@
 // End-to-end smoke test: fake speech + fake coach SDK, mobile viewport.
-// Run: node e2e/smoke.mjs [outDir]   (serves the repo on :8123)
-import { spawn } from 'node:child_process';
+// Run: node e2e/smoke.mjs [outDir]
+// Port: the script serves its own worktree (e2e/serve.mjs) on a free port the OS
+// picks, and prints it, so parallel runs in several worktrees never collide.
+// E2E_PORT=nnnn forces a port. The server closes on exit, failure and SIGINT;
+// the script never kills a process it did not start.
+import { startServer } from './serve.mjs';
 import { createRequire } from 'node:module';
 import { execSync } from 'node:child_process';
 import fs from 'node:fs';
@@ -14,10 +18,8 @@ const { chromium } = playwright;
 const out = process.argv[2] || 'e2e/out';
 fs.mkdirSync(out, { recursive: true });
 
-const PORT = process.env.E2E_PORT || '8123';
-const server = spawn('python3', ['-m', 'http.server', PORT], { stdio: 'ignore' });
-await new Promise((r) => setTimeout(r, 800));
-const BASE = `http://localhost:${PORT}/`;
+const server = await startServer();
+const BASE = server.base;
 
 const FAKE_SPEECH = `
   window.__speechMode = 'ok';
@@ -4106,6 +4108,6 @@ await step('offline after first load', async () => {
 });
 
 await browser.close();
-server.kill();
+server.stop();
 if (errors.length) { console.log('\nERRORS:\n' + errors.join('\n')); process.exit(1); }
 console.log('\nall good');
