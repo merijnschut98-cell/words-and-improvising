@@ -1465,3 +1465,21 @@ test('speak variant: the gridbasics intro film says hoofd-zekering in its tool s
   const en = 'At the main fuse you read how much current the connection can take.';
   assert.equal(speakOf([en], 'en'), en);
 });
+
+// The module intro film "The pipe to line 3" (eng.fluids.intro), checked with espeak-ng phonemes through Piper's nl bridge: it
+// reads Moody with a long Dutch oo (mooddie; said Moedi-diagram, as the English name is said on the floor) and utilities with the
+// Dutch ü (ütilitsis; said joetilletiez), both only in the intro's own sentences ("af in het Moody-diagram", "koelwater zijn
+// utilities", "onderwerp is Stoom en utilities"). Pompkarakteristiek, platenwarmtewisselaar, condenspot, debiet, drukval, cavitatie,
+// energiecase, toerenregeling and warmteterugwinning are read right or have rules above; English needs nothing; no other film's
+// spoken text changes
+test('speak variant: the fluids intro film words in Dutch', () => {
+  const nl = (s) => speakOf([s], 'nl');
+  assert.equal(nl('Je leest de wrijving van een leiding af in het Moody-diagram.'), 'Je leest de wrijving van een leiding af in het Moedi-diagram.');
+  assert.equal(nl('Stoom en koelwater zijn utilities. Het proces heeft ze nodig.'), 'Stoom en koelwater zijn joetilletiez. Het proces heeft ze nodig.');
+  assert.equal(nl('Het vierde onderwerp is Stoom en utilities. Stoom brengt de warmte.'), 'Het vierde onderwerp is Stoom en joetilletiez. Stoom brengt de warmte.');
+  // elsewhere the words keep their voice
+  assert.equal(nl('Het Moody-diagram staat in de les.'), 'Het Moody-diagram staat in de les.');
+  assert.equal(nl('De utilities van de fabriek zijn stoom en koelwater.'), 'De utilities van de fabriek zijn stoom en koelwater.');
+  const en = 'You read the friction of a pipe from the Moody chart. Steam and cooling water are utilities.';
+  assert.equal(speakOf([en], 'en'), en);
+});
