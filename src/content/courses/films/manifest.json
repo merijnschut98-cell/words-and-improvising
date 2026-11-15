@@ -4246,6 +4246,35 @@
         ],
         "vtt": "src/content/courses/films/eng.quality.intro.en.vtt"
       }
+    },
+    "eng.maintenance.intro": {
+      "poster": "src/content/courses/films/eng.maintenance.intro.jpg",
+      "nl": {
+        "dur": 151.7,
+        "bytes": 5165052,
+        "scenes": [
+          0,
+          26.85,
+          51.11,
+          70.05,
+          89.48,
+          108.18
+        ],
+        "vtt": "src/content/courses/films/eng.maintenance.intro.nl.vtt"
+      },
+      "en": {
+        "dur": 160.8,
+        "bytes": 5394956,
+        "scenes": [
+          0,
+          30.42,
+          55.74,
+          74.77,
+          94.69,
+          117.17
+        ],
+        "vtt": "src/content/courses/films/eng.maintenance.intro.en.vtt"
+      }
     }
   }
 }
