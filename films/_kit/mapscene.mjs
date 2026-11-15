@@ -190,7 +190,21 @@ function topRules(css) {
 // .subject-map (the wrapper excepted): anything else would be lost in the film,
 // so it fails the build instead.
 const MAP_SEL = /\.subject-map(?![\w-])/;
-export function mapStyles(css = readFileSync(join(ROOT, 'styles.css'), 'utf8')) {
+// The zone colours of a subject whose map has zones coloured in the app: styles.css keeps them as
+// `.subject-map-wrap .z-<zone> { --zone: ... }` (the wrapper is the app's), so the plain rules above never carry
+// them, and a film of that subject asks for them: mapStyles(css, 'eng'). Projects has no such rules and keeps
+// its page byte for byte. A zone of the map without its rule in styles.css fails the build (tests/mapscene.test.js
+// checks this list against the map).
+const ZONES = { eng: ['plant', 'making', 'energy', 'digital'] };
+function zoneRules(css, subject) {
+  if (!ZONES[subject]) return '';
+  const found = new Map(topRules(css).filter(([sel]) => /^\.subject-map-wrap \.z-[a-z]+$/.test(sel)).map(([sel, raw]) => [sel.split('.z-')[1], raw]));
+  return ZONES[subject].map((z) => {
+    if (!found.has(z)) throw new Error(`mapStyles: no colour for the zone ${z} of ${subject} in styles.css (.subject-map-wrap .z-${z})`);
+    return found.get(z).replace('.subject-map-wrap ', '.subject-map ');
+  }).join('\n');
+}
+export function mapStyles(css = readFileSync(join(ROOT, 'styles.css'), 'utf8'), subject = undefined) {
   const rules = [];
   for (const [sel, raw] of topRules(css)) {
     if (sel.startsWith('@')) {
@@ -204,5 +218,6 @@ export function mapStyles(css = readFileSync(join(ROOT, 'styles.css'), 'utf8')) 
     rules.push(raw);
   }
   if (rules.length < 15) throw new Error('mapStyles: the .subject-map rules are gone from styles.css');
-  return `${PALETTE.trim()}\n${rules.join('\n')}\n`;
+  const zones = zoneRules(css, subject);
+  return `${PALETTE.trim()}\n${rules.join('\n')}\n${zones ? `${zones}\n` : ''}`;
 }

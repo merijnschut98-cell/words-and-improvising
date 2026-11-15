@@ -89,3 +89,25 @@ test('levelWords: the words the app uses for the four levels, per language', () 
   assert.deepEqual(levelWords('en'), ['Basics', 'Working knowledge', 'Advanced', 'Expert']);
   for (const lang of ['nl', 'en']) assert.deepEqual(levelWords(lang), [1, 2, 3, 4].map((n) => STRINGS[lang][`level_${n}`]));
 });
+
+// Task 13, first Engineering film (15 Nov): the Engineering zones are `.subject-map-wrap .z-*` rules in styles.css
+// (the app wraps the map), which the kit does not carry. A film of a subject with zones asks for them with
+// mapStyles(css, subject): the rules for that subject's zones only, rewritten to start with .subject-map. Without a
+// subject the output is byte for byte what it was, so no Projects film page changes.
+const zoneFixture = (extra = '') => `${fixture('')}\n.subject-map-wrap .z-plant { --zone: var(--accent); }\n.subject-map-wrap .z-making { --zone: var(--primary); }\n.subject-map-wrap .z-energy { --zone: var(--ok); }\n.subject-map-wrap .z-digital { --zone: var(--secondary-fill); }\n.subject-map-wrap .subject-map-phone { max-width: 400px; }\n${extra}`;
+test('mapStyles(css, subject): the zone colours of that subject, scoped to .subject-map', () => {
+  const plain = mapStyles(zoneFixture());
+  assert.doesNotMatch(plain, /z-(plant|making|energy|digital)/, 'no subject, no zone rules: Projects pages stay as they are');
+  assert.equal(mapStyles(zoneFixture(), 'pm'), plain, 'a subject without zone colours adds nothing');
+  const eng = mapStyles(zoneFixture(), 'eng');
+  for (const [z, v] of [['plant', 'accent'], ['making', 'primary'], ['energy', 'ok'], ['digital', 'secondary-fill']]) assert.match(eng, new RegExp(`\\.subject-map \\.z-${z} \\{ --zone: var\\(--${v}\\); \\}`));
+  assert.doesNotMatch(eng, /subject-map-wrap/);
+  assert.doesNotMatch(eng, /subject-map-phone/, 'only the zone rules, not the phone layout');
+  assert.ok(eng.startsWith(plain.trimEnd()), 'the plain rules come first, unchanged');
+  assert.throws(() => mapStyles(zoneFixture().replace(/\.subject-map-wrap \.z-making[^\n]*\n/, ''), 'eng'), /no colour for the zone making/);
+});
+test('the real styles.css gives every zone of the Engineering map its colour in a film', async () => {
+  const eng = mapStyles(undefined, 'eng');
+  const map = (await import('../src/content/courses/maps/eng.js')).default;
+  for (const z of map.zones) assert.match(eng, new RegExp(`\\.subject-map \\.z-${z.field.split('.').pop()} \\{ --zone:`));
+});

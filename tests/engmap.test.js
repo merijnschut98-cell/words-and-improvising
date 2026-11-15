@@ -40,7 +40,8 @@ test('four Engineering fields cover all 26 modules, each in exactly one, and the
   assert.deepEqual(checkFields(FIELDS, MODULES), []);
   assert.deepEqual(efields.flatMap((f) => f.modules).sort(), eng.map((m) => m.id).sort());
   for (const m of eng) assert.ok(fieldOf(m.id), m.id);
-  for (const f of efields) assert.ok(!('film' in f), 'no field film yet: the films come next');
+  // a field's film, once it has one, is named after the field (the films land one by one, Making things first)
+  for (const f of efields) if ('film' in f) assert.equal(f.film, f.id);
 });
 
 test('the zones group what the modules teach, and each zone lists its modules by level', () => {
