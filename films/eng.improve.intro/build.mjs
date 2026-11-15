@@ -99,7 +99,9 @@ has('eng.improve.doe', ['Design of experiments in plain words'], 'en');
 // s4: improving is an experiment; plan with a prediction, try it small, compare, then standardise or adjust; the story of the problem on one A3 sheet
 has('eng.improve.pdca', ['PDCA: verbeteren als experiment', 'kies een tegenmaatregel en voorspel het resultaat. Do: probeer het, klein. Check: vergelijk het resultaat met de voorspelling. Act: standaardiseer wat werkte, of stuur bij en ga nog een rondje', 'PDCA Plan, Do, Check, Act: de cyclus']);
 has('eng.improve.pdca', ['PDCA: improving as an experiment', 'choose a countermeasure and predict the result. Do: try it, on a small scale. Check: compare the result with the prediction. Act: standardise what worked, or adjust and go round again', 'PDCA Plan, Do, Check, Act: the cycle'], 'en');
+has('eng.improve.pdca', ['Proef Een kleinschalige test van een verandering, op één machine of dienst']);
 has('eng.improve.a3', ['een probleemoplosverhaal te vertellen op één vel A3-papier']);
+has('eng.improve.pdca', ['Trial A small-scale test of a change, on one machine or shift'], 'en');
 has('eng.improve.a3', ['telling a problem-solving story on one sheet of A3 paper'], 'en');
 // s5: kaizen is improving step by step by the people who do the work, every day and in events; the andon is a cord or button an operator uses to signal a problem so the team leader comes
 // to help; the value stream is every step that takes one product to the customer and the lead time is mostly waiting
@@ -205,7 +207,7 @@ const world = [
 // four topic tiles (the route, one square of the strip, a row of the grid), the level columns and the schemas of each beat. The
 // shared map (the kit's mapScene) sits under the panel; its place Engineering problem solving is a cue group of its own (map-improve).
 const TILE = { cause: 'tCause', facts: 'tFacts', a3: 'tA3', kaizen: 'tKaizen' };
-const PANEL = ['unitS', 'modS', 'shiftS', 'grpA', 'grpB', 'symS', 'rootS', 'whyS', 'treeS', 'flS', 'cmpS', 'dataS', 'ringS', 'expS', 'trialS', 'sheetS', 'cycS', 'stepS', 'evtS', 'flowS', 'andS', 'endS',
+const PANEL = ['unitS', 'modS', 'shiftS', 'grpA', 'grpB', 'symS', 'rootS', 'whyS', 'treeS', 'flS', 'cmpS', 'ringS', 'expS', 'trialS', 'sheetS', 'stepS', 'evtS', 'flowS', 'andS', 'endS',
   'tool1', 'lv1', 'lv2', 'lv3', 'lv4', 'start'];
 const tiles = ORDER.map((id, i) => cueG(TILE[id], g(`r${i}`, ''))).join('');
 const hud = g('hud', '<rect data-k="pbg" class="pm-panel" x="322" y="12" width="308" height="376" rx="10"/>' + g('pHead', '')
@@ -301,7 +303,7 @@ const spec = {
       beats: [
         { nl: 'Op lijn 3 komen telkens te lichte dozen uit de vuleenheid.', en: 'On line 3 too-light cartons keep coming out of the filling unit.', focus: ['unitS', 'line3', 'unit'] },
         { nl: 'De module Technisch probleemoplossen gaat over hoe fabrieken grondoorzaken vinden en verbeteren.', en: 'The module Engineering problem solving is about how plants find root causes and improve.', focus: ['modS', 'line3', 'unit'] },
-        { nl: 'Jij bent de engineer. Na de dienst blijf je met de teamleider om het echt op te lossen.', en: 'You are the engineer. After the shift you stay with the team lead to fix it for good.', focus: ['shiftS', 'jij', 'teamlead'] },
+        { nl: 'Jij bent de engineer. Na de dienst lossen jij en de teamleider het echt op.', en: 'You are the engineer. After the shift you and the team lead fix it for good.', focus: ['shiftS', 'jij', 'teamlead'] },
         { nl: 'Eerst vind je de oorzaak en haal je de feiten op.', en: 'First you find the cause and gather the facts.', focus: 'grpA' },
         { nl: 'Dan probeer je de verbetering uit en houd je haar vast.', en: 'Then you try out the improvement and make it last.', focus: 'grpB' },
       ],
@@ -311,16 +313,15 @@ const spec = {
       beats: [
         { nl: 'Het eerste onderwerp is De grondoorzaak vinden. Een te lichte doos is alleen het symptoom.', en: 'The first topic is Finding the root cause. A too-light carton is only the symptom.', focus: ['tCause', 'symS', 'line3'] },
         { nl: 'De grondoorzaak is de oorzaak die het probleem stopt als je hem weghaalt.', en: 'The root cause is the cause that, once removed, stops the problem coming back.', focus: ['rootS', 'unit'] },
-        { nl: 'Je vraagt telkens waarom, tot je een oorzaak vindt waar je iets mee kunt.', en: 'You keep asking why, until you reach a cause you can act on.', focus: ['whyS', 'unit'] },
-        { nl: 'Heeft een antwoord meer dan één oorzaak, dan teken je op het bord een {t:Waaromboom|waaromboom}.', en: 'If one answer has more than one cause, you draw a {t:Why tree|why tree} on the board.', ...TOOL('Waaromboom'), focus: ['tool1', 'treeS', 'tree'] },
+        { nl: 'Je vraagt telkens waarom, tot je een oorzaak vindt waar je iets mee kunt.', en: 'You keep asking why until you find a cause you can act on.', focus: ['whyS', 'unit'] },
+        { nl: 'Heeft een antwoord meer oorzaken, dan teken je op het bord een {t:Waaromboom|waaromboom}.', en: 'If an answer has several causes, you draw a {t:Why tree|why tree} on the board.', ...TOOL('Waaromboom'), focus: ['tool1', 'treeS', 'tree'] },
       ],
     },
     {
       id: 's3', level: 1, dur: DURS[2], still: 0.9, title: { nl: 'Feiten, data en experimenten', en: 'Facts, data and experiments' },
       beats: [
         { nl: 'Het tweede onderwerp is Feiten, data en experimenten. Je gaat zelf kijken waar het gebeurt.', en: 'The second topic is Facts, data and experiments. You go and see for yourself where it happens.', focus: ['tFacts', 'flS', 'line3', 'jij'] },
-        { nl: 'Een rapport toont wat iemand vastlegde. Op de vloer tel en meet je zelf.', en: 'A report shows what someone chose to record. On the floor you count and measure for yourself.', focus: ['cmpS', 'line3'] },
-        { nl: 'Met die cijfers toets je wat je denkt, soms met een proef.', en: 'With those figures you test what you think, sometimes with a trial.', focus: ['dataS', 'line3'] },
+        { nl: 'Een rapport toont wat iemand vastlegde. Op de vloer tel en meet je zelf, en toets je wat je denkt.', en: 'A report shows what someone chose to record. On the floor you count and measure, and test what you think.', focus: ['cmpS', 'line3'] },
         { nl: 'Je kijkt vanuit een {t:Ohno-cirkel|Ohno-cirkel}, een krijtcirkel op de vloer.', en: 'You watch from an {t:Ohno circle|Ohno circle}, a chalk circle on the floor.', ...TOOL('Ohno-cirkel'), focus: ['tool1', 'ringS', 'circle', 'jij'] },
       ],
     },
@@ -328,19 +329,19 @@ const spec = {
       id: 's4', level: 1, dur: DURS[3], still: 0.9, title: { nl: 'PDCA en de A3', en: 'PDCA and the A3' },
       beats: [
         { nl: 'Het derde onderwerp is PDCA en de A3. Een verbetering is een experiment.', en: 'The third topic is PDCA and the A3. An improvement is an experiment.', focus: ['tA3', 'expS', 'unit'] },
-        { nl: 'Je voorspelt wat een tegenmaatregel doet, probeert hem klein en kijkt of het klopt.', en: 'You predict what a countermeasure does, try it small and see whether it holds.', focus: ['trialS', 'unit'] },
+        { nl: 'Je voorspelt wat een tegenmaatregel doet.', en: 'You predict what a countermeasure does.', focus: ['trialS', 'unit'] },
+        { nl: 'Je probeert hem klein uit, in een {t:Proef|proef} op één machine, en kijkt of het klopt.', en: 'You try it out small, in a {t:Trial|trial} on one machine, and see whether it holds.', ...TOOL('Proef'), focus: ['tool1', 'trialS', 'unit'] },
         { nl: 'Het verhaal van het probleem past op één vel, de A3.', en: 'The story of the problem fits on one sheet, the A3.', focus: ['sheetS'] },
-        { nl: 'Dat rondje heet {t:PDCA|PDCA} en je draait het steeds opnieuw.', en: 'That round is called {t:PDCA|PDCA} and you run it again and again.', ...TOOL('PDCA'), focus: ['tool1', 'cycS'] },
       ],
     },
     {
       id: 's5', level: 1, dur: DURS[4], still: 0.9, title: { nl: 'Kaizen en de waardestroom', en: 'Kaizen and the value stream' },
       beats: [
         { nl: 'Het vierde onderwerp is Kaizen en de waardestroom. Je verbetert stap voor stap, met het team.', en: 'The fourth topic is Kaizen and the value stream. You improve step by step, with the team.', focus: ['tKaizen', 'stepS', 'unit'] },
-        { nl: 'Elke dag kleine verbeteringen, en soms een paar dagen een event aan één gebied.', en: 'Small improvements every day, and sometimes a few days of an event on one area.', focus: ['evtS', 'unit'] },
+        { nl: 'Elke dag kleine verbeteringen, soms een event van een paar dagen.', en: 'Small improvements every day, sometimes an event of a few days.', focus: ['evtS', 'unit'] },
         { nl: 'Je tekent ook de waardestroom, om te zien waar het materiaal wacht.', en: 'You also draw the value stream, to see where the material waits.', focus: ['flowS'] },
-        { nl: 'Een operator meldt een probleem met een {t:Andon|andon}, en de teamleider komt helpen.', en: 'An operator reports a problem with an {t:Andon|andon}, and the team lead comes to help.', ...TOOL('Andon'), focus: ['tool1', 'andS', 'andon', 'teamlead'] },
-        { nl: 'Zo pak je het probleem van lijn 3 aan, tot het niet meer terugkomt.', en: 'That is how you tackle the problem of line 3, until it no longer comes back.', focus: ['endS', 'jij', 'teamlead', 'unit'] },
+        { nl: 'Trekt een operator aan het koord van de {t:Andon|andon}, dan komt de teamleider helpen.', en: 'When an operator pulls the cord of the {t:Andon|andon}, the team lead comes to help.', ...TOOL('Andon'), focus: ['tool1', 'andS', 'andon', 'teamlead'] },
+        { nl: 'Zo pak je lijn 3 aan, tot het probleem niet meer terugkomt.', en: 'That is how you tackle line 3, until the problem stops coming back.', focus: ['endS', 'jij', 'teamlead', 'unit'] },
       ],
     },
     {
@@ -348,11 +349,10 @@ const spec = {
       beats: [
         { nl: 'De hele kaart. Het eerste station is Technisch probleemoplossen, in De fabriek beter maken.', en: 'The whole map. The first station is Engineering problem solving, in Making the plant better.', focus: 'map-improve' },
         { nl: 'Elk van de vier onderwerpen heeft vier niveaus.', en: 'Each of the four topics has four levels.', focus: 'route' },
-        { nl: 'Begin op niveau Basis met 5 keer waarom. Zo zie je het verschil tussen symptoom en grondoorzaak.', en: 'Start at Basics level with 5 whys. It shows the difference between symptom and root cause.', focus: ['tCause', 'start'] },
+        { nl: 'Begin op niveau Basis met 5 keer waarom. Zo leer je symptoom en grondoorzaak scheiden.', en: 'Start at Basics level with 5 whys. You learn to tell symptom from root cause.', focus: ['tCause', 'start'] },
         { nl: 'Op niveau Werkkennis komen de grenzen van 5 keer waarom, opknippen, het A3-rapport en waardestroomanalyse.', en: 'At Working knowledge level come the limits of 5 whys, breaking down, the A3 report and value stream mapping.', focus: 'lv2' },
         { nl: 'Op niveau Gevorderd komen is en is niet, meten voor je concludeert, de 8D en een sessie begeleiden.', en: 'At Advanced level come is and is not, measuring before concluding, the 8D and facilitating a session.', focus: 'lv3' },
         { nl: 'Op niveau Expert komen de fix verifiëren, proefopzetten, een A3 bespreken en een verbetersysteem.', en: 'At Expert level come verifying the fix, experiment design, reviewing an A3 and an improvement system.', focus: 'lv4' },
-        { nl: 'Elke les en elke film van deze module heeft een plek op deze kaart.', en: 'Every lesson and every film in this module has a place on this map.', focus: null },
       ],
     },
   ],
@@ -433,8 +433,8 @@ const css = PM_CSS + HALL_CSS + `
 
 
 const label = {
-  nl: 'Hal B van de fabriek, waar lijn 3 draait. Aan de achterwand de band van lijn 3 met dozen; boven het begin van de band staat de vuleenheid, ongeveer zo hoog als een mens: een stalen frame met een plaat boven de dozen en bovenop een lichte kunststof kap. Later komen erbij een bord op twee palen naast de eenheid met een waaromboom, een krijtcirkel op de vloer voor de band, en een andon aan de voorste stijl van de eenheid: een lamp op de balk met een koord eronder. Voor in de hal staan jij, de engineer, en de teamleider. Rechts een paneel, gemarkeerd als voorbeeld of schema: de vuleenheid met te lichte dozen, de route in twee groepen, een symptoom en een grondoorzaak, een keten van waarom-vragen, de rapportage naast de vloer, tellen en meten, cijfers die toetsen wat je denkt, het verbeteren als experiment, voorspellen, klein proberen en vergelijken, een A3-vel, het PDCA-rondje, stap voor stap verbeteren, elke dag en in events, een waardestroom met wachttijd, een andon en een lijn waar het probleem niet meer terugkomt. Aan het eind de hele kaart van Engineering met Technisch probleemoplossen verlicht, en de vier onderwerpen van de module met elk vier niveaus: Basis, Werkkennis, Gevorderd en Expert.',
-  en: 'Hall B of the plant, where line 3 runs. Along the back wall the belt of line 3 with cartons; over the start of the belt stands the filling unit, about as tall as a person: a steel frame with a plate above the cartons and a light plastic cover on top. Later come a board on two posts beside the unit with a why tree, a chalk circle on the floor in front of the belt, and an andon on the front upright of the unit: a light on the beam with a cord under it. At the front of the hall stand you, the engineer, and the team lead. At the right a panel, marked as an example or a diagram: the filling unit with too-light cartons, the route in two groups, a symptom and a root cause, a chain of why questions, a report next to the floor, counting and measuring, figures that test what you think, improving as an experiment, predicting, trying it small and comparing, an A3 sheet, the PDCA round, improving step by step, every day and in events, a value stream with waiting time, an andon and a line where the problem no longer comes back. At the end the whole map of Engineering with Engineering problem solving lit, and the module’s four topics with four levels each: Basics, Working knowledge, Advanced and Expert.',
+  nl: 'Hal B van de fabriek, waar lijn 3 draait. Aan de achterwand de band van lijn 3 met dozen; boven het begin van de band staat de vuleenheid, ongeveer zo hoog als een mens: een stalen frame met een plaat boven de dozen en bovenop een lichte kunststof kap. Later komen erbij een bord op twee palen naast de eenheid met een waaromboom, een krijtcirkel op de vloer voor de band, en een andon aan de voorste stijl van de eenheid: een lamp op de balk met een koord eronder. Voor in de hal staan jij, de engineer, en de teamleider. Rechts een paneel, gemarkeerd als voorbeeld of schema: de vuleenheid met te lichte dozen, de route in twee groepen, een symptoom en een grondoorzaak, een keten van waarom-vragen, de rapportage naast de vloer, tellen en meten, cijfers die toetsen wat je denkt, het verbeteren als experiment, voorspellen, klein proberen en vergelijken, een A3-vel, een proef op één machine, stap voor stap verbeteren, elke dag en in events, een waardestroom met wachttijd, een andon en een lijn waar het probleem niet meer terugkomt. Aan het eind de hele kaart van Engineering met Technisch probleemoplossen verlicht, en de vier onderwerpen van de module met elk vier niveaus: Basis, Werkkennis, Gevorderd en Expert.',
+  en: 'Hall B of the plant, where line 3 runs. Along the back wall the belt of line 3 with cartons; over the start of the belt stands the filling unit, about as tall as a person: a steel frame with a plate above the cartons and a light plastic cover on top. Later come a board on two posts beside the unit with a why tree, a chalk circle on the floor in front of the belt, and an andon on the front upright of the unit: a light on the beam with a cord under it. At the front of the hall stand you, the engineer, and the team lead. At the right a panel, marked as an example or a diagram: the filling unit with too-light cartons, the route in two groups, a symptom and a root cause, a chain of why questions, a report next to the floor, counting and measuring, figures that test what you think, improving as an experiment, predicting, trying it small and comparing, an A3 sheet, a trial on one machine, improving step by step, every day and in events, a value stream with waiting time, an andon and a line where the problem no longer comes back. At the end the whole map of Engineering with Engineering problem solving lit, and the module’s four topics with four levels each: Basics, Working knowledge, Advanced and Expert.',
 };
 
 const { data } = await defineFilm(spec, { svg, script: stageScript, css, kitCss: k.ISO_CSS, label });

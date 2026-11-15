@@ -1713,19 +1713,28 @@ test('speak variant: the plant-improving field film FMECA', () => {
 });
 
 // The module intro film "Engineering problem solving" (eng.improve.intro), checked with espeak-ng phonemes through Piper's nl_NL-alex
-// bridge and the English voice: PDCA is read as the word "pdka" in Dutch (pdkˈaː; said as letters), only in the intro's two
-// phrases that name it ("derde onderwerp is PDCA en de A3", "heet PDCA en"), and 8D as "acht tee" (ˈɑx tˈeː, the d is lost after acht; said acht-dee
+// bridge and the English voice: PDCA is read as the word "pdka" in Dutch (pdkˈaː; said as letters), only in the intro's
+// phrase that names the topic ("derde onderwerp is PDCA en de A3"), and 8D as "acht tee" (ˈɑx tˈeː, the d is lost after acht; said acht-dee
 // with a hyphen, ɑxtdˈeː), only in the intro's phrase "de 8D en een sessie", so the lessons and the other films keep their voice.
 // Ohno-cirkel, waaromboom, andon, kaizen, A3 (aa drie), de fix verifiëren and the level words are read right; English needs
 // nothing; no other film's spoken text changes
 test('speak variant: the engineering problem solving intro film words in Dutch', () => {
   const nl = (s) => speakOf([s], 'nl');
   assert.equal(nl('Het derde onderwerp is PDCA en de A3. Een verbetering is een experiment.'), 'Het derde onderwerp is P D C A en de A3. Een verbetering is een experiment.');
-  assert.equal(nl('Dat rondje heet PDCA en je draait het steeds opnieuw.'), 'Dat rondje heet P D C A en je draait het steeds opnieuw.');
   assert.equal(nl('Op niveau Gevorderd komen meten voor je concludeert, de 8D en een sessie begeleiden.'), 'Op niveau Gevorderd komen meten voor je concludeert, de acht-dee en een sessie begeleiden.');
   // elsewhere the words keep their voice
-  assert.equal(nl('PDCA is een cyclus. De PDCA en de A3 horen bij elkaar. Het PDCA heet zo.'), 'PDCA is een cyclus. De PDCA en de A3 horen bij elkaar. Het PDCA heet zo.');
+  assert.equal(nl('PDCA is een cyclus. De PDCA en de A3 horen bij elkaar. Dat rondje heet PDCA en je draait het.'), 'PDCA is een cyclus. De PDCA en de A3 horen bij elkaar. Dat rondje heet PDCA en je draait het.');
   assert.equal(nl('De 8D is een rapport. Een 8D en een sessie.'), 'De 8D is een rapport. Een 8D en een sessie.');
-  const en = 'The third topic is PDCA and the A3. That round is called PDCA and the 8D and a session.';
+  const en = 'The third topic is PDCA and the A3. The 8D and a session.';
   assert.equal(speakOf([en], 'en'), en);
+});
+
+// The module intro film for Maintenance (eng.maintenance.intro): espeak-ng reads "Operators" as "OO-pi-ra-tors" (checked with phonemes
+// through Piper's nl_NL-alex bridge); said Ope-raators, only in the film's one sentence "Operators doen zelf de basiszorg", so
+// the other films keep their voice (the eng.improve intro's "een operator" is read right and is not touched)
+test('speak variant: the maintenance intro film says operators right in Dutch', () => {
+  const nl = (s) => speakOf([s], 'nl');
+  assert.equal(nl('Het tweede onderwerp is TPM en autonoom onderhoud. Operators doen zelf de basiszorg.'), 'Het tweede onderwerp is TPM en autonoom onderhoud. Ope-raators doen zelf de basiszorg.');
+  // elsewhere the word keeps its voice
+  assert.equal(nl('Operators bedienen de machine. Trekt een operator aan het koord.'), 'Operators bedienen de machine. Trekt een operator aan het koord.');
 });

@@ -160,18 +160,13 @@ const STAGE = (() => {
   }
 
   // ---- s3: you go and see for yourself where it happens; a report shows what someone chose to record, on the floor you count and
-  // measure; with those figures you test what you think, sometimes with a trial; the Ohno circle (the chip above) is a chalk
+  // measure; with those figures you test what you think, test what you think; the Ohno circle (the chip above) is a chalk
   // circle on the floor.
   function floorDrawing() {
     return card1(100, 'De echte plek', 'The real place', 'pm-crit');
   }
   function cmpDrawing() {
-    let s = card1(100, 'Rapport', 'Report', 'pm-out') + card1(166, 'Tellen en meten', 'Count and measure', 'pm-crit');
-    for (let i = 0; i < 4; i++) s += path(`M${350 + i * 16} 236v26`, 'pm-link');
-    return s + path('M346 262L398 236', 'pm-link');
-  }
-  function dataDrawing() {
-    return card1(100, 'Cijfers', 'Figures') + arrow(476, 148, 476, 162) + card1(166, 'Wat je denkt', 'What you think', 'pm-crit') + tile(232, 'Soms een proef', 'Sometimes a trial', 'pm-out');
+    return card1(100, 'Rapport', 'Report', 'pm-out') + card1(166, 'Tellen en meten', 'Count and measure') + arrow(476, 212, 476, 226) + card1(230, 'Toetsen wat je denkt', 'Test what you think', 'pm-crit');
   }
   function ringDrawing() {
     let s = rect(374, 160, 204, 24, 'pm-tile', 4);
@@ -180,12 +175,13 @@ const STAGE = (() => {
   }
 
   // ---- s4: an improvement is an experiment; you predict what a countermeasure does, try it small and compare; the story of the
-  // problem fits on one A3 sheet; PDCA (the chip above) is the round you run again and again.
+  // problem fits on one A3 sheet; the trial (the chip above) is the small try on one machine.
   function expDrawing() {
     return card1(100, 'Verbetering', 'Improvement') + arrow(476, 148, 476, 162) + card1(166, 'Experiment', 'Experiment', 'pm-crit');
   }
-  function trialDrawing() {
-    return card1(100, 'Voorspelling', 'Prediction') + arrow(476, 148, 476, 160) + card1(164, 'Klein proberen', 'Try it small') + arrow(476, 212, 476, 224) + card1(228, 'Vergelijken', 'Compare', 'pm-crit');
+  // the tool's chip sits at y 110 to 144, so the trial schema starts under it
+  function trialDrawing(full) {
+    return card1(156, 'Voorspelling', 'Prediction', full ? 'pm-card' : 'pm-crit') + (full ? arrow(476, 204, 476, 216) + card1(220, 'Klein proberen', 'Try it small') + arrow(476, 268, 476, 280) + card1(284, 'Vergelijken', 'Compare', 'pm-crit') : '');
   }
   function sheetDrawing() {
     let s = rect(334, 100, 284, 200, 'pm-card', 8) + path('M476 112V288', 'pm-link') + txt(606, 290, 'A3', 22, 'end', 'pm-mute');
@@ -193,13 +189,6 @@ const STAGE = (() => {
     for (let i = 0; i < 3; i++) s += rect(488, 114 + i * 42, 118, 32, i === 2 ? 'pm-crit' : 'pm-tile', 5);
     return s;
   }
-  function cycDrawing() {
-    return rect(334, 168, 130, 44, 'pm-tile', 8) + txt(399, 198, tr('Plan', 'Plan', 120), 22, 'middle', 'pm-txt') + arrow(466, 190, 486, 190)
-      + rect(488, 168, 130, 44, 'pm-tile', 8) + txt(553, 198, tr('Do', 'Do', 120), 22, 'middle', 'pm-txt') + arrow(553, 214, 553, 242)
-      + rect(488, 244, 130, 44, 'pm-tile', 8) + txt(553, 274, tr('Check', 'Check', 120), 22, 'middle', 'pm-txt') + arrow(486, 266, 466, 266)
-      + rect(334, 244, 130, 44, 'pm-crit', 8) + txt(399, 274, tr('Act', 'Act', 120), 22, 'middle', 'pm-on') + arrow(399, 242, 399, 214);
-  }
-
   // ---- s5: kaizen is improving step by step, with the team; every day small, sometimes an event; the value stream shows where
   // the material waits; the andon (the chip above) is how an operator calls the team lead. The shift ends with the problem tackled.
   function stepDrawing() {
@@ -298,8 +287,8 @@ const STAGE = (() => {
       title = HEAD[si - 1][0];
       o.r = strip(si - 1);
       if (si === 1) Object.assign(o, { symS: b === 0 ? op(span(p, 0.1, 0.5), symDrawing()) : '', rootS: fade(b, 1, p, rootDrawing(), 0.1, 0.5), whyS: fade(b, 2, p, whyDrawing(), 0.1, 0.5), treeS: b === 3 ? op(span(p, 0.3, 0.7), treeDrawing()) : '', ...tools(b, p, 3, tr('Waaromboom', 'Why tree', 260)) });
-      if (si === 2) Object.assign(o, { flS: fade(b, 0, p, floorDrawing(), 0.1, 0.5), cmpS: fade(b, 1, p, cmpDrawing(), 0.1, 0.5), dataS: fade(b, 2, p, dataDrawing(), 0.1, 0.5), ringS: b === 3 ? op(span(p, 0.3, 0.7), ringDrawing()) : '', ...tools(b, p, 3, tr('Ohno-cirkel', 'Ohno circle', 260)) });
-      if (si === 3) Object.assign(o, { expS: fade(b, 0, p, expDrawing(), 0.1, 0.5), trialS: fade(b, 1, p, trialDrawing(), 0.1, 0.5), sheetS: fade(b, 2, p, sheetDrawing(), 0.1, 0.5), cycS: b === 3 ? op(span(p, 0.3, 0.7), cycDrawing()) : '', ...tools(b, p, 3, tr('PDCA', 'PDCA', 260)) });
+      if (si === 2) Object.assign(o, { flS: fade(b, 0, p, floorDrawing(), 0.1, 0.5), cmpS: fade(b, 1, p, cmpDrawing(), 0.1, 0.5), ringS: b === 2 ? op(span(p, 0.3, 0.7), ringDrawing()) : '', ...tools(b, p, 2, tr('Ohno-cirkel', 'Ohno circle', 260)) });
+      if (si === 3) Object.assign(o, { expS: fade(b, 0, p, expDrawing(), 0.1, 0.5), trialS: b === 1 || b === 2 ? op(span(p, 0.1, 0.5), trialDrawing(b === 2)) : '', sheetS: fade(b, 3, p, sheetDrawing(), 0.1, 0.5), ...tools(b, p, 2, tr('Proef', 'Trial', 260)) });
       if (si === 4) Object.assign(o, { stepS: fade(b, 0, p, stepDrawing(), 0.1, 0.5), evtS: fade(b, 1, p, evtDrawing(), 0.1, 0.5), flowS: fade(b, 2, p, flowDrawing(), 0.1, 0.5), andS: b === 3 ? op(span(p, 0.3, 0.7), andDrawing()) : '', endS: fade(b, 4, p, endDrawing(), 0.1, 0.5), ...tools(b, p, 3, tr('Andon', 'Andon', 260)) });
     }
     let pbg = 'x="322" y="12" width="308" height="376"';

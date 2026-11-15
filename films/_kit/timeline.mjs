@@ -1009,10 +1009,10 @@ const SAY = {
     [/\bOperators doen zelf\b/g, 'Ope-raators doen zelf'],
     // the module intro film for Engineering problem solving (eng.improve.intro), a self-contained group at the end of the Dutch list,
     // checked with phonemes through Piper's nl_NL-alex bridge: espeak-ng reads PDCA as the word "pdka" (pdkˈaː; said as letters, as
-    // FMECA above) only in the film's two phrases that name it ("Het derde onderwerp is PDCA en de A3", "heet PDCA en"), and 8D as "acht tee" (ˈɑx tˈeː, the
+    // FMECA above) only in the film's phrase that names the topic ("Het derde onderwerp is PDCA en de A3"), and 8D as "acht tee" (ˈɑx tˈeː, the
     // d is lost after acht; said acht-dee, ɑxtdˈeː) only in its phrase "de 8D en een sessie", so the lessons and the other films keep
     // their voice. Ohno-cirkel, waaromboom, andon, kaizen, A3 (aa drie) and the level words are read right; no other film's spoken text changes
-    [/(?<=\bderde onderwerp is )PDCA en de A3\b/g, 'P D C A en de A3'], [/\bheet PDCA en\b/g, 'heet P D C A en'], [/\bde 8D en een sessie\b/g, 'de acht-dee en een sessie']],
+    [/(?<=\bderde onderwerp is )PDCA en de A3\b/g, 'P D C A en de A3'], [/\bde 8D en een sessie\b/g, 'de acht-dee en een sessie']],
   en: [[/\brpm\b/g, 'revolutions per minute'], [/\bmm\/min\b/g, 'millimetres per minute'], [/\bm\/min\b/g, 'metres per minute'], [/µm\b/g, 'micrometres'],
     [/€\s?(\d[\d,]*(?:\.\d+)?)/g, '$1 euros'], [/(\d)\.0(?![\d])/g, '$1'], [/(\d)\s?mm\b/g, '$1 millimetres'], [/(\d)\s?min\b/g, '$1 minutes'], [/(\d)\s?%/g, '$1 percent'],
     [/Ø\s*/g, 'diameter '], [/(\d)\+(\d)/g, '$1 plus $2'], [/\s×\s/g, ' times '], [/\s\/\s/g, ' divided by '], [/\s=\s/g, ' is '], [/°/g, ' degrees'], [/\bRa\b/g, 'R a'], [/’/g, "'"],
