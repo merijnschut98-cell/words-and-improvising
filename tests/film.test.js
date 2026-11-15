@@ -830,11 +830,11 @@ test('speak variant: the tussenbericht of the stuck intro', () => {
 // read right as they are, and it says "de ploeg" instead of operators; no other film's spoken text changes
 test('speak variant: Radical Candor of the lead intro', () => {
   const nl = (s) => speakOf([s], 'nl');
-  assert.equal(nl('Op Werkkennis komen de fasen van een team, de grens met manipulatie, Toyota Kata en Radical Candor erbij.'), 'Op Werkkennis komen de fasen van een team, de grens met manipulatie, Tojota Kata en Redikal Kander erbij.');
+  assert.equal(nl('Op Werkkennis komen de fasen van een team, de grens met manipulatie, Toyota Kata en Radical Candor erbij.'), 'Op Werkkennis komen de fasen van een team, de grens met manipulatie, Tojota Kata en Rèddikal Kender erbij.');
   assert.equal(nl('Bij feedback gebruiken we SBI en feedforward.'), 'Bij fiedbek gebruiken we es bee ie en fiedforwerd.');
   // elsewhere the name keeps its voice
   assert.equal(nl('Radical Candor is een model van Kim Scott.'), 'Radical Candor is een model van Kim Scott.');
-  assert.equal(nl('We gebruiken actief luisteren en MORE PIES.'), 'We gebruiken actief luisteren en Mor pais.');
+  assert.equal(nl('We gebruiken actief luisteren en MORE PIES.'), 'We gebruiken actief luisteren en More paiz.');
   const en = 'At Working knowledge you add Toyota Kata and Radical Candor.';
   assert.equal(speakOf([en], 'en'), en);
 });
@@ -1607,5 +1607,22 @@ test('speak variant: the data and digital manufacturing intro film words in Dutc
   assert.equal(nl('Het datawarehouse van de fabriek. Een edge gateway op de kast. Een dashboard met Power BI.'), 'Het datawarehouse van de fabriek. Een edge gateway op de kast. Een dashboard met Power BI.');
   assert.equal(nl('Je gebruikt een edge gateway en een dashboard.'), 'Je gebruikt een etsj geitwee en een desjbord.');
   const en = 'You read them from the PLC cabinet with an edge gateway and follow the line on a dashboard in a data warehouse with Power BI.';
+  assert.equal(speakOf([en], 'en'), en);
+});
+
+// Batch PM-30: Merijn (15 Nov) heard "Radical Candor" and "MORE PIES" read roughly in the Leading people intro (pm.lead.intro).
+// Checked with phonemes through Piper's nl bridge and the large-v3-turbo transcript of the voice (5 to 6 spellings, 4 to 6 takes
+// each): "Redikal Kander" was heard as "Radical Kander" 2 of 4 and "Redi Kalkander" 2 of 4; "Rèddikal Kender" (rˈɛdikˌɑl
+// kˈɛndər, as the English name sounds) 5 of 6 as "Radical Kender". "Mor pais" (mˈɔr pˈɑjs, the short o) was heard "molpies" or "modpies";
+// "More paiz" (mˈoːrə pˈɑjs, as "more pies") "morepies", "more pice" or "more pais" 6 of 6. Only in the intro's own two phrases, so
+// pm.intake.firsttalk and pm.outside.jargon keep "Mor pais" and the lessons keep their voice; no other film's spoken text changes
+test('speak variant: Radical Candor and MORE PIES of the lead intro, PM-30', () => {
+  const nl = (s) => speakOf([s], 'nl');
+  assert.equal(nl('Op Werkkennis komen de fasen van een team, de grens met manipulatie, Toyota Kata en Radical Candor erbij.'), 'Op Werkkennis komen de fasen van een team, de grens met manipulatie, Tojota Kata en Rèddikal Kender erbij.');
+  assert.equal(nl('We gebruiken actief luisteren en MORE PIES.'), 'We gebruiken actief luisteren en More paiz.');
+  // elsewhere the names keep their voice
+  assert.equal(nl('De checklist MORE PIES komt uit de crisisonderhandeling.'), 'De checklist Mor pais komt uit de crisisonderhandeling.');
+  assert.equal(nl('Radical Candor is een model van Kim Scott.'), 'Radical Candor is een model van Kim Scott.');
+  const en = 'We use active listening and MORE PIES, and at Working knowledge Toyota Kata and Radical Candor.';
   assert.equal(speakOf([en], 'en'), en);
 });
