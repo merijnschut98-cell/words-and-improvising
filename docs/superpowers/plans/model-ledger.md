@@ -160,3 +160,5 @@ Outcome: accepted (merged as delivered), sent back N times, redone.
 | 15 Nov | Build: Engineering intro eng.cyber.intro | sonnet | 102 | 18 min | 377,465 | accepted with fixes by its review |
 | 15 Nov | Review: eng.cyber.intro | sonnet | 72 | 9.5 min | 195,743 | accepted with fixes (ways-in beat and board sentence cut, 191 to 181 s, law card as narrated, usb rule dropped); merged v332 |
 | 15 Nov | Proposal: Task 14 two Projects modules (pm.approach, pm.formats) | opus | 46 | 8.3 min | 207,331 | proposal written; seven questions to Merijn |
+| 15 Nov | Build: Engineering intro eng.lines.intro | sonnet | 45 | 8 min (after resume) | 304,429 | commit blocked by the permission check; committed by the integrator with Merijn's OK; accepted with fixes by its review |
+| 15 Nov | Review: eng.lines.intro | sonnet | ~60 | ~25 min | n/a | accepted with fixes (signaalzuil replaces transportband, 198 to 191 s, labels named); merged v335 |
