@@ -111,9 +111,11 @@ const STAGE = (() => {
 
   // ---- s1: the power comes into the cabinet and goes on to line 3; what switchgear does. Panel under the heading (y from 60).
   function flowDrawing() {
-    const box = (y, a, b, cls) => rect(334, y, 284, 52, cls, 8) + txt(346, y + 34, tr(a, b, 260), 22, 'start', cls === 'pm-crit' ? 'pm-on' : 'pm-big');
-    return box(64, 'Het net', 'The grid', 'pm-card') + arrow(476, 120, 476, 146) + box(150, 'De kast', 'The cabinet', 'pm-crit') + arrow(476, 206, 476, 232) + box(236, 'Lijn 3', 'Line 3', 'pm-card')
-      + txt(334, 326, tr('de stroom van buiten', 'power from outside', 284), 22, 'start', 'pm-mute');
+    const box = (y, a, b, cls) => rect(334, y, 284, 40, cls, 8) + txt(346, y + 28, tr(a, b, 260), 22, 'start', cls === 'pm-crit' ? 'pm-on' : 'pm-big');
+    const rows = [['Het net', 'The grid'], ['De kast', 'The cabinet'], ['Transformator', 'Transformer'], ['Schakelbord', 'Switchboard'], ['Lijn 3', 'Line 3']];
+    let s = '';
+    rows.forEach(([n, e], i) => { s += box(62 + i * 58, n, e, i === 1 ? 'pm-crit' : 'pm-card') + (i < 4 ? arrow(476, 104 + i * 58, 476, 118 + i * 58) : ''); });
+    return s + txt(334, 366, tr('de stroom van buiten', 'power from outside', 284), 22, 'start', 'pm-mute');
   }
   function defDrawing() {
     const row = (y, a, b, c, d) => rect(334, y, 284, 62, 'pm-tile', 8) + txt(346, y + 26, tr(a, b, 260), 22, 'start', 'pm-big') + txt(346, y + 50, tr(c, d, 260), 22, 'start', 'pm-mute');
@@ -165,7 +167,7 @@ const STAGE = (() => {
       + arrow(476, 168, 476, 204) + rect(334, 208, 284, 62, 'pm-crit', 8) + txt(346, 234, tr('Spanningsloos', 'Dead', 260), 22, 'start', 'pm-on') + txt(346, 258, tr('uit en veilig gemaakt', 'off and made safe', 260), 22, 'start', 'pm-on');
   }
   function rulesDrawing() {
-    const names = [['Vrijschakelen', 'Disconnect'], ['Slot en label', 'Lock and tag'], ['Spanning meten', 'Verify dead'], ['Aarden', 'Earth'], ['Afschermen', 'Shield']];
+    const names = [['Vrijschakelen', 'Disconnect'], ['Slot en label', 'Lock and tag'], ['Spanningsloos meten', 'Verify dead'], ['Aarden en kortsluiten', 'Earth and short'], ['Afschermen', 'Shield']];
     let s = '';
     names.forEach(([a, b], i) => {
       const y = 100 + i * 46;

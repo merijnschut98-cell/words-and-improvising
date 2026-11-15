@@ -26,7 +26,7 @@
 //   s2 Schakelapparaten: for every device you ask what it can switch on and what it can break; a fault hits much
 //      harder than normal current; you choose a circuit breaker or a load-break switch (Basis, .devices)
 //   s3 MS-installaties en stations: an installation is a row of steel cabinets, each a panel; air between the parts
-//      makes it big, gas in a sealed tank compact; for a smaller installation you operate an RMU (Basis, .installations)
+//      makes it big, gas in a sealed tank compact; in a secondary substation (netstation) the MV part is usually an RMU (Basis, .installations; the lesson ties it to netstations, so the scene says so)
 //   s4 Beveiliging en kortsluiting: suppose a short circuit at line 3; a protection measures the current, compares it
 //      with a setting and the breaker opens; a wrong setting opens too often or never; the installer sets the protection
 //      relay, as in the field film (Basis, .protection)
@@ -152,12 +152,22 @@ const cueG = (name, body) => `<g data-cue="${name}">${body}</g>`;
 const person = (role, x, y, along) => w.person({ x, y, role, along });
 
 // where things stand (cm), as in the energy field film: the power cabinet at the back wall at the left (x 12), the cable
-// from the grid through the left wall (y 86 to 114) to the cabinet, line 3 at the right (x 186). New here: a second
-// panel beside the first (the cabinet is a row of fields, x 56), so the cabinet reads as a switchgear installation.
-const CAB = { x: 12, w: 40, d: 26, h: 124 };
-const CAB2 = { x: 56, w: 40, d: 26, h: 124 };
+// from the grid through the left wall (y 86 to 114) to the cabinet, line 3 at the right (x 186). New here: the cabinet's
+// footprint (x 12 to 52) is split into two panels (a row of fields), so it reads as a switchgear installation; the
+// transformer (x 68) and the switchboard (x 218) stand as in the field film and the transformers intro.
+const CAB = { x: 12, w: 19, d: 26, h: 124 };
+const CAB2 = { x: 33, w: 19, d: 26, h: 124 };
+const SWB = { x: 218, w: 50, z0: 96, z1: 172 };
+const TRAFO = { x: 68, y: 4, w: 54, d: 32, h: 60 };
 const L3 = { x: 186, y: 16, len: 84, dep: 34 };
-const cabA = hall.cable([[0, 100], [32, 100], [32, 28]]);
+const cabA = hall.cable([[0, 100], [22, 100], [22, 28]]);
+const cabB = hall.cable([[52, 13], [TRAFO.x, 13]]);
+const tray = w.box({ x: TRAFO.x + TRAFO.w - 10, y: 0, w: SWB.x - (TRAFO.x + TRAFO.w - 10) + 20, d: 4, r: 0.6 }, 98, 104, { tone: 'lo' }, { steps: 1 })
+  + w.box({ x: TRAFO.x + TRAFO.w - 10, y: 0, w: 5, d: 4, r: 0.6 }, TRAFO.h, 104, { tone: 'lo' }, { steps: 1 });
+const bushings = [0, 1, 2].map((i) => w.post(TRAFO.x + 12 + i * 15, TRAFO.y + 16, 3.4, TRAFO.h, TRAFO.h + 14, { tone: 'hi' }, 10)).join('');
+const ribs = [0, 1, 2, 3, 4].map((i) => w.box({ x: TRAFO.x + 6 + i * 10, y: TRAFO.y + TRAFO.d, w: 5, d: 9, r: 0 }, 12, TRAFO.h - 6, { tone: 'lo' }, { steps: 0 })).join('');
+const trafo = w.box({ x: TRAFO.x, y: TRAFO.y, w: TRAFO.w, d: TRAFO.d, r: 2 }, 6, TRAFO.h, { tone: 'mid' }, { steps: 2 })
+  + w.box({ x: TRAFO.x - 3, y: TRAFO.y - 2, w: TRAFO.w + 6, d: TRAFO.d + 4, r: 1 }, 0, 6, { tone: 'lo' }, { steps: 1 }) + ribs + bushings;
 const wallEntry = w.box({ x: 0, y: 86, w: 10, d: 28, r: 1.5 }, 0, 40, { tone: 'lo' }, { steps: 2 })
   + w.box({ x: 10, y: 96, w: 3, d: 8, r: 1 }, 0, 10, { tone: 'mid' }, { steps: 1 });
 const INST = { x: 24, y: 118 };
@@ -170,6 +180,9 @@ const world = [
   w.room(ROOM),
   cueG('net', wallEntry + cabA),
   cueG('cab', hall.cabinet({ x: CAB2.x, w: CAB2.w, d: CAB2.d, h: CAB2.h }) + hall.cabinet({ x: CAB.x, w: CAB.w, d: CAB.d, h: CAB.h })),
+  cueG('cabB', cabB),
+  cueG('trafo', trafo),
+  cueG('swb', tray + hall.switchboard(SWB)),
   cueG('line3', hall.conveyor({ ...L3, cartons: 3 })),
   g('pp-installer', installer + hall.hat(INST.x, INST.y)),
   g('pp-jij', person('jij', JIJ.x, JIJ.y, 'x')),
@@ -279,7 +292,7 @@ const spec = {
     {
       id: 's1', level: 1, dur: DURS[0], still: 0.9, title: { nl: 'De kast in hal B', en: 'The cabinet in hall B' },
       beats: [
-        { nl: 'In hal B komt de stroom door de wand in een kast. Van daar gaat hij naar lijn 3.', en: 'In hall B the power comes through the wall into a cabinet. From there it goes to line 3.', focus: ['flowS', 'net', 'cab', 'line3', 'jij'] },
+        { nl: 'In hal B komt de stroom door de wand in een kast. Via transformator en schakelbord gaat hij naar lijn 3.', en: 'In hall B the power comes through the wall into a cabinet. Then transformer and switchboard feed line 3.', focus: ['flowS', 'net', 'cab', 'cabB', 'trafo', 'swb', 'line3', 'jij'] },
         { nl: 'De kast hoort bij een schakelinstallatie. Die schakelt, beveiligt en scheidt delen van het net.', en: 'The cabinet is part of switchgear. It switches, protects and isolates parts of the grid.', focus: ['defS', 'cab'] },
         { nl: 'Vier onderwerpen volgen de kast. Eerst de apparaten en de installatie die ze samen vormen.', en: 'Four topics follow the cabinet. First the devices and the installation they form together.', focus: 'grpA' },
         { nl: 'Daarna wat beveiligt bij een fout en hoe je veilig schakelt.', en: 'Then what protects when a fault happens and how you switch safely.', focus: 'grpB' },
@@ -290,7 +303,7 @@ const spec = {
       beats: [
         { nl: 'Eerste onderwerp: Schakelapparaten. Bij elk apparaat vraag je wat het kan inschakelen en onderbreken.', en: 'First topic: Switching devices. For every device you ask what it can switch on and what it can break.', focus: ['tDev', 'askS', 'cab'] },
         { nl: 'Een fout komt veel harder aan dan normale stroom. Onderbreken is dus een zwaardere klus.', en: 'A fault hits much harder than normal current. So breaking it is a heavier job.', focus: ['curS', 'line3'] },
-        { nl: 'Je kiest een {t:Vermogensschakelaar|vermogensschakelaar} of een {t:Lastscheider|lastscheider}.', en: 'You choose a {t:Circuit breaker|circuit breaker} or a {t:Load-break switch|load-break switch}.', ...TOOL('Vermogensschakelaar', 'Lastscheider'), focus: ['tool1', 'tool2', 'cab'] },
+        { nl: 'Je let op het verschil tussen {t:Vermogensschakelaar|vermogensschakelaar} en {t:Lastscheider|lastscheider}.', en: 'You look at the difference between a {t:Circuit breaker|circuit breaker} and a {t:Load-break switch|load-break switch}.', ...TOOL('Vermogensschakelaar', 'Lastscheider'), focus: ['tool1', 'tool2', 'cab'] },
       ],
     },
     {
@@ -298,7 +311,7 @@ const spec = {
       beats: [
         { nl: 'Tweede onderwerp: MS-installaties en stations. Een installatie is een rij kasten, elk een veld.', en: 'Second topic: MV installations and stations. An installation is a row of cabinets, each a panel.', focus: ['tSta', 'rowS', 'cab'] },
         { nl: 'Met lucht tussen de delen is een installatie groot. Met gas in een gesloten tank is hij compact.', en: 'With air between the parts an installation is big. With gas in a sealed tank it is compact.', focus: ['mediumS', 'cab'] },
-        { nl: 'Voor een kleinere installatie bedien je vaak een {t:RMU|RMU}.', en: 'For a smaller installation you often operate an {t:RMU|RMU}.', ...TOOL('RMU'), focus: ['tool1', 'cab'] },
+        { nl: 'In een netstation is het MS-deel meestal een {t:RMU|RMU}.', en: 'In a secondary substation the MV part is usually an {t:RMU|RMU}.', ...TOOL('RMU'), focus: ['tool1'] },
       ],
     },
     {
@@ -307,7 +320,7 @@ const spec = {
         { nl: 'Derde onderwerp: Beveiliging en kortsluiting. Stel dat er bij lijn 3 een kortsluiting komt.', en: 'Third topic: Protection and short circuits. Suppose a short circuit happens at line 3.', focus: ['tPro', 'faultS', 'line3'] },
         { nl: 'Een beveiliging meet de stroom en vergelijkt die met een instelling. Bij een fout opent de schakelaar.', en: 'A protection measures the current and compares it with a setting. At a fault the breaker opens.', focus: ['stepsS', 'cab'] },
         { nl: 'Een verkeerde instelling laat de schakelaar te vaak openen, of nooit.', en: 'A wrong setting makes the breaker open too often, or never.', focus: ['setS'] },
-        { nl: 'De installateur stelt het {t:Beveiligingsrelais|beveiligingsrelais} in.', en: 'The installer sets the {t:Protection relay|protection relay}.', ...TOOL('Beveiligingsrelais'), focus: ['tool1', 'installer', 'cab'] },
+        { nl: 'De installateur test het {t:Beveiligingsrelais|beveiligingsrelais} en legt de instelling vast.', en: 'The installer tests the {t:Protection relay|protection relay} and records the setting.', ...TOOL('Beveiligingsrelais'), focus: ['tool1', 'installer', 'cab'] },
       ],
     },
     {
@@ -316,7 +329,7 @@ const spec = {
         { nl: 'Vierde onderwerp: Veilig schakelen. Werk aan de kast gebeurt meestal spanningsloos.', en: 'Fourth topic: Switching safely. Work on the cabinet is mostly done dead.', focus: ['tSwi', 'liveS', 'cab'] },
         { nl: 'Daarvoor gelden de vijf veiligheidsregels, altijd in dezelfde volgorde.', en: 'The five safety rules apply, always in the same order.', focus: ['rulesS', 'cab'] },
         { nl: 'Alleen een aangewezen installateur werkt aan de kast. Jij gaat mee en raakt niets aan.', en: 'Only an appointed installer works on the cabinet. You go along and touch nothing.', focus: ['whoS', 'installer', 'jij'] },
-        { nl: 'Je meet met een {t:Spanningzoeker|spanningzoeker} en plaatst een {t:Aardgarnituur|aardgarnituur}.', en: 'You test with a {t:Voltage detector|voltage detector} and place an {t:Earthing set|earthing set}.', ...TOOL('Spanningzoeker', 'Aardgarnituur'), focus: ['tool1', 'tool2', 'cab'] },
+        { nl: 'De installateur meet met een {t:Spanningzoeker|spanningzoeker} en plaatst een {t:Aardgarnituur|aardgarnituur}.', en: 'The installer tests with a {t:Voltage detector|voltage detector} and places an {t:Earthing set|earthing set}.', ...TOOL('Spanningzoeker', 'Aardgarnituur'), focus: ['tool1', 'tool2', 'installer', 'cab'] },
         { nl: 'Dan werkt de installateur veilig aan de kast.', en: 'Then the installer works safely on the cabinet.', focus: ['installer', 'cab'] },
       ],
     },
@@ -348,8 +361,8 @@ const spec = {
 // consultant who goes along and touches nothing).
 const SAY = [
   [ // s1 the power comes into the cabinet; what switchgear is; the map in two groups
-    { nl: 'In hal B komt de stroom door de wand in een kast. Van daar gaat hij naar lijn 3.',
-      en: 'In hall B the power comes through the wall into a cabinet. From there it goes to line 3.' },
+    { nl: 'In hal B komt de stroom door de wand in een kast. Via transformator en schakelbord gaat hij naar lijn 3.',
+      en: 'In hall B the power comes through the wall into a cabinet. Then transformer and switchboard feed line 3.' },
     { nl: 'De kast hoort bij een schakelinstallatie. Die schakelt, beveiligt en scheidt delen van het net.',
       en: 'The cabinet is part of switchgear. It switches, protects and isolates parts of the grid.' },
     { nl: 'Vier onderwerpen volgen de kast. Eerst de apparaten en de installatie die ze samen vormen.',
@@ -362,16 +375,16 @@ const SAY = [
       en: 'The first topic is Switching devices. For every device you ask what it can switch on and what it can break.' },
     { nl: 'Een kortsluiting komt veel harder aan dan de normale stroom naar lijn 3. Onderbreken is dus een zwaardere klus dan inschakelen.',
       en: 'A short circuit hits much harder than the normal current to line 3. So breaking it is a heavier job than switching on.' },
-    { nl: 'Daarom kies je een {t:Vermogensschakelaar|vermogensschakelaar} of een {t:Lastscheider|lastscheider}.',
-      en: 'So you choose a {t:Circuit breaker|circuit breaker} or a {t:Load-break switch|load-break switch}.' },
+    { nl: 'Daarom let je op het verschil tussen een {t:Vermogensschakelaar|vermogensschakelaar} en een {t:Lastscheider|lastscheider}.',
+      en: 'So you look at the difference between a {t:Circuit breaker|circuit breaker} and a {t:Load-break switch|load-break switch}.' },
   ],
   [ // s3 MV installations and stations: a row of panels, air and gas, the RMU
-    { nl: 'Het tweede onderwerp is MS-installaties en stations. Zo een installatie is een rij stalen kasten, en elke kast is een veld.',
-      en: 'The second topic is MV installations and stations. Such an installation is a row of steel cabinets, and each cabinet is a panel.' },
+    { nl: 'Het tweede onderwerp is MS-installaties en stations. Een installatie is een rij stalen kasten, en elke kast is een veld.',
+      en: 'The second topic is MV installations and stations. An installation is a row of steel cabinets, and each cabinet is a panel.' },
     { nl: 'Met lucht tussen de delen is een installatie groot. Met gas in een gesloten tank wordt hij veel compacter.',
       en: 'With air between the parts an installation is big. With gas in a sealed tank it becomes much more compact.' },
-    { nl: 'Voor een kleinere installatie bedien je vaak een {t:RMU|RMU}.',
-      en: 'For a smaller installation you often operate an {t:RMU|RMU}.' },
+    { nl: 'In een netstation is het MS-deel meestal een {t:RMU|RMU}, één compact blok.',
+      en: 'In a secondary substation the MV part is usually an {t:RMU|RMU}, one compact block.' },
   ],
   [ // s4 protection and short circuits: measure, compare, trip; a wrong setting; the relay
     { nl: 'Het derde onderwerp is Beveiliging en kortsluiting. Stel dat er bij lijn 3 een kortsluiting komt. Dan moet de stroom snel stoppen.',
@@ -380,8 +393,8 @@ const SAY = [
       en: 'A protection measures the current and compares it with a setting. At a fault the breaker opens.' },
     { nl: 'Een verkeerde instelling laat de schakelaar te vaak openen, of nooit.',
       en: 'A wrong setting makes the breaker open too often, or never.' },
-    { nl: 'Daarom stelt de installateur het {t:Beveiligingsrelais|beveiligingsrelais} zorgvuldig in.',
-      en: 'So the installer sets the {t:Protection relay|protection relay} with care.' },
+    { nl: 'Daarom test de installateur het {t:Beveiligingsrelais|beveiligingsrelais} en legt de instelling vast.',
+      en: 'So the installer tests the {t:Protection relay|protection relay} and records the setting.' },
   ],
   [ // s5 switching safely: dead, the five rules, appointed people, then the story ends where the field film picks it up
     { nl: 'Het vierde onderwerp is Veilig schakelen. Werk aan de kast gebeurt meestal spanningsloos, dus uitgeschakeld en veilig gemaakt.',
@@ -390,8 +403,8 @@ const SAY = [
       en: 'The five safety rules apply, always in the same order. Each rule stops a real failure.' },
     { nl: 'Alleen een aangewezen installateur werkt aan de kast. Jij gaat mee en raakt niets aan.',
       en: 'Only an appointed installer works on the cabinet. You go along and touch nothing.' },
-    { nl: 'Je meet met een {t:Spanningzoeker|spanningzoeker} en plaatst een {t:Aardgarnituur|aardgarnituur}.',
-      en: 'You test with a {t:Voltage detector|voltage detector} and place an {t:Earthing set|earthing set}.' },
+    { nl: 'De installateur meet met een {t:Spanningzoeker|spanningzoeker} en plaatst een {t:Aardgarnituur|aardgarnituur}.',
+      en: 'The installer tests with a {t:Voltage detector|voltage detector} and places an {t:Earthing set|earthing set}.' },
     { nl: 'Dan werkt de installateur veilig aan de kast.',
       en: 'Then the installer works safely on the cabinet.' },
   ],
@@ -477,8 +490,8 @@ const css = PM_CSS + HALL_CSS + `
 ` + mapStyles(undefined, 'eng');
 
 const label = {
-  nl: 'Hal B van de fabriek, waar lijn 3 op zijn nieuwe plek draait. Door de linkerwand komt de kabel van het net binnen, naar een rij van twee stroomkasten langs de achterwand, de velden van de schakelinstallatie. Rechts de verpakkingslijn met dozen. Een installateur bij de kasten en jij, de engineer. Rechts een paneel, gemarkeerd als voorbeeld of schema: de stroom van het net naar de kast en lijn 3, wat een schakelinstallatie doet, twee vragen bij elk apparaat en een kortsluiting die harder aankomt dan normale stroom, een rij velden met lucht of gas als isolatie, een kortsluiting bij lijn 3 met meten, vergelijken en openen, een verkeerde instelling, het werk spanningsloos, de vijf veiligheidsregels en wie is aangewezen, met per onderwerp de naam van een of twee hulpmiddelen. Aan het eind de hele kaart van Engineering met Schakelinstallaties en beveiliging verlicht, en de vier onderwerpen van de module met elk vier niveaus: Basis, Werkkennis, Gevorderd en Expert.',
-  en: 'Hall B of the factory, where line 3 runs at its new place. Through the left wall the cable from the grid comes in, to a row of two power cabinets along the back wall, the panels of the switchgear installation. At the right the packing line with cartons. An installer by the cabinets and you, the engineer. At the right a panel, marked as an example or a diagram: the power from the grid to the cabinet and line 3, what switchgear does, two questions for every device and a short circuit that hits harder than normal current, a row of panels with air or gas as insulation, a short circuit at line 3 with measuring, comparing and opening, a wrong setting, work done dead, the five safety rules and who is appointed, with the names of one or two tools per topic. At the end the whole map of Engineering with Switchgear and protection lit, and the module’s four topics with four levels each: Basics, Working knowledge, Advanced and Expert.',
+  nl: 'Hal B van de fabriek, waar lijn 3 op zijn nieuwe plek draait. Door de linkerwand komt de kabel van het net binnen, naar een rij van twee stroomkasten langs de achterwand, de velden van de schakelinstallatie. Daarnaast een transformator met koelribben, een kabelgoot naar het schakelbord op de wand en rechts de verpakkingslijn met dozen. Een installateur bij de kasten en jij, de engineer. Rechts een paneel, gemarkeerd als voorbeeld of schema: de stroom van het net via kast, transformator en schakelbord naar lijn 3, wat een schakelinstallatie doet, twee vragen bij elk apparaat en een kortsluiting die harder aankomt dan normale stroom, een rij velden met lucht of gas als isolatie, een kortsluiting bij lijn 3 met meten, vergelijken en openen, een verkeerde instelling, het werk spanningsloos, de vijf veiligheidsregels en wie is aangewezen, met per onderwerp de naam van een of twee hulpmiddelen. Aan het eind de hele kaart van Engineering met Schakelinstallaties en beveiliging verlicht, en de vier onderwerpen van de module met elk vier niveaus: Basis, Werkkennis, Gevorderd en Expert.',
+  en: 'Hall B of the factory, where line 3 runs at its new place. Through the left wall the cable from the grid comes in, to a row of two power cabinets along the back wall, the panels of the switchgear installation. Next to them a transformer with cooling ribs, a cable tray to the switchboard on the wall, and at the right the packing line with cartons. An installer by the cabinets and you, the engineer. At the right a panel, marked as an example or a diagram: the power from the grid through cabinet, transformer and switchboard to line 3, what switchgear does, two questions for every device and a short circuit that hits harder than normal current, a row of panels with air or gas as insulation, a short circuit at line 3 with measuring, comparing and opening, a wrong setting, work done dead, the five safety rules and who is appointed, with the names of one or two tools per topic. At the end the whole map of Engineering with Switchgear and protection lit, and the module’s four topics with four levels each: Basics, Working knowledge, Advanced and Expert.',
 };
 
 const { data } = await defineFilm(spec, { svg, script: stageScript, css, kitCss: k.ISO_CSS, label });
