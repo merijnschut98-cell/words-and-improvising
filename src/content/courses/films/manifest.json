@@ -4217,6 +4217,35 @@
         ],
         "vtt": "src/content/courses/films/eng.flow.intro.en.vtt"
       }
+    },
+    "eng.quality.intro": {
+      "poster": "src/content/courses/films/eng.quality.intro.jpg",
+      "nl": {
+        "dur": 147.8,
+        "bytes": 4912315,
+        "scenes": [
+          0,
+          28.59,
+          45.1,
+          59.2,
+          81.87,
+          102.88
+        ],
+        "vtt": "src/content/courses/films/eng.quality.intro.nl.vtt"
+      },
+      "en": {
+        "dur": 160.5,
+        "bytes": 5159826,
+        "scenes": [
+          0,
+          31.23,
+          50.77,
+          66.2,
+          92.14,
+          114.37
+        ],
+        "vtt": "src/content/courses/films/eng.quality.intro.en.vtt"
+      }
     }
   }
 }
