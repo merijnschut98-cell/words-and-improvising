@@ -352,7 +352,7 @@ const spec = {
         { nl: 'Derde onderwerp: Alternatieven en kritiek. SAFe is niet de enige weg, er zijn ook LeSS en Nexus.', en: 'Third topic: Alternatives and criticism. SAFe is not the only way, there are also LeSS and Nexus.', focus: ['tAlt', 'opts', 'devs', 'team2'] },
         { nl: '{t:LeSS|LeSS} haalt juist dingen weg. Alle teams delen één Product Owner en één backlog.', en: '{t:LeSS|LeSS} takes things away instead. All teams share one Product Owner and one backlog.', cue: { LeSS: 'less' }, focus: ['less', 'devs', 'team2'] },
         { nl: 'Het werkt met {t:Feature teams|feature teams}. Zo’n team bouwt een klantfunctie van begin tot eind.', en: 'It works with {t:Feature teams|feature teams}. Such a team builds a customer function from start to finish.', cue: { 'Feature teams': 'feat' }, focus: ['feat', 'devs', 'team2'] },
-        { nl: 'Bij alternatieven horen onder meer {t:Sprint Planning One|Sprint Planning One} van LeSS en {t:Cross-Team Refinement|Cross-Team Refinement} van Nexus.', en: 'Alternatives include {t:Sprint Planning One|Sprint Planning One} of LeSS and {t:Cross-Team Refinement|Cross-Team Refinement} of Nexus.', cue: { 'Sprint Planning One': 'tool1', 'Cross-Team Refinement': 'tool2' }, focus: ['tool1', 'tool2'] },
+        { nl: 'Alternatieven zijn {t:Sprint Planning One|Sprint Planning One} van LeSS en {t:Cross-Team Refinement|Cross-Team Refinement} van Nexus.', en: 'Alternatives include {t:Sprint Planning One|Sprint Planning One} of LeSS and {t:Cross-Team Refinement|Cross-Team Refinement} of Nexus.', cue: { 'Sprint Planning One': 'tool1', 'Cross-Team Refinement': 'tool2' }, focus: ['tool1', 'tool2'] },
       ],
     },
     {
@@ -439,7 +439,7 @@ const SAY = [
       en: '{t:LeSS|LeSS} takes things away instead. All teams share one Product Owner and one backlog.' },
     { nl: 'Het werkt met {t:Feature teams|feature teams}. Zo’n team bouwt een klantfunctie van begin tot eind.',
       en: 'It works with {t:Feature teams|feature teams}. Such a team builds a customer function from start to finish.' },
-    { nl: 'Bij alternatieven horen onder meer Sprint Planning One van LeSS en Cross-Team Refinement van Nexus.',
+    { nl: 'Alternatieven zijn Sprint Planning One van LeSS en Cross-Team Refinement van Nexus.',
       en: 'Alternatives include Sprint Planning One of LeSS and Cross-Team Refinement of Nexus.' },
   ],
   [ // s5 hybrid, stage-gate plus agile

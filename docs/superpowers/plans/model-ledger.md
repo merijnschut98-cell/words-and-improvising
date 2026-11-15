@@ -102,3 +102,5 @@ Outcome: accepted (merged as delivered), sent back N times, redone.
 | 15 Nov | Review module intro pm.consult.intro | sonnet | 72 | 9 min | 231,228 | accepted with fixes (client problem aligned with portfolio intro, two non-tools replaced, a SAY rule made unneeded); merged v296 |
 | 15 Nov | Task 19 step 1: level opener texts (528) | sonnet | 43 | 14 min | 270,606 | accepted with fixes by its review |
 | 15 Nov | Review: level opener texts | sonnet | n/a | n/a | n/a | accepted with fixes (68 content or term fixes, all openings varied); found that node validate.js did nothing from the command line and made it run every check; merged v297 |
+| 15 Nov | Render PM-20: negotiate, outside, portfolio, consult intros | sonnet | 63 | 63 min | 128,531 | accepted; every guard passed first time; procesingenieurs still unclear; merged v298 |
+| 15 Nov | Render PM-19: Dutch re-render after the voice fix (13 films) and scaled and IT-project intros | sonnet | 110 | 3 h 18 min | 207,686 | accepted; three lines reworded to pass the guard; 'IT en agile' still heard as HL by Whisper; merged v299 |

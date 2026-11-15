@@ -1,0 +1,237 @@
+WEBVTT
+
+1
+00:00:00.844 --> 00:00:03.642
+Lijn 3 moet voor het einde van de zomerstop in hal B staan.
+
+2
+00:00:04.294 --> 00:00:08.519
+Het werk draait om stroom, een schakelkast en een PLC die de lijn bestuurt.
+
+3
+00:00:09.563 --> 00:00:12.106
+Jij bent geen elektricien en geen programmeur.
+
+4
+00:00:12.796 --> 00:00:16.825
+De installateur en de PLC-programmeur weten er veel meer van dan jij.
+
+5
+00:00:17.816 --> 00:00:18.954
+Toch leid jij dit project.
+
+6
+00:00:19.605 --> 00:00:20.338
+Hoe doe je dat?
+
+7
+00:00:21.041 --> 00:00:23.665
+We volgen het langs de vier onderwerpen van de module.
+
+8
+00:00:24.945 --> 00:00:26.779
+Het eerste onderwerp is de instelling.
+
+9
+00:00:27.506 --> 00:00:31.256
+De installateur is de vakexpert en weet hoe de aansluiting werkt.
+
+10
+00:00:32.284 --> 00:00:34.989
+Zie jezelf als regisseur, niet als expert.
+
+11
+00:00:35.705 --> 00:00:38.909
+Jij bent eigenaar van de route, de expert van de motor.
+
+12
+00:00:39.579 --> 00:00:43.874
+Je zorgt dat de juiste persoon elke technische vraag beantwoordt, op een datum.
+
+13
+00:00:44.856 --> 00:00:47.294
+Wat het project oplevert bepaal je met de sponsor.
+
+14
+00:00:47.920 --> 00:00:50.276
+Hoe het gebouwd wordt, is aan de installateur.
+
+15
+00:00:51.297 --> 00:00:53.642
+Bij de instelling gebruiken we een naïeve vraag (naive question).
+
+16
+00:00:54.921 --> 00:00:56.964
+Het tweede onderwerp is vragen stellen.
+
+17
+00:00:57.651 --> 00:00:59.416
+Je kunt de antwoorden niet beoordelen,
+
+18
+00:00:59.717 --> 00:01:02.085
+dus is de kwaliteit van je vragen je vakkennis.
+
+19
+00:01:03.109 --> 00:01:06.429
+Vraag de installateur wat er uitdrukkelijk niet in de aansluiting zit.
+
+20
+00:01:07.176 --> 00:01:08.662
+Daar zitten de misverstanden.
+
+21
+00:01:09.594 --> 00:01:11.867
+Hij neemt aan dat de stroomkast groot genoeg is.
+
+22
+00:01:12.669 --> 00:01:16.360
+Schrijf dat op, want een aanname is een risico tot hij gecheckt is.
+
+23
+00:01:17.382 --> 00:01:20.401
+Bij vragen stellen gebruiken we een vragenset (question set) en een premortem.
+
+24
+00:01:21.655 --> 00:01:23.919
+Het derde onderwerp is werken met experts.
+
+25
+00:01:24.605 --> 00:01:27.519
+De installateur zegt dat de stroomkast groot genoeg is.
+
+26
+00:01:28.587 --> 00:01:31.606
+Je vertrouwt zijn vakmanschap en controleert het resultaat.
+
+27
+00:01:32.373 --> 00:01:35.589
+Wie heeft de berekening gecontroleerd, en waar is die getekend?
+
+28
+00:01:36.584 --> 00:01:40.229
+Elk belangrijk stuk werk wordt door een tweede bevoegde persoon gecontroleerd.
+
+29
+00:01:40.928 --> 00:01:43.355
+Jij zorgt dat hij er is, je bent het niet zelf.
+
+30
+00:01:44.363 --> 00:01:47.103
+Maar de PLC-programmeur vindt de stroomkast te klein.
+
+31
+00:01:47.815 --> 00:01:51.704
+Twee experts, twee meningen, en jij kunt de inhoud niet beoordelen.
+
+32
+00:01:52.700 --> 00:01:55.765
+Met experts gebruiken we een steekproef (spot check) en een second opinion.
+
+33
+00:01:57.029 --> 00:01:59.432
+Het vierde onderwerp is sturen en besluiten.
+
+34
+00:02:00.141 --> 00:02:04.112
+De installateur zegt dat de aansluiting voor negentig procent klaar is.
+
+35
+00:02:05.204 --> 00:02:08.931
+Buiten je vak is een percentage de zwakste maat, want het is een mening.
+
+36
+00:02:09.644 --> 00:02:14.369
+Tel liever mijlpalen, die zijn ja of nee, zoals de schakelkast onder spanning.
+
+37
+00:02:15.348 --> 00:02:17.275
+Tel een mijlpaal pas als het bewijs er is,
+
+38
+00:02:17.508 --> 00:02:19.714
+zoals een getekend testrapport of een demo.
+
+39
+00:02:20.422 --> 00:02:22.152
+Zo besluit de sponsor op feiten.
+
+40
+00:02:23.150 --> 00:02:25.275
+Een leverancier bouwt de schakelkast.
+
+41
+00:02:25.983 --> 00:02:27.585
+We testen hem daar voor verzending,
+
+42
+00:02:27.863 --> 00:02:29.686
+met een fabrieksacceptatietest (factory acceptance test).
+
+43
+00:02:31.033 --> 00:02:31.799
+Het hangt samen.
+
+44
+00:02:32.492 --> 00:02:35.081
+Je bent regisseur, je stelt goede vragen,
+
+45
+00:02:35.221 --> 00:02:37.624
+en je vertrouwt experts maar controleert wat telt.
+
+46
+00:02:38.400 --> 00:02:39.433
+Je stuurt op bewijs.
+
+47
+00:02:40.502 --> 00:02:42.766
+De tweede controleur rekent na en tekent.
+
+48
+00:02:43.484 --> 00:02:47.536
+De stroomkast is te klein, wordt groter, en lijn 3 komt op zijn plek.
+
+49
+00:02:48.911 --> 00:02:50.246
+Dit is de kaart van Projecten.
+
+50
+00:02:50.981 --> 00:02:55.207
+Projecten leiden buiten je vakgebied is het vierde station van Mensen en invloed.
+
+51
+00:02:56.341 --> 00:02:59.649
+Deze module heeft vier onderwerpen, elk met vier niveaus.
+
+52
+00:03:00.711 --> 00:03:03.335
+Begin bij de instelling, op niveau Basis.
+
+53
+00:03:04.340 --> 00:03:07.776
+Op Werkkennis komen nieuwsgierigheid, single point of failure,
+
+54
+00:03:08.160 --> 00:03:10.854
+besliscriteria en eenrichtingsdeuren erbij.
+
+55
+00:03:11.800 --> 00:03:14.006
+Op Gevorderd komen de vertrouwensformule,
+
+56
+00:03:14.389 --> 00:03:18.580
+referentieklassen, contextwisseling en het piramideprincipe erbij.
+
+57
+00:03:19.578 --> 00:03:21.970
+Op Expert komen wat je nooit uit handen geeft,
+
+58
+00:03:22.156 --> 00:03:25.616
+terugvertellen, de watermeloenstatus en meelopen erbij.
+
+59
+00:03:26.607 --> 00:03:30.032
+Elke les en elke film van deze module heeft een plek op deze kaart.
