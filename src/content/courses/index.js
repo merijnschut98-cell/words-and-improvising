@@ -7,7 +7,7 @@ export const SUBJECTS = ['eng', 'pm'];
 export const TRACKS = { eng: ['basics', 'discrete', 'grid', 'it'], pm: ['project', 'agile'] };
 
 export const MODULES = [
-  { id: 'eng.flow', subject: 'eng', track: 'basics', level: 1, title: { en: 'Capacity and flow', nl: 'Capaciteit en flow' }, blurb: { en: 'Takt, bottlenecks, OEE: how much a line can make and why it doesn’t.', nl: 'Takt, bottlenecks, OEE: hoeveel een lijn kan maken en waarom dat niet lukt.' },
+  { id: 'eng.flow', subject: 'eng', track: 'basics', level: 1, intro: 'eng.flow.intro', title: { en: 'Capacity and flow', nl: 'Capaciteit en flow' }, blurb: { en: 'Takt, bottlenecks, OEE: how much a line can make and why it doesn’t.', nl: 'Takt, bottlenecks, OEE: hoeveel een lijn kan maken en waarom dat niet lukt.' },
     topics: [
       { id: 'takt', title: { en: 'Takt and line balance', nl: 'Takt en lijnbalans' }, levels: ['eng.flow.takt', 'eng.flow.balance', 'eng.flow.precedence', 'eng.flow.staffing'] },
       { id: 'bottleneck', title: { en: 'Bottleneck and capacity', nl: 'Bottleneck en capaciteit' }, levels: ['eng.flow.bottleneck', 'eng.flow.capacity', 'eng.flow.toc', 'eng.flow.throughput'] },

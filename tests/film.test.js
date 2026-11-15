@@ -1679,3 +1679,19 @@ test('speak variant: the plant-running field film words in Dutch', () => {
   const en = 'The first station is Capacity and flow. First Capacity and flow.';
   assert.equal(speakOf([en], 'en'), en);
 });
+
+// The module intro film "Capacity and flow" (eng.flow.intro), checked with espeak-ng phonemes through Piper's nl bridge: it reads
+// flow as "flaw" (flɔw; said flouw, as the field film's rule above) and yamazumi with the Dutch u ("jamazuumi", jˈaːmaːzˌymi; said
+// jamazoemi). Each rule keeps to the intro's own sentence ("De module Capaciteit en flow", "in een yamazumi"), so the lessons, the
+// field film and the other films keep their voice. Takt, bottleneck, OEE (letters, the rule above), ploegenrooster, stilstandregistratie,
+// omstelkar, seriegrootte, bezettingsgraad, pareto, SMED-workshop, teamleider and the level words are read right or have rules above;
+// English needs nothing; no other film's spoken text changes
+test('speak variant: the capacity and flow intro film words in Dutch', () => {
+  const nl = (s) => speakOf([s], 'nl');
+  assert.equal(nl('De module Capaciteit en flow gaat over hoeveel een lijn kan maken.'), 'De module Capaciteit en flouw gaat over hoeveel een lijn kan maken.');
+  assert.equal(nl('Je tekent het werk per station in een yamazumi.'), 'Je tekent het werk per station in een jamazoemi.');
+  // elsewhere the words keep their voice
+  assert.equal(nl('Capaciteit en flow is een module. Het standaardplaatje is een Yamazumi. Een Yamazumi laat zien welke balk uitsteekt.'), 'Capaciteit en flow is een module. Het standaardplaatje is een Yamazumi. Een Yamazumi laat zien welke balk uitsteekt.');
+  const en = 'The module Capacity and flow. You draw the work per station in a yamazumi.';
+  assert.equal(speakOf([en], 'en'), en);
+});
