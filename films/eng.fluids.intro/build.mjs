@@ -162,8 +162,10 @@ const PLATE = { z0: 100, z1: 146 };
 const TANK = { x: 142, y: 34, r: 17, h: 112 };
 const PIPE = { y: 29, z: 118, rise: 180 };
 const PUMP = { x: 162, y: 32 };
-const XC = { x0: 224, x1: 244, y0: 58, y1: 74, z0: 22, z1: 64 };
-const PX = 231; // the product pipe up through the exchanger and back over to the run to the unit: x 231 to 237, y 62 to 68
+// the exchanger stands in front of the rise of the pipe, left of the unit's front leg (x 196) and well away from where the energy
+// films put the motor (x 238 to 264) and the compressor's hose (x 228), so hall B stays the same hall in every intro
+const XC = { x0: 174, x1: 194, y0: 58, y1: 74, z0: 22, z1: 64 };
+const PX = PIPE.rise; // the product pipe up through the exchanger and back along the line to the plate: x 180 to 186, y 62 to 68
 const frame = [
   w.box({ x: UX, y: 5, w: 9, d: 9, r: 1 }, 0, FRAME.top, { tone: 'mid' }, { steps: 2 }),
   w.box({ x: UX, y: 52, w: 9, d: 9, r: 1 }, 0, FRAME.top, { tone: 'mid' }, { steps: 2 }),
@@ -179,19 +181,19 @@ const tank = w.post(TANK.x, TANK.y, TANK.r, 0, TANK.h, { tone: 'mid' }, 22)
 const pipeA = w.box({ x: TANK.x + TANK.r - 2, y: PIPE.y, w: PIPE.rise + 6 - (TANK.x + TANK.r - 2), d: 6, r: 2 }, 10, 20, { tone: 'lo' }, { steps: 1 })
   + w.box({ x: PIPE.rise, y: PIPE.y, w: 6, d: 69 - PIPE.y, r: 2 }, 10, 20, { tone: 'lo' }, { steps: 1 });
 // (the rest of the pipe is in front of the line and over it, so it is painted after the line)
-const pipeB = w.box({ x: PIPE.rise, y: 63, w: PX + 6 - PIPE.rise, d: 6, r: 2 }, 10, 20, { tone: 'lo' }, { steps: 1 })
-  + w.box({ x: PX, y: 62, w: 6, d: 6, r: 2 }, 10, XC.z0, { tone: 'lo' }, { steps: 1 })
+const pipeB = w.box({ x: PX, y: 62, w: 6, d: 6, r: 2 }, 10, XC.z0, { tone: 'lo' }, { steps: 1 })
   + w.box({ x: PX, y: 62, w: 6, d: 6, r: 2 }, XC.z1, PIPE.z + 8, { tone: 'lo' }, { steps: 1 })
   + w.box({ x: PX, y: PIPE.y, w: 6, d: 69 - PIPE.y, r: 2 }, PIPE.z, PIPE.z + 8, { tone: 'lo' }, { steps: 1 })
-  + w.box({ x: UX + 9, y: PIPE.y, w: PX + 6 - (UX + 9), d: 6, r: 2 }, PIPE.z, PIPE.z + 8, { tone: 'lo' }, { steps: 1 });
+  + w.box({ x: PX, y: PIPE.y, w: UX + 9 - PX, d: 6, r: 2 }, PIPE.z, PIPE.z + 8, { tone: 'lo' }, { steps: 1 });
 // the pump on the floor pipe: a volute (a horizontal drum) with its terminal box
 const pump = k.solidSvg(G.disc(0, 16, 12, G.frameOf([PUMP.x, PUMP.y, 18], [1, 0, 0], [0, 1, 0], [0, 0, 1]), P, { steps: 18 }), { tone: 'hi', crease: 'none' })
   + w.post(PUMP.x + 8, PUMP.y, 8, 28, 62, { tone: 'mid' }, 14)
   + w.post(PUMP.x + 8, PUMP.y, 5, 62, 68, { tone: 'lo' }, 10);
 // the valve in the pipe over to the unit: a body with a hand wheel on a stem
-const valve = w.box({ x: 214, y: PIPE.y - 2, w: 10, d: 10, r: 2 }, PIPE.z - 2, PIPE.z + 10, { tone: 'mid' }, { steps: 2 })
-  + w.box({ x: 218, y: PIPE.y + 1, w: 2, d: 2, r: 0.4 }, PIPE.z + 10, PIPE.z + 17, { tone: 'lo' }, { steps: 1 })
-  + w.box({ x: 213, y: PIPE.y - 2, w: 12, d: 10, r: 4 }, PIPE.z + 17, PIPE.z + 20, { tone: 'hi' }, { steps: 1 });
+const VX = 189;
+const valve = w.box({ x: VX, y: PIPE.y - 2, w: 10, d: 10, r: 2 }, PIPE.z - 2, PIPE.z + 10, { tone: 'mid' }, { steps: 2 })
+  + w.box({ x: VX + 4, y: PIPE.y + 1, w: 2, d: 2, r: 0.4 }, PIPE.z + 10, PIPE.z + 17, { tone: 'lo' }, { steps: 1 })
+  + w.box({ x: VX - 1, y: PIPE.y - 2, w: 12, d: 10, r: 4 }, PIPE.z + 17, PIPE.z + 20, { tone: 'hi' }, { steps: 1 });
 // the plate heat exchanger standing in front of the line: two thick end plates with a pack of thin plates between them, a carrying bar on top
 const packY = [XC.y0 + 3.6, XC.y0 + 5.6, XC.y0 + 7.6, XC.y0 + 9.6, XC.y0 + 11.6];
 const xchg = w.box({ x: XC.x0, y: XC.y0, w: XC.x1 - XC.x0, d: 2.6, r: 0.8 }, XC.z0 - 4, XC.z1 + 3, { tone: 'mid' }, { steps: 1 })
@@ -200,11 +202,12 @@ const xchg = w.box({ x: XC.x0, y: XC.y0, w: XC.x1 - XC.x0, d: 2.6, r: 0.8 }, XC.
   + w.box({ x: XC.x0 - 2, y: XC.y0 + 5, w: XC.x1 - XC.x0 + 4, d: 6, r: 1 }, XC.z1 + 3, XC.z1 + 6, { tone: 'lo' }, { steps: 1 });
 // the steam: a pipe from the back wall (y 0) over the pump to the exchanger at its top; the condensate leaves at the front of the
 // exchanger through the steam trap (a small drum with a cap) into a drain pipe down into the floor
-const steam = w.box({ x: 226, y: 0, w: 5, d: XC.y0 + 6, r: 1.2 }, 90, 96, { tone: 'hi' }, { steps: 1 })
-  + w.box({ x: 226, y: XC.y0 + 1, w: 5, d: 5, r: 1.2 }, XC.z1 + 3, 96, { tone: 'hi' }, { steps: 1 });
-const cond = w.box({ x: 226, y: XC.y1 - 2, w: 5, d: 12, r: 1.2 }, XC.z0 + 4, XC.z0 + 9, { tone: 'lo' }, { steps: 1 });
-const trap = w.post(228.5, XC.y1 + 12, 5.5, XC.z0 - 4, XC.z0 + 14, { tone: 'mid' }, 14) + w.post(228.5, XC.y1 + 12, 3, XC.z0 + 14, XC.z0 + 19, { tone: 'lo' }, 10)
-  + w.box({ x: 227, y: XC.y1 + 10.5, w: 3, d: 3, r: 0.6 }, 0, XC.z0 - 4, { tone: 'lo' }, { steps: 0 });
+const SX = 187;
+const steam = w.box({ x: SX, y: 0, w: 5, d: XC.y0 + 6, r: 1.2 }, 78, 84, { tone: 'hi' }, { steps: 1 })
+  + w.box({ x: SX, y: XC.y0 + 1, w: 5, d: 5, r: 1.2 }, XC.z1 + 3, 84, { tone: 'hi' }, { steps: 1 });
+const cond = w.box({ x: SX, y: XC.y1 - 2, w: 5, d: 12, r: 1.2 }, XC.z0 + 4, XC.z0 + 9, { tone: 'lo' }, { steps: 1 });
+const trap = w.post(SX + 2.5, XC.y1 + 12, 5.5, XC.z0 - 4, XC.z0 + 14, { tone: 'mid' }, 14) + w.post(SX + 2.5, XC.y1 + 12, 3, XC.z0 + 14, XC.z0 + 19, { tone: 'lo' }, 10)
+  + w.box({ x: SX + 1, y: XC.y1 + 10.5, w: 3, d: 3, r: 0.6 }, 0, XC.z0 - 4, { tone: 'lo' }, { steps: 0 });
 const JIJ = { x: 126, y: 104 };
 
 // painted back to front (large x and small y are far): the tank, the steam, the pipe and the pump, the exchanger, the unit, the line,
@@ -297,15 +300,15 @@ const svg = compact(`<svg class="iso-svg fp-svg" viewBox="0 0 ${W} ${H}" role="i
 const cam = (x, y, z, s) => [...w.at([x, y, z]).map((v) => Math.round(v * 10) / 10), s];
 const CAM = [
   { from: cam(190, 45, 55, 1.3), to: cam(195, 45, 55, 1.4) }, // s1 the tank, the pump, the line and the exchanger
-  { from: cam(215, 40, 105, 1.7), to: cam(222, 40, 105, 1.8) }, // s2 the pipe over to the unit with its valve
+  { from: cam(188, 40, 105, 1.7), to: cam(194, 40, 105, 1.8) }, // s2 the pipe over to the unit with its valve
   { from: cam(155, 35, 40, 1.9), to: cam(160, 35, 42, 2.0) }, // s3 the tank and the pump
-  { from: cam(234, 66, 48, 1.75), to: cam(234, 67, 48, 1.85) }, // s4 the exchanger
-  { from: cam(230, 66, 45, 1.65), to: cam(230, 70, 42, 1.75) }, // s5 the steam pipe and the trap
+  { from: cam(184, 66, 48, 1.75), to: cam(184, 67, 48, 1.85) }, // s4 the exchanger
+  { from: cam(184, 66, 45, 1.65), to: cam(184, 70, 42, 1.75) }, // s5 the steam pipe and the trap
   { from: cam(170, 45, 70, 1), to: cam(170, 45, 70, 1) }, // s6 (the map)
 ];
 // You are moved, in stage units, to where each scene needs you; the base place is JIJ above.
 const shiftOf = (from, to) => w.at([...to, 0]).map((v, i) => Math.round((v - w.at([...from, 0])[i]) * 10) / 10);
-const JIJSHIFT = { 1: shiftOf([JIJ.x, JIJ.y], [191, 100]), 3: shiftOf([JIJ.x, JIJ.y], [191, 100]), 4: shiftOf([JIJ.x, JIJ.y], [191, 100]) };
+const JIJSHIFT = { 1: shiftOf([JIJ.x, JIJ.y], [140, 102]), 3: shiftOf([JIJ.x, JIJ.y], [246, 66]), 4: shiftOf([JIJ.x, JIJ.y], [262, 72]) };
 
 // ---------------------------------------------------------------- the film
 const TOOL = (a) => ({ cue: { [a]: 'tool1' } });
@@ -339,14 +342,14 @@ const spec = {
       beats: [
         { nl: 'Eerste onderwerp: Stroming en druk in leidingen. Bochten, afsluiters en filters kosten druk.', en: 'First topic: Flow and pressure in pipes. Bends, valves and filters cost pressure.', focus: ['tPip', 'dropS', 'pipe', 'valve'] },
         { nl: 'Dat is de drukval. De pomp moet hem steeds weer leveren, dus elke extra bocht kost pompenergie.', en: 'That is the pressure drop. The pump has to deliver it again and again, so every extra bend costs pump energy.', focus: ['whyS', 'pump', 'pipe'] },
-        { nl: 'Je leest de wrijving van een leiding af in het {t:Moody-diagram|Moody-diagram}.', en: 'You read the friction of a pipe from the {t:Moody chart|Moody chart}.', ...TOOL('Moody-diagram'), focus: ['tool1', 'pipe', 'jij'] },
+        { nl: 'Bij turbulente stroming lees je de wrijvingsfactor af in het {t:Moody-diagram|Moody-diagram}.', en: 'For turbulent flow you read the friction factor from the {t:Moody chart|Moody chart}.', ...TOOL('Moody-diagram'), focus: ['tool1', 'pipe', 'jij'] },
       ],
     },
     {
       id: 's3', level: 1, dur: DURS[2], still: 0.9, title: { nl: 'Pompen', en: 'Pumps' },
       beats: [
         { nl: 'Tweede onderwerp: Pompen. Hoe meer tegendruk de leiding geeft, hoe minder debiet de pomp levert.', en: 'Second topic: Pumps. The more pressure the pipe pushes back, the less flow the pump delivers.', focus: ['tPum', 'curveS', 'pump', 'pipe'] },
-        { nl: 'Waar pomp en leiding elkaar snijden ligt het werkpunt. Ver van het zuinigste punt gaat energie verloren.', en: 'Where pump and pipe cross lies the duty point. Far from the best point, energy is lost.', focus: ['dutyS', 'pump', 'pipe'] },
+        { nl: 'De lijnen van pomp en leiding snijden in het werkpunt. Ver van het zuinigste punt gaat energie verloren.', en: 'The curves of pump and pipe cross at the duty point. Far from the best point, energy is lost.', focus: ['dutyS', 'pump', 'pipe'] },
         { nl: 'Je leest de {t:Pompkarakteristiek|pompkarakteristiek} van de fabrikant.', en: 'You read the maker’s {t:Pump curve|pump curve}.', ...TOOL('Pompkarakteristiek'), focus: ['tool1', 'pump', 'jij'] },
       ],
     },
@@ -355,7 +358,7 @@ const spec = {
       beats: [
         { nl: 'Derde onderwerp: Warmteoverdracht en warmtewisselaars. Warmte gaat door een wand, zonder te mengen.', en: 'Third topic: Heat transfer and heat exchangers. Heat goes through a wall, without mixing.', focus: ['tHea', 'passS', 'xchg'] },
         { nl: 'Stel dat het product warm moet zijn voor de vuleenheid. Dan neemt het in de wisselaar warmte op.', en: 'Suppose the product has to be warm before the filling unit. Then it takes up heat in the exchanger.', focus: ['giveS', 'xchg', 'pipe'] },
-        { nl: 'Je kiest een {t:Platenwarmtewisselaar|platenwarmtewisselaar}.', en: 'You pick a {t:Plate heat exchanger|plate heat exchanger}.', ...TOOL('Platenwarmtewisselaar'), focus: ['tool1', 'xchg', 'jij'] },
+        { nl: 'Je kiest vaak een {t:Platenwarmtewisselaar|platenwarmtewisselaar}.', en: 'You often pick a {t:Plate heat exchanger|plate heat exchanger}.', ...TOOL('Platenwarmtewisselaar'), focus: ['tool1', 'xchg', 'jij'] },
       ],
     },
     {
@@ -373,7 +376,7 @@ const spec = {
         { nl: 'De hele kaart. Pompen, stroming en warmte is het vijfde station van Energie en het net.', en: 'The whole map. Pumps, flow and heat is the fifth station of Energy and the grid.', focus: 'map-fluids' },
         { nl: 'Elk onderwerp heeft vier niveaus.', en: 'Every topic has four levels.', focus: 'route' },
         { nl: 'Begin bij de les over druk, debiet en drukval op niveau Basis. Die laat zien waar de druk blijft.', en: 'Start with the lesson on pressure, flow and pressure drop at Basics level. It shows where pressure goes.', focus: ['tPip', 'start'] },
-        { nl: 'Op niveau Werkkennis komen leidingwrijving, toerenregeling van de pomp, wisselaars kiezen en koelwater.', en: 'At Working knowledge level come pipe friction, pump speed control, choosing exchangers and cooling water.', focus: 'lv2' },
+        { nl: 'Op niveau Werkkennis komen leidingwrijving, toerenregeling van de pomp, warmtewisselaars en koelwater.', en: 'At Working knowledge level come pipe friction, pump speed control, heat exchangers and cooling water.', focus: 'lv2' },
         { nl: 'Op niveau Gevorderd komen regelkleppen, cavitatie, tekortschietende wisselaars en stoomverliezen.', en: 'At Advanced level come control valves, cavitation, exchangers that fall short and steam losses.', focus: 'lv3' },
         { nl: 'Op niveau Expert komen leidingmaat en levensduurkosten, pompsystemen, warmteterugwinning en de energiecase.', en: 'At Expert level come pipe size and life-cycle cost, pump systems, heat recovery and the energy case.', focus: 'lv4' },
         { nl: 'Elke les en elke film van deze module heeft een plek op deze kaart.', en: 'Every lesson and every film in this module has a place on this map.', focus: null },
@@ -411,14 +414,14 @@ const SAY = [
       en: 'The first topic is Flow and pressure in pipes. Every bend, valve and filter on the way to line 3 costs pressure.' },
     { nl: 'Dat verlies heet de drukval. De pomp moet die druk steeds opnieuw leveren, dus elke extra bocht kost pompenergie.',
       en: 'That loss is called the pressure drop. The pump has to deliver that pressure again and again, so every extra bend costs pump energy.' },
-    { nl: 'Je leest de wrijving van een leiding af in het {t:Moody-diagram|Moody-diagram}.',
-      en: 'You read the friction of a pipe from the {t:Moody chart|Moody chart}.' },
+    { nl: 'Bij turbulente stroming lees je de wrijvingsfactor af in het {t:Moody-diagram|Moody-diagram}.',
+      en: 'For turbulent flow you read the friction factor from the {t:Moody chart|Moody chart}.' },
   ],
   [ // s3 pumps: less flow against more pressure; the duty point; the pump curve
     { nl: 'Het tweede onderwerp is Pompen. Hoe meer tegendruk de leiding geeft, hoe minder debiet de pomp levert.',
       en: 'The second topic is Pumps. The more pressure the pipe pushes back, the less flow the pump delivers.' },
-    { nl: 'Waar pomp en leiding elkaar snijden ligt het werkpunt. Draait de pomp daar ver van zijn zuinigste punt, dan gaat energie verloren.',
-      en: 'Where pump and pipe cross lies the duty point. If the pump runs far from its best point there, energy is lost.' },
+    { nl: 'De lijnen van pomp en leiding snijden in het werkpunt. Draait de pomp daar ver van zijn zuinigste punt, dan gaat energie verloren.',
+      en: 'The curves of pump and pipe cross at the duty point. If the pump runs far from its best point there, energy is lost.' },
     { nl: 'Je leest de {t:Pompkarakteristiek|pompkarakteristiek} van de fabrikant.',
       en: 'You read the maker’s {t:Pump curve|pump curve}.' },
   ],
@@ -427,8 +430,8 @@ const SAY = [
       en: 'The third topic is Heat transfer and heat exchangers. An exchanger moves heat through a wall, without mixing.' },
     { nl: 'Stel dat het product warm moet zijn voor de vuleenheid. Dan neemt het in de wisselaar warmte op.',
       en: 'Suppose the product has to be warm before the filling unit. Then it takes up heat in the exchanger.' },
-    { nl: 'Je kiest een {t:Platenwarmtewisselaar|platenwarmtewisselaar}.',
-      en: 'You pick a {t:Plate heat exchanger|plate heat exchanger}.' },
+    { nl: 'Je kiest vaak een {t:Platenwarmtewisselaar|platenwarmtewisselaar}.',
+      en: 'You often pick a {t:Plate heat exchanger|plate heat exchanger}.' },
   ],
   [ // s5 steam and utilities: steam brings the heat and is water again; the condensate has to leave; the steam trap; a loss
     { nl: 'Het vierde onderwerp is Stoom en utilities. Stoom brengt de warmte naar de wisselaar en wordt daar weer water.',
@@ -447,8 +450,8 @@ const SAY = [
       en: 'Every topic has four levels.' },
     { nl: 'Begin bij de les over druk, debiet en drukval op niveau Basis. Die laat zien waar de druk blijft.',
       en: 'Start with the lesson on pressure, flow and pressure drop at Basics level. It shows where pressure goes.' },
-    { nl: 'Op niveau Werkkennis komen leidingwrijving, toerenregeling van de pomp, wisselaars kiezen en koelwater.',
-      en: 'At Working knowledge level come pipe friction, pump speed control, choosing exchangers and cooling water.' },
+    { nl: 'Op niveau Werkkennis komen leidingwrijving, toerenregeling van de pomp, warmtewisselaars en koelwater.',
+      en: 'At Working knowledge level come pipe friction, pump speed control, heat exchangers and cooling water.' },
     { nl: 'Op niveau Gevorderd komen regelkleppen, cavitatie, tekortschietende wisselaars en stoomverliezen.',
       en: 'At Advanced level come control valves, cavitation, exchangers that fall short and steam losses.' },
     { nl: 'Op niveau Expert komen leidingmaat en levensduurkosten, pompsystemen, warmteterugwinning en de energiecase.',

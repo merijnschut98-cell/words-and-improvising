@@ -1474,12 +1474,12 @@ test('speak variant: the gridbasics intro film says hoofd-zekering in its tool s
 // spoken text changes
 test('speak variant: the fluids intro film words in Dutch', () => {
   const nl = (s) => speakOf([s], 'nl');
-  assert.equal(nl('Je leest de wrijving van een leiding af in het Moody-diagram.'), 'Je leest de wrijving van een leiding af in het Moedi-diagram.');
+  assert.equal(nl('Bij turbulente stroming lees je de wrijvingsfactor af in het Moody-diagram.'), 'Bij turbulente stroming lees je de wrijvingsfactor af in het Moedi-diagram.');
   assert.equal(nl('Stoom en koelwater zijn utilities. Het proces heeft ze nodig.'), 'Stoom en koelwater zijn joetilletiez. Het proces heeft ze nodig.');
   assert.equal(nl('Het vierde onderwerp is Stoom en utilities. Stoom brengt de warmte.'), 'Het vierde onderwerp is Stoom en joetilletiez. Stoom brengt de warmte.');
   // elsewhere the words keep their voice
   assert.equal(nl('Het Moody-diagram staat in de les.'), 'Het Moody-diagram staat in de les.');
   assert.equal(nl('De utilities van de fabriek zijn stoom en koelwater.'), 'De utilities van de fabriek zijn stoom en koelwater.');
-  const en = 'You read the friction of a pipe from the Moody chart. Steam and cooling water are utilities.';
+  const en = 'For turbulent flow you read the friction factor from the Moody chart. Steam and cooling water are utilities.';
   assert.equal(speakOf([en], 'en'), en);
 });
