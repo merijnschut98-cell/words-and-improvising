@@ -33,8 +33,7 @@
 //      go on a task board on the whiteboard; tool: takenbord → pm.approach.toolfamilies (Basis), .board (Werkkennis)
 //   s5 Gereedschap bij grote organisaties: a large client has many systems with one task each, a system of
 //      record, the planner gives you the project code; tool: ERP → pm.approach.systems (Basis), .guest (Werkkennis)
-//   s6 together: route, approach, tools and systems are your start; then the intake
-//   s7 the shared Projects map with Aanpak en gereedschap lit, then the module's four topics with their
+//   s6 the shared Projects map with Aanpak en gereedschap lit, then the module's four topics with their
 //      levels as columns, where to start, and what each later level adds
 // Definitions as the Basis lessons word them (pm.approach.route, .families, .toolfamilies, .systems). The tools
 // are terms of those lessons (checked below, nl and en). A Werkkennis tool a scene names does not come back in
@@ -70,7 +69,7 @@ const HERE = dirname(fileURLToPath(import.meta.url));
 
 // ---------------------------------------------------------------- the module
 // The map this film draws, asserted against the index (the build fails if the
-// module's topics or levels move): s7 names what each later level adds.
+// module's topics or levels move): s6 names what each later level adds.
 const assert = (ok, what) => { if (!ok) throw new Error(`model: ${what}`); };
 const MOD = MODULES.find((m) => m.id === 'pm.approach');
 const LEVELS = {
@@ -102,7 +101,7 @@ has('pm.approach.systems', ['Een grote klant heeft veel systemen, en elk heeft �
 has('pm.approach.systems', ['A large client has many systems, and each has one job', 'ERP (enterprise resource planning): money, hours and materials, per project number', 'PPM', 'PLM', 'A system of record is the system in which an official fact sits', 'The project code or WBS code'], 'en');
 has('pm.approach.guest', ['Geboekte uren', 'Wijzigingskalender']);
 has('pm.approach.guest', ['Booked hours', 'Change calendar'], 'en');
-// s7: what each later level adds is the title of its lessons, in the app's words
+// s6: what each later level adds is the title of its lessons, in the app's words
 const TITLES = { 'pm.approach.takeover': 'Een lopend project overnemen', 'pm.approach.dmaic': 'DMAIC op een klein probleem', 'pm.approach.board': 'Een takenbord inrichten in het eerste uur', 'pm.approach.guest': 'Als gast in de systemen van de klant',
   'pm.approach.tailor': 'Hoeveel route: op maat maken', 'pm.approach.choose': 'De methode kiezen voor dit project', 'pm.approach.toolchoice': 'De tool kiezen voor dit project', 'pm.approach.recordof': 'Wat leeft waar: werktool en systeem van vastlegging',
   'pm.approach.clientroute': 'De route van de klant: gates, PMO en niet beginnen', 'pm.approach.translate': 'Werken in de methode van de klant', 'pm.approach.toolcost': 'Wat een tool echt kost', 'pm.approach.landscape': 'Het toollandschap als senior' };
@@ -113,7 +112,7 @@ for (const [id, nl, en] of TOOLS) {
   assert(lessons.nl.get(id).terms.some((t) => t.term === nl), `${id} has no term "${nl}"`);
   assert(lessons.en.get(id).terms.some((t) => t.term === en), `${id} has no term "${en}" (en)`);
 }
-// s7: the level words are the app's. The grid (stage.js, grid) has four level columns of GRID.col units from
+// s6: the level words are the app's. The grid (stage.js, grid) has four level columns of GRID.col units from
 // GRID.x; the words stand on one line each, staggered over two rows (columns 1 and 3 high, 2 and 4 low), so a
 // word may be wider than its column but not wider than the room to the next word on its row, nor run off the stage.
 const LV = { nl: levelWords('nl'), en: levelWords('en') };
@@ -159,11 +158,17 @@ const cablePath = (dashed) => CABLE.map((pts) => hall.cable(pts, { dashed })).jo
 // short, the last is tall), drawn in the face plane of the board (local u = x, v = -z); shown in s4 when the
 // narration puts the tasks on a task board
 const BOARD = w.board({ x0: 66, x1: 200, z0: 124, z1: 200 });
-const CARDS = [4, 3, 2].map((n, c) => Array.from({ length: n }, (_, i) => {
-  const x = 71.5 + c * 42.5;
-  const top = 194.5 - i * 13.4;
-  return `<path class="pm-note" d="${w.rectD(x, -top, x + 38, -(top - 11))}"/>`;
-}).join('')).join('');
+// sticky notes: near-square cards with a line of "writing" at the top, a thin header bar over each column
+const CARDS = [3, 3, 2].map((n, c) => {
+  const x = 71.5 + c * 43;
+  let out = `<path class="pm-ink" d="${w.rectD(x, -197.5, x + 36, -195.8)}"/>`;
+  for (let i = 0; i < n; i++) {
+    const top = 193 - i * 23;
+    out += `<path class="pm-note" d="${w.rectD(x, -top, x + 36, -(top - 20))}"/>`
+      + `<path class="pm-ink" d="${w.rectD(x + 4, -(top - 5), x + 26, -(top - 6.6))}"/><path class="pm-ink" d="${w.rectD(x + 4, -(top - 10), x + 18, -(top - 11.6))}"/>`;
+  }
+  return out;
+}).join('');
 const cardsOnBoard = `<g transform="${w.planeY(2.8)}">${CARDS}</g>`;
 // the desk of the client's planner: a table with a laptop on it
 const DESK = w.table({ x: 196, y: 98, w: 66, d: 32, h: 74 }) + w.laptop({ x: 229, y: 114, z: 74, toward: -1 });
@@ -202,8 +207,7 @@ const hud = g('hud', `<rect data-k="pbg" class="pm-panel" x="322" y="12" width="
   + cueG('ask', g('askB', '')) + cueG('fams', g('famsB', '')) + cueG('predict', g('predB', '')) + cueG('sigma', g('sigB', ''))
   + cueG('worth', g('worthB', '')) + cueG('tfams', g('tfamsB', ''))
   + cueG('sys', g('sysB', '')) + cueG('record', g('recordB', '')) + cueG('proj', g('projB', ''))
-  + cueG('tool1', g('tool1B', ''))
-  + cueG('flow', g('flowB', '')) + cueG('end', g('endB', '')));
+  + cueG('tool1', g('tool1B', '')));
 // the shared map, Aanpak en gereedschap lit, in the stage (the film's closing scene; the stage script moves and fades it)
 const MAP = (await mapScene({ subject: 'pm', highlight: ['pm.approach'] })).replace('<svg class="subject-map"', '<svg class="subject-map" width="640" height="520"');
 const APPROACH_PLACE = pmMap.places.find((p) => p.module === 'pm.approach');
@@ -269,13 +273,12 @@ const CAM = [
   { from: cam(115, 95, 70, 1.1), to: cam(130, 95, 70, 1.05) }, // s3 the sponsor and you, line 3's floor behind
   { from: cam(130, 30, 120, 1.2), to: cam(135, 35, 120, 1.25) }, // s4 the whiteboard and the team lead
   { from: cam(185, 100, 60, 1.12), to: cam(195, 98, 62, 1.2) }, // s5 the desk with the laptop and the planner
-  { from: cam(150, 90, 60, 1.1), to: cam(145, 85, 70, 1) }, // s6 the whole hall
-  { from: cam(145, 85, 70, 1), to: cam(145, 85, 70, 1) }, // s7 (the map)
+  { from: cam(145, 85, 70, 1), to: cam(145, 85, 70, 1) }, // s6 (the map)
 ];
 
 // ---------------------------------------------------------------- the film
 // placeholders: each scene's length is set from the narration below
-const DURS = Array(7).fill(30);
+const DURS = Array(6).fill(30);
 const spec = {
   id: 'pm.approach.intro',
   title: { nl: 'Jij begint bij de klant: aanpak en gereedschap', en: 'You start at the client: approach and tools' },
@@ -303,7 +306,7 @@ const spec = {
       id: 's2', level: 1, dur: DURS[1], still: 0.9, title: { nl: 'De route', en: 'The route' },
       beats: [
         { nl: 'Eerste onderwerp: De route: wat eerst, wat daarna.', en: 'First topic: The route: what first, what next.', focus: ['tRoute', 'jij', 'sponsor'] },
-        { nl: 'Elk project heeft vijf {t:Fase|fasen}, van intake tot afsluiten.', en: 'Every project has five {t:Stage|stages}, from intake to close.', cue: { Fase: 'stages' }, focus: ['stages'] },
+        { nl: 'Een project loopt over vijf {t:Fase|fasen}, van intake tot afsluiten.', en: 'A project runs over five {t:Stage|stages}, from intake to close.', cue: { Fase: 'stages' }, focus: ['stages'] },
         { nl: 'Elke fase laat één {t:Faseproduct|faseproduct} achter dat de volgende nodig heeft.', en: 'Each stage leaves one {t:Stage product|stage product} that the next one needs.', cue: { Faseproduct: 'products' }, focus: ['products'] },
         { nl: 'Het begint met een {t:Mandaat|mandaat}: de bevoegdheid om te starten.', en: 'It starts with a {t:Mandate|mandate}: the authority to start.', cue: { Mandaat: 'mandate' }, focus: ['mandate', 'sponsor'] },
         { nl: 'Neem je een lopend project over, dan doe je eerst een {t:Statuscheck|statuscheck}.', en: 'If you take over a running project, you first do a {t:Status check|status check}.', cue: { Statuscheck: 'tool1' }, focus: ['tool1', 'jij'] },
@@ -337,14 +340,7 @@ const spec = {
       ],
     },
     {
-      id: 's6', level: 1, dur: DURS[5], still: 0.9, title: { nl: 'Samen', en: 'Together' },
-      beats: [
-        { nl: 'Samen geven ze je een vaste start: route, aanpak, gereedschap en systemen.', en: 'Together they give you a firm start: route, approach, tools and systems.', focus: ['flow', 'jij'] },
-        { nl: 'Dan begint de intake: de vraag achter de vraag.', en: 'Then the intake begins: the question behind the question.', focus: ['end', 'sponsor'] },
-      ],
-    },
-    {
-      id: 's7', level: 1, dur: DURS[6], still: 0.9, title: { nl: 'De kaart', en: 'The map' },
+      id: 's6', level: 1, dur: DURS[5], still: 0.9, title: { nl: 'De kaart', en: 'The map' },
       beats: [
         { nl: 'Dit is de kaart van Projecten. Aanpak en gereedschap is het eerste station op de weg van een project.', en: 'This is the map of Projects. Approach and tools is the first station on the road of a project.', focus: mapCue('pm.approach') },
         { nl: 'Aanpak en gereedschap heeft vier onderwerpen, elk met vier niveaus.', en: 'Approach and tools has four topics, each with four levels.', focus: 'route' },
@@ -352,7 +348,7 @@ const spec = {
         { nl: 'Op Werkkennis neem je een project over, pas je een methode toe, zet je gereedschap op en werk je als gast.', en: 'At Working knowledge you take over a project, apply a method, set up your tools and work as a guest.', focus: 'lv2' },
         { nl: 'Op Gevorderd maak je de route op maat, kies je methode en gereedschap en bepaal je wat waar leeft.', en: 'At Advanced you tailor the route, choose method and tools and decide what lives where.', focus: 'lv3' },
         { nl: 'Op Expert werk je in de route van de klant, weeg je wat gereedschap kost en overzie je het landschap.', en: 'At Expert you work in the client’s route, weigh what tools cost and oversee the landscape.', focus: 'lv4' },
-        { nl: 'Elke les en elke film van deze module heeft een plek op deze kaart.', en: 'Every lesson and film in this module has a place on this map.', focus: null },
+        { nl: 'Daarna volgt de intake, het tweede station.', en: 'After that comes the intake, the second station.', focus: null },
       ],
     },
   ],
@@ -369,10 +365,10 @@ const spec = {
 // espeak-ng phonemes through Piper's own bridge (nl_NL-alex): "de intake" goes
 // through the field film's rule in films/_kit/timeline.mjs (so it is always written
 // lowercase after "de", never as the first word of a sentence), agile through the
-// rule for the ways of working, sponsor, statuscheck, faseproduct, mandaat, takenbord, planningstool,
-// spreadsheet, systeem van vastlegging, projectnummer and ERP as they are. This film's own SAY group (the last of
+// rule for the ways of working, sponsor, statuscheck, faseproduct, mandaat, takenbord, 
+// systeem van vastlegging, projectnummer and ERP as they are. This film's own SAY group (the last of
 // the Dutch list) carries only DMAIC as letters and Lean and Six Sigma as a Dutch coach says them, in its own phrases.
-// The s7 narration says what its captions say, with the app's level words.
+// The s6 narration says what its captions say, with the app's level words.
 const SAY = [
   [ // s1 first day
     { nl: 'Een grote fabriek bouwt een nieuwe hal. Lijn 3 moet erheen, in de zomerstop. Jij begint als adviseur en de sponsor vraagt, verhuis lijn 3.',
@@ -385,8 +381,8 @@ const SAY = [
   [ // s2 the route
     { nl: 'Het eerste onderwerp is De route, wat eerst en wat daarna. Hoe loopt een project van begin tot eind?',
       en: 'The first topic is The route, what first and what next. How does a project run from start to finish?' },
-    { nl: 'Elk project loopt dezelfde vijf {t:Fase|fasen}, van intake tot afsluiten.',
-      en: 'Every project walks the same five {t:Stage|stages}, from intake to close.' },
+    { nl: 'Een project loopt over vijf {t:Fase|fasen}, van intake tot afsluiten.',
+      en: 'A project runs over five {t:Stage|stages}, from intake to close.' },
     { nl: 'Elke fase laat één {t:Faseproduct|faseproduct} achter, dat de volgende nodig heeft. Zoals een opdracht, een plan of een besluit.',
       en: 'Each stage leaves one {t:Stage product|stage product} that the next one needs. Like an assignment, a plan or a decision.' },
     { nl: 'Het begint met een {t:Mandaat|mandaat}. Dat is de bevoegdheid om te starten, van de sponsor.',
@@ -407,10 +403,10 @@ const SAY = [
   [ // s4 choosing tools
     { nl: 'Het derde onderwerp is Gereedschap kiezen. Welk gereedschap kies je, en wanneer loont dat?',
       en: 'The third topic is Choosing tools. Which tool do you pick, and when does it pay off?' },
-    { nl: 'Gereedschap loont als het meer oplevert dan het kost. Voor één lijstje is een spreadsheet genoeg.',
-      en: 'A tool pays off when it yields more than it costs. For one list a spreadsheet is enough.' },
-    { nl: 'Denk in {t:Toolfamilie|toolfamilies}, een soort gereedschap per soort werk. Bijvoorbeeld een planningstool voor taken met data.',
-      en: 'Think in {t:Tool family|tool families}, one kind of tool for each kind of work. For example a scheduling tool for tasks with dates.' },
+    { nl: 'Gereedschap loont als het meer oplevert dan het kost.',
+      en: 'A tool pays off when it yields more than it costs.' },
+    { nl: 'Denk in {t:Toolfamilie|toolfamilies}, een soort gereedschap per soort werk. Een voor lijsten, een voor planningen.',
+      en: 'Think in {t:Tool family|tool families}, one kind of tool for each kind of work. One for lists, one for schedules.' },
     { nl: 'De taken van de verhuizing zetten we op een {t:Takenbord|takenbord}.',
       en: 'We put the tasks of the move on a {t:Task board|task board}.' },
   ],
@@ -424,13 +420,7 @@ const SAY = [
     { nl: 'De planner geeft je het {t:Projectnummer|projectnummer}. Daaronder boek je uren in het {t:ERP|ERP}.',
       en: 'The planner gives you the {t:Project code|project code}. Under it you book hours in the {t:ERP|ERP}.' },
   ],
-  [ // s6 together
-    { nl: 'Samen geven ze je een vaste start. De route, de aanpak, het gereedschap en de systemen van de klant.',
-      en: 'Together they give you a firm start. The route, the approach, the tools and the client’s systems.' },
-    { nl: 'Dan begint de intake, met de vraag achter de vraag.',
-      en: 'Then the intake begins, with the question behind the question.' },
-  ],
-  [ // s7 the map
+  [ // s6 the map
     { nl: 'Dit is de kaart van Projecten. Aanpak en gereedschap is het eerste station op de weg van een project.',
       en: 'This is the map of Projects. Approach and tools is the first station on the road of a project.' },
     { nl: 'Aanpak en gereedschap heeft vier onderwerpen, elk met vier niveaus.',
@@ -443,8 +433,8 @@ const SAY = [
       en: 'At Advanced you tailor the route, choose method and tools and decide what lives where.' },
     { nl: 'Op Expert werk je in de route van de klant, weeg je wat gereedschap kost en overzie je het landschap.',
       en: 'At Expert you work in the client’s route, weigh what tools cost and oversee the landscape.' },
-    { nl: 'Elke les en elke film van deze module heeft een plek op deze kaart.',
-      en: 'Every lesson and film in this module has a place on this map.' },
+    { nl: 'Daarna volgt de intake, het tweede station.',
+      en: 'After that comes the intake, the second station.' },
   ],
 ];
 // Each scene's length from its share of the Dutch narration, never shorter than
@@ -507,6 +497,7 @@ const css = PM_CSS + HALL_CSS + `
 .pm-axis{fill:none;stroke:var(--anatomy-lo);stroke-width:1}
 .pm-dia{fill:var(--anatomy-hi);stroke:var(--anatomy-card);stroke-width:1.2}
 .pm-cal{fill:color-mix(in srgb,var(--fp-accent) 45%,var(--anatomy-face));stroke:var(--fp-accent);stroke-width:.6}
+.pm-ink{fill:var(--anatomy-mid);stroke:none}
 .pm-note{fill:color-mix(in srgb,var(--fp-accent) 38%,var(--anatomy-face));stroke:var(--anatomy-mid);stroke-width:.5}
 [data-cue][data-on] .pm-arrow,[data-cue][data-on] .pm-link{stroke:var(--fp-accent);stroke-width:2.2}
 [data-cue][data-on] :is(.pm-card,.pm-tile,.pm-badge,.pm-pkg,.pm-bar,.pm-range,.pm-buf,.pm-lvl,.pm-out){stroke:var(--fp-accent)}

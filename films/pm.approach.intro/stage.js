@@ -77,7 +77,7 @@ const STAGE = (() => {
 
   // ---- the cast of hall B: who stands there when. [scene, first beat]: present from that beat to the scene's end.
   // A person who stood there at the end of the scene before is there from the first frame (no blink at a cut).
-  const FROM = { jij: [[0, 0], [1, 0], [2, 0], [3, 0], [4, 0], [5, 0]], sponsor: [[0, 0], [1, 0], [2, 0], [5, 0]], lead: [[3, 0], [5, 0]], planner: [[4, 0], [5, 0]] };
+  const FROM = { jij: [[0, 0], [1, 0], [2, 0], [3, 0], [4, 0]], sponsor: [[0, 0], [1, 0], [2, 0]], lead: [[3, 0]], planner: [[4, 0]] };
   function cast(si, b, p) {
     for (const who of Object.keys(FROM)) {
       let a = 0;
@@ -214,20 +214,7 @@ const STAGE = (() => {
     };
   }
 
-  // ---- s6: how the four hang together, and what follows
-  function flowParts(b, p) {
-    const rows = [tr('Route', 'Route', 270), tr('Aanpak', 'Approach', 270), tr('Gereedschap', 'Tools', 270), tr('Systemen van de klant', 'The client’s systems', 270)];
-    let flow = '';
-    rows.forEach((n, i) => {
-      flow += rect(334, 58 + i * 52, 284, 38, 'pm-card', 6) + txt(346, 85 + i * 52, n, 22, 'start', 'pm-txt');
-      if (i) flow += arrow(476, 58 + i * 52 - 14, 476, 58 + i * 52);
-    });
-    const end = rect(334, 276, 284, 62, 'pm-crit', 8) + txt(346, 302, tr('Intake', 'Intake', 260), 22, 'start', 'pm-on')
-      + txt(346, 328, tr('de vraag erachter', 'the real question', 262), 22, 'start', 'pm-on');
-    return { flowB: op(b === 0 ? span(p, 0, 0.5) : 1, flow), endB: op(b >= 1 ? span(p, 0, 0.5) : 0, end) };
-  }
-
-  // ---- s7: the closing scene. ONE function. First the shared Projects map (the kit's mapScene, the very drawing
+  // ---- s6: the closing scene. ONE function. First the shared Projects map (the kit's mapScene, the very drawing
   // of the app) with Aanpak en gereedschap lit, then zoomed to it; then the module's four topics, each with its four
   // levels as columns (the words the app uses for the levels), the start marker on the first level of the first
   // topic. Aanpak en gereedschap lies at the left edge of the map: at 1.5 the view is clamped to the map's edge.
@@ -264,7 +251,7 @@ const STAGE = (() => {
     return out;
   }
 
-  const KEYS = ['reqB', 'pathB', 'stagesB', 'productsB', 'mandateB', 'askB', 'famsB', 'predB', 'sigB', 'worthB', 'tfamsB', 'sysB', 'recordB', 'projB', 'tool1B', 'flowB', 'endB', 'l1', 'l2', 'l3', 'l4', 'st'];
+  const KEYS = ['reqB', 'pathB', 'stagesB', 'productsB', 'mandateB', 'askB', 'famsB', 'predB', 'sigB', 'worthB', 'tfamsB', 'sysB', 'recordB', 'projB', 'tool1B', 'l1', 'l2', 'l3', 'l4', 'st'];
   function render(si, u) {
     camera(si, u);
     const { b, p } = beatOf(si, u);
@@ -273,7 +260,7 @@ const STAGE = (() => {
     for (const k2 of KEYS) o[k2] = '';
     let title = '';
     let lab = tr('voorbeeld', 'example');
-    const closing = si === 6;
+    const closing = si === 5;
     show(E.world, closing ? 0 : 1);
     let hudA = 1;
     let mapA = 0;
@@ -291,11 +278,6 @@ const STAGE = (() => {
     if (si === 2) Object.assign(o, methodParts(b, p));
     if (si === 3) Object.assign(o, toolParts(b, p));
     if (si === 4) Object.assign(o, sysParts(b, p));
-    if (si === 5) {
-      title = tr('Samen', 'Together');
-      lab = tr('schema', 'diagram');
-      Object.assign(o, flowParts(b, p));
-    }
     let pbg = 'x="322" y="12" width="308" height="376"';
     if (closing) {
       title = tr('De kaart', 'The map');
