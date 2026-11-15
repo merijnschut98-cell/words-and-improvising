@@ -120,3 +120,5 @@ Outcome: accepted (merged as delivered), sent back N times, redone.
 | 15 Nov | Build: Engineering field film eng.field.digital | sonnet | 180 | 28 min | 465,519 | accepted with fixes by its review |
 | 15 Nov | Review: eng.field.digital | sonnet | n/a | n/a | n/a | accepted with fixes (map scene trimmed, verbs that fit the tools, MES story aligned); merged v308 |
 | 15 Nov | Render PM-23: eng.field.digital | sonnet | n/a | n/a | n/a | accepted; every guard passed first time; tags and gateway heard poorly; merged v309 |
+| 15 Nov | Build: Engineering field film eng.field.energy (with kit station labels) | sonnet | 218 | 45 min | 529,863 | accepted with fixes by its review |
+| 15 Nov | Review: eng.field.energy | opus | 144 | 20 min | 311,286 | accepted with fixes (station label must shorten its own title, two non-tools replaced, trimmed to ~3:05); merged v310 |

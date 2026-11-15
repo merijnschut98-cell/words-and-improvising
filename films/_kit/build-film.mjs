@@ -169,7 +169,10 @@ function fieldStations(spec, field, mods) {
     const g = given[m.id];
     if (!g || !g.scene || !g.cue) throw new Error(`module ${m.id} of ${field.id} has no scene and cue in the film's stations`);
     if (!spec.scenes.some((s) => s.id === g.scene)) throw new Error(`station ${m.id}: no scene ${g.scene}`);
-    return { id: m.id, title: { nl: m.title.nl, en: m.title.en }, scene: g.scene, cue: g.cue };
+    // an optional label: a shorter name for the road when the index title does not fit a station (eng.power); the
+    // film names and draws the label, the index title stays
+    if (g.label !== undefined && !(g.label && typeof g.label.nl === 'string' && g.label.nl && typeof g.label.en === 'string' && g.label.en)) throw new Error(`station ${m.id}: a label needs a Dutch and an English text`);
+    return { id: m.id, title: { nl: m.title.nl, en: m.title.en }, ...(g.label ? { label: { nl: g.label.nl, en: g.label.en } } : {}), scene: g.scene, cue: g.cue };
   });
 }
 

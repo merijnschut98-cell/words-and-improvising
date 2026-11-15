@@ -861,7 +861,14 @@ const SAY = {
     // other films say switch and tag). PLC, SCADA, IT, OT, OPC-server, zones and conduits and the MES have rules above or are
     // read right. No other film's spoken text changes
     [/\bCybersecurity\b/g, 'Saibersikjoeriti'], [/\bgebruikt een switch en een VLAN\b/g, 'gebruikt een switsj en een vee-lan'],
-    [/\bOPC-server en tags\b/g, 'OPC-server en tèks'], [/\bgebruikt een edge gateway en een dashboard\b/g, 'gebruikt een etsj geitwee en een desjbord']],
+    [/\bOPC-server en tags\b/g, 'OPC-server en tèks'], [/\bgebruikt een edge gateway en een dashboard\b/g, 'gebruikt een etsj geitwee en een desjbord'],
+    // the field film "Energy and the grid" (eng.field.energy), a self-contained group at the end of the Dutch list, checked
+    // with phonemes through Piper's nl_NL-alex bridge: espeak-ng reads reflectiemeter as "reflek-tie-meter" (said
+    // reflexiemeter, only in "met een reflectiemeter"). Installateur, wachtrij, capaciteitskaart, gereedheidscheck,
+    // beveiligingsrelais, loadflow, congestiemanagement and "Jij bent de engineer" have rules above; aardgarnituur,
+    // stroomtang, lektest, scenario, pompkarakteristiek, platenwarmtewisselaar, schakelplan, netbedrijf and the rest
+    // are read right ("met een DGA" is said d-g-a); no other film's spoken text changes
+    [/\bmet een reflectiemeter\b/g, 'met een reflexiemeter']],
   en: [[/\brpm\b/g, 'revolutions per minute'], [/\bmm\/min\b/g, 'millimetres per minute'], [/\bm\/min\b/g, 'metres per minute'], [/µm\b/g, 'micrometres'],
     [/€\s?(\d[\d,]*(?:\.\d+)?)/g, '$1 euros'], [/(\d)\.0(?![\d])/g, '$1'], [/(\d)\s?mm\b/g, '$1 millimetres'], [/(\d)\s?min\b/g, '$1 minutes'], [/(\d)\s?%/g, '$1 percent'],
     [/Ø\s*/g, 'diameter '], [/(\d)\+(\d)/g, '$1 plus $2'], [/\s×\s/g, ' times '], [/\s\/\s/g, ' divided by '], [/\s=\s/g, ' is '], [/°/g, ' degrees'], [/\bRa\b/g, 'R a'], [/’/g, "'"],

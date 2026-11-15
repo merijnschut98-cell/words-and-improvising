@@ -259,6 +259,14 @@ export function checkIntro(data, mod) {
 // (stageText) lights exactly the field's places (mapScene's is-lit cue groups)
 // and the last scene's beats light every one of them.
 export const MIN_STATION_BEATS = 2;
+// a station label's words are words of the title, in their order (case and punctuation aside)
+const wordsIn = (t) => lc(String(t || '')).split(/[^\p{L}\d]+/u).filter(Boolean);
+function shortens(label, title) {
+  const want = wordsIn(label);
+  let i = 0;
+  for (const wd of wordsIn(title)) if (i < want.length && wd === want[i]) i++;
+  return want.length > 0 && i === want.length;
+}
 export function checkStations(data, field, modules = [], stageText = '') {
   const errs = [];
   const scenes = data.scenes || [];
@@ -272,7 +280,11 @@ export function checkStations(data, field, modules = [], stageText = '') {
     for (const lang of ['nl', 'en']) {
       const was = (st.title || {})[lang];
       if (m && was !== m.title[lang]) errs.push(`station ${id}: title "${was}" (${lang}) is now "${m.title[lang]}"`);
-      if (sc && was && !(sc.beats || []).some((b) => word(b.text[lang], was))) errs.push(`station ${id}: "${was}" (${lang}) is in no caption of its scene ${st.scene}`);
+      // a station with a label is named by the label (a shorter name for the road), else by its title
+      const named = (st.label && st.label[lang]) || was;
+      // a label only shortens the module's own title (its words, in their order), so it cannot name another module
+      if (st.label && m && !shortens(st.label[lang], m.title[lang])) errs.push(`station ${id}: the label "${st.label[lang]}" (${lang}) is no shortening of the title "${m.title[lang]}"; keep words of the title, in their order`);
+      if (sc && named && !(sc.beats || []).some((b) => word(b.text[lang], named))) errs.push(`station ${id}: "${named}" (${lang}) is in no caption of its scene ${st.scene}`);
     }
     if (!sc) { errs.push(`station ${id}: no scene ${st.scene}`); continue; }
     if (sc.beats.length < MIN_STATION_BEATS) errs.push(`station ${id}: scene ${st.scene} has ${sc.beats.length} beat${sc.beats.length === 1 ? '' : 's'}, needs at least ${MIN_STATION_BEATS}`);
@@ -381,7 +393,7 @@ export function checkLabels(data, stageText = '') {
   }
   for (const st of data.stations || []) {
     for (const lang of ['nl', 'en']) {
-      const title = (st.title || {})[lang] || '';
+      const title = ((st.label && st.label[lang]) || (st.title || {})[lang]) || '';
       for (const word of title.split(' ')) if (textUnits(word) > STATION_UNITS) errs.push(`station ${st.id}: the word "${word}" (${lang}) is ${Math.ceil(textUnits(word))} units wide, a station on the road holds ${STATION_UNITS}`);
       const lines = wrapUnits(title, STATION_UNITS, CHAR_W).length;
       if (lines > STATION_LINES) errs.push(`station ${st.id}: "${title}" (${lang}) wraps to ${lines} lines, a station on the road holds ${STATION_LINES} lines of ${STATION_UNITS} units`);

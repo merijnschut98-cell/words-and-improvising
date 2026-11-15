@@ -334,7 +334,8 @@ test('every shipped field film: each module of its field is still a station, nam
       for (const lang of ['nl', 'en']) {
         const mute = clone(data);
         const sc = mute.scenes.find((s) => s.id === st.scene);
-        for (const b of sc.beats) { b.text[lang] = b.text[lang].replace(word(st.title[lang]), '…'); b.seg[lang] = [b.text[lang]]; }
+        const named = (st.label && st.label[lang]) || st.title[lang]; // a labelled station is named by its label
+        for (const b of sc.beats) { b.text[lang] = b.text[lang].replace(word(named), '…'); b.seg[lang] = [b.text[lang]]; }
         assert.match(checkFilm(mute, ctx).join('\n'), new RegExp(`station ${esc(mid)}: ".*" \\(${lang}\\) is in no caption of its scene ${st.scene}`), `${at} (${lang})`);
       }
       // explained in one beat only; lit by no beat

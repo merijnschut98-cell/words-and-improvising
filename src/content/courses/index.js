@@ -448,7 +448,7 @@ export const FIELDS = [
   { id: 'eng.field.energy', subject: 'eng',
     title: { en: 'Energy and the grid', nl: 'Energie en het net' },
     blurb: { en: 'The grid and its transformers, switchgear and operations, up to planning the transition, with the pumps, heat and motors that use the energy in a plant.', nl: 'Het net met zijn transformatoren, schakelinstallaties en bedrijfsvoering, tot netplanning en energietransitie, met de pompen, warmte en motoren die de energie in een fabriek gebruiken.' },
-    modules: ['eng.gridbasics', 'eng.switchgear', 'eng.transformers', 'eng.power', 'eng.fluids', 'eng.gridops', 'eng.gridplanning'] },
+    modules: ['eng.gridbasics', 'eng.switchgear', 'eng.transformers', 'eng.power', 'eng.fluids', 'eng.gridops', 'eng.gridplanning'], film: 'eng.field.energy' },
   { id: 'eng.field.digital', subject: 'eng',
     title: { en: 'Automation and IT', nl: 'Automatisering en IT' },
     blurb: { en: 'IT fundamentals, IT and OT on the shop floor, cybersecurity, lines and automation, and data for digital manufacturing.', nl: 'IT-fundamenten, IT en OT op de fabrieksvloer, cybersecurity, lijnen en automatisering, en data voor digitale productie.' },
