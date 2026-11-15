@@ -141,3 +141,6 @@ Outcome: accepted (merged as delivered), sent back N times, redone.
 | 15 Nov | Review: eng.gridbasics.intro | sonnet | 75 | 9.6 min | 203,161 | accepted with fixes (inverter and panels dropped for kVA, one tool per topic 2 and 3, hedges, operator up to the meter); merged v321 |
 | 15 Nov | Build: Engineering intro eng.transformers.intro | sonnet | 98 | 14 min | 317,868 | accepted with fixes by its review |
 | 15 Nov | Review: eng.transformers.intro | sonnet | 73 | 8.8 min | 221,564 | accepted with fixes (scene 5 camera, opening group words, reason for cooling ribs, Expert line to lesson titles); merged v322 |
+| 15 Nov | Render PM-27: joining, moulding, mechanics, process intros | sonnet | 69 | 63 min | 150,374 | accepted; two Dutch comma pauses reworded; several words heard poorly (vuleenheid, MIG, spuitgieten, unit operations, hardheidsmeting, FEM-plot); merged v323 |
+| 15 Nov | Build: Engineering intro eng.switchgear.intro | sonnet | 91 | 17 min | 286,880 | accepted with fixes by its review |
+| 15 Nov | Review: eng.switchgear.intro | sonnet | 72 | 13 min | 221,025 | accepted with fixes (hall B agrees with field film and transformers intro, RMU said of a netstation, installer tests the relay, you touch nothing); merged v323 |
