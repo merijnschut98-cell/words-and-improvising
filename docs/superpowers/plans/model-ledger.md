@@ -197,3 +197,5 @@ Outcome: accepted (merged as delivered), sent back N times, redone.
 | 15 Nov | Review: eng.cost.intro | sonnet | ~40 | n/a | n/a | accepted with fixes (179 to 173 s, payback dropped as story word, unsupported claim replaced); merged v355 |
 | 15 Nov | Build: Engineering intro eng.spc.intro | sonnet | 114 | 17 min | 319,167 | accepted with fixes by its review |
 | 15 Nov | Review: eng.spc.intro | sonnet | ~95 | incl. limit pause | n/a | accepted with fixes (capability from weighed values, kepeibiliti rule, signal hedged, 177 to 172 s); merged v356 |
+| 15 Nov | Build: Engineering intro eng.reliability.intro | sonnet | 136 | 19 min | 343,541 | accepted with fixes by its review |
+| 15 Nov | Review: eng.reliability.intro | sonnet | ~33 | n/a | n/a | accepted with fixes (vormparameter replaces non-term Weibull-fit, failure-finding verb, hedge); merged v357 — last Engineering intro |
