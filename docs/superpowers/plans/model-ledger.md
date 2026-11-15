@@ -122,3 +122,5 @@ Outcome: accepted (merged as delivered), sent back N times, redone.
 | 15 Nov | Render PM-23: eng.field.digital | sonnet | n/a | n/a | n/a | accepted; every guard passed first time; tags and gateway heard poorly; merged v309 |
 | 15 Nov | Build: Engineering field film eng.field.energy (with kit station labels) | sonnet | 218 | 45 min | 529,863 | accepted with fixes by its review |
 | 15 Nov | Review: eng.field.energy | opus | 144 | 20 min | 311,286 | accepted with fixes (station label must shorten its own title, two non-tools replaced, trimmed to ~3:05); merged v310 |
+| 15 Nov | Build: first Engineering module intro eng.machining.intro | sonnet | 149 | 36 min | 446,105 | accepted with fixes by its review |
+| 15 Nov | Review: eng.machining.intro | opus | 89 | 15 min | 239,841 | accepted with fixes (the map first, a real tool instead of a material, machinists not office staff, trimmed to ~3:05); wrote the rules for the next 25 intros; merged v311 |
