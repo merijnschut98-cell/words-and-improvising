@@ -193,6 +193,51 @@ export function markIntroSeen(state, moduleId) {
   return withSubject(state, subjectOfModule(moduleId), (c) => ({ ...c, seenIntros: [...(c.seenIntros || []), moduleId].slice(-SEEN_INTROS_CAP) }));
 }
 
+// v17 Task 19: has he seen the level opener of this topic at this level (2 to
+// 4)? Stored per subject as strings '<moduleId>/<topicId>#<level>' (newest
+// last, capped), synced as a union: an opener seen on one device counts on all.
+// The cap must never bite on real ids (the sync union trims in sort order, not
+// by age): Engineering has 336 topic levels at 2 to 4, Projects 192, and a test
+// keeps the cap at least twice the biggest subject.
+export const SEEN_LEVELS_CAP = 1200;
+const levelId = (topicKey, level) => `${topicKey}#${level}`;
+const openerLevel = (level) => Number.isInteger(level) && level >= 2 && level <= 4;
+export const levelSeen = (state, subject, topicKey, level) => ((((state.courses || {})[subject]) || {}).seenLevels || []).includes(levelId(topicKey, level));
+export function markLevelSeen(state, subject, topicKey, level) {
+  if (!openerLevel(level) || levelSeen(state, subject, topicKey, level)) return state;
+  return withSubject(state, subject, (c) => ({ ...c, seenLevels: [...(c.seenLevels || []), levelId(topicKey, level)].slice(-SEEN_LEVELS_CAP) }));
+}
+// The text of an opener in the app language, or null (also for level 1 or a missing text).
+export function openerText(openers, topicKey, level, lang) {
+  const o = openerLevel(level) && openers && openers[topicKey] && openers[topicKey][level];
+  const text = o && (o[lang === 'en' ? 'en' : 'nl'] || o.en);
+  return typeof text === 'string' && text.trim() ? text : null;
+}
+// Is an opener due before this lesson? Levels 2 to 4, not seen yet, and not a
+// level he has been at already: a lesson he passed before the openers existed
+// counts as been there. Opening the lesson does not (it is marked opened
+// before the card shows, and leaving the card must keep it unseen).
+export function openerDue(state, subject, topicKey, level, lessonId = null) {
+  if (!openerLevel(level) || levelSeen(state, subject, topicKey, level)) return false;
+  const done = lessonId && ((((state.courses || {})[subject]) || {}).lessons || {})[lessonId];
+  return !(done && (done.passed || done.read));
+}
+// The opener to show before a lesson, or null: only when one is due and there
+// is a text. Pure.
+export function openerToShow(state, subject, topicKey, level, openers, lang, lessonId = null) {
+  if (!openerDue(state, subject, topicKey, level, lessonId)) return null;
+  return openerText(openers, topicKey, level, lang);
+}
+// Loads the openers but waits at most `ms`: a slow or failed load gives null,
+// so the lesson starts instead. Settles once; a late answer is ignored.
+export function openerWithin(loader, ms) {
+  return new Promise((resolve) => {
+    const timer = setTimeout(() => resolve(null), ms);
+    const done = (v) => { clearTimeout(timer); resolve(v); };
+    try { Promise.resolve(loader()).then(done, () => done(null)); } catch { done(null); }
+  });
+}
+
 export function markSayIt(state, subject, lessonId, now) {
   return withSubject(state, subject, (c) => {
     const before = c.lessons[lessonId] || {};

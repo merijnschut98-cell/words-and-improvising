@@ -106,3 +106,5 @@ Outcome: accepted (merged as delivered), sent back N times, redone.
 | 15 Nov | Render PM-19: Dutch re-render after the voice fix (13 films) and scaled and IT-project intros | sonnet | 110 | 3 h 18 min | 207,686 | accepted; three lines reworded to pass the guard; 'IT en agile' still heard as HL by Whisper; merged v299 |
 | 15 Nov | Kit: label fit for long map labels in mapScene | sonnet | 62 | 12 min | 185,448 | accepted with fixes by its review |
 | 15 Nov | Review: kit label fit | opus | n/a | n/a | n/a | accepted with four fixes (halo clip on descenders, markup guards, $ in replace, generic for every map); 11 films need a re-render; merged v300 |
+| 15 Nov | Task 19 step 2: level openers in the app | sonnet | 106 | 53 min | 219,150 | accepted with fixes by its review |
+| 15 Nov | Review: level openers in the app | opus | n/a | n/a | n/a | accepted with fixes (cap 1200, passed levels count as seen, 2.5 s load timeout, button labels, unique accessible names); full e2e 111/111; merged v301 |

@@ -4,7 +4,9 @@
 import { h } from './dom.js';
 import { ico } from './icons.js';
 import { metaOf, fieldOf, SUBJECTS } from '../content/courses/index.js';
-import { introSeen, markIntroSeen } from '../core/course.js';
+import { introSeen, markIntroSeen, openerText } from '../core/course.js';
+import { loadOpeners } from '../content/courses/index.js';
+import { openerInline } from './opener.js';
 import { pathModel } from './pathmap.js';
 import { filmStep, introFilm, closeFilms } from './film.js';
 import { guideIntro, guideIntroSeen } from './flairui.js';
@@ -54,6 +56,28 @@ export function renderModule(app, { subject, moduleId } = {}, root) {
       }))
     : h('section', { class: 'module-intro module-intro-text' }, blurb());
 
+  // The info button on a level of the path reads that level's opener again,
+  // inline under the topic's path. It never changes what is seen. A second tap
+  // on the same button (or Close) puts it away and the focus back on the button.
+  const topicsEl = topicsSection(app, meta, { next: model.next, topics: model.topics }, (topic, level, btn) => {
+    const slot = topicsEl.querySelector(`.opener-slot[data-topic="${topic.id}"]`);
+    if (!slot) return;
+    // Only this topic's buttons: another topic's card may stay open.
+    const close = () => {
+      slot.replaceChildren();
+      slot.parentNode.querySelectorAll('.path-info').forEach((b) => b.setAttribute('aria-expanded', 'false'));
+      if (typeof btn.focus === 'function') btn.focus();
+    };
+    if (btn.getAttribute('aria-expanded') === 'true') { close(); return; }
+    loadOpeners(meta.subject).then((openers) => {
+      const text = openerText(openers, `${meta.id}/${topic.id}`, level, app.lang);
+      if (!text) return;
+      const card = openerInline(t, { level, text, onClose: close });
+      slot.replaceChildren(card.el);
+      slot.parentNode.querySelectorAll('.path-info').forEach((b) => b.setAttribute('aria-expanded', b === btn ? 'true' : 'false'));
+      if (typeof card.title.focus === 'function') card.title.focus({ preventScroll: true });
+    }, () => {});
+  });
   root.append(h('main', { class: 'screen module-screen' },
     h('button', { class: 'btn btn-ghost small lesson-back', onclick: () => app.setSubject(meta.subject) },
       ico('chevron-left'), ' ', t('backToCourse')),
@@ -62,7 +86,7 @@ export function renderModule(app, { subject, moduleId } = {}, root) {
       model.titleEn ? h('p', { class: 'term-en module-en-line', lang: 'en' }, model.titleEn) : null,
       model.field ? h('p', { class: 'module-field muted small' }, model.field.title[app.lang] || model.field.title.en) : null),
     intro,
-    topicsSection(app, meta, { next: model.next, topics: model.topics }),
+    topicsEl,
     moduleEnd(app, meta),
     continueButton(app, meta, model.next, 'btn btn-primary module-continue')));
   // Leaving the screen closes an open film, as in a lesson.

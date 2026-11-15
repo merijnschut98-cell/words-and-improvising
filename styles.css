@@ -1065,6 +1065,23 @@ details.rw-topic > summary { cursor: pointer; min-height: 44px; display: flex; a
 .path-label { font-size: 0.7rem; line-height: 1.15; color: var(--muted); text-align: center; overflow-wrap: anywhere; }
 .path-stop.s-next + .path-label { color: var(--ink); }
 .path-next { font-family: var(--font-mono); font-size: 0.66rem; color: var(--accent-dark); }
+/* v17 Task 19: the info button under a level stop (pulled up over the label's spare space; the target stays 44 px), and the opener cards. */
+.path-info { width: 44px; height: 44px; margin-top: -8px; padding: 0; border: 0; background: transparent; display: grid; place-items: center; color: var(--muted); cursor: pointer; border-radius: 50%; }
+.path-info .ico { width: 18px; height: 18px; }
+.path-info[aria-expanded="true"] { color: var(--accent-dark); }
+.path-info:focus-visible, .opener-close:focus-visible { outline: 2px solid var(--accent); outline-offset: 0; }
+@media (hover: hover) { .path-info:hover { color: var(--accent-dark); } }
+.opener-slot:empty { display: none; }
+.opener-inline { margin: 6px 0 0; padding: 12px 14px; border-radius: var(--radius-md); border: 1px solid var(--border-subtle); background: var(--card); display: flex; flex-direction: column; align-items: flex-start; gap: 6px; }
+.opener-inline .opener-title { margin: 0; font-size: 0.95rem; color: var(--heading); }
+.opener-title:focus { outline: none; }
+.opener-text { margin: 0; line-height: 1.55; overflow-wrap: anywhere; }
+.opener-inline .opener-close { min-height: 44px; }
+.opener-card { display: block; }
+.opener-card .opener-title { margin: 0; color: var(--heading); font-size: 1.1rem; }
+.opener-card .opener-plain { display: flex; flex-direction: column; gap: 10px; }
+.opener-card .guide-say { font-size: 1rem; }
+.opener-begin { margin-top: 12px; }
 .path-stub { margin-top: 13px; padding-left: 4px; font-size: 0.75rem; color: var(--muted); }
 .path-flag { margin-top: 11px; padding-left: 2px; display: inline-flex; align-items: center; color: var(--accent-dark); }
 .path-flag .ico-check { width: 0.9em; height: 0.9em; margin-left: -2px; }
