@@ -10,4 +10,4 @@ Collected on 14–15 Nov; Merijn asked for one MC round the next day. Ask as mul
 5. **eng.power's long title** in a film station: shorter station label "Motoren en perslucht" (recommended) or a shorter module title?
 - (done in PM-24: tags now heard right; edge gateway close)
 6. **Process intro tank:** the procesintro draws the tank in the plant, while the energy/making field film puts line 3's tank in hall B (read as: the plant tank feeds line 3 through the wall). Keep as is (recommended) or move the tank to hall B?
-7. **Tool choices to confirm (from the intro reviews):** drawings topic 4 "PID-regelaar" (Werkkennis, no Basis tool exists); gridbasics topics 1 and 3 (omvormer, systeemcode) as decided by their review. Fine, or another tool?
+7. **Tool choices to confirm (from the intro reviews):** drawings topic 4 "PID-regelaar" (Werkkennis, no Basis tool exists); gridbasics topic 1 "kVA" (a unit, chosen by the review because the load topic has no real device; omvormer dropped) and topic 3 "systeemcode" (looked up). Fine, or another tool?

@@ -1452,3 +1452,16 @@ test('speak variant: the drawings intro film words in Dutch', () => {
   const en = 'There we read the tag number of every instrument. The operator walks along the tank.';
   assert.equal(speakOf([en], 'en'), en);
 });
+
+// The module intro film "From the grid to hall B" (eng.gridbasics.intro): espeak-ng stresses hoofdzekering on the wrong syllable
+// (hoofdze-KIE-ring), but its tool sentence says "Je leest aan de hoofdzekering af ...", which the rule for "aan de hoofdzekering"
+// above already splits (hoofd-zekering). This test holds the film to that rule; kVA, onderstation, systeemcode and wachtrij are
+// read right, so the film needs no rule of its own
+test('speak variant: the gridbasics intro film says hoofd-zekering in its tool sentence', () => {
+  const nl = (s) => speakOf([s], 'nl');
+  assert.equal(nl('Je leest aan de hoofdzekering af hoeveel stroom de aansluiting aankan.'), 'Je leest aan de hoofd-zekering af hoeveel stroom de aansluiting aankan.');
+  // elsewhere the word keeps its voice (the load film's sentence)
+  assert.equal(nl('De hoofdzekering beveiligt de hele aansluiting.'), 'De hoofdzekering beveiligt de hele aansluiting.');
+  const en = 'At the main fuse you read how much current the connection can take.';
+  assert.equal(speakOf([en], 'en'), en);
+});

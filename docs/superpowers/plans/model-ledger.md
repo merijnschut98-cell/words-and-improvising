@@ -137,3 +137,5 @@ Outcome: accepted (merged as delivered), sent back N times, redone.
 | 15 Nov | Review: eng.process.intro | sonnet | 55 | 7.5 min | 193,840 | accepted with fixes (processchema replaces apparaatcode as tool, unit operations named, sacks given a reason); merged v318 |
 | 15 Nov | Build: Engineering intro eng.drawings.intro | sonnet | 144 | 25 min | 367,315 | accepted with fixes by its review |
 | 15 Nov | Review: eng.drawings.intro | sonnet | 61 | 9.5 min | 209,918 | accepted with fixes (tags shown only when named, PID-regelaar "gebruiken", start line); merged v320 |
+| 15 Nov | Build: Engineering intro eng.gridbasics.intro | sonnet | 120 | 17 min | 344,365 | accepted with fixes by its review |
+| 15 Nov | Review: eng.gridbasics.intro | sonnet | 75 | 9.6 min | 203,161 | accepted with fixes (inverter and panels dropped for kVA, one tool per topic 2 and 3, hedges, operator up to the meter); merged v321 |
