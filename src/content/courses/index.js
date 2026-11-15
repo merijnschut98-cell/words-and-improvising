@@ -446,3 +446,11 @@ export async function loadModule(subject, moduleId, lang, attempt = 0) {
   const mod = await import(`./${subject}/${slug}.${lang === 'en' ? 'en' : 'nl'}.js${attempt ? `?retry=${attempt}` : ''}`);
   return mod.default;
 }
+
+// v17 Task 19: the level openers of a subject, { '<moduleId>/<topicId>': { 2|3|4: { nl, en } } }.
+// One file per subject, loaded when a lesson at level 2 to 4 opens or the module screen needs it.
+export async function loadOpeners(subject, attempt = 0) {
+  if (!SUBJECTS.includes(subject)) throw new Error(`no openers for ${subject}`);
+  const mod = await import(`./openers.${subject}.js${attempt ? `?retry=${attempt}` : ''}`);
+  return mod.default;
+}

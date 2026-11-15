@@ -193,6 +193,31 @@ export function markIntroSeen(state, moduleId) {
   return withSubject(state, subjectOfModule(moduleId), (c) => ({ ...c, seenIntros: [...(c.seenIntros || []), moduleId].slice(-SEEN_INTROS_CAP) }));
 }
 
+// v17 Task 19: has he seen the level opener of this topic at this level (2 to
+// 4)? Stored per subject as strings '<moduleId>/<topicId>#<level>' (newest
+// last, capped), synced as a union: an opener seen on one device counts on all.
+// The biggest subject has about 340 topic levels, so the cap sits above that.
+export const SEEN_LEVELS_CAP = 400;
+const levelId = (topicKey, level) => `${topicKey}#${level}`;
+const openerLevel = (level) => Number.isInteger(level) && level >= 2 && level <= 4;
+export const levelSeen = (state, subject, topicKey, level) => ((((state.courses || {})[subject]) || {}).seenLevels || []).includes(levelId(topicKey, level));
+export function markLevelSeen(state, subject, topicKey, level) {
+  if (!openerLevel(level) || levelSeen(state, subject, topicKey, level)) return state;
+  return withSubject(state, subject, (c) => ({ ...c, seenLevels: [...(c.seenLevels || []), levelId(topicKey, level)].slice(-SEEN_LEVELS_CAP) }));
+}
+// The text of an opener in the app language, or null (also for level 1 or a missing text).
+export function openerText(openers, topicKey, level, lang) {
+  const o = openerLevel(level) && openers && openers[topicKey] && openers[topicKey][level];
+  const text = o && (o[lang === 'en' ? 'en' : 'nl'] || o.en);
+  return typeof text === 'string' && text.trim() ? text : null;
+}
+// The opener to show before a lesson, or null: only levels 2 to 4, only when
+// there is a text, and only when not seen yet. Pure.
+export function openerToShow(state, subject, topicKey, level, openers, lang) {
+  if (levelSeen(state, subject, topicKey, level)) return null;
+  return openerText(openers, topicKey, level, lang);
+}
+
 export function markSayIt(state, subject, lessonId, now) {
   return withSubject(state, subject, (c) => {
     const before = c.lessons[lessonId] || {};
