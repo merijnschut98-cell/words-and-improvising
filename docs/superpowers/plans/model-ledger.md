@@ -157,3 +157,5 @@ Outcome: accepted (merged as delivered), sent back N times, redone.
 | 15 Nov | Voice fix PM-28: vuleenheid, frame, spuitgieten, spuit/sluitunit, hardheidsmeting; eight Dutch tracks re-rendered | sonnet | 115 | 83 min | 241,358 | accepted; all guards passed; MIG, FEM-plot, positioner, Spuitgieten still misheard by Whisper (left, Merijn 15 Nov); merged v330 |
 | 15 Nov | Build: Engineering intro eng.ot.intro | sonnet | 98 | 16 min | 359,992 | accepted with fixes by its review |
 | 15 Nov | Review: eng.ot.intro | sonnet | 61 | 8.7 min | 214,442 | accepted with fixes (eight tools to four, patching left to cyber, 203 to 182 s, labels only when named, three SAY rules dropped); merged v331 |
+| 15 Nov | Build: Engineering intro eng.cyber.intro | sonnet | 102 | 18 min | 377,465 | accepted with fixes by its review |
+| 15 Nov | Review: eng.cyber.intro | sonnet | 72 | 9.5 min | 195,743 | accepted with fixes (ways-in beat and board sentence cut, 191 to 181 s, law card as narrated, usb rule dropped); merged v332 |
