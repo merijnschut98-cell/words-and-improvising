@@ -299,7 +299,7 @@ const spec = {
       beats: [
         { nl: 'Op lijn 3 komen telkens te lichte dozen uit de vuleenheid.', en: 'On line 3 too-light cartons keep coming out of the filling unit.', focus: ['lightS', 'line3', 'unit'] },
         { nl: 'De module Meten en SPC verdiept gaat voorbij de basis. Je leest het vulgewicht met statistiek.', en: 'The module Measurement and SPC in depth goes beyond the basics. You read the fill weight with statistics.', focus: ['askS', 'line3'] },
-        { nl: 'Jij bent de engineer. Na de dienst blijf je met de teamleider om het vulgewicht te volgen.', en: 'You are the engineer. After the shift you stay with the team lead to follow the fill weight.', focus: ['shiftS', 'jij', 'teamlead'] },
+        { nl: 'Jij bent de engineer. Na de dienst volg je met de teamleider het vulgewicht.', en: 'You are the engineer. After the shift you and the team lead follow the fill weight.', focus: ['shiftS', 'jij', 'teamlead'] },
         { nl: 'Eerst het meten zelf en wat het proces doet, met meetsystemen en met regelkaarten.', en: 'First the measuring itself and what the process does, with measurement systems and with control charts.', focus: 'grpA' },
         { nl: 'Dan wat het proces aankan en hoe je het vasthoudt, met procesgeschiktheid en SPC op de werkvloer.', en: 'Then what the process can do and how you hold it, with capability and SPC on the shop floor.', focus: 'grpB' },
       ],
@@ -317,14 +317,14 @@ const spec = {
       beats: [
         { nl: 'Het tweede onderwerp is Regelkaarten. Een regelkaart zet een uitkomst in de tijd uit.', en: 'The second topic is Control charts. A control chart plots a result over time.', focus: ['tChr', 'chS', 'chart'] },
         { nl: 'De middellijn en twee grenzen laten zien wat lijn 3 uit zichzelf doet.', en: 'The centre line and two limits show what line 3 does by itself.', focus: ['limS', 'chart'] },
-        { nl: 'Een punt buiten een grens is een signaal dat er iets veranderd is.', en: 'A point outside a limit is a signal that something has changed.', focus: ['sigS', 'chart'] },
+        { nl: 'Een punt buiten een grens is een signaal om te zoeken naar wat er veranderd is.', en: 'A point outside a limit is a signal to look for what has changed.', focus: ['sigS', 'chart'] },
         { nl: 'Je weegt steeds evenveel dozen en telt de te lichte. Dat aantal zet je uit op een {t:np-kaart|np-kaart}.', en: 'You weigh equal batches and count the too-light cartons. You plot that count on an {t:np chart|np chart}.', ...TOOL('np-kaart'), focus: ['tool1', 'npS', 'chart', 'scale'] },
       ],
     },
     {
       id: 's4', level: 1, dur: DURS[3], still: 0.9, title: { nl: 'Procesgeschiktheid', en: 'Capability' },
       beats: [
-        { nl: 'Het derde onderwerp is Procesgeschiktheid. Die vergelijkt de spreiding van het proces met de tolerantie.', en: 'The third topic is Capability. It compares the spread of the process with the tolerance.', focus: ['tCap', 'spreadS', 'line3'] },
+        { nl: 'Het derde onderwerp is Procesgeschiktheid. Die vergelijkt de spreiding van gewogen waarden met de tolerantie.', en: 'The third topic is Capability. It compares the spread of weighed values with the tolerance.', focus: ['tCap', 'spreadS', 'line3'] },
         { nl: 'Eerst maak je het proces stabiel, dan meet je de geschiktheid.', en: 'First you make the process stable, then you measure capability.', focus: ['stabS', 'chart'] },
         { nl: 'Je leest dat in een {t:Capability-rapport|capability-rapport} uit de software.', en: 'You read that in a {t:Capability report|capability report} from the software.', ...TOOL('Capability-rapport'), focus: ['tool1', 'repS'] },
       ],
@@ -347,7 +347,6 @@ const spec = {
         { nl: 'Op niveau Werkkennis komen meetsysteemanalyse, de juiste regelkaart, Cpk tegen Ppk en overbijsturen.', en: 'At Working knowledge level come gauge studies, the right control chart, Cpk versus Ppk and over-adjustment.', focus: 'lv2' },
         { nl: 'Op niveau Gevorderd komen visuele inspectie, kleine verschuivingen, niet-normale data en patronen lezen.', en: 'At Advanced level come visual inspection, small shifts, non-normal data and reading patterns.', focus: 'lv3' },
         { nl: 'Op niveau Expert komen destructief meten, kleine series, eisen aan procesgeschiktheid en een SPC-programma.', en: 'At Expert level come destructive tests, short runs, capability requirements and an SPC programme.', focus: 'lv4' },
-        { nl: 'Elke les en elke film van deze module heeft een plek op deze kaart.', en: 'Every lesson and every film in this module has a place on this map.', focus: null },
       ],
     },
   ],
