@@ -1341,3 +1341,19 @@ test('speak variant: the making field film words in Dutch', () => {
   const en = 'You are the engineer. The frame has to carry the whole unit. This is the whole map.';
   assert.equal(speakOf([en], 'en'), en);
 });
+
+// The field film "Energy and the grid" (eng.field.energy), checked with espeak-ng phonemes through Piper's nl bridge: it
+// reads reflectiemeter with "reflek-tie" (a Dutch engineer says "reflexie"; said reflexiemeter, only in this film's phrase
+// "met een reflectiemeter"). Offerte, installateur, wachtrij, capaciteitskaart, beveiligingsrelais, loadflow, engineer
+// ("Jij bent de engineer"), congestiemanagement, schakelinstallaties, aardgarnituur, stroomtang, lektest, aftoppen,
+// pompkarakteristiek and platenwarmtewisselaar have rules above or are read right; "met een DGA" is read as the letters
+// d, g, a (only after "een": after "met" alone the d goes voiceless); English needs nothing; no other film's spoken text changes
+test('speak variant: the energy field film words in Dutch', () => {
+  const nl = (s) => speakOf([s], 'nl');
+  assert.equal(nl('Je test de olie met een DGA en zoekt kabelfouten met een reflectiemeter.'), 'Je test de olie met een DGA en zoekt kabelfouten met een reflexiemeter.');
+  assert.equal(nl('Kabelfouten zoek je met een reflectiemeter.'), 'Kabelfouten zoek je met een reflexiemeter.');
+  // elsewhere the word keeps its voice
+  assert.equal(nl('De reflectiemeter stuurt een puls de kabel in.'), 'De reflectiemeter stuurt een puls de kabel in.');
+  const en = 'You find cable faults with a reflectometer. You are the engineer.';
+  assert.equal(speakOf([en], 'en'), en);
+});

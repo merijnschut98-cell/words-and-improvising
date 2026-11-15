@@ -8,8 +8,9 @@
 // rechecks the shipped intro pages against the real module text.
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
+import fs from 'node:fs';
 import { resolveFilm } from '../films/_kit/build-film.mjs';
-import { checkFilm, checkNarration, checkLabels, moduleTextOf, textUnits, wrapUnits, CHAR_W, TILE_UNITS, STATION_UNITS, STATION_LINES } from '../films/_kit/assert.mjs';
+import { checkFilm, checkNarration, checkLabels, readFilmData, moduleTextOf, textUnits, wrapUnits, CHAR_W, TILE_UNITS, STATION_UNITS, STATION_LINES } from '../films/_kit/assert.mjs';
 import { MODULES as INDEX_MODULES, FIELDS as INDEX_FIELDS } from '../src/content/courses/index.js';
 
 const lesson = (id, terms, teach) => ({ id, title: 'T', pre: [], recall: [], teach, example: { text: '' }, terms: terms.map((term) => ({ term, def: 'D.' })) });
@@ -501,13 +502,52 @@ test('checkFilm: a field film is held to the narration guard and to its station 
   assert.match(checkLabels(long, '').join('\n'), /station pm\.fy: the word "Projectportfoliomanagementsystemsrenewal" \(en\) is \d+ units wide, a station on the road holds 236/);
 });
 
+// A station label (15 Nov, eng.field.energy): a title that does not fit a station of the road
+// ("Motoren, aandrijvingen en perslucht") gets a shorter label in the film only. The index title
+// stays; the film names the label in its caption, the road draws it and the fit is held to it.
+const labelled = (label) => { const s = fspec(); s.stations['pm.fy'] = { ...s.stations['pm.fy'], label }; return s; };
+test('resolveFilm: a station may carry a label, a short name for the road, in both languages', () => {
+  const data = fresolve(labelled({ nl: 'Doen', en: 'Do' }));
+  assert.deepEqual(data.stations[1], { id: 'pm.fy', title: { nl: 'Uitvoeren', en: 'Run' }, label: { nl: 'Doen', en: 'Do' }, scene: 's3', cue: 'stFy' });
+  assert.ok(!('label' in data.stations[0]), 'a station without a label has none in the data');
+  for (const bad of [{ nl: 'Doen' }, { nl: 'Doen', en: '' }, 'Doen', { nl: 5, en: 'Do' }, null]) assert.throws(() => fresolve(labelled(bad)), /station pm\.fy: a label needs a Dutch and an English text/, JSON.stringify(bad));
+});
+
+test('checkFilm: a labelled station is named by its label in the caption of its own scene, not by the index title', () => {
+  const data = fresolve(labelled({ nl: 'Doen', en: 'Do' }));
+  const out = checkFilm(data, fctx()).join('\n');
+  assert.match(out, /station pm\.fy: "Doen" \(nl\) is in no caption of its scene s3/);
+  assert.match(out, /station pm\.fy: "Do" \(en\) is in no caption of its scene s3/);
+  const named = clone(data);
+  caption(named, 2, 0, 'nl', 'Het tweede station is Doen.');
+  caption(named, 2, 0, 'en', 'The second station is Do.');
+  assert.deepEqual(checkFilm(named, fctx()), []);
+  // the index title is still checked for drift
+  const renamed = clone(FY);
+  renamed.title.en = 'Execute';
+  assert.match(checkFilm(named, fctx({ modules: [MOD, renamed] })).join('\n'), /station pm\.fy: title "Run" \(en\) is now "Execute"/);
+});
+
+test('checkLabels: the road is held to the label of a labelled station, not to its index title', () => {
+  const long = 'Onderhandelen en voet bij stuk houden met alle partijen';
+  const wide = clone(fresolve());
+  wide.stations[1].title.nl = long;
+  assert.match(checkLabels(wide, '').join('\n'), new RegExp(`station pm\\.fy: "${long}" \\(nl\\) wraps to 3 lines`));
+  wide.stations[1].label = { nl: 'Onderhandelen en voet bij stuk', en: 'Do' };
+  assert.deepEqual(checkLabels(wide, '').filter((e) => e.startsWith('station')), [], 'the short label fits, the long title is no longer drawn');
+  wide.stations[1].label = { nl: long, en: 'Do' };
+  assert.match(checkLabels(wide, '').join('\n'), new RegExp(`station pm\\.fy: "${long}" \\(nl\\) wraps to 3 lines`));
+});
+
 // The next field films (people, portfolio, IT) take their station titles from the
 // index; the kit's road must hold every one of them, or those films cannot be built.
 // Engineering's four fields (14 Nov, Task 13 step 1) have no film yet. One of its
 // titles does not fit a station: the Dutch title of eng.power wraps to three lines.
 // It is listed here, and the list must stay exactly the titles that do not fit, so
-// it cannot grow unseen; the first Engineering film that carries eng.power decides
-// between a shorter station label and a shorter title.
+// it cannot grow unseen. The first Engineering film that carries eng.power (eng.field.energy,
+// 15 Nov) chose a shorter station LABEL in the film only ("Motoren en perslucht", "Motors and
+// fluid power"); the module title is unchanged. Every module listed here must carry such a
+// label in the shipped film (test below), so a title that does not fit never reaches the road.
 const STATION_LATER = { 'eng.power': ['nl'] };
 test('checkLabels: every module title of every field fits a station of the road', () => {
   const tooLong = {};
@@ -519,6 +559,18 @@ test('checkLabels: every module title of every field fits a station of the road'
     assert.equal(errs.length > 0, Boolean(tooLong[id]), `${id}: ${errs.join('; ')}`);
   }
   assert.deepEqual(tooLong, STATION_LATER);
+});
+
+test('checkLabels: a module whose title does not fit a station is a station of its film under a label that does', () => {
+  for (const [id, langs] of Object.entries(STATION_LATER)) {
+    const f = INDEX_FIELDS.find((x) => x.modules.includes(id));
+    assert.ok(f && f.film, `${id}: its field ${f && f.id} has no film yet, so the long title would reach the road`);
+    const data = readFilmData(fs.readFileSync(new URL(`../src/content/courses/films/${f.film}.html`, import.meta.url), 'utf8'));
+    const st = data.stations.find((x) => x.id === id);
+    assert.ok(st && st.label, `${id}: the station carries a label`);
+    for (const lang of langs) assert.ok(st.label[lang] !== st.title[lang], `${id} (${lang}): the label is shorter than the title`);
+    assert.deepEqual(checkLabels({ scenes: [], stations: [st] }, ''), [], `${id}: the label fits the road`);
+  }
 });
 
 // ---------------------------------------------------------------- short films (Task 4a)

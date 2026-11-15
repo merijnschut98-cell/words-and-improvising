@@ -451,10 +451,13 @@ await step('Projects home: the map is the first thing; tapping Planning opens it
   await page.locator('.module-screen', { hasText: 'Plannen' }).waitFor();
   await page.locator('.module-screen .lesson-back').click();
   await page.locator('.course-pm .map-card').waitFor();
-  // Engineering (Task 13): the map first, 26 buttons, four zones, no field film yet, the tracks closed; Enter and a tap open the module
+  // Engineering (Task 13): the map first, 26 buttons, four zones, a field film entry per field that has one, the tracks closed; Enter and a tap open the module
   await page.locator('.subject-tab', { hasText: 'Engineering' }).click();
   await page.locator('.course-eng .map-card .subject-map').waitFor();
-  if (await page.locator('.course-eng .field-film').count() !== 0) throw new Error('Engineering shows a field film');
+  // the field film entries of Engineering: one per field with a film, in FIELDS order (the films land one by one)
+  const engFilms = await page.evaluate(async () => (await import('/src/content/courses/index.js')).FIELDS.filter((f) => f.subject === 'eng' && f.film).map((f) => f.title.nl));
+  const engEntries = await page.locator('.course-eng .field-film .field-film-title').allTextContents();
+  if (JSON.stringify(engEntries) !== JSON.stringify(engFilms)) throw new Error(`Engineering field film entries ${JSON.stringify(engEntries)}, expected ${JSON.stringify(engFilms)}`);
   if (!/map-card/.test(await page.locator('.course-eng > :nth-child(3)').getAttribute('class'))) throw new Error('Engineering: the map is not first');
   if (await page.locator('.course-eng .map-place[role="button"]').count() !== 26) throw new Error('Engineering: not 26 places');
   if (await page.locator('.course-eng .map-zone').count() !== 4) throw new Error('Engineering: not 4 zones');
