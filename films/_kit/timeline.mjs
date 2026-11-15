@@ -988,7 +988,13 @@ const SAY = {
     // pm.agile.forecast), only in the two phrases that name the module ("station is Capaciteit en flow", "Eerst Capaciteit en
     // flow"). Takttijd, stilstandregistratie, turflijst, afwijkingsrapport, CMMS (letters), CILT and LMRA (the rules above),
     // vergrendelen en labelen, lijnbalans, omstellen and teamleider are read right; no other film's spoken text changes
-    [/(?<=\b(?:station is|Eerst) )Capaciteit en flow\b/g, 'Capaciteit en flouw']],
+    [/(?<=\b(?:station is|Eerst) )Capaciteit en flow\b/g, 'Capaciteit en flouw'],
+    // the field film "Making the plant better" (eng.field.better), a self-contained group at the end of the Dutch list, checked with
+    // phonemes through Piper's nl_NL-alex bridge: espeak-ng reads FMECA as the word "fmeeka" (fmˈeːkaː; said as letters, ˈɛf ˈɛm ˈeː sˈeː
+    // ˈaː), only in the film's one phrase that names it ("en maakt een FMECA"), so the lessons and the other films keep their voice.
+    // Ohno-cirkel, waaromboom, eerstestukcontrole, np-kaart, faalkosten, kasbesparing, risicomatrix, kaizen and SPC are read right;
+    // no other film's spoken text changes
+    [/(?<=\ben maakt een )FMECA\b/g, 'F M E C A']],
   en: [[/\brpm\b/g, 'revolutions per minute'], [/\bmm\/min\b/g, 'millimetres per minute'], [/\bm\/min\b/g, 'metres per minute'], [/µm\b/g, 'micrometres'],
     [/€\s?(\d[\d,]*(?:\.\d+)?)/g, '$1 euros'], [/(\d)\.0(?![\d])/g, '$1'], [/(\d)\s?mm\b/g, '$1 millimetres'], [/(\d)\s?min\b/g, '$1 minutes'], [/(\d)\s?%/g, '$1 percent'],
     [/Ø\s*/g, 'diameter '], [/(\d)\+(\d)/g, '$1 plus $2'], [/\s×\s/g, ' times '], [/\s\/\s/g, ' divided by '], [/\s=\s/g, ' is '], [/°/g, ' degrees'], [/\bRa\b/g, 'R a'], [/’/g, "'"],
@@ -1040,7 +1046,10 @@ const SAY = {
     // letters in this film's one phrase only (it reads "you-at"; the UAT film keeps its voice)
     [/\bSaaS\b/g, 'sass'], [/\bIn the UAT, the user acceptance test\b/g, 'In the U A T, the user acceptance test'],
     // the field film "Automation and IT" (eng.field.digital): VLAN as "vee-lan" (espeak-ng reads the word "vlan")
-    [/\bswitch and a VLAN\b/g, 'switch and a vee-lan']],
+    [/\bswitch and a VLAN\b/g, 'switch and a vee-lan'],
+    // the field film "Making the plant better" (eng.field.better): FMECA as letters in the one phrase that names it ("and make an
+    // FMECA"; espeak-ng's English reads "ef-meka"), so the lessons and the other films keep their voice
+    [/(?<=\band make an )FMECA\b/g, 'F M E C A']],
 };
 export const sayable = (text, lang) => (SAY[lang] || []).reduce((s, [re, w]) => s.replace(re, w), text);
 // The words the voice says: no English gloss, and with a language, units as words.

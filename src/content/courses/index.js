@@ -462,7 +462,7 @@ export const FIELDS = [
   { id: 'eng.field.better', subject: 'eng',
     title: { en: 'Making the plant better', nl: 'De fabriek beter maken' },
     blurb: { en: 'Problem solving, SPC, cost and reliability: finding what holds a plant back and making it better, for less.', nl: 'Probleemoplossen, SPC, kostprijs en betrouwbaarheid: vinden wat een fabriek tegenhoudt en haar beter maken, voor minder geld.' },
-    modules: ['eng.improve', 'eng.spc', 'eng.cost', 'eng.reliability'] },
+    modules: ['eng.improve', 'eng.spc', 'eng.cost', 'eng.reliability'], film: 'eng.field.better' },
   { id: 'eng.field.making', subject: 'eng',
     title: { en: 'Making things', nl: 'Dingen maken' },
     blurb: { en: 'Materials and strength, machining, process plants, drawings, welding and moulding: how a part or a product is designed, read and made.', nl: 'Materialen en sterkte, verspanen, procesfabrieken, tekeningen, lassen en spuitgieten: hoe een onderdeel of product wordt ontworpen, gelezen en gemaakt.' },
