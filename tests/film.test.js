@@ -1321,25 +1321,23 @@ test('speak variant: the consulting module intro words in Dutch', () => {
 // The field film "Making things" (eng.field.making), checked with espeak-ng phonemes through Piper's nl bridge: it reads
 // frame as "fra-me" (a Dutch engineer says "freem"; said freem, only in this film's phrases, since eng.mechanics.load,
 // eng.machining.measuring and eng.joining.production say frame in other sentences), engineer as "eng-i-neer" (said
-// entsjinier, only in "Jij bent de engineer", as the rules above for the other films' sentences) and Engineering as
-// "eng-i-neering" (said entsjinieering, only in "de kaart van Engineering"). Verspanen, spuitgieten, vingerfrees,
-// spiraalboor, heetkanaal, tolerantiekader, processchema, regelkring, lasmal, instelkaart, bramen, inzakplekken,
-// trekproef, batches, CNC and MIG/MAG are read right or have rules above; English needs nothing; no other film's
-// spoken text changes
+// entsjinier, only in "Jij bent de engineer", as the rules above for the other films' sentences). The closing says
+// "de hele kaart", so Engineering needs no rule. Verspanen, spuitgieten, vingerfrees, spiraalboor, heetkanaal,
+// tolerantiekader, processchema, massabalans, lasmal, instelkaart, bramen, inzakplekken, trekproef, batches, CNC and
+// MIG and MAG are read right or have rules above; English needs nothing; no other film's spoken text changes
 test('speak variant: the making field film words in Dutch', () => {
   const nl = (s) => speakOf([s], 'nl');
-  assert.equal(nl('Een frame, een plaat, een tank en een kap.'), 'Een freem, een plaat, een tank en een kap.');
+  assert.equal(nl('De eenheid heeft een frame, een plaat, een tank en een kap.'), 'De eenheid heeft een freem, een plaat, een tank en een kap.');
   assert.equal(nl('Het frame moet de hele eenheid dragen.'), 'Het freem moet de hele eenheid dragen.');
   assert.equal(nl('Zonder dit kan het frame na maanden breken.'), 'Zonder dit kan het freem na maanden breken.');
   assert.equal(nl('Frame, plaat en tank komen samen op één tekening.'), 'Freem, plaat en tank komen samen op één tekening.');
   assert.equal(nl('Het frame bestaat uit delen die aan elkaar moeten.'), 'Het freem bestaat uit delen die aan elkaar moeten.');
   assert.equal(nl('Zonder dit trekt het frame krom.'), 'Zonder dit trekt het freem krom.');
   assert.equal(nl('Jij bent de engineer. Je volgt de eenheid van materiaal tot lijn.'), 'Jij bent de entsjinier. Je volgt de eenheid van materiaal tot lijn.');
-  assert.equal(nl('Dit is de kaart van Engineering.'), 'Dit is de kaart van Entsjinieering.');
   // elsewhere the words keep their voice
   assert.equal(nl('Een frame dat schudt. Buigt een frame te ver door, dan helpt dat niet.'), 'Een frame dat schudt. Buigt een frame te ver door, dan helpt dat niet.');
   assert.equal(nl('De robot last een frame in 6 minuten. Spil en frame zetten uit.'), 'De robot last een frame in 6 minuten. Spil en frame zetten uit.');
   assert.equal(nl('Vraag het de engineer. Dat is Engineering.'), 'Vraag het de engineer. Dat is Engineering.');
-  const en = 'You are the engineer. The frame has to carry the whole unit. This is the map of Engineering.';
+  const en = 'You are the engineer. The frame has to carry the whole unit. This is the whole map.';
   assert.equal(speakOf([en], 'en'), en);
 });

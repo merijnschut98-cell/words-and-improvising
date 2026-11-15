@@ -19,8 +19,9 @@
 // uprights and a beam, welded at the corners), a mounting plate with four holes hung
 // from the beam, a plastic cover on top, and a tank behind it that holds the product.
 // On a table at the front stands the drawing. Each station is one thing of the unit:
-//   s1 the opening: line 3 and the new unit (frame, plate, tank, cover); you follow it
-//      from material to line; the road with six stations
+//   s1 the opening: line 3 and the new unit, which fills the cartons on the belt with
+//      product from the tank (the reason the cartons are there); its four parts (frame,
+//      plate, tank, cover); you follow it from material to line; the road with six stations
 //   s2 Materialen en sterkte (eng.mechanics): the frame must carry the unit and keep
 //      carrying it; a tensile test and a hardness test (eng.mechanics.strength,
 //      .heattreat); without it the frame can break after months (fatigue, .fatigue)
@@ -28,11 +29,12 @@
 //      and the holes are right; an end mill and a twist drill (eng.machining.mill,
 //      .drill); without it the holes sit in the wrong place (drill wander)
 //   s4 Procestechniek: de basis (eng.process): what is in the tank comes from a process
-//      plant, in batches or continuously; a process flow diagram and a control loop
-//      (eng.process.diagrams, .loops); without it nobody knows what flows and the
-//      temperature drifts
+//      plant, in batches or continuously; a process flow diagram and a mass balance
+//      (eng.process.diagrams, .mass; not the control loop, which the drawings module
+//      teaches at Basis and the map names there); without it nobody knows what flows or
+//      where product is lost
 //   s5 Tekeningen en regeling (eng.drawings): frame, plate and tank come together on one
-//      drawing for the makers; a title block and a feature control frame
+//      drawing for the makers; you read its title block and a feature control frame
 //      (eng.drawings.views, .gdt); without it maker and customer measure in their own way
 //   s6 Lassen en verbinden (eng.joining): the frame is made of parts that are joined;
 //      MIG/MAG and a welding fixture (eng.joining.arc, .weldcell); without it the frame
@@ -41,11 +43,14 @@
 //      runner and a setting sheet (eng.moulding.tooling, .setup); without it the cover
 //      gets flash or sink marks
 //   s8 the shared Engineering map (the kit's mapScene, as the app draws it) with the six
-//      stations lit: the whole map, the zone, then place by place at 1.5
+//      stations lit: the whole map, the zone, then place by place at 1.5, then back to the
+//      zone for one line on how they connect, and where to start
 // How the stations connect: the order of the road is the order of the zone (level, then
 // map position), the unit shows how the parts meet (the frame carries the plate, the
 // tank feeds the unit, the drawing names all of them, the welds hold the frame, the cover
-// closes it), and the map says which module covers which part.
+// closes it), and the closing says it once: strength picks the material, the drawing
+// fixes the sizes, machining, welding and moulding make the parts, the process plant
+// makes what goes in.
 // The tools come from the modules' own lessons (checked below), each a thing the lesson
 // names and a term of its glossary, at Basis or Working knowledge level (the heat
 // treatment, cutting, diagrams, loops and tolerance-frame lessons are the second level of
@@ -115,13 +120,13 @@ has('eng.machining.mill', ['Een vingerfrees is een smalle staaf met snijkanten o
 has('eng.machining.mill', ['An end mill is a narrow bar with cutting edges on its side and tip', 'End mill A narrow cutter that cuts with its side and tip'], 'en');
 has('eng.machining.drill', ['Het standaardgereedschap is de spiraalboor', 'waardoor het gat op de verkeerde plek of scheef komt']);
 has('eng.machining.drill', ['The standard tool is the twist drill', 'so the hole ends up in the wrong place or crooked'], 'en');
-// s4 process: batch or continuous; the flow diagram; the control loop
+// s4 process: batch or continuous; the flow diagram; the mass balance, and product that goes missing
 has('eng.process.types', ['In een batchproces gaat een vaste hoeveelheid een vat in', 'In een continu proces stroomt het product non-stop in en uit']);
 has('eng.process.types', ['In a batch process a fixed amount goes into a vessel', 'In a continuous process material flows in and out non-stop'], 'en');
 has('eng.process.diagrams', ['Procesfabrieken worden beschreven in drie soorten schema’s', 'Een processchema (process flow diagram, PFD) toont de hoofdapparatuur als symbolen']);
 has('eng.process.diagrams', ['Process plants are described in three kinds of diagram', 'A process flow diagram (PFD) shows the main equipment as symbols'], 'en');
-has('eng.process.loops', ['Een regelkring meet een grootheid, vergelijkt die met het setpoint', 'Regelkring Een grootheid meten']);
-has('eng.process.loops', ['A control loop measures a variable, compares it with the setpoint', 'Control loop Measure a variable'], 'en');
+has('eng.process.mass', ['Een massabalans is het eerste gereedschap van een procesengineer', 'Massabalans In = uit + ophoping', 'Mist er 2% van de massa, zoek dan een lek']);
+has('eng.process.mass', ['A mass balance is the first tool of a process engineer', 'Mass balance In = out + accumulation', 'If 2% of the mass is missing, look for a leak'], 'en');
 // s5 drawings: the title block is where you start; the tolerance frame; maker and customer measure from different datums
 has('eng.drawings.views', ['De stempel (title block) rechtsonder is waar je begint', 'Stempel Vak rechtsonder']);
 has('eng.drawings.views', ['The title block, bottom right, is where you start', 'Title block Box bottom right'], 'en');
@@ -157,14 +162,18 @@ const g = (key, body, extra = '') => `<g data-k="${key}"${extra}>${body}</g>`;
 const cueG = (name, body) => `<g data-cue="${name}">${body}</g>`;
 
 // where things stand (cm). Line 3's belt runs along x at the back wall; the filling unit straddles its start: two
-// uprights (one behind, one in front of the belt) and a beam across at the top, welded at the corners. The plate
-// hangs from the beam on its +x face, with four holes; the cover sits on the beam. The tank stands at the back wall
-// at the left and its pipe runs to the start of the belt. The table with the drawing stands at the front left.
+// uprights (one behind, one in front of the belt) and a beam across at the top, welded at the corners, tall enough
+// for a person to stand next to it and for the cartons to pass under it. The plate (the filling head) hangs from the
+// beam on its +x face above the cartons, with four holes; the cover sits on the beam. The tank stands at the back
+// wall at the left and its pipe runs over the belt into the plate, so the unit fills the cartons with the tank's
+// product. The table with the drawing stands at the front left; you stand at the front right, clear of the tank.
 const BELT = { x: 130, y: 16, len: 140, dep: 34 };
 const UX = 152; // x of the uprights and the beam
-const FRAME = { top: 96, beam: 106 };
-const HOLES = [[24, 60], [44, 60], [24, 82], [44, 82]].map(([y, z]) => [UX + 12.6, y, z]); // on the plate's +x face
-const TANK = { x: 62, y: 34, r: 20, h: 84 };
+const FRAME = { top: 150, beam: 160 };
+const PLATE = { z0: 100, z1: 146 }; // the filling head: its foot clears the cartons (60 to 80)
+const HOLES = [[24, 112], [44, 112], [24, 134], [44, 134]].map(([y, z]) => [UX + 12.6, y, z]); // on the plate's +x face
+const TANK = { x: 62, y: 34, r: 20, h: 130 };
+const PIPE = { y: 28, z: 118 }; // from the tank's side over the belt into the back of the plate
 const TABLE = { x: 18, y: 108, w: 76, d: 42, h: 74 };
 const SHEET = { x: 34, y: 112, z: TABLE.h };
 const frame = [
@@ -176,12 +185,12 @@ const welds = [
   w.box({ x: UX - 2, y: 3, w: 13, d: 13, r: 2.5 }, FRAME.top - 5, FRAME.beam + 2, { tone: 'hi' }, { steps: 2 }),
   w.box({ x: UX - 2, y: 50, w: 13, d: 13, r: 2.5 }, FRAME.top - 5, FRAME.beam + 2, { tone: 'hi' }, { steps: 2 }),
 ].join('');
-const plate = w.box({ x: UX + 9, y: BELT.y, w: 3.2, d: 36, r: 0.6 }, 48, 94, { tone: 'mid' }, { steps: 2 })
+const plate = w.box({ x: UX + 9, y: BELT.y, w: 3.2, d: 36, r: 0.6 }, PLATE.z0, PLATE.z1, { tone: 'mid' }, { steps: 2 })
   + k.dotsSvg(HOLES.map(([x, y, z]) => k.iso([x, y, z], P)), { size: 2.1, tone: 'lo' });
-const cover = w.box({ x: UX - 7, y: 12, w: 23, d: 42, r: 7 }, FRAME.beam, FRAME.beam + 26, { tone: 'hi' }, { steps: 4, bevel: 1.2 });
+const cover = w.box({ x: UX - 7, y: 12, w: 23, d: 42, r: 7 }, FRAME.beam, FRAME.beam + 24, { tone: 'hi' }, { steps: 4, bevel: 1.2 });
 const tank = w.post(TANK.x, TANK.y, TANK.r, 0, TANK.h, { tone: 'mid' }, 28)
   + w.post(TANK.x, TANK.y, TANK.r - 4, TANK.h, TANK.h + 5, { tone: 'lo' }, 24)
-  + w.box({ x: TANK.x + TANK.r - 2, y: TANK.y - 3, w: BELT.x - TANK.x - TANK.r + 4, d: 6, r: 2 }, 4, 12, { tone: 'lo' }, { steps: 2 });
+  + w.box({ x: TANK.x + TANK.r - 2, y: PIPE.y, w: UX + 9 - TANK.x - TANK.r + 2, d: 6, r: 2 }, PIPE.z, PIPE.z + 8, { tone: 'lo' }, { steps: 2 });
 // the drawing on the table: a sheet with the plate drawn on it (outline and four holes) and two rule lines
 const sheet = w.sheet({ x: SHEET.x, y: SHEET.y, z: SHEET.z, lines: 0 });
 const f1 = (v) => (Math.round(v * 10) / 10).toString();
@@ -200,7 +209,7 @@ const world = [
   cueG('welds', welds),
   cueG('table', w.table(TABLE)),
   cueG('sheet', sheet.svg + drawn),
-  g('pp-jij', person('jij', 118, 136, 'x')),
+  g('pp-jij', person('jij', 262, 128, 'x')),
 ].join('');
 
 // ---------------------------------------------------------------- the panel (stage space)
@@ -213,7 +222,7 @@ const STATION_CUE = Object.fromEntries(ROAD.map((id) => [id, `st-${id.split('.')
 const stations = ROAD.map((id, i) => cueG(STATION_CUE[id], g(`rd${i}`, ''))).join('');
 const hud = g('hud', `<rect data-k="pbg" class="pm-panel" x="322" y="12" width="308" height="376" rx="10"/>` + g('pHead', '')
   + cueG('road', g('roadB', '') + stations)
-  + cueG('goal', g('goalB', '')) + cueG('route', g('routeB', '')) + cueG('for', g('forB', ''))
+  + cueG('flow', g('flowB', '')) + cueG('goal', g('goalB', '')) + cueG('route', g('routeB', '')) + cueG('for', g('forB', ''))
   + cueG('t1', g('t1B', '')) + cueG('t2', g('t2B', ''))
   + cueG('without', g('withoutB', '')));
 const MAP_W = 640;
@@ -279,13 +288,13 @@ const svg = compact(`<svg class="iso-svg fp-svg" viewBox="0 0 ${W} ${H}" role="i
 // stage while the hall scales by s (camera() in stage.js). Each scene looks at what its station is about.
 const cam = (x, y, z, s) => [...w.at([x, y, z]).map((v) => Math.round(v * 10) / 10), s];
 const CAM = [
-  { from: cam(150, 80, 60, 1.05), to: cam(155, 80, 60, 1.15) }, // s1 the hall, the unit over the belt, the tank and the table
-  { from: cam(158, 34, 60, 1.5), to: cam(158, 34, 60, 1.7) }, // s2 the frame
-  { from: cam(162, 34, 70, 1.7), to: cam(162, 34, 70, 1.9) }, // s3 the plate with its holes
-  { from: cam(95, 40, 40, 1.5), to: cam(90, 40, 40, 1.7) }, // s4 the tank and its pipe
+  { from: cam(150, 80, 70, 1.05), to: cam(155, 80, 70, 1.15) }, // s1 the hall, the unit over the belt, the tank and the table
+  { from: cam(158, 34, 85, 1.35), to: cam(158, 34, 85, 1.5) }, // s2 the frame
+  { from: cam(162, 34, 122, 1.7), to: cam(162, 34, 122, 1.9) }, // s3 the plate with its holes
+  { from: cam(110, 34, 85, 1.4), to: cam(105, 34, 85, 1.55) }, // s4 the tank and its pipe into the unit
   { from: cam(56, 128, 70, 1.7), to: cam(56, 128, 70, 1.9) }, // s5 the table with the drawing
-  { from: cam(158, 34, 90, 1.7), to: cam(158, 34, 90, 1.9) }, // s6 the welds at the corners of the frame
-  { from: cam(158, 34, 100, 1.7), to: cam(158, 34, 100, 1.9) }, // s7 the cover
+  { from: cam(158, 34, 150, 1.7), to: cam(158, 34, 150, 1.9) }, // s6 the welds at the corners of the frame
+  { from: cam(158, 34, 165, 1.7), to: cam(158, 34, 165, 1.9) }, // s7 the cover
   { from: cam(150, 85, 60, 1), to: cam(150, 85, 60, 1) }, // s8 (the map)
 ];
 
@@ -303,7 +312,8 @@ const spec = {
     {
       id: 's1', level: 1, dur: DURS[0], still: 0.9, title: { nl: 'De vuleenheid', en: 'The filling unit' },
       beats: [
-        { nl: 'Lijn 3 in hal B krijgt een nieuwe vuleenheid: een frame, een plaat, een tank en een kap.', en: 'Line 3 in hall B gets a new filling unit: a frame, a plate, a tank and a cover.', focus: ['goal', 'frame', 'plate', 'tank', 'cover'] },
+        { nl: 'Lijn 3 in hal B krijgt een nieuwe vuleenheid. Die vult de dozen op de band met product uit de tank.', en: 'Line 3 in hall B gets a new filling unit. It fills the cartons on the belt with product from the tank.', focus: ['flow', 'line3', 'tank'] },
+        { nl: 'De eenheid heeft een frame, een plaat, een tank en een kap.', en: 'The unit has a frame, a plate, a tank and a cover.', focus: ['goal', 'frame', 'plate', 'tank', 'cover'] },
         { nl: 'Jij bent de engineer en volgt de eenheid van materiaal tot lijn.', en: 'You are the engineer and follow the unit from material to line.', focus: ['route', 'jij', 'line3'] },
         { nl: 'Zes stations: sterkte, verspanen, procestechniek, tekeningen, lassen en spuitgieten.', en: 'Six stations: strength, machining, process engineering, drawings, welding and moulding.', focus: 'road' },
       ],
@@ -313,7 +323,7 @@ const spec = {
       beats: [
         { nl: 'Het eerste station is Materialen en sterkte. Het frame moet de hele eenheid dragen.', en: 'The first station is Materials and strength. The frame has to carry the whole unit.', focus: ['st-mechanics', 'for', 'frame'] },
         { nl: 'Je kiest een staal dat meer aankan dan de belasting.', en: 'You choose a steel that can take more than the load.', focus: ['for', 'frame'] },
-        { nl: 'Je gebruikt een {t:Trekproef|trekproef} en een {t:Hardheid|hardheidsmeting}.', en: 'You use a {t:Tensile test|tensile test} and a {t:Hardness|hardness test}.', ...TOOLCUE('Trekproef', 'Hardheid') },
+        { nl: 'Je test het staal met een {t:Trekproef|trekproef} en een {t:Hardheid|hardheidsmeting}.', en: 'You check the steel with a {t:Tensile test|tensile test} and a {t:Hardness|hardness test}.', ...TOOLCUE('Trekproef', 'Hardheid') },
         { nl: 'Zonder dit kan het frame na maanden breken.', en: 'Without this the frame can break after months.', focus: 'without' },
       ],
     },
@@ -331,8 +341,8 @@ const spec = {
       beats: [
         { nl: 'Het derde station is Procestechniek: de basis. Wat in de tank zit, komt uit een procesfabriek.', en: 'The third station is Process engineering basics. What is in the tank comes from a process plant.', focus: ['st-process', 'for', 'tank'] },
         { nl: 'Daar gaat het product van apparaat naar apparaat, in batches of continu.', en: 'There the product goes from unit to unit, in batches or continuously.', focus: ['for', 'tank'] },
-        { nl: 'Je gebruikt een {t:Processchema|processchema} en een {t:Regelkring|regelkring}.', en: 'You use a {t:Process flow diagram|process flow diagram} and a {t:Control loop|control loop}.', ...TOOLCUE('Processchema', 'Regelkring') },
-        { nl: 'Zonder dit weet niemand wat er stroomt, en loopt de temperatuur weg.', en: 'Without this nobody knows what flows, and the temperature drifts.', focus: 'without' },
+        { nl: 'Je gebruikt een {t:Processchema|processchema} en een {t:Massabalans|massabalans}.', en: 'You use a {t:Process flow diagram|process flow diagram} and a {t:Mass balance|mass balance}.', ...TOOLCUE('Processchema', 'Massabalans') },
+        { nl: 'Zonder dit weet niemand wat er stroomt, of waar product verdwijnt.', en: 'Without this nobody knows what flows, or where product is lost.', focus: 'without' },
       ],
     },
     {
@@ -340,7 +350,7 @@ const spec = {
       beats: [
         { nl: 'Het vierde station is Tekeningen en regeling. Frame, plaat en tank komen samen op één tekening.', en: 'The fourth station is Drawings and control. Frame, plate and tank come together on one drawing.', focus: ['st-drawings', 'for', 'sheet', 'table'] },
         { nl: 'Wie hem leest, ziet de vorm, de maten en hoe nauw het moet.', en: 'Whoever reads it sees the shape, the sizes and how exact it must be.', focus: ['for', 'sheet'] },
-        { nl: 'Je gebruikt een {t:Stempel|stempel} en een {t:Tolerantiekader|tolerantiekader}.', en: 'You use a {t:Title block|title block} and a {t:Feature control frame|feature control frame}.', ...TOOLCUE('Stempel', 'Tolerantiekader') },
+        { nl: 'Je leest de {t:Stempel|stempel} en het {t:Tolerantiekader|tolerantiekader}.', en: 'You read the {t:Title block|title block} and the {t:Feature control frame|feature control frame}.', ...TOOLCUE('Stempel', 'Tolerantiekader') },
         { nl: 'Zonder dit meten maker en klant elk op hun eigen manier.', en: 'Without this maker and customer each measure in their own way.', focus: 'without' },
       ],
     },
@@ -349,7 +359,7 @@ const spec = {
       beats: [
         { nl: 'Het vijfde station is Lassen en verbinden. Het frame bestaat uit delen die aan elkaar moeten.', en: 'The fifth station is Welding and joining. The frame is made of parts that must be joined.', focus: ['st-joining', 'for', 'frame', 'welds'] },
         { nl: 'De naad smelt en stolt weer, en de delen zijn één stuk.', en: 'The seam melts and sets again, and the parts are one piece.', focus: ['for', 'welds'] },
-        { nl: 'Je gebruikt {t:MIG/MAG|MIG/MAG} en een {t:Lasmal|lasmal}.', en: 'You use {t:MIG/MAG|MIG/MAG} and a {t:Welding fixture|welding fixture}.', ...TOOLCUE('MIG/MAG', 'Lasmal') },
+        { nl: 'Je last met {t:MIG/MAG|MIG/MAG} en gebruikt een {t:Lasmal|lasmal}.', en: 'You weld with {t:MIG/MAG|MIG/MAG} and use a {t:Welding fixture|welding fixture}.', ...TOOLCUE('MIG/MAG', 'Lasmal') },
         { nl: 'Zonder dit trekt het frame krom.', en: 'Without this the frame warps.', focus: 'without' },
       ],
     },
@@ -365,13 +375,15 @@ const spec = {
     {
       id: 's8', level: 1, dur: DURS[7], still: 0.9, title: { nl: 'De kaart', en: 'The map' },
       beats: [
-        { nl: 'De kaart van Engineering: de zes stations van Dingen maken liggen in één gebied.', en: 'The map of Engineering: the six stations of Making things lie in one zone.', focus: MAPS },
+        { nl: 'De hele kaart: de zes stations van Dingen maken liggen in één gebied.', en: 'The whole map: the six stations of Making things lie in one zone.', focus: MAPS },
         { nl: 'Eerst Materialen en sterkte: krachten, materiaalsterkte, vermoeiing en warmtebehandeling.', en: 'First Materials and strength: forces, material strength, fatigue and heat treatment.', focus: MAPS[0] },
         { nl: 'Dan Verspanen: draaien, frezen, boren, CNC, gereedschap en opspanning.', en: 'Then Machining: turning, milling, drilling, CNC, tooling and workholding.', focus: MAPS[1] },
         { nl: 'Dan Procestechniek: de basis. Daar gaat het om procestypen, regelen, balansen en batchcapaciteit.', en: 'Then Process engineering basics. It covers process types, control, balances and batch capacity.', focus: MAPS[2] },
         { nl: 'Dan Tekeningen en regeling: tekeningen lezen, toleranties, schema’s en regelkringen.', en: 'Then Drawings and control: reading drawings, tolerances, diagrams and control loops.', focus: MAPS[3] },
         { nl: 'Dan Lassen en verbinden: booglassen, puntlassen, lasfouten, bouten, lijmen en productie.', en: 'Then Welding and joining: arc and spot welding, defects, bolts, adhesives and production.', focus: MAPS[4] },
         { nl: 'Tot slot Spuitgieten: de machine, de cyclus, kunststoffen, fouten, instellen en matrijzen.', en: 'Finally Injection moulding: the machine, the cycle, plastics, defects, setting and moulds.', focus: MAPS[5] },
+        { nl: 'Zo hangen ze samen: bij sterkte kies je het materiaal, de tekening legt de maten vast.', en: 'How they connect: at strength you pick the material, the drawing fixes the sizes.', focus: [MAPS[0], MAPS[3]] },
+        { nl: 'Verspanen, lassen en spuitgieten maken de delen. De procesfabriek maakt wat erin gaat.', en: 'Machining, welding and moulding make the parts. The process plant makes what goes in.', focus: [MAPS[1], MAPS[4], MAPS[5], MAPS[2]] },
         { nl: 'Elk station is een module met vier niveaus per onderwerp. Begin bij het onderdeel dat jij moet maken.', en: 'Each station is a module with four levels per topic. Start with the part you have to make.', focus: MAPS },
       ],
     },
@@ -388,8 +400,10 @@ const spec = {
 // this film (the last of the Dutch list in films/_kit/timeline.mjs), if it needed one.
 const SAY = [
   [ // s1 the opening
-    { nl: 'Lijn 3 in hal B krijgt een nieuwe vuleenheid. Een frame, een plaat, een tank en een kap.',
-      en: 'Line 3 in hall B gets a new filling unit. A frame, a plate, a tank and a cover.' },
+    { nl: 'Lijn 3 in hal B krijgt een nieuwe vuleenheid. Die vult de dozen op de band met product uit de tank.',
+      en: 'Line 3 in hall B gets a new filling unit. It fills the cartons on the belt with product from the tank.' },
+    { nl: 'De eenheid heeft een frame, een plaat, een tank en een kap.',
+      en: 'The unit has a frame, a plate, a tank and a cover.' },
     { nl: 'Jij bent de engineer. Je volgt de eenheid van materiaal tot lijn.',
       en: 'You are the engineer. You follow the unit from material to line.' },
     { nl: 'Dat zijn zes stations. Van sterkte en verspanen tot lassen en spuitgieten.',
@@ -400,8 +414,8 @@ const SAY = [
       en: 'The first station is Materials and strength. The frame has to carry the whole unit.' },
     { nl: 'Je kiest een staal dat meer aankan dan de belasting.',
       en: 'You choose a steel that can take more than the load.' },
-    { nl: 'Je gebruikt een {t:Trekproef|trekproef} en een {t:Hardheid|hardheidsmeting}.',
-      en: 'You use a {t:Tensile test|tensile test} and a {t:Hardness|hardness test}.' },
+    { nl: 'Je test het staal met een {t:Trekproef|trekproef} en een {t:Hardheid|hardheidsmeting}.',
+      en: 'You check the steel with a {t:Tensile test|tensile test} and a {t:Hardness|hardness test}.' },
     { nl: 'Zonder dit kan het frame na maanden breken.',
       en: 'Without this the frame can break after months.' },
   ],
@@ -420,18 +434,18 @@ const SAY = [
       en: 'The third station is Process engineering basics. What is in the tank comes from a process plant.' },
     { nl: 'Daar gaat het product van apparaat naar apparaat, in batches of continu.',
       en: 'There the product goes from unit to unit, in batches or continuously.' },
-    { nl: 'Je gebruikt een {t:Processchema|processchema} en een {t:Regelkring|regelkring}.',
-      en: 'You use a {t:Process flow diagram|process flow diagram} and a {t:Control loop|control loop}.' },
-    { nl: 'Zonder dit weet niemand wat er stroomt, en loopt de temperatuur weg.',
-      en: 'Without this nobody knows what flows, and the temperature drifts.' },
+    { nl: 'Je gebruikt een {t:Processchema|processchema} en een {t:Massabalans|massabalans}.',
+      en: 'You use a {t:Process flow diagram|process flow diagram} and a {t:Mass balance|mass balance}.' },
+    { nl: 'Zonder dit weet niemand wat er stroomt, of waar product verdwijnt.',
+      en: 'Without this nobody knows what flows, or where product is lost.' },
   ],
   [ // s5 drawings
     { nl: 'Het vierde station is Tekeningen en regeling. Frame, plaat en tank komen samen op één tekening.',
       en: 'The fourth station is Drawings and control. Frame, plate and tank come together on one drawing.' },
     { nl: 'Wie hem leest, ziet de vorm, de maten en hoe nauw het moet.',
       en: 'Whoever reads it sees the shape, the sizes and how exact it must be.' },
-    { nl: 'Je gebruikt een {t:Stempel|stempel} en een {t:Tolerantiekader|tolerantiekader}.',
-      en: 'You use a {t:Title block|title block} and a {t:Feature control frame|feature control frame}.' },
+    { nl: 'Je leest de {t:Stempel|stempel} en het {t:Tolerantiekader|tolerantiekader}.',
+      en: 'You read the {t:Title block|title block} and the {t:Feature control frame|feature control frame}.' },
     { nl: 'Zonder dit meten maker en klant elk op hun eigen manier.',
       en: 'Without this maker and customer each measure in their own way.' },
   ],
@@ -440,8 +454,8 @@ const SAY = [
       en: 'The fifth station is Welding and joining. The frame is made of parts that must be joined.' },
     { nl: 'De naad smelt en stolt weer. Dan zijn de delen één stuk.',
       en: 'The seam melts and sets again. Then the parts are one piece.' },
-    { nl: 'Je gebruikt MIG en MAG en ook een {t:Lasmal|lasmal}.',
-      en: 'You use MIG and MAG and also a {t:Welding fixture|welding fixture}.' },
+    { nl: 'Je last met MIG of MAG, en gebruikt een {t:Lasmal|lasmal}.',
+      en: 'You weld with MIG or MAG, and use a {t:Welding fixture|welding fixture}.' },
     { nl: 'Zonder dit trekt het frame krom.',
       en: 'Without this the frame warps.' },
   ],
@@ -456,8 +470,8 @@ const SAY = [
       en: 'Without this the cover gets flash or sink marks.' },
   ],
   [ // s8 the map
-    { nl: 'Dit is de kaart van Engineering. De zes stations van Dingen maken liggen in één gebied.',
-      en: 'This is the map of Engineering. The six stations of Making things lie in one zone.' },
+    { nl: 'Dit is de hele kaart. De zes stations van Dingen maken liggen in één gebied.',
+      en: 'This is the whole map. The six stations of Making things lie in one zone.' },
     { nl: 'Eerst Materialen en sterkte. Daar gaat het om krachten, materiaalsterkte, vermoeiing en warmtebehandeling.',
       en: 'First Materials and strength. It covers forces, material strength, fatigue and heat treatment.' },
     { nl: 'Dan Verspanen. Daar gaat het om draaien, frezen en boren. Ook om CNC, gereedschap en opspanning.',
@@ -470,6 +484,10 @@ const SAY = [
       en: 'Then Welding and joining. It covers arc welding, spot welding and weld defects. Also bolts, adhesives and welding in production.' },
     { nl: 'Tot slot Spuitgieten. Daar gaat het om de machine, de cyclus en kunststoffen. Ook om fouten, instellen en matrijzen.',
       en: 'Finally Injection moulding. It covers the machine, the cycle and plastics. Also defects, setting and moulds.' },
+    { nl: 'Zo hangen ze samen. Bij sterkte kies je het materiaal, en de tekening legt de maten vast.',
+      en: 'That is how they connect. At strength you pick the material, and the drawing fixes the sizes.' },
+    { nl: 'Verspanen, lassen en spuitgieten maken de delen. De procesfabriek maakt wat erin gaat.',
+      en: 'Machining, welding and moulding make the parts. The process plant makes what goes in.' },
     { nl: 'Elk station is een module met vier niveaus per onderwerp. Begin bij het onderdeel dat jij moet maken.',
       en: 'Each station is a module with four levels per topic. Start with the part you have to make.' },
   ],
@@ -537,8 +555,8 @@ const css = PM_CSS + HALL_CSS + `
 ` + mapStyles(undefined, 'eng');
 
 const label = {
-  nl: 'Hal B van de fabriek, waar lijn 3 draait. Aan de achterwand de band van lijn 3; boven het begin van de band staat een nieuwe vuleenheid: een stalen frame van twee stijlen en een balk, met aan de balk een plaat met vier gaten en bovenop een lichte kunststof kap. Links achter staat een tank met een leiding naar het begin van de band. Voor links een tafel met een tekening: de plaat met zijn gaten. Jij, de engineer, staat bij de eenheid. Rechts een paneel, gemarkeerd als voorbeeld of schema. Eerst de vuleenheid met zijn vier delen, dan de route van materiaal tot lijn en de weg met zes stations. Dan per station een schema, twee namen van hulpmiddelen en, gestippeld, wat er misgaat zonder: bij Materialen en sterkte een balk onder last en een trekproef en een hardheidsmeting; bij Verspanen een blok dat een plaat met gaten wordt, met een vingerfrees en een spiraalboor; bij Procestechniek een tank in een stroom, in batches of continu, met een processchema en een regelkring; bij Tekeningen en regeling een tekening met vorm, maten en tolerantie, met een stempel en een tolerantiekader; bij Lassen en verbinden twee delen en een naad, met een lastoorts en een lasmal; bij Spuitgieten korrels, een matrijs en een kap, met een heetkanaal en een instelkaart. Aan het eind de kaart van Engineering: eerst het hele net van vier gebieden, dan het gebied Dingen maken met de zes stations verlicht, en dan plek voor plek van dichtbij.',
-  en: 'Hall B of the plant, where line 3 runs. Along the back wall the belt of line 3; over the start of the belt stands a new filling unit: a steel frame of two uprights and a beam, with a plate with four holes hanging from the beam and a light plastic cover on top. At the back left a tank with a pipe to the start of the belt. At the front left a table with a drawing: the plate with its holes. You, the engineer, stand by the unit. At the right a panel, marked as an example or a diagram. First the filling unit with its four parts, then the route from material to line and the road with six stations. Then per station a schema, two names of tools and, dashed, what goes wrong without it: at Materials and strength a beam under load and a tensile test and a hardness test; at Machining a block that becomes a plate with holes, with an end mill and a twist drill; at Process engineering basics a tank in a stream, in batches or continuous, with a process flow diagram and a control loop; at Drawings and control a drawing with shape, sizes and tolerance, with a title block and a feature control frame; at Welding and joining two parts and a seam, with a welding torch and a welding fixture; at Injection moulding granules, a mould and a cover, with a hot runner and a setting sheet. At the end the map of Engineering: first the whole map of four zones, then the zone Making things with the six stations lit, and then place by place up close.',
+  nl: 'Hal B van de fabriek, waar lijn 3 draait. Aan de achterwand de band van lijn 3 met dozen; boven het begin van de band staat een nieuwe vuleenheid, ongeveer zo hoog als een mens: een stalen frame van twee stijlen en een balk, met aan de balk een plaat met vier gaten boven de dozen en bovenop een lichte kunststof kap. Links achter staat een tank met een leiding over de band naar de plaat: de eenheid vult de dozen met product uit de tank. Voor links een tafel met een tekening: de plaat met zijn gaten. Jij, de engineer, staat rechts naast de eenheid. Rechts een paneel, gemarkeerd als voorbeeld of schema. Eerst de vuleenheid die de dozen vult, dan zijn vier delen, dan de route van materiaal tot lijn en de weg met zes stations. Dan per station een schema, twee namen van hulpmiddelen en, gestippeld, wat er misgaat zonder: bij Materialen en sterkte een balk onder last en een trekproef en een hardheidsmeting; bij Verspanen een blok dat een plaat met gaten wordt, met een vingerfrees en een spiraalboor; bij Procestechniek een tank in een stroom, in batches of continu, met een processchema en een massabalans; bij Tekeningen en regeling een tekening met vorm, maten en tolerantie, met een stempel en een tolerantiekader; bij Lassen en verbinden twee delen en een naad, met een lastoorts en een lasmal; bij Spuitgieten korrels, een matrijs en een kap, met een heetkanaal en een instelkaart. Aan het eind de kaart van Engineering: eerst het hele net van vier gebieden, dan het gebied Dingen maken met de zes stations verlicht, dan plek voor plek van dichtbij, en weer het gebied.',
+  en: 'Hall B of the plant, where line 3 runs. Along the back wall the belt of line 3 with cartons; over the start of the belt stands a new filling unit, about as tall as a person: a steel frame of two uprights and a beam, with a plate with four holes hanging from the beam above the cartons and a light plastic cover on top. At the back left a tank with a pipe over the belt to the plate: the unit fills the cartons with product from the tank. At the front left a table with a drawing: the plate with its holes. You, the engineer, stand to the right of the unit. At the right a panel, marked as an example or a diagram. First the filling unit that fills the cartons, then its four parts, then the route from material to line and the road with six stations. Then per station a schema, two names of tools and, dashed, what goes wrong without it: at Materials and strength a beam under load and a tensile test and a hardness test; at Machining a block that becomes a plate with holes, with an end mill and a twist drill; at Process engineering basics a tank in a stream, in batches or continuous, with a process flow diagram and a mass balance; at Drawings and control a drawing with shape, sizes and tolerance, with a title block and a feature control frame; at Welding and joining two parts and a seam, with a welding torch and a welding fixture; at Injection moulding granules, a mould and a cover, with a hot runner and a setting sheet. At the end the map of Engineering: first the whole map of four zones, then the zone Making things with the six stations lit, then place by place up close, and the zone again.',
 };
 
 const { data } = await defineFilm(spec, { svg, script: stageScript, css, kitCss: k.ISO_CSS, label });

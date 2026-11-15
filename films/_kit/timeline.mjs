@@ -845,14 +845,14 @@ const SAY = {
     [/\bDe plantmanager vraagt\b/g, 'De plant-menetsjer vraagt'],
     [/\b([Dd])oorverwijzingen\b/g, '$1oor-verwijzingen'],
     // the field film "Making things" (eng.field.making), a self-contained group at the end of the Dutch list, checked
-    // with phonemes through Piper's nl_NL-alex bridge: espeak-ng reads frame as "fra-me" (said freem), engineer as
-    // "eng-i-neer" (said entsjinier) and Engineering as "eng-i-neering" (said entsjinieering). Only this film's
-    // phrases: eng.mechanics.load, eng.machining.measuring and eng.joining.production say frame in other sentences
-    // and keep their voice. Verspanen, spuitgieten, vingerfrees, spiraalboor, heetkanaal, tolerantiekader,
-    // processchema, regelkring, lasmal, instelkaart, bramen, inzakplekken and the rest have rules above or are read
-    // right; no other film's spoken text changes
+    // with phonemes through Piper's nl_NL-alex bridge: espeak-ng reads frame as "fra-me" (said freem) and engineer as
+    // "eng-i-neer" (said entsjinier). Only this film's phrases: eng.mechanics.load, eng.machining.measuring and
+    // eng.joining.production say frame in other sentences and keep their voice. The closing says "de hele kaart", so
+    // the subject's English name needs no rule. Verspanen, spuitgieten, vingerfrees, spiraalboor, heetkanaal,
+    // tolerantiekader, processchema, massabalans, lasmal, instelkaart, bramen, inzakplekken and the rest have rules
+    // above or are read right; no other film's spoken text changes
     [/\b([Ee]en|[Hh]et) frame(?=, een plaat| moet de hele| bestaat uit| na maanden| krom)/g, '$1 freem'], [/\bFrame(?=, plaat en tank)/g, 'Freem'],
-    [/\bJij bent de engineer\b/g, 'Jij bent de entsjinier'], [/\bkaart van Engineering\b/g, 'kaart van Entsjinieering']],
+    [/\bJij bent de engineer\b/g, 'Jij bent de entsjinier']],
   en: [[/\brpm\b/g, 'revolutions per minute'], [/\bmm\/min\b/g, 'millimetres per minute'], [/\bm\/min\b/g, 'metres per minute'], [/µm\b/g, 'micrometres'],
     [/€\s?(\d[\d,]*(?:\.\d+)?)/g, '$1 euros'], [/(\d)\.0(?![\d])/g, '$1'], [/(\d)\s?mm\b/g, '$1 millimetres'], [/(\d)\s?min\b/g, '$1 minutes'], [/(\d)\s?%/g, '$1 percent'],
     [/Ø\s*/g, 'diameter '], [/(\d)\+(\d)/g, '$1 plus $2'], [/\s×\s/g, ' times '], [/\s\/\s/g, ' divided by '], [/\s=\s/g, ' is '], [/°/g, ' degrees'], [/\bRa\b/g, 'R a'], [/’/g, "'"],

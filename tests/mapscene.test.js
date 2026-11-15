@@ -104,10 +104,14 @@ test('mapStyles(css, subject): the zone colours of that subject, scoped to .subj
   assert.doesNotMatch(eng, /subject-map-wrap/);
   assert.doesNotMatch(eng, /subject-map-phone/, 'only the zone rules, not the phone layout');
   assert.ok(eng.startsWith(plain.trimEnd()), 'the plain rules come first, unchanged');
-  assert.throws(() => mapStyles(zoneFixture().replace(/\.subject-map-wrap \.z-making[^\n]*\n/, ''), 'eng'), /no colour for the zone making/);
+  assert.throws(() => mapStyles(zoneFixture().replace(/\.subject-map-wrap \.z-making[^\n]*\n/, ''), 'eng'), /no colour for the zone making/);  // review of the first Engineering film: a misspelt subject must not quietly drop the zone colours
+  assert.throws(() => mapStyles(zoneFixture(), 'Eng'), /no subject Eng/);
+  assert.throws(() => mapStyles(zoneFixture(), 'eng.making'), /no subject eng\.making/);
 });
 test('the real styles.css gives every zone of the Engineering map its colour in a film', async () => {
   const eng = mapStyles(undefined, 'eng');
   const map = (await import('../src/content/courses/maps/eng.js')).default;
-  for (const z of map.zones) assert.match(eng, new RegExp(`\\.subject-map \\.z-${z.field.split('.').pop()} \\{ --zone:`));
+  for (const z of map.zones) assert.match(eng, new RegExp(`\\.subject-map \\.z-${z.field.split('.').pop()} \\{ --zone:`));  // and no more than the map's zones: the kit's list is the map's, in the map's order
+  const rules = [...eng.slice(mapStyles().length).matchAll(/\.subject-map \.z-([a-z]+) \{/g)].map((m) => m[1]);
+  assert.deepEqual(rules, map.zones.map((z) => z.field.split('.').pop()));
 });

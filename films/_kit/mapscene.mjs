@@ -24,6 +24,7 @@ import { ROOT } from './build-film.mjs';
 import { mapCue, textUnits } from './assert.mjs';
 import { mapSvg } from '../../src/ui/subjectmap.js';
 import { STRINGS } from '../../src/i18n.js';
+import { SUBJECTS } from '../../src/content/courses/index.js';
 
 // The words the app uses for the four levels (src/i18n.js level_1 to level_4).
 export const levelWords = (lang) => [1, 2, 3, 4].map((n) => STRINGS[lang][`level_${n}`]);
@@ -197,6 +198,9 @@ const MAP_SEL = /\.subject-map(?![\w-])/;
 // checks this list against the map).
 const ZONES = { eng: ['plant', 'making', 'energy', 'digital'] };
 function zoneRules(css, subject) {
+  if (subject === undefined) return '';
+  // a misspelt subject ('Eng', a field id) would quietly drop the zone colours: only a subject of the index counts
+  if (!SUBJECTS.includes(subject)) throw new Error(`mapStyles: no subject ${subject} (one of ${SUBJECTS.join(', ')})`);
   if (!ZONES[subject]) return '';
   const found = new Map(topRules(css).filter(([sel]) => /^\.subject-map-wrap \.z-[a-z]+$/.test(sel)).map(([sel, raw]) => [sel.split('.z-')[1], raw]));
   return ZONES[subject].map((z) => {

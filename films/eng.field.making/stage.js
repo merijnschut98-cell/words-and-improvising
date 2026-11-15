@@ -96,7 +96,12 @@ const STAGE = (() => {
   const down = (y, x = 476) => arrow(x, y + 28, x, y + 40);
   const hole = (x, y, r = 4) => `<circle class="pm-dot" cx="${x}" cy="${y}" r="${r}"/>`;
 
-  // ---- s1: the opening. Beat 1 the unit's four parts, beat 2 the route, beat 3 the road.
+  // ---- s1: the opening. Beat 1 what the unit does (the tank's product into the cartons on the belt), beat 2 its four
+  // parts, beat 3 the route, beat 4 the road.
+  function fills(a) {
+    return op(a, step(56, 'Tank') + down(56) + step(96, tr('Vuleenheid', 'Filling unit')) + down(96)
+      + step(136, tr('Dozen op de band', 'Cartons on the belt'), 'pm-crit', 'pm-on'));
+  }
   function parts(a) {
     return op(a, [['Frame', 'Frame'], ['Plaat', 'Plate'], ['Tank', 'Tank'], ['Kap', 'Cover']]
       .map(([nl, en], i) => row(56 + i * 44, tr(nl, en), 'pm-card', 'pm-txt', 34)).join(''));
@@ -146,11 +151,10 @@ const STAGE = (() => {
       // tool 1: the process flow diagram, equipment as boxes with the stream between
       () => ['Tank', tr('Pomp', 'Pump'), tr('Vuller', 'Filler')].map((t, i) => rect(334 + i * 102, 128, 80, 44, i === 2 ? 'pm-crit' : 'pm-card', 6)
         + txt(374 + i * 102, 157, t, 22, 'middle', i === 2 ? 'pm-on' : 'pm-txt')).join('') + arrow(414, 150, 432, 150) + arrow(516, 150, 534, 150),
-      // tool 2: the control loop, measure, adjust, the valve, and back
-      () => [[tr('Meten', 'Measure'), 334, 96], [tr('Sturen', 'Adjust'), 444, 80], [tr('Klep', 'Valve'), 538, 80]]
-        .map(([t, x, bw], i) => rect(x, 120, bw, 40, i === 2 ? 'pm-crit' : 'pm-card', 6) + txt(x + bw / 2, 147, t, 22, 'middle', i === 2 ? 'pm-on' : 'pm-txt')).join('')
-        + arrow(430, 140, 442, 140) + arrow(524, 140, 536, 140)
-        + '<path class="pm-link" d="M578 160V192H382V164"/><path class="pm-arrow" d="M376 170L382 164L388 170"/>',
+      // tool 2: the mass balance, a dashed box around a step with the kilos in and out
+      () => rect(430, 112, 102, 96, 'pm-out', 8) + rect(446, 128, 70, 64, 'pm-card', 6)
+        + arrow(340, 160, 424, 160) + arrow(538, 160, 612, 160)
+        + txt(340, 144, tr('kg in', 'kg in', 84), 22, 'start', 'pm-big') + txt(612, 144, tr('kg uit', 'kg out', 80), 22, 'end', 'pm-big'),
     ],
     [ // s5 Drawings and control
       // a sheet with the plate drawn on it: outline, holes, a dimension line and notes
@@ -194,7 +198,7 @@ const STAGE = (() => {
   const TOOLS = [
     [tr('Trekproef', 'Tensile test'), tr('Hardheidsmeting', 'Hardness test')],
     [tr('Vingerfrees', 'End mill'), tr('Spiraalboor', 'Twist drill')],
-    [tr('Processchema', 'Process flow diagram'), tr('Regelkring', 'Control loop')],
+    [tr('Processchema', 'Process flow diagram'), tr('Massabalans', 'Mass balance')],
     [tr('Stempel', 'Title block'), tr('Tolerantiekader', 'Feature control frame')],
     ['MIG/MAG', tr('Lasmal', 'Welding fixture')],
     [tr('Heetkanaal', 'Hot runner'), tr('Instelkaart', 'Setting sheet')],
@@ -202,7 +206,7 @@ const STAGE = (() => {
   const WITHOUT = [
     tr('breuk na maanden', 'break after months'),
     tr('gaten verschoven', 'holes shifted'),
-    tr('temperatuur loopt weg', 'temperature drifts'),
+    tr('product verdwijnt', 'product goes missing'),
     tr('meten verschilt', 'measuring differs'),
     tr('frame trekt krom', 'frame warps'),
     tr('braam, inzakplek', 'flash, sink marks'),
@@ -237,16 +241,18 @@ const STAGE = (() => {
   // the left column is shown with the middle one, the others with the right column, so no lit label is cut by the
   // edge of the stage; both rows of the zone are in view, so the zone's band fills the stage's height
   const zoom = (cx) => ({ s: 1.5, x: cx < MAPSZ[0] / 3 ? 0 : W - MAPSZ[0] * 1.5, y: H / 2 - ZC * 1.5 });
-  const VIEWS = [ZONEV, ...MAPZ.map((m) => zoom(m[0])), ZONEV];
+  // after the last place: back to the zone, for how the stations connect and where to start
+  const VIEWS = [ZONEV, ...MAPZ.map((m) => zoom(m[0]))];
+  const view = (b) => VIEWS[b] || ZONEV;
   function closing(b, p) {
-    const from = b === 0 ? WHOLE : VIEWS[b - 1];
-    const to = VIEWS[b];
+    const from = b === 0 ? WHOLE : view(b - 1);
+    const to = view(b);
     const z = b === 0 ? span(p, 0.45, 0.95) : span(p, 0, 0.45);
     const v = { s: lerp(from.s, to.s, z), x: lerp(from.x, to.x, z), y: lerp(from.y, to.y, z) };
     move(E.mapG, `translate(${f1(v.x)} ${f1(v.y)}) scale(${v.s.toFixed(4)})`);
   }
 
-  const PANEL = ['goalB', 'routeB', 'forB', 't1B', 't2B', 'withoutB', 'roadB'];
+  const PANEL = ['flowB', 'goalB', 'routeB', 'forB', 't1B', 't2B', 'withoutB', 'roadB'];
   function render(si, u) {
     camera(si, u);
     const { b, p } = beatOf(si, u);
@@ -259,10 +265,11 @@ const STAGE = (() => {
     show(E.hud, isMap ? 0 : 1);
     show(E['pp-jij'], si === 0 ? 1 : 0); // you stand by the unit in the opening only; later you would hide the tank or the table
     if (si === 0) {
-      const t = [tr('De vuleenheid', 'The filling unit'), tr('De route', 'The route'), tr('De weg', 'The road')][b];
-      head = txt(334, 38, t, 22, 'start', 'pm-big') + txt(618, 38, b === 0 ? tr('voorbeeld', 'example') : tr('schema', 'diagram'), 22, 'end', 'pm-mute');
-      if (b === 0) o.goalB = parts(span(p, 0.05, 0.4));
-      else if (b === 1) o.routeB = route(span(p, 0.05, 0.4));
+      const t = [tr('De vuleenheid', 'The filling unit'), tr('De delen', 'The parts'), tr('De route', 'The route'), tr('De weg', 'The road')][b];
+      head = txt(334, 38, t, 22, 'start', 'pm-big') + txt(618, 38, b <= 1 ? tr('voorbeeld', 'example') : tr('schema', 'diagram'), 22, 'end', 'pm-mute');
+      if (b === 0) o.flowB = fills(span(p, 0.05, 0.4));
+      else if (b === 1) o.goalB = parts(span(p, 0.05, 0.4));
+      else if (b === 2) o.routeB = route(span(p, 0.05, 0.4));
       else {
         const r = roadRows(TITLES.map((tt, i) => span(p, 0.05 + i * 0.12, 0.3 + i * 0.12)));
         r.rows.forEach((x, i) => { rd[i] = x; });
