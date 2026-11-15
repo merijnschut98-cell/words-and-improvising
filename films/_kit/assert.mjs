@@ -9,14 +9,26 @@ export const TARGET_BYTES = 300 * 1024;
 // and 25 s of narration (about 60 words) are enough.
 export const MIN_TOTAL = 25;
 export const MIN_SCENES = 2;
-export const MAX_SCENES = 9;
-// v14b: no longer capped at 150 s; Basis 3–5 min, higher levels 2–4 min.
+// Task 17, step K (Merijn, D1): one extra scene per lesson with gaps, up to 12 scenes (was 9).
+export const MAX_SCENES = 12;
+// Task 17, step K: the designed length (FILM_TOTAL_MAX) and the narration
+// (NARRATION_MAX) may reach the 360 s a rendered video may last per language
+// (tests/filmvideo.test.js); were 300 and 330 s, set for the old "3 to 5
+// minutes" rule. A film is still as long as its content needs: caps, not targets.
+export const FILM_TOTAL_MAX = 360;
+// MAX_TOTAL keeps the old cap, 300 s, as a sizing value only (checkFilm holds a
+// film to FILM_TOTAL_MAX): ten pm lesson films (agile.backlog, agile.forecast,
+// devops.incident, devops.pipeline, devops.postmortem, itproject.cutover,
+// itproject.migration, itproject.mvp, itproject.uat, scaled.hybrid) size their
+// scenes with Math.min(MAX_TOTAL, words / 2.5) in their build, so raising it
+// would change seven of their pages. A builder who completes one of them may
+// import FILM_TOTAL_MAX there instead.
 export const MAX_TOTAL = 300;
 // The narration's spoken length, estimated from its words (Piper voices speak
 // about 2.5 words a second); the real length comes from the audio.
 export const NARRATION_WPS = 2.5;
 export const NARRATION_MIN = 25;
-export const NARRATION_MAX = 330;
+export const NARRATION_MAX = 360;
 export const narrationWords = (data, lang) => (data.scenes || []).reduce((a, s) => a + (s.beats || []).reduce((n, b) => n + (b.voice ? wordsOf(b.voice[lang]) : 0), 0), 0);
 // 3 lines of 16 px text in the film's frame inside a lesson card on a 390 px
 // screen (about 320 px wide; measured: 117 characters ran to 4 lines)
@@ -114,6 +126,16 @@ export function checkFilm(data, { lessons, levelOf, wiredBy = [], module: meta, 
   // module and field films: the narration guard, and the drawn labels fit
   if (intro || fieldFilm) errs.push(...checkNarration(data));
   if (intro || fieldFilm) errs.push(...checkLabels(data, stageText));
+  // Task 17, lesson films: every lesson point of a wired lesson is claimed by a
+  // beat (a page with points; tests/fixtures/points-pending.json lists the rest),
+  // and what a builder adds to a legacy film is held to the new-film rules
+  if (intro || fieldFilm) {
+    if (data.points !== undefined || data.reading !== undefined) errs.push('points: a module or field film carries no lesson points');
+    if (data.checkScope !== undefined) errs.push('checkScope: only for a lesson film; a module or field film is checked whole');
+  } else {
+    if (data.points !== undefined || data.reading !== undefined) errs.push(...checkPoints(data, { lessons, wiredBy }));
+    if (data.checkScope !== undefined) errs.push(...checkScope(data, stageText));
+  }
   if (!intro && !fieldFilm) for (const id of served) {
     const l = lessons.nl.get(id);
     if (!l) continue;
@@ -203,7 +225,7 @@ export function checkFilm(data, { lessons, levelOf, wiredBy = [], module: meta, 
     if (lc(t.nl) !== lc(t.en) && !glossed.has(k)) errs.push(`term ${t.nl}: the Dutch caption never names its English word`);
   }
 
-  // length: each scene can be read; the film is MIN_TOTAL–MAX_TOTAL s
+  // length: each scene can be read; the film is MIN_TOTAL–FILM_TOTAL_MAX s
   let total = 0;
   for (const s of scenes) {
     total += s.dur;
@@ -216,7 +238,7 @@ export function checkFilm(data, { lessons, levelOf, wiredBy = [], module: meta, 
     s.beats.forEach((b, i) => { if (b.still !== undefined && !(b.still >= 0 && b.still <= 1)) errs.push(`scene ${s.id} beat ${i + 1}: still must be in 0..1`); });
     if (![1, 2, 3, 4].includes(s.level)) errs.push(`scene ${s.id}: level must be 1–4`);
   }
-  if (total < MIN_TOTAL || total > MAX_TOTAL) errs.push(`film is ${total} s, must be ${MIN_TOTAL}–${MAX_TOTAL}`);
+  if (total < MIN_TOTAL || total > FILM_TOTAL_MAX) errs.push(`film is ${total} s, must be ${MIN_TOTAL}–${FILM_TOTAL_MAX}`);
   return errs;
 }
 
@@ -443,4 +465,357 @@ export function checkFocus(data, keys) {
     });
   }
   return out;
+}
+
+// ---------------------------------------------------------------- Task 17, step K: lesson points
+// Plan: docs/superpowers/plans/2026-11-15-task17-complete-films.md, sections 1.1 and 3.
+// A lesson film replaces the reading step (lessonPhases), so every lesson point of
+// every lesson wired to it is in the film: a beat says it (voice) or shows it
+// (caption), with its numbers. A lesson point is a teach chunk (teach[i-1] split on
+// blank lines: t<i>.<j>), a chunk of the worked example's set-up (ex.text.<j>), its
+// question (ex.ask) or a chunk of its answer (ex.reveal.<j>). Terms keep their own
+// coverage rule above. A beat names what it carries (points: ['offsets#ex.reveal.2']
+// in the film's build); the build writes page data points: [{ key, fp, beats }],
+// key '<lesson id>#<point id>', fp the fingerprint of the chunk's text, beats
+// '<scene id>.<beat number>'. A point may be left to reading (reading: [{ key, fp,
+// reason, note | of }]) only as a pointer to another lesson or level (note: where it
+// points) or as a word for word duplicate of a point of another lesson the film
+// claims (of: that point's key): Merijn, D4.
+const chunksOf = (text) => String(text || '').split(/\n\s*\n/).map((c) => c.trim()).filter(Boolean);
+export function pointsOf(l) {
+  const pts = [];
+  (l.teach || []).forEach((t, i) => chunksOf(t).forEach((c, j) => pts.push({ id: `t${i + 1}.${j + 1}`, kind: 'teach', text: c })));
+  const e = l.example || {};
+  chunksOf(e.text).forEach((c, j) => pts.push({ id: `ex.text.${j + 1}`, kind: 'example', text: c }));
+  if (String(e.ask || '').trim()) pts.push({ id: 'ex.ask', kind: 'example', text: String(e.ask).trim() });
+  chunksOf(e.reveal).forEach((c, j) => pts.push({ id: `ex.reveal.${j + 1}`, kind: 'example', text: c }));
+  return pts;
+}
+// FNV-1a (32 bit) of the chunk's UTF-8 text with its spacing collapsed, 8 hex: pins the point by value,
+// as the term check pins a term by its name.
+export function fingerprint(text) {
+  let h = 0x811c9dc5;
+  for (const byte of new TextEncoder().encode(String(text).replace(/\s+/g, ' ').trim())) h = Math.imul(h ^ byte, 0x01000193) >>> 0;
+  return h.toString(16).padStart(8, '0');
+}
+// The scoring of the inventory (scratchpad task17/inventory.mjs), shared by checkPoints and
+// films/_kit/points-draft.mjs: distinctive numbers (decimals and integers above 12; Dutch 12.000 and
+// 0,42 read as 12000 and 0.42) and content stems (words of 5 or more letters outside a stoplist, the
+// first 6 letters).
+export const POINT_STOP = new Set(('alleen alles andere anders boven daarom daarna daarbij daarmee dames dezelfde doordat dus eerst eigen elke enkele erger even gaat geeft hebben heeft hierbij hoeveel hoewel iedere iemand ieder kunnen komen krijgt laten maakt maken meeste minder misschien moeten mogen nadat namelijk niets nodig omdat onder ongeveer staat steeds terwijl tegen tussen vaak veel verder vooral waarom wanneer welke wordt worden zelfs zonder zoals zullen zitten zeker eerste tweede derde vierde jouw jullie hebt hadden zouden zodat zowel zelf houdt staan gaan doet doen weten welk precies echte echt goede grote kleine nieuwe nieuw andere ander keer twee drie vier waar waarbij daar hier want maar niet ook nooit altijd vraag vragen antwoord').split(' '));
+const pointWords = (s) => String(s).toLowerCase().match(/[\p{L}][\p{L}-]*/gu) || [];
+export const pointStems = (s) => [...new Set(pointWords(s).filter((w) => w.length >= 5 && !POINT_STOP.has(w)).map((w) => w.replace(/-/g, '').slice(0, 6)))];
+export function pointNumbers(s) {
+  const out = new Set();
+  for (const m of String(s).matchAll(/(?<![\p{L}\d])(\d{1,3}(?:\.\d{3})+|\d+)(?:,(\d+))?/gu)) {
+    const v = Number(m[1].replace(/\./g, '') + (m[2] ? `.${m[2]}` : ''));
+    if (Number.isFinite(v) && !(Number.isInteger(v) && v <= 12)) out.add(String(v));
+  }
+  return [...out];
+}
+export const pointSentences = (chunk) => String(chunk).split(/(?<=[.?!])\s+(?=[A-Z0-9€“"'(])/u).map((x) => x.trim()).filter(Boolean);
+// What a beat says or shows in Dutch: its caption, its readout and its narration as written.
+export const beatTextNl = (b) => [b.text && b.text.nl, b.read && b.read.nl, b.say && Array.isArray(b.say.nl) ? b.say.nl.map((p) => (typeof p === 'string' ? p : p.t)).join('') : ''].filter(Boolean).join('\n');
+// Why the beats do not plausibly carry the point ('' when they do): at least half of its distinctive
+// numbers, and two of its content stems (one for a one-sentence point). The review checks the meaning.
+export function pointGap(text, beats) {
+  const said = beats.map(beatTextNl).join('\n');
+  const why = [];
+  const nums = pointNumbers(text);
+  const have = new Set(pointNumbers(said));
+  const missing = nums.filter((n) => !have.has(n));
+  if (nums.length && (nums.length - missing.length) * 2 < nums.length) why.push(`numbers ${missing.join(' ')} not said or shown`);
+  const stems = pointStems(text);
+  const heard = new Set(pointStems(said));
+  const need = Math.min(stems.length, pointSentences(text).length > 1 ? 2 : 1);
+  const got = stems.filter((x) => heard.has(x)).length;
+  if (got < need) why.push(`${got} of its words, needs ${need}`);
+  return why.join('; ');
+}
+
+export const READING_REASONS = ['pointer', 'duplicate'];
+// data: a lesson film's page data. lessons: { nl, en } maps. wiredBy: the lessons that wire the film
+// (their points must all be claimed or left to reading). A lesson wired with a start scene (film:
+// '<id>#5') starts the film there, so its points are claimed in scene 5 or later.
+export function checkPoints(data, { lessons, wiredBy = [] }) {
+  const errs = [];
+  const served = new Set(data.lessons || []);
+  const beatAt = new Map();
+  (data.scenes || []).forEach((s, si) => (s.beats || []).forEach((b, bi) => beatAt.set(`${s.id}.${bi + 1}`, { si, b })));
+  const pointAt = (key) => {
+    const s = String(key || '');
+    const i = s.lastIndexOf('#');
+    const lid = s.slice(0, Math.max(i, 0));
+    const l = i > 0 && served.has(lid) ? lessons.nl.get(lid) : undefined;
+    if (!l) return { lid, err: `${lid || s} is no lesson of the film` };
+    return { lid, p: pointsOf(l).find((x) => x.id === s.slice(i + 1)) };
+  };
+  const startOf = (lid) => {
+    const [film, n] = String((lessons.nl.get(lid) || {}).film || '').split('#');
+    return film === data.id && n ? Number(n) : 1;
+  };
+  const claimed = new Map();
+  for (const c of data.points || []) {
+    const where = `point ${c.key}`;
+    if (claimed.has(c.key)) { errs.push(`${where} is claimed twice in the data`); continue; }
+    claimed.set(c.key, c);
+    const at = pointAt(c.key);
+    if (at.err) { errs.push(`${where}: ${at.err}`); continue; }
+    if (!at.p) { errs.push(`${where} is no longer in the lesson; rebuild the film`); continue; }
+    if (fingerprint(at.p.text) !== c.fp) { errs.push(`${where} changed in the lesson; rebuild the film`); continue; }
+    const refs = c.beats || [];
+    if (!refs.length) { errs.push(`${where}: names no beat`); continue; }
+    const start = startOf(at.lid);
+    const found = [];
+    for (const ref of refs) {
+      const hit = beatAt.get(ref);
+      if (!hit) { errs.push(`${where}: beat ${ref} does not exist`); continue; }
+      if (hit.si + 1 < start) errs.push(`${where}: beat ${ref} comes before scene ${start}, where ${at.lid} starts the film`);
+      found.push(hit.b);
+    }
+    if (found.length === refs.length) {
+      const why = pointGap(at.p.text, found);
+      if (why) errs.push(`${where}: beat${refs.length > 1 ? 's' : ''} ${refs.join(', ')} ${refs.length > 1 ? 'do' : 'does'} not carry it (${why})`);
+    }
+  }
+  const read = new Map();
+  for (const r of data.reading || []) {
+    const where = `reading ${r.key}`;
+    if (read.has(r.key)) { errs.push(`${where} is listed twice`); continue; }
+    read.set(r.key, r);
+    if (claimed.has(r.key)) errs.push(`point ${r.key} is claimed by a beat and left to reading`);
+    const at = pointAt(r.key);
+    if (at.err) { errs.push(`${where}: ${at.err}`); continue; }
+    if (!at.p) { errs.push(`point ${r.key} is no longer in the lesson; rebuild the film`); continue; }
+    if (fingerprint(at.p.text) !== r.fp) { errs.push(`point ${r.key} changed in the lesson; rebuild the film`); continue; }
+    if (!READING_REASONS.includes(r.reason)) { errs.push(`${where}: the reason must be pointer or duplicate${r.reason ? `, not ${r.reason}` : ''} (D4: only pointers and word for word duplicates stay out of the film)`); continue; }
+    if (r.reason === 'pointer') {
+      if (!String(r.note || '').trim()) errs.push(`${where}: a pointer needs a note (the lesson or level it points to)`);
+      continue;
+    }
+    if (!r.of) { errs.push(`${where}: a duplicate names its twin (of: '<lesson id>#<point id>')`); continue; }
+    const twin = pointAt(r.of);
+    if (twin.err) errs.push(`${where}: its twin ${r.of}: ${twin.err}`);
+    else if (twin.lid === at.lid) errs.push(`${where}: a duplicate names a point of another lesson`);
+    else if (!twin.p) errs.push(`${where}: its twin ${r.of} is no longer in the lesson`);
+    else if (fingerprint(twin.p.text) !== fingerprint(at.p.text)) errs.push(`${where}: not word for word the same as ${r.of}`);
+    else if (!claimed.has(r.of)) errs.push(`${where}: its twin ${r.of} is in no beat`);
+  }
+  for (const lid of wiredBy) {
+    const l = served.has(lid) ? lessons.nl.get(lid) : undefined;
+    if (!l) continue; // checkFilm reports a wired lesson the film does not serve
+    for (const p of pointsOf(l)) {
+      const key = `${lid}#${p.id}`;
+      if (!claimed.has(key) && !read.has(key)) errs.push(`points: ${key} is in no beat and not left to reading`);
+    }
+  }
+  return errs;
+}
+
+// Page size (Task 17): the 300 KB target is a failure for a page with points, so a split film stays
+// under it. The three films that are extended and were over it before Task 17 may grow 25 KB (plan,
+// risk 4); a split film keeps no allowance, also where it keeps the old id.
+export const OVER_TARGET_BEFORE = { 'eng.machining.overview': 353316, 'eng.moulding.cycle': 332170, 'eng.machining.milling': 324274 };
+export const POINTS_GROWTH = 25 * 1024;
+export const pointsByteLimit = (id) => (OVER_TARGET_BEFORE[id] ? OVER_TARGET_BEFORE[id] + POINTS_GROWTH : TARGET_BYTES);
+export function checkPageSize(data, bytes) {
+  if (bytes > MAX_BYTES) return [`film ${data.id} is ${bytes} bytes, over the ${MAX_BYTES} cap`];
+  const limit = pointsByteLimit(data.id);
+  if (data.points !== undefined && bytes > limit) return [`film ${data.id} is ${bytes} bytes; a page with points stays at or under ${limit} (${OVER_TARGET_BEFORE[data.id] ? 'its size before Task 17 plus 25 KB' : 'the 300 KB target'})`];
+  return [];
+}
+
+// The rollout gate (Task 17): a lesson film page without points must be in the pending list
+// (tests/fixtures/points-pending.json); the list only shrinks. pages: Map id → page data;
+// inventory: the lesson films of the Task 17 inventory (docs/superpowers/reviews/2026-11-15-task17-films.json).
+export const PENDING_FILE = 'tests/fixtures/points-pending.json';
+export function checkPointsGate(pages, pending = [], inventory = []) {
+  const errs = [];
+  const seen = new Set();
+  const lessonFilm = (d) => Boolean(d) && d.module === undefined && d.field === undefined;
+  for (const id of pending) {
+    if (seen.has(id)) { errs.push(`${id} is listed twice in ${PENDING_FILE}`); continue; }
+    seen.add(id);
+    const d = pages.get(id);
+    if (!lessonFilm(d)) errs.push(`${id} is no shipped lesson film: remove it from ${PENDING_FILE}`);
+    else if (d.points !== undefined) errs.push(`${id} has points now: remove it from ${PENDING_FILE}`);
+    if (!inventory.includes(id)) errs.push(`${id} is not one of the lesson films of the Task 17 inventory; ${PENDING_FILE} only shrinks`);
+  }
+  for (const [id, d] of pages) if (lessonFilm(d) && d.points === undefined && !seen.has(id)) errs.push(`${id}: a lesson film without points; claim its lesson points (beat points:, Task 17); ${PENDING_FILE} only shrinks`);
+  return errs;
+}
+
+// checkScope (Task 17): a builder who completes a legacy lesson film declares what it adds
+// (defineFilm({ ..., checkScope: { scenes: ['s4b'], beats: ['s5.4'], stageFns: ['extraOffsets'] } })).
+// Those beats get the lesson-film narration guard and must name their focus; those stage functions
+// get the label fit (every drawn label a tr('nl', 'en'[, width]) pair, measured in both languages).
+// The rest of the legacy film is not checked: run whole, all 96 lesson films fail both checks.
+// The lesson-film guard: no colon, semicolon, parentheses or quotes, none of the symbols the voice
+// reads aloud and spokenOf does not turn into words, at most two commas in a sentence (a comma inside
+// a number does not count) and the Dutch misread list; digits, %, units and the signs × ÷ = + / stay
+// allowed, because spokenOf says them as words.
+export const LESSON_NARRATION_SYMBOLS = /[:;()“”"‘<>≈→~&]/;
+export const SCOPE_FIELDS = ['scenes', 'beats', 'stageFns'];
+export function checkScope(data, stageText = '') {
+  const errs = [];
+  const sc = data.checkScope || {};
+  for (const k of Object.keys(sc)) if (!SCOPE_FIELDS.includes(k)) errs.push(`checkScope: unknown field ${k}`);
+  const scenes = new Set(sc.scenes || []);
+  const beats = new Set(sc.beats || []);
+  const all = new Set((data.scenes || []).flatMap((s) => (s.beats || []).map((b, i) => `${s.id}.${i + 1}`)));
+  for (const id of scenes) if (!(data.scenes || []).some((s) => s.id === id)) errs.push(`checkScope: no scene ${id}`);
+  for (const ref of beats) if (!all.has(ref)) errs.push(`checkScope: no beat ${ref}`);
+  for (const s of data.scenes || []) {
+    (s.beats || []).forEach((b, i) => {
+      if (!scenes.has(s.id) && !beats.has(`${s.id}.${i + 1}`)) return;
+      const where = `scene ${s.id} beat ${i + 1}`;
+      if (!('focus' in b)) errs.push(`${where}: an added beat names its focus (the part(s) it explains, or focus: null)`);
+      if (!b.say) return;
+      for (const lang of ['nl', 'en']) {
+        const plain = (b.say[lang] || []).map((p) => (typeof p === 'string' ? p : p.t)).join('');
+        if (LESSON_NARRATION_SYMBOLS.test(plain)) errs.push(`narration: a colon, parentheses, quotes or a symbol the voice reads aloud in "${plain.slice(0, 50)}" (${where}, ${lang})`);
+        if (lang === 'nl' && NL_MISREAD.test(plain)) errs.push(`narration: a word the Dutch voice misreads in "${plain.slice(0, 50)}" (${where})`);
+        for (const sentence of plain.split(/[.?!]\s+/)) if ((sentence.match(/(?<!\d),|,(?!\d)/g) || []).length > MAX_COMMAS) errs.push(`narration: more than two commas in "${sentence.slice(0, 50)}" (${where}, ${lang})`);
+      }
+    });
+  }
+  for (const name of sc.stageFns || []) {
+    const src = stageFnSource(stageText, name);
+    if (src === null) { errs.push(`checkScope: stage function ${name} is not in the stage script`); continue; }
+    for (const e of checkLabels({}, src)) errs.push(`stage function ${name}: ${e}`);
+    for (const lab of untranslatedLabels(src, stageText)) errs.push(`stage function ${name}: the label '${lab}' is not written as tr('nl', 'en'); draw every label of an added scene as tr('nl', 'en'[, width]), wrapped with wrapUnits, so its fit is measured in both languages`);
+  }
+  return errs;
+}
+
+// A small scanner for the stage script: skips strings, template literals (with ${} inside) and comments.
+function skipQuoted(text, i) {
+  const q = text[i];
+  for (i++; i < text.length; i++) {
+    const c = text[i];
+    if (c === '\\') { i++; continue; }
+    if (q === '`' && c === '$' && text[i + 1] === '{') { i = closeOf(text, i + 1) - 1; continue; }
+    if (c === q) return i + 1;
+  }
+  return i;
+}
+function skipComment(text, i) {
+  if (text[i] !== '/') return i;
+  if (text[i + 1] === '/') { const e = text.indexOf('\n', i); return e < 0 ? text.length : e; }
+  if (text[i + 1] === '*') { const e = text.indexOf('*/', i + 2); return e < 0 ? text.length : e + 2; }
+  return i;
+}
+// text[i] is ( [ or {: the index after its closing bracket
+function closeOf(text, i) {
+  let depth = 0;
+  while (i < text.length) {
+    const c = text[i];
+    if (c === '"' || c === "'" || c === '`') { i = skipQuoted(text, i); continue; }
+    const k = skipComment(text, i);
+    if (k !== i) { i = k; continue; }
+    if ('([{'.includes(c)) depth++;
+    else if (')]}'.includes(c) && --depth === 0) return i + 1;
+    i++;
+  }
+  return i;
+}
+// The source of a named function of the stage script: a declaration (function name(...) {...}) or an
+// arrow assigned to a const, let or var, with a block or an expression body. null when not found.
+// The source with its comments blanked (same length), so a comment never reads as a declaration.
+function uncommented(text) {
+  let out = '';
+  for (let i = 0; i < text.length;) {
+    const c = text[i];
+    if (c === '"' || c === "'" || c === '`') { const e = skipQuoted(text, i); out += text.slice(i, e); i = e; continue; }
+    const k = skipComment(text, i);
+    if (k !== i) { out += text.slice(i, k).replace(/[^\n]/g, ' '); i = k; continue; }
+    out += c;
+    i++;
+  }
+  return out;
+}
+export function stageFnSource(src, name) {
+  const text = String(src);
+  const id = String(name).replace(/[$]/g, '\\$');
+  const m = new RegExp(`\\bfunction\\s+${id}\\s*\\(|\\b(?:const|let|var)\\s+${id}\\s*=\\s*(?:async\\s*)?(?:\\([^()]*\\)|[\\w$]+)\\s*=>`).exec(uncommented(text));
+  if (!m) return null;
+  let i = m.index + m[0].length;
+  if (m[0].startsWith('function')) {
+    i = closeOf(text, i - 1);
+    while (/\s/.test(text[i] || '')) i++;
+    return text[i] === '{' ? text.slice(m.index, closeOf(text, i)) : null;
+  }
+  while (/\s/.test(text[i] || '')) i++;
+  if (text[i] === '{') return text.slice(m.index, closeOf(text, i));
+  // an expression body ends at a ; or , or closing bracket at its own depth, or at a line break that
+  // does not continue it
+  let j = i;
+  while (j < text.length) {
+    const c = text[j];
+    if (c === '"' || c === "'" || c === '`') { j = skipQuoted(text, j); continue; }
+    const k = skipComment(text, j);
+    if (k !== j) { j = k; continue; }
+    if ('([{'.includes(c)) { j = closeOf(text, j); continue; }
+    if (';,)]}'.includes(c)) break;
+    if (c === '\n') {
+      const before = text.slice(i, j).trimEnd().slice(-1);
+      const after = text.slice(j).trimStart()[0] || '';
+      if (!/[+\-*/=?:,(&|.]/.test(before) && !/[+\-*/?:.&|]/.test(after)) break;
+    }
+    j++;
+  }
+  return text.slice(m.index, j).trimEnd();
+}
+// Literals that are no label: anchors, language codes and class lists (every word hyphenated).
+const NO_LABEL = /^(?:start|middle|end|nl|en|[\w]+(?:-[\w]+)+(?:\s+[\w]+(?:-[\w]+)+)*)$/;
+const labelLike = (s) => /\p{L}/u.test(s) && !NO_LABEL.test(s.trim());
+// The string literals (and the static parts of template literals) in a stretch of source.
+function literalsIn(text) {
+  const out = [];
+  for (let i = 0; i < text.length;) {
+    const c = text[i];
+    if (c === '"' || c === "'" || c === '`') {
+      const end = skipQuoted(text, i);
+      let body = text.slice(i + 1, end - 1);
+      if (c === '`') body = body.replace(/\$\{[\s\S]*?\}/g, ' ');
+      out.push(body.replace(/\\(.)/g, '$1').trim());
+      i = end;
+      continue;
+    }
+    const k = skipComment(text, i);
+    i = k !== i ? k : i + 1;
+  }
+  return out;
+}
+// The drawn labels of a stage function that are not tr('nl', 'en') pairs: text written into a
+// <text> element, and label-like literals passed to a function of the stage that draws a <text>.
+export function untranslatedLabels(fnSrc, stageText = '') {
+  const strip = (s) => {
+    let out = '';
+    let i = 0;
+    for (const m of s.matchAll(/\btr\s*\(/g)) {
+      if (m.index < i) continue;
+      out += s.slice(i, m.index);
+      i = closeOf(s, m.index + m[0].length - 1);
+      out += 'tr()';
+    }
+    return out + s.slice(i);
+  };
+  const body = strip(String(fnSrc));
+  const found = [];
+  for (const m of body.matchAll(/<text\b[^>]*>([^<]*)<\/text>/g)) {
+    const t = m[1].replace(/\$\{[^}]*\}/g, '').trim();
+    if (/\p{L}/u.test(t)) found.push(t);
+  }
+  const src = String(stageText || fnSrc);
+  const names = new Set([...uncommented(src).matchAll(/\bfunction\s+([\w$]+)\s*\(|\b(?:const|let|var)\s+([\w$]+)\s*=\s*(?:async\s*)?(?:\([^()]*\)|[\w$]+)\s*=>/g)].map((m) => m[1] || m[2]));
+  const helpers = [...names].filter((n) => n !== 'tr' && (stageFnSource(src, n) || '').includes('<text'));
+  for (const h of helpers) {
+    for (const m of body.matchAll(new RegExp(`(?<![\\w$.])${h.replace(/[$]/g, '\\$')}\\s*\\(`, 'g'))) {
+      if (/function\s*$/.test(body.slice(0, m.index))) continue;
+      const open = m.index + m[0].length - 1;
+      for (const lit of literalsIn(body.slice(open + 1, closeOf(body, open) - 1))) if (labelLike(lit)) found.push(lit);
+    }
+  }
+  return [...new Set(found)];
 }

@@ -58,6 +58,26 @@
 //   The narration guard and the label fit apply (station titles fit a row of the
 //   road, STATION_UNITS). The data carries `field` and `stations` (with the
 //   index's module titles); the field names it (`film:`), sw.js precaches it.
+// - Lesson points (Task 17, plan docs/superpowers/plans/2026-11-15-task17-complete-films.md):
+//   a beat names the lesson points it carries, `points: ['offsets#t4.2',
+//   'offsets#ex.reveal.2']` (the lesson by the last part of its id, or its full
+//   id; a one-lesson film may write 't4.2'). Point ids come from pointsOf in
+//   assert.mjs: t<i>.<j> (teach block i, chunk j between blank lines),
+//   ex.text.<j>, ex.ask, ex.reveal.<j>. `reading: [{ point, reason: 'pointer',
+//   note }]` or `{ point, reason: 'duplicate', of: '<lesson id>#<point id>' }`
+//   leaves a point to reading (Merijn, D4: only a pointer to another lesson or
+//   level, or a word for word duplicate of a point of another lesson the film
+//   claims). The page data then carries `points: [{ key, fp, beats }]` (and
+//   `reading`), checked by checkPoints: every point of every lesson that wires
+//   the film claimed or left to reading, each claim still the lesson's text
+//   (fp), in a beat at or after the lesson's start scene, and plausibly carried
+//   (its numbers and some of its words). A page with points stays under the
+//   300 KB target. films/_kit/points-draft.mjs <film id> drafts the map.
+//   `checkScope: { scenes: ['s4b'], beats: ['s5.4'], stageFns: ['extraOffsets'] }`
+//   names what a builder adds to a legacy lesson film: those beats get the
+//   lesson-film narration guard and must name their focus, those functions of
+//   the stage script the label fit (checkScope in assert.mjs). Films without
+//   these fields resolve to the same data as before.
 // - Then the shared checks (coverage, language, pacing; films/_kit/assert.mjs)
 //   and the size cap. Any problem throws, so a broken film is never written.
 import { mkdirSync, writeFileSync } from 'node:fs';
@@ -65,7 +85,7 @@ import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { MODULES, FIELDS, loadModule, placeOf } from '../../src/content/courses/index.js';
 import { parseMarked, formatNumber, plainOf, speakOf } from './timeline.mjs';
-import { checkFilm, checkFocus, cueKeysOf, lessonTextOf, moduleMetaTextOf, hasNumber, narrationWords, NARRATION_WPS, MAX_BYTES, TARGET_BYTES } from './assert.mjs';
+import { checkFilm, checkFocus, cueKeysOf, lessonTextOf, moduleMetaTextOf, hasNumber, narrationWords, NARRATION_WPS, TARGET_BYTES, pointsOf, fingerprint, checkPageSize, SCOPE_FIELDS } from './assert.mjs';
 import { pageHtml } from './player.mjs';
 
 export const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..', '..');
@@ -184,6 +204,27 @@ function focusOf(f, where) {
   throw new Error(`${where}: focus must be a cue key, a list of them, or null`);
 }
 
+// A beat's or reading entry's point reference → { key, fp }: 'offsets#t4.2' (the
+// last part of a served lesson's id, or its full id) or, in a one-lesson film, 't4.2'.
+export function pointKey(ref, served, lessons) {
+  const s = String(ref);
+  const i = s.lastIndexOf('#');
+  let lid;
+  if (i < 0) {
+    if (served.length !== 1) throw new Error(`point ${s}: name its lesson (lesson#point); the film serves ${served.length} lessons`);
+    lid = served[0];
+  } else {
+    const name = s.slice(0, i);
+    const hits = served.filter((id) => id === name || id.endsWith(`.${name}`));
+    if (hits.length !== 1) throw new Error(`point ${s}: ${hits.length ? `${name} names ${hits.length} served lessons` : `no served lesson ${name}`}`);
+    lid = hits[0];
+  }
+  const pid = i < 0 ? s : s.slice(i + 1);
+  const p = pointsOf(lessons.nl.get(lid)).find((x) => x.id === pid);
+  if (!p) throw new Error(`point ${s}: ${lid} has no point ${pid}`);
+  return { key: `${lid}#${pid}`, fp: fingerprint(p.text) };
+}
+
 // Resolves one film source into the data block (plan 2.4, with beats).
 // modules, fields: the index (a test passes its own), for an intro film's
 // module or a field film's field.
@@ -201,10 +242,25 @@ export function resolveFilm(spec, lessons, modules = MODULES, fields = FIELDS) {
   const corpus = englishCorpus(lessons);
   const glossOf = (en) => glossCase(en, corpus);
   const numbers = [];
+  const lessonFilm = !mod && !fld;
+  for (const f of ['reading', 'checkScope']) if (spec[f] !== undefined && !lessonFilm) throw new Error(`film ${spec.id}: ${f} is for a lesson film`);
+  const claims = new Map(); // point key → { key, fp, beats }
   const scenes = spec.scenes.map((s, si) => {
     const sceneTerms = [];
     const beats = s.beats.map((b, bi) => {
       const where = `scene ${si + 1} beat ${bi + 1}`;
+      // Task 17: the lesson points this beat carries
+      if (b.points !== undefined) {
+        if (!lessonFilm) throw new Error(`${where}: points are for a lesson film`);
+        if (!Array.isArray(b.points)) throw new Error(`${where}: points must be a list of point references`);
+        for (const ref of b.points) {
+          const { key, fp } = pointKey(ref, served, lessons);
+          const c = claims.get(key) || { key, fp, beats: [] };
+          const at = `${s.id}.${bi + 1}`;
+          if (!c.beats.includes(at)) c.beats.push(at);
+          claims.set(key, c);
+        }
+      }
       const P = { nl: parseMarked(b.nl), en: parseMarked(b.en) };
       const tn = P.nl.filter((p) => p.term).map((p) => findTerm(p.term, 'nl', served, lessons));
       const te = P.en.filter((p) => p.term).map((p, i) => findTerm(p.term, 'en', served, lessons, tn[i] && tn[i].lesson));
@@ -297,7 +353,37 @@ export function resolveFilm(spec, lessons, modules = MODULES, fields = FIELDS) {
     return { id: s.id, n: si + 1, level: s.level, dur: s.dur, still: s.still, title: s.title, beats, terms: sceneTerms };
   });
   if (spec.tileUnits !== undefined && !mod) throw new Error(`film ${spec.id}: tileUnits is for a module intro film (its topic tiles), not for this film`);
-  return { id: spec.id, title: spec.title, lessons: served, scenes, skip: spec.skip || [], numbers, ...(mod ? { module: mod.id, topics, ...(spec.tileUnits !== undefined ? { tileUnits: spec.tileUnits } : {}) } : {}), ...(fld ? { field: fld.field.id, stations } : {}), ...(spec.strictFocus ? { strictFocus: true } : {}) };
+  // Task 17: the claims in lesson order, then point order; the points left to reading; the scope of the
+  // new-film rules. Written only when the film gives them, so every other page's data is unchanged.
+  let points;
+  let reading;
+  if (claims.size || spec.reading !== undefined) {
+    const order = served.flatMap((id) => pointsOf(lessons.nl.get(id)).map((p) => `${id}#${p.id}`));
+    points = order.filter((k) => claims.has(k)).map((k) => claims.get(k));
+  }
+  if (spec.reading !== undefined) {
+    if (!Array.isArray(spec.reading)) throw new Error(`film ${spec.id}: reading must be a list`);
+    reading = spec.reading.map((r) => {
+      if (!r || r.point === undefined) throw new Error(`film ${spec.id}: a reading entry names its point`);
+      const { key, fp } = pointKey(r.point, served, lessons);
+      return { key, fp, ...(r.reason !== undefined ? { reason: r.reason } : {}), ...(r.note !== undefined ? { note: r.note } : {}), ...(r.of !== undefined ? { of: pointKey(r.of, served, lessons).key } : {}) };
+    });
+  }
+  let checkScope;
+  if (spec.checkScope !== undefined) {
+    const sc = spec.checkScope || {};
+    for (const k of Object.keys(sc)) if (!SCOPE_FIELDS.includes(k)) throw new Error(`checkScope: unknown field ${k}`);
+    for (const id of sc.scenes || []) if (!spec.scenes.some((x) => x.id === id)) throw new Error(`checkScope: no scene ${id}`);
+    for (const ref of sc.beats || []) {
+      const i = String(ref).lastIndexOf('.');
+      const x = spec.scenes.find((y) => y.id === String(ref).slice(0, i));
+      const n = Number(String(ref).slice(i + 1));
+      if (!x || !Number.isInteger(n) || n < 1 || n > x.beats.length) throw new Error(`checkScope: no beat ${ref}`);
+    }
+    for (const name of sc.stageFns || []) if (typeof name !== 'string' || !name) throw new Error('checkScope: a stage function is named by a string');
+    checkScope = Object.fromEntries(SCOPE_FIELDS.filter((k) => sc[k] !== undefined).map((k) => [k, [...sc[k]]]));
+  }
+  return { id: spec.id, title: spec.title, lessons: served, scenes, skip: spec.skip || [], numbers, ...(mod ? { module: mod.id, topics, ...(spec.tileUnits !== undefined ? { tileUnits: spec.tileUnits } : {}) } : {}), ...(fld ? { field: fld.field.id, stations } : {}), ...(spec.strictFocus ? { strictFocus: true } : {}), ...(points ? { points } : {}), ...(reading ? { reading } : {}), ...(checkScope ? { checkScope } : {}) };
 }
 
 // Builds and writes the page; returns { data, bytes, out }.
@@ -308,7 +394,11 @@ export async function defineFilm(spec, stage) {
   const module = data.module ? MODULES.find((m) => m.id === data.module) : undefined;
   // a field film is wired by its field's entry (film:), and held to the field and its modules
   const field = data.field ? FIELDS.find((f) => f.id === data.field) : undefined;
-  const errs = checkFilm(data, { lessons, levelOf: (id) => (placeOf(id) || {}).level || 1, wiredBy: spec.lessons || [], module, ...(field ? { field, modules: MODULES } : {}), stageText: `${stage.svg}\n${stage.script || ''}` });
+  // the lessons that wire this film (lesson.film, start scene stripped), as the content test reads them,
+  // and the lessons it serves (as before): their points must be in the film (Task 17), also while a
+  // split film's lessons are not rewired yet
+  const wiredBy = [...new Set([...(spec.lessons || []), ...[...lessons.nl.values()].filter((l) => l.film && l.film.split('#')[0] === spec.id).map((l) => l.id)])];
+  const errs = checkFilm(data, { lessons, levelOf: (id) => (placeOf(id) || {}).level || 1, wiredBy, module, ...(field ? { field, modules: MODULES } : {}), stageText: `${stage.svg}\n${stage.script || ''}` });
   const focus = checkFocus(data, cueKeysOf(`${stage.svg}\n${stage.script || ''}`));
   errs.push(...focus.errors);
   if (errs.length) throw new Error(`film ${spec.id} fails its checks:\n  ${errs.join('\n  ')}`);
@@ -317,7 +407,9 @@ export async function defineFilm(spec, stage) {
   if (focus.unknown.length) console.warn(`focus: ${focus.unknown.length} cue keys are no part of the drawing (${focus.unknown.join(', ')})`);
   const html = pageHtml(data, stage);
   const bytes = Buffer.byteLength(html);
-  if (bytes > MAX_BYTES) throw new Error(`film ${spec.id} is ${bytes} bytes, over the ${MAX_BYTES} cap`);
+  // the hard cap; and for a page with points the 300 KB target (Task 17)
+  const size = checkPageSize(data, bytes);
+  if (size.length) throw new Error(size.join('\n'));
   const out = join(ROOT, 'src/content/courses/films', `${spec.id}.html`);
   mkdirSync(dirname(out), { recursive: true });
   writeFileSync(out, html);

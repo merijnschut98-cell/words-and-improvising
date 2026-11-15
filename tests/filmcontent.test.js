@@ -14,7 +14,7 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import { MODULES, FIELDS, loadModule, placeOf } from '../src/content/courses/index.js';
 import { validateModule } from '../src/content/courses/validate.js';
-import { readFilmData, checkFilm, lessonTextOf, moduleTextOf, fieldTextOf, MAX_BYTES, TILE_UNITS } from '../films/_kit/assert.mjs';
+import { readFilmData, checkFilm, checkPointsGate, checkPageSize, lessonTextOf, moduleTextOf, fieldTextOf, MAX_BYTES, TILE_UNITS } from '../films/_kit/assert.mjs';
 
 const DIR = 'src/content/courses/films';
 // Films whose terms all carry the same name in both languages (pm.agile.scrum:
@@ -86,6 +86,8 @@ const ctxOf = (data, html, lessons, wiredBy = data.module || data.field ? [] : d
   lessons, levelOf: (lid) => (placeOf(lid) || {}).level || 1, wiredBy,
   ...(data.module ? { module: MODULES.find((m) => m.id === data.module), stageText: stageOf(html) } : {}),
   ...(data.field ? { field: fieldOfFilm(data.field), modules: MODULES, stageText: stageOf(html) } : {}),
+  // Task 17: a lesson film's checkScope names stage functions, measured in the page's stage script
+  ...(data.checkScope ? { stageText: stageOf(html) } : {}),
 });
 
 // All lessons, both languages, by id.
@@ -126,7 +128,34 @@ test('every shipped film: its terms, numbers, coverage, language and length stil
     const errs = checkFilm(data, ctxOf(data, html, lessons, wiredBy));
     assert.deepEqual(errs, [], `${id}:\n${errs.join('\n')}`);
     assert.ok(Buffer.byteLength(html) <= MAX_BYTES, `${id}: ${Buffer.byteLength(html)} bytes, over the cap`);
+    // Task 17: a page with points stays under the 300 KB target (three extended films: their size before plus 25 KB)
+    assert.deepEqual(checkPageSize(data, Buffer.byteLength(html)), [], id);
   }
+});
+
+// Task 17 (plan docs/superpowers/plans/2026-11-15-task17-complete-films.md, section 3): every lesson point
+// of a lesson wired to a film is claimed by a beat of the film, or left to reading as a pointer or a word
+// for word duplicate. checkFilm runs checkPoints on every page with points (above). The rollout gate: a
+// lesson film without points must be in tests/fixtures/points-pending.json; the list only shrinks (a film
+// whose page has points leaves it, a retired id leaves it, no film outside the Task 17 inventory joins it).
+// When it is empty, the file and this gate go.
+const PENDING = JSON.parse(fs.readFileSync('tests/fixtures/points-pending.json', 'utf8'));
+const INVENTORY = JSON.parse(fs.readFileSync('docs/superpowers/reviews/2026-11-15-task17-films.json', 'utf8')).films.map((f) => f.film);
+test('Task 17 gate: every lesson film claims its lesson points or is still pending, and the pending list only shrinks', () => {
+  const pages = new Map(films.map((id) => [id, readFilmData(fs.readFileSync(`${DIR}/${id}.html`, 'utf8'))]));
+  const errs = checkPointsGate(pages, PENDING.films, INVENTORY);
+  assert.deepEqual(errs, [], errs.join('\n'));
+  assert.deepEqual(PENDING.films, [...PENDING.films].sort(), 'points-pending.json is sorted');
+  const done = [...pages].filter(([, d]) => d.points !== undefined).length;
+  console.log(`# Task 17: ${done} lesson films claim their points, ${PENDING.films.length} pending`);
+});
+
+// The allowlist (D4: pointers and word for word duplicates only) is pinned, so every entry is a visible diff.
+const READING_ENTRIES = 0;
+test('Task 17: the number of lesson points left to reading is pinned', () => {
+  const n = films.reduce((a, id) => a + (readFilmData(fs.readFileSync(`${DIR}/${id}.html`, 'utf8')).reading || []).length, 0);
+  console.log(`# Task 17: ${n} lesson points left to reading (pointers and duplicates)`);
+  assert.equal(n, READING_ENTRIES, `${n} reading entries; update READING_ENTRIES in this test with the film that adds or drops them`);
 });
 
 // v16: every sentence lights the part it explains. The reference film opts in
