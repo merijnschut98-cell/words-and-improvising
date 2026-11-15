@@ -4188,6 +4188,35 @@
         ],
         "vtt": "src/content/courses/films/eng.field.better.en.vtt"
       }
+    },
+    "eng.flow.intro": {
+      "poster": "src/content/courses/films/eng.flow.intro.jpg",
+      "nl": {
+        "dur": 147.8,
+        "bytes": 4975781,
+        "scenes": [
+          0,
+          28.59,
+          44.44,
+          61.04,
+          81.07,
+          102.92
+        ],
+        "vtt": "src/content/courses/films/eng.flow.intro.nl.vtt"
+      },
+      "en": {
+        "dur": 163,
+        "bytes": 5404537,
+        "scenes": [
+          0,
+          31.99,
+          50.22,
+          68.66,
+          90.53,
+          116.13
+        ],
+        "vtt": "src/content/courses/films/eng.flow.intro.en.vtt"
+      }
     }
   }
 }
