@@ -1,0 +1,177 @@
+WEBVTT
+
+1
+00:00:00.858 --> 00:00:05.014
+In hall B a pump moves the product from a tank, through a heat exchanger,
+
+2
+00:00:05.130 --> 00:00:07.046
+to the filling unit of line 3.
+
+3
+00:00:08.031 --> 00:00:09.273
+The pump makes the pressure.
+
+4
+00:00:10.019 --> 00:00:13.920
+Pipes, valves and heat exchangers use it up through friction.
+
+5
+00:00:14.932 --> 00:00:17.440
+Steam and cooling water are utilities.
+
+6
+00:00:18.155 --> 00:00:20.500
+The process needs them but does not sell them.
+
+7
+00:00:21.505 --> 00:00:23.107
+Four topics follow the pipe.
+
+8
+00:00:23.848 --> 00:00:27.191
+First how the product flows, in pipes and with a pump.
+
+9
+00:00:28.295 --> 00:00:32.231
+Then the heat, in heat exchangers and with steam and cooling water.
+
+10
+00:00:33.604 --> 00:00:36.472
+The first topic is Flow and pressure in pipes.
+
+11
+00:00:37.186 --> 00:00:41.551
+Every bend, valve and filter on the way to line 3 costs pressure.
+
+12
+00:00:42.627 --> 00:00:44.624
+That loss is called the pressure drop.
+
+13
+00:00:45.349 --> 00:00:48.066
+The pump has to deliver that pressure again and again,
+
+14
+00:00:48.182 --> 00:00:50.829
+so every extra bend costs pump energy.
+
+15
+00:00:51.812 --> 00:00:55.667
+For turbulent flow you read the friction factor from the Moody chart.
+
+16
+00:00:57.016 --> 00:00:58.734
+The second topic is Pumps.
+
+17
+00:00:59.452 --> 00:01:03.400
+The more pressure the pipe pushes back, the less flow the pump delivers.
+
+18
+00:01:04.412 --> 00:01:07.593
+The curves of pump and pipe cross at the duty point.
+
+19
+00:01:08.359 --> 00:01:12.446
+If the pump runs far from its best point there, energy is lost.
+
+20
+00:01:13.544 --> 00:01:15.286
+You read the maker’s pump curve.
+
+21
+00:01:16.595 --> 00:01:20.113
+The third topic is Heat transfer and heat exchangers.
+
+22
+00:01:20.849 --> 00:01:23.961
+An exchanger moves heat through a wall, without mixing.
+
+23
+00:01:24.974 --> 00:01:28.271
+Suppose the product has to be warm before the filling unit.
+
+24
+00:01:29.015 --> 00:01:31.430
+Then it takes up heat in the exchanger.
+
+25
+00:01:32.456 --> 00:01:34.813
+You often pick a plate heat exchanger.
+
+26
+00:01:36.151 --> 00:01:38.531
+The fourth topic is Steam and utilities.
+
+27
+00:01:39.299 --> 00:01:43.467
+Steam brings the heat to the exchanger and turns back into water there.
+
+28
+00:01:44.462 --> 00:01:48.200
+That water is called condensate and has to leave the exchanger.
+
+29
+00:01:48.944 --> 00:01:50.686
+Otherwise the heating drops.
+
+30
+00:01:51.733 --> 00:01:53.869
+At the drain you check the steam trap.
+
+31
+00:01:54.951 --> 00:01:57.656
+A trap stuck open blows live steam away.
+
+32
+00:01:58.380 --> 00:02:00.214
+That is where energy disappears.
+
+33
+00:02:01.514 --> 00:02:02.327
+The whole map.
+
+34
+00:02:03.069 --> 00:02:07.307
+Pumps, flow and heat is the fifth station of Energy and the grid.
+
+35
+00:02:08.390 --> 00:02:10.120
+Every topic has four levels.
+
+36
+00:02:11.116 --> 00:02:15.180
+Start with the lesson on pressure, flow and pressure drop at Basics level.
+
+37
+00:02:15.928 --> 00:02:17.565
+It shows where pressure goes.
+
+38
+00:02:18.625 --> 00:02:22.595
+At Working knowledge level come pipe friction, pump speed control,
+
+39
+00:02:22.712 --> 00:02:24.941
+heat exchangers and cooling water.
+
+40
+00:02:25.999 --> 00:02:28.437
+At Advanced level come control valves,
+
+41
+00:02:28.577 --> 00:02:32.350
+cavitation, exchangers that fall short and steam losses.
+
+42
+00:02:33.478 --> 00:02:36.973
+At Expert level come pipe size and life-cycle cost,
+
+43
+00:02:37.100 --> 00:02:40.479
+pump systems, heat recovery and the energy case.
+
+44
+00:02:41.498 --> 00:02:45.678
+Every lesson and every film in this module has a place on this map.

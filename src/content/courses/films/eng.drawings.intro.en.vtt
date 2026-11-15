@@ -1,0 +1,189 @@
+WEBVTT
+
+1
+00:00:00.845 --> 00:00:04.502
+In the office the designer draws the filling unit for line 3.
+
+2
+00:00:05.197 --> 00:00:07.461
+In the workshop the maker makes its plate.
+
+3
+00:00:08.535 --> 00:00:11.855
+A drawing tells the maker what to make and how exact.
+
+4
+00:00:12.602 --> 00:00:16.004
+A control loop keeps the level in the tank at its target.
+
+5
+00:00:17.044 --> 00:00:19.134
+Four topics follow the filling unit.
+
+6
+00:00:19.894 --> 00:00:22.332
+The first two are about the drawing for the maker.
+
+7
+00:00:23.359 --> 00:00:25.983
+The last two are about the diagram of the plant
+
+8
+00:00:26.076 --> 00:00:28.642
+and the control that keeps it at its value.
+
+9
+00:00:29.909 --> 00:00:32.672
+The first topic is Reading a technical drawing.
+
+10
+00:00:33.406 --> 00:00:35.925
+The maker was not there and has only the drawing.
+
+11
+00:00:36.956 --> 00:00:41.170
+The plate is drawn in views, from the front, from above and from the side.
+
+12
+00:00:41.900 --> 00:00:45.627
+The maker reads the dimensions, because a print may be shrunk.
+
+13
+00:00:46.706 --> 00:00:49.678
+There we first read the title block at the bottom right,
+
+14
+00:00:49.876 --> 00:00:52.175
+because it holds the revision of the drawing.
+
+15
+00:00:53.507 --> 00:00:56.990
+The second topic is Tolerances and G D and T.
+
+16
+00:00:57.688 --> 00:01:01.217
+The four holes of the plate must fit the four bolts of the frame.
+
+17
+00:01:02.255 --> 00:01:06.203
+Every dimension may differ a little, and that little is the tolerance.
+
+18
+00:01:06.909 --> 00:01:09.870
+If a hole is too far off, the bolt will not fit.
+
+19
+00:01:10.955 --> 00:01:13.149
+There we read the feature control frame.
+
+20
+00:01:14.147 --> 00:01:16.597
+It says which datums the maker measures from.
+
+21
+00:01:17.316 --> 00:01:20.056
+So the maker and the customer measure the same way.
+
+22
+00:01:21.333 --> 00:01:25.837
+The third topic is P and I Ds, schematics and the control system.
+
+23
+00:01:26.539 --> 00:01:29.140
+The tank supplies the product for the filling unit.
+
+24
+00:01:30.213 --> 00:01:35.287
+A P and I D shows what is connected to what, and how it is measured and controlled.
+
+25
+00:01:36.073 --> 00:01:39.335
+At the tank that is a level meter and a control valve.
+
+26
+00:01:40.384 --> 00:01:43.379
+There we read the tag number of every instrument.
+
+27
+00:01:44.450 --> 00:01:47.190
+The operator walks along the tank with the drawing.
+
+28
+00:01:47.913 --> 00:01:50.398
+A valve that is not on it is a surprise.
+
+29
+00:01:51.707 --> 00:01:54.702
+The fourth topic is Control loops and PID.
+
+30
+00:01:55.379 --> 00:01:59.988
+With every filling the level in the tank drops, but it has to stay at its value.
+
+31
+00:02:00.993 --> 00:02:02.386
+A sensor measures the level.
+
+32
+00:02:03.065 --> 00:02:07.210
+The controller compares it with the target and opens or closes the valve.
+
+33
+00:02:08.242 --> 00:02:10.761
+There we often use a PID controller.
+
+34
+00:02:11.762 --> 00:02:13.608
+The level stays at its value.
+
+35
+00:02:14.338 --> 00:02:19.458
+Now the makers can go on, because frame, plate and tank are together on one drawing.
+
+36
+00:02:20.806 --> 00:02:22.048
+This is the whole map.
+
+37
+00:02:22.752 --> 00:02:26.781
+Drawings and control is the fourth station of Making things.
+
+38
+00:02:27.806 --> 00:02:29.536
+Every topic has four levels.
+
+39
+00:02:30.532 --> 00:02:33.957
+Start with Reading a technical drawing, at Basics level.
+
+40
+00:02:34.706 --> 00:02:37.365
+That lesson shows where to begin on a drawing.
+
+41
+00:02:38.410 --> 00:02:42.903
+At Working knowledge level it is about assembly drawings, G D and T,
+
+42
+00:02:43.112 --> 00:02:45.411
+the PLC and the feel for control.
+
+43
+00:02:46.420 --> 00:02:49.404
+At Advanced level it is about threads and roughness,
+
+44
+00:02:49.601 --> 00:02:53.444
+form tolerances, electrical diagrams and tuning a loop.
+
+45
+00:02:54.471 --> 00:02:57.234
+At Expert level it is about drawing control,
+
+46
+00:02:57.362 --> 00:03:01.240
+drawing disputes, protection functions and loop performance.
+
+47
+00:03:02.245 --> 00:03:05.995
+Every lesson and film in this module has a place on this map.
