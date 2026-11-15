@@ -933,7 +933,13 @@ const SAY = {
     [/(?<=\bnaar hal B, naar de )vuleenheid\b/g, 'vul-eenheid'], [/\b([Vv])uleenheid\b/g, '$1ul eenheid'], [/\b([Hh]et |stalen |want )frame\b/g, '$1freem'],
     [/\bSpuitgieten is het zesde station\b/g, 'Spuit-gieten is het zesde station'],
     [/\bDe spuitunit smelt de kunststof en de sluitunit\b/g, 'De spuit-unit smelt de kunststof en de sluit-unit'],
-    [/(?<=\bgebruiken we vaak een )hardheidsmeting\b/g, 'hardheids-meting']],
+    [/(?<=\bgebruiken we vaak een )hardheidsmeting\b/g, 'hardheids-meting'],
+    // the module intro film "From MES order to a running unit" (eng.ot.intro), a self-contained group at the end of the Dutch list,
+    // checked with phonemes through Piper's nl_NL-alex bridge: espeak-ng reads unified namespace as Dutch ("unifit"; said joenifaid
+    // nejmspeis), only in the intro's own sentence ("beoordelen, de unified namespace"). The engineer is "Jij bent de engineer" above;
+    // PLC, SCADA, MES, ERP, MQTT, OPC UA, ISA-95, historian, Purdue, productieorder, informatiestroom, machinebouwer, OPC-server en tags,
+    // cloud, governance and the level words are read right or have rules above; no other film's spoken text changes
+    [/(?<=\bbeoordelen, de )unified namespace\b/g, 'joenifaid nejmspeis']],
   en: [[/\brpm\b/g, 'revolutions per minute'], [/\bmm\/min\b/g, 'millimetres per minute'], [/\bm\/min\b/g, 'metres per minute'], [/µm\b/g, 'micrometres'],
     [/€\s?(\d[\d,]*(?:\.\d+)?)/g, '$1 euros'], [/(\d)\.0(?![\d])/g, '$1'], [/(\d)\s?mm\b/g, '$1 millimetres'], [/(\d)\s?min\b/g, '$1 minutes'], [/(\d)\s?%/g, '$1 percent'],
     [/Ø\s*/g, 'diameter '], [/(\d)\+(\d)/g, '$1 plus $2'], [/\s×\s/g, ' times '], [/\s\/\s/g, ' divided by '], [/\s=\s/g, ' is '], [/°/g, ' degrees'], [/\bRa\b/g, 'R a'], [/’/g, "'"],

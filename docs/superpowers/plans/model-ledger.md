@@ -155,3 +155,5 @@ Outcome: accepted (merged as delivered), sent back N times, redone.
 | 15 Nov | Build: Engineering intro eng.itbasics.intro | sonnet | 115 | 17 min | 326,712 | accepted with fixes by its review |
 | 15 Nov | Review: eng.itbasics.intro | sonnet | 85 | 10.6 min | 204,465 | accepted with fixes (seven tools to four, firewall left to cyber, virtuele machine and query, two SAY rules dropped, you at the field-film spot); merged v329 |
 | 15 Nov | Voice fix PM-28: vuleenheid, frame, spuitgieten, spuit/sluitunit, hardheidsmeting; eight Dutch tracks re-rendered | sonnet | 115 | 83 min | 241,358 | accepted; all guards passed; MIG, FEM-plot, positioner, Spuitgieten still misheard by Whisper (left, Merijn 15 Nov); merged v330 |
+| 15 Nov | Build: Engineering intro eng.ot.intro | sonnet | 98 | 16 min | 359,992 | accepted with fixes by its review |
+| 15 Nov | Review: eng.ot.intro | sonnet | 61 | 8.7 min | 214,442 | accepted with fixes (eight tools to four, patching left to cyber, 203 to 182 s, labels only when named, three SAY rules dropped); merged v331 |
