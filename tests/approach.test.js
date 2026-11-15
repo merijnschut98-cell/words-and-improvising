@@ -20,7 +20,7 @@ test('pm.approach: a Projects module of level 1 on the project track with four t
   assert.deepEqual(checkTopics(meta), []);
   assert.equal(new Set(meta.lessons).size, 16);
   for (const t of meta.topics) assert.equal(t.levels.length, 4);
-  assert.ok(!('intro' in meta), 'the intro film comes with the films step');
+  assert.equal(meta.intro, 'pm.approach.intro', 'the module intro film is wired (films/pm.approach.intro, in the SHELL)');
   for (const id of meta.lessons) assert.equal(meta.questions[id], 4, id);
 });
 
