@@ -23,6 +23,10 @@
   --ok: var(--color-warning);
   --ok-text: var(--color-warning-onlight);
   --bad: var(--color-danger);
+  /* The Engineering zone "De fabriek beter maken" (15 Nov): its own token, not --bad, so the zone does not borrow the
+     error colour. Terracotta, burnt brick warmed with ochre (both brand hues); the dark value is lifted with bone as
+     --bad is. The film kit carries the same two values (films/_kit/mapscene.mjs ZONE_VARS, tests/engmap.test.js). */
+  --zone-better: color-mix(in srgb, var(--danger-500) 70%, var(--warn-500));
   --mark: rgba(168, 116, 51, 0.24); /* filler highlight: ochre wash */
   --tint: rgba(39, 111, 129, 0.1); /* petrol wash for quiet panels */
   --radius: var(--radius-md);
@@ -50,6 +54,7 @@
     --ok: var(--warn-500);
     --ok-text: color-mix(in srgb, var(--warn-500) 70%, var(--bone));
     --bad: color-mix(in srgb, var(--danger-300) 60%, var(--bone));
+    --zone-better: color-mix(in srgb, color-mix(in srgb, var(--danger-300) 70%, var(--warn-500)) 75%, var(--bone));
     --mark: rgba(168, 116, 51, 0.4);
     --tint: rgba(92, 159, 174, 0.12);
     --border-subtle: var(--border-subtle-inverse);
@@ -76,6 +81,7 @@
   --ok: var(--warn-500);
   --ok-text: color-mix(in srgb, var(--warn-500) 70%, var(--bone));
   --bad: color-mix(in srgb, var(--danger-300) 60%, var(--bone));
+  --zone-better: color-mix(in srgb, color-mix(in srgb, var(--danger-300) 70%, var(--warn-500)) 75%, var(--bone));
   --mark: rgba(168, 116, 51, 0.4);
   --tint: rgba(92, 159, 174, 0.12);
   --border-subtle: var(--border-subtle-inverse);
@@ -1190,8 +1196,9 @@ details.rw-topic > summary { cursor: pointer; min-height: 44px; display: flex; a
 .subject-map .map-road-arrow { fill: color-mix(in srgb, var(--heading) 30%, var(--card)); }
 /* The Engineering zones (Task 13). They start with .subject-map-wrap, not .subject-map, so the film kit does not
    carry them into the Projects films; an Engineering film asks for them with mapStyles(css, 'eng'), which
-   rewrites exactly these four rules to start with .subject-map (films/_kit/mapscene.mjs). */
-.subject-map-wrap .z-plant { --zone: var(--accent); }
+   rewrites exactly these five rules to start with .subject-map (films/_kit/mapscene.mjs). */
+.subject-map-wrap .z-run { --zone: var(--accent); }
+.subject-map-wrap .z-better { --zone: var(--zone-better); }
 .subject-map-wrap .z-making { --zone: var(--primary); }
 .subject-map-wrap .z-energy { --zone: var(--ok); }
 .subject-map-wrap .z-digital { --zone: var(--secondary-fill); }

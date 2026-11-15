@@ -198,13 +198,12 @@ const tiles = ORDER.map((id, i) => cueG(TILE[id], g(`r${i}`, ''))).join('');
 const hud = g('hud', '<rect data-k="pbg" class="pm-panel" x="322" y="12" width="308" height="376" rx="10"/>' + g('pHead', '')
   + cueG('route', tiles) + PANEL.map((name) => cueG(name, g(`k_${name}`, ''))).join(''));
 // the shared map, Welding and joining lit, in the stage (the film's closing scene; the stage script moves and fades it)
-const MAP_W = 640;
-const MAP_H = 1128;
+const { w: MAP_W, h: MAP_H } = engMap.view; // the Engineering map's sheet (viewBox of the wide drawing), from the map data
 const MAP = (await mapScene({ subject: 'eng', highlight: ['eng.joining'] })).replace('<svg class="subject-map"', `<svg class="subject-map" width="${MAP_W}" height="${MAP_H}"`);
 const PLACE = engMap.places.find((p) => p.module === 'eng.joining');
 const MAPZ = [PLACE.x + PLACE.w / 2, PLACE.y + PLACE.h / 2];
 assert(MAP.includes(`data-cue="${mapCue('eng.joining')}"`), 'the map lights eng.joining as a cue group');
-assert(MAP.includes(`viewBox="0 0 ${MAP_W} ${MAP_H}"`), 'the Engineering map is 640 by 1128');
+assert(MAP.includes(`viewBox="0 0 ${MAP_W} ${MAP_H}"`), `the Engineering map is ${MAP_W} by ${MAP_H}`);
 
 // Static paths with relative line-tos (the helper of pm.plan.schedule): the
 // same points, fewer bytes; each rewrite is read back to prove it exact.

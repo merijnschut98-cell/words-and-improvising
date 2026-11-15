@@ -230,7 +230,7 @@ const STAGE = (() => {
   }
 
   // ---- s8: the closing scene. ONE function. The shared Engineering map (the kit's mapScene, the very drawing of
-  // the app) with the six stations lit: first the whole map, which shows the four zones, then the making zone, then
+  // the app) with the six stations lit: first the whole map, which shows all its zones, then the making zone, then
   // the zoom moves place by place (at 1.5 a lit place's label is 22 units), and at the end back out to the zone.
   // A view is { s, x, y }: the map scaled by s, its origin at (x, y) of the stage. At 1.5 the view is clamped
   // to the map's edges, so the zoom never shows the empty stage beside the map.
