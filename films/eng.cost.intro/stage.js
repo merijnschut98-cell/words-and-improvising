@@ -176,7 +176,7 @@ const STAGE = (() => {
   }
 
   // ---- s4: the fix costs money too, spent once on something that lasts for years; what counts is cash; the cash saving (the chip
-  // above) is worked out on the laptop; the payback, the investment over the yearly cash saving, goes on the sheet.
+  // above) is worked out on the laptop; the investment next to the yearly cash saving goes on the sheet.
   function onceDrawing() {
     let s = rect(334, 120, 64, 120, 'pm-crit', 6);
     for (let i = 0; i < 5; i++) s += rect(420 + i * 40, 210, 34, 30, 'pm-tile', 4);
@@ -193,20 +193,13 @@ const STAGE = (() => {
     return s + txt(334, 296, tr('Elk jaar', 'Every year', 284), 22, 'start', 'pm-mute');
   }
   function payDrawing() {
-    return tile(100, 'Investering', 'Investment') + path('M334 148H618', 'pm-link') + tile(158, 'Kasbesparing per jaar', 'Cash saving per year') + arrow(476, 196, 476, 210) + card1(214, 'Terugverdientijd', 'Payback time', 'pm-crit');
+    return tile(100, 'Investering', 'Investment') + path('M334 148H618', 'pm-link') + tile(158, 'Kasbesparing per jaar', 'Cash saving per year') + arrow(476, 196, 476, 210) + card1(214, 'Naast elkaar', 'Side by side', 'pm-crit');
   }
 
-  // ---- s5: waste in euros; stock is money on the shelf; a carton in the bin is priced at what is really lost; the cost of poor quality
+  // ---- s5: waste in euros; a carton in the bin is priced at what is really lost; the cost of poor quality
   // (the chip above) is the failure part of the cost of quality. The shift ends with what line 3 really costs.
   function wasteDrawing() {
     return card1(100, 'Verspilling', 'Waste') + arrow(476, 148, 476, 162) + card1(166, 'Euro’s', 'Euros', 'pm-crit');
-  }
-  function stockDrawing() {
-    let s = path('M334 190H618M334 280H618', 'pm-link');
-    for (let i = 0; i < 4; i++) s += rect(342 + i * 62, 150, 52, 40, 'pm-tile', 4);
-    for (let i = 0; i < 2; i++) s += rect(342 + i * 62, 240, 52, 40, 'pm-tile', 4);
-    s += rect(466, 240, 52, 40, 'pm-out', 4);
-    return s + txt(334, 326, tr('Geld op de plank', 'Money on the shelf', 284), 22, 'start', 'pm-mute');
   }
   function lossDrawing() {
     return txt(334, 122, tr('Wat erin zit', 'What is in it', 284), 22, 'start', 'pm-mute') + rect(334, 132, 284, 30, 'pm-bar', 5)
@@ -290,7 +283,7 @@ const STAGE = (() => {
       if (si === 1) Object.assign(o, { buildS: fade(b, 0, p, buildDrawing(), 0.1, 0.5), rateS: fade(b, 1, p, rateDrawing(), 0.1, 0.5), carryS: fade(b, 2, p, carryDrawing(), 0.1, 0.5), ovS: b === 3 ? op(span(p, 0.3, 0.7), ovDrawing()) : '', ...tools(b, p, 3, tr('Overheadopslag', 'Overhead surcharge', 260)) });
       if (si === 2) Object.assign(o, { topS: fade(b, 0, p, topDrawing(), 0.1, 0.5), relS: fade(b, 1, p, relDrawing(), 0.1, 0.5), fixS: fade(b, 2, p, fixDrawing(), 0.1, 0.5), marS: b === 3 ? op(span(p, 0.3, 0.7), marDrawing()) : '', ...tools(b, p, 3, tr('Dekkingsbijdrage', 'Contribution margin', 260)) });
       if (si === 3) Object.assign(o, { onceS: fade(b, 0, p, onceDrawing(), 0.1, 0.5), cashS: fade(b, 1, p, cashDrawing(), 0.1, 0.5), saveS: b === 2 ? op(span(p, 0.3, 0.7), saveDrawing()) : '', payS: fade(b, 3, p, payDrawing(), 0.1, 0.5), ...tools(b, p, 2, tr('Kasbesparing', 'Cash saving', 260)) });
-      if (si === 4) Object.assign(o, { wasteS: fade(b, 0, p, wasteDrawing(), 0.1, 0.5), stockS: fade(b, 1, p, stockDrawing(), 0.1, 0.5), lossS: fade(b, 2, p, lossDrawing(), 0.1, 0.5), failS: b === 3 ? op(span(p, 0.3, 0.7), failDrawing()) : '', endS: fade(b, 4, p, endDrawing(), 0.1, 0.5), ...tools(b, p, 3, tr('Faalkosten', 'Cost of poor quality', 260)) });
+      if (si === 4) Object.assign(o, { wasteS: fade(b, 0, p, wasteDrawing(), 0.1, 0.5), lossS: fade(b, 1, p, lossDrawing(), 0.1, 0.5), failS: b === 2 ? op(span(p, 0.3, 0.7), failDrawing()) : '', endS: fade(b, 3, p, endDrawing(), 0.1, 0.5), ...tools(b, p, 2, tr('Faalkosten', 'Cost of poor quality', 260)) });
     }
     let pbg = 'x="322" y="12" width="308" height="376"';
     if (closing) {

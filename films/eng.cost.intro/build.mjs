@@ -35,18 +35,17 @@
 //      .contribution); the tool is the contribution margin (Basis, .contribution), the price minus the variable cost of a good carton
 //   s4 Investeringen beoordelen: the fix costs money too, spent once on something that lasts for years (Basis, .cashflow); what counts is
 //      cash, a saving only counts if money really stops going out or comes in (Werkkennis, .capex); the tool is the cash saving
-//      (Werkkennis, .capex), the field film's own tool of this station: the laptop; payback as the lesson teaches it (investment over
-//      the yearly cash saving, said, not a tool) goes on the sheet of the case
-//   s5 Lean accounting en besparingen: waste in money (Werkkennis, .waste); stock is money on the shelf, less stock frees cash (Basis,
-//      .inventory); a carton in the bin is priced at what is really lost (Werkkennis, .waste); the tool is the cost of poor quality
+//      (Werkkennis, .capex), the field film's own tool of this station: the laptop; the investment next to the yearly cash saving goes on
+//      the sheet of the case (the payback of the lesson, but the word is not said: it is the tool of eng.lines.intro and pm.intake.intro)
+//   s5 Lean accounting en besparingen: waste in money (Werkkennis, .waste); a carton in the bin is priced at what is really lost (Werkkennis, .waste); the tool is the cost of poor quality
 //      (Werkkennis, .waste), the field film's other tool of this station: the crate. The story ends: you know what line 3 really costs
 //      and whether the fix pays for itself ("lean accounting" is the topic's title, said Lien by a SAY rule, as the Lean-consultant rule)
 //   s6 the shared Engineering map (the kit's mapScene) with Cost engineering lit, then the module's four topics with their levels as
 //      columns, where to start, and what each later level adds, in the app's level words
 // Per the review of the lines, industry40, quality and maintenance intros: one clear tool per topic; drop what is not needed; nothing
 // labelled before it is named; a Werkkennis tool named in a scene (the cash saving, the cost of poor quality) is not named again in the
-// closing grid; no other intro names one of these tools (payback time is the tool of eng.lines.intro and pm.intake.intro: here it is
-// said as a definition in one sentence, never a chip).
+// closing grid; no other intro names one of these tools (payback time is the tool of eng.lines.intro and pm.intake.intro: here it is not said at all, only the closing's
+// Werkkennis row names it as the lesson is titled).
 //
 // The kit comes from the anatomy skill; point ANATOMY_SKILL at its folder if it lives somewhere else on your machine.
 import { readFileSync } from 'node:fs';
@@ -101,15 +100,13 @@ has('eng.cost.makebuy', ['compares the relevant costs, the costs that change bet
 has('eng.cost.pricing', ['Van kostprijs naar offerte']);
 has('eng.cost.pricing', ['From cost price to quote'], 'en');
 // s4: a capex is money spent once on assets used for years; an investment case counts cash; a saving only counts if money really stops
-// going out or comes in; payback is the investment over the yearly cash saving
+// going out or comes in; the sheet puts the investment next to the yearly cash saving (the lesson's payback formula)
 has('eng.cost.cashflow', ['Capex (capital expenditure), investeringsuitgaven, is geld dat je één keer uitgeeft aan bezittingen die jaren meegaan', 'Een investeringscase telt dus kasgeld']);
 has('eng.cost.cashflow', ['Capex, capital expenditure, is money spent once on assets used for years'], 'en');
 has('eng.cost.capex', ['Een besparing telt alleen als er echt minder geld uitgaat of meer binnenkomt', 'Terugverdientijd = investering / jaarlijkse kasbesparing', 'Kasbesparing Een besparing die echt minder geld laat uitgaan of meer laat binnenkomen']);
 has('eng.cost.capex', ['A saving only counts if money actually stops going out or new money comes in', 'Payback time = investment / yearly cash saving', 'Cash saving A saving that actually reduces money going out or brings money in'], 'en');
-// s5: stock is money on the shelf and cutting it frees cash; scrap is priced at the cost that is really lost; the cost of poor quality is the
+// s5: scrap is priced at the cost that is really lost; the cost of poor quality is the
 // failure part of the cost of quality
-has('eng.cost.inventory', ['Voorraad is geld op de plank', 'het maakt geld vrij']);
-has('eng.cost.inventory', ['Stock is money on the shelf', 'it frees cash'], 'en');
 has('eng.cost.waste', ['Prijs uitval tegen de kosten die echt verloren zijn', 'Faalkosten Het faaldeel van de kwaliteitskosten']);
 has('eng.cost.waste', ['Price scrap at the cost that is really lost', 'Cost of poor quality The failure part of the cost of quality'], 'en');
 // s6: the first lesson names where to start; the later levels, as the lessons are titled
@@ -178,12 +175,12 @@ const cover = w.box({ x: UX - 7, y: 12, w: 23, d: 42, r: 7 }, FRAME.beam, FRAME.
 const crate = w.box({ x: CRATE.x, y: CRATE.y, w: CRATE.w, d: CRATE.d, r: 2 }, 0, CRATE.h, { tone: 'lo' }, { steps: 2, bevel: 0.5 })
   + w.box({ x: CRATE.x + 6, y: CRATE.y + 6, w: 20, d: 18, r: 1 }, CRATE.h, CRATE.h + 16, { tone: 'hi' }, { steps: 1 })
   + w.box({ x: CRATE.x + 22, y: CRATE.y + 12, w: 16, d: 15, r: 1 }, CRATE.h, CRATE.h + 10, { tone: 'hi' }, { steps: 1 });
-// the table with the laptop, and the sheet of the case on it (a group of its own: it comes in at the sentence that puts the payback on it)
+// the table with the laptop, and the sheet of the case on it (a group of its own: it comes in at the sentence that puts the investment next to the saving on it)
 const caseSheet = w.sheet({ x: TABLE.x + TABLE.w - 26, y: TABLE.y + 10, z: TABLE.h, w: 14, d: 20, lines: 4 }).svg;
 const laptopTable = w.table(TABLE) + w.laptop({ x: TABLE.x + 24, y: TABLE.y + TABLE.d / 2, z: TABLE.h, toward: 1 });
 
 // painted back to front: the belt and the unit, the crate (shown from the first sentence, the carton goes in the bin), the table with
-// the laptop (from the sentence that names the laptop) and the sheet (from the sentence that puts the payback on it), you and the team
+// the laptop (from the sentence that names the laptop) and the sheet (from the sentence that puts the investment next to the saving on it), you and the team
 // lead (from the sentence that names you)
 const world = [
   w.room(ROOM),
@@ -202,7 +199,7 @@ const world = [
 // shared map (the kit's mapScene) sits under the panel; its place Cost engineering is a cue group of its own (map-cost).
 const TILE = { costprice: 'tCost', decisions: 'tDec', invest: 'tInv', lean: 'tLean' };
 const PANEL = ['unitS', 'modS', 'shiftS', 'grpA', 'grpB', 'buildS', 'rateS', 'carryS', 'ovS', 'topS', 'relS', 'fixS', 'marS', 'onceS', 'cashS', 'saveS', 'payS',
-  'wasteS', 'stockS', 'lossS', 'failS', 'endS', 'tool1', 'lv1', 'lv2', 'lv3', 'lv4', 'start'];
+  'wasteS', 'lossS', 'failS', 'endS', 'tool1', 'lv1', 'lv2', 'lv3', 'lv4', 'start'];
 const tiles = ORDER.map((id, i) => cueG(TILE[id], g(`r${i}`, ''))).join('');
 const hud = g('hud', '<rect data-k="pbg" class="pm-panel" x="322" y="12" width="308" height="376" rx="10"/>' + g('pHead', '')
   + cueG('route', tiles) + PANEL.map((name) => cueG(name, g(`k_${name}`, ''))).join(''));
@@ -331,14 +328,13 @@ const spec = {
         { nl: 'Het derde onderwerp is Investeringen beoordelen. Een verbetering geef je één keer uit, voor jaren.', en: 'The third topic is Investment appraisal. You spend on a fix once, for years of use.', focus: ['tInv', 'onceS', 'unit'] },
         { nl: 'Een besparing telt alleen als er echt minder geld uitgaat of meer binnenkomt.', en: 'A saving only counts if money really stops going out or comes in.', focus: ['cashS'] },
         { nl: 'Op de laptop reken je de {t:Kasbesparing|kasbesparing} uit.', en: 'On the laptop you work out the {t:Cash saving|cash saving}.', ...TOOL('Kasbesparing'), focus: ['tool1', 'saveS', 'laptop'] },
-        { nl: 'De terugverdientijd is de investering gedeeld door de jaarlijkse kasbesparing. Je zet hem op het vel.', en: 'Payback time is the investment divided by the yearly cash saving. You put it on the sheet.', focus: ['payS', 'sheet'] },
+        { nl: 'Op het vel zet je de investering naast de kasbesparing per jaar.', en: 'On the sheet you put the investment next to the cash saving per year.', focus: ['payS', 'sheet'] },
       ],
     },
     {
       id: 's5', level: 1, dur: DURS[4], still: 0.9, title: { nl: 'Lean accounting en besparingen', en: 'Lean accounting and savings' },
       beats: [
         { nl: 'Het vierde onderwerp is Lean accounting en besparingen. Je rekent verspilling om in geld.', en: 'The fourth topic is Lean accounting and savings. You turn waste into money.', focus: ['tLean', 'wasteS', 'scrap'] },
-        { nl: 'Voorraad is geld op de plank. Minder voorraad maakt geld vrij.', en: 'Stock is money on the shelf. Less stock frees cash.', focus: ['stockS'] },
         { nl: 'Een doos in de bak is verspilling. Je prijst hem tegen wat echt verloren gaat.', en: 'A carton in the bin is waste. You price it at what is really lost.', focus: ['lossS', 'scrap'] },
         { nl: 'Je telt de {t:Faalkosten|faalkosten} van de bak op.', en: 'You add up the {t:Cost of poor quality|cost of poor quality} of the bin.', ...TOOL('Faalkosten'), focus: ['tool1', 'failS', 'scrap'] },
         { nl: 'Zo weet je wat lijn 3 kost en of de fix loont.', en: 'That is how you know what line 3 costs and whether the fix pays.', focus: ['endS', 'jij', 'teamlead', 'line3'] },
@@ -348,8 +344,8 @@ const spec = {
       id: 's6', level: 1, dur: DURS[5], still: 0.9, title: { nl: 'De kaart', en: 'The map' },
       beats: [
         { nl: 'De hele kaart. Het derde station is Kostprijs en investeringen, in De fabriek beter maken.', en: 'The whole map. The third station is Cost engineering, in Making the plant better.', focus: 'map-cost' },
-        { nl: 'Elk van de vier onderwerpen heeft vier niveaus.', en: 'Each of the four topics has four levels.', focus: 'route' },
-        { nl: 'Begin op niveau Basis met de kostprijs van een onderdeel opbouwen. Elk volgend besluit leunt erop.', en: 'Start at Basics level with building up the cost of a part. Every later decision leans on it.', focus: ['tCost', 'start'] },
+        { nl: 'Elk onderwerp heeft vier niveaus.', en: 'Each topic has four levels.', focus: 'route' },
+        { nl: 'Begin op niveau Basis met de kostprijs van een onderdeel opbouwen. Zo zie je waar kosten vandaan komen.', en: 'Start at Basics level with building up the cost of a part. It shows where costs come from.', focus: ['tCost', 'start'] },
         { nl: 'Op niveau Werkkennis komen het machine-uurtarief, zelf maken of kopen, de terugverdientijd en verspilling.', en: 'At Working knowledge level come the machine hour rate, make or buy, payback time and waste in euros.', focus: 'lv2' },
         { nl: 'Op niveau Gevorderd komen kosten per activiteit, de prijsondergrens, netto contante waarde en de absorptieval.', en: 'At Advanced level come costs by activity, the price floor, net present value and the absorption trap.', focus: 'lv3' },
         { nl: 'Op niveau Expert komen een offerte lezen, klantwinst, de investeringscommissie en besparingen laten tekenen.', en: 'At Expert level come reading a quote, customer profit, the investment board and getting savings signed.', focus: 'lv4' },
@@ -364,7 +360,7 @@ const spec = {
 // What the voice says is what the captions show (as in the other module intros): short sentences, few commas, no colons and no
 // symbols the voice would read aloud. Each topic scene ends on one short sentence naming the tool of that topic's lessons, without
 // explaining it. Every drawn detail has its reason in the narration: the belt and the unit (line 3, where the too-light cartons
-// come out), the crate (the carton goes in the bin), the laptop (the cash saving is worked out on it), the sheet (the payback goes on
+// come out), the crate (the carton goes in the bin), the laptop (the cash saving is worked out on it), the sheet (the investment next to the saving goes on
 // it), you and the team lead (the ones who stay after the shift).
 spec.scenes.forEach((s) => s.beats.forEach((b) => { b.say = { nl: b.nl, en: b.en }; }));
 // Each scene's length from its share of the Dutch narration, never shorter than its captions need.
@@ -434,8 +430,8 @@ const css = PM_CSS + HALL_CSS + `
 
 
 const label = {
-  nl: 'Hal B van de fabriek, waar lijn 3 draait. Aan de achterwand de band van lijn 3 met dozen; boven het begin van de band staat de vuleenheid, ongeveer zo hoog als een mens: een stalen frame met een plaat boven de dozen en bovenop een lichte kunststof kap. Voor de band staat een bak met afgekeurde dozen. Later komen erbij een tafel links voorin met een laptop en daarna een vel papier voor de berekening. Voor in de hal staan jij, de engineer, en de teamleider. Rechts een paneel, gemarkeerd als voorbeeld of schema: een te lichte doos die in de bak gaat, de route in twee groepen, een kostprijs die van onderop wordt opgebouwd, een hoeveelheid maal een tarief, een doos met alle kosten erin, overhead verdeeld over producten, een besluit en een prijs, kosten die verschillen en kosten die gelijk blijven, vaste en variabele kosten, een prijs met een dekkingsbijdrage, een verbetering die geld kost, een uitgave die jaren meegaat, minder geld uit en meer geld in, een besparing per jaar, een investering gedeeld door de besparing, verspilling in euro’s, voorraad op de plank, wat echt verloren gaat, uitval, herbewerking en claims, en de kosten van lijn 3 tegenover de opbrengst van de verbetering. Aan het eind de hele kaart van Engineering met Kostprijs en investeringen verlicht, en de vier onderwerpen van de module met elk vier niveaus: Basis, Werkkennis, Gevorderd en Expert.',
-  en: 'Hall B of the plant, where line 3 runs. Along the back wall the belt of line 3 with cartons; over the start of the belt stands the filling unit, about as tall as a person: a steel frame with a plate above the cartons and a light plastic cover on top. In front of the belt stands a crate with rejected cartons. Later come a table at the front left with a laptop and then a sheet of paper for the calculation. At the front of the hall stand you, the engineer, and the team lead. At the right a panel, marked as an example or a diagram: a too-light carton going in the bin, the route in two groups, a cost price built up from the bottom, a quantity times a rate, a carton with all its cost in it, overhead spread over products, a decision and a price, costs that differ and costs that stay equal, fixed and variable costs, a price with a contribution margin, a fix that costs money, an expense that lasts for years, less money out and more money in, a saving per year, an investment divided by the saving, waste in euros, stock on the shelf, what is really lost, scrap, rework and claims, and the cost of line 3 against the return of the fix. At the end the whole map of Engineering with Cost engineering lit, and the module’s four topics with four levels each: Basics, Working knowledge, Advanced and Expert.',
+  nl: 'Hal B van de fabriek, waar lijn 3 draait. Aan de achterwand de band van lijn 3 met dozen; boven het begin van de band staat de vuleenheid, ongeveer zo hoog als een mens: een stalen frame met een plaat boven de dozen en bovenop een lichte kunststof kap. Voor de band staat een bak met afgekeurde dozen. Later komen erbij een tafel links voorin met een laptop en daarna een vel papier voor de berekening. Voor in de hal staan jij, de engineer, en de teamleider. Rechts een paneel, gemarkeerd als voorbeeld of schema: een te lichte doos die in de bak gaat, de route in twee groepen, een kostprijs die van onderop wordt opgebouwd, een hoeveelheid maal een tarief, een doos met alle kosten erin, overhead verdeeld over producten, een besluit en een prijs, kosten die verschillen en kosten die gelijk blijven, vaste en variabele kosten, een prijs met een dekkingsbijdrage, een verbetering die geld kost, een uitgave die jaren meegaat, minder geld uit en meer geld in, een besparing per jaar, de investering naast de besparing per jaar, verspilling in euro’s, wat echt verloren gaat, uitval, herbewerking en claims, en de kosten van lijn 3 tegenover de opbrengst van de verbetering. Aan het eind de hele kaart van Engineering met Kostprijs en investeringen verlicht, en de vier onderwerpen van de module met elk vier niveaus: Basis, Werkkennis, Gevorderd en Expert.',
+  en: 'Hall B of the plant, where line 3 runs. Along the back wall the belt of line 3 with cartons; over the start of the belt stands the filling unit, about as tall as a person: a steel frame with a plate above the cartons and a light plastic cover on top. In front of the belt stands a crate with rejected cartons. Later come a table at the front left with a laptop and then a sheet of paper for the calculation. At the front of the hall stand you, the engineer, and the team lead. At the right a panel, marked as an example or a diagram: a too-light carton going in the bin, the route in two groups, a cost price built up from the bottom, a quantity times a rate, a carton with all its cost in it, overhead spread over products, a decision and a price, costs that differ and costs that stay equal, fixed and variable costs, a price with a contribution margin, a fix that costs money, an expense that lasts for years, less money out and more money in, a saving per year, the investment next to the saving per year, waste in euros, what is really lost, scrap, rework and claims, and the cost of line 3 against the return of the fix. At the end the whole map of Engineering with Cost engineering lit, and the module’s four topics with four levels each: Basics, Working knowledge, Advanced and Expert.',
 };
 
 const { data } = await defineFilm(spec, { svg, script: stageScript, css, kitCss: k.ISO_CSS, label });
