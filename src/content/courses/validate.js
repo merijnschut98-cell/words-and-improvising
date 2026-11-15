@@ -323,16 +323,50 @@ export function checkOpeners(modules, openers) {
   return errs;
 }
 
-// `node src/content/courses/validate.js` checks every module's openers.
-if (typeof process !== 'undefined' && process.argv && process.argv[1] && import.meta.url === new URL(`file://${process.argv[1]}`).href) {
-  const { MODULES, SUBJECTS } = await import('./index.js');
-  let bad = 0;
+// `node src/content/courses/validate.js` is the content validator the integrator
+// runs before every push. It runs every check in this file, not only the
+// openers: each module in both languages (validateModule), its intro and
+// topics, the fields, the subject maps (wide and phone layout), the figure
+// files, and the level openers. It prints every problem and exits 1 on any.
+// Before Task 19 the file had no command-line part: running it did nothing.
+export async function runAll() {
+  const fs = await import('node:fs');
+  const { MODULES, SUBJECTS, FIELDS, loadModule } = await import('./index.js');
+  const { mapFor } = await import('./maps/index.js');
+  const root = new URL('../../../', import.meta.url);
+  const problems = [];
+  const report = (label, errs) => {
+    errs.forEach((e) => problems.push(`${label}: ${e}`));
+    console.log(`${label}: ${errs.length} problems`);
+  };
+  report('fields', checkFields(FIELDS, MODULES));
+  for (const subject of SUBJECTS) {
+    const map = mapFor(subject);
+    if (!map) continue;
+    report(`map ${subject}`, checkMap(map, MODULES, FIELDS));
+    if (map.phone) report(`map ${subject} phone`, checkMap({ subject: map.subject, ...map.phone }, MODULES, FIELDS));
+  }
+  for (const m of MODULES) {
+    const [en, nl] = [await loadModule(m.subject, m.id, 'en'), await loadModule(m.subject, m.id, 'nl')];
+    const errs = [...checkIntro(m), ...validateModule(en, nl, m)]; // validateModule includes checkTopics
+    for (const lang of [en, nl]) {
+      for (const l of lang.lessons.filter((x) => x.figure)) {
+        if (!fs.existsSync(new URL(`src/content/courses/figures/${l.figure}.html`, root))) errs.push(`${l.id}: figure ${l.figure} missing`);
+      }
+    }
+    report(`module ${m.id}`, errs);
+  }
   for (const subject of SUBJECTS) {
     const openers = (await import(`./openers.${subject}.js`)).default;
-    const errs = checkOpeners(MODULES.filter((m) => m.subject === subject), openers);
-    errs.forEach((e) => console.log(e));
-    bad += errs.length;
-    console.log(`openers ${subject}: ${Object.keys(openers).length} topics, ${errs.length} problems`);
+    report(`openers ${subject} (${Object.keys(openers).length} topics)`, checkOpeners(MODULES.filter((m) => m.subject === subject), openers));
   }
-  process.exitCode = bad ? 1 : 0;
+  console.log(problems.length ? `\n${problems.length} problems in total:\n${problems.join('\n')}` : '\nvalidate: all content checks passed');
+  return problems.length;
+}
+
+// The browser also loads this file (src/ui/subjectmap.js), so nothing Node-only
+// is imported until we know we are the program being run.
+if (typeof process !== 'undefined' && process.argv && process.argv[1]) {
+  const { pathToFileURL } = await import('node:url');
+  if (import.meta.url === pathToFileURL(process.argv[1]).href) process.exitCode = (await runAll()) ? 1 : 0;
 }

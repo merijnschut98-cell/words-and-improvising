@@ -3,6 +3,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
+import { spawnSync } from 'node:child_process';
 import { MODULES, SUBJECTS, loadModule } from '../src/content/courses/index.js';
 import { checkOpeners, openerKey, openerSentences, OPENER_MAX_CHARS, OPENER_LEVEL_WORDS } from '../src/content/courses/validate.js';
 import engOpeners from '../src/content/courses/openers.eng.js';
@@ -83,6 +84,39 @@ for (const subject of SUBJECTS) {
     }
   });
 
+  test(`${subject}: openers do not all sound alike (varied openings and closings, per level and language)`, () => {
+    const entries = Object.values(OPENERS[subject]);
+    const share = (pick) => {
+      const n = {};
+      for (const e of entries) { const k = pick(e); n[k] = (n[k] || 0) + 1; }
+      return Math.max(...Object.values(n)) / entries.length;
+    };
+    const first = (t) => t.split(/\s+/).slice(0, 2).join(' ');
+    const last = (t) => { const s = openerSentences(t); return s[s.length - 1].split(/\s+/).slice(0, 2).join(' '); };
+    for (const level of [2, 3, 4]) {
+      for (const lang of ['nl', 'en']) {
+        assert.ok(share((e) => first(e[level][lang])) <= 0.4, `${subject} ${level} ${lang}: one opening starts too many openers`);
+        assert.ok(share((e) => last(e[level][lang])) <= 0.4, `${subject} ${level} ${lang}: one closing ends too many openers`);
+      }
+    }
+  });
+
+  test(`${subject}: no numbers from the lessons, only names such as N-1, SF6, A3, 8D, 3D, 5 whys or ISA-95`, () => {
+    const names = /\b(?:N-1|SF6|A3|8D|3D|ISA-95)\b|5 whys/g;
+    for (const [key, levels] of Object.entries(OPENERS[subject])) {
+      for (const level of [2, 3, 4]) for (const lang of ['nl', 'en']) {
+        assert.ok(!/\d/.test(levels[level][lang].replace(names, '')), `${key} ${level} ${lang}: has a number`);
+      }
+    }
+  });
+
+  test(`${subject}: openers use the lessons’ own words (no coined Dutch for terms the lessons keep)`, () => {
+    const coined = /ratelmerken|makelaar|tariefintegriteit|werkbemonstering|oorlogskamer|overstapweekend|trainingenieur|leuningen|warmtekaart|holteverschijnsel|regranulaat|ontformhoek|doelsituatie|stapproef|booguur|waardeprijs|waardegerichte/i;
+    for (const [key, levels] of Object.entries(OPENERS[subject])) {
+      for (const level of [2, 3, 4]) assert.ok(!coined.test(levels[level].nl), `${key} ${level}: ${levels[level].nl.match(coined)}`);
+    }
+  });
+
   test(`${subject}: no opener repeats a sentence of its lesson (it bridges, it does not teach)`, async () => {
     const sentences = (s) => String(s).split(/(?<=[.!?])\s+|\n+/).map((x) => x.trim()).filter((x) => x.length >= 30);
     for (const m of mods(subject)) {
@@ -107,4 +141,11 @@ for (const subject of SUBJECTS) {
 test('the opener files are precached by the service worker', () => {
   const sw = fs.readFileSync(new URL('../sw.js', import.meta.url), 'utf8');
   for (const subject of SUBJECTS) assert.ok(sw.includes(`'src/content/courses/openers.${subject}.js'`), `${subject} openers in SHELL`);
+});
+
+test('node validate.js runs every content check, not only the openers, and exits 0 on the shipped content', () => {
+  const r = spawnSync(process.execPath, ['src/content/courses/validate.js'], { encoding: 'utf8' });
+  assert.equal(r.status, 0, r.stdout + r.stderr);
+  for (const label of ['fields:', 'map pm:', 'map pm phone:', 'module eng.flow:', 'module pm.itproject:', 'openers eng', 'openers pm']) assert.ok(r.stdout.includes(label), `output names "${label}"`);
+  assert.equal((r.stdout.match(/^module /gm) || []).length, MODULES.length, 'every module is validated in both languages');
 });
