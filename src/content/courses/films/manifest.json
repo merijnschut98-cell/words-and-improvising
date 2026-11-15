@@ -3497,17 +3497,17 @@
     "eng.field.making": {
       "poster": "src/content/courses/films/eng.field.making.jpg",
       "nl": {
-        "dur": 206,
-        "bytes": 8225266,
+        "dur": 205.7,
+        "bytes": 8156535,
         "scenes": [
           0,
-          22.02,
-          38.12,
-          54.7,
-          75.26,
-          94.36,
-          111.98,
-          128.43
+          22.07,
+          38.07,
+          54.55,
+          74.99,
+          94.05,
+          112.02,
+          128.41
         ],
         "vtt": "src/content/courses/films/eng.field.making.nl.vtt"
       },
@@ -3530,16 +3530,16 @@
     "eng.field.digital": {
       "poster": "src/content/courses/films/eng.field.digital.jpg",
       "nl": {
-        "dur": 178.3,
-        "bytes": 7708603,
+        "dur": 179.1,
+        "bytes": 7710389,
         "scenes": [
           0,
-          23.18,
-          44.94,
-          65.78,
-          83.78,
-          103.13,
-          122.11
+          23.26,
+          45.14,
+          65.94,
+          83.89,
+          103.12,
+          122.46
         ],
         "vtt": "src/content/courses/films/eng.field.digital.nl.vtt"
       },
@@ -3561,18 +3561,18 @@
     "eng.field.energy": {
       "poster": "src/content/courses/films/eng.field.energy.jpg",
       "nl": {
-        "dur": 238.7,
-        "bytes": 11047100,
+        "dur": 237.9,
+        "bytes": 10998027,
         "scenes": [
           0,
-          20.91,
-          42.04,
-          63.42,
-          88.43,
-          110.36,
-          133.64,
-          155.05,
-          175.04
+          21.11,
+          42.48,
+          63.83,
+          88.75,
+          110.49,
+          133.87,
+          155.43,
+          174.92
         ],
         "vtt": "src/content/courses/films/eng.field.energy.nl.vtt"
       },
@@ -3596,17 +3596,17 @@
     "eng.machining.intro": {
       "poster": "src/content/courses/films/eng.machining.intro.jpg",
       "nl": {
-        "dur": 210.1,
-        "bytes": 8118816,
+        "dur": 210.7,
+        "bytes": 8131832,
         "scenes": [
           0,
           36.68,
-          54.95,
-          73.11,
-          89.56,
-          115.36,
-          136.75,
-          162.52
+          54.92,
+          73.28,
+          89.84,
+          115.53,
+          136.89,
+          162.65
         ],
         "vtt": "src/content/courses/films/eng.machining.intro.nl.vtt"
       },
@@ -3629,17 +3629,17 @@
     "eng.joining.intro": {
       "poster": "src/content/courses/films/eng.joining.intro.jpg",
       "nl": {
-        "dur": 206.9,
-        "bytes": 8066953,
+        "dur": 206.2,
+        "bytes": 8033278,
         "scenes": [
           0,
-          27.53,
-          48.33,
-          69.89,
-          90.4,
-          109.36,
-          127.32,
-          151.34
+          27.83,
+          48.47,
+          69.96,
+          90.28,
+          109.29,
+          126.89,
+          150.99
         ],
         "vtt": "src/content/courses/films/eng.joining.intro.nl.vtt"
       },
@@ -3677,17 +3677,17 @@
         "vtt": "src/content/courses/films/eng.moulding.intro.en.vtt"
       },
       "nl": {
-        "dur": 189.9,
-        "bytes": 6953989,
+        "dur": 189.4,
+        "bytes": 6943440,
         "scenes": [
           0,
-          25.65,
-          44.35,
-          61.17,
-          80.56,
-          97.85,
-          115.52,
-          138.7
+          25.48,
+          44.29,
+          60.88,
+          80.01,
+          97.37,
+          114.84,
+          138.39
         ],
         "vtt": "src/content/courses/films/eng.moulding.intro.nl.vtt"
       }
@@ -3708,15 +3708,15 @@
         "vtt": "src/content/courses/films/eng.mechanics.intro.en.vtt"
       },
       "nl": {
-        "dur": 164.9,
-        "bytes": 6225760,
+        "dur": 163.7,
+        "bytes": 6220380,
         "scenes": [
           0,
-          27.16,
-          50.91,
-          69.33,
-          87.66,
-          120.15
+          26.33,
+          50.16,
+          68.62,
+          86.62,
+          119.2
         ],
         "vtt": "src/content/courses/films/eng.mechanics.intro.nl.vtt"
       }
@@ -3724,15 +3724,15 @@
     "eng.process.intro": {
       "poster": "src/content/courses/films/eng.process.intro.jpg",
       "nl": {
-        "dur": 162,
-        "bytes": 5981968,
+        "dur": 162.2,
+        "bytes": 5988108,
         "scenes": [
           0,
-          23.01,
-          46.26,
-          71.91,
-          92.83,
-          118.34
+          23.32,
+          46.59,
+          72.06,
+          93.27,
+          118.49
         ],
         "vtt": "src/content/courses/films/eng.process.intro.nl.vtt"
       },
