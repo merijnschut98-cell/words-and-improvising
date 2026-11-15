@@ -163,3 +163,5 @@ Outcome: accepted (merged as delivered), sent back N times, redone.
 | 15 Nov | Build: Engineering intro eng.lines.intro | sonnet | 45 | 8 min (after resume) | 304,429 | commit blocked by the permission check; committed by the integrator with Merijn's OK; accepted with fixes by its review |
 | 15 Nov | Review: eng.lines.intro | sonnet | ~60 | ~25 min | n/a | accepted with fixes (signaalzuil replaces transportband, 198 to 191 s, labels named); merged v335 |
 | 15 Nov | Render PM-29: nine Engineering intros (drawings, seven energy, itbasics) | sonnet | 78+ | 2 h 15 min incl. limit pause | 182,923 | accepted; 18 guards passed; one gridplanning line shortened for a cue split; 9 of 37 tool words heard poorly (not chased); merged v336 |
+| 15 Nov | Build: Engineering intro eng.industry40.intro | sonnet | 83 | 13 min | 309,448 | accepted with fixes by its review |
+| 15 Nov | Review: eng.industry40.intro | sonnet | ~75 | n/a | n/a | accepted with small fixes (unit lit with its card, wèrhaus spelling, en wording, Expert title); merged v337 |
