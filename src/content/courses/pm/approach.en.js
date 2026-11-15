@@ -69,7 +69,7 @@ export default {
         { term: 'Stage', def: 'A part of the route with its own question and its own result.' },
         { term: 'Stage product', def: 'The one result a stage must leave behind before the next begins.' },
         { term: 'Mandate', def: 'The assignment and the authority to start the project, given by the sponsor.' },
-        { term: 'Sponsor', def: 'The manager who holds budget and result and takes the big decisions.' },
+        { term: 'Sponsor', def: 'The senior manager who owns the project’s goal and budget and takes its big decisions.' },
       ],
     },
     {
@@ -279,8 +279,8 @@ export default {
       sayIt: 'Explain in 60 seconds which questions you ask a PMO before proposing your own route.',
       terms: [
         { term: 'Client gate model', def: 'The fixed decision points the organisation prescribes for all its projects.' },
-        { term: 'PMO', def: 'Project or programme office that guards the rules, templates and reporting of projects.' },
-        { term: 'Tolerance', def: 'The deviation in time or money a project may have before it must go back to the decider.' },
+        { term: 'PMO', def: 'Project or programme management office: supports, controls or directs projects, depending on its type.' },
+        { term: 'Tolerance', def: 'The agreed margin per objective (time, money, scope) within which the project manager may steer on their own.' },
         { term: 'No-go decision', def: 'The decision, often after a first stage, that the project had better not begin.' },
       ],
     },
@@ -316,7 +316,7 @@ export default {
         },
         {
           q: 'What does a certificate prove?',
-          options: ['That the holder’s projects always succeed', 'That the client applies a recognised method', 'That the holder can combine agile and predictive', 'That someone passed an exam, not how his projects work'],
+          options: ['That the holder’s projects succeed more often than average', 'That the holder’s client applies a recognised method', 'That the holder can combine agile and predictive well', 'That someone passed an exam, not how his projects work'],
           answer: 'That someone passed an exam, not how his projects work',
           why: 'A certificate measures knowledge on one day, not behaviour in a project.',
         },
@@ -371,7 +371,7 @@ export default {
         'Define: you write a project charter, the Six Sigma kind: the problem, the goal in numbers, the scope, the team and the date. Measure: you make a baseline of current performance, with a fixed definition, a fixed source and a fixed period.\n\nResult of these two phases: one number everybody agrees on, and a goal you can check later.',
         'Analyse: you look for where the loss is. Simply, that can be done by counting where the work waits. Improve: you test a solution on a small scale and measure whether the number moves. Control: you make sure it keeps working with an owner, a fixed measurement and agreements in daily work.\n\nThe last phase is often skipped. Then the result slips back once the attention is gone.',
         'At the end of each phase there is a tollgate review: a short decision moment with the sponsor. Is what we have right, and do we go on? That way you stop in time if the problem proves smaller or the data is missing.\n\nIt is not an exam but a conversation: what do we know now, what is the number, what is the next step?',
-        'Which improvement road fits which size? As a rule of thumb: an A3 for one owner who tackles one problem in a few weeks. A kaizen event for one area in about a week; ASQ describes that as a week with the people who do the work. DMAIC for a recurring problem with data over a few months.\n\nHow an A3 or a kaizen event works is in the module Engineering problem solving in Engineering.',
+        'Which improvement road fits which size? As a rule of thumb: an A3 for one owner who tackles one problem in a few weeks. A kaizen event for one area in a few days, often three to five, with the people who do the work. DMAIC for a recurring problem with data over a few months.\n\nHow an A3 or a kaizen event works is in the module Engineering problem solving in Engineering.',
       ],
       example: {
         kind: 'worked',
@@ -381,7 +381,7 @@ export default {
       recall: [
         {
           q: 'What does the measure phase deliver?',
-          options: ['The solution you are going to test', 'The root cause of the problem', 'The plan to keep the result in place', 'A baseline of current performance with a fixed definition'],
+          options: ['The solution you are going to test on a small scale', 'The root cause of the problem, found by counting', 'The plan with owner and checks that keeps the result', 'A baseline of current performance with a fixed definition'],
           answer: 'A baseline of current performance with a fixed definition',
           why: 'Without a baseline you cannot say later whether anything has improved.',
         },
@@ -400,10 +400,10 @@ export default {
           hint: 'Only the waiting for the check changes. First find how many days were not waiting.',
         },
         {
-          q: 'Which improvement road fits one area in about a week with the people who do the work?',
-          options: ['A DMAIC project of a few months', 'An A3 by one owner over weeks', 'A PRINCE2 project with five gates', 'A kaizen event'],
-          answer: 'A kaizen event',
-          why: 'Size and duration decide the road: a week and an area is an event, months and data is DMAIC.',
+          q: 'Which improvement road fits one area in a few days with the people who do the work?',
+          options: ['A DMAIC project of a few months', 'An A3 by one owner over weeks', 'A PRINCE2 project with five gates', 'A kaizen event with the team'],
+          answer: 'A kaizen event with the team',
+          why: 'Size and duration decide the road: a few days and one area is an event, months and data is DMAIC.',
         },
       ],
       situation: {
@@ -465,7 +465,7 @@ export default {
         },
         {
           q: 'The client has already chosen the method. What do you ask?',
-          options: ['Whether the client is willing to replace the method', 'Which certificates the PMO employees hold', 'What is fixed and what is free in how the team works within the frame', 'How much the method cost the previous time'],
+          options: ['Whether the client is willing to replace the method for this project', 'Which certificates the PMO employees and project leads hold', 'What is fixed and what is free in how the team works within the frame', 'How much the method cost the previous time it was used'],
           answer: 'What is fixed and what is free in how the team works within the frame',
           why: 'Within an imposed method you look for the room that does exist.',
         },
@@ -507,7 +507,7 @@ export default {
       ],
       teach: [
         'When a client says “we do PRINCE2” or “we do agile”, that is often a language and a set of templates. Your job is translating between methods without losing the core: the client’s status report is a sprint overview in other words, a stage is a series of rounds with a decision at the end.\n\nUse their words; a vocabulary of your own costs you trust.',
-        'Use tailoring openly. Both PMI and PeopleCert ask for it: in the PMBOK Guide PMI describes principles and performance domains instead of fixed processes, and the latest PRINCE2 puts more emphasis, according to PeopleCert, on tailoring, people and sustainability.\n\nSo you can say: “The framework itself asks for adaptation to this project.” That is a stronger argument than “I would rather do it differently”.',
+        'Use tailoring openly. Both PMI and PeopleCert ask for it: in the PMBOK Guide PMI builds on principles and performance domains and offers processes only as guidance to tailor, and the latest PRINCE2 puts more emphasis, according to PeopleCert, on tailoring, people and sustainability.\n\nSo you can say: “The framework itself asks for adaptation to this project.” That is a stronger argument than “I would rather do it differently”.',
         'Watch for method theatre: templates are filled in, gates are passed, but no decisions are taken. Signs: the status report never changes, every gate is approved without discussion, nobody reads the risk list, and the real decisions happen outside the meeting.\n\nA test question for every document: “Which decision was taken or prevented by this?” If there is no answer, it is theatre.',
         'A PMO that asks for certificates shows how you will be judged: also on language and compliance, not only on results. That is not an insult, it is information. Show your craft in their words and show results alongside.\n\nWhoever sees certificates as proof of behaviour is mistaken; whoever ignores them misses how the organisation reads you.',
         'What experts discuss: purists say a mixed approach is no longer real PRINCE2. Practitioners ask what the sponsor and the auditor need in order to explain and defend the project.\n\nA sharp question: “If an auditor looks at this project in a year, which decisions and evidence do I want to be able to show?” From that follows how much of the method you need.',
@@ -560,7 +560,7 @@ export default {
       terms: [
         { term: 'Method theatre', def: 'Templates and gates are completed without any decisions being taken.' },
         { term: 'Translating between methods', def: 'Expressing your approach in the words and forms of the client’s method without losing the core.' },
-        { term: 'Principles', def: 'The basic rules a framework such as the PMBOK Guide rests on, instead of fixed processes.' },
+        { term: 'Principles', def: 'The basic rules a framework such as the PMBOK Guide rests on; processes and templates follow from them.' },
       ],
     },
     {
@@ -640,7 +640,7 @@ export default {
       pre: [
         {
           q: 'You set up a task board for a team of five. What do you base the columns on?',
-          options: ['On the team members, a column per person', 'On the months of the project', 'On the size of the budget per task', 'On the work, such as prepare, execute and waiting for the client'],
+          options: ['On the team members, a column per person so everyone sees their own work', 'On the months of the project, from start to handover', 'On the size of the budget per task, from large to small', 'On the work, such as prepare, execute and waiting for the client'],
           answer: 'On the work, such as prepare, execute and waiting for the client',
           why: 'Columns by work show where it is stuck; columns by people hide overload.',
         },
@@ -680,7 +680,7 @@ export default {
         },
         {
           q: 'Where do you record the project’s decisions and agreements?',
-          options: ['As a card in the bucket called done', 'In the documentation tool next to the board, with a link from the board', 'Only in the project lead’s mailbox', 'As a comment under the last card'],
+          options: ['As a card in the bucket called done, so the whole team sees it', 'In the documentation tool next to the board, with a link from the board', 'In the minutes the project lead emails after each weekly meeting', 'As a comment under the card the decision is about'],
           answer: 'In the documentation tool next to the board, with a link from the board',
           why: 'Decisions must be findable for everyone, also after the project.',
         },
@@ -845,7 +845,7 @@ export default {
         { term: 'Tool sprawl', def: 'The phenomenon that every team brings its own tools until nobody knows which holds the plan.' },
         { term: 'Data residency', def: 'Where data sits and who can access it under which rules, as the client prescribes.' },
         { term: 'Ownership after you leave', def: 'Who maintains and pays for a tool once the consultant is gone.' },
-        { term: 'Adoption', def: 'Whether people really want and are able to use a new tool or way of working.' },
+        { term: 'Adoption', def: 'People actually using the new way of working, also when nobody is watching.' },
       ],
     },
     {
@@ -854,7 +854,7 @@ export default {
       pre: [
         {
           q: 'You want to know how many hours have been booked on your project so far. In which kind of client system do you look?',
-          options: ['The system for incidents and changes', 'The system with drawings and parts', 'The ERP system, where hours and costs sit per project number', 'The team’s digital whiteboard'],
+          options: ['The ITSM system, where incidents and changes are registered', 'The PLM system, where drawings and parts are managed', 'The ERP system, where hours and costs sit per project number', 'The team’s digital whiteboard from the last session'],
           answer: 'The ERP system, where hours and costs sit per project number',
           why: 'Booked hours and costs belong in the ERP, under a project number.',
         },
@@ -863,7 +863,7 @@ export default {
         'A large client has many systems, and each has one job. ERP (enterprise resource planning): money, hours and materials, per project number. Planning for large projects: big schedules with many dependencies. PPM (project and portfolio management): which projects exist, what they ask for and who has capacity for them.\n\nThey are families, as with your own tools: learn the job, not the brand name.',
         'PLM (product lifecycle management): product data such as drawings, parts and engineering changes. ITSM (IT service management): incidents, changes and requests in IT, see the lesson Incident, problem, change. Reporting: tools such as Power BI that show figures from other systems.\n\nIn the sector you often meet Primavera P6 for large schedules, Clarity for PPM and Polarion for requirements and traceability. That is what is common, not what every client has.',
         'A system of record is the system in which an official fact sits and that counts when sources contradict each other. Hours officially sit in the ERP, a change in the ITSM, a drawing in the PLM.\n\nYour own board is handy for daily work, but it is rarely where a controller or auditor looks. So always ask: “In which system does this figure officially sit?”',
-        'One project has several keys. The project code or WBS code ties hours and costs in the ERP to your project; the WBS is the breakdown of the work from the lesson on breakdown.\n\nIf someone books hours on the wrong code, your project looks cheaper than it is and the bill lands elsewhere. In the first week, ask for your codes and pass them on to the team.',
+        'One project has several keys. The project code or WBS code ties hours and costs in the ERP to your project; the WBS is the breakdown of the work from the lesson Breaking the work down.\n\nIf someone books hours on the wrong code, your project looks cheaper than it is and the bill lands elsewhere. In the first week, ask for your codes and pass them on to the team.',
         'Which companies use what? Only where a source shows it. According to a Siemens case study, ASML uses Teamcenter for lifecycle management and NX for design. According to SAP, Enexis was preparing for SAP S/4HANA in 2020; according to Enexis itself, ServiceNow is the platform for employee workflows; according to Mendix, Enexis built more than a hundred apps in Mendix, including a project management app linked to SAP.\n\nSuppliers’ sources are advertising: read them as a pointer, not as proof.',
       ],
       example: {
@@ -886,7 +886,7 @@ export default {
         },
         {
           q: 'Someone books hours on the wrong project code. What is the result?',
-          options: ['Your project looks cheaper than it is and the costs land elsewhere', 'The ERP refuses the hours and deletes them', 'The sponsor automatically gets a notification', 'The project runs a week over'],
+          options: ['Your project looks cheaper than it is and the costs land elsewhere', 'The ERP refuses the hours and sends them back to the employee', 'The sponsor automatically gets a notification and corrects it', 'Nothing, because the controller moves the hours at month end'],
           answer: 'Your project looks cheaper than it is and the costs land elsewhere',
           why: 'The code ties hours to a project; a wrong code moves the cost.',
         },
@@ -944,7 +944,7 @@ export default {
       recall: [
         {
           q: 'What is an epic on a backlog board?',
-          options: ['A large piece of work made up of several features and stories', 'A defect that must be repaired', 'A short need of a single user', 'A meeting at the end of the sprint'],
+          options: ['A large piece of work made up of several features and stories', 'A defect found in testing that must be repaired', 'A short need of a single user, written as a story', 'The review meeting at the end of a sprint'],
           answer: 'A large piece of work made up of several features and stories',
           why: 'An epic bundles many smaller items into one large result.',
         },
@@ -1004,14 +1004,14 @@ export default {
         'Distinguish your working tool from the system of record. The board is for the team’s daily work; the client’s system keeps the official figures, such as hours, costs and portfolio status.\n\nOne rule: a fact has one home. The other system shows it, receives it through a link or export, or is updated according to an agreement.',
         'Prevent double entry: typing the same figure twice. It costs hours and gives differences. Establish which system is the source, who feeds it and what the cut-off is: the date on which the figures for reporting are fixed.\n\nAlways update the PMO tool before that moment, not after, otherwise your project is wrong for a month.',
         'Is the PMO tool mandatory? Sometimes budget release or reporting depends on it, and then you comply, with the minimum of fields. Ask whether you can get an export of the template that you can fill from your board.\n\nThat way your working tool stays for the team and you meet the requirement without the team working in two systems.',
-        'Power BI appears here only as a source for your reading, not as a design. Read a report well: which page, which filter, which date? Then trace each figure back: which system does it come from, what is the refresh time, the last time the data was loaded, and what is the metric definition: what counts as done, which hours count?\n\nA dashboard shows what someone feeds it; how to design one belongs to the Performance subject.',
+        'Power BI appears here only as a source you read, not as something you design. Read a report well: which page, which filter, which date? Then trace each figure back: which system does it come from, what is the refresh time, the last time the data was loaded, and what is the metric definition: what counts as done, which hours count?\n\nA dashboard shows what someone feeds it; how to design one belongs to the Performance subject.',
         'The exception: your board says green and the PMO report says red. There are three common causes. The report has not been refreshed. The report counts “done” differently from you. Hours were booked on another code.\n\nCheck them in that order, cheapest first. More on the data side is in the lesson Why two reports disagree in the module IT fundamentals in Engineering.',
       ],
       example: {
         kind: 'faded',
-        text: 'Your board says your project is green: 18 of 20 tasks are done. The PMO report, in Power BI, says red: 60% done and hours 15% over plan. The report refreshes every Monday morning and you read it on Thursday. The report counts a task as done only after acceptance by the client. Two colleagues have been booking on another project’s code since last week.',
+        text: 'Your board says your project is green: 18 of 20 tasks are done. The PMO report, in Power BI, says red: 60% done and hours 15% over plan. The report refreshes every Monday morning and you read it on Thursday. The report counts a task as done only after acceptance by the client. Since last week two colleagues from another project have been booking their hours on your project’s code.',
         ask: 'Which three causes can explain the difference, and how do you check them?',
-        reveal: 'Refresh time: the report is three days old, so tasks of this week are not in it; check the date of the last refresh. Definition: you count “done” at completion, the report after acceptance; show how many of the 18 still await acceptance. Code: the hours of two colleagues sit on another project, so your hours look too high or low; ask for the bookings of the past weeks. None of the three is anyone’s mistake; they are three differences in source, moment and definition. Record them and agree which figure counts officially.',
+        reveal: 'Refresh time: the report is three days old, so tasks of this week are not in it; check the date of the last refresh. Definition: you count “done” at completion, the report after acceptance; show how many of the 18 still await acceptance. Code: two colleagues of another project book on your code, so your hours look too high; ask for the bookings of the past weeks. None of the three is anyone’s mistake; they are three differences in source, moment and definition. Record them and agree which figure counts officially.',
       },
       said: 'What you hear in projects: “My board says green, that report is wrong.”',
       recall: [
@@ -1031,7 +1031,7 @@ export default {
         },
         {
           q: 'Which question belongs to reading a Power BI report as a source?',
-          options: ['Which colours and chart types look best?', 'Which system does this figure come from, when was it refreshed and what counts?', 'How many pages should a good report have?', 'Who made the report first?'],
+          options: ['Which colours and chart types make the page easiest to read?', 'Which system does this figure come from, when was it refreshed and what counts?', 'How many pages and filters should a good report have at most?', 'Who built the report first and who has edited it since?'],
           answer: 'Which system does this figure come from, when was it refreshed and what counts?',
           why: 'You read a report as a source, so you trace each figure to its origin.',
         },
@@ -1049,7 +1049,7 @@ export default {
         rubric: ['Meets today’s requirement', 'Looks for the cause of the difference in the definition', 'Proposes an export against double work'],
         pushback: {
           lines: ['“We did not invent our definition for you. You must adapt.”', '“Making an export costs me time I do not have.”'],
-          model: '“I adapt, that is not the question. I only want to know whether your definition keeps counting this project after acceptance, so my figure can be right. I make the export myself; I only need your field names. That saves you the retyping every week.”',
+          model: '“I adapt, that is not the question. I only want to know exactly when you count a task as done, so my figure measures the same thing. I make the export myself; I only need your field names. That saves you the retyping every week.”',
           rubric: ['Adapts without fighting', 'Takes the work of the export on himself', 'Asks only for the field names'],
         },
       },
@@ -1058,7 +1058,7 @@ export default {
         { term: 'Working tool', def: 'The tool in which the team works daily, such as the board; not necessarily the system of record.' },
         { term: 'Double entry', def: 'Typing the same figure into two systems, which costs hours and produces differences.' },
         { term: 'Cut-off', def: 'The date on which the figures for reporting are fixed.' },
-        { term: 'Refresh time', def: 'The moment at which the data of a report was last loaded.' },
+        { term: 'Refresh time', def: 'The moment a report or data warehouse last received new data.' },
         { term: 'Metric definition', def: 'The agreement on what exactly a figure counts, such as what “done” is or which hours count.' },
       ],
     },
@@ -1076,7 +1076,7 @@ export default {
       teach: [
         'What a senior weighs: who is the data owner? It differs per kind of data: the controller owns hours and costs, the IT owner the system, a business manager the definitions. A dispute about a figure is almost always about the definition.\n\nFind the owner before the dispute arises, and write the definition where everybody can see it.',
         'The PMO often decides how you are measured: which indicators, which template, what “green” is. Negotiate that early and not after the first red status. How the PMO and independent review work together is in the lesson Independent assurance and the PMO.\n\nAssurance is that independent check that the project does what it says; your tools must be able to withstand it too.',
-        'Vendor risk: tools change, merge or disappear. An example, according to Microsoft itself: Project for the web was retired in 2025 and Project Online follows in 2026, with the planning functions moving to Planner.\n\nSo do not tie your plan to one product without a plan B. Write down which function you need and when you would move; that is cheaper than an emergency move.',
+        'Vendor risk: tools change, merge or disappear. An example, according to Microsoft itself: Project for the web was retired in 2025 and its users were sent to Planner; Project Online followed in 2026.\n\nSo do not tie your plan to one product without a plan B. Write down which function you need and when you would move; that is cheaper than an emergency move.',
         'In technical companies an engineering change in the PLM system shifts your plan: a new drawing revision or a different part means other lead times and extra work. Ask how changes reach you: who reports them, with what lead time, and where can you subscribe?\n\nWithout that route you hear about it only when the fitter notices.',
         'The credible questions per role. To the controller: which hours and costs count officially and when is the cut-off? To the PMO: what does “green” mean here, and what happens at red? To the IT owner: what changes in the systems over the coming months, and what does an integration cost?\n\nThat shows you understand the landscape and not only your own board.',
       ],
@@ -1122,16 +1122,16 @@ export default {
         rubric: ['Appreciates that the PMO is handling it', 'Asks three concrete questions', 'Puts it as a risk in his own list'],
         pushback: {
           lines: ['“You are exaggerating. At the last switch nobody noticed anything.”', '“We have no time for your questions now, the schedule is full.”'],
-          model: '“Then it is good if it goes like that again. I only ask for three answers on one A4, whenever it suits you, so I can protect the project. If it goes smoothly, you gained nothing and neither did I; then it only cost a quarter of an hour.”',
+          model: '“Then it is good if it goes like that again. I only ask for three answers on one A4, whenever it suits you, so I can protect the project. If it goes smoothly, it has cost us both only a quarter of an hour.”',
           rubric: ['Does not argue about exaggerating', 'Makes the request small and flexible', 'Sets cost against possible gain'],
         },
       },
       sayIt: 'Explain in 60 seconds which questions you ask as a senior of the controller, the PMO and the IT owner about the tool landscape.',
       terms: [
-        { term: 'Data owner', def: 'The person who decides what a kind of data means and who may use it.' },
+        { term: 'Data owner', def: 'Person or department that decides what a piece of data means and makes sure it is right.' },
         { term: 'Vendor risk', def: 'The risk that a tool changes, merges or disappears while your project depends on it.' },
         { term: 'Engineering change', def: 'A change in a drawing, part or design that can shift planning and lead times.' },
-        { term: 'Assurance', def: 'The independent check that a project does what it says it does.' },
+        { term: 'Assurance', def: 'An independent check that gives decision makers confidence a programme is on track and reports honestly.' },
       ],
     },
   ],

@@ -19,7 +19,7 @@ export default {
       en: 'With Advanced you decide how much route a project needs. You merge stages where you can and never drop four things. Afterwards you can give a small and a large project a route of its own and justify it.',
     },
     4: {
-      nl: 'Bij Expert werk je binnen de route van de klant. Je stelt de PMO de goede vragen voordat je zelf iets voorstelt en je durft ook niet beginnen als antwoord te geven. Dan kun je onderhandelen over gates, sjablonen en toleranties.',
+      nl: 'Bij Expert werk je binnen de route van de klant. Je stelt het PMO de goede vragen voordat je zelf iets voorstelt en je durft ook niet beginnen als antwoord te geven. Dan kun je onderhandelen over gates, sjablonen en toleranties.',
       en: 'With Expert you work within the client’s route. You ask the PMO the right questions before you propose anything and you dare to give not starting as an answer. Then you can negotiate about gates, templates and tolerances.',
     },
   },
@@ -61,7 +61,7 @@ export default {
       en: 'With Advanced you decide what lives where. You record which system is the source and prevent double entry. Then you can find out why a board is green and a report is red, without guessing.',
     },
     4: {
-      nl: 'Bij Expert kijk je als senior naar het hele landschap. Je zoekt de data-eigenaar, weegt leveranciersrisico en vraagt hoe technische wijzigingen jou bereiken. Daarna kun je de controller, de PMO en de IT-eigenaar de goede vragen stellen.',
+      nl: 'Bij Expert kijk je als senior naar het hele landschap. Je zoekt de data-eigenaar, weegt leveranciersrisico en vraagt hoe technische wijzigingen jou bereiken. Daarna kun je de controller, het PMO en de IT-eigenaar de goede vragen stellen.',
       en: 'With Expert you look at the whole landscape as a senior. You look for the data owner, weigh vendor risk and ask how engineering changes reach you. Afterwards you can ask the controller, the PMO and the IT owner the right questions.',
     },
   },

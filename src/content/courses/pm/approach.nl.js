@@ -13,10 +13,10 @@ export default {
         },
       ],
       teach: [
-        'Een project loopt over een route (route): vijf fasen (stages) die op elkaar volgen. Intake: wat is het probleem en is het de moeite waard? Plannen: wat doen we, wanneer, met wie? Uitvoeren: het werk doen en sturen. Landen: de verandering laten werken bij de mensen die ermee leven. Afsluiten: het resultaat aantonen en overdragen.\n\nDe fasen zijn geen vakjes om af te vinken, maar vragen die je in volgorde beantwoordt.',
+        'Een project loopt over een route: vijf fasen (stages) die op elkaar volgen. Intake: wat is het probleem en is het de moeite waard? Plannen: wat doen we, wanneer, met wie? Uitvoeren: het werk doen en sturen. Landen: de verandering laten werken bij de mensen die ermee leven. Afsluiten: het resultaat aantonen en overdragen.\n\nDe fasen zijn geen vakjes om af te vinken, maar vragen die je in volgorde beantwoordt.',
         'Elke fase laat één ding achter dat de volgende nodig heeft: een faseproduct (stage product). Intake levert een afgesproken probleem en een projectopdracht. Plannen levert een plan met een basisplanning (baseline) waartegen je later meet. Uitvoeren levert een werkend ritme van status en besluiten. Landen levert een overdracht. Afsluiten levert een sluitingsbesluit met bewezen resultaat.\n\nOntbreekt een faseproduct, dan staat de volgende fase op los zand.',
         'De volgorde doet ertoe. Een plan vóór een afgesproken probleem plant het verkeerde. Bij een netbeheerder wilde de afdeling “snellere werkvoorbereiding”. Er werd een planning gemaakt voor nieuwe software, terwijl het probleem bleek te zitten in vergunningen die te laat binnenkwamen.\n\nZes maanden werk voor het verkeerde ding. Vijf minuten vragen aan het begin had dat voorkomen.',
-        'Een project begint met een mandaat (mandate): de opdracht en de bevoegdheid om te mogen starten. Die komt van de sponsor (sponsor): de manager die het budget heeft en de grote besluiten neemt.\n\nZonder mandaat en sponsor heb je geen route maar een hobby. Controleer bij elk project twee dingen: wie gaf dit mandaat, en zegt diegene dat vandaag nog steeds?',
+        'Een project begint met een mandaat (mandate): de opdracht en de bevoegdheid om te mogen starten. Die komt van de sponsor: de manager die het budget heeft en de grote besluiten neemt.\n\nZonder mandaat en sponsor heb je geen route maar een hobby. Controleer bij elk project twee dingen: wie gaf dit mandaat, en zegt diegene dat vandaag nog steeds?',
         'Elke fase heeft in deze app een eigen module: Intake, Plannen, Uitvoeren, Landen en Afsluiten. Deze les is het overzicht; de modules geven de diepte. Over de eerste weken van een project gaat de les De eerste weken in Intake, daar herhalen we niets van.\n\nOnthoud de vraag per fase, het faseproduct en wie er bij het besluit zit.',
       ],
       example: {
@@ -69,7 +69,7 @@ export default {
         { term: 'Fase', def: 'Een deel van de route met een eigen vraag en een eigen resultaat.' },
         { term: 'Faseproduct', def: 'Het ene resultaat dat een fase moet achterlaten voordat de volgende begint.' },
         { term: 'Mandaat', def: 'De opdracht en de bevoegdheid om het project te starten, gegeven door de sponsor.' },
-        { term: 'Sponsor', def: 'De manager die budget en resultaat in handen heeft en de grote besluiten neemt.' },
+        { term: 'Sponsor', def: 'De senior manager die eigenaar is van doel en budget van het project en de grote besluiten neemt.' },
       ],
     },
     {
@@ -197,7 +197,7 @@ export default {
         scene: 'Je zit bij een maakbedrijf. De PMO-medewerker zegt: “Voor dit project van drie weken moet je toch het volledige sjabloon invullen.” Jij vindt dat te zwaar voor een kleine aanpassing aan een verpakkingslijn.',
         ask: 'Wat stel je voor?',
         model: '“Ik wil het eerlijk invullen, maar op de schaal van het project. Mag ik de drie vragen die het sjabloon stelt beantwoorden op één pagina: probleem, beslisser, doel? Dan heeft u wat u nodig hebt voor uw overzicht, en het team besteedt de uren aan de lijn in plaats van aan papier.”',
-        rubric: ['Neemt de eis van de PMO serieus', 'Stelt een kortere vorm voor die dezelfde vragen beantwoordt', 'Noemt het voordeel voor het project en voor de PMO'],
+        rubric: ['Neemt de eis van het PMO serieus', 'Stelt een kortere vorm voor die dezelfde vragen beantwoordt', 'Noemt het voordeel voor het project en voor het PMO'],
         pushback: {
           lines: ['“Als ik dit voor jou toesta, wil iedereen een uitzondering.”', '“De regels zijn er niet voor niets. Een klein project kan ook groot misgaan.”'],
           model: '“Dan stel ik een regel voor in plaats van een uitzondering: onder een bepaalde omvang geldt de korte vorm, en boven die grens het volledige sjabloon. De vier vaste dingen blijven altijd staan: beslisser, doel, ritme en afsluiting. Zo houdt u controle en blijft het eerlijk voor iedereen.”',
@@ -218,28 +218,28 @@ export default {
       pre: [
         {
           q: 'Een klant heeft een PMO met verplichte sjablonen. Je hebt zelf een slankere route bedacht. Wat doe je eerst?',
-          options: ['Je eigen route invoeren; de klant betaalt voor jouw aanpak', 'Vragen wat de PMO verplicht en wat er echt gelezen wordt', 'Alle sjablonen zonder vragen invullen', 'De PMO overslaan en rechtstreeks naar de sponsor gaan met je eigen plan'],
-          answer: 'Vragen wat de PMO verplicht en wat er echt gelezen wordt',
+          options: ['Je eigen route invoeren; de klant betaalt voor jouw aanpak', 'Vragen wat het PMO verplicht en wat er echt gelezen wordt', 'Alle sjablonen zonder vragen invullen', 'Het PMO overslaan en rechtstreeks naar de sponsor gaan met je eigen plan'],
+          answer: 'Vragen wat het PMO verplicht en wat er echt gelezen wordt',
           why: 'Wie de regels niet kent, kan er niet slim mee onderhandelen.',
         },
       ],
       teach: [
         'Veel klanten hebben al een route: een PMO (project management office), een gatemodel van de klant (client gate model) met vaste besluitmomenten, verplichte sjablonen en regels. Jouw route moet daarin passen, anders word je niet gelezen en niet betaald.\n\nDe vraag is niet “welke route is de beste”, maar “wat verlangt deze organisatie, en wat kan ik daarbinnen goed doen?”',
-        'De PMO bewaakt vaak ook de toleranties (tolerances): hoeveel een project mag afwijken in tijd of geld voordat het terug moet naar de besluitnemer. Soms zijn die strakker dan wat jij zou kiezen, zoals de les Basislijn, toleranties en rollende planning uitlegt.\n\nVraag niet alleen wat de toleranties zijn, maar wie ze bepaalt en wat er gebeurt als je erover gaat.',
-        'Vijf vragen aan de PMO voordat je je eigen route voorstelt. Welke gates zijn er en wie beslist bij elke? Welke sjablonen zijn verplicht en welke worden echt gelezen? Wat zijn de toleranties? Waar wordt mijn project in gerapporteerd? En: wat gebeurt er als ik een sjabloon verkort?\n\nHet antwoord op de laatste vraag zegt veel over hoe streng de regels in de praktijk zijn.',
+        'Het PMO bewaakt vaak ook de toleranties (tolerances): hoeveel een project mag afwijken in tijd of geld voordat het terug moet naar de besluitnemer. Soms zijn die strakker dan wat jij zou kiezen, zoals de les Basislijn, toleranties en rollende planning uitlegt.\n\nVraag niet alleen wat de toleranties zijn, maar wie ze bepaalt en wat er gebeurt als je erover gaat.',
+        'Vijf vragen aan het PMO voordat je je eigen route voorstelt. Welke gates zijn er en wie beslist bij elke? Welke sjablonen zijn verplicht en welke worden echt gelezen? Wat zijn de toleranties? Waar wordt mijn project in gerapporteerd? En: wat gebeurt er als ik een sjabloon verkort?\n\nHet antwoord op de laatste vraag zegt veel over hoe streng de regels in de praktijk zijn.',
         'Soms moet je een route of prijs vastleggen vóórdat de scope duidelijk is: een contract vóór het plan. Het risico is dat je een plan vastlegt op een probleem dat je nog niet kent. Een verstandige uitweg is de eerste fase als aparte, korte opdracht met een herbesluit erna.\n\nDaarbij hoort het niet-starten-besluit (no-go decision): het eerlijke antwoord van fase één kan zijn dat het project niet moet beginnen. Maak dat voor de sponsor makkelijk, zoals Stage gates voor capex en projecten beschrijft.',
         'Eén regel over de verandering. Prosci beschrijft een driefasenproces voor verandermanagement: de aanpak voorbereiden, de verandering managen en de uitkomsten borgen. Zie het als de tegenhanger van jouw projectfasen, niet als vervanging.\n\nWat dat in de praktijk vraagt van mensen, staat in de les Wat adoptie echt drijft. Hier hoef je alleen te weten dat veel klanten dit ernaast hebben.',
       ],
       example: {
         kind: 'faded',
         text: 'Een PMO bij een maakbedrijf eist voor elk project vijf gates en twaalf sjablonen. Jouw project is een verbetering van tien weken met drie mensen van 40 uur per week. Het invullen van een sjabloon kost gemiddeld 3 uur. De sponsor wil vooral snel resultaat op lijn 2.',
-        ask: 'Wat vraag je de PMO, en wat stel je voor?',
-        reveal: 'De sjablonen kosten 12 × 3 = 36 uur van 1.200 uur capaciteit: 3%. Dat is te dragen, dus het probleem zit niet in de uren maar in de gates die het project in tien weken vijf keer stilzetten. Vraag welke gates een lichte vorm hebben voor projecten onder een bepaalde omvang, wie per gate beslist en wat echt gelezen wordt. Stel voor: twee gates (start en afsluiting) volledig, de rest als korte check van een pagina, met de vier vaste dingen intact. Laat de PMO bevestigen dat dit binnen de regels past.',
+        ask: 'Wat vraag je het PMO, en wat stel je voor?',
+        reveal: 'De sjablonen kosten 12 × 3 = 36 uur van 1.200 uur capaciteit: 3%. Dat is te dragen, dus het probleem zit niet in de uren maar in de gates die het project in tien weken vijf keer stilzetten. Vraag welke gates een lichte vorm hebben voor projecten onder een bepaalde omvang, wie per gate beslist en wat echt gelezen wordt. Stel voor: twee gates (start en afsluiting) volledig, de rest als korte check van een pagina, met de vier vaste dingen intact. Laat het PMO bevestigen dat dit binnen de regels past.',
       },
       said: 'Wat je hoort in projecten: “Het sjabloon is ingevuld, dus het project is onder controle.”',
       recall: [
         {
-          q: 'Het project heeft 3 mensen gedurende 10 weken van 40 uur per week. De PMO eist twaalf sjablonen van gemiddeld 3 uur. Hoeveel procent van de totale capaciteit gaat naar sjablonen?',
+          q: 'Het project heeft 3 mensen gedurende 10 weken van 40 uur per week. Het PMO eist twaalf sjablonen van gemiddeld 3 uur. Hoeveel procent van de totale capaciteit gaat naar sjablonen?',
           number: 3,
           tolerance: 0.1,
           unit: '%',
@@ -248,7 +248,7 @@ export default {
         },
         {
           q: 'Wat vertelt het antwoord op “Wat gebeurt er als ik een sjabloon verkort?” je?',
-          options: ['Hoeveel de PMO van jou persoonlijk vindt', 'Hoe streng de regels echt zijn', 'Wat de volgende gate het project gaat kosten', 'Hoe groot het budget van de sponsor is'],
+          options: ['Hoeveel het PMO van jou persoonlijk vindt', 'Hoe streng de regels echt zijn', 'Wat de volgende gate het project gaat kosten', 'Hoe groot het budget van de sponsor is'],
           answer: 'Hoe streng de regels echt zijn',
           why: 'Regels op papier en regels in de praktijk verschillen vaak.',
         },
@@ -260,27 +260,27 @@ export default {
         },
         {
           q: 'Wat is een niet-starten-besluit?',
-          options: ['De uitkomst van een eerste fase dat het project beter niet kan beginnen', 'Een project dat bij gebrek aan budget wordt uitgesteld tot het volgende boekjaar', 'Een stuurgroep die wacht tot de sponsor terug is', 'Het verbod om met een project te starten zonder voorafgaande toestemming van de PMO'],
+          options: ['De uitkomst van een eerste fase dat het project beter niet kan beginnen', 'Een project dat bij gebrek aan budget wordt uitgesteld tot het volgende boekjaar', 'Een stuurgroep die wacht tot de sponsor terug is', 'Het verbod om met een project te starten zonder voorafgaande toestemming van het PMO'],
           answer: 'De uitkomst van een eerste fase dat het project beter niet kan beginnen',
           why: 'Eerlijk adviseren kan betekenen dat het antwoord “niet doen” is.',
         },
       ],
       situation: {
-        scene: 'Je zit bij een maakbedrijf. De PMO eist vijf gates voor een verbeterproject van tien weken. De sponsor wil dat je “gewoon begint” en de PMO later wel overtuigt.',
+        scene: 'Je zit bij een maakbedrijf. Het PMO eist vijf gates voor een verbeterproject van tien weken. De sponsor wil dat je “gewoon begint” en het PMO later wel overtuigt.',
         ask: 'Wat zeg je tegen de sponsor?',
-        model: '“Beginnen kan, maar zonder de PMO riskeren we dat het project bij de eerste gate wordt stilgezet. Ik stel voor dat we eerst samen met de PMO kijken welke gates voor zo’n klein project lichter kunnen. Dat kost mij een gesprek van een uur en u houdt de snelheid. Daarna begin ik gewoon.”',
-        rubric: ['Benoemt het risico van beginnen zonder de PMO', 'Stelt een kort gesprek met de PMO voor', 'Houdt het belang van de sponsor, snelheid, centraal'],
+        model: '“Beginnen kan, maar zonder het PMO riskeren we dat het project bij de eerste gate wordt stilgezet. Ik stel voor dat we eerst samen met het PMO kijken welke gates voor zo’n klein project lichter kunnen. Dat kost mij een gesprek van een uur en u houdt de snelheid. Daarna begin ik gewoon.”',
+        rubric: ['Benoemt het risico van beginnen zonder het PMO', 'Stelt een kort gesprek met het PMO voor', 'Houdt het belang van de sponsor, snelheid, centraal'],
         pushback: {
-          lines: ['“De PMO houdt alleen maar op. Ik heb jou niet ingehuurd om met hen te vergaderen.”', '“Als je het niet kunt, zoek ik iemand die het wel doet.”'],
-          model: '“Ik wil u niet ophouden; ik wil voorkomen dat de PMO ons op week vier ophoudt. Eén gesprek nu is goedkoper dan een stilstand later. Als zij nee zeggen, weet u dat vandaag en kunt u beslissen. Als ze ja zeggen, begin ik morgen met hun akkoord in de hand.”',
+          lines: ['“Het PMO houdt alleen maar op. Ik heb jou niet ingehuurd om met hen te vergaderen.”', '“Als je het niet kunt, zoek ik iemand die het wel doet.”'],
+          model: '“Ik wil u niet ophouden; ik wil voorkomen dat het PMO ons op week vier ophoudt. Eén gesprek nu is goedkoper dan een stilstand later. Als zij nee zeggen, weet u dat vandaag en kunt u beslissen. Als ze ja zeggen, begin ik morgen met hun akkoord in de hand.”',
           rubric: ['Blijft kalm bij de dreiging', 'Vergelijkt de kosten van nu met die van later', 'Geeft de sponsor een duidelijk besluitpunt'],
         },
       },
       sayIt: 'Leg in 60 seconden uit welke vragen je een PMO stelt voordat je je eigen route voorstelt.',
       terms: [
         { term: 'Gatemodel van de klant', def: 'De vaste besluitmomenten die de organisatie voor al haar projecten voorschrijft.' },
-        { term: 'PMO', def: 'Project- of programmabureau dat regels, sjablonen en rapportage van projecten bewaakt.' },
-        { term: 'Tolerantie', def: 'De afwijking in tijd of geld die een project mag hebben voordat het terug moet naar de besluitnemer.' },
+        { term: 'PMO', def: 'Project- of programmabureau: ondersteunt, controleert of stuurt projecten, afhankelijk van de soort.' },
+        { term: 'Tolerantie', def: 'De afgesproken marge per doel (tijd, geld, scope) waarbinnen de projectleider zelf mag bijsturen.' },
         { term: 'Niet-starten-besluit', def: 'Het besluit, vaak na een eerste fase, dat het project beter niet kan beginnen.' },
       ],
     },
@@ -316,7 +316,7 @@ export default {
         },
         {
           q: 'Wat bewijst een certificaat?',
-          options: ['Dat de projecten van de houder altijd slagen', 'Dat de klant een erkende methode toepast', 'Dat de houder agile en voorspellend kan combineren', 'Dat iemand een examen heeft gehaald, niet hoe zijn projecten werken'],
+          options: ['Dat de projecten van de houder vaker slagen dan gemiddeld', 'Dat de klant van de houder een erkende methode toepast', 'Dat de houder agile en voorspellend goed kan combineren', 'Dat iemand een examen heeft gehaald, niet hoe zijn projecten werken'],
           answer: 'Dat iemand een examen heeft gehaald, niet hoe zijn projecten werken',
           why: 'Een certificaat meet kennis op een dag, niet gedrag in een project.',
         },
@@ -371,7 +371,7 @@ export default {
         'Definiëren: je schrijft een projectdefinitie (Six Sigma project charter): het probleem, het doel in getallen, de scope, het team en de datum. Meten: je maakt een nulmeting (baseline) van de huidige prestatie, met een vaste definitie, een vaste bron en een vaste periode.\n\nResultaat van deze twee fasen: één getal waar iedereen het over eens is, en een doel dat je later kunt controleren.',
         'Analyseren: je zoekt waar het verlies zit. Eenvoudig kan dat zijn door te tellen waar het werk wacht. Verbeteren: je test een oplossing op kleine schaal en meet of het getal beweegt. Borgen: je zorgt dat het blijft werken met een eigenaar, een vaste meting en afspraken in het dagelijkse werk.\n\nDe laatste fase wordt vaak overgeslagen. Dan zakt het resultaat terug zodra de aandacht weg is.',
         'Aan het eind van elke fase hoort een fasepoort (tollgate review): een kort besluitmoment met de sponsor. Klopt wat we hebben, en gaan we door? Zo stop je tijdig als het probleem kleiner blijkt of de data ontbreekt.\n\nHet is geen examen maar een gesprek: wat weten we nu, wat is het getal, wat is de volgende stap?',
-        'Welke verbeterweg past bij welke maat? Als vuistregel: een A3 voor één eigenaar die in een paar weken één probleem aanpakt. Een kaizenevent voor één gebied in ongeveer een week; ASQ noemt dat een week met de mensen die het werk doen. DMAIC voor een terugkerend probleem met data over enkele maanden.\n\nHoe een A3 of kaizenevent werkt, staat in de module Technisch probleemoplossen in Engineering.',
+        'Welke verbeterweg past bij welke maat? Als vuistregel: een A3 voor één eigenaar die in een paar weken één probleem aanpakt. Een kaizenevent voor één gebied in een paar dagen, vaak drie tot vijf, met de mensen die het werk doen. DMAIC voor een terugkerend probleem met data over enkele maanden.\n\nHoe een A3 of kaizenevent werkt, staat in de module Technisch probleemoplossen in Engineering.',
       ],
       example: {
         kind: 'worked',
@@ -381,7 +381,7 @@ export default {
       recall: [
         {
           q: 'Wat levert de fase meten op?',
-          options: ['De oplossing die je gaat testen', 'De grondoorzaak van het probleem', 'Het plan om het resultaat vast te houden', 'Een nulmeting van de huidige prestatie met een vaste definitie'],
+          options: ['De oplossing die je op kleine schaal gaat testen', 'De grondoorzaak van het probleem, gevonden door te tellen', 'Het plan met eigenaar en controles dat het resultaat vasthoudt', 'Een nulmeting van de huidige prestatie met een vaste definitie'],
           answer: 'Een nulmeting van de huidige prestatie met een vaste definitie',
           why: 'Zonder nulmeting kun je later niet zeggen of iets is verbeterd.',
         },
@@ -400,10 +400,10 @@ export default {
           hint: 'Alleen het wachten op de controle verandert. Bepaal eerst hoeveel dagen niet uit wachten bestond.',
         },
         {
-          q: 'Welke verbeterweg past bij één gebied in ongeveer een week met de mensen die het werk doen?',
-          options: ['Een DMAIC-project van enkele maanden', 'Een A3 van één eigenaar over weken', 'Een PRINCE2-project met vijf gates', 'Een kaizenevent'],
-          answer: 'Een kaizenevent',
-          why: 'Maat en duur bepalen de weg: week en gebied is een event, maanden en data is DMAIC.',
+          q: 'Welke verbeterweg past bij één gebied in een paar dagen met de mensen die het werk doen?',
+          options: ['Een DMAIC-project van enkele maanden', 'Een A3 van één eigenaar over weken', 'Een PRINCE2-project met vijf gates', 'Een kaizenevent met het team'],
+          answer: 'Een kaizenevent met het team',
+          why: 'Maat en duur bepalen de weg: een paar dagen en één gebied is een event, maanden en data is DMAIC.',
         },
       ],
       situation: {
@@ -465,7 +465,7 @@ export default {
         },
         {
           q: 'De klant heeft de methode al gekozen. Wat vraag je?',
-          options: ['Of de klant bereid is de methode te vervangen', 'Welke certificaten de PMO-medewerkers hebben', 'Wat ligt vast en wat is vrij voor hoe het team binnen de kaders werkt', 'Hoeveel de methode de vorige keer heeft gekost'],
+          options: ['Of de klant bereid is de methode voor dit project te vervangen', 'Welke certificaten de PMO-medewerkers en projectleiders hebben', 'Wat ligt vast en wat is vrij voor hoe het team binnen de kaders werkt', 'Hoeveel de methode de vorige keer dat ze werd gebruikt heeft gekost'],
           answer: 'Wat ligt vast en wat is vrij voor hoe het team binnen de kaders werkt',
           why: 'Binnen een opgelegde methode zoek je de ruimte die er wél is.',
         },
@@ -507,16 +507,16 @@ export default {
       ],
       teach: [
         'Als een klant zegt “wij doen PRINCE2” of “wij doen agile”, is dat vaak een taal en een set sjablonen. Jouw werk is vertalen tussen methoden (translating between methods) zonder de kern te verliezen: een statusrapport van de klant is een sprintoverzicht in andere woorden, een fase is een reeks rondes met een besluit aan het eind.\n\nGebruik hun woorden; een eigen begrippenset kost je vertrouwen.',
-        'Gebruik aanpassen openlijk. Zowel PMI als PeopleCert vraagt erom: PMI beschrijft in de PMBOK Guide principes (principles) en prestatiedomeinen in plaats van vaste processen, en de nieuwste PRINCE2 legt volgens PeopleCert meer nadruk op aanpassen, mensen en duurzaamheid.\n\nJe kunt dus zeggen: “Het raamwerk zelf vraagt om afstemming op dit project.” Dat is een sterker argument dan “ik doe het liever anders”.',
+        'Pas de methode openlijk aan (tailoring). Zowel PMI als PeopleCert vraagt erom: PMI bouwt in de PMBOK Guide op principes (principles) en prestatiedomeinen en biedt processen alleen als leidraad om aan te passen, en de nieuwste PRINCE2 legt volgens PeopleCert meer nadruk op aanpassen, mensen en duurzaamheid.\n\nJe kunt dus zeggen: “Het raamwerk zelf vraagt om afstemming op dit project.” Dat is een sterker argument dan “ik doe het liever anders”.',
         'Let op methodetheater (method theatre): sjablonen zijn ingevuld, gates zijn gehaald, maar er worden geen besluiten genomen. Signalen: het statusrapport verandert nooit, elke gate wordt zonder discussie goedgekeurd, niemand leest de risicolijst, en de echte besluiten vallen buiten de vergadering.\n\nEen toetsvraag voor elk document: “Welk besluit is hierdoor genomen of voorkomen?” Is er geen antwoord, dan is het theater.',
         'Een PMO dat om certificaten vraagt, laat zien hoe je wordt beoordeeld: ook op taal en naleving, niet alleen op resultaat. Dat is geen belediging, het is informatie. Toon je vakmanschap in hun woorden en laat daarnaast resultaten zien.\n\nWie certificaten ziet als bewijs van gedrag, vergist zich; wie ze negeert, mist hoe de organisatie je leest.',
         'Wat experts bespreken: puristen zeggen dat een gemengde aanpak geen echte PRINCE2 meer is. Praktijkmensen vragen wat de sponsor en de auditor nodig hebben om het project te kunnen uitleggen en verdedigen.\n\nEen scherpe vraag: “Als een auditor over een jaar dit project bekijkt, welke besluiten en bewijzen wil ik dan kunnen laten zien?” Daaruit volgt hoeveel van de methode je nodig hebt.',
       ],
       example: {
         kind: 'faded',
-        text: 'Een fabriek vraagt een “PRINCE2-project” voor het verbeteren van de ploegenoverdracht op vier lijnen. De operators moeten om de twee weken zien en meedenken over de nieuwe overdracht. De PMO verlangt een eindfaserapport en een highlight report (een korte statusmelding) per fase.',
+        text: 'Een fabriek vraagt een “PRINCE2-project” voor het verbeteren van de ploegenoverdracht op vier lijnen. De operators moeten om de twee weken zien en meedenken over de nieuwe overdracht. Het PMO verlangt een eindfaserapport en een highlight report (een korte statusmelding) per fase.',
         ask: 'Hoe voldoe je aan de methode van de klant en houd je de korte rondes?',
-        reveal: 'Maak van elke fase een reeks rondes van twee weken: de fase houdt de gate van de PMO, de rondes zijn de werkpakketten erbinnen. Het highlight report is de samenvatting van de laatste ronde met wat de operators zagen en zeiden. Het eindfaserapport laat zien welke besluiten de rondes hebben gevoed. Gebruik hun termen, stel de operators voor als gebruikersgroep en vraag de PMO of ze een sjabloon van een pagina voor de rondes accepteren. Zo is de methode gevolgd en de feedback behouden.',
+        reveal: 'Maak van elke fase een reeks rondes van twee weken: de fase houdt de gate van het PMO, de rondes zijn de werkpakketten erbinnen. Het highlight report is de samenvatting van de laatste ronde met wat de operators zagen en zeiden. Het eindfaserapport laat zien welke besluiten de rondes hebben gevoed. Gebruik hun termen, stel de operators voor als gebruikersgroep en vraag het PMO of ze een sjabloon van een pagina voor de rondes accepteren. Zo is de methode gevolgd en de feedback behouden.',
       },
       said: 'Wat je hoort in projecten: “We hebben alle sjablonen ingevuld en alle gates gehaald, dus het project is gezond.”',
       recall: [
@@ -534,7 +534,7 @@ export default {
         },
         {
           q: 'Wat zegt een PMO dat om certificaten vraagt over jou?',
-          options: ['Dat de PMO jouw werk niet vertrouwt', 'Dat resultaten er niet toe doen', 'Dat je ook wordt beoordeeld op hun taal en regels, naast resultaat', 'Dat je voor de PMO altijd een eigen methode met sjablonen moet meebrengen'],
+          options: ['Dat het PMO jouw werk niet vertrouwt', 'Dat resultaten er niet toe doen', 'Dat je ook wordt beoordeeld op hun taal en regels, naast resultaat', 'Dat je voor het PMO altijd een eigen methode met sjablonen moet meebrengen'],
           answer: 'Dat je ook wordt beoordeeld op hun taal en regels, naast resultaat',
           why: 'Het is informatie over hoe de organisatie je leest.',
         },
@@ -546,12 +546,12 @@ export default {
         },
       ],
       situation: {
-        scene: 'Je zit bij een maakbedrijf. De PMO wil dat je een verbeterproject volgens PRINCE2 inricht. Het team werkt het liefst in korte rondes. Een collega-consultant zegt: “Doe gewoon wat je wilt, ze controleren het toch niet.”',
+        scene: 'Je zit bij een maakbedrijf. Het PMO wil dat je een verbeterproject volgens PRINCE2 inricht. Het team werkt het liefst in korte rondes. Een collega-consultant zegt: “Doe gewoon wat je wilt, ze controleren het toch niet.”',
         ask: 'Wat doe je?',
-        model: '“Ik doe niet alsof. Ik ga naar de PMO en laat zien hoe de rondes binnen hun fasen passen, in hun eigen woorden. Zo krijgen zij hun gates en rapporten, en het team behoudt de korte feedback. Als zij iets niet accepteren, weet ik dat voordat het een probleem wordt.”',
-        rubric: ['Wijst het stiekem omzeilen af', 'Brengt de rondes onder in de fasen van de klant', 'Zorgt voor akkoord van de PMO vooraf'],
+        model: '“Ik doe niet alsof. Ik ga naar het PMO en laat zien hoe de rondes binnen hun fasen passen, in hun eigen woorden. Zo krijgen zij hun gates en rapporten, en het team behoudt de korte feedback. Als zij iets niet accepteren, weet ik dat voordat het een probleem wordt.”',
+        rubric: ['Wijst het stiekem omzeilen af', 'Brengt de rondes onder in de fasen van de klant', 'Zorgt voor akkoord van het PMO vooraf'],
         pushback: {
-          lines: ['“Je maakt het onnodig ingewikkeld. Doe het zoals iedereen.”', '“Als de PMO ontdekt dat we afwijken, zitten we in de problemen.”'],
+          lines: ['“Je maakt het onnodig ingewikkeld. Doe het zoals iedereen.”', '“Als het PMO ontdekt dat we afwijken, zitten we in de problemen.”'],
           model: '“Juist daarom vertel ik het ze zelf. Open afwijken met hun toestemming is veilig, in het geheim afwijken niet. En het is niet ingewikkelder: de gates blijven, de rapporten blijven, alleen het werk ertussen gebeurt in rondes. Ik leg ze één A4 voor.”',
           rubric: ['Kiest openheid boven omzeilen', 'Laat zien dat de kern van de methode blijft staan', 'Maakt de volgende stap klein en concreet'],
         },
@@ -560,7 +560,7 @@ export default {
       terms: [
         { term: 'Methodetheater', def: 'Sjablonen en gates worden afgewerkt zonder dat er besluiten worden genomen.' },
         { term: 'Vertalen tussen methoden', def: 'Je aanpak in de woorden en vormen van de methode van de klant weergeven zonder de kern te verliezen.' },
-        { term: 'Principes', def: 'De grondregels waarop een raamwerk als de PMBOK Guide rust, in plaats van vaste processen.' },
+        { term: 'Principes', def: 'De grondregels waarop een raamwerk als de PMBOK Guide rust; processen en sjablonen volgen eruit.' },
       ],
     },
     {
@@ -577,7 +577,7 @@ export default {
       teach: [
         'Een tool is het waard als hij meer oplevert dan hij kost. Een spreadsheet is genoeg zolang je een lijst bijhoudt met een of twee mensen. Zodra taken van elkaar afhangen, veel mensen tegelijk bijwerken of je achteraf moet kunnen laten zien wie wat wanneer deed (een controleerbare geschiedenis), wordt het lastig.\n\nElke tool kost tijd om in te richten en bij te houden. Begin klein.',
         'Denk in toolfamilies (tool families): een soort tool per soort werk. Spreadsheet, bijvoorbeeld Excel: lijsten en berekeningen. Planningstool (scheduling tool), bijvoorbeeld Microsoft Project of Smartsheet: taken met afhankelijkheden en data. Takenbord (task board), bijvoorbeeld Planner of Trello: kaarten in kolommen voor wie wat doet.\n\nDe namen zijn voorbeelden, geen aanbeveling.',
-        'Backlog (backlog): een geordende lijst van werk dat nog moet gebeuren, bijvoorbeeld in Jira of Azure DevOps Boards; vooral bij software en veel kleine items, zie de les User stories. Documentatie en kennis: SharePoint, Teams, Loop of Confluence voor besluiten en afspraken.\n\nSamenwerkingsbord (whiteboard): een digitaal bord voor sessies, bijvoorbeeld Miro of Mural. Rapportage: Power BI laat cijfers zien die uit andere systemen komen.',
+        'Backlog: een geordende lijst van werk dat nog moet gebeuren, bijvoorbeeld in Jira of Azure DevOps Boards; vooral bij software en veel kleine items, zie de les User stories. Documentatie en kennis: SharePoint, Teams, Loop of Confluence voor besluiten en afspraken.\n\nSamenwerkingsbord (whiteboard): een digitaal bord voor sessies, bijvoorbeeld Miro of Mural. Rapportage: Power BI laat cijfers zien die uit andere systemen komen.',
         'Waarom families en geen merken? Producten veranderen van naam, worden samengevoegd en verdwijnen; het werk dat ze doen blijft. Wie de familie kent, kan elke nieuwe tool in een minuut plaatsen: wat is zijn taak, wie voert in, wie leest mee?\n\nZo kun je ook bij een klant die iets heel anders gebruikt, snel zien wat het ding voor het project doet.',
         'De menselijke kant. Elke extra tool is een extra plek om bij te houden, en mensen vullen alleen in wat hen iets oplevert. Kies de kleinste set die het werk draagt.\n\nEen scherpe vraag voordat je een tool voorstelt: “Welke twee dingen gaan er beter door, en wie moet er elke week iets in zetten?” Kun je dat niet beantwoorden, dan is de spreadsheet nog genoeg.',
       ],
@@ -640,15 +640,15 @@ export default {
       pre: [
         {
           q: 'Je richt een takenbord in voor een team van vijf. Waar maak je de kolommen naar?',
-          options: ['Naar de teamleden, een kolom per persoon', 'Naar de maanden van het project', 'Naar de hoogte van het budget per taak', 'Naar het werk, zoals voorbereiden, uitvoeren en wachten op de klant'],
+          options: ['Naar de teamleden, een kolom per persoon zodat ieder zijn eigen werk ziet', 'Naar de maanden van het project, van start tot overdracht', 'Naar de hoogte van het budget per taak, van groot naar klein', 'Naar het werk, zoals voorbereiden, uitvoeren en wachten op de klant'],
           answer: 'Naar het werk, zoals voorbereiden, uitvoeren en wachten op de klant',
           why: 'Kolommen op werk tonen waar het vastzit; kolommen op mensen verbergen overbelasting.',
         },
       ],
       teach: [
-        'Een bord in de stijl van Planner heeft kaarten (cards) in buckets (buckets), de kolommen. Een kaart is één stuk werk. Een bucket volgt het werk, niet de mensen: bijvoorbeeld Voorbereiden, Uitvoeren en Wachten op klant.\n\nBuckets per persoon verbergen overbelasting en maken van een afwezige collega een zwart gat. Een bucket als Wachten op klant laat juist zien waar het project vastzit.',
+        'Een bord in de stijl van Planner heeft kaarten (cards) in buckets, de kolommen. Een kaart is één stuk werk. Een bucket volgt het werk, niet de mensen: bijvoorbeeld Voorbereiden, Uitvoeren en Wachten op klant.\n\nBuckets per persoon verbergen overbelasting en maken van een afwezige collega een zwart gat. Een bucket als Wachten op klant laat juist zien waar het project vastzit.',
         'Elke kaart heeft drie dingen. Een eigenaar (owner): één naam, geen groep. Een datum waarop het klaar moet zijn. En een klaar-criterium (done criterion): hoe zien we dat het af is?\n\nZonder eigenaar pakt niemand het op, zonder datum komt er geen signaal, en zonder klaar-criterium ontstaat discussie over wat “klaar” betekent. Vijf minuten per kaart, tijdens het inrichten.',
-        'Een label (label) is een gekleurde markering, bijvoorbeeld voor een werkstroom of een risico. Gebruik er drie tot vijf, niet vijftien. Teveel kleuren maken het bord onleesbaar en niemand filtert er nog op.\n\nBesluiten en afspraken horen niet op kaarten maar in de documentatietool ernaast, bijvoorbeeld een gedeelde pagina met een link vanuit het bord. De inhoud van een goede besluitenlijst staat in de les Besluiten voor elkaar krijgen.',
+        'Een label is een gekleurde markering, bijvoorbeeld voor een werkstroom of een risico. Gebruik er drie tot vijf, niet vijftien. Te veel kleuren maken het bord onleesbaar en niemand filtert er nog op.\n\nBesluiten en afspraken horen niet op kaarten maar in de documentatietool ernaast, bijvoorbeeld een gedeelde pagina met een link vanuit het bord. De inhoud van een goede besluitenlijst staat in de les Besluiten voor elkaar krijgen.',
         'Houd het wekelijkse overleg vanuit het bord. Gebruik een filter op achterstand (filter on overdue): toon alleen kaarten waarvan de datum voorbij is, of die vastzitten. Je leest niet alle kaarten voor.\n\nZo gaat de tijd naar wat aandacht nodig heeft. Dit is een les over het bord als tool; hoe werk stroomt en waarom je minder tegelijk begint, staat in Kanban: het werk zichtbaar maken en WIP-limieten.',
         'De mensenkant. Een bord toont voor iedereen wie te laat is. Maak er geen schandpaal van: vraag bij een late kaart “wat houdt je tegen?” en niet “waarom ben je te laat?”. Spreek af dat iedereen voor het overleg zijn eigen kaarten bijwerkt.\n\nEen scherpe vraag voor het eerste uur: “Wat moet er op dit bord staan zodat we het overleg zonder een extra lijst kunnen doen?”',
       ],
@@ -680,7 +680,7 @@ export default {
         },
         {
           q: 'Waar leg je besluiten en afspraken van het project vast?',
-          options: ['Als kaart in de bucket die klaar heet', 'In de documentatietool naast het bord, met een link vanuit het bord', 'Alleen in de mailbox van de projectleider', 'Als opmerking onder de laatste kaart'],
+          options: ['Als kaart in de bucket die klaar heet, zodat het hele team het ziet', 'In de documentatietool naast het bord, met een link vanuit het bord', 'In het verslag dat de projectleider na elk weekoverleg mailt', 'Als opmerking onder de kaart waar het besluit over gaat'],
           answer: 'In de documentatietool naast het bord, met een link vanuit het bord',
           why: 'Besluiten moeten vindbaar zijn voor iedereen, ook na het project.',
         },
@@ -722,7 +722,7 @@ export default {
         'De regels van de klant komen eerst. Gasttoegang (guest access): mag een externe in het systeem van de klant, en met welke rechten? Klantdata (client data): waar mag die staan, en wie mag erbij? Veel klanten staan geen externe tools toe voor hun data.\n\nVraag dit vroeg aan hun IT of beveiliging. Een goede tool die niet mag, is waardeloos.',
         'Eén tool per doel past bij een planning, een bord en een documentatieplek elk op hun plaats; het is nauwkeurig maar levert meer plekken om bij te houden. Eén tool voor alles is makkelijk te vinden maar dient elk doel minder goed.\n\nEén regel helpt in beide gevallen: elk feit staat op precies één plek. Staat de datum van een mijlpaal in het bord én in de planning, dan loopt de ene vroeg of laat de andere achter.',
         'Een keuzematrix (selection grid) maakt de keuze uitlegbaar: rijen met je eisen, zoals afhankelijkheden, externe gasten, dataregels en teamgrootte; kolommen met twee of drie opties. Vul in wat past en wat niet.\n\nHet gaat niet om een totaalscore maar om de vraag welke eis de keuze beslist. Zo kun je een sponsor of de IT van de klant laten zien waarom je kiest zoals je kiest.',
-        'Uitzonderingen. De klant verbiedt externe tools: gebruik de hunne en zet je werk daarin op. De helft van het team leeft in een andere tool: volg de grootste helft, of bouw een brug met een wekelijkse export, nooit een verhuizing midden in het project.\n\nEen plan met veel afhankelijkheden draagt een bord niet: zet het plan in een planningstool, zie de les Rekenen met het netwerk, en de dagelijkse taken op een bord.',
+        'Uitzonderingen. De klant verbiedt externe tools: gebruik de hunne en zet je werk daarin op. De helft van het team leeft in een andere tool: volg de grotere helft, of bouw een brug met een wekelijkse export, nooit een verhuizing midden in het project.\n\nEen plan met veel afhankelijkheden draagt een bord niet: zet het plan in een planningstool, zie de les Rekenen met het netwerk, en de dagelijkse taken op een bord.',
       ],
       example: {
         kind: 'faded',
@@ -752,8 +752,8 @@ export default {
         },
         {
           q: 'De helft van je team werkt al in een andere tool. Wat doe je?',
-          options: ['Het hele team midden in het project laten verhuizen', 'Twee volledige administraties naast elkaar bijhouden', 'De grootste helft volgen of een brug met een wekelijkse export maken', 'De andere helft vragen hun tool te vergeten'],
-          answer: 'De grootste helft volgen of een brug met een wekelijkse export maken',
+          options: ['Het hele team midden in het project laten verhuizen', 'Twee volledige administraties naast elkaar bijhouden', 'De grotere helft volgen of een brug met een wekelijkse export maken', 'De andere helft vragen hun tool te vergeten'],
+          answer: 'De grotere helft volgen of een brug met een wekelijkse export maken',
           why: 'Een verhuizing midden in een project kost meer dan ze oplevert.',
         },
       ],
@@ -832,7 +832,7 @@ export default {
       situation: {
         scene: 'Je zit bij een maakbedrijf. De sponsor wil dat je een nieuwe tool introduceert “omdat dat modern is”. Het team heeft al drie tools. Niemand kan zeggen welke het plan bevat.',
         ask: 'Wat zeg je?',
-        model: '“Ik begrijp dat u wilt moderniseren. Voordat we iets toevoegen, wil ik weten welke van de drie nu het plan bevat, wie het voedt en wanneer het cijfers vastligt. Als we dat hebben, kijk ik of we er één kunnen schrappen in plaats van er een bij te zetten. Dat levert u winst op en minder gedoe voor het team.”',
+        model: '“Ik begrijp dat u wilt moderniseren. Voordat we iets toevoegen, wil ik weten welke van de drie nu het plan bevat, wie het voedt en wanneer de cijfers vastliggen. Als we dat hebben, kijk ik of we er één kunnen schrappen in plaats van er een bij te zetten. Dat levert u winst op en minder gedoe voor het team.”',
         rubric: ['Erkent de wens te moderniseren', 'Stelt de drie vragen over vastlegging, voeding en afsluiting', 'Stelt voor te schrappen in plaats van toe te voegen'],
         pushback: {
           lines: ['“Een nieuwe tool is een signaal naar het bestuur dat we iets doen.”', '“Dat opruimen kost alleen tijd; ik wil resultaat zien.”'],
@@ -845,7 +845,7 @@ export default {
         { term: 'Toolwildgroei', def: 'Het verschijnsel dat elk team eigen tools meebrengt, tot niemand meer weet welke het plan bevat.' },
         { term: 'Dataverblijf', def: 'Waar gegevens staan en wie er onder welke regels bij kan, zoals de klant dat voorschrijft.' },
         { term: 'Eigenaarschap na vertrek', def: 'Wie een tool beheert en betaalt als de consultant weg is.' },
-        { term: 'Adoptie', def: 'Of mensen een nieuwe tool of werkwijze echt willen en kunnen gebruiken.' },
+        { term: 'Adoptie', def: 'Dat mensen de nieuwe werkwijze echt gebruiken, ook als niemand kijkt.' },
       ],
     },
     {
@@ -854,7 +854,7 @@ export default {
       pre: [
         {
           q: 'Je wilt weten hoeveel uren er tot nu toe op jouw project zijn geboekt. In welk soort systeem van de klant kijk je?',
-          options: ['Het systeem voor incidenten en wijzigingen', 'Het systeem met tekeningen en onderdelen', 'Het ERP-systeem, waar uren en kosten per projectnummer staan', 'Het digitale whiteboard van het team'],
+          options: ['Het ITSM-systeem, waar incidenten en wijzigingen staan', 'Het PLM-systeem, waar tekeningen en onderdelen worden beheerd', 'Het ERP-systeem, waar uren en kosten per projectnummer staan', 'Het digitale whiteboard van de laatste sessie'],
           answer: 'Het ERP-systeem, waar uren en kosten per projectnummer staan',
           why: 'Geboekte uren en kosten horen thuis in het ERP, onder een projectnummer.',
         },
@@ -863,7 +863,7 @@ export default {
         'Een grote klant heeft veel systemen, en elk heeft één taak. ERP (enterprise resource planning): geld, uren en materiaal, per projectnummer. Planning voor grote projecten: grote planningen met veel afhankelijkheden. PPM (project and portfolio management): welke projecten er zijn, wat ze vragen en wie er capaciteit voor heeft.\n\nHet zijn families, zoals bij je eigen tools: leer de taak, niet de merknaam.',
         'PLM (product lifecycle management): productgegevens zoals tekeningen, onderdelen en technische wijzigingen. ITSM (IT service management): incidenten, wijzigingen en verzoeken in de IT, zie de les Incident, probleem, wijziging. Rapportage: tools als Power BI die cijfers uit andere systemen tonen.\n\nIn de sector tref je vaak Primavera P6 voor grote planningen, Clarity voor PPM en Polarion voor eisen en traceerbaarheid. Dat is wat gebruikelijk is, niet wat elke klant heeft.',
         'Een systeem van vastlegging (system of record) is het systeem waarin een officieel feit staat en dat telt als de bronnen elkaar tegenspreken. Uren staan officieel in het ERP, een wijziging in de ITSM, een tekening in het PLM.\n\nJe eigen bord is handig voor het dagelijkse werk, maar het is zelden de plek waar een controller of auditor kijkt. Vraag dus altijd: “In welk systeem staat dit getal officieel?”',
-        'Eén project heeft meerdere sleutels. Het projectnummer of de WBS-code (project or WBS code) koppelt uren en kosten in het ERP aan jouw project; de WBS is de opdeling van het werk uit de les over opdelen.\n\nBoekt iemand uren op de verkeerde code, dan ziet jouw project er goedkoper uit dan het is en komt de rekening elders terecht. Vraag in de eerste week naar je codes en geef ze door aan het team.',
+        'Eén project heeft meerdere sleutels. Het projectnummer of de WBS-code (project or WBS code) koppelt uren en kosten in het ERP aan jouw project; de WBS is de opdeling van het werk uit de les Het werk opdelen.\n\nBoekt iemand uren op de verkeerde code, dan ziet jouw project er goedkoper uit dan het is en komt de rekening elders terecht. Vraag in de eerste week naar je codes en geef ze door aan het team.',
         'Welke bedrijven gebruiken wat? Alleen waar een bron het toont. Volgens een Siemens-casus gebruikt ASML Teamcenter voor lifecycle management en NX voor ontwerp. Volgens SAP bereidde Enexis zich in 2020 voor op SAP S/4HANA; volgens Enexis zelf is ServiceNow het platform voor medewerkersworkflows; volgens Mendix bouwde Enexis meer dan honderd apps in Mendix, waaronder een projectmanagementapp gekoppeld aan SAP.\n\nBronnen van leveranciers zijn reclame: lees ze als aanwijzing, niet als bewijs.',
       ],
       example: {
@@ -886,13 +886,13 @@ export default {
         },
         {
           q: 'Iemand boekt uren op de verkeerde projectcode. Wat is het gevolg?',
-          options: ['Jouw project ziet er goedkoper uit dan het is en de kosten landen elders', 'Het ERP weigert de uren en verwijdert ze', 'De sponsor krijgt automatisch een melding', 'Het project loopt een week uit'],
+          options: ['Jouw project ziet er goedkoper uit dan het is en de kosten landen elders', 'Het ERP weigert de uren en stuurt ze terug naar de medewerker', 'De sponsor krijgt automatisch een melding en corrigeert het', 'Niets, want de controller zet de uren aan het eind van de maand om'],
           answer: 'Jouw project ziet er goedkoper uit dan het is en de kosten landen elders',
           why: 'De code koppelt uren aan een project; een verkeerde code verplaatst de kosten.',
         },
         {
           q: 'Waarom lees je een bron van een leverancier over een klant als aanwijzing en niet als bewijs?',
-          options: ['Leveranciers vertellen nooit de waarheid over hun klanten, ook niet in casussen', 'Klanten houden hun systemen geheim', 'Alleen de PMO mag dat bevestigen', 'De leverancier heeft er belang bij, en het is soms oud of onvolledig'],
+          options: ['Leveranciers vertellen nooit de waarheid over hun klanten, ook niet in casussen', 'Klanten houden hun systemen geheim', 'Alleen het PMO mag dat bevestigen', 'De leverancier heeft er belang bij, en het is soms oud of onvolledig'],
           answer: 'De leverancier heeft er belang bij, en het is soms oud of onvolledig',
           why: 'Zo’n bron is vaak een verkooptekst; controleer het bij de klant zelf.',
         },
@@ -904,7 +904,7 @@ export default {
         rubric: ['Vraagt per taak in plaats van alles', 'Noemt de families die hij echt nodig heeft', 'Vraagt naar de projectnummers'],
         pushback: {
           lines: ['“Voor leestoegang tot het ERP moet je een formulier invullen en je manager moet tekenen.”', '“Dat duurt een week, en dan moet je nog het gesprek met de beveiliging.”'],
-          model: '“Dan start ik het formulier vandaag, zodat het in de week loopt. Intussen vraag ik een collega van de PMO om me de geboekte uren als export te mailen, zodat ik niet hoef te wachten. Zou jij het gesprek met de beveiliging willen inplannen terwijl het formulier loopt?”',
+          model: '“Dan start ik het formulier vandaag, zodat het in de week loopt. Intussen vraag ik een collega van het PMO om me de geboekte uren als export te mailen, zodat ik niet hoef te wachten. Zou jij het gesprek met de beveiliging willen inplannen terwijl het formulier loopt?”',
           rubric: ['Accepteert het proces zonder te klagen', 'Zoekt een tijdelijke weg om verder te kunnen', 'Vraagt hulp op een concreet punt'],
         },
       },
@@ -944,7 +944,7 @@ export default {
       recall: [
         {
           q: 'Wat is een epic op een backlogbord?',
-          options: ['Een groot stuk werk dat uit meerdere features en stories bestaat', 'Een fout die moet worden hersteld', 'Een korte behoefte van één gebruiker', 'Een vergadering aan het eind van de sprint'],
+          options: ['Een groot stuk werk dat uit meerdere features en stories bestaat', 'Een fout uit de test die moet worden hersteld', 'Een korte behoefte van één gebruiker, als story geschreven', 'Het reviewoverleg aan het eind van een sprint'],
           answer: 'Een groot stuk werk dat uit meerdere features en stories bestaat',
           why: 'Een epic bundelt veel kleinere items tot één groot resultaat.',
         },
@@ -995,7 +995,7 @@ export default {
       pre: [
         {
           q: 'Jouw bord zegt groen, het PMO-rapport zegt rood. Wat doe je als eerste?',
-          options: ['Nagaan waar elk getal vandaan komt', 'Je bord op rood zetten om het eens te zijn', 'De PMO vragen het rapport voorlopig te negeren', 'Een nieuw dashboard bouwen dat groen toont'],
+          options: ['Nagaan waar elk getal vandaan komt', 'Je bord op rood zetten om het eens te zijn', 'Het PMO vragen het rapport voorlopig te negeren', 'Een nieuw dashboard bouwen dat groen toont'],
           answer: 'Nagaan waar elk getal vandaan komt',
           why: 'Eerst uitzoeken waarom ze verschillen; pas dan beslis je wie gelijk heeft.',
         },
@@ -1004,14 +1004,14 @@ export default {
         'Maak onderscheid tussen je werktool (working tool) en het systeem van vastlegging. Het bord is voor het dagelijkse werk van het team; het systeem van de klant bewaart de officiële cijfers, zoals uren, kosten en de portfoliostatus.\n\nEén regel: een feit heeft één thuis. Het andere systeem toont het, krijgt het via een koppeling of export, of wordt volgens een afspraak bijgewerkt.',
         'Voorkom dubbele invoer (double entry): hetzelfde getal twee keer typen. Het kost uren en geeft verschillen. Stel vast welk systeem de bron is, wie het voedt en wat het afsluitmoment (cut-off) is: de datum waarop de cijfers voor de rapportage vastliggen.\n\nWerk de PMO-tool altijd bij vóór dat moment, niet erna, anders staat je project een maand verkeerd.',
         'Is de PMO-tool verplicht? Soms hangt budgetvrijgave of rapportage eraan, en dan voldoe je, met het minimum aan velden. Vraag of je een export kunt krijgen van het sjabloon dat je uit je bord kunt vullen.\n\nZo blijft je werktool voor het team en voldoe je aan de eis zonder dat het team in twee systemen werkt.',
-        'Power BI komt hier alleen als bron voor jouw lezen, niet als ontwerp. Een rapport leest je goed: welke pagina, welk filter, welke datum? Dan volg je elk getal terug: uit welk systeem komt het, wat is het verversmoment (refresh time), de laatste keer dat de gegevens zijn geladen, en wat is de definitie van een getal (metric definition): wat telt als klaar, welke uren tellen mee?\n\nEen dashboard laat zien wat iemand erin voert; hoe je er een ontwerpt, hoort bij het vak Prestaties.',
-        'De uitzondering: je bord zegt groen en het PMO-rapport zegt rood. Er zijn drie gewone oorzaken. Het rapport is niet ververst. Het rapport telt “klaar” anders dan jij. Uren zijn op een andere code geboekt.\n\nControleer ze in die volgorde, het goedkoopst eerst. Over de data kant staat meer in de les Waarom twee rapporten verschillen in de module IT-fundamenten in Engineering.',
+        'Power BI komt hier alleen voor als bron die je leest, niet als iets dat je ontwerpt. Een rapport lees je goed: welke pagina, welk filter, welke datum? Dan volg je elk getal terug: uit welk systeem komt het, wat is het verversmoment (refresh time), de laatste keer dat de gegevens zijn geladen, en wat is de definitie van een getal (metric definition): wat telt als klaar, welke uren tellen mee?\n\nEen dashboard laat zien wat iemand erin voert; hoe je er een ontwerpt, hoort bij het vak Prestaties.',
+        'De uitzondering: je bord zegt groen en het PMO-rapport zegt rood. Er zijn drie gewone oorzaken. Het rapport is niet ververst. Het rapport telt “klaar” anders dan jij. Uren zijn op een andere code geboekt.\n\nControleer ze in die volgorde, het goedkoopst eerst. Over de datakant staat meer in de les Waarom twee rapporten verschillen in de module IT-fundamenten in Engineering.',
       ],
       example: {
         kind: 'faded',
-        text: 'Je bord zegt dat jouw project groen is: 18 van 20 taken zijn klaar. Het PMO-rapport, in Power BI, zegt rood: 60% klaar en uren 15% boven plan. Het rapport ververst elke maandagochtend en je leest het donderdag. Het rapport telt een taak pas als klaar na acceptatie door de klant. Twee collega’s boeken sinds vorige week op de code van een ander project.',
+        text: 'Je bord zegt dat jouw project groen is: 18 van 20 taken zijn klaar. Het PMO-rapport, in Power BI, zegt rood: 60% klaar en uren 15% boven plan. Het rapport ververst elke maandagochtend en je leest het donderdag. Het rapport telt een taak pas als klaar na acceptatie door de klant. Sinds vorige week boeken twee collega’s van een ander project hun uren op de code van jouw project.',
         ask: 'Welke drie oorzaken kunnen het verschil verklaren, en hoe controleer je ze?',
-        reveal: 'Verversmoment: het rapport is drie dagen oud, dus taken van deze week staan er nog niet in; check de datum van de laatste verversing. Definitie: jij telt “klaar” bij afronding, het rapport na acceptatie; laat zien hoeveel van de 18 nog op acceptatie wachten. Code: de uren van twee collega’s staan op een ander project, dus jouw uren lijken te hoog of laag; vraag de boekingen van de afgelopen weken op. Geen van de drie is een fout van iemand; het zijn drie verschillen in bron, moment en definitie. Leg ze vast en spreek af welk getal officieel telt.',
+        reveal: 'Verversmoment: het rapport is drie dagen oud, dus taken van deze week staan er nog niet in; check de datum van de laatste verversing. Definitie: jij telt “klaar” bij afronding, het rapport na acceptatie; laat zien hoeveel van de 18 nog op acceptatie wachten. Code: twee collega’s van een ander project boeken op jouw code, dus jouw uren lijken te hoog; vraag de boekingen van de afgelopen weken op. Geen van de drie is een fout van iemand; het zijn drie verschillen in bron, moment en definitie. Leg ze vast en spreek af welk getal officieel telt.',
       },
       said: 'Wat je hoort in projecten: “Mijn bord zegt groen, dat rapport klopt niet.”',
       recall: [
@@ -1031,7 +1031,7 @@ export default {
         },
         {
           q: 'Welke vraag hoort bij het lezen van een Power BI-rapport als bron?',
-          options: ['Welke kleuren en grafiektypen zijn het mooist?', 'Uit welk systeem komt dit getal, wanneer is het ververst en wat telt mee?', 'Hoeveel pagina’s zou een goed rapport moeten hebben?', 'Wie heeft het rapport het eerst gemaakt?'],
+          options: ['Welke kleuren en grafiektypen maken de pagina het best leesbaar?', 'Uit welk systeem komt dit getal, wanneer is het ververst en wat telt mee?', 'Hoeveel pagina’s en filters mag een goed rapport hooguit hebben?', 'Wie heeft het rapport het eerst gebouwd en wie heeft het sindsdien aangepast?'],
           answer: 'Uit welk systeem komt dit getal, wanneer is het ververst en wat telt mee?',
           why: 'Je leest een rapport als bron, dus je volgt elk getal naar zijn herkomst.',
         },
@@ -1049,7 +1049,7 @@ export default {
         rubric: ['Voldoet aan de eis van vandaag', 'Zoekt de oorzaak van het verschil in de definitie', 'Stelt een export voor tegen dubbel werk'],
         pushback: {
           lines: ['“Wij hebben onze definitie niet voor jou bedacht. Jij moet je aanpassen.”', '“Een export maken kost mij tijd die ik niet heb.”'],
-          model: '“Ik pas me aan, dat is niet de vraag. Ik wil alleen weten of jullie definitie ook ná de acceptatie nog bij dit project blijft, zodat mijn getal kan kloppen. De export maak ik zelf; ik heb alleen jullie veldnamen nodig. Dat scheelt jullie het overtypen elke week.”',
+          model: '“Ik pas me aan, dat is niet de vraag. Ik wil alleen precies weten wanneer jullie een taak als klaar tellen, zodat mijn getal hetzelfde meet. De export maak ik zelf; ik heb alleen jullie veldnamen nodig. Dat scheelt jullie het overtypen elke week.”',
           rubric: ['Past zich aan zonder te vechten', 'Neemt het werk van de export zelf op zich', 'Vraagt alleen om de veldnamen'],
         },
       },
@@ -1058,7 +1058,7 @@ export default {
         { term: 'Werktool', def: 'De tool waarin het team dagelijks werkt, zoals het bord; niet noodzakelijk het systeem van vastlegging.' },
         { term: 'Dubbele invoer', def: 'Hetzelfde getal in twee systemen typen, wat uren kost en verschillen geeft.' },
         { term: 'Afsluitmoment', def: 'De datum waarop de cijfers voor de rapportage vastliggen.' },
-        { term: 'Verversmoment', def: 'Het moment waarop de gegevens van een rapport voor het laatst zijn geladen.' },
+        { term: 'Verversmoment', def: 'Het tijdstip waarop een rapport of datawarehouse voor het laatst nieuwe data kreeg.' },
         { term: 'Definitie van een getal', def: 'De afspraak over wat een getal precies telt, zoals wat “klaar” is of welke uren meetellen.' },
       ],
     },
@@ -1075,22 +1075,22 @@ export default {
       ],
       teach: [
         'Wat een senior weegt: wie is de data-eigenaar (data owner)? Per soort gegevens is het iemand anders: de controller bezit uren en kosten, de IT-eigenaar het systeem, een businessmanager de definities. Een geschil over een getal gaat bijna altijd over de definitie.\n\nZoek de eigenaar voordat het geschil ontstaat, en schrijf de definitie op waar iedereen haar ziet.',
-        'De PMO bepaalt vaak hoe jij wordt gemeten: welke kengetallen, welk sjabloon, wat “groen” is. Onderhandel dat vroeg en niet na de eerste rode status. Hoe de PMO en een onafhankelijke toetsing samenwerken, staat in de les Onafhankelijke toetsing en het PMO.\n\nAssurance (assurance) is die onafhankelijke controle dat het project doet wat het zegt; ook jouw tools moeten die controle kunnen doorstaan.',
-        'Leveranciersrisico (vendor risk): tools veranderen, worden samengevoegd of verdwijnen. Een voorbeeld, volgens Microsoft zelf: Project for the web is in 2025 uitgefaseerd en Project Online volgt in 2026, met de planningsfuncties in Planner.\n\nLeg je plan dus niet vast aan één product zonder plan B. Schrijf op welke functie je nodig hebt en wanneer je zou verhuizen; dat is goedkoper dan een noodverhuizing.',
+        'Het PMO bepaalt vaak hoe jij wordt gemeten: welke kengetallen, welk sjabloon, wat “groen” is. Onderhandel dat vroeg en niet na de eerste rode status. Hoe het PMO en een onafhankelijke toetsing samenwerken, staat in de les Onafhankelijke toetsing en het PMO.\n\nAssurance is die onafhankelijke controle dat het project doet wat het zegt; ook jouw tools moeten die controle kunnen doorstaan.',
+        'Leveranciersrisico (vendor risk): tools veranderen, worden samengevoegd of verdwijnen. Een voorbeeld, volgens Microsoft zelf: Project for the web is in 2025 uitgefaseerd en de gebruikers zijn naar Planner gestuurd; Project Online volgde in 2026.\n\nLeg je plan dus niet vast aan één product zonder plan B. Schrijf op welke functie je nodig hebt en wanneer je zou verhuizen; dat is goedkoper dan een noodverhuizing.',
         'In technische bedrijven verschuift een technische wijziging (engineering change) in het PLM-systeem jouw plan: een nieuwe tekeningrevisie of een ander onderdeel betekent andere levertijden en extra werk. Vraag hoe wijzigingen jou bereiken: wie meldt ze, met welke doorlooptijd, en waar kun je je abonneren?\n\nZonder die route hoor je het pas als de monteur het merkt.',
-        'De geloofwaardige vragen per rol. Aan de controller: welke uren en kosten tellen officieel en wanneer is het afsluitmoment? Aan de PMO: wat betekent “groen” hier, en wat gebeurt er bij rood? Aan de IT-eigenaar: wat verandert er in de komende maanden aan de systemen, en wat kost een koppeling?\n\nZo laat je zien dat je het landschap begrijpt en niet alleen je eigen bord.',
+        'De geloofwaardige vragen per rol. Aan de controller: welke uren en kosten tellen officieel en wanneer is het afsluitmoment? Aan het PMO: wat betekent “groen” hier, en wat gebeurt er bij rood? Aan de IT-eigenaar: wat verandert er in de komende maanden aan de systemen, en wat kost een koppeling?\n\nZo laat je zien dat je het landschap begrijpt en niet alleen je eigen bord.',
       ],
       example: {
         kind: 'faded',
-        text: 'Je project bij een netbeheerder loopt van week 1 tot en met week 26. De IT-eigenaar meldt dat het portfoliosysteem aan het begin van week 15 wordt vervangen. De PMO zegt: “Daar merk jij niets van.” Je rapporteert wekelijks vanuit het oude systeem en je plan hangt aan een koppeling met het ERP.',
-        ask: 'Welke risico’s ziet u voor het project en welke vragen stelt u?',
+        text: 'Je project bij een netbeheerder loopt van week 1 tot en met week 26. De IT-eigenaar meldt dat het portfoliosysteem aan het begin van week 15 wordt vervangen. Het PMO zegt: “Daar merk jij niets van.” Je rapporteert wekelijks vanuit het oude systeem en je plan hangt aan een koppeling met het ERP.',
+        ask: 'Welke risico’s zie je voor het project en welke vragen stel je?',
         reveal: 'Twaalf van de zesentwintig weken lopen op het nieuwe systeem. Risico’s: de koppeling met het ERP werkt niet meer, historische gegevens en definities verschuiven, en de rapportage valt rond de overgang weg. Vragen: wie is de data-eigenaar van mijn gegevens bij de migratie, worden mijn projectcodes en baselines overgenomen, welke datum is het afsluitmoment rond de overstap, en wat is het plan B voor de rapportage? Leg ze vast in je risicolijst met een eigenaar bij de klant en vraag een testrapportage vóór week 15.',
       },
       said: 'Wat je hoort in projecten: “Die koppeling regelt IT wel, daar hoef jij je niet druk over te maken.”',
       recall: [
         {
           q: 'Waarom zoek je de data-eigenaar voordat er een geschil over een getal ontstaat?',
-          options: ['De data-eigenaar betaalt de tool en bepaalt daarom wat er met de gegevens gebeurt', 'Zij kunnen het rapport mooier maken en sneller laten verversen dan IT', 'De data-eigenaar bepaalt de definitie en kan het geschil beslechten', 'De PMO praat alleen met eigenaren'],
+          options: ['De data-eigenaar betaalt de tool en bepaalt daarom wat er met de gegevens gebeurt', 'Zij kunnen het rapport mooier maken en sneller laten verversen dan IT', 'De data-eigenaar bepaalt de definitie en kan het geschil beslechten', 'Het PMO praat alleen met eigenaren'],
           answer: 'De data-eigenaar bepaalt de definitie en kan het geschil beslechten',
           why: 'Wie de definitie bezit, beslist wat een getal betekent.',
         },
@@ -1116,22 +1116,22 @@ export default {
         },
       ],
       situation: {
-        scene: 'Je zit bij een netbeheerder. De IT-eigenaar meldt dat het portfoliosysteem halverwege je project wordt vervangen. De PMO zegt: “Daar merk jij niets van, wij regelen dat.”',
+        scene: 'Je zit bij een netbeheerder. De IT-eigenaar meldt dat het portfoliosysteem halverwege je project wordt vervangen. Het PMO zegt: “Daar merk jij niets van, wij regelen dat.”',
         ask: 'Wat zeg je?',
         model: '“Fijn dat jullie het regelen. Mag ik drie dingen weten, zodat ik mijn project erop kan voorbereiden? Wordt mijn projectcode overgenomen, wanneer is het afsluitmoment rond de overstap, en kan ik vooraf een testrapport zien? Dan zet ik het als risico in mijn lijst en hoef ik jullie later niet te storen.”',
-        rubric: ['Waardeert dat de PMO het regelt', 'Stelt drie concrete vragen', 'Zet het als risico in de eigen lijst'],
+        rubric: ['Waardeert dat het PMO het regelt', 'Stelt drie concrete vragen', 'Zet het als risico in de eigen lijst'],
         pushback: {
           lines: ['“Je overdrijft. Bij de vorige overstap merkte niemand er iets van.”', '“We hebben nu geen tijd voor jouw vragen, de planning is vol.”'],
-          model: '“Dan is het mooi als het weer zo gaat. Ik vraag alleen om drie antwoorden op één A4, wanneer het jullie uitkomt, zodat ik het project kan beschermen. Als het soepel gaat, heeft u er niets aan gehad en mij ook niet; dan heeft het alleen een kwartier gekost.”',
+          model: '“Dan is het mooi als het weer zo gaat. Ik vraag alleen om drie antwoorden op één A4, wanneer het jullie uitkomt, zodat ik het project kan beschermen. Gaat het soepel, dan heeft het ons allebei alleen een kwartier gekost.”',
           rubric: ['Gaat niet in discussie over overdrijven', 'Maakt de vraag klein en flexibel', 'Zet kosten naast mogelijke winst'],
         },
       },
-      sayIt: 'Leg in 60 seconden uit welke vragen je als senior stelt aan de controller, de PMO en de IT-eigenaar over het toollandschap.',
+      sayIt: 'Leg in 60 seconden uit welke vragen je als senior stelt aan de controller, het PMO en de IT-eigenaar over het toollandschap.',
       terms: [
-        { term: 'Data-eigenaar', def: 'De persoon die bepaalt wat een soort gegevens betekent en wie ze mag gebruiken.' },
+        { term: 'Data-eigenaar', def: 'Persoon of afdeling die beslist wat een gegeven betekent en zorgt dat het klopt.' },
         { term: 'Leveranciersrisico', def: 'Het risico dat een tool verandert, wordt samengevoegd of verdwijnt terwijl je project ervan afhangt.' },
         { term: 'Technische wijziging', def: 'Een wijziging in een tekening, onderdeel of ontwerp die planning en levertijden kan verschuiven.' },
-        { term: 'Assurance', def: 'De onafhankelijke controle dat een project doet wat het zegt te doen.' },
+        { term: 'Assurance', def: 'Een onafhankelijke toets die beslissers vertrouwen geeft dat een programma op koers ligt en eerlijk rapporteert.' },
       ],
     },
   ],

@@ -52,16 +52,16 @@ Evidence: fetched = opened and read; search = seen in a search result only. Sour
 
 | Claim in the lessons | Source | Level | Wording |
 |---|---|---|---|
-| PMI's PMBOK Guide works with principles and performance domains, not fixed processes | S1, S2 | search | "PMI beschrijft"; no edition number |
+| PMI's PMBOK Guide builds on principles and performance domains; processes only as non-prescriptive guidance to tailor (the current edition brought processes back in that form, so "instead of fixed processes" was cut in review) | S1, S2 | search | "PMI beschrijft"; no edition number |
 | IPMA ICB: competences in people, practice and perspective | S6 | search | named as three areas, no count |
 | PRINCE2 is a method; latest edition stresses tailoring, people, sustainability, works with Agile, Lean, ITIL | S4 (PeopleCert) | fetched | "volgens PeopleCert"; no edition number |
 | Prosci three-phase process: prepare approach, manage change, sustain outcomes | S10 | fetched 15 Nov (phase names confirmed) | "Prosci beschrijft" |
-| DMAIC phases: define, measure, analyse, improve, control; kaizen event about a week | S7 | search | phase names only, no origin story; "ASQ noemt" |
+| DMAIC phases: define, measure, analyse, improve, control; kaizen event a few days, often three to five | S7, `eng.improve.kaizen` | search | phase names only, no origin story; the ASQ attribution was cut in review (page 403, not confirmed), the duration now matches `eng.improve` |
 | Tool families and example tools (Excel, Microsoft Project, Smartsheet, Planner, Trello, Jira, Azure DevOps Boards, SharePoint, Teams, Loop, Confluence, Miro, Mural, Power BI) | S15, S21 to S27, S29 | fetched/search | named as examples, "geen aanbeveling"; no plans, prices, licences |
 | ASML uses Teamcenter (lifecycle management) and NX (design) | S16 (Siemens case study) | fetched | "volgens een Siemens-casus"; vendor text, read as pointer |
 | Enexis: S/4HANA (2020 preparation), ServiceNow for employee workflows, 100+ Mendix apps incl. a project management app linked to SAP | S18 (SAP), S20 (Enexis careers page), S19 (Mendix) | fetched | each attributed to its source |
 | Primavera P6, Clarity, Polarion as "common in the sector" | S24, S28, S30 | search | "gebruikelijk", no company claims |
-| Microsoft retired Project for the web (2025) and Project Online (2026); planning moves to Planner | S21, S22 | fetched | "volgens Microsoft zelf", one dated example in `landscape` |
+| Microsoft retired Project for the web (Aug 2025, users sent to Planner) and Project Online (30 Sep 2026, past tense since review; Microsoft names Planner and Project Server Subscription Edition as destinations) | S21, S22 | fetched 15 Nov | "volgens Microsoft zelf", one dated example in `landscape` |
 | Power BI report versus dashboard | S29 | search | only "read where a number comes from" |
 
 Not used: job-ad evidence for company names (ASML Jira or Project Online, TenneT P6, Alliander SAP PS), Planview (no source), Atlassian product merger.

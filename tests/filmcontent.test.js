@@ -70,6 +70,18 @@ const fieldOfFilm = (id) => {
   const pending = PENDING_RERENDER[id] || [];
   return f && pending.length ? { ...f, modules: f.modules.filter((m) => !pending.includes(m)) } : f;
 };
+test('PENDING_RERENDER only holds a field film that really does not show the module yet', () => {
+  for (const [id, pending] of Object.entries(PENDING_RERENDER)) {
+    const f = FIELDS.find((x) => x.id === id);
+    assert.ok(f && f.film === id, `${id}: not a field film`);
+    for (const m of pending) {
+      assert.ok(f.modules.includes(m), `${id}: ${m} is not in the field, drop it from PENDING_RERENDER`);
+      const stage = stageOf(fs.readFileSync(`${DIR}/${id}.html`, 'utf8'));
+      const title = MODULES.find((x) => x.id === m).title;
+      assert.ok(!stage.includes(title.nl) && !stage.includes(title.en), `${id} now shows ${m}: re-rendered, so remove it from PENDING_RERENDER`);
+    }
+  }
+});
 const ctxOf = (data, html, lessons, wiredBy = data.module || data.field ? [] : data.lessons) => ({
   lessons, levelOf: (lid) => (placeOf(lid) || {}).level || 1, wiredBy,
   ...(data.module ? { module: MODULES.find((m) => m.id === data.module), stageText: stageOf(html) } : {}),
