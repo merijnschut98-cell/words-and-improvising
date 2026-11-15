@@ -23,7 +23,7 @@
 //                                                                       → eng.process.types
 //   s2 Procestypen en processchema's: the kettle makes one lot at a time, a batch; from the tank the product flows
 //      non-stop to the filling unit (the cartons keep coming), so a batch feeds a continuous line; the block
-//      diagram and the equipment tag on each unit (Werkkennis, .diagrams)  → .types (.diagrams)
+//      diagram and the process flow diagram, in which each unit has a code (Werkkennis, .diagrams)  → .types (.diagrams)
 //   s3 Procesgrootheden en regelen: pressure, temperature, flow and level run the plant, and are kept at their
 //      value; a Coriolis meter on the pipe to hall B (mass directly) and a Pt100 in the pipe (Basis, .variables)
 //                                                                       → .variables
@@ -38,7 +38,7 @@
 // Per the review of eng.machining.intro: how the topics hang together is said once, in s1, before any detail; a
 // topic scene is short (what it is, its place in the story with a reason, then the tool sentence); the tools are
 // real things of the topic at Basis or Working knowledge level, one short sentence each, not explained; a Werkkennis
-// tool named in a scene (block diagram, equipment tag, pilot plant) is not named again in the closing grid, and no
+// tool named in a scene (block diagram, process flow diagram, pilot plant) is not named again in the closing grid, and no
 // tool of another module of the zone is used (the P&ID and the control loop belong to eng.drawings, CIP and the
 // regeneration section to eng.fluids); the closing grid has one beat per later level in the app's level words; the
 // people are plant people with safety glasses; the story ends where the field film picks it up (the pipe to the
@@ -93,11 +93,11 @@ const has = (id, list, lang = 'nl') => { const l = lessons[lang].get(id); const 
 // s1: what a process plant is, as the first lesson words it (built from unit operations: pumping, heating, mixing)
 has('eng.process.types', ['Een procesfabriek is opgebouwd uit unit operations', 'Pompen, verwarmen en koelen, mengen']);
 has('eng.process.types', ['A process plant is built from unit operations', 'Pumping, heating and cooling, mixing'], 'en');
-// s2: batch (one lot, one batch number) and continuous (non-stop), the two combined, the block diagram and the equipment tag
+// s2: batch (one lot, one batch number) and continuous (non-stop), the two combined, the block diagram, the process flow diagram and the code of a unit
 has('eng.process.types', ['In een batchproces gaat een vaste hoeveelheid een vat in', 'komt eruit als één partij, met één batchnummer', 'In een continu proces stroomt het product non-stop in en uit', 'batchgewijs mengen dat een continue vullijn voedt']);
 has('eng.process.types', ['In a batch process a fixed amount goes into a vessel', 'comes out as one lot, with one batch number', 'In a continuous process material flows in and out non-stop', 'batch mixing that feeds a continuous filling line'], 'en');
-has('eng.process.diagrams', ['Blokschema', 'Apparaatcode', 'P-101 voor een pomp']);
-has('eng.process.diagrams', ['Block flow diagram', 'Equipment tag', 'P-101 for a pump'], 'en');
+has('eng.process.diagrams', ['Blokschema', 'Processchema', 'Apparaatcode', 'P-101 voor een pomp']);
+has('eng.process.diagrams', ['Block flow diagram', 'Process flow diagram', 'Equipment tag', 'P-101 for a pump'], 'en');
 // s3: the four variables, a Coriolis meter (mass directly) and the Pt100
 has('eng.process.variables', ['Vier grootheden sturen de meeste procesfabrieken: druk, temperatuur, debiet en niveau', 'Een Coriolismeter laat een buis trillen', 'hij meet direct massa', 'Pt100', 'platina weerstand']);
 has('eng.process.variables', ['pressure, temperature, flow and level', 'A Coriolis meter vibrates a tube', 'it gives mass flow directly', 'Pt100', 'platinum resistor'], 'en');
@@ -284,7 +284,7 @@ const spec = {
       id: 's1', level: 1, dur: DURS[0], still: 0.9, title: { nl: 'Eén product, vier onderwerpen', en: 'One product, four topics' },
       beats: [
         { nl: 'In de procesfabriek wordt het product gemaakt dat in de tank van lijn 3 zit.', en: 'In the process plant the product is made that sits in the tank of line 3.', focus: ['flowS', 'kettle', 'tank', 'jij'] },
-        { nl: 'Een procesfabriek bestaat uit unit operations, zoals pompen, verwarmen en mengen.', en: 'A process plant is built from unit operations, such as pumping, heating and mixing.', focus: ['unitS', 'pump', 'hx', 'kettle'] },
+        { nl: 'Een procesfabriek bestaat uit vaste stappen, de unit operations, zoals pompen en mengen.', en: 'A process plant is built from fixed steps, the unit operations, such as pumping and mixing.', focus: ['unitS', 'pump', 'hx', 'kettle'] },
         { nl: 'Vier onderwerpen volgen het product. Twee gaan over maken en laten stromen.', en: 'Four topics follow the product. Two are about making it and letting it flow.', focus: 'grpA' },
         { nl: 'De andere twee gaan over tellen en over capaciteit.', en: 'The other two are about counting and about capacity.', focus: 'grpB' },
       ],
@@ -294,7 +294,7 @@ const spec = {
       beats: [
         { nl: 'Eerste onderwerp: Procestypen en processchema’s. De ketel maakt één partij, een batch.', en: 'First topic: Process types and diagrams. The kettle makes one lot, a batch.', focus: ['tTypes', 'batchS', 'kettle'] },
         { nl: 'Vanaf de tank stroomt het product non-stop naar de vuleenheid, want de dozen blijven komen.', en: 'From the tank the product flows non-stop to the filling unit, because the cartons keep coming.', focus: ['contS', 'tank', 'pipe4'] },
-        { nl: 'Bij procestypen gebruiken we vaak een {t:Blokschema|blokschema} en een {t:Apparaatcode|apparaatcode}.', en: 'For process types we often use a {t:Block flow diagram|block diagram} and an {t:Equipment tag|equipment tag}.', ...TOOL('Blokschema', 'Apparaatcode'), focus: ['tool1', 'tool2', 'blokS', 'tagP', 'tagT'] },
+        { nl: 'We gebruiken vaak een {t:Blokschema|blokschema} en een {t:Processchema|processchema}.', en: 'For process types we often use a {t:Block flow diagram|block diagram} and a {t:Process flow diagram|process flow diagram}.', ...TOOL('Blokschema', 'Processchema'), focus: ['tool1', 'tool2', 'blokS', 'tagP', 'tagT'] },
       ],
     },
     {
@@ -352,20 +352,20 @@ const SAY = [
   [ // s1 one product, four topics: what a process plant is, two topics make and flow, two count and capacity
     { nl: 'In de procesfabriek wordt het product gemaakt dat in de tank van lijn 3 zit.',
       en: 'In the process plant the product is made that sits in the tank of line 3.' },
-    { nl: 'Een procesfabriek bestaat uit unit operations, zoals pompen, verwarmen en mengen.',
-      en: 'A process plant is built from unit operations, such as pumping, heating and mixing.' },
+    { nl: 'Een procesfabriek bestaat uit vaste stappen, zoals pompen, verwarmen en mengen. Die heten unit operations.',
+      en: 'A process plant is built from fixed steps, such as pumping, heating and mixing. They are called unit operations.' },
     { nl: 'Vier onderwerpen volgen het product. Twee gaan over maken en laten stromen.',
       en: 'Four topics follow the product. Two are about making it and letting it flow.' },
     { nl: 'De andere twee gaan over tellen en over capaciteit.',
       en: 'The other two are about counting and about capacity.' },
   ],
-  [ // s2 process types: a batch, a continuous line, the block diagram and the equipment tag
+  [ // s2 process types: a batch, a continuous line, the block diagram, the process flow diagram and the code of a unit
     { nl: 'Het eerste onderwerp is Procestypen en processchema’s. In de ketel maak je één partij tegelijk, een batch.',
       en: 'The first topic is Process types and diagrams. In the kettle you make one lot at a time, a batch.' },
     { nl: 'Vanaf de tank stroomt het product non-stop naar de vuleenheid, want de dozen blijven komen.',
       en: 'From the tank the product flows non-stop to the filling unit, because the cartons keep coming.' },
-    { nl: 'Bij procestypen gebruiken we vaak een {t:Blokschema|blokschema} en een {t:Apparaatcode|apparaatcode} per apparaat. Zo bedoelt iedereen hetzelfde apparaat.',
-      en: 'For process types we often use a {t:Block flow diagram|block diagram} and an {t:Equipment tag|equipment tag} on each unit. So everyone means the same unit.' },
+    { nl: 'Bij procestypen gebruiken we vaak een {t:Blokschema|blokschema} en een {t:Processchema|processchema}. Daarin heeft elk apparaat een code, zodat iedereen hetzelfde apparaat bedoelt.',
+      en: 'For process types we often use a {t:Block flow diagram|block diagram} and a {t:Process flow diagram|process flow diagram}. In it every unit has a code, so everyone means the same unit.' },
   ],
   [ // s3 variables and control
     { nl: 'Het tweede onderwerp is Procesgrootheden en regelen. Vier grootheden sturen de fabriek. Dat zijn druk, temperatuur, debiet en niveau.',
@@ -376,8 +376,8 @@ const SAY = [
       en: 'For measuring we often use a {t:Coriolis meter|Coriolis meter} for flow and a {t:Pt100|Pt100} for temperature. The Coriolis meter measures mass directly.' },
   ],
   [ // s4 mass and energy balances
-    { nl: 'Het derde onderwerp is Massa- en energiebalans. Wat erin gaat, komt eruit of blijft erin, zoals in een tank die volloopt.',
-      en: 'The third topic is Mass and energy balances. What goes in comes out or stays in, like in a tank that fills.' },
+    { nl: 'Het derde onderwerp is Massa- en energiebalans. Wat erin gaat, zoals de zakken op de pallet, komt eruit of blijft erin.',
+      en: 'The third topic is Mass and energy balances. What goes in, like the sacks on the pallet, comes out or stays in.' },
     { nl: 'Mist er iets in de som, dan zoek je een lek. Product kan bijvoorbeeld via de vloer naar het riool verdwijnen.',
       en: 'If something is missing in the sum, look for a leak. Product can, for instance, disappear down the floor drain.' },
     { nl: 'Bij balansen gebruiken we vaak een {t:Massabalans|massabalans}. Die laat zien waar product blijft.',

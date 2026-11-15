@@ -252,7 +252,7 @@ const STAGE = (() => {
     } else if (si >= 1 && si <= 4) {
       title = [tr('Procestypen', 'Types', 150), tr('Grootheden', 'Variables', 150), tr('Balansen', 'Balances', 150), tr('Capaciteit', 'Capacity', 150)][si - 1];
       o.r = strip(si - 1);
-      if (si === 1) Object.assign(o, { batchS: fade(b, 0, p, batchDrawing(), 0.1, 0.5), contS: fade(b, 1, p, contDrawing()), blokS: fade(b, 2, p, blockDrawing(), 0.3, 0.7), ...tools(b, p, 2, tr('Blokschema', 'Block diagram', 260), tr('Apparaatcode', 'Equipment tag', 260)) });
+      if (si === 1) Object.assign(o, { batchS: fade(b, 0, p, batchDrawing(), 0.1, 0.5), contS: fade(b, 1, p, contDrawing()), blokS: fade(b, 2, p, blockDrawing(), 0.3, 0.7), ...tools(b, p, 2, tr('Blokschema', 'Block diagram', 260), tr('Processchema', 'Process flow diagram', 260)) });
       if (si === 2) Object.assign(o, { fourS: fade(b, 0, p, fourDrawing(), 0.1, 0.5), keepS: fade(b, 1, p, keepDrawing()), ...tools(b, p, 2, tr('Coriolismeter', 'Coriolis meter', 260), tr('Pt100', 'Pt100', 260)) });
       if (si === 3) Object.assign(o, { balS: b === 0 ? op(span(p, 0.1, 0.5), balDrawing()) : '', gapS: fade(b, 1, p, gapDrawing()), ...tools(b, p, 2, tr('Massabalans', 'Mass balance', 260)) });
       if (si === 4) Object.assign(o, { cycS: fade(b, 0, p, cycleDrawing(), 0.1, 0.5), scaleS: fade(b, 1, p, scaleDrawing()), ship: fade(b, 3, p, shipDrawing()), ...tools(b, p, 2, tr('Proeffabriek', 'Pilot plant', 260)) });
