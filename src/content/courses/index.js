@@ -458,7 +458,7 @@ export const FIELDS = [
   { id: 'eng.field.run', subject: 'eng',
     title: { en: 'Keeping the plant running', nl: 'De fabriek draaiend houden' },
     blurb: { en: 'Flow, quality, maintenance and safety: keeping a plant making good parts, safely, shift after shift.', nl: 'Flow, kwaliteit, onderhoud en veiligheid: een fabriek die dag na dag goede producten maakt, veilig.' },
-    modules: ['eng.flow', 'eng.quality', 'eng.maintenance', 'eng.safety'] },
+    modules: ['eng.flow', 'eng.quality', 'eng.maintenance', 'eng.safety'], film: 'eng.field.run' },
   { id: 'eng.field.better', subject: 'eng',
     title: { en: 'Making the plant better', nl: 'De fabriek beter maken' },
     blurb: { en: 'Problem solving, SPC, cost and reliability: finding what holds a plant back and making it better, for less.', nl: 'Probleemoplossen, SPC, kostprijs en betrouwbaarheid: vinden wat een fabriek tegenhoudt en haar beter maken, voor minder geld.' },

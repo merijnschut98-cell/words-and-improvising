@@ -1662,3 +1662,20 @@ test('speak variant: the brown paper and the whiteboard of the formats intro', (
   const en = 'The group draws the process of line 3 with sticky notes on a brown paper. We do that on an online whiteboard.';
   assert.equal(speakOf([en], 'en'), en);
 });
+
+// The field film "Keeping the plant running" (eng.field.run), checked with espeak-ng phonemes through Piper's nl_NL-alex
+// bridge: it reads flow as "flaw" (flɔw; said flouw, as the flow rule of pm.agile.forecast), only in the film's two phrases
+// that name the module ("Het eerste station is Capaciteit en flow" and "Eerst Capaciteit en flow"). Takttijd,
+// stilstandregistratie, turflijst, afwijkingsrapport, CMMS (letters), CILT (the rule above), LMRA (the rule above),
+// vergrendelen en labelen, lijnbalans, omstellen, teamleider and "Jij bent de engineer" are read right or have rules
+// above; English needs nothing; no other film's spoken text changes
+test('speak variant: the plant-running field film words in Dutch', () => {
+  const nl = (s) => speakOf([s], 'nl');
+  assert.equal(nl('Het eerste station is Capaciteit en flow. Lijn 3 moet genoeg dozen maken.'), 'Het eerste station is Capaciteit en flouw. Lijn 3 moet genoeg dozen maken.');
+  assert.equal(nl('Eerst Capaciteit en flow, van takt en lijnbalans tot omstellen en seriegrootte.'), 'Eerst Capaciteit en flouw, van takt en lijnbalans tot omstellen en seriegrootte.');
+  // elsewhere the word keeps its voice
+  assert.equal(nl('Capaciteit en flow is een module.'), 'Capaciteit en flow is een module.');
+  assert.equal(nl('Dan Capaciteit en flow.'), 'Dan Capaciteit en flow.');
+  const en = 'The first station is Capacity and flow. First Capacity and flow.';
+  assert.equal(speakOf([en], 'en'), en);
+});

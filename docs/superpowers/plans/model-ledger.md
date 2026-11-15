@@ -178,3 +178,5 @@ Outcome: accepted (merged as delivered), sent back N times, redone.
 | 15 Nov | Review: Task 17 step K | opus | ~75 | ~45 min | n/a | accepted with fixes (one MAX_TOTAL 360, size allowance for all extended films, stronger point check, unit/acronym labels exempt, checkScope 1000x faster); merged v344 |
 | 15 Nov | Build: Projects intro pm.formats.intro | sonnet | 113 | 22 min | 326,204 | accepted with fixes by its review |
 | 15 Nov | Review: pm.formats.intro | sonnet | ~60 | n/a | n/a | accepted with small trims (171 to 169 s); merged v345 |
+| 15 Nov | Build: Engineering field film eng.field.run | sonnet | 128 | 18 min | 371,720 | accepted with fixes by its review |
+| 15 Nov | Review: eng.field.run | sonnet | ~45 | ~25 min | n/a | accepted with small fixes (takt is worked out, je watches, hedges, the switch named); merged v346 |
