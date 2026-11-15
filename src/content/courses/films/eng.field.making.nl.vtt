@@ -1,0 +1,253 @@
+WEBVTT
+
+1
+00:00:00.844 --> 00:00:03.131
+Lijn 3 in hal B krijgt een nieuwe vuleenheid.
+
+2
+00:00:03.870 --> 00:00:06.355
+Die vult de dozen op de band met product uit de tank.
+
+3
+00:00:07.317 --> 00:00:10.498
+De eenheid heeft een frame, een plaat, een tank en een kap.
+
+4
+00:00:11.544 --> 00:00:12.600
+Jij bent de engineer.
+
+5
+00:00:13.281 --> 00:00:15.348
+Je volgt de eenheid van materiaal tot lijn.
+
+6
+00:00:16.402 --> 00:00:17.656
+Dat zijn zes stations.
+
+7
+00:00:18.423 --> 00:00:21.151
+Van sterkte en verspanen tot lassen en spuitgieten.
+
+8
+00:00:22.428 --> 00:00:25.168
+Het eerste station is Materialen en sterkte.
+
+9
+00:00:25.915 --> 00:00:27.575
+Het frame moet de hele eenheid dragen.
+
+10
+00:00:28.572 --> 00:00:30.731
+Je kiest een staal dat meer aankan dan de belasting.
+
+11
+00:00:31.767 --> 00:00:33.300
+Je test het staal met een trekproef (tensile test)
+
+12
+00:00:33.346 --> 00:00:34.368
+en een hardheidsmeting (hardness).
+
+13
+00:00:35.363 --> 00:00:37.267
+Zonder dit kan het frame na maanden breken.
+
+14
+00:00:38.540 --> 00:00:40.398
+Het tweede station is Verspanen.
+
+15
+00:00:41.079 --> 00:00:43.099
+De plaat wordt uit een blok staal gesneden.
+
+16
+00:00:44.100 --> 00:00:47.489
+Een machine snijdt metaal weg, tot de vorm en de gaten kloppen.
+
+17
+00:00:48.464 --> 00:00:50.647
+Je gebruikt een vingerfrees (end mill) en een spiraalboor (twist drill).
+
+18
+00:00:51.610 --> 00:00:53.851
+Zonder dit zitten de gaten niet waar ze moeten zitten.
+
+19
+00:00:55.111 --> 00:00:58.292
+Het derde station is Procestechniek, de basis.
+
+20
+00:00:59.037 --> 00:01:01.765
+Wat in de tank zit, komt uit een procesfabriek.
+
+21
+00:01:02.821 --> 00:01:06.641
+Daar gaat het product van apparaat naar apparaat, in batches of continu.
+
+22
+00:01:07.628 --> 00:01:09.068
+Je gebruikt een processchema (process flow diagram)
+
+23
+00:01:09.126 --> 00:01:10.113
+en een massabalans (mass balance).
+
+24
+00:01:11.205 --> 00:01:14.364
+Zonder dit weet niemand wat er stroomt, of waar product verdwijnt.
+
+25
+00:01:15.669 --> 00:01:18.374
+Het vierde station is Tekeningen en regeling.
+
+26
+00:01:19.121 --> 00:01:22.047
+Frame, plaat en tank komen samen op één tekening.
+
+27
+00:01:23.070 --> 00:01:26.228
+Wie hem leest, ziet de vorm, de maten en hoe nauw het moet.
+
+28
+00:01:27.320 --> 00:01:29.630
+Je leest de stempel (title block) en het tolerantiekader (feature control frame).
+
+29
+00:01:30.641 --> 00:01:33.520
+Zonder dit meten maker en klant elk op hun eigen manier.
+
+30
+00:01:34.780 --> 00:01:37.125
+Het vijfde station is Lassen en verbinden.
+
+31
+00:01:37.823 --> 00:01:40.238
+Het frame bestaat uit delen die aan elkaar moeten.
+
+32
+00:01:41.239 --> 00:01:42.644
+De naad smelt en stolt weer.
+
+33
+00:01:43.283 --> 00:01:44.490
+Dan zijn de delen één stuk.
+
+34
+00:01:45.497 --> 00:01:48.655
+Je last met MIG of MAG, en gebruikt een lasmal (welding fixture).
+
+35
+00:01:49.656 --> 00:01:51.142
+Zonder dit trekt het frame krom.
+
+36
+00:01:52.388 --> 00:01:54.176
+Het zesde station is Spuitgieten.
+
+37
+00:01:54.889 --> 00:01:56.851
+De kap van de eenheid is van kunststof.
+
+38
+00:01:57.883 --> 00:02:00.995
+Gesmolten kunststof gaat in een matrijs en koelt af tot een kap.
+
+39
+00:02:01.976 --> 00:02:04.194
+Je gebruikt een heetkanaal (hot runner) en een instelkaart (setting sheet).
+
+40
+00:02:05.235 --> 00:02:07.557
+Zonder dit krijgt de kap bramen of inzakplekken.
+
+41
+00:02:08.973 --> 00:02:10.064
+Dit is de hele kaart.
+
+42
+00:02:10.785 --> 00:02:13.467
+De zes stations van Dingen maken liggen in één gebied.
+
+43
+00:02:14.476 --> 00:02:16.264
+Eerst Materialen en sterkte.
+
+44
+00:02:16.979 --> 00:02:21.507
+Daar gaat het om krachten, materiaalsterkte, vermoeiing en warmtebehandeling.
+
+45
+00:02:22.502 --> 00:02:23.338
+Dan Verspanen.
+
+46
+00:02:23.972 --> 00:02:26.503
+Daar gaat het om draaien, frezen en boren.
+
+47
+00:02:27.212 --> 00:02:29.638
+Ook om CNC, gereedschap en opspanning.
+
+48
+00:02:30.622 --> 00:02:32.932
+Dan Procestechniek, de basis.
+
+49
+00:02:33.622 --> 00:02:37.976
+Daar gaat het om procestypen, regelen, balansen en batchcapaciteit.
+
+50
+00:02:38.995 --> 00:02:40.586
+Dan Tekeningen en regeling.
+
+51
+00:02:41.264 --> 00:02:45.618
+Daar gaat het om tekeningen lezen, toleranties, schema’s en regelkringen.
+
+52
+00:02:46.610 --> 00:02:47.852
+Dan Lassen en verbinden.
+
+53
+00:02:48.498 --> 00:02:51.831
+Daar gaat het om booglassen, puntlassen en lasfouten.
+
+54
+00:02:52.554 --> 00:02:55.317
+Ook om bouten, lijmen en lassen in productie.
+
+55
+00:02:56.333 --> 00:02:57.494
+Tot slot Spuitgieten.
+
+56
+00:02:58.190 --> 00:03:01.046
+Daar gaat het om de machine, de cyclus en kunststoffen.
+
+57
+00:03:01.762 --> 00:03:04.282
+Ook om fouten, instellen en matrijzen.
+
+58
+00:03:05.298 --> 00:03:06.331
+Zo hangen ze samen.
+
+59
+00:03:07.064 --> 00:03:10.872
+Bij sterkte kies je het materiaal, en de tekening legt de maten vast.
+
+60
+00:03:11.855 --> 00:03:14.920
+Verspanen, lassen en spuitgieten maken de delen.
+
+61
+00:03:15.611 --> 00:03:17.550
+De procesfabriek maakt wat erin gaat.
+
+62
+00:03:18.598 --> 00:03:21.675
+Elk station is een module met vier niveaus per onderwerp.
+
+63
+00:03:22.405 --> 00:03:24.309
+Begin bij het onderdeel dat jij moet maken.
