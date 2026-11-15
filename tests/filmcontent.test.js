@@ -63,8 +63,9 @@ test('withoutNumber also removes a recall answer given as a number', () => {
 const stageOf = (html) => html.replace(/<script type="application\/json" id="film-data">[\s\S]*?<\/script>/, '');
 // A module added to a field before its field film is re-rendered: the shipped film does not know the
 // module yet, so it is held to the field without it. Remove the entry when the film is re-rendered
-// (Task 14: pm.approach is the first station of pm.field.lifecycle, the re-render comes with its films).
-const PENDING_RERENDER = { 'pm.field.lifecycle': ['pm.approach'] };
+// (Task 14: pm.approach is the first station of pm.field.lifecycle and pm.formats sits between Plan and
+// Run; one re-render shows both, together with their films).
+const PENDING_RERENDER = { 'pm.field.lifecycle': ['pm.approach', 'pm.formats'] };
 const fieldOfFilm = (id) => {
   const f = FIELDS.find((x) => x.id === id);
   const pending = PENDING_RERENDER[id] || [];

@@ -15,9 +15,9 @@ const stateWith = (subject, ids) => ({
 });
 const TODAY = '2026-11-02';
 
-test('roadOrder: Projects follows the road (Approach, Intake, Plan, Run, Land, Close), then the other places by module level (Instap, Verdieping, Specialist), map order within a level', () => {
+test('roadOrder: Projects follows the road (Approach, Intake, Plan, Formats, Run, Land, Close), then the other places by module level (Instap, Verdieping, Specialist), map order within a level', () => {
   const ids = roadOrder('pm').map((m) => m.id);
-  assert.deepEqual(ids, ['pm.approach', 'pm.intake', 'pm.plan', 'pm.run', 'pm.land', 'pm.close',
+  assert.deepEqual(ids, ['pm.approach', 'pm.intake', 'pm.plan', 'pm.formats', 'pm.run', 'pm.land', 'pm.close',
     'pm.agile', 'pm.devops',
     'pm.stuck', 'pm.lead', 'pm.negotiate', 'pm.outside', 'pm.perform', 'pm.scaled', 'pm.itproject',
     'pm.portfolio', 'pm.consult']);
@@ -74,7 +74,7 @@ test('everything passed: no module recommended', () => {
   assert.equal(recommendedModule(st, 'pm'), null);
 });
 
-test('real states: a fresh learner starts at Approach Basis 1; an opened unfinished lesson resumes; Run (a level-2 module on the road) gets its Basis third', () => {
+test('real states: a fresh learner starts at Approach Basis 1; an opened unfinished lesson resumes; Formats and Run (level-2 modules on the road) get their Basis third and fourth', () => {
   const fresh = courseTodayPick(stateWith('pm', []), 'pm', 'nl', TODAY);
   assert.deepEqual([fresh.moduleId, fresh.lessonId, fresh.level], ['pm.approach', levelOf(meta('pm.approach'), 0)[0], 1]);
   // opened a Werkkennis lesson of Land and left it: that comes back first
@@ -83,11 +83,13 @@ test('real states: a fresh learner starts at Approach Basis 1; an opened unfinis
   opened.courses.pm.lessons[land2] = { opened: 5 };
   const back = courseTodayPick(opened, 'pm', 'nl', TODAY);
   assert.deepEqual([back.why, back.lessonId], ['resume', land2]);
-  // Approach, Intake and Plan Basis done: Run's Basis (Run is a Verdieping module; nothing locks it)
+  // Approach, Intake and Plan Basis done: Formats' Basis, then Run's (both are Verdieping modules; nothing locks them)
   const two = stateWith('pm', [...levelOf(meta('pm.approach'), 0), ...levelOf(meta('pm.intake'), 0), ...levelOf(meta('pm.plan'), 0)]);
-  assert.equal(courseTodayPick(two, 'pm', 'nl', TODAY).lessonId, levelOf(meta('pm.run'), 0)[0]);
+  assert.equal(courseTodayPick(two, 'pm', 'nl', TODAY).lessonId, levelOf(meta('pm.formats'), 0)[0]);
+  const three = stateWith('pm', [...levelOf(meta('pm.approach'), 0), ...levelOf(meta('pm.intake'), 0), ...levelOf(meta('pm.plan'), 0), ...levelOf(meta('pm.formats'), 0)]);
+  assert.equal(courseTodayPick(three, 'pm', 'nl', TODAY).lessonId, levelOf(meta('pm.run'), 0)[0]);
   // the road's Basis done: Agile's Basis (Verdieping) before Stuck (Specialist) and Portfolio
-  const road = stateWith('pm', ['pm.approach', 'pm.intake', 'pm.plan', 'pm.run', 'pm.land', 'pm.close'].flatMap((id) => levelOf(meta(id), 0)));
+  const road = stateWith('pm', ['pm.approach', 'pm.intake', 'pm.plan', 'pm.formats', 'pm.run', 'pm.land', 'pm.close'].flatMap((id) => levelOf(meta(id), 0)));
   assert.equal(courseTodayPick(road, 'pm', 'nl', TODAY).moduleId, 'pm.agile');
 });
 
