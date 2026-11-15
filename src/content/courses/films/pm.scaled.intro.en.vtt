@@ -1,225 +1,225 @@
 WEBVTT
 
 1
-00:00:00.835 --> 00:00:06.501
+00:00:00.834 --> 00:00:06.465
 The new MES, the system that runs the orders on the floor, has to go to more lines.
 
 2
-00:00:07.311 --> 00:00:10.121
+00:00:07.258 --> 00:00:10.021
 One IT team is too small for the whole system.
 
 3
-00:00:11.137 --> 00:00:13.331
+00:00:11.057 --> 00:00:13.286
 You lead the project for the plant manager.
 
 4
-00:00:14.044 --> 00:00:15.565
+00:00:13.996 --> 00:00:15.494
 More IT teams join.
 
 5
-00:00:16.578 --> 00:00:19.852
+00:00:16.529 --> 00:00:19.710
 We follow this project through the four topics of the module.
 
 6
-00:00:21.149 --> 00:00:23.320
+00:00:21.006 --> 00:00:23.177
 The first topic is SAFe basics.
 
 7
-00:00:24.043 --> 00:00:26.470
+00:00:23.906 --> 00:00:26.275
 How do you make many teams work as one whole?
 
 8
-00:00:27.421 --> 00:00:30.823
+00:00:27.249 --> 00:00:30.558
 Each team can work fine and the whole still gets stuck.
 
 9
-00:00:31.561 --> 00:00:33.198
+00:00:31.295 --> 00:00:33.118
 Team A waits for team B.
 
 10
-00:00:33.890 --> 00:00:35.620
+00:00:33.820 --> 00:00:35.527
 That is called a dependency.
 
 11
-00:00:36.576 --> 00:00:40.163
+00:00:36.478 --> 00:00:40.065
 SAFe puts the teams on a train, the Agile Release Train.
 
 12
-00:00:40.886 --> 00:00:45.042
+00:00:40.735 --> 00:00:44.891
 The teams stay together for a long time and build one product together.
 
 13
-00:00:46.107 --> 00:00:49.323
+00:00:45.952 --> 00:00:49.099
 The train works to one fixed rhythm, the cadence.
 
 14
-00:00:50.024 --> 00:00:53.832
+00:00:49.792 --> 00:00:53.554
 All teams plan, build and deliver at the same moments.
 
 15
-00:00:54.823 --> 00:00:58.666
+00:00:54.540 --> 00:00:58.383
 For SAFe we often use PI Planning, the planning with all teams,
 
 16
-00:00:58.863 --> 00:01:00.616
+00:00:58.569 --> 00:01:00.299
 and the ART Planning Board.
 
 17
-00:01:01.947 --> 00:01:05.198
+00:01:01.624 --> 00:01:04.863
 The second topic is Portfolio and Lean budgets.
 
 18
-00:01:05.895 --> 00:01:08.937
+00:01:05.587 --> 00:01:08.536
 Which work do the teams get, and who pays for it?
 
 19
-00:01:09.996 --> 00:01:14.280
+00:01:09.586 --> 00:01:13.707
 All the development investments of the plant together are called the portfolio.
 
 20
-00:01:15.025 --> 00:01:16.662
+00:01:14.454 --> 00:01:16.254
 The MES is one of them.
 
 21
-00:01:17.689 --> 00:01:22.577
+00:01:17.286 --> 00:01:22.313
 With project funding each project gets its own budget and a temporary team.
 
 22
-00:01:23.265 --> 00:01:26.365
+00:01:23.008 --> 00:01:26.190
 SAFe funds the train, and the work comes to the train.
 
 23
-00:01:27.346 --> 00:01:31.131
+00:01:27.185 --> 00:01:30.970
 A few strategic themes give the direction for the plant manager.
 
 24
-00:01:32.127 --> 00:01:36.887
+00:01:31.970 --> 00:01:36.811
 For the portfolio we often use a Lean business case and a Portfolio Kanban.
 
 25
-00:01:38.165 --> 00:01:40.986
+00:01:38.104 --> 00:01:41.076
 The third topic is Alternatives and criticism.
 
 26
-00:01:41.719 --> 00:01:45.423
+00:01:41.835 --> 00:01:45.538
 SAFe is not the only way, there are also LeSS and Nexus.
 
 27
-00:01:46.605 --> 00:01:48.497
+00:01:46.692 --> 00:01:48.666
 LeSS takes things away instead.
 
 28
-00:01:49.216 --> 00:01:52.467
+00:01:49.382 --> 00:01:52.563
 All teams share one Product Owner and one backlog.
 
 29
-00:01:53.515 --> 00:01:55.280
+00:01:53.608 --> 00:01:55.291
 It works with feature teams.
 
 30
-00:01:55.983 --> 00:01:59.431
+00:01:56.030 --> 00:01:59.525
 Such a team builds a customer function from start to finish.
 
 31
-00:02:00.448 --> 00:02:05.626
+00:02:00.554 --> 00:02:05.651
 Alternatives include Sprint Planning One of LeSS and Cross-Team Refinement of Nexus.
 
 32
-00:02:06.911 --> 00:02:10.336
+00:02:06.945 --> 00:02:10.358
 The fourth topic is Hybrid, stage-gate plus agile.
 
 33
-00:02:11.032 --> 00:02:12.495
+00:02:11.073 --> 00:02:12.501
 What if hardware joins in?
 
 34
-00:02:13.518 --> 00:02:16.804
+00:02:13.533 --> 00:02:16.853
 The MES gets a link to scales on the lines.
 
 35
-00:02:17.550 --> 00:02:21.566
+00:02:17.627 --> 00:02:21.563
 That is hardware, and with hardware the cost of change rises fast.
 
 36
-00:02:22.608 --> 00:02:24.791
+00:02:22.623 --> 00:02:24.840
 In stage-gate you work in stages.
 
 37
-00:02:25.518 --> 00:02:29.872
+00:02:25.549 --> 00:02:29.949
 Between two stages sits a gate, a decision moment for the plant manager.
 
 38
-00:02:30.896 --> 00:02:33.845
+00:02:30.977 --> 00:02:33.821
 Within each stage the teams work in sprints.
 
 39
-00:02:34.568 --> 00:02:36.670
+00:02:34.517 --> 00:02:36.735
 The gates stay for the big decisions.
 
 40
-00:02:37.667 --> 00:02:41.765
+00:02:37.722 --> 00:02:41.832
 For hybrid work we often use backward planning and a design freeze,
 
 41
-00:02:41.881 --> 00:02:42.903
+00:02:41.972 --> 00:02:42.994
 fixing the design.
 
 42
-00:02:44.200 --> 00:02:45.349
+00:02:44.300 --> 00:02:45.438
 It all connects.
 
 43
-00:02:46.072 --> 00:02:49.497
+00:02:46.131 --> 00:02:49.510
 SAFe basics gives the train, the portfolio the budget,
 
 44
-00:02:49.729 --> 00:02:53.108
+00:02:49.742 --> 00:02:53.132
 the alternatives other ways and hybrid work the hardware.
 
 45
-00:02:54.152 --> 00:02:57.821
+00:02:54.155 --> 00:02:57.859
 Scaling means agreements that let many teams deliver as one.
 
 46
-00:02:59.193 --> 00:03:00.876
+00:02:59.177 --> 00:03:00.872
 This is the map of Projects.
 
 47
-00:03:01.626 --> 00:03:04.784
+00:03:01.611 --> 00:03:04.769
 Scaling is the second station of IT and agile.
 
 48
-00:03:05.792 --> 00:03:08.637
+00:03:05.779 --> 00:03:08.832
 Scaling has four topics, each with four levels.
 
 49
-00:03:09.631 --> 00:03:11.268
+00:03:09.822 --> 00:03:11.378
 Start with SAFe basics.
 
 50
-00:03:12.001 --> 00:03:17.074
+00:03:12.095 --> 00:03:17.110
 At Basics level it is about why scale, value streams, LeSS and stage-gate.
 
 51
-00:03:18.176 --> 00:03:23.122
+00:03:18.192 --> 00:03:23.208
 At Working knowledge you add PI Planning, epics, Nexus and long lead times.
 
 52
-00:03:24.119 --> 00:03:27.706
+00:03:24.229 --> 00:03:27.863
 At Advanced you add the roles, scoring with WSJF,
 
 53
-00:03:27.915 --> 00:03:30.666
+00:03:28.049 --> 00:03:30.835
 the Spotify model and integration points.
 
 54
-00:03:31.685 --> 00:03:34.344
+00:03:31.866 --> 00:03:34.687
 At Expert you add the four configurations,
 
 55
-00:03:34.588 --> 00:03:38.884
+00:03:34.896 --> 00:03:39.273
 Lean budgets, the criticism of SAFe and steering a hybrid approach.
 
 56
-00:03:39.915 --> 00:03:44.106
+00:03:40.329 --> 00:03:44.393
 Every lesson and every film in this module has a place on this map.

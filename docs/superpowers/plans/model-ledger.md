@@ -112,3 +112,4 @@ Outcome: accepted (merged as delivered), sent back N times, redone.
 | 15 Nov | Review: module titles | sonnet | n/a | n/a | n/a | accepted with a fix (no title cut off: smaller title below 480 px, two balanced lines below 375 px); full e2e 111/111; it killed a server on port 8123 that may have belonged to another agent; merged v302 |
 | 15 Nov | Task 13 step 1: Engineering subject map (four zones) | sonnet | 108 | 86 min | 257,564 | accepted with fixes by its review |
 | 15 Nov | Review: Engineering map | opus | n/a | n/a | n/a | accepted with fixes (label-fit test generic, phone map 840 to 741 px); merged v303 |
+| 15 Nov | Render PM-21: 11 films re-rendered for the map-label fit; procesingenieurs fixed | sonnet | 86 | 2 h | 170,737 | accepted; every guard passed first time; merged v304 |

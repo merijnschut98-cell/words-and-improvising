@@ -1285,7 +1285,7 @@ test('speak variant: the DevOps module intro word in Dutch', () => {
 });
 
 // The Programmes and governance module intro (pm.portfolio.intro), checked with espeak-ng phonemes through Piper's nl
-// bridge: it reads "procesingenieurs" with a voiced z, "pro-ze-ingenieurs" (prˈoːsəzˌɪŋ...); said "proces-ingenieurs"
+// bridge: it reads "procesingenieurs" with a voiced z, "pro-ze-ingenieurs" (prˈoːsəzˌɪŋ...); said "proces ingenieurs", two words
 // (proːsˈɛsˌɪnzjənjˈøːrs, pro-SES in-zje-NJEURS), and plain "managers" with a hard g (mˈaːnaːɣərs), said "menetsjers" as the
 // manager rules above say it, only in this film's phrase "De managers die de fabriek draaien", so no other film's
 // managers change. The film's other words (programmaraad, MSP, capaciteitsstreep, capaciteitsmatrix, besluitenlijst,
@@ -1294,7 +1294,7 @@ test('speak variant: the DevOps module intro word in Dutch', () => {
 // nothing
 test('speak variant: the Programmes and governance intro words', () => {
   const nl = (s) => speakOf([s], 'nl');
-  assert.equal(nl('Het knelpunt is niet geld maar de twee procesingenieurs, want die zijn schaars.'), 'Het knelpunt is niet geld maar de twee proces-ingenieurs, want die zijn schaars.');
+  assert.equal(nl('Het knelpunt is niet geld maar de twee procesingenieurs, want die zijn schaars.'), 'Het knelpunt is niet geld maar de twee proces ingenieurs, want die zijn schaars.');
   assert.equal(nl('De managers die de fabriek draaien zijn eigenaar van de baten.'), 'De menetsjers die de fabriek draaien zijn eigenaar van de baten.');
   // elsewhere the words keep their voice
   assert.equal(nl('De managers van de afdeling beslissen.'), 'De managers van de afdeling beslissen.');

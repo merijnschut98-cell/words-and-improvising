@@ -2978,30 +2978,30 @@
     "pm.field.people": {
       "poster": "src/content/courses/films/pm.field.people.jpg",
       "nl": {
-        "dur": 134.3,
-        "bytes": 6774814,
+        "dur": 138.1,
+        "bytes": 6952484,
         "scenes": [
           0,
-          16.61,
-          33.48,
-          50.19,
-          66.99,
-          84.01,
-          98.58
+          17.57,
+          34.85,
+          51.87,
+          69.15,
+          87.17,
+          101.73
         ],
         "vtt": "src/content/courses/films/pm.field.people.nl.vtt"
       },
       "en": {
-        "dur": 152.7,
-        "bytes": 7480521,
+        "dur": 153.6,
+        "bytes": 7508640,
         "scenes": [
           0,
-          20.13,
-          39.38,
-          57.22,
-          75.8,
-          96.89,
-          112.98
+          20.2,
+          39.71,
+          57.49,
+          75.85,
+          97.01,
+          113.14
         ],
         "vtt": "src/content/courses/films/pm.field.people.en.vtt"
       }
@@ -3009,24 +3009,24 @@
     "pm.field.portfolio": {
       "poster": "src/content/courses/films/pm.field.portfolio.jpg",
       "nl": {
-        "dur": 86.6,
-        "bytes": 4269740,
+        "dur": 88.4,
+        "bytes": 4374491,
         "scenes": [
           0,
-          16.96,
-          38.59,
-          60.56
+          17.65,
+          39.79,
+          62.08
         ],
         "vtt": "src/content/courses/films/pm.field.portfolio.nl.vtt"
       },
       "en": {
-        "dur": 96.9,
-        "bytes": 4618770,
+        "dur": 97.4,
+        "bytes": 4674512,
         "scenes": [
           0,
-          20.12,
-          44.13,
-          68.99
+          20.29,
+          44.4,
+          69.38
         ],
         "vtt": "src/content/courses/films/pm.field.portfolio.en.vtt"
       }
@@ -3034,21 +3034,21 @@
     "pm.field.it": {
       "poster": "src/content/courses/films/pm.field.it.jpg",
       "nl": {
-        "dur": 144.3,
-        "bytes": 6648931,
+        "dur": 144,
+        "bytes": 6604723,
         "scenes": [
           0,
-          21.02,
-          41.3,
-          61.35,
-          82.23,
-          103.22
+          20.71,
+          41.09,
+          61.33,
+          81.99,
+          102.83
         ],
         "vtt": "src/content/courses/films/pm.field.it.nl.vtt"
       },
       "en": {
         "dur": 159.5,
-        "bytes": 7209981,
+        "bytes": 7188113,
         "scenes": [
           0,
           23.55,
@@ -3218,30 +3218,30 @@
     "pm.devops.intro": {
       "poster": "src/content/courses/films/pm.devops.intro.jpg",
       "nl": {
-        "dur": 239.9,
-        "bytes": 8729735,
+        "dur": 240.1,
+        "bytes": 8775432,
         "scenes": [
           0,
-          23.93,
-          54.85,
-          88.11,
-          129.95,
-          174.34,
-          192.37
+          24.26,
+          54.88,
+          88.1,
+          129.73,
+          175,
+          193.12
         ],
         "vtt": "src/content/courses/films/pm.devops.intro.nl.vtt"
       },
       "en": {
-        "dur": 261.8,
-        "bytes": 9450951,
+        "dur": 261,
+        "bytes": 9402445,
         "scenes": [
           0,
-          26.89,
-          59.35,
-          95.24,
-          142.79,
-          192.67,
-          212.65
+          26.76,
+          58.8,
+          94.68,
+          142.48,
+          192.37,
+          212.2
         ],
         "vtt": "src/content/courses/films/pm.devops.intro.en.vtt"
       }
@@ -3280,30 +3280,30 @@
     "pm.lead.intro": {
       "poster": "src/content/courses/films/pm.lead.intro.jpg",
       "nl": {
-        "dur": 192.8,
-        "bytes": 8395381,
+        "dur": 192.9,
+        "bytes": 8357337,
         "scenes": [
           0,
-          24.84,
-          51.46,
-          80.64,
-          105.29,
-          129.21,
-          150.59
+          24.69,
+          51.22,
+          80.24,
+          104.92,
+          128.92,
+          150.26
         ],
         "vtt": "src/content/courses/films/pm.lead.intro.nl.vtt"
       },
       "en": {
-        "dur": 211.4,
-        "bytes": 9147226,
+        "dur": 211,
+        "bytes": 9102097,
         "scenes": [
           0,
-          27,
-          56.6,
-          88.15,
-          115.73,
-          141.81,
-          166.28
+          26.7,
+          56.37,
+          87.67,
+          115.25,
+          141.47,
+          166.09
         ],
         "vtt": "src/content/courses/films/pm.lead.intro.en.vtt"
       }
@@ -3311,30 +3311,30 @@
     "pm.negotiate.intro": {
       "poster": "src/content/courses/films/pm.negotiate.intro.jpg",
       "nl": {
-        "dur": 207.1,
-        "bytes": 8267203,
+        "dur": 207.3,
+        "bytes": 8225355,
         "scenes": [
           0,
-          18.81,
-          50.26,
-          82.42,
-          115.18,
-          145.09,
-          164.64
+          18.97,
+          50.28,
+          82.71,
+          115.2,
+          145.13,
+          164.92
         ],
         "vtt": "src/content/courses/films/pm.negotiate.intro.nl.vtt"
       },
       "en": {
-        "dur": 227.3,
-        "bytes": 8919457,
+        "dur": 227.9,
+        "bytes": 8929422,
         "scenes": [
           0,
-          21.75,
-          57.46,
-          92.77,
-          128.71,
-          160.32,
-          183.25
+          21.8,
+          57.79,
+          93.38,
+          129.15,
+          161.39,
+          184.33
         ],
         "vtt": "src/content/courses/films/pm.negotiate.intro.en.vtt"
       }
@@ -3342,30 +3342,30 @@
     "pm.outside.intro": {
       "poster": "src/content/courses/films/pm.outside.intro.jpg",
       "nl": {
-        "dur": 211.7,
-        "bytes": 8292598,
+        "dur": 212.3,
+        "bytes": 8253400,
         "scenes": [
           0,
-          24.54,
-          54.49,
-          81.23,
-          116.62,
-          150.6,
-          168.42
+          24.16,
+          54.08,
+          80.93,
+          116.33,
+          150.24,
+          168.61
         ],
         "vtt": "src/content/courses/films/pm.outside.intro.nl.vtt"
       },
       "en": {
-        "dur": 226.8,
-        "bytes": 8687035,
+        "dur": 227,
+        "bytes": 8747797,
         "scenes": [
           0,
-          27.33,
-          60.37,
-          89.93,
-          127.21,
-          163.44,
-          183.68
+          27.35,
+          60.07,
+          89.75,
+          127.06,
+          163.16,
+          183.37
         ],
         "vtt": "src/content/courses/films/pm.outside.intro.en.vtt"
       }
@@ -3373,30 +3373,30 @@
     "pm.portfolio.intro": {
       "poster": "src/content/courses/films/pm.portfolio.intro.jpg",
       "nl": {
-        "dur": 203.4,
-        "bytes": 8073022,
+        "dur": 204.8,
+        "bytes": 8151320,
         "scenes": [
           0,
-          22.61,
-          55.35,
-          81.6,
-          113.13,
-          143.84,
-          160.71
+          22.69,
+          55.69,
+          82.29,
+          114.04,
+          145.01,
+          161.97
         ],
         "vtt": "src/content/courses/films/pm.portfolio.intro.nl.vtt"
       },
       "en": {
-        "dur": 222.5,
-        "bytes": 8686378,
+        "dur": 222.2,
+        "bytes": 8691166,
         "scenes": [
           0,
-          24.6,
-          61.12,
-          89.38,
-          122.4,
-          159.1,
-          179.75
+          24.74,
+          61.13,
+          88.97,
+          122.42,
+          158.93,
+          179.47
         ],
         "vtt": "src/content/courses/films/pm.portfolio.intro.en.vtt"
       }
@@ -3419,15 +3419,15 @@
       },
       "en": {
         "dur": 205.9,
-        "bytes": 8126527,
+        "bytes": 8075137,
         "scenes": [
           0,
-          21.53,
-          51.82,
-          81.47,
-          118.01,
-          150.06,
-          163.51
+          21.5,
+          51.87,
+          81.61,
+          118.47,
+          150.22,
+          163.52
         ],
         "vtt": "src/content/courses/films/pm.consult.intro.en.vtt"
       }
@@ -3435,30 +3435,30 @@
     "pm.scaled.intro": {
       "poster": "src/content/courses/films/pm.scaled.intro.jpg",
       "en": {
-        "dur": 225.8,
-        "bytes": 8950005,
+        "dur": 226.1,
+        "bytes": 8927411,
         "scenes": [
           0,
-          20.72,
-          61.51,
-          97.74,
-          126.48,
-          163.76,
-          178.72
+          20.58,
+          61.19,
+          97.68,
+          126.51,
+          163.86,
+          178.73
         ],
         "vtt": "src/content/courses/films/pm.scaled.intro.en.vtt"
       },
       "nl": {
-        "dur": 207.3,
-        "bytes": 8279399,
+        "dur": 207.9,
+        "bytes": 8286747,
         "scenes": [
           0,
-          19.46,
-          55.92,
-          88.69,
-          113.45,
-          148.64,
-          162.5
+          19.54,
+          55.87,
+          88.82,
+          113.56,
+          149.07,
+          163.36
         ],
         "vtt": "src/content/courses/films/pm.scaled.intro.nl.vtt"
       }
@@ -3467,29 +3467,29 @@
       "poster": "src/content/courses/films/pm.itproject.intro.jpg",
       "nl": {
         "dur": 215.8,
-        "bytes": 7956487,
+        "bytes": 7985969,
         "scenes": [
           0,
-          23.8,
-          53.4,
-          88.67,
-          115.51,
-          151.99,
-          167.43
+          23.39,
+          52.7,
+          87.74,
+          114.9,
+          151.79,
+          167.21
         ],
         "vtt": "src/content/courses/films/pm.itproject.intro.nl.vtt"
       },
       "en": {
-        "dur": 231.7,
-        "bytes": 8531230,
+        "dur": 230.4,
+        "bytes": 8517007,
         "scenes": [
           0,
-          27.21,
-          58.1,
-          96.53,
-          126.1,
-          165.13,
-          182.33
+          27.25,
+          58.02,
+          95.82,
+          125.47,
+          164.4,
+          181.32
         ],
         "vtt": "src/content/courses/films/pm.itproject.intro.en.vtt"
       }
