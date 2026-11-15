@@ -318,7 +318,7 @@ const spec = {
     {
       id: 's7', level: 1, dur: DURS[6], still: 0.9, title: { nl: 'De kaart', en: 'The map' },
       beats: [
-        { nl: 'De kaart van Projecten: Plannen is het tweede station op de weg van een project.', en: 'The map of Projects: Plan is the second station on the road of a project.', focus: 'map-plan' },
+        { nl: 'De kaart van Projecten: Plannen is het derde station op de weg van een project.', en: 'The map of Projects: Plan is the third station on the road of a project.', focus: 'map-plan' },
         { nl: 'Plannen heeft vier onderwerpen, elk met vier niveaus.', en: 'Plan has four topics, each with four levels.', focus: 'route' },
         { nl: 'Begin bij Opdeling en scope, op niveau Basis.', en: 'Start with Breakdown and scope, at Basics level.', focus: ['tBreak', 'start'] },
         { nl: 'Werkkennis: scope vastleggen, een werkwijze kiezen, schatmethodes en rollen.', en: 'Working knowledge: fixing the scope, choosing a way of working, estimating methods and roles.', focus: 'lv2' },
@@ -409,8 +409,8 @@ const SAY = [
       en: 'The topics hang together. A mitigation is work too. If it is not in the tree, nobody will do it. So add it as a work package, and put it in the schedule.' },
   ],
   [ // s7 the map
-    { nl: 'Dit is de kaart van Projecten. Plannen is het tweede station op de weg van een project.',
-      en: 'This is the map of Projects. Plan is the second station on the road of a project.' },
+    { nl: 'Dit is de kaart van Projecten. Plannen is het derde station op de weg van een project.',
+      en: 'This is the map of Projects. Plan is the third station on the road of a project.' },
     { nl: 'Plannen heeft vier onderwerpen, elk met vier niveaus.',
       en: 'Plan has four topics, each with four levels.' },
     { nl: 'Begin bovenaan, bij Opdeling en scope, op het eerste niveau.',

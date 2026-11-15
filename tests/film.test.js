@@ -1662,3 +1662,19 @@ test('speak variant: the brown paper and the whiteboard of the formats intro', (
   const en = 'The group draws the process of line 3 with sticky notes on a brown paper. We do that on an online whiteboard.';
   assert.equal(speakOf([en], 'en'), en);
 });
+
+// The field film "a project from start to finish" (pm.field.lifecycle), its two new stations (Approach and tools, Formats and
+// meetings): the tools are takenbord, ERP, voorleesstuk and brown paper. espeak-ng reads brown paper with the Dutch o of "bron"
+// (said braun peeper, as the Formats intro's rule), here only in the field film's phrase "gebruiken we vaak een voorleesstuk en
+// een brown paper". Takenbord, ERP, voorleesstuk, werkvormen and aanpak need nothing; English needs nothing; no other film's
+// spoken text changes
+test('speak variant: the field film words of its approach and formats stations, in Dutch', () => {
+  const nl = (s) => speakOf([s], 'nl');
+  assert.equal(nl('Bij werkvormen gebruiken we vaak een voorleesstuk en een brown paper.'), 'Bij werkvormen gebruiken we vaak een voorleesstuk en een braun peeper.');
+  assert.equal(nl('Bij de aanpak gebruiken we vaak een takenbord en een ERP.'), 'Bij de aanpak gebruiken we vaak een takenbord en een ERP.');
+  // elsewhere the words keep their voice
+  assert.equal(nl('Een brown paper en een voorleesstuk.'), 'Een brown paper en een voorleesstuk.');
+  assert.equal(nl('De groep tekent het proces van lijn 3 met geeltjes op een brown paper.'), 'De groep tekent het proces van lijn 3 met geeltjes op een braun peeper.');
+  const en = 'With formats we often use a pre-read and a brown paper.';
+  assert.equal(speakOf([en], 'en'), en);
+});

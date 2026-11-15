@@ -982,7 +982,11 @@ const SAY = {
     // brˈʌʊn pˈeːpər, as a Dutch coach says it) and whiteboard as "wiete-bord" (ʋhˈitəbˌoːɑrd; said wajtbord, ʋˈɑjtbɔrd). Each rule keeps to
     // the intro's own phrase (the paper the group draws the process on, the digital whiteboard it works on), so the lessons and the other
     // films keep their voice; no other film's spoken text changes
-    [/(?<=\bmet geeltjes op een )brown paper\b/g, 'braun peeper'], [/(?<=\bDat doen we op een digitaal )whiteboard\b/g, 'wajtbord']],
+    [/(?<=\bmet geeltjes op een )brown paper\b/g, 'braun peeper'], [/(?<=\bDat doen we op een digitaal )whiteboard\b/g, 'wajtbord'],
+    // the field film (pm.field.lifecycle) names the same tool in its Formats and meetings station, after "een voorleesstuk en een":
+    // brown paper as in the intro rule above (braun peeper), only in the field film's phrase; the other tools of its two new
+    // stations (takenbord, ERP, voorleesstuk, werkvormen, aanpak) are read right; no other film's spoken text changes
+    [/(?<=\bgebruiken we vaak een voorleesstuk en een )brown paper\b/g, 'braun peeper']],
   en: [[/\brpm\b/g, 'revolutions per minute'], [/\bmm\/min\b/g, 'millimetres per minute'], [/\bm\/min\b/g, 'metres per minute'], [/µm\b/g, 'micrometres'],
     [/€\s?(\d[\d,]*(?:\.\d+)?)/g, '$1 euros'], [/(\d)\.0(?![\d])/g, '$1'], [/(\d)\s?mm\b/g, '$1 millimetres'], [/(\d)\s?min\b/g, '$1 minutes'], [/(\d)\s?%/g, '$1 percent'],
     [/Ø\s*/g, 'diameter '], [/(\d)\+(\d)/g, '$1 plus $2'], [/\s×\s/g, ' times '], [/\s\/\s/g, ' divided by '], [/\s=\s/g, ' is '], [/°/g, ' degrees'], [/\bRa\b/g, 'R a'], [/’/g, "'"],
