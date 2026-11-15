@@ -367,7 +367,7 @@ const SAY = [
       en: 'The second topic is Scope and change control. What is part of the project, and what is not?' },
     { nl: 'De teamleider vraagt of lijn 4 er ook bij kan. Elk verzoek is klein en redelijk. Zo groeit de scope ongemerkt. Dat heet {t:Scope creep|scope creep}.',
       en: 'The team lead asks whether line 4 can come along too. Each request is small and reasonable. That is how the scope grows unnoticed. It is called {t:Scope creep|scope creep}.' },
-    { nl: 'Je zegt geen nee, je laat zien wat het kost. Tijd, geld en risico. Het wordt een {t:Wijzigingsverzoek|wijzigingsverzoek}, en de sponsor kiest.',
+    { nl: 'Je zegt geen nee en laat zien wat het kost. Tijd, geld en risico. Het wordt een {t:Wijzigingsverzoek|wijzigingsverzoek}, en de sponsor kiest.',
       en: 'You do not say no, you show what it costs. Time, money and risk. It becomes a {t:Change request|change request}, and the sponsor chooses.' },
     { nl: 'Bij scope en wijzigingen gebruiken we vaak een wijzigingslog en een impactanalyse.',
       en: 'For scope and change control we often use a change log and an impact analysis.' },
