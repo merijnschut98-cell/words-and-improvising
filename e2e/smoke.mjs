@@ -3044,10 +3044,12 @@ await step('topics: the path map in a module (fixture)', async () => {
     const t = r.querySelector('.module-title').getBoundingClientRect();
     const e = r.querySelector('.module-en-line');
     const eb = e && e.getBoundingClientRect();
-    return { h: t.height, lh: parseFloat(getComputedStyle(r.querySelector('.module-title')).lineHeight) || 24, under: eb ? eb.top >= t.bottom - 1 : null, enH: eb ? eb.height : 0, hasInline: !!r.querySelector('.module-en') };
+    const tEl = r.querySelector('.module-title');
+    return { clipped: tEl.scrollWidth > tEl.clientWidth, h: t.height, lh: parseFloat(getComputedStyle(r.querySelector('.module-title')).lineHeight) || 24, under: eb ? eb.top >= t.bottom - 1 : null, enH: eb ? eb.height : 0, hasInline: !!r.querySelector('.module-en') };
   }));
   if (!rowGeo.length) throw new Error('no module rows');
   for (const g of rowGeo) {
+    if (g.clipped) throw new Error(`a module title is cut off with an ellipsis at 390 px: ${JSON.stringify(g)}`);
     if (g.h > g.lh * 1.6) throw new Error(`a module title wraps: ${JSON.stringify(g)}`);
     if (g.under === false || g.hasInline) throw new Error(`English name not under the title: ${JSON.stringify(g)}`);
   }

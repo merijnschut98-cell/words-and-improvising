@@ -178,3 +178,26 @@ test('styles: a module row title is one line with an ellipsis; the English line 
   const en = css.match(/\n\.module-row \.module-en-line \{([^}]*)\}/);
   assert.ok(en && /font-size/.test(en[1]) && /var\(--muted/.test(en[1]), 'small and muted');
 });
+
+// Review of Task 12 part 2: a one-line ellipsis cut 8 of 26 Engineering titles at 320 px.
+// Phones get a slightly smaller title (still above the small-text size) and below 375 px
+// a title may take a second line (never more), so no title is ever cut off.
+test('styles: narrow screens shrink the title a little, and below 375 px let it take two lines', async () => {
+  const fs = await import('node:fs');
+  const css = fs.readFileSync(new URL('../styles.css', import.meta.url), 'utf8');
+  const small = css.match(/@media \(max-width: 479px\) \{[^@]*?\.module-row \.module-title \{([^}]*)\}/);
+  assert.ok(small, 'a phone rule for the row title');
+  const size = small[1].match(/font-size:\s*([\d.]+)rem/);
+  assert.ok(size && Number(size[1]) >= 0.875 && Number(size[1]) < 1.05, `title size ${size && size[1]}rem: smaller than 1.05, not below 0.875`);
+  const narrow = css.match(/@media \(max-width: 374px\) \{([\s\S]*?)\n\}/);
+  assert.ok(narrow, 'a rule below 375 px');
+  assert.match(narrow[1], /white-space:\s*normal/);
+  assert.match(narrow[1], /-webkit-line-clamp:\s*2/, 'two lines at most');
+  assert.match(narrow[1], /\.module-en-line/, 'the English line may wrap too');
+});
+
+test('module row: the title text is complete in the DOM (the ellipsis is only visual)', () => {
+  const long = { ...pmPlan, title: { nl: 'Veilig werken op de vloer en in het station', en: 'Safety on the floor and in the substation' } };
+  const row = modSummary({ lang: 'nl' }, long, 'button', {});
+  assert.equal(row.querySelector('.module-title').textContent, long.title.nl);
+});

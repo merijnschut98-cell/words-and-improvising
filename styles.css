@@ -752,6 +752,14 @@ details.finder summary::-webkit-details-marker { display: none; }
 .module-row .module-title, .module-row .module-en-line { min-width: 0; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
 .module-row .module-en-line { font-size: 0.8rem; line-height: 1.25; color: var(--muted, inherit); font-style: italic; }
 .module-title { font-family: var(--font-display); font-weight: 600; font-size: 1.05rem; color: var(--heading); }
+/* A title is never cut off: phones get a slightly smaller title (fits one line at 390 px),
+   and below 375 px a title or its English line may take a second line, balanced, never a third. */
+@media (max-width: 479px) {
+  .module-row .module-title { font-size: 0.9375rem; }
+}
+@media (max-width: 374px) {
+  .module-row .module-title, .module-row .module-en-line { display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; white-space: normal; text-wrap: balance; overflow-wrap: anywhere; }
+}
 .module-meta { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; }
 .module-meta .muted.small { font-family: var(--font-mono); font-size: 0.75rem; }
 .module-blurb { margin: 6px 0; }
