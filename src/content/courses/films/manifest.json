@@ -3065,30 +3065,30 @@
     "pm.intake.intro": {
       "poster": "src/content/courses/films/pm.intake.intro.jpg",
       "nl": {
-        "dur": 211.5,
-        "bytes": 7886142,
+        "dur": 216.1,
+        "bytes": 8162733,
         "scenes": [
           0,
-          24.14,
-          51.26,
-          89.38,
-          115.78,
-          154.99,
-          170.23
+          25.19,
+          53.39,
+          92.4,
+          119.39,
+          158.82,
+          174.39
         ],
         "vtt": "src/content/courses/films/pm.intake.intro.nl.vtt"
       },
       "en": {
-        "dur": 233.7,
-        "bytes": 8665342,
+        "dur": 234.2,
+        "bytes": 8859024,
         "scenes": [
           0,
-          28.83,
-          61.51,
-          101.08,
-          130.79,
-          172.39,
-          188.84
+          28.91,
+          61.62,
+          101.2,
+          130.95,
+          172.59,
+          189.14
         ],
         "vtt": "src/content/courses/films/pm.intake.intro.en.vtt"
       }
