@@ -2,7 +2,7 @@
 // floor and in the substation (eng.safety), an Engineering module intro film (v17, Task 13) and the fourth and last intro of
 // the zone "De fabriek draaiend houden" (eng.field.run): the high-over picture at the top of the module, before its four
 // topics (Merijn, 13 Nov: "that high-over picture is the thing I need the most"). Pattern and rules: films/eng.machining.intro
-// (the approved reference), the approved intros films/eng.flow.intro and eng.safety.intro (the zone's first two intros and
+// (the approved reference), the approved intros films/eng.flow.intro, eng.quality.intro and eng.maintenance.intro (the zone's other intros and
 // their review fixes: labels only when named, the same room coordinates as the field film), eng.lines.intro (one clear tool
 // per topic, two only when they form one idea, nothing labelled before it is named, no SAY rule that is not needed) and the
 // notes section "Engineering module intros".
@@ -32,7 +32,9 @@
 //      idea in two moments, and the field film's own LMRA
 //   s3 Scheiden, elektrisch werk en vergunningen: stopping is not isolating (Basis, .loto: a stop button, an emergency stop or
 //      the PLC can be reset, bridged or fail); the isolation point is the switch where the source is cut off and a lock can
-//      hang (Basis, .loto), the switch in the grey cabinet; the tool is lockout-tagout (vergrendelen en labelen, Basis, .loto:
+//      hang (Basis, .loto), the switch in the grey cabinet; one beat for the rest of the title (only an appointed person does
+//      electrical work, the NEN 3140 lesson; risky, non-routine work such as welding gets a permit to work, the permit lesson):
+//      a card each, no tool; the tool is lockout-tagout (vergrendelen en labelen, Basis, .loto:
 //      cut every source off, fit your own padlock and a tag with your name), the field film's other tool
 //   s4 Machineveiligheid: most accidents with machines happen in the danger zone (Basis, .guarding); a guard keeps people out or
 //      stops the movement before they are there (Basis, .guarding); the tool is the interlocked guard (beveiligde afscherming,
@@ -98,6 +100,11 @@ has('eng.safety.lmra', ['The LMRA, the last-minute risk analysis, is a short che
 // s3: stopping is not isolating; the isolation point is the switch where you cut a source off and fit a lock; lockout-tagout
 has('eng.safety.loto', ['Stoppen is iets anders dan scheiden', 'kan worden teruggezet, overbrugd of falen', 'Elke bron heeft een scheidingspunt (isolation point): de schakelaar of afsluiter waar je hem afsluit en een slot op kunt hangen', 'je sluit elke energiebron af, hangt er je eigen hangslot op en een label met je naam']);
 has('eng.safety.loto', ['Stopping a machine is not isolating it', 'can be reset, bypassed or fail', 'Each source has an isolation point: the switch or valve where you cut it off and can fit a lock', 'you cut off every energy source, fit your own padlock and hang a tag with your name'], 'en');
+// s3 (electrical work and permits, one beat): only an appointed person works on electrical installations (NEN 3140 lesson); a permit to work is a written system for non-routine high-risk work such as hot work
+has('eng.safety.nen3140', ['De werkgever wijst iedereen schriftelijk aan']);
+has('eng.safety.nen3140', ['The employer appoints each person in writing'], 'en');
+has('eng.safety.permit', ['Een werkvergunning is een schriftelijk systeem voor niet-routinematig werk met een hoog risico', 'Heet werk: lassen']);
+has('eng.safety.permit', ['A permit to work is a written system for non-routine, high-risk work', 'Hot work: welding'], 'en');
 // s4: the danger zone; a guard keeps people out or stops the motion; the interlocked guard where people reach in regularly
 has('eng.safety.guarding', ['De meeste ongevallen met machines gebeuren in de gevarenzone', 'Afscherming houdt mensen eruit, of stopt de beweging voordat ze er zijn', 'Waar mensen er regelmatig in moeten, gebruik je een beveiligde afscherming (interlocked guard): een deur of kap met een veiligheidsschakelaar']);
 has('eng.safety.guarding', ['Most machine injuries happen in the danger zone', 'Guarding keeps people out of it, or stops the motion before they get there', 'Where people must reach in regularly, an interlocked guard is used: a door or cover with a safety switch'], 'en');
@@ -191,7 +198,7 @@ const world = [
 // four topic tiles (the route, one square of the strip, a row of the grid), the level columns and the schemas of each beat. The
 // shared map (the kit's mapScene) sits under the panel; its place Safety is a cue group of its own (map-safety).
 const TILE = { risk: 'tRisk', energy: 'tEnergy', machine: 'tMachine', culture: 'tCulture' };
-const PANEL = ['safeS', 'askS', 'shiftS', 'grpA', 'grpB', 'hazS', 'riskS', 'rieS', 'lmraS', 'stopS', 'isoS', 'lockS', 'zoneS', 'guardS', 'ilkS', 'nearS', 'learnS', 'invS', 'endS',
+const PANEL = ['safeS', 'askS', 'shiftS', 'grpA', 'grpB', 'hazS', 'riskS', 'rieS', 'lmraS', 'stopS', 'isoS', 'permS', 'lockS', 'zoneS', 'guardS', 'ilkS', 'nearS', 'learnS', 'invS', 'endS',
   'tool1', 'tool2', 'lv1', 'lv2', 'lv3', 'lv4', 'start'];
 const tiles = ORDER.map((id, i) => cueG(TILE[id], g(`r${i}`, ''))).join('');
 const hud = g('hud', '<rect data-k="pbg" class="pm-panel" x="322" y="12" width="308" height="376" rx="10"/>' + g('pHead', '')
@@ -297,7 +304,7 @@ const spec = {
         { nl: 'Het eerste onderwerp is Risico’s en maatregelen. Een gevaar is alles wat schade kan doen.', en: 'The first topic is Risk and controls. A hazard is anything that can do harm.', focus: ['tRisk', 'hazS', 'line3', 'unit'] },
         { nl: 'Risico is hoe waarschijnlijk die schade is, met hoe erg ze zou zijn.', en: 'Risk is how likely that harm is, combined with how bad it would be.', focus: ['riskS', 'line3', 'unit'] },
         { nl: 'De risico’s van lijn 3 leg je vast in de {t:RI&E|RI&E}, met een plan van aanpak.', en: 'You record the risks of line 3 in the {t:RI&E|RI&E}, with a plan of action.', ...TOOL('RI&E'), focus: ['tool1', 'rieS'] },
-        { nl: 'Vlak voor de start check je met een {t:LMRA|LMRA} wat er veranderd is.', en: 'Just before the start you check with an {t:LMRA|LMRA} what has changed.', ...TOOL('LMRA', 'tool2'), focus: ['tool2', 'lmraS', 'unit'] },
+        { nl: 'Vlak voor de start check je met een {t:LMRA|LMRA} wat er sinds dat plan veranderd is.', en: 'Just before the start you check with an {t:LMRA|LMRA} what has changed since that plan.', ...TOOL('LMRA', 'tool2'), focus: ['tool2', 'lmraS', 'unit'] },
       ],
     },
     {
@@ -305,7 +312,8 @@ const spec = {
       beats: [
         { nl: 'Het tweede onderwerp is Scheiden, elektrisch werk en vergunningen. Stoppen is iets anders dan scheiden.', en: 'The second topic is Isolation, electrical work and permits. Stopping is not the same as isolating.', focus: ['tEnergy', 'stopS', 'unit'] },
         { nl: 'Loopt de eenheid vast, dan scheid je de energie bij de schakelaar in de grijze kast.', en: 'When the unit jams, you isolate the energy at the switch in the grey cabinet.', focus: ['isoS', 'isolator', 'unit'] },
-        { nl: 'Je zet de schakelaar vast met {t:Vergrendelen en labelen|vergrendelen en labelen}, met je eigen slot en een label met je naam.', en: 'You secure the switch with {t:LOTO|LOTO}, with your own lock and a tag with your name.', ...TOOL('Vergrendelen en labelen'), focus: ['tool1', 'lockS', 'lock', 'isolator'] },
+        { nl: 'Elektrisch werk doet alleen wie is aangewezen, en riskant werk zoals lassen krijgt een werkvergunning.', en: 'Only an appointed person does electrical work, and risky work such as welding gets a permit to work.', focus: ['permS', 'isolator', 'unit'] },
+        { nl: 'Die schakelaar zet je vast met {t:Vergrendelen en labelen|vergrendelen en labelen}, met je eigen slot en een label met je naam.', en: 'You secure that switch with {t:LOTO|LOTO}, with your own lock and a tag with your name.', ...TOOL('Vergrendelen en labelen'), focus: ['tool1', 'lockS', 'lock', 'isolator'] },
       ],
     },
     {
@@ -330,7 +338,7 @@ const spec = {
       beats: [
         { nl: 'De hele kaart. Het vierde station is Veilig werken, in De fabriek draaiend houden.', en: 'The whole map. The fourth station is Safety on the floor, in Keeping the plant running.', focus: 'map-safety' },
         { nl: 'Elk van de vier onderwerpen heeft vier niveaus.', en: 'Each of the four topics has four levels.', focus: 'route' },
-        { nl: 'Begin op niveau Basis met gevaar en risico. De volgorde van maatregelen komt in latere lessen terug.', en: 'Start at Basics level with hazard and risk. The order of controls comes back in later lessons.', focus: ['tRisk', 'start'] },
+        { nl: 'Begin op niveau Basis met gevaar, risico en de volgorde van maatregelen. Daar bouwt de rest op.', en: 'Start at Basics level with hazard, risk and the order of controls. The rest builds on that.', focus: ['tRisk', 'start'] },
         { nl: 'Op niveau Werkkennis komen werk stilleggen, elektrische rollen, machines beoordelen en menselijke fout.', en: 'At Working knowledge level come stopping work, electrical roles, machine risk and human error.', focus: 'lv2' },
         { nl: 'Op niveau Gevorderd komen het gatenkaasmodel, de werkvergunning, veiligheidsfuncties en indicatoren.', en: 'At Advanced level come the Swiss cheese model, the permit to work, safety functions and safety indicators.', focus: 'lv3' },
         { nl: 'Op niveau Expert komen wijzigingsbeheer, vlambogen, oude machines en de cultuurladder.', en: 'At Expert level come management of change, arc flash, old machines and the culture ladder.', focus: 'lv4' },
@@ -421,8 +429,8 @@ const css = PM_CSS + HALL_CSS + `
 
 
 const label = {
-  nl: 'Hal B van de fabriek, waar lijn 3 draait. Aan de achterwand de band van lijn 3 met dozen; boven het begin van de band staat de eenheid, ongeveer zo hoog als een mens: een stalen frame met een plaat boven de dozen en bovenop een lichte kunststof kap. Verderop aan de achterwand een grijze kast met een schakelaar, later met een slot en een label eraan. Voor in de hal staan jij, de engineer, en de teamleider. Rechts een paneel, gemarkeerd als voorbeeld of schema: lijn 3 met mensen die niet gewond raken, van risico’s naar een cultuur die leert, een dienst van lijn 3, de route in twee groepen, een gevaar dat schade kan doen, een risico uit kans en ernst, een RI&E met een plan van aanpak, een korte check vlak voor de start, stoppen naast scheiden, een schakelaar tussen energie en eenheid, een schakelaar met een slot en een label, een gevarenzone met een mens erin, dezelfde zone met een afscherming ervoor, een deur met een veiligheidsschakelaar die de beweging stopt, een doos die valt waar niemand staat, een melding die een gratis les geeft, de vragen van een incidentonderzoek en een veilige dienst voor lijn 3. Aan het eind de hele kaart van Engineering met Veilig werken verlicht, en de vier onderwerpen van de module met elk vier niveaus: Basis, Werkkennis, Gevorderd en Expert.',
-  en: 'Hall B of the plant, where line 3 runs. Along the back wall the belt of line 3 with cartons; over the start of the belt stands the unit, about as tall as a person: a steel frame with a plate above the cartons and a light plastic cover on top. Further along the back wall a grey cabinet with a switch, later with a lock and a tag on it. At the front of the hall stand you, the engineer, and the team lead. At the right a panel, marked as an example or a diagram: line 3 with people who are not hurt, from risk to a culture that learns, a shift of line 3, the route in two groups, a hazard that can do harm, a risk made of likelihood and severity, an RI&E with a plan of action, a short check just before the start, stopping next to isolating, a switch between the energy and the unit, a switch with a lock and a tag, a danger zone with a person in it, the same zone with a guard in front of it, a door with a safety switch that stops the motion, a carton that falls where nobody stands, a report that gives a free lesson, the questions of an incident investigation and a safe shift for line 3. At the end the whole map of Engineering with Safety on the floor lit, and the module’s four topics with four levels each: Basics, Working knowledge, Advanced and Expert.',
+  nl: 'Hal B van de fabriek, waar lijn 3 draait. Aan de achterwand de band van lijn 3 met dozen; boven het begin van de band staat de eenheid, ongeveer zo hoog als een mens: een stalen frame met een plaat boven de dozen en bovenop een lichte kunststof kap. Verderop aan de achterwand een grijze kast met een schakelaar, later met een slot en een label eraan. Voor in de hal staan jij, de engineer, en de teamleider. Rechts een paneel, gemarkeerd als voorbeeld of schema: lijn 3 met mensen die niet gewond raken, van risico’s naar een cultuur die leert, een dienst van lijn 3, de route in twee groepen, een gevaar dat schade kan doen, een risico uit kans en ernst, een RI&E met een plan van aanpak, een korte check vlak voor de start, stoppen naast scheiden, een schakelaar tussen energie en eenheid, een kaart voor elektrisch werk en een voor de werkvergunning, een schakelaar met een slot en een label, een gevarenzone met een mens erin, dezelfde zone met een afscherming ervoor, een deur met een veiligheidsschakelaar die de beweging stopt, een doos die valt waar niemand staat, een melding die een gratis les geeft, de vragen van een incidentonderzoek en een veilige dienst voor lijn 3. Aan het eind de hele kaart van Engineering met Veilig werken verlicht, en de vier onderwerpen van de module met elk vier niveaus: Basis, Werkkennis, Gevorderd en Expert.',
+  en: 'Hall B of the plant, where line 3 runs. Along the back wall the belt of line 3 with cartons; over the start of the belt stands the unit, about as tall as a person: a steel frame with a plate above the cartons and a light plastic cover on top. Further along the back wall a grey cabinet with a switch, later with a lock and a tag on it. At the front of the hall stand you, the engineer, and the team lead. At the right a panel, marked as an example or a diagram: line 3 with people who are not hurt, from risk to a culture that learns, a shift of line 3, the route in two groups, a hazard that can do harm, a risk made of likelihood and severity, an RI&E with a plan of action, a short check just before the start, stopping next to isolating, a switch between the energy and the unit, a card for electrical work and one for the permit to work, a switch with a lock and a tag, a danger zone with a person in it, the same zone with a guard in front of it, a door with a safety switch that stops the motion, a carton that falls where nobody stands, a report that gives a free lesson, the questions of an incident investigation and a safe shift for line 3. At the end the whole map of Engineering with Safety on the floor lit, and the module’s four topics with four levels each: Basics, Working knowledge, Advanced and Expert.',
 };
 
 const { data } = await defineFilm(spec, { svg, script: stageScript, css, kitCss: k.ISO_CSS, label });

@@ -72,10 +72,10 @@ const STAGE = (() => {
   // ---- the room: you and the team lead come in at the sentence that names you (the opening's third beat) and again at the
   // end of the last topic (where the shift ends with line 3 safe). The grey cabinet with its switch stands from the sentence
   // that cuts the energy off there (the second beat of the isolation scene), its lock and tag from the sentence that names
-  // the lockout (the third beat)
+  // the lockout (the fourth beat)
   function room(si, b) {
     show(E['o-iso'], (si === 2 && b >= 1) ? 1 : 0);
-    show(E['o-lock'], (si === 2 && b >= 2) ? 1 : 0);
+    show(E['o-lock'], (si === 2 && b >= 3) ? 1 : 0);
     show(E['pp-jij'], (si === 0 && b >= 2) || (si === 4 && b === 3) ? 1 : 0);
     show(E['pp-teamlead'], (si === 0 && b >= 2) || (si === 4 && b === 3) ? 1 : 0);
   }
@@ -171,6 +171,10 @@ const STAGE = (() => {
   }
   function isoDrawing() {
     return card1(104, 'Energie', 'Energy') + arrow(476, 152, 476, 166) + card1(170, 'Schakelaar', 'Switch', 'pm-crit') + arrow(476, 218, 476, 232) + card1(236, 'Eenheid', 'Unit');
+  }
+  function permDrawing() {
+    // electrical work needs a written appointment; risky work such as welding needs a permit to work
+    return card2(108, 'Elektrisch werk', 'Electrical work', 'alleen aangewezen', 'only if appointed') + card2(196, 'Werkvergunning', 'Permit to work', 'riskant werk', 'risky work');
   }
   function lockDrawing() {
     // the switch with its handle, your lock on it and a tag with your name hanging from the lock
@@ -284,7 +288,7 @@ const STAGE = (() => {
       title = HEAD[si - 1][0];
       o.r = strip(si - 1);
       if (si === 1) Object.assign(o, { hazS: fade(b, 0, p, hazDrawing(), 0.1, 0.5), riskS: fade(b, 1, p, riskDrawing(), 0.1, 0.5), rieS: b === 2 ? op(span(p, 0.3, 0.7), rieDrawing()) : '', lmraS: b === 3 ? op(span(p, 0.3, 0.7), lmraDrawing()) : '', ...tools(b, p, 2, tr('RI&E', 'RI&E', 260), 'tool1'), ...tools(b, p, 3, tr('LMRA', 'LMRA', 260), 'tool2') });
-      if (si === 2) Object.assign(o, { stopS: fade(b, 0, p, stopDrawing(), 0.1, 0.5), isoS: fade(b, 1, p, isoDrawing(), 0.1, 0.5), lockS: b === 2 ? op(span(p, 0.3, 0.7), lockDrawing()) : '', ...tools(b, p, 2, tr('Vergrendelen en labelen', 'LOTO', 268), 'tool1') });
+      if (si === 2) Object.assign(o, { stopS: fade(b, 0, p, stopDrawing(), 0.1, 0.5), isoS: fade(b, 1, p, isoDrawing(), 0.1, 0.5), permS: b === 2 ? op(span(p, 0.3, 0.7), permDrawing()) : '', lockS: b === 3 ? op(span(p, 0.3, 0.7), lockDrawing()) : '', ...tools(b, p, 3, tr('Vergrendelen en labelen', 'LOTO', 268), 'tool1') });
       if (si === 3) Object.assign(o, { zoneS: fade(b, 0, p, zoneDrawing(), 0.1, 0.5), guardS: fade(b, 1, p, guardDrawing(), 0.1, 0.5), ilkS: b === 2 ? op(span(p, 0.3, 0.7), ilkDrawing()) : '', ...tools(b, p, 2, tr('Beveiligde afscherming', 'Interlocked guard', 260), 'tool1') });
       if (si === 4) Object.assign(o, { nearS: fade(b, 0, p, nearDrawing(), 0.1, 0.5), learnS: fade(b, 1, p, learnDrawing(), 0.1, 0.5), invS: b === 2 ? op(span(p, 0.3, 0.7), invDrawing()) : '', endS: fade(b, 3, p, endDrawing(), 0.1, 0.5), ...tools(b, p, 2, tr('Incidentonderzoek', 'Incident investigation', 260), 'tool1') });
     }
