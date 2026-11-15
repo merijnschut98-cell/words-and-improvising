@@ -271,3 +271,68 @@ export function validateModule(en, nl, meta) {
   }
   return errs;
 }
+
+// v17 Task 19: level openers. `openers` is { [topicKey]: { 2|3|4: { nl, en } } }
+// with topicKey '<moduleId>/<topicId>'. Every topic needs an opener for each
+// level 2 to 4 that has a lesson, in both languages: two to four sentences,
+// no colons, at most OPENER_MAX_CHARS, the level named in the app's words, the
+// same number of sentences in nl and en, and nothing for level 1. Pure.
+export const OPENER_MAX_CHARS = 320;
+export const OPENER_LEVEL_WORDS = {
+  2: { nl: 'Werkkennis', en: 'Working knowledge' },
+  3: { nl: 'Gevorderd', en: 'Advanced' },
+  4: { nl: 'Expert', en: 'Expert' },
+};
+export const openerKey = (moduleId, topicId) => `${moduleId}/${topicId}`;
+export const openerSentences = (text) => String(text).trim().split(/(?<=[.!?])\s+/).filter(Boolean);
+
+export function checkOpeners(modules, openers) {
+  const errs = [];
+  const data = openers || {};
+  const expected = new Set();
+  for (const m of modules) {
+    for (const t of Array.isArray(m.topics) ? m.topics : []) {
+      const key = openerKey(m.id, t.id);
+      expected.add(key);
+      const entry = data[key];
+      if (!entry) { errs.push(`opener ${key}: missing`); continue; }
+      if ('1' in entry) errs.push(`opener ${key}: level 1 has no opener (Basis has the module intro)`);
+      for (const level of [2, 3, 4]) {
+        const has = Array.isArray(t.levels) && t.levels[level - 1];
+        const o = entry[level];
+        if (!has) { if (o) errs.push(`opener ${key} level ${level}: no lesson at this level`); continue; }
+        if (!o) { errs.push(`opener ${key} level ${level}: missing`); continue; }
+        const counts = {};
+        for (const lang of ['nl', 'en']) {
+          const at = `opener ${key} level ${level} ${lang}`;
+          const text = o[lang];
+          if (!str(text)) { errs.push(`${at}: text missing`); continue; }
+          const n = openerSentences(text).length;
+          counts[lang] = n;
+          if (n < 2 || n > 4) errs.push(`${at}: ${n} sentences (needs 2 to 4)`);
+          if (text.length > OPENER_MAX_CHARS) errs.push(`${at}: ${text.length} characters (max ${OPENER_MAX_CHARS})`);
+          if (text.includes(':')) errs.push(`${at}: contains a colon`);
+          if (!text.includes(OPENER_LEVEL_WORDS[level][lang])) errs.push(`${at}: does not name the level "${OPENER_LEVEL_WORDS[level][lang]}"`);
+          if (/\b(?:les|lesson|level|niveau)\s+\d/i.test(text) || /\b(?:eng|pm)\.[a-z0-9]+\.[a-z0-9]+/.test(text)) errs.push(`${at}: names a lesson number or id`);
+        }
+        if (counts.nl && counts.en && counts.nl !== counts.en) errs.push(`opener ${key} level ${level}: ${counts.nl} sentences in nl but ${counts.en} in en`);
+      }
+    }
+  }
+  for (const key of Object.keys(data)) if (!expected.has(key)) errs.push(`opener ${key}: no such topic`);
+  return errs;
+}
+
+// `node src/content/courses/validate.js` checks every module's openers.
+if (typeof process !== 'undefined' && process.argv && process.argv[1] && import.meta.url === new URL(`file://${process.argv[1]}`).href) {
+  const { MODULES, SUBJECTS } = await import('./index.js');
+  let bad = 0;
+  for (const subject of SUBJECTS) {
+    const openers = (await import(`./openers.${subject}.js`)).default;
+    const errs = checkOpeners(MODULES.filter((m) => m.subject === subject), openers);
+    errs.forEach((e) => console.log(e));
+    bad += errs.length;
+    console.log(`openers ${subject}: ${Object.keys(openers).length} topics, ${errs.length} problems`);
+  }
+  process.exitCode = bad ? 1 : 0;
+}
