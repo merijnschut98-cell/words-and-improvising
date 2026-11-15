@@ -1591,18 +1591,18 @@
     "pm.intake.firsttalk": {
       "poster": "src/content/courses/films/pm.intake.firsttalk.jpg",
       "nl": {
-        "dur": 336.9,
-        "bytes": 11812703,
+        "dur": 335.9,
+        "bytes": 11796826,
         "scenes": [
           0,
-          47.04,
-          86.8,
-          116.1,
-          142.46,
-          181.68,
-          213.41,
-          257.65,
-          300.6
+          46.75,
+          86.7,
+          115.85,
+          142.31,
+          180.78,
+          212.55,
+          256.41,
+          299.32
         ],
         "vtt": "src/content/courses/films/pm.intake.firsttalk.nl.vtt"
       },
