@@ -185,3 +185,5 @@ Outcome: accepted (merged as delivered), sent back N times, redone.
 | 15 Nov | Review: eng.flow.intro | sonnet | ~40 | ~25 min | n/a | accepted with two small fixes (labels only when named); merged v348 |
 | 15 Nov | Build: Engineering field film eng.field.better | sonnet | 120 | 19 min | 378,398 | accepted with fixes by its review |
 | 15 Nov | Review: eng.field.better | sonnet | 51 | 7.4 min | 206,952 | accepted with fixes (np-chart story made a pass/fail count, 192 to 186 s, you at the run film position); merged v349 |
+| 15 Nov | Build: Engineering intro eng.quality.intro | sonnet | 78 | 11 min | 281,581 | accepted with fixes by its review |
+| 15 Nov | Review: eng.quality.intro | sonnet | ~40 | n/a | n/a | accepted with fixes (X-bar/R-kaart replaces turflijst for SPC, Cpk wording, quarantine mark visible); merged v351 |
