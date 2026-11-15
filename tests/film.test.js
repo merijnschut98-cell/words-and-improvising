@@ -1394,3 +1394,26 @@ test('speak variant: the joining intro film words in Dutch', () => {
   const en = 'For bolts we often use a nutrunner. For spot welding we often use a tip dresser.';
   assert.equal(speakOf([en], 'en'), en);
 });
+
+// Render batch PM-26: the Dutch transcripts of PM-25 heard, through the real Piper nl voice and large-v3-turbo, "G-code" as
+// "geen code" (the opposite), "werkstuknulpunt" as "werkstukknoppunt", "centreerboor" as "centraalboor" (machining intro) and
+// "doet een lektest" as "doet het lekkerst" (energy field film). Each word was tried in several spellings in the film's own
+// sentence: "vaak de G-code" (with the article it is heard right every time; bare "G-code" and "gee-code" after "vaak" stay
+// "geen code"), "werkstuk nul-punt" (the whole word is heard with a k-n), "centreer-boor" and "lek-test". Only these films'
+// sentences: eng.machining.cnc, eng.machining.drilling and eng.power.air say the words elsewhere and keep their voice
+test('speak variant: the machining intro and energy field film words in Dutch', () => {
+  const nl = (s) => speakOf([s], 'nl');
+  assert.equal(nl('Bij CNC gebruiken we vaak G-code en een werkstuknulpunt.'), 'Bij CNC gebruiken we vaak de G-code en een werkstuk nul-punt.');
+  assert.equal(nl('Bij boren gebruiken we vaak een centreerboor en een spiraalboor.'), 'Bij boren gebruiken we vaak een centreer-boor en een spiraalboor.');
+  assert.equal(nl('Je meet de motorstroom met een stroomtang en doet een lektest.'), 'Je meet de motorstroom met een stroomtang en doet een lek-test.');
+  // a subtitle cue holds only part of the sentence and is checked against the words spoken in its span: the rule must
+  // read the same on the cue's own text
+  assert.equal(nl('en doet een lektest.'), 'en doet een lek-test.');
+  // elsewhere the words keep their voice
+  assert.equal(nl("Het programma zelf is G-code: korte commando's."), "Het programma zelf is G-code: korte commando's.");
+  assert.equal(nl('Daaruit volgt het werkstuknulpunt, G54: waar het werkstuk op de tafel ligt.'), 'Daaruit volgt het werkstuknulpunt, G54: waar het werkstuk op de tafel ligt.');
+  assert.equal(nl('Daarom maak je eerst een kuiltje met een centreerboor: kort en stijf, met een brede punt.'), 'Daarom maak je eerst een kuiltje met een centreerboor: kort en stijf, met een brede punt.');
+  assert.equal(nl('De lektest laat het zien: kijk in het weekend.'), 'De lektest laat het zien: kijk in het weekend.');
+  const en = 'For CNC we often use G-code and a work offset. A center drill and a leak test.';
+  assert.equal(speakOf([en], 'en'), en);
+});

@@ -3561,18 +3561,18 @@
     "eng.field.energy": {
       "poster": "src/content/courses/films/eng.field.energy.jpg",
       "nl": {
-        "dur": 237.6,
-        "bytes": 10981579,
+        "dur": 238.7,
+        "bytes": 11047100,
         "scenes": [
           0,
-          20.97,
-          42.26,
-          63.31,
-          88.4,
-          110.14,
-          133.35,
-          154.91,
-          174.55
+          20.91,
+          42.04,
+          63.42,
+          88.43,
+          110.36,
+          133.64,
+          155.05,
+          175.04
         ],
         "vtt": "src/content/courses/films/eng.field.energy.nl.vtt"
       },
@@ -3596,17 +3596,17 @@
     "eng.machining.intro": {
       "poster": "src/content/courses/films/eng.machining.intro.jpg",
       "nl": {
-        "dur": 210.2,
-        "bytes": 8116771,
+        "dur": 210.1,
+        "bytes": 8118816,
         "scenes": [
           0,
-          36.42,
-          54.41,
-          72.68,
-          89.29,
-          114.83,
-          136.11,
-          162.08
+          36.68,
+          54.95,
+          73.11,
+          89.56,
+          115.36,
+          136.75,
+          162.52
         ],
         "vtt": "src/content/courses/films/eng.machining.intro.nl.vtt"
       },
