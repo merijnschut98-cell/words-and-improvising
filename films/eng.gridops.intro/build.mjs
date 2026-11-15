@@ -211,13 +211,12 @@ const hud = g('hud', '<rect data-k="pbg" class="pm-panel" x="322" y="12" width="
 // the dark of an outage: the hall dims while the cable is down (a plain rectangle over the room, under the panel)
 const dim = '<rect data-k="dim" class="pm-dim" x="0" y="0" width="322" height="400" style="display:none"/>';
 // the shared map, Netbedrijf en assetmanagement lit, in the stage (the film's closing scene; the stage script moves and fades it)
-const MAP_W = 640;
-const MAP_H = 1128;
+const { w: MAP_W, h: MAP_H } = engMap.view; // the Engineering map's sheet (viewBox of the wide drawing), from the map data
 const MAP = (await mapScene({ subject: 'eng', highlight: ['eng.gridops'] })).replace('<svg class="subject-map"', `<svg class="subject-map" width="${MAP_W}" height="${MAP_H}"`);
 const PLACE = engMap.places.find((p) => p.module === 'eng.gridops');
 const MAPZ = [PLACE.x + PLACE.w / 2, PLACE.y + PLACE.h / 2];
 assert(MAP.includes(`data-cue="${mapCue('eng.gridops')}"`), 'the map lights eng.gridops as a cue group');
-assert(MAP.includes(`viewBox="0 0 ${MAP_W} ${MAP_H}"`), 'the Engineering map is 640 by 1128');
+assert(MAP.includes(`viewBox="0 0 ${MAP_W} ${MAP_H}"`), `the Engineering map is ${MAP_W} by ${MAP_H}`);
 
 // Static paths with relative line-tos (the helper of pm.plan.schedule): the
 // same points, fewer bytes; each rewrite is read back to prove it exact.

@@ -1,4 +1,4 @@
-// Task 13 step 1: the Engineering map, the same way Projects has one. Four zones
+// Task 13 step 1: the Engineering map, the same way Projects has one. Five zones (four until the 15 Nov split)
 // (fields) group the 26 modules; the map has a wide and a phone layout, no road
 // (Engineering has no natural order), and adds nothing to what Projects draws.
 import { test } from 'node:test';
@@ -34,9 +34,9 @@ test('Projects is untouched: its map data and its default drawing are pinned', (
   assert.equal(sha(mapSvg(pmMap, { lang: 'en', theme: 'dark' })), '02f9f813af9455b5');
 });
 
-test('four Engineering fields cover all 26 modules, each in exactly one, and the validator is happy', () => {
+test('five Engineering fields cover all 26 modules, each in exactly one, and the validator is happy', () => {
   assert.equal(eng.length, 26);
-  assert.deepEqual(efields.map((f) => f.id), ['eng.field.plant', 'eng.field.making', 'eng.field.energy', 'eng.field.digital']);
+  assert.deepEqual(efields.map((f) => f.id), ['eng.field.run', 'eng.field.better', 'eng.field.making', 'eng.field.energy', 'eng.field.digital']);
   assert.deepEqual(checkFields(FIELDS, MODULES), []);
   assert.deepEqual(efields.flatMap((f) => f.modules).sort(), eng.map((m) => m.id).sort());
   for (const m of eng) assert.ok(fieldOf(m.id), m.id);
@@ -46,7 +46,14 @@ test('four Engineering fields cover all 26 modules, each in exactly one, and the
 
 test('the zones group what the modules teach, and each zone lists its modules by level', () => {
   const by = Object.fromEntries(efields.map((f) => [f.id, f.modules]));
-  assert.deepEqual(by['eng.field.plant'], ['eng.flow', 'eng.quality', 'eng.maintenance', 'eng.safety', 'eng.spc', 'eng.cost', 'eng.improve', 'eng.reliability']);
+  // 15 Nov (Merijn): the plant zone is two: keeping the plant running, and making it better
+  assert.deepEqual(by['eng.field.run'], ['eng.flow', 'eng.quality', 'eng.maintenance', 'eng.safety']);
+  assert.deepEqual(by['eng.field.better'], ['eng.improve', 'eng.spc', 'eng.cost', 'eng.reliability']);
+  assert.equal(by['eng.field.plant'], undefined);
+  const run = efields.find((f) => f.id === 'eng.field.run');
+  const better = efields.find((f) => f.id === 'eng.field.better');
+  assert.deepEqual([run.title.nl, run.title.en], ['De fabriek draaiend houden', 'Keeping the plant running']);
+  assert.deepEqual([better.title.nl, better.title.en], ['De fabriek beter maken', 'Making the plant better']);
   assert.deepEqual(by['eng.field.making'], ['eng.mechanics', 'eng.machining', 'eng.process', 'eng.drawings', 'eng.joining', 'eng.moulding']);
   // the grid first (basics, switchgear, transformers), then the plant's energy users, then running and planning the grid
   assert.deepEqual(by['eng.field.energy'], ['eng.gridbasics', 'eng.switchgear', 'eng.transformers', 'eng.power', 'eng.fluids', 'eng.gridops', 'eng.gridplanning']);
@@ -112,17 +119,18 @@ test('every title wraps to three lines or fewer, uncut, fits its place and sits 
   }
 });
 
-test('the phone map is as compact as its labels allow: 26 places in at most 750 px at 390 and 590 px at 320', () => {
+test('the phone map is as compact as its labels allow: 26 places in at most 815 px at 390 and 640 px at 320', () => {
   // Merijn chose the compact Projects phone map (three to a row, 532 px at 390) over a long one;
-  // Engineering has 26 places to Projects' 20, so about 690 px would be the same density.
+  // Engineering has 26 places to Projects' 20, so about 690 px would be the same density. 15 Nov: the plant zone became two
+  // (a fifth band: header, padding and a row more), 741 px at 390 became 812; Merijn accepted the extra band.
   const high = (w) => phone.view.h * w / phone.view.w;
-  assert.ok(high(CARD[390]) <= 750, `${high(CARD[390])}`);
-  assert.ok(high(CARD[320]) <= 590, `${high(CARD[320])}`);
+  assert.ok(high(CARD[390]) <= 815, `${high(CARD[390])}`);
+  assert.ok(high(CARD[320]) <= 640, `${high(CARD[320])}`);
 });
 
-test('the phone map uses rows of three wherever the titles allow: ten rows for 26 places', () => {
+test('the phone map uses rows of three wherever the titles allow: eleven rows for 26 places', () => {
   const rows = new Set(phone.places.map((p) => p.y));
-  assert.equal(rows.size, 10);
+  assert.equal(rows.size, 11);
 });
 
 test('Projects keeps its phone columns: the wider three-column place is Engineering\'s own', () => {
@@ -160,9 +168,44 @@ test('mapSvg draws Engineering: wide and phone, 26 buttons, one next mark, zone 
   for (const lang of ['nl', 'en']) for (const z of engMap.zones) assert.match(mapSvg(engMap, { lang }), new RegExp(z.label[lang].replace(/[()]/g, '.')));
 });
 
-test('the four zones have colours in the app styles, in rules the film kit does not carry', () => {
-  for (const z of ['plant', 'making', 'energy', 'digital']) assert.match(CSS, new RegExp(`\\.subject-map-wrap \\.z-${z} \\{ --zone:`));
-  assert.doesNotMatch(mapStyles(), /z-(plant|making|energy|digital)/);
+test('the five zones have colours in the app styles, in rules the film kit does not carry', () => {
+  for (const z of ['run', 'better', 'making', 'energy', 'digital']) assert.match(CSS, new RegExp(`\\.subject-map-wrap \\.z-${z} \\{ --zone:`));
+  assert.doesNotMatch(mapStyles(), /z-(run|better|making|energy|digital)/);
+});
+
+test('the five zones read: run, better, making, energy, digital; the new zone has its own colour', () => {
+  assert.deepEqual(engMap.zones.map((z) => z.field), ['eng.field.run', 'eng.field.better', 'eng.field.making', 'eng.field.energy', 'eng.field.digital']);
+  // review (15 Nov): its own token, not the error colour --bad
+  assert.match(CSS, /\.subject-map-wrap \.z-better \{ --zone: var\(--zone-better\); \}/);
+  const colours = [...CSS.matchAll(/\.subject-map-wrap \.z-([a-z]+) \{ --zone: ([^;]+);/g)].map((m) => m[2]);
+  assert.equal(new Set(colours).size, colours.length, 'no two zones share a colour');
+  assert.ok(!colours.some((c) => /--(bad|good|ok-text)\b/.test(c)), 'no zone borrows a status colour other than the palette fills');
+  // the film pages carry --zone-better for the eng zones only (Projects pages stay as they are)
+  assert.match(mapStyles(undefined, 'eng'), /\.subject-map\{--zone-better:/);
+  assert.doesNotMatch(mapStyles(), /--zone-better/);
+});
+
+test('--zone-better: the app and the film kit hold the same terracotta, in light and dark, and it reads on the map', () => {
+  const TOK = fs.readFileSync(new URL('../brand/tokens.css', import.meta.url), 'utf8');
+  const tok = (n) => { const m = TOK.match(new RegExp(`--${n}:\\s*(#[0-9A-Fa-f]{6})`)); assert.ok(m, n); return [1, 3, 5].map((i) => parseInt(m[1].slice(i, i + 2), 16)); };
+  const mix = (a, b, p) => a.map((v, i) => v * p + b[i] * (1 - p));
+  const hex = (c) => `#${c.map((v) => Math.round(v).toString(16).padStart(2, '0')).join('')}`.toUpperCase();
+  // the app's definitions, read back so a change to one side fails here
+  const defs = [...CSS.matchAll(/--zone-better: ([^;]+);/g)].map((m) => m[1]);
+  assert.deepEqual([...new Set(defs)], [
+    'color-mix(in srgb, var(--danger-500) 70%, var(--warn-500))',
+    'color-mix(in srgb, color-mix(in srgb, var(--danger-300) 70%, var(--warn-500)) 75%, var(--bone))']);
+  assert.equal(defs.length, 3, 'light, and both dark blocks');
+  const light = hex(mix(tok('danger-500'), tok('warn-500'), 0.7));
+  const dark = hex(mix(mix(tok('danger-300'), tok('warn-500'), 0.7), tok('bone'), 0.75));
+  const kit = mapStyles(undefined, 'eng');
+  assert.match(kit, new RegExp(`\\.subject-map\\{--zone-better:${dark}\\}`));
+  assert.match(kit, new RegExp(`\\.iso\\[data-theme="light"\\] \\.subject-map\\{--zone-better:${light}\\}`));
+  // a graphic mark (the place's front face is the zone colour itself) needs 3:1 on the card, in both themes
+  const lum = (c) => { const [r, g, b] = c.map((v) => { const s = v / 255; return s <= 0.04045 ? s / 12.92 : ((s + 0.055) / 1.055) ** 2.4; }); return 0.2126 * r + 0.7152 * g + 0.0722 * b; };
+  const ratio = (a, b) => { const [x, y] = [lum(a), lum(b)].sort((p, q) => q - p); return (x + 0.05) / (y + 0.05); };
+  assert.ok(ratio(mix(tok('danger-500'), tok('warn-500'), 0.7), tok('beige-100')) >= 3, 'light: on paper');
+  assert.ok(ratio(mix(mix(tok('danger-300'), tok('warn-500'), 0.7), tok('bone'), 0.75), tok('brand-3')) >= 3, 'dark: on the ramp card');
 });
 
 test('the new files are in the service worker shell', () => {
