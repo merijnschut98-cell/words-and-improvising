@@ -26,11 +26,11 @@
 //      is full (roles, rules and money; congestion and the energy transition)             → eng.gridbasics.basics
 //   s2 Vermogen, belasting en spanning: voltage is the pressure, current the flow, power how fast energy is used;
 //      the grid carries the highest power at one moment, the peak, not the yearly total (line 3 starting up is
-//      such a peak); the hall's roof has solar panels, an inverter on the wall turns their power into grid power
-//      (Werkkennis, .load)                                                              → .basics (.load)
+//      such a peak); the cable's capacity is stated in kVA, what it has to
+//      carry (Werkkennis, .load)                                                 → .basics (.load)
 //   s3 Het net van hoog naar laag: little is lost at high voltage, the voltage steps down close to the user; you
-//      read the main fuse on the cabinet, where the factory's part begins, and follow the cable to the
-//      substation (Werkkennis, .path)                                                   → .levels (.path)
+//      read the main fuse on the cabinet, where the factory's part begins and the connection is
+//      limited (Werkkennis, .path)                                                   → .levels (.path)
 //   s4 Rollen, regels en geld: the grid operator brings the cable into the hall, TenneT runs the highest grid, the
 //      supplier sells the energy and you choose it; there is one grid per area, so a regulator sets rules and
 //      tariffs; you look up the connection rules in the system code (Werkkennis, .law)  → .roles (.law)
@@ -43,8 +43,8 @@
 //      words
 // Per the review of eng.machining.intro: how the topics hang together is said once, in s1, before any detail; a
 // topic scene is short (what it is, its place in the story with a reason, then the tool sentence); the tools are
-// real things of the topic at Basis or Working knowledge level (omvormer, hoofdzekering and onderstation,
-// systeemcode, capaciteitskaart and flexibel contract, the last two as in the field film), one short sentence each,
+// real things of the topic at Basis or Working knowledge level (kVA, hoofdzekering, systeemcode,
+// capaciteitskaart and flexibel contract, the last two as in the field film), one short sentence each,
 // not explained; a Werkkennis tool named in a scene is not named again in the closing grid (it says the route to the
 // socket, laws and duties and the queue, not the substation, the codes or the capacity map); the closing grid has
 // one beat per later level in the app's level words; the people are plant people; the story ends where the field
@@ -58,8 +58,8 @@
 //
 // A film in the shared pm world (films/_pm/world.mjs, read-only): hall B as in the energy field film (the shared hall
 // of films/pm.plan.intro/hall.mjs: the power cabinet, the cable through the left wall, a packing line), with
-// pm.agile.scrum's figures for the installer and the technician. The film's own things (the wall entry, the main
-// fuse, the inverter with its cable to the roof) are simple solids drawn here. A panel at the right, in stage space,
+// pm.agile.scrum's figures for the installer and the technician. The film's own things (the wall entry and the main
+// fuse) are simple solids drawn here. A panel at the right, in stage space,
 // draws each step as a schema, labelled "voorbeeld" (line 3's way) or "schema" (the module's map).
 //
 // The kit comes from the anatomy skill; point ANATOMY_SKILL at its folder if it lives somewhere else on your machine.
@@ -102,11 +102,11 @@ const has = (id, list, lang = 'nl') => { const l = lessons[lang].get(id); const 
 // s1: power as the first lesson words it; the grid is built for kW, not kWh
 has('eng.gridbasics.basics', ['Vermogen (W, watt) is hoe snel energie wordt gebruikt', 'maar het net wordt gebouwd voor kW']);
 has('eng.gridbasics.basics', ['Power (W, watts) is how fast energy is used', 'but the grid is built for kW'], 'en');
-// s2: voltage and current, the peak the cables carry, the inverter on the roof's solar panels
+// s2: voltage and current, the peak the cables carry, the capacity in kVA
 has('eng.gridbasics.basics', ['Spanning (V, volt) is de elektrische druk', 'Stroomsterkte (A, ampère), kortweg stroom, is de doorstroming', 'het hoogste vermogen op één moment dragen']);
 has('eng.gridbasics.basics', ['Voltage (V, volts) is the electrical push', 'Current (A, amperes) is the flow', 'carry the highest power at any one moment'], 'en');
-has('eng.gridbasics.load', ['piekbelasting, de hoogste belasting van het jaar', 'de omvormer, het kastje dat de gelijkstroom van de panelen omzet naar wisselstroom voor het net', 'levert elk dak tegelijk terug']);
-has('eng.gridbasics.load', ['peak load, the highest load of the year', 'the inverter, the box that turns the panels’ DC into grid AC', 'every roof feeds power back at the same time'], 'en');
+has('eng.gridbasics.load', ['De capaciteit van netcomponenten geef je op in kVA', 'wat de kabel of transformator echt moet dragen', 'piekbelasting, de hoogste belasting van het jaar', 'kVA Schijnbaar vermogen']);
+has('eng.gridbasics.load', ['Grid equipment is rated in kVA', 'what a cable or transformer actually has to carry', 'peak load, the highest load of the year', 'kVA Apparent power'], 'en');
 // s3: high voltage loses little, the voltage steps down near the user; the levels; the main fuse ends the connection
 has('eng.gridbasics.levels', ['dus de verliezen 100 keer zo klein', 'zetten transformatoren het pas dicht bij de gebruiker omlaag', 'extra hoogspanning (EHS) van 380 en 220 kV', 'rechtstreeks naar grote klanten zoals fabrieken', 'Laagspanning (LS) is 400/230 V']);
 has('eng.gridbasics.levels', ['so the losses drop 100 times', 'stepped down by transformers close to the user', 'extra-high voltage (EHV) of 380 and 220 kV', 'directly to large customers such as factories', 'Low voltage (LV) is 400/230 V'], 'en');
@@ -176,7 +176,7 @@ const person = (role, x, y, along) => w.person({ x, y, role, along });
 
 // where things stand (cm), as in the energy field film: the power cabinet at the back wall at the left (x 12), the cable
 // from the grid through the left wall (y 86 to 114) to the cabinet, line 3 at the right (x 186). New here: the main fuse
-// on the cabinet's front, an inverter on the back wall with a cable up to the roof, and the technician by the wall entry.
+// on the cabinet's front, and the technician by the wall entry.
 const CAB = { x: 12, w: 40, d: 26, h: 124 };
 const L3 = { x: 186, y: 16, len: 84, dep: 34 };
 const cabA = hall.cable([[0, 100], [32, 100], [32, 28]]);
@@ -185,25 +185,19 @@ const wallEntry = w.box({ x: 0, y: 86, w: 10, d: 28, r: 1.5 }, 0, 40, { tone: 'l
 // the main fuse: a plate with a switch on the cabinet's front, below the door's slot and clear of its handle
 const fuse = '<g class="pm-fuse">' + w.box({ x: 22, y: CAB.d, w: 20, d: 2.6, r: 0.6 }, 62, 86, { tone: 'hi' }, { steps: 1 })
   + w.box({ x: 28, y: CAB.d + 2.6, w: 8, d: 2, r: 0.5 }, 66, 82, { tone: 'lo' }, { steps: 1 }) + '</g>';
-// the inverter on the back wall, and the cable up the wall to the roof (the solar panels)
-const inverter = w.box({ x: 76, y: 0, w: 26, d: 10, r: 1.5 }, 92, 126, { tone: 'mid' }, { steps: 2, bevel: 0.4 })
-  + w.box({ x: 82, y: 10, w: 14, d: 1, r: 0.3 }, 108, 118, { tone: 'lo' }, { steps: 1 })
-  + w.box({ x: 87, y: 0, w: 3.2, d: 3.2, r: 0.6 }, 126, ROOM.h, { tone: 'lo' }, { steps: 1 });
-
 const INST = { x: 16, y: 70 };
 const TECH = { x: 14, y: 140 };
 const JIJ = { x: 132, y: 96 };
 const installer = scrumPerson(w, k, G, P, { x: INST.x, y: INST.y, key: 'installer', look: 'sm', along: 'y' });
 const tech = scrumPerson(w, k, G, P, { x: TECH.x, y: TECH.y, key: 'tech', look: 'dev', along: 'y' });
 
-// painted back to front (large x and small y are far): the cable and the cabinet (with its main fuse), the inverter, the
+// painted back to front (large x and small y are far): the cable and the cabinet (with its main fuse), the
 // line, the people (the installer, the technician, you)
 const world = [
   w.room(ROOM),
   cueG('net', wallEntry + cabA),
   cueG('cab', hall.cabinet({ x: CAB.x, w: CAB.w, d: CAB.d, h: CAB.h })),
   cueG('fuse', fuse),
-  cueG('inv', inverter),
   cueG('line3', hall.conveyor({ ...L3, cartons: 3 })),
   g('pp-installer', installer + hall.hat(INST.x, INST.y)),
   g('pp-tech', tech + hall.hat(TECH.x, TECH.y)),
@@ -283,7 +277,7 @@ const svg = compact(`<svg class="iso-svg fp-svg" viewBox="0 0 ${W} ${H}" role="i
 const cam = (x, y, z, s) => [...w.at([x, y, z]).map((v) => Math.round(v * 10) / 10), s];
 const CAM = [
   { from: cam(140, 70, 50, 1.0), to: cam(140, 75, 50, 1.05) }, // s1 the whole hall: the cable, the cabinet, line 3
-  { from: cam(150, 40, 60, 1.25), to: cam(90, 40, 80, 1.5), at: 2 }, // s2 line 3 and the peak, then (b2) the inverter on the wall
+  { from: cam(150, 40, 60, 1.25), to: cam(35, 85, 50, 1.5), at: 2 }, // s2 line 3 and the peak, then (b2) the cable
   { from: cam(40, 80, 50, 1.5), to: cam(30, 60, 70, 1.6), at: 2 }, // s3 the cable and the cabinet, then (b2) the main fuse
   { from: cam(40, 90, 50, 1.5), to: cam(35, 85, 50, 1.6), at: 2 }, // s4 the wall entry and the technician
   { from: cam(140, 80, 50, 1.15), to: cam(180, 50, 55, 1.4), at: 3 }, // s5 the hall, then (b3) line 3 and the installer
@@ -325,7 +319,7 @@ const spec = {
       beats: [
         { nl: 'Eerste onderwerp: Vermogen, belasting en spanning. Spanning is de druk, stroom de doorstroming.', en: 'First topic: Power, load and voltage. Voltage is the pressure, current the flow.', focus: ['tPow', 'vaS', 'cab'] },
         { nl: 'Het net draagt het hoogste vermogen op één moment, de piek. Het jaartotaal telt niet.', en: 'The grid carries the highest power at one moment, the peak. The yearly total does not count.', focus: ['peakS', 'line3'] },
-        { nl: 'Bij vermogen gebruiken we vaak een {t:Omvormer|omvormer}. Die zet de stroom van het dak om.', en: 'For power we often use an {t:Inverter|inverter}. It converts the power from the roof.', ...TOOL('Omvormer'), focus: ['tool1', 'inv'] },
+        { nl: 'Bij belasting geef je de capaciteit van de kabel op in {t:kVA}.', en: 'For load you state the capacity of the cable in {t:kVA}.', ...TOOL('kVA'), focus: ['tool1', 'net'] },
       ],
     },
     {
@@ -333,13 +327,13 @@ const spec = {
       beats: [
         { nl: 'Tweede onderwerp: Het net van hoog naar laag. Op hoogspanning gaat weinig verloren.', en: 'Second topic: The grid from high to low. At high voltage little is lost.', focus: ['tGrid', 'ladS'] },
         { nl: 'Pas dicht bij de gebruiker zetten transformatoren de spanning omlaag.', en: 'Only close to the user do transformers step the voltage down.', focus: ['ladS', 'net'] },
-        { nl: 'Bij het net lees je de {t:Hoofdzekering|hoofdzekering} af en volg je de kabel naar het {t:Onderstation|onderstation}.', en: 'On the grid you read the {t:Main fuse|main fuse} and follow the cable to the {t:Substation|substation}.', ...TOOL('Hoofdzekering', 'Onderstation'), focus: ['tool1', 'tool2', 'fuse', 'net'] },
+        { nl: 'Je leest aan de {t:Hoofdzekering|hoofdzekering} af hoeveel stroom de aansluiting aankan.', en: 'At the {t:Main fuse|main fuse} you read how much current the connection can take.', ...TOOL('Hoofdzekering'), focus: ['tool1', 'fuse', 'cab'] },
       ],
     },
     {
       id: 's4', level: 1, dur: DURS[3], still: 0.9, title: { nl: 'Rollen', en: 'Roles' },
       beats: [
-        { nl: 'Derde onderwerp: Rollen, regels en geld. De netbeheerder legt de kabel tot in de hal.', en: 'Third topic: Roles, rules and money. The grid operator lays the cable into the hall.', focus: ['tRules', 'nbS', 'net', 'tech'] },
+        { nl: 'Derde onderwerp: Rollen, regels en geld. De netbeheerder legt de kabel tot jouw aansluiting.', en: 'Third topic: Roles, rules and money. The grid operator lays the cable to your connection.', focus: ['tRules', 'nbS', 'net', 'tech'] },
         { nl: 'TenneT beheert het hoogste net. De leverancier verkoopt de energie en die kies je zelf.', en: 'TenneT runs the highest grid. The supplier sells the energy and you choose it yourself.', focus: ['tnS', 'lvS'] },
         { nl: 'Er ligt één net per gebied. Daarom bepaalt een toezichthouder de regels en de tarieven.', en: 'There is one grid per area. So a regulator sets the rules and the tariffs.', focus: ['toeS', 'nbS'] },
         { nl: 'Bij de regels zoek je in de {t:Systeemcode elektriciteit|systeemcode} hoe je aansluit.', en: 'For the rules you look up in the {t:Electricity System Code|electricity system code} how to connect.', ...TOOL('Systeemcode elektriciteit'), focus: ['tool1', 'tech'] },
@@ -349,7 +343,7 @@ const spec = {
       id: 's5', level: 1, dur: DURS[4], still: 0.9, title: { nl: 'Een vol net', en: 'A full grid' },
       beats: [
         { nl: 'Vierde onderwerp: Netcongestie en de energietransitie. Het net in deze regio zit vol.', en: 'Fourth topic: Congestion and the energy transition. The grid in this region is full.', focus: ['tCong', 'fullS'] },
-        { nl: 'Wie meer vermogen vraagt, komt in de wachtrij. Bouwen duurt {n:5} tot {n:10} jaar.', en: 'Whoever asks for more power joins the queue. Building takes {n:5} to {n:10} years.', focus: ['queS', 'line3'] },
+        { nl: 'Wie meer vermogen vraagt, komt in de wachtrij. Bouwen duurt vaak {n:5} tot {n:10} jaar.', en: 'Whoever asks for more power joins the queue. Building often takes {n:5} to {n:10} years.', focus: ['queS', 'line3'] },
         { nl: 'Je kijkt op de {t:Capaciteitskaart|capaciteitskaart} en sluit zo nodig een {t:Flexibel contract|flexibel contract}.', en: 'You check the {t:Capacity map|capacity map} and sign a {t:Flexible contract|flexible contract} if needed.', ...TOOL('Capaciteitskaart', 'Flexibel contract'), focus: ['tool1', 'tool2', 'line3'] },
         { nl: 'Zo schuift lijn 3 uit de paar piekuren en krijgt toch stroom. Dan sluit de installateur hem aan.', en: 'So line 3 moves out of the few peak hours and still gets power. Then the installer connects it.', focus: ['flexS', 'line3', 'installer'] },
       ],
@@ -378,8 +372,8 @@ const spec = {
 // inside a sentence at 0.4 s. Each topic scene ends on one short sentence naming the tools of that topic's lessons,
 // without explaining them. Every drawn detail has its reason in the narration: the cable through the wall (the grid
 // brings the power into the hall), the cabinet with its main fuse (where the factory's own part begins), the line
-// (it starts up and makes a peak), the inverter and its cable to the roof (the roof has solar panels), the technician
-// at the wall (the grid operator lays the cable into the hall), the installer (he connects the line once it has power).
+// (it starts up and makes a peak), the technician
+// at the wall (the grid operator lays the cable to your connection), the installer (he connects the line once it has power).
 const SAY = [
   [ // s1 line 3 needs power from the grid: power and the peak, the map in two groups
     { nl: 'Lijn 3 in hal B heeft meer stroom nodig. Die komt uit het elektriciteitsnet.',
@@ -391,25 +385,25 @@ const SAY = [
     { nl: 'Daarna wie het regelt en waarom het net vol zit.',
       en: 'Then who runs it and why the grid is full.' },
   ],
-  [ // s2 power, load and voltage: the peak, the inverter
+  [ // s2 power, load and voltage: the peak, the cable's kVA
     { nl: 'Het eerste onderwerp is Vermogen, belasting en spanning. Spanning is de druk en stroom is de doorstroming.',
       en: 'The first topic is Power, load and voltage. Voltage is the pressure and current is the flow.' },
     { nl: 'Het net moet het hoogste vermogen op één moment dragen, de piek. Als lijn 3 aanloopt is dat zo’n piek.',
       en: 'The grid must carry the highest power at one moment, the peak. When line 3 starts up that is such a peak.' },
-    { nl: 'Het dak van hal B heeft zonnepanelen. Bij vermogen gebruiken we vaak een {t:Omvormer|omvormer}. Die zet hun stroom om voor het net.',
-      en: 'The roof of hall B has solar panels. For power we often use an {t:Inverter|inverter}. It converts their power for the grid.' },
+    { nl: 'De kabel naar hal B moet die piek aankunnen. Bij belasting geef je de capaciteit van de kabel op in {t:kVA}.',
+      en: 'The cable to hall B must handle that peak. For load you state the capacity of the cable in {t:kVA}.' },
   ],
   [ // s3 the grid from high to low
     { nl: 'Het tweede onderwerp is Het net van hoog naar laag. Op hoogspanning gaat weinig verloren.',
       en: 'The second topic is The grid from high to low. At high voltage little is lost.' },
     { nl: 'Pas dicht bij de gebruiker zetten transformatoren de spanning omlaag.',
       en: 'Only close to the user do transformers step the voltage down.' },
-    { nl: 'Bij het net lees je de {t:Hoofdzekering|hoofdzekering} af en volg je de kabel naar het {t:Onderstation|onderstation}.',
-      en: 'On the grid you read the {t:Main fuse|main fuse} and follow the cable to the {t:Substation|substation}.' },
+    { nl: 'Je leest aan de {t:Hoofdzekering|hoofdzekering} af hoeveel stroom de aansluiting aankan.',
+      en: 'At the {t:Main fuse|main fuse} you read how much current the connection can take.' },
   ],
   [ // s4 roles, rules and money
-    { nl: 'Het derde onderwerp is Rollen, regels en geld. De netbeheerder legt de kabel tot in de hal.',
-      en: 'The third topic is Roles, rules and money. The grid operator lays the cable into the hall.' },
+    { nl: 'Het derde onderwerp is Rollen, regels en geld. De netbeheerder legt de kabel tot jouw aansluiting.',
+      en: 'The third topic is Roles, rules and money. The grid operator lays the cable to your connection.' },
     { nl: 'TenneT beheert het hoogste net. De leverancier verkoopt de energie en die kies je zelf.',
       en: 'TenneT runs the highest grid. The supplier sells the energy and you choose it yourself.' },
     { nl: 'Er ligt één net per gebied. Daarom bepaalt een toezichthouder de regels en de tarieven.',
@@ -420,12 +414,12 @@ const SAY = [
   [ // s5 congestion and the energy transition, and the story ends where the field film picks it up
     { nl: 'Het vierde onderwerp is Netcongestie en de energietransitie. In deze regio zit het net vol.',
       en: 'The fourth topic is Congestion and the energy transition. In this region the grid is full.' },
-    { nl: 'Wie meer vermogen vraagt, komt in de wachtrij. Een nieuw onderstation bouwen duurt {n:5} tot {n:10} jaar.',
-      en: 'Whoever asks for more power joins the queue. Building a new substation takes {n:5} to {n:10} years.' },
+    { nl: 'Wie meer vermogen vraagt, komt in de wachtrij. Een nieuw onderstation bouwen duurt vaak {n:5} tot {n:10} jaar.',
+      en: 'Whoever asks for more power joins the queue. Building a new substation often takes {n:5} to {n:10} years.' },
     { nl: 'Je kijkt op de {t:Capaciteitskaart|capaciteitskaart} en sluit zo nodig een {t:Flexibel contract|flexibel contract}.',
       en: 'You check the {t:Capacity map|capacity map} and sign a {t:Flexible contract|flexible contract} if needed.' },
-    { nl: 'Congestie speelt maar een paar honderd uur per jaar. Zo schuift lijn 3 daaruit en krijgt toch stroom. Dan sluit de installateur hem aan.',
-      en: 'Congestion lasts only a few hundred hours a year. So line 3 moves out of them and still gets power. Then the installer connects it.' },
+    { nl: 'Congestie speelt meestal maar een paar honderd uur per jaar. Zo schuift lijn 3 uit die uren en krijgt toch stroom. Dan sluit de installateur hem aan.',
+      en: 'Congestion usually lasts only a few hundred hours a year. So line 3 moves out of those hours and still gets power. Then the installer connects it.' },
   ],
   [ // s6 the map: the level words of the app, as the captions show them
     { nl: 'De hele kaart. Het elektriciteitsnet is het eerste station van Energie en het net.',
@@ -511,8 +505,8 @@ const css = PM_CSS + HALL_CSS + `
 ` + mapStyles(undefined, 'eng');
 
 const label = {
-  nl: 'Hal B van de fabriek, waar lijn 3 op zijn nieuwe plek draait. Door de linkerwand komt de kabel van het net binnen, naar de stroomkast langs de achterwand, met een hoofdzekering op de voorkant. Rechts de verpakkingslijn met dozen, en op de achterwand een omvormer met een kabel naar het dak. Een installateur bij de kast, een monteur van de netbeheerder bij de muur waar de kabel binnenkomt, en jij, de engineer. Rechts een paneel, gemarkeerd als voorbeeld of schema: het net, hal B en lijn 3, vermogen en de piek, de spanningsniveaus van hoog naar laag, de rollen van netbeheerder, TenneT, leverancier en toezichthouder, een kaart van een vol net met een wachtrij, en een dagcurve waarin lijn 3 uit de piekuren schuift, met per onderwerp de namen van een of twee hulpmiddelen. Aan het eind de hele kaart van Engineering met Het elektriciteitsnet verlicht, en de vier onderwerpen van de module met elk vier niveaus: Basis, Werkkennis, Gevorderd en Expert.',
-  en: 'Hall B of the factory, where line 3 runs at its new place. Through the left wall the cable from the grid comes in, to the power cabinet along the back wall, with a main fuse on its front. At the right the packing line with cartons, and on the back wall an inverter with a cable up to the roof. An installer by the cabinet, a technician of the grid operator by the wall where the cable enters, and you, the engineer. At the right a panel, marked as an example or a diagram: the grid, hall B and line 3, power and the peak, the voltage levels from high to low, the roles of the grid operator, TenneT, the supplier and the regulator, a map of a full grid with a queue, and a day curve in which line 3 moves out of the peak hours, with the names of one or two tools per topic. At the end the whole map of Engineering with The electricity grid lit, and the module’s four topics with four levels each: Basics, Working knowledge, Advanced and Expert.',
+  nl: 'Hal B van de fabriek, waar lijn 3 op zijn nieuwe plek draait. Door de linkerwand komt de kabel van het net binnen, naar de stroomkast langs de achterwand, met een hoofdzekering op de voorkant. Rechts de verpakkingslijn met dozen. Een installateur bij de kast, een monteur van de netbeheerder bij de muur waar de kabel binnenkomt, en jij, de engineer. Rechts een paneel, gemarkeerd als voorbeeld of schema: het net, hal B en lijn 3, vermogen en de piek, de spanningsniveaus van hoog naar laag, de rollen van netbeheerder, TenneT, leverancier en toezichthouder, een kaart van een vol net met een wachtrij, en een dagcurve waarin lijn 3 uit de piekuren schuift, met per onderwerp de naam van een of twee hulpmiddelen. Aan het eind de hele kaart van Engineering met Het elektriciteitsnet verlicht, en de vier onderwerpen van de module met elk vier niveaus: Basis, Werkkennis, Gevorderd en Expert.',
+  en: 'Hall B of the factory, where line 3 runs at its new place. Through the left wall the cable from the grid comes in, to the power cabinet along the back wall, with a main fuse on its front. At the right the packing line with cartons. An installer by the cabinet, a technician of the grid operator by the wall where the cable enters, and you, the engineer. At the right a panel, marked as an example or a diagram: the grid, hall B and line 3, power and the peak, the voltage levels from high to low, the roles of the grid operator, TenneT, the supplier and the regulator, a map of a full grid with a queue, and a day curve in which line 3 moves out of the peak hours, with the names of one or two tools per topic. At the end the whole map of Engineering with The electricity grid lit, and the module’s four topics with four levels each: Basics, Working knowledge, Advanced and Expert.',
 };
 
 const { data } = await defineFilm(spec, { svg, script: stageScript, css, kitCss: k.ISO_CSS, label });

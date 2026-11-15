@@ -2,7 +2,7 @@
 // Inlined into the page after the anatomy kit and a preamble from build.mjs that defines CAM, INSTSHIFT, JIJSHIFT, W, H,
 // LV, MAPZ, MAPSZ, GRID, KEYS, CW and wrapUnits (the kit's measured character widths and its wrap, so the drawing wraps as
 // the kit's label check measures). The story is drawn in hall B, at the left: the cable from the grid comes in through the
-// left wall to the power cabinet with its main fuse, an inverter hangs on the back wall with its cable to the roof, line 3
+// left wall to the power cabinet with its main fuse, line 3 stands at the right;
 // stands at the right; you, the installer and a technician of the grid operator come and go. The panel at the right draws
 // each beat as a schema, labelled "voorbeeld" (line 3's way) or "schema" (the module's map). Every part a sentence lights
 // is a static data-cue group (build.mjs); this script only fills the panel and shows or hides the room's moving parts.
@@ -152,7 +152,7 @@ const STAGE = (() => {
   function roleCard(y, a, b, c, d, cls = 'pm-card') {
     return rect(334, y, 284, 58, cls, 8) + txt(346, y + 25, tr(a, b, 260), 22, 'start', cls === 'pm-crit' ? 'pm-on' : 'pm-big') + txt(346, y + 49, tr(c, d, 260), 22, 'start', cls === 'pm-crit' ? 'pm-on' : 'pm-mute');
   }
-  const nbDrawing = () => roleCard(100, 'Netbeheerder', 'Grid operator', 'het net tot in de hal', 'the grid up to the hall', 'pm-crit');
+  const nbDrawing = () => roleCard(100, 'Netbeheerder', 'Grid operator', 'kabel tot jouw aansluiting', 'cable to your connection', 'pm-crit');
   const tnDrawing = () => roleCard(168, 'TenneT', 'TenneT', 'het hoogste net', 'the highest grid');
   const lvDrawing = () => roleCard(232, 'Leverancier', 'Supplier', 'verkoopt de energie', 'sells the energy');
   const toeDrawing = () => roleCard(300, 'Toezichthouder', 'Regulator', 'regels en tarieven', 'rules and tariffs');
@@ -168,7 +168,7 @@ const STAGE = (() => {
     let s = '';
     for (let i = 0; i < 5; i++) s += rect(334 + i * 58, 104, 48, 48, i === 4 ? 'pm-crit' : 'pm-bar', 6);
     s += txt(334, 190, tr('de wachtrij', 'the queue', 284), 22, 'start', 'pm-mute') + txt(618, 190, tr('lijn 3', 'line 3', 100), 22, 'end', 'pm-big');
-    return s + rect(334, 224, 284, 76, 'pm-card', 8) + txt(346, 256, tr('5 tot 10 jaar', '5 to 10 years', 260), 22, 'start', 'pm-big') + txt(346, 284, tr('een nieuw onderstation', 'a new substation', 260), 22, 'start', 'pm-mute');
+    return s + rect(334, 224, 284, 76, 'pm-card', 8) + txt(346, 256, tr('vaak 5 tot 10 jaar', 'often 5 to 10 years', 260), 22, 'start', 'pm-big') + txt(346, 284, tr('een nieuw onderstation', 'a new substation', 260), 22, 'start', 'pm-mute');
   }
   function flexDrawing() {
     const hs = [34, 30, 38, 60, 96, 128, 136, 116, 70, 44, 36, 32];
@@ -243,8 +243,8 @@ const STAGE = (() => {
     } else if (si >= 1 && si <= 4) {
       title = [tr('Vermogen', 'Power', 150), tr('Het net', 'The grid', 150), tr('Rollen', 'Roles', 150), tr('Een vol net', 'A full grid', 150)][si - 1];
       o.r = strip(si - 1);
-      if (si === 1) Object.assign(o, { vaS: fade(b, 0, p, vaDrawing(), 0.1, 0.5), peakS: fade(b, 1, p, peakDrawing()), ...tools(b, p, 2, tr('Omvormer', 'Inverter', 260)) });
-      if (si === 2) Object.assign(o, { ladS: b <= 1 ? ladDrawing(b, p) : '', ...tools(b, p, 2, tr('Hoofdzekering', 'Main fuse', 260), tr('Onderstation', 'Substation', 260)) });
+      if (si === 1) Object.assign(o, { vaS: fade(b, 0, p, vaDrawing(), 0.1, 0.5), peakS: fade(b, 1, p, peakDrawing()), ...tools(b, p, 2, tr('kVA', 'kVA', 260)) });
+      if (si === 2) Object.assign(o, { ladS: b <= 1 ? ladDrawing(b, p) : '', ...tools(b, p, 2, tr('Hoofdzekering', 'Main fuse', 260)) });
       if (si === 3) Object.assign(o, { nbS: b <= 2 ? (b === 0 ? op(span(p, 0.1, 0.5), nbDrawing()) : nbDrawing()) : '', tnS: b === 1 || b === 2 ? (b === 1 ? op(span(p, 0.05, 0.4), tnDrawing()) : tnDrawing()) : '',
         lvS: b === 1 || b === 2 ? (b === 1 ? op(span(p, 0.3, 0.65), lvDrawing()) : lvDrawing()) : '', toeS: fade(b, 2, p, toeDrawing()), ...tools(b, p, 3, tr('Systeemcode', 'System code', 260)) });
       if (si === 4) Object.assign(o, { fullS: fade(b, 0, p, fullDrawing(), 0.1, 0.5), queS: fade(b, 1, p, queDrawing()), flexS: fade(b, 3, p, flexDrawing(), 0.1, 0.6), ...tools(b, p, 2, tr('Capaciteitskaart', 'Capacity map', 260), tr('Flexibel contract', 'Flexible contract', 260)) });

@@ -1435,17 +1435,15 @@ test('speak variant: the process intro film words in Dutch', () => {
   assert.equal(speakOf([en], 'en'), en);
 });
 
-// The module intro film "From the grid to hall B" (eng.gridbasics.intro), checked with espeak-ng phonemes through Piper's nl
-// bridge: espeak-ng stresses hoofdzekering on the wrong syllable (hoofdze-KIE-ring) in its tool sentence ("Bij het net lees je
-// de hoofdzekering af"); said hoofd-zekering there, which stresses both parts like the rule for "aan de hoofdzekering" above.
-// The rest of its words are read right (omvormer, onderstation, systeemcode, capaciteitskaart and wachtrij have rules or
-// are fine; kWh is spelled out in both languages); no other film's spoken text changes
-test('speak variant: the gridbasics intro film words in Dutch', () => {
+// The module intro film "From the grid to hall B" (eng.gridbasics.intro): espeak-ng stresses hoofdzekering on the wrong syllable
+// (hoofdze-KIE-ring), but its tool sentence says "Je leest aan de hoofdzekering af ...", which the rule for "aan de hoofdzekering"
+// above already splits (hoofd-zekering). This test holds the film to that rule; kVA, onderstation, systeemcode and wachtrij are
+// read right, so the film needs no rule of its own
+test('speak variant: the gridbasics intro film says hoofd-zekering in its tool sentence', () => {
   const nl = (s) => speakOf([s], 'nl');
-  assert.equal(nl('Bij het net lees je de hoofdzekering af en volg je de kabel naar het onderstation.'), 'Bij het net lees je de hoofd-zekering af en volg je de kabel naar het onderstation.');
-  // elsewhere the word keeps its voice (the load film's sentence, and the rule for "aan de hoofdzekering")
+  assert.equal(nl('Je leest aan de hoofdzekering af hoeveel stroom de aansluiting aankan.'), 'Je leest aan de hoofd-zekering af hoeveel stroom de aansluiting aankan.');
+  // elsewhere the word keeps its voice (the load film's sentence)
   assert.equal(nl('De hoofdzekering beveiligt de hele aansluiting.'), 'De hoofdzekering beveiligt de hele aansluiting.');
-  assert.equal(nl('Je leest af aan de hoofdzekering.'), 'Je leest af aan de hoofd-zekering.');
-  const en = 'On the grid you read the main fuse and follow the cable to the substation.';
+  const en = 'At the main fuse you read how much current the connection can take.';
   assert.equal(speakOf([en], 'en'), en);
 });
