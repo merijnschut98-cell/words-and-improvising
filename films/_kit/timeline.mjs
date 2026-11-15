@@ -891,7 +891,12 @@ const SAY = {
     // level sentences ("buffertanks, cascaderegeling, standaardiseren", "pinch-analyse en knelpunten"). Batch and unit
     // operations and Coriolismeter have rules above; Pt100, blokschema, apparaatcode, massabalans, proeffabriek, vuleenheid,
     // kolf, ketel and the level words are read right; no other film's spoken text changes
-    [/\bcascaderegeling, standaardiseren\b/g, 'cascade-regeling, standaardiseren'], [/\bpinch-analyse en knelpunten\b/g, 'pintsj-analyse en knelpunten']],
+    [/\bcascaderegeling, standaardiseren\b/g, 'cascade-regeling, standaardiseren'], [/\bpinch-analyse en knelpunten\b/g, 'pintsj-analyse en knelpunten'],
+    // the module intro film "From the grid to hall B" (eng.gridbasics.intro), a self-contained group at the end of the Dutch list,
+    // checked with phonemes through Piper's nl_NL-alex bridge: espeak-ng stresses hoofdzekering on the wrong syllable
+    // (hoofdze-KIE-ring); said hoofd-zekering, only in the intro's tool sentence ("Bij het net lees je de hoofdzekering af").
+    // Omvormer, onderstation, systeemcode, wachtrij and kWh are read right; no other film's spoken text changes
+    [/(?<=\bBij het net lees je de )hoofdzekering\b/g, 'hoofd-zekering']],
   en: [[/\brpm\b/g, 'revolutions per minute'], [/\bmm\/min\b/g, 'millimetres per minute'], [/\bm\/min\b/g, 'metres per minute'], [/µm\b/g, 'micrometres'],
     [/€\s?(\d[\d,]*(?:\.\d+)?)/g, '$1 euros'], [/(\d)\.0(?![\d])/g, '$1'], [/(\d)\s?mm\b/g, '$1 millimetres'], [/(\d)\s?min\b/g, '$1 minutes'], [/(\d)\s?%/g, '$1 percent'],
     [/Ø\s*/g, 'diameter '], [/(\d)\+(\d)/g, '$1 plus $2'], [/\s×\s/g, ' times '], [/\s\/\s/g, ' divided by '], [/\s=\s/g, ' is '], [/°/g, ' degrees'], [/\bRa\b/g, 'R a'], [/’/g, "'"],

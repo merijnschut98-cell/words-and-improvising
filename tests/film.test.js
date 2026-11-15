@@ -1434,3 +1434,18 @@ test('speak variant: the process intro film words in Dutch', () => {
   const en = 'At Expert level it is about start-up losses, less variation, pinch analysis and removing bottlenecks.';
   assert.equal(speakOf([en], 'en'), en);
 });
+
+// The module intro film "From the grid to hall B" (eng.gridbasics.intro), checked with espeak-ng phonemes through Piper's nl
+// bridge: espeak-ng stresses hoofdzekering on the wrong syllable (hoofdze-KIE-ring) in its tool sentence ("Bij het net lees je
+// de hoofdzekering af"); said hoofd-zekering there, which stresses both parts like the rule for "aan de hoofdzekering" above.
+// The rest of its words are read right (omvormer, onderstation, systeemcode, capaciteitskaart and wachtrij have rules or
+// are fine; kWh is spelled out in both languages); no other film's spoken text changes
+test('speak variant: the gridbasics intro film words in Dutch', () => {
+  const nl = (s) => speakOf([s], 'nl');
+  assert.equal(nl('Bij het net lees je de hoofdzekering af en volg je de kabel naar het onderstation.'), 'Bij het net lees je de hoofd-zekering af en volg je de kabel naar het onderstation.');
+  // elsewhere the word keeps its voice (the load film's sentence, and the rule for "aan de hoofdzekering")
+  assert.equal(nl('De hoofdzekering beveiligt de hele aansluiting.'), 'De hoofdzekering beveiligt de hele aansluiting.');
+  assert.equal(nl('Je leest af aan de hoofdzekering.'), 'Je leest af aan de hoofd-zekering.');
+  const en = 'On the grid you read the main fuse and follow the cable to the substation.';
+  assert.equal(speakOf([en], 'en'), en);
+});
