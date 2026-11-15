@@ -97,6 +97,8 @@ assert(MOD.blurb.nl.includes('hoe onderdelen falen') && MOD.blurb.en.includes('h
 has('eng.reliability.mechanisms', ['een onderdeel faalt als de belasting hoger is dan de sterkte', 'Degradatie geeft meestal een waarschuwing', 'een plotselinge overbelasting zie je niet aankomen']);
 has('eng.reliability.mechanisms', ['a part fails when the load on it is higher than its strength', 'Degradation usually gives a warning', 'you cannot measure a sudden overload coming'], 'en');
 has('eng.reliability.weibull', ['Een Weibull-fit, een curve vernoemd naar de Zweedse ingenieur Waloddi Weibull, maakt van die lijst twee getallen']);
+has('eng.reliability.weibull', ['Vormparameter Bèta in een Weibull-fit']);
+has('eng.reliability.weibull', ['Shape parameter Beta in a Weibull fit'], 'en');
 has('eng.reliability.weibull', ['A Weibull fit, a curve named after the Swedish engineer Waloddi Weibull, then turns that list into two numbers'], 'en');
 // s3: criticality is how heavy the failure of a machine weighs, consequence combined with likelihood; the risk matrix is a grid of
 // consequence against likelihood; an FMECA is an FMEA with a criticality rating per failure mode
@@ -334,9 +336,9 @@ const spec = {
       id: 's2', level: 1, dur: DURS[1], still: 0.9, title: { nl: 'Falen en faalpatronen', en: 'Failure and its patterns' },
       beats: [
         { nl: 'Het eerste onderwerp is Falen en faalpatronen. Je kijkt eerst hoe een onderdeel van de unit faalt.', en: 'The first topic is Failure and its patterns. First you look at how a part of the unit fails.', focus: ['tFail', 'failS', 'unit'] },
-        { nl: 'Een onderdeel faalt als de belasting hoger is dan de sterkte.', en: 'A part fails when the load on it is higher than its strength.', focus: ['loadS', 'unit'] },
+        { nl: 'Een handig beeld is dat een onderdeel faalt als de belasting hoger is dan de sterkte.', en: 'A handy picture is that a part fails when the load on it is higher than its strength.', focus: ['loadS', 'unit'] },
         { nl: 'Slijtage geeft meestal een waarschuwing. Een plotselinge overbelasting niet.', en: 'Wear usually gives a warning. A sudden overload does not.', focus: ['warnS', 'unit'] },
-        { nl: 'Het patroon in de storingsdata zie je met een Weibull-fit.', en: 'You see the pattern in the failure data with a Weibull fit.', focus: ['tool1', 'weibS', 'unit'] },
+        { nl: 'Het patroon in de storingsdata lees je af aan de {t:Vormparameter|vormparameter}.', en: 'You read the pattern in the failure data from the {t:Shape parameter|shape parameter}.', ...TOOL('Vormparameter'), focus: ['tool1', 'weibS', 'unit'] },
       ],
     },
     {
@@ -354,7 +356,7 @@ const spec = {
         { nl: 'Het derde onderwerp is RCM en assetstrategie. Je kiest welk onderhoud elk onderdeel echt nodig heeft.', en: 'The third topic is RCM and asset strategy. You choose which maintenance each part really needs.', focus: ['tStrat', 'rcmS', 'unit'] },
         { nl: 'Je begint bij wat de unit moet doen, met een eis erbij.', en: 'You start with what the unit must do, with a standard in it.', focus: ['funcS', 'unit'] },
         { nl: 'Een beveiliging kan uitvallen zonder dat iemand het merkt.', en: 'A protection can fail without anyone noticing.', focus: ['hidS', 'unit'] },
-        { nl: 'Die test je met een {t:Failure-finding-taak|failure-finding-taak}.', en: 'You test it with a {t:Failure-finding task|failure-finding task}.', ...TOOL('Failure-finding-taak'), focus: ['tool1', 'ffS', 'unit'] },
+        { nl: 'Daarvoor plan je een {t:Failure-finding-taak|failure-finding-taak}.', en: 'For that you schedule a {t:Failure-finding task|failure-finding task}.', ...TOOL('Failure-finding-taak'), focus: ['tool1', 'ffS', 'unit'] },
       ],
     },
     {

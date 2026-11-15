@@ -288,7 +288,7 @@ const STAGE = (() => {
     } else if (si >= 1 && si <= 4) {
       title = HEAD[si - 1][0];
       o.r = strip(si - 1);
-      if (si === 1) Object.assign(o, { failS: fade(b, 0, p, failDrawing(), 0.1, 0.5), loadS: fade(b, 1, p, loadDrawing(), 0.1, 0.5), warnS: fade(b, 2, p, warnDrawing(), 0.1, 0.5), weibS: b === 3 ? op(span(p, 0.3, 0.7), weibDrawing()) : '', ...tools(b, p, 3, tr('Weibull-fit', 'Weibull fit', 260)) });
+      if (si === 1) Object.assign(o, { failS: fade(b, 0, p, failDrawing(), 0.1, 0.5), loadS: fade(b, 1, p, loadDrawing(), 0.1, 0.5), warnS: fade(b, 2, p, warnDrawing(), 0.1, 0.5), weibS: b === 3 ? op(span(p, 0.3, 0.7), weibDrawing()) : '', ...tools(b, p, 3, tr('Vormparameter', 'Shape parameter', 260)) });
       if (si === 2) Object.assign(o, { partsS: fade(b, 0, p, partsDrawing(), 0.1, 0.5), critS: fade(b, 1, p, critDrawing(), 0.1, 0.5), matS: b === 2 ? op(span(p, 0.3, 0.7), matDrawing()) : '', markS: fade(b, 3, p, markDrawing(), 0.1, 0.5), ...tools(b, p, 2, tr('Risicomatrix', 'Risk matrix', 260), 'FMECA') });
       if (si === 3) Object.assign(o, { rcmS: fade(b, 0, p, rcmDrawing(), 0.1, 0.5), funcS: fade(b, 1, p, funcDrawing(), 0.1, 0.5), hidS: fade(b, 2, p, hidDrawing(), 0.1, 0.5), ffS: b === 3 ? op(span(p, 0.3, 0.7), ffDrawing()) : '', ...tools(b, p, 3, tr('Failure-finding-taak', 'Failure-finding task', 260)) });
       if (si === 4) Object.assign(o, { dataS: fade(b, 0, p, dataDrawing(), 0.1, 0.5), countS: fade(b, 1, p, countDrawing(), 0.1, 0.5), waitS: fade(b, 2, p, waitDrawing(), 0.1, 0.5), opS: b === 3 ? op(span(p, 0.3, 0.7), opDrawing()) : '', endS: fade(b, 4, p, endDrawing(), 0.1, 0.5), ...tools(b, p, 3, [tr('Operationele', 'Operational', 260), tr('beschikbaarheid', 'availability', 260)]) });
