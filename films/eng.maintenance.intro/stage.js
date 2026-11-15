@@ -221,7 +221,9 @@ const STAGE = (() => {
   // the first level of the first topic.
   const MAP0 = { s: H / MAPSZ[1], x: (W - MAPSZ[0] * H / MAPSZ[1]) / 2, y: 0 };
   // the zoom on the lit place stays inside the sheet (no empty strip beside the map)
-  const MAP1 = { s: 1.5, x: clamp(320 - MAPZ[0] * 1.5, W - MAPSZ[0] * 1.5, 0), y: clamp(200 - MAPZ[1] * 1.5, H - MAPSZ[1] * 1.5, 0) };
+  // Maintenance is on the second row of its zone: the sheet's top edge stays at the stage's top (y 0), so the zone's name, which
+  // the beat says ("in De fabriek draaiend houden"), is on screen above the place and the place stays whole below it
+  const MAP1 = { s: 1.5, x: clamp(320 - MAPZ[0] * 1.5, W - MAPSZ[0] * 1.5, 0), y: 0 };
   function mapPlace(b, p) {
     const z = b === 0 ? span(p, 0.35, 1) : 1;
     const s = lerp(MAP0.s, MAP1.s, z);
