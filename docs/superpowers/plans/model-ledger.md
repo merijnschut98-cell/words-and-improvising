@@ -100,3 +100,5 @@ Outcome: accepted (merged as delivered), sent back N times, redone.
 | 15 Nov | Review module intro pm.portfolio.intro | sonnet | n/a | n/a | n/a | accepted with fixes (Werkkennis tools moved to the grid, Basis tools in scenes, a causal error fixed); merged v295 |
 | 15 Nov | Build module intro pm.consult.intro (Task 11) | sonnet | 121 | 15 min | 330,894 | accepted with fixes by its review |
 | 15 Nov | Review module intro pm.consult.intro | sonnet | 72 | 9 min | 231,228 | accepted with fixes (client problem aligned with portfolio intro, two non-tools replaced, a SAY rule made unneeded); merged v296 |
+| 15 Nov | Task 19 step 1: level opener texts (528) | sonnet | 43 | 14 min | 270,606 | accepted with fixes by its review |
+| 15 Nov | Review: level opener texts | sonnet | n/a | n/a | n/a | accepted with fixes (68 content or term fixes, all openings varied); found that node validate.js did nothing from the command line and made it run every check; merged v297 |
