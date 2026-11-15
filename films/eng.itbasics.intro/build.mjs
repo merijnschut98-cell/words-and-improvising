@@ -27,29 +27,29 @@
 //      the order (networks; servers and cloud), two about what keeps the data and how programs talk (databases and SQL;
 //      software and APIs)                                                      → eng.itbasics.ipaddress
 //   s2 Netwerken: every device has an IP address, like a house number; the unit hangs on the network cabinet by a cable
-//      and the MES is in another network; you use a router and a firewall (Basis, .ipaddress; Werkkennis, .vlan). The
-//      field film's tools (switch and VLAN) are not named again: the cabinet and its cable are drawn and said, the
-//      two tools of this film are the router that carries the order across and the firewall that lets it through
+//      and the MES is in another network; one tool, the router that carries the order across (Basis, .ipaddress). The
+//      field film's tools (switch and VLAN) are not named again, and the firewall (Werkkennis, .vlan) is left to the
+//      cyber module (guarded link, zones), which gets an intro of its own
 //   s3 Servers en cloud: the MES on the laptop runs on a server; a server is a computer that provides services; it is at
-//      the company itself or rented in the cloud; you put the MES in a virtual machine with a hypervisor (Basis,
-//      .server). Werkkennis (.saas: IaaS, PaaS, SaaS, shared responsibility, latency, edge) holds no tool a person uses
-//      (service models, a split of duties, a delay) and edge is the field film's edge gateway of another module, so
-//      this topic names one tool
-//   s4 Databases en SQL: the MES keeps orders and counts in a database, in tables of rows and columns; the order number
-//      is the primary key and with a query you read what is in it (Basis, .tables; Werkkennis, .sql). The Basis
-//      lesson holds no device or document either: the primary key is the most tool-like term (a column you choose and
-//      a person reads)
+//      the company itself or rented in the cloud; the MES often runs in a virtual machine of its own (Basis, .server:
+//      "one powerful server might run ten VMs: MES ..."; the hypervisor that arranges them is IT's, not a tool a
+//      consultant uses). Werkkennis (.saas: IaaS, PaaS, SaaS, shared responsibility, latency, edge) holds no tool a
+//      person uses and edge is the field film's edge gateway of another module, so this topic names one tool
+//   s4 Databases en SQL: the MES keeps orders and counts in a database, in tables of rows and columns; with a query you
+//      read which orders are in it (Werkkennis, .sql: something you write and run, a better tool than the primary key,
+//      which is a column of the Basis lesson and not something a person uses; the Werkkennis grid beat says "gegevens
+//      filteren", not the query)
 //   s5 Software en API’s: the laptop is the client and asks, the server answers; the ERP sends the order to the MES
-//      through an API; you open the MES as a web application and read the order in JSON (Basis, .clientserver;
-//      Werkkennis, .api); the story ends where the field film picks it up (the order finds the unit, then you connect
-//      it step by step), in the last topic scene
+//      through an API; you usually open the MES as a web application in the browser (Basis, .clientserver; JSON, the
+//      Werkkennis term of .api, is a format and stays in the lesson); the story ends where the field film picks it up
+//      (the order finds the unit, then you connect it step by step), in the last topic scene
 //   s6 the shared Engineering map (the kit's mapScene) with IT-fundamenten lit, then the module's four topics with their
 //      levels as columns, where to start, and what each later level adds, in the app's level words
 // Per the review of eng.machining.intro: how the topics hang together is said once, in s1, before any detail; a topic
 // scene is short (what it is, its place in the story with a reason, then the tool sentence); the tools are real things
-// of the topic at Basis or Working knowledge level, one short sentence each, not explained; a Werkkennis tool named in a
-// scene is not named again in the closing grid (it says poorten, the forms of cloud, SQL and interfaces, not the
-// firewall, the VLAN or the query); the closing grid has one beat per later level in the app's level words; the people
+// of the topic at Basis or Working knowledge level, one per topic, not explained; a Werkkennis tool named in a
+// scene is not named again in the closing grid (it says poorten, the forms of cloud, filtering data and interfaces, not
+// the query); the closing grid has one beat per later level in the app's level words; the people
 // are plant people (you); the story ends where the field film picks it up, in the last topic scene.
 // Definitions as the Basis lessons word them (eng.itbasics.ipaddress, .server, .tables, .clientserver). Terms come from
 // the module's lessons and {n:} numbers from the module's text (the kit's intro mode, films/_kit/build-film.mjs); the
@@ -101,34 +101,32 @@ const has = (id, list, lang = 'nl') => { const l = lessons[lang].get(id); const 
 // s1: the blurb of the module (what it is for); the first lesson's address, like a house number
 assert(MOD.blurb.nl.includes('genoeg om met IT te praten over MES, ERP en het fabrieksnetwerk'), 'the module blurb (nl) says what it is for');
 assert(MOD.blurb.en.includes('enough to talk with IT about MES, ERP and the plant network'), 'the module blurb (en) says what it is for');
-// s2: an address like a house number; the network cabinet; a router connects subnets; a firewall lets traffic through by rules
+// s2: an address like a house number; the network cabinet; a router connects subnets
 has('eng.itbasics.ipaddress', ['Elk apparaat op een netwerk heeft een IP-adres', 'Het werkt als een huisnummer', 'een netwerkkast met knipperende switches', 'Een subnet is een blok adressen dat bij elkaar hoort', 'Een router verbindt subnetten met elkaar en met internet', 'Router Apparaat dat verkeer tussen subnetten']);
 has('eng.itbasics.ipaddress', ['Every device on a network has an IP address', 'It works like a house number', 'a network cabinet with blinking switches', 'A subnet is a block of addresses that belong together', 'A router connects subnets to each other and to the internet', 'Router Device that forwards traffic between subnets'], 'en');
-has('eng.itbasics.vlan', ['Een firewall is een apparaat dat verkeer tussen netwerken tegenhoudt of doorlaat, volgens regels', 'Firewall Apparaat dat verkeer tussen netwerken doorlaat of tegenhoudt volgens regels']);
-has('eng.itbasics.vlan', ['A firewall is a device that blocks or passes traffic between networks, according to rules', 'Firewall Device that passes or blocks traffic between networks according to rules'], 'en');
-// s3: a server provides services (a MES among them); on-prem or the cloud, rented; a hypervisor arranges virtual machines, one server runs the MES among others
-has('eng.itbasics.server', ['Een server is een computer die diensten levert aan andere computers: een database, een website, een MES', 'de server staat bij het bedrijf zelf', 'De cloud is rekenkracht en opslag die je huurt in de datacenters van een aanbieder', 'De hypervisor is de software die dat regelt', 'Zo draait één krachtige server bijvoorbeeld tien VM’s: MES']);
-has('eng.itbasics.server', ['A server is a computer that provides services to other computers: a database, a website, an MES', 'the server is at the company itself', 'The cloud is computing power and storage you rent in a provider’s data centres', 'The hypervisor is the software that arranges this', 'So one powerful server might run ten VMs: MES'], 'en');
-// s4: the MES has a database; a table's rows and columns; the primary key makes each row unique, such as an order number; a query is one question
-has('eng.itbasics.tables', ['Achter bijna elk MES, ERP en historian zit er een', 'Elke rij is één ding: één order', 'Elke kolom is één eigenschap van dat ding: ordernummer', 'Een primaire sleutel (primary key) is de kolom die elke rij uniek maakt, zoals een machinenummer of ordernummer']);
-has('eng.itbasics.tables', ['Behind almost every MES, ERP and historian there is one', 'Each row is one thing: one order', 'Each column is one property of that thing: order number', 'A primary key is the column that makes each row unique, such as a machine number or order number'], 'en');
+// s3: a server provides services (a MES among them); on-prem or the cloud, rented; a virtual machine is a computer in software, one server runs the MES among others
+has('eng.itbasics.server', ['Een server is een computer die diensten levert aan andere computers: een database, een website, een MES', 'de server staat bij het bedrijf zelf', 'De cloud is rekenkracht en opslag die je huurt in de datacenters van een aanbieder', 'Virtuele machine Een computer in software', 'Zo draait één krachtige server bijvoorbeeld tien VM’s: MES']);
+has('eng.itbasics.server', ['A server is a computer that provides services to other computers: a database, a website, an MES', 'the server is at the company itself', 'The cloud is computing power and storage you rent in a provider’s data centres', 'Virtual machine A computer in software', 'So one powerful server might run ten VMs: MES'], 'en');
+// s4: the MES has a database; a table's rows and columns; a query is one question, read in SQL
+has('eng.itbasics.tables', ['Achter bijna elk MES, ERP en historian zit er een', 'Elke rij is één ding: één order', 'Elke kolom is één eigenschap van dat ding: ordernummer']);
+has('eng.itbasics.tables', ['Behind almost every MES, ERP and historian there is one', 'Each row is one thing: one order', 'Each column is one property of that thing: order number'], 'en');
 has('eng.itbasics.sql', ['Een query is één vraag aan de database', 'een query kunnen lezen helpt enorm']);
 has('eng.itbasics.sql', ['A query is one question to the database', 'being able to read a query helps enormously'], 'en');
-// s5: client and server; a web application in the browser; an API is the agreed way programs talk, between ERP and MES; JSON is the content
+// s5: client and server; a web application in the browser; an API is the agreed way programs talk, between ERP and MES
 has('eng.itbasics.clientserver', ['De client is het programma of apparaat waar de gebruiker mee werkt', 'De client stuurt een verzoek; de server doet het werk en stuurt een antwoord terug', 'Een webapplicatie is software die je via de browser gebruikt', 'De meeste moderne MES- en kwaliteitssystemen werken zo']);
 has('eng.itbasics.clientserver', ['The client is the program or device the user works with', 'The client sends a request; the server does the work and sends an answer back', 'A web application is software you use through the browser', 'Most modern MES and quality systems work like that'], 'en');
-has('eng.itbasics.api', ['Een API (application programming interface) is de afgesproken manier waarop een programma met een ander programma praat', 'bijvoorbeeld ERP en MES', 'De inhoud is meestal JSON', 'Wie een JSON-bericht kan lezen']);
-has('eng.itbasics.api', ['An API (application programming interface) is the agreed way one program talks to another', 'for example ERP and MES', 'The content is usually JSON', 'Anyone who can read a JSON message'], 'en');
+has('eng.itbasics.api', ['Een API (application programming interface) is de afgesproken manier waarop een programma met een ander programma praat', 'bijvoorbeeld ERP en MES']);
+has('eng.itbasics.api', ['An API (application programming interface) is the agreed way one program talks to another', 'for example ERP and MES'], 'en');
 has('eng.itbasics.api', ['ERP naar MES: productieorders']);
 has('eng.itbasics.api', ['ERP to MES: production orders'], 'en');
 // s6: the first lesson shows how a message finds its device (where to start)
 has('eng.itbasics.ipaddress', ['berichten (packets) worden naar dat adres gestuurd']);
 has('eng.itbasics.ipaddress', ['messages, called packets, are sent to that address'], 'en');
 // s6: the later levels, as the lessons are titled (the closing names what each adds, without the Werkkennis tools)
-for (const [id, word] of [['eng.itbasics.vlan', 'poorten'], ['eng.itbasics.saas', 'IaaS, PaaS en SaaS'], ['eng.itbasics.sql', 'SQL'], ['eng.itbasics.api', 'koppelingen'],
+for (const [id, word] of [['eng.itbasics.vlan', 'poorten'], ['eng.itbasics.saas', 'IaaS, PaaS en SaaS'], ['eng.itbasics.sql', 'WHERE'], ['eng.itbasics.api', 'koppelingen'],
   ['eng.itbasics.segment', 'OT-netwerk'], ['eng.itbasics.backup', 'Back-ups'], ['eng.itbasics.reports', 'rapporten'], ['eng.itbasics.integration', 'Koppelingen die breken'],
   ['eng.itbasics.netdesign', 'netwerk beoordelen'], ['eng.itbasics.availability', 'uitval'], ['eng.itbasics.datamodel', 'Dubbeltellingen'], ['eng.itbasics.releases', 'updates']]) has(id, [word]);
-for (const [id, word] of [['eng.itbasics.vlan', 'ports'], ['eng.itbasics.saas', 'IaaS, PaaS and SaaS'], ['eng.itbasics.sql', 'SQL'], ['eng.itbasics.api', 'interfaces'],
+for (const [id, word] of [['eng.itbasics.vlan', 'ports'], ['eng.itbasics.saas', 'IaaS, PaaS and SaaS'], ['eng.itbasics.sql', 'WHERE'], ['eng.itbasics.api', 'interfaces'],
   ['eng.itbasics.segment', 'OT network'], ['eng.itbasics.backup', 'Backups'], ['eng.itbasics.reports', 'reports'], ['eng.itbasics.integration', 'Interfaces that break'],
   ['eng.itbasics.netdesign', 'Judging a plant network'], ['eng.itbasics.availability', 'outage'], ['eng.itbasics.datamodel', 'Double counting'], ['eng.itbasics.releases', 'updates']]) has(id, [word], 'en');
 // s6: the level words are the app's. The grid (stage.js, grid) has four level columns of GRID.col units from
@@ -199,7 +197,7 @@ const world = [
   cueG('unit', frame + plate + cover),
   g('o-net', cueG('netcab', netcab) + cueG('cable', cables)),
   cueG('mes', w.table(TABLE) + w.laptop({ x: TABLE.x + TABLE.w / 2, y: TABLE.y + TABLE.d / 2, z: TABLE.h, toward: 1 })),
-  g('pp-jij', person('jij', 150, 150, 'x')),
+  g('pp-jij', person('jij', 262, 128, 'x')),
 ].join('');
 
 // ---------------------------------------------------------------- the panel (stage space)
@@ -313,7 +311,7 @@ const spec = {
       beats: [
         { nl: 'Het eerste onderwerp is Netwerken. Elk apparaat heeft een IP-adres, als een huisnummer.', en: 'The first topic is Networks. Every device has an IP address, like a house number.', focus: ['tNet', 'addrS', 'unit'] },
         { nl: 'De eenheid hangt met een kabel aan de netwerkkast. Het MES zit in een ander netwerk.', en: 'The unit hangs on the network cabinet by a cable. The MES is in another network.', focus: ['netS', 'netcab', 'cable'] },
-        { nl: 'Een {t:Router|router} brengt de order naar het netwerk van de eenheid. Een {t:Firewall|firewall} laat hem volgens regels door.', en: 'A {t:Router|router} carries the order to the unit’s network. A {t:Firewall|firewall} lets it through by rules.', ...TOOL('Router', 'Firewall'), focus: ['tool1', 'tool2', 'cable'] },
+        { nl: 'Een {t:Router|router} brengt de order van het ene netwerk naar het andere.', en: 'A {t:Router|router} carries the order from one network to the other.', ...TOOL('Router'), focus: ['tool1', 'tool2', 'cable'] },
       ],
     },
     {
@@ -321,7 +319,7 @@ const spec = {
       beats: [
         { nl: 'Het tweede onderwerp is Servers en cloud. Het MES op de laptop draait op een server.', en: 'The second topic is Servers and cloud. The MES on the laptop runs on a server.', focus: ['tCloud', 'svS', 'mes'] },
         { nl: 'Een server is een computer die diensten levert. Hij staat bij het bedrijf zelf of je huurt hem in de cloud.', en: 'A server is a computer that provides services. It stands at the company itself or you rent it in the cloud.', focus: ['hostS'] },
-        { nl: 'Je zet het MES met een {t:Hypervisor|hypervisor} in een eigen virtuele machine.', en: 'You put the MES in a virtual machine of its own with a {t:Hypervisor|hypervisor}.', ...TOOL('Hypervisor'), focus: ['tool1', 'mes'] },
+        { nl: 'Het MES draait vaak in een eigen {t:Virtuele machine|virtuele machine} op die server.', en: 'The MES often runs in a {t:Virtual machine|virtual machine} of its own on that server.', ...TOOL('Virtuele machine'), focus: ['tool1', 'mes'] },
       ],
     },
     {
@@ -329,7 +327,7 @@ const spec = {
       beats: [
         { nl: 'Het derde onderwerp is Databases en SQL. Het MES bewaart orders en tellingen in een database.', en: 'The third topic is Databases and SQL. The MES keeps orders and counts in a database.', focus: ['tDb', 'dbS', 'mes'] },
         { nl: 'De gegevens staan in tabellen. Elke rij is één order en elke kolom is één eigenschap.', en: 'The data sits in tables. Each row is one order and each column is one property.', focus: ['tabS'] },
-        { nl: 'Het ordernummer is de {t:Primaire sleutel|primaire sleutel}. Met een {t:Query|query} lees je wat erin staat.', en: 'The order number is the {t:Primary key|primary key}. With a {t:Query|query} you read what is in it.', ...TOOL('Primaire sleutel', 'Query'), focus: ['tool1', 'tool2', 'mes'] },
+        { nl: 'Met een {t:Query|query} lees je welke orders erin staan.', en: 'With a {t:Query|query} you read which orders are in it.', ...TOOL('Query'), focus: ['tool1', 'tool2', 'mes'] },
       ],
     },
     {
@@ -337,7 +335,7 @@ const spec = {
       beats: [
         { nl: 'Het vierde onderwerp is Software en API’s. De laptop is de client en vraagt, de server antwoordt.', en: 'The fourth topic is Software and APIs. The laptop is the client and asks, the server answers.', focus: ['tSoft', 'csS', 'mes'] },
         { nl: 'De order komt uit het ERP. Een API is de afgesproken manier waarop programma’s met elkaar praten.', en: 'The order comes from the ERP. An API is the agreed way programs talk to each other.', focus: ['apiS'] },
-        { nl: 'Je opent het MES als {t:Webapplicatie|webapplicatie} en leest de order in {t:JSON|JSON}.', en: 'You open the MES as a {t:Web application|web application} and read the order in {t:JSON|JSON}.', ...TOOL('Webapplicatie', 'JSON'), focus: ['tool1', 'tool2', 'mes'] },
+        { nl: 'Meestal open je het MES als {t:Webapplicatie|webapplicatie} in de browser.', en: 'You usually open the MES as a {t:Web application|web application} in the browser.', ...TOOL('Webapplicatie'), focus: ['tool1', 'tool2', 'mes'] },
         { nl: 'Zo vindt de order de eenheid. Dan sluit jij hem stap voor stap aan.', en: 'So the order finds the unit. Then you connect it step by step.', focus: ['apiS', 'unit', 'jij'] },
       ],
     },
@@ -347,7 +345,7 @@ const spec = {
         { nl: 'De hele kaart. IT-fundamenten is het eerste station van Automatisering en IT.', en: 'The whole map. IT fundamentals is the first station of Automation and IT.', focus: 'map-itbasics' },
         { nl: 'Elk onderwerp heeft vier niveaus.', en: 'Every topic has four levels.', focus: 'route' },
         { nl: 'Begin bij IP-adressen, LAN en DNS op niveau Basis. Die les laat zien hoe berichten hun apparaat vinden.', en: 'Start with IP addresses, LAN and DNS at Basics level. That lesson shows how messages find their device.', focus: ['tNet', 'start'] },
-        { nl: 'Op niveau Werkkennis komen poorten, de vormen van cloud, SQL lezen en koppelingen.', en: 'At Working knowledge level come ports, the forms of cloud, reading SQL and interfaces.', focus: 'lv2' },
+        { nl: 'Op niveau Werkkennis komen poorten, de vormen van cloud, gegevens filteren en koppelingen.', en: 'At Working knowledge level come ports, the forms of cloud, filtering data and interfaces.', focus: 'lv2' },
         { nl: 'Op niveau Gevorderd komen het OT-netwerk, back-ups, rapporten die verschillen en koppelingen die breken.', en: 'At Advanced level come the OT network, backups, reports that disagree and interfaces that break.', focus: 'lv3' },
         { nl: 'Op niveau Expert gaat het om een netwerk beoordelen, wat uitval kost, dubbeltellingen en updates.', en: 'At Expert level it is about judging a network, what an outage costs, double counting and updates.', focus: 'lv4' },
         { nl: 'Elke les en elke film van deze module heeft een plek op deze kaart.', en: 'Every lesson and every film in this module has a place on this map.', focus: null },
@@ -377,37 +375,37 @@ const SAY = [
     { nl: 'Daarna waar orders en tellingen blijven en hoe programma’s met elkaar praten.',
       en: 'Then where orders and counts are kept and how programs talk to each other.' },
   ],
-  [ // s2 networks: the address, the cabinet and the other network, the router and the firewall
+  [ // s2 networks: the address, the cabinet and the other network, the router
     { nl: 'Het eerste onderwerp is Netwerken. Elk apparaat heeft een IP-adres, als een huisnummer.',
       en: 'The first topic is Networks. Every device has an IP address, like a house number.' },
     { nl: 'De eenheid hangt met een kabel aan de netwerkkast. Het MES zit in een ander netwerk.',
       en: 'The unit hangs on the network cabinet by a cable. The MES is in another network.' },
-    { nl: 'Een {t:Router|router} brengt de order naar het netwerk van de eenheid. Een {t:Firewall|firewall} laat hem volgens regels door.',
-      en: 'A {t:Router|router} carries the order to the unit’s network. A {t:Firewall|firewall} lets it through by rules.' },
+    { nl: 'Een {t:Router|router} brengt de order van het ene netwerk naar het andere.',
+      en: 'A {t:Router|router} carries the order from one network to the other.' },
   ],
   [ // s3 servers and cloud
     { nl: 'Het tweede onderwerp is Servers en cloud. Het MES op de laptop draait op een server.',
       en: 'The second topic is Servers and cloud. The MES on the laptop runs on a server.' },
     { nl: 'Een server is een computer die diensten levert. Hij staat bij het bedrijf zelf of je huurt hem in de cloud.',
       en: 'A server is a computer that provides services. It stands at the company itself or you rent it in the cloud.' },
-    { nl: 'Je zet het MES met een {t:Hypervisor|hypervisor} in een eigen virtuele machine.',
-      en: 'You put the MES in a virtual machine of its own with a {t:Hypervisor|hypervisor}.' },
+    { nl: 'Het MES draait vaak in een eigen {t:Virtuele machine|virtuele machine} op die server.',
+      en: 'The MES often runs in a {t:Virtual machine|virtual machine} of its own on that server.' },
   ],
   [ // s4 databases and SQL
     { nl: 'Het derde onderwerp is Databases en SQL. Het MES bewaart orders en tellingen in een database.',
       en: 'The third topic is Databases and SQL. The MES keeps orders and counts in a database.' },
     { nl: 'De gegevens staan in tabellen. Elke rij is één order en elke kolom is één eigenschap.',
       en: 'The data sits in tables. Each row is one order and each column is one property.' },
-    { nl: 'Het ordernummer is de {t:Primaire sleutel|primaire sleutel}. Met een {t:Query|query} lees je wat erin staat.',
-      en: 'The order number is the {t:Primary key|primary key}. With a {t:Query|query} you read what is in it.' },
+    { nl: 'Met een {t:Query|query} lees je welke orders erin staan.',
+      en: 'With a {t:Query|query} you read which orders are in it.' },
   ],
   [ // s5 software and APIs, and the story ends where the field film picks it up
     { nl: 'Het vierde onderwerp is Software en API’s. De laptop is de client en vraagt, de server antwoordt.',
       en: 'The fourth topic is Software and APIs. The laptop is the client and asks, the server answers.' },
     { nl: 'De order komt uit het ERP. Een API is de afgesproken manier waarop programma’s met elkaar praten.',
       en: 'The order comes from the ERP. An API is the agreed way programs talk to each other.' },
-    { nl: 'Je opent het MES als {t:Webapplicatie|webapplicatie} en leest de order in {t:JSON|JSON}.',
-      en: 'You open the MES as a {t:Web application|web application} and read the order in {t:JSON|JSON}.' },
+    { nl: 'Meestal open je het MES als {t:Webapplicatie|webapplicatie} in de browser.',
+      en: 'You usually open the MES as a {t:Web application|web application} in the browser.' },
     { nl: 'Zo vindt de order de eenheid. Dan sluit jij hem stap voor stap aan.',
       en: 'So the order finds the unit. Then you connect it step by step.' },
   ],
@@ -418,8 +416,8 @@ const SAY = [
       en: 'Every topic has four levels.' },
     { nl: 'Begin bij IP-adressen, LAN en DNS op niveau Basis. Die les laat zien hoe berichten hun apparaat vinden.',
       en: 'Start with IP addresses, LAN and DNS at Basics level. That lesson shows how messages find their device.' },
-    { nl: 'Op niveau Werkkennis komen poorten, de vormen van cloud, SQL lezen en koppelingen.',
-      en: 'At Working knowledge level come ports, the forms of cloud, reading SQL and interfaces.' },
+    { nl: 'Op niveau Werkkennis komen poorten, de vormen van cloud, gegevens filteren en koppelingen.',
+      en: 'At Working knowledge level come ports, the forms of cloud, filtering data and interfaces.' },
     { nl: 'Op niveau Gevorderd komen het OT-netwerk, back-ups, rapporten die verschillen en koppelingen die breken.',
       en: 'At Advanced level come the OT network, backups, reports that disagree and interfaces that break.' },
     { nl: 'Op niveau Expert gaat het om een netwerk beoordelen, wat uitval kost, dubbeltellingen en updates.',

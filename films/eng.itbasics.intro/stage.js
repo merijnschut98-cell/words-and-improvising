@@ -223,10 +223,10 @@ const STAGE = (() => {
     } else if (si >= 1 && si <= 4) {
       title = [tr('Netwerken', 'Networks', 150), tr('Servers', 'Servers', 150), tr('Databases', 'Databases', 150), tr('Software', 'Software', 150)][si - 1];
       o.r = strip(si - 1);
-      if (si === 1) Object.assign(o, { addrS: fade(b, 0, p, addrDrawing(), 0.1, 0.5), netS: fade(b, 1, p, netDrawing(), 0.1, 0.5), ...tools(b, p, 2, tr('Router', 'Router', 260), tr('Firewall', 'Firewall', 260)) });
-      if (si === 2) Object.assign(o, { svS: fade(b, 0, p, svDrawing(), 0.1, 0.5), hostS: fade(b, 1, p, hostDrawing(), 0.1, 0.5), ...tools(b, p, 2, tr('Hypervisor', 'Hypervisor', 260)) });
-      if (si === 3) Object.assign(o, { dbS: fade(b, 0, p, dbDrawing(), 0.1, 0.5), tabS: fade(b, 1, p, tabDrawing(), 0.1, 0.5), ...tools(b, p, 2, tr('Primaire sleutel', 'Primary key', 260), tr('Query', 'Query', 260)) });
-      if (si === 4) Object.assign(o, { csS: fade(b, 0, p, csDrawing(), 0.1, 0.5), apiS: b === 1 ? op(span(p, 0.1, 0.5), apiDrawing(false)) : b === 3 ? op(span(p, 0.05, 0.4), apiDrawing(true)) : '', ...tools(b, p, 2, tr('Webapplicatie', 'Web application', 260), tr('JSON', 'JSON', 260)) });
+      if (si === 1) Object.assign(o, { addrS: fade(b, 0, p, addrDrawing(), 0.1, 0.5), netS: fade(b, 1, p, netDrawing(), 0.1, 0.5), ...tools(b, p, 2, tr('Router', 'Router', 260)) });
+      if (si === 2) Object.assign(o, { svS: fade(b, 0, p, svDrawing(), 0.1, 0.5), hostS: fade(b, 1, p, hostDrawing(), 0.1, 0.5), ...tools(b, p, 2, tr('Virtuele machine', 'Virtual machine', 260)) });
+      if (si === 3) Object.assign(o, { dbS: fade(b, 0, p, dbDrawing(), 0.1, 0.5), tabS: fade(b, 1, p, tabDrawing(), 0.1, 0.5), ...tools(b, p, 2, tr('Query', 'Query', 260)) });
+      if (si === 4) Object.assign(o, { csS: fade(b, 0, p, csDrawing(), 0.1, 0.5), apiS: b === 1 ? op(span(p, 0.1, 0.5), apiDrawing(false)) : b === 3 ? op(span(p, 0.05, 0.4), apiDrawing(true)) : '', ...tools(b, p, 2, tr('Webapplicatie', 'Web application', 260)) });
     }
     let pbg = 'x="322" y="12" width="308" height="376"';
     if (closing) {

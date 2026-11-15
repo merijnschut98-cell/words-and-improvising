@@ -1485,22 +1485,17 @@ test('speak variant: the fluids intro film words in Dutch', () => {
 });
 
 // The module intro film "The order to line 3" (eng.itbasics.intro), checked with espeak-ng phonemes through Piper's nl bridge: it
-// reads API’s as the word "apis" (said A P I's, only in the topic's own sentence "Software en API’s"), query with a v for the w
-// (said kwiri, only in "Met een query lees je"), JSON as "jsonn" (said dzjee-son, only in "leest de order in JSON") and hypervisor
-// with the Dutch ie (said haiper-vaizer, only in "met een hypervisor"). Router, firewall (the IT/OT rule above), server, cloud,
-// webapplicatie, primaire sleutel, SQL, ERP, MES and the level words are read right; English needs nothing; no other film's spoken
-// text changes
+// reads API’s as the word "apis" (said A P I's, only in the topic's own sentence "Software en API’s") and query with a v for
+// the w and a long vowel (said kwiri, only in "Met een query lees je"). Router, server, virtuele machine, cloud, webapplicatie,
+// SQL, ERP, MES and the level words are read right; English needs nothing; no other film's spoken text changes
 test('speak variant: the IT fundamentals intro film words in Dutch', () => {
   const nl = (s) => speakOf([s], 'nl');
   assert.equal(nl('Het vierde onderwerp is Software en API’s.'), 'Het vierde onderwerp is Software en A P I\'s.');
-  assert.equal(nl('Het ordernummer is de primaire sleutel. Met een query lees je wat erin staat.'), 'Het ordernummer is de primaire sleutel. Met een kwiri lees je wat erin staat.');
-  assert.equal(nl('Je opent het MES als webapplicatie en leest de order in JSON.'), 'Je opent het em ee es als webapplicatie en leest de order in dzjee-son.');
-  assert.equal(nl('Je zet het MES met een hypervisor in een eigen virtuele machine.'), 'Je zet het em ee es met een haiper-vaizer in een eigen virtuele machine.');
+  assert.equal(nl('Met een query lees je welke orders erin staan.'), 'Met een kwiri lees je welke orders erin staan.');
+  assert.equal(nl('Meestal open je het MES als webapplicatie in de browser.'), 'Meestal open je het em ee es als webapplicatie in de browser.');
   // elsewhere the words keep their voice
   assert.equal(nl('De API’s van het ERP zijn open.'), 'De API\'s van het ERP zijn open.');
   assert.equal(nl('Een query is één vraag aan de database.'), 'Een query is één vraag aan de database.');
-  assert.equal(nl('De inhoud is meestal JSON.'), 'De inhoud is meestal JSON.');
-  assert.equal(nl('De hypervisor regelt de virtuele machines.'), 'De hypervisor regelt de virtuele machines.');
-  const en = 'The fourth topic is Software and APIs. With a hypervisor you read the order in JSON with a query.';
+  const en = 'The fourth topic is Software and APIs. With a query you read which orders are in it.';
   assert.equal(speakOf([en], 'en'), en);
 });
