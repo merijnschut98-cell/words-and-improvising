@@ -919,7 +919,16 @@ const SAY = {
     // with a v for the w and a long vowel (said kwiri), each only in the intro's own sentences ("Software en API's", "Met een
     // query lees je"). Router, server, virtual machine, cloud, webapplicatie, SQL, ERP and MES are read right; no other film's
     // spoken text changes
-    [/\bSoftware en API's\b/g, "Software en A P I's"], [/\b([Mm])et een query lees je\b/g, '$1et een kwiri lees je']],
+    [/\bSoftware en API's\b/g, "Software en A P I's"], [/\b([Mm])et een query lees je\b/g, '$1et een kwiri lees je'],
+    // the module intro film "From MES order to a running unit" (eng.ot.intro), a self-contained group at the end of the Dutch list,
+    // checked with phonemes through Piper's nl_NL-alex bridge: espeak-ng reads engineer with the ng of "zingen" (said entsjinier, as
+    // "Jij bent de engineer" above), patcht with the x of "lachen" and patch with the long a of "paats" (said petsjt, petsj and
+    // petsj-venster), and unified namespace as Dutch ("unifit"; said joenifaid nejmspeis), each only in the intro's own sentences ("het
+    // uit, als engineer", "kantoor patcht", "vrijgegeven patch in een patchvenster", "beoordelen, de unified namespace"). PLC, SCADA, MES, ERP,
+    // MQTT, OPC UA, ISA-95, historian, Purdue, productieorder, terugmelding, OPC-server en tags, cloud, governance and the level words are
+    // read right or have rules above; no other film's spoken text changes
+    [/(?<=\bhet uit, als )engineer\b/g, 'entsjinier'], [/(?<=\bkantoor )patcht\b/g, 'petsjt'],
+    [/\bvrijgegeven patch in een patchvenster\b/g, 'vrijgegeven petsj in een petsj-venster'], [/(?<=\bbeoordelen, de )unified namespace\b/g, 'joenifaid nejmspeis']],
   en: [[/\brpm\b/g, 'revolutions per minute'], [/\bmm\/min\b/g, 'millimetres per minute'], [/\bm\/min\b/g, 'metres per minute'], [/µm\b/g, 'micrometres'],
     [/€\s?(\d[\d,]*(?:\.\d+)?)/g, '$1 euros'], [/(\d)\.0(?![\d])/g, '$1'], [/(\d)\s?mm\b/g, '$1 millimetres'], [/(\d)\s?min\b/g, '$1 minutes'], [/(\d)\s?%/g, '$1 percent'],
     [/Ø\s*/g, 'diameter '], [/(\d)\+(\d)/g, '$1 plus $2'], [/\s×\s/g, ' times '], [/\s\/\s/g, ' divided by '], [/\s=\s/g, ' is '], [/°/g, ' degrees'], [/\bRa\b/g, 'R a'], [/’/g, "'"],
