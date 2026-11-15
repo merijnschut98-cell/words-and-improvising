@@ -1,0 +1,177 @@
+WEBVTT
+
+1
+00:00:00.847 --> 00:00:04.214
+In hall B the power comes through the wall into a cabinet.
+
+2
+00:00:05.045 --> 00:00:08.133
+Then transformer and switchboard feed line 3.
+
+3
+00:00:09.093 --> 00:00:11.032
+The cabinet is part of switchgear.
+
+4
+00:00:11.760 --> 00:00:15.231
+It switches, protects and isolates parts of the grid.
+
+5
+00:00:16.289 --> 00:00:18.065
+Four topics follow the cabinet.
+
+6
+00:00:18.800 --> 00:00:22.283
+First the devices and the installation they form together.
+
+7
+00:00:23.367 --> 00:00:27.233
+Then what protects when a fault happens and how you switch safely.
+
+8
+00:00:28.507 --> 00:00:30.783
+The first topic is Switching devices.
+
+9
+00:00:31.493 --> 00:00:35.382
+For every device you ask what it can switch on and what it can break.
+
+10
+00:00:36.431 --> 00:00:40.506
+A short circuit hits much harder than the normal current to line 3.
+
+11
+00:00:41.177 --> 00:00:43.987
+So breaking it is a heavier job than switching on.
+
+12
+00:00:44.968 --> 00:00:49.183
+So you look at the difference between a circuit breaker and a load-break switch.
+
+13
+00:00:50.496 --> 00:00:54.281
+The second topic is MV installations and stations.
+
+14
+00:00:55.042 --> 00:00:59.733
+An installation is a row of steel cabinets, and each cabinet is a panel.
+
+15
+00:01:00.740 --> 00:01:03.770
+With air between the parts an installation is big.
+
+16
+00:01:04.509 --> 00:01:07.806
+With gas in a sealed tank it becomes much more compact.
+
+17
+00:01:08.834 --> 00:01:14.465
+In a secondary substation the MV part is usually an RMU, one compact block.
+
+18
+00:01:15.818 --> 00:01:18.779
+The third topic is Protection and short circuits.
+
+19
+00:01:19.468 --> 00:01:22.254
+Suppose a short circuit happens at line 3.
+
+20
+00:01:23.004 --> 00:01:25.012
+Then the current must stop fast.
+
+21
+00:01:26.091 --> 00:01:29.539
+A protection measures the current and compares it with a setting.
+
+22
+00:01:30.283 --> 00:01:32.094
+At a fault the breaker opens.
+
+23
+00:01:33.108 --> 00:01:36.603
+A wrong setting makes the breaker open too often, or never.
+
+24
+00:01:37.600 --> 00:01:41.675
+So the installer tests the protection relay and records the setting.
+
+25
+00:01:42.975 --> 00:01:45.100
+The fourth topic is Switching safely.
+
+26
+00:01:45.822 --> 00:01:50.478
+Work on the cabinet is mostly done dead, so switched off and made safe.
+
+27
+00:01:51.595 --> 00:01:55.089
+The five safety rules apply, always in the same order.
+
+28
+00:01:55.803 --> 00:01:57.812
+Each rule stops a real failure.
+
+29
+00:01:58.831 --> 00:02:01.803
+Only an appointed installer works on the cabinet.
+
+30
+00:02:02.563 --> 00:02:04.397
+You go along and touch nothing.
+
+31
+00:02:05.523 --> 00:02:09.935
+The installer tests with a voltage detector and places an earthing set.
+
+32
+00:02:11.065 --> 00:02:13.979
+Then the installer works safely on the cabinet.
+
+33
+00:02:15.317 --> 00:02:16.106
+The whole map.
+
+34
+00:02:16.834 --> 00:02:20.979
+Switchgear and protection is the second station of Energy and the grid.
+
+35
+00:02:22.006 --> 00:02:23.736
+Every topic has four levels.
+
+36
+00:02:24.744 --> 00:02:28.053
+Start with the lesson on circuit breakers at Basics level.
+
+37
+00:02:28.750 --> 00:02:30.933
+It shows what each device can break.
+
+38
+00:02:32.005 --> 00:02:34.420
+At Working knowledge level come the nameplate,
+
+39
+00:02:34.582 --> 00:02:38.088
+distribution automation, selectivity and proving dead.
+
+40
+00:02:39.113 --> 00:02:41.470
+At Advanced level come putting out the arc,
+
+41
+00:02:41.621 --> 00:02:45.742
+busbars, calculating short-circuit current and who may switch.
+
+42
+00:02:46.778 --> 00:02:49.808
+At Expert level it is about too high a fault level,
+
+43
+00:02:49.912 --> 00:02:54.080
+SF6, solar parks and the customer’s own MV installation.
+
+44
+00:02:55.096 --> 00:02:59.276
+Every lesson and every film in this module has a place on this map.

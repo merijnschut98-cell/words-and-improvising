@@ -1,0 +1,189 @@
+WEBVTT
+
+1
+00:00:00.856 --> 00:00:03.108
+In hal B komt de stroom door de wand in een kast.
+
+2
+00:00:03.796 --> 00:00:06.919
+Via transformator en schakelbord gaat hij naar lijn 3.
+
+3
+00:00:07.898 --> 00:00:09.930
+De kast hoort bij een schakelinstallatie.
+
+4
+00:00:10.649 --> 00:00:13.691
+Die schakelt, beveiligt en scheidt delen van het net.
+
+5
+00:00:14.686 --> 00:00:16.428
+Vier onderwerpen volgen de kast.
+
+6
+00:00:17.151 --> 00:00:20.135
+Eerst de apparaten en de installatie die ze samen vormen.
+
+7
+00:00:21.197 --> 00:00:24.216
+Daarna wat beveiligt bij een fout en hoe je veilig schakelt.
+
+8
+00:00:25.561 --> 00:00:27.686
+Het eerste onderwerp is Schakelapparaten.
+
+9
+00:00:28.406 --> 00:00:32.168
+Bij elk apparaat vraag je wat het kan inschakelen en wat het kan onderbreken.
+
+10
+00:00:33.190 --> 00:00:36.487
+Een kortsluiting komt veel harder aan dan de normale stroom naar lijn 3.
+
+11
+00:00:37.196 --> 00:00:39.959
+Onderbreken is dus een zwaardere klus dan inschakelen.
+
+12
+00:00:40.961 --> 00:00:43.760
+Daarom let je op het verschil tussen een vermogensschakelaar (circuit breaker)
+
+13
+00:00:43.841 --> 00:00:44.653
+en een lastscheider (load-break switch).
+
+14
+00:00:45.873 --> 00:00:49.017
+Het tweede onderwerp is MS-installaties en stations.
+
+15
+00:00:49.774 --> 00:00:53.733
+Een installatie is een rij stalen kasten, en elke kast is een veld.
+
+16
+00:00:54.778 --> 00:00:57.274
+Met lucht tussen de delen is een installatie groot.
+
+17
+00:00:58.040 --> 00:01:00.513
+Met gas in een gesloten tank wordt hij veel compacter.
+
+18
+00:01:01.501 --> 00:01:05.240
+In een netstation is het MS-deel meestal een RMU, één compact blok.
+
+19
+00:01:06.478 --> 00:01:09.230
+Het derde onderwerp is Beveiliging en kortsluiting.
+
+20
+00:01:09.953 --> 00:01:12.217
+Stel dat er bij lijn 3 een kortsluiting komt.
+
+21
+00:01:12.909 --> 00:01:14.209
+Dan moet de stroom snel stoppen.
+
+22
+00:01:15.227 --> 00:01:18.246
+Een beveiliging meet de stroom en vergelijkt die met een instelling.
+
+23
+00:01:18.941 --> 00:01:20.578
+Bij een fout opent de schakelaar.
+
+24
+00:01:21.581 --> 00:01:25.250
+Een verkeerde instelling laat de schakelaar te vaak openen, of nooit.
+
+25
+00:01:26.332 --> 00:01:28.944
+Daarom test de installateur het beveiligingsrelais (protection relay)
+
+26
+00:01:28.979 --> 00:01:30.430
+en legt de instelling vast.
+
+27
+00:01:31.683 --> 00:01:33.947
+Het vierde onderwerp is Veilig schakelen.
+
+28
+00:01:34.623 --> 00:01:39.499
+Werk aan de kast gebeurt meestal spanningsloos, dus uitgeschakeld en veilig gemaakt.
+
+29
+00:01:40.583 --> 00:01:44.959
+Daarvoor gelden de vijf veiligheidsregels, altijd in dezelfde volgorde.
+
+30
+00:01:45.667 --> 00:01:47.385
+Elke regel stopt een echte fout.
+
+31
+00:01:48.449 --> 00:01:50.887
+Alleen een aangewezen installateur werkt aan de kast.
+
+32
+00:01:51.597 --> 00:01:53.304
+Jij gaat mee en raakt niets aan.
+
+33
+00:01:54.283 --> 00:01:56.419
+De installateur meet met een spanningzoeker (voltage detector)
+
+34
+00:01:56.465 --> 00:01:57.928
+en plaatst een aardgarnituur (earthing set).
+
+35
+00:01:58.939 --> 00:02:01.087
+Dan werkt de installateur veilig aan de kast.
+
+36
+00:02:02.393 --> 00:02:03.113
+De hele kaart.
+
+37
+00:02:03.854 --> 00:02:08.289
+Schakelinstallaties en beveiliging is het tweede station van Energie en het net.
+
+38
+00:02:09.357 --> 00:02:10.971
+Elk onderwerp heeft vier niveaus.
+
+39
+00:02:12.041 --> 00:02:15.420
+Begin bij de les over vermogensschakelaars op niveau Basis.
+
+40
+00:02:16.205 --> 00:02:18.608
+Die laat zien wat elk apparaat kan onderbreken.
+
+41
+00:02:19.642 --> 00:02:21.929
+Op niveau Werkkennis komen de typeplaat,
+
+42
+00:02:22.219 --> 00:02:26.689
+distributieautomatisering, selectiviteit en spanningsloos aantonen.
+
+43
+00:02:27.704 --> 00:02:30.154
+Op niveau Gevorderd komen het doven van de boog,
+
+44
+00:02:30.479 --> 00:02:33.858
+rails, kortsluitstroom berekenen en wie mag schakelen.
+
+45
+00:02:34.870 --> 00:02:37.993
+Op niveau Expert gaat het om te hoog kortsluitvermogen,
+
+46
+00:02:38.318 --> 00:02:42.161
+SF6, zonneparken en de MS-installatie van de klant.
+
+47
+00:02:43.188 --> 00:02:46.567
+Elke les en elke film van deze module heeft een plek op deze kaart.

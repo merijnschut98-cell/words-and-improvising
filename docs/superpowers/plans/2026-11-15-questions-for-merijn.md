@@ -30,3 +30,9 @@ Task 17 (complete films):
 
 Engineering map: split the plant zone into "De fabriek draaiend houden" (flow, quality, maintenance, safety) and "De fabriek beter maken" (improve, spc, cost, reliability), each with its own field film. Phone map height fine. Old track list under the maps: replace with the zones.
 Other: station label "Motoren en perslucht"; process intro tank stays; fix "Radical Candor" and "MORE PIES" with a voice pass; no-tool rule: most tool-like term; leave the remaining hard words (Spuitgieten, MIG, FEM-plot, positioner) as they are.
+
+## Standing rule for the rest of 15 Nov (Merijn, ~10:50 UTC)
+
+"The rest of the day make decisions yourself unless it really needs me. Then you can ask tomorrow." Merijn is away until tomorrow. Decide and record each decision in the ledger or plan; collect only questions that truly need him, below, for one MC round on 16 Nov. Work stops at 23:59 Amsterdam.
+
+### Questions for 16 Nov

@@ -1,0 +1,177 @@
+WEBVTT
+
+1
+00:00:00.835 --> 00:00:04.515
+In hal B pompt een pomp het product uit een tank, door een warmtewisselaar,
+
+2
+00:00:04.899 --> 00:00:06.420
+naar de vuleenheid van lijn 3.
+
+3
+00:00:07.462 --> 00:00:08.518
+De pomp maakt de druk.
+
+4
+00:00:09.249 --> 00:00:13.092
+Leidingen, afsluiters en warmtewisselaars verbruiken hem door wrijving.
+
+5
+00:00:14.117 --> 00:00:16.009
+Stoom en koelwater zijn utilities.
+
+6
+00:00:16.785 --> 00:00:19.270
+Het proces heeft ze nodig, maar verkoopt ze niet.
+
+7
+00:00:20.325 --> 00:00:22.101
+Vier onderwerpen volgen de leiding.
+
+8
+00:00:22.793 --> 00:00:25.859
+Eerst hoe het product stroomt, in leidingen en met een pomp.
+
+9
+00:00:26.834 --> 00:00:30.387
+Daarna de warmte, in warmtewisselaars en met stoom en koelwater.
+
+10
+00:00:31.667 --> 00:00:34.326
+Het eerste onderwerp is Stroming en druk in leidingen.
+
+11
+00:00:35.055 --> 00:00:38.724
+Elke bocht, afsluiter en filter op de weg naar lijn 3 kost druk.
+
+12
+00:00:39.727 --> 00:00:41.039
+Dat verlies heet de drukval.
+
+13
+00:00:41.746 --> 00:00:46.657
+De pomp moet die druk steeds opnieuw leveren, dus elke extra bocht kost pompenergie.
+
+14
+00:00:47.695 --> 00:00:50.365
+Bij turbulente stroming lees je de wrijvingsfactor
+
+15
+00:00:50.400 --> 00:00:51.631
+af in het Moody-diagram (Moody chart).
+
+16
+00:00:52.869 --> 00:00:54.622
+Het tweede onderwerp is Pompen.
+
+17
+00:00:55.293 --> 00:00:58.973
+Hoe meer tegendruk de leiding geeft, hoe minder debiet de pomp levert.
+
+18
+00:00:59.991 --> 00:01:02.731
+De lijnen van pomp en leiding snijden in het werkpunt.
+
+19
+00:01:03.575 --> 00:01:07.638
+Draait de pomp daar ver van zijn zuinigste punt, dan gaat energie verloren.
+
+20
+00:01:08.633 --> 00:01:11.036
+Je leest de pompkarakteristiek (pump curve) van de fabrikant.
+
+21
+00:01:12.350 --> 00:01:15.682
+Het derde onderwerp is Warmteoverdracht en warmtewisselaars.
+
+22
+00:01:16.399 --> 00:01:19.267
+Een wisselaar brengt warmte door een wand, zonder te mengen.
+
+23
+00:01:20.305 --> 00:01:22.639
+Stel dat het product warm moet zijn voor de vuleenheid.
+
+24
+00:01:23.374 --> 00:01:25.185
+Dan neemt het in de wisselaar warmte op.
+
+25
+00:01:26.128 --> 00:01:28.287
+Je kiest vaak een platenwarmtewisselaar (plate heat exchanger).
+
+26
+00:01:29.527 --> 00:01:31.977
+Het vierde onderwerp is Stoom en utilities.
+
+27
+00:01:32.807 --> 00:01:35.907
+Stoom brengt de warmte naar de wisselaar en wordt daar weer water.
+
+28
+00:01:36.863 --> 00:01:39.301
+Dat water heet condensaat en moet de wisselaar uit.
+
+29
+00:01:40.095 --> 00:01:41.233
+Anders zakt de verwarming.
+
+30
+00:01:42.246 --> 00:01:44.278
+Bij de afvoer controleer je de condenspot (steam trap).
+
+31
+00:01:45.275 --> 00:01:48.003
+Een condenspot die openstaat blaast verse stoom weg.
+
+32
+00:01:48.774 --> 00:01:49.958
+Daar verdwijnt energie.
+
+33
+00:01:51.225 --> 00:01:51.933
+De hele kaart.
+
+34
+00:01:52.680 --> 00:01:57.011
+Pompen, stroming en warmte is het vijfde station van Energie en het net.
+
+35
+00:01:58.102 --> 00:01:59.716
+Elk onderwerp heeft vier niveaus.
+
+36
+00:02:00.788 --> 00:02:04.667
+Begin bij de les over druk, debiet en drukval op niveau Basis.
+
+37
+00:02:05.420 --> 00:02:06.871
+Die laat zien waar de druk blijft.
+
+38
+00:02:07.885 --> 00:02:11.925
+Op niveau Werkkennis komen leidingwrijving, toerenregeling van de pomp,
+
+39
+00:02:12.192 --> 00:02:14.050
+warmtewisselaars en koelwater.
+
+40
+00:02:15.058 --> 00:02:17.322
+Op niveau Gevorderd komen regelkleppen,
+
+41
+00:02:17.681 --> 00:02:21.071
+cavitatie, tekortschietende wisselaars en stoomverliezen.
+
+42
+00:02:22.077 --> 00:02:25.537
+Op niveau Expert komen leidingmaat en levensduurkosten,
+
+43
+00:02:25.850 --> 00:02:29.379
+pompsystemen, warmteterugwinning en de energiecase.
+
+44
+00:02:30.380 --> 00:02:33.759
+Elke les en elke film van deze module heeft een plek op deze kaart.

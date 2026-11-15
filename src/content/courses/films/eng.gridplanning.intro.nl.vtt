@@ -1,0 +1,177 @@
+WEBVTT
+
+1
+00:00:00.837 --> 00:00:03.612
+Lijn 3 in hal B heeft een zwaardere aansluiting nodig.
+
+2
+00:00:04.395 --> 00:00:05.243
+Die ligt er nog niet.
+
+3
+00:00:06.291 --> 00:00:08.509
+Een netplanner zoekt uit waarom die moet wachten.
+
+4
+00:00:09.511 --> 00:00:13.319
+Elke netplanning begint met de vraag hoeveel vermogen er straks tegelijk loopt.
+
+5
+00:00:14.342 --> 00:00:16.118
+Vier onderwerpen volgen zijn werk.
+
+6
+00:00:16.869 --> 00:00:19.226
+Eerst wat er komt en of het net een storing doorstaat.
+
+7
+00:00:20.322 --> 00:00:22.621
+Daarna wat er gebouwd wordt en hoe je tijd koopt.
+
+8
+00:00:23.900 --> 00:00:26.477
+Het eerste onderwerp is Belasting en prognose.
+
+9
+00:00:27.247 --> 00:00:30.591
+Gelijktijdigheid is het deel van ieders maximum dat tegelijk optreedt.
+
+10
+00:00:31.677 --> 00:00:33.058
+Daarna kijkt de planner vooruit.
+
+11
+00:00:33.806 --> 00:00:36.014
+De vraag groeit en lijn 3 komt erbovenop.
+
+12
+00:00:36.657 --> 00:00:38.097
+Zo komt de grens in zicht.
+
+13
+00:00:39.092 --> 00:00:40.206
+Hij draait een loadflow (load flow)
+
+14
+00:00:40.276 --> 00:00:42.795
+en ziet welke stroom door de kabel naar hal B loopt.
+
+15
+00:00:44.043 --> 00:00:47.061
+Het tweede onderwerp is Netontwerp en redundantie.
+
+16
+00:00:47.759 --> 00:00:49.396
+Elk ontwerp gaat door vier toetsen.
+
+17
+00:00:50.075 --> 00:00:52.443
+Eén vraagt wat er gebeurt als iets uitvalt.
+
+18
+00:00:53.515 --> 00:00:54.746
+Een ring geeft reserve.
+
+19
+00:00:55.507 --> 00:00:58.165
+Valt een kabel uit, dan voedt de andere kant hal B.
+
+20
+00:00:59.204 --> 00:01:01.712
+Voor de toets op spanning verdeelt hij het spanningsbudget (voltage budget)
+
+21
+00:01:01.781 --> 00:01:02.420
+over het net.
+
+22
+00:01:03.720 --> 00:01:06.100
+Het derde onderwerp is Investeringsplanning.
+
+23
+00:01:06.805 --> 00:01:08.907
+Er zijn meer knelpunten dan mensen en geld.
+
+24
+00:01:09.995 --> 00:01:14.431
+Dus rangschikt hij ze op risico, wachtende klanten en hoe klaar de oplossing is.
+
+25
+00:01:15.419 --> 00:01:18.240
+Zo kan de aansluiting van lijn 3 later aan de beurt zijn.
+
+26
+00:01:19.225 --> 00:01:22.011
+Hij legt het scenario vast in het investeringsplan (investment plan).
+
+27
+00:01:23.269 --> 00:01:27.158
+Het vierde onderwerp is Flexibiliteit en alternatieven voor verzwaren.
+
+28
+00:01:27.856 --> 00:01:29.911
+Kan het ook zonder bouwen, of later?
+
+29
+00:01:30.925 --> 00:01:33.723
+Een grens wordt misschien maar een paar honderd uur per jaar geraakt.
+
+30
+00:01:34.420 --> 00:01:36.243
+Even minder afnemen maakt ruimte.
+
+31
+00:01:37.287 --> 00:01:40.236
+Daarvoor biedt hij een capaciteitssturingscontract (capacity steering contract) aan.
+
+32
+00:01:41.231 --> 00:01:42.055
+Dat koopt tijd.
+
+33
+00:01:42.783 --> 00:01:45.883
+Zo kan lijn 3 al draaien terwijl de zwaardere aansluiting wacht.
+
+34
+00:01:47.189 --> 00:01:47.920
+De hele kaart.
+
+35
+00:01:48.663 --> 00:01:53.342
+Netplanning en de energietransitie is het zevende station van Energie en het net.
+
+36
+00:01:54.388 --> 00:01:56.002
+Elk onderwerp heeft vier niveaus.
+
+37
+00:01:57.072 --> 00:02:00.032
+Begin bij Van woning tot station op niveau Basis.
+
+38
+00:02:00.777 --> 00:02:02.193
+Daar begint elke netplanning.
+
+39
+00:02:03.188 --> 00:02:06.021
+Op niveau Werkkennis komen stroom en spanning in het net,
+
+40
+00:02:06.322 --> 00:02:09.085
+de ring, de knelpunten en congestiemanagement.
+
+41
+00:02:10.123 --> 00:02:16.078
+Op niveau Gevorderd komen de prognose per station, N-1, prioriteren en batterijen.
+
+42
+00:02:17.096 --> 00:02:20.916
+Op niveau Expert komen tijdreeksen, ontwerpen op risico,
+
+43
+00:02:21.148 --> 00:02:23.830
+van plan naar gebouwd net en de waarde van uitstel.
+
+44
+00:02:24.788 --> 00:02:28.167
+Elke les en elke film van deze module heeft een plek op deze kaart.

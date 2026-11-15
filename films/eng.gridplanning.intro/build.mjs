@@ -322,7 +322,7 @@ const spec = {
         { nl: 'Derde onderwerp: Investeringsplanning. Er zijn meer knelpunten dan mensen en geld.', en: 'Third topic: Investment planning. There are more bottlenecks than people and money.', focus: ['tInvest', 'qS', 'planner'] },
         { nl: 'Dus rangschikt hij ze op risico, wachtende klanten en hoe klaar de oplossing is.', en: 'So he ranks them by risk, waiting customers and how ready the solution is.', focus: ['rkS', 'planner'] },
         { nl: 'Zo kan de aansluiting van lijn 3 later aan de beurt zijn.', en: 'So the connection of line 3 may have to wait its turn.', focus: ['rnS', 'newc', 'line3'] },
-        { nl: 'Hij rekent met een {t:Scenario|scenario} en legt het vast in het {t:Investeringsplan|investeringsplan}.', en: 'He calculates with a {t:Scenario|scenario} and records it in the {t:Investment plan|investment plan}.', ...TOOL('Scenario', 'Investeringsplan'), focus: ['tool1', 'tool2', 'planner'] },
+        { nl: 'Hij legt het {t:Scenario|scenario} vast in het {t:Investeringsplan|investeringsplan}.', en: 'He records the {t:Scenario|scenario} in the {t:Investment plan|investment plan}.', ...TOOL('Scenario', 'Investeringsplan'), focus: ['tool1', 'tool2', 'planner'] },
       ],
     },
     {
@@ -395,8 +395,8 @@ const SAY = [
       en: 'So he ranks them by risk, waiting customers and how ready the solution is.' },
     { nl: 'Zo kan de aansluiting van lijn 3 later aan de beurt zijn.',
       en: 'So the connection of line 3 may have to wait its turn.' },
-    { nl: 'Hij rekent met een {t:Scenario|scenario} en legt het vast in het {t:Investeringsplan|investeringsplan}.',
-      en: 'He calculates with a {t:Scenario|scenario} and records it in the {t:Investment plan|investment plan}.' },
+    { nl: 'Hij legt het {t:Scenario|scenario} vast in het {t:Investeringsplan|investeringsplan}.',
+      en: 'He records the {t:Scenario|scenario} in the {t:Investment plan|investment plan}.' },
   ],
   [ // s5 flexibility: without building or later, the few hundred hours, the contract, time bought, and the story ends
     { nl: 'Het vierde onderwerp is Flexibiliteit en alternatieven voor verzwaren. Kan het ook zonder bouwen, of later?',
