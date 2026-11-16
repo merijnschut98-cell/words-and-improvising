@@ -162,8 +162,9 @@ await step('first run: three short screens (subjects, a day, settings), then the
   await page.getByRole('heading', { name: 'Eén volgende stap per vak' }).waitFor();
   await shot('00b-welcome-day');
   await page.getByRole('button', { name: 'Volgende' }).click();
-  await page.getByRole('heading', { name: 'Instellingen en je sleutel' }).waitFor();
-  await shot('00c-welcome-settings');
+  await page.getByRole('heading', { name: 'Aan de slag, of eerst rondkijken?' }).waitFor();
+  await page.getByRole('button', { name: 'Ik kijk rond' }).waitFor();
+  await shot('00c-welcome-choice');
   await page.getByRole('button', { name: 'Aan de slag' }).click();
   await page.locator('.start-cards .start-card').nth(2).waitFor();
 });
@@ -2892,7 +2893,9 @@ await step('polish: the real week from the start screen and course homes; welcom
   await p.getByRole('button', { name: 'Volgende' }).click();
   await p.locator('.welcome-slide', { hasText: 'Extra oefeningen staan per vak' }).waitFor();
   await p.getByRole('button', { name: 'Volgende' }).click();
-  await p.locator('.welcome-slide', { hasText: 'synchroniseren tussen apparaten' }).waitFor();
+  await p.locator('.welcome-slide', { hasText: 'eerst rondkijken' }).waitFor();
+  await p.getByRole('button', { name: 'Ik kijk rond' }).click();
+  await p.locator('main.screen.tour').waitFor();
   await c.close();
 });
 

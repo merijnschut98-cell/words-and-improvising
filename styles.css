@@ -1245,3 +1245,19 @@ details.rw-topic > summary { cursor: pointer; min-height: 44px; display: flex; a
 .guide-intro .module-intro-title { margin: 0; }
 .guide-intro .guide-say { margin-top: 8px; }
 .guide-greeting .guide, .guide-intro .guide { pointer-events: none; }
+
+/* Tour page ("What's inside") and its entry on the start screen */
+.tour-entry { align-self: flex-start; }
+.tour-title { font-size: 1.8rem; margin: 4px 0 0; }
+.tour-intro { margin: 0; color: var(--muted); font-size: 1.05rem; }
+.tour-card { display: flex; flex-direction: column; gap: 10px; }
+.tour-subject { display: flex; align-items: center; gap: 8px; margin: 0; font-size: 1.3rem; color: var(--heading); }
+.tour-subject .ico { color: var(--accent-dark); }
+.tour-line, .tour-counts { margin: 0; }
+.tour-counts { font-family: var(--font-mono); font-size: var(--text-xs); color: var(--muted); letter-spacing: var(--tracking-label); }
+.tour-map { max-height: 190px; overflow: hidden; border-radius: var(--radius); cursor: pointer; position: relative; }
+.tour-map svg { pointer-events: none; display: block; width: 100%; height: auto; }
+.tour-actions { display: flex; flex-wrap: wrap; gap: 8px; }
+.tour-actions .btn { flex: 1 1 200px; }
+.tour-caption { margin: 0; }
+.welcome-actions { display: flex; flex-direction: column; gap: 10px; }
