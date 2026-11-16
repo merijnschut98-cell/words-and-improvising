@@ -1,0 +1,161 @@
+WEBVTT
+
+1
+00:00:00.844 --> 00:00:04.153
+Op lijn 3 komen telkens te lichte dozen uit de vuleenheid.
+
+2
+00:00:05.258 --> 00:00:08.683
+De module Meten en SPC verdiept gaat voorbij de basis.
+
+3
+00:00:09.405 --> 00:00:11.251
+Je leest het vulgewicht met statistiek.
+
+4
+00:00:12.262 --> 00:00:13.295
+Jij bent de engineer.
+
+5
+00:00:13.989 --> 00:00:16.636
+Na de dienst volg je met de teamleider het vulgewicht.
+
+6
+00:00:17.630 --> 00:00:22.065
+Eerst het meten zelf en wat het proces doet, met meetsystemen en met regelkaarten.
+
+7
+00:00:23.044 --> 00:00:25.366
+Dan wat het proces aankan en hoe je het vasthoudt,
+
+8
+00:00:25.621 --> 00:00:28.385
+met procesgeschiktheid en SPC op de werkvloer.
+
+9
+00:00:29.597 --> 00:00:31.687
+Het eerste onderwerp is Meetsystemen.
+
+10
+00:00:32.403 --> 00:00:34.829
+Elke meting is de echte waarde plus een meetfout.
+
+11
+00:00:35.909 --> 00:00:37.685
+Je weegt de dozen aan het eind van de band.
+
+12
+00:00:38.416 --> 00:00:41.620
+Een ruizige weegschaal laat de spreiding groter lijken dan ze is.
+
+13
+00:00:42.608 --> 00:00:44.872
+Je onderzoekt het wegen met een gauge R en R.
+
+14
+00:00:45.563 --> 00:00:47.966
+Twee mensen wegen dezelfde doos een paar keer.
+
+15
+00:00:49.201 --> 00:00:51.453
+Het tweede onderwerp is Regelkaarten.
+
+16
+00:00:52.164 --> 00:00:54.602
+Een regelkaart zet een uitkomst in de tijd uit.
+
+17
+00:00:55.621 --> 00:00:59.034
+De middellijn en twee grenzen laten zien wat lijn 3 uit zichzelf doet.
+
+18
+00:01:00.111 --> 00:01:03.675
+Een punt buiten een grens is een signaal om te zoeken naar wat er veranderd is.
+
+19
+00:01:04.772 --> 00:01:07.454
+Je weegt steeds evenveel dozen en telt de te lichte.
+
+20
+00:01:08.177 --> 00:01:10.174
+Dat aantal zet je uit op een np-kaart (np chart).
+
+21
+00:01:11.431 --> 00:01:13.985
+Het derde onderwerp is Procesgeschiktheid.
+
+22
+00:01:14.727 --> 00:01:18.013
+Die vergelijkt de spreiding van gewogen waarden met de tolerantie.
+
+23
+00:01:19.025 --> 00:01:21.904
+Eerst maak je het proces stabiel, dan meet je de geschiktheid.
+
+24
+00:01:22.964 --> 00:01:25.925
+Je leest dat in een capability-rapport (capability report) uit de software.
+
+25
+00:01:27.222 --> 00:01:30.043
+Het vierde onderwerp is SPC op de werkvloer.
+
+26
+00:01:30.735 --> 00:01:32.511
+Daar is SPC een routine.
+
+27
+00:01:33.515 --> 00:01:37.137
+Meet vaker waar dingen veranderen, zoals na een omstelling van lijn 3.
+
+28
+00:01:38.139 --> 00:01:41.018
+Je doet een eerstestukcontrole (first-off check) en weegt eerst één doos.
+
+29
+00:01:42.041 --> 00:01:45.721
+Zo volg jij met de teamleider het vulgewicht met data en niet op gevoel.
+
+30
+00:01:47.018 --> 00:01:47.784
+De hele kaart.
+
+31
+00:01:48.455 --> 00:01:52.646
+Het tweede station is Meten en SPC verdiept, in De fabriek beter maken.
+
+32
+00:01:53.619 --> 00:01:55.860
+Elk van de vier onderwerpen heeft vier niveaus.
+
+33
+00:01:56.915 --> 00:01:58.958
+Begin op niveau Basis met meetfout.
+
+34
+00:01:59.714 --> 00:02:02.349
+Elk getal dat je later gebruikt, komt uit een meting.
+
+35
+00:02:03.363 --> 00:02:07.519
+Op niveau Werkkennis komen meetsysteemanalyse, de juiste regelkaart,
+
+36
+00:02:07.787 --> 00:02:10.434
+Cpk tegen Ppk en overbijsturen.
+
+37
+00:02:11.443 --> 00:02:14.067
+Op niveau Gevorderd komen visuele inspectie,
+
+38
+00:02:14.380 --> 00:02:18.281
+kleine verschuivingen, niet-normale data en patronen lezen.
+
+39
+00:02:19.281 --> 00:02:21.824
+Op niveau Expert komen destructief meten,
+
+40
+00:02:22.056 --> 00:02:26.642
+kleine series, eisen aan procesgeschiktheid en een SPC-programma.

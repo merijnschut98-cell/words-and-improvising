@@ -4362,6 +4362,35 @@
         ],
         "vtt": "src/content/courses/films/eng.cost.intro.en.vtt"
       }
+    },
+    "eng.spc.intro": {
+      "poster": "src/content/courses/films/eng.spc.intro.jpg",
+      "nl": {
+        "dur": 148.3,
+        "bytes": 5090555,
+        "scenes": [
+          0,
+          29.19,
+          48.8,
+          71.02,
+          86.8,
+          106.58
+        ],
+        "vtt": "src/content/courses/films/eng.spc.intro.nl.vtt"
+      },
+      "en": {
+        "dur": 160.7,
+        "bytes": 5572149,
+        "scenes": [
+          0,
+          33.61,
+          55.64,
+          80.1,
+          95.83,
+          118.47
+        ],
+        "vtt": "src/content/courses/films/eng.spc.intro.en.vtt"
+      }
     }
   }
 }
