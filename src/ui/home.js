@@ -436,7 +436,7 @@ export function renderHome(app, _params, root) {
       h('h1', { class: 'sr' }, t('subject_speak')),
       breakCard(app, showBreak),
       guideGreeting(app, { subject: 'speak', goal: true }),
-      ...speakBands(app),
+      h('div', { class: 'bands' }, ...speakBands(app)),
       navigator.onLine ? null : h('p', { class: 'note' }, t('offline'))),
     navBar(app, 'home'),
   );
