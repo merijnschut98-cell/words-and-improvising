@@ -21,6 +21,7 @@ import { renderProgress } from './ui/progress.js';
 import { renderSettings } from './ui/settings.js';
 import { renderConversation } from './ui/conversation.js';
 import { renderWelcome } from './ui/welcome.js';
+import { renderTour } from './ui/tour.js';
 import { renderRealweek } from './ui/realweek.js';
 import { renderWeekly } from './ui/weekly.js';
 import { renderFriendRate } from './ui/friendrate.js';
@@ -52,6 +53,7 @@ const SCREENS = {
   settings: renderSettings,
   conversation: renderConversation,
   welcome: renderWelcome,
+  tour: renderTour,
   friendrate: renderFriendRate,
   lesson: renderLesson,
   due: renderDue,

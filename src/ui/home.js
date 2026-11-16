@@ -351,6 +351,7 @@ function renderStart(app, root, showBreak, note) {
     h('main', { class: 'screen home start' },
       breakCard(app, showBreak),
       startHead(app),
+      tourEntry(app),
       flairNote(app, note),
       // Andon right above the one begin button: "the one below" is that button.
       guideGreeting(app, { subject: 'start', goal: true, pick: begin.subject === 'speak' ? null : begin }),
@@ -360,6 +361,12 @@ function renderStart(app, root, showBreak, note) {
       realWeekEntry(app),
       navigator.onLine ? null : h('p', { class: 'note' }, t('offline'))),
     navBar(app, 'home'));
+}
+
+// A modest way into the tour page, for a visitor and for anyone: one quiet line
+// under the greeting, well below "Begin today" in weight.
+function tourEntry(app) {
+  return h('button', { class: 'btn btn-ghost small tour-entry', onclick: () => app.go('tour') }, ico('compass'), ' ', app.t('tourEntry'));
 }
 
 // A quiet way into "My real week" from the start screen and the course homes.
@@ -429,7 +436,7 @@ export function renderHome(app, _params, root) {
       h('h1', { class: 'sr' }, t('subject_speak')),
       breakCard(app, showBreak),
       guideGreeting(app, { subject: 'speak', goal: true }),
-      ...speakBands(app),
+      h('div', { class: 'bands' }, ...speakBands(app)),
       navigator.onLine ? null : h('p', { class: 'note' }, t('offline'))),
     navBar(app, 'home'),
   );
