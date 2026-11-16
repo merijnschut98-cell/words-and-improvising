@@ -436,7 +436,7 @@ const SAY = [
       en: '{t:Active listening|Active listening} means listening to understand, not to reply. The checklist {t:MORE PIES|MORE PIES} comes from crisis negotiation.' },
     { nl: 'De M: lees de sfeer. De O: {t:Open vragen|open vragen}: hoe gaat een gewone maandag? De R: {t:Reflecteren|reflecteren}: dat klinkt frustrerend. De E: empathie.',
       en: 'M, mood: read the room. O: {t:Open questions|open questions}: how does a normal Monday go? R: {t:Reflecting|reflecting}: that sounds frustrating. E: empathy.' },
-    { nl: 'De P: {t:Parafraseren|parafraseren}, de kern in je eigen woorden. De I: doorvragen. De E: kort je ervaring, voor vertrouwen. De S: drie tellen stilte.',
+    { nl: 'De P is {t:Parafraseren|parafraseren} en dat is de kern in je eigen woorden. De I: doorvragen. De E is kort je ervaring delen voor vertrouwen. De S: drie tellen stilte.',
       en: 'P: {t:Paraphrasing|paraphrasing}, the core in your own words. I: inquiry. E: your experience, briefly, for trust. S: three seconds of silence.' },
     { nl: 'Onderhandelaars zeggen: M is aanmoedigen, S is samenvatten.',
       en: 'For negotiators, M is minimal encouragers, and S is summarising.' },

@@ -19,7 +19,6 @@
     "eng.lines.errorproof",
     "eng.lines.robots",
     "eng.lines.variants",
-    "eng.machining.cnc",
     "eng.machining.drilling",
     "eng.machining.measuring",
     "eng.machining.milling",

@@ -358,7 +358,7 @@ const spec = {
     {
       id: 's7', level: 1, dur: DURS[6], still: 0.9, title: { nl: 'De kaart', en: 'The map' },
       beats: [
-        { nl: 'De kaart van Projecten: Landen is het vierde station op de weg van een project.', en: 'The map of Projects: Land is the fourth station on the road of a project.', focus: mapCue('pm.land') },
+        { nl: 'De kaart van Projecten: Landen is het zesde station op de weg van een project.', en: 'The map of Projects: Land is the sixth station on the road of a project.', focus: mapCue('pm.land') },
         { nl: 'Landen heeft vier onderwerpen, elk met vier niveaus.', en: 'Land has four topics, each with four levels.', focus: 'route' },
         { nl: 'Begin bij Standaardwerk en training, op niveau Basis.', en: 'Start with Standardised work and training, at Basics level.', focus: ['tStd', 'start'] },
         { nl: 'Werkkennis: standaardwerk, werken met weerstand, leiderstandaardwerk, harde en zachte besparingen.', en: 'Working knowledge: standardised work, working with resistance, leader standard work, hard and soft savings.', focus: 'lv2' },
@@ -446,8 +446,8 @@ const SAY = [
       en: 'Line 4 comes later, and then we take along what line 3 taught us.' },
   ],
   [ // s7 the map
-    { nl: 'Dit is de kaart van Projecten. Landen is het vierde station op de weg van een project.',
-      en: 'This is the map of Projects. Land is the fourth station on the road of a project.' },
+    { nl: 'Dit is de kaart van Projecten. Landen is het zesde station op de weg van een project.',
+      en: 'This is the map of Projects. Land is the sixth station on the road of a project.' },
     { nl: 'Landen heeft vier onderwerpen, elk met vier niveaus.',
       en: 'Land has four topics, each with four levels.' },
     { nl: 'Begin bij Standaardwerk en training, op niveau Basis.',

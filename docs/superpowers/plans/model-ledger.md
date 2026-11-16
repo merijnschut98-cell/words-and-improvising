@@ -208,3 +208,6 @@ Outcome: accepted (merged as delivered), sent back N times, redone.
 | 15 Nov | Review: pilot P1 cnc split | opus | stopped on the usage limit, work saved | | | |
 | 16 Nov | Build: visitor tour page + welcome choice (+ zone-list fix) | sonnet | 76 | 14 min | 194,981 | accepted after one fix round (map crops replaced by zone lists); checked by the integrator; merged v360 |
 | 16 Nov | Build: wider desktop layout (>=1024 px) + subject names prominent on the start cards | sonnet | 68 | 14 min | 202,074 | accepted; checked by the integrator; merged v361 |
+| 15 Nov | Task 17 pilot P1: split eng.machining.cnc into four films | sonnet | 211 | 39 min | 550,774 | accepted with fixes by its review |
+| 16 Nov | Review: pilot P1 cnc split | opus | ~110 | ~2.5 h active (paused overnight) | n/a | pass with 7 fixes (staging truth, repetition, highlights, readout overlap, G91 picture, label sizes, nl/en); tree shake moved into films/_kit/shake.mjs; merged v363 |
+| 2026-11-16 | PM-32 render: pm.field.lifecycle, approach/formats intros, intake/plan/run/land intros, MORE PIES nl re-renders | sonnet | ~190 | ~5 h (incl. usage-limit pause) | 213k | done; 16 MP4s guard PASS, merged v364 |

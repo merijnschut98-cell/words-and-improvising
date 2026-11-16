@@ -339,7 +339,7 @@ const spec = {
     {
       id: 's7', level: 1, dur: DURS[6], still: 0.9, title: { nl: 'De kaart', en: 'The map' },
       beats: [
-        { nl: 'De kaart van Projecten: Intake is het eerste station op de weg van een project.', en: 'The map of Projects: Intake is the first station on the road of a project.', focus: mapCue('pm.intake') },
+        { nl: 'De kaart van Projecten: Intake is het tweede station op de weg van een project.', en: 'The map of Projects: Intake is the second station on the road of a project.', focus: mapCue('pm.intake') },
         { nl: 'Intake heeft vier onderwerpen, elk met vier niveaus.', en: 'Intake has four topics, each with four levels.', focus: 'route' },
         { nl: 'Begin bij Van vraag naar probleem, op niveau Basis.', en: 'Start with From question to problem, at Basics level.', focus: ['tProb', 'start'] },
         { nl: 'Werkkennis: het eerste gesprek, de eerste weken, de opdracht op één A4 en het voorstel.', en: 'Working knowledge: the first conversation, the first weeks, the one-page charter and the proposal.', focus: 'lv2' },
@@ -426,8 +426,8 @@ const SAY = [
       en: 'It all connects. Without a goal you cannot test the scope. If the sponsor says yes, planning begins.' },
   ],
   [ // s7 the map
-    { nl: 'Dit is de kaart van Projecten. Het eerste station op de weg van een project is de intake.',
-      en: 'This is the map of Projects. The first station on the road of a project is the intake.' },
+    { nl: 'Dit is de kaart van Projecten. Het tweede station op de weg van een project is de intake.',
+      en: 'This is the map of Projects. The second station on the road of a project is the intake.' },
     { nl: 'In de intake zitten vier onderwerpen, elk met vier niveaus.',
       en: 'The intake has four topics, each with four levels.' },
     { nl: 'Begin bovenaan, bij Van vraag naar probleem, op het eerste niveau.',

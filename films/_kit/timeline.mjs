@@ -985,6 +985,10 @@ const SAY = {
     // the intro's own phrase (the paper the group draws the process on, the digital whiteboard it works on), so the lessons and the other
     // films keep their voice; no other film's spoken text changes
     [/(?<=\bmet geeltjes op een )brown paper\b/g, 'braun peeper'], [/(?<=\bDat doen we op een digitaal )whiteboard\b/g, 'wajtbord'],
+    // the field film (pm.field.lifecycle) names the same tool in its Formats and meetings station, after "een voorleesstuk en een":
+    // brown paper as in the intro rule above (braun peeper), only in the field film's phrase; the other tools of its two new
+    // stations (takenbord, ERP, voorleesstuk, werkvormen, aanpak) are read right; no other film's spoken text changes
+    [/(?<=\bgebruiken we vaak een voorleesstuk en een )brown paper\b/g, 'braun peeper'],
     // the field film "Keeping the plant running" (eng.field.run), a self-contained group at the end of the Dutch list, checked with
     // phonemes through Piper's nl_NL-alex bridge: espeak-ng reads flow as "flaw" (flɔw; said flouw, flˈʌʊ, as the flow rule of
     // pm.agile.forecast), only in the two phrases that name the module ("station is Capaciteit en flow", "Eerst Capaciteit en
@@ -1021,7 +1025,15 @@ const SAY = {
     // (ˌoːvərhˈeːaːdˌɔpslɑx; said overhed-opslag, ˌoːvərhˈɛdˈɔpslɑx) only in its phrase "met een overheadopslag", so the lessons and the
     // other films keep their voice. Kostprijs, faalkosten, kasbesparing, dekkingsbijdrage (the rule above), terugverdientijd and the
     // level words are read right; no other film's spoken text changes
-    [/(?<=\bvierde onderwerp is )Lean accounting\b/g, 'Lien accounting'], [/(?<=\bmet een )overheadopslag\b/g, 'overhed-opslag']],
+    [/(?<=\bvierde onderwerp is )Lean accounting\b/g, 'Lien accounting'], [/(?<=\bmet een )overheadopslag\b/g, 'overhed-opslag'],
+    // the G-code film (eng.machining.gcode, Task 17 pilot P1): ISO 6983 as the floor says the other ISO numbers (ISO 27 68), only this number
+    [/\bISO 6983\b/g, 'ISO 69 83'],
+    // the first-talk and jargon films (PM-32), a narrow group at the end of the Dutch list: MORE PIES as "More paiz", the voice the
+    // Leading people intro has since PM-30 (the "Mor pais" rule above is kept for any other sentence), one rule per sentence of
+    // pm.intake.firsttalk ("De checklist MORE PIES komt uit de crisisonderhandeling") and pm.outside.jargon ("uit MORE PIES:" and
+    // "MORE PIES is een lijst voor actief luisteren"); no other film's spoken text changes
+    [/(?<=\bDe checklist )Mor pais(?= komt uit de crisisonderhandeling)/g, 'More paiz'], [/(?<=\bdoorvragen uit )Mor pais(?=: zwijg even)/g, 'More paiz'],
+    [/\bMor pais(?= is een lijst voor actief luisteren)/g, 'More paiz']],
   en: [[/\brpm\b/g, 'revolutions per minute'], [/\bmm\/min\b/g, 'millimetres per minute'], [/\bm\/min\b/g, 'metres per minute'], [/µm\b/g, 'micrometres'],
     [/€\s?(\d[\d,]*(?:\.\d+)?)/g, '$1 euros'], [/(\d)\.0(?![\d])/g, '$1'], [/(\d)\s?mm\b/g, '$1 millimetres'], [/(\d)\s?min\b/g, '$1 minutes'], [/(\d)\s?%/g, '$1 percent'],
     [/Ø\s*/g, 'diameter '], [/(\d)\+(\d)/g, '$1 plus $2'], [/\s×\s/g, ' times '], [/\s\/\s/g, ' divided by '], [/\s=\s/g, ' is '], [/°/g, ' degrees'], [/\bRa\b/g, 'R a'], [/’/g, "'"],
@@ -1076,7 +1088,9 @@ const SAY = {
     [/\bswitch and a VLAN\b/g, 'switch and a vee-lan'],
     // the field film "Making the plant better" (eng.field.better): FMECA as letters in the one phrase that names it ("and make an
     // FMECA"; espeak-ng's English reads "ef-meka"), so the lessons and the other films keep their voice
-    [/(?<=\band make an )FMECA\b/g, 'F M E C A']],
+    [/(?<=\band make an )FMECA\b/g, 'F M E C A'],
+    // the G-code film (eng.machining.gcode, Task 17 pilot P1): ISO 6983 as pairs of digits, as ISO 2768 above, only this number
+    [/\bISO 6983\b/g, 'ISO 69 83']],
 };
 export const sayable = (text, lang) => (SAY[lang] || []).reduce((s, [re, w]) => s.replace(re, w), text);
 // The words the voice says: no English gloss, and with a language, units as words.

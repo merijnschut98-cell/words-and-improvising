@@ -1,7 +1,7 @@
 // The stage of the field film "Een project van begin tot eind / A project from
 // start to finish": a pure function of (scene, u). Inlined into the page after the
 // anatomy kit and a preamble from build.mjs that defines CAM, W, H and MAPZ (the
-// centres of the five stations on the shared map). The story is drawn in hall B
+// centres of the seven stations on the shared map). The story is drawn in hall B
 // at the left, as in the pilot: the floor and outline of line 3, line 4 that
 // stays, the power cabinet and its cable, the switchboard on the wall and a cast
 // that changes per station (the sponsor, the outside installer, the buyer, the
@@ -9,7 +9,7 @@
 // station as a schema, labelled "voorbeeld" (the line's move) or "schema" (the
 // road). Every part a sentence lights is a static data-cue group (build.mjs); this
 // script only fills the panel and shows or hides the room's moving parts.
-// The closing scene (the shared Projects map with the five stations lit: the
+// The closing scene (the shared Projects map with the seven stations lit: the
 // whole road, then the zoom from station to station, and back out) is ONE
 // function, closing; the map itself is the kit's mapScene.
 // Every label is a tr('nl', 'en') pair, with the width of its box as a third
@@ -19,7 +19,7 @@
 // and the road wraps them with the kit's own wrapUnits, so drawing and check
 // agree. The road and the strip follow the number of stations (a field of two
 // modules draws two).
-/* global CAM, W, H, MAPZ, ROW, CW, wrapUnits, span, beatStarts */
+/* global CAM, W, H, MAPZ, ROW, HEAD, CW, wrapUnits, span, beatStarts */
 const STAGE = (() => {
   const svg = document.querySelector('.fp-stage svg');
   const E = {};
@@ -70,7 +70,7 @@ const STAGE = (() => {
   }
 
   // ---- the cast of hall B: who stands there when. [scene, first beat]: present from that beat to the scene's end
-  const FROM = { sponsor: [[1, 0], [3, 2], [5, 1]], installer: [[2, 2]], buyer: [[3, 1]], crew: [[4, 1], [5, 2]], lead: [[4, 2], [5, 0]] };
+  const FROM = { sponsor: [[1, 1], [2, 0], [4, 1], [5, 2], [7, 1]], installer: [[3, 2]], buyer: [[5, 1]], crew: [[4, 1], [6, 1], [7, 2]], lead: [[4, 1], [6, 2], [7, 0]] };
   function cast(si, b, p) {
     for (const who of Object.keys(FROM)) {
       let a = 0;
@@ -81,11 +81,11 @@ const STAGE = (() => {
   // the things that change: the cable is connected once the plan is done; line 3 stands in its outline and the
   // switchboard hangs on the wall from Land on (the move happens in the shutdown, while the project runs)
   function things(si) {
-    const moved = si >= 4 ? 1 : 0;
+    const moved = si >= 6 ? 1 : 0;
     show(E.line3S, moved);
     show(E.swS, moved);
     show(E.swG, 1 - moved);
-    const wired = si >= 3 ? 1 : 0;
+    const wired = si >= 5 ? 1 : 0;
     show(E.cabOn, wired);
     show(E.cabOff, 1 - wired);
   }
@@ -94,7 +94,7 @@ const STAGE = (() => {
   // (wrapped into at most two lines of ROW units). s2 on: a strip of numbered squares under the heading, the
   // scene's own station filled.
   const N = TITLES.length;
-  const rowY = (i) => 66 + i * 62;
+  const rowY = (i) => 52 + i * 47;
   function roadRows(a4) {
     const rows = TITLES.map((t, i) => {
       const y = rowY(i);
@@ -106,7 +106,7 @@ const STAGE = (() => {
     return { rows, line: op(a4[0], line) };
   }
   function strip(cur) {
-    return TITLES.map((t, i) => rect(334 + i * 40, 50, 34, 34, i === cur ? 'pm-crit' : 'pm-tile', 6) + txt(334 + i * 40 + 17, 75, String(i + 1), 22, 'middle', i === cur ? 'pm-on' : 'pm-mute'));
+    return TITLES.map((t, i) => rect(334 + i * 24, 72, 22, 22, i === cur ? 'pm-crit' : 'pm-tile', 4) + txt(334 + i * 24 + 11, 90, String(i + 1), 22, 'middle', i === cur ? 'pm-on' : 'pm-mute'));
   }
   // the dashed card at the foot of each station: what goes wrong without it
   function without(text, a) {
@@ -125,7 +125,40 @@ const STAGE = (() => {
     return op(a, s);
   }
 
-  // ---- s2: intake. The request, the two questions behind it, the goal with its sponsor.
+  // ---- s2: approach and tools. The predictive approach with the sponsor's mandate (beat 1), then the two tools as two rows:
+  // a task board (columns of cards) and an ERP (a table of hours and money).
+  const toolRow = (y, icon, label) => rect(334, y, 284, 48, 'pm-card', 8) + icon + txt(398, y + 33, label, 22, 'start', 'pm-big');
+  function approach(b, p) {
+    const method = rect(334, 98, 284, 100, 'pm-card', 8) + txt(346, 128, tr('Voorspellend', 'Predictive', 260), 22, 'start', 'pm-big')
+      + txt(346, 156, tr('plannen, dan uitvoeren', 'plan, then run', 260), 22, 'start', 'pm-txt')
+      + txt(346, 184, tr('Mandaat: de sponsor', 'Mandate: the sponsor', 260), 22, 'start', 'pm-mute');
+    const cols = rect(346, 220, 12, 28, 'pm-tile', 2) + rect(361, 220, 12, 20, 'pm-tile', 2) + rect(376, 220, 12, 24, 'pm-tile', 2) + rect(346, 224, 12, 8, 'pm-crit', 2);
+    const grid = rect(346, 276, 40, 28, 'pm-range', 3) + `<path class="pm-link" d="M346 285H386M346 295H386M360 276V304"/>`;
+    return {
+      methodB: op(b >= 1 ? (b === 1 ? span(p, 0, 0.4) : 1) : 0, method),
+      tboardB: op(b >= 2 ? (b === 2 ? span(p, 0, 0.4) : 1) : 0, toolRow(210, cols, tr('Takenbord', 'Task board', 210))),
+      erpB: op(b >= 2 ? (b === 2 ? span(p, 0.15, 0.55) : 1) : 0, toolRow(266, grid, tr('ERP', 'ERP', 210))),
+      withoutB: without(tr('geen route', 'no route', 240), b >= 3 ? span(p, 0, 0.4) : 0),
+    };
+  }
+
+  // ---- s5: formats and meetings. A format has a purpose, who takes part, a duration and an output (four tiles), then
+  // the two tools as two rows: the pre-read (a sheet) and the brown paper (a long sheet of notes).
+  function formats(b, p) {
+    const T = [tr('Doel', 'Purpose', 128), tr('Wie', 'Who', 128), tr('Duur', 'Duration', 128), tr('Opbrengst', 'Output', 128)];
+    let tiles = '';
+    T.forEach((l, i) => { tiles += op(b === 1 ? span(p, 0.1 + i * 0.12, 0.4 + i * 0.12) : 1, rect(334 + (i % 2) * 148, 98 + Math.floor(i / 2) * 48, 136, 40, 'pm-card', 6) + txt(342 + (i % 2) * 148, 126 + Math.floor(i / 2) * 48, l, 22, 'start', 'pm-big')); });
+    const sheet = rect(348, 218, 24, 32, 'pm-range', 3) + `<path class="pm-link" d="M353 227H367M353 234H367M353 241H362"/>`;
+    const brown = rect(342, 276, 44, 28, 'pm-brown', 3) + rect(347, 281, 10, 8, 'pm-note', 1) + rect(361, 288, 10, 8, 'pm-note', 1) + rect(371, 281, 10, 8, 'pm-note', 1);
+    return {
+      fmtB: op(b >= 1 ? 1 : 0, tiles),
+      tpreB: op(b >= 2 ? (b === 2 ? span(p, 0, 0.4) : 1) : 0, toolRow(210, sheet, tr('Voorleesstuk', 'Pre-read', 210))),
+      tpaperB: op(b >= 2 ? (b === 2 ? span(p, 0.15, 0.55) : 1) : 0, toolRow(266, brown, tr('Brown paper', 'Brown paper', 210))),
+      withoutB: without(tr('geen uitkomst', 'no output', 240), b >= 3 ? span(p, 0, 0.4) : 0),
+    };
+  }
+
+  // ---- s3: intake. The request, the two questions behind it, the goal with its sponsor.
   function intake(b, p) {
     const ask = rect(334, 98, 284, 40, 'pm-card', 6) + txt(346, 125, tr('Vraag: verhuis lijn 3', 'Ask: move line 3', 270), 22, 'start', 'pm-txt')
       + arrow(400, 142, 400, 156) + arrow(552, 142, 552, 156)
@@ -142,7 +175,7 @@ const STAGE = (() => {
     };
   }
 
-  // ---- s3: plan. The pilot's four topics as four tiles (the work, the order, the duration, the risk), as the
+  // ---- s4: plan. The pilot's four topics as four tiles (the work, the order, the duration, the risk), as the
   // narration names them, and the
   // pointer to the Planning intro.
   function plan(b, p) {
@@ -166,7 +199,7 @@ const STAGE = (() => {
     };
   }
 
-  // ---- s4: run. An honest status with three lights (amber from beat 2), a change request for line 4.
+  // ---- s6: run. An honest status with three lights (amber from beat 2), a change request for line 4.
   function run(b, p) {
     const amber = b >= 1 ? (b === 1 ? span(p, 0.3, 0.6) : 1) : 0;
     const lamp = (x, cls, on) => `<circle class="${on ? cls : 'pm-rag'}" cx="${x}" cy="120" r="11"/>`;
@@ -184,7 +217,7 @@ const STAGE = (() => {
     };
   }
 
-  // ---- s5: land. The work instruction (one sheet: steps and a photo) and training; the handover to the line.
+  // ---- s7: land. The work instruction (one sheet: steps and a photo) and training; the handover to the line.
   function land(b, p) {
     let sheet = rect(334, 98, 112, 150, 'pm-card', 4) + rect(346, 110, 40, 32, 'pm-range', 3);
     for (let i = 0; i < 4; i++) sheet += `<path class="pm-link" d="M346 ${160 + i * 20}H${434 - (i % 2) * 22}"/>`;
@@ -200,7 +233,7 @@ const STAGE = (() => {
     };
   }
 
-  // ---- s6: close. The baseline and the measurement after the shutdown, the sponsor's signature, a retrospective.
+  // ---- s8: close. The baseline and the measurement after the shutdown, the sponsor's signature, a retrospective.
   function close(b, p) {
     const grow = b === 1 ? span(p, 0.1, 0.6) : 1;
     const proof = txt(334, 118, tr('Nulmeting, voor de stop', 'Baseline, before', 284), 22, 'start', 'pm-mute') + rect(334, 128, 230, 18, 'pm-bar', 3)
@@ -217,8 +250,8 @@ const STAGE = (() => {
     };
   }
 
-  // ---- s7: the closing scene. ONE function. The shared Projects map (the kit's mapScene, the very drawing of the
-  // app) with the five stations lit: first the whole map, then the whole road, then the zoom moves along the
+  // ---- s9: the closing scene. ONE function. The shared Projects map (the kit's mapScene, the very drawing of the
+  // app) with the seven stations lit: first the whole map, then the whole road, then the zoom moves along the
   // road (at 1.5 a lit place's label is 22 units), and at the end back out to the whole map.
   // A view is { s, x, y }: the map scaled by s, its origin at (x, y) of the stage. At 1.5 the view is clamped
   // to the map's edges, so the zoom never shows the empty stage beside the map.
@@ -226,7 +259,7 @@ const STAGE = (() => {
   const ROADV = { s: 1, x: 0, y: 200 - 171.5 };
   const zoom = (cx) => ({ s: 1.5, x: clamp(320 - cx * 1.5, 640 - 640 * 1.5, 0), y: 200 - MAPZ[0][1] * 1.5 });
   const mid = (i, j) => (MAPZ[i][0] + MAPZ[j][0]) / 2;
-  const VIEWS = [ROADV, zoom(mid(0, 1)), zoom(mid(2, 3)), zoom(MAPZ[4][0]), WHOLE];
+  const VIEWS = [ROADV, zoom(mid(0, 1)), zoom(mid(2, 3)), zoom(mid(4, 5)), zoom(MAPZ[6][0]), WHOLE];
   function closing(b, p) {
     const from = b === 0 ? WHOLE : VIEWS[b - 1];
     const to = VIEWS[b];
@@ -235,7 +268,7 @@ const STAGE = (() => {
     move(E.mapG, `translate(${f1(v.x)} ${f1(v.y)}) scale(${v.s.toFixed(4)})`);
   }
 
-  const PANEL = ['askB', 'goalB', 'plan4B', 'moreB', 'statusB', 'changeB', 'instrB', 'handB', 'proofB', 'signB', 'retroB', 'withoutB', 'roadB'];
+  const PANEL = ['methodB', 'tboardB', 'erpB', 'fmtB', 'tpreB', 'tpaperB', 'askB', 'goalB', 'plan4B', 'moreB', 'statusB', 'changeB', 'instrB', 'handB', 'proofB', 'signB', 'retroB', 'withoutB', 'roadB'];
   function render(si, u) {
     camera(si, u);
     const { b, p } = beatOf(si, u);
@@ -245,7 +278,13 @@ const STAGE = (() => {
     const rd = TITLES.map(() => '');
     let title = '';
     let lab = tr('voorbeeld', 'example');
-    const isMap = si === 6;
+    const isMap = si === 8;
+    // the task board and the desk with the laptop in the approach, the brown paper and the desk with the pre-read in the formats
+    show(E['pp-board'], si === 1 && b >= 2 ? (b === 2 ? span(p, 0, 0.35) : 1) : 0);
+    show(E['pp-paper'], si === 4 && b >= 2 ? (b === 2 ? span(p, 0, 0.35) : 1) : 0);
+    show(E['pp-desk'], (si === 1 || si === 4) && b >= 2 ? (b === 2 ? span(p, 0, 0.35) : 1) : 0);
+    show(E['pp-laptop'], si === 1 ? 1 : 0);
+    show(E['pp-sheet'], si === 4 ? 1 : 0);
     show(E.world, isMap ? 0 : 1);
     show(E.mapG, isMap ? 1 : 0);
     show(E.hud, isMap ? 0 : 1);
@@ -260,14 +299,18 @@ const STAGE = (() => {
         r.rows.forEach((x, i) => { rd[i] = x; });
         o.roadB = r.line;
       }
-    } else if (si <= 5) {
+    } else if (si <= 7) {
       title = TITLES[si - 1];
       // the plan's four tiles are the module's map, not the line's move
-      if (si === 2) lab = tr('schema', 'diagram');
+      if (si === 3) lab = tr('schema', 'diagram');
       strip(si - 1).forEach((x, i) => { rd[i] = x; });
-      Object.assign(o, [intake, plan, run, land, close][si - 1](b, p));
+      Object.assign(o, [approach, intake, plan, formats, run, land, close][si - 1](b, p));
     } else closing(b, p);
-    const head = isMap ? '' : txt(334, 38, title, 22, 'start', 'pm-big') + txt(618, 38, lab, 22, 'end', 'pm-mute');
+    // a station's title wraps over the panel's width (two lines at most, the longest module titles); its label stands at the
+    // right of the strip's row (the kit does not measure the heading: the build asserts the titles wrap to two lines)
+    const head = isMap ? '' : si >= 1 && si <= 7
+      ? wrapUnits(title, HEAD, CW).map((ln, j) => txt(334, 34 + j * 26, ln, 22, 'start', 'pm-big')).join('') + txt(618, 92, lab, 22, 'end', 'pm-mute')
+      : txt(334, 38, title, 22, 'start', 'pm-big') + txt(618, 38, lab, 22, 'end', 'pm-mute');
     set(E.pHead, head);
     rd.forEach((x, i) => set(E[`rd${i}`], x));
     for (const k2 of PANEL) set(E[k2], o[k2]);

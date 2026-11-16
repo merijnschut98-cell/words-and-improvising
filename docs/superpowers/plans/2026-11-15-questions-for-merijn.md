@@ -51,3 +51,6 @@ The hourly check-in is disabled; work resumes only when Merijn says so.
 
 ## Merijn, 16 Nov: priority now
 Pro subscription (smaller budget): fewer agents at once. Priority: UI/UX so a visitor (Enexis recruiter) can navigate the site at www.vantagepoint-academy.nl and see what it contains. Decisions: a tour page ("Ik kijk rond" in the welcome + an entry on the home), no maker note, desktop layout wider (separate task after the tour page). The stopped render batches and the Task 17 pilot review wait.
+
+## Standing rule (Merijn, 16 Nov)
+Never resume or start agents on my own after a usage limit or a pause. When agents stop on a limit, report it and wait; Merijn decides when work starts again. The hourly check-in stays disabled.

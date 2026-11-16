@@ -319,7 +319,7 @@ const spec = {
     {
       id: 's7', level: 1, dur: DURS[6], still: 0.9, title: { nl: 'De kaart', en: 'The map' },
       beats: [
-        { nl: 'De kaart van Projecten: Uitvoeren is het derde station op de weg van een project.', en: 'The map of Projects: Run is the third station on the road of a project.', focus: 'map-run' },
+        { nl: 'De kaart van Projecten: Uitvoeren is het vijfde station op de weg van een project.', en: 'The map of Projects: Run is the fifth station on the road of a project.', focus: 'map-run' },
         { nl: 'Uitvoeren heeft vier onderwerpen, elk met vier niveaus.', en: 'Run has four topics, each with four levels.', focus: 'route' },
         { nl: 'Begin bij Sturen en rapporteren, op niveau Basis.', en: 'Start with Steering and reporting, at Basics level.', focus: ['tSteer', 'start'] },
         { nl: 'Werkkennis: stuurgroep voorbereiden, wijzigingen beheersen, leiden zonder macht, besluiten halen.', en: 'Working knowledge: prepare the steering group, control changes, lead without authority, get decisions.', focus: 'lv2' },
@@ -367,7 +367,7 @@ const SAY = [
       en: 'The second topic is Scope and change control. What is part of the project, and what is not?' },
     { nl: 'De teamleider vraagt of lijn 4 er ook bij kan. Elk verzoek is klein en redelijk. Zo groeit de scope ongemerkt. Dat heet {t:Scope creep|scope creep}.',
       en: 'The team lead asks whether line 4 can come along too. Each request is small and reasonable. That is how the scope grows unnoticed. It is called {t:Scope creep|scope creep}.' },
-    { nl: 'Je zegt geen nee, je laat zien wat het kost. Tijd, geld en risico. Het wordt een {t:Wijzigingsverzoek|wijzigingsverzoek}, en de sponsor kiest.',
+    { nl: 'Je zegt geen nee en laat zien wat het kost. Tijd, geld en risico. Het wordt een {t:Wijzigingsverzoek|wijzigingsverzoek}, en de sponsor kiest.',
       en: 'You do not say no, you show what it costs. Time, money and risk. It becomes a {t:Change request|change request}, and the sponsor chooses.' },
     { nl: 'Bij scope en wijzigingen gebruiken we vaak een wijzigingslog en een impactanalyse.',
       en: 'For scope and change control we often use a change log and an impact analysis.' },
@@ -401,8 +401,8 @@ const SAY = [
       en: 'The sponsor chooses, line 4 comes after the shutdown. The decision is on the decision log, and everyone knows where they stand.' },
   ],
   [ // s7 the map
-    { nl: 'Dit is de kaart van Projecten. Uitvoeren is het derde station op de weg van een project.',
-      en: 'This is the map of Projects. Run is the third station on the road of a project.' },
+    { nl: 'Dit is de kaart van Projecten. Uitvoeren is het vijfde station op de weg van een project.',
+      en: 'This is the map of Projects. Run is the fifth station on the road of a project.' },
     { nl: 'Uitvoeren heeft vier onderwerpen, elk met vier niveaus.',
       en: 'Run has four topics, each with four levels.' },
     { nl: 'Begin bovenaan, bij Sturen en rapporteren, op het eerste niveau.',
