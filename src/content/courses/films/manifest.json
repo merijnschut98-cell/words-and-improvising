@@ -4333,6 +4333,35 @@
         ],
         "vtt": "src/content/courses/films/eng.improve.intro.en.vtt"
       }
+    },
+    "eng.cost.intro": {
+      "poster": "src/content/courses/films/eng.cost.intro.jpg",
+      "nl": {
+        "dur": 145.2,
+        "bytes": 5236680,
+        "scenes": [
+          0,
+          25.57,
+          47.5,
+          68.46,
+          87.79,
+          105.57
+        ],
+        "vtt": "src/content/courses/films/eng.cost.intro.nl.vtt"
+      },
+      "en": {
+        "dur": 156.4,
+        "bytes": 5551046,
+        "scenes": [
+          0,
+          28.47,
+          53.09,
+          75.33,
+          96.02,
+          116.37
+        ],
+        "vtt": "src/content/courses/films/eng.cost.intro.en.vtt"
+      }
     }
   }
 }

@@ -346,7 +346,7 @@ const spec = {
         { nl: 'De hele kaart. Het derde station is Kostprijs en investeringen, in De fabriek beter maken.', en: 'The whole map. The third station is Cost engineering, in Making the plant better.', focus: 'map-cost' },
         { nl: 'Elk onderwerp heeft vier niveaus.', en: 'Each topic has four levels.', focus: 'route' },
         { nl: 'Begin op niveau Basis met de kostprijs van een onderdeel opbouwen. Zo zie je waar kosten vandaan komen.', en: 'Start at Basics level with building up the cost of a part. It shows where costs come from.', focus: ['tCost', 'start'] },
-        { nl: 'Op niveau Werkkennis komen het machine-uurtarief, zelf maken of kopen, de terugverdientijd en verspilling.', en: 'At Working knowledge level come the machine hour rate, make or buy, payback time and waste in euros.', focus: 'lv2' },
+        { nl: 'Op niveau Werkkennis komen het machine-uurtarief, de terugverdientijd, verspilling en zelf maken of kopen.', en: 'At Working knowledge level come the machine hour rate, payback time, waste in euros and make or buy.', focus: 'lv2' },
         { nl: 'Op niveau Gevorderd komen kosten per activiteit, de prijsondergrens, netto contante waarde en de absorptieval.', en: 'At Advanced level come costs by activity, the price floor, net present value and the absorption trap.', focus: 'lv3' },
         { nl: 'Op niveau Expert komen een offerte lezen, klantwinst, de investeringscommissie en besparingen laten tekenen.', en: 'At Expert level come reading a quote, customer profit, the investment board and getting savings signed.', focus: 'lv4' },
       ],
