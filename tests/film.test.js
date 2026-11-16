@@ -1769,3 +1769,12 @@ test('speak: the reliability intro film needs no SAY rule of its own', () => {
   for (const s of ['Het patroon in de storingsdata zie je met een Weibull-fit.', 'Het derde onderwerp is RCM en assetstrategie.', 'Je rekent de operationele beschikbaarheid uit.', 'Die test je met een failure-finding-taak.', 'Het tweede onderwerp is FMEA en kritikaliteit.']) assert.equal(nl(s), s);
   for (const s of ['You see the pattern in the failure data with a Weibull fit.', 'You test it with a failure-finding task.', 'You work out the operational availability.']) assert.equal(speakOf([s], 'en'), s);
 });
+
+// Task 17, pilot P1: the G-code film (eng.machining.gcode) names the standard of the G-code basics, ISO 6983. espeak-ng reads
+// "ISO 6983" as a number ("zesduizend negenhonderd ..."); it is said as the floor says the other ISO numbers (ISO 27 68, ISO 44 06):
+// "ISO 69 83", in both languages. Only that number; the other ISO numbers keep their rules
+test('speak variant: ISO 6983 as pairs of digits', () => {
+  assert.equal(speakOf(['Maar deze basis volgt ISO 6983 en is bijna overal gelijk.'], 'nl'), 'Maar deze basis volgt ISO 69 83 en is bijna overal gelijk.');
+  assert.equal(speakOf(['But these basics follow ISO 6983 and are almost the same everywhere.'], 'en'), 'But these basics follow ISO 69 83 and are almost the same everywhere.');
+  assert.equal(speakOf(['Toleranties volgen ISO 2768 en ISO 9001.'], 'nl'), 'Toleranties volgen ISO 27 68 en ISO 9001.');
+});

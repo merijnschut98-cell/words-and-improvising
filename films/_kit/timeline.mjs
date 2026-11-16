@@ -1021,7 +1021,9 @@ const SAY = {
     // (ˌoːvərhˈeːaːdˌɔpslɑx; said overhed-opslag, ˌoːvərhˈɛdˈɔpslɑx) only in its phrase "met een overheadopslag", so the lessons and the
     // other films keep their voice. Kostprijs, faalkosten, kasbesparing, dekkingsbijdrage (the rule above), terugverdientijd and the
     // level words are read right; no other film's spoken text changes
-    [/(?<=\bvierde onderwerp is )Lean accounting\b/g, 'Lien accounting'], [/(?<=\bmet een )overheadopslag\b/g, 'overhed-opslag']],
+    [/(?<=\bvierde onderwerp is )Lean accounting\b/g, 'Lien accounting'], [/(?<=\bmet een )overheadopslag\b/g, 'overhed-opslag'],
+    // the G-code film (eng.machining.gcode, Task 17 pilot P1): ISO 6983 as the floor says the other ISO numbers (ISO 27 68), only this number
+    [/\bISO 6983\b/g, 'ISO 69 83']],
   en: [[/\brpm\b/g, 'revolutions per minute'], [/\bmm\/min\b/g, 'millimetres per minute'], [/\bm\/min\b/g, 'metres per minute'], [/µm\b/g, 'micrometres'],
     [/€\s?(\d[\d,]*(?:\.\d+)?)/g, '$1 euros'], [/(\d)\.0(?![\d])/g, '$1'], [/(\d)\s?mm\b/g, '$1 millimetres'], [/(\d)\s?min\b/g, '$1 minutes'], [/(\d)\s?%/g, '$1 percent'],
     [/Ø\s*/g, 'diameter '], [/(\d)\+(\d)/g, '$1 plus $2'], [/\s×\s/g, ' times '], [/\s\/\s/g, ' divided by '], [/\s=\s/g, ' is '], [/°/g, ' degrees'], [/\bRa\b/g, 'R a'], [/’/g, "'"],
@@ -1076,7 +1078,9 @@ const SAY = {
     [/\bswitch and a VLAN\b/g, 'switch and a vee-lan'],
     // the field film "Making the plant better" (eng.field.better): FMECA as letters in the one phrase that names it ("and make an
     // FMECA"; espeak-ng's English reads "ef-meka"), so the lessons and the other films keep their voice
-    [/(?<=\band make an )FMECA\b/g, 'F M E C A']],
+    [/(?<=\band make an )FMECA\b/g, 'F M E C A'],
+    // the G-code film (eng.machining.gcode, Task 17 pilot P1): ISO 6983 as pairs of digits, as ISO 2768 above, only this number
+    [/\bISO 6983\b/g, 'ISO 69 83']],
 };
 export const sayable = (text, lang) => (SAY[lang] || []).reduce((s, [re, w]) => s.replace(re, w), text);
 // The words the voice says: no English gloss, and with a language, units as words.
