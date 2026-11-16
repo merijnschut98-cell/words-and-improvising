@@ -4104,6 +4104,296 @@
         "vtt": "src/content/courses/films/eng.industry40.intro.nl.vtt"
       }
     },
+    "eng.field.run": {
+      "poster": "src/content/courses/films/eng.field.run.jpg",
+      "nl": {
+        "dur": 158,
+        "bytes": 6460235,
+        "scenes": [
+          0,
+          24.79,
+          46.54,
+          67.6,
+          89.83,
+          110.93
+        ],
+        "vtt": "src/content/courses/films/eng.field.run.nl.vtt"
+      },
+      "en": {
+        "dur": 173.9,
+        "bytes": 6892769,
+        "scenes": [
+          0,
+          28.76,
+          52.19,
+          76.34,
+          100.05,
+          122.81
+        ],
+        "vtt": "src/content/courses/films/eng.field.run.en.vtt"
+      }
+    },
+    "eng.field.better": {
+      "poster": "src/content/courses/films/eng.field.better.jpg",
+      "nl": {
+        "dur": 160.1,
+        "bytes": 7308494,
+        "scenes": [
+          0,
+          23.67,
+          43.65,
+          67.75,
+          89.08,
+          110.5
+        ],
+        "vtt": "src/content/courses/films/eng.field.better.nl.vtt"
+      },
+      "en": {
+        "dur": 176.7,
+        "bytes": 7825240,
+        "scenes": [
+          0,
+          26.1,
+          48.52,
+          75.26,
+          99.22,
+          122.69
+        ],
+        "vtt": "src/content/courses/films/eng.field.better.en.vtt"
+      }
+    },
+    "eng.flow.intro": {
+      "poster": "src/content/courses/films/eng.flow.intro.jpg",
+      "nl": {
+        "dur": 147.8,
+        "bytes": 4975781,
+        "scenes": [
+          0,
+          28.59,
+          44.44,
+          61.04,
+          81.07,
+          102.92
+        ],
+        "vtt": "src/content/courses/films/eng.flow.intro.nl.vtt"
+      },
+      "en": {
+        "dur": 163,
+        "bytes": 5404537,
+        "scenes": [
+          0,
+          31.99,
+          50.22,
+          68.66,
+          90.53,
+          116.13
+        ],
+        "vtt": "src/content/courses/films/eng.flow.intro.en.vtt"
+      }
+    },
+    "eng.quality.intro": {
+      "poster": "src/content/courses/films/eng.quality.intro.jpg",
+      "nl": {
+        "dur": 147.8,
+        "bytes": 4912315,
+        "scenes": [
+          0,
+          28.59,
+          45.1,
+          59.2,
+          81.87,
+          102.88
+        ],
+        "vtt": "src/content/courses/films/eng.quality.intro.nl.vtt"
+      },
+      "en": {
+        "dur": 160.5,
+        "bytes": 5159826,
+        "scenes": [
+          0,
+          31.23,
+          50.77,
+          66.2,
+          92.14,
+          114.37
+        ],
+        "vtt": "src/content/courses/films/eng.quality.intro.en.vtt"
+      }
+    },
+    "eng.maintenance.intro": {
+      "poster": "src/content/courses/films/eng.maintenance.intro.jpg",
+      "nl": {
+        "dur": 151.7,
+        "bytes": 5165052,
+        "scenes": [
+          0,
+          26.85,
+          51.11,
+          70.05,
+          89.48,
+          108.18
+        ],
+        "vtt": "src/content/courses/films/eng.maintenance.intro.nl.vtt"
+      },
+      "en": {
+        "dur": 160.8,
+        "bytes": 5394956,
+        "scenes": [
+          0,
+          30.42,
+          55.74,
+          74.77,
+          94.69,
+          117.17
+        ],
+        "vtt": "src/content/courses/films/eng.maintenance.intro.en.vtt"
+      }
+    },
+    "eng.safety.intro": {
+      "poster": "src/content/courses/films/eng.safety.intro.jpg",
+      "nl": {
+        "dur": 156.3,
+        "bytes": 5512320,
+        "scenes": [
+          0,
+          29.74,
+          51.39,
+          75.98,
+          92.67,
+          113.24
+        ],
+        "vtt": "src/content/courses/films/eng.safety.intro.nl.vtt"
+      },
+      "en": {
+        "dur": 166.9,
+        "bytes": 5662093,
+        "scenes": [
+          0,
+          32.22,
+          54.99,
+          81.92,
+          99.22,
+          122
+        ],
+        "vtt": "src/content/courses/films/eng.safety.intro.en.vtt"
+      }
+    },
+    "eng.improve.intro": {
+      "poster": "src/content/courses/films/eng.improve.intro.jpg",
+      "nl": {
+        "dur": 144.3,
+        "bytes": 5096845,
+        "scenes": [
+          0,
+          23.42,
+          43.24,
+          61.32,
+          79.69,
+          104.3
+        ],
+        "vtt": "src/content/courses/films/eng.improve.intro.nl.vtt"
+      },
+      "en": {
+        "dur": 159.7,
+        "bytes": 5647632,
+        "scenes": [
+          0,
+          26.42,
+          49.15,
+          69.42,
+          90.14,
+          118.1
+        ],
+        "vtt": "src/content/courses/films/eng.improve.intro.en.vtt"
+      }
+    },
+    "eng.cost.intro": {
+      "poster": "src/content/courses/films/eng.cost.intro.jpg",
+      "nl": {
+        "dur": 145.2,
+        "bytes": 5236680,
+        "scenes": [
+          0,
+          25.57,
+          47.5,
+          68.46,
+          87.79,
+          105.57
+        ],
+        "vtt": "src/content/courses/films/eng.cost.intro.nl.vtt"
+      },
+      "en": {
+        "dur": 156.4,
+        "bytes": 5551046,
+        "scenes": [
+          0,
+          28.47,
+          53.09,
+          75.33,
+          96.02,
+          116.37
+        ],
+        "vtt": "src/content/courses/films/eng.cost.intro.en.vtt"
+      }
+    },
+    "eng.spc.intro": {
+      "poster": "src/content/courses/films/eng.spc.intro.jpg",
+      "nl": {
+        "dur": 148.3,
+        "bytes": 5090555,
+        "scenes": [
+          0,
+          29.19,
+          48.8,
+          71.02,
+          86.8,
+          106.58
+        ],
+        "vtt": "src/content/courses/films/eng.spc.intro.nl.vtt"
+      },
+      "en": {
+        "dur": 160.7,
+        "bytes": 5572149,
+        "scenes": [
+          0,
+          33.61,
+          55.64,
+          80.1,
+          95.83,
+          118.47
+        ],
+        "vtt": "src/content/courses/films/eng.spc.intro.en.vtt"
+      }
+    },
+    "eng.reliability.intro": {
+      "poster": "src/content/courses/films/eng.reliability.intro.jpg",
+      "nl": {
+        "dur": 153.8,
+        "bytes": 5267977,
+        "scenes": [
+          0,
+          26.24,
+          48.6,
+          71.58,
+          89.66,
+          112.74
+        ],
+        "vtt": "src/content/courses/films/eng.reliability.intro.nl.vtt"
+      },
+      "en": {
+        "dur": 164.7,
+        "bytes": 5574374,
+        "scenes": [
+          0,
+          29.97,
+          53.22,
+          77.51,
+          97.71,
+          123.7
+        ],
+        "vtt": "src/content/courses/films/eng.reliability.intro.en.vtt"
+      }
+    },
     "pm.approach.intro": {
       "poster": "src/content/courses/films/pm.approach.intro.jpg",
       "nl": {

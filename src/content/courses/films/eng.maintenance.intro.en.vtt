@@ -1,0 +1,165 @@
+WEBVTT
+
+1
+00:00:00.833 --> 00:00:04.606
+The filling unit of line 3 has to keep running for the whole shift.
+
+2
+00:00:05.663 --> 00:00:08.565
+The module Maintenance goes from breakdown to predictive
+
+3
+00:00:08.647 --> 00:00:11.398
+and covers the numbers that show whether it works.
+
+4
+00:00:12.405 --> 00:00:13.601
+You are the engineer.
+
+5
+00:00:14.403 --> 00:00:17.456
+With the team lead you keep the unit whole through a shift.
+
+6
+00:00:18.471 --> 00:00:23.127
+First what maintenance you choose and who does it, with strategies and with TPM.
+
+7
+00:00:24.204 --> 00:00:26.178
+Then how you prepare and measure it,
+
+8
+00:00:26.317 --> 00:00:29.568
+with planning and spare parts and with measuring maintenance.
+
+9
+00:00:30.857 --> 00:00:33.388
+The first topic is Maintenance strategies.
+
+10
+00:00:34.128 --> 00:00:34.836
+There are four.
+
+11
+00:00:35.855 --> 00:00:40.743
+You repair after the breakdown, at a fixed interval, on condition or on a forecast.
+
+12
+00:00:41.802 --> 00:00:44.960
+Some parts wear with age and others fail at random.
+
+13
+00:00:45.664 --> 00:00:48.021
+A fixed interval does not fit everything.
+
+14
+00:00:49.054 --> 00:00:52.374
+You read the failure rate against age in a bathtub curve,
+
+15
+00:00:52.560 --> 00:00:54.824
+though it holds for only some equipment.
+
+16
+00:00:56.182 --> 00:00:59.653
+The second topic is TPM and autonomous maintenance.
+
+17
+00:01:00.373 --> 00:01:02.823
+Operators do the basic care themselves.
+
+18
+00:01:03.878 --> 00:01:06.804
+They clean, inspect, lubricate and tighten.
+
+19
+00:01:07.539 --> 00:01:09.478
+Anything that is off gets a tag.
+
+20
+00:01:10.479 --> 00:01:13.834
+The checks are on a CILT standard at the unit.
+
+21
+00:01:15.211 --> 00:01:18.392
+The third topic is Planning, scheduling and spare parts.
+
+22
+00:01:19.400 --> 00:01:24.253
+You prepare a job with steps, parts and tools before anyone picks up a spanner.
+
+23
+00:01:25.353 --> 00:01:28.848
+Then you fill the week with jobs, up to the hours available.
+
+24
+00:01:29.839 --> 00:01:33.822
+On the laptop is the CMMS, from notification to closing.
+
+25
+00:01:35.138 --> 00:01:37.518
+The fourth topic is Measuring maintenance.
+
+26
+00:01:38.219 --> 00:01:41.655
+You count how often the unit stops and how long it takes.
+
+27
+00:01:42.662 --> 00:01:46.354
+You also look at how many of all the hours were planned work.
+
+28
+00:01:47.393 --> 00:01:51.085
+Where a technician’s time goes, you measure with work sampling.
+
+29
+00:01:52.113 --> 00:01:56.269
+That is how the filling unit of line 3 stays whole for the whole shift.
+
+30
+00:01:57.594 --> 00:01:58.395
+The whole map.
+
+31
+00:01:59.123 --> 00:02:02.617
+The third station is Maintenance, in Keeping the plant running.
+
+32
+00:02:03.617 --> 00:02:05.811
+Each of the four topics has four levels.
+
+33
+00:02:06.832 --> 00:02:10.327
+Start at Basics level with the four maintenance strategies.
+
+34
+00:02:11.060 --> 00:02:13.057
+They tell you what fits each machine.
+
+35
+00:02:14.090 --> 00:02:17.375
+At Working knowledge level come failure, writing a standard,
+
+36
+00:02:17.549 --> 00:02:19.859
+planning the work and where the hours go.
+
+37
+00:02:20.875 --> 00:02:24.497
+At Advanced level come condition monitoring, the seven steps,
+
+38
+00:02:24.659 --> 00:02:27.051
+spare parts and a set of KPIs.
+
+39
+00:02:28.222 --> 00:02:31.937
+At Expert level come reviewing a plan, TPM as a programme,
+
+40
+00:02:32.088 --> 00:02:33.957
+planned shutdowns and the cost.
+
+41
+00:02:35.030 --> 00:02:39.082
+Every lesson and every film in this module has a place on this map.

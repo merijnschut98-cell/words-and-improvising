@@ -1,0 +1,169 @@
+WEBVTT
+
+1
+00:00:00.845 --> 00:00:03.527
+Lijn 3 moet in een dienst genoeg dozen voor de klant maken.
+
+2
+00:00:04.522 --> 00:00:07.146
+De module Capaciteit en flow gaat over hoeveel een
+
+3
+00:00:07.181 --> 00:00:09.445
+lijn kan maken en waarom dat niet altijd lukt.
+
+4
+00:00:10.483 --> 00:00:11.447
+Jij bent de engineer.
+
+5
+00:00:12.178 --> 00:00:14.953
+Met de teamleider houd je de lijn een hele dienst op tempo.
+
+6
+00:00:15.943 --> 00:00:17.905
+Eerst het tempo en wat de lijn begrenst,
+
+7
+00:00:18.172 --> 00:00:21.481
+met takt en lijnbalans en met bottleneck en capaciteit.
+
+8
+00:00:22.493 --> 00:00:27.740
+Dan waar de minuten blijven, met OEE en verliezen en met omstellen en seriegrootte.
+
+9
+00:00:28.991 --> 00:00:31.324
+Het eerste onderwerp is Takt en lijnbalans.
+
+10
+00:00:32.063 --> 00:00:34.188
+Takttijd is het tempo dat de klant vraagt.
+
+11
+00:00:35.186 --> 00:00:37.763
+Lijnbalancering verdeelt het werk over de stations,
+
+12
+00:00:38.019 --> 00:00:40.109
+zodat elk station net onder de takt zit.
+
+13
+00:00:41.133 --> 00:00:43.606
+Je tekent het werk per station in een yamazumi.
+
+14
+00:00:44.845 --> 00:00:47.597
+Het tweede onderwerp is Bottleneck en capaciteit.
+
+15
+00:00:48.326 --> 00:00:50.316
+Een lijn maakt nooit meer dan zijn langzaamste stap.
+
+16
+00:00:51.251 --> 00:00:53.910
+Capaciteit is wat de lijn na verliezen echt kan maken.
+
+17
+00:00:54.572 --> 00:00:56.418
+Plan daarop, niet op het papier.
+
+18
+00:00:57.459 --> 00:01:00.222
+De uren van de lijn leg je vast in een ploegenrooster (shift model).
+
+19
+00:01:01.448 --> 00:01:04.025
+Het derde onderwerp is OEE en verliezen.
+
+20
+00:01:04.731 --> 00:01:07.900
+OEE meet hoeveel geplande tijd opgaat aan goede stuks.
+
+21
+00:01:08.943 --> 00:01:12.717
+De rest verlies je aan de zes grote verliezen, van storingen tot afkeur.
+
+22
+00:01:13.714 --> 00:01:15.386
+OEE zegt niet waarom.
+
+23
+00:01:16.130 --> 00:01:17.465
+Op het bord noteer je tijd,
+
+24
+00:01:17.802 --> 00:01:20.205
+duur en oorzaak in een stilstandregistratie (downtime log).
+
+25
+00:01:21.490 --> 00:01:24.207
+Het vierde onderwerp is Omstellen en seriegrootte.
+
+26
+00:01:24.958 --> 00:01:27.071
+Omstellen is ombouwen voor een ander product.
+
+27
+00:01:28.088 --> 00:01:31.107
+De seriegrootte is het aantal stuks tussen twee omstellingen.
+
+28
+00:01:31.816 --> 00:01:33.952
+Een omstelling kost tijd zonder productie.
+
+29
+00:01:34.980 --> 00:01:37.453
+Je legt het gereedschap vooraf klaar op een omstelkar (changeover cart).
+
+30
+00:01:38.431 --> 00:01:42.088
+Zo kunnen jij en de teamleider lijn 3 de hele dienst op tempo houden.
+
+31
+00:01:43.363 --> 00:01:44.106
+De hele kaart.
+
+32
+00:01:44.865 --> 00:01:48.893
+Het eerste station is Capaciteit en flow, in De fabriek draaiend houden.
+
+33
+00:01:49.873 --> 00:01:52.114
+Elk van de vier onderwerpen heeft vier niveaus.
+
+34
+00:01:53.171 --> 00:01:57.083
+Begin op niveau Basis met takt, cyclustijd en doorlooptijd.
+
+35
+00:01:57.773 --> 00:02:00.080
+Het tempo van de klant is de maat voor de rest.
+
+36
+00:02:01.128 --> 00:02:03.531
+Op niveau Werkkennis komen lijnbalancering,
+
+37
+00:02:03.810 --> 00:02:06.852
+bezettingsgraad, de pareto en de SMED-workshop.
+
+38
+00:02:07.828 --> 00:02:10.510
+Op niveau Gevorderd komen volgorde en spreiding,
+
+39
+00:02:10.754 --> 00:02:14.829
+vijf focusstappen, OEE eerlijk definiëren en seriegrootte.
+
+40
+00:02:15.861 --> 00:02:19.471
+Op niveau Expert komen bemensing, een uur op de bottleneck,
+
+41
+00:02:19.750 --> 00:02:21.828
+OEE in geld en het productwiel.
+
+42
+00:02:22.840 --> 00:02:26.137
+Elke les en elke film van deze module heeft een plek op deze kaart.

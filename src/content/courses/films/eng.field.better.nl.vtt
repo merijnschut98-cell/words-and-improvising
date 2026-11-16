@@ -1,0 +1,189 @@
+WEBVTT
+
+1
+00:00:00.843 --> 00:00:04.686
+Op lijn 3 in hal B komen telkens te lichte dozen uit de vuleenheid.
+
+2
+00:00:05.663 --> 00:00:06.685
+Jij bent de engineer.
+
+3
+00:00:07.344 --> 00:00:10.142
+Na de dienst blijf je met de teamleider om het echt op te lossen.
+
+4
+00:00:11.124 --> 00:00:12.378
+Dat vraagt vier dingen.
+
+5
+00:00:13.039 --> 00:00:15.384
+De oorzaak vinden, het proces lezen,
+
+6
+00:00:15.756 --> 00:00:18.333
+de kosten kennen en de lijn betrouwbaarder maken.
+
+7
+00:00:19.287 --> 00:00:22.758
+Dat zijn vier stations, van probleemoplossen tot betrouwbaarheid.
+
+8
+00:00:24.083 --> 00:00:26.927
+Het eerste station is Technisch probleemoplossen.
+
+9
+00:00:27.638 --> 00:00:30.076
+Je zoekt de grondoorzaak van de te lichte dozen.
+
+10
+00:00:31.062 --> 00:00:32.943
+Eerst ga je zelf kijken waar het gebeurt.
+
+11
+00:00:33.653 --> 00:00:35.035
+Dan pas zoek je naar een oorzaak.
+
+12
+00:00:36.045 --> 00:00:38.622
+Je staat in een Ohno-cirkel (Ohno circle) en tekent een waaromboom (why tree).
+
+13
+00:00:39.682 --> 00:00:42.793
+Zonder dit pak je het symptoom aan, en kan het probleem terugkomen.
+
+14
+00:00:44.084 --> 00:00:46.847
+Het tweede station is Meten en SPC verdiept.
+
+15
+00:00:47.585 --> 00:00:50.220
+Je volgt het vulgewicht met data en niet op gevoel.
+
+16
+00:00:51.270 --> 00:00:53.255
+Na een omstelling weeg je eerst één doos.
+
+17
+00:00:54.038 --> 00:00:57.231
+Daarna weeg je steeds evenveel dozen en tel je de te lichte.
+
+18
+00:00:58.251 --> 00:00:59.923
+Je doet een eerstestukcontrole (first-off check)
+
+19
+00:01:00.004 --> 00:01:02.001
+en zet dat aantal uit op een np-kaart (np chart).
+
+20
+00:01:03.067 --> 00:01:06.945
+Zonder dit kun je reageren op gewone ruis of een echte verandering missen.
+
+21
+00:01:08.154 --> 00:01:10.806
+Het derde station is Kostprijs en investeringen.
+
+22
+00:01:11.502 --> 00:01:13.244
+Je wilt weten wat het probleem kost.
+
+23
+00:01:14.279 --> 00:01:16.508
+Een te lichte doos gaat in de bak en kost geld.
+
+24
+00:01:17.289 --> 00:01:20.029
+Ook een verbetering kost geld, dus je rekent het na.
+
+25
+00:01:21.033 --> 00:01:22.194
+Je telt de faalkosten (cost of poor quality)
+
+26
+00:01:22.252 --> 00:01:24.051
+op en rekent de kasbesparing (cash saving) uit.
+
+27
+00:01:25.163 --> 00:01:28.205
+Zonder dit weet niemand of de verbetering de moeite waard is.
+
+28
+00:01:29.481 --> 00:01:32.674
+Het vierde station is Betrouwbaarheid en assetstrategie.
+
+29
+00:01:33.356 --> 00:01:35.620
+Je maakt de lijn betrouwbaarder, waar het telt.
+
+30
+00:01:36.700 --> 00:01:38.616
+Niet elk onderdeel telt even zwaar.
+
+31
+00:01:39.292 --> 00:01:41.138
+Je kijkt wat er gebeurt als het uitvalt.
+
+32
+00:01:42.233 --> 00:01:46.076
+Je zet de onderdelen in een risicomatrix (risk matrix) en maakt een FMECA.
+
+33
+00:01:47.085 --> 00:01:49.651
+Zonder dit weet je niet welk onderdeel je eerst aanpakt.
+
+34
+00:01:51.027 --> 00:01:52.025
+Dit is de hele kaart.
+
+35
+00:01:52.763 --> 00:01:55.898
+De vier stations van De fabriek beter maken liggen in één gebied.
+
+36
+00:01:56.929 --> 00:01:58.647
+Eerst Technisch probleemoplossen,
+
+37
+00:01:58.937 --> 00:02:02.060
+van de grondoorzaak vinden tot kaizen en de waardestroom.
+
+38
+00:02:03.061 --> 00:02:07.682
+Dan Meten en SPC verdiept, van meetsystemen tot SPC op de werkvloer.
+
+39
+00:02:08.730 --> 00:02:13.479
+Dan Kostprijs en investeringen, van kostprijs en uurtarieven tot besparingen.
+
+40
+00:02:14.471 --> 00:02:16.909
+Tot slot Betrouwbaarheid en assetstrategie,
+
+41
+00:02:17.304 --> 00:02:19.672
+van falen tot besluiten op basis van data.
+
+42
+00:02:20.657 --> 00:02:21.679
+Zo hangen ze samen.
+
+43
+00:02:22.360 --> 00:02:26.749
+Eerst vind je de oorzaak, en metingen laten zien of het proces echt verandert.
+
+44
+00:02:27.742 --> 00:02:29.507
+Kosten laten zien wat het waard is.
+
+45
+00:02:30.223 --> 00:02:31.976
+Betrouwbaarheid zegt waar je het eerst doet.
+
+46
+00:02:33.046 --> 00:02:35.925
+Elk station is een module met vier niveaus per onderwerp.
+
+47
+00:02:36.606 --> 00:02:38.464
+Begin bij wat jouw lijn nu nodig heeft.

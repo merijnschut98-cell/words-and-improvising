@@ -211,3 +211,4 @@ Outcome: accepted (merged as delivered), sent back N times, redone.
 | 15 Nov | Task 17 pilot P1: split eng.machining.cnc into four films | sonnet | 211 | 39 min | 550,774 | accepted with fixes by its review |
 | 16 Nov | Review: pilot P1 cnc split | opus | ~110 | ~2.5 h active (paused overnight) | n/a | pass with 7 fixes (staging truth, repetition, highlights, readout overlap, G91 picture, label sizes, nl/en); tree shake moved into films/_kit/shake.mjs; merged v363 |
 | 2026-11-16 | PM-32 render: pm.field.lifecycle, approach/formats intros, intake/plan/run/land intros, MORE PIES nl re-renders | sonnet | ~190 | ~5 h (incl. usage-limit pause) | 213k | done; 16 MP4s guard PASS, merged v364 |
+| 2026-11-16 | PM-33 render: eng.field.run, eng.field.better, flow/quality/maintenance/safety/improve/cost/spc/reliability intros | sonnet | 45 | ~69 min | 145k | done; 20 MP4s guard PASS, merged v366 |
