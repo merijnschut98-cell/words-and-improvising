@@ -39,3 +39,12 @@ Other: station label "Motoren en perslucht"; process intro tank stays; fix "Radi
 1. **DMAIC in the Dutch voice** (pm.approach.intro): now read as letters "dee em aa ie see". Keep, or "dee-mee-ik" as some Lean people say it?
 2. **Zone colour** for "De fabriek beter maken": terracotta (own token, chosen in the map review). Keep, or another colour?
 3. **Convergence tool in the IT/OT intro**: "machinebouwer" (a person, the most tool-like Basis term). Keep, or another term?
+
+### State at the stop (15 Nov 23:59 Amsterdam)
+
+Three agents stopped on the usage limit before the stop time; their work is saved on branches, not merged:
+- render-pm32 (Projects batch: lifecycle field film with seven stations, four ordinal intros, pm.approach/pm.formats intros, MORE PIES in two lesson films) — partly rendered; resume to finish, then merge (the reviewed lifecycle change d11a910 merges with it).
+- render-pm33 (plant zones: eng.field.run, eng.field.better and seven intros) — partly rendered; resume to finish.
+- review-pilot-cnc (opus review of Task 17 pilot P1, the cnc split into four films, branch pilot-cnc 858b88d) — review in progress.
+Not yet rendered: eng.reliability.intro (reviewed, merged v357).
+The hourly check-in is disabled; work resumes only when Merijn says so.
