@@ -226,7 +226,7 @@ export async function cacheFilm(url, { cachesApi = globalThis.caches, fetchFn = 
 }
 
 let manifestPromise = null;
-function loadManifest(fetchFn = globalThis.fetch) {
+export function loadManifest(fetchFn = globalThis.fetch) {
   if (!manifestPromise) {
     manifestPromise = Promise.resolve().then(() => fetchFn(MANIFEST_URL)).then((r) => (r && r.ok ? r.json() : null)).catch(() => null);
     manifestPromise.then((m) => { if (!m) manifestPromise = null; });

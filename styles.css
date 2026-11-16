@@ -1245,3 +1245,28 @@ details.rw-topic > summary { cursor: pointer; min-height: 44px; display: flex; a
 .guide-intro .module-intro-title { margin: 0; }
 .guide-intro .guide-say { margin-top: 8px; }
 .guide-greeting .guide, .guide-intro .guide { pointer-events: none; }
+
+/* Tour page ("What's inside") and its entry on the start screen */
+.tour-entry { align-self: flex-start; }
+.tour-title { font-size: 1.8rem; margin: 4px 0 0; }
+.tour-intro { margin: 0; color: var(--muted); font-size: 1.05rem; }
+.tour-card { display: flex; flex-direction: column; gap: 10px; }
+.tour-subject { display: flex; align-items: center; gap: 8px; margin: 0; font-size: 1.3rem; color: var(--heading); }
+.tour-subject .ico { color: var(--accent-dark); }
+.tour-line, .tour-counts { margin: 0; }
+.tour-counts { font-family: var(--font-mono); font-size: var(--text-xs); color: var(--muted); letter-spacing: var(--tracking-label); }
+.tour-zones { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; }
+.tour-zone { width: 100%; display: flex; align-items: center; gap: 10px; padding: 10px 4px; min-height: 44px; background: none; border: 0; border-bottom: 1px solid var(--border-subtle); color: var(--heading); font: inherit; text-align: left; cursor: pointer; }
+.tour-zones li:last-child .tour-zone { border-bottom: 0; }
+.tour-zone:focus-visible { outline: 2px solid var(--heading); outline-offset: 2px; }
+.tour-zone-dot { width: 14px; height: 14px; border-radius: 4px; flex: none; background: var(--zone, var(--line)); }
+.tour-zone-name { flex: 1; }
+.zd-run, .zd-lifecycle { --zone: var(--accent); }
+.zd-better { --zone: var(--zone-better); }
+.zd-making, .zd-portfolio { --zone: var(--primary); }
+.zd-energy, .zd-people { --zone: var(--ok); }
+.zd-digital, .zd-it { --zone: var(--secondary-fill); }
+.tour-actions { display: flex; flex-wrap: wrap; gap: 8px; }
+.tour-actions .btn { flex: 1 1 200px; }
+.tour-caption { margin: 0; }
+.welcome-actions { display: flex; flex-direction: column; gap: 10px; }

@@ -206,3 +206,4 @@ Outcome: accepted (merged as delivered), sent back N times, redone.
 | 15 Nov | Render PM-33: plant zones (two field films, seven intros) | sonnet | stopped on the usage limit, work saved | | | |
 | 15 Nov | Task 17 pilot P1: split eng.machining.cnc into four films | sonnet | 211 | 39 min | 550,774 | in review (opus) |
 | 15 Nov | Review: pilot P1 cnc split | opus | stopped on the usage limit, work saved | | | |
+| 16 Nov | Build: visitor tour page + welcome choice (+ zone-list fix) | sonnet | 76 | 14 min | 194,981 | accepted after one fix round (map crops replaced by zone lists); checked by the integrator; merged v360 |
