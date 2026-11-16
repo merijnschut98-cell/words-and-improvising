@@ -4,16 +4,16 @@ import { finishWelcome } from '../core/storage.js';
 import { brandLockup } from './home.js';
 import { SUBJECT_TABS } from './subjectbar.js';
 
-// First run: three short screens (the three subjects, how a day works, where
-// Settings and the key live). Skippable from every screen.
+// First run: three short screens (the three subjects, how a day works, and a
+// choice: start, or look around first). Skippable from every screen.
 export function renderWelcome(app, _params, root) {
   let i = 0;
   const main = h('main', { class: 'screen welcome' });
   root.append(main);
 
-  const done = () => {
+  const done = (screen = 'home') => {
     app.setState(finishWelcome(app.state));
-    app.go('home');
+    app.go(screen);
   };
 
   function show() {
@@ -24,7 +24,7 @@ export function renderWelcome(app, _params, root) {
     const slides = [
       { icon: null, title: t('welcome1Title'), body: t('welcome1Body'), extra: subjects },
       { icon: 'play', title: t('welcome2Title'), body: t('welcome2Body') },
-      { icon: 'settings', title: t('welcome3Title'), body: t('welcome3Body') },
+      { icon: 'compass', title: t('welcome3Title'), body: t('welcome3Body') },
     ];
     const s = slides[i];
     const last = i === slides.length - 1;
@@ -38,7 +38,7 @@ export function renderWelcome(app, _params, root) {
               onclick: () => { app.updateSettings({ lang: v }); show(); },
             }, label)))
           : h('span', {}),
-        h('button', { class: 'btn btn-ghost small welcome-skip', onclick: done }, t('skip'))),
+        h('button', { class: 'btn btn-ghost small welcome-skip', onclick: () => done() }, t('skip'))),
       h('section', { class: 'welcome-slide' },
         // The first slide shows the Vantage mark; the others a quiet icon.
         s.icon ? h('div', { class: 'welcome-icon' }, ico(s.icon)) : brandLockup(),
@@ -47,10 +47,13 @@ export function renderWelcome(app, _params, root) {
         h('p', {}, s.body),
         s.extra ? s.extra() : null),
       h('div', { class: 'welcome-dots', 'aria-hidden': 'true' }, slides.map((_, k) => h('i', { class: k === i ? 'on' : '' }))),
-      h('button', {
-        class: 'btn btn-primary btn-big',
-        onclick: () => { if (last) done(); else { i += 1; show(); } },
-      }, last ? t('welcomeStart') : t('next')),
+      h('div', { class: 'welcome-actions' },
+        h('button', {
+          class: 'btn btn-primary btn-big',
+          onclick: () => { if (last) done(); else { i += 1; show(); } },
+        }, last ? t('welcomeStart') : t('next')),
+        // The visitor's way in: the tour page, without any practice or microphone.
+        last ? h('button', { class: 'btn btn-ghost btn-big', onclick: () => done('tour') }, ico('compass'), ' ', t('welcomeLook')) : null),
     );
   }
   show();

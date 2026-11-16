@@ -197,3 +197,14 @@ Outcome: accepted (merged as delivered), sent back N times, redone.
 | 15 Nov | Review: eng.cost.intro | sonnet | ~40 | n/a | n/a | accepted with fixes (179 to 173 s, payback dropped as story word, unsupported claim replaced); merged v355 |
 | 15 Nov | Build: Engineering intro eng.spc.intro | sonnet | 114 | 17 min | 319,167 | accepted with fixes by its review |
 | 15 Nov | Review: eng.spc.intro | sonnet | ~95 | incl. limit pause | n/a | accepted with fixes (capability from weighed values, kepeibiliti rule, signal hedged, 177 to 172 s); merged v356 |
+| 15 Nov | Build: Engineering intro eng.reliability.intro | sonnet | 136 | 19 min | 343,541 | accepted with fixes by its review |
+| 15 Nov | Review: eng.reliability.intro | sonnet | ~33 | n/a | n/a | accepted with fixes (vormparameter replaces non-term Weibull-fit, failure-finding verb, hedge); merged v357 — last Engineering intro |
+| 15 Nov | Voice fix PM-28: poorly heard words in four intros | sonnet | stopped on the usage limit, work saved | | | |
+| 15 Nov | Build: pm.field.lifecycle with seven stations + ordinal fixes in four pm intros | sonnet | 106 | 31 min | 330,619 | in review (sonnet) |
+| 15 Nov | Review: pm.field.lifecycle (7 stations) | sonnet | 108 | 19 min | 242,738 | accepted with fixes (261 to 242 s, page 298.6 to 283 KB via flatter figures, desk reads as a desk); to merge with render PM-32 |
+| 15 Nov | Render PM-32: Projects batch (lifecycle, four ordinal intros, two new intros, MORE PIES in two lesson films) | sonnet | stopped on the usage limit, work saved | | | |
+| 15 Nov | Render PM-33: plant zones (two field films, seven intros) | sonnet | stopped on the usage limit, work saved | | | |
+| 15 Nov | Task 17 pilot P1: split eng.machining.cnc into four films | sonnet | 211 | 39 min | 550,774 | in review (opus) |
+| 15 Nov | Review: pilot P1 cnc split | opus | stopped on the usage limit, work saved | | | |
+| 16 Nov | Build: visitor tour page + welcome choice (+ zone-list fix) | sonnet | 76 | 14 min | 194,981 | accepted after one fix round (map crops replaced by zone lists); checked by the integrator; merged v360 |
+| 16 Nov | Build: wider desktop layout (>=1024 px) + subject names prominent on the start cards | sonnet | 68 | 14 min | 202,074 | accepted; checked by the integrator; merged v361 |
