@@ -1664,7 +1664,7 @@ const STAGE = (() => {
     for (let i = 0; i <= 24; i++) { const a = (i / 24) * TAU; ring.push(at(Wp(Math.cos(a) * 3.4, Math.sin(a) * 3.4, 0))); }
     const lp = at(Wp(-7, -7, 0));
     return mark(pathOf(ring, true)) + mark(pathOf([o, ex])) + mark(arrowHead(o, ex, 7)) + mark(pathOf([o, ey])) + mark(arrowHead(o, ey, 7))
-      + label(lp[0], lp[1], 'G54', 20, 'end') + label(ex[0] + 4 * camW / W, ex[1] + 14 * camW / W, 'X', 18, 'start') + label(ey[0], ey[1] - 6 * camW / W, 'Y', 18, 'middle');
+      + label(lp[0], lp[1], 'G54', 20, 'end') + label(ex[0] + 4 * camW / W, ex[1] + 14 * camW / W, 'X', 20, 'start') + label(ey[0], ey[1] - 6 * camW / W, 'Y', 20, 'middle');
   }
   function dimY(x, y0, y1, text, dashed = false, anchor = 'start') {
     const a = at(Wp(x, y0, 0.5));
@@ -1672,7 +1672,7 @@ const STAGE = (() => {
     const lp = at(Wp(x, y1 + 4, 0.5));
     const extra = dashed ? ' stroke-dasharray="5 4"' : '';
     return mark(pathOf([a, b]), extra) + mark(arrowHead(a, b, 8)) + mark(pathOf([at(Wp(x - 3, y0, 0.5)), at(Wp(x + 3, y0, 0.5))]))
-      + label(lp[0] + (anchor === 'end' ? -4 : 4) * camW / W, lp[1], text, 18, anchor);
+      + label(lp[0] + (anchor === 'end' ? -4 : 4) * camW / W, lp[1], text, 20, anchor);
   }
 
   function gaugeSvg(lift, needle) {
@@ -1706,7 +1706,7 @@ const STAGE = (() => {
     const y = TAB.y + 64 + row * 0;
     const cut = (s, k) => s.slice(0, Math.round(s.length * clamp(k, 0, 1)));
     let out = mono(TAB.x + 16, y, t) + mono(TAB.x + 120, y, cut(l, typedL), 20, 'end') + mono(TAB.x + 196, y, cut(r, typedR), 20, 'end');
-    if (strike) out += mono(TAB.x + 132, y, strike, 18, 'start', 'fp-ink fp-code fp-ghost');
+    if (strike) out += mono(TAB.x + 132, y, strike, 20, 'start', 'fp-ink fp-code fp-ghost');
     return out;
   }
   function bigTag(top) {
@@ -1797,11 +1797,11 @@ const STAGE = (() => {
     if (kPost > 0) {
       const px = CAMS.x + 194;
       const py = CAMS.y + 52;
-      post += `<path class="fp-mark" d="M${px} ${py}h${SIDE.w}v28h${-SIDE.w}z"/>` + label(px + SIDE.w / 2, py + 20, 'POST', 18, 'middle', true, 'fp-ink fp-code');
+      post += `<path class="fp-mark" d="M${px} ${py}h${SIDE.w}v28h${-SIDE.w}z"/>` + label(px + SIDE.w / 2, py + 20, 'POST', 20, 'middle', true, 'fp-ink fp-code');
       post += mark(`M${px - 14} ${py + 14}h12`) + mark(arrowHead([px - 14, py + 14], [px - 2, py + 14], 7, true));
       const lines = ['N10 G90 G54', 'N20 T3 M06', 'N30 S3200 M03', 'N40 G00 G43 H3'];
       const n = Math.floor(kPost * (lines.length + 0.99));
-      lines.slice(0, n).forEach((t, i) => { post += mono(px + 4, py + 54 + i * 22, t, 17); });
+      lines.slice(0, n).forEach((t, i) => { post += mono(px + 4, py + 54 + i * 24, t, 20); });
     }
     let sim = '';
     if (kSim > 0) {
@@ -1934,7 +1934,7 @@ const STAGE = (() => {
 
   function causesCard(si, u) {
     const w = 372;
-    return cardSvg(14, 44, w, tr('oorzaken', 'causes', 340), [
+    return cardSvg(14, 60, w, tr('oorzaken', 'causes', 340), [
       [1, tr('ingetypt getal fout', 'typed number wrong', 340), '', 0.1],
       [2, tr('verkeerd H-nummer', 'wrong H number', 340), '', 0.1],
       [3, tr('verkeerd nulpunt actief', 'wrong work offset active', 340), '', 0.1],

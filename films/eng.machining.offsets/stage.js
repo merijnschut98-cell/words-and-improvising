@@ -13,7 +13,7 @@
   // a card of the causes of a crash
   function causesCard(si, u) {
     const w = 372;
-    return cardSvg(14, 44, w, tr('oorzaken', 'causes', 340), [
+    return cardSvg(14, 60, w, tr('oorzaken', 'causes', 340), [
       [1, tr('ingetypt getal fout', 'typed number wrong', 340), '', 0.1],
       [2, tr('verkeerd H-nummer', 'wrong H number', 340), '', 0.1],
       [3, tr('verkeerd nulpunt actief', 'wrong work offset active', 340), '', 0.1],

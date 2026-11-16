@@ -83,8 +83,8 @@ const spec = {
       beats: [
         { nl: 'Elk gereedschap steekt anders uit: de {t:Gereedschapscorrectie|gereedschapscorrectie} bewaart lengte en radius.', en: 'Every tool sticks out differently: the {t:Tool offset|tool offset} stores length and radius.', cue: { Gereedschapscorrectie: 'toolL' }, focus: ['toolL'], points: ['t3.1'],
           say: { nl: 'Elk gereedschap steekt anders uit. Daarom bewaart een {t:Gereedschapscorrectie|gereedschapscorrectie} de lengte en de radius van een gereedschap.', en: 'Every tool sticks out a different amount. So a {t:Tool offset|tool offset} stores the length and the radius of a tool.' } },
-        { nl: 'Gereedschap {n:5}, een boor, raakt de gereedschapsmeter: {n:121.43} mm gaat de tabel in.', en: 'Tool {n:5}, a drill, touches the tool setter: {n:121.43} mm goes into the table.', focus: ['setter', 'table'], read: { nl: 'T{n:5} · L {n:121.43} mm', en: 'T{n:5} · L {n:121.43} mm' },
-          say: { nl: 'Gereedschap {n:5} is een boor. Hij raakt de gereedschapsmeter, en zijn lengte van {n:121.43} millimeter gaat de tabel in.', en: 'Tool {n:5} is a drill. It touches the tool setter, and its length of {n:121.43} millimetres goes into the table.' } },
+        { nl: 'De insteller meet gereedschap {n:5}, een boor, op de gereedschapsmeter: {n:121.43} mm.', en: 'The setter measures tool {n:5}, a drill, on the tool setter: {n:121.43} mm.', focus: ['setter', 'table'], read: { nl: 'T{n:5} · L {n:121.43} mm', en: 'T{n:5} · L {n:121.43} mm' },
+          say: { nl: 'De insteller meet gereedschap {n:5}, een boor, op de gereedschapsmeter. Hij is {n:121.43} millimeter lang.', en: 'The setter measures tool {n:5}, a drill, on the tool setter. It is {n:121.43} millimetres long.' } },
         { nl: 'De insteller meet die getallen en typt ze in: samen heten ze de offsets.', en: 'The setter measures and types in these numbers: together they are called the offsets.', focus: ['table'], points: ['t3.2'],
           say: { nl: 'De insteller meet die getallen en typt ze in. Samen heten ze de offsets.', en: 'The setter measures these numbers and types them in. Together they are called the offsets.' } },
         { nl: 'De meeste crashes en afgekeurde eerste stukken komen door verkeerde offsets, niet door verkeerde programma’s.', en: 'Most crashes and scrapped first parts come from wrong offsets, not from wrong programs.', focus: ['card'], points: ['t3.2'],
@@ -95,7 +95,7 @@ const spec = {
       id: 's7', lesson: L1, level: 1, still: 0.9, title: { nl: 'Een tikfout', en: 'A typing error' },
       beats: [
         { nl: 'Voor gereedschap {n:5} typt hij {n:112.43} in plaats van {n:121.43}.', en: 'For tool {n:5} he types {n:112.43} instead of {n:121.43}.', focus: ['table'], read: { nl: 'T{n:5} · L {n:112.43} ≠ {n:121.43}', en: 'T{n:5} · L {n:112.43} ≠ {n:121.43}' }, points: ['ex.text.2'],
-          say: { nl: 'Gereedschap {n:5} is een boor. De insteller typt een lengte van {n:112.43} millimeter in, in plaats van {n:121.43}.', en: 'Tool {n:5} is a drill. The setter types a length of {n:112.43} millimetres, instead of {n:121.43}.' } },
+          say: { nl: 'Maar in de tabel typt hij voor gereedschap {n:5} een lengte van {n:112.43} millimeter, in plaats van {n:121.43}.', en: 'But for tool {n:5} he types a length of {n:112.43} millimetres in the table, instead of {n:121.43}.' } },
         { nl: 'De machine denkt dat de boor {n:9} mm korter is: hij boort {n:9} mm dieper.', en: 'The machine thinks the drill is {n:9} mm shorter: it drills {n:9} mm deeper.', focus: ['section'], points: ['ex.text.2'],
           say: { nl: 'De machine denkt dat de boor {n:9} millimeter korter is dan hij is. Dus boort hij {n:9} millimeter dieper.', en: 'The machine thinks the drill is {n:9} millimetres shorter than it is. So it drills {n:9} millimetres deeper.' } },
       ],

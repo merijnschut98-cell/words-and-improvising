@@ -80,7 +80,7 @@ const spec = {
         { nl: 'De gevaarlijke regels zijn ijlgangen vlak bij het werkstuk: G00 naar Z2 is prima, naar Z-3 het materiaal in.', en: 'The dangerous lines are rapids near the part: a G00 to Z2 is fine, to Z-3 it goes into the material.', focus: ['section', 'crash'], points: ['t4.2'],
           say: { nl: 'De gevaarlijke regels zijn ijlgangen vlak bij het werkstuk. Een G00 naar Z2, {n:2} millimeter boven het werkstuk, is prima. Een G00 naar Z min 3 gaat op volle snelheid het materiaal in.', en: 'The dangerous lines are rapid moves near the part. A G00 to Z2, {n:2} mm above the part, is fine. A G00 to Z minus 3 goes into the material at full speed.' } },
         { nl: 'Daarom let de insteller bij de eerste run op de restweg (distance-to-go).', en: 'That is why the setter watches the distance-to-go on the first run.', focus: ['counter'], points: ['t4.2'],
-          say: { nl: 'Daarom kijkt de insteller bij de eerste run naar de restweg. Dat is hoe ver de huidige beweging nog moet.', en: 'That is why the setter watches the distance-to-go on the screen during the first run. That is the distance left in the current move.' } },
+          say: { nl: 'Daarom kijkt de insteller bij de eerste run naar de restweg. Dat is hoe ver de huidige beweging nog moet.', en: 'That is why the setter watches the distance-to-go during the first run. That is how far the current move still has to go.' } },
       ],
     },
     {

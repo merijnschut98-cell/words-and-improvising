@@ -9,6 +9,7 @@
 import { readFileSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
+import { shake, shakeModule } from '../_kit/shake.mjs';
 
 export const SKILL = process.env.ANATOMY_SKILL
   ?? '/root/.claude/skills/synced/59baa0b0-2d6e-4f06-b18f-f0d55a7a3cd1_1e0d6f08-7fe3-4a9a-a188-69ec2a55ed01/anatomy';
@@ -431,29 +432,10 @@ export const cam = (p, w, dx = 0, dy = 0) => { const [x, y] = at(p); return [Mat
 export { P, W, H, C, at, g, panel, mono, PROG, BLOCKS, LIST, TAB, INS, CAMS, CW, TOP, near, assert };
 
 // ---------------------------------------------------------------- page script and styles (shared by the four films)
-const latheSource = readFileSync(join(SKILL, 'kit/lathe.mjs'), 'utf8').replace(/^import .*$/m, '').replace(/^export /gm, '');
-// A source keeps only the top-level declarations (function, const, let) that the text of the stage names, and what
-// those name in turn: a declaration stays when a kept one mentions its name (a superset, never less). The page
-// of a film that draws a machine would otherwise carry the whole kit (35 KB) and the whole lathe module (48 KB).
-function shake(source, rootText) {
-  const starts = [...source.matchAll(/^(?:function|const|let) ([A-Za-z0-9_$]+)/gm)];
-  const chunks = starts.map((m, i) => ({ name: m[1], text: source.slice(m.index, i + 1 < starts.length ? starts[i + 1].index : source.length) }));
-  const word = (n) => new RegExp(`(?<![\\w$.])${n.replace(/\$/g, '\\$')}(?![\\w$])`);
-  const keep = new Set();
-  const visit = (c) => {
-    if (keep.has(c.name)) return;
-    keep.add(c.name);
-    for (const o of chunks) if (!keep.has(o.name) && word(o.name).test(c.text)) visit(o);
-  };
-  for (const c of chunks) if (word(c.name).test(rootText)) visit(c);
-  return { prelude: source.slice(0, starts[0].index), body: chunks.filter((c) => keep.has(c.name)).map((c) => c.text).join('') };
-}
-function latheScriptOf(stageText) {
-  const used = [...new Set([...stageText.matchAll(/\bG\.([A-Za-z0-9_$]+)/g)].map((m) => m[1]))];
-  const { prelude, body } = shake(latheSource, used.join(' '));
-  for (const n of used) if (!new RegExp(`(?:function|const) ${n}\\b`).test(body)) throw new Error(`the stage calls G.${n}, which the lathe module does not have`);
-  return `const G = (() => {${prelude}${body}\nreturn { ${used.join(', ')} };})();\n`;
-}
+const latheSource = readFileSync(join(SKILL, 'kit/lathe.mjs'), 'utf8');
+// The kit's tree shake (films/_kit/shake.mjs): the page keeps only the declarations of the anatomy kit and the lathe
+// module that the stage names, and what those name in turn; without it each page carries the whole kit (35 KB) and
+// the whole lathe module (48 KB).
 const noComments = (s) => s.replace(/^[ \t]*\/\/.*\n/gm, ''); // whole-line comments stay in the source only
 // The page script of a film: the kit, the lathe module, the preamble (what the stage reads), the stage library
 // of this folder and the film's own stage (its scenes and the closing of the function), then the beat warp.
@@ -461,7 +443,7 @@ const noComments = (s) => s.replace(/^[ \t]*\/\/.*\n/gm, ''); // whole-line comm
 export function stageScriptOf(ownStage, { cams, dur, extra = '' }) {
   const LIB = noComments(readFileSync(join(HERE, 'stage-lib.js'), 'utf8'));
   const OWN = noComments(readFileSync(ownStage, 'utf8'));
-  const LATHE = latheScriptOf(LIB + OWN);
+  const LATHE = shakeModule(latheSource, 'G', LIB + OWN);
   const preamble = `const P = ${JSON.stringify(P)};\nconst C = ${JSON.stringify(C)};\nconst CAM = ${JSON.stringify(cams)};\nconst W = ${W}, H = ${H};\nconst LIST = ${JSON.stringify(LIST)}, TAB = ${JSON.stringify(TAB)}, INS = ${JSON.stringify(INS)}, CAMS = ${JSON.stringify(CAMS)}, CW = ${CW};\n${extra}`;
   const RUN = ['timeline.mjs', 'player-runtime.js', 'beatwarp.js'].map((f) => readFileSync(join(HERE, '../_kit', f), 'utf8')).join('\n');
   const kit = shake(kitScript(), `${LIB}\n${OWN}\n${LATHE}\n${RUN}`);

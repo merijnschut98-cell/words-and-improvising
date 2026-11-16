@@ -81,7 +81,7 @@ const spec = {
           say: { nl: 'Er zijn hefbomen. Sjablonen voor terugkerende vormen. En een gevalideerde post per machine.', en: 'There are levers. Templates for recurring features. And a validated post per machine.' } },
         { nl: 'Simulatie van de complete machine en een CAM-gereedschapsbibliotheek die klopt met het echte rek.', en: 'Full-machine simulation and a CAM tool library that matches the real tool rack.', focus: ['card'], points: ['t4.1'],
           say: { nl: 'Simulatie van de complete machine. En een gereedschapsbibliotheek in CAM die klopt met het echte gereedschapsrek.', en: 'Full-machine simulation. And a tool library in CAM that matches the real tool rack.' } },
-        { nl: 'Geloofwaardige vraag: hoeveel uur proefdraaien per nieuw programma op de machine?', en: 'A credible question: how many hours of prove-out per new program?', focus: ['card'], points: ['t4.2'],
+        { nl: 'Geloofwaardige vraag: hoeveel uur proefdraaien per nieuw programma op de machine?', en: 'A credible question: how many hours of prove-out per new program on the machine?', focus: ['card'], points: ['t4.2'],
           say: { nl: 'Geloofwaardige vragen. Hoeveel uur proefdraaien kost elk nieuw programma op de machine?', en: 'Credible questions. How many hours of prove-out does each new program take on the machine?' } },
         { nl: 'Hoeveel programma’s worden aan de machine gewijzigd en nooit teruggezet?', en: 'How many programs are edited at the machine and never fed back?', focus: ['card'], points: ['t4.2'],
           say: { nl: 'Hoeveel programma’s worden aan de machine gewijzigd en nooit teruggezet?', en: 'How many programs are edited at the machine and never fed back?' } },

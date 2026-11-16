@@ -86,7 +86,7 @@
     } else if (si === 2) {
       tip = rest();
       const bi = beatOf(si, u);
-      set(E.cur, bi === 1 ? wordsHl((w) => /^G0[0-3]$/.test(w)) : bi === 2 ? wordsHl((w) => /^M\d+$/.test(w)) : bi === 3 ? wordsHl((w) => /^[FST]\d+$/.test(w)) : '');
+      set(E.cur, bi === 1 ? wordsHl((w) => /^G0[0-3]$/.test(w)) : bi === 2 ? wordsHl((w) => /^M0[368]$/.test(w)) : bi === 3 ? wordsHl((w) => /^[FST]\d+$/.test(w)) : '');
       fade(E.list, span(u, 0, 0.05));
       set(E.g54, '');
     } else if (si === 3) {
@@ -119,7 +119,7 @@
       set(E.g54, g54Svg());
       fade(E.g54, span(u, b2, b2 + 0.06));
     } else if (si === 5) {
-      // the drill touches the tool setter; its length goes into the table
+      // the setter measures the drill on the tool setter
       tool = 'drill';
       const b1 = B[1];
       const b2 = B[2];
@@ -130,9 +130,9 @@
       tip = place([x, y, z], 'drill');
       set(E.lenDim, lenDimSvg('drill', tip));
       set(E.rowT3, '');
-      const typed = span(u, touch, touch + 0.06);
-      set(E.rowT5, rowSvg(0, '5', num(121.43, 2), '—', typed, typed));
-      set(E.card, cardSvg(14, 44, 300, tr('schema', 'diagram'), [[3, tr('crashes en afkeur', 'crashes and scrap'), '', 0.05], [3, tr('← verkeerde offsets', '← wrong offsets'), '', 0.35], [3, tr('niet het programma', 'not the program'), '', 0.65]], si, u));
+      // the measured length is the readout (121,43); the table row waits for scene 7, where the wrong number is typed
+      set(E.rowT5, rowSvg(0, '5', '', '—'));
+      set(E.card, cardSvg(14, 60, 300, tr('schema', 'diagram'), [[3, tr('crashes en afkeur', 'crashes and scrap'), '', 0.05], [3, tr('← verkeerde offsets', '← wrong offsets'), '', 0.35], [3, tr('niet het programma', 'not the program'), '', 0.65]], si, u));
       fade(E.tab, span(u, b1 - 0.04, b1));
     } else if (si === 6) {
       // 112,43 typed for 121,43: the drill goes 9 mm too deep

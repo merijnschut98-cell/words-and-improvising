@@ -79,7 +79,8 @@
       set(E.cur, bi === 0 ? '' : bi === 1 ? curSvg(Math.min(9, Math.floor(span(u, B[1], B[2]) * 10))) : bi === 2 ? numberHl([0, 1, 2, 3, 4, 5, 6, 7, 8, 9]) : bi === 3 ? (span(u, B[3], B[4]) < 0.5 ? wordsHl((w) => /^G\d+$/.test(w)) : wordsHl((w) => /^[XYZ]-?\d+$/.test(w))) : wordsHl((w) => /^[FST]\d+$/.test(w)));
     } else if (si === 1) {
       // modal: N70 carries no G01 of its own; absolute from G54, incremental from where the tool is
-      const x0 = 8;
+      // the tool stands away from G54, so incremental X20 visibly starts at the tool, not at the zero point
+      const x0 = 14;
       tip = place(Wp(x0, 0, 12), 'mill');
       set(E.cur, bi === 0 ? wordsHl((w) => w === 'G01') : bi === 1 ? curSvg(6) + wordsHl((w, n) => w === 'G01' && n === 'N60') : bi === 2 ? curSvg(6) + wordsHl((w, n) => w === 'G01' && n === 'N60') : wordsHl((w) => w === 'G90'));
       set(E.g54, g54Svg());
@@ -88,7 +89,8 @@
       fade(E.absDim, bi === 3 ? span(u, B[3], B[3] + 0.06) : 0);
       set(E.incDim, dimX(-30, x0, x0 + 20, 'X20', true));
       fade(E.incDim, bi >= 4 ? span(u, B[4], B[4] + 0.06) : 0);
-      if (bi >= 4) set(E.cur, wordsHl((w) => w === 'G90'));
+      // the listing is absolute (G90): while G91 is explained, nothing in it is lit
+      if (bi >= 4) set(E.cur, '');
     } else if (si === 2) {
       tip = startTip();
       set(E.cur, bi === 0 ? wordsHl((w) => w === 'G00') : bi === 1 ? wordsHl((w) => /^G0[123]$/.test(w) && w !== 'G00') : bi === 2 ? wordsHl((w) => /^M0[356]$/.test(w)) : bi === 3 ? wordsHl((w) => /^M(08|09|30)$/.test(w)) : '');
