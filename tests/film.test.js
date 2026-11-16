@@ -1621,9 +1621,25 @@ test('speak variant: Radical Candor and MORE PIES of the lead intro, PM-30', () 
   assert.equal(nl('Op Werkkennis komen de fasen van een team, de grens met manipulatie, Toyota Kata en Radical Candor erbij.'), 'Op Werkkennis komen de fasen van een team, de grens met manipulatie, Tojota Kata en Rèddikal Kender erbij.');
   assert.equal(nl('We gebruiken actief luisteren en MORE PIES.'), 'We gebruiken actief luisteren en More paiz.');
   // elsewhere the names keep their voice
-  assert.equal(nl('De checklist MORE PIES komt uit de crisisonderhandeling.'), 'De checklist Mor pais komt uit de crisisonderhandeling.');
+  assert.equal(nl('Gebruik MORE PIES bij het luisteren.'), 'Gebruik Mor pais bij het luisteren.'); // PM-32 widened the rule for the first-talk and jargon films
   assert.equal(nl('Radical Candor is een model van Kim Scott.'), 'Radical Candor is een model van Kim Scott.');
   const en = 'We use active listening and MORE PIES, and at Working knowledge Toyota Kata and Radical Candor.';
+  assert.equal(speakOf([en], 'en'), en);
+});
+
+// Batch PM-32: the same voice for MORE PIES in the two films that still said "Mor pais" (Merijn, 15 Nov: "Mor pais" in
+// pm.intake.firsttalk, 1 sentence, and pm.outside.jargon, 2 sentences, against "More paiz" in pm.lead.intro). The PM-30 approach,
+// widened: one narrow group of three rules at the end of the Dutch list, each tied to the sentence it belongs to, so the
+// other films and the English track keep their voice; no other film's spoken text changes
+test('speak variant: MORE PIES as More paiz in the first-talk and jargon films, PM-32', () => {
+  const nl = (s) => speakOf([s], 'nl');
+  assert.equal(nl('De checklist MORE PIES komt uit de crisisonderhandeling.'), 'De checklist More paiz komt uit de crisisonderhandeling.');
+  assert.equal(nl('Dat zijn stilte en doorvragen uit MORE PIES: zwijg even, vraag dan dieper.'), 'Dat zijn stilte en doorvragen uit More paiz: zwijg even, vraag dan dieper.');
+  assert.equal(nl('MORE PIES is een lijst voor actief luisteren: luisteren om te begrijpen, niet om te antwoorden.'), 'More paiz is een lijst voor actief luisteren: luisteren om te begrijpen, niet om te antwoorden.');
+  // the lead intro keeps its own rule, other sentences keep "Mor pais"
+  assert.equal(nl('We gebruiken actief luisteren en MORE PIES.'), 'We gebruiken actief luisteren en More paiz.');
+  assert.equal(nl('Gebruik MORE PIES bij het luisteren.'), 'Gebruik Mor pais bij het luisteren.');
+  const en = 'MORE PIES is a checklist for active listening. The checklist MORE PIES comes from crisis negotiation.';
   assert.equal(speakOf([en], 'en'), en);
 });
 
@@ -1660,6 +1676,22 @@ test('speak variant: the brown paper and the whiteboard of the formats intro', (
   assert.equal(nl('Een whiteboard met veel post-its.'), 'Een whiteboard met veel post-its.');
   assert.equal(nl('Een digitaal whiteboard is een gedeeld bord.'), 'Een digitaal whiteboard is een gedeeld bord.');
   const en = 'The group draws the process of line 3 with sticky notes on a brown paper. We do that on an online whiteboard.';
+  assert.equal(speakOf([en], 'en'), en);
+});
+
+// The field film "a project from start to finish" (pm.field.lifecycle), its two new stations (Approach and tools, Formats and
+// meetings): the tools are takenbord, ERP, voorleesstuk and brown paper. espeak-ng reads brown paper with the Dutch o of "bron"
+// (said braun peeper, as the Formats intro's rule), here only in the field film's phrase "gebruiken we vaak een voorleesstuk en
+// een brown paper". Takenbord, ERP, voorleesstuk, werkvormen and aanpak need nothing; English needs nothing; no other film's
+// spoken text changes
+test('speak variant: the field film words of its approach and formats stations, in Dutch', () => {
+  const nl = (s) => speakOf([s], 'nl');
+  assert.equal(nl('Bij werkvormen gebruiken we vaak een voorleesstuk en een brown paper.'), 'Bij werkvormen gebruiken we vaak een voorleesstuk en een braun peeper.');
+  assert.equal(nl('Bij de aanpak gebruiken we vaak een takenbord en een ERP.'), 'Bij de aanpak gebruiken we vaak een takenbord en een ERP.');
+  // elsewhere the words keep their voice
+  assert.equal(nl('Een brown paper en een voorleesstuk.'), 'Een brown paper en een voorleesstuk.');
+  assert.equal(nl('De groep tekent het proces van lijn 3 met geeltjes op een brown paper.'), 'De groep tekent het proces van lijn 3 met geeltjes op een braun peeper.');
+  const en = 'With formats we often use a pre-read and a brown paper.';
   assert.equal(speakOf([en], 'en'), en);
 });
 
