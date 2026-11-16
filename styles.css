@@ -648,6 +648,7 @@ details[open] > summary::before { transform: rotate(45deg); }
 /* Speaking home: four labelled bands (Vandaag, Oefenen, Uitdagen, Echt en terugkijken). */
 .band { display: flex; flex-direction: column; gap: 10px; }
 .band + .band { margin-top: 10px; }
+.bands { display: contents; } /* wraps the bands; no box of its own, the desktop layout makes it two columns */
 .band-title {
   font-family: var(--font-mono); font-size: var(--text-xs); font-weight: 500; text-transform: uppercase;
   letter-spacing: var(--tracking-label); color: var(--muted); margin: 0; line-height: 1.4;
@@ -919,18 +920,21 @@ html.figure-full-open, html.figure-full-open body { overflow: hidden; }
 }
 @media (hover: hover) { .start-card:not(.btn-primary):hover:not(:disabled) { border-color: var(--accent); } }
 .start-head { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
-.start-subject, .start-done {
+.start-done {
   font-family: var(--font-mono); font-size: var(--text-xs); font-weight: 500; text-transform: uppercase; letter-spacing: var(--tracking-label);
   display: inline-flex; align-items: center; gap: 2px; color: var(--muted);
 }
+/* The subject is the title of the card; the next lesson is the line under it. */
+.start-subject { display: inline-flex; align-items: center; flex-wrap: wrap; gap: 2px 6px; font-family: var(--font-display); font-size: 1.5rem; font-weight: 600; letter-spacing: var(--tracking-tight); line-height: 1.2; color: var(--heading); }
+.start-subject .ico { color: var(--accent-dark); }
 .start-done { color: var(--good); }
-.start-what { font-family: var(--font-display); font-size: 1.2rem; font-weight: 600; color: var(--heading); letter-spacing: var(--tracking-tight); line-height: 1.25; overflow-wrap: anywhere; }
+.start-what { font-size: 1rem; font-weight: 500; color: var(--ink); line-height: 1.3; overflow-wrap: anywhere; }
 .start-what .ico { color: var(--accent-dark); }
 .start-why { color: var(--muted); font-size: 0.9rem; line-height: 1.4; }
 .start-open { display: inline-flex; align-items: center; gap: 2px; margin-top: 4px; font-weight: 600; color: var(--accent-dark); font-size: 0.95rem; }
 .start-card.btn-primary { background: var(--primary); border-color: var(--primary); color: var(--on-primary); }
 .start-card.btn-primary .start-subject, .start-card.btn-primary .start-why, .start-card.btn-primary .start-done,
-.start-card.btn-primary .start-what, .start-card.btn-primary .start-what .ico, .start-card.btn-primary .start-open { color: var(--on-primary); }
+.start-card.btn-primary .start-what, .start-card.btn-primary .start-what .ico, .start-card.btn-primary .start-subject .ico, .start-card.btn-primary .start-open { color: var(--on-primary); }
 .start-card.btn-primary .start-why { opacity: 0.85; }
 
 /* Lesson step indicator: Guess · Read · Example · Check. */
@@ -1245,3 +1249,63 @@ details.rw-topic > summary { cursor: pointer; min-height: 44px; display: flex; a
 .guide-intro .module-intro-title { margin: 0; }
 .guide-intro .guide-say { margin-top: 8px; }
 .guide-greeting .guide, .guide-intro .guide { pointer-events: none; }
+
+/* Tour page ("What's inside") and its entry on the start screen */
+.tour-entry { align-self: flex-start; }
+.tour-title { font-size: 1.8rem; margin: 4px 0 0; }
+.tour-intro { margin: 0; color: var(--muted); font-size: 1.05rem; }
+.tour-card { display: flex; flex-direction: column; gap: 10px; }
+.tour-subject { display: flex; align-items: center; gap: 8px; margin: 0; font-size: 1.3rem; color: var(--heading); }
+.tour-subject .ico { color: var(--accent-dark); }
+.tour-line, .tour-counts { margin: 0; }
+.tour-counts { font-family: var(--font-mono); font-size: var(--text-xs); color: var(--muted); letter-spacing: var(--tracking-label); }
+.tour-zones { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; }
+.tour-zone { width: 100%; display: flex; align-items: center; gap: 10px; padding: 10px 4px; min-height: 44px; background: none; border: 0; border-bottom: 1px solid var(--border-subtle); color: var(--heading); font: inherit; text-align: left; cursor: pointer; }
+.tour-zones li:last-child .tour-zone { border-bottom: 0; }
+.tour-zone:focus-visible { outline: 2px solid var(--heading); outline-offset: 2px; }
+.tour-zone-dot { width: 14px; height: 14px; border-radius: 4px; flex: none; background: var(--zone, var(--line)); }
+.tour-zone-name { flex: 1; }
+.zd-run, .zd-lifecycle { --zone: var(--accent); }
+.zd-better { --zone: var(--zone-better); }
+.zd-making, .zd-portfolio { --zone: var(--primary); }
+.zd-energy, .zd-people { --zone: var(--ok); }
+.zd-digital, .zd-it { --zone: var(--secondary-fill); }
+.tour-actions { display: flex; flex-wrap: wrap; gap: 8px; }
+.tour-actions .btn { flex: 1 1 200px; }
+.tour-caption { margin: 0; }
+.welcome-actions { display: flex; flex-direction: column; gap: 10px; }
+
+/* Desktop layout (16 Nov). From 1024 px up the phone column becomes a 1080 px column; below 1024 px nothing changes,
+   so phones and tablets keep the layout above. Everything here lives in this one block and uses the same tokens.
+   Reading screens (lesson, module, settings, a round) stay a centred 720 px column, about 70 characters a line;
+   the homes, the start screen and the tour page use the width with two or three independent columns. */
+@media (min-width: 1024px) {
+  .app { max-width: 1080px; }
+  .top { padding-left: 24px; padding-right: 24px; }
+  .subject-bar { max-width: 1080px; padding-left: 24px; padding-right: 24px; }
+  .screen { width: 100%; max-width: 720px; margin-left: auto; margin-right: auto; padding-left: 24px; padding-right: 24px; }
+  .screen.start, .screen.speak-home, .screen.course-home, .screen.tour { max-width: none; }
+  /* The tab bar is a compact bar in the middle, not a phone bar stretched over the screen. */
+  .navbar {
+    left: 50%; right: auto; transform: translateX(-50%); width: min(520px, 100%);
+    border: 1px solid var(--border-subtle); border-bottom: 0; border-radius: var(--radius) var(--radius) 0 0; box-shadow: var(--shadow-card);
+  }
+  /* Speaking home: the four bands in two columns, in reading order (Vandaag, Oefenen | Uitdagen, Echt). */
+  .screen.speak-home .bands { display: block; column-count: 2; column-gap: 24px; }
+  .screen.speak-home .band { break-inside: avoid; margin-bottom: 14px; }
+  .screen.speak-home .band + .band { margin-top: 0; }
+  /* Start screen: the three subject cards side by side; the actions above and below keep a readable width. */
+  .start-cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; align-items: stretch; }
+  .screen.start > :not(.start-cards) { width: 100%; max-width: 720px; margin-left: auto; margin-right: auto; }
+  /* Subject home: the map on the left at a comfortable size, the next step, films and zones on the right. */
+  .screen.course-home { display: grid; grid-template-columns: minmax(0, 6fr) minmax(0, 5fr); column-gap: 24px; row-gap: 0; align-items: start; }
+  .screen.course-home > * { grid-column: 2; margin-bottom: 14px; }
+  .screen.course-home > .guide-greeting { grid-column: 1 / -1; }
+  .screen.course-home > .map-card { grid-column: 1; grid-row: 2 / span 40; }
+  .screen.course-home > .sr { margin: 0; }
+  /* The tour page: three subject cards in a row, the film below at a size that stays inside the column. */
+  .screen.tour { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; align-items: stretch; }
+  .screen.tour > .tour-title, .screen.tour > .tour-intro, .screen.tour > .tour-film { grid-column: 1 / -1; }
+  .screen.tour > .tour-title, .screen.tour > .tour-intro { max-width: 720px; }
+  .tour-film .film-box, .tour-film .film-video-wrap, .tour-film .film-note, .tour-film > .muted { max-width: 800px; margin-left: auto; margin-right: auto; width: 100%; }
+}
