@@ -4391,6 +4391,35 @@
         ],
         "vtt": "src/content/courses/films/eng.spc.intro.en.vtt"
       }
+    },
+    "eng.reliability.intro": {
+      "poster": "src/content/courses/films/eng.reliability.intro.jpg",
+      "nl": {
+        "dur": 153.8,
+        "bytes": 5267977,
+        "scenes": [
+          0,
+          26.24,
+          48.6,
+          71.58,
+          89.66,
+          112.74
+        ],
+        "vtt": "src/content/courses/films/eng.reliability.intro.nl.vtt"
+      },
+      "en": {
+        "dur": 164.7,
+        "bytes": 5574374,
+        "scenes": [
+          0,
+          29.97,
+          53.22,
+          77.51,
+          97.71,
+          123.7
+        ],
+        "vtt": "src/content/courses/films/eng.reliability.intro.en.vtt"
+      }
     }
   }
 }
