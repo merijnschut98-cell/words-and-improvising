@@ -8,7 +8,7 @@ import { brandLockup, navBar } from './home.js';
 import { SUBJECT_TABS } from './subjectbar.js';
 import { mapFor } from '../content/courses/maps/index.js';
 import { metaOf, FIELDS } from '../content/courses/index.js';
-import { mapSvg, PHONE_BELOW } from './subjectmap.js';
+import { zoneGroups } from './coursehome.js';
 import { filmStep, loadManifest } from './film.js';
 import { tourModel, FEATURED_FILM } from '../core/tour.js';
 
@@ -22,16 +22,18 @@ export function countLine(t, s) {
   return bits.filter(Boolean).join(' · ');
 }
 
-// A read-only crop of the map's top: the look of the subject, not all of it. The
-// phone drawing on a narrow screen, as in the subject home. Hidden from screen
-// readers (the buttons below name the same thing); a tap opens the subject.
-function mapPreview(app, subject, open) {
+// The zones of the subject map, in the map's order and with its names: a small
+// colour marker, the name and the module count. Each row opens the subject.
+function zoneList(app, subject, open) {
   const map = mapFor(subject);
-  if (!map) return null;
-  const narrow = typeof window !== 'undefined' && window.innerWidth < PHONE_BELOW + 60;
-  const box = h('div', { class: 'tour-map', 'aria-hidden': 'true', onclick: open });
-  box.innerHTML = mapSvg(map, { lang: app.lang, layout: narrow ? 'phone' : null });
-  return box;
+  const groups = zoneGroups(subject, map);
+  if (!groups) return null;
+  const t = app.t;
+  return h('ul', { class: 'tour-zones' }, groups.map((g) => h('li', {},
+    h('button', { class: 'tour-zone', onclick: open },
+      h('span', { class: `tour-zone-dot zd-${g.field.id.split('.').pop()}`, 'aria-hidden': 'true' }),
+      h('span', { class: 'tour-zone-name' }, g.label[app.lang] || g.label.en),
+      h('span', { class: 'tour-zone-count muted small' }, t('tourModules', g.modules.length))))));
 }
 
 function subjectCard(app, s, open) {
@@ -46,7 +48,7 @@ function subjectCard(app, s, open) {
       h('p', { class: 'tour-line' }, t(`welcomeSubject_${s.id}`)),
       counts,
       s.id === 'speak' ? h('p', { class: 'muted small' }, t('tourSpeakNote')) : null,
-      mapPreview(app, s.id, open),
+      zoneList(app, s.id, open),
       h('div', { class: 'tour-actions' },
         h('button', { class: 'btn btn-primary', onclick: open }, t('tourOpen', name), ' ', ico('chevron-right')),
         meta ? h('button', {

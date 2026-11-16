@@ -71,3 +71,18 @@ test('welcome: the last slide offers two choices, Aan de slag and Ik kijk rond',
   assert.deepEqual(calls.at(-1), ['tour']);
   assert.equal(app.state.onboarded, true);
 });
+
+test('tour: Engineering and Projecten list the map zones in the map order', async () => {
+  const { renderTour } = await import('../src/ui/tour.js');
+  const { mapFor } = await import('../src/content/courses/maps/index.js');
+  const app = { lang: 'nl', state: defaultState(), today: () => '2026-11-16', t: (k, ...a) => (typeof STRINGS.nl[k] === 'function' ? STRINGS.nl[k](...a) : STRINGS.nl[k]), setSubject() {}, go() {} };
+  const root = document.createElement('div');
+  renderTour(app, {}, root);
+  for (const id of ['eng', 'pm']) {
+    const rows = root.querySelectorAll('.tour-' + id + ' .tour-zone');
+    const zones = mapFor(id).zones;
+    assert.equal(rows.length, zones.length);
+    assert.ok(rows[0].textContent.includes(zones[0].label.nl));
+  }
+  assert.equal(root.querySelectorAll('.tour-speak .tour-zone').length, 0);
+});

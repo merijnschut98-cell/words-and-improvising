@@ -154,7 +154,7 @@ const shot = async (n) => {
 };
 
 await page.goto(BASE);
-await step('first run: three short screens (subjects, a day, settings), then the start screen', async () => {
+await step('first run: three short screens (subjects, a day, start or look around), then the start screen', async () => {
   await page.getByRole('heading', { name: 'Drie vakken, één app' }).waitFor({ timeout: 5000 });
   for (const s of ['Spreken', 'Engineering', 'Projecten']) await page.locator('.welcome-list li', { hasText: s }).waitFor();
   await shot('00-welcome');
