@@ -48,3 +48,6 @@ Three agents stopped on the usage limit before the stop time; their work is save
 - review-pilot-cnc (opus review of Task 17 pilot P1, the cnc split into four films, branch pilot-cnc 858b88d) — review in progress.
 Not yet rendered: eng.reliability.intro (reviewed, merged v357).
 The hourly check-in is disabled; work resumes only when Merijn says so.
+
+## Merijn, 16 Nov: priority now
+Pro subscription (smaller budget): fewer agents at once. Priority: UI/UX so a visitor (Enexis recruiter) can navigate the site at www.vantagepoint-academy.nl and see what it contains. Decisions: a tour page ("Ik kijk rond" in the welcome + an entry on the home), no maker note, desktop layout wider (separate task after the tour page). The stopped render batches and the Task 17 pilot review wait.
