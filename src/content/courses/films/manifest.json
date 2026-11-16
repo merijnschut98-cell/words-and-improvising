@@ -4275,6 +4275,35 @@
         ],
         "vtt": "src/content/courses/films/eng.maintenance.intro.en.vtt"
       }
+    },
+    "eng.safety.intro": {
+      "poster": "src/content/courses/films/eng.safety.intro.jpg",
+      "nl": {
+        "dur": 156.3,
+        "bytes": 5512320,
+        "scenes": [
+          0,
+          29.74,
+          51.39,
+          75.98,
+          92.67,
+          113.24
+        ],
+        "vtt": "src/content/courses/films/eng.safety.intro.nl.vtt"
+      },
+      "en": {
+        "dur": 166.9,
+        "bytes": 5662093,
+        "scenes": [
+          0,
+          32.22,
+          54.99,
+          81.92,
+          99.22,
+          122
+        ],
+        "vtt": "src/content/courses/films/eng.safety.intro.en.vtt"
+      }
     }
   }
 }
