@@ -385,7 +385,7 @@ test('page size: a page with points stays under the 300 KB target; an extended f
   assert.equal(pointsByteLimit('eng.fx.film'), TARGET_BYTES);
   // 296 KB before: 25 KB of growth, not the 4 KB the target would leave
   assert.equal(pointsByteLimit('eng.machining.turning'), 295984 + 25 * 1024);
-  assert.equal(pointsByteLimit('eng.moulding.cycle'), 332170 + 25 * 1024);
+  assert.equal(pointsByteLimit('eng.moulding.cycle'), TARGET_BYTES); // split in pilot B (17 Nov): no allowance
   assert.equal(pointsByteLimit('eng.machining.overview'), 353316 + 25 * 1024);
   assert.equal(pointsByteLimit('eng.machining.milling'), 324274 + 25 * 1024);
   // a split film keeps no allowance, even when it keeps the old id

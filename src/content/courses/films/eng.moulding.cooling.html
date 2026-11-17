@@ -1,0 +1,1608 @@
+<!doctype html><html lang="nl" class="iso film" data-theme="dark"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Koelen: wat de insteller kan veranderen</title><script>(function(){var q=new URLSearchParams((location.search.length>1?location.search:(window.name.charAt(0)==="?"?window.name:""))),t=q.get("theme"),d=document.documentElement;
+function apply(){d.setAttribute("data-theme",t==="light"||t==="dark"?t:(matchMedia("(prefers-color-scheme: light)").matches?"light":"dark"));}
+apply();if(t!=="light"&&t!=="dark"){var m=matchMedia("(prefers-color-scheme: light)");m.addEventListener&&m.addEventListener("change",apply);}
+if(q.get("lang")==="en")d.setAttribute("lang","en");})();</script><style>
+.iso{
+  --anatomy-page:#0b0b0b;--anatomy-card:#131313;--anatomy-text:#a3a3a3;--anatomy-strong:#e6e6e6;--anatomy-muted:#6e6e6e;
+  --anatomy-paper:#131313;--anatomy-face:#1b1b1b;--anatomy-top:#1c1c1c;
+  --anatomy-shade-0:#0f0f0f;--anatomy-shade-1:#121212;--anatomy-shade-2:#151515;--anatomy-shade-3:#181818;
+  --anatomy-lit-top:#262626;--anatomy-lit-shade:#1d1d1d;
+  --anatomy-hi:#d4d4d4;--anatomy-mid:#6a6a6a;--anatomy-lo:#3e3e3e;--anatomy-faint:#2a2a2a;--anatomy-lit:#ffffff;
+  --anatomy-halo:#050505;--anatomy-halo-opacity:.9;--anatomy-dot:#e6e6e6;
+  --anatomy-red:#ff6b6b;--anatomy-green:#6be0a0;--anatomy-blue:#6b9bff;
+  --anatomy-weight:.6px;--anatomy-ease:cubic-bezier(.32,.72,0,1);
+  --anatomy-mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+  --anatomy-lift:inset 0 1px 0 0 #ffffff0a,inset 0 0 0 1px #ffffff06,0 0 0 1px #00000026,0 1px 1px -.5px #00000014,0 3px 3px -1.5px #00000014,0 6px 6px -3px #00000014,0 12px 12px -6px #00000014;
+}
+.iso[data-theme="light"]{
+  --anatomy-page:#f2f2ef;--anatomy-card:#fbfbfa;--anatomy-text:#57575a;--anatomy-strong:#18181a;--anatomy-muted:#8c8c90;
+  --anatomy-paper:#fbfbfa;--anatomy-face:#ffffff;--anatomy-top:#ffffff;
+  --anatomy-shade-0:#dcdcd9;--anatomy-shade-1:#e5e5e2;--anatomy-shade-2:#ededea;--anatomy-shade-3:#f4f4f1;
+  --anatomy-lit-top:#ffffff;--anatomy-lit-shade:#eeeeeb;
+  --anatomy-hi:#26262a;--anatomy-mid:#8a8a8f;--anatomy-lo:#b4b4b8;--anatomy-faint:#d4d4d6;--anatomy-lit:#000000;
+  --anatomy-halo:#8a8a80;--anatomy-halo-opacity:.32;--anatomy-dot:#3a3a3e;
+  --anatomy-red:#e5484d;--anatomy-green:#30a46c;--anatomy-blue:#3e63dd;
+  --anatomy-lift:inset 0 1px 0 0 #ffffff,0 0 0 1px #0000000f,0 1px 1px -.5px #0000000a,0 3px 3px -1.5px #0000000a,0 6px 6px -3px #0000000a,0 12px 12px -6px #0000000a;
+}
+.iso-svg{display:block;width:100%;height:auto;overflow:visible}
+.iso-svg path,.iso-svg circle{vector-effect:non-scaling-stroke}
+.iso-fill{fill:var(--anatomy-paper);stroke:none}
+.iso-solid[data-lit]>.iso-fill{fill:var(--anatomy-face)}
+.iso-shade,.iso-top{stroke:none}
+.iso-shade[data-shade="0"]{fill:var(--anatomy-shade-0)}
+.iso-shade[data-shade="1"]{fill:var(--anatomy-shade-1)}
+.iso-shade[data-shade="2"]{fill:var(--anatomy-shade-2)}
+.iso-shade[data-shade="3"]{fill:var(--anatomy-shade-3)}
+.iso-top{fill:var(--anatomy-top)}
+.iso-solid[data-lit]>.iso-top{fill:var(--anatomy-lit-top)}
+.iso-solid[data-lit]>.iso-shade{fill:var(--anatomy-lit-shade)}
+.iso-solid[data-seamless]>.iso-shade,.iso-solid[data-seamless]>.iso-top{stroke-width:.4;stroke-linejoin:round}
+.iso-solid[data-seamless]>.iso-shade[data-shade="0"]{stroke:var(--anatomy-shade-0)}
+.iso-solid[data-seamless]>.iso-shade[data-shade="1"]{stroke:var(--anatomy-shade-1)}
+.iso-solid[data-seamless]>.iso-shade[data-shade="2"]{stroke:var(--anatomy-shade-2)}
+.iso-solid[data-seamless]>.iso-shade[data-shade="3"]{stroke:var(--anatomy-shade-3)}
+.iso-solid[data-seamless]>.iso-top{stroke:var(--anatomy-top)}
+.iso-solid[data-seamless][data-lit]>.iso-top{stroke:var(--anatomy-lit-top)}
+.iso-solid[data-seamless][data-lit]>.iso-shade{stroke:var(--anatomy-lit-shade)}
+.iso-solid[data-lit]>.iso-edge{stroke:var(--anatomy-lit)}
+.iso-halo{fill:var(--anatomy-halo);stroke:none;filter:blur(9px);opacity:var(--anatomy-halo-opacity);transform:translateY(3px)}
+.iso-line{fill:none;stroke:var(--anatomy-lo);stroke-width:var(--anatomy-weight);stroke-linecap:round;stroke-linejoin:round}
+.iso-line[data-tone="hi"]{stroke:var(--anatomy-hi)}
+.iso-line[data-tone="mid"]{stroke:var(--anatomy-mid)}
+.iso-line[data-tone="lo"]{stroke:var(--anatomy-lo)}
+.iso-line[data-tone="faint"]{stroke:var(--anatomy-faint)}
+.iso-line[data-tone="lit"]{stroke:var(--anatomy-lit)}
+.iso-line[data-tone="red"]{stroke:var(--anatomy-red)}
+.iso-line[data-tone="green"]{stroke:var(--anatomy-green)}
+.iso-line[data-tone="blue"]{stroke:var(--anatomy-blue)}
+.iso-line[data-dotted]{stroke-dasharray:.01 3.5;stroke-width:1}
+.iso-line[data-dashed]{stroke-dasharray:3 3}
+.iso-line[data-flow]{stroke-dasharray:2 6}
+.iso-wire-end{fill:var(--anatomy-paper);stroke:var(--anatomy-lo);stroke-width:var(--anatomy-weight)}
+.iso-wire[data-tone="hi"] .iso-wire-end{stroke:var(--anatomy-hi)}
+.iso-wire[data-tone="mid"] .iso-wire-end{stroke:var(--anatomy-mid)}
+.iso-wire[data-tone="faint"] .iso-wire-end{stroke:var(--anatomy-faint)}
+.iso-wire[data-tone="lit"] .iso-wire-end{stroke:var(--anatomy-lit)}
+.iso-dots circle{fill:var(--anatomy-dot);stroke:none;opacity:.32}
+.iso-dots[data-tone="hi"] circle{opacity:.85}
+.iso-dots[data-tone="mid"] circle{opacity:.45}
+.iso-dots[data-tone="lo"] circle{opacity:.22}
+.iso-dots[data-tone="faint"] circle{opacity:.12}
+.iso-face-text{fill:var(--anatomy-mid);font-family:var(--anatomy-mono);letter-spacing:.04em}
+.iso-face-text[data-tone="hi"]{fill:var(--anatomy-hi)}
+.iso-face-text[data-tone="lo"]{fill:var(--anatomy-lo)}
+.iso-face-text[data-tone="faint"]{fill:var(--anatomy-faint)}
+.tb-body{fill:var(--anatomy-shade-2);stroke:none}
+.tb-shine{fill:var(--anatomy-top);stroke:none}
+.tb-shade{fill:var(--anatomy-shade-0);stroke:none}
+.tb-ring{fill:none;stroke:var(--anatomy-lo);stroke-width:.45;stroke-linecap:butt;stroke-linejoin:round}
+.tb-ring[data-tone="mid"]{stroke:var(--anatomy-mid)}
+.tb-ring[data-tone="faint"]{stroke:var(--anatomy-faint)}
+.tb-ring[data-tone="hi"]{stroke:var(--anatomy-hi)}
+@keyframes iso-flow{to{stroke-dashoffset:-32}}
+@keyframes iso-pulse{0%,100%{opacity:.18}12%{opacity:1}40%{opacity:.18}}
+.iso-line[data-flow]{animation:iso-flow 1600ms linear infinite}
+.iso-dots circle[data-pulse]{animation:iso-pulse 1600ms steps(1,end) infinite;animation-delay:var(--pulse-at,0ms)}
+.iso-figure{margin:32px 0 36px}
+.iso-plate{position:relative;padding:52px 24px;border-radius:0;background:var(--anatomy-card);box-shadow:0 0 0 1px var(--anatomy-mid);--anatomy-paper:var(--anatomy-card)}
+.iso-plate-corners{position:absolute;inset:18px 20px;pointer-events:none}
+.iso-plate-corner{position:absolute;color:var(--anatomy-muted);font-family:var(--anatomy-mono);font-size:10.5px;line-height:1;letter-spacing:.04em;white-space:nowrap}
+.iso-plate-corner[data-corner="fig"]{top:0;left:0;color:var(--anatomy-text)}
+.iso-plate-corner[data-corner="title"]{top:0;right:0;text-transform:uppercase;letter-spacing:.1em}
+.iso-plate-corner[data-corner="hint"]{bottom:0;left:0;text-transform:uppercase;letter-spacing:.1em}
+.iso-plate-corner[data-corner="readout"]{right:0;bottom:0;color:var(--anatomy-text);font-variant-numeric:tabular-nums}
+.iso-plate .iso-svg{margin:0 auto}
+.iso-legend{display:grid;gap:8px;margin-top:12px;color:var(--anatomy-muted);font-size:13px;line-height:1.55}
+.iso-keys{display:flex;flex-wrap:wrap;gap:6px 18px}
+.iso-key{display:inline-flex;align-items:center;gap:7px}
+.iso-swatch{width:16px;height:10px;flex:none;overflow:visible}
+.iso-swatch path{fill:none;stroke:var(--anatomy-hi);stroke-width:1;vector-effect:non-scaling-stroke;stroke-linejoin:round;stroke-linecap:round}
+.iso-swatch[data-mark="raised"] path,.iso-swatch[data-mark="flat"] path{stroke:var(--anatomy-mid)}
+.iso-swatch[data-mark="lit"] path{stroke:var(--anatomy-lit)}
+.iso-swatch[data-mark="dim"] path{stroke:var(--anatomy-lo)}
+.iso-swatch[data-mark="dotted"] path{stroke-dasharray:.01 3;stroke-width:1.4}
+.iso-swatch[data-mark="dashed"] path{stroke-dasharray:3 2.5}
+.iso-swatch[data-mark="red"] path{stroke:var(--anatomy-red)}
+.iso-swatch[data-mark="green"] path{stroke:var(--anatomy-green)}
+.iso-swatch[data-mark="blue"] path{stroke:var(--anatomy-blue)}
+.iso-swatch-crease{stroke:var(--anatomy-lo)!important}
+@media (max-width:560px){.iso-plate{padding:48px 12px 70px}.iso-plate-corner[data-corner="hint"]{bottom:18px}}
+@media (prefers-reduced-motion:reduce){.iso-line[data-flow],.iso-dots circle[data-pulse]{animation:none}}
+
+.iso{
+  --anatomy-page:#0B291B;--anatomy-card:#0D252B;--anatomy-text:#DCD8CB;--anatomy-strong:#F0E9DA;--anatomy-muted:#9FB3A6;
+  --anatomy-paper:#0D252B;--anatomy-face:#123039;--anatomy-top:#16353D;
+  --anatomy-shade-0:#0A1E23;--anatomy-shade-1:#0C2228;--anatomy-shade-2:#0F272D;--anatomy-shade-3:#122C33;
+  --anatomy-lit-top:#1D4A55;--anatomy-lit-shade:#173D47;
+  --anatomy-hi:#E4DDCC;--anatomy-mid:#7C9289;--anatomy-lo:#45615D;--anatomy-faint:#26433F;--anatomy-lit:#5C9FAE;
+  --anatomy-halo:#03100F;--anatomy-halo-opacity:.85;--anatomy-dot:#F0E9DA;
+  --fp-hair:rgba(240,233,218,.12);--fp-accent:#5C9FAE;--fp-accent-text:#7DB6C3;--fp-on-accent:#06191E;--fp-scrim:rgba(6,22,26,.62);
+  --fp-focus:#EAF7FF;--fp-focus-glow:#8FD3FF;--fp-focus-top:#2F6A86;--fp-focus-shade:#275A73;--fp-focus-text:#BDE5FF;
+  --anatomy-mono:"JetBrains Mono",ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+  --fp-sans:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+}
+.iso[data-theme="light"]{
+  --anatomy-page:#E8DFCA;--anatomy-card:#F4EFE3;--anatomy-text:#1E3328;--anatomy-strong:#0B291B;--anatomy-muted:#5A6B60;
+  --anatomy-paper:#F4EFE3;--anatomy-face:#FAF7EE;--anatomy-top:#FBF8F1;
+  --anatomy-shade-0:#DDD4BF;--anatomy-shade-1:#E4DCC9;--anatomy-shade-2:#EBE4D4;--anatomy-shade-3:#F0EADD;
+  --anatomy-lit-top:#E2ECEA;--anatomy-lit-shade:#CCDCDB;
+  --anatomy-hi:#1E3328;--anatomy-mid:#7D877A;--anatomy-lo:#A9AE9E;--anatomy-faint:#D0CAB8;--anatomy-lit:#276F81;
+  --anatomy-halo:#5A6B60;--anatomy-halo-opacity:.3;--anatomy-dot:#1E3328;
+  --fp-hair:rgba(11,41,27,.14);--fp-accent:#276F81;--fp-accent-text:#1C5563;--fp-on-accent:#FFFFFF;--fp-scrim:rgba(244,239,227,.7);
+  --fp-focus:#1E88D2;--fp-focus-glow:#4DB0F2;--fp-focus-top:#FFFFFF;--fp-focus-shade:#E2F1FC;--fp-focus-text:#14659E;
+}
+*{box-sizing:border-box}
+html{color-scheme:dark}
+html[data-theme="light"]{color-scheme:light}
+html,body{margin:0;padding:0}
+body{background:var(--anatomy-page);color:var(--anatomy-text);font:16px/1.45 var(--fp-sans);-webkit-font-smoothing:antialiased;-webkit-text-size-adjust:100%;overflow-x:hidden}
+.fp{position:relative;max-width:760px;margin:0 auto;background:var(--anatomy-card);border-radius:12px;box-shadow:inset 0 0 0 1px var(--fp-hair);overflow:hidden}
+.fp-stage{position:relative;aspect-ratio:16/10;width:100%;overflow:hidden}
+.fp-stage>svg{position:absolute;inset:0;width:100%;height:100%;display:block}
+.fp-read{position:absolute;left:8px;top:8px;max-width:calc(100% - 16px);font:600 12.5px/1.35 var(--anatomy-mono);color:var(--anatomy-strong);background:color-mix(in srgb,var(--anatomy-card) 88%,transparent);box-shadow:inset 0 0 0 1px var(--fp-hair);border-radius:6px;padding:4px 8px;pointer-events:none}
+.fp-read[hidden]{display:none}
+.fp-poster,.fp-end{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;background:var(--fp-scrim);text-align:center;padding:16px}
+.fp-poster[hidden]{display:none}
+.fp-end{display:none}
+.fp[data-ended="1"] .fp-end{display:flex}
+.fp-poster-title{margin:0;font:600 20px/1.25 var(--fp-sans);color:var(--anatomy-strong)}
+.fp-go{display:inline-flex;align-items:center;gap:10px;min-height:56px;padding:0 22px 0 14px;border:0;border-radius:999px;background:var(--fp-accent);color:var(--fp-on-accent);font:600 16px/1 var(--fp-sans);cursor:pointer}
+.fp-go .fp-ico{width:30px;height:30px;fill:currentColor;stroke:none}
+.fp-go:focus-visible,.fp-btn:focus-visible,.fp-item:focus-visible{outline:2px solid var(--fp-accent);outline-offset:2px}
+.fp-cap{margin:0;min-height:calc(3 * 1.45em + 20px);padding:10px 14px;font-size:16px;line-height:1.45;color:var(--anatomy-strong)}
+.fp-term{color:var(--fp-accent-text);font-weight:650}
+.fp-en{color:var(--anatomy-muted);font-style:italic}
+.fp-note{margin:-6px 14px 4px;font-size:13px;color:var(--anatomy-muted)}
+.fp-note:empty{display:none}
+.fp-bar{display:flex;align-items:center;gap:4px;padding:0 6px 6px}
+.fp-btn{flex:0 0 auto;width:44px;height:44px;display:inline-flex;align-items:center;justify-content:center;border:0;border-radius:999px;background:transparent;color:var(--anatomy-strong);cursor:pointer;-webkit-tap-highlight-color:transparent}
+.fp-btn .fp-ico{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.fp-btn[data-act="play"]{background:var(--fp-accent);color:var(--fp-on-accent)}
+.fp-btn[data-act="play"] .fp-ico{fill:currentColor;stroke:none}
+.fp-btn[data-act="play"] [data-i]{display:none}
+.fp-btn[data-state="play"] [data-i="play"],.fp-btn[data-state="pause"] [data-i="pause"],.fp-btn[data-state="replay"] [data-i="replay"]{display:block}
+.fp-btn[data-state="replay"] .fp-ico{fill:none;stroke:currentColor;stroke-width:2.2}
+@media (hover:hover){.fp-btn:not([data-act="play"]):hover{background:color-mix(in srgb,var(--anatomy-strong) 8%,transparent)}}
+.fp-btn [data-m]{display:none}
+.fp[data-muted="0"] [data-m="on"],.fp[data-muted="1"] [data-m="off"]{display:block}
+.fp-scrub{position:relative;flex:1 1 auto;min-width:0;height:44px}
+.fp-ticks{position:absolute;left:9px;right:9px;top:20px;height:4px;pointer-events:none}
+.fp-ticks i{position:absolute;top:-3px;width:2px;height:10px;margin-left:-1px;border-radius:1px;background:var(--anatomy-muted);opacity:.7}
+.fp-range{position:absolute;inset:0;width:100%;height:44px;margin:0;background:transparent;-webkit-appearance:none;appearance:none;cursor:pointer;accent-color:var(--fp-accent)}
+.fp-range::-webkit-slider-runnable-track{height:4px;border-radius:2px;background:var(--fp-hair)}
+.fp-range::-moz-range-track{height:4px;border-radius:2px;background:var(--fp-hair)}
+.fp-range::-webkit-slider-thumb{-webkit-appearance:none;width:18px;height:18px;margin-top:-7px;border-radius:50%;background:var(--fp-accent);border:2px solid var(--anatomy-card)}
+.fp-range::-moz-range-thumb{width:18px;height:18px;border-radius:50%;background:var(--fp-accent);border:2px solid var(--anatomy-card)}
+.fp-time{position:absolute;right:2px;bottom:0;font:11px/1 var(--anatomy-mono);color:var(--anatomy-muted);pointer-events:none}
+.fp-step{display:none}
+.fp[data-motion="reduce"] .fp-ticks,.fp[data-motion="reduce"] .fp-range{display:none}
+.fp[data-motion="reduce"] .fp-step{display:inline-flex}
+.fp[data-motion="reduce"] .fp-time{position:static;display:block;text-align:center;line-height:44px;font-size:12px}
+.fp-sheet{position:absolute;inset:0;z-index:5;display:flex;flex-direction:column;background:var(--anatomy-card)}
+.fp-sheet[hidden]{display:none}
+.fp-sheet-head{display:flex;align-items:center;gap:8px;padding:6px 6px 6px 14px;border-bottom:1px solid var(--fp-hair)}
+.fp-sheet-title{flex:1;margin:0;font:600 16px/1.2 var(--fp-sans);color:var(--anatomy-strong)}
+.fp-speed{min-height:44px;padding:0 12px;border:1px solid var(--fp-hair);border-radius:999px;background:transparent;color:var(--anatomy-strong);font:14px/1 var(--fp-sans);cursor:pointer}
+.fp-speed[aria-pressed="true"]{border-color:var(--fp-accent);color:var(--fp-accent-text)}
+.fp-list{flex:1;overflow:auto;padding:4px 0}
+.fp-item{display:flex;align-items:center;gap:12px;width:100%;min-height:48px;padding:6px 14px;border:0;background:transparent;color:var(--anatomy-strong);font:15px/1.3 var(--fp-sans);text-align:left;cursor:pointer}
+.fp-item-n{flex:0 0 26px;height:26px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font:600 12px/1 var(--anatomy-mono);box-shadow:inset 0 0 0 1px var(--fp-hair)}
+.fp-item-t{flex:1}
+.fp-item-d{font:12px/1 var(--anatomy-mono);color:var(--anatomy-muted)}
+@media (hover:hover){.fp-item:hover{background:color-mix(in srgb,var(--anatomy-strong) 6%,transparent)}}
+.fp-sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+@property --fp-fi{syntax:'<number>';inherits:true;initial-value:1}
+.fp[data-focus="a"]{animation:fp-focus-a .4s ease-in}
+.fp[data-focus="b"]{animation:fp-focus-b .4s ease-in}
+@keyframes fp-focus-a{from{--fp-fi:0}to{--fp-fi:1}}
+@keyframes fp-focus-b{from{--fp-fi:0}to{--fp-fi:1}}
+.fp[data-motion="reduce"][data-focus],.fp[data-render="1"][data-focus]{animation:none}
+@media (prefers-reduced-motion:reduce){.fp[data-focus]{animation:none}}
+[data-cue][data-on]{--fp-accent:var(--fp-focus);--fp-accent-text:var(--fp-focus-text);filter:drop-shadow(0 0 calc(var(--fp-fi,1) * 1px) var(--fp-focus-glow)) drop-shadow(0 0 calc(var(--fp-fi,1) * 3.5px) var(--fp-focus-glow))}
+[data-cue][data-on] .iso-edge,[data-cue][data-on] .iso-crease{stroke:var(--fp-focus)!important}
+[data-cue][data-on] .iso-edge{stroke-width:1.6px}
+[data-cue][data-on] .iso-top{fill:var(--fp-focus-top)}
+[data-cue][data-on] .iso-shade{fill:var(--fp-focus-shade)}
+[data-cue][data-on] .iso-line,[data-cue][data-on] .fp-mark{stroke:var(--fp-focus)}
+[data-cue][data-on] .fp-ink{fill:var(--fp-focus)}
+/* render mode (?render=1): one 16:9 video frame, the stage only; subtitles from WebVTT */
+html[data-render="1"],html[data-render="1"] body{width:100%;height:100%;overflow:hidden;background:var(--anatomy-card)}
+.fp[data-render="1"]{position:fixed;inset:0;max-width:none;margin:0;border-radius:0;box-shadow:none;display:flex;flex-direction:column}
+.fp[data-render="1"] .fp-stage{flex:1 1 auto;aspect-ratio:auto;min-height:0}
+.fp[data-render="1"] .fp-cap{flex:0 0 auto;height:calc(3 * 1.25em + 24px);min-height:0;margin:0;padding:12px 48px;font-size:clamp(16px,6.1vh,44px);line-height:1.25;text-align:center;display:flex;align-items:center;justify-content:center;border-top:1px solid var(--fp-hair)}
+.fp[data-render="1"]:not([data-poster="1"]) .fp-cap{display:none}
+.fp[data-render="1"] .fp-cap>span{display:block;max-width:100%}
+.fp[data-render="1"] .fp-read{left:2.4vh;top:2.4vh;font-size:clamp(12px,3.6vh,30px);padding:.3em .6em;border-radius:.4em}
+.fp[data-render="1"] .fp-bar,.fp[data-render="1"] .fp-note,.fp[data-render="1"] .fp-poster,.fp[data-render="1"] .fp-end,.fp[data-render="1"] .fp-sheet{display:none!important}
+.fp-mark{fill:none;stroke:var(--anatomy-mid);stroke-width:1.2;stroke-linecap:round;stroke-linejoin:round;vector-effect:non-scaling-stroke}
+.fp-ink{fill:var(--anatomy-mid)}
+
+.iso{--mc-glass:#081A1E;--mc-well:#06161A;--mc-seg:#2A4A4A;--mc-segc:#45615D;--fp-steel:#16353D;--fp-water:#0A1E23;--fp-solid:#45615D;--fp-melt:#E4DDCC}
+.iso[data-theme="light"]{--mc-glass:#E4DCC9;--mc-well:#C9C0AA;--mc-seg:#C2C3B2;--mc-segc:#7D877A;--fp-steel:#FBF8F1;--fp-water:#DDD4BF;--fp-solid:#A9AE9E;--fp-melt:#FFFBEF}
+.fp-svg .fp-label{font-family:var(--fp-sans);font-weight:600}
+.fp-svg .fp-dim{fill:var(--anatomy-muted)}
+.fp-panel{fill:var(--anatomy-card);stroke:var(--fp-hair);stroke-width:1;opacity:.97}
+.fp-cur{fill:color-mix(in srgb,var(--fp-accent) 16%,transparent);stroke:none}
+.mc-glass{fill:var(--mc-glass);stroke:none}
+.mc-well{fill:var(--mc-well);stroke:none}
+.mc-card{fill:var(--anatomy-face);stroke:var(--anatomy-lo);stroke-width:1px;stroke-linejoin:round;vector-effect:non-scaling-stroke}
+.mc-seg{fill:var(--mc-seg);stroke:none}
+.mc-seg[data-cool]{fill:var(--mc-segc)}
+.mc-sep{fill:none;stroke:var(--mc-glass);stroke-width:.35px}
+.mc-trace{fill:none;stroke:var(--anatomy-mid);stroke-width:.55px;stroke-linejoin:round;stroke-linecap:round}
+.fp-steel{fill:var(--fp-steel);stroke:none}
+.fp-hatch{fill:none;stroke:var(--anatomy-lo);stroke-width:.8px;vector-effect:non-scaling-stroke}
+.fp-water{fill:var(--fp-water);stroke:none}
+.fp-solid{fill:var(--fp-solid);stroke:none}
+.fp-melt{fill:var(--fp-melt);stroke:none;opacity:.9}
+.fp-eye{fill:none;stroke:var(--anatomy-mid);stroke-width:2.4px;vector-effect:non-scaling-stroke}
+.fp-heat{fill:var(--anatomy-mid);stroke:none}
+.fp-swirl{fill:none;stroke:var(--anatomy-mid);stroke-width:1px;stroke-linecap:round;vector-effect:non-scaling-stroke}
+.fp-runline{opacity:0}
+.fp-meltline{fill:none;stroke:var(--fp-melt);stroke-linecap:round;stroke-linejoin:round;opacity:.85}
+.fp-pool{fill:var(--fp-melt);stroke:none;opacity:.8}
+.fp-meter-bg{fill:var(--anatomy-shade-1);stroke:none}
+.fp-meter-fill{fill:var(--anatomy-mid);stroke:none;opacity:.55}
+.fp-hud-bg{fill:var(--anatomy-shade-0);stroke:none;opacity:.96}
+.fp-coin-face{fill:var(--anatomy-face)}
+.fp-scale{fill:var(--anatomy-lo);stroke:none;opacity:.8}
+.fp-bad{fill:none;stroke:var(--fp-accent);stroke-width:2.4px;stroke-linecap:round;vector-effect:non-scaling-stroke}
+[data-cue][data-on] .fp-hatch{stroke:var(--fp-accent)}
+[data-cue][data-on] .fp-water{fill:var(--anatomy-lit-shade)}
+[data-cue][data-on] .fp-swirl{stroke:var(--fp-accent)}
+[data-cue][data-on] .fp-meltline,[data-cue][data-on] .fp-pool{fill:var(--fp-accent);stroke:var(--fp-accent);opacity:.45}
+[data-cue][data-on] .fp-meltline{fill:none}
+[data-cue][data-on] .fp-runline{opacity:1}
+[data-cue][data-on] .fp-meter-fill{fill:var(--fp-accent);opacity:.75}
+[data-cue][data-on] .mc-well{fill:var(--anatomy-lit-shade)}
+[data-cue][data-on] .iso-face-text{fill:var(--fp-accent)}
+.tb-body{fill:var(--anatomy-shade-2)}
+[data-cue][data-on] .tb-body{fill:var(--anatomy-lit-shade)}
+[data-cue][data-on] .tb-edge{stroke:var(--fp-accent)}
+</style></head><body><main class="fp" data-started="0" data-ended="0" data-playing="0">
+<div class="fp-stage"><svg class="iso-svg fp-svg" viewBox="0 0 640 400" role="img" aria-label=""><g data-k="world"><g data-k="section"><g data-k="secbody"></g><g data-k="tcu"></g><g data-k="hoses" data-cue="channels"><g class="tb"><path class="tb-body" d="M597.1 268.1L610.3 272.2L625.2 275.5L640.2 276.6L653.7 280L666.6 283.9L677.9 287.4L683.7 297.6L683.6 310.3L692.9 310.3L692.7 295L684 280.3L669.4 275L656.2 270.9L641.7 267.3L626.6 266.2L612.6 263.1L599.8 259.2ZM599.3 259.1L598.7 259.3L598.1 259.7L597.6 260.3L597 261.1L596.6 262L596.2 263L596 264L595.8 265L595.9 265.9L596 266.7L596.2 267.4L596.6 267.9L597.1 268.1L597.6 268.2L598.2 268L598.8 267.6L599.3 267L599.9 266.2L600.3 265.3L600.7 264.3L600.9 263.3L601.1 262.3L601.1 261.4L600.9 260.6L600.7 259.9L600.3 259.4L599.8 259.2ZM692.9 310.3L692.8 309.8L692.5 309.4L691.9 309L691.2 308.6L690.3 308.4L689.3 308.2L688.2 308.2L687.2 308.3L686.2 308.4L685.3 308.7L684.6 309L684 309.4L683.7 309.9L683.6 310.3L683.7 310.8L684 311.3L684.6 311.7L685.3 312L686.2 312.2L687.2 312.4L688.3 312.4L689.3 312.4L690.3 312.2L691.2 312L691.9 311.6L692.5 311.2L692.8 310.8Z"/><path class="tb-shine" d="M598.5 263.5L611.5 267.4L625.9 270.4L641 271.5L655.1 275.2L668.1 279.3L680.6 284.3L686.5 296.8L686 310.3L686 312.2L686.2 312.2L687.2 312.4L688.3 312.4L688.2 310.3L688.7 296.2L682.1 282.6L668.7 277.1L655.7 273L641.4 269.3L626.3 268.2L612.1 265.2L599.2 261.3L597.3 260.7L597 261.1L596.6 262L596.3 262.8Z"/><path class="tb-shade" d="M597.6 266.3L610.7 270.4L625.4 273.9L640.5 275L654.2 278.2L667.2 282L679.8 285.2L688.1 296.3L688.9 310.3L688.9 312.4L689.3 312.4L690.3 312.2L690.8 312.1L690.8 310.3L689.9 295.8L681.1 283.8L667.7 280.3L654.7 276.4L640.8 273.1L625.7 272L611.2 268.6L598.2 264.5L596 263.9L596 264L595.8 265L595.9 265.8Z"/><path class="iso-line tb-edge" data-tone="mid" d="M597.1 268.1L610.3 272.2L625.2 275.5L640.2 276.6L653.7 280L666.6 283.9L677.9 287.4L683.7 297.6L683.6 310.3M599.8 259.2L612.6 263.1L626.6 266.2L641.7 267.3L656.2 270.9L669.4 275L684 280.3L692.7 295L692.9 310.3M597.1 268.1L596.6 267.9L596.2 267.4L596 266.7L595.9 265.9L595.8 265L596 264L596.2 263L596.6 262L597 261.1L597.6 260.3L598.1 259.7L598.7 259.3L599.3 259.1L599.8 259.2M683.6 310.3L683.7 310.8L684 311.3L684.6 311.7L685.3 312L686.2 312.2L687.2 312.4L688.3 312.4L689.3 312.4L690.3 312.2L691.2 312L691.9 311.6L692.5 311.2L692.8 310.8L692.9 310.3"/></g><g class="tb"><path class="tb-body" d="M597.1 404.9L610 408.8L623.7 406.4L625.6 393.2L624.7 382.3L623.8 371.7L623 361.1L622.3 353.3L613 353.9L613.6 361.9L614.5 372.5L615.4 383.1L616.3 393.4L617 399.8L611.1 399.5L599.8 396ZM599.3 395.9L598.7 396.1L598.1 396.5L597.6 397.1L597 397.9L596.6 398.8L596.2 399.8L596 400.8L595.8 401.8L595.9 402.7L596 403.5L596.2 404.2L596.6 404.7L597.1 404.9L597.6 405L598.2 404.8L598.8 404.4L599.3 403.8L599.9 403L600.3 402.1L600.7 401.1L600.9 400.1L601.1 399.1L601.1 398.2L600.9 397.4L600.7 396.7L600.3 396.2L599.8 396Z"/><path class="tb-shine" d="M598.5 400.3L610.6 403.7L619.7 402.5L621 393.3L620.2 382.7L619.3 372.1L618.4 361.5L617.7 352.8L615.4 352.9L616.2 361.7L617.1 372.3L618 382.9L618.7 393.3L618.1 400.9L610.9 401.5L599.2 398.1L597.3 397.5L597 397.9L596.6 398.8L596.3 399.6Z"/><path class="tb-shade" d="M597.6 403.1L610.2 407.3L623 405.8L623.4 393.3L622.4 382.5L621.5 371.9L620.6 361.3L620 352.7L618.1 352.8L618.7 361.4L619.6 372L620.5 382.7L621.6 393.3L621.7 404.5L610.4 405.4L598.2 401.3L596 400.6L596 400.8L595.8 401.8L595.9 402.6Z"/><path class="iso-line tb-edge" data-tone="mid" d="M597.1 404.9L610 408.8L623.7 406.4L625.6 393.2L624.7 382.3L623.8 371.7L623 361.1L622.3 353.3M599.8 396L611.1 399.5L617 399.8L616.3 393.4L615.4 383.1L614.5 372.5L613.6 361.9L613 353.9M597.1 404.9L596.6 404.7L596.2 404.2L596 403.5L595.9 402.7L595.8 401.8L596 400.8L596.2 399.8L596.6 398.8L597 397.9L597.6 397.1L598.1 396.5L598.7 396.1L599.3 395.9L599.8 396"/></g><g class="tb"><path class="tb-body" d="M622.5 354.8L622.1 350.6L622 338.1L622 325.1L622 312.1L622 299.1L622 286.4L623 276.7L625.3 276.4L620.4 268.4L615.4 271.2L612.6 285.7L612.6 299.1L612.6 312.1L612.6 325.1L612.6 338.2L612.7 351L613.1 355.5Z"/><path class="tb-shine" d="M618 355.9L617.5 350.8L617.3 338.1L617.3 325.1L617.3 312.1L617.3 299.1L617.2 286.1L618.5 273.5L623.2 271.3L622.1 269.3L616.7 272.2L614.9 285.9L615 299.1L615 312.1L615 325.1L615 338.1L615.2 350.9L615.7 356.1Z"/><path class="tb-shade" d="M620.2 355.8L619.8 350.7L619.8 338.1L619.8 325.1L619.8 312.1L619.8 299.1L620 286.3L622.2 276.1L625.3 275.5L624.5 273.8L620.6 275L618.1 286.1L618 299.1L618 312.1L618 325.1L617.9 338.1L618 350.8L618.3 355.9Z"/><path class="iso-line tb-edge" data-tone="mid" d="M622.5 354.8L622.1 350.6L622 338.1L622 325.1L622 312.1L622 299.1L622 286.4L623 276.7L625.3 276.4M613.1 355.5L612.7 351L612.6 338.2L612.6 325.1L612.6 312.1L612.6 299.1L612.6 285.7L615.4 271.2L620.4 268.4"/></g><g class="tb"><path class="tb-body" d="M624.4 276.6L629 274.6L639.5 277.6L650.7 281.1L659.7 288L662.1 299.3L662.1 311.7L662.1 324.8L671.5 324.8L671.5 311.7L671.4 298.2L667.6 283L655.2 272.9L642.2 268.6L628.6 265.2L618.3 269.5ZM671.5 324.8L671.4 324.3L671 323.8L670.5 323.4L669.7 323.1L668.8 322.8L667.8 322.7L666.8 322.6L665.7 322.7L664.7 322.8L663.9 323.1L663.1 323.4L662.6 323.8L662.2 324.3L662.1 324.8L662.2 325.2L662.6 325.7L663.1 326.1L663.9 326.4L664.7 326.7L665.7 326.8L666.8 326.9L667.8 326.8L668.8 326.7L669.7 326.4L670.5 326.1L671 325.7L671.4 325.2Z"/><path class="tb-shine" d="M620 272.7L628.8 269.2L640.9 272.9L652.9 277.1L662.6 286.1L664.8 299L664.5 311.7L664.5 324.8L664.5 326.6L664.7 326.7L665.7 326.8L666.8 326.9L666.8 324.8L666.8 311.7L667 298.7L664.5 284.9L654 275.1L641.6 270.8L628.7 267L618.4 271.1Z"/><path class="tb-shade" d="M623.3 276L628.9 273.3L640.1 275.8L651.9 279L662.9 286L667.1 298.7L667.4 311.7L667.4 324.8L667.4 326.9L667.8 326.8L668.8 326.7L669.3 326.5L669.3 324.8L669.3 311.7L669 298.5L664.4 285L652.8 277.4L640.6 274L628.9 271.4L622 274.7Z"/><path class="iso-line tb-edge" data-tone="mid" d="M624.4 276.6L629 274.6L639.5 277.6L650.7 281.1L659.7 288L662.1 299.3L662.1 311.7L662.1 324.8M618.3 269.5L628.6 265.2L642.2 268.6L655.2 272.9L667.6 283L671.4 298.2L671.5 311.7L671.5 324.8M662.1 324.8L662.2 325.2L662.6 325.7L663.1 326.1L663.9 326.4L664.7 326.7L665.7 326.8L666.8 326.9L667.8 326.8L668.8 326.7L669.7 326.4L670.5 326.1L671 325.7L671.4 325.2L671.5 324.8"/></g></g></g></g><g data-k="hud"><g data-k="phasebar" data-cue="cycle"></g><g data-k="coolseg" data-cue="cool"></g><g data-k="phasetext"></g><g data-k="mag" data-cue="turb"></g><g data-k="therm"></g><g data-k="thmark" data-cue="eject"></g><g data-k="labels" data-cue="labels"></g><g data-k="card" data-cue="card"></g></g></svg><div class="fp-read" hidden></div>
+<div class="fp-poster"><p class="fp-poster-title">Koelen: wat de insteller kan veranderen</p><button type="button" class="fp-go fp-poster-go"><svg class="fp-ico " viewBox="0 0 24 24" aria-hidden="true"><path d="M5 5a2 2 0 0 1 3.008-1.728l11.997 6.998a2 2 0 0 1 .003 3.458l-12 7A2 2 0 0 1 5 19z"/></svg><span>Bekijk de film</span></button></div>
+<div class="fp-end"><button type="button" class="fp-go fp-again"><svg class="fp-ico fp-replay" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg><span></span></button></div>
+</div>
+<p class="fp-cap" aria-live="polite"></p>
+<p class="fp-note" aria-live="polite"></p>
+<div class="fp-bar">
+<button type="button" class="fp-btn" data-act="play" data-state="play" aria-label="Afspelen"><svg data-i="play" class="fp-ico " viewBox="0 0 24 24" aria-hidden="true"><path d="M5 5a2 2 0 0 1 3.008-1.728l11.997 6.998a2 2 0 0 1 .003 3.458l-12 7A2 2 0 0 1 5 19z"/></svg><svg data-i="pause" class="fp-ico " viewBox="0 0 24 24" aria-hidden="true"><rect x="14" y="3" width="5" height="18" rx="1"/><rect x="5" y="3" width="5" height="18" rx="1"/></svg><svg data-i="replay" class="fp-ico " viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg></button>
+<button type="button" class="fp-btn fp-step" data-act="prev"><svg class="fp-ico " viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg></button>
+<div class="fp-scrub"><div class="fp-ticks"></div><input class="fp-range" type="range" min="0" max="100" step="0.1" value="0"><span class="fp-time"></span></div>
+<button type="button" class="fp-btn fp-step" data-act="next"><svg class="fp-ico " viewBox="0 0 24 24" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></button>
+<button type="button" class="fp-btn" data-act="mute" aria-pressed="false"><svg data-m="on" class="fp-ico " viewBox="0 0 24 24" aria-hidden="true"><path d="M11 4.702a.705.705 0 0 0-1.203-.498L6.413 7.587A1.4 1.4 0 0 1 5.416 8H3a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h2.416a1.4 1.4 0 0 1 .997.413l3.383 3.384A.705.705 0 0 0 11 19.298z"/><path d="M16 9a5 5 0 0 1 0 6"/><path d="M19.364 18.364a9 9 0 0 0 0-12.728"/></svg><svg data-m="off" class="fp-ico " viewBox="0 0 24 24" aria-hidden="true"><path d="M11 4.702a.705.705 0 0 0-1.203-.498L6.413 7.587A1.4 1.4 0 0 1 5.416 8H3a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h2.416a1.4 1.4 0 0 1 .997.413l3.383 3.384A.705.705 0 0 0 11 19.298z"/><path d="M22 9l-6 6"/><path d="M16 9l6 6"/></svg></button>
+<button type="button" class="fp-btn" data-act="scenes" aria-expanded="false"><svg class="fp-ico " viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12h.01"/><path d="M3 18h.01"/><path d="M3 6h.01"/><path d="M8 12h13"/><path d="M8 18h13"/><path d="M8 6h13"/></svg></button>
+</div>
+<div class="fp-sheet" hidden><div class="fp-sheet-head"><p class="fp-sheet-title"></p><button type="button" class="fp-speed" data-act="speed" aria-pressed="false"><span class="fp-speed-l"></span> <span class="fp-speed-v">1×</span></button><button type="button" class="fp-btn" data-act="close"><svg class="fp-ico " viewBox="0 0 24 24" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></button></div><div class="fp-list"></div></div>
+</main><script type="application/json" id="film-data">{"id":"eng.moulding.cooling","title":{"nl":"Koelen: wat de insteller kan veranderen","en":"Cooling: what the setter can change"},"lessons":["eng.moulding.cooling"],"scenes":[{"id":"s1","n":1,"level":2,"dur":13,"still":0.7,"title":{"nl":"Een dop koelt af","en":"A cap cools"},"beats":[{"seg":{"nl":["Een dop koelt in de matrijs; water voert de warmte af."],"en":["A cap cools in the mould; water carries the heat away."]},"text":{"nl":"Een dop koelt in de matrijs; water voert de warmte af.","en":"A cap cools in the mould; water carries the heat away."},"speak":{"nl":"Een dop koelt in de matrijs; water voert de warmte af.","en":"A cap cools in the mould; water carries the heat away."},"cues":["channels"],"focus":["channels"],"say":{"nl":["Een dop koelt af in de matrijs, en water voert de warmte af."],"en":["A cap cools in the mould, and water carries the heat away."]},"voice":{"nl":"Een dop koelt af in de matrijs, en water voert de warmte af.","en":"A cap cools in the mould, and water carries the heat away."}},{"seg":{"nl":["Wat bepaalt hoe snel? En wat kan de insteller veranderen?"],"en":["What sets how fast? And what can the setter change?"]},"text":{"nl":"Wat bepaalt hoe snel? En wat kan de insteller veranderen?","en":"What sets how fast? And what can the setter change?"},"speak":{"nl":"Wat bepaalt hoe snel? En wat kan de insteller veranderen?","en":"What sets how fast? And what can the setter change?"},"cues":["cavity"],"focus":["cavity"],"say":{"nl":["Wat bepaalt hoe snel dat gaat? En wat kan de insteller daaraan veranderen?"],"en":["What decides how fast that goes? And what can the setter change about it?"]},"voice":{"nl":"Wat bepaalt hoe snel dat gaat? En wat kan de insteller daaraan veranderen?","en":"What decides how fast that goes? And what can the setter change about it?"}}],"terms":[]},{"id":"s2","n":2,"level":2,"dur":30,"still":0.7,"title":{"nl":"De uitwerptemperatuur","en":"The ejection temperature"},"beats":[{"seg":{"nl":["Op de ",{"t":"uitwerptemperatuur","c":"eject","k":"eng.moulding.cooling#0","en":"ejection temperature"}," is het dikste deel stijf genoeg om eruit te duwen."],"en":["At the ",{"t":"ejection temperature","c":"eject","k":"eng.moulding.cooling#0"}," the thickest part is stiff enough to push out."]},"text":{"nl":"Op de uitwerptemperatuur (ejection temperature) is het dikste deel stijf genoeg om eruit te duwen.","en":"At the ejection temperature the thickest part is stiff enough to push out."},"speak":{"nl":"Op de uitwerptemperatuur is het dikste deel stijf genoeg om eruit te duwen.","en":"At the ejection temperature the thickest part is stiff enough to push out."},"cues":["eject"],"focus":["eject"],"say":{"nl":["Een product mag de matrijs uit zodra het dikste deel stijf genoeg is om eruit geduwd te worden zonder te vervormen. De temperatuur waarbij dat zo is, heet de ",{"t":"uitwerptemperatuur","k":"eng.moulding.cooling#0","en":"ejection temperature"},", ook wel ontvormtemperatuur. De materiaalleverancier geeft die waarde in het datablad."],"en":["A part may leave the mould as soon as its thickest section is stiff enough to be pushed out without bending. The temperature at which that is true is the ",{"t":"ejection temperature","k":"eng.moulding.cooling#0"},", also called the demoulding temperature. The material supplier gives that value in the datasheet."]},"voice":{"nl":"Een product mag de matrijs uit zodra het dikste deel stijf genoeg is om eruit geduwd te worden zonder te vervormen. De temperatuur waarbij dat zo is, heet de uitwerptemperatuur, ook wel ontvormtemperatuur. De materiaalleverancier geeft die waarde in het datablad.","en":"A part may leave the mould as soon as its thickest section is stiff enough to be pushed out without bending. The temperature at which that is true is the ejection temperature, also called the demoulding temperature. The material supplier gives that value in the datasheet."}},{"seg":{"nl":["Drie dingen bepalen de snelheid: wanddikte, ",{"t":"matrijstemperatuur","c":"mouldtemp","k":"eng.moulding.cooling#1","en":"mould temperature"}," en afvoer door het water."],"en":["Three things set the speed: wall thickness, ",{"t":"mould temperature","c":"mouldtemp","k":"eng.moulding.cooling#1"}," and how the water carries heat."]},"text":{"nl":"Drie dingen bepalen de snelheid: wanddikte, matrijstemperatuur (mould temperature) en afvoer door het water.","en":"Three things set the speed: wall thickness, mould temperature and how the water carries heat."},"speak":{"nl":"Drie dingen bepalen de snelheid: wanddikte, matrijstemperatuur en afvoer door het water.","en":"Three things set the speed: wall thickness, mould temperature and how the water carries heat."},"cues":["card","mouldtemp"],"focus":["card","mouldtemp"],"say":{"nl":["Drie dingen bepalen hoe snel het product daar komt. De wanddikte, die in het kwadraat telt. De ",{"t":"matrijstemperatuur","k":"eng.moulding.cooling#1","en":"mould temperature"},", hoe warm het staal gehouden wordt. En hoe goed het water de warmte afvoert. De insteller regelt de laatste twee."],"en":["Three things decide how fast the part gets there. The wall thickness, which counts squared. The ",{"t":"mould temperature","k":"eng.moulding.cooling#1"},", how warm the steel is kept. And how well the water carries the heat away. The setter controls the last two."]},"voice":{"nl":"Drie dingen bepalen hoe snel het product daar komt. De wanddikte, die in het kwadraat telt. De matrijstemperatuur, hoe warm het staal gehouden wordt. En hoe goed het water de warmte afvoert. De insteller regelt de laatste twee.","en":"Three things decide how fast the part gets there. The wall thickness, which counts squared. The mould temperature, how warm the steel is kept. And how well the water carries the heat away. The setter controls the last two."}}],"terms":[{"lesson":"eng.moulding.cooling","index":0,"nl":"Uitwerptemperatuur","en":"Ejection temperature","cue":"eject"},{"lesson":"eng.moulding.cooling","index":1,"nl":"Matrijstemperatuur","en":"Mould temperature","cue":"mouldtemp"}]},{"id":"s3","n":3,"level":2,"dur":28,"still":0.9,"title":{"nl":"De matrijstemperatuur","en":"The mould temperature"},"beats":[{"seg":{"nl":["Een ",{"t":"temperatuurregelaar","c":"tcu","k":"eng.moulding.cooling#2","en":"temperature control unit"}," verwarmt of koelt water of olie en pompt het rond."],"en":["A ",{"t":"temperature control unit","c":"tcu","k":"eng.moulding.cooling#2"}," heats or cools water or oil and pumps it through the channels."]},"text":{"nl":"Een temperatuurregelaar (temperature control unit) verwarmt of koelt water of olie en pompt het rond.","en":"A temperature control unit heats or cools water or oil and pumps it through the channels."},"speak":{"nl":"Een temperatuurregelaar verwarmt of koelt water of olie en pompt het rond.","en":"A temperature control unit heats or cools water or oil and pumps it through the channels."},"cues":["tcu"],"focus":["tcu"],"say":{"nl":["De matrijstemperatuur stel je in op een ",{"t":"temperatuurregelaar","k":"eng.moulding.cooling#2","en":"temperature control unit"},". Dat is een kast naast de pers die water, of olie, verwarmt of koelt en door de koelkanalen pompt."],"en":["You set the mould temperature on a ",{"t":"temperature control unit","k":"eng.moulding.cooling#2"},". That is a cabinet beside the press that heats or cools water, or oil, and pumps it through the cooling channels."]},"voice":{"nl":"De matrijstemperatuur stel je in op een temperatuurregelaar. Dat is een kast naast de pers die water, of olie, verwarmt of koelt en door de koelkanalen pompt.","en":"You set the mould temperature on a temperature control unit. That is a cabinet beside the press that heats or cools water, or oil, and pumps it through the cooling channels."}},{"seg":{"nl":["Kouder staal koelt sneller, maar te koud geeft een dof oppervlak, vloeilijnen en ingevroren spanning."],"en":["Colder steel cools faster, but not for free: too cold gives a dull surface, flow lines and frozen-in stress."]},"text":{"nl":"Kouder staal koelt sneller, maar te koud geeft een dof oppervlak, vloeilijnen en ingevroren spanning.","en":"Colder steel cools faster, but not for free: too cold gives a dull surface, flow lines and frozen-in stress."},"speak":{"nl":"Kouder staal koelt sneller, maar te koud geeft een dof oppervlak, vloeilijnen en ingevroren spanning.","en":"Colder steel cools faster, but not for free: too cold gives a dull surface, flow lines and frozen-in stress."},"cues":["mouldtemp","card"],"focus":["mouldtemp","card"],"say":{"nl":["Kouder staal koelt sneller, maar niet gratis. Te koud geeft een dof oppervlak, zichtbare vloeilijnen en ingevroren spanning."],"en":["Colder steel cools faster, but not for free. Too cold gives a dull surface, visible flow lines and frozen-in stress."]},"voice":{"nl":"Kouder staal koelt sneller, maar niet gratis. Te koud geeft een dof oppervlak, zichtbare vloeilijnen en ingevroren spanning.","en":"Colder steel cools faster, but not for free. Too cold gives a dull surface, visible flow lines and frozen-in stress."}},{"seg":{"nl":["PA krimpt dagen later na; het datablad geeft de temperatuur, voor PA6 ","80"," °C."],"en":["PA shrinks days later; the datasheet gives the mould temperature, ","80"," °C for PA6."]},"text":{"nl":"PA krimpt dagen later na; het datablad geeft de temperatuur, voor PA6 80 °C.","en":"PA shrinks days later; the datasheet gives the mould temperature, 80 °C for PA6."},"speak":{"nl":"PA krimpt dagen later na; het datablad geeft de temperatuur, voor PA6 80 gradenC.","en":"PA shrinks days later; the datasheet gives the mould temperature, 80 degreesC for PA six."},"cues":["card","mouldtemp"],"focus":["card","mouldtemp"],"say":{"nl":["Semi-kristallijne kunststoffen zoals PA kunnen dan in de matrijs niet al hun kristallen vormen, en krimpen dagen later nog. Daarom geeft het datablad een matrijstemperatuur, voor PA6 bijvoorbeeld ","80"," graden."],"en":["Semi-crystalline plastics such as PA then cannot form all their crystals in the mould, and shrink days later. That is why the datasheet gives a mould temperature, ","80"," degrees for PA6, for example."]},"voice":{"nl":"Semi-kristallijne kunststoffen zoals PA kunnen dan in de matrijs niet al hun kristallen vormen, en krimpen dagen later nog. Daarom geeft het datablad een matrijstemperatuur, voor PA6 bijvoorbeeld 80 graden.","en":"Semi-crystalline plastics such as PA then cannot form all their crystals in the mould, and shrink days later. That is why the datasheet gives a mould temperature, 80 degrees for PA six, for example."}}],"terms":[{"lesson":"eng.moulding.cooling","index":2,"nl":"Temperatuurregelaar","en":"Temperature control unit","cue":"tcu"}]},{"id":"s4","n":4,"level":2,"dur":12,"still":0.9,"title":{"nl":"De doorstroming","en":"The flow of the water"},"beats":[{"seg":{"nl":["Het water stroomt hard genoeg voor ",{"t":"turbulente stroming","c":"turb","k":"eng.moulding.cooling#3","en":"turbulent flow"},": wervelend, niet in laagjes."],"en":["The water flows hard enough for ",{"t":"turbulent flow","c":"turb","k":"eng.moulding.cooling#3"},": swirling, not in layers."]},"text":{"nl":"Het water stroomt hard genoeg voor turbulente stroming (turbulent flow): wervelend, niet in laagjes.","en":"The water flows hard enough for turbulent flow: swirling, not in layers."},"speak":{"nl":"Het water stroomt hard genoeg voor turbulente stroming: wervelend, niet in laagjes.","en":"The water flows hard enough for turbulent flow: swirling, not in layers."},"cues":["turb"],"focus":["turb"],"say":{"nl":["Het water moet hard genoeg stromen voor ",{"t":"turbulente stroming","k":"eng.moulding.cooling#3","en":"turbulent flow"},". Wervelend in plaats van in laagjes glijdend, want wervelend water voert veel beter warmte af."],"en":["The water must flow hard enough for ",{"t":"turbulent flow","k":"eng.moulding.cooling#3"},". Swirling instead of sliding in layers, because swirling water carries heat away far better."]},"voice":{"nl":"Het water moet hard genoeg stromen voor turbulente stroming. Wervelend in plaats van in laagjes glijdend, want wervelend water voert veel beter warmte af.","en":"The water must flow hard enough for turbulent flow. Swirling instead of sliding in layers, because swirling water carries heat away far better."}},{"seg":{"nl":["Kalkaanslag in de kanalen werkt als isolatie."],"en":["Limescale in the channels acts as insulation."]},"text":{"nl":"Kalkaanslag in de kanalen werkt als isolatie.","en":"Limescale in the channels acts as insulation."},"speak":{"nl":"Kalkaanslag in de kanalen werkt als isolatie.","en":"Limescale in the channels acts as insulation."},"cues":["turb"],"focus":["turb"],"say":{"nl":["Kalkaanslag in de kanalen werkt als isolatie."],"en":["Limescale in the channels acts as insulation."]},"voice":{"nl":"Kalkaanslag in de kanalen werkt als isolatie.","en":"Limescale in the channels acts as insulation."}}],"terms":[{"lesson":"eng.moulding.cooling","index":3,"nl":"Turbulente stroming","en":"Turbulent flow","cue":"turb"}]},{"id":"s5","n":5,"level":2,"dur":18,"still":0.9,"title":{"nl":"De controle","en":"The check"},"beats":[{"seg":{"nl":["Goede check: het water komt er maar een paar graden warmer uit. Een groot verschil: te weinig doorstroming."],"en":["A good check: the water comes out only a few degrees warmer. A large difference means too little flow."]},"text":{"nl":"Goede check: het water komt er maar een paar graden warmer uit. Een groot verschil: te weinig doorstroming.","en":"A good check: the water comes out only a few degrees warmer. A large difference means too little flow."},"speak":{"nl":"Goede check: het water komt er maar een paar graden warmer uit. Een groot verschil: te weinig doorstroming.","en":"A good check: the water comes out only a few degrees warmer. A large difference means too little flow."},"cues":["labels"],"focus":["labels"],"say":{"nl":["Een goede check. Het water komt er maar een paar graden warmer uit dan het erin ging. Een groot verschil betekent te weinig doorstroming."],"en":["A good check. The water comes out only a few degrees warmer than it went in. A large difference means too little flow."]},"voice":{"nl":"Een goede check. Het water komt er maar een paar graden warmer uit dan het erin ging. Een groot verschil betekent te weinig doorstroming.","en":"A good check. The water comes out only a few degrees warmer than it went in. A large difference means too little flow."}},{"seg":{"nl":["Hete plekken, waar het water niet komt, bepalen de cyclus van het hele product."],"en":["Hot spots, where the water does not reach, set the cycle of the whole part."]},"text":{"nl":"Hete plekken, waar het water niet komt, bepalen de cyclus van het hele product.","en":"Hot spots, where the water does not reach, set the cycle of the whole part."},"speak":{"nl":"Hete plekken, waar het water niet komt, bepalen de cyclus van het hele product.","en":"Hot spots, where the water does not reach, set the cycle of the whole part."},"cues":["hot"],"focus":["hot"],"say":{"nl":["Hete plekken zijn plekken waar het water niet komt, zoals een lange kern zonder kanaal erin. Ze bepalen de cyclus van het hele product."],"en":["Hot spots are places the water does not reach, such as a long core with no channel in it. They set the cycle of the whole part."]},"voice":{"nl":"Hete plekken zijn plekken waar het water niet komt, zoals een lange kern zonder kanaal erin. Ze bepalen de cyclus van het hele product.","en":"Hot spots are places the water does not reach, such as a long core with no channel in it. They set the cycle of the whole part."}}],"terms":[]},{"id":"s6","n":6,"level":2,"dur":42,"still":0.9,"title":{"nl":"Stap voor stap","en":"Step by step"},"beats":[{"seg":{"nl":["Verlaag de koeltijd in stapjes van een seconde en meet bij elke stap de kritische maat."],"en":["Lower the cooling time in steps of a second and measure the critical size at each step."]},"text":{"nl":"Verlaag de koeltijd in stapjes van een seconde en meet bij elke stap de kritische maat.","en":"Lower the cooling time in steps of a second and measure the critical size at each step."},"speak":{"nl":"Verlaag de koeltijd in stapjes van een seconde en meet bij elke stap de kritische maat.","en":"Lower the cooling time in steps of a second and measure the critical size at each step."},"cues":["card"],"focus":["card"],"say":{"nl":["Instellers zetten er vaak seconden koeltijd bij voor de zekerheid. De nette manier om het echte minimum te vinden is anders. Verlaag de koeltijd in kleine stapjes, bijvoorbeeld een seconde. Meet bij elke stap de kritische maat of het kromtrekken, nadat de producten op kamertemperatuur zijn."],"en":["Setters often add seconds of cooling time to be safe. The proper way to find the real minimum is different. Lower the cooling time in small steps, for example a second. At each step measure the critical dimension or the warpage, after the parts are at room temperature."]},"voice":{"nl":"Instellers zetten er vaak seconden koeltijd bij voor de zekerheid. De nette manier om het echte minimum te vinden is anders. Verlaag de koeltijd in kleine stapjes, bijvoorbeeld een seconde. Meet bij elke stap de kritische maat of het kromtrekken, nadat de producten op kamertemperatuur zijn.","en":"Setters often add seconds of cooling time to be safe. The proper way to find the real minimum is different. Lower the cooling time in small steps, for example a second. At each step measure the critical dimension or the warpage, after the parts are at room temperature."}},{"seg":{"nl":["Een 4-voudige matrijs: cyclus ","24"," s, koelen ","14"," s, ","3.600"," / ","24"," × ","4"," = ","600"," per uur."],"en":["A 4-cavity mould: cycle ","24"," s, cooling ","14"," s, ","3,600"," / ","24"," × ","4"," = ","600"," per hour."]},"text":{"nl":"Een 4-voudige matrijs: cyclus 24 s, koelen 14 s, 3.600 / 24 × 4 = 600 per uur.","en":"A 4-cavity mould: cycle 24 s, cooling 14 s, 3,600 / 24 × 4 = 600 per hour."},"speak":{"nl":"Een 4-voudige matrijs: cyclus 24 s, koelen 14 s, 36honderd gedeeld door 24 maal 4 is 600 per uur.","en":"A 4-cavity mould: cycle 24 s, cooling 14 s, 3,600 divided by 24 times 4 is 600 per hour."},"cues":["card"],"focus":["card"],"say":{"nl":["Een voorbeeld. Een 4-voudige matrijs draait een cyclus van ","24"," seconden met ","14"," seconden koelen. Dat is ","3.600"," gedeeld door ","24",", maal ","4",", dus ","600"," stuks per uur."],"en":["An example. A 4-cavity mould runs a cycle of ","24"," seconds with ","14"," seconds of cooling. That is ","3,600"," divided by ","24",", times ","4",", so ","600"," parts per hour."]},"voice":{"nl":"Een voorbeeld. Een 4-voudige matrijs draait een cyclus van 24 seconden met 14 seconden koelen. Dat is 36honderd gedeeld door 24, maal 4, dus 600 stuks per uur.","en":"An example. A 4-cavity mould runs a cycle of 24 seconds with 14 seconds of cooling. That is 3,600 divided by 24, times 4, so 600 parts per hour."}},{"seg":{"nl":["Stappen van een seconde, gemeten na ","24"," uur: ","11"," s is goed, ","10"," s valt buiten de tolerantie."],"en":["Steps of a second, measured after ","24"," hours: ","11"," s is good, ","10"," s is out of tolerance."]},"text":{"nl":"Stappen van een seconde, gemeten na 24 uur: 11 s is goed, 10 s valt buiten de tolerantie.","en":"Steps of a second, measured after 24 hours: 11 s is good, 10 s is out of tolerance."},"speak":{"nl":"Stappen van een seconde, gemeten na 24 uur: 11 s is goed, 10 s valt buiten de tolerantie.","en":"Steps of a second, measured after 24 hours: 11 s is good, 10 s is out of tolerance."},"cues":["card"],"focus":["card"],"say":{"nl":["De insteller verlaagt het koelen in stappen van een seconde en meet de kritische lengte van elke stap na ","24"," uur. Op ","11"," seconden zijn alle producten goed. Op ","10"," seconden valt de lengte buiten de tolerantie."],"en":["The setter lowers the cooling in steps of a second and measures the critical length of each step after ","24"," hours. At ","11"," seconds all parts are good. At ","10"," seconds the length falls outside the tolerance."]},"voice":{"nl":"De insteller verlaagt het koelen in stappen van een seconde en meet de kritische lengte van elke stap na 24 uur. Op 11 seconden zijn alle producten goed. Op 10 seconden valt de lengte buiten de tolerantie.","en":"The setter lowers the cooling in steps of a second and measures the critical length of each step after 24 hours. At 11 seconds all parts are good. At 10 seconds the length falls outside the tolerance."}}],"terms":[]},{"id":"s7","n":7,"level":2,"dur":28,"still":0.9,"title":{"nl":"De instelling","en":"The setting"},"beats":[{"seg":{"nl":["De laatste goede stap plus een kleine marge wordt de instelling; leg die vast met de reden."],"en":["The last good step plus a small margin becomes the setting; record it with the reason."]},"text":{"nl":"De laatste goede stap plus een kleine marge wordt de instelling; leg die vast met de reden.","en":"The last good step plus a small margin becomes the setting; record it with the reason."},"speak":{"nl":"De laatste goede stap plus een kleine marge wordt de instelling; leg die vast met de reden.","en":"The last good step plus a small margin becomes the setting; record it with the reason."},"cues":["card"],"focus":["card"],"say":{"nl":["De laatste stap waarbij alles binnen de tolerantie valt, plus een kleine marge, wordt de instelling. Leg die vast met de reden, zodat niemand de seconden er zonder data weer bij zet."],"en":["The last step at which everything is within tolerance, plus a small margin, becomes the setting. Record it with the reason, so nobody adds the seconds back without data."]},"voice":{"nl":"De laatste stap waarbij alles binnen de tolerantie valt, plus een kleine marge, wordt de instelling. Leg die vast met de reden, zodat niemand de seconden er zonder data weer bij zet.","en":"The last step at which everything is within tolerance, plus a small margin, becomes the setting. Record it with the reason, so nobody adds the seconds back without data."}},{"seg":{"nl":["Ze zet ","11,5"," s: de cyclus wordt ","24"," − ","2,5"," = ","21,5"," s."],"en":["She sets ","11.5"," s: the cycle becomes ","24"," − ","2.5"," = ","21.5"," s."]},"text":{"nl":"Ze zet 11,5 s: de cyclus wordt 24 − 2,5 = 21,5 s.","en":"She sets 11.5 s: the cycle becomes 24 − 2.5 = 21.5 s."},"speak":{"nl":"Ze zet 11,5 s: de cyclus wordt 24 − 2,5 is 21,5 s.","en":"She sets 11.5 s: the cycle becomes 24 − 2.5 is 21.5 s."},"cues":["card"],"focus":["card"],"say":{"nl":["Ze zet ","11,5"," seconden. Dat haalt ","2,5"," seconden van de ","24"," af, dus de cyclus wordt ","21,5"," seconden."],"en":["She sets ","11.5"," seconds. That takes ","2.5"," seconds off the ","24",", so the cycle becomes ","21.5"," seconds."]},"voice":{"nl":"Ze zet 11,5 seconden. Dat haalt 2,5 seconden van de 24 af, dus de cyclus wordt 21,5 seconden.","en":"She sets 11.5 seconds. That takes 2.5 seconds off the 24, so the cycle becomes 21.5 seconds."}},{"seg":{"nl":["Output: ","3.600"," / ","21,5"," × ","4"," ≈ ","670"," per uur, zo’n ","12","% meer op dezelfde pers."],"en":["Output: ","3,600"," / ","21.5"," × ","4"," ≈ ","670"," per hour, about ","12","% more on the same press."]},"text":{"nl":"Output: 3.600 / 21,5 × 4 ≈ 670 per uur, zo’n 12% meer op dezelfde pers.","en":"Output: 3,600 / 21.5 × 4 ≈ 670 per hour, about 12% more on the same press."},"speak":{"nl":"Output: 36honderd gedeeld door 21,5 maal 4 ≈ 670 per uur, zo'n 12 procent meer op dezelfde pers.","en":"Output: 3,600 divided by 21.5 times 4 ≈ 670 per hour, about 12 percent more on the same press."},"cues":["card"],"focus":["card"],"say":{"nl":["De output wordt ","3.600"," gedeeld door ","21,5",", maal ","4",". Dat is ongeveer ","670"," stuks per uur, zo’n ","12"," procent meer op dezelfde pers en matrijs."],"en":["Output becomes ","3,600"," divided by ","21.5",", times ","4",". That is about ","670"," parts per hour, about ","12"," percent more on the same press and mould."]},"voice":{"nl":"De output wordt 36honderd gedeeld door 21,5, maal 4. Dat is ongeveer 670 stuks per uur, zo'n 12 procent meer op dezelfde pers en matrijs.","en":"Output becomes 3,600 divided by 21.5, times 4. That is about 670 parts per hour, about 12 percent more on the same press and mould."}}],"terms":[]}],"skip":[],"numbers":[{"lesson":"eng.moulding.cooling","value":"80","scene":"s3"},{"lesson":"eng.moulding.cooling","value":"24","scene":"s6"},{"lesson":"eng.moulding.cooling","value":"14","scene":"s6"},{"lesson":"eng.moulding.cooling","value":"3.600","scene":"s6"},{"lesson":"eng.moulding.cooling","value":"4","scene":"s6"},{"lesson":"eng.moulding.cooling","value":"600","scene":"s6"},{"lesson":"eng.moulding.cooling","value":"11","scene":"s6"},{"lesson":"eng.moulding.cooling","value":"10","scene":"s6"},{"lesson":"eng.moulding.cooling","value":"11,5","scene":"s7"},{"lesson":"eng.moulding.cooling","value":"2,5","scene":"s7"},{"lesson":"eng.moulding.cooling","value":"21,5","scene":"s7"},{"lesson":"eng.moulding.cooling","value":"670","scene":"s7"},{"lesson":"eng.moulding.cooling","value":"12","scene":"s7"}],"points":[{"key":"eng.moulding.cooling#t1.1","fp":"bcef9c48","beats":["s2.1"]},{"key":"eng.moulding.cooling#t1.2","fp":"2834493b","beats":["s2.2"]},{"key":"eng.moulding.cooling#t2.1","fp":"c2e601b1","beats":["s3.1","s3.2"]},{"key":"eng.moulding.cooling#t2.2","fp":"3697c895","beats":["s3.2","s3.3"]},{"key":"eng.moulding.cooling#t3.1","fp":"32e51b86","beats":["s4.1","s4.2"]},{"key":"eng.moulding.cooling#t3.2","fp":"5f25e4b6","beats":["s5.1","s5.2"]},{"key":"eng.moulding.cooling#t4.1","fp":"6af42495","beats":["s6.1"]},{"key":"eng.moulding.cooling#t4.2","fp":"bb62095b","beats":["s7.1"]},{"key":"eng.moulding.cooling#ex.text.1","fp":"f36eee02","beats":["s6.2","s6.3"]},{"key":"eng.moulding.cooling#ex.text.2","fp":"8ec58d00","beats":["s7.2","s7.3"]}],"checkScope":{"scenes":["s1","s2","s3","s4","s5","s6","s7"],"stageFns":["waterBars","render","cardSvg","section","bossDims","dimLabels","magnifier","thermometer"]},"label":{"nl":"Een doorsnede door een matrijsblok met koelkanalen en een dopwand, met een temperatuurregelaar naast het blok; een thermometer, een vergrootglas op een kanaal, een hete plek en kaarten met de uitkomst van het voorbeeld.","en":"A section through a mould block with cooling channels and a cap wall, with a temperature control unit beside the block; a thermometer, a magnifier on a channel, a hot spot and cards with the result of the example."}}</script><script>document.querySelector('.fp-again span').textContent=new URLSearchParams((location.search.length>1?location.search:(window.name.charAt(0)==="?"?window.name:""))).get('lang')==='en'?'Watch again':'Nog een keer';</script><script type="module">// Pure parts of the film player: caption markers, number formats, the speak
+// variant, the timeline, beats, the narration hold and the page parameters.
+// No imports and no DOM: the build inlines this file into every film page (with
+// its `export` words stripped), and tests/film.test.js imports it as it is.
+// The part between the build-only markers (caption markers, numbers, the SAY
+// table and the speak variants) runs only at build time: the page's film data
+// already carries the resolved captions and voice/speak strings, so the page
+// inlines everything except that part (runtimeTimeline in films/_kit/player.mjs).
+// Keep runtime code out of it, and build-only code in it.
+
+const wordsOf = (text) => String(text || '').trim().split(/\s+/).filter(Boolean).length;
+
+
+// v14b, the timeline driven by the narration audio. durs[scene][beat] is the
+// length of each beat's recorded line (s). Each scene opens with a short look
+// before the first line (the film itself with a longer lead), lines follow with
+// a breath in between, and a scene holds a moment after its last line.
+// The pauses of the narration, all in one place (seconds). Each sentence is one
+// Piper clip (films/_kit/narrate.mjs), commas inside: the voice makes its own
+// comma pause and keeps the sentence melody. Piper's own edge silence is
+// trimmed to about 40 ms (films/_kit/speak.py), so these are the pauses heard:
+// sentence after a full stop, beat between two lines, hold at a scene's end.
+// The listen guard (films/_kit/listen-guard.mjs) checks them on the render.
+const PAUSES = { sentence: 0.6, beat: 0.9, hold: 0.8 };
+const AUDIO_GAPS = { lead: 0.8, look: 0.4, gap: PAUSES.beat, hold: PAUSES.hold, tail: 1.6 };
+function audioTimeline(durs, gaps = AUDIO_GAPS) {
+  const g = { ...AUDIO_GAPS, ...gaps };
+  const scenes = [];
+  let t = 0;
+  durs.forEach((beats, si) => {
+    const start = t;
+    let at = start + (si === 0 ? g.lead : g.look);
+    const out = beats.map((d, bi) => {
+      if (!(d > 0)) throw new Error(`scene ${si + 1} beat ${bi + 1}: no audio`);
+      const b = { start: round3(at), dur: round3(d) };
+      at += d + (bi + 1 < beats.length ? g.gap : 0);
+      return b;
+    });
+    t = round3(at + (si + 1 < durs.length ? g.hold : g.tail));
+    scenes.push({ start: round3(start), dur: round3(t - start), beats: out });
+  });
+  return { scenes, total: t };
+}
+const round3 = (x) => Math.round(x * 1000) / 1000;
+
+// Where time t falls on an audio timeline: the scene, the beat on screen (the
+// last one started; the first while the scene opens) and the scene's progress u.
+function timedAt(t, atl) {
+  const sc = atl.scenes;
+  let si = 0;
+  for (let k = 0; k < sc.length; k++) if (t >= sc[k].start) si = k;
+  const s = sc[si];
+  let bi = 0;
+  for (let k = 0; k < s.beats.length; k++) if (t >= s.beats[k].start) bi = k;
+  const u = Math.min(1, Math.max(0, (t - s.start) / s.dur));
+  return { si, bi, u };
+}
+
+function timelineOf(scenes) {
+  const starts = [];
+  let t = 0;
+  for (const s of scenes) { starts.push(t); t += s.dur; }
+  return { starts, total: t };
+}
+
+function sceneIndexAt(t, tl) {
+  let i = 0;
+  for (let k = 0; k < tl.starts.length; k++) if (t >= tl.starts[k]) i = k;
+  return i;
+}
+
+// ?scene=n is 1-based; anything odd opens the first scene.
+function clampScene(param, count) {
+  const n = parseInt(param, 10);
+  if (!Number.isFinite(n) || n < 1) return 0;
+  return Math.min(count, n) - 1;
+}
+
+// Beat starts within a scene (seconds), by each beat's share of the words.
+function beatStarts(scene, lang) {
+  const counts = scene.beats.map((b) => Math.max(1, wordsOf(b.text[lang] ?? b.text.nl)));
+  const all = counts.reduce((a, b) => a + b, 0);
+  const out = [];
+  let acc = 0;
+  for (const c of counts) { out.push(Math.round((acc / all) * scene.dur * 100) / 100); acc += c; }
+  return out;
+}
+
+// The stage's u (0..1) in the HTML film. A stage drawn on the Dutch beats
+// (nlBeats, set by beatwarp.js) runs, while caption beat k shows in `lang`,
+// from Dutch beat k's fraction to k+1's, so English is never a beat off.
+function stageU(scene, lang, local, nlBeats) {
+  const u = Math.min(1, Math.max(0, local / scene.dur));
+  if (!nlBeats || lang === 'nl' || !scene.beats || !scene.beats.length) return u;
+  const own = beatStarts(scene, lang);
+  const nl = beatStarts(scene, 'nl');
+  let k = 0;
+  for (let i = 0; i < own.length; i++) if (local >= own[i]) k = i;
+  const a0 = own[k];
+  const a1 = k + 1 < own.length ? own[k + 1] : scene.dur;
+  const b0 = nl[k];
+  const b1 = k + 1 < nl.length ? nl[k + 1] : scene.dur;
+  const p = Math.min(1, Math.max(0, (local - a0) / Math.max(1e-6, a1 - a0)));
+  return Math.min(1, Math.max(0, (b0 + p * (b1 - b0)) / scene.dur));
+}
+
+function beatIndexAt(scene, lang, local) {
+  const starts = beatStarts(scene, lang);
+  let i = 0;
+  for (let k = 0; k < starts.length; k++) if (local >= starts[k]) i = k;
+  return i;
+}
+
+// While a beat is being spoken the clock may run up to the next beat, or to the
+// end of the scene for the last beat, and then holds there.
+function holdLimit(tl, scenes, lang, sceneIndex, beatIndex) {
+  const scene = scenes[sceneIndex];
+  const starts = beatStarts(scene, lang);
+  const local = beatIndex + 1 < starts.length ? starts[beatIndex + 1] : scene.dur;
+  return tl.starts[sceneIndex] + local;
+}
+
+// The page's parameters: from its URL when opened on its own, else from the
+// frame's name. The app hands the page over as srcdoc (a sandboxed frame's own
+// navigation skips the service worker, so a src would be blank offline) and
+// puts "?theme=…&lang=…" in the iframe's name attribute.
+const searchOf = (search, name) => (search && search.length > 1 ? search
+  : typeof name === 'string' && name.charAt(0) === '?' ? name : '');
+
+function parseParams(search) {
+  const q = new URLSearchParams(search || '');
+  const theme = q.get('theme');
+  const level = parseInt(q.get('level'), 10);
+  return {
+    theme: theme === 'light' || theme === 'dark' ? theme : null,
+    lang: q.get('lang') === 'en' ? 'en' : 'nl',
+    scene: q.get('scene'),
+    reduce: q.get('motion') === 'reduce',
+    muted: q.get('muted') === '1',
+    level: [1, 2, 3, 4].includes(level) ? level : null,
+    render: q.get('render') === '1',
+  };
+}
+
+function fmtClock(sec) {
+  const s = Math.max(0, Math.floor(sec));
+  return `${Math.floor(s / 60)}:${String(s % 60).padStart(2, '0')}`;
+}
+
+// Calm ease-in-out, and the eased progress of u through [a, b].
+const ease = (t) => (t <= 0 ? 0 : t >= 1 ? 1 : t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2);
+const span = (u, a, b) => ease(Math.min(1, Math.max(0, (u - a) / (b - a))));
+
+;
+const AZIMUTH = 45;
+const ELEVATION = 30;
+const SHADES = 4;
+const RADIANS = Math.PI / 180;
+const UNIT = Math.sqrt(1.6);
+function cameraOf({ scale, azimuth = AZIMUTH, elevation = ELEVATION }) {
+    const a = azimuth * RADIANS;
+    const e = elevation * RADIANS;
+    return { sinA: Math.sin(a), cosA: Math.cos(a), sinE: Math.sin(e), cosE: Math.cos(e), k: scale * UNIT };
+}
+function iso([x, y, z], projection) {
+    const { origin } = projection;
+    const { sinA, cosA, sinE, cosE, k } = cameraOf(projection);
+    return [origin[0] + (x * sinA - y * cosA) * k, origin[1] + ((x * cosA + y * sinA) * sinE - z * cosE) * k];
+}
+function towardViewer(projection) {
+    const { sinA, cosA } = cameraOf(projection);
+    return [cosA, sinA];
+}
+function depthOf([x, y, z], projection) {
+    const { sinA, cosA, sinE, cosE } = cameraOf(projection);
+    return (x * cosA + y * sinA) * cosE + z * sinE;
+}
+const tenth = (value) => {
+    const text = (Math.round(value * 10) / 10).toFixed(1).replace(/\.0$/, "");
+    return text === "-0" ? "0" : text;
+};
+function pathOf(points, closed = false) {
+    if (!points.length)
+        return "";
+    return points.map(([x, y], at) => `${at ? "L" : "M"}${tenth(x)} ${tenth(y)}`).join("") + (closed ? "Z" : "");
+}
+function roundedPlan({ x, y, w, d, r }, steps = 8) {
+    const radius = Math.max(0, Math.min(r, w / 2, d / 2));
+    const corners = [
+        [x + w - radius, y + radius, -90],
+        [x + w - radius, y + d - radius, 0],
+        [x + radius, y + d - radius, 90],
+        [x + radius, y + radius, 180],
+    ];
+    const out = [];
+    for (const [cx, cy, start] of corners) {
+        const count = radius > 0 ? steps : 0;
+        for (let step = 0; step <= count; step++) {
+            const angle = (start + (count ? (90 * step) / count : 45)) * RADIANS;
+            out.push([cx + radius * Math.cos(angle), cy + radius * Math.sin(angle)]);
+        }
+    }
+    return out;
+}
+function signedArea(points) {
+    let area = 0;
+    for (let index = 0; index < points.length; index++) {
+        const [ax, ay] = points[index];
+        const [bx, by] = points[(index + 1) % points.length];
+        area += ax * by - bx * ay;
+    }
+    return area / 2;
+}
+const oriented = (points) => (signedArea(points) < 0 ? [...points].reverse() : points);
+function convexHull(points) {
+    const sorted = [...points].sort((a, b) => a[0] - b[0] || a[1] - b[1]);
+    if (sorted.length < 3)
+        return sorted;
+    const cross = (o, a, b) => (a[0] - o[0]) * (b[1] - o[1]) - (a[1] - o[1]) * (b[0] - o[0]);
+    const lower = [];
+    for (const point of sorted) {
+        while (lower.length >= 2 && cross(lower[lower.length - 2], lower[lower.length - 1], point) <= 0)
+            lower.pop();
+        lower.push(point);
+    }
+    const upper = [];
+    for (let index = sorted.length - 1; index >= 0; index--) {
+        const point = sorted[index];
+        while (upper.length >= 2 && cross(upper[upper.length - 2], upper[upper.length - 1], point) <= 0)
+            upper.pop();
+        upper.push(point);
+    }
+    return [...lower.slice(0, -1), ...upper.slice(0, -1)];
+}
+function runsOf(flags, want) {
+    const count = flags.length;
+    const runs = [];
+    const start = flags.findIndex((flag, index) => flag !== flags[(index + count - 1) % count]);
+    if (start < 0)
+        return flags[0] === want ? [Array.from({ length: count + 1 }, (_, index) => index % count)] : [];
+    let run = null;
+    for (let step = 0; step < count; step++) {
+        const index = (start + step) % count;
+        if (flags[index] === want) {
+            if (!run)
+                run = [index];
+            run.push((index + 1) % count);
+        }
+        else if (run) {
+            runs.push(run);
+            run = null;
+        }
+    }
+    if (run)
+        runs.push(run);
+    return runs;
+}
+function extrude(ring, z, height, projection, options = {}) {
+    const convex = options.convex ?? true;
+    const count = ring.length;
+    const counter = signedArea(ring) > 0;
+    const [vx, vy] = towardViewer(projection);
+    const { sinA, cosA } = cameraOf(projection);
+    const normals = ring.map(([ax, ay], index) => {
+        const [bx, by] = ring[(index + 1) % count];
+        const dx = bx - ax;
+        const dy = by - ay;
+        const length = Math.hypot(dx, dy) || 1;
+        return (counter ? [dy / length, -dx / length] : [-dy / length, dx / length]);
+    });
+    const facing = normals.map(([nx, ny]) => nx * vx + ny * vy > 1e-9);
+    const top = ring.map(([x, y]) => iso([x, y, z + height], projection));
+    const bottom = ring.map(([x, y]) => iso([x, y, z], projection));
+    const outline = [];
+    const crease = [];
+    for (const run of runsOf(facing, false))
+        outline.push(pathOf(run.map((index) => top[index])));
+    for (const run of runsOf(facing, true)) {
+        crease.push(pathOf(run.map((index) => top[index])));
+        if (height > 0)
+            outline.push(pathOf(run.map((index) => bottom[index])));
+    }
+    if (height > 0) {
+        for (let index = 0; index < count; index++) {
+            if (facing[(index + count - 1) % count] !== facing[index])
+                outline.push(pathOf([top[index], bottom[index]]));
+        }
+    }
+    let fill;
+    if (convex) {
+        fill = pathOf(convexHull([...top, ...bottom]), true);
+    }
+    else {
+        const parts = [pathOf(oriented(top), true), pathOf(oriented(bottom), true)];
+        for (let index = 0; index < count; index++) {
+            if (!facing[index])
+                continue;
+            const next = (index + 1) % count;
+            parts.push(pathOf(oriented([top[index], top[next], bottom[next], bottom[index]]), true));
+        }
+        fill = parts.join("");
+    }
+    const buckets = Array.from({ length: SHADES }, () => []);
+    if (height > 0) {
+        const [lx, ly] = [-sinA, cosA];
+        for (let index = 0; index < count; index++) {
+            if (!facing[index])
+                continue;
+            const [nx, ny] = normals[index];
+            const lit = (nx * lx + ny * ly + 1) / 2;
+            const shade = Math.min(SHADES - 1, Math.max(0, Math.floor(lit * SHADES)));
+            const next = (index + 1) % count;
+            buckets[shade].push(pathOf(oriented([top[index], top[next], bottom[next], bottom[index]]), true));
+        }
+    }
+    let bevel;
+    if (options.bevel && options.bevel > 0) {
+        const by = options.bevel;
+        const inset = ring.map(([x, y], index) => {
+            const [ax, ay] = normals[(index + count - 1) % count];
+            const [bx, by2] = normals[index];
+            const mx = ax + bx;
+            const my = ay + by2;
+            const length = Math.hypot(mx, my) || 1;
+            return [x - (mx / length) * by, y - (my / length) * by];
+        });
+        const insetTop = inset.map(([x, y]) => iso([x, y, z + height], projection));
+        bevel = runsOf(facing, true)
+            .map((run) => pathOf([top[run[0]], ...run.slice(1, -1).map((index) => insetTop[index]), top[run[run.length - 1]]]))
+            .join("");
+    }
+    return {
+        fill,
+        outline: outline.join(""),
+        crease: crease.join(""),
+        top: pathOf(oriented(top), true),
+        shades: buckets.map((paths) => paths.join("")),
+        bevel,
+    };
+}
+const ringOf = (plan, steps = 8) => roundedPlan(plan, steps);
+function slabOf(plan, z, height, projection, steps = 8, bevel = 0) {
+    return extrude(ringOf(plan, steps), z, height, projection, { convex: true, bevel });
+}
+function circleRing(cx, cy, radius, steps = 40) {
+    return Array.from({ length: steps }, (_, step) => {
+        const angle = (step / steps) * Math.PI * 2;
+        return [cx + radius * Math.cos(angle), cy + radius * Math.sin(angle)];
+    });
+}
+function cylinder(cx, cy, radius, z, height, projection, steps = 32, bevel = 0) {
+    return extrude(circleRing(cx, cy, radius, steps), z, height, projection, { convex: true, bevel });
+}
+const insetPlan = ({ x, y, w, d, r }, by) => ({ x: x + by, y: y + by, w: w - by * 2, d: d - by * 2, r: Math.max(0, r - by) });
+function onTop(points, z, projection, closed = false) {
+    return pathOf(points.map(([x, y]) => iso([x, y, z], projection)), closed);
+}
+const planOutline = (plan, z, projection, steps = 8) => onTop(ringOf(plan, steps), z, projection, true);
+const lineOnTop = (from, to, z, projection) => onTop([from, to], z, projection);
+const segment = (from, to, projection) => pathOf([iso(from, projection), iso(to, projection)]);
+const rise = (at, from, to, projection) => segment([at[0], at[1], from], [at[0], at[1], to], projection);
+const ring = (cx, cy, radius, z, projection, steps = 40) => onTop(circleRing(cx, cy, radius, steps), z, projection, true);
+function corners({ x, y, w, d }, inset = 0) {
+    return [
+        [x + inset, y + inset],
+        [x + w - inset, y + inset],
+        [x + inset, y + d - inset],
+        [x + w - inset, y + d - inset],
+    ];
+}
+function knurl(cx, cy, radius, z0, z1, count, projection, inset = 0.4) {
+    const [vx, vy] = towardViewer(projection);
+    const lines = [];
+    for (let index = 0; index < count; index++) {
+        const angle = (index / count) * Math.PI * 2;
+        const nx = Math.cos(angle);
+        const ny = Math.sin(angle);
+        if (nx * vx + ny * vy < 0.15)
+            continue;
+        lines.push(segment([cx + radius * nx, cy + radius * ny, z0 + inset], [cx + radius * nx, cy + radius * ny, z1 - inset], projection));
+    }
+    return lines.join("");
+}
+function ringSeam(ring, z, projection) {
+    const count = ring.length;
+    const counter = signedArea(ring) > 0;
+    const [vx, vy] = towardViewer(projection);
+    const facing = ring.map(([ax, ay], index) => {
+        const [bx, by] = ring[(index + 1) % count];
+        const dx = bx - ax;
+        const dy = by - ay;
+        const [nx, ny] = counter ? [dy, -dx] : [-dy, dx];
+        return nx * vx + ny * vy > 1e-9;
+    });
+    return runsOf(facing, true).map((run) => pathOf(run.map((index) => iso([ring[index][0], ring[index][1], z], projection)))).join("");
+}
+const sideSeam = (plan, z, projection, steps = 8) => ringSeam(ringOf(plan, steps), z, projection);
+function topTicks(from, to, step, every, edge, z, lengths, projection, axis = "x") {
+    const minor = [];
+    const major = [];
+    const first = Math.ceil(from / step) * step;
+    for (let at = first, index = Math.round(first / step); at <= to + 1e-9; at += step, index++) {
+        const big = index % every === 0;
+        const length = big ? lengths[1] : lengths[0];
+        const a = axis === "x" ? [at, edge] : [edge, at];
+        const b = axis === "x" ? [at, edge + length] : [edge + length, at];
+        (big ? major : minor).push(lineOnTop(a, b, z, projection));
+    }
+    return { minor: minor.join(""), major: major.join("") };
+}
+const haloOf = (plan, z, height, projection) => slabOf(plan, z, height, projection).fill;
+function axisVector(projection, [dx, dy, dz]) {
+    const origin = iso([0, 0, 0], projection);
+    const moved = iso([dx, dy, dz], projection);
+    return [moved[0] - origin[0], moved[1] - origin[1]];
+}
+const fine = (value) => Math.round(value * 100) / 100;
+function translateAlong(projection, by) {
+    const [x, y] = axisVector(projection, by);
+    return `translate(${fine(x)} ${fine(y)})`;
+}
+const thousandth = (value) => Math.round(value * 1000) / 1000;
+function axesAt(at, z, projection) {
+    const origin = iso([at[0], at[1], z], projection);
+    const along = (point) => {
+        const [px, py] = iso(point, projection);
+        return [px - origin[0], py - origin[1]];
+    };
+    return { origin, x: along([at[0] + 1, at[1], z]), y: along([at[0], at[1] + 1, z]), z: along([at[0], at[1], z + 1]) };
+}
+const matrixOf = (u, v, origin) => `matrix(${thousandth(u[0])} ${thousandth(u[1])} ${thousandth(v[0])} ${thousandth(v[1])} ${thousandth(origin[0])} ${thousandth(origin[1])})`;
+function holdStill(element, [dx, dy]) {
+    const text = dx || dy ? `translate(${-dx} ${-dy})` : "";
+    element.querySelectorAll("[data-hold]").forEach((node) => (text ? node.setAttribute("transform", text) : node.removeAttribute("transform")));
+}
+function sideMatrix(at, z, projection, face) {
+    const { origin, x, y, z: up } = axesAt(at, z, projection);
+    const down = [-up[0], -up[1]];
+    return face === "left" ? matrixOf(x, down, origin) : matrixOf([-y[0], -y[1]], down, origin);
+}
+const escape = (text) => text.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+const attrs = (pairs) => Object.entries(pairs)
+    .filter(([, value]) => value !== undefined && value !== false)
+    .map(([key, value]) => ` ${key}="${escape(String(value))}"`)
+    .join("");
+function solidSvg(paths, { tone = "hi", crease = "faint", halo = false, lit = false, flat = false, className, inner = "" } = {}) {
+    const parts = [];
+    if (halo)
+        parts.push(`<path class="iso-halo" d="${paths.fill}"/>`);
+    parts.push(`<path class="iso-fill" d="${paths.fill}"/>`);
+    if (!flat) {
+        paths.shades.forEach((d, shade) => {
+            if (d)
+                parts.push(`<path class="iso-shade" data-shade="${shade}" d="${d}"/>`);
+        });
+        parts.push(`<path class="iso-top" d="${paths.top}"/>`);
+    }
+    if (crease !== "none" && paths.crease)
+        parts.push(`<path class="iso-line iso-crease" data-tone="${crease}" d="${paths.crease}"/>`);
+    if (crease !== "none" && paths.bevel)
+        parts.push(`<path class="iso-line iso-bevel" data-tone="${crease}" d="${paths.bevel}"/>`);
+    if (inner)
+        parts.push(inner);
+    parts.push(`<path class="iso-line iso-edge" data-tone="${tone}" d="${paths.outline}"/>`);
+    return `<g${attrs({ class: className ? `iso-solid ${className}` : "iso-solid", "data-lit": lit ? "" : undefined, "data-seamless": paths.seamless ? "" : undefined })}>${parts.join("")}</g>`;
+}
+function lineSvg(d, { tone = "lo", dotted = false, dashed = false, flow = false, className, free } = {}) {
+    if (!d)
+        return "";
+    return `<path${attrs({
+        class: className ? `iso-line ${className}` : "iso-line",
+        "data-tone": tone,
+        "data-free": free === true ? "" : free || undefined,
+        "data-dotted": dotted ? "" : undefined,
+        "data-dashed": dashed ? "" : undefined,
+        "data-flow": flow ? "" : undefined,
+        d,
+    })}/>`;
+}
+function dotsSvg(points, { size = 0.5, tone = "mid", pulse = false } = {}) {
+    const dots = points
+        .map(([x, y, alpha], index) => `<circle cx="${tenth(x)}" cy="${tenth(y)}" r="${size}"${alpha !== undefined && alpha < 1 ? ` fill-opacity="${Math.max(0, alpha).toFixed(2)}"` : ""}${pulse ? ` data-pulse="" style="--pulse-at:${(index * 137) % 1600}ms"` : ""}/>`)
+        .join("");
+    return `<g class="iso-dots" data-tone="${tone}">${dots}</g>`;
+}
+function faceTextSvg(transform, text, { size = 3, tone = "mid", anchor = "start" } = {}) {
+    return `<text class="iso-face-text" data-tone="${tone}" transform="${transform}" font-size="${size}" text-anchor="${anchor}">${escape(text)}</text>`;
+}
+
+const P = {"origin":[348.2816360692661,295.14146171564346],"scale":1.6855837738756896,"azimuth":56,"elevation":27};
+const C = {"PHASES":[["close",2],["inject",1.5],["hold",6],["cool",15],["open",2],["eject",3.5]],"CYCLE":30,"OPEN":26,"STROKE":8,"CAP_H":3,"MOULD_M":[-42,-30],"ZC":57,"BAR":{"x0":46,"x1":594,"y":364,"h":14},"MM":8,"BX":112,"BZ":56,"BD":48,"SWALL":24,"WALL_X":[-88,88],"BOSS":[24,72],"CHAN":[[-64,41.6],[-21.6,41.6],[21.6,41.6],[64,41.6],[-64,-17.6],[-21.6,-17.6],[48,-45.6]],"CHAN_R":7.2,"CAV4":[[-28,-30],[28,-30],[-28,30],[28,30]],"CAV8":[[-84,-30],[-84,30],[-28,-30],[-28,30],[28,-30],[28,30],[84,-30],[84,30]],"RUN4":[[[0,0],[0,-30],[-13,-30]],[[0,0],[0,-30],[13,-30]],[[0,0],[0,30],[-13,30]],[[0,0],[0,30],[13,30]]],"RUN8":[[[0,0],[-56,0],[-56,-30],[-69,-30]],[[0,0],[-56,0],[-56,30],[-69,30]],[[0,0],[-56,0],[-56,-30],[-43,-30]],[[0,0],[-56,0],[-56,30],[-43,30]],[[0,0],[56,0],[56,-30],[43,-30]],[[0,0],[56,0],[56,30],[43,30]],[[0,0],[56,0],[56,-30],[69,-30]],[[0,0],[56,0],[56,30],[69,30]]],"POCKET_R":15,"FAM":{"lid":{"x":-100,"y":-40,"w":76,"d":80,"r":6},"base":{"x":18,"y":-40,"w":84,"d":80,"r":6}},"PLATE8":{"x":-122,"y":-62,"w":244,"d":124,"r":2},"PZ":0,"COIN_R":13,"COIN_H":3.4,"STACKS":[[-30,0],[10,0],[50,0]],"CENTS":[8,15,8],"COST":[0.0824,0.14705882352941177,0.08],"SETC":{"MM":8,"BX":112,"BZ":56,"BD":48,"CHAN":[[-64,41.6],[-21.6,41.6],[21.6,41.6],[64,41.6],[-64,-17.6],[-21.6,-17.6],[48,-45.6]],"CHAN_R":7.2,"TCU":{"x":146,"y":-54,"w":46,"d":44,"r":1.4},"TCU_Z":[-54,18],"PZ":0,"CAV4":[[-28,-30],[28,-30],[-28,30],[28,30]],"CAV8":[[-84,-30],[-84,30],[-28,-30],[-28,30],[28,-30],[28,30],[84,-30],[84,30]],"RUN4":[[[0,0],[0,-30],[-13,-30]],[[0,0],[0,-30],[13,-30]],[[0,0],[0,30],[-13,30]],[[0,0],[0,30],[13,30]]],"RUN8":[[[0,0],[-56,0],[-56,-30],[-69,-30]],[[0,0],[-56,0],[-56,30],[-69,30]],[[0,0],[-56,0],[-56,-30],[-43,-30]],[[0,0],[-56,0],[-56,30],[-43,30]],[[0,0],[56,0],[56,-30],[43,-30]],[[0,0],[56,0],[56,30],[43,30]],[[0,0],[56,0],[56,-30],[69,-30]],[[0,0],[56,0],[56,30],[69,30]]],"PLATE4":{"x":-66,"y":-62,"w":132,"d":124,"r":2},"PLATE8":{"x":-122,"y":-62,"w":244,"d":124,"r":2},"FAM":{"lid":{"x":-100,"y":-40,"w":76,"d":80,"r":6},"base":{"x":18,"y":-40,"w":84,"d":80,"r":6}},"POCKET_R":15,"COINS_BASE":{"x":-96,"y":-36,"w":176,"d":72,"r":3}},"HOT":[76,12],"B":[[0,0.52,1],[0,0.52,1],[0,0.29,0.66,1],[0,0.63,1],[0,0.56,1],[0,0.31,0.65,1],[0,0.37,0.65,1]],"dur":[13,30,28,12,18,42,28]};
+const CAM = [{"from":[376.9,289.9,885.4],"to":[376.9,287.8,804.9]},{"from":[247.4,-27.7,1658],"to":[253.5,-13.7,1579.1]},{"from":[163.6,223.8,1243.6],"to":[180.2,227.3,1171.8]},{"from":[250.8,147.1,1075.6],"to":[258,153.8,1014.8]},{"from":[213.8,92.5,1257.5],"to":[223,102.3,1186.3]},{"from":[94.5,147.1,1075.6],"to":[108,152.7,1024.4]},{"from":[94.5,147.1,1075.6],"to":[108,152.7,1024.4]}];
+const W = 640, H = 400;
+const WANT = ["section","tcu"];
+function setHelpers(K, P) {
+const at = (p) => K.iso(p, P);
+const f2 = (v) => (Math.round(v * 100) / 100).toString();
+const L = (d, style) => K.lineSvg(d, style);
+const Dt = (points, style) => K.dotsSvg(points, style);
+const S = (paths, style = {}) => K.solidSvg(paths, { tone: 'mid', ...style });
+const slab = (plan, z0, z1, style = {}, bevel = 0.4, steps = 3) => S(K.slabOf({ r: 0.6, ...plan }, z0, z1 - z0, P, steps, bevel), style);
+const cyl = (x, y, r, z0, z1, style = {}, steps = 20, bevel = 0) => S(K.cylinder(x, y, r, z0, z1 - z0, P, steps, bevel), style);
+const g = (key, body, extra = '') => `<g data-k="${key}"${extra}>${body}</g>`;
+const planeOf = (y) => K.sideMatrix([0, y], 0, P, 'left');
+const flatRect = (x0, z0, x1, z1, r, steps = 6) => K.pathOf(K.roundedPlan({ x: x0, y: z0, w: x1 - x0, d: z1 - z0, r }, steps).map(([u, z]) => [u, -z]), true);
+let clips = 0;
+function recess({ x0, x1, z0, z1, r, depth }, y, back = '') {
+const id = `fp-sclip-${clips++}`;
+const ringPts = K.roundedPlan({ x: x0, y: z0, w: x1 - x0, d: z1 - z0, r }, 6);
+const cx = (x0 + x1) / 2;
+const cz = (z0 + z1) / 2;
+const { sinA } = K.cameraOf(P);
+const tops = [];
+const sides = [[], [], [], []];
+ringPts.forEach(([ax, az], index) => {
+const [bx, bz] = ringPts[(index + 1) % ringPts.length];
+const length = Math.hypot(bx - ax, bz - az) || 1;
+let [nx, nz] = [(bz - az) / length, -(bx - ax) / length];
+if (nx * (cx - (ax + bx) / 2) + nz * (cz - (az + bz) / 2) < 0) [nx, nz] = [-nx, -nz];
+if (nx <= 0 && nz <= 0) return;
+const quad = K.pathOf([at([ax, y, az]), at([bx, y, bz]), at([bx, y - depth, bz]), at([ax, y - depth, az])], true);
+if (nz >= nx) tops.push(quad);
+else sides[Math.min(3, Math.max(0, Math.floor(((nx * -sinA + 1) / 2) * 4)))].push(quad);
+});
+const shape = flatRect(x0, z0, x1, z1, r);
+return `<clipPath id="${id}"><path transform="${planeOf(y)}" d="${shape}"/></clipPath><g clip-path="url(#${id})"><path class="iso-top" d="${tops.join('')}"/>`
++ sides.map((d, shade) => (d.length ? `<path class="iso-shade" data-shade="${shade}" d="${d.join('')}"/>` : '')).join('')
++ `<g transform="${planeOf(y - depth)}"><path class="mc-glass" d="${shape}"/>${back}<path class="iso-line" data-tone="faint" d="${shape}"/></g></g>`
++ `<g transform="${planeOf(y)}"><path class="iso-line" data-tone="lo" d="${shape}"/></g>`;
+}
+const xBox = (x0, x1, yc, zc, half, style = {}) => {
+return S(K.slabOf({ x: x0, y: yc - half, w: x1 - x0, d: 2 * half, r: Math.min(0.4, half / 2) }, zc - half, 2 * half, P, 2, 0.2), style);
+};
+return { at, f2, L, Dt, S, slab, cyl, g, planeOf, flatRect, recess, xBox };
+}
+function setSection(K, C, P, H) {
+const { at, f2, L, Dt, S, slab, cyl, g, planeOf, flatRect, recess, xBox } = H;
+const { MM, BX, BZ, BD, CHAN, CHAN_R } = C;
+const BLOCK = { x: -BX, y: -BD, w: 2 * BX, d: BD, r: 0.4 };
+const pl = (x, z) => `${f2(x)} ${f2(-z)}`;
+const section = (() => {
+const out = [];
+out.push(`<path class="iso-halo" d="${K.haloOf(K.insetPlan(BLOCK, -3), -BZ - 3, 2, P)}"/>`);
+for (const x of [-BX + 10, BX - 22]) out.push(slab({ x, y: -BD + 4, w: 12, d: BD - 8 }, -BZ - 4, -BZ, { tone: 'lo' }, 0.3, 2));
+const half = (z0, z1, extra) => S(K.slabOf(BLOCK, z0, z1 - z0, P, 2, 0.5), { inner: L(K.sideSeam(BLOCK, z0 + 3, P, 2), { tone: 'faint' }) + extra });
+const rx = BX;
+const plate = [[rx, -BD + 22, -10], [rx, -BD + 42, -10], [rx, -BD + 42, -20], [rx, -BD + 22, -20]];
+const lines = [-12, -14.4, -16.8].map((z, i) => K.segment([rx, -BD + 24, z], [rx, -BD + 24 + [15, 10, 13][i], z], P)).join('');
+const bolts = [[rx, -BD + 5, -BZ + 4], [rx, -5, -BZ + 4], [rx, -BD + 5, -4], [rx, -5, -4]];
+out.push(half(-BZ, 0, `<path class="mc-card" d="${K.pathOf(plate.map(at), true)}"/>` + L(lines, { tone: 'lo', free: true }) + Dt(bolts.map(at), { size: 0.5 })));
+const top = BZ;
+const screws = [[-BX + 6, -BD + 6], [BX - 6, -BD + 6], [-BX + 6, -6], [BX - 6, -6]];
+const topBits = Dt(screws.map(([x, y]) => at([x, y, top])), { size: 0.55, tone: 'hi' })
++ L(screws.map(([x, y]) => K.ring(x, y, 2.6, top, P, 20)).join(''), { tone: 'lo' })
++ L([[-BX + 18, -BD / 2], [BX - 18, -BD / 2]].map(([x, y]) => K.ring(x, y, 4.2, top, P, 24) + K.ring(x, y, 2.4, top, P, 20)).join(''), { tone: 'lo' })
++ Dt([[rx, -BD + 5, 4], [rx, -5, 4], [rx, -BD + 5, BZ - 4], [rx, -5, BZ - 4]].map(at), { size: 0.5 });
+out.push(half(0, BZ, topBits));
+out.push(cyl(0, -BD / 2, 4, top, top + 1.6, {}, 20, 0.3) + cyl(0, -BD / 2, 1.8, top + 1.6, top + 3.4, { tone: 'mid' }, 14));
+const eye = `M${f2(BD / 2 - 4.6)} ${f2(-(top + 8))}a4.6 4.6 0 1 0 9.2 0a4.6 4.6 0 1 0 -9.2 0Z`;
+out.push(`<g transform="${K.sideMatrix([0, 0], 0, P, 'right')}"><path class="fp-eye" d="${eye}"/></g>`);
+const rect = `M${pl(-BX, -BZ)}H${f2(BX)}V${f2(-BZ)}H${f2(-BX)}Z`;
+const hatch = [];
+for (let c = -BX - 2 * BZ; c < BX + 2 * BZ; c += 5) hatch.push(`M${pl(c, -BZ)}L${pl(c + 2 * BZ, BZ)}`);
+const holes = CHAN.map(([x, z]) => `M${pl(x + CHAN_R, z)}A${f2(CHAN_R)} ${f2(CHAN_R)} 0 1 0 ${pl(x - CHAN_R, z)}A${f2(CHAN_R)} ${f2(CHAN_R)} 0 1 0 ${pl(x + CHAN_R, z)}Z`).join('');
+out.push(`<g transform="${planeOf(0)}">`
++ g('steel', '', ' data-cue="mouldtemp"')
++ g('cav', '', ' data-cue="cavity"')
++ `<g data-cue="channels"><path class="fp-water" d="${holes}"/>${g('swirl', '')}<path class="fp-mark" d="${holes}"/></g>`
++ g('heat', '', ' data-cue="hot"')
++ g('dims', '', ' data-cue="boss"')
++ `<path class="iso-line" data-tone="lo" d="M${pl(-BX, 0)}H${f2(BX)}"/>`
++ `<path class="iso-line" data-tone="mid" d="${rect}"/>`
++ '</g>');
+const coup = (z) => xBox(BX, BX + 2.4, -BD + 14, z, 2.8) + xBox(BX + 2.4, BX + 6.6, -BD + 14, z, 1.6, { tone: 'hi', crease: 'lo' });
+out.push(g('coupL', coup(-4.5 * MM), ' data-cue="channels"'), g('coupU', coup(4.5 * MM), ' data-cue="channels"'));
+return { svg: out.join(''), SEC: { rect, hatch: hatch.join(''), holes } };
+})();
+return section;
+}
+function setTcu(K, C, P, H) {
+const { at, f2, L, Dt, S, slab, cyl, g, planeOf, flatRect, recess, xBox } = H;
+const { TCU, TCU_Z } = C;
+const tcu = (() => {
+const out = [];
+const [z0, z1] = TCU_Z;
+out.push(`<path class="iso-halo" d="${K.haloOf(K.insetPlan(TCU, -2), z0 - 6, 2, P)}"/>`);
+for (const [x, y] of K.corners(TCU, 5)) {
+out.push(slab({ x: x - 2.4, y: y - 1.2, w: 4.8, d: 2.4, r: 1.1 }, z0 - 6, z0 - 1.4, { tone: 'lo' }, 0.2, 2));
+out.push(cyl(x, y, 2.4, z0 - 1.4, z0, { tone: 'mid', crease: 'none' }, 12));
+}
+const fy = TCU.y + TCU.d;
+const slots = [];
+for (const z of [z0 + 5, z0 + 8, z0 + 11]) slots.push(K.pathOf(K.roundedPlan({ x: TCU.x + 8, y: z, w: 30, d: 1.3, r: 0.6 }, 3).map(([u, w]) => at([u, fy, w])), true));
+const disp = { x0: TCU.x + 6, x1: TCU.x + 30, z0: z1 - 16, z1: z1 - 5, r: 0.8, depth: 0.7 };
+const text = K.faceTextSvg(`translate(${f2(disp.x0 + 12)} ${f2(-(disp.z0 + 2.6))})`, '80 °C', { size: 6.2, tone: 'hi', anchor: 'middle' });
+const label = [[TCU.x + 6, fy, z0 + 22], [TCU.x + 22, fy, z0 + 22], [TCU.x + 22, fy, z0 + 16], [TCU.x + 6, fy, z0 + 16]];
+const gx = TCU.x + 38;
+const gz = z1 - 10;
+const gauge = `<g transform="${planeOf(fy)}"><circle class="mc-card" cx="${gx}" cy="${-gz}" r="5"/><circle class="fp-mark" cx="${gx}" cy="${-gz}" r="3.6"/><path class="fp-mark" d="M${gx} ${-gz}l2.6 -1.6"/><circle class="fp-ink" cx="${gx}" cy="${-gz}" r=".7"/></g>`;
+const extra = `<g data-cue="mouldtemp">${recess(disp, fy, text)}</g>`
++ `<path class="mc-card" d="${K.pathOf(label.map(at), true)}"/>`
++ L([20.6, 18.8, 17.2].map((dz, i) => K.segment([TCU.x + 7.4, fy, z0 + dz], [TCU.x + 7.4 + [12, 8, 10][i], fy, z0 + dz], P)).join(''), { tone: 'lo', free: true })
++ Dt([[TCU.x + 2, fy, z0 + 2], [TCU.x + TCU.w - 2, fy, z0 + 2], [TCU.x + 2, fy, z1 - 2], [TCU.x + TCU.w - 2, fy, z1 - 2]].map(at), { size: 0.45 })
++ gauge;
+out.push(`<g data-cue="tcu">${S(K.slabOf(TCU, z0, z1 - z0, P, 3, 0.8), { inner: L(slots.join('') + K.sideSeam(TCU, z0 + 3, P, 3), { tone: 'lo' }) }) + extra}`);
+for (const x of [TCU.x + 34, TCU.x + 40]) out.push(slab({ x: x - 1.8, y: fy, w: 3.6, d: 1 }, z0 + 16, z0 + 19, { tone: 'mid' }, 0.2, 1));
+const hy = TCU.y + TCU.d / 2;
+for (const x of [TCU.x + 8, TCU.x + 38]) out.push(cyl(x, hy - 10, 1.6, z1, z1 + 8, {}, 14));
+out.push(slab({ x: TCU.x + 6, y: hy - 11.8, w: 34, d: 3.6, r: 1.6 }, z1 + 8, z1 + 11, { tone: 'hi', crease: 'lo' }, 0.3, 4));
+out.push(cyl(TCU.x + 18, TCU.y + 12, 2.6, z1, z1 + 3, {}, 16, 0.3) + cyl(TCU.x + 18, TCU.y + 30, 2.6, z1, z1 + 3, {}, 16, 0.3));
+out.push('</g>');
+return out.join('');
+})();
+return tcu;
+}
+function buildSets(K, C, P, which) {
+const H = setHelpers(K, P);
+const want = (name) => !which || which.includes(name);
+const out = {};
+if (want('section')) { const s = setSection(K, C, P, H); out.section = s.svg; out.SEC = s.SEC; }
+if (want('tcu')) out.tcu = setTcu(K, C, P, H);
+if (want('plates')) out.plates = setPlates(K, C, P, H);
+if (want('coins')) out.coins = setCoins(K, C, P, H);
+return out;
+}
+/* global WANT, buildSets, searchOf, P, C, CAM, W, H, iso, pathOf, solidSvg, lineSvg, dotsSvg, slabOf, cylinder, ring, roundedPlan, onTop, planOutline, translateAlong, axisVector, holdStill, depthOf, span, ease, haloOf, insetPlan, sideSeam, segment, corners, cameraOf, sideMatrix, faceTextSvg, topTicks, knurl */
+const STAGE = (() => {
+const svg = document.querySelector('.fp-stage svg');
+const el = (k) => svg.querySelector(`[data-k="${k}"]`);
+const K = { iso, pathOf, solidSvg, lineSvg, dotsSvg, slabOf, cylinder, ring, roundedPlan, onTop, planOutline, haloOf, insetPlan, sideSeam, segment, corners, cameraOf, sideMatrix, faceTextSvg, depthOf, topTicks, knurl };
+const SETS = buildSets(K, C.SETC, P, WANT);
+const SEC = SETS.SEC;
+const into = (k, html) => { const e = el(k); if (e && html !== undefined) e.innerHTML = html; };
+into('secbody', SETS.section);
+into('tcu', SETS.tcu);
+into('plates', SETS.plates);
+into('coinset', SETS.coins);
+const E = {};
+['world', 'press', 'section', 'plates', 'coinset', 'shot', 'steel', 'cav', 'swirl', 'heat', 'dims', 'hoses', 'tcu', 'plate4', 'plate8', 'pk8', 'pkF', 'melt', 'mani', 'famcue',
+'cMat', 'cScrap', 'cMach', 'cMould', 'phasebar', 'coolseg', 'phasetext', 'mag', 'therm', 'thmark', 'labels', 'card', 'coupL', 'coupU'].forEach((k) => { E[k] = el(k); });
+const platen = [...svg.querySelectorAll('[data-pc="platen"]')];
+const screw = [...svg.querySelectorAll('[data-pc="screw"]')];
+const LANG = new URLSearchParams(searchOf(location.search, window.name)).get('lang') === 'en' ? 'en' : 'nl';
+const tr = (nl, en) => (LANG === 'nl' ? nl : en);
+const clamp = (v, a, b) => Math.min(b, Math.max(a, v));
+const lin = (u, a, b) => clamp((u - a) / (b - a), 0, 1);
+const lerp = (a, b, t) => a + (b - a) * t;
+const f1 = (v) => (Math.round(v * 10) / 10).toString();
+const at = (p) => iso(p, P);
+const num = (v, dec) => {
+const s = v.toFixed(dec);
+return LANG === 'en' ? s : s.replace('.', ',');
+};
+const big = (v) => Math.round(v).toString().replace(/\B(?=(\d{3})+(?!\d))/g, LANG === 'en' ? ',' : '.');
+const show = (e, on) => { if (!e) return; const want = on ? '' : 'none'; if (e.style.display !== want) e.style.display = want; };
+const set = (e, html) => { if (e && e.__h !== html) { e.innerHTML = html; e.__h = html; } };
+const fade = (e, a) => { if (!e) return; const v = a >= 0.999 ? '' : a.toFixed(2); if (e.__o !== v) { e.style.opacity = v; e.__o = v; } };
+const mark = (d, extra = '') => `<path class="fp-mark" d="${d}"${extra}/>`;
+const text = (x, y, t, size = 22, anchor = 'middle', cls = 'fp-ink') => `<text class="${cls} fp-label" x="${f1(x)}" y="${f1(y)}" font-size="${size}" text-anchor="${anchor}">${t}</text>`;
+const mono = (x, y, t, size = 22, anchor = 'start') => text(x, y, t, size, anchor, 'fp-ink fp-mono');
+const beatOf = (si, u) => {
+const B = C.B[si];
+let b = 0;
+for (let i = 0; i < B.length - 1; i++) if (u >= B[i] - 1e-9) b = i;
+return b;
+};
+let camNow = { cx: W / 2, cy: H / 2, s: 1 };
+function camera(si, u) {
+const c = CAM[si];
+const k = span(u, c.a ?? 0, c.b ?? 1);
+const cx = lerp(c.from[0], c.to[0], k);
+const cy = lerp(c.from[1], c.to[1], k);
+const w = lerp(c.from[2], c.to[2], k);
+const s = W / w;
+const t = `translate(${f1(W / 2)} ${f1(H / 2)}) scale(${s.toFixed(4)}) translate(${f1(-cx)} ${f1(-cy)})`;
+if (E.world.__t !== t) { E.world.setAttribute('transform', t); E.world.__t = t; }
+camNow = { cx, cy, s };
+return camNow;
+}
+const toHud = (p) => { const [x, y] = at(p); return [(x - camNow.cx) * camNow.s + W / 2, (y - camNow.cy) * camNow.s + H / 2]; };
+let shown = -1;
+function scene(si, sets, huds, withTcu = false) {
+if (si === shown) return;
+shown = si;
+for (const k of ['press', 'section', 'plates', 'coinset']) show(E[k], sets.includes(k));
+for (const k of ['phasebar', 'coolseg', 'phasetext', 'mag', 'therm', 'thmark', 'labels', 'card']) { show(E[k], huds.includes(k)); if (E[k]) E[k].style.opacity = ''; }
+show(E.tcu, withTcu);
+show(E.hoses, withTcu);
+}
+const panelD = (x, y, w, h) => `<path class="fp-panel" d="M${x + 8} ${y}h${w - 16}a8 8 0 0 1 8 8v${h - 16}a8 8 0 0 1 -8 8h${-(w - 16)}a8 8 0 0 1 -8 -8v${-(h - 16)}a8 8 0 0 1 8 -8z"/>`;
+const ROWH = 34;
+function cardSvg(x, y, w, tag, rows, si, u) {
+const B = C.B[si];
+const start = (r) => B[r[0]] + (r[3] || 0) * ((B[r[0] + 1] ?? 1) - B[r[0]]);
+const live = rows.filter((r) => u >= start(r));
+if (!live.length) return '';
+const bi = beatOf(si, u);
+const now = live.filter((r) => r[0] === bi).pop();
+const h = 44 + (rows.indexOf(live[live.length - 1]) + 1) * ROWH;
+let out = panelD(x, y, w, h) + text(x + 16, y + 28, tag, 22, 'start', 'fp-ink fp-dim');
+rows.forEach((r, i) => {
+const o = clamp((u - start(r)) / 0.04, 0, 1);
+if (o <= 0) return;
+const yy = y + 28 + (i + 1) * ROWH;
+if (r === now) out += `<path class="fp-cur" d="M${x + 6} ${yy - 24}h${w - 12}v32h${-(w - 12)}z"/>`;
+out += `<g style="opacity:${f1(o)}">${r[2] === 'code' ? mono(x + 16, yy, r[1]) : text(x + 16, yy, r[1], 22, 'start')}</g>`;
+});
+return out;
+}
+const pl = (x, z) => `${f1(x)} ${f1(-z)}`;
+const rectD = (x0, z0, x1, z1) => `M${pl(x0, z0)}H${f1(x1)}V${f1(-z1)}H${f1(x0)}Z`;
+function partShape(s, boss) {
+const [x0, x1] = C.WALL_X;
+if (!boss) return { d: rectD(x0, 0, x1, s), rects: [[x0, 0, x1, s]] };
+const [b0, b1] = C.BOSS;
+const zb = s - 2 * s; // boss bottom: the boss is 2s deep, its top flush with the wall's top
+const d = `M${pl(x0, 0)}H${f1(b0)}V${f1(-zb)}H${f1(b1)}V${f1(0)}H${f1(x1)}V${f1(-s)}H${f1(x0)}Z`;
+return { d, rects: [[x0, 0, x1, s], [b0, zb, b1, s]] };
+}
+function moltenOf(rects, delta) {
+return rects.map(([x0, z0, x1, z1]) => {
+const a = x0 + delta;
+const b = x1 - delta;
+const c = z0 + delta;
+const d = z1 - delta;
+return a < b - 0.05 && c < d - 0.05 ? rectD(a, c, b, d) : '';
+}).join('');
+}
+let steelKey = '';
+function section(s, boss, delta, clock, flowFast, hot = 0) {
+const shape = partShape(s, boss);
+const key = `${f1(s)}|${boss}`;
+if (key !== steelKey) {
+steelKey = key;
+const steel = SEC.rect + shape.d + SEC.holes;
+E.steel.innerHTML = `<clipPath id="fp-steelclip"><path clip-rule="evenodd" d="${steel}"/></clipPath><path class="fp-steel" fill-rule="evenodd" d="${steel}"/><path class="fp-hatch" clip-path="url(#fp-steelclip)" d="${SEC.hatch}"/>`;
+}
+const molten = moltenOf(shape.rects, delta);
+set(E.cav, `<path class="fp-solid" d="${shape.d}"/><path class="fp-melt" d="${molten}"/><path class="fp-mark" style="stroke-width:1.6" d="${shape.d}"/>`);
+let heat = '';
+if (molten) {
+const hotR = shape.rects.map(([x0, z0, x1, z1]) => [(x0 + x1) / 2, (z0 + z1) / 2, x1 - x0, z1 - z0]);
+C.CHAN.forEach(([cx, cz], i) => {
+for (let j = 0; j < 3; j++) {
+const ph = ((clock * 0.55 + j / 3 + i * 0.137) % 1 + 1) % 1;
+const r0 = hotR.find(([mx, , w]) => Math.abs(cx - mx) < w / 2 + 6) || hotR[0];
+const sx = clamp(cx + (j - 1) * 6, r0[0] - r0[2] / 2 + 2, r0[0] + r0[2] / 2 - 2);
+const sz = cz > r0[1] ? r0[1] + r0[3] / 2 : r0[1] - r0[3] / 2;
+const x = lerp(sx, cx, ph);
+const z = lerp(sz, cz, ph);
+const a = Math.sin(ph * Math.PI) * 0.9;
+heat += `<circle class="fp-heat" cx="${f1(x)}" cy="${f1(-z)}" r="2.6" opacity="${a.toFixed(2)}"/>`;
+}
+});
+}
+if (hot > 0) {
+const [hx, hz] = C.HOT;
+heat += `<circle class="fp-heat" cx="${f1(hx)}" cy="${f1(-hz)}" r="${f1(C.MM * 2.4 * hot)}" opacity="${f1(0.55 * hot)}"/>`;
+}
+set(E.heat, heat);
+const sw = C.CHAN.map(([cx, cz], i) => {
+const a0 = clock * (flowFast ? 5 : 1.6) + i;
+const r = C.CHAN_R * 0.55;
+const pts = [];
+for (let q = 0; q <= 10; q++) {
+const a = a0 + (q / 10) * Math.PI * 1.3;
+const rr = r * (0.5 + 0.5 * q / 10);
+pts.push([cx + Math.cos(a) * rr, -(cz + Math.sin(a) * rr)]);
+}
+return pathOf(pts);
+}).join('');
+set(E.swirl, `<path class="fp-swirl" d="${sw}"/>`);
+}
+function bossDims(s, on) {
+if (!on) { set(E.dims, ''); return; }
+const [b0, b1] = C.BOSS;
+set(E.dims, `<path class="fp-mark" style="stroke-width:1.6" d="${rectD(b0, -s, b1, s)}"/>`);
+}
+function dimLabels(s, boss) {
+const [x0] = C.WALL_X;
+const out = [];
+const dx = x0 - 0.35 * C.MM;
+const p0 = toHud([dx, 0, 0]);
+const p1 = toHud([dx, 0, s]);
+const tick = (p) => `M${f1(p[0] - 5)} ${f1(p[1])}h10`;
+out.push(`<path class="fp-mark" style="stroke-width:1.6" d="M${f1(p0[0])} ${f1(p0[1])}L${f1(p1[0])} ${f1(p1[1])}${tick(p0)}${tick(p1)}"/>` + text(p0[0] - 10, (p0[1] + p1[1]) / 2 + 7, 's', 22, 'end'));
+if (boss) {
+const [b0, b1] = C.BOSS;
+const z = -s - 0.7 * C.MM;
+const q0 = toHud([b0, 0, z]);
+const q1 = toHud([b1, 0, z]);
+const vt = (p) => `M${f1(p[0])} ${f1(p[1] - 5)}v10`;
+out.push(`<path class="fp-mark" style="stroke-width:1.6" d="M${f1(q0[0])} ${f1(q0[1])}L${f1(q1[0])} ${f1(q1[1])}${vt(q0)}${vt(q1)}"/>` + text(q1[0] + 10, q1[1] + 7, '2s', 22, 'start'));
+}
+return out.join('');
+}
+const MAG = [92, 124];
+const MR = 76;
+function magnifier(turbulent, clock, scale = 0) {
+const [mx, my] = MAG;
+const out = [`<clipPath id="fp-magclip"><circle cx="${mx}" cy="${my}" r="${MR}"/></clipPath>`, `<circle class="fp-hud-bg" cx="${mx}" cy="${my}" r="${MR}"/>`, '<g clip-path="url(#fp-magclip)">'];
+const wall = 34;
+out.push(mark(`M${mx - MR} ${my - wall}H${mx + MR}M${mx - MR} ${my + wall}H${mx + MR}`, ' style="stroke-width:1.6"'));
+let hat = '';
+for (let c = -2 * MR; c < 2 * MR; c += 10) hat += `M${mx + c} ${my - MR}l${MR - wall} ${MR - wall}M${mx + c} ${my + wall}l${MR - wall} ${MR - wall}`;
+out.push(`<path class="fp-hatch" d="${hat}"/>`);
+const tk = 14 * scale;
+if (tk > 0.5) out.push(`<path class="fp-scale" d="M${mx - MR} ${my - wall}H${mx + MR}V${f1(my - wall + tk)}H${mx - MR}ZM${mx - MR} ${my + wall}H${mx + MR}V${f1(my + wall - tk)}H${mx - MR}Z"/>`);
+if (!turbulent) {
+for (let i = -3; i <= 3; i++) {
+const y = my + i * 9;
+const v = 1 - (i / 4) ** 2;
+const off = ((clock * 40 * v) % 24 + 24) % 24;
+out.push(`<path class="fp-swirl" stroke-dasharray="12 12" stroke-dashoffset="${(-off).toFixed(1)}" d="M${mx - MR} ${y}H${mx + MR}"/>`);
+}
+} else {
+for (let i = 0; i < 9; i++) {
+const seed = Math.sin(i * 91.7) * 1000;
+const r = seed - Math.floor(seed);
+const x = mx - MR + ((clock * 46 + i * 21) % (2 * MR + 30)) - 15;
+const y = my + (r - 0.5) * 2 * (wall - 12);
+const a0 = clock * 4 * (i % 2 ? 1 : -1) + i;
+const pts = [];
+for (let q = 0; q <= 14; q++) {
+const a = a0 + (q / 14) * Math.PI * 1.6;
+const rr = 3 + 7 * q / 14;
+pts.push([x + Math.cos(a) * rr, y + Math.sin(a) * rr]);
+}
+out.push(`<path class="fp-swirl" d="${pathOf(pts)}"/>`);
+}
+}
+out.push('</g>', `<circle class="fp-mark" cx="${mx}" cy="${my}" r="${MR}" style="stroke-width:1.6"/>`);
+const [cx, cz] = C.CHAN[0];
+const [tx, ty] = toHud([cx, 0, cz]);
+const ang = Math.atan2(ty - my, tx - mx);
+out.push(mark(`M${f1(tx)} ${f1(ty)}L${f1(mx + Math.cos(ang) * MR)} ${f1(my + Math.sin(ang) * MR)}`));
+set(E.mag, out.join(''));
+}
+const TH = { x: W - 44, y0: 40, y1: 220, w: 14, mark: 0.3 };
+function thermometer(level, markAt = TH.mark) {
+const { x, y0, y1, w } = TH;
+const yl = y1 - (y1 - y0) * level;
+const ym = y1 - (y1 - y0) * markAt;
+let ticks = '';
+for (let i = 0; i <= 10; i++) { const y = y1 - ((y1 - y0) * i) / 10; ticks += `M${x + w / 2 + 3} ${y.toFixed(1)}h${i % 5 ? 4 : 8}`; }
+set(E.therm, `<rect class="fp-hud-bg" x="${x - w / 2 - 14}" y="${y0 - 14}" width="${w + 46}" height="${y1 - y0 + 58}" rx="10"/>`
++ `<path class="fp-melt" d="M${x - w / 2 + 3} ${yl.toFixed(1)}H${x + w / 2 - 3}V${y1 + 4}H${x - w / 2 + 3}Z"/><circle class="fp-melt" cx="${x}" cy="${y1 + 14}" r="${w / 2 + 3}"/>`
++ mark(`M${x - w / 2} ${y1 + 4}V${y0 + w / 2}A${w / 2} ${w / 2} 0 0 1 ${x + w / 2} ${y0 + w / 2}V${y1 + 4}`) + `<circle class="fp-mark" cx="${x}" cy="${y1 + 14}" r="${w / 2 + 6}"/>` + mark(ticks));
+set(E.thmark, mark(`M${x - w / 2 - 6} ${ym.toFixed(1)}H${x + w / 2 + 16}`, ' style="stroke-width:2.6"') + `<circle class="fp-ink" cx="${x + w / 2 + 19}" cy="${ym.toFixed(1)}" r="3.4"/>`);
+}
+const WALL = C.SWALL * 0.8;
+const CARD = { x: 14, y: 60, w: 330 };
+function waterBars(diff) {
+const x = 14;
+const y = 60;
+const w = 330;
+const x0 = x + 150;
+const bar = (yy, len) => `<path class="fp-meter-bg" d="M${x0} ${yy}h${f1(190)}v14h${-190}z"/><path class="fp-meter-fill" d="M${x0} ${yy}h${f1(len)}v14h${f1(-len)}z"/>${mark(`M${x0} ${yy}h${f1(190)}v14h${-190}z`)}`;
+return panelD(x, y, w, 108) + text(x + 16, y + 28, tr('water', 'water'), 22, 'start', 'fp-ink fp-dim')
++ text(x + 16, y + 62, tr('erin', 'in'), 22, 'start') + bar(y + 48, 70)
++ text(x + 16, y + 94, tr('eruit', 'out'), 22, 'start') + bar(y + 80, 70 + diff);
+}
+function render(si, u) {
+const B = C.B[si];
+const clock = u * C.dur[si];
+if (si === 0) {
+scene(si, ['section'], []);
+camera(si, u);
+section(WALL, false, (WALL / 2) * Math.sqrt(lin(u, 0.04, 0.9)), clock, false);
+bossDims(WALL, false);
+} else if (si === 1) {
+scene(si, ['section'], ['therm', 'thmark', 'card']);
+camera(si, u);
+const q = lin(u, 0.04, 0.88);
+section(WALL, false, (WALL / 2) * Math.sqrt(q), clock, false);
+bossDims(WALL, false);
+thermometer(lerp(0.95, TH.mark, Math.pow(q, 0.7)));
+set(E.card, cardSvg(CARD.x, CARD.y, CARD.w, tr('wat bepaalt de snelheid', 'what sets the speed', 296), [
+[1, tr('wanddikte, in het kwadraat', 'wall thickness, squared', 296)],
+[1, tr('matrijstemperatuur', 'mould temperature', 296), '', 0.25],
+[1, tr('de afvoer door water', 'heat taken by water', 296), '', 0.5],
+[1, tr('insteller: de laatste twee', 'setter: the last two', 296), '', 0.75],
+], si, u));
+} else if (si === 2) {
+scene(si, ['section'], ['card'], true);
+camera(si, u);
+const q = lin(u, 0.04, 0.9);
+section(WALL, false, (WALL / 2) * Math.sqrt(q), clock, true);
+bossDims(WALL, false);
+set(E.card, cardSvg(CARD.x, CARD.y, 290, tr('te koud', 'too cold', 256), [
+[1, tr('kouder is sneller', 'colder is quicker', 256)],
+[1, tr('maar niet gratis', 'but not free', 256), '', 0.4],
+[1, tr('dof oppervlak', 'dull surface', 256), '', 0.55],
+[1, tr('vloeilijnen', 'flow lines', 256), '', 0.68],
+[1, tr('ingevroren spanning', 'frozen-in stress', 256), '', 0.8],
+[2, tr('PA krimpt later na', 'PA shrinks later', 256)],
+[2, tr('PA6: 80 °C', 'PA6: 80 °C', 256), '', 0.5],
+], si, u));
+} else if (si === 3) {
+scene(si, ['section'], ['mag']);
+camera(si, u);
+const q = lin(u, 0.04, 0.9);
+section(WALL, false, (WALL / 2) * Math.sqrt(q), clock, u > B[0] + 0.45 * (B[1] - B[0]));
+bossDims(WALL, false);
+magnifier(u > B[0] + 0.45 * (B[1] - B[0]), clock, span(u, B[1] + 0.04, B[1] + 0.18));
+} else if (si === 4) {
+scene(si, ['section'], ['labels']);
+camera(si, u);
+const q = lin(u, 0.04, 0.9);
+section(WALL, false, (WALL / 2) * Math.sqrt(q), clock, false, span(u, B[1], B[1] + 0.1));
+bossDims(WALL, false);
+const diff = 14 + 90 * span(u, B[0] + 0.5 * (B[1] - B[0]), B[0] + 0.62 * (B[1] - B[0]));
+set(E.labels, u < B[1] ? waterBars(diff) : '');
+} else if (si === 5) {
+scene(si, ['section'], ['card']);
+camera(si, u);
+section(WALL, false, (WALL / 2) * Math.sqrt(lin(u, 0.04, 0.9)), clock, false);
+bossDims(WALL, false);
+set(E.card, cardSvg(CARD.x, CARD.y, CARD.w, tr('stap voor stap', 'step by step', 296), [
+[0, tr('1 s korter per stap', '1 s shorter per step', 296)],
+[0, tr('meet de kritische maat', 'measure the critical size', 296), '', 0.4],
+[1, tr('4 holtes, 24 s, koelen 14 s', '4 cavities, 24 s, cool 14 s', 296)],
+[1, '3600 / 24 × 4 = 600', 'code', 0.4],
+[2, tr('na 24 uur gemeten', 'measured after 24 hours', 296)],
+[2, tr('11 s: alles goed', '11 s: all good', 296), '', 0.3],
+[2, tr('10 s: buiten tolerantie', '10 s: out of tolerance', 296), '', 0.6],
+], si, u));
+} else if (si === 6) {
+scene(si, ['section'], ['card']);
+camera(si, u);
+section(WALL, false, (WALL / 2) * Math.sqrt(lin(u, 0.04, 0.9)), clock, false);
+bossDims(WALL, false);
+set(E.card, cardSvg(CARD.x, CARD.y, CARD.w, tr('de instelling', 'the setting', 296), [
+[0, tr('laatste goede stap + marge', 'last good step + margin', 296)],
+[0, tr('vastleggen, met de reden', 'record it, with the reason', 296), '', 0.4],
+[1, tr('koelen 11,5 s', 'cooling 11.5 s', 296)],
+[1, `24 − ${num(2.5, 1)} = ${num(21.5, 1)} s`, 'code', 0.4],
+[2, `3600 / ${num(21.5, 1)} × 4 ≈ 670`, 'code'],
+[2, tr('zo’n 12 % meer', 'about 12 % more', 296), '', 0.4],
+], si, u));
+}
+}
+return { render };
+})();
+;
+// v14b: keeps a film's stage in step with its narration in the video.
+// A stage is drawn as STAGE.render(scene, u), its moves placed at fractions of
+// the scene that match the caption beats of the HTML film (beatStarts, by the
+// caption's words). In the video (?render=1) the beats are timed by the
+// recorded narration instead, which is longer and spread differently. This
+// maps the narration time back: while beat k is being spoken (from its start to
+// the next beat's), the stage runs from caption beat k's fraction to beat k+1's.
+// The HTML film (no timing handed over) gets no warp here; it sets
+// STAGE.nlBeats, so the player (stageU in films/_kit/timeline.mjs) runs the
+// stage on the Dutch beats while the English captions follow English timing.
+//
+// Plain browser script: a film's build appends it after its stage script.
+/* global STAGE, beatStarts */
+(() => {
+  const D = JSON.parse(document.getElementById('film-data').textContent);
+  let atl = null;
+  let film;
+  // the render script hands the audio timeline to window.__film.setTiming
+  Object.defineProperty(window, '__film', {
+    configurable: true,
+    get: () => film,
+    set(v) {
+      film = v;
+      if (v && typeof v.setTiming === 'function') {
+        const set = v.setTiming;
+        v.setTiming = (a) => { atl = a; return set.call(v, a); };
+      }
+    },
+  });
+  STAGE.nlBeats = true; // this stage places its moves at the Dutch caption beats
+  const inner = STAGE.render.bind(STAGE);
+  STAGE.render = (si, u) => {
+    const s = atl && atl.scenes[si];
+    const sc = D.scenes[si];
+    if (!s || !sc || !s.beats.length) return inner(si, u);
+    const fr = beatStarts(sc, 'nl').map((x) => x / sc.dur);
+    const t = s.start + u * s.dur;
+    let k = 0;
+    for (let i = 0; i < s.beats.length; i++) if (t >= s.beats[i].start) k = i;
+    const a0 = k === 0 ? s.start : s.beats[k].start;
+    const a1 = k + 1 < s.beats.length ? s.beats[k + 1].start : s.start + s.dur;
+    const f0 = fr[k] ?? 0;
+    const f1 = k + 1 < fr.length ? fr[k + 1] : 1;
+    const p = Math.min(1, Math.max(0, (t - a0) / Math.max(1e-6, a1 - a0)));
+    return inner(si, f0 + p * (f1 - f0));
+  };
+})();
+
+;
+/* global STAGE, parseParams, searchOf, timelineOf, sceneIndexAt, clampScene, beatStarts, beatIndexAt, holdLimit, fmtClock, timedAt, stageU */
+(function () {
+  const DATA = JSON.parse(document.getElementById('film-data').textContent);
+  const PRM = parseParams(searchOf(location.search, window.name));
+  const LANG = PRM.lang;
+  const STR = {
+    nl: { play: 'Afspelen', pause: 'Pauzeren', replay: 'Opnieuw afspelen', mute: 'Gesproken uitleg uit', unmute: 'Gesproken uitleg aan', scenes: 'Scènes', close: 'Sluiten', prev: 'Vorige', next: 'Volgende', speed: 'Snelheid', scrub: 'Tijdlijn van de film', scene: (n, m) => `Scène ${n} van ${m}`, start: 'Bekijk de film', again: 'Nog een keer', voice: 'Geen stem op dit apparaat: lees de ondertitels mee.', label: 'Uitlegfilm' },
+    en: { play: 'Play', pause: 'Pause', replay: 'Play again', mute: 'Narration off', unmute: 'Narration on', scenes: 'Scenes', close: 'Close', prev: 'Previous', next: 'Next', speed: 'Speed', scrub: 'Film timeline', scene: (n, m) => `Scene ${n} of ${m}`, start: 'Watch the film', again: 'Watch again', voice: 'No voice on this device: follow the captions.', label: 'Explainer film' },
+  }[LANG];
+  const doc = document.documentElement;
+  const $ = (sel) => document.querySelector(sel);
+  const scenes = DATA.scenes;
+  const tl = timelineOf(scenes);
+  const reduceMq = matchMedia('(prefers-reduced-motion: reduce)');
+  let reduce = !PRM.render && (PRM.reduce || reduceMq.matches);
+
+  let t = tl.starts[clampScene(PRM.scene, scenes.length)];
+  let playing = false;
+  let started = false;
+  let ended = false;
+  let scrubbing = false;
+  let visible = true;
+  let rate = 1;
+  let muted = PRM.muted;
+  if (window.parent === window) { try { muted = localStorage.getItem('vp:filmMuted') === '1' || PRM.muted; } catch (e) { /* storage blocked */ } }
+  let spokenKey = null; // "scene:beat" last handed to the voice
+  let speaking = null; // { id, scene, beat, until? }
+  let nextId = 1;
+  let raf = 0;
+  let last = 0;
+
+  const main = $('.fp');
+  const stage = $('.fp-stage');
+  const cap = $('.fp-cap');
+  const read = $('.fp-read');
+  const playBtn = $('[data-act="play"]');
+  const muteBtn = $('[data-act="mute"]');
+  const scenesBtn = $('[data-act="scenes"]');
+  const prevBtn = $('[data-act="prev"]');
+  const nextBtn = $('[data-act="next"]');
+  const range = $('.fp-range');
+  const clock = $('.fp-time');
+  const poster = $('.fp-poster');
+  const sheet = $('.fp-sheet');
+  const note = $('.fp-note');
+  let focusOn = new Set();
+  const lightFocus = () => stage.querySelectorAll('[data-cue]').forEach((el) => el.toggleAttribute('data-on', focusOn.has(el.getAttribute('data-cue'))));
+
+  document.title = DATA.title[LANG];
+  doc.lang = LANG;
+  main.setAttribute('aria-label', `${STR.label}: ${DATA.title[LANG]}`);
+  $('.fp-poster-title').textContent = DATA.title[LANG];
+  $('.fp-poster-go span').textContent = STR.start;
+  $('.fp-sheet-title').textContent = STR.scenes;
+  $('[data-act="close"]').setAttribute('aria-label', STR.close);
+  prevBtn.setAttribute('aria-label', STR.prev);
+  nextBtn.setAttribute('aria-label', STR.next);
+  scenesBtn.setAttribute('aria-label', STR.scenes);
+  range.setAttribute('aria-label', STR.scrub);
+  range.max = String(tl.total);
+  const svgEl = stage.querySelector('svg');
+  if (svgEl && DATA.label) svgEl.setAttribute('aria-label', DATA.label[LANG]);
+
+  const ticks = $('.fp-ticks');
+  tl.starts.slice(1).forEach((s) => { const i = document.createElement('i'); i.style.left = `${(s / tl.total) * 100}%`; ticks.append(i); });
+  const list = $('.fp-list');
+  scenes.forEach((s, i) => {
+    const b = document.createElement('button');
+    b.type = 'button';
+    b.className = 'fp-item';
+    b.innerHTML = `<span class="fp-item-n">${i + 1}</span><span class="fp-item-t"></span><span class="fp-item-d">${fmtClock(tl.starts[i])}</span>`;
+    b.querySelector('.fp-item-t').textContent = s.title[LANG];
+    b.addEventListener('click', () => { closeSheet(); jump(tl.starts[i]); if (!playing) play(); });
+    list.append(b);
+  });
+  const speedBtn = $('[data-act="speed"]');
+  speedBtn.querySelector('.fp-speed-l').textContent = STR.speed;
+
+  const inFrame = window.parent !== window;
+  let bridge = false;
+  const post = (msg) => { try { window.parent.postMessage(Object.assign({ type: 'vp-film' }, msg), '*'); } catch (e) { /* no parent */ } };
+  window.addEventListener('message', (e) => {
+    if (!inFrame || e.source !== window.parent) return;
+    const d = e.data;
+    if (!d || typeof d !== 'object' || d.type !== 'vp-film') return;
+    if (d.op === 'ready') { bridge = true; doc.dataset.narration = 'bridge'; }
+    else if (d.op === 'said') lineDone(d.id, d.result);
+  });
+  if (inFrame) post({ op: 'hello' });
+  if (inFrame) document.body.style.background = 'transparent'; // the app's card shows round the player
+  doc.dataset.narration = 'local';
+  doc.dataset.said = '0';
+
+  const localSynth = (() => { try { return window.speechSynthesis && typeof SpeechSynthesisUtterance === 'function' ? window.speechSynthesis : null; } catch (e) { return null; } })();
+  function localSay(id, text) {
+    if (!localSynth) { setTimeout(() => lineDone(id, 'failed'), 0); return; }
+    try {
+      localSynth.cancel();
+      const u = new SpeechSynthesisUtterance(text);
+      u.lang = LANG === 'en' ? 'en-GB' : 'nl-NL';
+      u.rate = rate;
+      const code = LANG === 'en' ? 'en' : 'nl';
+      const voices = localSynth.getVoices();
+      const v = voices.find((x) => x.lang.toLowerCase().startsWith(code) && x.localService) || voices.find((x) => x.lang.toLowerCase().startsWith(code));
+      if (v) u.voice = v;
+      const t0 = Date.now();
+      u.onend = () => lineDone(id, Date.now() - t0 < 300 ? 'failed' : 'spoken');
+      u.onerror = () => lineDone(id, 'failed');
+      localSynth.speak(u);
+    } catch (e) { setTimeout(() => lineDone(id, 'failed'), 0); }
+  }
+  function sayBeat(si, bi) {
+    const b = scenes[si].beats[bi];
+    const text = (b.voice || b.speak)[LANG]; // the narration script when the film has one
+    const id = nextId++;
+    speaking = { id, scene: si, beat: bi };
+    const limit = Math.max(6000, 2000 + text.length * 90) / rate;
+    setTimeout(() => lineDone(id, 'timeout'), limit);
+    if (bridge) post({ op: 'say', id, text, lang: LANG, rate });
+    else localSay(id, text);
+  }
+  let failures = 0;
+  function lineDone(id, result) {
+    if (!speaking || speaking.id !== id || speaking.until) return;
+    speaking.until = performance.now() + 400; // a breath before the next line
+    doc.dataset.said = String(Number(doc.dataset.said) + 1);
+    if (result === 'failed') { failures += 1; if (failures >= 2) note.textContent = STR.voice; }
+  }
+  function cancelSpeech() {
+    if (speaking) { if (bridge) post({ op: 'cancel' }); else if (localSynth) { try { localSynth.cancel(); } catch (e) { /* ignore */ } } }
+    speaking = null;
+  }
+
+  const local = () => {
+    const si = sceneIndexAt(t, tl);
+    return { si, lt: t - tl.starts[si] };
+  };
+  let shownKey = '';
+  function caption(si, bi) {
+    const key = `${si}:${bi}`;
+    if (key === shownKey) return;
+    shownKey = key;
+    const b = scenes[si].beats[bi];
+    const line = b.seg[LANG].map((p) => {
+      if (typeof p === 'string') return document.createTextNode(p);
+      const s = document.createElement('span');
+      s.className = 'fp-term';
+      s.textContent = p.t;
+      if (!p.en) return s;
+      const f = document.createDocumentFragment();
+      const en = document.createElement('span');
+      en.className = 'fp-en';
+      en.lang = 'en';
+      en.textContent = ` (${p.en})`;
+      f.append(s, en);
+      return f;
+    });
+    if (PRM.render) { const one = document.createElement('span'); one.append(...line); cap.replaceChildren(one); } else cap.replaceChildren(...line);
+    let r = null;
+    for (let k = bi; k >= 0 && !r; k--) r = scenes[si].beats[k].read || null;
+    read.textContent = r ? r[LANG] : '';
+    read.hidden = !r;
+    focusOn = new Set(b.cues);
+    main.dataset.focus = main.dataset.focus === 'a' ? 'b' : 'a'; // the halo eases in again
+  }
+  function draw() {
+    const { si, lt } = local();
+    const s = scenes[si];
+    const bi = beatIndexAt(s, LANG, lt);
+    const u = reduce ? (s.beats[bi].still ?? s.still) : stageU(s, LANG, lt, STAGE.nlBeats === true);
+    caption(si, bi);
+    STAGE.render(si, u); lightFocus();
+    if (!scrubbing) range.value = String(Math.round(t * 10) / 10);
+    range.setAttribute('aria-valuetext', `${STR.scene(si + 1, scenes.length)}: ${s.title[LANG]}, ${fmtClock(t)}`);
+    clock.textContent = `${fmtClock(t)} / ${fmtClock(tl.total)}`;
+    doc.dataset.scene = String(si + 1);
+  }
+
+  function advance(dt) {
+    let target = t + dt * rate;
+    const now = performance.now();
+    if (!muted && speaking) {
+      if (speaking.until && now >= speaking.until) speaking = null;
+      else target = Math.min(target, holdLimit(tl, scenes, LANG, speaking.scene, speaking.beat) - 0.001);
+    }
+    t = Math.max(t, target);
+    if (t >= tl.total - 0.0005) { t = tl.total; finish(); return; }
+    const { si, lt } = local();
+    const bi = beatIndexAt(scenes[si], LANG, lt);
+    const key = `${si}:${bi}`;
+    if (key !== spokenKey) {
+      spokenKey = key;
+      if (!muted) sayBeat(si, bi);
+    }
+  }
+  function frame(now) {
+    raf = 0;
+    const dt = last ? Math.min(0.1, (now - last) / 1000) : 0;
+    last = now;
+    if (playing && visible && !scrubbing) advance(dt);
+    draw();
+    if (playing) raf = requestAnimationFrame(frame);
+  }
+  const kick = () => { if (!raf) { last = 0; raf = requestAnimationFrame(frame); } };
+
+  function setPlayBtn() {
+    const label = ended ? STR.replay : playing ? STR.pause : STR.play;
+    playBtn.setAttribute('aria-label', label);
+    playBtn.dataset.state = ended ? 'replay' : playing ? 'pause' : 'play';
+    main.dataset.playing = playing ? '1' : '0';
+  }
+  function play() {
+    if (ended) { ended = false; t = 0; spokenKey = null; main.dataset.ended = '0'; }
+    if (!started) { started = true; poster.hidden = true; main.dataset.started = '1'; }
+    playing = true;
+    setPlayBtn();
+    kick();
+  }
+  function pause() {
+    playing = false;
+    cancelSpeech();
+    spokenKey = null; // the beat speaks again from its start when play resumes
+    setPlayBtn();
+    draw();
+  }
+  function finish() {
+    playing = false;
+    ended = true;
+    speaking = null;
+    main.dataset.ended = '1';
+    setPlayBtn();
+  }
+  function jump(to) {
+    cancelSpeech();
+    t = Math.max(0, Math.min(tl.total - 0.01, to));
+    if (ended) { ended = false; main.dataset.ended = '0'; }
+    if (!started) { started = true; poster.hidden = true; main.dataset.started = '1'; }
+    spokenKey = null;
+    setPlayBtn();
+    draw();
+  }
+  const sceneStep = (dir) => {
+    const { si, lt } = local();
+    const to = dir < 0 ? (lt > 1.5 ? si : si - 1) : si + 1;
+    if (to >= scenes.length) { jump(tl.total - 0.01); return; }
+    jump(tl.starts[Math.max(0, to)]);
+  };
+  const toggle = () => (playing ? pause() : play());
+  playBtn.addEventListener('click', toggle);
+  $('.fp-poster-go').addEventListener('click', play);
+  $('.fp-again').addEventListener('click', play);
+  prevBtn.addEventListener('click', () => sceneStep(-1));
+  nextBtn.addEventListener('click', () => sceneStep(1));
+  function setMute(m) {
+    muted = m;
+    muteBtn.setAttribute('aria-pressed', muted ? 'true' : 'false');
+    muteBtn.setAttribute('aria-label', muted ? STR.unmute : STR.mute);
+    main.dataset.muted = muted ? '1' : '0';
+    if (muted) cancelSpeech(); else spokenKey = null;
+    if (inFrame) post({ op: 'mute', muted });
+    else { try { localStorage.setItem('vp:filmMuted', muted ? '1' : '0'); } catch (e) { /* storage blocked */ } }
+  }
+  muteBtn.addEventListener('click', () => setMute(!muted));
+  speedBtn.addEventListener('click', () => {
+    rate = rate === 1 ? 1.25 : 1;
+    speedBtn.querySelector('.fp-speed-v').textContent = rate === 1 ? '1×' : '1,25×'.replace(',', LANG === 'en' ? '.' : ',');
+    speedBtn.setAttribute('aria-pressed', rate !== 1 ? 'true' : 'false');
+  });
+  function openSheet() { sheet.hidden = false; scenesBtn.setAttribute('aria-expanded', 'true'); const { si } = local(); (list.children[si] || list.children[0]).focus(); }
+  function closeSheet() { sheet.hidden = true; scenesBtn.setAttribute('aria-expanded', 'false'); }
+  scenesBtn.addEventListener('click', () => (sheet.hidden ? openSheet() : closeSheet()));
+  $('[data-act="close"]').addEventListener('click', () => { closeSheet(); scenesBtn.focus(); });
+
+  range.addEventListener('pointerdown', () => { scrubbing = true; cancelSpeech(); });
+  const endScrub = () => { if (scrubbing) { scrubbing = false; spokenKey = null; kick(); } };
+  range.addEventListener('pointerup', endScrub);
+  range.addEventListener('pointercancel', endScrub);
+  range.addEventListener('change', endScrub);
+  range.addEventListener('input', () => { jump(Number(range.value)); if (playing) kick(); });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.target && e.target.tagName === 'INPUT' && (e.key === 'ArrowLeft' || e.key === 'ArrowRight')) return; // the scrubber's own keys
+    if (e.key === ' ' || e.key === 'k') { if (e.target && e.target.tagName === 'BUTTON' && e.key === ' ') return; toggle(); e.preventDefault(); }
+    else if (e.key === 'ArrowLeft') { sceneStep(-1); e.preventDefault(); }
+    else if (e.key === 'ArrowRight') { sceneStep(1); e.preventDefault(); }
+    else if (e.key === 'm' || e.key === 'M') setMute(!muted);
+    else if (e.key === 'End') { jump(tl.starts[scenes.length - 1]); e.preventDefault(); }
+    else if (e.key === 'Home') { jump(0); e.preventDefault(); }
+    else if (e.key === 'Escape' && !sheet.hidden) closeSheet();
+  });
+
+  const away = () => { if (playing) pause(); };
+  document.addEventListener('visibilitychange', () => { if (document.hidden) away(); });
+  if ('IntersectionObserver' in window) {
+    new IntersectionObserver((entries) => {
+      visible = entries[entries.length - 1].isIntersecting;
+      if (!visible) away();
+    }, { threshold: 0.15 }).observe(stage);
+  }
+  const setMotion = () => { main.dataset.motion = reduce ? 'reduce' : 'full'; draw(); };
+  reduceMq.addEventListener && reduceMq.addEventListener('change', () => { reduce = PRM.reduce || reduceMq.matches; setMotion(); });
+
+  if (inFrame && 'ResizeObserver' in window) {
+    let lastH = 0;
+    new ResizeObserver(() => {
+      const hgt = Math.ceil(main.getBoundingClientRect().height + 2);
+      if (Math.abs(hgt - lastH) > 1) { lastH = hgt; post({ op: 'size', h: hgt }); }
+    }).observe(main);
+  }
+
+  if (PRM.render) {
+    main.dataset.render = '1';
+    doc.dataset.render = '1';
+    poster.hidden = true;
+    started = true;
+    main.dataset.started = '1';
+    let atl = null;
+    window.__film = {
+      total: tl.total,
+      setTiming(next) { atl = next; return atl.total; },
+      seek(time) {
+        if (atl) {
+          const at = timedAt(time, atl);
+          caption(at.si, at.bi);
+          STAGE.render(at.si, at.u); lightFocus();
+        } else { t = Math.max(0, Math.min(tl.total, time)); draw(); }
+        return true;
+      },
+    };
+    window.__film.seek(0);
+    return;
+  }
+  setMute(muted);
+  setPlayBtn();
+  setMotion();
+})();
+</script></body></html>

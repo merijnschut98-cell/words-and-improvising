@@ -364,7 +364,7 @@ export default {
     },
     {
       id: 'eng.moulding.cooling',
-      film: 'eng.moulding.cycle',
+      film: 'eng.moulding.cooling',
       title: 'Cooling: what the setter can change',
       pre: [
         {
@@ -433,7 +433,7 @@ export default {
     },
     {
       id: 'eng.moulding.cavities',
-      film: 'eng.moulding.cycle',
+      film: 'eng.moulding.cavities',
       title: 'More cavities or a faster cycle',
       pre: [
         {
@@ -503,7 +503,7 @@ export default {
     },
     {
       id: 'eng.moulding.partcost',
-      film: 'eng.moulding.cycle',
+      film: 'eng.moulding.partcost',
       title: 'What a moulded part costs',
       pre: [
         {

@@ -622,7 +622,7 @@ export function checkPoints(data, { lessons, wiredBy = [] }) {
 // checks that no split film of the inventory is listed here).
 export const BYTES_BEFORE = {
   'eng.gridbasics.path': 286111, 'eng.gridops.outage': 282058, 'eng.gridplanning.flex': 288954, 'eng.machining.milling': 324274,
-  'eng.machining.overview': 353316, 'eng.machining.turning': 295984, 'eng.machining.workholding': 287099, 'eng.moulding.cycle': 332170,
+  'eng.machining.overview': 353316, 'eng.machining.turning': 295984, 'eng.machining.workholding': 287099,
   'eng.ot.isa95': 282763, 'eng.power.drives': 289176, 'eng.safety.loto': 292774, 'pm.land.adoption': 290088, 'pm.run.rhythm': 282283,
 };
 export const POINTS_GROWTH = 25 * 1024;

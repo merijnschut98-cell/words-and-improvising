@@ -1822,3 +1822,9 @@ test('SAY: welding standards and 6082-T6 read as their parts (joining split)', (
   assert.equal(speakOf(['See EN 1090-2.'], 'en'), 'See E N 10 90 part 2.');
   assert.equal(speakOf(['A beam of 6082-T6.'], 'en'), 'A beam of six oh eight two T six.');
 });
+
+// Task 17 pilot B review (17 Nov): the English voice read PA6 as "pah six"; PA alone is already "P A"
+test('SAY: PA6 as letters and a number in English (moulding split)', () => {
+  assert.equal(speakOf(['80 degrees for PA6, for example.'], 'en'), '80 degrees for PA six, for example.');
+  assert.equal(speakOf(['80 graden voor PA6.'], 'nl'), '80 graden voor PA6.');
+});

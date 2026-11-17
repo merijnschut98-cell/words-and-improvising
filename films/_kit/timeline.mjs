@@ -1100,7 +1100,9 @@ const SAY = {
     // the part number, EN 1011 and EN 1090 with their part, and the alloy 6082-T6 digit by digit; besides these films only the
     // unrendered eng.joining.production ("EN 1090-1") changes
     [/\bISO (14731|14732|15609|15612|15614)(?:-(\d))?\b/g, (m, n, p) => `ISO ${n.slice(0, 2)} ${n[2]} ${n.slice(3)}${p ? ` part ${p}` : ''}`],
-    [/\bEN (10(?:11|90))-(\d)\b/g, (m, n, p) => `E N ${n.slice(0, 2)} ${n.slice(2)} part ${p}`], [/\b6082-T6\b/g, 'six oh eight two T six']],
+    [/\bEN (10(?:11|90))-(\d)\b/g, (m, n, p) => `E N ${n.slice(0, 2)} ${n.slice(2)} part ${p}`], [/\b6082-T6\b/g, 'six oh eight two T six'],
+    // the moulding split (eng.moulding.cooling, review 17 Nov): PA6 as "PA six", not "pah six"; PA alone is already letters
+    [/\bPA6\b/g, 'PA six']],
 };
 export const sayable = (text, lang) => (SAY[lang] || []).reduce((s, [re, w]) => s.replace(re, w), text);
 // The words the voice says: no English gloss, and with a language, units as words.
