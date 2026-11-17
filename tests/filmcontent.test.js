@@ -136,7 +136,7 @@ test('Task 17 gate: every lesson film claims its lesson points or is still pendi
 });
 
 // The allowlist (D4: pointers and word for word duplicates only) is pinned, so every entry is a visible diff.
-const READING_ENTRIES = 0;
+const READING_ENTRIES = 1; // eng.moulding.partcost#t1.2: a pointer to the module Kostprijs en investeringen
 test('Task 17: the number of lesson points left to reading is pinned', () => {
   const n = films.reduce((a, id) => a + (readFilmData(fs.readFileSync(`${DIR}/${id}.html`, 'utf8')).reading || []).length, 0);
   console.log(`# Task 17: ${n} lesson points left to reading (pointers and duplicates)`);

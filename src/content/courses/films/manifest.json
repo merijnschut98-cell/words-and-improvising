@@ -105,39 +105,6 @@
         "vtt": "src/content/courses/films/eng.moulding.setting.en.vtt"
       }
     },
-    "eng.moulding.cycle": {
-      "poster": "src/content/courses/films/eng.moulding.cycle.jpg",
-      "nl": {
-        "dur": 249.7,
-        "bytes": 9554359,
-        "scenes": [
-          0,
-          41.24,
-          61.92,
-          80.93,
-          103.09,
-          129.63,
-          163.07,
-          204.99
-        ],
-        "vtt": "src/content/courses/films/eng.moulding.cycle.nl.vtt"
-      },
-      "en": {
-        "dur": 277.1,
-        "bytes": 10468245,
-        "scenes": [
-          0,
-          46.28,
-          67.57,
-          89.2,
-          113.19,
-          143.95,
-          180.81,
-          227.1
-        ],
-        "vtt": "src/content/courses/films/eng.moulding.cycle.en.vtt"
-      }
-    },
     "eng.machining.overview": {
       "poster": "src/content/courses/films/eng.machining.overview.jpg",
       "nl": {

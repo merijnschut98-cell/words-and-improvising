@@ -32,7 +32,6 @@
     "eng.mechanics.heattreat",
     "eng.mechanics.load",
     "eng.mechanics.tensile",
-    "eng.moulding.cycle",
     "eng.moulding.defects",
     "eng.moulding.machine",
     "eng.moulding.materials",

@@ -6,7 +6,9 @@
 // shipped.
 //   K: the kit (iso-kit), C: the world constants, P: the projection.
 // eslint-disable-next-line no-unused-vars
-function buildSets(K, C, P) {
+// Each set is its own function, so a film's page carries only the sets it shows (the section, the temperature
+// control unit, the plates, the coins; buildSets draws those named in `which`, all when it is omitted).
+function setHelpers(K, P) {
   const at = (p) => K.iso(p, P);
   const f2 = (v) => (Math.round(v * 100) / 100).toString();
   const L = (d, style) => K.lineSvg(d, style);
@@ -50,7 +52,10 @@ function buildSets(K, C, P) {
     return S(K.slabOf({ x: x0, y: yc - half, w: x1 - x0, d: 2 * half, r: Math.min(0.4, half / 2) }, zc - half, 2 * half, P, 2, 0.2), style);
   };
 
-  // ============================================================ the section
+  return { at, f2, L, Dt, S, slab, cyl, g, planeOf, flatRect, recess, xBox };
+}
+function setSection(K, C, P, H) {
+  const { at, f2, L, Dt, S, slab, cyl, g, planeOf, flatRect, recess, xBox } = H;
   const { MM, BX, BZ, BD, CHAN, CHAN_R } = C;
   const BLOCK = { x: -BX, y: -BD, w: 2 * BX, d: BD, r: 0.4 };
   const pl = (x, z) => `${f2(x)} ${f2(-z)}`;
@@ -88,7 +93,7 @@ function buildSets(K, C, P) {
       + g('steel', '', ' data-cue="mouldtemp"')
       + g('cav', '', ' data-cue="cavity"')
       + `<g data-cue="channels"><path class="fp-water" d="${holes}"/>${g('swirl', '')}<path class="fp-mark" d="${holes}"/></g>`
-      + g('heat', '')
+      + g('heat', '', ' data-cue="hot"')
       + g('dims', '', ' data-cue="boss"')
       + `<path class="iso-line" data-tone="lo" d="M${pl(-BX, 0)}H${f2(BX)}"/>`
       + `<path class="iso-line" data-tone="mid" d="${rect}"/>`
@@ -99,7 +104,10 @@ function buildSets(K, C, P) {
     return { svg: out.join(''), SEC: { rect, hatch: hatch.join(''), holes } };
   })();
 
-  // ============================================================ the temperature control unit
+  return section;
+}
+function setTcu(K, C, P, H) {
+  const { at, f2, L, Dt, S, slab, cyl, g, planeOf, flatRect, recess, xBox } = H;
   const { TCU, TCU_Z } = C;
   const tcu = (() => {
     const out = [];
@@ -137,7 +145,10 @@ function buildSets(K, C, P) {
     return out.join('');
   })();
 
-  // ============================================================ the mould plates
+  return tcu;
+}
+function setPlates(K, C, P, H) {
+  const { at, f2, L, Dt, S, slab, cyl, g, planeOf, flatRect, recess, xBox } = H;
   const { PZ, CAV4, CAV8, RUN4, RUN8, PLATE4, PLATE8, FAM, POCKET_R } = C;
   const runnerBand = (paths, w = 2.4) => paths.map((pts) => {
     const segs = [];
@@ -181,7 +192,10 @@ function buildSets(K, C, P) {
     g('mani', '', ' data-cue="valve"'),
   ].join('');
 
-  // ============================================================ the coins
+  return plates;
+}
+function setCoins(K, C, P, H) {
+  const { at, f2, L, Dt, S, slab, cyl, g, planeOf, flatRect, recess, xBox } = H;
   const { COINS_BASE } = C;
   const coins = (() => {
     const out = [];
@@ -199,9 +213,19 @@ function buildSets(K, C, P) {
     out.push(cyl(cx, cy, 4, 7, 9, {}, 20) + cyl(cx, cy, 15, 9, 10.6, {}, 40, 0.4));
     // the cap: a ribbed cup, open side down, with a smooth top
     out.push(cyl(cx, cy, 9, 10.6, 16.6, { tone: 'hi', crease: 'lo' }, 40) + L(K.knurl(cx, cy, 9, 11.4, 15.8, 36, P), { tone: 'lo' }) + L(K.ring(cx, cy, 6.4, 16.6, P, 32), { tone: 'lo' }));
-    out.push(g('cMat', ''), g('cScrap', '', ' data-cue="scrap"'), g('cMach', '', ' data-cue="rate"'), g('cMould', '', ' data-cue="amort"'));
+    out.push(g('cMat', '', ' data-cue="material"'), g('cScrap', '', ' data-cue="scrap"'), g('cMach', '', ' data-cue="rate"'), g('cMould', '', ' data-cue="amort"'));
     return out.join('');
   })();
 
-  return { section: section.svg, SEC: section.SEC, tcu, plates, coins };
+  return coins;
+}
+function buildSets(K, C, P, which) {
+  const H = setHelpers(K, P);
+  const want = (name) => !which || which.includes(name);
+  const out = {};
+  if (want('section')) { const s = setSection(K, C, P, H); out.section = s.svg; out.SEC = s.SEC; }
+  if (want('tcu')) out.tcu = setTcu(K, C, P, H);
+  if (want('plates')) out.plates = setPlates(K, C, P, H);
+  if (want('coins')) out.coins = setCoins(K, C, P, H);
+  return out;
 }
