@@ -3,6 +3,7 @@ export default {
   lessons: [
     {
       id: 'pm.approach.route',
+      gist: 'Een project loopt over vijf fasen, en elke fase laat een faseproduct achter dat de volgende nodig heeft; de volgorde doet ertoe.',
       title: 'De hele route in één beeld',
       pre: [
         {
@@ -74,6 +75,7 @@ export default {
     },
     {
       id: 'pm.approach.takeover',
+      gist: 'Neem een lopend project over met vijf vragen, de documenten in vaste volgorde en een statuscheck in getallen, en vul het ontbrekende faseproduct aan.',
       title: 'Een lopend project overnemen',
       pre: [
         {
@@ -144,6 +146,7 @@ export default {
     },
     {
       id: 'pm.approach.tailor',
+      gist: 'Maak de route op maat naar duur, geld, partijen en gevolgen; voeg fasen samen als het klein is, maar laat de minimale governance nooit vallen.',
       title: 'Hoeveel route: op maat maken',
       pre: [
         {
@@ -214,6 +217,7 @@ export default {
     },
     {
       id: 'pm.approach.clientroute',
+      gist: 'Vraag het PMO naar gates, sjablonen en toleranties voordat je je eigen route voorstelt, zodat jouw route in die van de klant past.',
       title: 'De route van de klant: gates, PMO en niet beginnen',
       pre: [
         {
@@ -286,6 +290,7 @@ export default {
     },
     {
       id: 'pm.approach.families',
+      gist: 'Er zijn vier methodefamilies en een mengvorm; een certificaat bewijst dat iemand een examen haalde, niet hoe een project in de praktijk werkt.',
       title: 'De methodefamilies',
       pre: [
         {
@@ -357,6 +362,7 @@ export default {
     },
     {
       id: 'pm.approach.dmaic',
+      gist: 'DMAIC is een vaste route voor een terugkerend probleem met data: definiëren, meten, analyseren, verbeteren en borgen, met na elke fase een fasepoort.',
       title: 'DMAIC op een klein probleem',
       pre: [
         {
@@ -427,6 +433,7 @@ export default {
     },
     {
       id: 'pm.approach.choose',
+      gist: 'Kies de methode met vijf vragen over oplossing, eisen, data, team en contract; vaak is een hybride vorm het antwoord.',
       title: 'De methode kiezen voor dit project',
       pre: [
         {
@@ -496,6 +503,7 @@ export default {
     },
     {
       id: 'pm.approach.translate',
+      gist: 'Vertaal tussen methoden zonder de kern te verliezen, pas openlijk aan, en ontmasker methodetheater met de vraag welk besluit een document nam.',
       title: 'Werken in de methode van de klant',
       pre: [
         {
@@ -565,6 +573,7 @@ export default {
     },
     {
       id: 'pm.approach.toolfamilies',
+      gist: 'Een tool loont als hij meer oplevert dan hij kost; denk in toolfamilies per soort werk en kies de kleinste set.',
       title: 'Toolfamilies en wanneer een tool loont',
       pre: [
         {
@@ -636,6 +645,7 @@ export default {
     },
     {
       id: 'pm.approach.board',
+      gist: 'Richt een bord in naar het werk, en geef elke kaart een eigenaar, een datum en een klaar-criterium; bespreek in het overleg alleen wat achterloopt.',
       title: 'Een takenbord inrichten in het eerste uur',
       pre: [
         {
@@ -708,6 +718,7 @@ export default {
     },
     {
       id: 'pm.approach.toolchoice',
+      gist: 'Kies de tool per project met vijf dingen in beeld: de regels van de klant eerst, en een keuzematrix om de keuze uitlegbaar te maken.',
       title: 'De tool kiezen voor dit project',
       pre: [
         {
@@ -778,6 +789,7 @@ export default {
     },
     {
       id: 'pm.approach.toolcost',
+      gist: 'Een tool kost meer dan hij lijkt: toolwildgroei, dataverblijf, dubbele invoer en eigenaarschap na je vertrek horen in de afweging.',
       title: 'Wat een tool echt kost',
       pre: [
         {
@@ -850,6 +862,7 @@ export default {
     },
     {
       id: 'pm.approach.systems',
+      gist: 'In een groot bedrijf heeft elk systeem één taak; bij tegenspraak heeft het systeem van vastlegging het laatste woord.',
       title: 'De systemen van een grote klant',
       pre: [
         {
@@ -920,6 +933,7 @@ export default {
     },
     {
       id: 'pm.approach.guest',
+      gist: 'Als gast vraag je leestoegang en een projectcode, lees je het backlogbord, en zet je geboekte uren naast het werk dat klaar is.',
       title: 'Als gast in de systemen van de klant',
       pre: [
         {
@@ -991,6 +1005,7 @@ export default {
     },
     {
       id: 'pm.approach.recordof',
+      gist: 'Je bord is de werktool, het systeem van de klant bewaart de officiële cijfers; geef elk feit één thuis en voorkom dubbele invoer.',
       title: 'Wat leeft waar: werktool en systeem van vastlegging',
       pre: [
         {
@@ -1064,6 +1079,7 @@ export default {
     },
     {
       id: 'pm.approach.landscape',
+      gist: 'Zoek per soort gegevens de data-eigenaar, onderhandel vroeg met het PMO over hoe je wordt gemeten, en reken op leveranciersrisico en technische wijzigingen.',
       title: 'Het toollandschap als senior',
       pre: [
         {
