@@ -86,7 +86,7 @@ export default {
     },
     {
       id: 'pm.itproject.mvp',
-      gist: 'Sort requirements with MoSCoW; a Must is something without which you postpone go-live, and an MVP covers the whole process, thin but complete.',
+      gist: 'Sort requirements with MoSCoW; a Must is only what would make you postpone go-live if it were missing, and an MVP covers the whole process, thin but complete.',
       film: 'pm.itproject.mvp',
       title: 'MoSCoW and the MVP',
       pre: [
@@ -505,7 +505,7 @@ export default {
     },
     {
       id: 'pm.itproject.tco',
-      gist: 'TCO is all costs over the lifetime, not just the licence; count your own hours when they need cover or push out other work.',
+      gist: 'TCO is all costs over the lifetime, not just the licence; count your own hours when they need backfill or push out other work.',
       title: 'Total cost over five years',
       pre: [
         {
@@ -1092,7 +1092,7 @@ export default {
     },
     {
       id: 'pm.itproject.defects',
-      gist: 'A defect gets a severity (impact) and a priority (how fast); triage sorts them daily, and exit criteria say when testing is done.',
+      gist: 'Severity is a defect\'s impact, priority is how fast it must be fixed; the process owner sets the severity, not the partner.',
       film: 'pm.itproject.uat',
       title: 'Defects, triage and exit criteria',
       pre: [

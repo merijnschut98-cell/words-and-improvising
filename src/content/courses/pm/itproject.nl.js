@@ -86,7 +86,7 @@ export default {
     },
     {
       id: 'pm.itproject.mvp',
-      gist: 'Sorteer requirements met MoSCoW; een Must is iets zonder wat je de go-live uitstelt, en een MVP dekt het hele proces dun maar compleet.',
+      gist: 'Sorteer requirements met MoSCoW; een Must is alleen wat je de go-live laat uitstellen als het ontbreekt, en een MVP dekt het hele proces dun maar compleet.',
       film: 'pm.itproject.mvp',
       title: 'MoSCoW en de MVP',
       pre: [
@@ -1092,7 +1092,7 @@ export default {
     },
     {
       id: 'pm.itproject.defects',
-      gist: 'Een bevinding krijgt een ernst (impact) en een prioriteit (hoe snel); triage sorteert ze dagelijks, en exitcriteria zeggen wanneer de test klaar is.',
+      gist: 'Ernst is de impact van een bevinding, prioriteit hoe snel hij opgelost moet worden; de proceseigenaar bepaalt de ernst, niet de partner.',
       film: 'pm.itproject.uat',
       title: 'Bevindingen, triage en exitcriteria',
       pre: [
