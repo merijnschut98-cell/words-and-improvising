@@ -4546,6 +4546,35 @@
         ],
         "vtt": "src/content/courses/films/eng.machining.offsets.nl.vtt"
       }
+    },
+    "eng.machining.cam": {
+      "poster": "src/content/courses/films/eng.machining.cam.jpg",
+      "nl": {
+        "dur": 247.7,
+        "bytes": 7541278,
+        "scenes": [
+          0,
+          38.77,
+          69.16,
+          110.94,
+          151.6,
+          198.78
+        ],
+        "vtt": "src/content/courses/films/eng.machining.cam.nl.vtt"
+      },
+      "en": {
+        "dur": 269.1,
+        "bytes": 7975879,
+        "scenes": [
+          0,
+          40.46,
+          74.59,
+          117.18,
+          159.31,
+          211.02
+        ],
+        "vtt": "src/content/courses/films/eng.machining.cam.en.vtt"
+      }
     }
   }
 }
