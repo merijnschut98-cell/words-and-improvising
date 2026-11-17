@@ -27,7 +27,7 @@
     if (si === 1) return at0([[1, tr('12 – 18 L/min', '12 – 18 L/min'), 'code'], [2, tr('knettert gelijkmatig', 'crackles steadily')], [3, tr('ploppen en spatten', 'popping and spatter')]], tr('beschermgas', 'shielding gas'));
     if (si === 2) return at0([[0, tr('draad 0,8 – 1,2 mm', 'wire 0.8 – 1.2 mm')], [1, tr('MAG: staal', 'MAG: steel')], [1, tr('82% Ar + 18% CO₂', '82% Ar + 18% CO₂'), 'code'], [3, tr('MIG: aluminium', 'MIG: aluminium')], [3, tr('zuiver argon', 'pure argon')]], tr('MIG/MAG', 'MIG/MAG'));
     if (si === 3) return at0([[0, tr('wolfraam: 3.400 °C', 'tungsten: 3,400 °C')], [1, tr('zuiver argon', 'pure argon')], [1, tr('voetpedaal', 'foot pedal')], [2, tr('3 tot 5 × langzamer', '3 to 5 × slower')]], tr('TIG', 'TIG'));
-    if (si === 4) return at0([[0, tr('V × A × 60', 'V × A × 60'), 'code'], [0, tr('lassnelheid × 1.000', 'travel speed × 1,000'), 'code'], [0, tr('= kJ per mm las', '= kJ per mm of weld')], [2, tr('MAG: × 0,8', 'MAG: × 0.8'), 'code'], [2, tr('TIG: × 0,6', 'TIG: × 0.6'), 'code']], tr('warmte', 'heat'));
+    if (si === 4) return at0([[0, tr('V × A × 60', 'V × A × 60'), 'code'], [0, tr('÷ (snelheid × 1.000)', '÷ (speed × 1,000)'), 'code'], [0, tr('= kJ per mm las', '= kJ per mm of weld')], [2, tr('MAG: × 0,8', 'MAG: × 0.8'), 'code'], [2, tr('TIG: × 0,6', 'TIG: × 0.6'), 'code']], tr('warmte', 'heat'));
     return '';
   }
 

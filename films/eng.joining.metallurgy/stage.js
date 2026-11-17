@@ -82,7 +82,7 @@
     const bi = beatOf(2, u);
     const rows = [[0, tr('304 en 316', '304 and 316')], [0, tr('wordt niet hard', 'does not harden')], [0, tr('geen waterstofscheur', 'no hydrogen crack')],
       [1, tr('zet 40% meer uit', 'expands 40% more')], [1, tr('geleidt warmte slecht', 'conducts heat poorly')], [1, tr('dus: flink krom', 'so: distorts a lot')],
-      [2, tr('tussenlaag: max ± 150 °C', 'interpass: max ± 150 °C')], [2, tr('voor de volgende laag', 'before the next pass')],
+      [2, tr('tussenlaag: max ≈ 150 °C', 'interpass: max ≈ 150 °C')], [2, tr('voor de volgende laag', 'before the next pass')],
       [3, tr('blauw en bruin: eraf', 'blue and brown: off')], [3, tr('beitsen of borstelen', 'pickling or brushing')], [3, tr('pijp: binnen argon', 'pipe: argon inside')]];
     set(E.card, at0(2, u, rows, tr('austenitisch rvs', 'austenitic stainless'), 336, 60, 290));
     // the dial thermometer: the reading climbs into its band while the interpass beat runs

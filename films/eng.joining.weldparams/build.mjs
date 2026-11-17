@@ -34,8 +34,8 @@ const spec = {
           say: { nl: 'De vrije draadlengte heet in het Engels stick-out. Dat is het stukje draad tussen de contactbuis en de boog, zo’n {n:10} tot {n:20} millimeter. De contactbuis is het koperen buisje dat de stroom op de draad zet.', en: 'The stick-out is the stretch of wire between the contact tip and the arc, about {n:10} to {n:20} millimetres. The contact tip is the copper tube that feeds the wire its current.' } },
         { nl: 'De stroombron houdt de spanning vast: meer draad per minuut trekt meer ampère.', en: 'The power source holds the voltage constant: more wire per minute draws more amps.', focus: ['wfs'], points: ['t1.2'],
           say: { nl: 'De stroombron houdt de spanning vast en de stroom volgt de draad. Meer draad per minuut trekt meer ampère. Lassers zeggen draad omhoog voor meer stroom.', en: 'The power source holds the voltage constant, and the current follows the wire feed. More wire per minute draws more amps. Welders say turn the wire up for more current.' } },
-        { nl: 'De spanning bepaalt de booglengte: hoger is langer, breder en platter.', en: 'Voltage sets the arc length: higher is longer and wider.', focus: ['source'], points: ['t1.2'],
-          say: { nl: 'De spanning bepaalt de booglengte. Hoger is langer, breder en platter.', en: 'Voltage sets the arc length. Higher is longer and wider.' } },
+        { nl: 'De spanning bepaalt de booglengte: hoger is langer, breder en platter.', en: 'Voltage sets the arc length: higher is longer, wider and flatter.', focus: ['source'], points: ['t1.2'],
+          say: { nl: 'De spanning bepaalt de booglengte. Hoger is langer, breder en platter.', en: 'Voltage sets the arc length. Higher is longer, wider and flatter.' } },
       ],
     },
     {

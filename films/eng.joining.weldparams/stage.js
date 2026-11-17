@@ -20,7 +20,7 @@
     const at0 = (rows, tag, keep = 0, x = 336, w = 288) => noteCard(x, 60, w, tag, rows, si, u, keep);
     if (si === 0) return at0([[1, tr('10 – 20 mm', '10 – 20 mm'), 'code'], [2, tr('draad ↑ = stroom ↑', 'wire ↑ = current ↑')], [3, tr('spanning ↑ = boog ↑', 'voltage ↑ = arc ↑')]], tr('vrije draadlengte', 'stick-out'), 0);
     if (si === 2) return at0([[0, tr('× 0,8 MAG', '× 0.8 MAG'), 'code'], [0, tr('× 0,6 TIG', '× 0.6 TIG'), 'code'], [1, tr('lassnelheid ÷ 2', 'travel speed ÷ 2')], [1, tr('warmte-inbreng × 2', 'heat input × 2')], [2, tr('bereik in de lasmethode', 'range in the procedure')], [3, tr('lange kabels: verlies', 'long cables: losses')]], tr('warmte-inbreng', 'heat input'), 2);
-    if (si === 3) return at0([[1, tr('doorsnede π/4 × d²', 'cross-section π/4 × d²'), 'code'], [1, tr('× draadsnelheid', '× wire feed speed')], [1, tr('× 7,85 g/cm³', '× 7.85 g/cm³'), 'code'], [1, tr('− een paar % spatten', '− a few % spatter')], [3, tr('meer kilo’s = meer tijd', 'more kilos = more time')]], tr('neersmelt', 'deposition'), 2);
+    if (si === 3) return at0([[1, tr('doorsnede π/4 × d²', 'wire area π/4 × d²'), 'code'], [1, tr('× draadsnelheid', '× wire feed speed')], [1, tr('× 7,85 g/cm³', '× 7.85 g/cm³'), 'code'], [1, tr('− een paar % spatten', '− a few % spatter')], [3, tr('meer kilo’s = meer tijd', 'more kilos = more time')]], tr('neersmelt', 'deposition'), 2);
     if (si === 4) return at0([[1, tr('1,13 mm² × 10 m/min', '1.13 mm² × 10 m/min'), 'code'], [1, tr('= 11,3 cm³ per min', '= 11.3 cm³ a min'), 'code'], [1, tr('× 7,85 = 89 g', '× 7.85 = 89 g'), 'code'], [2, tr('= 5,3 kg/h', '= 5.3 kg/h'), 'code'], [2, tr('5 kg/h na spatten', '5 kg/h after spatter'), 'code'], [2, tr('83 g per min', '83 g a min'), 'code'], [3, tr('a5 = 25 cm³ per m', 'a5 = 25 cm³ a m'), 'code'], [3, tr('= 196 g per m', '= 196 g a m'), 'code'], [4, tr('196 / 83 = 2,4 min/m', '196 / 83 = 2.4 min/m'), 'code'], [4, tr('≈ 420 mm/min', '≈ 420 mm/min'), 'code']], tr('hoeklas a5', 'fillet a5'), 2, 332, 296);
     return '';
   }
@@ -30,7 +30,7 @@
     const B = C.B[si];
     const bi = beatOf(si, u);
     let wfs = 10;
-    let volts = '24';
+    let volts = si >= 2 ? '29' : '24'; // after the voltage scene the machine stays at 29 V, 10 m/min and 300 A (as the example)
     if (si === 0) {
       wfs = bi < 2 ? 6 : lerp(6, 12, span(u, B[2] + 0.02, B[3] - 0.02));
       volts = bi < 3 ? '24' : String(Math.round(lerp(24, 29, span(u, B[3] + 0.02, B[4] - 0.03))));
@@ -59,7 +59,7 @@
       const a1 = at([tip - 38, 34, PT]);
       const lp = at([tip - 23, 46, PT]);
       set(E.travel, mark(pth([a0, a1])) + mark(arrowHead(a0, a1, 9)) + label(lp[0], lp[1], 'v', 22));
-      op(E.travel, span(u, B[1] - 0.01, B[1] + 0.04));
+      op(E.travel, span(u, B[1] - 0.01, B[1] + 0.04) * (1 - span(u, B[2] - 0.01, B[2] + 0.04)));
       op(E.haz, span(u, B[0], B[0] + 0.06));
     }
     if (si === 4) {
