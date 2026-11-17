@@ -3,7 +3,7 @@ export default {
   lessons: [
     {
       id: 'pm.run.status',
-      gist: 'Agree up front what the colours mean; red is a request for help or a decision, not a verdict, and bad news is reported early.',
+      gist: 'Agree up front what the colours mean; red is not a failure but a request for a decision, and bad news is reported early.',
       film: 'pm.run.escalation',
       title: 'Honest status',
       pre: [
@@ -255,7 +255,7 @@ export default {
     },
     {
       id: 'pm.run.exception',
-      gist: 'Escalate on the forecast, not on the overrun: EAC = BAC / CPI, and the steering group gets options and a recommendation.',
+      gist: 'Escalate on the forecast, not on the overrun: EAC is BAC / CPI if efficiency continues, and you bring options and a recommendation.',
       title: 'Management by exception',
       pre: [
         {
@@ -510,7 +510,7 @@ export default {
     },
     {
       id: 'pm.run.replan',
-      gist: 'Measure against the baseline plan and never change it quietly; replanning takes a decision, also when you draw on a reserve.',
+      gist: 'Measure against the baseline plan and never change it quietly; the steering group decides a new plan, the sponsor the management reserve.',
       title: 'Replanning and reserves',
       pre: [
         {
@@ -681,7 +681,7 @@ export default {
     },
     {
       id: 'pm.run.rhythm',
-      gist: 'Keep meetings short and frequent, with decision questions on the agenda and a brief record of decisions and actions, so blockers surface fast.',
+      gist: 'A project runs on three meetings: stand-up, weekly meeting and steering group; agendas ask for decisions, minutes hold only decisions and actions.',
       film: 'pm.run.rhythm',
       title: 'A meeting rhythm that works',
       pre: [

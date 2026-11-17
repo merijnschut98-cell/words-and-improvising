@@ -3,7 +3,7 @@ export default {
   lessons: [
     {
       id: 'pm.run.status',
-      gist: 'Spreek vooraf af wat de kleuren betekenen; rood is een vraag om hulp of een besluit, geen oordeel, en slecht nieuws meld je vroeg.',
+      gist: 'Spreek vooraf af wat de kleuren betekenen; rood is geen falen maar een vraag om een besluit, en slecht nieuws meld je vroeg.',
       film: 'pm.run.escalation',
       title: 'Eerlijke status',
       pre: [
@@ -255,7 +255,7 @@ export default {
     },
     {
       id: 'pm.run.exception',
-      gist: 'Escaleer op de prognose, niet op de overschrijding: EAC = BAC / CPI, en de stuurgroep krijgt opties en een advies.',
+      gist: 'Escaleer op de prognose, niet op de overschrijding: EAC is BAC / CPI als de efficiëntie doorloopt, en je geeft opties en een advies.',
       title: 'Sturen op uitzondering',
       pre: [
         {
@@ -510,7 +510,7 @@ export default {
     },
     {
       id: 'pm.run.replan',
-      gist: 'Meet tegen het basisplan en pas het niet stilletjes aan; herplannen vraagt een besluit, ook als je reserve aanspreekt.',
+      gist: 'Meet tegen het basisplan en pas het niet stilletjes aan; een nieuw plan beslist de stuurgroep, de managementreserve de sponsor.',
       title: 'Herplannen en reserves',
       pre: [
         {
@@ -681,7 +681,7 @@ export default {
     },
     {
       id: 'pm.run.rhythm',
-      gist: 'Houd overleg kort en vaak, met besluitvragen op de agenda en een kort verslag met besluiten en acties, zodat blokkades snel boven komen.',
+      gist: 'Een project draait op drie overleggen: stand-up, weekoverleg en stuurgroep; agenda\'s vragen om besluiten, het verslag noemt alleen besluiten en acties.',
       film: 'pm.run.rhythm',
       title: 'Een overlegritme dat werkt',
       pre: [
