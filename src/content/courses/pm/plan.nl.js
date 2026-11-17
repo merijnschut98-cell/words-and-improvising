@@ -505,7 +505,7 @@ export default {
     },
     {
       id: 'pm.plan.network',
-      gist: 'Reken het netwerk heen en terug door: totale speling is laatste start min vroegste start, en bij speling 0 ligt een activiteit op het kritieke pad.',
+      gist: 'Reken het netwerk heen en terug: totale speling is laatste start min vroegste start, en bij speling 0 ligt een activiteit op het kritieke pad.',
       title: 'Rekenen met het netwerk: vroegst, laatst en speling',
       pre: [
         {
