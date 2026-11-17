@@ -1,0 +1,261 @@
+WEBVTT
+
+1
+00:00:00.812 --> 00:00:03.912
+Het programma beschrijft het werkstuk, niet het gereedschap.
+
+2
+00:00:04.571 --> 00:00:07.183
+De besturing voegt het gereedschap toe uit tabellen.
+
+3
+00:00:07.926 --> 00:00:08.971
+Dat zijn de offsets.
+
+4
+00:00:09.775 --> 00:00:10.448
+Drie tellen.
+
+5
+00:00:11.418 --> 00:00:17.582
+Het werkstuknulpunt, G54 tot G59, zegt waar het nulpunt van het werkstuk ligt.
+
+6
+00:00:18.609 --> 00:00:21.372
+De lengtecorrectie (tool length compensation) gebruikt G43 met een H-nummer.
+
+7
+00:00:22.074 --> 00:00:24.826
+Ze telt op hoe ver elk gereedschap uit de spil steekt.
+
+8
+00:00:25.860 --> 00:00:26.905
+De radiuscorrectie (cutter radius compensation)
+
+9
+00:00:26.952 --> 00:00:30.481
+gebruikt G41 links van de contour en G42 rechts,
+
+10
+00:00:30.806 --> 00:00:31.533
+met een D-nummer.
+
+11
+00:00:32.175 --> 00:00:35.228
+Ze verschuift de baan zijwaarts met de straal van het gereedschap.
+
+12
+00:00:36.215 --> 00:00:41.033
+G49 en G40 zetten de lengtecorrectie en de radiuscorrectie weer uit.
+
+13
+00:00:42.407 --> 00:00:43.406
+Waarom die splitsing.
+
+14
+00:00:44.126 --> 00:00:47.029
+De programmeur schrijft de contour van het werkstuk één keer.
+
+15
+00:00:47.966 --> 00:00:52.087
+Meet een nieuwe vingerfrees van 10 millimeter 9,98 millimeter,
+
+16
+00:00:52.355 --> 00:00:55.060
+dan voert de insteller straal 4,99 in.
+
+17
+00:00:55.735 --> 00:00:58.173
+Hetzelfde programma maakt dan nog steeds de goede maat.
+
+18
+00:00:59.209 --> 00:01:02.100
+Bovenop elke gemeten waarde zit een slijtagecorrectie (wear offset).
+
+19
+00:01:02.825 --> 00:01:06.552
+Dat is een kleine correctie die de operator invoert als maten verlopen.
+
+20
+00:01:07.528 --> 00:01:10.790
+Meet een boring 0,01 millimeter te klein op de diameter?
+
+21
+00:01:11.502 --> 00:01:15.043
+Dan past de operator de radius aan met 0,005 millimeter.
+
+22
+00:01:15.739 --> 00:01:19.279
+Dat is de helft van de fout, want een straal telt twee keer in een diameter.
+
+23
+00:01:20.553 --> 00:01:24.558
+Een crash is gereedschap of spil die het werkstuk, de mal of de machine raakt.
+
+24
+00:01:25.605 --> 00:01:26.766
+Typische oorzaken.
+
+25
+00:01:27.503 --> 00:01:32.878
+Een fout ingetypt getal, zoals 121,43 dat 112,43 wordt.
+
+26
+00:01:33.922 --> 00:01:38.079
+Het verkeerde H-nummer, dus gereedschap 5 met de lengte van gereedschap 3.
+
+27
+00:01:39.029 --> 00:01:40.836
+Het verkeerde nulpunt is actief.
+
+28
+00:01:41.529 --> 00:01:45.279
+Dat is G55 terwijl het werkstuk op G54 ligt.
+
+29
+00:01:46.289 --> 00:01:49.075
+Een gereedschap staat in de verkeerde plek van het magazijn.
+
+30
+00:01:49.786 --> 00:01:53.165
+Of er is een incrementele beweging waar absoluut bedoeld was.
+
+31
+00:01:54.262 --> 00:01:57.095
+De rode draad is een tabel die niet klopt met de werkelijkheid.
+
+32
+00:01:57.792 --> 00:01:59.719
+Het programma zelf is meestal goed.
+
+33
+00:02:01.025 --> 00:02:04.450
+De procesengineer beslist welke getallen met de hand worden ingetypt,
+
+34
+00:02:04.810 --> 00:02:06.006
+en welke worden gemeten.
+
+35
+00:02:07.000 --> 00:02:10.030
+Een voorinstelapparaat is een meetopstelling naast de machine.
+
+36
+00:02:10.687 --> 00:02:13.820
+Het stuurt gereedschapslengtes elektronisch naar de besturing.
+
+37
+00:02:14.816 --> 00:02:17.475
+Een taster in de spil zet G54 zelf.
+
+38
+00:02:18.517 --> 00:02:22.267
+Een gereedschapsmeter in de machine controleert de lengte na elke wissel.
+
+39
+00:02:23.255 --> 00:02:26.285
+Elke automatische stap haalt een kans op een tikfout weg.
+
+40
+00:02:27.267 --> 00:02:29.717
+De vraag voor de engineer is welke crashes we hadden.
+
+41
+00:02:30.417 --> 00:02:32.588
+En welke stap had elk ervan tegengehouden?
+
+42
+00:02:33.898 --> 00:02:35.849
+Een cel had vorig jaar 6 crashes.
+
+43
+00:02:36.556 --> 00:02:38.239
+De oorzaken staan in de rapporten.
+
+44
+00:02:39.303 --> 00:02:41.985
+Drie keer was een gereedschapslengte fout ingetypt.
+
+45
+00:02:42.748 --> 00:02:44.559
+Twee keer was er een verkeerd H-nummer.
+
+46
+00:02:45.218 --> 00:02:47.401
+Een keer was er een verkeerd werkstuknulpunt.
+
+47
+00:02:48.422 --> 00:02:53.414
+Elke crash kostte gemiddeld 12.000 euro aan reparatie en verloren machine-uren.
+
+48
+00:02:54.099 --> 00:02:57.002
+Dat is het eigen cijfer van het bedrijf, als aanname.
+
+49
+00:02:57.957 --> 00:03:00.010
+Het voorstel is een voorinstelapparaat dat
+
+50
+00:03:00.080 --> 00:03:03.029
+gereedschapsdata elektronisch naar de besturing stuurt.
+
+51
+00:03:03.759 --> 00:03:07.416
+Aangenomen is 25.000 euro inclusief de koppeling.
+
+52
+00:03:08.378 --> 00:03:11.466
+Het haalt ingetypte lengtes en verwisselde H-nummers weg.
+
+53
+00:03:12.172 --> 00:03:14.018
+Voor het werkstuknulpunt doet het niets.
+
+54
+00:03:15.021 --> 00:03:18.168
+Welke crashes had het voorkomen, wat bespaart dat per jaar,
+
+55
+00:03:18.504 --> 00:03:19.851
+en wat is de terugverdientijd?
+
+56
+00:03:21.238 --> 00:03:23.548
+3 plus 2 is 5 van de 6 crashes.
+
+57
+00:03:24.297 --> 00:03:27.803
+5 keer 12.000 euro is 60.000 euro per jaar.
+
+58
+00:03:28.739 --> 00:03:32.826
+De terugverdientijd is 25.000 gedeeld door 60.000.
+
+59
+00:03:33.535 --> 00:03:36.275
+Dat is 0,42 jaar, zo’n 5 maanden.
+
+60
+00:03:37.237 --> 00:03:41.312
+De zesde crash, het verkeerde nulpunt, vraagt een andere oplossing.
+
+61
+00:03:42.007 --> 00:03:43.423
+Zet het nulpunt met een taster.
+
+62
+00:03:44.119 --> 00:03:46.336
+Of bouw aan het begin van het programma een controle
+
+63
+00:03:46.360 --> 00:03:48.949
+in die stopt als het verkeerde nulpunt actief is.
+
+64
+00:03:49.952 --> 00:03:51.682
+Vraag ook of vorig jaar normaal was.
+
+65
+00:03:52.380 --> 00:03:54.133
+Zes crashes in één cel is veel.

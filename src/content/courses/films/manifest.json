@@ -4517,6 +4517,35 @@
         ],
         "vtt": "src/content/courses/films/eng.machining.gcode.en.vtt"
       }
+    },
+    "eng.machining.offsets": {
+      "poster": "src/content/courses/films/eng.machining.offsets.jpg",
+      "en": {
+        "dur": 254.2,
+        "bytes": 9305648,
+        "scenes": [
+          0,
+          44.03,
+          87.05,
+          130.41,
+          165.89,
+          214.61
+        ],
+        "vtt": "src/content/courses/films/eng.machining.offsets.en.vtt"
+      },
+      "nl": {
+        "dur": 235.8,
+        "bytes": 8810112,
+        "scenes": [
+          0,
+          41.94,
+          80.11,
+          120.6,
+          153.46,
+          200.71
+        ],
+        "vtt": "src/content/courses/films/eng.machining.offsets.nl.vtt"
+      }
     }
   }
 }
