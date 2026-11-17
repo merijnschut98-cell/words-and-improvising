@@ -3,6 +3,7 @@ export default {
   lessons: [
     {
       id: 'pm.negotiate.interests',
+      gist: 'Ask for the interest behind a position, because most interests can be served in more than one way.',
       film: 'pm.negotiate.batna',
       title: 'Positions and interests',
       pre: [
@@ -84,6 +85,7 @@ export default {
     },
     {
       id: 'pm.negotiate.batna',
+      gist: 'Your BATNA, what you do if you walk away, sets your walk-away point; an offer below your alternative you turn down or negotiate up.',
       film: 'pm.negotiate.batna',
       title: 'Your alternative and theirs',
       pre: [
@@ -167,6 +169,7 @@ export default {
     },
     {
       id: 'pm.negotiate.prepare',
+      gist: 'A preparation sheet has five lines per side: issues, priorities, BATNA, walk-away point and target point; for the other side you estimate them.',
       title: 'A preparation sheet that holds',
       pre: [
         {
@@ -248,6 +251,7 @@ export default {
     },
     {
       id: 'pm.negotiate.leverage',
+      gist: 'As the weaker side, say in their terms what you offer that they cannot easily get elsewhere, and do not give away a weak BATNA.',
       title: 'Negotiating from a weaker position',
       pre: [
         {
@@ -329,6 +333,7 @@ export default {
     },
     {
       id: 'pm.negotiate.anchor',
+      gist: 'If you know the market, name the first number yourself, ambitious and backed by a reason; do not counter a number you find unreasonable.',
       film: 'pm.negotiate.batna',
       title: 'First numbers and framing',
       pre: [
@@ -412,6 +417,7 @@ export default {
     },
     {
       id: 'pm.negotiate.concede',
+      gist: 'Give concessions conditionally (“if you…, then I…”), each one smaller than the last, and get something back for each.',
       title: 'Concessions: give little, get something',
       pre: [
         {
@@ -493,6 +499,7 @@ export default {
     },
     {
       id: 'pm.negotiate.package',
+      gist: 'Trade issues the two sides value differently, and offer two or three packages that are equally valuable to you at the same time (MESOs).',
       title: 'Trading across issues: packages and MESOs',
       pre: [
         {
@@ -577,6 +584,7 @@ export default {
     },
     {
       id: 'pm.negotiate.tactics',
+      gist: 'Recognise, name and question a hard tactic; Voss’s tools come from one-off hostage cases, and with a regular client a trick costs trust.',
       title: 'Hard tactics, and tools from hostage talks',
       pre: [
         {
@@ -660,6 +668,7 @@ export default {
     },
     {
       id: 'pm.negotiate.scope',
+      gist: 'Scope, time and cost are linked: do not refuse, but make the trade visible with options and keep a change log.',
       film: 'pm.run.scope',
       title: 'Negotiating scope and time with a client',
       pre: [
@@ -744,6 +753,7 @@ export default {
     },
     {
       id: 'pm.negotiate.price',
+      gist: 'A first “too expensive” is information: first ask compared with what, hold your rate and move the scope.',
       title: 'When the client pushes on your fee',
       pre: [
         {
@@ -825,6 +835,7 @@ export default {
     },
     {
       id: 'pm.negotiate.terms',
+      gist: 'With a fixed price, weak terms often cost you more than a weak price: set assumptions, client dependencies and acceptance criteria down early.',
       title: 'Assumptions and terms beyond the price',
       pre: [
         {
@@ -906,6 +917,7 @@ export default {
     },
     {
       id: 'pm.negotiate.renegotiate',
+      gist: 'Reopen a deal as soon as you see it, with facts, keep the cause apart from the solution, and name your own share first.',
       title: 'Reopening a deal mid-project',
       pre: [
         {
@@ -987,6 +999,7 @@ export default {
     },
     {
       id: 'pm.negotiate.no',
+      gist: 'Say no in three steps, yes, no, yes: clearly, with one real reason, and offer an option or a trade.',
       film: 'pm.negotiate.batna',
       title: 'Saying no and offering a trade',
       pre: [
@@ -1066,6 +1079,7 @@ export default {
     },
     {
       id: 'pm.negotiate.assert',
+      gist: 'Being assertive means standing up for your view while respecting the other; if you think you pushed too hard, check before you apologise.',
       title: 'Assertive, not aggressive',
       pre: [
         {
@@ -1146,6 +1160,7 @@ export default {
     },
     {
       id: 'pm.negotiate.senior',
+      gist: 'Use fact, view and request to disagree with someone more senior; if it concerns safety or integrity, you escalate.',
       film: 'pm.lead.feedback',
       title: 'Disagreeing with someone more senior',
       pre: [
@@ -1230,6 +1245,7 @@ export default {
     },
     {
       id: 'pm.negotiate.escalate',
+      gist: 'Under pressure, name a time instead of deciding in the room; escalate openly and jointly, and build a golden bridge.',
       title: 'Under pressure: escalating without burning bridges',
       pre: [
         {
