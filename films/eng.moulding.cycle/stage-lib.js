@@ -389,15 +389,17 @@ const STAGE = (() => {
   // ------------------------------------------------------------ the coins
   const coinSvg = (x, y, z, h = C.COIN_H) => solidSvg(cylinder(x, y, C.COIN_R, z, h, P, 40, 0.5), { tone: 'mid' }) + lineSvg(ring(x, y, C.COIN_R - 3, z + h, P, 32), { tone: 'lo' });
   let coinKey = '';
-  // n: coins in the stacks of material, machine and mould; sliver: the scrap on top of the material, 0..1
-  function coinStacks(n, sliver) {
-    const key = n.join() + '|' + sliver.toFixed(2);
+  // n: coins in the stacks of material, machine and mould; sliver: the scrap on top of the material, 0..1; every: the
+  // scrap on top of every stack (scrap costs material and press time: the whole price is 3 % dearer)
+  function coinStacks(n, sliver, every = false) {
+    const key = n.join() + '|' + sliver.toFixed(2) + (every ? 'e' : '');
     if (key === coinKey) return;
     coinKey = key;
     const stack = (s) => { let h = ''; for (let i = 0; i < n[s]; i++) h += coinSvg(C.STACKS[s][0], C.STACKS[s][1], i * C.COIN_H); return h; };
     E.cMat.innerHTML = stack(0);
     // the scrap: 3 % on top of the material, a thin sliver of a coin
-    E.cScrap.innerHTML = sliver > 0 ? coinSvg(C.STACKS[0][0], C.STACKS[0][1], n[0] * C.COIN_H, 0.72 * C.COIN_H * sliver) : '';
+    // (drawn three times too thick to be seen: 0,09 of a coin per coin in the stack)
+    E.cScrap.innerHTML = sliver > 0 ? (every ? [0, 1, 2] : [0]).map((s) => coinSvg(C.STACKS[s][0], C.STACKS[s][1], n[s] * C.COIN_H, 0.09 * n[s] * C.COIN_H * sliver)).join('') : '';
     E.cMach.innerHTML = stack(1);
     E.cMould.innerHTML = stack(2);
   }

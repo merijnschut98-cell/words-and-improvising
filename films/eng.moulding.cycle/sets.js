@@ -122,7 +122,7 @@ function setTcu(K, C, P, H) {
     const slots = [];
     for (const z of [z0 + 5, z0 + 8, z0 + 11]) slots.push(K.pathOf(K.roundedPlan({ x: TCU.x + 8, y: z, w: 30, d: 1.3, r: 0.6 }, 3).map(([u, w]) => at([u, fy, w])), true));
     const disp = { x0: TCU.x + 6, x1: TCU.x + 30, z0: z1 - 16, z1: z1 - 5, r: 0.8, depth: 0.7 };
-    const text = K.faceTextSvg(`${planeOf(fy - 0.7)} translate(${f2(disp.x0 + 12)} ${f2(-(disp.z0 + 2.6))})`, '80 °C', { size: 6.2, tone: 'hi', anchor: 'middle' });
+    const text = K.faceTextSvg(`translate(${f2(disp.x0 + 12)} ${f2(-(disp.z0 + 2.6))})`, '80 °C', { size: 6.2, tone: 'hi', anchor: 'middle' });
     const label = [[TCU.x + 6, fy, z0 + 22], [TCU.x + 22, fy, z0 + 22], [TCU.x + 22, fy, z0 + 16], [TCU.x + 6, fy, z0 + 16]];
     // a dial gauge on the front: a flat face in the plane y = fy
     const gx = TCU.x + 38;
@@ -207,7 +207,7 @@ function setCoins(K, C, P, H) {
     out.push(slab(SC, 0, 7, {}, 0.5, 3));
     const fy = SC.y + SC.d;
     const disp = { x0: SC.x + 6, x1: SC.x + 30, z0: 1.4, z1: 5.6, r: 0.5, depth: 0.5 };
-    out.push(recess(disp, fy, K.faceTextSvg(`${planeOf(fy - 0.5)} translate(${f2(SC.x + 18)} ${f2(-2.2)})`, '40 g', { size: 3.6, tone: 'hi', anchor: 'middle' })));
+    out.push(recess(disp, fy, K.faceTextSvg(`translate(${f2(SC.x + 18)} ${f2(-2.2)})`, '40 g', { size: 3.6, tone: 'hi', anchor: 'middle' })));
     const cx = SC.x + 18;
     const cy = SC.y + 18;
     out.push(cyl(cx, cy, 4, 7, 9, {}, 20) + cyl(cx, cy, 15, 9, 10.6, {}, 40, 0.4));

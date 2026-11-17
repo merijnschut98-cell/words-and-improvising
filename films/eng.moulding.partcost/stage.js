@@ -50,7 +50,7 @@
       // the mould is spread over an agreed number of parts; scrap counts twice
       scene(si, ['coinset'], ['card']);
       camera(si, u);
-      coinStacks([CM, CMA, CMO], bi === 2 ? span(u, B[2] + 0.04, B[2] + 0.14) : 0);
+      coinStacks([CM, CMA, CMO], bi === 2 ? span(u, B[2] + 0.04, B[2] + 0.14) : 0, true);
       set(E.card, cardSvg(CARD.x, CARD.y, CARD.w, tr('matrijs en afkeur', 'mould and scrap', 296), [
         [0, tr('afgesproken aantal stuks', 'an agreed number of parts', 296)],
         [0, tr('of de klant betaalt apart', 'or the customer pays apart', 296), '', 0.5],

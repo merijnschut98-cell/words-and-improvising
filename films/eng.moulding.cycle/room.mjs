@@ -490,14 +490,6 @@ export const C = {
   SETC,
   HOT: [9.5 * MM, 1.5 * MM], // a hot spot the water does not reach (the section)
 };
-// the tour of the machine (film 1): the whole machine, the clamp unit, the injection unit, the mould, the mould opening
-C.INTRO = [
-  fitCam(FIT, [24, 40, 616, 360], 1.2),
-  fitCam(k.boxCorners({ x: -120, y: -22, w: 104, d: 44 }, 34, 82), [90, 40, 550, 330]),
-  cam([56, 0, 62], 400),
-  cam([-30, 0, 57], 210),
-  cam([-36, 4, 54], 240),
-];
 
 export { P, W, H, at, g, near, assert, perHour, FIT, SETC, PLATE4, PLATE8, COINS_BASE, FAM, TCU, TCU_Z, BX, BZ, BD, MM, SETS };
 

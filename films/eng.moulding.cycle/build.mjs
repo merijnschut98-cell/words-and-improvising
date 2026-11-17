@@ -28,19 +28,14 @@ const spec = {
   checkScope: { scenes: ['s1', 's2', 's3', 's4', 's5', 's6', 's7'], stageFns: ['tour', 'capMould', 'render', 'phaseBar', 'cardSvg', 'dimLabels', 'section', 'bossDims'] },
   scenes: [
     {
-      // the Basis tour of the machine, before the terms
+      // a short opening (Task 17 split rule: about 30 words): the press and its two units, so the six steps of s2 have a
+      // place; the machine itself is the lesson eng.moulding.machine, so no more tour than that
       id: 's1', lesson: L1, level: 1, still: 0.5, title: { nl: 'Hoe spuitgieten werkt', en: 'How injection moulding works' },
       beats: [
-        { nl: 'Een spuitgietmachine maakt doppen in een vast rondje, steeds opnieuw.', en: 'An injection moulding machine makes caps in a fixed round, again and again.', focus: null, still: 0.08,
-          say: { nl: 'Hoe werkt spuitgieten? Deze machine maakt flessendoppen van kunststof. Ze doet steeds hetzelfde rondje.', en: 'How does injection moulding work? This machine makes plastic bottle caps. It runs the same round again and again.' } },
-        { nl: 'De sluiteenheid drukt de twee helften van de matrijs stevig dicht.', en: 'The clamp unit presses the two halves of the mould firmly shut.', focus: ['clampunit'], still: 0.3,
-          say: { nl: 'Links zit de sluiteenheid. Die schuift de beweegbare helft van de matrijs tegen de vaste helft, en houdt ze met grote kracht dicht.', en: 'On the left is the clamp unit. It slides the moving half of the mould against the fixed half, and holds them shut with great force.' } },
-        { nl: 'De spuiteenheid smelt de korrels en spuit de smelt in de matrijs.', en: 'The injection unit melts the pellets and injects the melt into the mould.', focus: ['injunit'], still: 0.5,
-          say: { nl: 'Rechts zit de spuiteenheid. Korrels uit de trechter smelten in een verwarmde cilinder, en een schroef spuit de hete smelt in de gesloten matrijs.', en: 'On the right is the injection unit. Pellets from the hopper melt in a heated barrel, and a screw injects the hot melt into the closed mould.' } },
-        { nl: 'In de matrijs koelt de kunststof af tot een stijve dop.', en: 'In the mould the plastic cools into a stiff cap.', focus: ['mould'], still: 0.7,
-          say: { nl: 'In de matrijs zitten holle vormen van de dop. De smelt vult ze en koelt af, tot de dop stijf is.', en: 'Inside the mould are hollow shapes of the cap. The melt fills them and cools, until the cap is stiff.' } },
-        { nl: 'Dan gaat de matrijs open en vallen de doppen eruit.', en: 'Then the mould opens and the caps drop out.', focus: ['mould'], still: 0.9,
-          say: { nl: 'Dan gaat de matrijs open, duwen pennen de doppen eruit, en vallen ze in de bak. De matrijs sluit, en het rondje begint opnieuw.', en: 'Then the mould opens, pins push the caps out, and they drop into the bin. The mould closes, and the round starts again.' } },
+        { nl: 'Een spuitgietmachine maakt doppen in een vast rondje, steeds opnieuw.', en: 'An injection moulding machine makes caps in a fixed round, again and again.', focus: null, still: 0.1,
+          say: { nl: 'Deze machine maakt flessendoppen van kunststof. Ze doet steeds hetzelfde rondje.', en: 'This machine makes plastic bottle caps. It runs the same round again and again.' } },
+        { nl: 'Links houdt de sluiteenheid de matrijs dicht; rechts spuit de spuiteenheid de smelt erin.', en: 'On the left the clamp unit holds the mould shut; on the right the injection unit injects the melt.', focus: ['clampunit', 'injunit'], still: 0.6,
+          say: { nl: 'Links houdt de sluiteenheid de matrijs dicht. Rechts smelt de spuiteenheid de korrels en spuit de smelt erin.', en: 'On the left the clamp unit holds the mould shut. On the right the injection unit melts the pellets and injects the melt.' } },
       ],
     },
     {
@@ -111,10 +106,10 @@ const spec = {
           say: { nl: 'De machine weet niet wanneer het product koel genoeg is. De koeltijd is een vast aantal seconden dat de insteller intikt, de technicus die de pers instelt.', en: 'The machine does not know when the part is cool enough. The cooling time is a fixed number of seconds that the setter types in, the technician who sets up the press.' } },
         { nl: 'Instellers zetten er vaak seconden bij voor de zekerheid, en halen die er nooit meer af.', en: 'Setters often add seconds to be safe, and never take them off again.', focus: ['cool'], points: ['t5.1'],
           say: { nl: 'Instellers zetten er dus vaak een paar seconden bij voor de zekerheid. En die halen ze er nooit meer af.', en: 'So setters often add a few seconds to be safe. And they never take them off again.' } },
-        { nl: 'Andere verstopte tijd: een mal die te ver opengaat, een robotarm die wacht, een hete plek.', en: 'Other hidden time: a mould that opens too far, a robot arm that waits, a hot spot.', focus: ['card'], points: ['t5.2'],
+        { nl: 'Andere verstopte tijd: een matrijs die te ver opengaat, een robotarm die wacht, een hete plek.', en: 'Other hidden time: a mould that opens too far, a robot arm that waits, a hot spot.', focus: ['card'], points: ['t5.2'],
           say: { nl: 'Andere verstopte tijd. Een matrijs die verder opengaat dan nodig. Een robotarm die wacht. Of een hete plek, een stuk staal waar het water niet komt.', en: 'Other hidden time. A mould that opens further than needed. A robot arm that waits. Or a hot spot, a piece of steel the water does not reach.' } },
         { nl: 'Scherpe vraag: wat begrenst deze cyclus, en heeft iemand al geprobeerd er een seconde af te halen?', en: 'A sharp question: what limits this cycle, and has anyone tried to take a second off?', focus: ['card'], points: ['t5.2'],
-          say: { nl: 'Een scherpe vraag is. Wat begrenst deze cyclus, en heeft iemand al geprobeerd er een seconde af te halen?', en: 'A sharp question is this. What limits this cycle, and has anyone tried to take a second off?' } },
+          say: { nl: 'Stel dan een scherpe vraag. Wat begrenst deze cyclus, en heeft iemand al geprobeerd er een seconde af te halen?', en: 'Then ask a sharp question. What limits this cycle, and has anyone tried to take a second off?' } },
       ],
     },
   ],
@@ -133,7 +128,7 @@ beatTimes(spec.scenes, plainWords, beatStarts);
 // ---------------------------------------------------------------- cameras (one move per scene)
 const unitsFrame = [350, 70, 630, 250];
 const CAM = [
-  { from: cam([0, 0, 40], 640), to: cam([0, 0, 40], 640) }, // the tour moves its own camera
+  { from: fitCam(FIT, [24, 40, 616, 360], 1.2), to: fitCam(FIT, [24, 40, 616, 360], 1.26) },
   { from: fitCam(FIT, [24, 54, 616, 318]), to: fitCam(FIT, [24, 54, 616, 318], 1.05) },
   { from: camAt([-24, 2, 52], 560, 160, 0), to: camAt([-36, 4, 54], 240, 150, 10), a: 0.02, b: 0.3 },
   { from: fitCam(blockPts, [40, 30, 600, 330], 1.2), to: fitCam(blockPts, [40, 30, 600, 330], 1.27) },

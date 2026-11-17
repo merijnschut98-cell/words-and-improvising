@@ -5,6 +5,9 @@
   const wpx = 5;
   // which plate shows: 4 cavities or 8; the 8-cavity plate shows its cavities or the family mould's two
   function plateShow(four, family) {
+    // scene 2 fades the plates into each other; every other scene shows them whole, also after a seek back
+    fade(E.plate4, 1);
+    fade(E.plate8, 1);
     show(E.plate4, four);
     show(E.plate8, !four);
     show(E.pk8, !four && !family);
@@ -143,7 +146,7 @@
         ], si, u)
         : cardSvg(CARD.x, CARD.y, CARD.w, tr('uitkomst', 'result', 296), [
           [2, `A  3600 / 20 × 4 = 720`, 'code'],
-          [2, `${big(2000000)} / 720 ≈ ${big(2778)} ${tr('uur', 'h', 296)}`, 'code', 0.3],
+          [2, `${big(2000000)} / 720 ≈ ${big(2778)} ${tr('u', 'h', 296)}`, 'code', 0.3],
           [2, `≈ € ${big(166700)} / ${tr('jaar', 'year', 296)}`, '', 0.6],
           [3, `B  3600 / 24 × 8 = ${big(1200)}`, 'code'],
         ], si, u));
@@ -157,7 +160,7 @@
       set(E.melt, fillRun(C.RUN8, C.CAV8, lin(u, 0.04, 0.5), wpx));
       set(E.card, cardSvg(CARD.x, CARD.y, CARD.w, tr('antwoord', 'answer', 296), [
         [0, tr('B: kosten? terugverdiend?', 'B: cost? payback?', 296)],
-        [1, `${big(2000000)} / ${big(1200)} ≈ ${big(1667)} ${tr('uur', 'h', 296)}`, 'code'],
+        [1, `${big(2000000)} / ${big(1200)} ≈ ${big(1667)} ${tr('u', 'h', 296)}`, 'code'],
         [1, `× € 75 = € ${big(125000)}`, 'code', 0.3],
         [1, `€ ${big(41700)} ${tr('minder dan A', 'less than A', 296)}`, '', 0.6],
         [2, `${big(60000)} / ${big(41700)} ≈ ${num(1.4, 1)} ${tr('jaar', 'years', 296)}`, 'code'],

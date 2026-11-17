@@ -1,5 +1,5 @@
   // ------------------------------------------------------------ the film "Cyclustijd en output / Cycle time and output" (lesson eng.moulding.cycle)
-  // Scenes: 1 the tour of the machine, 2 the cycle, 3 cavities and output, 4 cooling through the wall, 5 a thinner wall,
+  // Scenes: 1 the press and its two units, 2 the cycle, 3 cavities and output, 4 cooling through the wall, 5 a thinner wall,
   // 6 a commercial number, 7 hidden time.
   const hud = svg.querySelector('[data-k="hud"]');
   // the cap mould: closed and cooling, opens, shows its two cavities with the caps, ejects, closes
@@ -12,34 +12,11 @@
       drawPress({ gap, fwd: 0, shot: fall < 40 ? 1 : 0, push, fall });
     } else drawPress({ gap, fwd: span(u, 0.6, 0.64), shot: u > 0.62 ? 1 : 0, push: 0, fall: 0 });
   }
-  // which beat of the tour u falls in (by the designed starts d), and how far through it; the camera holds the framing of
-  // the beat and glides there over its first quarter
-  function tourBeat(u, d) {
-    let k = 0;
-    for (let i = 0; i < d.length; i++) if (u >= d[i]) k = i;
-    const end = k + 1 < d.length ? d[k + 1] : 1;
-    return { k, p: end > d[k] ? Math.min(1, Math.max(0, (u - d[k]) / (end - d[k]))) : 1 };
-  }
-  function tourCamera(k, p) {
-    const from = C.INTRO[Math.max(0, k - 1)];
-    const to = C.INTRO[k];
-    const e = span(p, 0, 0.25);
-    const cx = lerp(from[0], to[0], e);
-    const cy = lerp(from[1], to[1], e);
-    const w = lerp(from[2], to[2], e);
-    const t = `translate(${f1(W / 2)} ${f1(H / 2)}) scale(${(W / w).toFixed(4)}) translate(${f1(-cx)} ${f1(-cy)})`;
-    if (E.world.__t !== t) { E.world.setAttribute('transform', t); E.world.__t = t; }
-  }
-  // the tour: the whole machine, the clamp unit, the injection unit, the mould, the mould opening
+  // the opening: the press stands open, then closes and injects while the caption names its two units
   function tour(u) {
-    const d = C.B[0].slice(0, -1);
-    const { k, p } = tourBeat(u, d);
-    if (k === 0) drawPress(pose(0));
-    else if (k === 1) drawPress(pose(lerp(0, 2, span(p, 0.1, 0.9))));
-    else if (k === 2) drawPress(pose(lerp(2, 3.5, span(p, 0.1, 0.9))));
-    else if (k === 3) drawPress(pose(lerp(3.5, 24.4, p)));
-    else capMould(lerp(0.04, 0.48, p));
-    tourCamera(k, p);
+    const d = C.B[0];
+    const p = d[1] > 0 ? Math.min(1, Math.max(0, (u - d[1]) / (1 - d[1]))) : 1;
+    drawPress(pose(u < d[1] ? 0 : lerp(0, 3.5, span(p, 0.1, 0.9))));
   }
   const CARD = { x: 14, y: 60, w: 330 };
   const OUT = { x: 8, y: 62 };
@@ -50,6 +27,7 @@
     show(hud, si !== 0);
     if (si === 0) {
       scene(si, ['press'], []);
+      camera(si, u);
       tour(u);
       return;
     }
@@ -125,7 +103,7 @@
       drawPress(pose(t));
       phaseBar(t, extra, extra > 0.5 ? tr('voor de zekerheid', 'to be safe') : '');
       set(E.card, cardSvg(CARD.x, CARD.y, CARD.w, tr('verstopte tijd', 'hidden time'), [
-        [2, tr('mal gaat te ver open', 'mould opens too far', 296)],
+        [2, tr('matrijs gaat te ver open', 'mould opens too far', 296)],
         [2, tr('robotarm wacht', 'robot arm waits', 296), '', 0.3],
         [2, tr('hete plek, geen water', 'hot spot, no water', 296), '', 0.6],
         [3, tr('Wat begrenst de cyclus?', 'What limits the cycle?', 296)],

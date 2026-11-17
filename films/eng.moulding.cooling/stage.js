@@ -48,11 +48,11 @@
       set(E.card, cardSvg(CARD.x, CARD.y, 290, tr('te koud', 'too cold', 256), [
         [1, tr('kouder is sneller', 'colder is quicker', 256)],
         [1, tr('maar niet gratis', 'but not free', 256), '', 0.4],
-        [2, tr('dof oppervlak', 'dull surface', 256)],
-        [2, tr('vloeilijnen', 'flow lines', 256), '', 0.2],
-        [2, tr('ingevroren spanning', 'frozen-in stress', 256), '', 0.4],
-        [3, tr('PA krimpt later na', 'PA shrinks later', 256)],
-        [3, tr('PA6: 80 °C', 'PA6: 80 °C', 256), '', 0.5],
+        [1, tr('dof oppervlak', 'dull surface', 256), '', 0.55],
+        [1, tr('vloeilijnen', 'flow lines', 256), '', 0.68],
+        [1, tr('ingevroren spanning', 'frozen-in stress', 256), '', 0.8],
+        [2, tr('PA krimpt later na', 'PA shrinks later', 256)],
+        [2, tr('PA6: 80 °C', 'PA6: 80 °C', 256), '', 0.5],
       ], si, u));
     } else if (si === 3) {
       // water in a channel under a magnifier: layers, then swirls; limescale insulates
