@@ -3,6 +3,7 @@ export default {
   lessons: [
     {
       id: 'eng.cyber.cia',
+      gist: 'Security protects confidentiality, integrity and availability; in the plant, availability and safety come first, with integrity right behind.',
       title: 'Confidentiality, integrity and availability',
       pre: [
         {
@@ -70,6 +71,7 @@ export default {
     },
     {
       id: 'eng.cyber.phishing',
+      gist: 'Phishing works on people: for a new account number, call back on a number you already had, and report even if you already clicked.',
       title: 'Phishing and social engineering',
       pre: [
         {
@@ -136,6 +138,7 @@ export default {
     },
     {
       id: 'eng.cyber.mfa',
+      gist: 'A long, unique password per site plus MFA; a passkey is tied to the real web address, so a fake site gets nothing from it.',
       title: 'Passwords and MFA',
       pre: [
         {
@@ -205,6 +208,7 @@ export default {
     },
     {
       id: 'eng.cyber.leastpriv',
+      gist: 'Give only the rights the task needs; whoever changes role or leaves loses them, and an access review catches privilege creep.',
       title: 'Least privilege and account management',
       pre: [
         {
@@ -274,6 +278,7 @@ export default {
     },
     {
       id: 'eng.cyber.iec62443',
+      gist: 'IEC 62443 splits OT security over asset owner, service provider and product supplier, and asks for defence in depth: never rely on one measure.',
       title: 'OT security and IEC 62443',
       pre: [
         {
@@ -341,6 +346,7 @@ export default {
     },
     {
       id: 'eng.cyber.zones',
+      gist: 'Group devices into zones with the same security needs, and fix per conduit which protocols, ports and direction are allowed.',
       title: 'Dividing into zones and conduits',
       pre: [
         {
@@ -408,6 +414,7 @@ export default {
     },
     {
       id: 'eng.cyber.seclevels',
+      gist: 'A security level says which attacker a zone must withstand; compare target (SL-T) and achieved level (SL-A) for each foundational requirement.',
       title: 'Security levels: how strict per zone',
       pre: [
         {
@@ -476,6 +483,7 @@ export default {
     },
     {
       id: 'eng.cyber.otpatch',
+      gist: 'Patch in OT by risk: first what is reachable and actually exploited; while patching is not possible, a compensating control reduces the risk.',
       title: 'Remote access and patching in OT',
       pre: [
         {
@@ -545,6 +553,7 @@ export default {
     },
     {
       id: 'eng.cyber.nis2',
+      gist: 'NIS2 is the European cybersecurity directive; in the Netherlands it became the Cyberbeveiligingswet, with a duty of care, reporting, registration and supervision.',
       title: 'NIS2 and the Dutch Cybersecurity Act',
       pre: [
         {
@@ -612,6 +621,7 @@ export default {
     },
     {
       id: 'eng.cyber.scope',
+      gist: 'You are covered if you are in a listed sector and have 50 or more employees, or turnover and balance sheet both above €10 million.',
       title: 'Who is covered: sectors and size',
       pre: [
         {
@@ -679,6 +689,7 @@ export default {
     },
     {
       id: 'eng.cyber.dutyofcare',
+      gist: 'Appropriate measures match the risk, the size and the cost; the board approves them and can be held to account for them.',
       title: 'The duty of care in practice',
       pre: [
         {
@@ -747,6 +758,7 @@ export default {
     },
     {
       id: 'eng.cyber.reporting',
+      gist: 'A significant incident is reported in three steps: early warning within 24 hours, notification within 72 hours, final report within a month of handling.',
       title: 'Reporting incidents: 24 hours, 72 hours, one month',
       pre: [
         {
@@ -816,6 +828,7 @@ export default {
     },
     {
       id: 'eng.cyber.ircycle',
+      gist: 'Incident response follows set phases: prepare, detect, contain, eradicate, recover and review; the sooner you notice, the smaller the damage.',
       title: 'The incident response cycle',
       pre: [
         {
@@ -883,6 +896,7 @@ export default {
     },
     {
       id: 'eng.cyber.prepare',
+      gist: 'What you work out beforehand you need not invent under pressure: a plan, a paper contact list, playbooks per scenario and practice.',
       title: 'Preparing: plan, exercise and running by hand',
       pre: [
         {
@@ -950,6 +964,7 @@ export default {
     },
     {
       id: 'eng.cyber.contain',
+      gist: 'Detect and contain with tools and agreements set up beforehand: isolate, block accounts, close conduits and keep evidence before you reinstall.',
       title: 'Detecting and containing: the NotPetya lesson',
       pre: [
         {
@@ -1019,6 +1034,7 @@ export default {
     },
     {
       id: 'eng.cyber.recover',
+      gist: 'Restore the base first, then what feeds the bottleneck and the orders, from a clean backup from before the infection; review without blame.',
       title: 'Recovering and learning',
       pre: [
         {

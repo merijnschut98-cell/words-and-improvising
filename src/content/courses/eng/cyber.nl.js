@@ -3,6 +3,7 @@ export default {
   lessons: [
     {
       id: 'eng.cyber.cia',
+      gist: 'Beveiliging beschermt vertrouwelijkheid, integriteit en beschikbaarheid; in de fabriek gaan beschikbaarheid en veiligheid voor, met integriteit vlak daarachter.',
       title: 'Vertrouwelijkheid, integriteit en beschikbaarheid',
       pre: [
         {
@@ -70,6 +71,7 @@ export default {
     },
     {
       id: 'eng.cyber.phishing',
+      gist: 'Phishing werkt op mensen: bel bij een nieuw rekeningnummer terug op een bekend nummer, en meld ook als je al geklikt hebt.',
       title: 'Phishing en social engineering',
       pre: [
         {
@@ -136,6 +138,7 @@ export default {
     },
     {
       id: 'eng.cyber.mfa',
+      gist: 'Een eigen, lang wachtwoord per site plus MFA; een passkey is gekoppeld aan het echte webadres, dus nepsites hebben er niets aan.',
       title: 'Wachtwoorden en MFA',
       pre: [
         {
@@ -205,6 +208,7 @@ export default {
     },
     {
       id: 'eng.cyber.leastpriv',
+      gist: 'Geef alleen de rechten die de taak nodig heeft; wie van functie wisselt of vertrekt verliest ze, en een toegangsreview vangt rechtenophoping op.',
       title: 'Minimale rechten en accountbeheer',
       pre: [
         {
@@ -274,6 +278,7 @@ export default {
     },
     {
       id: 'eng.cyber.iec62443',
+      gist: 'IEC 62443 verdeelt OT-beveiliging over eigenaar, dienstverlener en leverancier, en vraagt gelaagde verdediging: nooit vertrouwen op één maatregel.',
       title: 'OT-beveiliging en IEC 62443',
       pre: [
         {
@@ -341,6 +346,7 @@ export default {
     },
     {
       id: 'eng.cyber.zones',
+      gist: 'Deel apparaten in zones met dezelfde beveiligingseisen en leg per conduit vast welke protocollen, poorten en richting zijn toegestaan.',
       title: 'Zones en conduits indelen',
       pre: [
         {
@@ -408,6 +414,7 @@ export default {
     },
     {
       id: 'eng.cyber.seclevels',
+      gist: 'Een securitylevel zegt welke aanvaller een zone moet kunnen weerstaan; vergelijk per fundamentele eis het doel (SL-T) met het bereikte niveau (SL-A).',
       title: 'Securitylevels: hoe streng per zone',
       pre: [
         {
@@ -476,6 +483,7 @@ export default {
     },
     {
       id: 'eng.cyber.otpatch',
+      gist: 'Patch in OT risicogestuurd: eerst wat bereikbaar is en echt misbruikt wordt; kan patchen nog niet, dan verkleint een compenserende maatregel het risico.',
       title: 'Toegang op afstand en patchen in OT',
       pre: [
         {
@@ -545,6 +553,7 @@ export default {
     },
     {
       id: 'eng.cyber.nis2',
+      gist: 'NIS2 is de Europese richtlijn voor cyberbeveiliging; in Nederland is hij omgezet in de Cyberbeveiligingswet, met zorgplicht, meldplicht, registratieplicht en toezicht.',
       title: 'NIS2 en de Cyberbeveiligingswet',
       pre: [
         {
@@ -612,6 +621,7 @@ export default {
     },
     {
       id: 'eng.cyber.scope',
+      gist: 'Je valt eronder met een sector uit de bijlagen en vanaf 50 medewerkers, of meer dan €10 miljoen omzet én balanstotaal.',
       title: 'Wie valt eronder: sectoren en omvang',
       pre: [
         {
@@ -679,6 +689,7 @@ export default {
     },
     {
       id: 'eng.cyber.dutyofcare',
+      gist: 'Passende maatregelen staan in verhouding tot risico, omvang en kosten; het bestuur keurt ze goed en kan erop worden aangesproken.',
       title: 'De zorgplicht in de praktijk',
       pre: [
         {
@@ -747,6 +758,7 @@ export default {
     },
     {
       id: 'eng.cyber.reporting',
+      gist: 'Een significant incident meld je in drie stappen: vroegtijdige waarschuwing binnen 24 uur, incidentmelding binnen 72 uur, eindrapport binnen een maand na afhandeling.',
       title: 'Incidenten melden: 24 uur, 72 uur, een maand',
       pre: [
         {
@@ -816,6 +828,7 @@ export default {
     },
     {
       id: 'eng.cyber.ircycle',
+      gist: 'Incidentrespons volgt vaste fases: voorbereiden, detecteren, indammen, uitroeien, herstellen en evalueren; hoe eerder je het merkt, hoe kleiner de schade.',
       title: 'De incidentresponscyclus',
       pre: [
         {
@@ -883,6 +896,7 @@ export default {
     },
     {
       id: 'eng.cyber.prepare',
+      gist: 'Wat je vooraf uitwerkt hoef je onder druk niet te bedenken: een plan, een contactlijst op papier, playbooks per scenario en oefening.',
       title: 'Voorbereiden: plan, oefening en handmatig draaien',
       pre: [
         {
@@ -950,6 +964,7 @@ export default {
     },
     {
       id: 'eng.cyber.contain',
+      gist: 'Detecteer en dam in met gereedschap en afspraken die je vooraf regelt: isoleer, blokkeer accounts, sluit conduits en bewaar bewijs voordat je herinstalleert.',
       title: 'Detecteren en indammen: de les van NotPetya',
       pre: [
         {
@@ -1019,6 +1034,7 @@ export default {
     },
     {
       id: 'eng.cyber.recover',
+      gist: 'Herstel eerst de basis, dan wat bottleneck en orders voedt, vanaf een schone back-up van vóór de besmetting; evalueer zonder schuldvraag.',
       title: 'Herstellen en leren',
       pre: [
         {
