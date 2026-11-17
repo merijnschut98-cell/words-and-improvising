@@ -1079,7 +1079,7 @@ export default {
     },
     {
       id: 'pm.approach.landscape',
-      gist: 'Find the data owner per kind of data, negotiate early with the PMO on how you are measured, and allow for vendor risk.',
+      gist: 'Find the data owner per kind of data, negotiate early with the PMO on your measures, and allow for vendor risk and technical changes.',
       title: 'The tool landscape as a senior',
       pre: [
         {

@@ -573,7 +573,7 @@ export default {
     },
     {
       id: 'pm.approach.toolfamilies',
-      gist: 'Een tool loont als hij meer oplevert dan hij kost; denk in toolfamilies per soort werk en kies de kleinste set die het werk draagt.',
+      gist: 'Een tool loont als hij meer oplevert dan hij kost; denk in toolfamilies per soort werk en kies de kleinste set.',
       title: 'Toolfamilies en wanneer een tool loont',
       pre: [
         {
@@ -862,7 +862,7 @@ export default {
     },
     {
       id: 'pm.approach.systems',
-      gist: 'In een groot bedrijf heeft elk systeem één taak; het systeem van vastlegging heeft bij tegenspraak het laatste woord, en de projectcode koppelt alles.',
+      gist: 'In een groot bedrijf heeft elk systeem één taak; bij tegenspraak heeft het systeem van vastlegging het laatste woord.',
       title: 'De systemen van een grote klant',
       pre: [
         {
