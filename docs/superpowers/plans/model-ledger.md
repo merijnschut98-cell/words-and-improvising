@@ -217,3 +217,4 @@ Outcome: accepted (merged as delivered), sent back N times, redone.
 | 2026-11-17 | Task 17 B1 #2: split eng.joining.arc into four one-lesson films | sonnet | 161 | 26 min | 512k | done (7007748); 49 points claimed, 193-228 s; SAY list for review |
 | 2026-11-17 | Task 17 pilot B: split eng.moulding.cycle into four one-lesson films | sonnet | ~120 | ~3.5 h | - | done (f5c7e02); 45 points claimed, 1 reading (pointer); 169-246 s designed |
 | 2026-11-17 | Review of the eng.joining.arc split | sonnet | 146 | 22 min | 359k | approved (36d6d02); 6 small fixes; SAY rules for welding standards added by the integrator |
+| 2026-11-17 | Review of Task 17 pilot B (eng.moulding.cycle split) | opus | 106 | 20 min | 292k | approved (ee692d7); 8 fixes incl. card rows a beat late, blank displays, empty stage, scrap truth, padded tour cut (246 to 224 s); integrator added the PA6 rule and dropped the size allowance |

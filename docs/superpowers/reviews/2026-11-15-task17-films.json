@@ -1479,7 +1479,7 @@
   },
   {
    "film": "eng.moulding.cycle",
-   "action": "extend",
+   "action": "split",
    "lessons": [
     {
      "id": "eng.moulding.cycle",
