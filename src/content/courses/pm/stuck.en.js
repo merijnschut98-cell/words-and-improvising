@@ -3,6 +3,7 @@ export default {
   lessons: [
     {
       id: 'pm.stuck.diagnose',
+      gist: 'Being stuck comes in four kinds: unclear goal, unclear way, people and capacity; start at the first “no” on the four questions.',
       film: 'pm.stuck.diagnose',
       title: 'Naming the problem',
       pre: [
@@ -84,6 +85,7 @@ export default {
     },
     {
       id: 'pm.stuck.facts',
+      gist: 'Back your diagnosis with facts from three sources, paper, what you see, what people say; where they contradict each other the problem often sits.',
       title: 'Getting the facts',
       pre: [
         {
@@ -166,6 +168,7 @@ export default {
     },
     {
       id: 'pm.stuck.rootcause',
+      gist: 'Steer on causes, not symptoms: keep asking through the iceberg model until you reach something concrete that someone can change.',
       title: 'Causes below the surface',
       pre: [
         {
@@ -248,6 +251,7 @@ export default {
     },
     {
       id: 'pm.stuck.healthcheck',
+      gist: 'A project review is an independent check: agree the question beforehand, let the project manager see the report first and give three to five recommendations.',
       title: 'Leading a project review',
       pre: [
         {
@@ -330,6 +334,7 @@ export default {
     },
     {
       id: 'pm.stuck.buytime',
+      gist: 'Unsure? Name a concrete time you will come back, and keep to it; separate what you know, think and do not know.',
       title: 'Buying time professionally',
       pre: [
         {
@@ -410,6 +415,7 @@ export default {
     },
     {
       id: 'pm.stuck.askhelp',
+      gist: 'Ask for help after a day or two of being stuck: say what you tried, what you are asking and when you need it.',
       title: 'Asking for help well',
       pre: [
         {
@@ -491,6 +497,7 @@ export default {
     },
     {
       id: 'pm.stuck.experiment',
+      gist: 'Take a reversible decision quickly and test it with a small experiment, with a hypothesis and an agreed stop criterion; analyse irreversible decisions carefully.',
       film: 'pm.stuck.diagnose',
       title: 'Acting under uncertainty',
       pre: [
@@ -577,6 +584,7 @@ export default {
     },
     {
       id: 'pm.stuck.cynefin',
+      gist: 'Choose your approach by the kind of problem: for a complicated problem seek an expert or analysis, for a complex one probe with small experiments.',
       title: 'What kind of problem is this? Cynefin',
       pre: [
         {
@@ -659,6 +667,7 @@ export default {
     },
     {
       id: 'pm.stuck.blocker',
+      gist: 'A blocker rarely says a hard no; start by understanding why, on Maurer’s three levels of resistance, because pushing usually makes it worse.',
       title: 'The person who blocks',
       pre: [
         {
@@ -738,6 +747,7 @@ export default {
     },
     {
       id: 'pm.stuck.pressure',
+      gist: 'Under client pressure, slow down first: acknowledge it, name a call-back time and look for the real need, often smaller than the demand.',
       title: 'When the client pushes',
       pre: [
         {
@@ -818,6 +828,7 @@ export default {
     },
     {
       id: 'pm.stuck.hidden',
+      gist: 'A pocket veto is saying yes in the meeting and doing nothing; make commitments specific: who, what, by when and how you will see it.',
       title: 'Saying yes, doing no',
       pre: [
         {
@@ -899,6 +910,7 @@ export default {
     },
     {
       id: 'pm.stuck.turf',
+      gist: 'Departments that clash each steer on their own KPI; escalate a choice together, not a person, and adjust the KPI if needed.',
       title: 'Stuck between two departments',
       pre: [
         {
@@ -982,6 +994,7 @@ export default {
     },
     {
       id: 'pm.stuck.sponsor',
+      gist: 'A sponsor can usually free a stuck project by deciding, making room and giving air cover; ask concretely, with a name and a date.',
       title: 'What you need from your sponsor',
       pre: [
         {
@@ -1063,6 +1076,7 @@ export default {
     },
     {
       id: 'pm.stuck.smallwins',
+      gist: 'A new plan alone does not bring the energy back; a small, visible win does, because noticing progress in meaningful work counts most.',
       title: 'Moving again: small wins',
       pre: [
         {
@@ -1145,6 +1159,7 @@ export default {
     },
     {
       id: 'pm.stuck.reset',
+      gist: 'Hoping to catch up is the costliest choice: stop for an honest analysis on one A4 page and make a new agreement.',
       film: 'pm.stuck.diagnose',
       title: 'Resetting a failing project',
       pre: [
@@ -1228,6 +1243,7 @@ export default {
     },
     {
       id: 'pm.stuck.recovery',
+      gist: 'A recovery plan covers four to six weeks with weekly milestones and cuts scope first: if everything is a must, you have not chosen.',
       title: 'Recovering a red project',
       pre: [
         {
