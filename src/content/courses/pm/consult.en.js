@@ -87,7 +87,7 @@ export default {
     },
     {
       id: 'pm.consult.pricing',
-      gist: 'Price by day rate, value or fixed price, add a risk margin to a fixed price, put extra work in writing and trade for discounts.',
+      gist: 'Price by day rate, value or fixed price, add a risk margin to fixed bids, put extra work in writing, and trade discounts for something.',
       film: 'pm.consult.proposal',
       title: 'Pricing and scope',
       pre: [
@@ -1251,7 +1251,7 @@ export default {
     },
     {
       id: 'pm.consult.scale',
-      gist: 'Work drifts from brains to procedure work; leverage gives margin, but watch client concentration and false self-employment.',
+      gist: 'Work that becomes familiar drifts from brains to procedure work; leverage gives margin, but watch client concentration and false self-employment.',
       title: 'Beyond yourself: leverage and the rules for independents',
       pre: [
         {

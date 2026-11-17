@@ -87,7 +87,7 @@ export default {
     },
     {
       id: 'pm.consult.pricing',
-      gist: 'Prijs met dagtarief, waarde of vaste prijs, reken risico-opslag bij een vaste prijs, leg meerwerk schriftelijk vast en ruil bij korting.',
+      gist: 'Prijs met dagtarief, waarde of vaste prijs, reken risico-opslag bij een vaste prijs, leg meerwerk schriftelijk vast en ruil korting tegen iets terug.',
       film: 'pm.consult.proposal',
       title: 'Prijs en scope',
       pre: [
@@ -1251,7 +1251,7 @@ export default {
     },
     {
       id: 'pm.consult.scale',
-      gist: 'Werk groeit van denkwerk naar procedurewerk; hefboom geeft marge, maar let op klantconcentratie en schijnzelfstandigheid.',
+      gist: 'Werk dat bekender wordt, schuift van denkwerk naar procedurewerk; hefboom geeft marge, maar let op klantconcentratie en schijnzelfstandigheid.',
       title: 'Verder dan jezelf: hefboom en de regels voor zelfstandigen',
       pre: [
         {
