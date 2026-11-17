@@ -3,6 +3,7 @@ export default {
   lessons: [
     {
       id: 'pm.formats.catalogue',
+      gist: 'Every meeting has a purpose, participants, a duration and an output; if you cannot name the output, drop the meeting.',
       title: 'A project’s meetings',
       pre: [
         {
@@ -103,6 +104,7 @@ export default {
     },
     {
       id: 'pm.formats.kickoff',
+      gist: 'A kick-off of about 60 minutes in five blocks, with a pre-read beforehand, fixes the goal, roles, rhythm, working agreements and first actions.',
       title: 'Preparing and running a kick-off',
       pre: [
         {
@@ -194,6 +196,7 @@ export default {
     },
     {
       id: 'pm.formats.system',
+      gist: 'Build a meeting system that decides, aligns and learns, with a cadence that follows the pace of the work.',
       title: 'The meeting system of one project',
       pre: [
         {
@@ -282,6 +285,7 @@ export default {
     },
     {
       id: 'pm.formats.governance',
+      gist: 'The invitation list is a power decision, you prepare decisions beforehand, and every meeting you add costs scarce time; hand over the chair.',
       title: 'The meeting as governance',
       pre: [
         {
@@ -380,6 +384,7 @@ export default {
     },
     {
       id: 'pm.formats.workshop',
+      gist: 'A workshop has one goal, delivers a visible outcome and brings in the right people; you design it with goal, outcome, participants and agenda.',
       title: 'What a workshop is',
       pre: [
         {
@@ -465,6 +470,7 @@ export default {
     },
     {
       id: 'pm.formats.brownpaper',
+      gist: 'On a brown paper a group of six to twelve draws the process left to right, with a swim lane per role.',
       title: 'Running a brown paper session',
       pre: [
         {
@@ -564,6 +570,7 @@ export default {
     },
     {
       id: 'pm.formats.design',
+      gist: 'You design a session by weighing group size, duration and room or online, and you solve the two-role problem by letting someone else facilitate.',
       title: 'Design choices for a session',
       pre: [
         {
@@ -652,6 +659,7 @@ export default {
     },
     {
       id: 'pm.formats.facilitation',
+      gist: 'Facilitating starts with contracting the outcome with the sponsor; you stay neutral on the answer and make sure the outcome has an owner.',
       title: 'Facilitation as a craft',
       pre: [
         {
@@ -749,6 +757,7 @@ export default {
     },
     {
       id: 'pm.formats.diverge',
+      gist: 'Keep gathering and choosing apart: write silently first to avoid production blocking, then choose, or let the owner decide when the answer is known.',
       title: 'First many ideas, then choose',
       pre: [
         {
@@ -839,6 +848,7 @@ export default {
     },
     {
       id: 'pm.formats.session',
+      gist: 'An ideas session on a digital board runs from silent writing in private mode to voting; the top three enter the plan within a day.',
       title: 'An idea session on a whiteboard',
       pre: [
         {
@@ -933,6 +943,7 @@ export default {
     },
     {
       id: 'pm.formats.decide',
+      gist: 'Choose the decision format by who owns the decision, and by weight and pace; do not ask for ideas when the choice is already made.',
       title: 'Who decides, and how',
       pre: [
         {
@@ -1025,6 +1036,7 @@ export default {
     },
     {
       id: 'pm.formats.legitimacy',
+      gist: 'Avoid consultation theatre with a mandate in the invitation and feedback afterwards; always ask who decides, and whether that person said so in this room.',
       title: 'Legitimacy and consultation theatre',
       pre: [
         {
@@ -1121,6 +1133,7 @@ export default {
     },
     {
       id: 'pm.formats.floor',
+      gist: 'Outside the meeting room you see what happens: gemba walk and interviews at the start, a demo during execution, a kaizen event for an area.',
       title: 'Four formats outside the meeting room',
       pre: [
         {
@@ -1210,6 +1223,7 @@ export default {
     },
     {
       id: 'pm.formats.interviews',
+      gist: 'Hold eight to ten interviews across all levels with five open questions, write in the other person’s words and summarise in themes with quotes.',
       title: 'Running an interview round',
       pre: [
         {
@@ -1301,6 +1315,7 @@ export default {
     },
     {
       id: 'pm.formats.demo',
+      gist: 'Show a demo on the floor where it is used, ask for feedback rather than approval, and choose the work format by the question.',
       title: 'A demo on the floor and choosing the right format',
       pre: [
         {
@@ -1387,6 +1402,7 @@ export default {
     },
     {
       id: 'pm.formats.kaizenevent',
+      gist: 'A kaizen event succeeds when the area owner frees people, the sponsor protects the week and a follow-up list secures the actions.',
       title: 'Commissioning a kaizen event',
       pre: [
         {
