@@ -3,7 +3,7 @@ export default {
   lessons: [
     {
       id: 'pm.plan.wbs',
-      gist: 'Begin bij resultaten die je kunt controleren, niet bij activiteiten; houd werkpakketten onder de 80 uur en bouw de lijst met wie het werk doet.',
+      gist: 'Begin bij controleerbare resultaten, niet bij activiteiten; houd werkpakketten tussen 8 en 80 uur en maak de opdeling samen met het team.',
       film: 'pm.plan.wbs',
       title: 'Het werk opdelen',
       pre: [
@@ -168,7 +168,7 @@ export default {
     },
     {
       id: 'pm.plan.products',
-      gist: 'Plan eerst het eindproduct, dan de boom van producten en per product wat goed is, en pas daarna de activiteiten en de volgorde.',
+      gist: 'Plan vanuit producten: eerst het eindproduct, dan de boom van producten, per product wat goed is, en tot slot de volgorde.',
       title: 'Productgericht plannen (PRINCE2)',
       pre: [
         {
@@ -505,7 +505,7 @@ export default {
     },
     {
       id: 'pm.plan.network',
-      gist: 'Reken het netwerk door: het grootste vroegste einde van de voorgangers bepaalt de vroegste start, en speling is laatste minus vroegste start.',
+      gist: 'Reken het netwerk heen en terug door: totale speling is laatste start min vroegste start, en bij speling 0 ligt een activiteit op het kritieke pad.',
       title: 'Rekenen met het netwerk: vroegst, laatst en speling',
       pre: [
         {
@@ -590,7 +590,7 @@ export default {
     },
     {
       id: 'pm.plan.compress',
-      gist: 'Versnel alleen op het kritieke pad: crashing kost geld, fast-tracking kost risico; kies de goedkoopste per gewonnen week en bewaak de trend.',
+      gist: 'Versnel alleen op het kritieke pad: crashing kost geld, fast-tracking kost risico; kies de goedkoopste per gewonnen week en volg de mijlpaaltrend.',
       title: 'Versnellen en de planning bewaken',
       pre: [
         {
@@ -675,7 +675,7 @@ export default {
     },
     {
       id: 'pm.plan.estimate',
-      gist: 'Geef een bandbreedte in plaats van een punt: het PERT-gemiddelde is (O + 4M + P) / 6, en werk is geen doorlooptijd.',
+      gist: 'Geef een bandbreedte, geen punt: het PERT-gemiddelde is (O + 4M + P) / 6, en uren inspanning zijn nog geen doorlooptijd.',
       film: 'pm.plan.wbs',
       title: 'Eerlijk schatten',
       pre: [
@@ -844,7 +844,7 @@ export default {
     },
     {
       id: 'pm.plan.spread',
-      gist: 'De spreiding van een activiteit is (P − O) / 6; die van een keten is de wortel uit de som van de varianties.',
+      gist: 'Spreiding is (P − O) / 6 per activiteit; over een keten tel je varianties op, zodat je een datum met zekerheid (P80) noemt.',
       title: 'Onzekerheid optellen: spreiding en zekerheid',
       pre: [
         {

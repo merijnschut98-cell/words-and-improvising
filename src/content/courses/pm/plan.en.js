@@ -3,7 +3,7 @@ export default {
   lessons: [
     {
       id: 'pm.plan.wbs',
-      gist: 'Start from checkable results, not activities; keep work packages under 80 hours and build the list with the people doing the work.',
+      gist: 'Start from checkable results, not activities; keep work packages between 8 and 80 hours and build the breakdown with the team.',
       film: 'pm.plan.wbs',
       title: 'Breaking the work down',
       pre: [
@@ -168,7 +168,7 @@ export default {
     },
     {
       id: 'pm.plan.products',
-      gist: 'Plan the end product first, then the tree of products and what good means for each, and only then the activities and their order.',
+      gist: 'Plan from products: first the end product, then the tree of products, what good means for each, and finally their order.',
       title: 'Product-based planning (PRINCE2)',
       pre: [
         {
@@ -505,7 +505,7 @@ export default {
     },
     {
       id: 'pm.plan.network',
-      gist: 'Calculate the network: the largest early finish among the predecessors sets the earliest start, and float is latest minus earliest start.',
+      gist: 'Calculate the network forwards and backwards: total float is latest start minus earliest start, and zero float puts an activity on the critical path.',
       title: 'Calculating the network: earliest, latest and float',
       pre: [
         {
@@ -590,7 +590,7 @@ export default {
     },
     {
       id: 'pm.plan.compress',
-      gist: 'Speed up only on the critical path: crashing costs money, fast-tracking costs risk; pick the cheapest per week gained and watch the trend.',
+      gist: 'Speed up only on the critical path: crashing costs money, fast-tracking costs risk; pick the cheapest per week gained and follow the milestone trend.',
       title: 'Speeding up and tracking the schedule',
       pre: [
         {
@@ -675,7 +675,7 @@ export default {
     },
     {
       id: 'pm.plan.estimate',
-      gist: 'Give a range, not a point: the PERT mean is (O + 4M + P) / 6, and work is not elapsed time.',
+      gist: 'Give a range, not a point: the PERT mean is (O + 4M + P) / 6, and hours of effort are not yet duration.',
       film: 'pm.plan.wbs',
       title: 'Estimating honestly',
       pre: [
@@ -844,7 +844,7 @@ export default {
     },
     {
       id: 'pm.plan.spread',
-      gist: 'The spread of one activity is (P − O) / 6; for a chain, add the variances and take the square root.',
+      gist: 'Spread is (P − O) / 6 per activity; over a chain you add variances, so you can state a date with confidence (P80).',
       title: 'Adding up uncertainty: spread and confidence',
       pre: [
         {
