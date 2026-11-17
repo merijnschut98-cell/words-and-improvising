@@ -4,7 +4,7 @@ export default {
     // Onderwerp 1: standaardwerk en training
     {
       id: 'pm.land.training',
-      gist: 'Een training telt pas als mensen anders werken: oefen op de echte apparatuur en schrijf de werkinstructie samen met wie het werk doet.',
+      gist: 'Een training telt pas als mensen anders werken: train op de werkplek vlak voor de livegang en schrijf de instructie met wie het werk doet.',
       film: 'pm.land.training',
       title: 'Training en werkinstructies',
       pre: [
@@ -169,7 +169,7 @@ export default {
     },
     {
       id: 'pm.land.skills',
-      gist: 'Een vaardigheidsmatrix op de werkvloer, dagelijks gebruikt, laat zien wie waar kan werken en wie wat moet leren, en wordt vaak aangepast.',
+      gist: 'Een vaardigheidsmatrix op de werkvloer laat dagelijks zien wie waar kan werken en wie wat moet leren; mik op minstens drie mensen per station.',
       title: 'De vaardigheidsmatrix en multi-inzetbaarheid',
       pre: [
         {
@@ -338,7 +338,7 @@ export default {
     // Onderwerp 2: adoptie en overdracht
     {
       id: 'pm.land.change',
-      gist: 'Mensen doen waar hun directe baas dagelijks aandacht aan geeft; zorg dat ze het kunnen en dat de nieuwe manier niet méér moeite kost.',
+      gist: 'Mensen gaan de nieuwe manier gebruiken als die makkelijker is dan de oude, hun directe baas ernaar vraagt en de oude manier weg is.',
       film: 'pm.land.adoption',
       title: 'Wat adoptie echt drijft',
       pre: [
@@ -756,7 +756,7 @@ export default {
     },
     {
       id: 'pm.land.lsw',
-      gist: 'Leiderstandaardwerk is een vaste lijst voor wat een leidinggevende dagelijks en wekelijks checkt; de gembawalk gaat over het proces, niet over betrappen.',
+      gist: 'Leiderstandaardwerk is een vaste lijst van wat een leidinggevende dagelijks en wekelijks checkt, gembawalk inbegrepen; zonder discipline valt de rest om.',
       title: 'Leiderstandaardwerk en de gembawalk',
       pre: [
         {
@@ -921,7 +921,7 @@ export default {
     },
     {
       id: 'pm.land.audits',
-      gist: 'Een gelaagde procesaudit kijkt en vraagt naar kernpunten, en een audit die nooit iets vindt kijkt niet echt.',
+      gist: 'Een gelaagde procesaudit stelt korte ja-nee-vragen over kernpunten, en een audit die maandenlang niets vindt wijst op auditmoeheid.',
       title: 'Audits die echt iets vangen',
       pre: [
         {
@@ -1174,7 +1174,7 @@ export default {
     },
     {
       id: 'pm.land.hansei',
-      gist: 'Hansei is eerlijk reflecteren op wat je zelf beter kon, ook na succes: plan, werkelijkheid, het waarom van het verschil, wat je anders doet.',
+      gist: 'Hansei is eerlijk kijken naar wat je zelf beter kon, ook na succes; een leerpunt telt pas als het iets blijvends verandert.',
       title: 'Reflecteren: hansei en de after-action review',
       pre: [
         {

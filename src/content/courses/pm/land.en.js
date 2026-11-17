@@ -4,7 +4,7 @@ export default {
     // Topic 1: standardised work and training
     {
       id: 'pm.land.training',
-      gist: 'A training counts only when people work differently: practise on the real equipment and write the work instruction with those who do the work.',
+      gist: 'A training counts only when people work differently: train on the job just before go-live, and write the instruction with those who do the work.',
       film: 'pm.land.training',
       title: 'Training and work instructions',
       pre: [
@@ -169,7 +169,7 @@ export default {
     },
     {
       id: 'pm.land.skills',
-      gist: 'A skills matrix on the shop floor, used daily, shows who can work where and who must learn what, and changes often.',
+      gist: 'A skills matrix on the shop floor shows daily who can work where and who must learn what; aim for three or more per station.',
       title: 'The skills matrix and cross-training',
       pre: [
         {
@@ -338,7 +338,7 @@ export default {
     // Topic 2: adoption and handover
     {
       id: 'pm.land.change',
-      gist: 'People do what their direct boss attends to daily; make sure they can do it and that the new way costs no more effort.',
+      gist: 'People adopt the new way when it is easier than the old one, their direct boss asks about it and the old way is gone.',
       film: 'pm.land.adoption',
       title: 'What really drives adoption',
       pre: [
@@ -756,7 +756,7 @@ export default {
     },
     {
       id: 'pm.land.lsw',
-      gist: 'Leader standard work is a fixed list of what a leader checks daily and weekly; the gemba walk is about the process, not catching people.',
+      gist: 'Leader standard work is a fixed list of what a leader checks daily and weekly, gemba walk included; without discipline the rest falls over.',
       title: 'Leader standard work and the gemba walk',
       pre: [
         {
@@ -921,7 +921,7 @@ export default {
     },
     {
       id: 'pm.land.audits',
-      gist: 'A layered process audit looks and asks about key points, and an audit that never finds anything is not really looking.',
+      gist: 'A layered process audit asks short yes-or-no questions about key points, and an audit that finds nothing for months signals audit fatigue.',
       title: 'Audits that actually catch something',
       pre: [
         {
@@ -1174,7 +1174,7 @@ export default {
     },
     {
       id: 'pm.land.hansei',
-      gist: 'Hansei is honest reflection on what you could do better, also after a success: plan, reality, why they differ, what you will do differently.',
+      gist: 'Hansei is honest reflection on what you could have done better, even after success; a learning point counts only when it changes something lasting.',
       title: 'Reflecting: hansei and the after-action review',
       pre: [
         {
