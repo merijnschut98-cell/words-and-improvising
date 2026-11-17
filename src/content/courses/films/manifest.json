@@ -4451,6 +4451,43 @@
         ],
         "vtt": "src/content/courses/films/pm.formats.intro.en.vtt"
       }
+    },
+    "eng.machining.cnc": {
+      "poster": "src/content/courses/films/eng.machining.cnc.jpg",
+      "nl": {
+        "dur": 248.6,
+        "bytes": 10117368,
+        "scenes": [
+          0,
+          20.71,
+          35.21,
+          67.27,
+          82.59,
+          107.36,
+          142.1,
+          157.97,
+          171.2,
+          214.95
+        ],
+        "vtt": "src/content/courses/films/eng.machining.cnc.nl.vtt"
+      },
+      "en": {
+        "dur": 268.2,
+        "bytes": 10805039,
+        "scenes": [
+          0,
+          20.14,
+          36.18,
+          72.02,
+          88.77,
+          116.08,
+          152.39,
+          170.72,
+          185.18,
+          230.34
+        ],
+        "vtt": "src/content/courses/films/eng.machining.cnc.en.vtt"
+      }
     }
   }
 }
