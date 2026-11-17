@@ -3,6 +3,7 @@ export default {
   lessons: [
     {
       id: 'eng.gridbasics.basics',
+      gist: 'Vermogen is spanning × stroom en energie is vermogen × tijd; je betaalt per kWh, maar het net wordt gebouwd voor kW.',
       film: 'eng.gridbasics.load',
       title: 'Volt, ampère, watt en kWh',
       pre: [
@@ -77,6 +78,7 @@ export default {
     },
     {
       id: 'eng.gridbasics.load',
+      gist: 'Netcomponenten hebben een capaciteit in kVA; gelijktijdigheid is het deel van ieders maximum dat tegelijk optreedt, en warmtepompen en auto’s drijven dat omhoog.',
       film: 'eng.gridbasics.load',
       title: 'Capaciteit, piekbelasting en gelijktijdigheid',
       pre: [
@@ -148,6 +150,7 @@ export default {
     },
     {
       id: 'eng.gridbasics.voltage',
+      gist: 'Spanningsdaling is stroom × weerstand binnen de band van 230 V ±10%; bij teruglevering stijgt de spanning aan het eind van de kabel.',
       title: 'Spanning langs de kabel: daling en stijging',
       pre: [
         {
@@ -220,6 +223,7 @@ export default {
     },
     {
       id: 'eng.gridbasics.profile',
+      gist: 'De belastingduurkromme zet de kwartieren van hoog naar laag; zo zie je overschrijdingsduur en energie boven de grens.',
       title: 'Meetdata en de belastingduurkromme',
       pre: [
         {
@@ -293,6 +297,7 @@ export default {
     },
     {
       id: 'eng.gridbasics.levels',
+      gist: 'Tien keer zo hoge spanning betekent tien keer minder stroom en honderd keer minder verlies, dus vermogen reist op hoge spanning.',
       film: 'eng.gridbasics.path',
       figure: 'eng.gridbasics.levels',
       title: 'Spanningsniveaus en wie wat beheert',
@@ -365,6 +370,7 @@ export default {
     },
     {
       id: 'eng.gridbasics.path',
+      gist: 'Het onderstation zet 150 of 110 kV om naar MS; MS-ringen voeden netstations, die met een transformator naar 400 V de straatkabels voeden.',
       film: 'eng.gridbasics.path',
       title: 'Van onderstation tot stopcontact',
       pre: [
@@ -436,6 +442,7 @@ export default {
     },
     {
       id: 'eng.gridbasics.balance',
+      gist: 'Het net slaat niets op: productie moet elke seconde gelijk zijn aan verbruik, en de frequentie van 50 Hz laat zien of dat klopt.',
       title: 'Balans en frequentie',
       pre: [
         {
@@ -509,6 +516,7 @@ export default {
     },
     {
       id: 'eng.gridbasics.backbone',
+      gist: 'Wind ver op zee komt als gelijkstroom aan land, omdat de laadstroom van een lange wisselstroomkabel te veel ruimte inneemt.',
       title: 'De ruggengraat: 380 kV, net op zee en het buitenland',
       pre: [
         {
@@ -581,6 +589,7 @@ export default {
     },
     {
       id: 'eng.gridbasics.roles',
+      gist: 'Een netbeheerder sluit aan, transporteert, onderhoudt, herstelt storingen en plant het net; hij verkoopt geen energie en staat onder toezicht van de ACM.',
       film: 'eng.gridbasics.congestion',
       title: 'Wat een netbeheerder doet',
       pre: [
@@ -652,6 +661,7 @@ export default {
     },
     {
       id: 'eng.gridbasics.law',
+      gist: 'Onder de Energiewet krijg je een aansluiting (aansluitplicht), maar de netbeheerder mag transport weigeren als er redelijkerwijs geen capaciteit is.',
       title: 'Wetten, codes en plichten',
       pre: [
         {
@@ -720,6 +730,7 @@ export default {
     },
     {
       id: 'eng.gridbasics.contract',
+      gist: 'Aansluitcapaciteit is de fysieke verbinding, het GTV het recht om te transporteren; in een congestiegebied kan ongebruikt GTV terug naar de netbeheerder (GOTORK).',
       title: 'Aansluiting, transport en tarief',
       pre: [
         {
@@ -793,6 +804,7 @@ export default {
     },
     {
       id: 'eng.gridbasics.regulation',
+      gist: 'Vanaf 2027 krijgt een netbeheerder zijn werkelijke efficiënte kosten terug plus een rendement, dus een besparing komt bij de klanten terecht.',
       title: 'Hoe een netbeheerder zijn geld verdient',
       pre: [
         {
@@ -866,6 +878,7 @@ export default {
     },
     {
       id: 'eng.gridbasics.congestion',
+      gist: 'Netcongestie is overbelasting op piekmomenten; bouwen duurt jaren, dus het bestaande net moet beter benut worden, bijvoorbeeld met flexibiliteit.',
       film: 'eng.gridbasics.congestion',
       title: 'Netcongestie',
       pre: [
@@ -938,6 +951,7 @@ export default {
     },
     {
       id: 'eng.gridbasics.scarcity',
+      gist: 'Transportschaarste is een verwacht tekort: de toekomstige piek, huidige piek plus toegezegde capaciteit, is groter dan de capaciteit; congestie is overbelasting nu.',
       title: 'Transportschaarste, de capaciteitskaart en de wachtrij',
       pre: [
         {
@@ -1008,6 +1022,7 @@ export default {
     },
     {
       id: 'eng.gridbasics.options',
+      gist: 'Begin met het eigen profiel en verlaag de piek zelf, met peak shaving, een batterij of samen met buren in een energiehub.',
       title: 'Wat een grootverbruiker zelf kan doen',
       pre: [
         {
@@ -1080,6 +1095,7 @@ export default {
     },
     {
       id: 'eng.gridbasics.transition',
+      gist: 'Het probleem is niet het jaarverbruik maar wanneer en waar vermogen nodig is: warmtepompen, auto’s en zonnepanelen geven pieken in beide richtingen.',
       title: 'De energietransitie en het net',
       pre: [
         {

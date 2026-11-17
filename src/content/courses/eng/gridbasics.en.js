@@ -3,6 +3,7 @@ export default {
   lessons: [
     {
       id: 'eng.gridbasics.basics',
+      gist: 'Power is voltage × current and energy is power × time; you pay per kWh, but the grid is built for kW.',
       film: 'eng.gridbasics.load',
       title: 'Volts, amps, watts and kWh',
       pre: [
@@ -77,6 +78,7 @@ export default {
     },
     {
       id: 'eng.gridbasics.load',
+      gist: 'Grid components are rated in kVA; simultaneity is the share of everyone\'s maximum that occurs together, and heat pumps and cars push it up.',
       film: 'eng.gridbasics.load',
       title: 'Capacity, peak load and simultaneity',
       pre: [
@@ -148,6 +150,7 @@ export default {
     },
     {
       id: 'eng.gridbasics.voltage',
+      gist: 'Voltage drop is current × resistance within the 230 V ±10% band; with feed-in the voltage rises at the end of the cable.',
       title: 'Voltage along the cable: drop and rise',
       pre: [
         {
@@ -220,6 +223,7 @@ export default {
     },
     {
       id: 'eng.gridbasics.profile',
+      gist: 'The load duration curve ranks the quarter-hours from high to low; it shows the exceedance duration and the energy above the limit.',
       title: 'Metering data and the load duration curve',
       pre: [
         {
@@ -293,6 +297,7 @@ export default {
     },
     {
       id: 'eng.gridbasics.levels',
+      gist: 'Ten times the voltage means a tenth of the current and a hundredth of the losses, so power travels at high voltage.',
       film: 'eng.gridbasics.path',
       figure: 'eng.gridbasics.levels',
       title: 'Voltage levels and who runs them',
@@ -365,6 +370,7 @@ export default {
     },
     {
       id: 'eng.gridbasics.path',
+      gist: 'The primary substation steps 150 or 110 kV down to MV; MV rings feed local substations, which feed street cables at 400 V.',
       film: 'eng.gridbasics.path',
       title: 'From substation to socket',
       pre: [
@@ -436,6 +442,7 @@ export default {
     },
     {
       id: 'eng.gridbasics.balance',
+      gist: 'The grid stores nothing: production must equal consumption every second, and the 50 Hz frequency shows whether it does.',
       title: 'Balance and frequency',
       pre: [
         {
@@ -509,6 +516,7 @@ export default {
     },
     {
       id: 'eng.gridbasics.backbone',
+      gist: 'Wind far offshore comes ashore as direct current, because the charging current of a long AC cable takes up too much capacity.',
       title: 'The backbone: 380 kV, the offshore grid and abroad',
       pre: [
         {
@@ -581,6 +589,7 @@ export default {
     },
     {
       id: 'eng.gridbasics.roles',
+      gist: 'A grid operator connects, transports, maintains, fixes faults and plans the grid; it sells no energy and is supervised by the ACM.',
       film: 'eng.gridbasics.congestion',
       title: 'What a grid operator does',
       pre: [
@@ -652,6 +661,7 @@ export default {
     },
     {
       id: 'eng.gridbasics.law',
+      gist: 'Under the Energy Act you get a connection (duty to connect), but the grid operator may refuse transport if there is reasonably no capacity.',
       title: 'Laws, codes and duties',
       pre: [
         {
@@ -720,6 +730,7 @@ export default {
     },
     {
       id: 'eng.gridbasics.contract',
+      gist: 'Connection capacity is the physical link, the GTV the right to transport; in a congested area unused GTV can be taken back (GOTORK).',
       title: 'Connection, transport and tariff',
       pre: [
         {
@@ -793,6 +804,7 @@ export default {
     },
     {
       id: 'eng.gridbasics.regulation',
+      gist: 'From 2027 a grid operator gets its actual efficient costs back plus a return, so a saving ends up with the customers.',
       title: 'How a grid operator earns its money',
       pre: [
         {
@@ -866,6 +878,7 @@ export default {
     },
     {
       id: 'eng.gridbasics.congestion',
+      gist: 'Grid congestion is overload at peak moments; building takes years, so the existing grid must be used better, for example with flexibility.',
       film: 'eng.gridbasics.congestion',
       title: 'Grid congestion',
       pre: [
@@ -938,6 +951,7 @@ export default {
     },
     {
       id: 'eng.gridbasics.scarcity',
+      gist: 'Transport scarcity is an expected shortfall: the future peak, today’s peak plus committed capacity, exceeds capacity; congestion is overload now.',
       title: 'Transport scarcity, the capacity map and the queue',
       pre: [
         {
@@ -1008,6 +1022,7 @@ export default {
     },
     {
       id: 'eng.gridbasics.options',
+      gist: 'Start with your own profile and lower the peak yourself, with peak shaving, a battery or together with neighbours in an energy hub.',
       title: 'What a large consumer can do itself',
       pre: [
         {
@@ -1080,6 +1095,7 @@ export default {
     },
     {
       id: 'eng.gridbasics.transition',
+      gist: 'The problem is not annual consumption but when and where power is needed: heat pumps, cars and solar panels cause peaks in both directions.',
       title: 'The energy transition and the grid',
       pre: [
         {
