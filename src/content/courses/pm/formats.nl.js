@@ -3,6 +3,7 @@ export default {
   lessons: [
     {
       id: 'pm.formats.catalogue',
+      gist: 'Elk overleg heeft een doel, deelnemers, een duur en een opbrengst; kun je de opbrengst niet noemen, schrap het overleg.',
       title: 'De overleggen van een project',
       pre: [
         {
@@ -103,6 +104,7 @@ export default {
     },
     {
       id: 'pm.formats.kickoff',
+      gist: 'Een kick-off van zo’n 60 minuten in vijf blokken, met een voorleesstuk vooraf, legt doel, rollen, ritme, werkafspraken en eerste acties vast.',
       title: 'Een kick-off voorbereiden en leiden',
       pre: [
         {
@@ -199,6 +201,7 @@ export default {
     },
     {
       id: 'pm.formats.system',
+      gist: 'Bouw een overlegsysteem dat besluit, afstemt en leert, met een cadans die de snelheid van het werk volgt.',
       title: 'Het overlegsysteem van één project',
       pre: [
         {
@@ -287,6 +290,7 @@ export default {
     },
     {
       id: 'pm.formats.governance',
+      gist: 'De uitnodigingslijst is een machtsbesluit, besluiten bereid je vooraf voor, en elk overleg dat je toevoegt kost schaarse tijd; draag het voorzitterschap over.',
       title: 'Het overleg als governance',
       pre: [
         {
@@ -390,6 +394,7 @@ export default {
     },
     {
       id: 'pm.formats.workshop',
+      gist: 'Een werksessie heeft één doel, levert een zichtbare uitkomst op en haalt de juiste mensen erbij; je ontwerpt haar met doel, uitkomst, deelnemers en agenda.',
       title: 'Wat een werksessie is',
       pre: [
         {
@@ -475,6 +480,7 @@ export default {
     },
     {
       id: 'pm.formats.brownpaper',
+      gist: 'Op een brown paper tekent een groep van zes tot twaalf het proces van links naar rechts, met een zwembaan per rol.',
       title: 'Een brown-papersessie houden',
       pre: [
         {
@@ -574,6 +580,7 @@ export default {
     },
     {
       id: 'pm.formats.design',
+      gist: 'Een sessie ontwerp je met afwegingen over groepsgrootte, duur en zaal of online, en je lost het tweerollenprobleem op door iemand anders te laten faciliteren.',
       title: 'Ontwerpkeuzes voor een sessie',
       pre: [
         {
@@ -667,6 +674,7 @@ export default {
     },
     {
       id: 'pm.formats.facilitation',
+      gist: 'Faciliteren begint met het contracteren van de uitkomst met de sponsor; je blijft neutraal over het antwoord en zorgt dat de uitkomst een eigenaar heeft.',
       title: 'Faciliteren als vak',
       pre: [
         {
@@ -764,6 +772,7 @@ export default {
     },
     {
       id: 'pm.formats.diverge',
+      gist: 'Houd verzamelen en kiezen gescheiden: schrijf eerst stil om productieblokkade te voorkomen, kies daarna, of laat de eigenaar beslissen als het antwoord bekend is.',
       title: 'Eerst veel ideeën, dan kiezen',
       pre: [
         {
@@ -859,6 +868,7 @@ export default {
     },
     {
       id: 'pm.formats.session',
+      gist: 'Een ideeënsessie op een digitaal bord loopt van stil schrijven in verborgen modus naar stemmen; de top drie komt binnen een dag in het plan.',
       title: 'Een ideeënsessie op een digitaal bord',
       pre: [
         {
@@ -953,6 +963,7 @@ export default {
     },
     {
       id: 'pm.formats.decide',
+      gist: 'Kies het besluitformat naar wie het besluit bezit, en naar gewicht en tempo; vraag niet om ideeën als de keuze al vaststaat.',
       title: 'Wie beslist, en hoe',
       pre: [
         {
@@ -1045,6 +1056,7 @@ export default {
     },
     {
       id: 'pm.formats.legitimacy',
+      gist: 'Vermijd schijninspraak met een mandaat in de uitnodiging en terugkoppeling aan de groep; vraag steeds: wie beslist, en heeft die dat in deze zaal gezegd?',
       title: 'Legitimiteit en schijninspraak',
       pre: [
         {
@@ -1141,6 +1153,7 @@ export default {
     },
     {
       id: 'pm.formats.floor',
+      gist: 'Buiten de vergaderzaal zie je wat er gebeurt: gembawalk en interviewronde aan het begin, demo tijdens Uitvoeren, en het kaizen-event om een gebied te verbeteren.',
       title: 'Vier werkvormen buiten de vergaderzaal',
       pre: [
         {
@@ -1235,6 +1248,7 @@ export default {
     },
     {
       id: 'pm.formats.interviews',
+      gist: 'Houd acht tot tien interviews over alle lagen met vijf open vragen, schrijf op in de woorden van de ander en maak er thema’s van.',
       title: 'Een interviewronde houden',
       pre: [
         {
@@ -1326,6 +1340,7 @@ export default {
     },
     {
       id: 'pm.formats.demo',
+      gist: 'Laat een demo op de vloer zien waar het gebruikt wordt, vraag om feedback in plaats van goedkeuring, en kies de werkvorm naar de vraag.',
       title: 'Een demo op de vloer en de juiste werkvorm kiezen',
       pre: [
         {
@@ -1412,6 +1427,7 @@ export default {
     },
     {
       id: 'pm.formats.kaizenevent',
+      gist: 'Een kaizen-event slaagt als de eigenaar van het gebied mensen vrijmaakt, de sponsor de week beschermt en een opvolglijst de acties borgt.',
       title: 'Een kaizen-event laten doen',
       pre: [
         {
