@@ -51,8 +51,6 @@ const spec = {
           say: { nl: 'De {t:Cyclustijd|cyclustijd} is de tijd van het ene sluiten van de matrijs tot het volgende. In een typische cyclus van {n:30} seconden duurt sluiten {n:2} seconden. Inspuiten {n:1.5}. Nadruk {n:6}. Koelen {n:15}. Openen {n:2}. En uitwerpen en uitnemen {n:3.5}.', en: 'The {t:Cycle time|cycle time} is the time from one closing of the mould to the next. In a typical cycle of {n:30} seconds, closing takes {n:2} seconds. Injection {n:1.5}. Hold {n:6}. Cooling {n:15}. Opening {n:2}. And eject and remove {n:3.5}.' } },
         { nl: 'De {t:Koeltijd|koeltijd} is {n:15} s: vaak {n:50} tot {n:80}% van de cyclus. Dan is het product stijf.', en: 'The {t:Cooling time|cooling time} is {n:15} s: often {n:50} to {n:80}% of the cycle. Then the part is stiff.', cue: { Koeltijd: 'cool' }, focus: ['cool'], points: ['t1.2'],
           say: { nl: 'De {t:Koeltijd|koeltijd} is hier {n:15} seconden, vaak {n:50} tot {n:80} procent van de cyclus. Het product moet stijf genoeg zijn om zijn vorm te houden als de uitwerppennen het eruit duwen. Je hoort het op de vloer. Een korte sis van het inspuiten, dan een lange stilte.', en: 'The {t:Cooling time|cooling time} is {n:15} seconds here, often {n:50} to {n:80} percent of the cycle. The part must be stiff enough to keep its shape when the ejector pins push it out. You can hear it on the floor. A short hiss of the injection, then a long silence.' } },
-        { nl: 'Een nieuwe cyclus: de koeltijd tikt weer weg.', en: 'A new cycle: the cooling time ticks away again.', focus: ['cool'],
-          say: { nl: 'En dan begint de volgende cyclus, met weer een lange koeltijd.', en: 'And then the next cycle begins, with another long cooling time.' } },
       ],
     },
     {

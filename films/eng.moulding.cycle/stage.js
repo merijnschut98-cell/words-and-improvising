@@ -54,10 +54,10 @@
       return;
     }
     if (si === 1) {
-      // the cycle: one run through the six steps, then the next cycle starts and settles in the cooling
+      // the cycle: one run through the six steps
       scene(si, ['press'], ['phasebar', 'coolseg', 'phasetext']);
       camera(si, u);
-      const t = u < B[2] ? lin(u, 0.02, B[2] - 0.02) * C.CYCLE : lin(u, B[2], 0.9) * 16;
+      const t = lin(u, 0.02, 0.96) * C.CYCLE;
       drawPress(pose(t));
       phaseBar(t);
     } else if (si === 2) {
