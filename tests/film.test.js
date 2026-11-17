@@ -1810,3 +1810,15 @@ test('speak variant: ISO 6983 as pairs of digits', () => {
   assert.equal(speakOf(['But these basics follow ISO 6983 and are almost the same everywhere.'], 'en'), 'But these basics follow ISO 69 83 and are almost the same everywhere.');
   assert.equal(speakOf(['Toleranties volgen ISO 2768 en ISO 9001.'], 'nl'), 'Toleranties volgen ISO 27 68 en ISO 9001.');
 });
+
+// Task 17 B1, the arc-welding split (review, 17 Nov): welding standards with five-digit ISO numbers, EN 1011/1090
+// with a part, and the alloy 6082-T6 read as digits, not "vijftienduizend…" or "zesduizend tweeëntachtig"
+test('SAY: welding standards and 6082-T6 read as their parts (joining split)', () => {
+  assert.equal(speakOf(['De procedure volgt ISO 15614-1.'], 'nl'), 'De procedure volgt ISO 15 6 14 deel 1.');
+  assert.equal(speakOf(['Volgens ISO 15612 mag dat.'], 'nl'), 'Volgens ISO 15 6 12 mag dat.');
+  assert.equal(speakOf(['Kijk in EN 1011-2.'], 'nl'), 'Kijk in E N 10 11 deel 2.');
+  assert.equal(speakOf(['Een balk van 6082-T6.'], 'nl'), 'Een balk van zes nul acht twee T zes.');
+  assert.equal(speakOf(['The procedure follows ISO 15614-1.'], 'en'), 'The procedure follows ISO 15 6 14 part 1.');
+  assert.equal(speakOf(['See EN 1090-2.'], 'en'), 'See E N 10 90 part 2.');
+  assert.equal(speakOf(['A beam of 6082-T6.'], 'en'), 'A beam of six oh eight two T six.');
+});
