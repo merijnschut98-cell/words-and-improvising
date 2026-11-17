@@ -1309,3 +1309,5 @@ details.rw-topic > summary { cursor: pointer; min-height: 44px; display: flex; a
   .screen.tour > .tour-title, .screen.tour > .tour-intro { max-width: 720px; }
   .tour-film .film-box, .tour-film .film-video-wrap, .tour-film .film-note, .tour-film > .muted { max-width: 800px; margin-left: auto; margin-right: auto; width: 100%; }
 }
+/* the kernzin (17 Nov): the lesson in one line, above the reading or the film */
+.gist { font-weight: 650; font-size: 1.05rem; line-height: 1.45; margin: 0 0 12px; padding-left: 12px; border-left: 3px solid var(--accent); }
