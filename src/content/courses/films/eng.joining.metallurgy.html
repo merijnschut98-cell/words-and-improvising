@@ -1,0 +1,1508 @@
+<!doctype html><html lang="nl" class="iso film" data-theme="dark"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Wat warmte met het staal doet</title><script>(function(){var q=new URLSearchParams((location.search.length>1?location.search:(window.name.charAt(0)==="?"?window.name:""))),t=q.get("theme"),d=document.documentElement;
+function apply(){d.setAttribute("data-theme",t==="light"||t==="dark"?t:(matchMedia("(prefers-color-scheme: light)").matches?"light":"dark"));}
+apply();if(t!=="light"&&t!=="dark"){var m=matchMedia("(prefers-color-scheme: light)");m.addEventListener&&m.addEventListener("change",apply);}
+if(q.get("lang")==="en")d.setAttribute("lang","en");})();</script><style>
+.iso{
+  --anatomy-page:#0b0b0b;--anatomy-card:#131313;--anatomy-text:#a3a3a3;--anatomy-strong:#e6e6e6;--anatomy-muted:#6e6e6e;
+  --anatomy-paper:#131313;--anatomy-face:#1b1b1b;--anatomy-top:#1c1c1c;
+  --anatomy-shade-0:#0f0f0f;--anatomy-shade-1:#121212;--anatomy-shade-2:#151515;--anatomy-shade-3:#181818;
+  --anatomy-lit-top:#262626;--anatomy-lit-shade:#1d1d1d;
+  --anatomy-hi:#d4d4d4;--anatomy-mid:#6a6a6a;--anatomy-lo:#3e3e3e;--anatomy-faint:#2a2a2a;--anatomy-lit:#ffffff;
+  --anatomy-halo:#050505;--anatomy-halo-opacity:.9;--anatomy-dot:#e6e6e6;
+  --anatomy-red:#ff6b6b;--anatomy-green:#6be0a0;--anatomy-blue:#6b9bff;
+  --anatomy-weight:.6px;--anatomy-ease:cubic-bezier(.32,.72,0,1);
+  --anatomy-mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+  --anatomy-lift:inset 0 1px 0 0 #ffffff0a,inset 0 0 0 1px #ffffff06,0 0 0 1px #00000026,0 1px 1px -.5px #00000014,0 3px 3px -1.5px #00000014,0 6px 6px -3px #00000014,0 12px 12px -6px #00000014;
+}
+.iso[data-theme="light"]{
+  --anatomy-page:#f2f2ef;--anatomy-card:#fbfbfa;--anatomy-text:#57575a;--anatomy-strong:#18181a;--anatomy-muted:#8c8c90;
+  --anatomy-paper:#fbfbfa;--anatomy-face:#ffffff;--anatomy-top:#ffffff;
+  --anatomy-shade-0:#dcdcd9;--anatomy-shade-1:#e5e5e2;--anatomy-shade-2:#ededea;--anatomy-shade-3:#f4f4f1;
+  --anatomy-lit-top:#ffffff;--anatomy-lit-shade:#eeeeeb;
+  --anatomy-hi:#26262a;--anatomy-mid:#8a8a8f;--anatomy-lo:#b4b4b8;--anatomy-faint:#d4d4d6;--anatomy-lit:#000000;
+  --anatomy-halo:#8a8a80;--anatomy-halo-opacity:.32;--anatomy-dot:#3a3a3e;
+  --anatomy-red:#e5484d;--anatomy-green:#30a46c;--anatomy-blue:#3e63dd;
+  --anatomy-lift:inset 0 1px 0 0 #ffffff,0 0 0 1px #0000000f,0 1px 1px -.5px #0000000a,0 3px 3px -1.5px #0000000a,0 6px 6px -3px #0000000a,0 12px 12px -6px #0000000a;
+}
+.iso-svg{display:block;width:100%;height:auto;overflow:visible}
+.iso-svg path,.iso-svg circle{vector-effect:non-scaling-stroke}
+.iso-fill{fill:var(--anatomy-paper);stroke:none}
+.iso-solid[data-lit]>.iso-fill{fill:var(--anatomy-face)}
+.iso-shade,.iso-top{stroke:none}
+.iso-shade[data-shade="0"]{fill:var(--anatomy-shade-0)}
+.iso-shade[data-shade="1"]{fill:var(--anatomy-shade-1)}
+.iso-shade[data-shade="2"]{fill:var(--anatomy-shade-2)}
+.iso-shade[data-shade="3"]{fill:var(--anatomy-shade-3)}
+.iso-top{fill:var(--anatomy-top)}
+.iso-solid[data-lit]>.iso-top{fill:var(--anatomy-lit-top)}
+.iso-solid[data-lit]>.iso-shade{fill:var(--anatomy-lit-shade)}
+.iso-solid[data-seamless]>.iso-shade,.iso-solid[data-seamless]>.iso-top{stroke-width:.4;stroke-linejoin:round}
+.iso-solid[data-seamless]>.iso-shade[data-shade="0"]{stroke:var(--anatomy-shade-0)}
+.iso-solid[data-seamless]>.iso-shade[data-shade="1"]{stroke:var(--anatomy-shade-1)}
+.iso-solid[data-seamless]>.iso-shade[data-shade="2"]{stroke:var(--anatomy-shade-2)}
+.iso-solid[data-seamless]>.iso-shade[data-shade="3"]{stroke:var(--anatomy-shade-3)}
+.iso-solid[data-seamless]>.iso-top{stroke:var(--anatomy-top)}
+.iso-solid[data-seamless][data-lit]>.iso-top{stroke:var(--anatomy-lit-top)}
+.iso-solid[data-seamless][data-lit]>.iso-shade{stroke:var(--anatomy-lit-shade)}
+.iso-solid[data-lit]>.iso-edge{stroke:var(--anatomy-lit)}
+.iso-halo{fill:var(--anatomy-halo);stroke:none;filter:blur(9px);opacity:var(--anatomy-halo-opacity);transform:translateY(3px)}
+.iso-line{fill:none;stroke:var(--anatomy-lo);stroke-width:var(--anatomy-weight);stroke-linecap:round;stroke-linejoin:round}
+.iso-line[data-tone="hi"]{stroke:var(--anatomy-hi)}
+.iso-line[data-tone="mid"]{stroke:var(--anatomy-mid)}
+.iso-line[data-tone="lo"]{stroke:var(--anatomy-lo)}
+.iso-line[data-tone="faint"]{stroke:var(--anatomy-faint)}
+.iso-line[data-tone="lit"]{stroke:var(--anatomy-lit)}
+.iso-line[data-tone="red"]{stroke:var(--anatomy-red)}
+.iso-line[data-tone="green"]{stroke:var(--anatomy-green)}
+.iso-line[data-tone="blue"]{stroke:var(--anatomy-blue)}
+.iso-line[data-dotted]{stroke-dasharray:.01 3.5;stroke-width:1}
+.iso-line[data-dashed]{stroke-dasharray:3 3}
+.iso-line[data-flow]{stroke-dasharray:2 6}
+.iso-wire-end{fill:var(--anatomy-paper);stroke:var(--anatomy-lo);stroke-width:var(--anatomy-weight)}
+.iso-wire[data-tone="hi"] .iso-wire-end{stroke:var(--anatomy-hi)}
+.iso-wire[data-tone="mid"] .iso-wire-end{stroke:var(--anatomy-mid)}
+.iso-wire[data-tone="faint"] .iso-wire-end{stroke:var(--anatomy-faint)}
+.iso-wire[data-tone="lit"] .iso-wire-end{stroke:var(--anatomy-lit)}
+.iso-dots circle{fill:var(--anatomy-dot);stroke:none;opacity:.32}
+.iso-dots[data-tone="hi"] circle{opacity:.85}
+.iso-dots[data-tone="mid"] circle{opacity:.45}
+.iso-dots[data-tone="lo"] circle{opacity:.22}
+.iso-dots[data-tone="faint"] circle{opacity:.12}
+.iso-face-text{fill:var(--anatomy-mid);font-family:var(--anatomy-mono);letter-spacing:.04em}
+.iso-face-text[data-tone="hi"]{fill:var(--anatomy-hi)}
+.iso-face-text[data-tone="lo"]{fill:var(--anatomy-lo)}
+.iso-face-text[data-tone="faint"]{fill:var(--anatomy-faint)}
+.tb-body{fill:var(--anatomy-shade-2);stroke:none}
+.tb-shine{fill:var(--anatomy-top);stroke:none}
+.tb-shade{fill:var(--anatomy-shade-0);stroke:none}
+.tb-ring{fill:none;stroke:var(--anatomy-lo);stroke-width:.45;stroke-linecap:butt;stroke-linejoin:round}
+.tb-ring[data-tone="mid"]{stroke:var(--anatomy-mid)}
+.tb-ring[data-tone="faint"]{stroke:var(--anatomy-faint)}
+.tb-ring[data-tone="hi"]{stroke:var(--anatomy-hi)}
+@keyframes iso-flow{to{stroke-dashoffset:-32}}
+@keyframes iso-pulse{0%,100%{opacity:.18}12%{opacity:1}40%{opacity:.18}}
+.iso-line[data-flow]{animation:iso-flow 1600ms linear infinite}
+.iso-dots circle[data-pulse]{animation:iso-pulse 1600ms steps(1,end) infinite;animation-delay:var(--pulse-at,0ms)}
+.iso-figure{margin:32px 0 36px}
+.iso-plate{position:relative;padding:52px 24px;border-radius:0;background:var(--anatomy-card);box-shadow:0 0 0 1px var(--anatomy-mid);--anatomy-paper:var(--anatomy-card)}
+.iso-plate-corners{position:absolute;inset:18px 20px;pointer-events:none}
+.iso-plate-corner{position:absolute;color:var(--anatomy-muted);font-family:var(--anatomy-mono);font-size:10.5px;line-height:1;letter-spacing:.04em;white-space:nowrap}
+.iso-plate-corner[data-corner="fig"]{top:0;left:0;color:var(--anatomy-text)}
+.iso-plate-corner[data-corner="title"]{top:0;right:0;text-transform:uppercase;letter-spacing:.1em}
+.iso-plate-corner[data-corner="hint"]{bottom:0;left:0;text-transform:uppercase;letter-spacing:.1em}
+.iso-plate-corner[data-corner="readout"]{right:0;bottom:0;color:var(--anatomy-text);font-variant-numeric:tabular-nums}
+.iso-plate .iso-svg{margin:0 auto}
+.iso-legend{display:grid;gap:8px;margin-top:12px;color:var(--anatomy-muted);font-size:13px;line-height:1.55}
+.iso-keys{display:flex;flex-wrap:wrap;gap:6px 18px}
+.iso-key{display:inline-flex;align-items:center;gap:7px}
+.iso-swatch{width:16px;height:10px;flex:none;overflow:visible}
+.iso-swatch path{fill:none;stroke:var(--anatomy-hi);stroke-width:1;vector-effect:non-scaling-stroke;stroke-linejoin:round;stroke-linecap:round}
+.iso-swatch[data-mark="raised"] path,.iso-swatch[data-mark="flat"] path{stroke:var(--anatomy-mid)}
+.iso-swatch[data-mark="lit"] path{stroke:var(--anatomy-lit)}
+.iso-swatch[data-mark="dim"] path{stroke:var(--anatomy-lo)}
+.iso-swatch[data-mark="dotted"] path{stroke-dasharray:.01 3;stroke-width:1.4}
+.iso-swatch[data-mark="dashed"] path{stroke-dasharray:3 2.5}
+.iso-swatch[data-mark="red"] path{stroke:var(--anatomy-red)}
+.iso-swatch[data-mark="green"] path{stroke:var(--anatomy-green)}
+.iso-swatch[data-mark="blue"] path{stroke:var(--anatomy-blue)}
+.iso-swatch-crease{stroke:var(--anatomy-lo)!important}
+@media (max-width:560px){.iso-plate{padding:48px 12px 70px}.iso-plate-corner[data-corner="hint"]{bottom:18px}}
+@media (prefers-reduced-motion:reduce){.iso-line[data-flow],.iso-dots circle[data-pulse]{animation:none}}
+
+.iso{
+  --anatomy-page:#0B291B;--anatomy-card:#0D252B;--anatomy-text:#DCD8CB;--anatomy-strong:#F0E9DA;--anatomy-muted:#9FB3A6;
+  --anatomy-paper:#0D252B;--anatomy-face:#123039;--anatomy-top:#16353D;
+  --anatomy-shade-0:#0A1E23;--anatomy-shade-1:#0C2228;--anatomy-shade-2:#0F272D;--anatomy-shade-3:#122C33;
+  --anatomy-lit-top:#1D4A55;--anatomy-lit-shade:#173D47;
+  --anatomy-hi:#E4DDCC;--anatomy-mid:#7C9289;--anatomy-lo:#45615D;--anatomy-faint:#26433F;--anatomy-lit:#5C9FAE;
+  --anatomy-halo:#03100F;--anatomy-halo-opacity:.85;--anatomy-dot:#F0E9DA;
+  --fp-hair:rgba(240,233,218,.12);--fp-accent:#5C9FAE;--fp-accent-text:#7DB6C3;--fp-on-accent:#06191E;--fp-scrim:rgba(6,22,26,.62);
+  --fp-focus:#EAF7FF;--fp-focus-glow:#8FD3FF;--fp-focus-top:#2F6A86;--fp-focus-shade:#275A73;--fp-focus-text:#BDE5FF;
+  --anatomy-mono:"JetBrains Mono",ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+  --fp-sans:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+}
+.iso[data-theme="light"]{
+  --anatomy-page:#E8DFCA;--anatomy-card:#F4EFE3;--anatomy-text:#1E3328;--anatomy-strong:#0B291B;--anatomy-muted:#5A6B60;
+  --anatomy-paper:#F4EFE3;--anatomy-face:#FAF7EE;--anatomy-top:#FBF8F1;
+  --anatomy-shade-0:#DDD4BF;--anatomy-shade-1:#E4DCC9;--anatomy-shade-2:#EBE4D4;--anatomy-shade-3:#F0EADD;
+  --anatomy-lit-top:#E2ECEA;--anatomy-lit-shade:#CCDCDB;
+  --anatomy-hi:#1E3328;--anatomy-mid:#7D877A;--anatomy-lo:#A9AE9E;--anatomy-faint:#D0CAB8;--anatomy-lit:#276F81;
+  --anatomy-halo:#5A6B60;--anatomy-halo-opacity:.3;--anatomy-dot:#1E3328;
+  --fp-hair:rgba(11,41,27,.14);--fp-accent:#276F81;--fp-accent-text:#1C5563;--fp-on-accent:#FFFFFF;--fp-scrim:rgba(244,239,227,.7);
+  --fp-focus:#1E88D2;--fp-focus-glow:#4DB0F2;--fp-focus-top:#FFFFFF;--fp-focus-shade:#E2F1FC;--fp-focus-text:#14659E;
+}
+*{box-sizing:border-box}
+html{color-scheme:dark}
+html[data-theme="light"]{color-scheme:light}
+html,body{margin:0;padding:0}
+body{background:var(--anatomy-page);color:var(--anatomy-text);font:16px/1.45 var(--fp-sans);-webkit-font-smoothing:antialiased;-webkit-text-size-adjust:100%;overflow-x:hidden}
+.fp{position:relative;max-width:760px;margin:0 auto;background:var(--anatomy-card);border-radius:12px;box-shadow:inset 0 0 0 1px var(--fp-hair);overflow:hidden}
+.fp-stage{position:relative;aspect-ratio:16/10;width:100%;overflow:hidden}
+.fp-stage>svg{position:absolute;inset:0;width:100%;height:100%;display:block}
+.fp-read{position:absolute;left:8px;top:8px;max-width:calc(100% - 16px);font:600 12.5px/1.35 var(--anatomy-mono);color:var(--anatomy-strong);background:color-mix(in srgb,var(--anatomy-card) 88%,transparent);box-shadow:inset 0 0 0 1px var(--fp-hair);border-radius:6px;padding:4px 8px;pointer-events:none}
+.fp-read[hidden]{display:none}
+.fp-poster,.fp-end{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;background:var(--fp-scrim);text-align:center;padding:16px}
+.fp-poster[hidden]{display:none}
+.fp-end{display:none}
+.fp[data-ended="1"] .fp-end{display:flex}
+.fp-poster-title{margin:0;font:600 20px/1.25 var(--fp-sans);color:var(--anatomy-strong)}
+.fp-go{display:inline-flex;align-items:center;gap:10px;min-height:56px;padding:0 22px 0 14px;border:0;border-radius:999px;background:var(--fp-accent);color:var(--fp-on-accent);font:600 16px/1 var(--fp-sans);cursor:pointer}
+.fp-go .fp-ico{width:30px;height:30px;fill:currentColor;stroke:none}
+.fp-go:focus-visible,.fp-btn:focus-visible,.fp-item:focus-visible{outline:2px solid var(--fp-accent);outline-offset:2px}
+.fp-cap{margin:0;min-height:calc(3 * 1.45em + 20px);padding:10px 14px;font-size:16px;line-height:1.45;color:var(--anatomy-strong)}
+.fp-term{color:var(--fp-accent-text);font-weight:650}
+.fp-en{color:var(--anatomy-muted);font-style:italic}
+.fp-note{margin:-6px 14px 4px;font-size:13px;color:var(--anatomy-muted)}
+.fp-note:empty{display:none}
+.fp-bar{display:flex;align-items:center;gap:4px;padding:0 6px 6px}
+.fp-btn{flex:0 0 auto;width:44px;height:44px;display:inline-flex;align-items:center;justify-content:center;border:0;border-radius:999px;background:transparent;color:var(--anatomy-strong);cursor:pointer;-webkit-tap-highlight-color:transparent}
+.fp-btn .fp-ico{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.fp-btn[data-act="play"]{background:var(--fp-accent);color:var(--fp-on-accent)}
+.fp-btn[data-act="play"] .fp-ico{fill:currentColor;stroke:none}
+.fp-btn[data-act="play"] [data-i]{display:none}
+.fp-btn[data-state="play"] [data-i="play"],.fp-btn[data-state="pause"] [data-i="pause"],.fp-btn[data-state="replay"] [data-i="replay"]{display:block}
+.fp-btn[data-state="replay"] .fp-ico{fill:none;stroke:currentColor;stroke-width:2.2}
+@media (hover:hover){.fp-btn:not([data-act="play"]):hover{background:color-mix(in srgb,var(--anatomy-strong) 8%,transparent)}}
+.fp-btn [data-m]{display:none}
+.fp[data-muted="0"] [data-m="on"],.fp[data-muted="1"] [data-m="off"]{display:block}
+.fp-scrub{position:relative;flex:1 1 auto;min-width:0;height:44px}
+.fp-ticks{position:absolute;left:9px;right:9px;top:20px;height:4px;pointer-events:none}
+.fp-ticks i{position:absolute;top:-3px;width:2px;height:10px;margin-left:-1px;border-radius:1px;background:var(--anatomy-muted);opacity:.7}
+.fp-range{position:absolute;inset:0;width:100%;height:44px;margin:0;background:transparent;-webkit-appearance:none;appearance:none;cursor:pointer;accent-color:var(--fp-accent)}
+.fp-range::-webkit-slider-runnable-track{height:4px;border-radius:2px;background:var(--fp-hair)}
+.fp-range::-moz-range-track{height:4px;border-radius:2px;background:var(--fp-hair)}
+.fp-range::-webkit-slider-thumb{-webkit-appearance:none;width:18px;height:18px;margin-top:-7px;border-radius:50%;background:var(--fp-accent);border:2px solid var(--anatomy-card)}
+.fp-range::-moz-range-thumb{width:18px;height:18px;border-radius:50%;background:var(--fp-accent);border:2px solid var(--anatomy-card)}
+.fp-time{position:absolute;right:2px;bottom:0;font:11px/1 var(--anatomy-mono);color:var(--anatomy-muted);pointer-events:none}
+.fp-step{display:none}
+.fp[data-motion="reduce"] .fp-ticks,.fp[data-motion="reduce"] .fp-range{display:none}
+.fp[data-motion="reduce"] .fp-step{display:inline-flex}
+.fp[data-motion="reduce"] .fp-time{position:static;display:block;text-align:center;line-height:44px;font-size:12px}
+.fp-sheet{position:absolute;inset:0;z-index:5;display:flex;flex-direction:column;background:var(--anatomy-card)}
+.fp-sheet[hidden]{display:none}
+.fp-sheet-head{display:flex;align-items:center;gap:8px;padding:6px 6px 6px 14px;border-bottom:1px solid var(--fp-hair)}
+.fp-sheet-title{flex:1;margin:0;font:600 16px/1.2 var(--fp-sans);color:var(--anatomy-strong)}
+.fp-speed{min-height:44px;padding:0 12px;border:1px solid var(--fp-hair);border-radius:999px;background:transparent;color:var(--anatomy-strong);font:14px/1 var(--fp-sans);cursor:pointer}
+.fp-speed[aria-pressed="true"]{border-color:var(--fp-accent);color:var(--fp-accent-text)}
+.fp-list{flex:1;overflow:auto;padding:4px 0}
+.fp-item{display:flex;align-items:center;gap:12px;width:100%;min-height:48px;padding:6px 14px;border:0;background:transparent;color:var(--anatomy-strong);font:15px/1.3 var(--fp-sans);text-align:left;cursor:pointer}
+.fp-item-n{flex:0 0 26px;height:26px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font:600 12px/1 var(--anatomy-mono);box-shadow:inset 0 0 0 1px var(--fp-hair)}
+.fp-item-t{flex:1}
+.fp-item-d{font:12px/1 var(--anatomy-mono);color:var(--anatomy-muted)}
+@media (hover:hover){.fp-item:hover{background:color-mix(in srgb,var(--anatomy-strong) 6%,transparent)}}
+.fp-sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+@property --fp-fi{syntax:'<number>';inherits:true;initial-value:1}
+.fp[data-focus="a"]{animation:fp-focus-a .4s ease-in}
+.fp[data-focus="b"]{animation:fp-focus-b .4s ease-in}
+@keyframes fp-focus-a{from{--fp-fi:0}to{--fp-fi:1}}
+@keyframes fp-focus-b{from{--fp-fi:0}to{--fp-fi:1}}
+.fp[data-motion="reduce"][data-focus],.fp[data-render="1"][data-focus]{animation:none}
+@media (prefers-reduced-motion:reduce){.fp[data-focus]{animation:none}}
+[data-cue][data-on]{--fp-accent:var(--fp-focus);--fp-accent-text:var(--fp-focus-text);filter:drop-shadow(0 0 calc(var(--fp-fi,1) * 1px) var(--fp-focus-glow)) drop-shadow(0 0 calc(var(--fp-fi,1) * 3.5px) var(--fp-focus-glow))}
+[data-cue][data-on] .iso-edge,[data-cue][data-on] .iso-crease{stroke:var(--fp-focus)!important}
+[data-cue][data-on] .iso-edge{stroke-width:1.6px}
+[data-cue][data-on] .iso-top{fill:var(--fp-focus-top)}
+[data-cue][data-on] .iso-shade{fill:var(--fp-focus-shade)}
+[data-cue][data-on] .iso-line,[data-cue][data-on] .fp-mark{stroke:var(--fp-focus)}
+[data-cue][data-on] .fp-ink{fill:var(--fp-focus)}
+/* render mode (?render=1): one 16:9 video frame, the stage only; subtitles from WebVTT */
+html[data-render="1"],html[data-render="1"] body{width:100%;height:100%;overflow:hidden;background:var(--anatomy-card)}
+.fp[data-render="1"]{position:fixed;inset:0;max-width:none;margin:0;border-radius:0;box-shadow:none;display:flex;flex-direction:column}
+.fp[data-render="1"] .fp-stage{flex:1 1 auto;aspect-ratio:auto;min-height:0}
+.fp[data-render="1"] .fp-cap{flex:0 0 auto;height:calc(3 * 1.25em + 24px);min-height:0;margin:0;padding:12px 48px;font-size:clamp(16px,6.1vh,44px);line-height:1.25;text-align:center;display:flex;align-items:center;justify-content:center;border-top:1px solid var(--fp-hair)}
+.fp[data-render="1"]:not([data-poster="1"]) .fp-cap{display:none}
+.fp[data-render="1"] .fp-cap>span{display:block;max-width:100%}
+.fp[data-render="1"] .fp-read{left:2.4vh;top:2.4vh;font-size:clamp(12px,3.6vh,30px);padding:.3em .6em;border-radius:.4em}
+.fp[data-render="1"] .fp-bar,.fp[data-render="1"] .fp-note,.fp[data-render="1"] .fp-poster,.fp[data-render="1"] .fp-end,.fp[data-render="1"] .fp-sheet{display:none!important}
+.fp-mark{fill:none;stroke:var(--anatomy-mid);stroke-width:1.2;stroke-linecap:round;stroke-linejoin:round;vector-effect:non-scaling-stroke}
+.fp-ink{fill:var(--anatomy-mid)}
+
+:root{--fp-hot:#FFF4DC}
+.iso[data-theme="light"]{--fp-hot:#FFFFFF}
+.fp-svg .fp-label{font-family:var(--fp-sans);font-weight:600}
+.fp-svg .fp-small{font-family:var(--fp-sans);font-weight:500}
+.fp-svg .fp-code{font-family:var(--anatomy-mono);font-weight:500}
+.fp-svg .fp-dim{fill:var(--anatomy-muted)}
+.fp-cur{fill:color-mix(in srgb,var(--fp-accent) 16%,transparent);stroke:none}
+.fp-hud-bg{fill:var(--anatomy-shade-0);stroke:none;opacity:.96}
+.fp-frame{fill:none;stroke:var(--anatomy-mid);stroke-width:1;vector-effect:non-scaling-stroke}
+.fp-steel{fill:var(--anatomy-face);stroke:var(--anatomy-mid);stroke-width:1;vector-effect:non-scaling-stroke}
+.fp-scrim{fill:var(--anatomy-card);opacity:.88}
+.fp-card{fill:var(--anatomy-paper);stroke:var(--anatomy-mid);stroke-width:1;vector-effect:non-scaling-stroke}
+.fp-rule{fill:none;stroke:var(--anatomy-lo);stroke-width:3;stroke-linecap:round}
+.fp-meter{fill:var(--anatomy-shade-2);stroke:var(--anatomy-mid);stroke-width:1;vector-effect:non-scaling-stroke}
+.fp-fill{fill:var(--anatomy-mid);opacity:.55}
+.fp-panel{fill:var(--anatomy-shade-1);stroke:var(--anatomy-lo);stroke-width:.6;vector-effect:non-scaling-stroke}
+.fp-disp{fill:var(--anatomy-shade-0);stroke:var(--anatomy-mid);stroke-width:.6;vector-effect:non-scaling-stroke}
+.fp-glass{fill:var(--anatomy-shade-2);stroke:var(--anatomy-mid);stroke-width:1.2;vector-effect:non-scaling-stroke}
+.fp-wire{fill:none;stroke:var(--anatomy-hi);stroke-width:1.4;stroke-linecap:round;vector-effect:non-scaling-stroke}
+.fp-hose{fill:none;stroke:var(--anatomy-shade-0);stroke-linecap:round;stroke-linejoin:round}
+.fp-hose-hi{fill:none;stroke:var(--anatomy-lo);stroke-linecap:round;stroke-linejoin:round}
+.fp-bead{fill:var(--anatomy-top);stroke:var(--anatomy-hi);stroke-width:.9;stroke-linejoin:round;vector-effect:non-scaling-stroke}
+.fp-ripple{fill:none;stroke:var(--anatomy-mid);stroke-width:.6;vector-effect:non-scaling-stroke}
+.fp-hazf{fill:var(--anatomy-lo);opacity:.55;stroke:var(--anatomy-mid);stroke-width:.5;vector-effect:non-scaling-stroke}
+.fp-weld{fill:var(--anatomy-shade-3);stroke:var(--anatomy-hi);stroke-width:.9;vector-effect:non-scaling-stroke}
+.fp-pore{fill:var(--anatomy-shade-0);stroke:var(--anatomy-hi);stroke-width:.5;vector-effect:non-scaling-stroke}
+.fp-pool{fill:var(--fp-hot);stroke:var(--anatomy-hi);stroke-width:.7;vector-effect:non-scaling-stroke}
+.fp-hotf{fill:var(--fp-hot);stroke:none}
+.fp-iso{fill:none;stroke:var(--anatomy-hi);stroke-width:1;stroke-dasharray:4 3;vector-effect:non-scaling-stroke}
+.fp-gas{fill:none;stroke:var(--anatomy-mid);stroke-width:1;stroke-dasharray:3 4;stroke-linecap:round;vector-effect:non-scaling-stroke}
+.fp-crack{fill:none;stroke:var(--anatomy-hi);stroke-width:1.6;stroke-linejoin:round;vector-effect:non-scaling-stroke}
+.fp-needle{fill:none;stroke:var(--anatomy-mid);stroke-width:.7;vector-effect:non-scaling-stroke}
+.fp-flame{fill:var(--fp-hot);stroke:var(--anatomy-hi);stroke-width:.6;vector-effect:non-scaling-stroke}
+.fp-drop{fill:var(--anatomy-hi);stroke:none}
+.fp-glow0{stop-color:var(--fp-hot);stop-opacity:1}
+.fp-glow1{stop-color:var(--fp-hot);stop-opacity:.55}
+.fp-glow2{stop-color:var(--fp-hot);stop-opacity:0}
+.iso[data-theme="light"] .fp-glow1{stop-color:var(--anatomy-lo);stop-opacity:.35}
+.iso[data-theme="light"] .fp-glow2{stop-color:var(--anatomy-lo);stop-opacity:0}
+.fp-ray{fill:none;stroke:var(--anatomy-hi);stroke-width:1;stroke-linecap:round;vector-effect:non-scaling-stroke}
+[data-cue][data-on] .fp-bead,[data-cue][data-on] .fp-card,[data-cue][data-on] .fp-pool,[data-cue][data-on] .fp-meter{stroke:var(--fp-accent);stroke-width:1.6}
+[data-cue][data-on] .fp-hazf,[data-cue][data-on] .fp-fill{fill:var(--fp-accent);opacity:.6}
+[data-cue][data-on] .fp-gas,[data-cue][data-on] .fp-iso,[data-cue][data-on] .fp-needle,[data-cue][data-on] .fp-crack,[data-cue][data-on] .fp-rule{stroke:var(--fp-accent)}
+[data-cue][data-on] .fp-panel,[data-cue][data-on] .fp-disp,[data-cue][data-on] .fp-glass{stroke:var(--fp-accent);stroke-width:1.4}
+[data-cue][data-on] .fp-drop{fill:var(--fp-accent)}
+[data-cue][data-on] .fp-wire{stroke:var(--fp-accent)}
+</style></head><body><main class="fp" data-started="0" data-ended="0" data-playing="0">
+<div class="fp-stage"><svg class="iso-svg fp-svg" viewBox="0 0 640 400" role="img" aria-label=""><defs><radialGradient id="fp-glow"><stop offset="0" class="fp-glow0"/><stop offset="0.35" class="fp-glow1"/><stop offset="1" class="fp-glow2"/></radialGradient></defs><g data-k="world"><g data-k="table"><g class="iso-solid"><path class="iso-fill" d="M97.1 258L97.4 257.6L238 145.1L238.6 144.8L239.4 144.6L240.4 144.6L241.2 144.8L541.8 238.7L542.5 239L542.9 239.4L542.9 239.9L542.9 264.6L542.6 265L402 377.5L401.4 377.9L400.6 378L399.6 378.1L398.8 377.9L98.2 284L97.5 283.7L97.1 283.2L97.1 282.8Z"/><path class="iso-shade" data-shade="0" d="M542.9 264.6L542.6 265L542.6 240.3L542.9 239.9ZM542.6 265L402 377.5L402 352.8L542.6 240.3ZM402 377.5L401.4 377.9L401.4 353.1L402 352.8Z"/><path class="iso-shade" data-shade="1" d="M401.4 377.9L400.6 378L400.6 353.3L401.4 353.1ZM400.6 378L399.6 378.1L399.6 353.3L400.6 353.3Z"/><path class="iso-shade" data-shade="2" d="M399.6 378.1L398.8 377.9L398.8 353.2L399.6 353.3Z"/><path class="iso-shade" data-shade="3" d="M398.8 377.9L98.2 284L98.2 259.3L398.8 353.2ZM98.2 284L97.5 283.7L97.5 258.9L98.2 259.3ZM97.5 283.7L97.1 283.2L97.1 258.5L97.5 258.9ZM97.1 283.2L97.1 282.8L97.1 258L97.1 258.5Z"/><path class="iso-top" d="M541.8 238.7L542.5 239L542.9 239.4L542.9 239.9L542.6 240.3L402 352.8L401.4 353.1L400.6 353.3L399.6 353.3L398.8 353.2L98.2 259.3L97.5 258.9L97.1 258.5L97.1 258L97.4 257.6L238 145.1L238.6 144.8L239.4 144.6L240.4 144.6L241.2 144.8Z"/><path class="iso-line iso-crease" data-tone="faint" d="M542.9 239.9L542.6 240.3L402 352.8L401.4 353.1L400.6 353.3L399.6 353.3L398.8 353.2L98.2 259.3L97.5 258.9L97.1 258.5L97.1 258"/><path class="iso-line iso-bevel" data-tone="faint" d="M542.9 239.9L542 240.2L401.5 352.6L401 352.8L400.4 353L399.7 353L399.1 352.9L98.6 259L98.1 258.7L97.8 258.4L97.1 258"/><path class="iso-line iso-edge" data-tone="lo" d="M97.1 258L97.4 257.6L238 145.1L238.6 144.8L239.4 144.6L240.4 144.6L241.2 144.8L541.8 238.7L542.5 239L542.9 239.4L542.9 239.9M542.9 264.6L542.6 265L402 377.5L401.4 377.9L400.6 378L399.6 378.1L398.8 377.9L98.2 284L97.5 283.7L97.1 283.2L97.1 282.8M542.9 239.9L542.9 264.6M97.1 258L97.1 282.8"/></g><g class="iso-solid"><path class="iso-fill" d="M74.6 243.9L75.1 243.3L232 117.7L233 117.2L234.3 116.9L235.6 116.9L236.9 117.1L563.8 219.2L564.8 219.7L565.4 220.3L565.4 221L565.4 237.5L564.9 238.2L408 363.8L407 364.3L405.7 364.6L404.4 364.6L403.1 364.3L76.2 262.2L75.2 261.7L74.6 261.1L74.6 260.4Z"/><path class="iso-shade" data-shade="0" d="M565.4 237.5L564.9 238.2L564.9 221.7L565.4 221ZM564.9 238.2L408 363.8L408 347.3L564.9 221.7ZM408 363.8L407 364.3L407 347.8L408 347.3Z"/><path class="iso-shade" data-shade="1" d="M407 364.3L405.7 364.6L405.7 348.1L407 347.8ZM405.7 364.6L404.4 364.6L404.4 348.1L405.7 348.1Z"/><path class="iso-shade" data-shade="2" d="M404.4 364.6L403.1 364.3L403.1 347.8L404.4 348.1Z"/><path class="iso-shade" data-shade="3" d="M403.1 364.3L76.2 262.2L76.2 245.7L403.1 347.8ZM76.2 262.2L75.2 261.7L75.2 245.3L76.2 245.7ZM75.2 261.7L74.6 261.1L74.6 244.6L75.2 245.3ZM74.6 261.1L74.6 260.4L74.6 243.9L74.6 244.6Z"/><path class="iso-top" d="M563.8 219.2L564.8 219.7L565.4 220.3L565.4 221L564.9 221.7L408 347.3L407 347.8L405.7 348.1L404.4 348.1L403.1 347.8L76.2 245.7L75.2 245.3L74.6 244.6L74.6 243.9L75.1 243.3L232 117.7L233 117.2L234.3 116.9L235.6 116.9L236.9 117.1Z"/><path class="iso-line iso-crease" data-tone="faint" d="M565.4 221L564.9 221.7L408 347.3L407 347.8L405.7 348.1L404.4 348.1L403.1 347.8L76.2 245.7L75.2 245.3L74.6 244.6L74.6 243.9"/><path class="iso-line iso-bevel" data-tone="faint" d="M565.4 221L564.1 221.5L407.2 347L406.5 347.4L405.5 347.6L404.5 347.6L403.5 347.4L76.8 245.4L76 245L75.6 244.5L74.6 243.9"/><path class="iso-line iso-edge" data-tone="mid" d="M74.6 243.9L75.1 243.3L232 117.7L233 117.2L234.3 116.9L235.6 116.9L236.9 117.1L563.8 219.2L564.8 219.7L565.4 220.3L565.4 221M565.4 237.5L564.9 238.2L408 363.8L407 364.3L405.7 364.6L404.4 364.6L403.1 364.3L76.2 262.2L75.2 261.7L74.6 261.1L74.6 260.4M565.4 221L565.4 237.5M74.6 243.9L74.6 260.4"/></g><path class="iso-line" data-tone="faint" d="M565.4 226.2L564.9 226.8L408 352.4L407 352.9L405.7 353.2L404.4 353.2L403.1 353L76.2 250.9L75.2 250.4L74.6 249.8L74.6 249.1"/><g class="iso-dots" data-tone="lo"><circle cx="239.6" cy="128.5" r="1.1"/><circle cx="220.7" cy="143.6" r="1.1"/><circle cx="201.8" cy="158.7" r="1.1"/><circle cx="182.9" cy="173.9" r="1.1"/><circle cx="164" cy="189" r="1.1"/><circle cx="145" cy="204.1" r="1.1"/><circle cx="126.1" cy="219.3" r="1.1"/><circle cx="107.2" cy="234.4" r="1.1"/><circle cx="269.9" cy="137.9" r="1.1"/><circle cx="251" cy="153.1" r="1.1"/><circle cx="232" cy="168.2" r="1.1"/><circle cx="213.1" cy="183.3" r="1.1"/><circle cx="194.2" cy="198.4" r="1.1"/><circle cx="175.3" cy="213.6" r="1.1"/><circle cx="156.4" cy="228.7" r="1.1"/><circle cx="137.5" cy="243.8" r="1.1"/><circle cx="300.1" cy="147.4" r="1.1"/><circle cx="281.2" cy="162.5" r="1.1"/><circle cx="262.3" cy="177.6" r="1.1"/><circle cx="243.4" cy="192.8" r="1.1"/><circle cx="224.5" cy="207.9" r="1.1"/><circle cx="205.6" cy="223" r="1.1"/><circle cx="186.7" cy="238.2" r="1.1"/><circle cx="167.8" cy="253.3" r="1.1"/><circle cx="330.4" cy="156.8" r="1.1"/><circle cx="311.5" cy="172" r="1.1"/><circle cx="292.6" cy="187.1" r="1.1"/><circle cx="273.7" cy="202.2" r="1.1"/><circle cx="254.7" cy="217.4" r="1.1"/><circle cx="235.8" cy="232.5" r="1.1"/><circle cx="216.9" cy="247.6" r="1.1"/><circle cx="198" cy="262.7" r="1.1"/><circle cx="360.7" cy="166.3" r="1.1"/><circle cx="341.7" cy="181.4" r="1.1"/><circle cx="322.8" cy="196.5" r="1.1"/><circle cx="303.9" cy="211.7" r="1.1"/><circle cx="285" cy="226.8" r="1.1"/><circle cx="266.1" cy="241.9" r="1.1"/><circle cx="247.2" cy="257.1" r="1.1"/><circle cx="228.3" cy="272.2" r="1.1"/><circle cx="390.9" cy="175.7" r="1.1"/><circle cx="372" cy="190.9" r="1.1"/><circle cx="353.1" cy="206" r="1.1"/><circle cx="334.2" cy="221.1" r="1.1"/><circle cx="315.3" cy="236.3" r="1.1"/><circle cx="296.4" cy="251.4" r="1.1"/><circle cx="277.5" cy="266.5" r="1.1"/><circle cx="258.5" cy="281.7" r="1.1"/><circle cx="421.2" cy="185.2" r="1.1"/><circle cx="402.3" cy="200.3" r="1.1"/><circle cx="383.4" cy="215.5" r="1.1"/><circle cx="364.4" cy="230.6" r="1.1"/><circle cx="345.5" cy="245.7" r="1.1"/><circle cx="326.6" cy="260.9" r="1.1"/><circle cx="307.7" cy="276" r="1.1"/><circle cx="288.8" cy="291.1" r="1.1"/><circle cx="451.4" cy="194.7" r="1.1"/><circle cx="432.5" cy="209.8" r="1.1"/><circle cx="413.6" cy="224.9" r="1.1"/><circle cx="394.7" cy="240" r="1.1"/><circle cx="375.8" cy="255.2" r="1.1"/><circle cx="356.9" cy="270.3" r="1.1"/><circle cx="338" cy="285.4" r="1.1"/><circle cx="319.1" cy="300.6" r="1.1"/><circle cx="481.7" cy="204.1" r="1.1"/><circle cx="462.8" cy="219.2" r="1.1"/><circle cx="443.9" cy="234.4" r="1.1"/><circle cx="425" cy="249.5" r="1.1"/><circle cx="406.1" cy="264.6" r="1.1"/><circle cx="387.2" cy="279.8" r="1.1"/><circle cx="368.2" cy="294.9" r="1.1"/><circle cx="349.3" cy="310" r="1.1"/><circle cx="512" cy="213.6" r="1.1"/><circle cx="493.1" cy="228.7" r="1.1"/><circle cx="474.1" cy="243.8" r="1.1"/><circle cx="455.2" cy="259" r="1.1"/><circle cx="436.3" cy="274.1" r="1.1"/><circle cx="417.4" cy="289.2" r="1.1"/><circle cx="398.5" cy="304.3" r="1.1"/><circle cx="379.6" cy="319.5" r="1.1"/><circle cx="542.2" cy="223" r="1.1"/><circle cx="523.3" cy="238.1" r="1.1"/><circle cx="504.4" cy="253.3" r="1.1"/><circle cx="485.5" cy="268.4" r="1.1"/><circle cx="466.6" cy="283.5" r="1.1"/><circle cx="447.7" cy="298.7" r="1.1"/><circle cx="428.8" cy="313.8" r="1.1"/><circle cx="409.9" cy="328.9" r="1.1"/></g></g><g data-k="ghose"></g><g data-k="pipe"><g class="iso-solid"><path class="iso-fill" d="M408.4 200.2L423.6 188.1L433.7 191.3L433.7 195.4L418.5 207.5L408.4 204.4Z"/><path class="iso-shade" data-shade="0" d="M433.7 195.4L418.5 207.5L418.5 203.4L433.7 191.3Z"/><path class="iso-shade" data-shade="3" d="M418.5 207.5L408.4 204.4L408.4 200.2L418.5 203.4Z"/><path class="iso-top" d="M433.7 191.3L418.5 203.4L408.4 200.2L423.6 188.1Z"/><path class="iso-line iso-crease" data-tone="faint" d="M433.7 191.3L418.5 203.4L408.4 200.2"/><path class="iso-line iso-edge" data-tone="lo" d="M408.4 200.2L423.6 188.1L433.7 191.3M433.7 195.4L418.5 207.5L408.4 204.4M433.7 191.3L433.7 195.4M408.4 200.2L408.4 204.4"/></g><g class="iso-solid"><path class="iso-fill" d="M499.2 228.6L514.4 216.5L524.4 219.7L524.4 223.8L509.3 235.9L499.2 232.7Z"/><path class="iso-shade" data-shade="0" d="M524.4 223.8L509.3 235.9L509.3 231.8L524.4 219.7Z"/><path class="iso-shade" data-shade="3" d="M509.3 235.9L499.2 232.7L499.2 228.6L509.3 231.8Z"/><path class="iso-top" d="M524.4 219.7L509.3 231.8L499.2 228.6L514.4 216.5Z"/><path class="iso-line iso-crease" data-tone="faint" d="M524.4 219.7L509.3 231.8L499.2 228.6"/><path class="iso-line iso-edge" data-tone="lo" d="M499.2 228.6L514.4 216.5L524.4 219.7M524.4 223.8L509.3 235.9L499.2 232.7M524.4 219.7L524.4 223.8M499.2 228.6L499.2 232.7"/></g><g class="iso-solid"><path class="iso-fill" d="M397.7 184.2L397.8 182.9L397.9 181.5L398.1 180.1L398.3 178.7L398.7 177.2L399.1 175.8L399.5 174.4L400.1 173L400.6 171.6L401.3 170.3L401.9 169.1L402.6 168L403.4 166.9L404.2 166L404.9 165.1L405.7 164.4L406.5 163.8L407.3 163.3L408.1 163L408.8 162.8L409.6 162.7L410.2 162.8L533.3 201.3L534 201.5L534.6 201.8L535.1 202.3L535.6 202.9L536.1 203.7L536.4 204.5L536.7 205.5L536.9 206.5L537.1 207.7L537.2 208.9L537.2 210.2L537.1 211.5L536.9 212.9L536.7 214.4L536.4 215.8L536.1 217.2L535.6 218.7L535.1 220.1L534.6 221.4L534 222.8L533.3 224L532.6 225.2L531.9 226.3L531.1 227.3L530.4 228.2L529.6 229L528.8 229.6L528 230.2L527.2 230.6L526.5 230.9L525.7 231L525 231L524.3 230.8L401.3 192.4L400.6 192.1L400.1 191.7L399.5 191.1L399.1 190.5L398.7 189.7L398.3 188.8L398.1 187.8L397.9 186.7L397.8 185.5Z"/><path class="iso-shade" data-shade="0" d="M401.8 192.5L399.6 191.3L398.2 188.4L521.3 226.8L522.7 229.7L524.9 231ZM520.8 222.7L521.3 217.7L522.7 212.5L524.9 207.8L527.6 204L530.4 201.8L533.1 201.2L535.3 202.5L536.7 205.4L537.2 209.5L536.7 214.5L535.3 219.7L533.1 224.4L530.4 228.1L527.6 230.4L524.9 231L522.7 229.7L521.3 226.8L520.8 222.7L529 216.1L529 216.1L529 216.1L529 216.1L529 216.1L529 216.1L529 216.1L529 216.1L529 216.1L529 216.1L529 216.1L529 216.1L529 216.1L529 216.1L529 216.1L529 216.1L529 216.1L529 216.1L529 216.1Z"/><path class="iso-shade" data-shade="2" d="M398.2 188.4L397.7 184.2L520.8 222.7L521.3 226.8Z"/><path class="iso-shade" data-shade="3" d="M397.7 184.2L398.2 179.2L521.3 217.7L520.8 222.7ZM407.3 163.3L410 162.8L533.1 201.2L530.4 201.8Z"/><path class="iso-top" d="M398.2 179.2L399.6 174.1L401.8 169.3L404.5 165.6L407.3 163.3L530.4 201.8L527.6 204L524.9 207.8L522.7 212.5L521.3 217.7Z"/><path class="iso-line iso-crease" data-tone="lo" d="M524.4 230.9L523.8 230.6L523.2 230.2L522.7 229.7L522.2 229L521.8 228.2L521.4 227.4L521.2 226.4L521 225.3L520.9 224.2L520.8 222.9L520.8 221.6L520.9 220.3L521.1 218.9L521.3 217.5L521.6 216.1L522 214.7L522.4 213.3L522.9 211.9L523.5 210.6L524.1 209.3L524.7 208L525.4 206.9L526.1 205.8L526.9 204.8L527.7 204L528.4 203.2L529.2 202.5L530 202L530.8 201.6L531.5 201.3L532.2 201.2L532.9 201.2L533.6 201.3"/><path class="iso-line iso-edge" data-tone="hi" d="M397.7 184.2L397.8 182.9L397.9 181.5L398.1 180.1L398.3 178.7L398.7 177.2L399.1 175.8L399.5 174.4L400.1 173L400.6 171.6L401.3 170.3L401.9 169.1L402.6 168L403.4 166.9L404.2 166L404.9 165.1L405.7 164.4L406.5 163.8L407.3 163.3L408.1 163L408.8 162.8L409.6 162.7L410.2 162.8L533.3 201.3L534 201.5L534.6 201.8L535.1 202.3L535.6 202.9L536.1 203.7L536.4 204.5L536.7 205.5L536.9 206.5L537.1 207.7L537.2 208.9L537.2 210.2L537.1 211.5L536.9 212.9L536.7 214.4L536.4 215.8L536.1 217.2L535.6 218.7L535.1 220.1L534.6 221.4L534 222.8L533.3 224L532.6 225.2L531.9 226.3L531.1 227.3L530.4 228.2L529.6 229L528.8 229.6L528 230.2L527.2 230.6L526.5 230.9L525.7 231L525 231L524.3 230.8L401.3 192.4L400.6 192.1L400.1 191.7L399.5 191.1L399.1 190.5L398.7 189.7L398.3 188.8L398.1 187.8L397.9 186.7L397.8 185.5Z"/></g><g data-cue="tint"><g class="iso-solid fp-tint"><path class="iso-fill" d="M449.1 200.3L449.1 199L449.2 197.7L449.4 196.3L449.7 194.8L450 193.4L450.4 192L450.9 190.6L451.4 189.2L452 187.8L452.6 186.5L453.2 185.3L453.9 184.2L454.7 183.1L455.4 182.1L456.2 181.3L457 180.5L457.8 179.9L458.5 179.4L459.3 179L460.1 178.8L460.8 178.7L461.5 178.7L462.2 178.9L468.2 180.8L468.8 181.1L469.4 181.5L469.9 182.1L470.4 182.7L470.8 183.5L471.1 184.4L471.4 185.5L471.5 186.6L471.7 187.7L471.7 189L471.7 190.3L471.5 191.7L471.4 193.1L471.1 194.5L470.8 195.9L470.4 197.3L469.9 198.8L469.4 200.1L468.8 201.5L468.2 202.8L467.6 204L466.9 205.2L466.1 206.2L465.4 207.2L464.6 208L463.8 208.8L463 209.4L462.2 209.9L461.5 210.3L460.7 210.5L460 210.7L459.3 210.6L458.6 210.5L452.6 208.6L452 208.3L451.4 207.8L450.9 207.3L450.4 206.6L450 205.8L449.7 204.9L449.4 203.9L449.2 202.8L449.1 201.6Z"/><path class="iso-shade" data-shade="0" d="M453.2 208.7L451 207.5L449.6 204.6L455.6 206.5L457.1 209.4L459.3 210.6Z"/><path class="iso-shade" data-shade="2" d="M449.6 204.6L449.1 200.3L455.2 202.2L455.6 206.5Z"/><path class="iso-shade" data-shade="3" d="M449.1 200.3L449.6 195.3L455.6 197.2L455.2 202.2ZM458.8 179.3L461.5 178.7L467.6 180.6L464.9 181.2Z"/><path class="iso-top" d="M449.6 195.3L451 190.1L453.2 185.3L455.9 181.6L458.8 179.3L464.9 181.2L462 183.4L459.3 187.2L457.1 192L455.6 197.2Z"/><path class="iso-line iso-edge" data-tone="mid" d="M449.1 200.3L449.1 199L449.2 197.7L449.4 196.3L449.7 194.8L450 193.4L450.4 192L450.9 190.6L451.4 189.2L452 187.8L452.6 186.5L453.2 185.3L453.9 184.2L454.7 183.1L455.4 182.1L456.2 181.3L457 180.5L457.8 179.9L458.5 179.4L459.3 179L460.1 178.8L460.8 178.7L461.5 178.7L462.2 178.9L468.2 180.8L468.8 181.1L469.4 181.5L469.9 182.1L470.4 182.7L470.8 183.5L471.1 184.4L471.4 185.5L471.5 186.6L471.7 187.7L471.7 189L471.7 190.3L471.5 191.7L471.4 193.1L471.1 194.5L470.8 195.9L470.4 197.3L469.9 198.8L469.4 200.1L468.8 201.5L468.2 202.8L467.6 204L466.9 205.2L466.1 206.2L465.4 207.2L464.6 208L463.8 208.8L463 209.4L462.2 209.9L461.5 210.3L460.7 210.5L460 210.7L459.3 210.6L458.6 210.5L452.6 208.6L452 208.3L451.4 207.8L450.9 207.3L450.4 206.6L450 205.8L449.7 204.9L449.4 203.9L449.2 202.8L449.1 201.6Z"/></g><g class="iso-solid fp-tint"><path class="iso-fill" d="M469.3 206.6L469.3 205.3L469.4 204L469.6 202.6L469.9 201.1L470.2 199.7L470.6 198.3L471 196.9L471.6 195.5L472.1 194.1L472.7 192.9L473.4 191.6L474.1 190.5L474.8 189.4L475.6 188.4L476.4 187.6L477.1 186.8L477.9 186.2L478.7 185.7L479.5 185.3L480.2 185.1L481 185L481.7 185L482.3 185.2L488.4 187.1L489 187.4L489.6 187.8L490.1 188.4L490.6 189L490.9 189.8L491.3 190.7L491.5 191.8L491.7 192.9L491.8 194L491.9 195.3L491.8 196.6L491.7 198L491.5 199.4L491.3 200.8L490.9 202.2L490.6 203.7L490.1 205.1L489.6 206.5L489 207.8L488.4 209.1L487.7 210.3L487 211.5L486.3 212.5L485.5 213.5L484.8 214.3L484 215.1L483.2 215.7L482.4 216.2L481.6 216.6L480.9 216.8L480.2 217L479.5 216.9L478.8 216.8L472.7 214.9L472.1 214.6L471.6 214.1L471 213.6L470.6 212.9L470.2 212.1L469.9 211.2L469.6 210.2L469.4 209.1L469.3 207.9Z"/><path class="iso-shade" data-shade="0" d="M473.4 215L471.2 213.8L469.8 210.9L475.8 212.8L477.3 215.7L479.5 216.9Z"/><path class="iso-shade" data-shade="2" d="M469.8 210.9L469.3 206.6L475.3 208.5L475.8 212.8Z"/><path class="iso-shade" data-shade="3" d="M469.3 206.6L469.8 201.6L475.8 203.5L475.3 208.5ZM479 185.6L481.7 185L487.7 186.9L485 187.5Z"/><path class="iso-top" d="M469.8 201.6L471.2 196.4L473.4 191.6L476.1 187.9L479 185.6L485 187.5L482.2 189.8L479.5 193.5L477.3 198.3L475.8 203.5Z"/><path class="iso-line iso-edge" data-tone="mid" d="M469.3 206.6L469.3 205.3L469.4 204L469.6 202.6L469.9 201.1L470.2 199.7L470.6 198.3L471 196.9L471.6 195.5L472.1 194.1L472.7 192.9L473.4 191.6L474.1 190.5L474.8 189.4L475.6 188.4L476.4 187.6L477.1 186.8L477.9 186.2L478.7 185.7L479.5 185.3L480.2 185.1L481 185L481.7 185L482.3 185.2L488.4 187.1L489 187.4L489.6 187.8L490.1 188.4L490.6 189L490.9 189.8L491.3 190.7L491.5 191.8L491.7 192.9L491.8 194L491.9 195.3L491.8 196.6L491.7 198L491.5 199.4L491.3 200.8L490.9 202.2L490.6 203.7L490.1 205.1L489.6 206.5L489 207.8L488.4 209.1L487.7 210.3L487 211.5L486.3 212.5L485.5 213.5L484.8 214.3L484 215.1L483.2 215.7L482.4 216.2L481.6 216.6L480.9 216.8L480.2 217L479.5 216.9L478.8 216.8L472.7 214.9L472.1 214.6L471.6 214.1L471 213.6L470.6 212.9L470.2 212.1L469.9 211.2L469.6 210.2L469.4 209.1L469.3 207.9Z"/></g><g class="iso-solid fp-tint"><path class="iso-fill" d="M455.2 202.2L455.2 200.9L455.3 199.5L455.5 198.2L455.7 196.7L456.1 195.3L456.5 193.9L456.9 192.5L457.4 191.1L458 189.7L458.6 188.4L459.3 187.2L460 186.1L460.7 185L461.5 184L462.2 183.2L463 182.4L463.8 181.8L464.6 181.3L465.4 180.9L466.1 180.7L466.9 180.6L467.6 180.6L468.2 180.8L472.3 182L472.9 182.3L473.4 182.8L474 183.3L474.4 184L474.8 184.8L475.1 185.7L475.4 186.7L475.6 187.8L475.7 189L475.7 190.3L475.7 191.6L475.6 192.9L475.4 194.3L475.1 195.7L474.8 197.2L474.4 198.6L474 200L473.4 201.4L472.9 202.8L472.3 204L471.6 205.3L470.9 206.4L470.2 207.5L469.4 208.4L468.6 209.3L467.8 210.1L467.1 210.7L466.3 211.2L465.5 211.6L464.8 211.8L464 211.9L463.3 211.9L462.7 211.7L458.6 210.5L458 210.2L457.4 209.7L456.9 209.2L456.5 208.5L456.1 207.7L455.7 206.8L455.5 205.8L455.3 204.7L455.2 203.5Z"/><path class="iso-shade" data-shade="0" d="M459.3 210.6L457.1 209.4L455.6 206.5L459.7 207.7L461.1 210.6L463.3 211.9Z"/><path class="iso-shade" data-shade="2" d="M455.6 206.5L455.2 202.2L459.2 203.5L459.7 207.7Z"/><path class="iso-shade" data-shade="3" d="M455.2 202.2L455.6 197.2L459.7 198.5L459.2 203.5ZM464.9 181.2L467.6 180.6L471.6 181.9L468.9 182.4Z"/><path class="iso-top" d="M455.6 197.2L457.1 192L459.3 187.2L462 183.4L464.9 181.2L468.9 182.4L466 184.7L463.3 188.5L461.1 193.3L459.7 198.5Z"/><path class="iso-line iso-edge" data-tone="lo" d="M455.2 202.2L455.2 200.9L455.3 199.5L455.5 198.2L455.7 196.7L456.1 195.3L456.5 193.9L456.9 192.5L457.4 191.1L458 189.7L458.6 188.4L459.3 187.2L460 186.1L460.7 185L461.5 184L462.2 183.2L463 182.4L463.8 181.8L464.6 181.3L465.4 180.9L466.1 180.7L466.9 180.6L467.6 180.6L468.2 180.8L472.3 182L472.9 182.3L473.4 182.8L474 183.3L474.4 184L474.8 184.8L475.1 185.7L475.4 186.7L475.6 187.8L475.7 189L475.7 190.3L475.7 191.6L475.6 192.9L475.4 194.3L475.1 195.7L474.8 197.2L474.4 198.6L474 200L473.4 201.4L472.9 202.8L472.3 204L471.6 205.3L470.9 206.4L470.2 207.5L469.4 208.4L468.6 209.3L467.8 210.1L467.1 210.7L466.3 211.2L465.5 211.6L464.8 211.8L464 211.9L463.3 211.9L462.7 211.7L458.6 210.5L458 210.2L457.4 209.7L456.9 209.2L456.5 208.5L456.1 207.7L455.7 206.8L455.5 205.8L455.3 204.7L455.2 203.5Z"/></g><g class="iso-solid fp-tint"><path class="iso-fill" d="M465.2 205.4L465.3 204.1L465.4 202.7L465.6 201.3L465.8 199.9L466.2 198.4L466.6 197L467 195.6L467.5 194.2L468.1 192.9L468.7 191.6L469.4 190.4L470.1 189.2L470.8 188.2L471.6 187.2L472.3 186.3L473.1 185.6L473.9 184.9L474.7 184.4L475.5 184.1L476.2 183.8L476.9 183.7L477.6 183.7L478.3 183.9L482.3 185.2L483 185.5L483.5 185.9L484 186.5L484.5 187.1L484.9 187.9L485.2 188.9L485.5 189.9L485.7 191L485.8 192.1L485.8 193.4L485.8 194.7L485.7 196.1L485.5 197.5L485.2 198.9L484.9 200.3L484.5 201.8L484 203.2L483.5 204.6L483 205.9L482.3 207.2L481.7 208.4L481 209.6L480.2 210.6L479.5 211.6L478.7 212.5L477.9 213.2L477.1 213.8L476.4 214.3L475.6 214.7L474.8 215L474.1 215.1L473.4 215L472.7 214.9L468.7 213.6L468.1 213.3L467.5 212.9L467 212.3L466.6 211.6L466.2 210.8L465.8 209.9L465.6 208.9L465.4 207.8L465.3 206.6Z"/><path class="iso-shade" data-shade="0" d="M469.4 213.8L467.2 212.5L465.7 209.6L469.8 210.9L471.2 213.8L473.4 215Z"/><path class="iso-shade" data-shade="2" d="M465.7 209.6L465.2 205.4L469.3 206.6L469.8 210.9Z"/><path class="iso-shade" data-shade="3" d="M465.2 205.4L465.7 200.4L469.8 201.6L469.3 206.6ZM474.9 184.3L477.6 183.7L481.7 185L479 185.6Z"/><path class="iso-top" d="M465.7 200.4L467.2 195.1L469.4 190.4L472.1 186.6L474.9 184.3L479 185.6L476.1 187.9L473.4 191.6L471.2 196.4L469.8 201.6Z"/><path class="iso-line iso-edge" data-tone="lo" d="M465.2 205.4L465.3 204.1L465.4 202.7L465.6 201.3L465.8 199.9L466.2 198.4L466.6 197L467 195.6L467.5 194.2L468.1 192.9L468.7 191.6L469.4 190.4L470.1 189.2L470.8 188.2L471.6 187.2L472.3 186.3L473.1 185.6L473.9 184.9L474.7 184.4L475.5 184.1L476.2 183.8L476.9 183.7L477.6 183.7L478.3 183.9L482.3 185.2L483 185.5L483.5 185.9L484 186.5L484.5 187.1L484.9 187.9L485.2 188.9L485.5 189.9L485.7 191L485.8 192.1L485.8 193.4L485.8 194.7L485.7 196.1L485.5 197.5L485.2 198.9L484.9 200.3L484.5 201.8L484 203.2L483.5 204.6L483 205.9L482.3 207.2L481.7 208.4L481 209.6L480.2 210.6L479.5 211.6L478.7 212.5L477.9 213.2L477.1 213.8L476.4 214.3L475.6 214.7L474.8 215L474.1 215.1L473.4 215L472.7 214.9L468.7 213.6L468.1 213.3L467.5 212.9L467 212.3L466.6 211.6L466.2 210.8L465.8 209.9L465.6 208.9L465.4 207.8L465.3 206.6Z"/></g></g><path class="iso-line" data-tone="hi" d="M462.7 211.8L462.2 211.5L461.6 211L461.1 210.4L460.7 209.6L460.3 208.8L460 207.8L459.8 206.8L459.6 205.7L459.6 204.5L459.5 203.2L459.6 201.9L459.7 200.5L459.9 199.1L460.2 197.7L460.6 196.3L461 194.8L461.5 193.4L462 192.1L462.6 190.8L463.2 189.5L463.9 188.3L464.6 187.2L465.3 186.1L466 185.2L466.8 184.3L467.6 183.6L468.4 183L469.2 182.5L469.9 182.2L470.7 181.9L471.4 181.9L472.1 181.9M464.1 212.2L463.5 211.9L462.9 211.4L462.4 210.8L462 210L461.6 209.2L461.3 208.3L461.1 207.2L461 206.1L460.9 204.9L460.9 203.6L460.9 202.3L461.1 200.9L461.3 199.5L461.5 198.1L461.9 196.7L462.3 195.3L462.8 193.9L463.3 192.5L463.9 191.2L464.5 189.9L465.2 188.7L465.9 187.6L466.6 186.5L467.4 185.6L468.1 184.7L468.9 184L469.7 183.4L470.5 182.9L471.2 182.6L472 182.4L472.7 182.3L473.4 182.3M465.4 212.6L464.8 212.3L464.2 211.8L463.7 211.2L463.3 210.5L462.9 209.6L462.6 208.7L462.4 207.6L462.3 206.5L462.2 205.3L462.2 204L462.2 202.7L462.4 201.3L462.6 199.9L462.8 198.5L463.2 197.1L463.6 195.7L464.1 194.3L464.6 192.9L465.2 191.6L465.8 190.3L466.5 189.1L467.2 188L467.9 186.9L468.7 186L469.4 185.2L470.2 184.4L471 183.8L471.8 183.3L472.5 183L473.3 182.8L474 182.7L474.7 182.7M466.7 213L466.1 212.7L465.5 212.2L465.1 211.6L464.6 210.9L464.3 210L464 209.1L463.7 208L463.6 206.9L463.5 205.7L463.5 204.4L463.5 203.1L463.7 201.7L463.9 200.3L464.2 198.9L464.5 197.5L464.9 196.1L465.4 194.7L465.9 193.3L466.5 192L467.1 190.7L467.8 189.5L468.5 188.4L469.2 187.3L470 186.4L470.8 185.6L471.5 184.8L472.3 184.2L473.1 183.8L473.9 183.4L474.6 183.2L475.3 183.1L476 183.1M468 213.5L467.4 213.1L466.9 212.6L466.4 212L465.9 211.3L465.6 210.4L465.3 209.5L465 208.4L464.9 207.3L464.8 206.1L464.8 204.8L464.9 203.5L465 202.1L465.2 200.7L465.5 199.3L465.8 197.9L466.2 196.5L466.7 195.1L467.2 193.7L467.8 192.4L468.4 191.1L469.1 189.9L469.8 188.8L470.5 187.8L471.3 186.8L472.1 186L472.8 185.3L473.6 184.6L474.4 184.2L475.2 183.8L475.9 183.6L476.6 183.5L477.3 183.5"/><path class="fp-pore" d="M521.9 221.9L522 219.5L522.4 216.9L523.1 214.4L524 211.9L525 209.5L526.3 207.5L527.6 205.7L529 204.4L530.4 203.5L531.8 203.1L533 203.2L534.1 203.7L535 204.8L535.7 206.3L536.1 208.2L536.2 210.4L536.1 212.8L535.7 215.3L535 217.9L534.1 220.3L533 222.7L531.8 224.8L530.4 226.5L529 227.9L527.6 228.8L526.3 229.2L525 229.1L524 228.5L523.1 227.4L522.4 225.9L522 224Z"/></g><g data-k="clampsB"><g class="iso-solid"><path class="iso-fill" d="M277.3 183.5L277.5 182.9L294.5 169.2L295.6 168.9L297 169L312.1 173.7L312.9 174.2L312.9 180.4L312.7 181.1L295.7 194.7L294.5 195.1L293.2 195L278.1 190.3L277.3 189.7Z"/><path class="iso-shade" data-shade="0" d="M312.9 180.4L312.7 181.1L312.7 174.9L312.9 174.2ZM312.7 181.1L295.7 194.7L295.7 188.5L312.7 174.9ZM295.7 194.7L294.5 195.1L294.5 188.9L295.7 188.5Z"/><path class="iso-shade" data-shade="2" d="M294.5 195.1L293.2 195L293.2 188.8L294.5 188.9Z"/><path class="iso-shade" data-shade="3" d="M293.2 195L278.1 190.3L278.1 184.1L293.2 188.8ZM278.1 190.3L277.3 189.7L277.3 183.5L278.1 184.1Z"/><path class="iso-top" d="M312.1 173.7L312.9 174.2L312.7 174.9L295.7 188.5L294.5 188.9L293.2 188.8L278.1 184.1L277.3 183.5L277.5 182.9L294.5 169.2L295.6 168.9L297 169Z"/><path class="iso-line iso-crease" data-tone="faint" d="M312.9 174.2L312.7 174.9L295.7 188.5L294.5 188.9L293.2 188.8L278.1 184.1L277.3 183.5"/><path class="iso-line iso-edge" data-tone="lo" d="M277.3 183.5L277.5 182.9L294.5 169.2L295.6 168.9L297 169L312.1 173.7L312.9 174.2M312.9 180.4L312.7 181.1L295.7 194.7L294.5 195.1L293.2 195L278.1 190.3L277.3 189.7M312.9 174.2L312.9 180.4M277.3 183.5L277.3 189.7"/></g><g class="iso-dots" data-tone="mid"><circle cx="297" cy="171.8" r="0.55"/><circle cx="293.2" cy="186" r="0.55"/></g><g class="iso-solid"><path class="iso-fill" d="M289.9 146.9L290 146.4L296.3 141.4L297.1 141.1L298 141.2L306.1 143.7L306.6 144.1L306.6 175L306.4 175.4L300.1 180.5L299.4 180.7L298.5 180.7L290.4 178.1L289.9 177.8Z"/><path class="iso-shade" data-shade="0" d="M306.6 175L306.4 175.4L306.4 144.5L306.6 144.1ZM306.4 175.4L300.1 180.5L300.1 149.6L306.4 144.5ZM300.1 180.5L299.4 180.7L299.4 149.8L300.1 149.6Z"/><path class="iso-shade" data-shade="2" d="M299.4 180.7L298.5 180.7L298.5 149.8L299.4 149.8Z"/><path class="iso-shade" data-shade="3" d="M298.5 180.7L290.4 178.1L290.4 147.2L298.5 149.8ZM290.4 178.1L289.9 177.8L289.9 146.9L290.4 147.2Z"/><path class="iso-top" d="M306.1 143.7L306.6 144.1L306.4 144.5L300.1 149.6L299.4 149.8L298.5 149.8L290.4 147.2L289.9 146.9L290 146.4L296.3 141.4L297.1 141.1L298 141.2Z"/><path class="iso-line iso-crease" data-tone="faint" d="M306.6 144.1L306.4 144.5L300.1 149.6L299.4 149.8L298.5 149.8L290.4 147.2L289.9 146.9"/><path class="iso-line iso-edge" data-tone="mid" d="M289.9 146.9L290 146.4L296.3 141.4L297.1 141.1L298 141.2L306.1 143.7L306.6 144.1M306.6 175L306.4 175.4L300.1 180.5L299.4 180.7L298.5 180.7L290.4 178.1L289.9 177.8M306.6 144.1L306.6 175M289.9 146.9L289.9 177.8"/></g><g class="iso-solid"><path class="iso-fill" d="M267 160.2L267.1 159.7L299.9 133.5L300.6 133.2L301.5 133.3L307.6 135.2L308.1 135.6L308.1 141.7L307.9 142.2L275.2 168.4L274.4 168.7L273.5 168.6L267.5 166.7L267 166.3Z"/><path class="iso-shade" data-shade="0" d="M308.1 141.7L307.9 142.2L307.9 136L308.1 135.6ZM307.9 142.2L275.2 168.4L275.2 162.2L307.9 136ZM275.2 168.4L274.4 168.7L274.4 162.5L275.2 162.2Z"/><path class="iso-shade" data-shade="2" d="M274.4 168.7L273.5 168.6L273.5 162.4L274.4 162.5Z"/><path class="iso-shade" data-shade="3" d="M273.5 168.6L267.5 166.7L267.5 160.5L273.5 162.4ZM267.5 166.7L267 166.3L267 160.2L267.5 160.5Z"/><path class="iso-top" d="M307.6 135.2L308.1 135.6L307.9 136L275.2 162.2L274.4 162.5L273.5 162.4L267.5 160.5L267 160.2L267.1 159.7L299.9 133.5L300.6 133.2L301.5 133.3Z"/><path class="iso-line iso-crease" data-tone="lo" d="M308.1 135.6L307.9 136L275.2 162.2L274.4 162.5L273.5 162.4L267.5 160.5L267 160.2"/><path class="iso-line iso-edge" data-tone="hi" d="M267 160.2L267.1 159.7L299.9 133.5L300.6 133.2L301.5 133.3L307.6 135.2L308.1 135.6M308.1 141.7L307.9 142.2L275.2 168.4L274.4 168.7L273.5 168.6L267.5 166.7L267 166.3M308.1 135.6L308.1 141.7M267 160.2L267 166.3"/></g><g class="iso-solid"><path class="iso-fill" d="M270.7 164.4L271.3 163.7L272.4 163.1L273.9 162.9L275.5 162.9L276.8 163.4L277.7 164L277.8 164.8L277.8 179.3L277.3 180L276.2 180.6L274.7 180.8L273.1 180.7L271.8 180.3L270.9 179.7L270.7 178.9Z"/><path class="iso-shade" data-shade="0" d="M277.3 180L276.2 180.6L276.2 166.1L277.3 165.6ZM277.8 179.3L277.3 180L277.3 165.6L277.8 164.8Z"/><path class="iso-shade" data-shade="1" d="M276.2 180.6L274.7 180.8L274.7 166.4L276.2 166.1Z"/><path class="iso-shade" data-shade="2" d="M274.7 180.8L273.1 180.7L273.1 166.3L274.7 166.4Z"/><path class="iso-shade" data-shade="3" d="M273.1 180.7L271.8 180.3L271.8 165.9L273.1 166.3ZM271.8 180.3L270.9 179.7L270.9 165.2L271.8 165.9ZM270.9 179.7L270.7 178.9L270.7 164.4L270.9 165.2Z"/><path class="iso-top" d="M277.3 165.6L276.2 166.1L274.7 166.4L273.1 166.3L271.8 165.9L270.9 165.2L270.7 164.4L271.3 163.7L272.4 163.1L273.9 162.9L275.5 162.9L276.8 163.4L277.7 164L277.8 164.8Z"/><path class="iso-line iso-crease" data-tone="faint" d="M277.8 164.8L277.3 165.6L276.2 166.1L274.7 166.4L273.1 166.3L271.8 165.9L270.9 165.2L270.7 164.4"/><path class="iso-line iso-edge" data-tone="mid" d="M270.7 164.4L271.3 163.7L272.4 163.1L273.9 162.9L275.5 162.9L276.8 163.4L277.7 164L277.8 164.8M277.8 179.3L277.3 180L276.2 180.6L274.7 180.8L273.1 180.7L271.8 180.3L270.9 179.7L270.7 178.9M270.7 164.4L270.7 178.9M277.8 164.8L277.8 179.3"/></g><g class="iso-solid"><path class="iso-fill" d="M268.4 177.7L269.2 176.5L271.1 175.5L273.6 175.1L276.2 175.2L278.5 175.9L279.9 177L280.2 178.4L280.2 181.4L279.3 182.7L277.5 183.6L275 184.1L272.3 183.9L270.1 183.2L268.7 182.1L268.4 180.8Z"/><path class="iso-shade" data-shade="0" d="M279.3 182.7L277.5 183.6L277.5 180.5L279.3 179.6ZM280.2 181.4L279.3 182.7L279.3 179.6L280.2 178.4Z"/><path class="iso-shade" data-shade="1" d="M277.5 183.6L275 184.1L275 181L277.5 180.5Z"/><path class="iso-shade" data-shade="2" d="M275 184.1L272.3 183.9L272.3 180.8L275 181Z"/><path class="iso-shade" data-shade="3" d="M272.3 183.9L270.1 183.2L270.1 180.1L272.3 180.8ZM270.1 183.2L268.7 182.1L268.7 179L270.1 180.1ZM268.7 182.1L268.4 180.8L268.4 177.7L268.7 179Z"/><path class="iso-top" d="M279.3 179.6L277.5 180.5L275 181L272.3 180.8L270.1 180.1L268.7 179L268.4 177.7L269.2 176.5L271.1 175.5L273.6 175.1L276.2 175.2L278.5 175.9L279.9 177L280.2 178.4Z"/><path class="iso-line iso-crease" data-tone="faint" d="M280.2 178.4L279.3 179.6L277.5 180.5L275 181L272.3 180.8L270.1 180.1L268.7 179L268.4 177.7"/><path class="iso-line iso-edge" data-tone="lo" d="M268.4 177.7L269.2 176.5L271.1 175.5L273.6 175.1L276.2 175.2L278.5 175.9L279.9 177L280.2 178.4M280.2 181.4L279.3 182.7L277.5 183.6L275 184.1L272.3 183.9L270.1 183.2L268.7 182.1L268.4 180.8M268.4 177.7L268.4 180.8M280.2 178.4L280.2 181.4"/></g><g class="iso-solid"><path class="iso-fill" d="M269.5 154.5L269.7 153.8L270.3 153.1L271.2 152.5L272.5 152.1L274 152L275.4 152L276.8 152.3L277.9 152.8L278.7 153.4L279 154.2L279 158.3L278.9 159L278.3 159.7L277.3 160.3L276.1 160.7L274.6 160.8L273.1 160.8L271.8 160.5L270.6 160L269.9 159.3L269.5 158.6Z"/><path class="iso-shade" data-shade="0" d="M279 158.1L278.9 158.9L278.3 159.7L277.2 160.3L275.8 160.7L274.1 160.8L274.1 156.7L275.8 156.6L277.2 156.2L278.3 155.6L278.9 154.8L279 154Z"/><path class="iso-shade" data-shade="1" d="M274.1 160.8L272.5 160.7L272.5 156.5L274.1 156.7Z"/><path class="iso-shade" data-shade="2" d="M272.5 160.7L271.1 160.2L271.1 156.1L272.5 156.5Z"/><path class="iso-shade" data-shade="3" d="M271.1 160.2L270.1 159.6L269.6 158.8L269.6 154.7L270.1 155.5L271.1 156.1Z"/><path class="iso-top" d="M278.3 155.6L277.2 156.2L275.8 156.6L274.1 156.7L272.5 156.5L271.1 156.1L270.1 155.5L269.6 154.7L269.6 153.8L270.3 153.1L271.4 152.5L272.8 152.1L274.5 152L276.1 152.1L277.5 152.6L278.5 153.2L279 154L278.9 154.8L278.3 155.6L274.3 154.3L274.3 154.3L274.3 154.3L274.3 154.3L274.3 154.3L274.3 154.3L274.3 154.3L274.3 154.3L274.3 154.3L274.3 154.3L274.3 154.3L274.3 154.3L274.3 154.3L274.3 154.3L274.3 154.3L274.3 154.3L274.3 154.3L274.3 154.3L274.3 154.3Z"/><path class="iso-line iso-crease" data-tone="lo" d="M279 154.3L278.8 155.1L278.1 155.7L277.1 156.3L275.8 156.6L274.3 156.7L272.8 156.6L271.5 156.3L270.4 155.7L269.8 155.1L269.5 154.3"/><path class="iso-line iso-edge" data-tone="hi" d="M269.5 154.5L269.7 153.8L270.3 153.1L271.2 152.5L272.5 152.1L274 152L275.4 152L276.8 152.3L277.9 152.8L278.7 153.4L279 154.2L279 158.3L278.9 159L278.3 159.7L277.3 160.3L276.1 160.7L274.6 160.8L273.1 160.8L271.8 160.5L270.6 160L269.9 159.3L269.5 158.6Z"/></g></g><g data-k="platesFar" data-cue="plates"><g class="iso-solid"><path class="iso-fill" d="M189.2 211.6L195.7 187.9L233.9 157.3L455.9 226.6L455.9 247.2L411.1 283L189.2 213.7Z"/><path class="iso-shade" data-shade="0" d="M455.9 247.2L411.1 283L411.1 281L417.7 257.2L455.9 226.6Z"/><path class="iso-shade" data-shade="2" d="M189.2 213.7L189.2 211.6L411.1 281L411.1 283Z"/><path class="iso-top" d="M189.2 211.6L195.7 187.9L417.7 257.2L411.1 281ZM195.7 187.9L233.9 157.3L455.9 226.6L417.7 257.2Z"/><path class="iso-line iso-crease" data-tone="lo" d="M411.1 283L411.1 281M189.2 211.6L411.1 281M411.1 281L417.7 257.2M195.7 187.9L417.7 257.2M417.7 257.2L455.9 226.6"/><path class="iso-line iso-edge" data-tone="mid" d="M189.2 211.6L195.7 187.9L233.9 157.3L455.9 226.6L455.9 247.2L411.1 283L189.2 213.7Z"/></g><path class="iso-shade" data-shade="2" d="M189.2 211.6L411.1 281L417.7 257.2L195.7 187.9Z"/><path class="iso-shade" data-shade="0" d="M189.2 213.7L411.1 283L411.1 281L189.2 211.6Z"/><path class="iso-line" data-tone="mid" d="M195.7 187.9L417.7 257.2"/><path class="iso-line" data-tone="faint" d="M448.3 253.3L448.3 232.7"/></g><g data-k="platesNear" data-cue="plates"><g class="iso-solid"><path class="iso-fill" d="M143.2 229.9L181.4 199.3L403.3 268.7L403.3 289.3L365.1 319.9L143.2 250.5Z"/><path class="iso-shade" data-shade="0" d="M403.3 289.3L365.1 319.9L365.1 299.3L403.3 268.7Z"/><path class="iso-shade" data-shade="2" d="M143.2 250.5L143.2 229.9L365.1 299.3L365.1 319.9Z"/><path class="iso-top" d="M143.2 229.9L181.4 199.3L403.3 268.7L365.1 299.3Z"/><path class="iso-line iso-crease" data-tone="lo" d="M365.1 319.9L365.1 299.3M143.2 229.9L365.1 299.3M365.1 299.3L403.3 268.7"/><path class="iso-line iso-edge" data-tone="mid" d="M143.2 229.9L181.4 199.3L403.3 268.7L403.3 289.3L365.1 319.9L143.2 250.5Z"/></g><g class="iso-solid"><path class="iso-top" d="M409.8 284L403.3 289.3L403.3 268.7L409.8 282Z"/></g><path class="iso-line" data-tone="faint" d="M372.7 313.8L372.7 293.2"/><g class="iso-dots" data-tone="lo"><circle cx="202.7" cy="213.5" r="0.6"/></g><g class="iso-dots" data-tone="lo"><circle cx="279.3" cy="237.4" r="0.6"/></g><g class="iso-dots" data-tone="lo"><circle cx="360" cy="262.6" r="0.6"/></g></g><g data-k="section"></g><g data-k="haz" data-cue="haz"></g><g data-k="heat" data-cue="heat"></g><g data-k="bead" data-cue="bead"></g><g data-k="pores"></g><g data-k="pool" data-cue="pool"></g><g data-k="gasflow" data-cue="gas"></g><g data-k="cable"></g><g data-k="arc"></g><g data-k="wire"></g><g data-k="rod"></g><g data-k="flame"></g><g data-k="clampsF"><g class="iso-solid"><path class="iso-fill" d="M290.2 312.4L290.4 311.7L307.4 298.1L308.5 297.7L309.9 297.8L325 302.6L325.8 303.1L325.8 309.3L325.6 310L308.5 323.6L307.4 324L306.1 323.9L291 319.1L290.2 318.6Z"/><path class="iso-shade" data-shade="0" d="M325.8 309.3L325.6 310L325.6 303.8L325.8 303.1ZM325.6 310L308.5 323.6L308.5 317.4L325.6 303.8ZM308.5 323.6L307.4 324L307.4 317.8L308.5 317.4Z"/><path class="iso-shade" data-shade="2" d="M307.4 324L306.1 323.9L306.1 317.7L307.4 317.8Z"/><path class="iso-shade" data-shade="3" d="M306.1 323.9L291 319.1L291 313L306.1 317.7ZM291 319.1L290.2 318.6L290.2 312.4L291 313Z"/><path class="iso-top" d="M325 302.6L325.8 303.1L325.6 303.8L308.5 317.4L307.4 317.8L306.1 317.7L291 313L290.2 312.4L290.4 311.7L307.4 298.1L308.5 297.7L309.9 297.8Z"/><path class="iso-line iso-crease" data-tone="faint" d="M325.8 303.1L325.6 303.8L308.5 317.4L307.4 317.8L306.1 317.7L291 313L290.2 312.4"/><path class="iso-line iso-edge" data-tone="lo" d="M290.2 312.4L290.4 311.7L307.4 298.1L308.5 297.7L309.9 297.8L325 302.6L325.8 303.1M325.8 309.3L325.6 310L308.5 323.6L307.4 324L306.1 323.9L291 319.1L290.2 318.6M325.8 303.1L325.8 309.3M290.2 312.4L290.2 318.6"/></g><g class="iso-dots" data-tone="mid"><circle cx="309.9" cy="300.6" r="0.55"/><circle cx="306.1" cy="314.9" r="0.55"/></g><g class="iso-solid"><path class="iso-fill" d="M296.5 280.8L296.6 280.3L302.9 275.3L303.7 275L304.6 275.1L312.6 277.6L313.2 278L313.2 308.9L313 309.3L306.7 314.4L306 314.6L305.1 314.6L297 312L296.5 311.7Z"/><path class="iso-shade" data-shade="0" d="M313.2 308.9L313 309.3L313 278.4L313.2 278ZM313 309.3L306.7 314.4L306.7 283.5L313 278.4ZM306.7 314.4L306 314.6L306 283.7L306.7 283.5Z"/><path class="iso-shade" data-shade="2" d="M306 314.6L305.1 314.6L305.1 283.7L306 283.7Z"/><path class="iso-shade" data-shade="3" d="M305.1 314.6L297 312L297 281.1L305.1 283.7ZM297 312L296.5 311.7L296.5 280.8L297 281.1Z"/><path class="iso-top" d="M312.6 277.6L313.2 278L313 278.4L306.7 283.5L306 283.7L305.1 283.7L297 281.1L296.5 280.8L296.6 280.3L302.9 275.3L303.7 275L304.6 275.1Z"/><path class="iso-line iso-crease" data-tone="faint" d="M313.2 278L313 278.4L306.7 283.5L306 283.7L305.1 283.7L297 281.1L296.5 280.8"/><path class="iso-line iso-edge" data-tone="mid" d="M296.5 280.8L296.6 280.3L302.9 275.3L303.7 275L304.6 275.1L312.6 277.6L313.2 278M313.2 308.9L313 309.3L306.7 314.4L306 314.6L305.1 314.6L297 312L296.5 311.7M313.2 278L313.2 308.9M296.5 280.8L296.5 311.7"/></g><g class="iso-solid"><path class="iso-fill" d="M300 272.9L300.2 272.4L325.4 252.3L326.1 252L327 252.1L333.1 254L333.6 254.3L333.6 260.5L333.4 261L308.2 281.1L307.5 281.4L306.6 281.3L300.5 279.4L300 279.1Z"/><path class="iso-shade" data-shade="0" d="M333.6 260.5L333.4 261L333.4 254.8L333.6 254.3ZM333.4 261L308.2 281.1L308.2 275L333.4 254.8ZM308.2 281.1L307.5 281.4L307.5 275.2L308.2 275Z"/><path class="iso-shade" data-shade="2" d="M307.5 281.4L306.6 281.3L306.6 275.1L307.5 275.2Z"/><path class="iso-shade" data-shade="3" d="M306.6 281.3L300.5 279.4L300.5 273.3L306.6 275.1ZM300.5 279.4L300 279.1L300 272.9L300.5 273.3Z"/><path class="iso-top" d="M333.1 254L333.6 254.3L333.4 254.8L308.2 275L307.5 275.2L306.6 275.1L300.5 273.3L300 272.9L300.2 272.4L325.4 252.3L326.1 252L327 252.1Z"/><path class="iso-line iso-crease" data-tone="lo" d="M333.6 254.3L333.4 254.8L308.2 275L307.5 275.2L306.6 275.1L300.5 273.3L300 272.9"/><path class="iso-line iso-edge" data-tone="hi" d="M300 272.9L300.2 272.4L325.4 252.3L326.1 252L327 252.1L333.1 254L333.6 254.3M333.6 260.5L333.4 261L308.2 281.1L307.5 281.4L306.6 281.3L300.5 279.4L300 279.1M333.6 254.3L333.6 260.5M300 272.9L300 279.1"/></g><g class="iso-solid"><path class="iso-fill" d="M322.7 262L323.2 261.3L324.3 260.7L325.8 260.5L327.4 260.5L328.8 261L329.6 261.6L329.8 262.4L329.8 276.8L329.3 277.6L328.2 278.2L326.7 278.4L325.1 278.3L323.7 277.9L322.9 277.2L322.7 276.5Z"/><path class="iso-shade" data-shade="0" d="M329.3 277.6L328.2 278.2L328.2 263.7L329.3 263.2ZM329.8 276.8L329.3 277.6L329.3 263.2L329.8 262.4Z"/><path class="iso-shade" data-shade="1" d="M328.2 278.2L326.7 278.4L326.7 264L328.2 263.7Z"/><path class="iso-shade" data-shade="2" d="M326.7 278.4L325.1 278.3L325.1 263.9L326.7 264Z"/><path class="iso-shade" data-shade="3" d="M325.1 278.3L323.7 277.9L323.7 263.5L325.1 263.9ZM323.7 277.9L322.9 277.2L322.9 262.8L323.7 263.5ZM322.9 277.2L322.7 276.5L322.7 262L322.9 262.8Z"/><path class="iso-top" d="M329.3 263.2L328.2 263.7L326.7 264L325.1 263.9L323.7 263.5L322.9 262.8L322.7 262L323.2 261.3L324.3 260.7L325.8 260.5L327.4 260.5L328.8 261L329.6 261.6L329.8 262.4Z"/><path class="iso-line iso-crease" data-tone="faint" d="M329.8 262.4L329.3 263.2L328.2 263.7L326.7 264L325.1 263.9L323.7 263.5L322.9 262.8L322.7 262"/><path class="iso-line iso-edge" data-tone="mid" d="M322.7 262L323.2 261.3L324.3 260.7L325.8 260.5L327.4 260.5L328.8 261L329.6 261.6L329.8 262.4M329.8 276.8L329.3 277.6L328.2 278.2L326.7 278.4L325.1 278.3L323.7 277.9L322.9 277.2L322.7 276.5M322.7 262L322.7 276.5M329.8 262.4L329.8 276.8"/></g><g class="iso-solid"><path class="iso-fill" d="M320.3 275.3L321.2 274L323.1 273.1L325.6 272.7L328.2 272.8L330.4 273.5L331.9 274.6L332.2 275.9L332.2 279L331.3 280.3L329.4 281.2L326.9 281.7L324.3 281.5L322.1 280.8L320.6 279.7L320.3 278.4Z"/><path class="iso-shade" data-shade="0" d="M331.3 280.3L329.4 281.2L329.4 278.1L331.3 277.2ZM332.2 279L331.3 280.3L331.3 277.2L332.2 275.9Z"/><path class="iso-shade" data-shade="1" d="M329.4 281.2L326.9 281.7L326.9 278.6L329.4 278.1Z"/><path class="iso-shade" data-shade="2" d="M326.9 281.7L324.3 281.5L324.3 278.4L326.9 278.6Z"/><path class="iso-shade" data-shade="3" d="M324.3 281.5L322.1 280.8L322.1 277.7L324.3 278.4ZM322.1 280.8L320.6 279.7L320.6 276.6L322.1 277.7ZM320.6 279.7L320.3 278.4L320.3 275.3L320.6 276.6Z"/><path class="iso-top" d="M331.3 277.2L329.4 278.1L326.9 278.6L324.3 278.4L322.1 277.7L320.6 276.6L320.3 275.3L321.2 274L323.1 273.1L325.6 272.7L328.2 272.8L330.4 273.5L331.9 274.6L332.2 275.9Z"/><path class="iso-line iso-crease" data-tone="faint" d="M332.2 275.9L331.3 277.2L329.4 278.1L326.9 278.6L324.3 278.4L322.1 277.7L320.6 276.6L320.3 275.3"/><path class="iso-line iso-edge" data-tone="lo" d="M320.3 275.3L321.2 274L323.1 273.1L325.6 272.7L328.2 272.8L330.4 273.5L331.9 274.6L332.2 275.9M332.2 279L331.3 280.3L329.4 281.2L326.9 281.7L324.3 281.5L322.1 280.8L320.6 279.7L320.3 278.4M320.3 275.3L320.3 278.4M332.2 275.9L332.2 279"/></g><g class="iso-solid"><path class="iso-fill" d="M321.5 252.1L321.6 251.3L322.2 250.7L323.2 250.1L324.5 249.7L325.9 249.5L327.4 249.6L328.8 249.9L329.9 250.4L330.7 251L331 251.8L331 255.9L330.9 256.6L330.3 257.3L329.3 257.9L328 258.2L326.6 258.4L325.1 258.4L323.7 258.1L322.6 257.6L321.8 256.9L321.5 256.2Z"/><path class="iso-shade" data-shade="0" d="M331 255.7L330.9 256.5L330.3 257.3L329.2 257.9L327.7 258.3L326.1 258.4L326.1 254.3L327.7 254.2L329.2 253.8L330.3 253.2L330.9 252.4L331 251.6Z"/><path class="iso-shade" data-shade="1" d="M326.1 258.4L324.5 258.2L324.5 254.1L326.1 254.3Z"/><path class="iso-shade" data-shade="2" d="M324.5 258.2L323.1 257.8L323.1 253.7L324.5 254.1Z"/><path class="iso-shade" data-shade="3" d="M323.1 257.8L322.1 257.2L321.5 256.4L321.5 252.3L322.1 253L323.1 253.7Z"/><path class="iso-top" d="M330.3 253.2L329.2 253.8L327.7 254.2L326.1 254.3L324.5 254.1L323.1 253.7L322.1 253L321.5 252.3L321.6 251.4L322.2 250.7L323.3 250L324.8 249.7L326.4 249.5L328 249.7L329.4 250.2L330.5 250.8L331 251.6L330.9 252.4L330.3 253.2L326.3 251.9L326.3 251.9L326.3 251.9L326.3 251.9L326.3 251.9L326.3 251.9L326.3 251.9L326.3 251.9L326.3 251.9L326.3 251.9L326.3 251.9L326.3 251.9L326.3 251.9L326.3 251.9L326.3 251.9L326.3 251.9L326.3 251.9L326.3 251.9L326.3 251.9Z"/><path class="iso-line iso-crease" data-tone="lo" d="M331 251.9L330.8 252.7L330.1 253.3L329.1 253.8L327.7 254.2L326.3 254.3L324.8 254.2L323.5 253.8L322.4 253.3L321.7 252.7L321.5 251.9"/><path class="iso-line iso-edge" data-tone="hi" d="M321.5 252.1L321.6 251.3L322.2 250.7L323.2 250.1L324.5 249.7L325.9 249.5L327.4 249.6L328.8 249.9L329.9 250.4L330.7 251L331 251.8L331 255.9L330.9 256.6L330.3 257.3L329.3 257.9L328 258.2L326.6 258.4L325.1 258.4L323.7 258.1L322.6 257.6L321.8 256.9L321.5 256.2Z"/></g></g><g data-k="travel" data-cue="travel"></g></g><g data-k="hud"><g data-k="scrim"><rect class="fp-scrim" x="0" y="0" width="640" height="400"/></g><g data-k="chart"><rect class="fp-hud-bg" x="24" y="200" width="256" height="180" rx="10"/><g data-k="chartBody"></g><g data-k="chartCurve"></g><g data-k="chartT85" data-cue="t85"></g></g><g data-k="macro"><g data-k="macroLead"></g><clipPath id="fp-macroclip"><rect x="300" y="18" width="320" height="222" rx="10"/></clipPath><rect class="fp-hud-bg" x="300" y="18" width="320" height="222" rx="10"/><g clip-path="url(#fp-macroclip)"><g data-k="macroBody"></g><g data-k="macroIso"></g><g data-cue="mart"><g data-k="macroMart"></g></g><g data-k="macroCrack"></g></g><rect class="fp-frame" x="300" y="18" width="320" height="222" rx="10"/></g><g data-k="cev" data-cue="cev"></g><g data-k="therm" data-cue="interp"></g><g data-k="clock"></g><g data-k="card" data-cue="card"></g></g></svg><div class="fp-read" hidden></div>
+<div class="fp-poster"><p class="fp-poster-title">Wat warmte met het staal doet</p><button type="button" class="fp-go fp-poster-go"><svg class="fp-ico " viewBox="0 0 24 24" aria-hidden="true"><path d="M5 5a2 2 0 0 1 3.008-1.728l11.997 6.998a2 2 0 0 1 .003 3.458l-12 7A2 2 0 0 1 5 19z"/></svg><span>Bekijk de film</span></button></div>
+<div class="fp-end"><button type="button" class="fp-go fp-again"><svg class="fp-ico fp-replay" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg><span></span></button></div>
+</div>
+<p class="fp-cap" aria-live="polite"></p>
+<p class="fp-note" aria-live="polite"></p>
+<div class="fp-bar">
+<button type="button" class="fp-btn" data-act="play" data-state="play" aria-label="Afspelen"><svg data-i="play" class="fp-ico " viewBox="0 0 24 24" aria-hidden="true"><path d="M5 5a2 2 0 0 1 3.008-1.728l11.997 6.998a2 2 0 0 1 .003 3.458l-12 7A2 2 0 0 1 5 19z"/></svg><svg data-i="pause" class="fp-ico " viewBox="0 0 24 24" aria-hidden="true"><rect x="14" y="3" width="5" height="18" rx="1"/><rect x="5" y="3" width="5" height="18" rx="1"/></svg><svg data-i="replay" class="fp-ico " viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg></button>
+<button type="button" class="fp-btn fp-step" data-act="prev"><svg class="fp-ico " viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg></button>
+<div class="fp-scrub"><div class="fp-ticks"></div><input class="fp-range" type="range" min="0" max="100" step="0.1" value="0"><span class="fp-time"></span></div>
+<button type="button" class="fp-btn fp-step" data-act="next"><svg class="fp-ico " viewBox="0 0 24 24" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></button>
+<button type="button" class="fp-btn" data-act="mute" aria-pressed="false"><svg data-m="on" class="fp-ico " viewBox="0 0 24 24" aria-hidden="true"><path d="M11 4.702a.705.705 0 0 0-1.203-.498L6.413 7.587A1.4 1.4 0 0 1 5.416 8H3a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h2.416a1.4 1.4 0 0 1 .997.413l3.383 3.384A.705.705 0 0 0 11 19.298z"/><path d="M16 9a5 5 0 0 1 0 6"/><path d="M19.364 18.364a9 9 0 0 0 0-12.728"/></svg><svg data-m="off" class="fp-ico " viewBox="0 0 24 24" aria-hidden="true"><path d="M11 4.702a.705.705 0 0 0-1.203-.498L6.413 7.587A1.4 1.4 0 0 1 5.416 8H3a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h2.416a1.4 1.4 0 0 1 .997.413l3.383 3.384A.705.705 0 0 0 11 19.298z"/><path d="M22 9l-6 6"/><path d="M16 9l6 6"/></svg></button>
+<button type="button" class="fp-btn" data-act="scenes" aria-expanded="false"><svg class="fp-ico " viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12h.01"/><path d="M3 18h.01"/><path d="M3 6h.01"/><path d="M8 12h13"/><path d="M8 18h13"/><path d="M8 6h13"/></svg></button>
+</div>
+<div class="fp-sheet" hidden><div class="fp-sheet-head"><p class="fp-sheet-title"></p><button type="button" class="fp-speed" data-act="speed" aria-pressed="false"><span class="fp-speed-l"></span> <span class="fp-speed-v">1×</span></button><button type="button" class="fp-btn" data-act="close"><svg class="fp-ico " viewBox="0 0 24 24" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></button></div><div class="fp-list"></div></div>
+</main><script type="application/json" id="film-data">{"id":"eng.joining.metallurgy","title":{"nl":"Wat warmte met het staal doet","en":"What heat does to steel"},"lessons":["eng.joining.metallurgy"],"scenes":[{"id":"s1","n":1,"level":4,"dur":35,"still":0.8,"title":{"nl":"Afkoelen","en":"Cooling"},"beats":[{"seg":{"nl":["De WBZ naast de las wordt in seconden heet en koelt dan af. Hoe snel, bepaalt wat je krijgt."],"en":["The HAZ beside the weld gets hot in seconds, then cools. How fast decides what you get."]},"text":{"nl":"De WBZ naast de las wordt in seconden heet en koelt dan af. Hoe snel, bepaalt wat je krijgt.","en":"The HAZ beside the weld gets hot in seconds, then cools. How fast decides what you get."},"speak":{"nl":"De WBZ naast de las wordt in seconden heet en koelt dan af. Hoe snel, bepaalt wat je krijgt.","en":"The HAZ beside the weld gets hot in seconds, then cools. How fast decides what you get."},"cues":["haz"],"focus":["haz"],"say":{"nl":["Het staal naast de las is de WBZ, de warmtebeïnvloede zone. Dat wordt in seconden heet en koelt dan af. Hoe snel, bepaalt wat je krijgt."],"en":["The steel next to the weld is the HAZ, the heat-affected zone. It gets hot in seconds and then cools. How fast decides what you get."]},"voice":{"nl":"Het staal naast de las is de WBZ, de warmtebeïnvloede zone. Dat wordt in seconden heet en koelt dan af. Hoe snel, bepaalt wat je krijgt.","en":"The steel next to the weld is the HAZ, the heat-affected zone. It gets hot in seconds and then cools. How fast decides what you get."}},{"seg":{"nl":["Engineers meten dat met ",{"t":"t8/5","c":"t85","k":"eng.joining.metallurgy#0"},": de tijd in seconden van ","800"," naar ","500"," °C."],"en":["Engineers measure it with ",{"t":"t8/5","c":"t85","k":"eng.joining.metallurgy#0"},": the time in seconds from ","800"," to ","500"," °C."]},"text":{"nl":"Engineers meten dat met t8/5: de tijd in seconden van 800 naar 500 °C.","en":"Engineers measure it with t8/5: the time in seconds from 800 to 500 °C."},"speak":{"nl":"Engineers meten dat met t 8 5: de tijd in seconden van 800 naar 500 gradenC.","en":"Engineers measure it with t 8 5: the time in seconds from 800 to 500 degreesC."},"cues":["t85"],"focus":["t85"],"say":{"nl":["Engineers meten dat met ",{"t":"t8/5","k":"eng.joining.metallurgy#0"},". Dat is de tijd in seconden waarin de las afkoelt van ","800"," naar ","500"," graden."],"en":["Engineers measure it with ",{"t":"t8/5","k":"eng.joining.metallurgy#0"},". That is the time in seconds the weld takes to cool from ","800"," to ","500"," degrees."]},"voice":{"nl":"Engineers meten dat met t 8 5. Dat is de tijd in seconden waarin de las afkoelt van 800 naar 500 graden.","en":"Engineers measure it with t 8 5. That is the time in seconds the weld takes to cool from 800 to 500 degrees."}},{"seg":{"nl":["Is t8/5 kort, dan vormt zich ",{"t":"martensiet","c":"mart","k":"eng.joining.metallurgy#1","en":"martensite"},": hard, bros staal dat makkelijk scheurt."],"en":["If t8/5 is short, ",{"t":"martensite","c":"mart","k":"eng.joining.metallurgy#1"}," forms: hard, brittle steel that cracks easily."]},"text":{"nl":"Is t8/5 kort, dan vormt zich martensiet (martensite): hard, bros staal dat makkelijk scheurt.","en":"If t8/5 is short, martensite forms: hard, brittle steel that cracks easily."},"speak":{"nl":"Is t 8 5 kort, dan vormt zich martensiet: hard, bros staal dat makkelijk scheurt.","en":"If t 8 5 is short, martensite forms: hard, brittle steel that cracks easily."},"cues":["mart"],"focus":["mart"],"say":{"nl":["Is t8/5 kort, dan vormt zich ",{"t":"martensiet","k":"eng.joining.metallurgy#1","en":"martensite"},". Dat is een hard, bros soort staal dat makkelijk scheurt."],"en":["If t8/5 is short, ",{"t":"martensite","k":"eng.joining.metallurgy#1"}," forms. That is a hard, brittle kind of steel that cracks easily."]},"voice":{"nl":"Is t 8 5 kort, dan vormt zich martensiet. Dat is een hard, bros soort staal dat makkelijk scheurt.","en":"If t 8 5 is short, martensite forms. That is a hard, brittle kind of steel that cracks easily."}},{"seg":{"nl":["Is t8/5 heel lang, dan wordt de WBZ zacht en verliest hij taaiheid."],"en":["If t8/5 is very long, the HAZ goes soft and loses toughness."]},"text":{"nl":"Is t8/5 heel lang, dan wordt de WBZ zacht en verliest hij taaiheid.","en":"If t8/5 is very long, the HAZ goes soft and loses toughness."},"speak":{"nl":"Is t 8 5 heel lang, dan wordt de WBZ zacht en verliest hij taaiheid.","en":"If t 8 5 is very long, the HAZ goes soft and loses toughness."},"cues":["card"],"focus":["card"],"say":{"nl":["Is t8/5 heel lang, dan wordt de WBZ zacht en verliest hij taaiheid."],"en":["If t8/5 is very long, the HAZ goes soft and loses toughness."]},"voice":{"nl":"Is t 8 5 heel lang, dan wordt de WBZ zacht en verliest hij taaiheid.","en":"If t 8 5 is very long, the HAZ goes soft and loses toughness."}},{"seg":{"nl":["Meer warmte-inbreng en voorwarmen verlengen t8/5. Dikke plaat verkort hem: de massa trekt warmte weg."],"en":["More heat input and preheating lengthen t8/5. Thick plate shortens it: the mass draws the heat away."]},"text":{"nl":"Meer warmte-inbreng en voorwarmen verlengen t8/5. Dikke plaat verkort hem: de massa trekt warmte weg.","en":"More heat input and preheating lengthen t8/5. Thick plate shortens it: the mass draws the heat away."},"speak":{"nl":"Meer warmte-inbreng en voorwarmen verlengen t 8 5. Dikke plaat verkort hem: de massa trekt warmte weg.","en":"More heat input and preheating lengthen t 8 5. Thick plate shortens it: the mass draws the heat away."},"cues":["card"],"focus":["card"],"say":{"nl":["Meer warmte-inbreng en voorwarmen verlengen t8/5. Dikke plaat verkort hem, omdat de massa de warmte wegtrekt."],"en":["More heat input and preheating lengthen t8/5. Thick plate shortens it, because the mass draws the heat away."]},"voice":{"nl":"Meer warmte-inbreng en voorwarmen verlengen t 8 5. Dikke plaat verkort hem, omdat de massa de warmte wegtrekt.","en":"More heat input and preheating lengthen t 8 5. Thick plate shortens it, because the mass draws the heat away."}}],"terms":[{"lesson":"eng.joining.metallurgy","index":0,"nl":"t8/5","en":"t8/5","cue":"t85"},{"lesson":"eng.joining.metallurgy","index":1,"nl":"Martensiet","en":"Martensite","cue":"mart"}]},{"id":"s2","n":2,"level":4,"dur":49,"still":0.9,"title":{"nl":"Koolstofequivalent en waterstof","en":"Carbon equivalent and hydrogen"},"beats":[{"seg":{"nl":["Het ",{"t":"koolstofequivalent","c":"card","k":"eng.joining.metallurgy#2","en":"carbon equivalent"},": CEV = C + Mn/6 + (Cr + Mo + V)/5 + (Ni + Cu)/15."],"en":["The ",{"t":"carbon equivalent","c":"card","k":"eng.joining.metallurgy#2"},": CEV = C + Mn/6 + (Cr + Mo + V)/5 + (Ni + Cu)/15."]},"text":{"nl":"Het koolstofequivalent (carbon equivalent): CEV = C + Mn/6 + (Cr + Mo + V)/5 + (Ni + Cu)/15.","en":"The carbon equivalent: CEV = C + Mn/6 + (Cr + Mo + V)/5 + (Ni + Cu)/15."},"speak":{"nl":"Het koolstofequivalent: CEV is C + Mn/6 + (Cr + Mo + V)/5 + (Ni + Cu)/15.","en":"The carbon equivalent: CEV is C + Mn/6 + (Cr + Mo + V)/5 + (Ni + Cu)/15."},"cues":["card"],"focus":["card"],"say":{"nl":["Hoe snel een staal hard wordt, vat je samen in het ",{"t":"koolstofequivalent","k":"eng.joining.metallurgy#2","en":"carbon equivalent"},", kortweg CEV. Je telt op. Eerst de koolstof. Dan het mangaan gedeeld door ","6",". Dan chroom, molybdeen en vanadium samen gedeeld door ","5",". En tot slot nikkel en koper samen gedeeld door ","15","."],"en":["How quickly a steel hardens is summed up in the ",{"t":"carbon equivalent","k":"eng.joining.metallurgy#2"},", CEV for short. You add up. First the carbon. Then the manganese divided by ","6",". Then chromium, molybdenum and vanadium together divided by ","5",". And finally nickel and copper together divided by ","15","."]},"voice":{"nl":"Hoe snel een staal hard wordt, vat je samen in het koolstofequivalent, kortweg CEV. Je telt op. Eerst de koolstof. Dan het mangaan gedeeld door 6. Dan chroom, molybdeen en vanadium samen gedeeld door 5. En tot slot nikkel en koper samen gedeeld door 15.","en":"How quickly a steel hardens is summed up in the carbon equivalent, CEV for short. You add up. First the carbon. Then the manganese divided by 6. Then chromium, molybdenum and vanadium together divided by 5. And finally nickel and copper together divided by 15."}},{"seg":{"nl":["In procent, uit het materiaalcertificaat (EN 1011-2, methode A)."],"en":["In percent, from the mill certificate (EN 1011-2, method A)."]},"text":{"nl":"In procent, uit het materiaalcertificaat (EN 1011-2, methode A).","en":"In percent, from the mill certificate (EN 1011-2, method A)."},"speak":{"nl":"In procent, uit het materiaalcertificaat (EN 1011-2, methode A).","en":"In percent, from the mill certificate (EN 1011-2, method A)."},"cues":["card"],"focus":["card"],"say":{"nl":["De gehalten lees je in procent van het materiaalcertificaat. De methode staat in EN 1011-2, methode A."],"en":["You read the contents in percent from the mill certificate. The method is in EN 1011-2, method A."]},"voice":{"nl":"De gehalten lees je in procent van het materiaalcertificaat. De methode staat in EN 1011-2, methode A.","en":"You read the contents in percent from the mill certificate. The method is in EN 1011-2, method A."}},{"seg":{"nl":["Een waterstofscheur heeft waterstof, een harde structuur en spanning tegelijk nodig."],"en":["A hydrogen crack needs hydrogen, a hard structure and stress at once."]},"text":{"nl":"Een waterstofscheur heeft waterstof, een harde structuur en spanning tegelijk nodig.","en":"A hydrogen crack needs hydrogen, a hard structure and stress at once."},"speak":{"nl":"Een waterstofscheur heeft waterstof, een harde structuur en spanning tegelijk nodig.","en":"A hydrogen crack needs hydrogen, a hard structure and stress at once."},"cues":["mart"],"focus":["mart"],"say":{"nl":["Een waterstofscheur heeft drie dingen tegelijk nodig. Waterstof, een harde structuur en spanning."],"en":["A hydrogen crack needs three things at once. Hydrogen, a hard structure and stress."]},"voice":{"nl":"Een waterstofscheur heeft drie dingen tegelijk nodig. Waterstof, een harde structuur en spanning.","en":"A hydrogen crack needs three things at once. Hydrogen, a hard structure and stress."}},{"seg":{"nl":["Haal er één weg, met droog toevoegmateriaal, voorwarmen of minder inklemming, en hij komt niet."],"en":["Remove one (dry low-hydrogen filler, preheat, less clamping) and it does not come."]},"text":{"nl":"Haal er één weg, met droog toevoegmateriaal, voorwarmen of minder inklemming, en hij komt niet.","en":"Remove one (dry low-hydrogen filler, preheat, less clamping) and it does not come."},"speak":{"nl":"Haal er één weg, met droog toevoegmateriaal, voorwarmen of minder inklemming, en hij komt niet.","en":"Remove one (dry low-hydrogen filler, preheat, less clamping) and it does not come."},"cues":["card"],"focus":["card"],"say":{"nl":["Haal er één van weg en de scheur komt niet. Dat kan met droog waterstofarm toevoegmateriaal, met voorwarmen of met minder inklemming."],"en":["Remove one and the crack does not come. You can do that with dry low-hydrogen filler, with preheat or with less clamping."]},"voice":{"nl":"Haal er één van weg en de scheur komt niet. Dat kan met droog waterstofarm toevoegmateriaal, met voorwarmen of met minder inklemming.","en":"Remove one and the crack does not come. You can do that with dry low-hydrogen filler, with preheat or with less clamping."}},{"seg":{"nl":["Hij kan dagen later komen: de controle wacht vaak ","16"," tot ","48"," uur. EN 1011-2 bepaalt het voorwarmen."],"en":["It can come days later: testing waits ","16"," to ","48"," hours. EN 1011-2 sets the preheat."]},"text":{"nl":"Hij kan dagen later komen: de controle wacht vaak 16 tot 48 uur. EN 1011-2 bepaalt het voorwarmen.","en":"It can come days later: testing waits 16 to 48 hours. EN 1011-2 sets the preheat."},"speak":{"nl":"Hij kan dagen later komen: de controle wacht vaak 16 tot 48 uur. EN 1011-2 bepaalt het voorwarmen.","en":"It can come days later: testing waits 16 to 48 hours. EN 1011-2 sets the preheat."},"cues":["card"],"focus":["card"],"say":{"nl":["De scheur kan dagen later komen. Daarom wacht de controle een wachttijd af, vaak ","16"," tot ","48"," uur. EN 1011-2 bepaalt het voorwarmen. Dat doet het uit CEV en dikte, waterstof en warmte-inbreng."],"en":["The crack can come days later. So testing waits out a hold time, often ","16"," to ","48"," hours. EN 1011-2 sets the preheat. It does that from CEV and thickness, hydrogen and heat input."]},"voice":{"nl":"De scheur kan dagen later komen. Daarom wacht de controle een wachttijd af, vaak 16 tot 48 uur. EN 1011-2 bepaalt het voorwarmen. Dat doet het uit CEV en dikte, waterstof en warmte-inbreng.","en":"The crack can come days later. So testing waits out a hold time, often 16 to 48 hours. EN 1011-2 sets the preheat. It does that from CEV and thickness, hydrogen and heat input."}}],"terms":[{"lesson":"eng.joining.metallurgy","index":2,"nl":"Koolstofequivalent","en":"Carbon equivalent","cue":"card"}]},{"id":"s3","n":3,"level":4,"dur":33,"still":0.9,"title":{"nl":"Roestvast staal","en":"Stainless steel"},"beats":[{"seg":{"nl":["Austenitisch rvs, zoals 304 en 316, wordt niet hard en kent geen waterstofscheuren."],"en":["Austenitic stainless steel, such as 304 and 316, does not harden and has no hydrogen cracking."]},"text":{"nl":"Austenitisch rvs, zoals 304 en 316, wordt niet hard en kent geen waterstofscheuren.","en":"Austenitic stainless steel, such as 304 and 316, does not harden and has no hydrogen cracking."},"speak":{"nl":"Austenitisch rvs, zoals 304 en 316, wordt niet hard en kent geen waterstofscheuren.","en":"Austenitic stainless steel, such as 304 and 316, does not harden and has no hydrogen cracking."},"cues":["card"],"focus":["card"],"say":{"nl":["Austenitisch rvs, zoals 304 en 316, wordt niet hard. Het kent geen waterstofscheuren."],"en":["Austenitic stainless steel, such as 304 and 316, does not harden. It has no hydrogen cracking."]},"voice":{"nl":"Austenitisch rvs, zoals 304 en 316, wordt niet hard. Het kent geen waterstofscheuren.","en":"Austenitic stainless steel, such as 304 and 316, does not harden. It has no hydrogen cracking."}},{"seg":{"nl":["Het zet zo’n ","40","% meer uit dan gewoon staal en geleidt warmte slecht: het trekt flink krom."],"en":["It expands about ","40","% more than plain steel and conducts heat poorly: it distorts a lot."]},"text":{"nl":"Het zet zo’n 40% meer uit dan gewoon staal en geleidt warmte slecht: het trekt flink krom.","en":"It expands about 40% more than plain steel and conducts heat poorly: it distorts a lot."},"speak":{"nl":"Het zet zo'n 40 procent meer uit dan gewoon staal en geleidt warmte slecht: het trekt flink krom.","en":"It expands about 40 percent more than plain steel and conducts heat poorly: it distorts a lot."},"cues":["card"],"focus":["card"],"say":{"nl":["Het zet wel zo’n ","40"," procent meer uit dan gewoon staal. En het geleidt warmte slecht, dus het trekt flink krom."],"en":["But it expands about ","40"," percent more than plain steel. And it conducts heat poorly, so it distorts a lot."]},"voice":{"nl":"Het zet wel zo'n 40 procent meer uit dan gewoon staal. En het geleidt warmte slecht, dus het trekt flink krom.","en":"But it expands about 40 percent more than plain steel. And it conducts heat poorly, so it distorts a lot."}},{"seg":{"nl":["Houd de ",{"t":"tussenlaagtemperatuur","c":"interp","k":"eng.joining.metallurgy#3","en":"interpass temperature"}," laag: vaak maximaal rond ","150"," °C."],"en":["Keep the ",{"t":"interpass temperature","c":"interp","k":"eng.joining.metallurgy#3"}," low: a maximum around ","150"," °C is common."]},"text":{"nl":"Houd de tussenlaagtemperatuur (interpass temperature) laag: vaak maximaal rond 150 °C.","en":"Keep the interpass temperature low: a maximum around 150 °C is common."},"speak":{"nl":"Houd de tussenlaagtemperatuur laag: vaak maximaal rond 150 gradenC.","en":"Keep the interpass temperature low: a maximum around 150 degreesC is common."},"cues":["interp"],"focus":["interp"],"say":{"nl":["Houd de ",{"t":"tussenlaagtemperatuur","k":"eng.joining.metallurgy#3","en":"interpass temperature"}," laag. Dat is de temperatuur van de las vlak voordat de volgende laag erop gaat. Vaak geldt een maximum rond ","150"," graden."],"en":["Keep the ",{"t":"interpass temperature","k":"eng.joining.metallurgy#3"}," low. That is the temperature of the weld just before the next pass goes on. A maximum around ","150"," degrees is common."]},"voice":{"nl":"Houd de tussenlaagtemperatuur laag. Dat is de temperatuur van de las vlak voordat de volgende laag erop gaat. Vaak geldt een maximum rond 150 graden.","en":"Keep the interpass temperature low. That is the temperature of the weld just before the next pass goes on. A maximum around 150 degrees is common."}},{"seg":{"nl":[{"t":"Aanloopkleuren","c":"tint","k":"eng.joining.metallurgy#4","en":"heat tint"}," naast de las moeten eraf door beitsen of borstelen, anders roest het."],"en":[{"t":"Heat tint","c":"tint","k":"eng.joining.metallurgy#4"}," beside the weld must come off by pickling or brushing, or it rusts there."]},"text":{"nl":"Aanloopkleuren (heat tint) naast de las moeten eraf door beitsen of borstelen, anders roest het.","en":"Heat tint beside the weld must come off by pickling or brushing, or it rusts there."},"speak":{"nl":"Aanloopkleuren naast de las moeten eraf door beitsen of borstelen, anders roest het.","en":"Heat tint beside the weld must come off by pickling or brushing, or it rusts there."},"cues":["tint"],"focus":["tint"],"say":{"nl":["De ",{"t":"aanloopkleuren","k":"eng.joining.metallurgy#4","en":"heat tint"},", de blauwe en bruine verkleuring naast de las, moeten eraf door beitsen of borstelen. Anders roest het daar. Pijp wordt aan de binnenkant met argon gespoeld."],"en":["The ",{"t":"heat tint","k":"eng.joining.metallurgy#4"},", the blue and brown colouring beside the weld, must come off by pickling or brushing. Otherwise it rusts there. Pipe is purged inside with argon."]},"voice":{"nl":"De aanloopkleuren, de blauwe en bruine verkleuring naast de las, moeten eraf door beitsen of borstelen. Anders roest het daar. Pijp wordt aan de binnenkant met argon gespoeld.","en":"The heat tint, the blue and brown colouring beside the weld, must come off by pickling or brushing. Otherwise it rusts there. Pipe is purged inside with argon."}}],"terms":[{"lesson":"eng.joining.metallurgy","index":3,"nl":"Tussenlaagtemperatuur","en":"Interpass temperature","cue":"interp"},{"lesson":"eng.joining.metallurgy","index":4,"nl":"Aanloopkleuren","en":"Heat tint","cue":"tint"}]},{"id":"s4","n":4,"level":4,"dur":30,"still":0.9,"title":{"nl":"Aluminium","en":"Aluminium"},"beats":[{"seg":{"nl":["Aluminium geleidt warmte goed; de oxidehuid smelt pas rond ","2.050"," °C, het metaal rond ","660"," °C."],"en":["Aluminium conducts heat well; its oxide skin melts at about ","2,050"," °C, the metal at ","660"," °C."]},"text":{"nl":"Aluminium geleidt warmte goed; de oxidehuid smelt pas rond 2.050 °C, het metaal rond 660 °C.","en":"Aluminium conducts heat well; its oxide skin melts at about 2,050 °C, the metal at 660 °C."},"speak":{"nl":"Aluminium geleidt warmte goed; de oxidehuid smelt pas rond 2.050 gradenC, het metaal rond 660 gradenC.","en":"Aluminium conducts heat well; its oxide skin melts at about 2,050 degreesC, the metal at 660 degreesC."},"cues":["card"],"focus":["card"],"say":{"nl":["Aluminium geleidt warmte goed. Het heeft een oxidehuid die pas rond ","2.050"," graden smelt, ver boven het metaal van ","660"," graden. Borstel en ontvet vlak voor het lassen. Vocht geeft poriën."],"en":["Aluminium conducts heat well. It has an oxide skin that only melts at about ","2,050"," degrees, far above the metal at ","660"," degrees. Brush and degrease just before welding. Moisture gives pores."]},"voice":{"nl":"Aluminium geleidt warmte goed. Het heeft een oxidehuid die pas rond 2.050 graden smelt, ver boven het metaal van 660 graden. Borstel en ontvet vlak voor het lassen. Vocht geeft poriën.","en":"Aluminium conducts heat well. It has an oxide skin that only melts at about 2,050 degrees, far above the metal at 660 degrees. Brush and degrease just before welding. Moisture gives pores."}},{"seg":{"nl":["Veredelde legeringen als 6082-T6 verliezen in de WBZ sterkte: ongeveer de helft van de vloeigrens."],"en":["Heat-treated alloys like 6082-T6 lose strength in the HAZ: about half the yield strength."]},"text":{"nl":"Veredelde legeringen als 6082-T6 verliezen in de WBZ sterkte: ongeveer de helft van de vloeigrens.","en":"Heat-treated alloys like 6082-T6 lose strength in the HAZ: about half the yield strength."},"speak":{"nl":"Veredelde legeringen als 6082-T6 verliezen in de WBZ sterkte: ongeveer de helft van de vloeigrens.","en":"Heat-treated alloys like 6082-T6 lose strength in the HAZ: about half the yield strength."},"cues":["card"],"focus":["card"],"say":{"nl":["Veredelde legeringen zoals 6082-T6 verliezen in de WBZ flink sterkte. Ontwerpers rekenen daar volgens Eurocode 9 met ongeveer de helft van de vloeigrens."],"en":["Heat-treated alloys such as 6082-T6 lose a lot of strength in the HAZ. Designers count on about half the yield strength there, per Eurocode 9."]},"voice":{"nl":"Veredelde legeringen zoals 6082-T6 verliezen in de WBZ flink sterkte. Ontwerpers rekenen daar volgens Eurocode 9 met ongeveer de helft van de vloeigrens.","en":"Heat-treated alloys such as 6082-T6 lose a lot of strength in the HAZ. Designers count on about half the yield strength there, per Eurocode 9."}},{"seg":{"nl":["Een extra las maakt het frame zwakker. Vraag: welke norm bepaalt het voorwarmen, en wie rekende het uit?"],"en":["An extra weld makes the frame weaker. Ask: which standard sets the preheat, and who calculated it?"]},"text":{"nl":"Een extra las maakt het frame zwakker. Vraag: welke norm bepaalt het voorwarmen, en wie rekende het uit?","en":"An extra weld makes the frame weaker. Ask: which standard sets the preheat, and who calculated it?"},"speak":{"nl":"Een extra las maakt het freem zwakker. Vraag: welke norm bepaalt het voorwarmen, en wie rekende het uit?","en":"An extra weld makes the frame weaker. Ask: which standard sets the preheat, and who calculated it?"},"cues":["card"],"focus":["card"],"say":{"nl":["Een extra las voor de zekerheid maakt een aluminium frame dus zwakker. Vraag bij elk lastig materiaal welke norm het voorwarmen bepaalt. En wie dat heeft uitgerekend."],"en":["An extra weld to be safe makes an aluminium frame weaker. For every difficult material ask which standard sets the preheat. And who calculated it."]},"voice":{"nl":"Een extra las voor de zekerheid maakt een aluminium frame dus zwakker. Vraag bij elk lastig materiaal welke norm het voorwarmen bepaalt. En wie dat heeft uitgerekend.","en":"An extra weld to be safe makes an aluminium frame weaker. For every difficult material ask which standard sets the preheat. And who calculated it."}}],"terms":[]},{"id":"s5","n":5,"level":4,"dur":46,"still":0.9,"title":{"nl":"Voorbeeld: kraanflenzen","en":"Example: crane flanges"},"beats":[{"seg":{"nl":["Kraanflenzen van ","40"," mm S355: C ","0,17","%, Mn ","1,50","%, Cr+Mo+V ","0,10","%, Ni+Cu ","0,30","%."],"en":["Crane flanges of ","40"," mm S355: C ","0.17","%, Mn ","1.50","%, Cr+Mo+V ","0.10","%, Ni+Cu ","0.30","%."]},"text":{"nl":"Kraanflenzen van 40 mm S355: C 0,17%, Mn 1,50%, Cr+Mo+V 0,10%, Ni+Cu 0,30%.","en":"Crane flanges of 40 mm S355: C 0.17%, Mn 1.50%, Cr+Mo+V 0.10%, Ni+Cu 0.30%."},"speak":{"nl":"Kraanflenzen van 40 millimeter es 355: C 0,17 procent, Mn 1,50 procent, Cr+Mo+V 0,10 procent, Ni+Cu 0,30 procent.","en":"Crane flanges of 40 millimetres S355: C 0.17 percent, Mn 1.50 percent, Cr+Mo+V 0.10 percent, Ni+Cu 0.30 percent."},"cues":["card"],"focus":["card"],"say":{"nl":["Een kraanbouwer last ligger-flenzen van ","40"," millimeter S355. Het materiaalcertificaat geeft koolstof ","0,17"," procent en mangaan ","1,50"," procent. Chroom, molybdeen en vanadium samen ","0,10"," procent. Nikkel en koper samen ","0,30"," procent."],"en":["A crane builder welds beam flanges of ","40"," millimetres S355. The mill certificate gives carbon ","0.17"," percent and manganese ","1.50"," percent. Chromium, molybdenum and vanadium together ","0.10"," percent. Nickel and copper together ","0.30"," percent."]},"voice":{"nl":"Een kraanbouwer last ligger-flenzen van 40 millimeter es 355. Het materiaalcertificaat geeft koolstof 0,17 procent en mangaan 1,50 procent. Chroom, molybdeen en vanadium samen 0,10 procent. Nikkel en koper samen 0,30 procent.","en":"A crane builder welds beam flanges of 40 millimetres S355. The mill certificate gives carbon 0.17 percent and manganese 1.50 percent. Chromium, molybdenum and vanadium together 0.10 percent. Nickel and copper together 0.30 percent."}},{"seg":{"nl":["CEV = ","0,17"," + ","1,50","/6 + ","0,10","/5 + ","0,30","/15."],"en":["CEV = ","0.17"," + ","1.50","/6 + ","0.10","/5 + ","0.30","/15."]},"text":{"nl":"CEV = 0,17 + 1,50/6 + 0,10/5 + 0,30/15.","en":"CEV = 0.17 + 1.50/6 + 0.10/5 + 0.30/15."},"speak":{"nl":"CEV is 0,17 + 1,50/6 + 0,10/5 + 0,30/15.","en":"CEV is 0.17 + 1.50/6 + 0.10/5 + 0.30/15."},"cues":["card"],"focus":["card"],"say":{"nl":["De CEV is ","0,17"," plus ","1,50"," gedeeld door ","6",", plus ","0,10"," gedeeld door ","5",", plus ","0,30"," gedeeld door ","15","."],"en":["The CEV is ","0.17"," plus ","1.50"," divided by ","6",", plus ","0.10"," divided by ","5",", plus ","0.30"," divided by ","15","."]},"voice":{"nl":"De CEV is 0,17 plus 1,50 gedeeld door 6, plus 0,10 gedeeld door 5, plus 0,30 gedeeld door 15.","en":"The CEV is 0.17 plus 1.50 divided by 6, plus 0.10 divided by 5, plus 0.30 divided by 15."}},{"seg":{"nl":["Wat is de CEV, en wat betekent dat voor deze dikke plaat?"],"en":["What is the CEV, and what does it mean for this thick plate?"]},"text":{"nl":"Wat is de CEV, en wat betekent dat voor deze dikke plaat?","en":"What is the CEV, and what does it mean for this thick plate?"},"speak":{"nl":"Wat is de CEV, en wat betekent dat voor deze dikke plaat?","en":"What is the CEV, and what does it mean for this thick plate?"},"cues":["card"],"focus":["card"],"say":{"nl":["Wat is de CEV, en wat betekent dat voor deze dikke plaat?"],"en":["What is the CEV, and what does it mean for this thick plate?"]},"voice":{"nl":"Wat is de CEV, en wat betekent dat voor deze dikke plaat?","en":"What is the CEV, and what does it mean for this thick plate?"}},{"seg":{"nl":["CEV = ","0,17"," + ","0,25"," + ","0,02"," + ","0,02"," = ","0,46",". Hoog voor S355: voorwarmen volgens EN 1011-2."],"en":["CEV = ","0.17"," + ","0.25"," + ","0.02"," + ","0.02"," = ","0.46",". High for S355: preheat to EN 1011-2."]},"text":{"nl":"CEV = 0,17 + 0,25 + 0,02 + 0,02 = 0,46. Hoog voor S355: voorwarmen volgens EN 1011-2.","en":"CEV = 0.17 + 0.25 + 0.02 + 0.02 = 0.46. High for S355: preheat to EN 1011-2."},"speak":{"nl":"CEV is 0,17 + 0,25 + 0,02 + 0,02 is 0,46. Hoog voor es 355: voorwarmen volgens EN 1011-2.","en":"CEV is 0.17 + 0.25 + 0.02 + 0.02 is 0.46. High for S355: preheat to EN 1011-2."},"cues":["cev"],"focus":["cev"],"say":{"nl":["De CEV is ","0,17"," plus ","0,25"," plus ","0,02"," plus ","0,02",", dus ","0,46",". Dat is hoog voor S355. Met ","40"," millimeter plaat vraagt EN 1011-2 vrijwel zeker voorwarmen."],"en":["The CEV is ","0.17"," plus ","0.25"," plus ","0.02"," plus ","0.02",", so ","0.46",". That is high for S355. With ","40"," millimetre plate EN 1011-2 will almost certainly call for preheat."]},"voice":{"nl":"De CEV is 0,17 plus 0,25 plus 0,02 plus 0,02, dus 0,46. Dat is hoog voor es 355. Met 40 millimeter plaat vraagt EN 1011-2 vrijwel zeker voorwarmen.","en":"The CEV is 0.17 plus 0.25 plus 0.02 plus 0.02, so 0.46. That is high for S355. With 40 millimetre plate EN 1011-2 will almost certainly call for preheat."}},{"seg":{"nl":["Voorwarmen kost branders, gas en tijd. Ruilen kan met waterstofarmere draad of meer warmte-inbreng."],"en":["Preheating costs burners, gas and time. You can trade: lower-hydrogen wire or more heat input."]},"text":{"nl":"Voorwarmen kost branders, gas en tijd. Ruilen kan met waterstofarmere draad of meer warmte-inbreng.","en":"Preheating costs burners, gas and time. You can trade: lower-hydrogen wire or more heat input."},"speak":{"nl":"Voorwarmen kost branders, gas en tijd. Ruilen kan met waterstofarmere draad of meer warmte-inbreng.","en":"Preheating costs burners, gas and time. You can trade: lower-hydrogen wire or more heat input."},"cues":["card"],"focus":["card"],"say":{"nl":["Voorwarmen kost branders, gas en tijd per ligger. EN 1011-2 laat je ruilen. Een waterstofarmere draad of een hogere warmte-inbreng binnen de LMB kan de voorwarmtemperatuur verlagen."],"en":["Preheating costs burners, gas and time per beam. EN 1011-2 lets you trade. A lower-hydrogen wire or a higher heat input within the WPS can lower the preheat temperature."]},"voice":{"nl":"Voorwarmen kost branders, gas en tijd per ligger. EN 1011-2 laat je ruilen. Een waterstofarmere draad of een hogere warmte-inbreng binnen de LMB kan de voorwarmtemperatuur verlagen.","en":"Preheating costs burners, gas and time per beam. EN 1011-2 lets you trade. A lower-hydrogen wire or a higher heat input within the WPS can lower the preheat temperature."}},{"seg":{"nl":["Vraag de lasingenieur de berekening te laten zien."],"en":["Ask the welding engineer to show the calculation."]},"text":{"nl":"Vraag de lasingenieur de berekening te laten zien.","en":"Ask the welding engineer to show the calculation."},"speak":{"nl":"Vraag de lasingenieur de berekening te laten zien.","en":"Ask the welding engineer to show the calculation."},"cues":["card"],"focus":["card"],"say":{"nl":["Vraag de lasingenieur de berekening te laten zien."],"en":["Ask the welding engineer to show the calculation."]},"voice":{"nl":"Vraag de lasingenieur de berekening te laten zien.","en":"Ask the welding engineer to show the calculation."}}],"terms":[]}],"skip":[],"numbers":[{"lesson":"eng.joining.metallurgy","value":"800","scene":"s1"},{"lesson":"eng.joining.metallurgy","value":"500","scene":"s1"},{"lesson":"eng.joining.metallurgy","value":"6","scene":"s2"},{"lesson":"eng.joining.metallurgy","value":"5","scene":"s2"},{"lesson":"eng.joining.metallurgy","value":"15","scene":"s2"},{"lesson":"eng.joining.metallurgy","value":"16","scene":"s2"},{"lesson":"eng.joining.metallurgy","value":"48","scene":"s2"},{"lesson":"eng.joining.metallurgy","value":"40","scene":"s3"},{"lesson":"eng.joining.metallurgy","value":"150","scene":"s3"},{"lesson":"eng.joining.metallurgy","value":"2.050","scene":"s4"},{"lesson":"eng.joining.metallurgy","value":"660","scene":"s4"},{"lesson":"eng.joining.metallurgy","value":"0,17","scene":"s5"},{"lesson":"eng.joining.metallurgy","value":"1,50","scene":"s5"},{"lesson":"eng.joining.metallurgy","value":"0,10","scene":"s5"},{"lesson":"eng.joining.metallurgy","value":"0,30","scene":"s5"},{"lesson":"eng.joining.metallurgy","value":"0,25","scene":"s5"},{"lesson":"eng.joining.metallurgy","value":"0,02","scene":"s5"},{"lesson":"eng.joining.metallurgy","value":"0,46","scene":"s5"}],"points":[{"key":"eng.joining.metallurgy#t1.1","fp":"074d507b","beats":["s1.1","s1.2"]},{"key":"eng.joining.metallurgy#t1.2","fp":"46a3178e","beats":["s1.3","s1.4","s1.5"]},{"key":"eng.joining.metallurgy#t2.1","fp":"5dd5a761","beats":["s2.1","s2.2"]},{"key":"eng.joining.metallurgy#t2.2","fp":"b4d54d65","beats":["s2.3","s2.4","s2.5"]},{"key":"eng.joining.metallurgy#t3.1","fp":"5257c631","beats":["s3.1","s3.2","s3.3"]},{"key":"eng.joining.metallurgy#t3.2","fp":"892f3efa","beats":["s3.4"]},{"key":"eng.joining.metallurgy#t4.1","fp":"c5cbc87b","beats":["s4.1"]},{"key":"eng.joining.metallurgy#t4.2","fp":"ec112dc4","beats":["s4.2","s4.3"]},{"key":"eng.joining.metallurgy#ex.text.1","fp":"8a3960b2","beats":["s5.1"]},{"key":"eng.joining.metallurgy#ex.text.2","fp":"4617dd79","beats":["s5.2"]},{"key":"eng.joining.metallurgy#ex.ask","fp":"adfa9649","beats":["s5.3"]},{"key":"eng.joining.metallurgy#ex.reveal.1","fp":"5970cdfb","beats":["s5.4","s5.5","s5.6"]}],"checkScope":{"scenes":["s1","s2","s3","s4","s5"],"stageFns":["cooling","hydrogen","stainless","aluminium","flange","render"]},"label":{"nl":"Een lastafel met twee stalen platen en een gelaste naad en een rvs-pijp met aanloopkleuren; daarbij de doorsnede van de las met de warmtebeïnvloede zone, een afkoelkromme, een thermometer, een klok en kaarten met de getallen.","en":"A welding table with two steel plates and a finished weld and a stainless pipe with heat tint; with the section of the weld and its heat-affected zone, a cooling curve, a thermometer, a clock and cards with the numbers."}}</script><script>document.querySelector('.fp-again span').textContent=new URLSearchParams((location.search.length>1?location.search:(window.name.charAt(0)==="?"?window.name:""))).get('lang')==='en'?'Watch again':'Nog een keer';</script><script type="module">// Pure parts of the film player: caption markers, number formats, the speak
+// variant, the timeline, beats, the narration hold and the page parameters.
+// No imports and no DOM: the build inlines this file into every film page (with
+// its `export` words stripped), and tests/film.test.js imports it as it is.
+// The part between the build-only markers (caption markers, numbers, the SAY
+// table and the speak variants) runs only at build time: the page's film data
+// already carries the resolved captions and voice/speak strings, so the page
+// inlines everything except that part (runtimeTimeline in films/_kit/player.mjs).
+// Keep runtime code out of it, and build-only code in it.
+
+const wordsOf = (text) => String(text || '').trim().split(/\s+/).filter(Boolean).length;
+
+
+// v14b, the timeline driven by the narration audio. durs[scene][beat] is the
+// length of each beat's recorded line (s). Each scene opens with a short look
+// before the first line (the film itself with a longer lead), lines follow with
+// a breath in between, and a scene holds a moment after its last line.
+// The pauses of the narration, all in one place (seconds). Each sentence is one
+// Piper clip (films/_kit/narrate.mjs), commas inside: the voice makes its own
+// comma pause and keeps the sentence melody. Piper's own edge silence is
+// trimmed to about 40 ms (films/_kit/speak.py), so these are the pauses heard:
+// sentence after a full stop, beat between two lines, hold at a scene's end.
+// The listen guard (films/_kit/listen-guard.mjs) checks them on the render.
+const PAUSES = { sentence: 0.6, beat: 0.9, hold: 0.8 };
+const AUDIO_GAPS = { lead: 0.8, look: 0.4, gap: PAUSES.beat, hold: PAUSES.hold, tail: 1.6 };
+function audioTimeline(durs, gaps = AUDIO_GAPS) {
+  const g = { ...AUDIO_GAPS, ...gaps };
+  const scenes = [];
+  let t = 0;
+  durs.forEach((beats, si) => {
+    const start = t;
+    let at = start + (si === 0 ? g.lead : g.look);
+    const out = beats.map((d, bi) => {
+      if (!(d > 0)) throw new Error(`scene ${si + 1} beat ${bi + 1}: no audio`);
+      const b = { start: round3(at), dur: round3(d) };
+      at += d + (bi + 1 < beats.length ? g.gap : 0);
+      return b;
+    });
+    t = round3(at + (si + 1 < durs.length ? g.hold : g.tail));
+    scenes.push({ start: round3(start), dur: round3(t - start), beats: out });
+  });
+  return { scenes, total: t };
+}
+const round3 = (x) => Math.round(x * 1000) / 1000;
+
+// Where time t falls on an audio timeline: the scene, the beat on screen (the
+// last one started; the first while the scene opens) and the scene's progress u.
+function timedAt(t, atl) {
+  const sc = atl.scenes;
+  let si = 0;
+  for (let k = 0; k < sc.length; k++) if (t >= sc[k].start) si = k;
+  const s = sc[si];
+  let bi = 0;
+  for (let k = 0; k < s.beats.length; k++) if (t >= s.beats[k].start) bi = k;
+  const u = Math.min(1, Math.max(0, (t - s.start) / s.dur));
+  return { si, bi, u };
+}
+
+function timelineOf(scenes) {
+  const starts = [];
+  let t = 0;
+  for (const s of scenes) { starts.push(t); t += s.dur; }
+  return { starts, total: t };
+}
+
+function sceneIndexAt(t, tl) {
+  let i = 0;
+  for (let k = 0; k < tl.starts.length; k++) if (t >= tl.starts[k]) i = k;
+  return i;
+}
+
+// ?scene=n is 1-based; anything odd opens the first scene.
+function clampScene(param, count) {
+  const n = parseInt(param, 10);
+  if (!Number.isFinite(n) || n < 1) return 0;
+  return Math.min(count, n) - 1;
+}
+
+// Beat starts within a scene (seconds), by each beat's share of the words.
+function beatStarts(scene, lang) {
+  const counts = scene.beats.map((b) => Math.max(1, wordsOf(b.text[lang] ?? b.text.nl)));
+  const all = counts.reduce((a, b) => a + b, 0);
+  const out = [];
+  let acc = 0;
+  for (const c of counts) { out.push(Math.round((acc / all) * scene.dur * 100) / 100); acc += c; }
+  return out;
+}
+
+// The stage's u (0..1) in the HTML film. A stage drawn on the Dutch beats
+// (nlBeats, set by beatwarp.js) runs, while caption beat k shows in `lang`,
+// from Dutch beat k's fraction to k+1's, so English is never a beat off.
+function stageU(scene, lang, local, nlBeats) {
+  const u = Math.min(1, Math.max(0, local / scene.dur));
+  if (!nlBeats || lang === 'nl' || !scene.beats || !scene.beats.length) return u;
+  const own = beatStarts(scene, lang);
+  const nl = beatStarts(scene, 'nl');
+  let k = 0;
+  for (let i = 0; i < own.length; i++) if (local >= own[i]) k = i;
+  const a0 = own[k];
+  const a1 = k + 1 < own.length ? own[k + 1] : scene.dur;
+  const b0 = nl[k];
+  const b1 = k + 1 < nl.length ? nl[k + 1] : scene.dur;
+  const p = Math.min(1, Math.max(0, (local - a0) / Math.max(1e-6, a1 - a0)));
+  return Math.min(1, Math.max(0, (b0 + p * (b1 - b0)) / scene.dur));
+}
+
+function beatIndexAt(scene, lang, local) {
+  const starts = beatStarts(scene, lang);
+  let i = 0;
+  for (let k = 0; k < starts.length; k++) if (local >= starts[k]) i = k;
+  return i;
+}
+
+// While a beat is being spoken the clock may run up to the next beat, or to the
+// end of the scene for the last beat, and then holds there.
+function holdLimit(tl, scenes, lang, sceneIndex, beatIndex) {
+  const scene = scenes[sceneIndex];
+  const starts = beatStarts(scene, lang);
+  const local = beatIndex + 1 < starts.length ? starts[beatIndex + 1] : scene.dur;
+  return tl.starts[sceneIndex] + local;
+}
+
+// The page's parameters: from its URL when opened on its own, else from the
+// frame's name. The app hands the page over as srcdoc (a sandboxed frame's own
+// navigation skips the service worker, so a src would be blank offline) and
+// puts "?theme=…&lang=…" in the iframe's name attribute.
+const searchOf = (search, name) => (search && search.length > 1 ? search
+  : typeof name === 'string' && name.charAt(0) === '?' ? name : '');
+
+function parseParams(search) {
+  const q = new URLSearchParams(search || '');
+  const theme = q.get('theme');
+  const level = parseInt(q.get('level'), 10);
+  return {
+    theme: theme === 'light' || theme === 'dark' ? theme : null,
+    lang: q.get('lang') === 'en' ? 'en' : 'nl',
+    scene: q.get('scene'),
+    reduce: q.get('motion') === 'reduce',
+    muted: q.get('muted') === '1',
+    level: [1, 2, 3, 4].includes(level) ? level : null,
+    render: q.get('render') === '1',
+  };
+}
+
+function fmtClock(sec) {
+  const s = Math.max(0, Math.floor(sec));
+  return `${Math.floor(s / 60)}:${String(s % 60).padStart(2, '0')}`;
+}
+
+// Calm ease-in-out, and the eased progress of u through [a, b].
+const ease = (t) => (t <= 0 ? 0 : t >= 1 ? 1 : t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2);
+const span = (u, a, b) => ease(Math.min(1, Math.max(0, (u - a) / (b - a))));
+
+;
+const AZIMUTH = 45;
+const ELEVATION = 30;
+const RADIANS = Math.PI / 180;
+const UNIT = Math.sqrt(1.6);
+function cameraOf({ scale, azimuth = AZIMUTH, elevation = ELEVATION }) {
+    const a = azimuth * RADIANS;
+    const e = elevation * RADIANS;
+    return { sinA: Math.sin(a), cosA: Math.cos(a), sinE: Math.sin(e), cosE: Math.cos(e), k: scale * UNIT };
+}
+function iso([x, y, z], projection) {
+    const { origin } = projection;
+    const { sinA, cosA, sinE, cosE, k } = cameraOf(projection);
+    return [origin[0] + (x * sinA - y * cosA) * k, origin[1] + ((x * cosA + y * sinA) * sinE - z * cosE) * k];
+}
+const tenth = (value) => {
+    const text = (Math.round(value * 10) / 10).toFixed(1).replace(/\.0$/, "");
+    return text === "-0" ? "0" : text;
+};
+function pathOf(points, closed = false) {
+    if (!points.length)
+        return "";
+    return points.map(([x, y], at) => `${at ? "L" : "M"}${tenth(x)} ${tenth(y)}`).join("") + (closed ? "Z" : "");
+}
+function circleRing(cx, cy, radius, steps = 40) {
+    return Array.from({ length: steps }, (_, step) => {
+        const angle = (step / steps) * Math.PI * 2;
+        return [cx + radius * Math.cos(angle), cy + radius * Math.sin(angle)];
+    });
+}
+function onTop(points, z, projection, closed = false) {
+    return pathOf(points.map(([x, y]) => iso([x, y, z], projection)), closed);
+}
+const segment = (from, to, projection) => pathOf([iso(from, projection), iso(to, projection)]);
+const rise = (at, from, to, projection) => segment([at[0], at[1], from], [at[0], at[1], to], projection);
+const ring = (cx, cy, radius, z, projection, steps = 40) => onTop(circleRing(cx, cy, radius, steps), z, projection, true);
+function axisVector(projection, [dx, dy, dz]) {
+    const origin = iso([0, 0, 0], projection);
+    const moved = iso([dx, dy, dz], projection);
+    return [moved[0] - origin[0], moved[1] - origin[1]];
+}
+const fine = (value) => Math.round(value * 100) / 100;
+function translateAlong(projection, by) {
+    const [x, y] = axisVector(projection, by);
+    return `translate(${fine(x)} ${fine(y)})`;
+}
+const escape = (text) => text.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+const attrs = (pairs) => Object.entries(pairs)
+    .filter(([, value]) => value !== undefined && value !== false)
+    .map(([key, value]) => ` ${key}="${escape(String(value))}"`)
+    .join("");
+function solidSvg(paths, { tone = "hi", crease = "faint", halo = false, lit = false, flat = false, className, inner = "" } = {}) {
+    const parts = [];
+    if (halo)
+        parts.push(`<path class="iso-halo" d="${paths.fill}"/>`);
+    parts.push(`<path class="iso-fill" d="${paths.fill}"/>`);
+    if (!flat) {
+        paths.shades.forEach((d, shade) => {
+            if (d)
+                parts.push(`<path class="iso-shade" data-shade="${shade}" d="${d}"/>`);
+        });
+        parts.push(`<path class="iso-top" d="${paths.top}"/>`);
+    }
+    if (crease !== "none" && paths.crease)
+        parts.push(`<path class="iso-line iso-crease" data-tone="${crease}" d="${paths.crease}"/>`);
+    if (crease !== "none" && paths.bevel)
+        parts.push(`<path class="iso-line iso-bevel" data-tone="${crease}" d="${paths.bevel}"/>`);
+    if (inner)
+        parts.push(inner);
+    parts.push(`<path class="iso-line iso-edge" data-tone="${tone}" d="${paths.outline}"/>`);
+    return `<g${attrs({ class: className ? `iso-solid ${className}` : "iso-solid", "data-lit": lit ? "" : undefined, "data-seamless": paths.seamless ? "" : undefined })}>${parts.join("")}</g>`;
+}
+function lineSvg(d, { tone = "lo", dotted = false, dashed = false, flow = false, className, free } = {}) {
+    if (!d)
+        return "";
+    return `<path${attrs({
+        class: className ? `iso-line ${className}` : "iso-line",
+        "data-tone": tone,
+        "data-free": free === true ? "" : free || undefined,
+        "data-dotted": dotted ? "" : undefined,
+        "data-dashed": dashed ? "" : undefined,
+        "data-flow": flow ? "" : undefined,
+        d,
+    })}/>`;
+}
+function dotsSvg(points, { size = 0.5, tone = "mid", pulse = false } = {}) {
+    const dots = points
+        .map(([x, y, alpha], index) => `<circle cx="${tenth(x)}" cy="${tenth(y)}" r="${size}"${alpha !== undefined && alpha < 1 ? ` fill-opacity="${Math.max(0, alpha).toFixed(2)}"` : ""}${pulse ? ` data-pulse="" style="--pulse-at:${(index * 137) % 1600}ms"` : ""}/>`)
+        .join("");
+    return `<g class="iso-dots" data-tone="${tone}">${dots}</g>`;
+}
+
+const G = (() => {
+
+const add3 = (a, b) => [a[0] + b[0], a[1] + b[1], a[2] + b[2]];
+const sub3 = (a, b) => [a[0] - b[0], a[1] - b[1], a[2] - b[2]];
+const mul3 = (a, k) => [a[0] * k, a[1] * k, a[2] * k];
+const len3 = (a) => Math.hypot(a[0], a[1], a[2]);
+const unit3 = (a) => {
+  const length = len3(a) || 1;
+  return [a[0] / length, a[1] / length, a[2] / length];
+};
+const cross3 = (a, b) => [a[1] * b[2] - a[2] * b[1], a[2] * b[0] - a[0] * b[2], a[0] * b[1] - a[1] * b[0]];
+function frameAlong(o, a) {
+  const axis = unit3(a);
+  const helper = Math.abs(axis[2]) > 0.9 ? [1, 0, 0] : [0, 0, 1];
+  const u = unit3(cross3(helper, axis));
+  const v = cross3(axis, u);
+  return { o, a: axis, u, v };
+}
+
+function pointOf(F, s, r, angle) {
+  const c = Math.cos(angle);
+  const n = Math.sin(angle);
+  return [
+    F.o[0] + F.a[0] * s + r * (c * F.u[0] + n * F.v[0]),
+    F.o[1] + F.a[1] * s + r * (c * F.u[1] + n * F.v[1]),
+    F.o[2] + F.a[2] * s + r * (c * F.u[2] + n * F.v[2]),
+  ];
+}
+
+
+return { frameAlong, pointOf, sub3, add3, mul3 };})();
+const P = {"origin":[299.51390309559406,248.87521431724824],"scale":0.9403860166479723,"azimuth":58,"elevation":30};
+const C = {"W":640,"H":400,"PT":20,"XE":110,"XS":-110,"GROOVE":{"gap":1,"face":2,"top":11.392304845413264},"dur":[35,49,33,30,46],"MAG_AX":[0.3,-0.18,1],"TIG_AX":[0.32,-0.2,1],"HEAT_AX":[-0.35,0.75,0.62],"T85":4.759615384615385,"MACH":{"x":-158,"y":-152,"w":82,"d":58},"MZ":74,"SOCKET":[-100,-94,24],"REG":[-48,-138,132],"PIPE":{"y":-124,"r":13,"x0":28,"x1":150,"weld":92},"MAG_TOP":146,"DIAL":[74,296],"MAG":[500,214],"MAG_R":112,"FLOW":[56,90,300],"CHART":{"x":24,"y":200,"w":256,"h":180},"MACRO":{"x":300,"y":18,"w":320,"h":222},"GAS":{"normal":15,"kinked":5,"trip":10},"WPS":{"t":12,"tMin":3,"tMax":24,"order":22,"q":1.2,"qMax":1.5,"want":1.6},"CEV":0.4600000000000001,"B":[[0,0.25,0.44,0.63,0.8,1],[0,0.26,0.39,0.54,0.75,1],[0,0.23,0.54,0.73,1],[0,0.33,0.63,1],[0,0.18,0.3,0.46,0.7,0.89,1]]};
+const CAM = [{"from":[480.8,310.7,300],"to":[470.5,307,240]},{"from":[480.8,310.7,300],"to":[470.5,307,240]},{"from":[483.6,234.9,560],"to":[508,200.9,200],"a":0,"b":0.3},{"from":[303.3,223.2,420],"to":[293.2,220,380]},{"from":[303.3,223.2,420],"to":[293.2,220,380]}];
+const W = 640, H = 400;
+/* global G, P, C, CAM, W, H, iso, pathOf, solidSvg, lineSvg, dotsSvg, translateAlong, span */
+const STAGE = (() => {
+  const svg = document.querySelector('.fp-stage svg');
+  const el = (k) => svg.querySelector(`[data-k="${k}"]`);
+  const E = {};
+  const GONE = {};
+  const KEYS = ['world', 'digits', 'spool', 'ghose', 'section', 'haz', 'heat', 'bead', 'pores', 'pool', 'gasflow', 'cable', 'arc', 'wire', 'rod', 'magT', 'tigT', 'flame', 'heatT', 'travel',
+    'scrim', 'dial', 'needle', 'dialText', 'mag', 'magLead', 'magBase', 'magShort', 'magSpray', 'flow', 'flowScale', 'flowBall',
+    'docs', 'docA', 'docB', 'docEss', 'docRange', 'docHeat', 'docCert', 'docCoord', 'chart', 'chartBody', 'chartCurve', 'chartT85', 'cev', 'therm', 'clock', 'macro', 'macroLead', 'macroBody', 'macroIso', 'macroMart', 'macroCrack', 'card'];
+  KEYS.forEach((k) => { E[k] = el(k) || (GONE[k] = document.createElementNS('http://www.w3.org/2000/svg', 'g')); });
+  const EN = document.documentElement.getAttribute('lang') === 'en';
+  const tr = (nl, en) => (EN ? en : nl);
+  const TAU = Math.PI * 2;
+  const clamp = (v, a, b) => Math.min(b, Math.max(a, v));
+  const lerp = (a, b, t) => a + (b - a) * t;
+  const f1 = (v) => (Math.round(v * 10) / 10).toString();
+  const num = (v, dec = 0) => { const s = v.toFixed(dec); return EN ? s : s.replace('.', ','); };
+  const at = (p) => iso(p, P);
+  const show = (e, on) => { const want = on ? '' : 'none'; if (e.style.display !== want) e.style.display = want; };
+  const set = (e, html) => { if (e.__h !== html) { e.innerHTML = html; e.__h = html; } };
+  const op = (e, v) => { const s = String(Math.round(v * 100) / 100); if (e.__o !== s) { e.style.opacity = s; e.__o = s; } };
+  const move = (e, by) => { const t = translateAlong(P, by); if (e.__t !== t) { e.setAttribute('transform', t); e.__t = t; } };
+  const pth = (pts, closed = false) => pathOf(pts, closed);
+  const seeded = (i) => { const s = Math.sin(i * 12.9898 + 4.1) * 43758.5453; return s - Math.floor(s); };
+  let camW = W;
+  const label = (x, y, text, size = 22, anchor = 'middle', hud = false, cls = 'fp-label') => `<text class="fp-ink ${cls}" x="${f1(x)}" y="${f1(y)}" font-size="${f1(hud ? size : size * camW / W)}" text-anchor="${anchor}">${text}</text>`;
+  const hudText = (x, y, text, size = 20, anchor = 'middle', cls = 'fp-label') => label(x, y, text, size, anchor, true, cls);
+  const mark = (d, extra = '') => `<path class="fp-mark" d="${d}"${extra}/>`;
+  const arrowHead = (from, to, len, hud = false) => {
+    const dx = to[0] - from[0];
+    const dy = to[1] - from[1];
+    const d = Math.hypot(dx, dy) || 1;
+    const ux = dx / d;
+    const uy = dy / d;
+    const l = hud ? len : len * camW / W;
+    return `M${f1(to[0] - ux * l - uy * l * 0.55)} ${f1(to[1] - uy * l + ux * l * 0.55)}L${f1(to[0])} ${f1(to[1])}L${f1(to[0] - ux * l + uy * l * 0.55)} ${f1(to[1] - uy * l - ux * l * 0.55)}`;
+  };
+  const PT = C.PT;
+  const XE = C.XE;
+  const MAGF = G.frameAlong([0, 0, 0], C.MAG_AX);
+  const TIGF = G.frameAlong([0, 0, 0], C.TIG_AX);
+  const HEATF = G.frameAlong([0, 0, 0], C.HEAT_AX);
+
+  const PORE_X = -82; // where the gas had dropped below 10 L/min (the run flagged pores)
+  function weldAt(RUNS, si, u) {
+    const out = [];
+    let tip = XE;
+    for (const r of RUNS) {
+      if (r.si < si) { out.push({ ...r, x: r.x1 }); tip = r.x1; } else if (r.si === si) {
+        const x = lerp(r.x0, r.x1, span(u, r.a, r.b));
+        if (r.x0 - x > 0.4) out.push({ ...r, x });
+        tip = x;
+      }
+    }
+    return { runs: out, tip };
+  }
+  const zOf = (y, w, h) => PT + h * Math.sqrt(Math.max(0, 1 - (2 * y / w) ** 2));
+  function beadSvg(runs) {
+    let fill = '';
+    let ripples = '';
+    for (const r of runs) {
+      const x0 = r.x0;
+      const x1 = r.x;
+      const hw = r.w / 2;
+      const ys = [];
+      for (let i = 0; i <= 10; i++) ys.push(hw - (2 * hw * i) / 10);
+      const cap = (x) => ys.map((y) => at([x, y, zOf(y, r.w, r.h)]));
+      const front = [];
+      const back = [];
+      const n = Math.max(1, Math.ceil((x0 - x1) / 6));
+      for (let i = 0; i <= n; i++) {
+        const x = lerp(x0, x1, i / n);
+        front.push(at([x, hw, PT]));
+        back.push(at([x, -hw, PT]));
+      }
+      fill += `<path class="fp-bead" d="${pth([...front, ...cap(x1), ...back.reverse(), ...cap(x0).reverse()], true)}"/>`;
+      const step = r.w > 22 ? 2.6 : 2;
+      const lines = [];
+      for (let x = x1 + 3; x < x0 - 0.5; x += step) lines.push(pth(ys.map((y) => at([x - 1.8 * (1 - (y / hw) ** 2), y, zOf(y, r.w, r.h) + 0.05]))));
+      ripples += `<path class="fp-ripple" d="${lines.join('')}"/>`;
+    }
+    return fill + ripples;
+  }
+  function poresSvg(runs) {
+    const r = runs.find((q) => q.pores);
+    if (!r || r.x > PORE_X) return '';
+    let out = '';
+    for (let i = 0; i < 26; i++) {
+      const x = PORE_X - seeded(i) * (PORE_X - (r.x1 - 2));
+      if (x < r.x + 3) continue;
+      const y = (seeded(i + 40) - 0.5) * r.w * 0.7;
+      const rr = 0.6 + seeded(i + 80) * 1.1;
+      const z = zOf(y, r.w, r.h) + 0.1;
+      const ring = [];
+      for (let k = 0; k < 10; k++) { const a = (k / 10) * TAU; ring.push(at([x + Math.cos(a) * rr, y + Math.sin(a) * rr, z])); }
+      out += `<path class="fp-pore" d="${pth(ring, true)}"/>`;
+    }
+    return out;
+  }
+  function hazSvg(runs) {
+    let out = '';
+    for (const r of runs) {
+      const hw = r.w / 2;
+      for (const s of [1, -1]) {
+        const a = hw * s;
+        const b = (hw + 4.5) * s;
+        out += `<path class="fp-hazf" d="${pth([at([r.x0, a, PT]), at([r.x, a, PT]), at([r.x, b, PT]), at([r.x0, b, PT])], true)}"/>`;
+      }
+    }
+    return out;
+  }
+  const ellipseTop = (cx, cy, rx, ry, z, tail = 0) => {
+    const pts = [];
+    for (let i = 0; i < 28; i++) {
+      const a = (i / 28) * TAU;
+      const c = Math.cos(a);
+      pts.push(at([cx + c * rx * (c > 0 ? 1 + tail : 1), cy + Math.sin(a) * ry, z]));
+    }
+    return pth(pts, true);
+  };
+
+  const G30 = Math.tan(Math.PI / 6);
+  const fus = (z) => (z <= 2 ? 2.2 : 2.2 + (z - 2) * G30 + 0.6 * (z - 2) / 18);
+  const FT = fus(PT);
+  const sec = (pts) => pth(pts.map(([y, z]) => at([XE + 0.15, y, z])), true);
+  const secLine = (pts) => pth(pts.map(([y, z]) => at([XE + 0.15, y, z])));
+  const SECT = (() => {
+    const right = [];
+    const left = [];
+    for (let z = 0; z <= PT + 0.01; z += 2) { right.push([fus(z), z]); left.push([-fus(z), z]); }
+    const cap = [];
+    for (let i = 0; i <= 12; i++) { const y = FT - (2 * FT * i) / 12; cap.push([y, PT + 3 * Math.sqrt(Math.max(0, 1 - (y / FT) ** 2))]); }
+    const root = [];
+    for (let i = 0; i <= 6; i++) { const y = -2.5 + (5 * i) / 6; root.push([y, -1.1 * Math.sqrt(Math.max(0, 1 - (y / 2.5) ** 2))]); }
+    const weld = [...root, ...right, ...cap, ...left.reverse()];
+    const hz = (z) => fus(z) + 3.2;
+    const hr = [];
+    const hl = [];
+    for (let z = 0; z <= PT + 0.01; z += 2) { hr.push([hz(z), z]); hl.push([-hz(z), z]); }
+    const haz = [[-4.6, -0.6], [4.6, -0.6], ...hr, [FT, PT], ...hl.slice().reverse().slice(0, 0), [-FT, PT], ...hl.reverse()];
+    const passPts = [5, 11, 16].map((zk) => {
+      const pts = [];
+      const f = fus(zk);
+      for (let i = 0; i <= 10; i++) { const y = -f + (2 * f * i) / 10; pts.push([y, zk + 1.6 * (1 - (y / f) ** 2)]); }
+      return pts;
+    });
+    return { weld, haz, passes: passPts };
+  })();
+  set(E.section, `<path class="fp-hazf" d="${sec(SECT.haz)}"/><path class="fp-weld" d="${sec(SECT.weld)}"/><path class="fp-ripple" d="${SECT.passes.map(secLine).join('')}"/>`);
+
+  const MC = C.MACRO;
+  const MK = 5.6;
+  const mX = (y) => MC.x + MC.w / 2 + y * MK;
+  const mZ = (z) => MC.y + 34 + (25 - z) * MK;
+  const M2 = (pts, closed = true) => pth(pts.map(([y, z]) => [mX(y), mZ(z)]), closed);
+  (() => {
+    const { gap, face, top } = C.GROOVE;
+    const far = [[-40, 0], [-gap, 0], [-gap, face], [-top, PT], [-40, PT]];
+    const near = [[gap, 0], [40, 0], [40, PT], [top, PT], [gap, face]];
+    const table = `<path class="fp-meter" d="${M2([[-40, 0], [40, 0], [40, -6], [-40, -6]])}"/>`;
+    set(E.macroBody, table + `<path class="fp-steel" d="${M2(far)}"/><path class="fp-steel" d="${M2(near)}"/><path class="fp-hazf" d="${M2(SECT.haz)}"/><path class="fp-weld" d="${M2(SECT.weld)}"/><path class="fp-ripple" d="${SECT.passes.map((q) => M2(q, false)).join('')}"/>`);
+    const lines = [];
+    for (let i = 0; i < 60; i++) {
+      const z = 1 + seeded(i) * (PT - 1.5);
+      const side = i % 2 ? 1 : -1;
+      const y = side * (fus(z) + 0.3 + seeded(i + 50) * 1.4);
+      const a = seeded(i + 100) * Math.PI;
+      const l = 0.7;
+      lines.push(M2([[y - Math.cos(a) * l, z - Math.sin(a) * l], [y + Math.cos(a) * l, z + Math.sin(a) * l]], false));
+    }
+    set(E.macroMart, `<path class="fp-needle" style="stroke-width:1.2" d="${lines.join('')}"/>`);
+  })();
+
+  const add = (a, b) => [a[0] + b[0], a[1] + b[1], a[2] + b[2]];
+  const ptOn = (F, s, o) => add(G.pointOf(F, s, 0, 0), o);
+  function cableSvg(from, to, sag, kink = 0) {
+    const pts = [];
+    for (let i = 0; i <= 24; i++) {
+      const t = i / 24;
+      const p = [lerp(from[0], to[0], t), lerp(from[1], to[1], t), lerp(from[2], to[2], t) - sag * Math.sin(Math.PI * t)];
+      if (kink > 0) { const d = Math.max(0, 1 - Math.abs(t - 0.32) / 0.07); p[1] += kink * 9 * d; p[2] += kink * 6 * d; }
+      pts.push(at(p));
+    }
+    const d = pth(pts);
+    return `<path class="fp-hose" stroke-width="5" d="${d}"/><path class="fp-hose-hi" stroke-width="2" d="${d}"/>`;
+  }
+  function arcSvg(p, r, clockS) {
+    const [x, y] = at(p);
+    const k = camW / W;
+    const fl = 1 + 0.12 * Math.sin(clockS * 37) + 0.08 * Math.sin(clockS * 61);
+    const R = r * k * fl;
+    const rays = [];
+    for (let i = 0; i < 10; i++) {
+      const a = (i / 10) * TAU + clockS * 0.7;
+      const r0 = R * 0.35;
+      const r1 = R * (0.6 + 0.35 * seeded(i + Math.floor(clockS * 9)));
+      rays.push(`M${f1(x + Math.cos(a) * r0)} ${f1(y + Math.sin(a) * r0)}L${f1(x + Math.cos(a) * r1)} ${f1(y + Math.sin(a) * r1)}`);
+    }
+    return `<circle cx="${f1(x)}" cy="${f1(y)}" r="${f1(R)}" fill="url(#fp-glow)"/><path class="fp-ray" d="${rays.join('')}"/><circle class="fp-hotf" cx="${f1(x)}" cy="${f1(y)}" r="${f1(R * 0.18)}"/>`;
+  }
+  function gasSvg(o, clockS, amount) {
+    if (amount <= 0.02) return '';
+    const lines = [];
+    const n = 9;
+    for (let i = 0; i < n; i++) {
+      const a = (i / n) * TAU;
+      const top = G.pointOf(MAGF, 13, 6.5, a);
+      const radial = G.sub3(top, G.pointOf(MAGF, 13, 0, 0));
+      const bot = [top[0] + radial[0] * 0.9, top[1] + radial[1] * 0.9, 0.4];
+      if (radial[1] < -2) continue; // the back of the cone is hidden behind the nozzle
+      lines.push(pth([at(add(top, o)), at(add(G.add3(G.mul3(top, 0.5), G.mul3(bot, 0.5)), o)), at(add(bot, o))]));
+    }
+    const off = -((clockS * 14) % 14);
+    return `<path class="fp-gas" style="stroke-dashoffset:${f1(off)};opacity:${amount.toFixed(2)}" d="${lines.join('')}"/>`;
+  }
+
+  function camera(si, u) {
+    const c = CAM[si];
+    let from = c.from;
+    let to = c.to;
+    let k = span(u, c.a ?? 0, c.b ?? 1);
+    if (c.keys) {
+      const bk = beatOf(si, u);
+      const B = C.B[si];
+      from = c.keys[Math.max(0, bk - 1)];
+      to = c.keys[bk];
+      k = span((u - B[bk]) / Math.max(1e-6, B[bk + 1] - B[bk]), 0, 0.25);
+    }
+    const cx = lerp(from[0], to[0], k);
+    const cy = lerp(from[1], to[1], k);
+    const w = lerp(from[2], to[2], k);
+    camW = w;
+    const s = W / w;
+    const t = `translate(${f1(W / 2)} ${f1(H / 2)}) scale(${s.toFixed(4)}) translate(${f1(-cx)} ${f1(-cy)})`;
+    if (E.world.__t !== t) { E.world.setAttribute('transform', t); E.world.__t = t; }
+    return { cx, cy, s };
+  }
+  const toHud = (p, cam) => { const [x, y] = at(p); return [(x - cam.cx) * cam.s + W / 2, (y - cam.cy) * cam.s + H / 2]; };
+
+  const M = C.MACH;
+  const yf = M.y + M.d;
+  const xr = M.x + M.w;
+  function digits(v, a) {
+    const t = (x, s) => { const [px, py] = at([x, yf + 0.3, 56.5]); return `<text class="fp-ink fp-small" x="${f1(px)}" y="${f1(py)}" font-size="7" text-anchor="middle">${s}</text>`; };
+    return t(M.x + 25, v) + t(M.x + 57, a);
+  }
+  function spoolSvg(angle) {
+    const cy = M.y + 39;
+    const cz = 49;
+    const ringPts = (r) => { const pts = []; for (let i = 0; i < 24; i++) { const a = (i / 24) * TAU; pts.push(at([xr + 0.3, cy + Math.cos(a) * r, cz + Math.sin(a) * r])); } return pth(pts, true); };
+    const spokes = [0, 1, 2].map((i) => { const a = angle + (i * TAU) / 3; return pth([at([xr + 0.3, cy + Math.cos(a) * 3.5, cz + Math.sin(a) * 3.5]), at([xr + 0.3, cy + Math.cos(a) * 11, cz + Math.sin(a) * 11])]); }).join('');
+    return `<path class="fp-glass" d="${ringPts(12)}"/>${mark(ringPts(8.5))}${mark(spokes)}${mark(ringPts(3.5))}`;
+  }
+  const SPOOL_TURNS = [0, 0, 0, 0, 0, 0, 0, 0];
+
+  const [dx, dy] = C.DIAL;
+  function dialSvg(wfs) {
+    const ang = -2.35 + (wfs / 16) * 4.7;
+    set(E.needle, `<path class="fp-mark fp-needle-h" style="stroke-width:2.4" d="M${f1(dx)} ${f1(dy)}L${f1(dx + Math.sin(ang) * 40)} ${f1(dy - Math.cos(ang) * 40)}"/>`);
+    set(E.dialText, hudText(dx, dy + 36, num(wfs, 0), 26) + hudText(dx, dy + 86, 'm/min', 20, 'middle', 'fp-small'));
+  }
+  const [mx, my] = C.MAG;
+  const MR = C.MAG_R;
+  const POOL_Y = my + 62;
+  function magBase(clockS) {
+    const wave = [];
+    for (let i = 0; i <= 40; i++) { const x = mx - MR + (2 * MR * i) / 40; wave.push([x, POOL_Y + Math.sin(i * 0.7 + clockS * 5) * 2.2 - 10 * Math.exp(-(((x - mx) / 30) ** 2))]); }
+    const fill = pth([...wave, [mx + MR, my + MR], [mx - MR, my + MR]], true);
+    const nozzle = `<path class="fp-card" d="M${mx - 58} ${my - MR}L${mx - 50} ${my - 46}L${mx - 36} ${my - 46}L${mx - 40} ${my - MR}Z"/><path class="fp-card" d="M${mx + 58} ${my - MR}L${mx + 50} ${my - 46}L${mx + 36} ${my - 46}L${mx + 40} ${my - MR}Z"/>`;
+    const tip = `<path class="fp-card" d="M${mx - 14} ${my - MR}L${mx - 14} ${my - 62}L${mx - 8} ${my - 54}L${mx + 8} ${my - 54}L${mx + 14} ${my - 62}L${mx + 14} ${my - MR}Z"/>`;
+    const skin = pth(wave.map(([x, y]) => [x, y + 6]).reverse());
+    return `<path class="fp-weld" d="${fill}"/><path class="fp-pool" d="${pth(wave)}${skin.replace('M', 'L')}Z"/>${nozzle}${tip}`;
+  }
+  function magShort(clockS) {
+    const ph = (clockS * 2) % 1;
+    const end = ph < 0.6 ? lerp(my - 6, POOL_Y - 10, ph / 0.6) : lerp(POOL_Y - 10, my - 6, (ph - 0.6) / 0.4);
+    const ball = ph < 0.6 ? 3 + 4 * (ph / 0.6) : 2;
+    return `<path class="fp-wire" style="stroke-width:5" d="M${mx} ${my - 54}L${mx} ${f1(end)}"/><circle class="fp-drop" cx="${mx}" cy="${f1(end + ball * 0.6)}" r="${f1(ball)}"/>`
+      + (ph > 0.5 && ph < 0.62 ? arcRays(mx, end + 4, 18) : arcRays(mx, end + 4, 10));
+  }
+  function magSpray(clockS) {
+    const tipY = my - 2;
+    let drops = '';
+    for (let i = 0; i < 14; i++) {
+      const t = ((clockS * 1.6 + i / 14) % 1);
+      const y = lerp(tipY + 6, POOL_Y - 12, t);
+      const x = mx + Math.sin(i * 2.3) * 3 * t;
+      drops += `<circle class="fp-drop" cx="${f1(x)}" cy="${f1(y)}" r="2"/>`;
+    }
+    return `<path class="fp-wire" style="stroke-width:5" d="M${mx} ${my - 54}L${mx} ${f1(tipY - 4)}"/><path class="fp-drop" d="M${mx - 2.5} ${f1(tipY - 5)}L${mx + 2.5} ${f1(tipY - 5)}L${mx} ${f1(tipY + 3)}Z"/>${arcRays(mx, tipY + 30, 34)}${drops}`;
+  }
+  function arcRays(x, y, r) {
+    return `<circle cx="${f1(x)}" cy="${f1(y)}" r="${f1(r)}" fill="url(#fp-glow)"/>`;
+  }
+  const [fx, fy0, fy1] = C.FLOW;
+  const flowY = (v) => fy1 - 10 - (v / 20) * (fy1 - fy0 - 20);
+  set(E.flowScale, (() => {
+    let t = '';
+    for (let v = 0; v <= 20; v++) t += `M${fx + 10} ${f1(flowY(v))}L${fx + (v % 5 ? 16 : 22)} ${f1(flowY(v))}`;
+    let labels = '';
+    for (const v of [5, 10, 15, 20]) labels += hudText(fx + 26, flowY(v) + 6, String(v), 20, 'start', 'fp-small');
+    return mark(t) + labels + `<path class="fp-mark" style="stroke-width:2.6" d="M${fx - 14} ${f1(flowY(10))}L${fx + 10} ${f1(flowY(10))}"/><path class="fp-mark" d="M${fx - 24} ${f1(flowY(10) - 6)}L${fx - 14} ${f1(flowY(10))}L${fx - 24} ${f1(flowY(10) + 6)}Z"/>` + hudText(fx + 12, fy0 - 10, 'L/min', 20, 'middle', 'fp-small');
+  })());
+
+  const card = (x, y, w, h) => `<rect class="fp-card" x="${x}" y="${y}" width="${w}" height="${h}" rx="8"/>`;
+  const rules = (x, y, w, n, gap) => { let d = ''; for (let i = 0; i < n; i++) d += `M${x} ${y + i * gap}L${x + w * (i % 3 === 2 ? 0.6 : 1)} ${y + i * gap}`; return `<path class="fp-rule" d="${d}"/>`; };
+  const check = (x, y, s = 1) => `<path class="fp-mark" style="stroke-width:3" d="M${f1(x - 7 * s)} ${f1(y)}L${f1(x - 2 * s)} ${f1(y + 6 * s)}L${f1(x + 8 * s)} ${f1(y - 7 * s)}"/>`;
+  const cross = (x, y) => `<path class="fp-mark" style="stroke-width:3" d="M${x - 7} ${y - 7}L${x + 7} ${y + 7}M${x + 7} ${y - 7}L${x - 7} ${y + 7}"/>`;
+  const BAR = { x0: 252, x1: 596 };
+  const barX = (v, lo, hi) => BAR.x0 + ((v - lo) / (hi - lo)) * (BAR.x1 - BAR.x0);
+  const CH = C.CHART;
+  const A3 = C.T85 / (1 / 480 - 1 / 780);
+  const TMAX = 24;
+  const ox = CH.x + 48;
+  const oy = CH.y + CH.h - 34;
+  const cw = CH.w - 66;
+  const chh = CH.h - 58;
+  const cX = (t) => ox + (t / TMAX) * cw;
+  const cY = (T) => oy - (T / 1500) * chh;
+  const Tof = (t) => (t < 0.3 ? lerp(20, 1450, t / 0.3) : Math.min(1450, 20 + A3 / (t + A3 / 1430 - 0.3)));
+  set(E.chartBody, (() => {
+    const axes = mark(`M${ox} ${oy - chh - 4}L${ox} ${oy}L${ox + cw + 6} ${oy}`);
+    const lines = [800, 500].map((T) => `<path class="fp-iso" d="M${ox} ${f1(cY(T))}L${f1(ox + cw)} ${f1(cY(T))}"/>${hudText(ox - 6, cY(T) + 6, String(T), 20, 'end', 'fp-small')}`).join('');
+    return axes + lines + hudText(ox - 6, oy - chh + 4, '°C', 20, 'end', 'fp-small') + hudText(ox + cw + 4, oy + 22, 's', 20, 'end', 'fp-small');
+  })());
+  function chartAt(tau) {
+    const pts = [];
+    for (let i = 0; i <= 60; i++) { const t = (i / 60) * tau; pts.push([cX(t), cY(Tof(t))]); }
+    const c8 = solveT(800);
+    const c5 = solveT(500);
+    const shownBracket = tau > c5;
+    const br = shownBracket ? `<path class="fp-mark" style="stroke-width:2" d="M${f1(cX(c8))} ${f1(cY(800))}L${f1(cX(c8))} ${f1(oy - 14)}M${f1(cX(c5))} ${f1(cY(500))}L${f1(cX(c5))} ${f1(oy - 14)}M${f1(cX(c8))} ${f1(oy - 14)}L${f1(cX(c5))} ${f1(oy - 14)}"/>${hudText((cX(c8) + cX(c5)) / 2, oy - 22, 't8/5', 20)}` : '';
+    const [px, py] = pts[pts.length - 1];
+    return { curve: `<path class="fp-mark" style="stroke-width:2.2" d="${pth(pts)}"/><circle class="fp-drop" cx="${f1(px)}" cy="${f1(py)}" r="4"/>`, br };
+  }
+  function solveT(T) { let lo = 0.3; let hi = TMAX; for (let i = 0; i < 40; i++) { const m = (lo + hi) / 2; if (Tof(m) > T) lo = m; else hi = m; } return lo; }
+
+  function isoSvg(r, cls = 'fp-iso') {
+    if (r < 0.5) return '';
+    const pts = [];
+    for (let i = 0; i <= 20; i++) { const a = -Math.PI / 2 + (i / 20) * Math.PI; pts.push([Math.sin(a) * r, PT + 3 - Math.cos(a) * r * 0.95]); }
+    return cls === 'fp-hotf' ? `<path class="fp-hotf" style="opacity:.5" d="${M2(pts)}"/>` : `<path class="${cls}" d="${M2(pts, false)}"/>`;
+  }
+  function macroLead(cam) {
+    const [sx, sy] = toHud([XE, 0, 10], cam);
+    set(E.macroLead, `<path class="fp-mark" d="M${f1(sx)} ${f1(sy)}L${MC.x} ${f1(MC.y + MC.h / 2)}"/><circle class="fp-ink" cx="${f1(sx)}" cy="${f1(sy)}" r="3"/>`);
+  }
+
+
+  const mono = (x, y, t, size = 22, anchor = 'start', cls = 'fp-ink fp-code') => `<text class="${cls}" x="${f1(x)}" y="${f1(y)}" font-size="${size}" text-anchor="${anchor}">${t}</text>`;
+  const panelD = (x, y, w, h) => `<path class="fp-card" d="M${x + 8} ${y}h${w - 16}a8 8 0 0 1 8 8v${h - 16}a8 8 0 0 1 -8 8h${-(w - 16)}a8 8 0 0 1 -8 -8v${-(h - 16)}a8 8 0 0 1 8 -8z"/>`;
+  const beatOf = (si, u) => {
+    const B = C.B[si];
+    let b = 0;
+    for (let i = 0; i < B.length - 1; i++) if (u >= B[i] - 1e-9) b = i;
+    return b;
+  };
+  const ROWH = 34;
+  function noteCard(x, y, w, tag, rows, si, u, keep = 0) {
+    const B = C.B[si];
+    if (keep > 0) { const cur = beatOf(si, u); rows = rows.filter((r) => r[0] > cur - keep && r[0] <= cur); }
+    const start = (r) => B[r[0]] + (r[3] || 0) * ((B[r[0] + 1] ?? 1) - B[r[0]]);
+    const shown = rows.filter((r) => u >= start(r));
+    if (!shown.length) return '';
+    const bi = beatOf(si, u);
+    const now = shown.filter((r) => r[0] === bi).pop();
+    const h = 44 + (rows.indexOf(shown[shown.length - 1]) + 1) * ROWH;
+    let out = panelD(x, y, w, h) + label(x + 16, y + 28, tag, 22, 'start', true, 'fp-label fp-dim');
+    rows.forEach((r, i) => {
+      const o = clamp((u - start(r)) / 0.04, 0, 1);
+      if (o <= 0) return;
+      const yy = y + 28 + (i + 1) * ROWH;
+      if (r === now) out += `<path class="fp-cur" d="M${x + 6} ${yy - 24}h${w - 12}v32h${-(w - 12)}z"/>`;
+      out += `<g style="opacity:${f1(o)}">${r[2] === 'code' ? mono(x + 16, yy, r[1], 22) : label(x + 16, yy, r[1], 22, 'start', true, 'fp-label')}</g>`;
+    });
+    return out;
+  }
+
+  const ALL = ['ghose', 'haz', 'heat', 'bead', 'pores', 'pool', 'gasflow', 'cable', 'arc', 'wire', 'rod', 'magT', 'tigT', 'flame', 'heatT', 'travel', 'section',
+    'scrim', 'dial', 'mag', 'flow', 'docs', 'chart', 'cev', 'therm', 'clock', 'macro', 'card'];
+  let shown = -1;
+  function scene(si, keys) {
+    if (si === shown) return;
+    shown = si;
+    for (const k of ALL) { show(E[k], keys.includes(k)); E[k].style.opacity = ''; E[k].__o = undefined; }
+    set(E.card, '');
+  }
+  function bench(RUNS, si, u, o = {}) {
+    const { torch = 'mag', arcOn = true, gasAmount = 1, kink = 0, wfs = 10, volts = '24', amps = '220', hazFade = 1, hazOn = true } = o;
+    const cm = camera(si, u);
+    const clockS = u * C.dur[si];
+    const { runs, tip } = weldAt(RUNS, si, u);
+    set(E.bead, beadSvg(runs));
+    set(E.haz, hazSvg(hazOn ? runs : []));
+    op(E.haz, hazFade);
+    set(E.pores, poresSvg(runs));
+    show(E.section, runs.length > 0);
+    const p = [tip, 0, PT + 1];
+    if (torch === 'tig') {
+      move(E.tigT, p);
+      const dip = Math.max(0, Math.sin(clockS * 4.2));
+      const rodTip = [tip - 7, 2, PT + 1.2 + 5 * (1 - dip)];
+      set(E.rod, `<path class="fp-wire" style="stroke-width:2.2" d="${pth([at([tip - 64, 14, PT + 46]), at(rodTip)])}"/>`);
+      set(E.pool, `<path class="fp-pool" d="${ellipseTop(tip - 1, 0, 6, 7, PT + 1.4)}"/>`);
+      set(E.arc, arcSvg([tip, 0, PT + 2.2], 9, clockS));
+    } else if (torch === 'mag') {
+      move(E.magT, p);
+      set(E.pool, arcOn ? `<path class="fp-pool" d="${ellipseTop(tip - 1.5, 0, 7.5, 9, PT + 2, 0.3)}"/>` : '');
+      set(E.arc, arcOn ? arcSvg([tip, 0, PT + 3], 15, clockS) : '');
+      const ct = ptOn(MAGF, 15, p);
+      set(E.wire, `<path class="fp-wire" d="${pth([at(ct), at([tip, 0, PT + (arcOn ? 4 : 3)])])}"/>`);
+      set(E.gasflow, arcOn ? gasSvg(p, clockS, gasAmount) : '');
+      set(E.cable, cableSvg(ptOn(MAGF, C.MAG_TOP, p), C.SOCKET.map((v, i) => (i === 1 ? v + 8 : v)), 26));
+    }
+    set(E.ghose, cableSvg([C.REG[0] - 6, C.REG[1] + 4, C.REG[2] - 2], [M.x + 70, M.y + 6, C.MZ + 1], 34, kink));
+    set(E.digits, digits(arcOn && torch ? volts : '0', arcOn && torch ? amps : '0'));
+    set(E.spool, spoolSvg(torch === 'mag' && arcOn ? clockS * wfs * 0.35 : 0));
+    return { cam: cm, tip, clockS, runs };
+  }
+  const RUNS = [{ si: -1, x0: XE, x1: -100, w: 26, h: 3, a: 0, b: 1 }];
+  const VIS = [
+    ['haz', 'bead', 'section', 'macro', 'chart', 'card'],
+    ['haz', 'bead', 'section', 'macro', 'clock', 'card'],
+    ['bead', 'section', 'therm', 'card'],
+    ['bead', 'section', 'card'],
+    ['haz', 'bead', 'section', 'scrim', 'cev', 'card'],
+  ];
+  const L = (x, y, t, size = 22, anchor = 'start', cls = 'fp-label') => label(x, y, t, size, anchor, true, cls);
+  function ticks(cx, cy, r0, r1, n, from = -2.35, to = 2.35) {
+    let d = '';
+    for (let i = 0; i < n; i++) {
+      const a = from + ((to - from) * i) / (n - 1);
+      d += `M${f1(cx + Math.sin(a) * r0)} ${f1(cy - Math.cos(a) * r0)}L${f1(cx + Math.sin(a) * r1)} ${f1(cy - Math.cos(a) * r1)}`;
+    }
+    return d;
+  }
+  const at0 = (si, u, rows, tag, x, y, w, keep = 1) => noteCard(x, y, w, tag, rows, si, u, keep);
+
+  function cooling(u, cm) {
+    const B = C.B[0];
+    const b = (k, v) => B[k] + v * (B[k + 1] - B[k]);
+    const h = span(u, B[0], b(0, 0.5));
+    const r8 = 13 * h * (1 - span(u, b(0, 0.6), b(1, 0.5)));
+    const r5 = 20 * h * (1 - span(u, b(0, 0.7), b(1, 0.9)));
+    macroLead(cm);
+    set(E.macroIso, isoSvg(r8, 'fp-hotf') + isoSvg(r8) + isoSvg(r5)
+      + (r8 > 4 ? hudText(mX(r8 * 0.72) + 4, mZ(PT + 3 - r8 * 0.68), '800', 20, 'start', 'fp-small') : '')
+      + (r5 > 4 ? hudText(mX(r5 * 0.72) + 4, mZ(PT + 3 - r5 * 0.68), '500', 20, 'start', 'fp-small') : ''));
+    set(E.macroCrack, '');
+    op(E.macro, span(u, B[0], B[0] + 0.03));
+    const tau = TMAX * span(u, B[0] + 0.01, B[1] + 0.8 * (B[2] - B[1]));
+    const { curve, br } = chartAt(Math.max(0.05, tau));
+    set(E.chartT85, bi0(u) >= 1 ? br : '');
+    set(E.chartCurve, curve);
+    op(E.macroMart, span(u, B[2], B[2] + 0.04));
+    op(E.chart, 1 - span(u, B[3], B[3] + 0.04));
+    const rows = [[3, tr('te lang: WBZ zacht', 'too long: HAZ soft')], [3, tr('taaiheid daalt', 'toughness drops')], [4, tr('meer warmte: langer', 'more heat: longer')], [4, tr('voorwarmen: langer', 'preheat: longer')], [4, tr('dikke plaat: korter', 'thick plate: shorter')]];
+    set(E.card, at0(0, u, rows, tr('t8/5', 't8/5'), 336, 250, 290));
+  }
+  const bi0 = (u) => beatOf(0, u);
+
+  function hydrogen(u, cm) {
+    const B = C.B[1];
+    const rows = [[0, tr('CEV = C + Mn/6', 'CEV = C + Mn/6'), 'code'], [0, tr('+ (Cr + Mo + V)/5', '+ (Cr + Mo + V)/5'), 'code'], [0, tr('+ (Ni + Cu)/15', '+ (Ni + Cu)/15'), 'code'],
+      [1, tr('in % van het certificaat', 'in % from the certificate')], [1, tr('EN 1011-2, methode A', 'EN 1011-2, method A')],
+      [2, tr('waterstof', 'hydrogen')], [2, tr('harde structuur', 'hard structure')], [2, tr('spanning', 'stress')],
+      [3, tr('droog toevoegmateriaal', 'dry filler')], [3, tr('voorwarmen', 'preheat')], [3, tr('minder inklemming', 'less clamping')],
+      [4, tr('wachttijd: 16 – 48 uur', 'hold time: 16 – 48 h')], [4, tr('EN 1011-2: voorwarmen', 'EN 1011-2: preheat')]];
+    const tag = beatOf(1, u) <= 1 ? tr('koolstofequivalent', 'carbon equivalent') : beatOf(1, u) === 2 ? tr('waterstofscheur', 'hydrogen crack') : beatOf(1, u) === 3 ? tr('haal er één weg', 'remove one') : tr('de scheur komt later', 'the crack comes later');
+    set(E.card, at0(1, u, rows, tag, 14, 60, 288, beatOf(1, u) <= 1 ? 2 : 1));
+    macroLead(cm);
+    set(E.macroIso, '');
+    op(E.macroMart, 1);
+    const grow = span(u, B[4] + 0.1 * (B[5] - B[4]), B[4] + 0.8 * (B[5] - B[4]));
+    const cr = [];
+    if (grow > 0) {
+      const n = 9;
+      for (let i = 0; i <= Math.round(n * grow); i++) {
+        const z = PT - 0.5 - i * 1.5;
+        cr.push([FT + 1.2 - (PT - z) * 0.55 + (i % 2 ? 0.5 : -0.4), z]);
+      }
+    }
+    set(E.macroCrack, cr.length > 1 ? `<path class="fp-crack" style="stroke-width:2.2" d="${M2(cr, false)}"/>` : '');
+    op(E.macro, span(u, B[2], B[2] + 0.03));
+    const cIn = span(u, B[4], B[4] + 0.04);
+    const hrs = 48 * span(u, B[4] + 0.1 * (B[5] - B[4]), B[4] + 0.8 * (B[5] - B[4]));
+    const ccx = 190;
+    const ccy = 300;
+    const hand = (hrs / 12) * TAU;
+    set(E.clock, `<g style="opacity:${cIn.toFixed(2)}"><circle class="fp-hud-bg" cx="${ccx}" cy="${ccy}" r="58"/><circle class="fp-mark" cx="${ccx}" cy="${ccy}" r="44"/><path class="fp-mark" d="${ticks(ccx, ccy, 37, 42, 12, 0, TAU * 11 / 12)}"/><path class="fp-mark" style="stroke-width:2.4" d="M${ccx} ${ccy}L${f1(ccx + Math.sin(hand) * 32)} ${f1(ccy - Math.cos(hand) * 32)}"/><circle class="fp-ink" cx="${ccx}" cy="${ccy}" r="3"/>${L(ccx, ccy + 90, num(hrs, 0) + ' h', 22, 'middle')}</g>`);
+  }
+
+  function stainless(u) {
+    const bi = beatOf(2, u);
+    const rows = [[0, tr('304 en 316', '304 and 316')], [0, tr('wordt niet hard', 'does not harden')], [0, tr('geen waterstofscheur', 'no hydrogen crack')],
+      [1, tr('zet 40% meer uit', 'expands 40% more')], [1, tr('geleidt warmte slecht', 'conducts heat poorly')], [1, tr('dus: flink krom', 'so: distorts a lot')],
+      [2, tr('tussenlaag: max ± 150 °C', 'interpass: max ± 150 °C')], [2, tr('voor de volgende laag', 'before the next pass')],
+      [3, tr('blauw en bruin: eraf', 'blue and brown: off')], [3, tr('beitsen of borstelen', 'pickling or brushing')], [3, tr('pijp: binnen argon', 'pipe: argon inside')]];
+    set(E.card, at0(2, u, rows, tr('austenitisch rvs', 'austenitic stainless'), 336, 60, 290));
+    const B = C.B[2];
+    const tIn = span(u, B[2], B[2] + 0.04) * (1 - span(u, B[3] - 0.02, B[3]));
+    const reading = span(u, B[2] + 0.02, B[2] + 0.7 * (B[3] - B[2]));
+    const tcx = 84;
+    const tcy = 292;
+    const band = (() => { const a0 = -2.35 + 0.45 * 4.7; const a1 = -2.35 + 0.7 * 4.7; const pts = []; for (let i = 0; i <= 12; i++) { const a = a0 + ((a1 - a0) * i) / 12; pts.push([tcx + Math.sin(a) * 40, tcy - Math.cos(a) * 40]); } return pth(pts); })();
+    const ang = -2.35 + (0.12 + 0.46 * reading) * 4.7;
+    set(E.therm, `<g style="opacity:${tIn.toFixed(2)}"><circle class="fp-hud-bg" cx="${tcx}" cy="${tcy}" r="56"/><circle class="fp-mark" cx="${tcx}" cy="${tcy}" r="50"/><path class="fp-mark" d="${ticks(tcx, tcy, 44, 49, 11)}"/><path class="fp-mark fp-needle" style="stroke-width:7;opacity:.6" d="${band}"/><path class="fp-mark" style="stroke-width:2.4" d="M${tcx} ${tcy}L${f1(tcx + Math.sin(ang) * 38)} ${f1(tcy - Math.cos(ang) * 38)}"/><circle class="fp-ink" cx="${tcx}" cy="${tcy}" r="3.5"/>${L(tcx, tcy + 84, '°C', 22, 'middle', 'fp-small')}</g>`);
+  }
+
+  function aluminium(u) {
+    const bi = beatOf(3, u);
+    const tx = (T) => 40 + (T / 2200) * 560;
+    const sx = (p) => 40 + p * 4; // a strength bar: 100 % is 400 units
+    let out = '';
+    if (bi === 0) {
+      out = panelD(14, 60, 612, 230) + L(30, 94, tr('smeltpunt (°C)', 'melting point (°C)'), 22, 'start', 'fp-label fp-dim')
+        + `<rect class="fp-meter" x="40" y="150" width="560" height="16" rx="8"/>`
+        + `<circle class="fp-drop" cx="${f1(tx(660))}" cy="158" r="7"/><circle class="fp-drop" cx="${f1(tx(2050))}" cy="158" r="7"/>`
+        + L(tx(660), 130, tr('metaal 660', 'metal 660'), 22, 'middle') + L(tx(2050) + 26, 130, tr('oxide 2.050', 'oxide 2,050'), 22, 'end')
+        + L(30, 220, tr('borstelen en ontvetten vlak voor het lassen', 'brush and degrease just before welding', 570), 22)
+        + L(30, 258, tr('vocht geeft poriën', 'moisture gives pores'), 22);
+    } else if (bi === 1) {
+      out = panelD(14, 60, 612, 230) + L(30, 94, tr('vloeigrens', 'yield strength'), 22, 'start', 'fp-label fp-dim')
+        + `<rect class="fp-fill" x="40" y="120" width="${sx(100) - 40}" height="26" rx="6"/>` + L(sx(100) + 14, 142, tr('basismateriaal', 'base metal'), 22)
+        + `<rect class="fp-fill" x="40" y="170" width="${sx(50) - 40}" height="26" rx="6"/>` + L(sx(50) + 14, 192, tr('WBZ van 6082-T6', 'HAZ of 6082-T6'), 22)
+        + L(30, 250, tr('ongeveer de helft: Eurocode 9', 'about half: Eurocode 9', 570), 22);
+    } else {
+      out = panelD(14, 60, 612, 150) + L(30, 94, tr('een extra las voor de zekerheid:', 'an extra weld to be safe:', 570), 22) + L(30, 130, tr('maakt het frame zwakker', 'makes the frame weaker', 570), 22)
+        + L(30, 180, tr('welke norm bepaalt het voorwarmen?', 'which standard sets the preheat?', 570), 22);
+    }
+    set(E.card, out);
+  }
+
+  function flange(u) {
+    const B = C.B[4];
+    const bi = beatOf(4, u);
+    const rows = [[0, tr('S355 · 40 mm', 'S355 · 40 mm'), 'code'], [0, tr('C 0,17%  Mn 1,50%', 'C 0.17%  Mn 1.50%'), 'code'], [0, tr('Cr+Mo+V 0,10%', 'Cr+Mo+V 0.10%'), 'code'], [0, tr('Ni+Cu 0,30%', 'Ni+Cu 0.30%'), 'code']];
+    let card = '';
+    if (bi === 0) card = at0(4, u, rows, tr('certificaat', 'certificate'), 14, 60, 288);
+    else if (bi === 1) card = noteCard(14, 60, 612, tr('invullen', 'fill in'), [[1, tr('CEV = 0,17 + 1,50/6 + 0,10/5 + 0,30/15', 'CEV = 0.17 + 1.50/6 + 0.10/5 + 0.30/15', 570), 'code']], 4, u);
+    else if (bi === 2) card = noteCard(14, 60, 612, tr('vraag', 'question'), [[2, tr('Wat is de CEV, en wat betekent dat voor deze plaat?', 'What is the CEV, and what does it mean here?', 570)]], 4, u);
+    else if (bi === 3) card = noteCard(14, 60, 612, tr('antwoord', 'answer'), [[3, tr('CEV = 0,17 + 0,25 + 0,02 + 0,02 = 0,46', 'CEV = 0.17 + 0.25 + 0.02 + 0.02 = 0.46', 570), 'code'], [3, tr('hoog voor S355: voorwarmen', 'high for S355: preheat', 570)]], 4, u);
+    else card = noteCard(14, 60, 612, tr('voorwarmen kost branders, gas en tijd', 'preheating costs burners, gas and time', 570), [[4, tr('ruilen kan: waterstofarmere draad', 'a trade: lower-hydrogen wire', 570)], [4, tr('of hogere warmte-inbreng in de LMB', 'or higher heat input in the WPS', 570)], [5, tr('vraag de lasingenieur de berekening', 'ask the welding engineer for the sum', 570)]], 4, u, 2);
+    set(E.card, card);
+    set(E.cev, bi >= 3 ? `<g style="opacity:${span(u, B[3], B[3] + 0.05).toFixed(2)}"><rect class="fp-card" x="420" y="290" width="196" height="94" rx="10"/>${L(518, 326, 'S355 · ' + num(40) + ' mm', 22, 'middle', 'fp-small')}${L(518, 368, 'CEV ' + num(C.CEV, 2), 30, 'middle')}</g>` : '');
+  }
+
+  function render(si, u) {
+    scene(si, VIS[si]);
+    const { cam: cm } = bench(RUNS, si, u, { torch: 'none', arcOn: false, hazOn: si !== 2 && si !== 3 });
+    if (si === 0) cooling(u, cm);
+    else if (si === 1) hydrogen(u, cm);
+    else if (si === 2) stainless(u);
+    else if (si === 3) aluminium(u);
+    else flange(u);
+    if (si !== 0 && si !== 1) { set(E.macroIso, ''); }
+  }
+  return { render };
+})();
+
+;
+// v14b: keeps a film's stage in step with its narration in the video.
+// A stage is drawn as STAGE.render(scene, u), its moves placed at fractions of
+// the scene that match the caption beats of the HTML film (beatStarts, by the
+// caption's words). In the video (?render=1) the beats are timed by the
+// recorded narration instead, which is longer and spread differently. This
+// maps the narration time back: while beat k is being spoken (from its start to
+// the next beat's), the stage runs from caption beat k's fraction to beat k+1's.
+// The HTML film (no timing handed over) gets no warp here; it sets
+// STAGE.nlBeats, so the player (stageU in films/_kit/timeline.mjs) runs the
+// stage on the Dutch beats while the English captions follow English timing.
+//
+// Plain browser script: a film's build appends it after its stage script.
+/* global STAGE, beatStarts */
+(() => {
+  const D = JSON.parse(document.getElementById('film-data').textContent);
+  let atl = null;
+  let film;
+  // the render script hands the audio timeline to window.__film.setTiming
+  Object.defineProperty(window, '__film', {
+    configurable: true,
+    get: () => film,
+    set(v) {
+      film = v;
+      if (v && typeof v.setTiming === 'function') {
+        const set = v.setTiming;
+        v.setTiming = (a) => { atl = a; return set.call(v, a); };
+      }
+    },
+  });
+  STAGE.nlBeats = true; // this stage places its moves at the Dutch caption beats
+  const inner = STAGE.render.bind(STAGE);
+  STAGE.render = (si, u) => {
+    const s = atl && atl.scenes[si];
+    const sc = D.scenes[si];
+    if (!s || !sc || !s.beats.length) return inner(si, u);
+    const fr = beatStarts(sc, 'nl').map((x) => x / sc.dur);
+    const t = s.start + u * s.dur;
+    let k = 0;
+    for (let i = 0; i < s.beats.length; i++) if (t >= s.beats[i].start) k = i;
+    const a0 = k === 0 ? s.start : s.beats[k].start;
+    const a1 = k + 1 < s.beats.length ? s.beats[k + 1].start : s.start + s.dur;
+    const f0 = fr[k] ?? 0;
+    const f1 = k + 1 < fr.length ? fr[k + 1] : 1;
+    const p = Math.min(1, Math.max(0, (t - a0) / Math.max(1e-6, a1 - a0)));
+    return inner(si, f0 + p * (f1 - f0));
+  };
+})();
+
+;
+/* global STAGE, parseParams, searchOf, timelineOf, sceneIndexAt, clampScene, beatStarts, beatIndexAt, holdLimit, fmtClock, timedAt, stageU */
+(function () {
+  const DATA = JSON.parse(document.getElementById('film-data').textContent);
+  const PRM = parseParams(searchOf(location.search, window.name));
+  const LANG = PRM.lang;
+  const STR = {
+    nl: { play: 'Afspelen', pause: 'Pauzeren', replay: 'Opnieuw afspelen', mute: 'Gesproken uitleg uit', unmute: 'Gesproken uitleg aan', scenes: 'Scènes', close: 'Sluiten', prev: 'Vorige', next: 'Volgende', speed: 'Snelheid', scrub: 'Tijdlijn van de film', scene: (n, m) => `Scène ${n} van ${m}`, start: 'Bekijk de film', again: 'Nog een keer', voice: 'Geen stem op dit apparaat: lees de ondertitels mee.', label: 'Uitlegfilm' },
+    en: { play: 'Play', pause: 'Pause', replay: 'Play again', mute: 'Narration off', unmute: 'Narration on', scenes: 'Scenes', close: 'Close', prev: 'Previous', next: 'Next', speed: 'Speed', scrub: 'Film timeline', scene: (n, m) => `Scene ${n} of ${m}`, start: 'Watch the film', again: 'Watch again', voice: 'No voice on this device: follow the captions.', label: 'Explainer film' },
+  }[LANG];
+  const doc = document.documentElement;
+  const $ = (sel) => document.querySelector(sel);
+  const scenes = DATA.scenes;
+  const tl = timelineOf(scenes);
+  const reduceMq = matchMedia('(prefers-reduced-motion: reduce)');
+  let reduce = !PRM.render && (PRM.reduce || reduceMq.matches);
+
+  let t = tl.starts[clampScene(PRM.scene, scenes.length)];
+  let playing = false;
+  let started = false;
+  let ended = false;
+  let scrubbing = false;
+  let visible = true;
+  let rate = 1;
+  let muted = PRM.muted;
+  if (window.parent === window) { try { muted = localStorage.getItem('vp:filmMuted') === '1' || PRM.muted; } catch (e) { /* storage blocked */ } }
+  let spokenKey = null; // "scene:beat" last handed to the voice
+  let speaking = null; // { id, scene, beat, until? }
+  let nextId = 1;
+  let raf = 0;
+  let last = 0;
+
+  const main = $('.fp');
+  const stage = $('.fp-stage');
+  const cap = $('.fp-cap');
+  const read = $('.fp-read');
+  const playBtn = $('[data-act="play"]');
+  const muteBtn = $('[data-act="mute"]');
+  const scenesBtn = $('[data-act="scenes"]');
+  const prevBtn = $('[data-act="prev"]');
+  const nextBtn = $('[data-act="next"]');
+  const range = $('.fp-range');
+  const clock = $('.fp-time');
+  const poster = $('.fp-poster');
+  const sheet = $('.fp-sheet');
+  const note = $('.fp-note');
+  let focusOn = new Set();
+  const lightFocus = () => stage.querySelectorAll('[data-cue]').forEach((el) => el.toggleAttribute('data-on', focusOn.has(el.getAttribute('data-cue'))));
+
+  document.title = DATA.title[LANG];
+  doc.lang = LANG;
+  main.setAttribute('aria-label', `${STR.label}: ${DATA.title[LANG]}`);
+  $('.fp-poster-title').textContent = DATA.title[LANG];
+  $('.fp-poster-go span').textContent = STR.start;
+  $('.fp-sheet-title').textContent = STR.scenes;
+  $('[data-act="close"]').setAttribute('aria-label', STR.close);
+  prevBtn.setAttribute('aria-label', STR.prev);
+  nextBtn.setAttribute('aria-label', STR.next);
+  scenesBtn.setAttribute('aria-label', STR.scenes);
+  range.setAttribute('aria-label', STR.scrub);
+  range.max = String(tl.total);
+  const svgEl = stage.querySelector('svg');
+  if (svgEl && DATA.label) svgEl.setAttribute('aria-label', DATA.label[LANG]);
+
+  const ticks = $('.fp-ticks');
+  tl.starts.slice(1).forEach((s) => { const i = document.createElement('i'); i.style.left = `${(s / tl.total) * 100}%`; ticks.append(i); });
+  const list = $('.fp-list');
+  scenes.forEach((s, i) => {
+    const b = document.createElement('button');
+    b.type = 'button';
+    b.className = 'fp-item';
+    b.innerHTML = `<span class="fp-item-n">${i + 1}</span><span class="fp-item-t"></span><span class="fp-item-d">${fmtClock(tl.starts[i])}</span>`;
+    b.querySelector('.fp-item-t').textContent = s.title[LANG];
+    b.addEventListener('click', () => { closeSheet(); jump(tl.starts[i]); if (!playing) play(); });
+    list.append(b);
+  });
+  const speedBtn = $('[data-act="speed"]');
+  speedBtn.querySelector('.fp-speed-l').textContent = STR.speed;
+
+  const inFrame = window.parent !== window;
+  let bridge = false;
+  const post = (msg) => { try { window.parent.postMessage(Object.assign({ type: 'vp-film' }, msg), '*'); } catch (e) { /* no parent */ } };
+  window.addEventListener('message', (e) => {
+    if (!inFrame || e.source !== window.parent) return;
+    const d = e.data;
+    if (!d || typeof d !== 'object' || d.type !== 'vp-film') return;
+    if (d.op === 'ready') { bridge = true; doc.dataset.narration = 'bridge'; }
+    else if (d.op === 'said') lineDone(d.id, d.result);
+  });
+  if (inFrame) post({ op: 'hello' });
+  if (inFrame) document.body.style.background = 'transparent'; // the app's card shows round the player
+  doc.dataset.narration = 'local';
+  doc.dataset.said = '0';
+
+  const localSynth = (() => { try { return window.speechSynthesis && typeof SpeechSynthesisUtterance === 'function' ? window.speechSynthesis : null; } catch (e) { return null; } })();
+  function localSay(id, text) {
+    if (!localSynth) { setTimeout(() => lineDone(id, 'failed'), 0); return; }
+    try {
+      localSynth.cancel();
+      const u = new SpeechSynthesisUtterance(text);
+      u.lang = LANG === 'en' ? 'en-GB' : 'nl-NL';
+      u.rate = rate;
+      const code = LANG === 'en' ? 'en' : 'nl';
+      const voices = localSynth.getVoices();
+      const v = voices.find((x) => x.lang.toLowerCase().startsWith(code) && x.localService) || voices.find((x) => x.lang.toLowerCase().startsWith(code));
+      if (v) u.voice = v;
+      const t0 = Date.now();
+      u.onend = () => lineDone(id, Date.now() - t0 < 300 ? 'failed' : 'spoken');
+      u.onerror = () => lineDone(id, 'failed');
+      localSynth.speak(u);
+    } catch (e) { setTimeout(() => lineDone(id, 'failed'), 0); }
+  }
+  function sayBeat(si, bi) {
+    const b = scenes[si].beats[bi];
+    const text = (b.voice || b.speak)[LANG]; // the narration script when the film has one
+    const id = nextId++;
+    speaking = { id, scene: si, beat: bi };
+    const limit = Math.max(6000, 2000 + text.length * 90) / rate;
+    setTimeout(() => lineDone(id, 'timeout'), limit);
+    if (bridge) post({ op: 'say', id, text, lang: LANG, rate });
+    else localSay(id, text);
+  }
+  let failures = 0;
+  function lineDone(id, result) {
+    if (!speaking || speaking.id !== id || speaking.until) return;
+    speaking.until = performance.now() + 400; // a breath before the next line
+    doc.dataset.said = String(Number(doc.dataset.said) + 1);
+    if (result === 'failed') { failures += 1; if (failures >= 2) note.textContent = STR.voice; }
+  }
+  function cancelSpeech() {
+    if (speaking) { if (bridge) post({ op: 'cancel' }); else if (localSynth) { try { localSynth.cancel(); } catch (e) { /* ignore */ } } }
+    speaking = null;
+  }
+
+  const local = () => {
+    const si = sceneIndexAt(t, tl);
+    return { si, lt: t - tl.starts[si] };
+  };
+  let shownKey = '';
+  function caption(si, bi) {
+    const key = `${si}:${bi}`;
+    if (key === shownKey) return;
+    shownKey = key;
+    const b = scenes[si].beats[bi];
+    const line = b.seg[LANG].map((p) => {
+      if (typeof p === 'string') return document.createTextNode(p);
+      const s = document.createElement('span');
+      s.className = 'fp-term';
+      s.textContent = p.t;
+      if (!p.en) return s;
+      const f = document.createDocumentFragment();
+      const en = document.createElement('span');
+      en.className = 'fp-en';
+      en.lang = 'en';
+      en.textContent = ` (${p.en})`;
+      f.append(s, en);
+      return f;
+    });
+    if (PRM.render) { const one = document.createElement('span'); one.append(...line); cap.replaceChildren(one); } else cap.replaceChildren(...line);
+    let r = null;
+    for (let k = bi; k >= 0 && !r; k--) r = scenes[si].beats[k].read || null;
+    read.textContent = r ? r[LANG] : '';
+    read.hidden = !r;
+    focusOn = new Set(b.cues);
+    main.dataset.focus = main.dataset.focus === 'a' ? 'b' : 'a'; // the halo eases in again
+  }
+  function draw() {
+    const { si, lt } = local();
+    const s = scenes[si];
+    const bi = beatIndexAt(s, LANG, lt);
+    const u = reduce ? (s.beats[bi].still ?? s.still) : stageU(s, LANG, lt, STAGE.nlBeats === true);
+    caption(si, bi);
+    STAGE.render(si, u); lightFocus();
+    if (!scrubbing) range.value = String(Math.round(t * 10) / 10);
+    range.setAttribute('aria-valuetext', `${STR.scene(si + 1, scenes.length)}: ${s.title[LANG]}, ${fmtClock(t)}`);
+    clock.textContent = `${fmtClock(t)} / ${fmtClock(tl.total)}`;
+    doc.dataset.scene = String(si + 1);
+  }
+
+  function advance(dt) {
+    let target = t + dt * rate;
+    const now = performance.now();
+    if (!muted && speaking) {
+      if (speaking.until && now >= speaking.until) speaking = null;
+      else target = Math.min(target, holdLimit(tl, scenes, LANG, speaking.scene, speaking.beat) - 0.001);
+    }
+    t = Math.max(t, target);
+    if (t >= tl.total - 0.0005) { t = tl.total; finish(); return; }
+    const { si, lt } = local();
+    const bi = beatIndexAt(scenes[si], LANG, lt);
+    const key = `${si}:${bi}`;
+    if (key !== spokenKey) {
+      spokenKey = key;
+      if (!muted) sayBeat(si, bi);
+    }
+  }
+  function frame(now) {
+    raf = 0;
+    const dt = last ? Math.min(0.1, (now - last) / 1000) : 0;
+    last = now;
+    if (playing && visible && !scrubbing) advance(dt);
+    draw();
+    if (playing) raf = requestAnimationFrame(frame);
+  }
+  const kick = () => { if (!raf) { last = 0; raf = requestAnimationFrame(frame); } };
+
+  function setPlayBtn() {
+    const label = ended ? STR.replay : playing ? STR.pause : STR.play;
+    playBtn.setAttribute('aria-label', label);
+    playBtn.dataset.state = ended ? 'replay' : playing ? 'pause' : 'play';
+    main.dataset.playing = playing ? '1' : '0';
+  }
+  function play() {
+    if (ended) { ended = false; t = 0; spokenKey = null; main.dataset.ended = '0'; }
+    if (!started) { started = true; poster.hidden = true; main.dataset.started = '1'; }
+    playing = true;
+    setPlayBtn();
+    kick();
+  }
+  function pause() {
+    playing = false;
+    cancelSpeech();
+    spokenKey = null; // the beat speaks again from its start when play resumes
+    setPlayBtn();
+    draw();
+  }
+  function finish() {
+    playing = false;
+    ended = true;
+    speaking = null;
+    main.dataset.ended = '1';
+    setPlayBtn();
+  }
+  function jump(to) {
+    cancelSpeech();
+    t = Math.max(0, Math.min(tl.total - 0.01, to));
+    if (ended) { ended = false; main.dataset.ended = '0'; }
+    if (!started) { started = true; poster.hidden = true; main.dataset.started = '1'; }
+    spokenKey = null;
+    setPlayBtn();
+    draw();
+  }
+  const sceneStep = (dir) => {
+    const { si, lt } = local();
+    const to = dir < 0 ? (lt > 1.5 ? si : si - 1) : si + 1;
+    if (to >= scenes.length) { jump(tl.total - 0.01); return; }
+    jump(tl.starts[Math.max(0, to)]);
+  };
+  const toggle = () => (playing ? pause() : play());
+  playBtn.addEventListener('click', toggle);
+  $('.fp-poster-go').addEventListener('click', play);
+  $('.fp-again').addEventListener('click', play);
+  prevBtn.addEventListener('click', () => sceneStep(-1));
+  nextBtn.addEventListener('click', () => sceneStep(1));
+  function setMute(m) {
+    muted = m;
+    muteBtn.setAttribute('aria-pressed', muted ? 'true' : 'false');
+    muteBtn.setAttribute('aria-label', muted ? STR.unmute : STR.mute);
+    main.dataset.muted = muted ? '1' : '0';
+    if (muted) cancelSpeech(); else spokenKey = null;
+    if (inFrame) post({ op: 'mute', muted });
+    else { try { localStorage.setItem('vp:filmMuted', muted ? '1' : '0'); } catch (e) { /* storage blocked */ } }
+  }
+  muteBtn.addEventListener('click', () => setMute(!muted));
+  speedBtn.addEventListener('click', () => {
+    rate = rate === 1 ? 1.25 : 1;
+    speedBtn.querySelector('.fp-speed-v').textContent = rate === 1 ? '1×' : '1,25×'.replace(',', LANG === 'en' ? '.' : ',');
+    speedBtn.setAttribute('aria-pressed', rate !== 1 ? 'true' : 'false');
+  });
+  function openSheet() { sheet.hidden = false; scenesBtn.setAttribute('aria-expanded', 'true'); const { si } = local(); (list.children[si] || list.children[0]).focus(); }
+  function closeSheet() { sheet.hidden = true; scenesBtn.setAttribute('aria-expanded', 'false'); }
+  scenesBtn.addEventListener('click', () => (sheet.hidden ? openSheet() : closeSheet()));
+  $('[data-act="close"]').addEventListener('click', () => { closeSheet(); scenesBtn.focus(); });
+
+  range.addEventListener('pointerdown', () => { scrubbing = true; cancelSpeech(); });
+  const endScrub = () => { if (scrubbing) { scrubbing = false; spokenKey = null; kick(); } };
+  range.addEventListener('pointerup', endScrub);
+  range.addEventListener('pointercancel', endScrub);
+  range.addEventListener('change', endScrub);
+  range.addEventListener('input', () => { jump(Number(range.value)); if (playing) kick(); });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.target && e.target.tagName === 'INPUT' && (e.key === 'ArrowLeft' || e.key === 'ArrowRight')) return; // the scrubber's own keys
+    if (e.key === ' ' || e.key === 'k') { if (e.target && e.target.tagName === 'BUTTON' && e.key === ' ') return; toggle(); e.preventDefault(); }
+    else if (e.key === 'ArrowLeft') { sceneStep(-1); e.preventDefault(); }
+    else if (e.key === 'ArrowRight') { sceneStep(1); e.preventDefault(); }
+    else if (e.key === 'm' || e.key === 'M') setMute(!muted);
+    else if (e.key === 'End') { jump(tl.starts[scenes.length - 1]); e.preventDefault(); }
+    else if (e.key === 'Home') { jump(0); e.preventDefault(); }
+    else if (e.key === 'Escape' && !sheet.hidden) closeSheet();
+  });
+
+  const away = () => { if (playing) pause(); };
+  document.addEventListener('visibilitychange', () => { if (document.hidden) away(); });
+  if ('IntersectionObserver' in window) {
+    new IntersectionObserver((entries) => {
+      visible = entries[entries.length - 1].isIntersecting;
+      if (!visible) away();
+    }, { threshold: 0.15 }).observe(stage);
+  }
+  const setMotion = () => { main.dataset.motion = reduce ? 'reduce' : 'full'; draw(); };
+  reduceMq.addEventListener && reduceMq.addEventListener('change', () => { reduce = PRM.reduce || reduceMq.matches; setMotion(); });
+
+  if (inFrame && 'ResizeObserver' in window) {
+    let lastH = 0;
+    new ResizeObserver(() => {
+      const hgt = Math.ceil(main.getBoundingClientRect().height + 2);
+      if (Math.abs(hgt - lastH) > 1) { lastH = hgt; post({ op: 'size', h: hgt }); }
+    }).observe(main);
+  }
+
+  if (PRM.render) {
+    main.dataset.render = '1';
+    doc.dataset.render = '1';
+    poster.hidden = true;
+    started = true;
+    main.dataset.started = '1';
+    let atl = null;
+    window.__film = {
+      total: tl.total,
+      setTiming(next) { atl = next; return atl.total; },
+      seek(time) {
+        if (atl) {
+          const at = timedAt(time, atl);
+          caption(at.si, at.bi);
+          STAGE.render(at.si, at.u); lightFocus();
+        } else { t = Math.max(0, Math.min(tl.total, time)); draw(); }
+        return true;
+      },
+    };
+    window.__film.seek(0);
+    return;
+  }
+  setMute(muted);
+  setPlayBtn();
+  setMotion();
+})();
+</script></body></html>
