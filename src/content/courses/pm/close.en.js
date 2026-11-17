@@ -3,6 +3,7 @@ export default {
   lessons: [
     {
       id: 'pm.close.results',
+      gist: 'You claim a result with a baseline measured the same way as afterwards, and freed hours are only money when something changes in the books.',
       film: 'pm.close.results',
       title: 'Proving results',
       pre: [
@@ -87,6 +88,7 @@ export default {
     },
     {
       id: 'pm.close.runchart',
+      gist: 'On a run chart with the median as its line you look for patterns that are rarely chance: a shift, a trend or an outlier.',
       title: 'Reading a run chart',
       pre: [
         {
@@ -169,6 +171,7 @@ export default {
     },
     {
       id: 'pm.close.attribution',
+      gist: 'Separate your own effect with a comparison line (difference-in-differences) and normalise per unit, because more than your measure always changes during a project.',
       title: 'Separating your own effect',
       pre: [
         {
@@ -255,6 +258,7 @@ export default {
     },
     {
       id: 'pm.close.claim',
+      gist: 'A claim that holds up is annualised on the median, separates one-off from recurring, counts net and gives a range with its assumptions.',
       title: 'A claim that holds',
       pre: [
         {
@@ -341,6 +345,7 @@ export default {
     },
     {
       id: 'pm.close.acceptance',
+      gist: 'Agree measurable acceptance criteria up front in the project charter and let the sponsor tick them off; the rest goes on an open-items list.',
       film: 'pm.land.handover',
       title: 'Formal acceptance',
       pre: [
@@ -423,6 +428,7 @@ export default {
     },
     {
       id: 'pm.close.closeout',
+      gist: 'After sign-off you close the hours code and purchase orders, send the final invoice and keep the archive with the client, without personal data.',
       title: 'Administrative close-out',
       pre: [
         {
@@ -505,6 +511,7 @@ export default {
     },
     {
       id: 'pm.close.stop',
+      gist: 'When you stop early, take stock, leave sunk costs out and hand over what is usable, each piece with an owner.',
       title: 'Stopping early',
       pre: [
         {
@@ -589,6 +596,7 @@ export default {
     },
     {
       id: 'pm.close.registers',
+      gist: 'At closure take every open risk: it lapses, becomes an open item, or goes to the line as a residual risk with an owner.',
       title: 'Handing over registers and residual risks',
       pre: [
         {
@@ -673,6 +681,7 @@ export default {
     },
     {
       id: 'pm.close.retro',
+      gist: 'A retrospective works when people feel safe and every lesson becomes an action with an owner; ask what made it hard, not who.',
       title: 'A retrospective people learn from',
       pre: [
         {
@@ -753,6 +762,7 @@ export default {
     },
     {
       id: 'pm.close.yourself',
+      gist: 'After each project reflect for an hour on your own part, ask for concrete feedback and build a one-page case per project.',
       title: 'Your own reflection',
       pre: [
         {
@@ -833,6 +843,7 @@ export default {
     },
     {
       id: 'pm.close.formats',
+      gist: 'A retrospective has five fixed phases, from setting the stage to closing; the format may change, the skeleton should not.',
       title: 'Designing a retrospective',
       pre: [
         {
@@ -917,6 +928,7 @@ export default {
     },
     {
       id: 'pm.close.lessonbank',
+      gist: 'Recording lessons is easy, applying them is not: pick a few with an owner and a place in the standard approach.',
       title: 'Lessons that travel',
       pre: [
         {
@@ -1000,6 +1012,7 @@ export default {
     },
     {
       id: 'pm.close.report',
+      gist: 'A closing report is one page with the conclusion first, the result in numbers, the open items and advice for the next step.',
       title: 'Closing report and presentation',
       pre: [
         {
@@ -1080,6 +1093,7 @@ export default {
     },
     {
       id: 'pm.close.followup',
+      gist: 'The next project grows out of this one: stay in touch with planned follow-ups, and help with a problem the client names himself.',
       title: 'Follow-up and the next project',
       pre: [
         {
@@ -1161,6 +1175,7 @@ export default {
     },
     {
       id: 'pm.close.evaluation',
+      gist: 'Hold an evaluation with the sponsor, ask for the reasons behind the scores and close the loop by saying what you do with the feedback.',
       title: 'The client evaluation',
       pre: [
         {
@@ -1245,6 +1260,7 @@ export default {
     },
     {
       id: 'pm.close.exit',
+      gist: 'Leave without dependency: build the client\'s own capability, taper off your presence, and be open about any conflict of interest in a follow-up.',
       title: 'Leaving without dependency',
       pre: [
         {

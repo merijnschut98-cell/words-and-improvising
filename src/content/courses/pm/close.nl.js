@@ -3,6 +3,7 @@ export default {
   lessons: [
     {
       id: 'pm.close.results',
+      gist: 'Een resultaat claim je met een nulmeting die hetzelfde gemeten is als erna, en uren zijn alleen geld als er iets verandert in de boeken.',
       film: 'pm.close.results',
       title: 'Resultaat aantonen',
       pre: [
@@ -87,6 +88,7 @@ export default {
     },
     {
       id: 'pm.close.runchart',
+      gist: 'Op een run chart met de mediaan als lijn zoek je patronen die zelden toeval zijn: een verschuiving, een trend of een uitschieter.',
       title: 'De run chart lezen',
       pre: [
         {
@@ -169,6 +171,7 @@ export default {
     },
     {
       id: 'pm.close.attribution',
+      gist: 'Scheid je eigen effect met een vergelijkingslijn (verschil-in-verschillen) en normaliseer per eenheid, want na een project verandert altijd meer dan jouw maatregel.',
       title: 'Je eigen effect scheiden',
       pre: [
         {
@@ -255,6 +258,7 @@ export default {
     },
     {
       id: 'pm.close.claim',
+      gist: 'Een claim die standhoudt is geannualiseerd op de mediaan, onderscheidt eenmalig van terugkerend, rekent netto en geeft een bandbreedte met aannames.',
       title: 'Een claim die standhoudt',
       pre: [
         {
@@ -341,6 +345,7 @@ export default {
     },
     {
       id: 'pm.close.acceptance',
+      gist: 'Spreek meetbare acceptatiecriteria vooraf af in de projectopdracht en laat de sponsor ze afvinken; wat niet af is gaat op een openpuntenlijst met eigenaar.',
       film: 'pm.land.handover',
       title: 'Formele acceptatie',
       pre: [
@@ -423,6 +428,7 @@ export default {
     },
     {
       id: 'pm.close.closeout',
+      gist: 'Na de ondertekening sluit je urencode en inkooporders, stuur je de eindfactuur en bewaar je het archief bij de klant, zonder persoonsgegevens.',
       title: 'Administratief afsluiten',
       pre: [
         {
@@ -505,6 +511,7 @@ export default {
     },
     {
       id: 'pm.close.stop',
+      gist: 'Stop je voortijdig, maak dan de balans op, laat verzonken kosten buiten beschouwing en draag over wat bruikbaar is, elk stuk met een eigenaar.',
       title: 'Voortijdig stoppen',
       pre: [
         {
@@ -589,6 +596,7 @@ export default {
     },
     {
       id: 'pm.close.registers',
+      gist: 'Loop bij de afsluiting elk open risico langs: het vervalt, wordt een openstaand punt of gaat als restrisico met een eigenaar naar de lijn.',
       title: 'Registers en restrisico’s overdragen',
       pre: [
         {
@@ -673,6 +681,7 @@ export default {
     },
     {
       id: 'pm.close.retro',
+      gist: 'Een terugblik werkt als mensen zich veilig voelen en elke les een actie met eigenaar wordt; vraag wat het moeilijk maakte, niet wie.',
       title: 'Een terugblik waar mensen van leren',
       pre: [
         {
@@ -753,6 +762,7 @@ export default {
     },
     {
       id: 'pm.close.yourself',
+      gist: 'Reflecteer na elk project een uur op je eigen aandeel, vraag concrete feedback en bouw per project een casus van één A4 op.',
       title: 'Je eigen reflectie',
       pre: [
         {
@@ -833,6 +843,7 @@ export default {
     },
     {
       id: 'pm.close.formats',
+      gist: 'Een terugblik heeft vijf vaste fases, van toon zetten tot afsluiten; het format mag wisselen, het skelet niet.',
       title: 'Een terugblik ontwerpen',
       pre: [
         {
@@ -917,6 +928,7 @@ export default {
     },
     {
       id: 'pm.close.lessonbank',
+      gist: 'Lessen vastleggen lukt, toepassen niet: kies er een paar met een eigenaar en een plek in de standaardaanpak, en vertel ze als verhaal.',
       title: 'Lessen die reizen',
       pre: [
         {
@@ -1000,6 +1012,7 @@ export default {
     },
     {
       id: 'pm.close.report',
+      gist: 'Een eindrapport is één A4 met de conclusie eerst, het resultaat in cijfers, de open punten en een advies voor de volgende stap.',
       title: 'Eindrapport en eindpresentatie',
       pre: [
         {
@@ -1080,6 +1093,7 @@ export default {
     },
     {
       id: 'pm.close.followup',
+      gist: 'Het volgende project groeit uit dit project: blijf in contact met geplande follow-ups, en help bij een probleem dat de klant zelf noemt.',
       title: 'Opvolging en het volgende project',
       pre: [
         {
@@ -1161,6 +1175,7 @@ export default {
     },
     {
       id: 'pm.close.evaluation',
+      gist: 'Houd een evaluatiegesprek met de sponsor, vraag naar de redenen achter de scores en sluit de lus: vertel wat je met de feedback doet.',
       title: 'Het evaluatiegesprek met de klant',
       pre: [
         {
@@ -1245,6 +1260,7 @@ export default {
     },
     {
       id: 'pm.close.exit',
+      gist: 'Ga weg zonder afhankelijkheid: bouw het vermogen van de klant op, bouw je aanwezigheid af, en wees open over een belangenconflict bij een vervolg.',
       title: 'Weggaan zonder afhankelijkheid',
       pre: [
         {
