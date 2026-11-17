@@ -4,6 +4,7 @@ export default {
     // Topic 1 · Programmes
     {
       id: 'pm.portfolio.programme',
+      gist: 'A programme steers projects together that deliver one outcome none of them reaches alone; programmes mostly go wrong at the seams between projects.',
       film: 'pm.portfolio.prioritise',
       title: 'Programme or project',
       pre: [
@@ -87,6 +88,7 @@ export default {
     },
     {
       id: 'pm.portfolio.msp',
+      gist: 'MSP steers projects plus the change that turns their output into benefits, for what is too big or too uncertain for one project.',
       title: 'Running a programme with MSP',
       pre: [
         {
@@ -170,6 +172,7 @@ export default {
     },
     {
       id: 'pm.portfolio.dependencies',
+      gist: 'Keep a dependency register; external dependencies you cannot steer, only track early and buffer, and every interface gets one owner.',
       title: 'Managing dependencies between projects',
       pre: [
         {
@@ -254,6 +257,7 @@ export default {
     },
     {
       id: 'pm.portfolio.tranches',
+      gist: 'Design tranches that each deliver a new capability within what the hardest-hit group can take; too much change at once is change saturation.',
       title: 'Tranches and how much change a plant can absorb',
       pre: [
         {
@@ -340,6 +344,7 @@ export default {
     // Topic 2 · Prioritising and capacity
     {
       id: 'pm.portfolio.prioritise',
+      gist: 'Score projects on value, effort, risk and fit, and rank by value per scarce day, because the bottleneck is usually scarce experts, not money.',
       film: 'pm.portfolio.prioritise',
       title: 'Prioritising the portfolio',
       pre: [
@@ -423,6 +428,7 @@ export default {
     },
     {
       id: 'pm.portfolio.capacity',
+      gist: 'Build a capacity matrix of the scarce people with their real available days, because a few overbooked rows often explain most of the delay.',
       film: 'pm.portfolio.prioritise',
       title: 'The same experts everywhere',
       pre: [
@@ -506,6 +512,7 @@ export default {
     },
     {
       id: 'pm.portfolio.costofdelay',
+      gist: 'Cost of delay is the value you lose per unit of time while something is not live; at equal cost the shortest job goes first.',
       title: 'Cost of delay: what waiting costs',
       pre: [
         {
@@ -590,6 +597,7 @@ export default {
     },
     {
       id: 'pm.portfolio.balance',
+      gist: 'Take mandatory projects off the top, split capacity in advance into strategic buckets, and test every project by asking whether you would start it today.',
       title: 'Balancing and cleaning the portfolio',
       pre: [
         {
@@ -676,6 +684,7 @@ export default {
     // Topic 3 · Governance and steering
     {
       id: 'pm.portfolio.governance',
+      gist: 'Set down in advance who decides what, with tolerances, and have a steering group take decisions instead of hearing updates.',
       film: 'pm.run.escalation',
       title: 'Governance that decides',
       pre: [
@@ -758,6 +767,7 @@ export default {
     },
     {
       id: 'pm.portfolio.gates',
+      gist: 'A stage gate has four outcomes, go, kill, hold or recycle, on criteria fixed in advance, decided by whoever controls the money and people.',
       title: 'Stage gates for capex and projects',
       pre: [
         {
@@ -841,6 +851,7 @@ export default {
     },
     {
       id: 'pm.portfolio.boardroom',
+      gist: 'Write the board one A4 page with the decision you need at the top, open with your recommendation, and pre-sort the key people beforehand.',
       title: 'In front of the board',
       pre: [
         {
@@ -925,6 +936,7 @@ export default {
     },
     {
       id: 'pm.portfolio.assurance',
+      gist: 'Assurance is an independent check: whoever does the work and reports on it should not be the only one who judges it.',
       title: 'Independent assurance and the PMO',
       pre: [
         {
@@ -1011,6 +1023,7 @@ export default {
     // Topic 4 · Benefits
     {
       id: 'pm.portfolio.benefits',
+      gist: 'A project delivers output; the line owns outcomes and benefits, so name the benefit owner and fix the baseline before you start.',
       film: 'pm.portfolio.benefits',
       title: 'From output to benefit',
       pre: [
@@ -1095,6 +1108,7 @@ export default {
     },
     {
       id: 'pm.portfolio.benefitsmap',
+      gist: 'Build the benefits map backwards, from goal to benefits, business changes and enablers; an enabler with no line to a benefit may be cut.',
       title: 'The benefits map',
       pre: [
         {
@@ -1177,6 +1191,7 @@ export default {
     },
     {
       id: 'pm.portfolio.tracking',
+      gist: 'Keep one benefits register for the whole portfolio, give each benefit one home against double counting, and check the total against the P&L.',
       title: 'Tracking benefits across the portfolio',
       pre: [
         {
@@ -1261,6 +1276,7 @@ export default {
     },
     {
       id: 'pm.portfolio.realism',
+      gist: 'Large business cases often promise more than they deliver; correct them with a reference class of similar earlier projects and review after start-up.',
       title: 'Realistic business cases',
       pre: [
         {

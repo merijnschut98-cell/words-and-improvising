@@ -4,6 +4,7 @@ export default {
     // Onderwerp 1 · Programma’s
     {
       id: 'pm.portfolio.programme',
+      gist: 'Een programma stuurt projecten samen die één uitkomst leveren die geen van hen alleen haalt; programma’s gaan meestal mis op de naden tussen projecten.',
       film: 'pm.portfolio.prioritise',
       title: 'Programma of project',
       pre: [
@@ -87,6 +88,7 @@ export default {
     },
     {
       id: 'pm.portfolio.msp',
+      gist: 'MSP stuurt projecten plus de verandering die hun output omzet in baten, voor wat te groot of te onzeker is voor één project.',
       title: 'Een programma sturen met MSP',
       pre: [
         {
@@ -170,6 +172,7 @@ export default {
     },
     {
       id: 'pm.portfolio.dependencies',
+      gist: 'Houd een afhankelijkhedenregister bij; externe afhankelijkheden kun je niet sturen, alleen vroeg volgen en bufferen, en elk koppelvlak krijgt één eigenaar.',
       title: 'Afhankelijkheden tussen projecten sturen',
       pre: [
         {
@@ -254,6 +257,7 @@ export default {
     },
     {
       id: 'pm.portfolio.tranches',
+      gist: 'Ontwerp tranches die elk een nieuw vermogen leveren binnen wat de zwaarst getroffen groep aankan; te veel verandering tegelijk heet veranderverzadiging.',
       title: 'Tranches, en hoeveel verandering een fabriek aankan',
       pre: [
         {
@@ -340,6 +344,7 @@ export default {
     // Onderwerp 2 · Prioriteren en capaciteit
     {
       id: 'pm.portfolio.prioritise',
+      gist: 'Scoor projecten op waarde, inspanning, risico en fit, en rangschik op waarde per schaarse dag, want de bottleneck is meestal schaarse experts, niet geld.',
       film: 'pm.portfolio.prioritise',
       title: 'Het portfolio prioriteren',
       pre: [
@@ -423,6 +428,7 @@ export default {
     },
     {
       id: 'pm.portfolio.capacity',
+      gist: 'Maak een capaciteitsmatrix van de schaarse mensen met hun echte beschikbare dagen, want een paar overboekte rijen verklaren vaak het grootste deel van de vertraging.',
       film: 'pm.portfolio.prioritise',
       title: 'Overal dezelfde experts',
       pre: [
@@ -506,6 +512,7 @@ export default {
     },
     {
       id: 'pm.portfolio.costofdelay',
+      gist: 'Kosten van vertraging is de waarde die je per tijdseenheid verliest zolang iets niet live is; bij gelijke kosten gaat de kortste klus voor.',
       title: 'Kosten van vertraging: wat wachten kost',
       pre: [
         {
@@ -590,6 +597,7 @@ export default {
     },
     {
       id: 'pm.portfolio.balance',
+      gist: 'Haal verplichte projecten er bovenaf, verdeel capaciteit vooraf in strategische potjes, en toets elk project met de vraag of je het vandaag zou starten.',
       title: 'Het portfolio in balans brengen en opschonen',
       pre: [
         {
@@ -676,6 +684,7 @@ export default {
     // Onderwerp 3 · Governance en sturen
     {
       id: 'pm.portfolio.governance',
+      gist: 'Leg vooraf vast wie wat beslist met toleranties, en laat een stuurgroep besluiten nemen in plaats van updates te horen.',
       film: 'pm.run.escalation',
       title: 'Governance die beslist',
       pre: [
@@ -758,6 +767,7 @@ export default {
     },
     {
       id: 'pm.portfolio.gates',
+      gist: 'Een stage gate heeft vier uitkomsten, go, kill, hold of recycle, op vooraf vastgelegde criteria, beslist door wie over geld en mensen gaat.',
       title: 'Stage gates voor capex en projecten',
       pre: [
         {
@@ -841,6 +851,7 @@ export default {
     },
     {
       id: 'pm.portfolio.boardroom',
+      gist: 'Schrijf voor de directie één A4 met bovenaan het besluit dat je nodig hebt, open met je advies, en sorteer sleutelfiguren vooraf voor.',
       title: 'Voor de directie',
       pre: [
         {
@@ -925,6 +936,7 @@ export default {
     },
     {
       id: 'pm.portfolio.assurance',
+      gist: 'Assurance is een onafhankelijke toets: wie het werk doet en erover rapporteert, hoort niet de enige te zijn die erover oordeelt.',
       title: 'Onafhankelijke toetsing en het PMO',
       pre: [
         {
@@ -1011,6 +1023,7 @@ export default {
     // Onderwerp 4 · Baten
     {
       id: 'pm.portfolio.benefits',
+      gist: 'Een project levert output; de lijn is eigenaar van uitkomsten en baten, dus benoem de batenhouder en leg de nulmeting vast voordat je begint.',
       film: 'pm.portfolio.benefits',
       title: 'Van output naar baten',
       pre: [
@@ -1095,6 +1108,7 @@ export default {
     },
     {
       id: 'pm.portfolio.benefitsmap',
+      gist: 'Bouw de batenkaart achterstevoren, van doel naar baten, bedrijfsveranderingen en middelen; een middel zonder lijn naar een baat is een kandidaat om te schrappen.',
       title: 'De batenkaart',
       pre: [
         {
@@ -1177,6 +1191,7 @@ export default {
     },
     {
       id: 'pm.portfolio.tracking',
+      gist: 'Houd één batenregister voor het hele portfolio, geef elke baat één thuis tegen dubbeltelling, en check de som tegen de resultatenrekening.',
       title: 'Baten volgen over het hele portfolio',
       pre: [
         {
@@ -1261,6 +1276,7 @@ export default {
     },
     {
       id: 'pm.portfolio.realism',
+      gist: 'Grote businesscases beloven vaak meer dan ze waarmaken; corrigeer ze met een referentieklasse van vergelijkbare eerdere projecten en evalueer na de opstart.',
       title: 'Realistische businesscases',
       pre: [
         {
