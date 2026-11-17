@@ -85,7 +85,7 @@ export default {
     },
     {
       id: 'pm.intake.firsttalk',
-      gist: 'Laat de klant 70 tot 80% van het eerste gesprek praten, geef zijn verhaal in eigen woorden terug en spreek een datum voor de volgende stap af.',
+      gist: 'Laat de klant 70 tot 80% van het eerste gesprek praten, geef zijn verhaal terug en spreek een datum voor de volgende stap af.',
       film: 'pm.intake.firsttalk',
       title: 'Het eerste gesprek',
       pre: [
