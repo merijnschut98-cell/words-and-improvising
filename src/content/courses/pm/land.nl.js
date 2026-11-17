@@ -4,6 +4,7 @@ export default {
     // Onderwerp 1: standaardwerk en training
     {
       id: 'pm.land.training',
+      gist: 'Een training telt pas als mensen anders werken: oefen op de echte apparatuur en schrijf de werkinstructie samen met wie het werk doet.',
       film: 'pm.land.training',
       title: 'Training en werkinstructies',
       pre: [
@@ -85,6 +86,7 @@ export default {
     },
     {
       id: 'pm.land.standardwork',
+      gist: 'Standaardwerk legt de huidige beste manier vast, met takttijd, werkvolgorde en standaard onderhanden werk, zodat je een verbetering kunt herkennen.',
       title: 'Standaardwerk: de basis onder elke verbetering',
       pre: [
         {
@@ -167,6 +169,7 @@ export default {
     },
     {
       id: 'pm.land.skills',
+      gist: 'Een vaardigheidsmatrix op de werkvloer, dagelijks gebruikt, laat zien wie waar kan werken en wie wat moet leren, en wordt vaak aangepast.',
       title: 'De vaardigheidsmatrix en multi-inzetbaarheid',
       pre: [
         {
@@ -251,6 +254,7 @@ export default {
     },
     {
       id: 'pm.land.sdca',
+      gist: 'Houd de standaard levend: SDCA onderhoudt de huidige standaard, PDCA verbetert hem, en een betere manier wordt na een test de nieuwe standaard.',
       title: 'De standaard levend houden',
       pre: [
         {
@@ -334,6 +338,7 @@ export default {
     // Onderwerp 2: adoptie en overdracht
     {
       id: 'pm.land.change',
+      gist: 'Mensen doen waar hun directe baas dagelijks aandacht aan geeft; zorg dat ze het kunnen en dat de nieuwe manier niet méér moeite kost.',
       film: 'pm.land.adoption',
       title: 'Wat adoptie echt drijft',
       pre: [
@@ -415,6 +420,7 @@ export default {
     },
     {
       id: 'pm.land.resistance',
+      gist: 'Weerstand is open, passief of verborgen; open kritiek vertelt je wat er mis is, en een echt verlies benoem je.',
       film: 'pm.land.adoption',
       title: 'Werken met weerstand',
       pre: [
@@ -496,6 +502,7 @@ export default {
     },
     {
       id: 'pm.land.communication',
+      gist: 'Vertel per groep wat er voor hen verandert, wanneer en waarom; het topmanagement legt het waarom uit, de directe baas het wat-voor-mij.',
       film: 'pm.land.adoption',
       title: 'Verandering communiceren',
       pre: [
@@ -580,6 +587,7 @@ export default {
     },
     {
       id: 'pm.land.handover',
+      gist: 'Draag over aan één proceseigenaar in de lijn die elke week kan sturen, stapsgewijs en met middelen; eigenaarschap bewijs je met doen.',
       film: 'pm.land.handover',
       title: 'Overdragen aan de lijn',
       pre: [
@@ -664,6 +672,7 @@ export default {
     // Onderwerp 3: borgen
     {
       id: 'pm.land.sustain',
+      gist: 'Reken op een dip na drie maanden: plan regelmatig korte aandacht en een afgesproken trigger om terug te komen.',
       film: 'pm.land.handover',
       title: 'Resultaten vasthouden',
       pre: [
@@ -747,6 +756,7 @@ export default {
     },
     {
       id: 'pm.land.lsw',
+      gist: 'Leiderstandaardwerk is een vaste lijst voor wat een leidinggevende dagelijks en wekelijks checkt; de gembawalk gaat over het proces, niet over betrappen.',
       title: 'Leiderstandaardwerk en de gembawalk',
       pre: [
         {
@@ -829,6 +839,7 @@ export default {
     },
     {
       id: 'pm.land.tiered',
+      gist: 'Getrapt overleg laat wat het team niet zelf kan oplossen snel een laag omhoog gaan, met een antwoord terug, kort en op afwijkingen.',
       title: 'Getrapt overleg en escaleren',
       pre: [
         {
@@ -910,6 +921,7 @@ export default {
     },
     {
       id: 'pm.land.audits',
+      gist: 'Een gelaagde procesaudit kijkt en vraagt naar kernpunten, en een audit die nooit iets vindt kijkt niet echt.',
       title: 'Audits die echt iets vangen',
       pre: [
         {
@@ -995,6 +1007,7 @@ export default {
     // Onderwerp 4: baten en reflectie
     {
       id: 'pm.land.benefits',
+      gist: 'Een project levert output; de baat is de meetbare verbetering daarna, dus meet die vanaf een vertrekpunt en laat iemand erop sturen.',
       title: 'Baten: van opleveren naar opbrengen',
       pre: [
         {
@@ -1077,6 +1090,7 @@ export default {
     },
     {
       id: 'pm.land.savings',
+      gist: 'Een harde besparing staat in de winst-en-verliesrekening; vrijgespeelde uren blijven zacht tot je er meer mee verkoopt of kosten schrapt.',
       title: 'Harde en zachte besparingen',
       pre: [
         {
@@ -1160,6 +1174,7 @@ export default {
     },
     {
       id: 'pm.land.hansei',
+      gist: 'Hansei is eerlijk reflecteren op wat je zelf beter kon, ook na succes: plan, werkelijkheid, het waarom van het verschil, wat je anders doet.',
       title: 'Reflecteren: hansei en de after-action review',
       pre: [
         {
@@ -1241,6 +1256,7 @@ export default {
     },
     {
       id: 'pm.land.yokoten',
+      gist: 'Yokoten verspreidt verbeteringen zijwaarts tussen collega\'s, maar kopieer niet blind: leg het waarom uit zodat elke lijn de oplossing kan aanpassen.',
       title: 'Yokoten: uitrollen naar andere lijnen',
       pre: [
         {

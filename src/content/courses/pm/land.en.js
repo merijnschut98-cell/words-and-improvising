@@ -4,6 +4,7 @@ export default {
     // Topic 1: standardised work and training
     {
       id: 'pm.land.training',
+      gist: 'A training counts only when people work differently: practise on the real equipment and write the work instruction with those who do the work.',
       film: 'pm.land.training',
       title: 'Training and work instructions',
       pre: [
@@ -85,6 +86,7 @@ export default {
     },
     {
       id: 'pm.land.standardwork',
+      gist: 'Standardized work records the current best way, with takt time, work sequence and standard work in process, so you can recognise an improvement.',
       title: 'Standardised work: the base under every improvement',
       pre: [
         {
@@ -167,6 +169,7 @@ export default {
     },
     {
       id: 'pm.land.skills',
+      gist: 'A skills matrix on the shop floor, used daily, shows who can work where and who must learn what, and changes often.',
       title: 'The skills matrix and cross-training',
       pre: [
         {
@@ -251,6 +254,7 @@ export default {
     },
     {
       id: 'pm.land.sdca',
+      gist: 'Keep the standard alive: SDCA maintains the current standard, PDCA improves it, and a better way becomes the new standard after a test.',
       title: 'Keeping the standard alive',
       pre: [
         {
@@ -334,6 +338,7 @@ export default {
     // Topic 2: adoption and handover
     {
       id: 'pm.land.change',
+      gist: 'People do what their direct boss attends to daily; make sure they can do it and that the new way costs no more effort.',
       film: 'pm.land.adoption',
       title: 'What really drives adoption',
       pre: [
@@ -415,6 +420,7 @@ export default {
     },
     {
       id: 'pm.land.resistance',
+      gist: 'Resistance is open, passive or hidden; open criticism tells you what is wrong, and a real loss you name.',
       film: 'pm.land.adoption',
       title: 'Working with resistance',
       pre: [
@@ -496,6 +502,7 @@ export default {
     },
     {
       id: 'pm.land.communication',
+      gist: 'Tell each group what changes for them, when and why; top management explains the why, the direct boss the what-it-means-for-me.',
       film: 'pm.land.adoption',
       title: 'Communicating change',
       pre: [
@@ -580,6 +587,7 @@ export default {
     },
     {
       id: 'pm.land.handover',
+      gist: 'Hand over to one process owner in the line who can steer weekly, step by step and with resources; ownership is proven by doing.',
       film: 'pm.land.handover',
       title: 'Handing over to the line',
       pre: [
@@ -664,6 +672,7 @@ export default {
     // Topic 3: sustaining
     {
       id: 'pm.land.sustain',
+      gist: 'Expect a dip after three months: plan regular brief attention and an agreed trigger for coming back.',
       film: 'pm.land.handover',
       title: 'Sustaining results',
       pre: [
@@ -747,6 +756,7 @@ export default {
     },
     {
       id: 'pm.land.lsw',
+      gist: 'Leader standard work is a fixed list of what a leader checks daily and weekly; the gemba walk is about the process, not catching people.',
       title: 'Leader standard work and the gemba walk',
       pre: [
         {
@@ -829,6 +839,7 @@ export default {
     },
     {
       id: 'pm.land.tiered',
+      gist: 'Tiered meetings send what the team cannot solve quickly one level up, with an answer back, kept short and focused on deviations.',
       title: 'Tiered meetings and escalation',
       pre: [
         {
@@ -910,6 +921,7 @@ export default {
     },
     {
       id: 'pm.land.audits',
+      gist: 'A layered process audit looks and asks about key points, and an audit that never finds anything is not really looking.',
       title: 'Audits that actually catch something',
       pre: [
         {
@@ -995,6 +1007,7 @@ export default {
     // Topic 4: benefits and reflection
     {
       id: 'pm.land.benefits',
+      gist: 'A project delivers output; the benefit is the measurable improvement afterwards, so measure it from a starting point and have someone steer it.',
       title: 'Benefits: from delivered to delivering',
       pre: [
         {
@@ -1077,6 +1090,7 @@ export default {
     },
     {
       id: 'pm.land.savings',
+      gist: 'A hard saving shows in the profit and loss account; freed-up hours stay soft until you sell more with them or cut costs.',
       title: 'Hard and soft savings',
       pre: [
         {
@@ -1160,6 +1174,7 @@ export default {
     },
     {
       id: 'pm.land.hansei',
+      gist: 'Hansei is honest reflection on what you could do better, also after a success: plan, reality, why they differ, what you will do differently.',
       title: 'Reflecting: hansei and the after-action review',
       pre: [
         {
@@ -1241,6 +1256,7 @@ export default {
     },
     {
       id: 'pm.land.yokoten',
+      gist: 'Yokoten spreads improvements sideways between colleagues, but never copy blindly: explain the why so each line can adapt the solution.',
       title: 'Yokoten: rolling out to other lines',
       pre: [
         {
