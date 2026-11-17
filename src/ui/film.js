@@ -75,6 +75,20 @@ export const mutedPref = {
   },
 };
 
+// The playback speed of the video (17 Nov), remembered on this device.
+export const SPEEDS = [1, 1.25, 1.5];
+const SPEED_KEY = 'vp:filmSpeed';
+export const nextSpeed = (r) => SPEEDS[(SPEEDS.indexOf(r) + 1) % SPEEDS.length] || 1;
+export const speedLabel = (r, lang) => `${lang === 'nl' ? String(r).replace('.', ',') : String(r)}×`;
+export const speedPref = {
+  read(store = globalThis.localStorage) {
+    try { const r = Number(store.getItem(SPEED_KEY)); return SPEEDS.includes(r) ? r : 1; } catch { return 1; }
+  },
+  write(r, store = globalThis.localStorage) {
+    try { store.setItem(SPEED_KEY, String(r)); } catch { /* private mode */ }
+  },
+};
+
 // Listens for one frame. Returns a stop function. A frame that has left the
 // page stops its own bridge and silences speech.
 export function filmBridge(frame, { win = globalThis.window, say: speak = say, hush: quiet = hush, remember = (m) => mutedPref.write(m) } = {}) {
@@ -301,8 +315,13 @@ export function filmStep(app, lesson, level, { text, onSeen = () => {} } = {}) {
     };
     Promise.resolve().then(() => globalThis.caches && globalThis.caches.open(FILMS_CACHE)).then((c) => c && c.match(vid.url)).then((hit) => { if (hit) kept(); }).catch(() => {});
     video.addEventListener('ended', () => { if (!seen) { seen = true; onSeen(); } cacheFilm(vid.url).then((ok) => { if (ok) kept(); }); });
+    // speed: 1× · 1,25× · 1,5×, the same for every film on this device
+    const rate = (r) => { video.defaultPlaybackRate = r; video.playbackRate = r; };
+    const speed = h('button', { type: 'button', class: 'btn btn-ghost small film-speed', 'aria-label': t('filmSpeed') }, speedLabel(speedPref.read(), lang));
+    speed.onclick = () => { const r = nextSpeed(speedPref.read()); speedPref.write(r); rate(r); speed.textContent = speedLabel(r, lang); };
+    video.addEventListener('loadedmetadata', () => rate(speedPref.read()));
     video.src = vid.url;
-    stage.replaceChildren(h('figure', { class: 'film-video-wrap' }, video), keep);
+    stage.replaceChildren(h('figure', { class: 'film-video-wrap' }, video), h('div', { class: 'film-tools' }, speed, keep));
     box.dataset.mode = 'video';
   });
   return box;
