@@ -4488,6 +4488,35 @@
         ],
         "vtt": "src/content/courses/films/eng.machining.cnc.en.vtt"
       }
+    },
+    "eng.machining.gcode": {
+      "poster": "src/content/courses/films/eng.machining.gcode.jpg",
+      "nl": {
+        "dur": 262.2,
+        "bytes": 9604093,
+        "scenes": [
+          0,
+          41.82,
+          83.42,
+          126.84,
+          162.04,
+          234.72
+        ],
+        "vtt": "src/content/courses/films/eng.machining.gcode.nl.vtt"
+      },
+      "en": {
+        "dur": 292.9,
+        "bytes": 10581286,
+        "scenes": [
+          0,
+          44.24,
+          88.87,
+          139.33,
+          179.41,
+          260.2
+        ],
+        "vtt": "src/content/courses/films/eng.machining.gcode.en.vtt"
+      }
     }
   }
 }
