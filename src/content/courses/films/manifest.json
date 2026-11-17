@@ -35,41 +35,6 @@
         "vtt": "src/content/courses/films/eng.machining.turning.en.vtt"
       }
     },
-    "eng.joining.arc": {
-      "poster": "src/content/courses/films/eng.joining.arc.jpg",
-      "nl": {
-        "dur": 270.7,
-        "bytes": 11292773,
-        "scenes": [
-          0,
-          38.41,
-          72.33,
-          89.01,
-          125.52,
-          161.32,
-          176.21,
-          227.08,
-          250.49
-        ],
-        "vtt": "src/content/courses/films/eng.joining.arc.nl.vtt"
-      },
-      "en": {
-        "dur": 301.2,
-        "bytes": 12452924,
-        "scenes": [
-          0,
-          43.36,
-          79.48,
-          97.71,
-          139.1,
-          178.22,
-          194.76,
-          251.45,
-          278.8
-        ],
-        "vtt": "src/content/courses/films/eng.joining.arc.en.vtt"
-      }
-    },
     "eng.moulding.setting": {
       "poster": "src/content/courses/films/eng.moulding.setting.jpg",
       "nl": {

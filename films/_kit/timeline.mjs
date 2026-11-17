@@ -1033,7 +1033,12 @@ const SAY = {
     // pm.intake.firsttalk ("De checklist MORE PIES komt uit de crisisonderhandeling") and pm.outside.jargon ("uit MORE PIES:" and
     // "MORE PIES is een lijst voor actief luisteren"); no other film's spoken text changes
     [/(?<=\bDe checklist )Mor pais(?= komt uit de crisisonderhandeling)/g, 'More paiz'], [/(?<=\bdoorvragen uit )Mor pais(?=: zwijg even)/g, 'More paiz'],
-    [/\bMor pais(?= is een lijst voor actief luisteren)/g, 'More paiz']],
+    [/\bMor pais(?= is een lijst voor actief luisteren)/g, 'More paiz'],
+    // the arc-welding split (eng.joining.weldparams, .wps, .metallurgy; review 17 Nov): five-digit welding ISO numbers in parts with
+    // the part number, EN 1011 and EN 1090 with their part, and the alloy 6082-T6 digit by digit; besides these films only the
+    // unrendered eng.joining.production ("EN 1090-1") changes
+    [/\bISO (14731|14732|15609|15612|15614)(?:-(\d))?\b/g, (m, n, p) => `ISO ${n.slice(0, 2)} ${n[2]} ${n.slice(3)}${p ? ` deel ${p}` : ''}`],
+    [/\bEN (10(?:11|90))-(\d)\b/g, (m, n, p) => `E N ${n.slice(0, 2)} ${n.slice(2)} deel ${p}`], [/\b6082-T6\b/g, 'zes nul acht twee T zes']],
   en: [[/\brpm\b/g, 'revolutions per minute'], [/\bmm\/min\b/g, 'millimetres per minute'], [/\bm\/min\b/g, 'metres per minute'], [/µm\b/g, 'micrometres'],
     [/€\s?(\d[\d,]*(?:\.\d+)?)/g, '$1 euros'], [/(\d)\.0(?![\d])/g, '$1'], [/(\d)\s?mm\b/g, '$1 millimetres'], [/(\d)\s?min\b/g, '$1 minutes'], [/(\d)\s?%/g, '$1 percent'],
     [/Ø\s*/g, 'diameter '], [/(\d)\+(\d)/g, '$1 plus $2'], [/\s×\s/g, ' times '], [/\s\/\s/g, ' divided by '], [/\s=\s/g, ' is '], [/°/g, ' degrees'], [/\bRa\b/g, 'R a'], [/’/g, "'"],
@@ -1090,7 +1095,12 @@ const SAY = {
     // FMECA"; espeak-ng's English reads "ef-meka"), so the lessons and the other films keep their voice
     [/(?<=\band make an )FMECA\b/g, 'F M E C A'],
     // the G-code film (eng.machining.gcode, Task 17 pilot P1): ISO 6983 as pairs of digits, as ISO 2768 above, only this number
-    [/\bISO 6983\b/g, 'ISO 69 83']],
+    [/\bISO 6983\b/g, 'ISO 69 83'],
+    // the arc-welding split (eng.joining.weldparams, .wps, .metallurgy; review 17 Nov): five-digit welding ISO numbers in parts with
+    // the part number, EN 1011 and EN 1090 with their part, and the alloy 6082-T6 digit by digit; besides these films only the
+    // unrendered eng.joining.production ("EN 1090-1") changes
+    [/\bISO (14731|14732|15609|15612|15614)(?:-(\d))?\b/g, (m, n, p) => `ISO ${n.slice(0, 2)} ${n[2]} ${n.slice(3)}${p ? ` part ${p}` : ''}`],
+    [/\bEN (10(?:11|90))-(\d)\b/g, (m, n, p) => `E N ${n.slice(0, 2)} ${n.slice(2)} part ${p}`], [/\b6082-T6\b/g, 'six oh eight two T six']],
 };
 export const sayable = (text, lang) => (SAY[lang] || []).reduce((s, [re, w]) => s.replace(re, w), text);
 // The words the voice says: no English gloss, and with a language, units as words.

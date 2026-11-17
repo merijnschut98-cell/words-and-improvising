@@ -75,7 +75,7 @@ export default {
     },
     {
       id: 'eng.joining.weldparams',
-      film: 'eng.joining.arc',
+      film: 'eng.joining.weldparams',
       figure: 'eng.joining.mig',
       title: 'Weld parameters: wire, voltage and speed',
       pre: [
@@ -146,7 +146,7 @@ export default {
     },
     {
       id: 'eng.joining.wps',
-      film: 'eng.joining.arc',
+      film: 'eng.joining.wps',
       figure: 'eng.joining.mig',
       title: 'Welding on paper: WPS, WPQR and qualified welders',
       pre: [
@@ -219,7 +219,7 @@ export default {
     },
     {
       id: 'eng.joining.metallurgy',
-      film: 'eng.joining.arc',
+      film: 'eng.joining.metallurgy',
       figure: 'eng.joining.haz',
       title: 'What heat does to the steel: HAZ, preheat and difficult metals',
       pre: [

@@ -8,7 +8,6 @@
     "eng.gridops.outage",
     "eng.gridplanning.flex",
     "eng.gridplanning.loadflow",
-    "eng.joining.arc",
     "eng.joining.bolting",
     "eng.joining.bonding",
     "eng.joining.defects",
