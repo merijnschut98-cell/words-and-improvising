@@ -3,6 +3,7 @@ export default {
   lessons: [
     {
       id: 'pm.intake.ask',
+      gist: 'Klanten komen met een oplossing of symptoom; haal symptoom, probleem en doel uit elkaar en zoek eerst de oorzaak eronder.',
       film: 'pm.intake.firsttalk',
       title: 'Wat ze vragen, wat ze nodig hebben',
       pre: [
@@ -84,6 +85,7 @@ export default {
     },
     {
       id: 'pm.intake.firsttalk',
+      gist: 'Laat de klant 70 tot 80% van het eerste gesprek praten, geef zijn verhaal terug en spreek een datum voor de volgende stap af.',
       film: 'pm.intake.firsttalk',
       title: 'Het eerste gesprek',
       pre: [
@@ -165,6 +167,7 @@ export default {
     },
     {
       id: 'pm.intake.problemstatement',
+      gist: 'Een scherpe probleemstelling zegt wat, waar, wanneer en hoeveel, zonder oorzaak, oplossing of schuldige.',
       title: 'Een scherpe probleemstelling',
       pre: [
         {
@@ -247,6 +250,7 @@ export default {
     },
     {
       id: 'pm.intake.issuetree',
+      gist: 'Begin vroeg met een hypothese, bouw een boom zonder overlap en zonder gaten, en zoek actief naar bewijs dat je ongelijk geeft.',
       title: 'Werken met hypotheses',
       pre: [
         {
@@ -329,6 +333,7 @@ export default {
     },
     {
       id: 'pm.intake.stakeholders',
+      gist: 'Breng vier rollen in kaart: sponsor, proceseigenaar, gebruikers en blokkeerders; wie je kan laten stranden staat zelden op het organogram.',
       film: 'pm.intake.stakeholders',
       title: 'Wie beslist, wie kan het stoppen',
       pre: [
@@ -411,6 +416,7 @@ export default {
     },
     {
       id: 'pm.intake.start',
+      gist: 'Doe in de eerste weken twee dingen tegelijk: quick wins die van de mensen komen en een fundament van nulmeting, rollen en overlegritme.',
       film: 'pm.run.rhythm',
       title: 'De eerste weken',
       pre: [
@@ -493,6 +499,7 @@ export default {
     },
     {
       id: 'pm.intake.contracting',
+      gist: 'Contracteren is meer dan tekenen: beide kanten zeggen wat ze willen en wat ze inbrengen, want de klant is eigenaar van de verandering.',
       title: 'Afspraken met de sponsor',
       pre: [
         {
@@ -575,6 +582,7 @@ export default {
     },
     {
       id: 'pm.intake.coalition',
+      gist: 'Een sponsor alleen is te weinig: bouw een coalitie met macht, vakkennis en vertrouwen op de vloer, en betrek de OR op tijd.',
       title: 'Een coalitie bouwen',
       pre: [
         {
@@ -656,6 +664,7 @@ export default {
     },
     {
       id: 'pm.intake.done',
+      gist: 'Schrijf het doel in één zin: van X naar Y, voor een datum, gemeten hoe, vanaf een nulmeting die niemand kan betwisten.',
       film: 'pm.plan.wbs',
       title: 'Wanneer is het af',
       pre: [
@@ -738,6 +747,7 @@ export default {
     },
     {
       id: 'pm.intake.charter',
+      gist: 'De projectopdracht op één A4 is de afspraak waar iedereen naar terug kan wijzen, met doel, scope, mijlpalen en opgeschreven aannames.',
       title: 'De projectopdracht op één A4',
       pre: [
         {
@@ -819,6 +829,7 @@ export default {
     },
     {
       id: 'pm.intake.sipoc',
+      gist: 'SIPOC zet het proces op één pagina, van leveranciers tot klanten, zodat iedereen over dezelfde grenzen praat.',
       title: 'Grenzen trekken met SIPOC',
       pre: [
         {
@@ -900,6 +911,7 @@ export default {
     },
     {
       id: 'pm.intake.phasing',
+      gist: 'Knip het project in fasen met aan het eind een go/no-go-besluit, en beloof pas een resultaat als je weet waar het probleem zit.',
       title: 'Fasering en wijzigingen',
       pre: [
         {
@@ -983,6 +995,7 @@ export default {
     },
     {
       id: 'pm.intake.value',
+      gist: 'Een businesscase laat in euro\'s zien wat een project kost en oplevert; terugverdientijd is eenmalige kosten gedeeld door netto baten per maand.',
       title: 'Wat levert het op',
       pre: [
         {
@@ -1064,6 +1077,7 @@ export default {
     },
     {
       id: 'pm.intake.proposal',
+      gist: 'Een voorstel van drie tot vijf pagina\'s begint met het probleem van de klant en geeft dan aanpak, resultaat en prijs.',
       title: 'Het voorstel schrijven',
       pre: [
         {
@@ -1144,6 +1158,7 @@ export default {
     },
     {
       id: 'pm.intake.no',
+      gist: 'Zie je rode vlaggen, zeg niet zomaar nee: begin bij hun doel, benoem het risico en bied een optie om het project om te bouwen.',
       title: 'Nee zeggen of ombouwen',
       pre: [
         {
@@ -1225,6 +1240,7 @@ export default {
     },
     {
       id: 'pm.intake.sensitivity',
+      gist: 'Reken de twee of drie aannames door waar de businesscase het meest van afhangt, en corrigeer je optimisme met echte uitkomsten.',
       title: 'Een businesscase die standhoudt',
       pre: [
         {

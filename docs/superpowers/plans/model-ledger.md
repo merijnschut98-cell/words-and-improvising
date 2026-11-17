@@ -219,3 +219,5 @@ Outcome: accepted (merged as delivered), sent back N times, redone.
 | 2026-11-17 | Review of the eng.joining.arc split | sonnet | 146 | 22 min | 359k | approved (36d6d02); 6 small fixes; SAY rules for welding standards added by the integrator |
 | 2026-11-17 | Review of Task 17 pilot B (eng.moulding.cycle split) | opus | 106 | 20 min | 292k | approved (ee692d7); 8 fixes incl. card rows a beat late, blank displays, empty stage, scrap truth, padded tour cut (246 to 224 s); integrator added the PA6 rule and dropped the size allowance |
 | 2026-11-17 | Kernzin batch 1: pm.intake, plan, run, land, lead (80 lessons) | sonnet | 49 | 5 min | 158k | done (75a3acf); review dispatched |
+| 2026-11-17 | Review of kernzin batch 1 (pm.intake, plan, run, land, lead) | sonnet | 35 | - | - | done (6641155); 32 of 80 changed, ~8 claimed what the lesson does not say |
+| 2026-11-17 | Kernzin batch 2: pm.agile, approach, close, consult, devops, formats (96 lessons) | sonnet | 46 | 4 min | 188k | done (2d85685); review dispatched |
