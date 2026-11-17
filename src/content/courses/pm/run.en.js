@@ -3,6 +3,7 @@ export default {
   lessons: [
     {
       id: 'pm.run.status',
+      gist: 'Agree up front what the colours mean; red is not a failure but a request for a decision, and bad news is reported early.',
       film: 'pm.run.escalation',
       title: 'Honest status',
       pre: [
@@ -84,6 +85,7 @@ export default {
     },
     {
       id: 'pm.run.steerco',
+      gist: 'You win a steering group before the meeting: send the paper in advance, brief the deciders in person and keep meeting time for decisions.',
       title: 'Preparing the steering group',
       pre: [
         {
@@ -165,6 +167,7 @@ export default {
     },
     {
       id: 'pm.run.earned',
+      gist: 'Measure progress in earned value, not in spend: SPI = EV / PV, CPI = EV / AC; below 1 means behind or over budget.',
       title: 'Progress in numbers: earned value',
       pre: [
         {
@@ -252,6 +255,7 @@ export default {
     },
     {
       id: 'pm.run.exception',
+      gist: 'Escalate on the forecast, not on the overrun: EAC is BAC / CPI if efficiency continues, and you bring options and a recommendation.',
       title: 'Management by exception',
       pre: [
         {
@@ -338,6 +342,7 @@ export default {
     },
     {
       id: 'pm.run.scope',
+      gist: 'Scope creep is growth without a decision: you do not block it, you show what each request costs and the sponsor decides.',
       film: 'pm.run.scope',
       title: 'Scope creep',
       pre: [
@@ -422,6 +427,7 @@ export default {
     },
     {
       id: 'pm.run.change',
+      gist: 'Manage changes with a light process: log, analyse impact beyond money, decide, execute, communicate; small ones add up.',
       title: 'Controlling changes',
       pre: [
         {
@@ -504,6 +510,7 @@ export default {
     },
     {
       id: 'pm.run.replan',
+      gist: 'Measure against the baseline plan and never change it quietly; the steering group decides a new plan, the sponsor the management reserve.',
       title: 'Replanning and reserves',
       pre: [
         {
@@ -589,6 +596,7 @@ export default {
     },
     {
       id: 'pm.run.rescope',
+      gist: 'Decide whether to adjust or stop on future costs and benefits; what is already spent does not count.',
       title: 'Adjust course or stop',
       pre: [
         {
@@ -673,6 +681,7 @@ export default {
     },
     {
       id: 'pm.run.rhythm',
+      gist: 'A project runs on three meetings: stand-up, weekly meeting and steering group; agendas ask for decisions, minutes hold only decisions and actions.',
       film: 'pm.run.rhythm',
       title: 'A meeting rhythm that works',
       pre: [
@@ -754,6 +763,7 @@ export default {
     },
     {
       id: 'pm.run.team',
+      gist: 'Leading without power works with what you have: clarity, help and recognition, and concrete promises people make themselves in public.',
       title: 'Leading without authority',
       pre: [
         {
@@ -834,6 +844,7 @@ export default {
     },
     {
       id: 'pm.run.conflict',
+      gist: 'Negotiate interests, not positions: ask why someone wants something, because that is where room for a solution for both sits.',
       film: 'pm.run.conflict',
       title: 'Conflict and the difficult conversation',
       pre: [
@@ -917,6 +928,7 @@ export default {
     },
     {
       id: 'pm.run.workstreams',
+      gist: 'Split big projects into workstreams, but steer the seams: the handover between workstreams deserves its own status.',
       title: 'Running several workstreams',
       pre: [
         {
@@ -1003,6 +1015,7 @@ export default {
     },
     {
       id: 'pm.run.issues',
+      gist: 'An issue has already happened, a risk may still come; give each issue one owner, and if a decision is missing, escalate.',
       title: 'Tracking and solving issues',
       pre: [
         {
@@ -1085,6 +1098,7 @@ export default {
     },
     {
       id: 'pm.run.decisions',
+      gist: 'Bring two or three options and a recommendation on one page, and add what it costs if no decision is made.',
       film: 'pm.run.escalation',
       title: 'Getting decisions made',
       pre: [
@@ -1166,6 +1180,7 @@ export default {
     },
     {
       id: 'pm.run.tiers',
+      gist: 'Tiered meetings link short meetings at fixed times, so what one level cannot solve goes quickly to the next, with feedback.',
       title: 'Escalating in tiers: tier meetings and obeya',
       pre: [
         {
@@ -1250,6 +1265,7 @@ export default {
     },
     {
       id: 'pm.run.multiparty',
+      gist: 'Solve issues between companies with one joint issue log and at the level where the work happens, before going to the top.',
       title: 'Issues between companies',
       pre: [
         {

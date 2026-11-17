@@ -3,6 +3,7 @@ export default {
   lessons: [
     {
       id: 'pm.lead.power',
+      gist: 'Je invloed komt vooral uit deskundigheid en referentiemacht, want positiemacht hoort bij een rol die je niet hebt.',
       title: 'Waar je invloed vandaan komt',
       pre: [
         {
@@ -84,6 +85,7 @@ export default {
     },
     {
       id: 'pm.lead.persuade',
+      gist: 'Cialdini\'s principes zijn neigingen, geen knoppen; gebruik ze alleen als het waar is en de ander instemt als hij alles wist.',
       title: 'Overtuigen, eerlijk gebruikt',
       pre: [
         {
@@ -165,6 +167,7 @@ export default {
     },
     {
       id: 'pm.lead.influence',
+      gist: 'Zonder macht ruil je: ontdek waar elke stakeholder belang bij heeft, bied hulp of informatie, en praat eerst één-op-één.',
       film: 'pm.intake.stakeholders',
       title: 'Invloed zonder macht',
       pre: [
@@ -247,6 +250,7 @@ export default {
     },
     {
       id: 'pm.lead.coalition',
+      gist: 'Het informele netwerk bepaalt of mensen meegaan; bouw een coalitie die de sponsor overleeft, en zoek het belang van een blokkeerder.',
       title: 'Coalities en het informele netwerk',
       pre: [
         {
@@ -330,6 +334,7 @@ export default {
     },
     {
       id: 'pm.lead.feedback',
+      gist: 'Geef feedback met SBI: situatie, waarneembaar gedrag en impact, onder vier ogen, snel, en sluit af met een vraag.',
       film: 'pm.lead.feedback',
       title: 'Feedback die aankomt',
       pre: [
@@ -411,6 +416,7 @@ export default {
     },
     {
       id: 'pm.lead.candor',
+      gist: 'Radical Candor is persoonlijk betrokken zijn en direct uitdagen tegelijk; alleen aardig of alleen hard mist telkens een van de twee.',
       title: 'Geven om en uitdagen: Radical Candor',
       pre: [
         {
@@ -491,6 +497,7 @@ export default {
     },
     {
       id: 'pm.lead.difficult',
+      gist: 'Elk moeilijk gesprek is drie gesprekken: feiten, gevoel en identiteit; spreek over jouw impact, vraag naar zijn bedoeling en sluit af met een afspraak.',
       film: 'pm.lead.difficult',
       title: 'Moeilijke gesprekken',
       pre: [
@@ -574,6 +581,7 @@ export default {
     },
     {
       id: 'pm.lead.triggers',
+      gist: 'De ontvanger bepaalt of feedback werkt: herken de waarheids-, relatie- en identiteitstrigger en begrijp eerst, voordat je kiest wat je ermee doet.',
       title: 'Feedback die je raakt',
       pre: [
         {
@@ -656,6 +664,7 @@ export default {
     },
     {
       id: 'pm.lead.listen',
+      gist: 'Luister onder druk: spiegel eerst terug, parafraseer, stel open vragen en laat een stilte vallen voordat je antwoordt.',
       film: 'pm.intake.firsttalk#5',
       title: 'Luisteren onder druk',
       pre: [
@@ -737,6 +746,7 @@ export default {
     },
     {
       id: 'pm.lead.kata',
+      gist: 'Een coach bij Toyota Kata laat de leerling zelf denken: doeltoestand, huidige toestand, obstakel en een volgende stap met een voorspelling.',
       title: 'Coachen met Toyota Kata',
       pre: [
         {
@@ -818,6 +828,7 @@ export default {
     },
     {
       id: 'pm.lead.cycle',
+      gist: 'Een goede coachingscyclus gebruikt kleine stappen met een voorspelling, want het verschil tussen verwacht en werkelijk is waar het leren zit.',
       title: 'Coachingscycli goed draaien',
       pre: [
         {
@@ -901,6 +912,7 @@ export default {
     },
     {
       id: 'pm.lead.situational',
+      gist: 'Kies je stijl naar het niveau van de persoon voor deze taak: zonder ervaring eerst instrueren, daarna coachen met vragen.',
       title: 'Coachen, instrueren of delegeren',
       pre: [
         {
@@ -983,6 +995,7 @@ export default {
     },
     {
       id: 'pm.lead.self',
+      gist: 'Als jongste word je beoordeeld op voorbereiding en rust: ken je cijfers, noem zenuwen opwinding, laat excuses weg en adem langer uit.',
       title: 'Jezelf leiden',
       pre: [
         {
@@ -1063,6 +1076,7 @@ export default {
     },
     {
       id: 'pm.lead.stages',
+      gist: 'Teams gaan van forming via storming en norming naar performing; onenigheid na de beleefde start is normaal, en een nieuw lid vraagt nieuwe afspraken.',
       title: 'Hoe teams zich ontwikkelen',
       pre: [
         {
@@ -1146,6 +1160,7 @@ export default {
     },
     {
       id: 'pm.lead.teams',
+      gist: 'Vertrouwen maakt gezond conflict mogelijk en conflict echt commitment; wie zijn twijfels niet uitspreekt, steunt het besluit na het overleg niet.',
       title: 'Teamdynamiek',
       pre: [
         {
@@ -1228,6 +1243,7 @@ export default {
     },
     {
       id: 'pm.lead.safety',
+      gist: 'Psychologische veiligheid is het vertrouwen dat je een vraag, fout of zorg kunt uitspreken; leren vraagt hoge veiligheid én hoge normen.',
       title: 'Psychologische veiligheid opbouwen',
       pre: [
         {
