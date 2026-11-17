@@ -901,7 +901,8 @@ html.figure-full-open, html.figure-full-open body { overflow: hidden; }
   .card .film-box.figure-wrap, .card .film-video-wrap { margin-left: -33px; margin-right: -33px; }
   .card .film-box .film-frame, .card .film-video-wrap .film-video { border-radius: 0; }
 }
-.film-keep { margin-top: 6px; }
+.film-tools { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 6px; }
+.film-speed { min-width: 64px; font-variant-numeric: tabular-nums; }
 .read-along { margin: var(--space-3, 12px) 0 0; padding: 10px 12px; border-radius: var(--radius-sm); background: var(--tint); border: 1px solid var(--border-subtle); }
 .read-along > summary { font-weight: 600; min-height: 28px; }
 .read-scene { margin-top: 10px; }
@@ -931,10 +932,9 @@ html.figure-full-open, html.figure-full-open body { overflow: hidden; }
 .start-what { font-size: 1rem; font-weight: 500; color: var(--ink); line-height: 1.3; overflow-wrap: anywhere; }
 .start-what .ico { color: var(--accent-dark); }
 .start-why { color: var(--muted); font-size: 0.9rem; line-height: 1.4; }
-.start-open { display: inline-flex; align-items: center; gap: 2px; margin-top: 4px; font-weight: 600; color: var(--accent-dark); font-size: 0.95rem; }
 .start-card.btn-primary { background: var(--primary); border-color: var(--primary); color: var(--on-primary); }
 .start-card.btn-primary .start-subject, .start-card.btn-primary .start-why, .start-card.btn-primary .start-done,
-.start-card.btn-primary .start-what, .start-card.btn-primary .start-what .ico, .start-card.btn-primary .start-subject .ico, .start-card.btn-primary .start-open { color: var(--on-primary); }
+.start-card.btn-primary .start-what, .start-card.btn-primary .start-what .ico, .start-card.btn-primary .start-subject .ico { color: var(--on-primary); }
 .start-card.btn-primary .start-why { opacity: 0.85; }
 
 /* Lesson step indicator: Guess · Read · Example · Check. */
