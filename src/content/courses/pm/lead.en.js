@@ -85,7 +85,7 @@ export default {
     },
     {
       id: 'pm.lead.persuade',
-      gist: 'Use Cialdini\'s principles honestly: what you say must be true, and people should agree even if they knew everything.',
+      gist: 'Cialdini\'s principles are tendencies, not buttons; use them only when what you say is true and the other person would still agree knowing everything.',
       title: 'Persuasion principles, used honestly',
       pre: [
         {
@@ -250,7 +250,7 @@ export default {
     },
     {
       id: 'pm.lead.coalition',
-      gist: 'The informal network decides whether people really follow; build a coalition that lasts if the sponsor leaves, and do not go around blockers.',
+      gist: 'The informal network decides whether people follow; build a coalition that outlasts the sponsor, and find out what a blocker cares about.',
       title: 'Coalitions and the informal network',
       pre: [
         {
@@ -497,7 +497,7 @@ export default {
     },
     {
       id: 'pm.lead.difficult',
-      gist: 'Every difficult conversation is three: facts, feelings and identity; ask about their intent and agree at the end what was decided.',
+      gist: 'Every difficult conversation is three conversations: facts, feelings and identity; talk about your impact, ask about their intent and close with an agreement.',
       film: 'pm.lead.difficult',
       title: 'Difficult conversations',
       pre: [
@@ -995,7 +995,7 @@ export default {
     },
     {
       id: 'pm.lead.self',
-      gist: 'As the youngest you are judged on preparation and calm: know your figures, call nerves excitement, drop the apologies and breathe out slowly.',
+      gist: 'As the youngest you are judged on preparation and calm: know your figures, call nerves excitement, drop the apologies and breathe out longer.',
       title: 'Leading yourself',
       pre: [
         {

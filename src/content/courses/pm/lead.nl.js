@@ -85,7 +85,7 @@ export default {
     },
     {
       id: 'pm.lead.persuade',
-      gist: 'Gebruik Cialdini\'s principes eerlijk: wat je zegt moet waar zijn, en mensen moeten ook instemmen als ze alles wisten.',
+      gist: 'Cialdini\'s principes zijn neigingen, geen knoppen; gebruik ze alleen als het waar is en de ander instemt als hij alles wist.',
       title: 'Overtuigen, eerlijk gebruikt',
       pre: [
         {
@@ -250,7 +250,7 @@ export default {
     },
     {
       id: 'pm.lead.coalition',
-      gist: 'Het informele netwerk bepaalt of mensen echt meegaan; bouw een coalitie die blijft als de sponsor vertrekt, en ga niet om blokkeerders heen.',
+      gist: 'Het informele netwerk bepaalt of mensen meegaan; bouw een coalitie die de sponsor overleeft, en zoek het belang van een blokkeerder.',
       title: 'Coalities en het informele netwerk',
       pre: [
         {
@@ -497,7 +497,7 @@ export default {
     },
     {
       id: 'pm.lead.difficult',
-      gist: 'Elk moeilijk gesprek is drie gesprekken: feiten, gevoel en identiteit; vraag naar zijn bedoeling en spreek aan het eind af wat je besloot.',
+      gist: 'Elk moeilijk gesprek is drie gesprekken: feiten, gevoel en identiteit; spreek over jouw impact, vraag naar zijn bedoeling en sluit af met een afspraak.',
       film: 'pm.lead.difficult',
       title: 'Moeilijke gesprekken',
       pre: [
@@ -995,7 +995,7 @@ export default {
     },
     {
       id: 'pm.lead.self',
-      gist: 'Als jongste val je op voorbereiding en rust: ken je cijfers, noem zenuwen opwinding, laat excuses weg en adem rustig uit.',
+      gist: 'Als jongste word je beoordeeld op voorbereiding en rust: ken je cijfers, noem zenuwen opwinding, laat excuses weg en adem langer uit.',
       title: 'Jezelf leiden',
       pre: [
         {
