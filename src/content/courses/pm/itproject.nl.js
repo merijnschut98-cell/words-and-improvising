@@ -3,6 +3,7 @@ export default {
   lessons: [
     {
       id: 'pm.itproject.requirements',
+      gist: 'Een requirement is toetsbaar en volgt het to-be-proces, niet de oude schermen: functioneel zegt wat het systeem doet, niet-functioneel hoe goed.',
       film: 'pm.itproject.mvp',
       title: 'Wat een requirement is, en hoe je er een schrijft',
       pre: [
@@ -85,6 +86,7 @@ export default {
     },
     {
       id: 'pm.itproject.mvp',
+      gist: 'Sorteer requirements met MoSCoW; een Must is iets zonder wat je de go-live uitstelt, en een MVP dekt het hele proces dun maar compleet.',
       film: 'pm.itproject.mvp',
       title: 'MoSCoW en de MVP',
       pre: [
@@ -168,6 +170,7 @@ export default {
     },
     {
       id: 'pm.itproject.fitgap',
+      gist: 'Maatwerk kost bij elke update opnieuw; kies het alleen als het je onderscheidt of als de wet of een grote klant het eist.',
       title: 'Standaard of maatwerk: fit-to-standard',
       pre: [
         {
@@ -252,6 +255,7 @@ export default {
     },
     {
       id: 'pm.itproject.scopegov',
+      gist: 'Zet tijd en geld vast en laat de scope meebewegen; de Coulds, zo’n 20% van de inspanning, zijn de reserve die als eerste afvalt.',
       title: 'Vaste datum, flexibele scope',
       pre: [
         {
@@ -334,6 +338,7 @@ export default {
     },
     {
       id: 'pm.itproject.saas',
+      gist: 'Bij ERP en MES kies je meestal tussen kopen en huren (SaaS), en je legt vast wie wat doet: leverancier, implementatiepartner of jij.',
       title: 'Bouwen, kopen of huren: SaaS en wie wat doet',
       pre: [
         {
@@ -416,6 +421,7 @@ export default {
     },
     {
       id: 'pm.itproject.selection',
+      gist: 'Leg criteria en gewichten vast voordat je de voorstellen ziet, en laat elke leverancier jouw scenario’s tonen in een scripted demo.',
       title: 'Een selectie die standhoudt',
       pre: [
         {
@@ -499,6 +505,7 @@ export default {
     },
     {
       id: 'pm.itproject.tco',
+      gist: 'TCO zijn alle kosten over de levensduur, niet alleen de licentie; tel je eigen uren mee als ze vervanging nodig hebben of ander werk verdringen.',
       title: 'De totale kosten over vijf jaar',
       pre: [
         {
@@ -581,6 +588,7 @@ export default {
     },
     {
       id: 'pm.itproject.contract',
+      gist: 'Koppel betalingen aan geaccepteerde resultaten en leg in het contract vast hoe je al je data terugkrijgt als het contract stopt.',
       title: 'Het contract: wat je vastlegt voordat je tekent',
       pre: [
         {
@@ -664,6 +672,7 @@ export default {
     },
     {
       id: 'pm.itproject.rollout',
+      gist: 'Een invoering is big bang of gefaseerd: gefaseerd kost extra maar verkleint het risico per stap; ga nooit live in je piekseizoen.',
       film: 'pm.itproject.migration',
       title: 'Hoe een invoering verloopt: big bang of gefaseerd',
       pre: [
@@ -746,6 +755,7 @@ export default {
     },
     {
       id: 'pm.itproject.migration',
+      gist: 'Ruim data op voordat je ze verhuist, oefen met proefmigraties en laat de business tekenen voor de afstemming van oud en nieuw.',
       film: 'pm.itproject.migration',
       title: 'Datamigratie: verhuizen, opschonen en tellen',
       pre: [
@@ -828,6 +838,7 @@ export default {
     },
     {
       id: 'pm.itproject.cutover',
+      gist: 'Oefen het cutover-weekend in een generale repetitie; laat een benoemd persoon bij de go/no-go beslissen op vooraf afgesproken criteria.',
       film: 'pm.itproject.cutover',
       title: 'Het cutover-weekend',
       pre: [
@@ -913,6 +924,7 @@ export default {
     },
     {
       id: 'pm.itproject.hypercare',
+      gist: 'Hypercare is tijdelijke extra ondersteuning met een war room en vloerondersteuning; stop op exitcriteria, niet op een kalenderdatum.',
       title: 'Hypercare: de IT-kant van de eerste weken',
       pre: [
         {
@@ -996,6 +1008,7 @@ export default {
     },
     {
       id: 'pm.itproject.uat',
+      gist: 'In de UAT controleren key users, met scenario’s uit hun echte werk en data uit de proefmigratie, of het systeem hun werk ondersteunt.',
       film: 'pm.itproject.uat',
       title: 'De gebruikersacceptatietest',
       pre: [
@@ -1079,6 +1092,7 @@ export default {
     },
     {
       id: 'pm.itproject.defects',
+      gist: 'Een bevinding krijgt een ernst (impact) en een prioriteit (hoe snel); triage sorteert ze dagelijks, en exitcriteria zeggen wanneer de test klaar is.',
       film: 'pm.itproject.uat',
       title: 'Bevindingen, triage en exitcriteria',
       pre: [
@@ -1162,6 +1176,7 @@ export default {
     },
     {
       id: 'pm.itproject.roles',
+      gist: 'Stel autorisaties en training per rol in, test autorisaties met echte gebruikersaccounts, en train via key users in een trainingsomgeving.',
       title: 'Rollen, autorisaties en training voor een nieuw systeem',
       pre: [
         {
@@ -1246,6 +1261,7 @@ export default {
     },
     {
       id: 'pm.itproject.change',
+      gist: 'Meet adoptie in de gebruiksdata; een schaduwsysteem of workaround is een signaal dat het systeem nog niet past, geen sabotage.',
       title: 'Adoptie: wordt het systeem echt gebruikt?',
       pre: [
         {
