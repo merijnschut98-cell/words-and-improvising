@@ -1253,7 +1253,7 @@ export default {
     },
     {
       id: 'pm.devops.leanops',
-      gist: 'A heavy CAB does not lower the fail rate but does slow delivery; pre-approve routine changes and use andon and A3.',
+      gist: 'There is no evidence that a heavy CAB lowers the fail rate, only that it slows delivery; pre-approve routine changes and use andon and A3.',
       title: 'Lean in IT operations: andon, A3 and changes without the brake on',
       pre: [
         {

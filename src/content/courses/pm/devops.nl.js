@@ -422,7 +422,7 @@ export default {
     },
     {
       id: 'pm.devops.measure',
-      gist: 'Haal DORA-cijfers uit systemen die je al hebt, gebruik de mediaan voor tijden, en meet alle metingen, niet alleen het makkelijke cijfer.',
+      gist: 'Haal DORA-cijfers uit systemen die je al hebt, gebruik de mediaan voor tijden, en meet ze allemaal, niet alleen het makkelijke cijfer.',
       title: 'DORA meten zonder jezelf voor de gek te houden',
       pre: [
         {
@@ -1253,7 +1253,7 @@ export default {
     },
     {
       id: 'pm.devops.leanops',
-      gist: 'Een zware CAB verlaagt het faalpercentage niet maar vertraagt wel; laat routinewijzigingen vooraf goedkeuren en gebruik andon en A3.',
+      gist: 'Er is geen bewijs dat een zware CAB het faalpercentage verlaagt, wel dat hij vertraagt; laat routinewijzigingen vooraf goedkeuren, en gebruik andon en A3.',
       title: 'Lean in IT-beheer: andon, A3 en wijzigingen zonder rem',
       pre: [
         {
