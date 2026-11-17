@@ -3,6 +3,7 @@ export default {
   lessons: [
     {
       id: 'pm.consult.proposal',
+      gist: 'Een offerte wint op de eerste pagina: begin met het probleem van de klant in zijn getallen, en bied twee of drie opties.',
       film: 'pm.consult.proposal',
       title: 'Een offerte die wint',
       pre: [
@@ -86,6 +87,7 @@ export default {
     },
     {
       id: 'pm.consult.pricing',
+      gist: 'Prijs met dagtarief, waarde of vaste prijs, reken risico-opslag bij een vaste prijs, leg meerwerk schriftelijk vast en ruil bij korting.',
       film: 'pm.consult.proposal',
       title: 'Prijs en scope',
       pre: [
@@ -170,6 +172,7 @@ export default {
     },
     {
       id: 'pm.consult.valuefee',
+      gist: 'Bij prijzen op waarde bepaalt wat het resultaat waard is de fee, na een waardegesprek; de kritiek is dat toerekening lastig is.',
       title: 'Prijzen op waarde, en de kritiek erop',
       pre: [
         {
@@ -254,6 +257,7 @@ export default {
     },
     {
       id: 'pm.consult.bid',
+      gist: 'Prijs in een vaste prijsofferte de risico’s apart als kans maal extra dagen, verplaats wat je niet kunt prijzen, en ken je ondergrens.',
       title: 'Het risico prijzen in een vaste prijsofferte',
       pre: [
         {
@@ -339,6 +343,7 @@ export default {
     },
     {
       id: 'pm.consult.trust',
+      gist: 'Vertrouwen is geloofwaardigheid plus betrouwbaarheid plus intimiteit, gedeeld door zelfgerichtheid; gebruik de formule om te zien welk deel zwak is.',
       title: 'De vertrouwde adviseur',
       pre: [
         {
@@ -419,6 +424,7 @@ export default {
     },
     {
       id: 'pm.consult.roles',
+      gist: 'Als expert, extra handen of samenwerker help je anders, en elke rol heeft een prijs; spreek hardop af welke rol je speelt.',
       title: 'Wat voor helper ben je? Rollen volgens Block en Schein',
       pre: [
         {
@@ -499,6 +505,7 @@ export default {
     },
     {
       id: 'pm.consult.resistance',
+      gist: 'Weerstand is een voorspelbare reactie op iets lastigs: herken de vorm, benoem hem neutraal, en zwijg dan.',
       title: 'Als de klant zich verzet tegen je advies',
       pre: [
         {
@@ -580,6 +587,7 @@ export default {
     },
     {
       id: 'pm.consult.humble',
+      gist: 'Veel klantproblemen zijn een warboel, geen puzzel; bouw een persoonlijke relatie op niveau 2, vraag nederig en zet kleine adaptieve stappen.',
       title: 'Nederig adviseren: een relatie op niveau 2',
       pre: [
         {
@@ -663,6 +671,7 @@ export default {
     },
     {
       id: 'pm.consult.independence',
+      gist: 'Je advies is alleen iets waard als het onafhankelijk is: meld banden schriftelijk, zeg slecht nieuws eerst aan de sponsor, en houd klantlessen vertrouwelijk.',
       title: 'Onafhankelijkheid en ethiek',
       pre: [
         {
@@ -743,6 +752,7 @@ export default {
     },
     {
       id: 'pm.consult.data',
+      gist: 'Vraag alleen de klantdata die je vraag nodig heeft, sluit een verwerkersovereenkomst voor persoonsgegevens, en check of de OR instemmingsrecht heeft.',
       title: 'Klantdata en vertrouwelijkheid',
       pre: [
         {
@@ -824,6 +834,7 @@ export default {
     },
     {
       id: 'pm.consult.dilemmas',
+      gist: 'Bij een ethisch dilemma botsen twee legitieme waarden: benoem het in één zin, zoek minstens drie opties en praat met een vakgenoot.',
       title: 'Ethische dilemma’s midden in een opdracht',
       pre: [
         {
@@ -905,6 +916,7 @@ export default {
     },
     {
       id: 'pm.consult.walkaway',
+      gist: 'Terugtreden is de laatste stap: breng het eerst onder vier ogen in, leg het vast, en draag het gedane werk over.',
       title: 'Terugtreden, en de beroepscodes',
       pre: [
         {
@@ -988,6 +1000,7 @@ export default {
     },
     {
       id: 'pm.consult.account',
+      gist: 'Een klant laat groeien is het werk zichtbaar goed doen: volg op na 3 en 6 maanden, verbreed je contacten en benoem aangrenzende problemen.',
       title: 'Een klant laten groeien',
       pre: [
         {
@@ -1068,6 +1081,7 @@ export default {
     },
     {
       id: 'pm.consult.practice',
+      gist: 'Bouw je praktijk op uit je echte capaciteit, een smalle positie, cases van één A4 en een netwerk, en zeg nee tegen het verkeerde werk.',
       title: 'Je eigen praktijk opbouwen',
       pre: [
         {
@@ -1153,6 +1167,7 @@ export default {
     },
     {
       id: 'pm.consult.thought',
+      gist: 'Thought leadership is een helder standpunt, gebouwd op je eigen geanonimiseerde cases en begroot als tijd; meet het aan gesprekken.',
       title: 'Thought leadership: bekend om een standpunt',
       pre: [
         {
@@ -1236,6 +1251,7 @@ export default {
     },
     {
       id: 'pm.consult.scale',
+      gist: 'Werk groeit van denkwerk naar procedurewerk; hefboom geeft marge, maar let op klantconcentratie en schijnzelfstandigheid.',
       title: 'Verder dan jezelf: hefboom en de regels voor zelfstandigen',
       pre: [
         {
