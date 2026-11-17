@@ -3,6 +3,7 @@ export default {
   lessons: [
     {
       id: 'eng.flow.takt',
+      gist: 'Takt is the pace the customer asks for, cycle time what the line really does; if cycle time is above takt, you miss demand.',
       title: 'Takt, cycle and lead time',
       pre: [
         {
@@ -72,6 +73,7 @@ export default {
     },
     {
       id: 'eng.flow.balance',
+      gist: 'Spread the work so every station sits just under takt, because the line runs at the pace of its slowest station.',
       title: 'Line balancing',
       pre: [
         {
@@ -142,6 +144,7 @@ export default {
     },
     {
       id: 'eng.flow.precedence',
+      gist: 'A precedence diagram shows which tasks you are free to move; the RPW method fills stations with the heaviest tasks first.',
       title: 'Balancing with precedence and variation',
       pre: [
         {
@@ -216,6 +219,7 @@ export default {
     },
     {
       id: 'eng.flow.staffing',
+      gist: 'When demand changes, takt changes and so does headcount: work content divided by takt, with standard work for each demand level.',
       title: 'Staffing when demand changes',
       pre: [
         {
@@ -290,6 +294,7 @@ export default {
     },
     {
       id: 'eng.flow.bottleneck',
+      gist: 'The slowest step sets the output of the whole line; you spot it by the work in progress piling up in front of it.',
       figure: 'eng.flow.line',
       title: 'The bottleneck sets output',
       pre: [
@@ -363,6 +368,7 @@ export default {
     },
     {
       id: 'eng.flow.capacity',
+      gist: 'Plan on realistic capacity, available time over cycle time times OEE, not on the nameplate figure.',
       title: 'Capacity and utilisation',
       pre: [
         {
@@ -433,6 +439,7 @@ export default {
     },
     {
       id: 'eng.flow.toc',
+      gist: 'The five focusing steps: find the bottleneck, exploit it, subordinate the rest, elevate its capacity, and start again.',
       title: 'The five focusing steps and drum-buffer-rope',
       pre: [
         {
@@ -505,6 +512,7 @@ export default {
     },
     {
       id: 'eng.flow.throughput',
+      gist: 'An hour lost on the bottleneck costs the whole plant that hour of throughput; an hour lost elsewhere is often worth nothing.',
       title: 'What an hour on the bottleneck is worth',
       pre: [
         {
@@ -577,6 +585,7 @@ export default {
     },
     {
       id: 'eng.flow.oee',
+      gist: 'OEE is availability times performance times quality, and you lose each of the three to two of the six big losses.',
       title: 'OEE and the six big losses',
       pre: [
         {
@@ -649,6 +658,7 @@ export default {
     },
     {
       id: 'eng.flow.downtime',
+      gist: 'Log every stop with a short, fixed list of reason codes, and use a Pareto to tackle the few causes that cost the most time.',
       title: 'Logging downtime and the Pareto',
       pre: [
         {
@@ -719,6 +729,7 @@ export default {
     },
     {
       id: 'eng.flow.teep',
+      gist: 'OEE depends on what you count; fix one definition, and use TEEP to see the time outside the plan as well.',
       title: 'Defining OEE honestly, and TEEP',
       pre: [
         {
@@ -790,6 +801,7 @@ export default {
     },
     {
       id: 'eng.flow.oeecase',
+      gist: 'One OEE point is planned time times ideal rate times one percent; on the bottleneck that is hidden capacity you can put in euros.',
       title: 'From OEE points to capacity and money',
       pre: [
         {
@@ -862,6 +874,7 @@ export default {
     },
     {
       id: 'eng.flow.changeover',
+      gist: 'Changeover runs from the last good A to the first good B; SMED does as much of it as possible while the machine runs.',
       title: 'Changeover and SMED',
       pre: [
         {
@@ -933,6 +946,7 @@ export default {
     },
     {
       id: 'eng.flow.smed',
+      gist: 'A SMED workshop films one whole changeover, splits every step into internal and external, and moves the external work before the stop.',
       title: 'A SMED workshop on the floor',
       pre: [
         {
@@ -1003,6 +1017,7 @@ export default {
     },
     {
       id: 'eng.flow.batch',
+      gist: 'The right batch size weighs setup cost against holding cost; the EOQ formula gives a starting point, shorter changeovers make small batches cheap.',
       title: 'The right batch size',
       pre: [
         {
@@ -1076,6 +1091,7 @@ export default {
     },
     {
       id: 'eng.flow.wheel',
+      gist: 'A product wheel runs products in a fixed order; the length of one round is the EPEI, and it sets batch size and stock.',
       title: 'Product wheel and changeover sequence',
       pre: [
         {

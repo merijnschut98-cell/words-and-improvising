@@ -3,6 +3,7 @@ export default {
   lessons: [
     {
       id: 'eng.flow.takt',
+      gist: 'Takt is het tempo dat de klant vraagt, cyclustijd wat de lijn echt doet; ligt de cyclustijd boven de takt, dan haal je het niet.',
       title: 'Takt, cyclustijd en doorlooptijd',
       pre: [
         {
@@ -72,6 +73,7 @@ export default {
     },
     {
       id: 'eng.flow.balance',
+      gist: 'Verdeel het werk zo dat elk station net onder de takt zit, want de lijn loopt op het tempo van het langzaamste station.',
       title: 'Lijnbalancering',
       pre: [
         {
@@ -142,6 +144,7 @@ export default {
     },
     {
       id: 'eng.flow.precedence',
+      gist: 'Een volgordediagram laat zien welke taken vrij te verdelen zijn; de RPW-methode vult stations met de zwaarste taken eerst.',
       title: 'Balanceren met volgorde en spreiding',
       pre: [
         {
@@ -216,6 +219,7 @@ export default {
     },
     {
       id: 'eng.flow.staffing',
+      gist: 'Verandert de vraag, dan verandert de takt en dus het aantal mensen: werkinhoud gedeeld door takt, met standaardwerk per vraagniveau.',
       title: 'Bemensing als de vraag verandert',
       pre: [
         {
@@ -290,6 +294,7 @@ export default {
     },
     {
       id: 'eng.flow.bottleneck',
+      gist: 'De langzaamste stap bepaalt de output van de hele lijn; je herkent hem aan het onderhanden werk dat zich vóór hem opstapelt.',
       figure: 'eng.flow.line',
       title: 'De bottleneck bepaalt de output',
       pre: [
@@ -363,6 +368,7 @@ export default {
     },
     {
       id: 'eng.flow.capacity',
+      gist: 'Plan op realistische capaciteit, beschikbare tijd gedeeld door cyclustijd maal OEE, niet op het getal van het typeplaatje.',
       title: 'Capaciteit en bezettingsgraad',
       pre: [
         {
@@ -433,6 +439,7 @@ export default {
     },
     {
       id: 'eng.flow.toc',
+      gist: 'De vijf focusstappen: vind de bottleneck, benut hem, onderschik de rest, verhoog zijn capaciteit, en begin opnieuw.',
       title: 'De vijf focusstappen en drum-buffer-rope',
       pre: [
         {
@@ -505,6 +512,7 @@ export default {
     },
     {
       id: 'eng.flow.throughput',
+      gist: 'Een uur verloren op de bottleneck kost de hele fabriek dat uur aan throughput; elders is een uur vaak niets waard.',
       title: 'Wat een uur op de bottleneck waard is',
       pre: [
         {
@@ -577,6 +585,7 @@ export default {
     },
     {
       id: 'eng.flow.oee',
+      gist: 'OEE is beschikbaarheid maal performance maal kwaliteit, en elk van de drie verlies je aan twee van de zes grote verliezen.',
       title: 'OEE en de zes grote verliezen',
       pre: [
         {
@@ -649,6 +658,7 @@ export default {
     },
     {
       id: 'eng.flow.downtime',
+      gist: 'Registreer elke stop met een korte, vaste lijst oorzaakcodes, en pak met een pareto de paar oorzaken aan die de meeste tijd kosten.',
       title: 'Stilstand registreren en de pareto',
       pre: [
         {
@@ -719,6 +729,7 @@ export default {
     },
     {
       id: 'eng.flow.teep',
+      gist: 'OEE hangt af van wat je meetelt; leg één definitie vast, en gebruik TEEP om ook de tijd buiten de planning te zien.',
       title: 'OEE eerlijk definiëren, en TEEP',
       pre: [
         {
@@ -790,6 +801,7 @@ export default {
     },
     {
       id: 'eng.flow.oeecase',
+      gist: 'Eén OEE-punt is geplande tijd maal ideale snelheid maal één procent; op de bottleneck is dat verborgen capaciteit die je in euro\'s uitdrukt.',
       title: 'Van OEE-punten naar capaciteit en geld',
       pre: [
         {
@@ -862,6 +874,7 @@ export default {
     },
     {
       id: 'eng.flow.changeover',
+      gist: 'Omsteltijd loopt van het laatste goede stuk A tot het eerste goede stuk B; SMED maakt zoveel mogelijk werk extern, terwijl de machine draait.',
       title: 'Omstellen en SMED',
       pre: [
         {
@@ -933,6 +946,7 @@ export default {
     },
     {
       id: 'eng.flow.smed',
+      gist: 'Een SMED-workshop filmt één hele omstelling, splitst elke stap in intern en extern, en zet het externe werk vóór de stop.',
       title: 'Een SMED-workshop op de vloer',
       pre: [
         {
@@ -1003,6 +1017,7 @@ export default {
     },
     {
       id: 'eng.flow.batch',
+      gist: 'De juiste seriegrootte weegt omstelkosten tegen voorraadkosten; de EOQ-formule geeft een startpunt, kortere omstellingen maken kleinere series goedkoop.',
       title: 'De juiste seriegrootte',
       pre: [
         {
@@ -1076,6 +1091,7 @@ export default {
     },
     {
       id: 'eng.flow.wheel',
+      gist: 'Een productwiel draait producten in een vaste volgorde; de lengte van één ronde is de EPEI, en die bepaalt seriegrootte en voorraad.',
       title: 'Productwiel en omstelvolgorde',
       pre: [
         {
