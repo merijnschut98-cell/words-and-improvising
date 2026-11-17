@@ -85,7 +85,7 @@ export default {
     },
     {
       id: 'pm.intake.firsttalk',
-      gist: 'A first talk is for understanding and access: let the client speak 70 to 80% of the time and promise nothing.',
+      gist: 'Let the client talk 70 to 80% of a first meeting, paraphrase what you hear, and leave with a date for the next step.',
       film: 'pm.intake.firsttalk',
       title: 'The first conversation',
       pre: [
@@ -664,7 +664,7 @@ export default {
     },
     {
       id: 'pm.intake.done',
-      gist: 'Write the goal as from X to Y by when, measured how, starting from a measured baseline nobody can dispute.',
+      gist: 'Write the goal in one sentence: from X to Y, by a date, measured how, from a baseline nobody can dispute.',
       film: 'pm.plan.wbs',
       title: 'Defining done',
       pre: [
@@ -747,7 +747,7 @@ export default {
     },
     {
       id: 'pm.intake.charter',
-      gist: 'The one-page project charter is the agreement everyone can point back to, with milestones, costs and written-down assumptions.',
+      gist: 'The one-page project charter is the agreement everyone can point back to, with goal, scope, milestones and written-down assumptions.',
       title: 'The one-page charter',
       pre: [
         {
@@ -995,7 +995,7 @@ export default {
     },
     {
       id: 'pm.intake.value',
-      gist: 'A business case shows in euros what a project costs and returns; payback time is the investment divided by net benefit per month.',
+      gist: 'A business case shows in euros what a project costs and returns; payback time is the one-off cost divided by net benefit per month.',
       title: 'What it’s worth',
       pre: [
         {

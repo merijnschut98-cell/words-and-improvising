@@ -85,7 +85,7 @@ export default {
     },
     {
       id: 'pm.intake.firsttalk',
-      gist: 'Een eerste gesprek is voor begrip en toegang: laat de klant 70 tot 80% van de tijd praten en doe geen toezeggingen.',
+      gist: 'Laat de klant 70 tot 80% van het eerste gesprek praten, geef zijn verhaal in eigen woorden terug en spreek een datum voor de volgende stap af.',
       film: 'pm.intake.firsttalk',
       title: 'Het eerste gesprek',
       pre: [
@@ -250,7 +250,7 @@ export default {
     },
     {
       id: 'pm.intake.issuetree',
-      gist: 'Begin vroeg met een hypothese, bouw een boom zonder dubbel werk of gat, en zoek actief tegenbewijs om gericht te blijven.',
+      gist: 'Begin vroeg met een hypothese, bouw een boom zonder overlap en zonder gaten, en zoek actief naar bewijs dat je ongelijk geeft.',
       title: 'Werken met hypotheses',
       pre: [
         {
@@ -664,7 +664,7 @@ export default {
     },
     {
       id: 'pm.intake.done',
-      gist: 'Schrijf het doel als van X naar Y voor wanneer, gemeten hoe, met een gemeten nulmeting die niemand kan betwisten.',
+      gist: 'Schrijf het doel in één zin: van X naar Y, voor een datum, gemeten hoe, vanaf een nulmeting die niemand kan betwisten.',
       film: 'pm.plan.wbs',
       title: 'Wanneer is het af',
       pre: [
@@ -747,7 +747,7 @@ export default {
     },
     {
       id: 'pm.intake.charter',
-      gist: 'De projectopdracht op één A4 is de afspraak waar iedereen naar terug kan wijzen, met mijlpalen, kosten en opgeschreven aannames.',
+      gist: 'De projectopdracht op één A4 is de afspraak waar iedereen naar terug kan wijzen, met doel, scope, mijlpalen en opgeschreven aannames.',
       title: 'De projectopdracht op één A4',
       pre: [
         {
@@ -995,7 +995,7 @@ export default {
     },
     {
       id: 'pm.intake.value',
-      gist: 'Een businesscase laat in euro\'s zien wat een project kost en oplevert; terugverdientijd is investering gedeeld door netto baten per maand.',
+      gist: 'Een businesscase laat in euro\'s zien wat een project kost en oplevert; terugverdientijd is eenmalige kosten gedeeld door netto baten per maand.',
       title: 'Wat levert het op',
       pre: [
         {
