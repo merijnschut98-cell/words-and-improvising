@@ -3,6 +3,7 @@ export default {
   lessons: [
     {
       id: 'eng.cost.costprice',
+      gist: 'Build a cost price from the bottom up: every line is a quantity times a rate, and setup cost is spread over the batch size.',
       title: 'Building up the cost of a part',
       pre: [
         {
@@ -76,6 +77,7 @@ export default {
     },
     {
       id: 'eng.cost.hourrate',
+      gist: 'The machine hour rate is yearly cost divided by productive hours; if the machine runs fewer hours than budgeted, the rate is too low.',
       title: 'The machine hour rate',
       pre: [
         {
@@ -151,6 +153,7 @@ export default {
     },
     {
       id: 'eng.cost.abc',
+      gist: 'ABC spreads overhead by what causes it, per cost driver; time-driven ABC divides by practical capacity, so unused capacity stays visible.',
       title: 'Overhead by activity: ABC and time-driven ABC',
       pre: [
         {
@@ -226,6 +229,7 @@ export default {
     },
     {
       id: 'eng.cost.shouldcost',
+      gist: 'Estimate what a part should cost and read the quote line by line: then the price talk is about facts, not haggling.',
       title: 'Should-cost and reading a supplier quote',
       pre: [
         {
@@ -301,6 +305,7 @@ export default {
     },
     {
       id: 'eng.cost.contribution',
+      gist: 'With free capacity, an extra order earns money as long as the price is above the variable cost, even below the full cost price.',
       title: 'Fixed, variable and the extra order',
       pre: [
         {
@@ -374,6 +379,7 @@ export default {
     },
     {
       id: 'eng.cost.makebuy',
+      gist: 'Make or buy compares only the costs that really differ; allocated overhead mostly stays, and when capacity is full the lost contribution counts too.',
       title: 'Make or buy',
       pre: [
         {
@@ -445,6 +451,7 @@ export default {
     },
     {
       id: 'eng.cost.pricing',
+      gist: 'The price floor depends on the situation, and target costing turns cost-plus around: market price minus profit margin is the allowable cost.',
       title: 'From cost price to quote: floors and target costing',
       pre: [
         {
@@ -519,6 +526,7 @@ export default {
     },
     {
       id: 'eng.cost.profitability',
+      gist: 'Rank customers and products by profit after the costs they cause (cost-to-serve); dropping one saves only the avoidable costs, not the allocated overhead.',
       title: 'Which products and customers really earn',
       pre: [
         {
@@ -593,6 +601,7 @@ export default {
     },
     {
       id: 'eng.cost.cashflow',
+      gist: 'Depreciation is a cost, not cash; an investment case counts only the money that really moves in and out of the bank.',
       title: 'Cash, profit and capex',
       pre: [
         {
@@ -666,6 +675,7 @@ export default {
     },
     {
       id: 'eng.cost.capex',
+      gist: 'Payback is investment divided by yearly cash saving; NPV brings future money back to today, and above zero the project beats the required return.',
       title: 'Payback, NPV and the investment case',
       pre: [
         {
@@ -739,6 +749,7 @@ export default {
     },
     {
       id: 'eng.cost.appraisal',
+      gist: 'Work out the NPV with the annuity factor or year by year; between mutually exclusive projects pick the highest NPV, not the highest IRR.',
       title: 'NPV and IRR in depth',
       pre: [
         {
@@ -812,6 +823,7 @@ export default {
     },
     {
       id: 'eng.cost.capexboard',
+      gist: 'Show the board whether the case beats the hurdle rate and what happens if you are wrong, with scenario analysis and the break-even saving.',
       title: 'Defending a case at the investment board',
       pre: [
         {
@@ -887,6 +899,7 @@ export default {
     },
     {
       id: 'eng.cost.inventory',
+      gist: 'Cutting stock frees cash once; the yearly saving sits only in stock costs that really disappear from the books.',
       title: 'What stock costs',
       pre: [
         {
@@ -960,6 +973,7 @@ export default {
     },
     {
       id: 'eng.cost.waste',
+      gist: 'Price scrap and rework at what is really lost: variable cost where capacity is free, and rework time only if it costs overtime or temps.',
       title: 'Putting a price on waste',
       pre: [
         {
@@ -1033,6 +1047,7 @@ export default {
     },
     {
       id: 'eng.cost.vsc',
+      gist: 'Making more than you sell improves profit, because overhead goes into stock; value stream costing divides the stream\'s cost by the units shipped.',
       title: 'Value stream costing and the absorption trap',
       pre: [
         {
@@ -1107,6 +1122,7 @@ export default {
     },
     {
       id: 'eng.cost.savings',
+      gist: 'Translate an improvement into the controller\'s rates and volumes with a savings bridge, and separate the effect of price from volume.',
       title: 'Savings a controller signs',
       pre: [
         {
