@@ -4,6 +4,7 @@ export default {
     // Onderwerp 1: instelling
     {
       id: 'pm.outside.director',
+      gist: 'Zie jezelf als regisseur, niet als expert: jij bent eigenaar van het proces, de experts van de inhoud.',
       title: 'Regisseur, geen expert',
       pre: [
         {
@@ -84,6 +85,7 @@ export default {
     },
     {
       id: 'pm.outside.humility',
+      gist: 'Wees nieuwsgierig en erken dat je beeld onvolledig of fout kan zijn; na drie weken in een nieuw vak maak je juist zelfverzekerde fouten.',
       title: 'Nieuwsgierig en bescheiden',
       pre: [
         {
@@ -164,6 +166,7 @@ export default {
     },
     {
       id: 'pm.outside.credibility',
+      gist: 'Buiten je vak verdien je vertrouwen met het proces: nakomen wat je zegt en weinig eigenbelang, want eigenbelang deelt al het andere.',
       title: 'Geloofwaardig zonder vakkennis',
       pre: [
         {
@@ -246,6 +249,7 @@ export default {
     },
     {
       id: 'pm.outside.keep',
+      gist: 'Het doel, de risico’s en de besluiten geef je nooit uit handen: je delegeert taken, geen eindverantwoordelijkheid.',
       title: 'Wat je nooit uit handen geeft',
       pre: [
         {
@@ -329,6 +333,7 @@ export default {
     // Onderwerp 2: vragen stellen
     {
       id: 'pm.outside.phasequestions',
+      gist: 'Je vragen zijn je vakkennis: loop in vaste volgorde scope, aannames, risico’s, schattingen en afhankelijkheden langs.',
       film: 'pm.outside.questions',
       title: 'Vragen per fase',
       pre: [
@@ -410,6 +415,7 @@ export default {
     },
     {
       id: 'pm.outside.fail',
+      gist: 'Vraag eerst “Waardoor zou dit mislukken?” en dan “Hoe weet je dat?”, en houd een premortem waarin iedereen eerst opschrijft waarom het project mislukt is.',
       film: 'pm.outside.jargon',
       title: '“Waardoor zou dit mislukken?”',
       pre: [
@@ -491,6 +497,7 @@ export default {
     },
     {
       id: 'pm.outside.estimates',
+      gist: 'Toets een schatting aan hoe hij is gemaakt: met een bandbreedte, een referentieklasse van eerdere projecten en een tweede schatting.',
       film: 'pm.outside.questions',
       title: 'Schattingen toetsen zonder vakkennis',
       pre: [
@@ -575,6 +582,7 @@ export default {
     },
     {
       id: 'pm.outside.jargon',
+      gist: 'Vertaal jargon terug naar doel, kosten, tijd en risico: parafraseer in gewone woorden, check “Klopt dat?” en vraag door naar het gevolg.',
       film: 'pm.outside.jargon',
       title: 'Jargon terugvertalen',
       pre: [
@@ -659,6 +667,7 @@ export default {
     // Onderwerp 3: werken met experts
     {
       id: 'pm.outside.trust',
+      gist: 'Vertrouw experts, maar controleer de resultaten die tellen, niet de methode, en controleer harder waar een fout het meest pijn doet.',
       film: 'pm.outside.experts',
       title: 'Vertrouwen en controleren',
       pre: [
@@ -739,6 +748,7 @@ export default {
     },
     {
       id: 'pm.outside.disagree',
+      gist: 'Zet bij een meningsverschil tussen experts eerst de besliscriteria op tafel, scheid feit van oordeel, en laat de sponsor de gewichten kiezen.',
       film: 'pm.outside.disagree',
       title: 'Als experts het oneens zijn',
       pre: [
@@ -819,6 +829,7 @@ export default {
     },
     {
       id: 'pm.outside.time',
+      gist: 'Experts zijn schaars en contextwisseling kost ze tijd: vraag om blokken, bereid voor zodat hun uren tellen, en geef autonomie in het hoe.',
       film: 'pm.outside.disagree',
       title: 'Hun tijd en motivatie',
       pre: [
@@ -902,6 +913,7 @@ export default {
     },
     {
       id: 'pm.outside.redflags',
+      gist: 'Drie rode vlaggen: altijd “bijna klaar”, vage antwoorden en geen demo; reageer met gerichte vragen en vraag om bewijs.',
       film: 'pm.outside.experts',
       title: 'Rode vlaggen',
       pre: [
@@ -985,6 +997,7 @@ export default {
     // Onderwerp 4: sturen en besluiten
     {
       id: 'pm.outside.progress',
+      gist: 'Meet voortgang aan mijlpalen die ja of nee zijn en pas tellen als het bewijs er is; percentage gereed is een mening.',
       film: 'pm.outside.steering',
       title: 'Voortgang meten zonder vakkennis',
       pre: [
@@ -1067,6 +1080,7 @@ export default {
     },
     {
       id: 'pm.outside.decide',
+      gist: 'Vraag of een besluit omkeerbaar is: beslis een tweerichtingsdeur snel, vertraag bij een eenrichtingsdeur, en escaleer vroeg met opties en een advies.',
       film: 'pm.outside.steering',
       title: 'Besluiten onder onzekerheid, en escaleren',
       pre: [
@@ -1148,6 +1162,7 @@ export default {
     },
     {
       id: 'pm.outside.stakeholders',
+      gist: 'Begin met de conclusie en geef elke stakeholder dezelfde feiten in zijn eigen taal; maak een voorbehoud bij de voorspelling, niet bij de feiten.',
       title: 'Communiceren met stakeholders',
       pre: [
         {
@@ -1229,6 +1244,7 @@ export default {
     },
     {
       id: 'pm.outside.learnfast',
+      gist: 'Leer in een 30-60-90-plan: eerst de woorden, dan het systeem tekenen en door een expert laten verbeteren, dan bijdragen.',
       title: 'Snel een nieuw vak leren',
       pre: [
         {
