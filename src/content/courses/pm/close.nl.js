@@ -345,7 +345,7 @@ export default {
     },
     {
       id: 'pm.close.acceptance',
-      gist: 'Spreek meetbare acceptatiecriteria vooraf af in de projectopdracht en laat de sponsor ze afvinken; wat niet af is gaat op een openpuntenlijst met eigenaar.',
+      gist: 'Spreek meetbare acceptatiecriteria vooraf af, laat de sponsor ze afvinken, en zet wat niet af is op een openpuntenlijst met eigenaar.',
       film: 'pm.land.handover',
       title: 'Formele acceptatie',
       pre: [
@@ -428,7 +428,7 @@ export default {
     },
     {
       id: 'pm.close.closeout',
-      gist: 'Na de ondertekening sluit je urencode en inkooporders, stuur je de eindfactuur en bewaar je het archief bij de klant, zonder persoonsgegevens.',
+      gist: 'Sluit urencode en inkooporders, stuur de eindfactuur, bewaar het archief bij de klant en verwijder persoonsgegevens die je niet meer nodig hebt.',
       title: 'Administratief afsluiten',
       pre: [
         {
@@ -843,7 +843,7 @@ export default {
     },
     {
       id: 'pm.close.formats',
-      gist: 'Een terugblik heeft vijf vaste fases, van toon zetten tot afsluiten; het format mag wisselen, het skelet niet.',
+      gist: 'Een terugblik heeft vijf fases in vaste volgorde, van toon zetten tot afsluiten; het format voor het verzamelen kies je bij de groep.',
       title: 'Een terugblik ontwerpen',
       pre: [
         {

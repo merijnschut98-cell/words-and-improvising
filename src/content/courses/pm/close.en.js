@@ -345,7 +345,7 @@ export default {
     },
     {
       id: 'pm.close.acceptance',
-      gist: 'Agree measurable acceptance criteria up front in the project charter and let the sponsor tick them off; the rest goes on an open-items list.',
+      gist: 'Agree measurable acceptance criteria up front, let the sponsor tick them off, and put what is not done on an open-items list with an owner.',
       film: 'pm.land.handover',
       title: 'Formal acceptance',
       pre: [
@@ -428,7 +428,7 @@ export default {
     },
     {
       id: 'pm.close.closeout',
-      gist: 'After sign-off you close the hours code and purchase orders, send the final invoice and keep the archive with the client, without personal data.',
+      gist: 'Close the hours code and purchase orders, send the final invoice, keep the archive with the client and delete personal data you no longer need.',
       title: 'Administrative close-out',
       pre: [
         {
@@ -843,7 +843,7 @@ export default {
     },
     {
       id: 'pm.close.formats',
-      gist: 'A retrospective has five fixed phases, from setting the stage to closing; the format may change, the skeleton should not.',
+      gist: 'A retrospective has five phases in a fixed order, from setting the stage to closing; choose the gathering format to fit the group.',
       title: 'Designing a retrospective',
       pre: [
         {
@@ -928,7 +928,7 @@ export default {
     },
     {
       id: 'pm.close.lessonbank',
-      gist: 'Recording lessons is easy, applying them is not: pick a few with an owner and a place in the standard approach.',
+      gist: 'Recording lessons works, applying them does not: pick a few with an owner and a place in the standard approach; tell them as stories.',
       title: 'Lessons that travel',
       pre: [
         {
