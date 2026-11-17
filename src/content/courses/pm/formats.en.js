@@ -1223,7 +1223,7 @@ export default {
     },
     {
       id: 'pm.formats.interviews',
-      gist: 'Hold eight to ten interviews across all levels with five open questions, write in the other person’s words and summarise in themes with quotes.',
+      gist: 'Hold eight to ten interviews across all levels with five open questions, write in the other person’s words and group the points into themes.',
       title: 'Running an interview round',
       pre: [
         {

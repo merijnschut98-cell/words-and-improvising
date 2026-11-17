@@ -1153,7 +1153,7 @@ export default {
     },
     {
       id: 'pm.formats.floor',
-      gist: 'Buiten de vergaderzaal zie je wat er gebeurt: gembawalk en interviewronde aan het begin, demo tijdens uitvoeren, en het kaizen-event om een gebied te verbeteren.',
+      gist: 'Buiten de vergaderzaal zie je wat er gebeurt: gembawalk en interviewronde aan het begin, demo tijdens Uitvoeren, en het kaizen-event om een gebied te verbeteren.',
       title: 'Vier werkvormen buiten de vergaderzaal',
       pre: [
         {
