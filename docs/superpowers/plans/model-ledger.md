@@ -215,3 +215,4 @@ Outcome: accepted (merged as delivered), sent back N times, redone.
 | 2026-11-17 | Triage of the 40 Projects lesson films (keep film or text-first) | sonnet | 14 | 2 min | 129k | done; 21 keep, 19 text; integrator flipped pm.plan.risk to keep |
 | 2026-11-17 | Task 17 pilot B: extend eng.moulding.cycle | sonnet | 35 | 8 min | 248k | stopped, rightly: 46 points (1,780 words) cannot fit 360 s; ruling: split per D3 (forced); tool counts undercount ~4x, check words vs ~790 budget before each extend |
 | 2026-11-17 | Task 17 B1 #2: split eng.joining.arc into four one-lesson films | sonnet | 161 | 26 min | 512k | done (7007748); 49 points claimed, 193-228 s; SAY list for review |
+| 2026-11-17 | Task 17 pilot B: split eng.moulding.cycle into four one-lesson films | sonnet | ~120 | ~3.5 h | - | done (f5c7e02); 45 points claimed, 1 reading (pointer); 169-246 s designed |
