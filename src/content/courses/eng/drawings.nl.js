@@ -4,6 +4,7 @@ export default {
     // Onderwerp: Een technische tekening lezen
     {
       id: 'eng.drawings.views',
+      gist: 'Een onderdeel staat getekend in aanzichten, doorsneden en details; lees de maten en meet nooit met een liniaal op een print.',
       film: 'eng.drawings.reading',
       title: 'Een technische tekening lezen',
       pre: [
@@ -76,6 +77,7 @@ export default {
     },
     {
       id: 'eng.drawings.assembly',
+      gist: 'Elke lijnsoort heeft een betekenis; de onderdelenlijst van een samenstellingstekening geeft per positienummer aantal, artikelnummer en omschrijving.',
       title: 'Lijnen, samenstellingstekeningen en de onderdelenlijst',
       pre: [
         {
@@ -147,6 +149,7 @@ export default {
     },
     {
       id: 'eng.drawings.callouts',
+      gist: 'Schroefdraad, gaten, ruwheid en lassen staan als korte codes: M10 is metrische draad van 10 mm met grove spoed 1,5 mm.',
       title: 'Aanduidingen: schroefdraad, gaten, ruwheid en lassen',
       pre: [
         {
@@ -221,6 +224,7 @@ export default {
     },
     {
       id: 'eng.drawings.change',
+      gist: 'Een wijziging gaat van ECR via ECN naar een nieuwe revisie; het ingangsmoment zegt vanaf wanneer ze geldt.',
       title: 'Tekeningbeheer: wijzigingen, ingangsmoment en het 3D-model',
       pre: [
         {
@@ -296,6 +300,7 @@ export default {
     // Onderwerp: Toleranties en GD&T
     {
       id: 'eng.drawings.dims',
+      gist: 'Een tolerantie staat als ±, eenzijdig, grensmaten of passingscode; een maat zonder tolerantie valt onder de algemene tolerantie (ISO 2768) in de stempel.',
       title: 'Maten en tolerantieaanduidingen lezen',
       pre: [
         {
@@ -368,6 +373,7 @@ export default {
     },
     {
       id: 'eng.drawings.gdt',
+      gist: 'Een ±-tolerantie bepaalt alleen de maat; GD&T voegt vorm en plaats toe via een tolerantiekader en referentievlakken, waarvan de volgorde telt.',
       film: 'eng.drawings.reading',
       title: 'Toleranties op tekening en GD&T',
       pre: [
@@ -440,6 +446,7 @@ export default {
     },
     {
       id: 'eng.drawings.gdtsymbols',
+      gist: 'GD&T-symbolen vormen families: vorm, richting, plaats, slag en profiel; de waarde is de volle breedte van de tolerantiezone, met Ø een cilinder.',
       title: 'De GD&T-symbolen verdiept: vorm, slag en profiel',
       pre: [
         {
@@ -514,6 +521,7 @@ export default {
     },
     {
       id: 'eng.drawings.gps',
+      gist: 'Eerste vraag bij een tekeninggeschil is welke regels gelden, ISO of ASME; dezelfde kromme pen krijgt onder beide een ander oordeel.',
       title: 'ISO tegenover ASME, en tekeninggeschillen beslechten',
       pre: [
         {
@@ -589,6 +597,7 @@ export default {
     // Onderwerp: P&ID’s, schema’s en het besturingssysteem
     {
       id: 'eng.drawings.pid',
+      gist: 'Een P&ID toont niet op schaal wat in een installatie met wat verbonden is; lijnsoorten en tags zeggen wat elk ding is.',
       title: 'Een P&ID lezen',
       pre: [
         {
@@ -660,6 +669,7 @@ export default {
     },
     {
       id: 'eng.drawings.plc',
+      gist: 'Een PLC leest ingangen en stuurt uitgangen; een interlock beschermt machine en product, een apart ontworpen veiligheidsfunctie beschermt mensen.',
       title: 'PLC, HMI, SCADA en veiligheid',
       pre: [
         {
@@ -731,6 +741,7 @@ export default {
     },
     {
       id: 'eng.drawings.electrical',
+      gist: 'Contacten staan getekend in rust; de referentieaanduiding zegt functie, locatie en apparaat, en de contactnummers het type: 3-4 maakt, 1-2 verbreekt.',
       title: 'Een elektrisch schema lezen',
       pre: [
         {
@@ -804,6 +815,7 @@ export default {
     },
     {
       id: 'eng.drawings.sis',
+      gist: 'Een procesfabriek beschermt in lagen; een veiligheidsfunctie is sensor, logica en eindelement, en het SIL zegt hoeveel risicoreductie nodig is.',
       title: 'Beveiligingen en veiligheidsfuncties op de tekening',
       pre: [
         {
@@ -879,6 +891,7 @@ export default {
     // Onderwerp: Regelkringen en PID
     {
       id: 'eng.drawings.loop',
+      gist: 'Een regelkring meet, vergelijkt met het setpoint en corrigeert; SP, PV en OP samen laten zien of de kring het nog aankan.',
       figure: 'eng.drawings.loop',
       title: 'De regelkring',
       pre: [
@@ -951,6 +964,7 @@ export default {
     },
     {
       id: 'eng.drawings.pid_control',
+      gist: 'P reageert op de afwijking, I haalt de blijvende afwijking weg maar kan doorschieten, D remt af; de meeste industriële kringen draaien PI.',
       title: 'PID-regeling: het gevoel erachter',
       pre: [
         {
@@ -1022,6 +1036,7 @@ export default {
     },
     {
       id: 'eng.drawings.tuning',
+      gist: 'Een staptest levert procesversterking, dode tijd en tijdconstante; lambda-tuning rekent daaruit de regelaarversterking: Kc = τ / (Kp × (λ + θ)).',
       title: 'Een kring inregelen: staptest en inregelmethodes',
       pre: [
         {
@@ -1097,6 +1112,7 @@ export default {
     },
     {
       id: 'eng.drawings.loopaudit',
+      gist: 'Een kringaudit rangschikt kringen met historiandata, en je repareert eerst die op de bottleneck, kwaliteit en energie: minder spreiding betaalt zich uit.',
       title: 'Kringprestaties: de kringen vinden die geld kosten',
       pre: [
         {
