@@ -11,7 +11,7 @@ import { openerCard } from './opener.js';
 import { placeLabel } from './coursehome.js';
 import { runExplain, runExplainBack } from '../core/coursecoach.js';
 import { figureFrame } from './figure.js';
-import { filmStep, closeFilms } from './film.js';
+import { filmStep, filmButton, closeFilms } from './film.js';
 
 // Where he is in the lesson: Guess · Read (or Film) · Example · Check, the current one
 // marked. With onJump, a step already done is a button back to it.
@@ -168,6 +168,8 @@ export function renderLesson(app, params, root) {
         const last = block === lesson.teach.length - 1;
         show(
           h('section', { class: 'card teach-card' }, dots(lesson.teach.length, block),
+            // a text-first film (17 Nov): the reading leads, the film is offered on the first block
+            block === 0 && lesson.film ? filmButton(app, lesson.film, place && place.level, { video: true }) : null,
             prose('teach-text', lesson.teach[block], terms),
             last ? h('p', { class: 'said' }, lesson.said) : null,
             last && lesson.figure ? figureFrame(app, lesson.figure, place && place.level) : null,

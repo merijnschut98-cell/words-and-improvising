@@ -54,3 +54,6 @@ Pro subscription (smaller budget): fewer agents at once. Priority: UI/UX so a vi
 
 ## Standing rule (Merijn, 16 Nov)
 Never resume or start agents on my own after a usage limit or a pause. When agents stop on a limit, report it and wait; Merijn decides when work starts again. The hourly check-in stays disabled.
+
+## Merijn, 17 Nov: text-first Projects films
+"Gewoon de volledige sessie opmaken." Projects lessons where the picture adds little become text-first: the reading is the main path, the film stays as "Bekijk de film". Difficult or visual topics keep the film. Done in v367: 18 of 40 Projects lesson films are text-first (list `src/content/courses/films/textfirst.js`, triage and rulings `2026-11-17-text-first-films.md`). Task 17 skips text-first films (no extension or split); pilot C (`pm.scaled.pi`, KEEP) is held for now, pilots A (cnc render) and B (moulding.cycle) run.
