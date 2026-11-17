@@ -3,6 +3,7 @@ export default {
   lessons: [
     {
       id: 'pm.scaled.why',
+      gist: 'Teams that each do Scrum alone get stuck on dependencies; SAFe has a release train of usually 50 to 125 people deliver as one whole.',
       film: 'pm.scaled.pi',
       title: 'Why scale, and what a release train is',
       pre: [
@@ -86,6 +87,7 @@ export default {
     },
     {
       id: 'pm.scaled.piplanning',
+      gist: 'In PI Planning the whole train plans together, usually over two days; a goal a team is unsure of becomes uncommitted: no promise.',
       film: 'pm.scaled.pi',
       title: 'PI Planning: two days of planning together',
       pre: [
@@ -169,6 +171,7 @@ export default {
     },
     {
       id: 'pm.scaled.roles',
+      gist: 'The Release Train Engineer coaches the train and removes obstacles, Product Management orders the ART Backlog, and the Product Owner sits with one team.',
       film: 'pm.scaled.pi',
       title: 'The roles: who decides what',
       pre: [
@@ -254,6 +257,7 @@ export default {
     },
     {
       id: 'pm.scaled.configs',
+      gist: 'SAFe has four configurations, Essential SAFe is the simplest starting point and bigger is not better; every PI ends with Inspect and Adapt.',
       title: 'The four configurations, and how much SAFe you need',
       pre: [
         {
@@ -338,6 +342,7 @@ export default {
     },
     {
       id: 'pm.scaled.lpm',
+      gist: 'Lean Portfolio Management funds value streams with their stable teams and adjusts regularly, instead of separate projects in an annual round.',
       title: 'From projects to value streams',
       pre: [
         {
@@ -420,6 +425,7 @@ export default {
     },
     {
       id: 'pm.scaled.epics',
+      gist: 'Test a big epic small with an MVP; if the measurement does not support the hypothesis, you adjust or stop.',
       title: 'Epics: large initiatives in small steps',
       pre: [
         {
@@ -502,6 +508,7 @@ export default {
     },
     {
       id: 'pm.scaled.wsjf',
+      gist: 'WSJF ranks work by Cost of Delay divided by duration, so short work goes first at equal Cost of Delay; sunk costs do not count.',
       title: 'Prioritising with WSJF',
       pre: [
         {
@@ -586,6 +593,7 @@ export default {
     },
     {
       id: 'pm.scaled.budgets',
+      gist: 'A Lean budget funds value streams instead of projects; stakeholders divide it together, within guardrails such as capacity allocation.',
       title: 'Lean budgets and guardrails',
       pre: [
         {
@@ -669,6 +677,7 @@ export default {
     },
     {
       id: 'pm.scaled.less',
+      gist: 'LeSS scales by leaving things out: one Product Owner, one backlog, one Definition of Done and one sprint for all teams.',
       title: 'LeSS: scaling by leaving things out',
       pre: [
         {
@@ -751,6 +760,7 @@ export default {
     },
     {
       id: 'pm.scaled.nexus',
+      gist: 'Nexus is Scrum with about three to nine teams; the Nexus Integration Team makes sure there is one usable Integrated Increment every sprint.',
       title: 'Nexus: Scrum with an integration team',
       pre: [
         {
@@ -832,6 +842,7 @@ export default {
     },
     {
       id: 'pm.scaled.spotify',
+      gist: 'The Spotify article describes a snapshot, not a framework; the problem lies in copying without understanding.',
       title: 'The ‘Spotify model’ and its pitfalls',
       pre: [
         {
@@ -916,6 +927,7 @@ export default {
     },
     {
       id: 'pm.scaled.critique',
+      gist: 'The evidence for SAFe is thin and any framework can become a cargo cult; judge by what you see, not by the forms.',
       title: 'Criticism of SAFe, fairly weighed',
       pre: [
         {
@@ -998,6 +1010,7 @@ export default {
     },
     {
       id: 'pm.scaled.stagegate',
+      gist: 'Changes get dearer as the design advances, so hardware plans more up front: gates for big investments, sprints within the stages.',
       film: 'pm.scaled.hybrid',
       title: 'Stage-gate and agile in manufacturing',
       pre: [
@@ -1080,6 +1093,7 @@ export default {
     },
     {
       id: 'pm.scaled.longlead',
+      gist: 'Plan back from SOP to find the design freeze; fix interfaces and long-lead items early, and keep the rest flexible.',
       film: 'pm.scaled.hybrid',
       title: 'Long lead times and backward planning',
       pre: [
@@ -1162,6 +1176,7 @@ export default {
     },
     {
       id: 'pm.scaled.integration',
+      gist: 'Integrate hardware and software as often as is economically sensible: with integration at the end, problems pile up.',
       title: 'Integration points: hardware and software together',
       pre: [
         {
@@ -1245,6 +1260,7 @@ export default {
     },
     {
       id: 'pm.scaled.hybridgov',
+      gist: 'A hybrid keeps gates for irreversible decisions and sprints within the stages; the gate asks what is proven, not whether the documents exist.',
       title: 'Setting up and steering a hybrid approach',
       pre: [
         {
