@@ -3,6 +3,7 @@ export default {
   lessons: [
     {
       id: 'pm.plan.wbs',
+      gist: 'Start from checkable results, not activities; keep work packages under 80 hours and build the list with the people doing the work.',
       film: 'pm.plan.wbs',
       title: 'Breaking the work down',
       pre: [
@@ -84,6 +85,7 @@ export default {
     },
     {
       id: 'pm.plan.scope',
+      gist: 'Fix on one page what is in and what is out, with a checkable acceptance criterion and written-out exclusions and assumptions.',
       title: 'Fixing the scope: what’s in and what’s out',
       pre: [
         {
@@ -166,6 +168,7 @@ export default {
     },
     {
       id: 'pm.plan.products',
+      gist: 'Plan the end product first, then the tree of products and what good means for each, and only then the activities and their order.',
       title: 'Product-based planning (PRINCE2)',
       pre: [
         {
@@ -250,6 +253,7 @@ export default {
     },
     {
       id: 'pm.plan.control',
+      gist: 'With an approved baseline and tolerances the project manager steers inside the margin; outside it he reports an exception to the steering group.',
       title: 'Baseline, tolerances and rolling wave planning',
       pre: [
         {
@@ -334,6 +338,7 @@ export default {
     },
     {
       id: 'pm.plan.schedule',
+      gist: 'Only the critical path, the longest chain of dependent tasks, sets the end date; float is how far a task may slip.',
       film: 'pm.plan.schedule',
       title: 'Critical path and the one-page plan',
       pre: [
@@ -417,6 +422,7 @@ export default {
     },
     {
       id: 'pm.plan.method',
+      gist: 'Choose the method by uncertainty: known work fits a sequential plan, an unknown solution fits short rounds with fast feedback.',
       film: 'pm.plan.method',
       title: 'Choosing a way of working',
       pre: [
@@ -499,6 +505,7 @@ export default {
     },
     {
       id: 'pm.plan.network',
+      gist: 'Calculate the network: the largest early finish among the predecessors sets the earliest start, and float is latest minus earliest start.',
       title: 'Calculating the network: earliest, latest and float',
       pre: [
         {
@@ -583,6 +590,7 @@ export default {
     },
     {
       id: 'pm.plan.compress',
+      gist: 'Speed up only on the critical path: crashing costs money, fast-tracking costs risk; pick the cheapest per week gained and watch the trend.',
       title: 'Speeding up and tracking the schedule',
       pre: [
         {
@@ -667,6 +675,7 @@ export default {
     },
     {
       id: 'pm.plan.estimate',
+      gist: 'Give a range, not a point: the PERT mean is (O + 4M + P) / 6, and work is not elapsed time.',
       film: 'pm.plan.wbs',
       title: 'Estimating honestly',
       pre: [
@@ -751,6 +760,7 @@ export default {
     },
     {
       id: 'pm.plan.techniques',
+      gist: 'Estimate by analogy for a quick first number, parametrically as norm times quantity, and bottom-up per package; lay them side by side.',
       title: 'Estimating methods: compare, norms and add up',
       pre: [
         {
@@ -834,6 +844,7 @@ export default {
     },
     {
       id: 'pm.plan.spread',
+      gist: 'The spread of one activity is (P − O) / 6; for a chain, add the variances and take the square root.',
       title: 'Adding up uncertainty: spread and confidence',
       pre: [
         {
@@ -919,6 +930,7 @@ export default {
     },
     {
       id: 'pm.plan.chain',
+      gist: 'Take the reserve out of each task and put one shared buffer behind the critical chain; track how fast it is used up.',
       title: 'Critical chain and managing buffers',
       pre: [
         {
@@ -1003,6 +1015,7 @@ export default {
     },
     {
       id: 'pm.plan.risk',
+      gist: 'A usable risk register names a concrete event, an owner and an action with a date, and is reviewed briefly and often.',
       film: 'pm.plan.risk',
       title: 'A risk register that gets used',
       pre: [
@@ -1084,6 +1097,7 @@ export default {
     },
     {
       id: 'pm.plan.raci',
+      gist: 'A RACI sets for each deliverable who does it, who owns it (exactly one), who gives input and who is told.',
       film: 'pm.intake.stakeholders',
       title: 'Roles and the sponsor',
       pre: [
@@ -1166,6 +1180,7 @@ export default {
     },
     {
       id: 'pm.plan.capacity',
+      gist: 'Plan with the hours people really have free, not their contract; solve overload by leveling, even if the end date moves later.',
       title: 'Planning people and capacity',
       pre: [
         {
@@ -1252,6 +1267,7 @@ export default {
     },
     {
       id: 'pm.plan.riskvalue',
+      gist: 'Put risks in money: expected value is probability times impact, and the reserve for known risks is kept apart from the one for the unforeseen.',
       title: 'Risks in money and reserves',
       pre: [
         {

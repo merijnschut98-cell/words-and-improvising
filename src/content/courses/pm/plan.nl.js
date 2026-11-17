@@ -3,6 +3,7 @@ export default {
   lessons: [
     {
       id: 'pm.plan.wbs',
+      gist: 'Begin bij resultaten die je kunt controleren, niet bij activiteiten; houd werkpakketten onder de 80 uur en bouw de lijst met wie het werk doet.',
       film: 'pm.plan.wbs',
       title: 'Het werk opdelen',
       pre: [
@@ -84,6 +85,7 @@ export default {
     },
     {
       id: 'pm.plan.scope',
+      gist: 'Leg op één A4 vast wat er wel en niet bij hoort, met een controleerbaar acceptatiecriterium en uitgeschreven uitsluitingen en aannames.',
       title: 'Scope vastleggen: wat wel en wat niet',
       pre: [
         {
@@ -166,6 +168,7 @@ export default {
     },
     {
       id: 'pm.plan.products',
+      gist: 'Plan eerst het eindproduct, dan de boom van producten en per product wat goed is, en pas daarna de activiteiten en de volgorde.',
       title: 'Productgericht plannen (PRINCE2)',
       pre: [
         {
@@ -250,6 +253,7 @@ export default {
     },
     {
       id: 'pm.plan.control',
+      gist: 'Met een goedgekeurde basislijn en toleranties stuurt de projectleider binnen de marge; erbuiten meldt hij een uitzondering aan de stuurgroep.',
       title: 'Basislijn, toleranties en rollende planning',
       pre: [
         {
@@ -334,6 +338,7 @@ export default {
     },
     {
       id: 'pm.plan.schedule',
+      gist: 'Alleen het kritieke pad, de langste keten van afhankelijke taken, bepaalt de einddatum; speling is hoeveel een taak mag uitlopen.',
       film: 'pm.plan.schedule',
       title: 'Kritiek pad en de planning op één A4',
       pre: [
@@ -417,6 +422,7 @@ export default {
     },
     {
       id: 'pm.plan.method',
+      gist: 'Kies de werkwijze naar de onzekerheid: bekend werk past bij een plan op volgorde, een onbekende oplossing bij korte rondes met feedback.',
       film: 'pm.plan.method',
       title: 'Een werkwijze kiezen',
       pre: [
@@ -499,6 +505,7 @@ export default {
     },
     {
       id: 'pm.plan.network',
+      gist: 'Reken het netwerk door: het grootste vroegste einde van de voorgangers bepaalt de vroegste start, en speling is laatste minus vroegste start.',
       title: 'Rekenen met het netwerk: vroegst, laatst en speling',
       pre: [
         {
@@ -583,6 +590,7 @@ export default {
     },
     {
       id: 'pm.plan.compress',
+      gist: 'Versnel alleen op het kritieke pad: crashing kost geld, fast-tracking kost risico; kies de goedkoopste per gewonnen week en bewaak de trend.',
       title: 'Versnellen en de planning bewaken',
       pre: [
         {
@@ -667,6 +675,7 @@ export default {
     },
     {
       id: 'pm.plan.estimate',
+      gist: 'Geef een bandbreedte in plaats van een punt: het PERT-gemiddelde is (O + 4M + P) / 6, en werk is geen doorlooptijd.',
       film: 'pm.plan.wbs',
       title: 'Eerlijk schatten',
       pre: [
@@ -751,6 +760,7 @@ export default {
     },
     {
       id: 'pm.plan.techniques',
+      gist: 'Schat analoog voor een snel eerste getal, parametrisch als normgetal maal aantal, en bottom-up per pakket; leg ze naast elkaar.',
       title: 'Schatmethodes: vergelijken, normen en optellen',
       pre: [
         {
@@ -834,6 +844,7 @@ export default {
     },
     {
       id: 'pm.plan.spread',
+      gist: 'De spreiding van een activiteit is (P − O) / 6; die van een keten is de wortel uit de som van de varianties.',
       title: 'Onzekerheid optellen: spreiding en zekerheid',
       pre: [
         {
@@ -919,6 +930,7 @@ export default {
     },
     {
       id: 'pm.plan.chain',
+      gist: 'Haal de reserve uit elke taak en zet een gedeelde buffer achter de kritieke keten; volg hoe snel die buffer verbruikt wordt.',
       title: 'Kritieke keten en buffers beheren',
       pre: [
         {
@@ -1003,6 +1015,7 @@ export default {
     },
     {
       id: 'pm.plan.risk',
+      gist: 'Een bruikbare risicolijst noemt een concrete gebeurtenis, een eigenaar met naam en een actie met datum, en wordt kort en regelmatig bekeken.',
       film: 'pm.plan.risk',
       title: 'Een risicolijst die gebruikt wordt',
       pre: [
@@ -1084,6 +1097,7 @@ export default {
     },
     {
       id: 'pm.plan.raci',
+      gist: 'Een RACI zet per resultaat vast wie het doet, wie eigenaar is (precies één), wie input geeft en wie het hoort.',
       film: 'pm.intake.stakeholders',
       title: 'Rollen en de sponsor',
       pre: [
@@ -1166,6 +1180,7 @@ export default {
     },
     {
       id: 'pm.plan.capacity',
+      gist: 'Plan met de uren die mensen echt vrij hebben, niet met hun contract; overbelasting los je op met leveling, desnoods met een latere einddatum.',
       title: 'Mensen en capaciteit plannen',
       pre: [
         {
@@ -1252,6 +1267,7 @@ export default {
     },
     {
       id: 'pm.plan.riskvalue',
+      gist: 'Druk risico\'s uit in geld: verwachte waarde is kans maal impact, en de reserve voor bekende risico\'s staat apart van die voor het onvoorziene.',
       title: 'Risico’s in geld en reserves',
       pre: [
         {
