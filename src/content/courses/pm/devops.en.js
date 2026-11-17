@@ -3,6 +3,7 @@ export default {
   lessons: [
     {
       id: 'pm.devops.pipeline',
+      gist: 'DevOps breaks down the wall between building and running with a pipeline: an automated line that sends every change through the same steps.',
       film: 'pm.devops.pipeline',
       title: 'What DevOps is, and what a pipeline does',
       pre: [
@@ -86,6 +87,7 @@ export default {
     },
     {
       id: 'pm.devops.tests',
+      gist: 'The test pyramid says: many fast unit tests, fewer integration tests, few end-to-end; and a flaky test teaches the team to ignore red alerts.',
       title: 'Test automation: unit, integration and end-to-end',
       pre: [
         {
@@ -168,6 +170,7 @@ export default {
     },
     {
       id: 'pm.devops.trunk',
+      gist: 'Continuous integration means everyone merges into the trunk at least daily, with build and tests; a branch that stays apart for weeks is inventory.',
       title: 'Continuous integration and trunk-based development',
       pre: [
         {
@@ -252,6 +255,7 @@ export default {
     },
     {
       id: 'pm.devops.cdflow',
+      gist: 'Continuous delivery can put any version live, but a person chooses when; on the factory floor automatic deployment rarely suits machine software.',
       title: 'Continuous delivery on the factory floor',
       pre: [
         {
@@ -334,6 +338,7 @@ export default {
     },
     {
       id: 'pm.devops.fourkeys',
+      gist: 'DORA measures four keys: deployment frequency and lead time for speed, change fail rate and recovery time for stability, and the best teams have both.',
       film: 'pm.devops.pipeline',
       title: 'DORA: the four key metrics',
       pre: [
@@ -417,6 +422,7 @@ export default {
     },
     {
       id: 'pm.devops.measure',
+      gist: 'Take DORA figures from systems you already have, use the median for times, and measure all of them, not just the easy number.',
       title: 'Measuring DORA without fooling yourself',
       pre: [
         {
@@ -498,6 +504,7 @@ export default {
     },
     {
       id: 'pm.devops.benchmark',
+      gist: 'DORA clusters such as elite come from a survey of a given year; name the year and look mostly at your own trend.',
       title: 'Benchmarks: elite, low, and what the reports really say',
       pre: [
         {
@@ -580,6 +587,7 @@ export default {
     },
     {
       id: 'pm.devops.metricsuse',
+      gist: 'DORA figures are outcomes that improve through ways of working; steer on those capabilities, because a measure that becomes a target gets gamed.',
       title: 'Steering with DORA without breaking the measure',
       pre: [
         {
@@ -662,6 +670,7 @@ export default {
     },
     {
       id: 'pm.devops.environments',
+      gist: 'Software moves through environments from development to production; the difference lies in configuration, and in a factory real machines come into it.',
       title: 'Environments: from development to production',
       pre: [
         {
@@ -742,6 +751,7 @@ export default {
     },
     {
       id: 'pm.devops.flags',
+      gist: 'Deploy is installing, release is switching on for users; a feature flag separates the two so half-finished work can sit switched off in production.',
       title: 'Deploy is not release: feature flags',
       pre: [
         {
@@ -823,6 +833,7 @@ export default {
     },
     {
       id: 'pm.devops.strategies',
+      gist: 'Blue-green, canary and rolling put a version live safely, each with a different blast radius; choose by how much equipment and traffic you have.',
       title: 'Blue-green, canary and rolling: going live safely',
       pre: [
         {
@@ -906,6 +917,7 @@ export default {
     },
     {
       id: 'pm.devops.rollback',
+      gist: 'When an update fails you choose rollback or roll forward; the hard part is the data, so plan beforehand who decides and on which signal.',
       title: 'Rolling back or fixing forward',
       pre: [
         {
@@ -989,6 +1001,7 @@ export default {
     },
     {
       id: 'pm.devops.incident',
+      gist: 'In ITIL you restore an incident fast, remove its cause as a problem, and assess every change that could affect a service.',
       film: 'pm.devops.incident',
       title: 'Incident, problem, change: ITIL in plain words',
       pre: [
@@ -1072,6 +1085,7 @@ export default {
     },
     {
       id: 'pm.devops.sla',
+      gist: 'An SLA sets response and resolution time per priority, and availability as a percentage: 99.9% over a month is over 43 minutes of outage.',
       title: 'SLAs, priorities and availability',
       pre: [
         {
@@ -1154,6 +1168,7 @@ export default {
     },
     {
       id: 'pm.devops.postmortem',
+      gist: 'A post-mortem is blameless: look for what in the system allowed the error, with a timeline and actions with an owner and a date.',
       film: 'pm.devops.postmortem',
       title: 'The post-mortem: learning from an outage without a culprit',
       pre: [
@@ -1238,6 +1253,7 @@ export default {
     },
     {
       id: 'pm.devops.leanops',
+      gist: 'A heavy CAB does not lower the fail rate but does slow delivery; pre-approve routine changes and use andon and A3.',
       title: 'Lean in IT operations: andon, A3 and changes without the brake on',
       pre: [
         {
