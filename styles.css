@@ -1343,3 +1343,10 @@ button.order-slot.locked { cursor: default; opacity: 0.75; }
 .review-list { margin: 2px 0 4px; padding-left: 1.4em; }
 .review-detail { margin: 0 0 4px; color: var(--accent-dark); font-weight: 600; }
 @media (min-width: 720px) { .order-slots { max-width: 560px; } .match-cols { gap: 24px; } }
+
+/* v18 F3: review load. Skip today, the quiet due card, the daily limit note. */
+.today-skip, .due-skip { width: 100%; margin-top: 4px; }
+.due-wrap { display: flex; flex-direction: column; gap: 4px; }
+.due-more { margin: 0; text-align: center; }
+.due-quiet { display: flex; flex-direction: column; gap: 4px; align-items: flex-start; }
+.due-quiet-note { margin: 0; display: flex; gap: 6px; align-items: center; }

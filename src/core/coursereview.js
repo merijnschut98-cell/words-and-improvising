@@ -49,11 +49,19 @@ export function dueCourseQuestions(reviews, today, subject, lang) {
 
 // What a session can hold: the regular due ones plus at most three lapsed,
 // so a return after a long break shows a normal-size session.
-export function dueCount(reviews, today, subject, lang) {
+// left (v18, daily limit): how many more reviews today's limit allows; Infinity = no limit.
+export function dueCount(reviews, today, subject, lang, left = Infinity) {
   const due = dueCourseQuestions(reviews, today, subject, lang);
   const lapsed = due.filter((q) => q.lapsed).length;
-  return due.length - lapsed + Math.min(LAPSED_PER_SESSION, lapsed);
+  return Math.min(left, due.length - lapsed + Math.min(LAPSED_PER_SESSION, lapsed));
 }
+
+// Daily limit on reviews (v18 F3): settings.reviewCap, 0 = no limit. Device-only.
+export const REVIEW_CAPS = [10, 20, 40, 0];
+export const DEFAULT_REVIEW_CAP = 20;
+export const reviewCapOf = (settings) => { const c = (settings || {}).reviewCap; return REVIEW_CAPS.includes(c) ? c : DEFAULT_REVIEW_CAP; };
+// Reviews still allowed today: the limit minus what today's due sessions held.
+export const reviewsLeft = (cap, used) => (cap > 0 ? Math.max(0, cap - used) : Infinity);
 
 function shuffle(arr, rng) {
   const a = [...arr];
@@ -66,7 +74,9 @@ function shuffle(arr, rng) {
 
 // One session: the track with the most due questions (similar material
 // interleaves well), its modules taken in turn, shuffled within a module.
-export function dueSession(reviews, today, subject, lang, rng, { max = 10, trackOf = indexTrackOf } = {}) {
+export function dueSession(reviews, today, subject, lang, rng, { max = 10, trackOf = indexTrackOf, left = Infinity } = {}) {
+  max = Math.min(max, left);
+  if (max <= 0) return [];
   const all = dueCourseQuestions(reviews, today, subject, lang);
   // Up to three lapsed questions (oldest first) go after the regular ones.
   const lapsed = all.filter((q) => q.lapsed).slice(0, Math.min(LAPSED_PER_SESSION, max)).map((q) => q.questionId);

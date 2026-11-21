@@ -7,10 +7,10 @@ import { mapFor } from '../content/courses/maps/index.js';
 import { subjectMap } from './subjectmap.js';
 import { guideOn } from './guide.js';
 import { filmButton } from './film.js';
-import { courseTodayPick, moduleMastery, nextLesson, levelsDone } from '../core/course.js';
+import { courseTodayPick, moduleMastery, nextLesson, levelsDone, dueNow, dueWaiting, dueSkipped, skipDueToday } from '../core/course.js';
 import { pathModel, topicPath } from './pathmap.js';
 import { medalSeal, metaSeal, moduleEndModel, checkEntry, guideGreeting } from './flairui.js';
-import { dueCount, mapNextModule } from '../core/coursereview.js';
+import { mapNextModule } from '../core/coursereview.js';
 import { FROM_MODULE } from '../core/moduleexit.js';
 import { moduleTier, trackProgress, openTrack } from '../core/layout.js';
 
@@ -67,7 +67,12 @@ function todayCard(app, subject, pick) {
     pick.reason === 'done' ? null : h('button', {
       class: 'btn btn-primary today-go',
       onclick: (e) => { const btn = e.currentTarget; btn.disabled = true; enableOnFail(btn, openPick(app, subject, pick)); },
-    }, ico('play'), ' ', t('courseGo')));
+    }, ico('play'), ' ', t('courseGo')),
+    // Too many reviews today: skip them, no penalty; the lesson becomes the next step (v18 F3).
+    pick.reason === 'due' ? h('button', {
+      class: 'btn btn-ghost small today-skip',
+      onclick: () => { app.setState(skipDueToday(app.state, subject, app.today())); app.go('home'); },
+    }, t('dueSkipToday')) : null);
 }
 
 // The meta line every module shares: difficulty (Instap / Verdieping /
@@ -246,10 +251,30 @@ function fieldsRow(app, subject) {
     filmButton(app, f.film, null, { video: true, text: () => h('p', { class: 'muted small' }, f.blurb[app.lang] || f.blurb.en) }))));
 }
 
+// The due card (v18 F3): skipped today it turns quiet with a way back in; with the
+// daily limit it says how many wait for tomorrow; at the limit it is a quiet line.
+function dueCard(app, subject, { due, waiting, skipped, offerSkip = true }) {
+  const t = app.t;
+  if (skipped && waiting) {
+    return h('section', { class: 'card due-quiet' },
+      h('p', { class: 'muted small due-quiet-note' }, ico('repeat'), ' ', t('dueSkippedNote', waiting)),
+      due ? h('button', { class: 'btn btn-ghost small due-redo', onclick: () => app.go('due', { subject }) }, t('dueSkippedDo')) : null);
+  }
+  if (!due) return waiting ? h('section', { class: 'card due-quiet' }, h('p', { class: 'muted small due-quiet-note' }, ico('repeat'), ' ', t('dueLimitHit', waiting))) : null;
+  return h('div', { class: 'due-wrap' },
+    h('button', { class: 'btn due-card', onclick: () => app.go('due', { subject }) },
+      h('span', { class: 'hero-title' }, ico('repeat'), ' ', t('dueTitle')),
+      h('span', { class: 'hero-sub' }, t('dueCard', due))),
+    waiting > due ? h('p', { class: 'muted small due-more' }, t('dueMoreWait', waiting - due)) : null,
+    offerSkip ? h('button', { class: 'btn btn-ghost small due-skip', onclick: () => { app.setState(skipDueToday(app.state, subject, app.today())); app.go('home'); } }, t('dueSkipToday')) : null);
+}
+
 export function courseHome(app, subject) {
   const t = app.t;
   const map = mapFor(subject);
-  const due = dueCount(app.state.courseReviews, app.today(), subject, app.lang);
+  const due = dueNow(app.state, subject, app.lang, app.today());
+  const waiting = dueWaiting(app.state, subject, app.lang, app.today());
+  const skipped = dueSkipped(app.state, subject, app.today());
   const pick = courseTodayPick(app.state, subject, app.lang, app.today());
   // With a map the tracks stay closed: the map is the way in.
   const first = map ? null : openTrack(app.state, subject, pick);
@@ -262,9 +287,7 @@ export function courseHome(app, subject) {
     quick: () => h('div', { class: 'quick-row' },
       h('button', { class: 'btn btn-ghost small glossary-entry', onclick: () => app.go('glossary', { subject }) }, ico('library'), ' ', t('glossary')),
       realWeekEntry(app, true)),
-    due: () => (due ? h('button', { class: 'btn due-card', onclick: () => app.go('due', { subject }) },
-      h('span', { class: 'hero-title' }, ico('repeat'), ' ', t('dueTitle')),
-      h('span', { class: 'hero-sub' }, t('dueCard', due))) : null),
+    due: () => dueCard(app, subject, { due, waiting, skipped, offerSkip: pick.reason !== 'due' }),
     fields: () => fieldsRow(app, subject),
     tracks: () => [...tracks, tracks.some(Boolean) ? null : h('p', { class: 'note' }, t('courseEmpty'))],
   };
