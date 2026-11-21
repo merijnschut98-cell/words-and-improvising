@@ -291,6 +291,7 @@ export default {
     {
       id: 'pm.approach.families',
       gist: 'Vier methodefamilies en een mengvorm; DMAIC is een projectstructuur voor elke verbetering, niet alleen voor Six Sigma.',
+      pictures: [{ id: 'pm.approach.families.map', after: 3, alt: 'Tabel met de vier methodefamilies en de mengvorm, elk met de bekende methoden die erbij horen.' }],
       title: 'De methodefamilies',
       pre: [
         {

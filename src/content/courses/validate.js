@@ -3,6 +3,7 @@
 // an empty list means the module is valid. Pure.
 import { containsAnswer } from '../../core/hint.js';
 import { KINDS, kindOf, gapKey } from '../../core/questionkinds.js';
+import { KINDS as PICTURE_KINDS, pictureLabels } from '../../ui/picture.js';
 
 const MAX_BLOCK_WORDS = 90;
 const MAX_HINT_WORDS = 25;
@@ -407,6 +408,92 @@ export function checkOpeners(modules, openers) {
   return errs;
 }
 
+// v18 G1: lesson pictures. `lesson.pictures` is [{ id, after, alt }]: after is a
+// teach block index or 'example', at most two, alt at most 30 words (per language
+// file). `pictures` is the module's picture file (pictures/<moduleId>.js) or null
+// when it has none. Small and self-contained on purpose.
+export const MAX_PICTURES = 2;
+export const MAX_ALT_WORDS = 30;
+const PICTURE_NAME = /^[a-z0-9]+(\.[a-z0-9]+)*$/;
+const isL = (l) => l && typeof l === 'object' && str(l.nl) && str(l.en);
+const labelOk = (l) => (Array.isArray(l) ? l.length > 0 && l.every(isL) : isL(l));
+
+// The shape of one picture: its kind, and that every label has both languages.
+export function checkPictureData(pic, at, errs) {
+  if (!pic || !PICTURE_KINDS.includes(pic.kind)) { errs.push(`${at}: picture kind must be one of ${PICTURE_KINDS.join(', ')}`); return; }
+  const bad = [];
+  const add = (l) => { if (l != null && !labelOk(l)) bad.push(JSON.stringify(l)); };
+  const node = (n) => { add(n.label); (n.children || []).forEach(node); };
+  if (pic.kind === 'table') { (pic.head || []).forEach(add); (pic.rows || []).forEach((r) => r.forEach(add)); }
+  else if (pic.kind === 'grid') { (pic.cols || []).forEach(add); (pic.rows || []).forEach(add); (pic.cells || []).forEach((r) => r.forEach(add)); add(pic.xTitle); add(pic.yTitle); }
+  else if (pic.kind === 'cycle') { (pic.steps || []).forEach(add); add(pic.center); }
+  else if (pic.kind === 'flow') (pic.steps || []).forEach((s) => (s && s.label ? (add(s.label), add(s.note)) : add(s)));
+  else if (pic.kind === 'tree') { if (pic.root) node(pic.root); else bad.push('no root'); }
+  else if (pic.kind === 'timeline') (pic.events || []).forEach((e) => { add(e.at); add(e.label); });
+  if (bad.length) errs.push(`${at}: labels need nl and en text: ${bad.slice(0, 3).join(' ')}`);
+  if (!pictureLabels(pic, 'nl').length) errs.push(`${at}: picture has no labels`);
+  if (pic.kind === 'grid' && !((pic.cells || []).length && pic.cells.length === (pic.rows || []).length)) errs.push(`${at}: grid needs one row of cells per row label`);
+  if (pic.kind === 'cycle' && !((pic.steps || []).length >= 3 && pic.steps.length <= 8)) errs.push(`${at}: a cycle has 3 to 8 steps`);
+}
+
+// The lessons of one language file against the module's picture file.
+export function checkPictures(lessons, pictures, moduleId, lang, errs) {
+  for (const l of lessons) {
+    if (!l || !('pictures' in l)) continue;
+    const at = `${lang} ${l.id}`;
+    const ps = l.pictures;
+    if (!Array.isArray(ps) || ps.length < 1 || ps.length > MAX_PICTURES) { errs.push(`${at}: pictures needs 1 to ${MAX_PICTURES} entries`); continue; }
+    const teach = (l.teach || []).length;
+    ps.forEach((p, i) => {
+      const w = `${at} picture ${i}`;
+      if (!p || typeof p.id !== 'string' || !p.id.startsWith(`${moduleId}.`) || !PICTURE_NAME.test(p.id)) errs.push(`${w}: id must be like ${moduleId}.<name>`);
+      if (!(p && (p.after === 'example' || (Number.isInteger(p.after) && p.after >= 0 && p.after < teach)))) errs.push(`${w}: after must be a teach block 0 to ${teach - 1} or 'example'`);
+      if (!(p && str(p.alt))) errs.push(`${w}: alt text missing`);
+      else if (words(p.alt) > MAX_ALT_WORDS) errs.push(`${w}: alt has ${words(p.alt)} words (max ${MAX_ALT_WORDS})`);
+      if (p && typeof p.id === 'string' && !(pictures && pictures[p.id])) errs.push(`${w}: picture ${p.id} is not in pictures/${moduleId}.js`);
+    });
+    if (new Set(ps.map((p) => p && p.id)).size !== ps.length) errs.push(`${at}: the same picture twice`);
+  }
+}
+
+// en and nl show the same pictures in the same places.
+export function checkPicturesParity(en, nl, errs) {
+  for (const a of en) {
+    const b = nl.find((x) => x && x.id === a.id);
+    if (!b) continue;
+    const key = (l) => JSON.stringify((l.pictures || []).map((p) => [p.id, p.after]));
+    if (key(a) !== key(b)) errs.push(`${a.id}: pictures differ between en and nl (id and after must match)`);
+  }
+}
+
+// The text of a lesson that supports its pictures: teach, example and terms.
+export function lessonText(l) {
+  const ex = l.example || {};
+  return [...(l.teach || []), ex.text, ex.ask, ex.reveal, ...(l.terms || []).flatMap((x) => [x.term, x.def])].filter(Boolean).join('\n').toLowerCase();
+}
+// Every label of a lesson's pictures occurs in that lesson's text, in the same language.
+export function checkPictureLabels(lesson, pictures, lang, errs) {
+  const text = lessonText(lesson);
+  for (const p of lesson.pictures || []) {
+    const pic = pictures && pictures[p.id];
+    if (!pic) continue;
+    for (const label of pictureLabels(pic, lang)) if (!text.includes(label.toLowerCase())) errs.push(`${lang} ${lesson.id}: picture label "${label}" does not occur in the lesson text`);
+  }
+}
+
+// All the picture checks of one module in both languages (validateModule and runAll call this).
+export function checkModulePictures(en, nl, pictures, moduleId) {
+  const errs = [];
+  const files = { en: (en && en.lessons) || [], nl: (nl && nl.lessons) || [] };
+  for (const lang of ['en', 'nl']) {
+    checkPictures(files[lang], pictures, moduleId, lang, errs);
+    for (const l of files[lang]) if (l && l.pictures) checkPictureLabels(l, pictures, lang, errs);
+  }
+  checkPicturesParity(files.en, files.nl, errs);
+  for (const [id, pic] of Object.entries(pictures || {})) checkPictureData(pic, `picture ${id}`, errs);
+  return errs;
+}
+
 // `node src/content/courses/validate.js` is the content validator the integrator
 // runs before every push. It runs every check in this file, not only the
 // openers: each module in both languages (validateModule), its intro and
@@ -415,7 +502,7 @@ export function checkOpeners(modules, openers) {
 // Before Task 19 the file had no command-line part: running it did nothing.
 export async function runAll() {
   const fs = await import('node:fs');
-  const { MODULES, SUBJECTS, FIELDS, loadModule } = await import('./index.js');
+  const { MODULES, SUBJECTS, FIELDS, loadModule, loadPictures } = await import('./index.js');
   const { mapFor } = await import('./maps/index.js');
   const root = new URL('../../../', import.meta.url);
   const problems = [];
@@ -433,6 +520,7 @@ export async function runAll() {
   for (const m of MODULES) {
     const [en, nl] = [await loadModule(m.subject, m.id, 'en'), await loadModule(m.subject, m.id, 'nl')];
     const errs = [...checkIntro(m), ...validateModule(en, nl, m)]; // validateModule includes checkTopics
+    errs.push(...checkModulePictures(en, nl, fs.existsSync(new URL(`src/content/courses/pictures/${m.id}.js`, root)) ? await loadPictures(m.id) : null, m.id)); // v18 G1
     for (const lang of [en, nl]) {
       for (const l of lang.lessons.filter((x) => x.figure)) {
         if (!fs.existsSync(new URL(`src/content/courses/figures/${l.figure}.html`, root))) errs.push(`${l.id}: figure ${l.figure} missing`);
