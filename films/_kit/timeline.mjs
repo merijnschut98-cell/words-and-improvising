@@ -976,7 +976,7 @@ const SAY = {
     // the letters, dee em aa ie see, tˈeː ˈɛm ˈaː ˈi sˈeː). Each rule keeps to the intro's own phrase (the list of the families after
     // agile, which has become edjail by now, and DMAIC with the steps of Six Sigma), so the lessons and the other films keep their
     // voice; no other film's spoken text changes
-    [/(?<=\bVoorspellend, edjail, )Lean en Six Sigma\b/g, 'Lien en Sikss Sigma'], [/\bmet DMAIC, de stappen van Six Sigma\b/g, 'met dee em aa ie see, de stappen van Sikss Sigma'],
+    [/(?<=\bVoorspellend, edjail, )Lean en verbeteren met DMAIC\b/g, 'Lien en verbeteren met dee em aa ie see'], [/(?<=\bElk verbeterproject bouw je op met )DMAIC\b/g, 'dee em aa ie see'],
     // and toolfamilies (espeak-ng reads tool as tˈoːl, "tole") as toel-families, as the planningstool rule says its tool, only after "Denk in"
     [/(?<=\bDenk in )toolfamilies\b/g, 'toel-families'],
     // the module intro film Formats and meetings (pm.formats.intro), a self-contained group at the end of the Dutch list, checked with

@@ -27,8 +27,8 @@
 //      in two groups (how you work: route and approach; what you work with: tools and the client's systems)
 //   s2 De route: five stages, one stage product each, the mandate from the sponsor; tool: status check
 //                                                         → pm.approach.route (Basis), .takeover (Werkkennis)
-//   s3 Een aanpak kiezen: the four method families and a mix, the move is predictive, a recurring problem
-//      with data goes to Six Sigma; tool: DMAIC         → pm.approach.families (Basis), .dmaic (Werkkennis)
+//   s3 Een aanpak kiezen: the four method families and a mix, the move is predictive, an improvement project of
+//      any kind is built on DMAIC (a project structure, not Six Sigma only); tool: DMAIC         → pm.approach.families (Basis), .dmaic (Werkkennis)
 //   s4 Gereedschap kiezen: a tool pays off when it yields more than it costs, tool families, the team's tasks
 //      go on a task board on the whiteboard; tool: takenbord → pm.approach.toolfamilies (Basis), .board (Werkkennis)
 //   s5 Gereedschap bij grote organisaties: a large client has many systems with one task each, a system of
@@ -86,11 +86,11 @@ has('pm.approach.route', ['vijf fasen', 'Intake', 'Plannen', 'Uitvoeren', 'Lande
 has('pm.approach.route', ['five stages', 'Intake', 'Plan', 'Run', 'Land', 'Close', 'stage product', 'A project begins with a mandate', 'the assignment and the authority to start', 'Sponsor'], 'en');
 has('pm.approach.takeover', ['Statuscheck', 'een eerste meting van waar het project echt staat']);
 has('pm.approach.takeover', ['Status check', 'a first measurement of where the project really stands'], 'en');
-// s3: the four families and a mix, the predictive family (the move), Six Sigma and its DMAIC steps
-has('pm.approach.families', ['en een mengvorm', 'Voorspellend (predictive): eerst plannen, dan uitvoeren', 'Agile', 'Lean-verbeteren', 'Six Sigma: verbeteren met data, in vaste stappen die DMAIC heten', 'Methodefamilie']);
-has('pm.approach.families', ['There are four, plus a blend', 'Predictive: plan first, then execute', 'Agile', 'Lean improvement', 'Six Sigma: improving with data, in fixed steps called DMAIC', 'Method family'], 'en');
-has('pm.approach.dmaic', ['DMAIC is een vaste route voor een terugkerend probleem waar je data over kunt krijgen']);
-has('pm.approach.dmaic', ['DMAIC is a fixed route for a recurring problem you can get data about'], 'en');
+// s3: the four families and a mix, the predictive family (the move), DMAIC as a project structure for any improvement
+has('pm.approach.families', ['Er zijn vier methodefamilies (method families) en een mengvorm', 'voorspellend, agile, Lean-verbeteren en verbeteren met DMAIC', 'hybride', 'Voorspellend (predictive): eerst plannen, dan uitvoeren', 'Agile', 'Lean-verbeteren', 'Verbeteren met DMAIC: een projectstructuur voor elke verbetering, niet alleen voor Six Sigma', 'Methodefamilie']);
+has('pm.approach.families', ['There are four method families and a blend', 'predictive, agile, Lean improvement and improving with DMAIC', 'hybrid', 'Predictive: plan first, then execute', 'Agile', 'Lean improvement', 'Improving with DMAIC: a project structure for any improvement, not only for Six Sigma', 'Method family'], 'en');
+has('pm.approach.dmaic', ['DMAIC is een projectstructuur voor elke verbetering', 'Zo houdt de structuur het project bij elkaar']);
+has('pm.approach.dmaic', ['DMAIC is a project structure for any improvement', 'That is how the structure holds the project together'], 'en');
 // s4: a tool pays off when it yields more than it costs, the tool families, the task board
 has('pm.approach.toolfamilies', ['Een tool is het waard als hij meer oplevert dan hij kost', 'Een spreadsheet is genoeg zolang je een lijst bijhoudt', 'Denk in toolfamilies', 'Planningstool', 'Takenbord', 'Toolfamilie']);
 has('pm.approach.toolfamilies', ['A tool is worth it when it delivers more than it costs', 'A spreadsheet is enough as long as you keep a list', 'Think in terms of a tool family', 'Scheduling tool', 'Task board', 'Tool family'], 'en');
@@ -316,9 +316,9 @@ const spec = {
       id: 's3', level: 1, dur: DURS[2], still: 0.9, title: { nl: 'Een aanpak kiezen', en: 'Choosing an approach' },
       beats: [
         { nl: 'Tweede onderwerp: Een aanpak kiezen. Welke manier van werken past?', en: 'Second topic: Choosing an approach. Which way of working fits?', focus: ['tMethod', 'ask', 'sponsor'] },
-        { nl: 'Er zijn vier {t:Methodefamilie|methodefamilies} en een mengvorm.', en: 'There are four {t:Method family|method families} and a mix.', cue: { Methodefamilie: 'fams' }, focus: ['fams'] },
+        { nl: 'Er zijn vier {t:Methodefamilie|methodefamilies} en een mengvorm. Voorspellend, agile, Lean en DMAIC.', en: 'There are four {t:Method family|method families} and a mix. Predictive, agile, Lean and DMAIC.', cue: { Methodefamilie: 'fams' }, focus: ['fams'] },
         { nl: 'De verhuizing is voorspellend: eerst plannen, dan uitvoeren.', en: 'The move is predictive: plan first, then run.', focus: ['predict', 'floor', 'calendar'] },
-        { nl: 'Een terugkerend probleem met data pak je aan met {t:DMAIC|DMAIC}, de stappen van Six Sigma.', en: 'A recurring problem with data you tackle with {t:DMAIC|DMAIC}, the steps of Six Sigma.', cue: { DMAIC: 'tool1' }, focus: ['sigma', 'tool1'] },
+        { nl: 'Elk verbeterproject bouw je op met {t:DMAIC|DMAIC}, vijf fasen die het project bij elkaar houden.', en: 'Any improvement project you build on {t:DMAIC|DMAIC}, five phases that hold the project together.', cue: { DMAIC: 'tool1' }, focus: ['sigma', 'tool1'] },
       ],
     },
     {
@@ -367,7 +367,7 @@ const spec = {
 // lowercase after "de", never as the first word of a sentence), agile through the
 // rule for the ways of working, sponsor, statuscheck, faseproduct, mandaat, takenbord, 
 // systeem van vastlegging, projectnummer and ERP as they are. This film's own SAY group (the last of
-// the Dutch list) carries only DMAIC as letters and Lean and Six Sigma as a Dutch coach says them, in its own phrases.
+// the Dutch list) carries only DMAIC as letters and Lean as a Dutch coach says it, in its own phrases (v18 F4: new phrases, SAY rules still to add in the kit).
 // The s6 narration says what its captions say, with the app's level words.
 const SAY = [
   [ // s1 first day
@@ -393,12 +393,12 @@ const SAY = [
   [ // s3 choosing an approach
     { nl: 'Het tweede onderwerp is Een aanpak kiezen. Welke manier van werken past bij dit project?',
       en: 'The second topic is Choosing an approach. Which way of working fits this project?' },
-    { nl: 'Er zijn vier {t:Methodefamilie|methodefamilies} en een mengvorm. Voorspellend, agile, Lean en Six Sigma.',
-      en: 'There are four {t:Method family|method families} and a mix. Predictive, agile, Lean and Six Sigma.' },
+    { nl: 'Er zijn vier {t:Methodefamilie|methodefamilies} en een mengvorm. Voorspellend, agile, Lean en verbeteren met DMAIC. De mengvorm heet hybride.',
+      en: 'There are four {t:Method family|method families} and a mix. Predictive, agile, Lean and improving with DMAIC. The mix is called hybrid.' },
     { nl: 'De verhuizing is voorspellend. Eerst plannen, dan uitvoeren.',
       en: 'The move is predictive. Plan first, then run.' },
-    { nl: 'Een terugkerend probleem met data pak je aan met {t:DMAIC|DMAIC}, de stappen van Six Sigma.',
-      en: 'A recurring problem with data you tackle with {t:DMAIC|DMAIC}, the steps of Six Sigma.' },
+    { nl: 'Elk verbeterproject bouw je op met {t:DMAIC|DMAIC}, vijf fasen die het project bij elkaar houden.',
+      en: 'Any improvement project you build on {t:DMAIC|DMAIC}, five phases that hold the project together.' },
   ],
   [ // s4 choosing tools
     { nl: 'Het derde onderwerp is Gereedschap kiezen. Welk gereedschap kies je, en wanneer loont dat?',
@@ -512,8 +512,8 @@ const css = PM_CSS + HALL_CSS + `
 ` + mapStyles();
 
 const label = {
-  nl: 'Hal B van een grote fabriek, waar lijn 3 naartoe moet: de lijn staat nog in de oude hal. Op de vloer de nieuwe plek van lijn 3 met een gestippelde omtrek; ernaast staat lijn 4, die blijft waar hij is. Links de stroomkast met de kabel van buiten, nog niet aangesloten, aan de achterwand een whiteboard en de plek van de schakelkast als gestippelde omtrek, en aan de zijwand een kalender met weken, waarvan de laatste drie de zomerstop zijn. Op het whiteboard komen later de taken van de verhuizing als kaarten in kolommen. Rechts voor staat een bureau met een laptop. Per onderwerp komen er mensen bij: jij als adviseur, de sponsor, de teamleider en de planner van de klant. Rechts een paneel, gemarkeerd als voorbeeld of schema: het verzoek van de sponsor, de plek van de module tussen het verzoek en de intake en de vier onderwerpen van de module als tegels in twee groepen; de vijf fasen met hun faseproduct, het mandaat en een statuscheck; de vier methodefamilies en een mengvorm, de verhuizing als voorspellend en DMAIC voor een terugkerend probleem; een tool die meer oplevert dan hij kost, de toolfamilies en het takenbord; de systemen van een grote klant met elk één taak, het systeem van vastlegging, het projectnummer en het ERP; de vier keuzes samen en de weg naar de intake. Aan het eind de kaart van Projecten met Aanpak en gereedschap verlicht, en de vier onderwerpen van de module met elk vier niveaus: Basis, Werkkennis, Gevorderd en Expert.',
-  en: 'Hall B of a large plant, where line 3 has to go: the line still stands in the old hall. On the floor the new place of line 3 with a dashed outline; next to it stands line 4, which stays where it is. At the left the power cabinet with the cable from outside, not connected yet, on the back wall a whiteboard and the place of the switchboard as a dashed outline, and on the side wall a calendar of weeks, the last three of which are the summer shutdown. Later the tasks of the move appear on the whiteboard as cards in columns. At the front right stands a desk with a laptop. Each topic brings people: you as the consultant, the sponsor, the team lead and the client’s planner. At the right a panel, marked as an example or a diagram: the sponsor’s request, the place of the module between the request and the intake and the module’s four topics as tiles in two groups; the five stages with their stage product, the mandate and a status check; the four method families and a mix, the move as predictive and DMAIC for a recurring problem; a tool that yields more than it costs, the tool families and the task board; the systems of a large client with one task each, the system of record, the project code and the ERP; the four choices together and the road to the intake. At the end the map of Projects with Approach and tools lit, and the module’s four topics with four levels each: Basics, Working knowledge, Advanced and Expert.',
+  nl: 'Hal B van een grote fabriek, waar lijn 3 naartoe moet: de lijn staat nog in de oude hal. Op de vloer de nieuwe plek van lijn 3 met een gestippelde omtrek; ernaast staat lijn 4, die blijft waar hij is. Links de stroomkast met de kabel van buiten, nog niet aangesloten, aan de achterwand een whiteboard en de plek van de schakelkast als gestippelde omtrek, en aan de zijwand een kalender met weken, waarvan de laatste drie de zomerstop zijn. Op het whiteboard komen later de taken van de verhuizing als kaarten in kolommen. Rechts voor staat een bureau met een laptop. Per onderwerp komen er mensen bij: jij als adviseur, de sponsor, de teamleider en de planner van de klant. Rechts een paneel, gemarkeerd als voorbeeld of schema: het verzoek van de sponsor, de plek van de module tussen het verzoek en de intake en de vier onderwerpen van de module als tegels in twee groepen; de vijf fasen met hun faseproduct, het mandaat en een statuscheck; de vier methodefamilies en een mengvorm, de verhuizing als voorspellend en DMAIC als structuur van een verbeterproject; een tool die meer oplevert dan hij kost, de toolfamilies en het takenbord; de systemen van een grote klant met elk één taak, het systeem van vastlegging, het projectnummer en het ERP; de vier keuzes samen en de weg naar de intake. Aan het eind de kaart van Projecten met Aanpak en gereedschap verlicht, en de vier onderwerpen van de module met elk vier niveaus: Basis, Werkkennis, Gevorderd en Expert.',
+  en: 'Hall B of a large plant, where line 3 has to go: the line still stands in the old hall. On the floor the new place of line 3 with a dashed outline; next to it stands line 4, which stays where it is. At the left the power cabinet with the cable from outside, not connected yet, on the back wall a whiteboard and the place of the switchboard as a dashed outline, and on the side wall a calendar of weeks, the last three of which are the summer shutdown. Later the tasks of the move appear on the whiteboard as cards in columns. At the front right stands a desk with a laptop. Each topic brings people: you as the consultant, the sponsor, the team lead and the client’s planner. At the right a panel, marked as an example or a diagram: the sponsor’s request, the place of the module between the request and the intake and the module’s four topics as tiles in two groups; the five stages with their stage product, the mandate and a status check; the four method families and a mix, the move as predictive and DMAIC as the structure of an improvement project; a tool that yields more than it costs, the tool families and the task board; the systems of a large client with one task each, the system of record, the project code and the ERP; the four choices together and the road to the intake. At the end the map of Projects with Approach and tools lit, and the module’s four topics with four levels each: Basics, Working knowledge, Advanced and Expert.',
 };
 
 const { data } = await defineFilm(spec, { svg, script: stageScript, css, kitCss: k.ISO_CSS, label });

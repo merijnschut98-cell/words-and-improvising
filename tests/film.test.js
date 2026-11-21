@@ -1651,8 +1651,9 @@ test('speak variant: MORE PIES as More paiz in the first-talk and jargon films, 
 // the lessons, the other films and the English track keep their voice; no other film's spoken text changes
 test('speak variant: the method words of the approach intro', () => {
   const nl = (s) => speakOf([s], 'nl');
-  assert.equal(nl('Er zijn vier methodefamilies en een mengvorm. Voorspellend, agile, Lean en Six Sigma.'), 'Er zijn vier methodefamilies en een mengvorm. Voorspellend, edjail, Lien en Sikss Sigma.');
-  assert.equal(nl('Een terugkerend probleem met data pak je aan met DMAIC, de stappen van Six Sigma.'), 'Een terugkerend probleem met data pak je aan met dee em aa ie see, de stappen van Sikss Sigma.');
+  // v18 F4 (21 Nov): DMAIC as a project structure, not only Six Sigma
+  assert.equal(nl('Er zijn vier methodefamilies en een mengvorm. Voorspellend, agile, Lean en verbeteren met DMAIC. De mengvorm heet hybride.'), 'Er zijn vier methodefamilies en een mengvorm. Voorspellend, edjail, Lien en verbeteren met dee em aa ie see. De mengvorm heet hiebriede.');
+  assert.equal(nl('Elk verbeterproject bouw je op met DMAIC, vijf fasen die het project bij elkaar houden.'), 'Elk verbeterproject bouw je op met dee em aa ie see, vijf fasen die het project bij elkaar houden.');
   assert.equal(nl('Denk in toolfamilies, een soort gereedschap per soort werk.'), 'Denk in toel-families, een soort gereedschap per soort werk.');
   // elsewhere the names keep their voice
   assert.equal(nl('Six Sigma verbetert met data, Lean met kleine experimenten.'), 'Six Sigma verbetert met data, Lean met kleine experimenten.');
