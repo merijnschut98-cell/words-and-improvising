@@ -105,3 +105,48 @@ test('content: every recall question gets a hint, and no hint contains its answe
     }
   }
 });
+
+// v18 kinds
+const best = { id: 'k#r0', kind: 'best', q: 'What is the best first step?', options: ['Ask for the data', 'Ask for the data and the history', 'Start the fix', 'Wait'], answer: 'Ask for the data', close: 'Ask for the data and the history', why: 'w' };
+const all = { id: 'k#r1', kind: 'all', q: 'Which belong? Tick all.', options: ['a', 'b', 'c', 'd', 'e'], answers: ['a', 'c', 'd'], why: 'w' };
+const gap = { id: 'k#r2', kind: 'gap', q: 'Fill in.', text: 'The longest chain is the ___ path.', accept: ['critical'], why: 'w' };
+const order = { id: 'k#r3', kind: 'order', q: 'Order.', items: ['Define', 'Measure', 'Analyse'], why: 'w' };
+const match = { id: 'k#r4', kind: 'match', q: 'Match.', pairs: [['l1', 'r1'], ['l2', 'r2'], ['l3', 'r3']], why: 'w' };
+
+test('hint, best: strikes a wrong option, never the key and never the runner-up', () => {
+  for (const id of ['a', 'b', 'c', 'd', 'e', 'f']) {
+    const h = questionHint({ ...best, id }, terms);
+    assert.equal(h.kind, 'choice');
+    assert.ok(['Start the fix', 'Wait'].includes(h.strike), h.strike);
+  }
+  // with the weakest-by-overlap rule on a plain mc the runner-up (most alike) is never struck either, but best must hold it by rule
+  const close3 = { ...best, options: ['x y z', 'x y z w', 'x y', 'q'], answer: 'x y z', close: 'q' };
+  assert.notEqual(questionHint(close3, terms).strike, 'q');
+});
+
+test('hint, all: how many are right, no names', () => {
+  assert.deepEqual(questionHint(all, terms), { kind: 'count', count: 3 });
+});
+
+test('hint, gap: the first letter of the first accepted word', () => {
+  assert.deepEqual(questionHint(gap, terms), { kind: 'letter', letter: 'c' });
+  assert.equal(containsAnswer(gap, 'It starts with c'), false);
+  assert.equal(containsAnswer(gap, 'the critical one'), true);
+});
+
+test('hint, order: the first item; match: one pair, the same every time', () => {
+  assert.deepEqual(questionHint(order, terms), { kind: 'first', item: 'Define' });
+  const m = questionHint(match, terms);
+  assert.equal(m.kind, 'pair');
+  assert.ok(match.pairs.some(([l, r]) => l === m.left && r === m.right));
+  assert.deepEqual(questionHint({ ...match }, terms), m);
+});
+
+test('hint, select-all: containsAnswer needs every key to count as giving it away', () => {
+  assert.equal(containsAnswer(all, 'a'), false);
+  assert.equal(containsAnswer(all, 'a, c and d'), true);
+});
+
+test('hint: a kind’s own hint still wins', () => {
+  for (const q of [best, all, gap, order, match]) assert.deepEqual(questionHint({ ...q, hint: 'Think.' }, terms), { kind: 'own', text: 'Think.' });
+});
