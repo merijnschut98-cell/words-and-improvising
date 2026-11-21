@@ -1082,7 +1082,7 @@ const STRINGS = {
     dueSkipToday: 'Vandaag overslaan', dueSkippedNote: (n) => `Overgeslagen tot morgen · ${n} wachten`, dueSkippedDo: 'Toch doen',
     dueMoreWait: (n) => `${n} wachten tot morgen`, dueLimitHit: (n) => `Genoeg herhaald voor vandaag · ${n} wachten`,
     quizSkip: 'Overslaan', dueAllSkipped: 'Niets beantwoord. Je vragen blijven openstaan voor later.', dueSkippedLeft: (n) => `${n} overgeslagen: ze blijven openstaan, zonder straf.`,
-    reviewCapTitle: 'Herhalingen per dag', reviewCapHelp: 'Het meeste aantal ophaalvragen dat één cursus je per dag laat zien. De rest wacht, er gaat niets verloren.',
+    reviewCapTitle: 'Herhalingen per dag', reviewCapHelp: 'Hoeveel ophaalvragen één cursus je per dag hooguit laat zien. De rest wacht, er gaat niets verloren.',
     reviewCap_10: '10', reviewCap_20: '20', reviewCap_40: '40', reviewCap_0: 'Geen limiet',
     goalHelp: 'Hoeveel XP je per dag wilt halen. Missen kost niets.', goalWeek: 'Laatste 7 dagen',
     goalDay: (day, x, goal) => `${day}: ${x} van ${goal} XP`,

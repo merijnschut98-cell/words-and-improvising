@@ -253,7 +253,7 @@ function fieldsRow(app, subject) {
 
 // The due card (v18 F3): skipped today it turns quiet with a way back in; with the
 // daily limit it says how many wait for tomorrow; at the limit it is a quiet line.
-function dueCard(app, subject, { due, waiting, skipped }) {
+function dueCard(app, subject, { due, waiting, skipped, offerSkip = true }) {
   const t = app.t;
   if (skipped && waiting) {
     return h('section', { class: 'card due-quiet' },
@@ -266,7 +266,7 @@ function dueCard(app, subject, { due, waiting, skipped }) {
       h('span', { class: 'hero-title' }, ico('repeat'), ' ', t('dueTitle')),
       h('span', { class: 'hero-sub' }, t('dueCard', due))),
     waiting > due ? h('p', { class: 'muted small due-more' }, t('dueMoreWait', waiting - due)) : null,
-    h('button', { class: 'btn btn-ghost small due-skip', onclick: () => { app.setState(skipDueToday(app.state, subject, app.today())); app.go('home'); } }, t('dueSkipToday')));
+    offerSkip ? h('button', { class: 'btn btn-ghost small due-skip', onclick: () => { app.setState(skipDueToday(app.state, subject, app.today())); app.go('home'); } }, t('dueSkipToday')) : null);
 }
 
 export function courseHome(app, subject) {
@@ -287,7 +287,7 @@ export function courseHome(app, subject) {
     quick: () => h('div', { class: 'quick-row' },
       h('button', { class: 'btn btn-ghost small glossary-entry', onclick: () => app.go('glossary', { subject }) }, ico('library'), ' ', t('glossary')),
       realWeekEntry(app, true)),
-    due: () => dueCard(app, subject, { due, waiting, skipped }),
+    due: () => dueCard(app, subject, { due, waiting, skipped, offerSkip: pick.reason !== 'due' }),
     fields: () => fieldsRow(app, subject),
     tracks: () => [...tracks, tracks.some(Boolean) ? null : h('p', { class: 'note' }, t('courseEmpty'))],
   };

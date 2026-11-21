@@ -4,7 +4,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import {
-  courseTodayPick, applyDue, skipDueToday, dueSkipped, dueNow, dueWaiting, reviewsToday, reviewsLeftToday, startQuiz, answerQuiz, skipQuiz, courseSummary,
+  courseTodayPick, applyDue, skipDueToday, dueSkipped, dueNow, dueSignal, dueWaiting, reviewsToday, reviewsLeftToday, startQuiz, answerQuiz, skipQuiz, courseSummary,
 } from '../src/core/course.js';
 import { dueCount, dueSession, reviewCapOf, reviewsLeft, REVIEW_CAPS } from '../src/core/coursereview.js';
 import { defaultState, load, save } from '../src/core/storage.js';
@@ -181,4 +181,13 @@ test('sync: dueSkip merges as the later day; the daily limit stays on the device
 test('home summary: its due count honours the limit', () => {
   const s = withDue(30, { settings: { ...defaultState().settings, reviewCap: 10 } });
   assert.equal(courseSummary(s, 'eng', 'nl', DAY).due, 10);
+});
+
+test('the guide light: skipped today, the course counts no reviews waiting; tomorrow it does again', () => {
+  const s = withDue(8);
+  assert.equal(dueSignal(s, 'eng', 'nl', DAY), 8);
+  const k = skipDueToday(s, 'eng', DAY);
+  assert.equal(dueSignal(k, 'eng', 'nl', DAY), 0, 'skipped: the light stays quiet');
+  assert.equal(dueSignal(k, 'eng', 'nl', '2026-11-03'), 8);
+  assert.equal(dueWaiting(k, 'eng', 'nl', DAY), 8, 'nothing changed in the pile');
 });

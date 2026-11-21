@@ -429,6 +429,8 @@ export const dueNow = (state, subject, lang, today) => dueCount(state.courseRevi
 export const dueWaiting = (state, subject, lang, today) => dueCount(state.courseReviews || {}, today, subject, lang);
 // "Vandaag overslaan": the reviews stay due and untouched; only today's next step changes.
 export const dueSkipped = (state, subject, today) => ((((state.courses || {})[subject]) || {}).dueSkip) === today;
+// What the guide's light counts: nothing once he skipped today (the card is quiet too).
+export const dueSignal = (state, subject, lang, today) => (dueSkipped(state, subject, today) ? 0 : dueNow(state, subject, lang, today));
 export function skipDueToday(state, subject, today) {
   return withSubject(state, subject, (c) => ({ ...c, dueSkip: today }));
 }
@@ -446,7 +448,7 @@ export function courseTodayPick(state, subject, lang, today, modules = MODULES) 
   const prep = prepPick(state, subject, lang, today, modules);
   if (prep) return prep;
   // Skipped today (v18): the reviews wait, the lesson comes first. The daily limit also caps the count.
-  const due = dueSkipped(state, subject, today) ? 0 : dueNow(state, subject, lang, today);
+  const due = dueSignal(state, subject, lang, today);
   if (due >= 5) return { reason: 'due', count: due };
   const rec = nextCourseLesson(state, subject, modules);
   if (rec) return placed({ reason: 'lesson', ...rec }, modules);
