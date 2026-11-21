@@ -741,7 +741,7 @@ export default {
     },
     {
       id: 'eng.drawings.electrical',
-      gist: 'Contacts are drawn at rest; the reference designation gives function, location and device, and contact numbers give the type: 3-4 makes, 1-2 breaks.',
+      gist: 'Contacts are drawn at rest; a reference designation gives function, location and device; contact numbers ending in 3-4 are make contacts, 1-2 break contacts.',
       title: 'Reading an electrical schematic',
       pre: [
         {
@@ -1036,7 +1036,7 @@ export default {
     },
     {
       id: 'eng.drawings.tuning',
-      gist: 'A step test gives process gain, dead time and time constant; lambda tuning gives controller gain Kc = τ / (Kp × (λ + θ)).',
+      gist: 'A step test gives process gain, dead time and time constant; lambda tuning: choose λ, then Kc = τ / (Kp × (λ + θ)).',
       title: 'Tuning a loop: bump test and tuning rules',
       pre: [
         {

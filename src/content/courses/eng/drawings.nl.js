@@ -597,7 +597,7 @@ export default {
     // Onderwerp: P&ID’s, schema’s en het besturingssysteem
     {
       id: 'eng.drawings.pid',
-      gist: 'Een P&ID toont niet op schaal wat in een installatie met wat verbonden is; lijnsoorten en tags zeggen wat elk ding is.',
+      gist: 'Een P&ID toont, niet op schaal, wat in een installatie met wat verbonden is; lijnsoorten en tags zeggen wat elk ding is.',
       title: 'Een P&ID lezen',
       pre: [
         {
@@ -741,7 +741,7 @@ export default {
     },
     {
       id: 'eng.drawings.electrical',
-      gist: 'Contacten staan getekend in rust; de referentieaanduiding zegt functie, locatie en apparaat, en de contactnummers het type: 3-4 maakt, 1-2 verbreekt.',
+      gist: 'Contacten staan getekend in rust; een referentieaanduiding zegt functie, locatie en apparaat, en contactnummers eindigend op 3-4 zijn maakcontacten, op 1-2 verbreekcontacten.',
       title: 'Een elektrisch schema lezen',
       pre: [
         {
@@ -1036,7 +1036,7 @@ export default {
     },
     {
       id: 'eng.drawings.tuning',
-      gist: 'Een staptest levert procesversterking, dode tijd en tijdconstante; lambda-tuning rekent daaruit de regelaarversterking: Kc = τ / (Kp × (λ + θ)).',
+      gist: 'Een staptest levert procesversterking, dode tijd en tijdconstante; bij lambda-tuning kies je λ, dan is Kc = τ / (Kp × (λ + θ)).',
       title: 'Een kring inregelen: staptest en inregelmethodes',
       pre: [
         {
