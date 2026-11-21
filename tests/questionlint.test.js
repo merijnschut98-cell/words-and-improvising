@@ -1,7 +1,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
-import { lintQuestion, lintModule, lintAll, countsOf, hasAbsolute, RULES } from '../src/content/courses/lintquestions.js';
+import { lintQuestion, lintModule, lintAll, countsOf, hasAbsolute, RULES } from '../scripts/lintquestions.js';
 import { MODULES, loadModule } from '../src/content/courses/index.js';
 
 const mc = (q, options, answer, extra = {}) => ({ q, options, answer, why: 'x', ...extra });
@@ -37,6 +37,10 @@ test('duplicate: near-identical options, but reorderings and number variants are
   assert.ok(rules(dup).includes('duplicate'));
   const order = mc('Wat is de volgorde?', ['Oorzaak, feiten, afspraak', 'Feiten, oorzaak, afspraak', 'Afspraak, feiten, oorzaak', 'Feiten, afspraak, oorzaak'], 'Feiten, oorzaak, afspraak');
   assert.ok(!rules(order).includes('duplicate'));
+  const neg = mc('Wat betekent een detectiescore van 1?', ['De fout wordt vrijwel zeker ontdekt', 'De fout wordt vrijwel zeker niet ontdekt', 'De fout komt één keer voor', 'De fout is onschadelijk'], 'De fout wordt vrijwel zeker ontdekt');
+  assert.ok(!rules(neg).includes('duplicate'), 'a negation is the opposite, not a duplicate');
+  const words = mc('Hoeveel alarmen per minuut zijn acceptabel?', ['Ongeveer één alarm per minuut', 'Ongeveer tien alarmen per minuut', 'Ongeveer twee alarmen per minuut', 'Ongeveer vijf alarmen per minuut'], 'Ongeveer één alarm per minuut');
+  assert.ok(!rules(words).includes('duplicate'), 'spelled-out numbers are number variants');
   const nums = mc('Hoeveel weken heeft de netbeheerder?', ['Binnen 18 weken na de aanvraag', 'Binnen 26 weken na de aanvraag', 'Binnen 8 weken na de aanvraag', 'Binnen 4 weken na de aanvraag'], 'Binnen 18 weken na de aanvraag');
   assert.ok(!rules(nums).includes('duplicate'));
 });
@@ -53,12 +57,29 @@ test('definition and shortstem: only recall questions at level 3-4', () => {
   const lvl = (tier, kind = 'recall') => rules(qn, { tier, kind });
   assert.ok(lvl(3).includes('definition') && lvl(3).includes('shortstem'));
   assert.ok(lvl(4).includes('definition'));
+  const step = mc('Wat is de eerste stap als je midden in een opdracht voor een dilemma staat?', ['Het dilemma in één zin benoemen', 'Een collega bellen', 'Het negeren', 'Wachten'], 'Het dilemma in één zin benoemen');
+  assert.ok(!rules(step, { tier: 4 }).includes('definition'), 'a decision stem is not a definition stem');
   assert.ok(!lvl(2).includes('definition') && !lvl(2).includes('shortstem'));
   assert.ok(!lvl(3, 'pre').includes('definition'));
   const en = lintQuestion(mc('What is technical debt?', ['Work left undone that costs later', 'A bank loan', 'An invoice error', 'A client fine'], 'Work left undone that costs later'), { lang: 'en', tier: 4, kind: 'recall' }).map((f) => f.rule);
   assert.ok(en.includes('definition'));
   const long = mc('Een sponsor wil in week 6 een extra functie zonder extra budget terwijl het team al vol zit. Wat zeg je?', ['Je laat de impact zien en vraagt om een keuze', 'Je zegt ja en werkt over', 'Je zegt nee en stopt het gesprek', 'Je vraagt een ander team'], 'Je laat de impact zien en vraagt om een keuze');
   assert.ok(!rules(long, { tier: 4 }).includes('shortstem'));
+});
+
+test('echo: singular and plural count as the same word', () => {
+  const qn = mc('Waar begin je met tien foutsoorten die samen 200 delen afkeuren?', ['Bij de paar foutsoorten met de meeste afkeur', 'Bij de foutsoort die het laatst voorkwam', 'Bij de foutsoort die het makkelijkst is', 'Bij de foutsoort met de laagste kosten'], 'Bij de paar foutsoorten met de meeste afkeur');
+  assert.ok(!rules(qn).includes('echo'));
+});
+
+test('nobody: an option nobody would say, only at the start of the option', () => {
+  const bad = mc('Wat is het verschil tussen een risico en een issue?', ['Een risico kan gebeuren; een issue speelt nu', 'Er is geen verschil, het zijn twee woorden', 'Een risico is groot; een issue is klein', 'Een issue is altijd een risico geworden'], 'Een risico kan gebeuren; een issue speelt nu');
+  assert.ok(rules(bad).includes('nobody'));
+  const ok = mc('Wat doe je met dit afwijkende getal?', ['Je meet opnieuw', 'Je past de grens aan', 'De grafiek negeert dit soort getallen niet', 'Niks, zolang de sensor is gekalibreerd'], 'Je meet opnieuw');
+  assert.ok(!rules(ok).includes('nobody'), 'negeert / niks inside a real option is fine');
+  assert.ok(rules(mc('Wat doe je?', ['Negeren tot het zichtbaar wordt', 'Je vraagt door', 'Je meldt het', 'Je schrijft het op'], 'Je vraagt door')).includes('nobody'));
+  const en = lintQuestion(mc('What do you do?', ['Do nothing until the delivery arrives', 'Ask for the data', 'Report it', 'Write it down'], 'Ask for the data'), { lang: 'en', tier: 1, kind: 'recall' }).map((f) => f.rule);
+  assert.ok(en.includes('nobody'));
 });
 
 test('lintOk skips a question; numeric questions have no findings', () => {
@@ -92,5 +113,5 @@ test('ratchet: lint counts per module and rule equal the baseline', async () => 
     }
   }
   assert.deepEqual(worse, [], 'new lint findings: fix the questions (or add lintOk: reason)');
-  assert.deepEqual(better, [], 'fewer findings: lower tests/fixtures/v18-lint-baseline.json (node src/content/courses/lintquestions.js --json)');
+  assert.deepEqual(better, [], 'fewer findings: lower tests/fixtures/v18-lint-baseline.json (node scripts/lintquestions.js --json > tests/fixtures/v18-lint-baseline.json)');
 });

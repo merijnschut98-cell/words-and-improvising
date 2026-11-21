@@ -1,10 +1,10 @@
-// Question lint (v18 F2). A dev tool, not loaded by the app: it flags the
+// Question lint (v18 F2). A dev tool, not loaded by the app (so it lives in scripts/, outside the SHELL rule): it flags the
 // machine-checkable patterns of docs/superpowers/content/question-standard.md.
 // Findings are warnings, not validator errors: a word list cannot judge a
 // question. A question may carry `lintOk: 'reason'` to be skipped.
 // Pure apart from the command line at the bottom.
 
-export const RULES = ['absolute', 'length', 'offtopic', 'duplicate', 'echo', 'definition', 'shortstem'];
+export const RULES = ['absolute', 'length', 'offtopic', 'duplicate', 'echo', 'definition', 'shortstem', 'nobody'];
 
 const ABSOLUTE = {
   nl: ['altijd', 'nooit', 'alle', 'alles', 'alleen', 'precies', 'elke', 'elk', 'steeds', 'uitsluitend', 'enkel', 'verdere', 'geen enkele'],
@@ -14,6 +14,15 @@ const DEFINITION = {
   nl: /^(wat\s+(is|zijn|betekent|betekenen|laat|laten|doet|doen|meet|meten|houdt)\b|waar\s+staat|wat\s+bedoelen)/i,
   en: /^(what\s+(is|are|does|do|means|mean|shows|show|measures|measure)\b|what\s+does\s+.*\s+stand\s+for)/i,
 };
+// Options a professional would never give ("nobody does this"), per the design's small phrase list.
+const NOBODY = {
+  // anchored at the start of the option: "negeert" or "geen verschil" inside a real option is common
+  nl: /^((er is )?geen verschil|negeer|negeren|(niets|niks) doen|doe (niets|niks)|aantal (slides|pagina)|hoeveel (slides|pagina))/i,
+  en: /^((there is )?no difference|ignore|ignoring|do nothing|number of (slides|pages)|how many (slides|pages))/i,
+};
+// "Wat is de eerste stap" is a decision question, not a definition question.
+const DECISION_STEM = /^(wat\s+is\s+(de|het|je|uw)\s+(eerste|beste|juiste|volgende|slimste|verstandigste|belangrijkste|grootste|eerste)\b|what\s+is\s+the\s+(first|best|right|next|smartest|most|biggest|main)\b)/i;
+const NEGATION = /\b(niet|geen|nooit|not|no|never|without|zonder)\b/g;
 const STOP = new Set(('de het een en of van in op te voor met door naar bij als dat die dit deze er je jij ze zij wij we ik is zijn was waren wordt worden kan kunnen moet moeten niet geen wel maar om uit aan over ook nog dan wat wie hoe waar waarom welke ' +
   'the a an and or of in on to for with by at as that this these those it you we they i is are was were be been can could must not no but from about also then what who how where why which ' +
   'meer minder alle alleen altijd nooit elke dient wordt heeft hebben hebt jouw uw hun haar onze').split(/\s+/));
@@ -21,7 +30,7 @@ const STOP = new Set(('de het een en of van in op te voor met door naar bij als 
 const norm = (s) => String(s).toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '');
 const tokens = (s) => norm(s).replace(/[^a-z0-9\s]/g, ' ').split(/\s+/).filter(Boolean);
 const content = (s, min = 4) => tokens(s).filter((w) => w.length >= min && !STOP.has(w) && !/^\d+$/.test(w));
-const stem = (w) => w.slice(0, Math.max(4, w.length - 2)); // crude: schaal ~ schalen, plan ~ plannen
+const stem = (w) => (w.length > 5 ? w.replace(/(en|s|e|n)$/, '') : w); // crude: foutsoort ~ foutsoorten, schaal ~ schalen
 const stems = (s, min = 4) => new Set(content(s, min).map(stem));
 const wordCount = (s) => tokens(s).length;
 
@@ -73,9 +82,10 @@ export function lintQuestion(qn, ctx = {}) {
       const b = new Set(ob);
       const shared = [...a].filter((w) => b.has(w)).length;
       const union = new Set([...a, ...b]).size;
-      const digits = (o) => (String(o).match(/\d+(?:[.,]\d+)?/g) || []).join(',');
+      const digits = (o) => [...(String(o).match(/\d+(?:[.,]\d+)?/g) || []), ...(String(o).toLowerCase().match(/\b(één|twee|drie|vier|vijf|zes|zeven|acht|negen|tien|elf|twaalf|twintig|honderd|duizend|half|one|two|three|four|five|six|seven|eight|nine|ten|twenty|hundred|thousand)\b/g) || [])].join(',');
+      const negs = (o) => (norm(o).match(NEGATION) || []).length;
       const sameOrder = oa.filter((w) => b.has(w)).join() === ob.filter((w) => a.has(w)).join();
-      if (union >= 3 && shared / union >= 0.8 && sameOrder && digits(opts[i]) === digits(opts[j])) { out.push(finding('duplicate', `"${opts[i]}" ~ "${opts[j]}"`)); break dup; }
+      if (union >= 3 && shared / union >= 0.8 && sameOrder && digits(opts[i]) === digits(opts[j]) && negs(opts[i]) === negs(opts[j])) { out.push(finding('duplicate', `"${opts[i]}" ~ "${opts[j]}"`)); break dup; }
     }
   }
 
@@ -85,9 +95,13 @@ export function lintQuestion(qn, ctx = {}) {
   const longHit = [...stems(key, 5)].some((w) => sq.has(w) && w.length >= 7);
   if (sq.size && (overlap(key) >= 2 || longHit) && wrong.every((o) => overlap(o) === 0)) out.push(finding('echo', 'only the key repeats words of the question'));
 
-  // 6 and 7: level 3-4 recall questions
+  // 6. an option nobody would say
+  const nb = wrong.find((o) => NOBODY[lang].test(String(o).trim()));
+  if (nb !== undefined) out.push(finding('nobody', `"${nb}"`));
+
+  // 7 and 8: level 3-4 recall questions
   if (ctx.kind === 'recall' && ctx.tier >= 3) {
-    if (DEFINITION[lang].test(String(qn.q).trim())) out.push(finding('definition', 'definition-style question at level 3-4'));
+    if (DEFINITION[lang].test(String(qn.q).trim()) && !DECISION_STEM.test(String(qn.q).trim())) out.push(finding('definition', 'definition-style question at level 3-4'));
     if (wordCount(qn.q) <= 10) out.push(finding('shortstem', `question text of ${wordCount(qn.q)} words at level 3-4`));
   }
   return out;
@@ -130,7 +144,7 @@ export function countsOf(findings) {
 }
 
 export async function main(argv = []) {
-  const { MODULES, loadModule } = await import('./index.js');
+  const { MODULES, loadModule } = await import('../src/content/courses/index.js');
   const findings = await lintAll(MODULES, loadModule);
   const counts = countsOf(findings);
   if (argv.includes('--json')) { console.log(JSON.stringify(counts, null, 2)); return; }
