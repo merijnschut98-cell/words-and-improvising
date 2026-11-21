@@ -243,3 +243,4 @@ Outcome: accepted (merged as delivered), sent back N times, redone.
 | 2026-11-21 | v18 G1: picture kit and lesson pictures field | sonnet | - | two sessions (usage-limit pause) | - | done (52e7cac); families table in pm.approach; review dispatched |
 | 2026-11-21 | Review of v18 G1 (picture kit) | sonnet | - | - | - | approved (912f1e6); 4 fixes (grid labels, cycle overlap, hyphenation, tone bars) |
 | 2026-11-21 | v18 T2: practice test engine and screen | sonnet | ~95 | ~1 h 50 min | - | done (c8c9ba9); opus review dispatched with three rulings (earlier pick, score on last answer, smoke count) |
+| 2026-11-21 | Kernzin batch 5: eng.gridplanning, improve, industry40, itbasics, joining, lines (112 lessons) | sonnet | ~70 | - | - | done (5ee2961); review dispatched |
