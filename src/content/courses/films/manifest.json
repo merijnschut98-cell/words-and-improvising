@@ -4383,6 +4383,130 @@
         ],
         "vtt": "src/content/courses/films/pm.formats.intro.en.vtt"
       }
+    },
+    "eng.machining.cnc": {
+      "poster": "src/content/courses/films/eng.machining.cnc.jpg",
+      "nl": {
+        "dur": 248.6,
+        "bytes": 4700185,
+        "scenes": [
+          0,
+          20.71,
+          35.21,
+          67.27,
+          82.59,
+          107.36,
+          142.1,
+          157.97,
+          171.2,
+          214.95
+        ],
+        "vtt": "src/content/courses/films/eng.machining.cnc.nl.vtt"
+      },
+      "en": {
+        "dur": 268.2,
+        "bytes": 5016208,
+        "scenes": [
+          0,
+          20.14,
+          36.18,
+          72.02,
+          88.77,
+          116.08,
+          152.39,
+          170.72,
+          185.18,
+          230.34
+        ],
+        "vtt": "src/content/courses/films/eng.machining.cnc.en.vtt"
+      }
+    },
+    "eng.machining.gcode": {
+      "poster": "src/content/courses/films/eng.machining.gcode.jpg",
+      "nl": {
+        "dur": 262.2,
+        "bytes": 4399214,
+        "scenes": [
+          0,
+          41.82,
+          83.42,
+          126.84,
+          162.04,
+          234.72
+        ],
+        "vtt": "src/content/courses/films/eng.machining.gcode.nl.vtt"
+      },
+      "en": {
+        "dur": 292.9,
+        "bytes": 4855053,
+        "scenes": [
+          0,
+          44.24,
+          88.87,
+          139.33,
+          179.41,
+          260.2
+        ],
+        "vtt": "src/content/courses/films/eng.machining.gcode.en.vtt"
+      }
+    },
+    "eng.machining.offsets": {
+      "poster": "src/content/courses/films/eng.machining.offsets.jpg",
+      "en": {
+        "dur": 254.2,
+        "bytes": 4212413,
+        "scenes": [
+          0,
+          44.03,
+          87.05,
+          130.41,
+          165.89,
+          214.61
+        ],
+        "vtt": "src/content/courses/films/eng.machining.offsets.en.vtt"
+      },
+      "nl": {
+        "dur": 235.8,
+        "bytes": 3959199,
+        "scenes": [
+          0,
+          41.94,
+          80.11,
+          120.6,
+          153.46,
+          200.71
+        ],
+        "vtt": "src/content/courses/films/eng.machining.offsets.nl.vtt"
+      }
+    },
+    "eng.machining.cam": {
+      "poster": "src/content/courses/films/eng.machining.cam.jpg",
+      "nl": {
+        "dur": 247.7,
+        "bytes": 3709698,
+        "scenes": [
+          0,
+          38.77,
+          69.16,
+          110.94,
+          151.6,
+          198.78
+        ],
+        "vtt": "src/content/courses/films/eng.machining.cam.nl.vtt"
+      },
+      "en": {
+        "dur": 269.1,
+        "bytes": 3930266,
+        "scenes": [
+          0,
+          40.46,
+          74.59,
+          117.18,
+          159.31,
+          211.02
+        ],
+        "vtt": "src/content/courses/films/eng.machining.cam.en.vtt"
+      }
     }
   }
 }

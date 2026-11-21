@@ -1,0 +1,245 @@
+WEBVTT
+
+1
+00:00:00.829 --> 00:00:03.603
+The program describes the part, not the tool.
+
+2
+00:00:04.310 --> 00:00:07.606
+The control adds the tool from tables, the offsets.
+
+3
+00:00:08.301 --> 00:00:08.963
+Three matter.
+
+4
+00:00:09.970 --> 00:00:15.311
+The work offset, G54 to G59, says where the part zero sits.
+
+5
+00:00:16.331 --> 00:00:20.511
+Tool length compensation uses G43 with an H number.
+
+6
+00:00:21.247 --> 00:00:24.370
+It adds how far each tool sticks out of the spindle.
+
+7
+00:00:25.385 --> 00:00:31.144
+Cutter radius compensation uses G41 left of the contour and G42 right,
+
+8
+00:00:31.271 --> 00:00:32.177
+with a D number.
+
+9
+00:00:32.913 --> 00:00:35.978
+It shifts the path sideways by the tool radius.
+
+10
+00:00:36.972 --> 00:00:43.183
+G49 and G40 switch the length compensation and the radius compensation off again.
+
+11
+00:00:44.481 --> 00:00:45.445
+Why this split.
+
+12
+00:00:46.146 --> 00:00:48.932
+The programmer writes the contour of the part once.
+
+13
+00:00:49.930 --> 00:00:57.697
+If a new 10 mm end mill measures 9.98 mm, the setter enters radius 4.99.
+
+14
+00:00:58.386 --> 00:01:01.103
+The same program still makes the right size.
+
+15
+00:01:02.114 --> 00:01:05.225
+On top of each measured value sits a wear offset.
+
+16
+00:01:06.008 --> 00:01:09.979
+That is a small correction the operator enters when sizes drift.
+
+17
+00:01:11.021 --> 00:01:14.992
+A bore measures 0.01 mm small on diameter?
+
+18
+00:01:15.780 --> 00:01:21.295
+Then the operator changes the radius by 0.005 mm.
+
+19
+00:01:22.043 --> 00:01:26.153
+That is half the error, because a radius counts twice in a diameter.
+
+20
+00:01:27.499 --> 00:01:31.574
+A crash is the tool or spindle hitting the part, the fixture or the machine.
+
+21
+00:01:32.582 --> 00:01:33.638
+Typical causes.
+
+22
+00:01:34.414 --> 00:01:41.752
+A wrong number typed in, such as 121.43 becoming 112.43.
+
+23
+00:01:42.710 --> 00:01:46.553
+The wrong H number, so tool 5 with the length of tool 3.
+
+24
+00:01:47.529 --> 00:01:49.456
+The wrong work offset is active.
+
+25
+00:01:50.162 --> 00:01:54.283
+That is G55 while the part sits on G54.
+
+26
+00:01:55.314 --> 00:01:58.031
+A tool sits in the wrong pocket of the magazine.
+
+27
+00:01:58.743 --> 00:02:02.063
+Or there is an incremental move where absolute was meant.
+
+28
+00:02:03.106 --> 00:02:06.473
+The common thread is a table that does not match reality.
+
+29
+00:02:07.142 --> 00:02:09.510
+The program itself is usually fine.
+
+30
+00:02:10.844 --> 00:02:14.513
+The process engineer decides which numbers are typed by hand,
+
+31
+00:02:14.722 --> 00:02:15.767
+and which are measured.
+
+32
+00:02:16.783 --> 00:02:19.918
+A presetter is a measuring stand next to the machine.
+
+33
+00:02:20.655 --> 00:02:23.766
+It sends tool lengths to the control electronically.
+
+34
+00:02:24.762 --> 00:02:28.535
+A touch probe in the spindle sets G54 itself.
+
+35
+00:02:29.555 --> 00:02:33.653
+A tool setter in the machine checks the length after every tool change.
+
+36
+00:02:34.662 --> 00:02:37.715
+Each automatic step removes a chance to mistype.
+
+37
+00:02:38.765 --> 00:02:42.062
+The question for the engineer is which crashes we had.
+
+38
+00:02:42.830 --> 00:02:44.978
+And which step would have stopped each one?
+
+39
+00:02:46.339 --> 00:02:48.464
+A cell had 6 crashes last year.
+
+40
+00:02:49.173 --> 00:02:50.868
+The causes are in the reports.
+
+41
+00:02:51.862 --> 00:02:54.521
+Three times a tool length was typed in wrong.
+
+42
+00:02:55.277 --> 00:02:57.309
+Twice there was a wrong H number.
+
+43
+00:02:58.035 --> 00:02:59.951
+Once there was a wrong work offset.
+
+44
+00:03:01.022 --> 00:03:06.479
+Each crash cost on average 12,000 euros in repairs and lost machine hours.
+
+45
+00:03:07.228 --> 00:03:10.421
+That is the shop’s own figure, stated as an assumption.
+
+46
+00:03:11.519 --> 00:03:16.186
+The proposal is a presetter that sends tool data to the control electronically.
+
+47
+00:03:16.884 --> 00:03:20.785
+An assumed 25,000 euros, including the link.
+
+48
+00:03:21.818 --> 00:03:25.011
+It removes typed lengths and H-number mix-ups.
+
+49
+00:03:25.718 --> 00:03:27.669
+It does nothing for the work offset.
+
+50
+00:03:28.741 --> 00:03:32.004
+Which crashes would it have prevented, what does that save a year,
+
+51
+00:03:32.259 --> 00:03:33.687
+and how long is the payback?
+
+52
+00:03:35.035 --> 00:03:37.740
+3 plus 2 is 5 of the 6 crashes.
+
+53
+00:03:38.448 --> 00:03:42.848
+5 times 12,000 euros is 60,000 euros a year.
+
+54
+00:03:43.850 --> 00:03:47.879
+The payback is 25,000 divided by 60,000.
+
+55
+00:03:48.656 --> 00:03:52.163
+That is 0.42 years, about 5 months.
+
+56
+00:03:53.161 --> 00:03:57.109
+The sixth crash, the wrong work offset, needs another fix.
+
+57
+00:03:57.813 --> 00:03:59.949
+Set the part zero with a touch probe.
+
+58
+00:04:00.685 --> 00:04:03.425
+Or build in a check at the start of the program
+
+59
+00:04:03.495 --> 00:04:05.840
+that stops when the wrong offset is active.
+
+60
+00:04:06.844 --> 00:04:09.305
+Also ask whether last year was typical.
+
+61
+00:04:10.017 --> 00:04:12.432
+Six crashes in one cell is a lot.

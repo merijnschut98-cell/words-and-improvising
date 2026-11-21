@@ -1,0 +1,293 @@
+WEBVTT
+
+1
+00:00:00.855 --> 00:00:04.582
+CNC betekent dat een computer de motoren van de machine aanstuurt,
+
+2
+00:00:04.826 --> 00:00:05.987
+volgens een programma.
+
+3
+00:00:06.719 --> 00:00:09.087
+Dit is zo’n machine, een bewerkingscentrum.
+
+4
+00:00:10.070 --> 00:00:11.579
+De spil (spindle) is de draaiende as.
+
+5
+00:00:12.333 --> 00:00:15.979
+Op een draaibank houdt hij het werkstuk vast, op een freesmachine het gereedschap.
+
+6
+00:00:16.673 --> 00:00:19.854
+Een motor van meestal 10 tot 40 kilowatt drijft hem aan.
+
+7
+00:00:21.158 --> 00:00:24.722
+Op een draaibank bepaalt X de diameter en loopt Z langs de spil.
+
+8
+00:00:25.717 --> 00:00:30.315
+Op een freesmachine bewegen X en Y de tafel, en Z beweegt de spil op en neer.
+
+9
+00:00:31.281 --> 00:00:34.381
+Een vierde en vijfde as draaien het werkstuk of de spilkop.
+
+10
+00:00:35.638 --> 00:00:37.345
+Het programma zelf is G-code.
+
+11
+00:00:38.057 --> 00:00:39.717
+Dat is een lijst korte commando’s.
+
+12
+00:00:40.722 --> 00:00:44.368
+G00 is een ijlgang, dus snel verplaatsen zonder te snijden.
+
+13
+00:00:45.078 --> 00:00:46.820
+G01 is een rechte snede.
+
+14
+00:00:47.595 --> 00:00:50.161
+G02 en G03 zijn cirkelbogen.
+
+15
+00:00:51.156 --> 00:00:52.445
+M03 start de spil.
+
+16
+00:00:53.166 --> 00:00:55.883
+M08 zet de koeling aan, de koelvloeistof.
+
+17
+00:00:56.576 --> 00:00:58.352
+M06 wisselt het gereedschap.
+
+18
+00:00:59.331 --> 00:01:02.338
+F is de voeding, hoe snel het gereedschap opschuift.
+
+19
+00:01:03.047 --> 00:01:04.510
+S is het toerental van de spil.
+
+20
+00:01:05.249 --> 00:01:06.445
+T is het gereedschap.
+
+21
+00:01:07.738 --> 00:01:10.165
+De meeste programma’s maak je in CAM-software.
+
+22
+00:01:10.920 --> 00:01:13.776
+Die zet het 3D-model van het onderdeel om in de G-code.
+
+23
+00:01:14.790 --> 00:01:18.285
+Die G-code gaat naar de besturing, de computer op de machine.
+
+24
+00:01:18.990 --> 00:01:21.730
+Bekende merken zijn Fanuc, Siemens en Heidenhain.
+
+25
+00:01:23.024 --> 00:01:23.883
+Dan de nulpunten.
+
+26
+00:01:24.575 --> 00:01:27.768
+Het machinenulpunt is een vaste thuispositie van de machine.
+
+27
+00:01:28.784 --> 00:01:31.489
+Een insteller begint aan een order van 200 flenzen.
+
+28
+00:01:32.155 --> 00:01:35.789
+Hij zet G54 door de bek van de bankschroef af te tasten.
+
+29
+00:01:36.474 --> 00:01:38.227
+Een bankschroef is een klem met twee bekken.
+
+30
+00:01:38.925 --> 00:01:40.829
+De taster is een meetpen in de spil.
+
+31
+00:01:41.796 --> 00:01:42.853
+Het werkstuknulpunt (work offset)
+
+32
+00:01:42.887 --> 00:01:46.510
+G54 vertelt de machine waar het werkstuk op de tafel ligt.
+
+33
+00:01:47.797 --> 00:01:49.411
+Elk gereedschap steekt anders uit.
+
+34
+00:01:50.197 --> 00:01:52.124
+Daarom bewaart een gereedschapscorrectie (tool offset)
+
+35
+00:01:52.147 --> 00:01:54.260
+de lengte en de radius van een gereedschap.
+
+36
+00:01:55.200 --> 00:01:59.182
+De insteller meet gereedschap 5, een boor, op de gereedschapsmeter.
+
+37
+00:01:59.854 --> 00:02:02.698
+Hij is 121,43 millimeter lang.
+
+38
+00:02:03.720 --> 00:02:05.984
+De insteller meet die getallen en typt ze in.
+
+39
+00:02:06.712 --> 00:02:08.152
+Samen heten ze de offsets.
+
+40
+00:02:09.242 --> 00:02:13.561
+De meeste crashes komen door verkeerde offsets, niet door verkeerde programma’s.
+
+41
+00:02:14.310 --> 00:02:16.922
+Bij een crash raakt het gereedschap het werkstuk of de klemmen.
+
+42
+00:02:17.612 --> 00:02:21.223
+Ook de meeste afgekeurde eerste stukken komen door verkeerde offsets.
+
+43
+00:02:22.536 --> 00:02:27.389
+Maar in de tabel typt hij voor gereedschap 5 een lengte van 112,43 millimeter,
+
+44
+00:02:27.737 --> 00:02:30.036
+in plaats van 121,43.
+
+45
+00:02:31.040 --> 00:02:34.523
+De machine denkt dat de boor 9 millimeter korter is dan hij is.
+
+46
+00:02:35.302 --> 00:02:37.148
+Dus boort hij 9 millimeter dieper.
+
+47
+00:02:38.481 --> 00:02:40.408
+Voor de eerste snede laat een zorgvuldige
+
+48
+00:02:40.477 --> 00:02:43.101
+insteller een nieuw programma in enkelregel lopen.
+
+49
+00:02:43.787 --> 00:02:45.679
+Dat is één regel per druk op de knop.
+
+50
+00:02:46.634 --> 00:02:48.143
+De ijlgang is langzamer gezet.
+
+51
+00:02:48.903 --> 00:02:50.366
+En er ligt een hand op de stopknop.
+
+52
+00:02:51.712 --> 00:02:53.465
+Dan volgt de eerste-stukcontrole (first-off).
+
+53
+00:02:54.189 --> 00:02:55.350
+Na elke omstelling,
+
+54
+00:02:55.686 --> 00:02:59.401
+programmawijziging of gereedschapswissel meet je het eerste stuk volledig,
+
+55
+00:02:59.692 --> 00:03:01.120
+voordat de serie draait.
+
+56
+00:03:02.161 --> 00:03:04.506
+Veel bedrijven controleren ook het laatste stuk.
+
+57
+00:03:05.231 --> 00:03:09.875
+Het kost 10 tot 20 minuten en kan een serie van 200 foute stukken voorkomen.
+
+58
+00:03:10.878 --> 00:03:15.046
+In het voorbeeld vindt de eerste-stukcontrole een gat dat 9 millimeter te diep is.
+
+59
+00:03:15.802 --> 00:03:18.739
+Eén stuk is afgekeurd, 35 euro.
+
+60
+00:03:19.783 --> 00:03:24.891
+Zonder die controle is het 200 keer 35 euro, dus 7.000 euro afkeur.
+
+61
+00:03:25.901 --> 00:03:28.119
+Moet het gat net boven een dunne bodem stoppen,
+
+62
+00:03:28.386 --> 00:03:31.207
+dan gaat er misschien een boor kapot en raakt de mal beschadigd.
+
+63
+00:03:31.893 --> 00:03:34.087
+Dat is de houder die voor dit werkstuk gemaakt is.
+
+64
+00:03:35.401 --> 00:03:38.304
+Waar engineers over steggelen zijn wijzigingen aan de machine.
+
+65
+00:03:38.988 --> 00:03:41.589
+Een insteller repareert een programma op de besturing.
+
+66
+00:03:42.585 --> 00:03:44.733
+Komt die fix nooit terug in het CAM-bestand,
+
+67
+00:03:45.035 --> 00:03:47.392
+dan keert de oude fout terug bij de volgende herhaalorder.
+
+68
+00:03:48.420 --> 00:03:49.221
+Goede vragen.
+
+69
+00:03:49.948 --> 00:03:53.384
+Is dit programma beproefd (proven), dus al eerder zonder problemen gedraaid?
+
+70
+00:03:54.123 --> 00:03:55.307
+Waar staat de masterversie?
+
+71
+00:03:56.302 --> 00:03:59.135
+Hoeveel crashes waren er vorig jaar, en wat kostten ze?
+
+72
+00:04:00.141 --> 00:04:04.309
+Een spilcrash kan 5.000 tot 30.000 euro aan reparatie kosten.
+
+73
+00:04:04.982 --> 00:04:06.956
+Daar komen dagen tot weken stilstand bij.
