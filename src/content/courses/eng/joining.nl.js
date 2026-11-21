@@ -3,6 +3,7 @@ export default {
   lessons: [
     {
       id: 'eng.joining.arc',
+      gist: 'Booglassen smelt de randen met een elektrische boog; MIG/MAG is snel, TIG langzamer maar schoon en precies, en beschermgas houdt de lucht weg.',
       film: 'eng.joining.arc',
       figure: 'eng.joining.mig',
       title: 'MIG/MAG- en TIG-lassen',
@@ -75,6 +76,7 @@ export default {
     },
     {
       id: 'eng.joining.weldparams',
+      gist: 'De lassnelheid is de sterkste knop: halveer je die bij gelijke volt en ampère, dan verdubbelt de warmte-inbreng.',
       film: 'eng.joining.weldparams',
       figure: 'eng.joining.mig',
       title: 'Lasparameters: draad, spanning en snelheid',
@@ -146,6 +148,7 @@ export default {
     },
     {
       id: 'eng.joining.wps',
+      gist: 'Een LMK bewijst dat een lasmethode werkt, de LMB is het recept bij de werkplek, en een LMK geldt alleen binnen zijn geldigheidsgebied.',
       film: 'eng.joining.wps',
       figure: 'eng.joining.mig',
       title: 'Lassen op papier: LMB, LMK en gekwalificeerde lassers',
@@ -219,6 +222,7 @@ export default {
     },
     {
       id: 'eng.joining.metallurgy',
+      gist: 'Hoe snel de WBZ afkoelt bepaalt wat je krijgt; een waterstofscheur heeft waterstof, een harde structuur en spanning tegelijk nodig.',
       film: 'eng.joining.metallurgy',
       figure: 'eng.joining.haz',
       title: 'Wat warmte met het staal doet: WBZ, voorwarmen en lastige metalen',
@@ -291,6 +295,7 @@ export default {
     },
     {
       id: 'eng.joining.spot',
+      gist: 'Puntlassen smelt een laslens tussen overlappende platen; als vuistregel moet de lens minstens 4√t zijn, met t de dikte van de dunste plaat.',
       film: 'eng.joining.spot',
       figure: 'eng.joining.spot',
       title: 'Weerstandspuntlassen',
@@ -364,6 +369,7 @@ export default {
     },
     {
       id: 'eng.joining.spotwear',
+      gist: 'Naarmate het kapvlak groeit houdt de stepper de stroomdichtheid gelijk door de stroom te verhogen; na het frezen springt hij terug naar de basisstroom.',
       film: 'eng.joining.spot',
       figure: 'eng.joining.spot',
       title: 'Kappen, frezen en de stepper in de praktijk',
@@ -435,6 +441,7 @@ export default {
     },
     {
       id: 'eng.joining.spotquality',
+      gist: 'Peeltest en ultrasoon controleren de lens; een adaptieve regeling meet elk punt terwijl het gelast wordt, maar vervangt de controle niet.',
       film: 'eng.joining.spot',
       figure: 'eng.joining.spot',
       title: 'Laspunten controleren: peeltest, ultrasoon en adaptieve regeling',
@@ -508,6 +515,7 @@ export default {
     },
     {
       id: 'eng.joining.spotlobe',
+      gist: 'Het lasvenster loopt van de stroom voor de minimale lens tot uitspatten; de breedte is je marge, en verzinkt staal maakt het smaller.',
       film: 'eng.joining.spot',
       figure: 'eng.joining.spot',
       title: 'Het lasvenster en lastige materialen',
@@ -580,6 +588,7 @@ export default {
     },
     {
       id: 'eng.joining.defects',
+      gist: 'Porositeit komt van gasverlies of vuil, een bindingsfout van te weinig warmte of te snel lassen, en een scheur wordt nooit geaccepteerd.',
       film: 'eng.joining.defects',
       figure: 'eng.joining.ndt',
       title: 'Lasfouten en hun oorzaken',
@@ -652,6 +661,7 @@ export default {
     },
     {
       id: 'eng.joining.inspection',
+      gist: 'Visueel onderzoek komt eerst maar ziet alleen het oppervlak; kies voor fouten binnenin een NDO-methode die bij de gevreesde fout past.',
       film: 'eng.joining.defects',
       figure: 'eng.joining.ndt',
       title: 'Lasinspectie, LMB en LMK',
@@ -723,6 +733,7 @@ export default {
     },
     {
       id: 'eng.joining.ndt',
+      gist: 'De ontwerper of klant kiest het kwaliteitsniveau; ultrasoon vindt platte fouten het best, radiografie ronde fouten, en de tester moet gekwalificeerd zijn.',
       film: 'eng.joining.defects',
       figure: 'eng.joining.ndt',
       title: 'NDO in de praktijk en wie het kwaliteitsniveau kiest',
@@ -795,6 +806,7 @@ export default {
     },
     {
       id: 'eng.joining.weldrca',
+      gist: 'Leg elke fout vast en zet ze in een pareto; het patroon, zoals lasser, positie, robot of partij, wijst de richting van de oorzaak.',
       film: 'eng.joining.defects',
       figure: 'eng.joining.ndt',
       title: 'Terugkerende lasfouten, vervorming en restspanning',
@@ -868,6 +880,7 @@ export default {
     },
     {
       id: 'eng.joining.bolts',
+      gist: 'De sterkteklasse geeft de treksterkte (eerste getal maal 100) en de vloeigrens; een bout bezwijkt in de draad, dus reken je met de spanningsdoorsnede.',
       film: 'eng.joining.bolting',
       title: 'Bouten en moeren: wat je ziet en wat de cijfers betekenen',
       pre: [
@@ -937,6 +950,7 @@ export default {
     },
     {
       id: 'eng.joining.bolting',
+      gist: 'Voorspanning houdt een verbinding bij elkaar, niet het moment; grofweg 90% van het aanhaalmoment gaat op aan wrijving.',
       film: 'eng.joining.bolting',
       figure: 'eng.joining.bolt',
       title: 'Boutverbindingen: aanhaalmoment en voorspanning',
@@ -1009,6 +1023,7 @@ export default {
     },
     {
       id: 'eng.joining.tightening',
+      gist: 'Hoe indirecter de aandraaimethode, hoe groter de spreiding in voorspanning; de aanhaalfactor is de hoogste gedeeld door de laagste voorspanning.',
       film: 'eng.joining.bolting',
       title: 'Aandraaimethoden en de spreiding in voorspanning',
       pre: [
@@ -1081,6 +1096,7 @@ export default {
     },
     {
       id: 'eng.joining.jointdesign',
+      gist: 'Van een externe trekkracht krijgt de bout alleen het deel Φ; houd Φ laag en de restklemkracht boven nul tegen vermoeiing.',
       film: 'eng.joining.bolting',
       title: 'Boutverbindingen ontwerpen: verspanningsdriehoek en vermoeiing',
       pre: [
@@ -1153,6 +1169,7 @@ export default {
     },
     {
       id: 'eng.joining.bonding',
+      gist: 'Lijm is sterk op afschuiving en zwak op afpellen; kies de verbinding naar materialen, demontage en hoe je haar in productie controleert.',
       film: 'eng.joining.bonding',
       figure: 'eng.joining.rivet',
       title: 'Lijmen, klinken en clinchen',
@@ -1224,6 +1241,7 @@ export default {
     },
     {
       id: 'eng.joining.adhesives',
+      gist: 'Lijm hecht alleen op een schoon oppervlak, en bij een 2K-lijm moeten de delen binnen de open tijd op elkaar.',
       film: 'eng.joining.bonding',
       figure: 'eng.joining.rivet',
       title: 'Lijmen in productie: voorbehandelen, doseren, uitharden',
@@ -1295,6 +1313,7 @@ export default {
     },
     {
       id: 'eng.joining.rivets',
+      gist: 'Klinken en clinchen bewaak je in serie met de kracht-wegcurve of de bodemdikte, en je grijpt in op een trend voordat de grens raakt.',
       film: 'eng.joining.bonding',
       figure: 'eng.joining.rivet',
       title: 'Klinken en clinchen in serie: procesbewaking',
@@ -1367,6 +1386,7 @@ export default {
     },
     {
       id: 'eng.joining.choosejoint',
+      gist: 'Twee verschillende metalen in een natte omgeving geven galvanische corrosie; kies de verbinding ook op demontage en kosten per jaar.',
       film: 'eng.joining.bonding',
       figure: 'eng.joining.rivet',
       title: 'Een verbindingsmethode kiezen: materialen, corrosie, demontage en kosten',
@@ -1439,6 +1459,7 @@ export default {
     },
     {
       id: 'eng.joining.weldcell',
+      gist: 'Met twee stations laadt de operator terwijl de robot last, en dat helpt zolang het laden niet langer duurt dan het lassen.',
       film: 'eng.joining.production',
       figure: 'eng.joining.cell',
       title: 'De lasrobotcel: wat erin staat en waarom',
@@ -1510,6 +1531,7 @@ export default {
     },
     {
       id: 'eng.joining.fixturing',
+      gist: 'Een robot last blind, dus de naad moet binnen zo\'n halve draaddiameter liggen; een goede mal is bijna altijd goedkoper dan naadzoeken.',
       film: 'eng.joining.production',
       figure: 'eng.joining.cell',
       title: 'Lasmallen, hechten en lasvolgorde tegen vervorming',
@@ -1581,6 +1603,7 @@ export default {
     },
     {
       id: 'eng.joining.arcon',
+      gist: 'De bedrijfsfactor is boogbrandtijd gedeeld door betaalde tijd, en arbeid is bijna altijd de grootste post in de kosten per meter las.',
       film: 'eng.joining.production',
       figure: 'eng.joining.cell',
       title: 'Boogbrandtijd en de kosten van een meter las',
@@ -1654,6 +1677,7 @@ export default {
     },
     {
       id: 'eng.joining.weldsystem',
+      gist: 'Een las is achteraf maar gedeeltelijk te controleren, dus eisen normen een beheerst proces, met een lascoördinator en een ISO 3834-niveau per uitvoeringsklasse.',
       film: 'eng.joining.production',
       figure: 'eng.joining.cell',
       title: 'Laskwaliteit als systeem: ISO 3834, EN 1090 en de IWE',
