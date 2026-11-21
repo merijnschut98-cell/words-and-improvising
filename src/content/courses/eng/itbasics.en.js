@@ -215,7 +215,7 @@ export default {
     },
     {
       id: 'eng.itbasics.netdesign',
-      gist: 'On a flat network one infected PC can reach every machine; assess a network with a diagram and asset inventory, and measure traffic before you segment.',
+      gist: 'On a flat network one infected PC can reach every machine; assess with a diagram and asset inventory, and measure traffic before you segment.',
       title: 'Judging a plant network',
       pre: [
         {
