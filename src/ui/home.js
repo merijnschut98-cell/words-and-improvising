@@ -17,7 +17,7 @@ import { currentQuests, questTarget } from '../core/quests.js';
 import { bossAvailable } from '../core/boss.js';
 import { makePrompt } from '../core/lesson.js';
 import { subjectBar, SUBJECT_TABS } from './subjectbar.js';
-import { courseHome, COURSE_ICON, openPick, pickWhy } from './coursehome.js';
+import { courseHome, COURSE_ICON, openPick, pickWhy, placeLabel } from './coursehome.js';
 import { listenEntry } from './listenback.js';
 
 // The Vantage mark (one image per theme, CSS shows the right one) and the wordmark.
@@ -301,7 +301,9 @@ function startCard(app, card) {
     const meta = card.moduleId ? MODULES.find((m) => m.id === card.moduleId) : null;
     const modTitle = meta ? (meta.title[app.lang] || meta.title.en) : '';
     what = h('span', { class: 'start-what' }, ico(COURSE_ICON[card.reason]), ' ', modTitle || t(`courseWhat_${card.reason}`, card.count || 0));
-    why = pickWhy(t, app.lang, card, meta);
+    // a next lesson needs no "Je volgende les ·": the card already shows it; topic · level is enough
+    const place = card.reason === 'lesson' && card.topicId && card.lessonId ? placeLabel(t, app.lang, card.lessonId) : '';
+    why = place || pickWhy(t, app.lang, card, meta);
     // The lesson title lives in the module file: fill it in once it is loaded.
     if (card.lessonId && meta) {
       app.openModule(card.subject, meta.id).then((mod) => {
@@ -319,8 +321,7 @@ function startCard(app, card) {
       subjectTitle(t, app.state, card.subject) ? [h('span', { class: 'muted' }, ' · '), subjectTitle(t, app.state, card.subject)] : null),
     card.done ? h('span', { class: 'start-done' }, ico('check'), ' ', t('startDone')) : null),
   what,
-  h('span', { class: 'start-why' }, why),
-  h('span', { class: 'start-open' }, t('startOpen', t(`subject_${card.subject}`)), ' ', ico('chevron-right')));
+  h('span', { class: 'start-why' }, why));
 }
 
 function breakCard(app, show) {

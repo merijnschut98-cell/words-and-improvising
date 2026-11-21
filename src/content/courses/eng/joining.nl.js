@@ -75,7 +75,7 @@ export default {
     },
     {
       id: 'eng.joining.weldparams',
-      film: 'eng.joining.arc',
+      film: 'eng.joining.weldparams',
       figure: 'eng.joining.mig',
       title: 'Lasparameters: draad, spanning en snelheid',
       pre: [
@@ -146,7 +146,7 @@ export default {
     },
     {
       id: 'eng.joining.wps',
-      film: 'eng.joining.arc',
+      film: 'eng.joining.wps',
       figure: 'eng.joining.mig',
       title: 'Lassen op papier: LMB, LMK en gekwalificeerde lassers',
       pre: [
@@ -219,7 +219,7 @@ export default {
     },
     {
       id: 'eng.joining.metallurgy',
-      film: 'eng.joining.arc',
+      film: 'eng.joining.metallurgy',
       figure: 'eng.joining.haz',
       title: 'Wat warmte met het staal doet: WBZ, voorwarmen en lastige metalen',
       pre: [

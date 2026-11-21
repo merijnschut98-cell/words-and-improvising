@@ -3,6 +3,7 @@ export default {
   lessons: [
     {
       id: 'pm.agile.whyagile',
+      gist: 'Agile works in short rounds that each deliver something that works, so users react early and the plan is adjusted, not only at the end.',
       title: 'What agile is, and why it exists',
       pre: [
         {
@@ -84,6 +85,7 @@ export default {
     },
     {
       id: 'pm.agile.principles',
+      gist: 'Recognise the twelve principles in a project: working software is the measure of progress, the pace is sustainable, and simplicity comes first.',
       title: 'The twelve principles in practice',
       pre: [
         {
@@ -164,6 +166,7 @@ export default {
     },
     {
       id: 'pm.agile.leanroots',
+      gist: 'Agile and Lean share flow, pull and continuous improvement, but Lean wants less variation, while product development is looking for something new.',
       title: 'Agile and Lean: family, not twins',
       pre: [
         {
@@ -246,6 +249,7 @@ export default {
     },
     {
       id: 'pm.agile.fit',
+      gist: 'Agile pays off most when much is uncertain about what or how you build; without real feedback it is agile theatre.',
       title: 'When agile fits, and when it doesn’t',
       pre: [
         {
@@ -327,6 +331,7 @@ export default {
     },
     {
       id: 'pm.agile.scrumbasics',
+      gist: 'Scrum is a framework for a small team working in sprints of at most a month, with a Product Owner, a Scrum Master and Developers.',
       film: 'pm.agile.scrum',
       title: 'Scrum: the team and the sprint',
       pre: [
@@ -410,6 +415,7 @@ export default {
     },
     {
       id: 'pm.agile.events',
+      gist: 'Scrum has five events with a fixed timebox: the sprint, which holds Sprint Planning, the Daily Scrum, the Sprint Review and the Sprint Retrospective.',
       film: 'pm.agile.scrum',
       title: 'The five Scrum events',
       pre: [
@@ -492,6 +498,7 @@ export default {
     },
     {
       id: 'pm.agile.artefacts',
+      gist: 'Each of the three artefacts has a commitment: Product Backlog with Product Goal, Sprint Backlog with Sprint Goal, Increment with Definition of Done.',
       film: 'pm.agile.scrum',
       title: 'The three artefacts and their commitments',
       pre: [
@@ -576,6 +583,7 @@ export default {
     },
     {
       id: 'pm.agile.scrumfail',
+      gist: 'Scrum often goes wrong through a proxy Product Owner, a mini-waterfall or ScrumBut; the Guide says Scrum only works as a whole.',
       title: 'Scrum for real: what goes wrong and what you ask',
       pre: [
         {
@@ -658,6 +666,7 @@ export default {
     },
     {
       id: 'pm.agile.stories',
+      gist: 'A user story is “As a [role] I want [something], so that [value]”: a card for a conversation, with acceptance criteria that make it testable.',
       film: 'pm.agile.backlog',
       title: 'User stories: describing work from the user’s side',
       pre: [
@@ -738,6 +747,7 @@ export default {
     },
     {
       id: 'pm.agile.refine',
+      gist: 'Refinement slices backlog items vertically into small, estimable pieces that each deliver something that works; INVEST is the checklist for a good story.',
       film: 'pm.agile.backlog',
       title: 'Refinement: getting the backlog ready',
       pre: [
@@ -819,6 +829,7 @@ export default {
     },
     {
       id: 'pm.agile.points',
+      gist: 'Estimate relatively in story points and discuss big differences in planning poker; use the spread of velocity, not a single average.',
       film: 'pm.agile.backlog',
       title: 'Story points, planning poker and velocity',
       pre: [
@@ -903,6 +914,7 @@ export default {
     },
     {
       id: 'pm.agile.forecast',
+      gist: 'Forecast with a probability instead of a single date, based on the team\'s own history, for example with a Monte Carlo simulation.',
       film: 'pm.agile.forecast',
       title: 'Forecasting without false certainty',
       pre: [
@@ -987,6 +999,7 @@ export default {
     },
     {
       id: 'pm.agile.board',
+      gist: 'A kanban board shows the work as it really runs, based on pull; blocked cards show where the system stalls.',
       film: 'pm.agile.kanban',
       title: 'Kanban: making the work visible',
       pre: [
@@ -1068,6 +1081,7 @@ export default {
     },
     {
       id: 'pm.agile.wip',
+      gist: 'A WIP limit caps what is in progress at once: when a column is full, finish something first, so the bottleneck becomes visible.',
       film: 'pm.agile.kanban',
       title: 'WIP limits: start less, finish more',
       pre: [
@@ -1149,6 +1163,7 @@ export default {
     },
     {
       id: 'pm.agile.flowmetrics',
+      gist: 'Little\'s law: average cycle time is average WIP divided by average throughput, so less work in progress gives shorter lead times.',
       film: 'pm.agile.kanban',
       title: 'Cycle time, throughput and Little’s law',
       pre: [
@@ -1233,6 +1248,7 @@ export default {
     },
     {
       id: 'pm.agile.flowsteer',
+      gist: 'Steer on an expectation with a probability (SLE) and on work item age, and do not plan for full utilisation, because waiting time then climbs.',
       film: 'pm.agile.forecast',
       title: 'Steering on flow: expectations, ageing and utilisation',
       pre: [

@@ -67,6 +67,8 @@ function checkLesson(l, meta, lang, errs, tier = meta.level) {
   if (!str(ex.text)) errs.push(`${at}: example text missing`);
   if (ex.kind === 'faded' && !(str(ex.ask) && str(ex.reveal))) errs.push(`${at}: faded example needs ask and reveal`);
   if (!str(l.said)) errs.push(`${at}: said missing`);
+  // the kernzin (17 Nov): optional during the rollout (tests/gist.test.js), one sentence of at most 25 words
+  if ('gist' in l && !(str(l.gist) && words(l.gist) <= 25 && /[.!?]$/.test(l.gist.trim()))) errs.push(`${at}: gist must be one sentence of at most 25 words`);
   const recall = l.recall || [];
   if (recall.length < 3 || recall.length > 5) errs.push(`${at}: needs 3–5 recall questions`);
   recall.forEach((qn, i) => checkQuestion(qn, `${at} recall ${i}`, errs));

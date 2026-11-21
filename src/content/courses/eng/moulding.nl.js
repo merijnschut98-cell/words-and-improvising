@@ -364,7 +364,7 @@ export default {
     },
     {
       id: 'eng.moulding.cooling',
-      film: 'eng.moulding.cycle',
+      film: 'eng.moulding.cooling',
       title: 'Koelen: wat de insteller kan veranderen',
       pre: [
         {
@@ -433,7 +433,7 @@ export default {
     },
     {
       id: 'eng.moulding.cavities',
-      film: 'eng.moulding.cycle',
+      film: 'eng.moulding.cavities',
       title: 'Meer holtes of een snellere cyclus',
       pre: [
         {
@@ -503,7 +503,7 @@ export default {
     },
     {
       id: 'eng.moulding.partcost',
-      film: 'eng.moulding.cycle',
+      film: 'eng.moulding.partcost',
       title: 'Wat een spuitgietproduct kost',
       pre: [
         {

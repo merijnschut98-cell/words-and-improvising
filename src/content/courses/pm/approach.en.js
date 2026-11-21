@@ -3,6 +3,7 @@ export default {
   lessons: [
     {
       id: 'pm.approach.route',
+      gist: 'A project runs over five stages, and each stage leaves a stage product that the next one needs; the order matters.',
       title: 'The whole route in one picture',
       pre: [
         {
@@ -74,6 +75,7 @@ export default {
     },
     {
       id: 'pm.approach.takeover',
+      gist: 'Take over a running project with five questions, the documents in fixed order and a status check in numbers; then fill the missing stage product.',
       title: 'Taking over a running project',
       pre: [
         {
@@ -144,6 +146,7 @@ export default {
     },
     {
       id: 'pm.approach.tailor',
+      gist: 'Tailor the route to duration, money, parties and consequences; merge stages when the work is small, but never drop the minimum governance.',
       title: 'How much route: tailoring',
       pre: [
         {
@@ -214,6 +217,7 @@ export default {
     },
     {
       id: 'pm.approach.clientroute',
+      gist: 'Ask the PMO about gates, templates and tolerances before you propose your own route, so that your route fits inside the client\'s.',
       title: 'The client’s route: gates, PMO and not starting',
       pre: [
         {
@@ -286,6 +290,7 @@ export default {
     },
     {
       id: 'pm.approach.families',
+      gist: 'There are four method families and a mixed form; a certificate proves someone passed an exam, not how a project works in practice.',
       title: 'The method families',
       pre: [
         {
@@ -357,6 +362,7 @@ export default {
     },
     {
       id: 'pm.approach.dmaic',
+      gist: 'DMAIC is a fixed route for a recurring problem with data: define, measure, analyse, improve and control, with a tollgate review after each phase.',
       title: 'DMAIC on a small problem',
       pre: [
         {
@@ -427,6 +433,7 @@ export default {
     },
     {
       id: 'pm.approach.choose',
+      gist: 'Choose the method with five questions about solution, requirements, data, team and contract; often a hybrid form is the answer.',
       title: 'Choosing the method for this project',
       pre: [
         {
@@ -496,6 +503,7 @@ export default {
     },
     {
       id: 'pm.approach.translate',
+      gist: 'Translate between methods without losing the core, tailor openly, and expose method theatre by asking which decision a document made.',
       title: 'Working in the client’s method',
       pre: [
         {
@@ -565,6 +573,7 @@ export default {
     },
     {
       id: 'pm.approach.toolfamilies',
+      gist: 'A tool is worth it when it returns more than it costs; think in tool families per kind of work and pick the smallest set.',
       title: 'Tool families and when a tool pays off',
       pre: [
         {
@@ -636,6 +645,7 @@ export default {
     },
     {
       id: 'pm.approach.board',
+      gist: 'Set up a board around the work, give every card an owner, date and done criterion, and discuss only what is behind.',
       title: 'Setting up a task board in the first hour',
       pre: [
         {
@@ -708,6 +718,7 @@ export default {
     },
     {
       id: 'pm.approach.toolchoice',
+      gist: 'Choose the tool per project with five things in view: the client\'s rules first, and a selection grid to make the choice explainable.',
       title: 'Choosing the tool for this project',
       pre: [
         {
@@ -778,6 +789,7 @@ export default {
     },
     {
       id: 'pm.approach.toolcost',
+      gist: 'A tool costs more than it seems: tool sprawl, data residency, double entry and ownership after you leave belong in the weighing.',
       title: 'What a tool really costs',
       pre: [
         {
@@ -850,6 +862,7 @@ export default {
     },
     {
       id: 'pm.approach.systems',
+      gist: 'In a large company each system has one job; the system of record has the last word when sources disagree.',
       title: 'A large client’s systems',
       pre: [
         {
@@ -920,6 +933,7 @@ export default {
     },
     {
       id: 'pm.approach.guest',
+      gist: 'As a guest you ask for read access and a project code, read the backlog board, and set booked hours next to finished work.',
       title: 'A guest in the client’s systems',
       pre: [
         {
@@ -991,6 +1005,7 @@ export default {
     },
     {
       id: 'pm.approach.recordof',
+      gist: 'Your board is the working tool, the client\'s system keeps the official figures; give every fact one home and avoid double entry.',
       title: 'What lives where: working tool and system of record',
       pre: [
         {
@@ -1064,6 +1079,7 @@ export default {
     },
     {
       id: 'pm.approach.landscape',
+      gist: 'Find the data owner per kind of data, negotiate early with the PMO on your measures, and allow for vendor risk and technical changes.',
       title: 'The tool landscape as a senior',
       pre: [
         {

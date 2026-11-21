@@ -3,6 +3,7 @@ export default {
   lessons: [
     {
       id: 'pm.intake.ask',
+      gist: 'Clients arrive with a solution or a symptom; separate symptom, problem and goal, and look first for the cause underneath.',
       film: 'pm.intake.firsttalk',
       title: 'What they ask vs what they need',
       pre: [
@@ -84,6 +85,7 @@ export default {
     },
     {
       id: 'pm.intake.firsttalk',
+      gist: 'Let the client talk 70 to 80% of a first meeting, paraphrase what you hear, and leave with a date for the next step.',
       film: 'pm.intake.firsttalk',
       title: 'The first conversation',
       pre: [
@@ -165,6 +167,7 @@ export default {
     },
     {
       id: 'pm.intake.problemstatement',
+      gist: 'A sharp problem statement says what, where, when and how much, with no cause, solution or culprit in it.',
       title: 'A sharp problem statement',
       pre: [
         {
@@ -247,6 +250,7 @@ export default {
     },
     {
       id: 'pm.intake.issuetree',
+      gist: 'Start early with a hypothesis, build a tree with no overlap and no gap, and actively look for evidence against it.',
       title: 'Working with hypotheses',
       pre: [
         {
@@ -329,6 +333,7 @@ export default {
     },
     {
       id: 'pm.intake.stakeholders',
+      gist: 'Map four roles: sponsor, process owner, users and blockers; whoever can make you fail is rarely on the org chart.',
       film: 'pm.intake.stakeholders',
       title: 'Who decides, who can stop it',
       pre: [
@@ -411,6 +416,7 @@ export default {
     },
     {
       id: 'pm.intake.start',
+      gist: 'In the first weeks do two things at once: quick wins that come from the people and a base of baseline, roles and meeting rhythm.',
       film: 'pm.run.rhythm',
       title: 'The first weeks',
       pre: [
@@ -493,6 +499,7 @@ export default {
     },
     {
       id: 'pm.intake.contracting',
+      gist: 'Contracting is more than signing: both sides say what they want and what they bring, because the client owns the change.',
       title: 'Agreements with the sponsor',
       pre: [
         {
@@ -575,6 +582,7 @@ export default {
     },
     {
       id: 'pm.intake.coalition',
+      gist: 'A sponsor alone is not enough: build a coalition with power, expertise and trust on the floor, and involve the works council in time.',
       title: 'Building a coalition',
       pre: [
         {
@@ -656,6 +664,7 @@ export default {
     },
     {
       id: 'pm.intake.done',
+      gist: 'Write the goal in one sentence: from X to Y, by a date, measured how, from a baseline nobody can dispute.',
       film: 'pm.plan.wbs',
       title: 'Defining done',
       pre: [
@@ -738,6 +747,7 @@ export default {
     },
     {
       id: 'pm.intake.charter',
+      gist: 'The one-page project charter is the agreement everyone can point back to, with goal, scope, milestones and written-down assumptions.',
       title: 'The one-page charter',
       pre: [
         {
@@ -819,6 +829,7 @@ export default {
     },
     {
       id: 'pm.intake.sipoc',
+      gist: 'SIPOC puts the process on one page, from suppliers to customers, so everyone talks about the same boundaries.',
       title: 'Drawing boundaries with SIPOC',
       pre: [
         {
@@ -900,6 +911,7 @@ export default {
     },
     {
       id: 'pm.intake.phasing',
+      gist: 'Split the project into phases, each ending in a go/no-go decision, and promise a result only once you know where the problem is.',
       title: 'Phasing and change control',
       pre: [
         {
@@ -983,6 +995,7 @@ export default {
     },
     {
       id: 'pm.intake.value',
+      gist: 'A business case shows in euros what a project costs and returns; payback time is the one-off cost divided by net benefit per month.',
       title: 'What it’s worth',
       pre: [
         {
@@ -1064,6 +1077,7 @@ export default {
     },
     {
       id: 'pm.intake.proposal',
+      gist: 'A proposal of three to five pages starts with the client\'s own problem, then gives approach, result and price.',
       title: 'Writing the proposal',
       pre: [
         {
@@ -1144,6 +1158,7 @@ export default {
     },
     {
       id: 'pm.intake.no',
+      gist: 'When you see red flags, do not just refuse: start from their goal, name the risk and offer an option to rebuild the project.',
       title: 'Saying no, or reshaping',
       pre: [
         {
@@ -1225,6 +1240,7 @@ export default {
     },
     {
       id: 'pm.intake.sensitivity',
+      gist: 'Test the two or three assumptions the business case depends on most, and correct your optimism with real outcomes of similar projects.',
       title: 'A business case that holds',
       pre: [
         {

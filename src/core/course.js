@@ -5,6 +5,7 @@ import { isoWeekKey } from './boss.js';
 import { scheduleCourseReview, dueCount, maintenanceQuestion, OWNED_BOX } from './coursereview.js';
 import { lessonOf, moduleOf, MODULES, TRACKS, topicsOf, placeOf } from '../content/courses/index.js';
 import { mapFor } from '../content/courses/maps/index.js';
+import { TEXT_FIRST_FILMS } from '../content/courses/films/textfirst.js';
 import { upcoming } from './realweek.js';
 import { creditXp, isPerfect, goalJustReached } from './xp.js';
 import { awardFlair } from './flair.js';
@@ -481,7 +482,10 @@ export function glossary(modules) {
 // A lesson with a film (v14b): the film replaces the reading. The films show
 // the worked example too, so a film lesson skips Voorbeeld (v16): Raden · Film
 // · Check. Without a film: Raden · Lezen · Voorbeeld · Check.
-export const lessonPhases = (lesson) => [...((lesson.pre || []).length ? ['pre'] : []), ...(lesson.film ? ['film'] : ['teach', 'example']), 'quiz'];
+// A text-first film (films/textfirst.js, 17 Nov) does not replace the reading:
+// the lesson keeps Lezen · Voorbeeld and offers the film inside the reading.
+export const filmIsMain = (lesson) => typeof lesson.film === 'string' && !TEXT_FIRST_FILMS.has(lesson.film.split('#')[0]);
+export const lessonPhases = (lesson) => [...((lesson.pre || []).length ? ['pre'] : []), ...(filmIsMain(lesson) ? ['film'] : ['teach', 'example']), 'quiz'];
 
 // Recall questions with their stable ids: '<lessonId>#r<n>'.
 export const recallQuestions = (lesson) => (lesson.recall || []).map((q, i) => ({ ...q, id: `${lesson.id}#r${i}` }));

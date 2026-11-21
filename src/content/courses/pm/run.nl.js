@@ -3,6 +3,7 @@ export default {
   lessons: [
     {
       id: 'pm.run.status',
+      gist: 'Spreek vooraf af wat de kleuren betekenen; rood is geen falen maar een vraag om een besluit, en slecht nieuws meld je vroeg.',
       film: 'pm.run.escalation',
       title: 'Eerlijke status',
       pre: [
@@ -84,6 +85,7 @@ export default {
     },
     {
       id: 'pm.run.steerco',
+      gist: 'Een stuurgroep win je vóór de vergadering: stuur het stuk vooraf, praat de beslissers persoonlijk bij en bewaar vergadertijd voor besluiten.',
       title: 'De stuurgroep voorbereiden',
       pre: [
         {
@@ -165,6 +167,7 @@ export default {
     },
     {
       id: 'pm.run.earned',
+      gist: 'Meet voortgang in verdiende waarde, niet in uitgaven: SPI = EV / PV, CPI = EV / AC; onder 1 is achter of duurder.',
       title: 'Voortgang in cijfers: earned value',
       pre: [
         {
@@ -252,6 +255,7 @@ export default {
     },
     {
       id: 'pm.run.exception',
+      gist: 'Escaleer op de prognose, niet op de overschrijding: EAC is BAC / CPI als de efficiëntie doorloopt, en je geeft opties en een advies.',
       title: 'Sturen op uitzondering',
       pre: [
         {
@@ -338,6 +342,7 @@ export default {
     },
     {
       id: 'pm.run.scope',
+      gist: 'Scope creep is groei zonder besluit: je blokkeert niet maar laat zien wat elk verzoek kost, en de sponsor beslist.',
       film: 'pm.run.scope',
       title: 'Scope creep',
       pre: [
@@ -422,6 +427,7 @@ export default {
     },
     {
       id: 'pm.run.change',
+      gist: 'Beheer wijzigingen met een licht proces: vastleggen, impact op meer dan geld analyseren, beslissen, uitvoeren, communiceren; kleine tellen op.',
       title: 'Wijzigingen beheersen',
       pre: [
         {
@@ -504,6 +510,7 @@ export default {
     },
     {
       id: 'pm.run.replan',
+      gist: 'Meet tegen het basisplan en pas het niet stilletjes aan; een nieuw plan beslist de stuurgroep, de managementreserve de sponsor.',
       title: 'Herplannen en reserves',
       pre: [
         {
@@ -589,6 +596,7 @@ export default {
     },
     {
       id: 'pm.run.rescope',
+      gist: 'Beslis over bijsturen of stoppen op toekomstige kosten en baten; wat al is uitgegeven telt niet mee.',
       title: 'Bijsturen of stoppen',
       pre: [
         {
@@ -673,6 +681,7 @@ export default {
     },
     {
       id: 'pm.run.rhythm',
+      gist: 'Een project draait op drie overleggen: stand-up, weekoverleg en stuurgroep; agenda\'s vragen om besluiten, het verslag noemt alleen besluiten en acties.',
       film: 'pm.run.rhythm',
       title: 'Een overlegritme dat werkt',
       pre: [
@@ -754,6 +763,7 @@ export default {
     },
     {
       id: 'pm.run.team',
+      gist: 'Leiden zonder macht doe je met wat je hebt: duidelijkheid, hulp en erkenning, en met concrete beloftes die mensen zelf in het openbaar doen.',
       title: 'Leidinggeven zonder macht',
       pre: [
         {
@@ -834,6 +844,7 @@ export default {
     },
     {
       id: 'pm.run.conflict',
+      gist: 'Onderhandel over belangen, niet over standpunten: vraag waarom iemand iets wil, want daar zit de ruimte voor een oplossing voor beide.',
       film: 'pm.run.conflict',
       title: 'Conflict en het lastige gesprek',
       pre: [
@@ -917,6 +928,7 @@ export default {
     },
     {
       id: 'pm.run.workstreams',
+      gist: 'Splits grote projecten in werkstromen, maar stuur op de naden: de overdracht tussen werkstromen verdient een eigen status.',
       title: 'Meerdere werkstromen sturen',
       pre: [
         {
@@ -1003,6 +1015,7 @@ export default {
     },
     {
       id: 'pm.run.issues',
+      gist: 'Een issue is al gebeurd, een risico nog niet; geef elk issue één eigenaar, en ontbreekt een besluit, dan escaleer je.',
       title: 'Issues bijhouden en oplossen',
       pre: [
         {
@@ -1085,6 +1098,7 @@ export default {
     },
     {
       id: 'pm.run.decisions',
+      gist: 'Kom met twee of drie opties en een advies op één A4, en zet erbij wat het kost als er niet besloten wordt.',
       film: 'pm.run.escalation',
       title: 'Besluiten voor elkaar krijgen',
       pre: [
@@ -1166,6 +1180,7 @@ export default {
     },
     {
       id: 'pm.run.tiers',
+      gist: 'Tier-overleg koppelt korte overleggen op vaste tijden, zodat wat een laag niet oplost snel naar de volgende gaat, met terugkoppeling.',
       title: 'Escaleren in lagen: tier-overleg en obeya',
       pre: [
         {
@@ -1250,6 +1265,7 @@ export default {
     },
     {
       id: 'pm.run.multiparty',
+      gist: 'Los issues tussen bedrijven op met één gezamenlijke issuelog en op het niveau waar het werk gebeurt, voordat je naar de top gaat.',
       title: 'Issues tussen bedrijven',
       pre: [
         {

@@ -212,3 +212,14 @@ Outcome: accepted (merged as delivered), sent back N times, redone.
 | 16 Nov | Review: pilot P1 cnc split | opus | ~110 | ~2.5 h active (paused overnight) | n/a | pass with 7 fixes (staging truth, repetition, highlights, readout overlap, G91 picture, label sizes, nl/en); tree shake moved into films/_kit/shake.mjs; merged v363 |
 | 2026-11-16 | PM-32 render: pm.field.lifecycle, approach/formats intros, intake/plan/run/land intros, MORE PIES nl re-renders | sonnet | ~190 | ~5 h (incl. usage-limit pause) | 213k | done; 16 MP4s guard PASS, merged v364 |
 | 2026-11-16 | PM-33 render: eng.field.run, eng.field.better, flow/quality/maintenance/safety/improve/cost/spc/reliability intros | sonnet | 45 | ~69 min | 145k | done; 20 MP4s guard PASS, merged v366 |
+| 2026-11-17 | Triage of the 40 Projects lesson films (keep film or text-first) | sonnet | 14 | 2 min | 129k | done; 21 keep, 19 text; integrator flipped pm.plan.risk to keep |
+| 2026-11-17 | Task 17 pilot B: extend eng.moulding.cycle | sonnet | 35 | 8 min | 248k | stopped, rightly: 46 points (1,780 words) cannot fit 360 s; ruling: split per D3 (forced); tool counts undercount ~4x, check words vs ~790 budget before each extend |
+| 2026-11-17 | Task 17 B1 #2: split eng.joining.arc into four one-lesson films | sonnet | 161 | 26 min | 512k | done (7007748); 49 points claimed, 193-228 s; SAY list for review |
+| 2026-11-17 | Task 17 pilot B: split eng.moulding.cycle into four one-lesson films | sonnet | ~120 | ~3.5 h | - | done (f5c7e02); 45 points claimed, 1 reading (pointer); 169-246 s designed |
+| 2026-11-17 | Review of the eng.joining.arc split | sonnet | 146 | 22 min | 359k | approved (36d6d02); 6 small fixes; SAY rules for welding standards added by the integrator |
+| 2026-11-17 | Review of Task 17 pilot B (eng.moulding.cycle split) | opus | 106 | 20 min | 292k | approved (ee692d7); 8 fixes incl. card rows a beat late, blank displays, empty stage, scrap truth, padded tour cut (246 to 224 s); integrator added the PA6 rule and dropped the size allowance |
+| 2026-11-17 | Kernzin batch 1: pm.intake, plan, run, land, lead (80 lessons) | sonnet | 49 | 5 min | 158k | done (75a3acf); review dispatched |
+| 2026-11-17 | Review of kernzin batch 1 (pm.intake, plan, run, land, lead) | sonnet | 35 | - | - | done (6641155); 32 of 80 changed, ~8 claimed what the lesson does not say |
+| 2026-11-17 | Kernzin batch 2: pm.agile, approach, close, consult, devops, formats (96 lessons) | sonnet | 46 | 4 min | 188k | done (2d85685); review dispatched |
+| 2026-11-17 | Review of kernzin batch 2 (pm.agile, approach, close, consult, devops, formats) | sonnet | 55 | 25 min | - | done (53ec0d8); 13 lessons changed, mostly nl/en mismatches and overstated claims |
+| 2026-11-17 | Kernzin batch 3: pm.itproject, negotiate, outside, perform, portfolio, scaled, stuck (112 lessons) | sonnet | ~95 | ~45 min | - | done (36fabb2); review dispatched |

@@ -3,6 +3,7 @@ export default {
   lessons: [
     {
       id: 'pm.consult.proposal',
+      gist: 'A proposal wins on its first page: start with the client\'s problem in his numbers, and offer two or three options.',
       film: 'pm.consult.proposal',
       title: 'A proposal that wins',
       pre: [
@@ -86,6 +87,7 @@ export default {
     },
     {
       id: 'pm.consult.pricing',
+      gist: 'Price by day rate, value or fixed price, add a risk margin to fixed bids, put extra work in writing, and trade discounts for something.',
       film: 'pm.consult.proposal',
       title: 'Pricing and scope',
       pre: [
@@ -170,6 +172,7 @@ export default {
     },
     {
       id: 'pm.consult.valuefee',
+      gist: 'In value pricing the worth of the result sets the fee, after a value conversation; the criticism is that attribution is hard.',
       title: 'Value pricing and its critics',
       pre: [
         {
@@ -254,6 +257,7 @@ export default {
     },
     {
       id: 'pm.consult.bid',
+      gist: 'In a fixed bid, price the risks separately as probability times extra days, move what you cannot price, and know your walk-away price.',
       title: 'Pricing the risk in a fixed bid',
       pre: [
         {
@@ -339,6 +343,7 @@ export default {
     },
     {
       id: 'pm.consult.trust',
+      gist: 'Trust is credibility plus reliability plus intimacy, divided by self-orientation; use the formula to see which part is weak.',
       title: 'The trusted advisor',
       pre: [
         {
@@ -419,6 +424,7 @@ export default {
     },
     {
       id: 'pm.consult.roles',
+      gist: 'As expert, pair of hands or collaborator you help differently, and each role has a price; say aloud which role you are playing.',
       title: 'Which helper are you? Roles per Block and Schein',
       pre: [
         {
@@ -499,6 +505,7 @@ export default {
     },
     {
       id: 'pm.consult.resistance',
+      gist: 'Resistance is a predictable reaction to something hard: recognise its form, name it in neutral language, and then stay silent.',
       title: 'When the client resists your advice',
       pre: [
         {
@@ -580,6 +587,7 @@ export default {
     },
     {
       id: 'pm.consult.humble',
+      gist: 'Many client problems are a mess, not a puzzle; build a personal level 2 relationship, ask humbly and take small adaptive moves.',
       title: 'Humble consulting: a Level 2 relationship',
       pre: [
         {
@@ -663,6 +671,7 @@ export default {
     },
     {
       id: 'pm.consult.independence',
+      gist: 'Your advice is only worth something if it is independent: disclose ties in writing, tell the sponsor bad news first, and keep client lessons confidential.',
       title: 'Independence and ethics',
       pre: [
         {
@@ -743,6 +752,7 @@ export default {
     },
     {
       id: 'pm.consult.data',
+      gist: 'Ask only for the client data your question needs, sign a processor agreement for personal data, and check whether the works council has a say.',
       title: 'Client data and confidentiality',
       pre: [
         {
@@ -824,6 +834,7 @@ export default {
     },
     {
       id: 'pm.consult.dilemmas',
+      gist: 'In an ethical dilemma two legitimate values clash: name it in one sentence, find at least three options and talk to a peer.',
       title: 'Ethical dilemmas mid-assignment',
       pre: [
         {
@@ -905,6 +916,7 @@ export default {
     },
     {
       id: 'pm.consult.walkaway',
+      gist: 'Withdrawing is the last step: raise it in private first, put it on paper, and hand over the work done.',
       title: 'Walking away, and the professional codes',
       pre: [
         {
@@ -988,6 +1000,7 @@ export default {
     },
     {
       id: 'pm.consult.account',
+      gist: 'Growing a client means doing the work visibly well: follow up after 3 and 6 months, widen your contacts and name adjacent problems.',
       title: 'Growing an account',
       pre: [
         {
@@ -1068,6 +1081,7 @@ export default {
     },
     {
       id: 'pm.consult.practice',
+      gist: 'Build your practice on your real capacity, a narrow position, one-page cases and a network, and say no to the wrong work.',
       title: 'Building your own practice',
       pre: [
         {
@@ -1153,6 +1167,7 @@ export default {
     },
     {
       id: 'pm.consult.thought',
+      gist: 'Thought leadership is a clear point of view, built on your own anonymised cases and budgeted as time; measure it by conversations.',
       title: 'Thought leadership: known for a point of view',
       pre: [
         {
@@ -1236,6 +1251,7 @@ export default {
     },
     {
       id: 'pm.consult.scale',
+      gist: 'Work that becomes familiar drifts from brains to procedure work; leverage gives margin, but watch client concentration and false self-employment.',
       title: 'Beyond yourself: leverage and the rules for independents',
       pre: [
         {

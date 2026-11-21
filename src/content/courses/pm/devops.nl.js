@@ -3,6 +3,7 @@ export default {
   lessons: [
     {
       id: 'pm.devops.pipeline',
+      gist: 'DevOps breekt de muur tussen bouwen en beheren af met een pipeline: een geautomatiseerde band die elke wijziging dezelfde stappen laat doorlopen.',
       film: 'pm.devops.pipeline',
       title: 'Wat DevOps is, en wat een pipeline doet',
       pre: [
@@ -86,6 +87,7 @@ export default {
     },
     {
       id: 'pm.devops.tests',
+      gist: 'De testpiramide zegt: veel snelle unittests, minder integratietests, weinig end-to-end; en een wankele test leert het team rode meldingen te negeren.',
       title: 'Testautomatisering: unit, integratie en end-to-end',
       pre: [
         {
@@ -168,6 +170,7 @@ export default {
     },
     {
       id: 'pm.devops.trunk',
+      gist: 'Continuous integration betekent dat iedereen minstens dagelijks in de trunk samenvoegt, met build en tests; een branch die weken apart blijft is tussenvoorraad.',
       title: 'Continuous integration en trunk-based development',
       pre: [
         {
@@ -252,6 +255,7 @@ export default {
     },
     {
       id: 'pm.devops.cdflow',
+      gist: 'Continuous delivery kan elke versie live zetten, maar een mens kiest wanneer; in de fabriek past automatisch live gaan zelden bij machinesoftware.',
       title: 'Continuous delivery op de fabrieksvloer',
       pre: [
         {
@@ -334,6 +338,7 @@ export default {
     },
     {
       id: 'pm.devops.fourkeys',
+      gist: 'DORA meet vier sleutels: deployfrequentie en doorlooptijd voor snelheid, faalpercentage en hersteltijd voor stabiliteit, en bij de beste teams gaan ze samen.',
       film: 'pm.devops.pipeline',
       title: 'DORA: de vier sleutelmetingen',
       pre: [
@@ -417,6 +422,7 @@ export default {
     },
     {
       id: 'pm.devops.measure',
+      gist: 'Haal DORA-cijfers uit systemen die je al hebt, gebruik de mediaan voor tijden, en meet ze allemaal, niet alleen het makkelijke cijfer.',
       title: 'DORA meten zonder jezelf voor de gek te houden',
       pre: [
         {
@@ -498,6 +504,7 @@ export default {
     },
     {
       id: 'pm.devops.benchmark',
+      gist: 'DORA-clusters zoals elite komen uit een enquête van een bepaald jaar; noem het jaar en kijk vooral naar je eigen trend.',
       title: 'Benchmarks: elite, laag, en wat de rapporten echt zeggen',
       pre: [
         {
@@ -580,6 +587,7 @@ export default {
     },
     {
       id: 'pm.devops.metricsuse',
+      gist: 'DORA-cijfers zijn uitkomsten die beter worden door werkwijzen; stuur op die capabilities, want een meting die een doel wordt, wordt gegamed.',
       title: 'Sturen met DORA zonder de meting kapot te maken',
       pre: [
         {
@@ -662,6 +670,7 @@ export default {
     },
     {
       id: 'pm.devops.environments',
+      gist: 'Software gaat via omgevingen van ontwikkeling naar productie (OTAP); het verschil zit in de configuratie, en in een fabriek komen er echte machines bij.',
       title: 'Omgevingen: van ontwikkeling tot productie',
       pre: [
         {
@@ -742,6 +751,7 @@ export default {
     },
     {
       id: 'pm.devops.flags',
+      gist: 'Deploy is installeren, release is aanzetten voor gebruikers; met een feature flag scheid je die twee en kan half werk uitgeschakeld in productie staan.',
       title: 'Deploy is niet release: feature flags',
       pre: [
         {
@@ -823,6 +833,7 @@ export default {
     },
     {
       id: 'pm.devops.strategies',
+      gist: 'Blue-green, canary en rolling zetten een versie veilig live met elk een andere impactstraal; kies naar hoeveel apparatuur en verkeer je hebt.',
       title: 'Blue-green, canary en rolling: veilig live gaan',
       pre: [
         {
@@ -906,6 +917,7 @@ export default {
     },
     {
       id: 'pm.devops.rollback',
+      gist: 'Bij een mislukte update kies je rollback of roll forward; het lastige zit in de gegevens, dus plan vooraf wie besluit en op welk signaal.',
       title: 'Terugdraaien of vooruit herstellen',
       pre: [
         {
@@ -989,6 +1001,7 @@ export default {
     },
     {
       id: 'pm.devops.incident',
+      gist: 'In ITIL herstel je een incident snel, neem je de oorzaak weg als probleem, en beoordeel je elke wijziging die een dienst kan raken.',
       film: 'pm.devops.incident',
       title: 'Incident, probleem, wijziging: ITIL in gewone woorden',
       pre: [
@@ -1072,6 +1085,7 @@ export default {
     },
     {
       id: 'pm.devops.sla',
+      gist: 'Een SLA legt respons- en oplostijd per prioriteit vast, en beschikbaarheid in procenten: 99,9% over een maand is ruim 43 minuten storing.',
       title: 'SLA’s, prioriteiten en beschikbaarheid',
       pre: [
         {
@@ -1154,6 +1168,7 @@ export default {
     },
     {
       id: 'pm.devops.postmortem',
+      gist: 'Een post-mortem is schuldvrij: je zoekt wat in het systeem de fout mogelijk maakte, met een tijdlijn en acties met eigenaar en datum.',
       film: 'pm.devops.postmortem',
       title: 'De post-mortem: leren van een storing zonder schuldige',
       pre: [
@@ -1238,6 +1253,7 @@ export default {
     },
     {
       id: 'pm.devops.leanops',
+      gist: 'Er is geen bewijs dat een zware CAB het faalpercentage verlaagt, wel dat hij vertraagt; laat routinewijzigingen vooraf goedkeuren, en gebruik andon en A3.',
       title: 'Lean in IT-beheer: andon, A3 en wijzigingen zonder rem',
       pre: [
         {

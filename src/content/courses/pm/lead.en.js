@@ -3,6 +3,7 @@ export default {
   lessons: [
     {
       id: 'pm.lead.power',
+      gist: 'Your influence comes mainly from expertise and reference power, because position power belongs to a role you do not have.',
       title: 'Where your influence comes from',
       pre: [
         {
@@ -84,6 +85,7 @@ export default {
     },
     {
       id: 'pm.lead.persuade',
+      gist: 'Cialdini\'s principles are tendencies, not buttons; use them only when what you say is true and the other person would still agree knowing everything.',
       title: 'Persuasion principles, used honestly',
       pre: [
         {
@@ -165,6 +167,7 @@ export default {
     },
     {
       id: 'pm.lead.influence',
+      gist: 'Without power you trade: find what each stakeholder cares about, offer help or information, and talk one-on-one first.',
       film: 'pm.intake.stakeholders',
       title: 'Influence without authority',
       pre: [
@@ -247,6 +250,7 @@ export default {
     },
     {
       id: 'pm.lead.coalition',
+      gist: 'The informal network decides whether people follow; build a coalition that outlasts the sponsor, and find out what a blocker cares about.',
       title: 'Coalitions and the informal network',
       pre: [
         {
@@ -330,6 +334,7 @@ export default {
     },
     {
       id: 'pm.lead.feedback',
+      gist: 'Give feedback with SBI: situation, observable behaviour and impact, in private, quickly, and close with a question.',
       film: 'pm.lead.feedback',
       title: 'Feedback that lands',
       pre: [
@@ -411,6 +416,7 @@ export default {
     },
     {
       id: 'pm.lead.candor',
+      gist: 'Radical Candor is caring personally and challenging directly at the same time; being only nice or only blunt misses one of the two.',
       title: 'Caring and challenging: Radical Candor',
       pre: [
         {
@@ -491,6 +497,7 @@ export default {
     },
     {
       id: 'pm.lead.difficult',
+      gist: 'Every difficult conversation is three conversations: facts, feelings and identity; talk about your impact, ask about their intent and close with an agreement.',
       film: 'pm.lead.difficult',
       title: 'Difficult conversations',
       pre: [
@@ -574,6 +581,7 @@ export default {
     },
     {
       id: 'pm.lead.triggers',
+      gist: 'The receiver decides whether feedback works: spot the truth, relationship and identity triggers, and understand first before you choose what to do.',
       title: 'Feedback that hits you',
       pre: [
         {
@@ -656,6 +664,7 @@ export default {
     },
     {
       id: 'pm.lead.listen',
+      gist: 'Listen under pressure: reflect first, paraphrase, ask open questions and let a silence run before you answer.',
       film: 'pm.intake.firsttalk#5',
       title: 'Listening under pressure',
       pre: [
@@ -737,6 +746,7 @@ export default {
     },
     {
       id: 'pm.lead.kata',
+      gist: 'A Toyota Kata coach lets the learner do the thinking: target condition, current condition, obstacle and a next step with a prediction.',
       title: 'Coaching with Toyota Kata',
       pre: [
         {
@@ -818,6 +828,7 @@ export default {
     },
     {
       id: 'pm.lead.cycle',
+      gist: 'A good coaching cycle uses small steps with a prediction, because the gap between expected and actual is where the learning sits.',
       title: 'Running coaching cycles well',
       pre: [
         {
@@ -901,6 +912,7 @@ export default {
     },
     {
       id: 'pm.lead.situational',
+      gist: 'Choose your style by the person\'s level for this task: without experience instruct first, then coach with questions.',
       title: 'Coach, direct or delegate',
       pre: [
         {
@@ -983,6 +995,7 @@ export default {
     },
     {
       id: 'pm.lead.self',
+      gist: 'As the youngest you are judged on preparation and calm: know your figures, call nerves excitement, drop the apologies and breathe out longer.',
       title: 'Leading yourself',
       pre: [
         {
@@ -1063,6 +1076,7 @@ export default {
     },
     {
       id: 'pm.lead.stages',
+      gist: 'Teams move from forming through storming and norming to performing; disagreement after the polite start is normal, and a new member needs new agreements.',
       title: 'How teams develop',
       pre: [
         {
@@ -1146,6 +1160,7 @@ export default {
     },
     {
       id: 'pm.lead.teams',
+      gist: 'Trust makes healthy conflict possible and conflict makes real commitment; people who keep their doubts to themselves will not back the decision.',
       title: 'Team dynamics',
       pre: [
         {
@@ -1228,6 +1243,7 @@ export default {
     },
     {
       id: 'pm.lead.safety',
+      gist: 'Psychological safety is trust that you can voice a question, mistake or concern; learning needs high safety and high standards together.',
       title: 'Building psychological safety',
       pre: [
         {

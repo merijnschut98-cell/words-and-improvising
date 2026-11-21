@@ -3,6 +3,7 @@ export default {
   lessons: [
     {
       id: 'pm.agile.whyagile',
+      gist: 'Agile werkt in korte rondes die elk iets werkends opleveren, zodat gebruikers vroeg reageren en het plan wordt bijgestuurd, niet pas aan het eind.',
       title: 'Wat agile is, en waarom het bestaat',
       pre: [
         {
@@ -84,6 +85,7 @@ export default {
     },
     {
       id: 'pm.agile.principles',
+      gist: 'Herken de twaalf principes in een project: werkende software is de maat voor voortgang, het tempo is duurzaam, en eenvoud gaat voor.',
       title: 'De twaalf principes in de praktijk',
       pre: [
         {
@@ -164,6 +166,7 @@ export default {
     },
     {
       id: 'pm.agile.leanroots',
+      gist: 'Agile en Lean delen flow, pull en voortdurend verbeteren, maar Lean wil minder variatie, terwijl productontwikkeling juist iets nieuws zoekt.',
       title: 'Agile en Lean: familie, geen tweeling',
       pre: [
         {
@@ -246,6 +249,7 @@ export default {
     },
     {
       id: 'pm.agile.fit',
+      gist: 'Agile levert het meest op bij veel onzekerheid over wat of hoe je maakt; zonder echte feedback is het agile theater.',
       title: 'Wanneer agile past, en wanneer niet',
       pre: [
         {
@@ -327,6 +331,7 @@ export default {
     },
     {
       id: 'pm.agile.scrumbasics',
+      gist: 'Scrum is een raamwerk voor een klein team dat in sprints van hooguit een maand werkt, met Product Owner, Scrum Master en Developers.',
       film: 'pm.agile.scrum',
       title: 'Scrum: het team en de sprint',
       pre: [
@@ -410,6 +415,7 @@ export default {
     },
     {
       id: 'pm.agile.events',
+      gist: 'Scrum kent vijf events met een vaste timebox: de sprint, met daarin Sprint Planning, Daily Scrum, Sprint Review en Sprint Retrospective.',
       film: 'pm.agile.scrum',
       title: 'De vijf events van Scrum',
       pre: [
@@ -492,6 +498,7 @@ export default {
     },
     {
       id: 'pm.agile.artefacts',
+      gist: 'Elk van de drie artefacten heeft een toezegging: Product Backlog met Product Goal, Sprint Backlog met Sprint Goal, Increment met Definition of Done.',
       film: 'pm.agile.scrum',
       title: 'De drie artefacten en hun toezeggingen',
       pre: [
@@ -576,6 +583,7 @@ export default {
     },
     {
       id: 'pm.agile.scrumfail',
+      gist: 'Scrum gaat vaak mis door een proxy Product Owner, een mini-waterval of ScrumBut; de Guide zegt dat Scrum alleen als geheel werkt.',
       title: 'Scrum in het echt: wat misgaat en wat je vraagt',
       pre: [
         {
@@ -658,6 +666,7 @@ export default {
     },
     {
       id: 'pm.agile.stories',
+      gist: 'Een user story is “Als [rol] wil ik [iets], zodat [waarde]”: een kaartje voor een gesprek, met acceptatiecriteria die het toetsbaar maken.',
       film: 'pm.agile.backlog',
       title: 'User stories: werk beschrijven vanuit de gebruiker',
       pre: [
@@ -738,6 +747,7 @@ export default {
     },
     {
       id: 'pm.agile.refine',
+      gist: 'Refinement knipt backlog-items verticaal in kleine, schatbare stukken die elk iets werkends opleveren; INVEST is de checklist voor een goede story.',
       film: 'pm.agile.backlog',
       title: 'Refinement: de backlog klaar maken',
       pre: [
@@ -819,6 +829,7 @@ export default {
     },
     {
       id: 'pm.agile.points',
+      gist: 'Schat relatief in story points en bespreek grote verschillen in planning poker; gebruik de spreiding van velocity, niet één gemiddelde.',
       film: 'pm.agile.backlog',
       title: 'Story points, planning poker en velocity',
       pre: [
@@ -903,6 +914,7 @@ export default {
     },
     {
       id: 'pm.agile.forecast',
+      gist: 'Voorspel met een kans in plaats van één datum, gebaseerd op de eigen historie van het team, bijvoorbeeld met een Monte Carlo-simulatie.',
       film: 'pm.agile.forecast',
       title: 'Voorspellen zonder schijnzekerheid',
       pre: [
@@ -987,6 +999,7 @@ export default {
     },
     {
       id: 'pm.agile.board',
+      gist: 'Een kanbanbord maakt het werk zichtbaar zoals het echt loopt, op basis van pull; geblokkeerde kaarten laten zien waar het systeem hapert.',
       film: 'pm.agile.kanban',
       title: 'Kanban: het werk zichtbaar maken',
       pre: [
@@ -1068,6 +1081,7 @@ export default {
     },
     {
       id: 'pm.agile.wip',
+      gist: 'Een WIP-limiet beperkt wat tegelijk onderhanden is: zit een kolom vol, maak dan eerst iets af, zodat de bottleneck zichtbaar wordt.',
       film: 'pm.agile.kanban',
       title: 'WIP-limieten: minder beginnen, meer afmaken',
       pre: [
@@ -1149,6 +1163,7 @@ export default {
     },
     {
       id: 'pm.agile.flowmetrics',
+      gist: 'De wet van Little: gemiddelde cycle time is gemiddelde WIP gedeeld door gemiddelde throughput, dus minder onderhanden werk geeft kortere doorlooptijden.',
       film: 'pm.agile.kanban',
       title: 'Cycle time, throughput en de wet van Little',
       pre: [
@@ -1233,6 +1248,7 @@ export default {
     },
     {
       id: 'pm.agile.flowsteer',
+      gist: 'Stuur op een verwachting met een kans (SLE) en op work item age, en plan niet op volle bezetting, want de wachttijd loopt dan op.',
       film: 'pm.agile.forecast',
       title: 'Sturen op flow: verwachtingen, veroudering en bezetting',
       pre: [
