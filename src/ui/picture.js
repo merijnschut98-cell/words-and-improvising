@@ -58,7 +58,7 @@ export function pictureLabels(pic, lang) {
 
 function table(pic, lang) {
   const cols = pic.head.length;
-  const first = cols === 1 ? PIC_W : Math.round(PIC_W * 0.36);
+  const first = cols === 1 ? PIC_W : Math.round(PIC_W * 0.38);
   const rest = cols > 1 ? (PIC_W - first) / (cols - 1) : 0;
   const xs = Array.from({ length: cols }, (_, i) => (i === 0 ? 0 : first + (i - 1) * rest));
   const ws = Array.from({ length: cols }, (_, i) => (i === 0 ? first : rest));

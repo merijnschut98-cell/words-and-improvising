@@ -1353,7 +1353,7 @@ button.order-slot.locked { cursor: default; opacity: 0.75; }
 
 /* v18 G1: lesson pictures (src/ui/picture.js). Every colour is a token, so light and dark both work. */
 .picture { margin: 14px 0 4px; }
-.pic-svg { display: block; width: 100%; max-width: 560px; height: auto; margin: 0 auto; }
+.pic-svg { display: block; width: 100%; max-width: 440px; height: auto; margin: 0 auto; }
 .pic-box { stroke: color-mix(in srgb, var(--muted) 45%, var(--card)); stroke-width: 1; fill: var(--card); }
 .pic-head { fill: var(--primary); }
 .pic-rowhead { fill: color-mix(in srgb, var(--line) 60%, var(--card)); }
