@@ -738,7 +738,7 @@ export default {
     },
     {
       id: 'eng.gridplanning.prioritise',
-      gist: 'Rank bottlenecks by risk, waiting customers and NPV, and also by what a project delivers per unit of scarcity, such as MW per team-year.',
+      gist: 'Rank bottlenecks on a few criteria, use NPV per measure, and also ask what a project yields per scarce unit, such as MW per team-year.',
       title: 'Prioritising: risk, NPV and scarce people',
       pre: [
         {
@@ -813,7 +813,7 @@ export default {
     },
     {
       id: 'eng.gridplanning.execution',
-      gist: 'A plan moves as fast as the narrowest step in the chain; improvement helps most in the waiting and rework, not in the field work.',
+      gist: 'A plan moves as fast as the narrowest step in the chain; improvement usually helps most in the waiting and rework, not in the field.',
       title: 'From plan to built grid',
       pre: [
         {

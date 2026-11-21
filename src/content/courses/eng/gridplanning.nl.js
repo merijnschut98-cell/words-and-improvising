@@ -738,7 +738,7 @@ export default {
     },
     {
       id: 'eng.gridplanning.prioritise',
-      gist: 'Rangschik knelpunten op risico, wachtende klanten en NCW, en kijk ook wat een project oplevert per eenheid schaarste, zoals MW per teamjaar.',
+      gist: 'Rangschik knelpunten op een handvol criteria en reken per maatregel met NCW; kijk ook wat een project oplevert per eenheid schaarste, zoals MW per teamjaar.',
       title: 'Prioriteren: risico, NCW en schaarse mensen',
       pre: [
         {
@@ -813,7 +813,7 @@ export default {
     },
     {
       id: 'eng.gridplanning.execution',
-      gist: 'Een plan gaat zo snel als de smalste stap van de keten; verbeterwerk helpt het meest bij wachten en herstelwerk, niet in het veld.',
+      gist: 'Een plan gaat zo snel als de smalste stap van de keten; verbeterwerk helpt meestal vooral bij wachten en herstelwerk, niet in het veld.',
       title: 'Van plan naar gebouwd net',
       pre: [
         {
