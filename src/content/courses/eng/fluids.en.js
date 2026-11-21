@@ -4,6 +4,7 @@ export default {
     // Topic: Flow and pressure in pipes
     {
       id: 'eng.fluids.flow',
+      gist: 'Friction uses up the pressure the pump makes; in turbulent flow the pressure drop grows roughly with the square of the flow.',
       title: 'Pressure, flow and pressure drop',
       pre: [
         {
@@ -77,6 +78,7 @@ export default {
     },
     {
       id: 'eng.fluids.friction',
+      gist: 'Pressure drop = f × (L / D) × ρ × v² / 2, with friction factor f from the Moody chart in turbulent flow.',
       title: 'Pipe friction: Darcy–Weisbach and the Moody chart',
       pre: [
         {
@@ -149,6 +151,7 @@ export default {
     },
     {
       id: 'eng.fluids.valves',
+      gist: 'A control valve sets flow by pressure drop: for water, flow = Kv × √(drop in bar); every bar in it is wasted pump energy.',
       title: 'Control valves, Kv and pressure surges',
       pre: [
         {
@@ -223,6 +226,7 @@ export default {
     },
     {
       id: 'eng.fluids.sizing',
+      gist: 'Friction pressure drop scales roughly with 1 / D⁵, so pipe size is an economic choice: the economic diameter has the lowest lifetime cost.',
       title: 'Pipe size and life-cycle cost',
       pre: [
         {
@@ -297,6 +301,7 @@ export default {
     // Topic: Pumps
     {
       id: 'eng.fluids.pumps',
+      gist: 'The operating point of a centrifugal pump is where pump curve and system curve cross; a positive displacement pump needs a relief valve.',
       title: 'Pump curve, system curve and duty point',
       pre: [
         {
@@ -368,6 +373,7 @@ export default {
     },
     {
       id: 'eng.fluids.speed',
+      gist: 'For a centrifugal pump power scales with speed cubed, so speed control saves a lot in friction systems and less with large static head.',
       title: 'Speed control and the affinity laws',
       pre: [
         {
@@ -440,6 +446,7 @@ export default {
     },
     {
       id: 'eng.fluids.cavitation',
+      gist: 'A pump cavitates when the pressure at the inlet drops below the vapour pressure; keep NPSHa above NPSHr, with margin.',
       title: 'Cavitation and NPSH',
       pre: [
         {
@@ -512,6 +519,7 @@ export default {
     },
     {
       id: 'eng.fluids.pumpsystem',
+      gist: 'Wire-to-water efficiency is motor × drive × pump; save roughly in this order: switch off, remove losses, right-size, speed control, overhaul.',
       title: 'Pump systems: from wire to water',
       pre: [
         {
@@ -588,6 +596,7 @@ export default {
     // Topic: Heat transfer and heat exchangers
     {
       id: 'eng.fluids.transfer',
+      gist: 'Heat moves by conduction, convection and radiation; heat flow Q = U × A × ΔT, and the weakest layer sets U.',
       title: 'How heat moves: conduction, convection, insulation',
       pre: [
         {
@@ -660,6 +669,7 @@ export default {
     },
     {
       id: 'eng.fluids.heat',
+      gist: 'The heat duty Q = m × cp × ΔT follows from each stream; counterflow transfers the most heat per area.',
       title: 'Heat exchangers',
       pre: [
         {
@@ -733,6 +743,7 @@ export default {
     },
     {
       id: 'eng.fluids.lmtd',
+      gist: 'Q = U × A × LMTD, the mean temperature difference: fouling lowers U and a tight approach shrinks it, so more area is needed.',
       title: 'LMTD, U and why exchangers fall short',
       pre: [
         {
@@ -806,6 +817,7 @@ export default {
     },
     {
       id: 'eng.fluids.recovery',
+      gist: 'Regeneration recovers heat but costs plates and pressure drop; clean at the interval where energy loss plus cleaning cost per production hour is lowest.',
       title: 'Heat recovery and cleaning economics',
       pre: [
         {
@@ -881,6 +893,7 @@ export default {
     // Topic: Steam and utilities
     {
       id: 'eng.fluids.steam',
+      gist: 'Steam gives up most of its heat as it condenses; a steam trap passes condensate and holds back steam, and fails silently.',
       title: 'Steam and condensate',
       pre: [
         {
@@ -951,6 +964,7 @@ export default {
     },
     {
       id: 'eng.fluids.cooling',
+      gist: 'A cooling tower cools by evaporation towards the wet-bulb temperature; blowdown is evaporation / (cycles of concentration − 1).',
       title: 'Cooling water, cooling towers and chillers',
       pre: [
         {
@@ -1024,6 +1038,7 @@ export default {
     },
     {
       id: 'eng.fluids.steamloss',
+      gist: 'Steam cost follows from steam heat minus feedwater heat, boiler efficiency and fuel price; losses sit in the boiler house and in distribution.',
       title: 'Steam system losses, from boiler to trap',
       pre: [
         {
@@ -1098,6 +1113,7 @@ export default {
     },
     {
       id: 'eng.fluids.audit',
+      gist: 'Find utility waste with the weekend test, prove savings against an energy baseline, and work in order: cut demand, improve generation, change the source.',
       title: 'The utility waste walk and the energy case',
       pre: [
         {

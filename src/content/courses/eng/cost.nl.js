@@ -3,6 +3,7 @@ export default {
   lessons: [
     {
       id: 'eng.cost.costprice',
+      gist: 'Een kostprijs bouw je van onderop op: elke regel is een hoeveelheid maal een tarief, en omstelkosten verdeel je over de seriegrootte.',
       title: 'De kostprijs van een onderdeel opbouwen',
       pre: [
         {
@@ -76,6 +77,7 @@ export default {
     },
     {
       id: 'eng.cost.hourrate',
+      gist: 'Het machine-uurtarief is de jaarkosten gedeeld door de productieve uren; draait de machine minder uren dan begroot, dan is het tarief te laag.',
       title: 'Het machine-uurtarief',
       pre: [
         {
@@ -151,6 +153,7 @@ export default {
     },
     {
       id: 'eng.cost.abc',
+      gist: 'ABC verdeelt overhead naar wat hem veroorzaakt, per kostendrijver; time-driven ABC deelt door de praktische capaciteit, zodat onbenutte capaciteit zichtbaar blijft.',
       title: 'Overhead naar activiteit: ABC en time-driven ABC',
       pre: [
         {
@@ -226,6 +229,7 @@ export default {
     },
     {
       id: 'eng.cost.shouldcost',
+      gist: 'Schat zelf wat een onderdeel zou moeten kosten en lees de offerte per kostenpost: dan gaat het prijsgesprek over feiten, niet over afdingen.',
       title: 'Should-cost en een offerte lezen',
       pre: [
         {
@@ -301,6 +305,7 @@ export default {
     },
     {
       id: 'eng.cost.contribution',
+      gist: 'Bij vrije capaciteit levert een eenmalige extra order winst op zolang de prijs boven de variabele kosten ligt, ook onder de integrale kostprijs.',
       title: 'Vast, variabel en de extra order',
       pre: [
         {
@@ -374,6 +379,7 @@ export default {
     },
     {
       id: 'eng.cost.makebuy',
+      gist: 'Zelf maken of kopen vergelijkt alleen de kosten die echt verschillen; toegerekende overhead blijft meestal, en bij volle capaciteit telt de gemiste dekkingsbijdrage mee.',
       title: 'Zelf maken of kopen',
       pre: [
         {
@@ -445,6 +451,7 @@ export default {
     },
     {
       id: 'eng.cost.pricing',
+      gist: 'De prijsondergrens hangt af van de situatie, en target costing draait kostprijs-plus om: marktprijs min winstmarge is de toegestane kostprijs.',
       title: 'Van kostprijs naar offerte: ondergrens en target costing',
       pre: [
         {
@@ -519,6 +526,7 @@ export default {
     },
     {
       id: 'eng.cost.profitability',
+      gist: 'Rangschik klanten en producten op winst na de kosten die ze veroorzaken (cost-to-serve); schrappen bespaart alleen de vermijdbare kosten, niet de toegerekende overhead.',
       title: 'Welke producten en klanten echt verdienen',
       pre: [
         {
@@ -593,6 +601,7 @@ export default {
     },
     {
       id: 'eng.cost.cashflow',
+      gist: 'Afschrijving is een kostenpost, geen kasgeld; een investeringscase telt alleen het geld dat echt de bank in en uit gaat.',
       title: 'Kasgeld, winst en capex',
       pre: [
         {
@@ -666,6 +675,7 @@ export default {
     },
     {
       id: 'eng.cost.capex',
+      gist: 'Terugverdientijd is investering gedeeld door jaarlijkse kasbesparing; NCW rekent toekomstig geld terug naar vandaag, en boven nul haalt het project het vereiste rendement.',
       title: 'Terugverdientijd, NCW en de investeringscase',
       pre: [
         {
@@ -739,6 +749,7 @@ export default {
     },
     {
       id: 'eng.cost.appraisal',
+      gist: 'Bereken de NCW met de annuïteitsfactor of per jaar; kies bij projecten die elkaar uitsluiten de hoogste NCW, niet de hoogste IRR.',
       title: 'NCW en IRR verdiept',
       pre: [
         {
@@ -812,6 +823,7 @@ export default {
     },
     {
       id: 'eng.cost.capexboard',
+      gist: 'Laat de commissie zien of de case het drempelrendement haalt en wat er gebeurt als je ernaast zit, met scenario-analyse en break-evenbesparing.',
       title: 'Een case verdedigen bij de investeringscommissie',
       pre: [
         {
@@ -887,6 +899,7 @@ export default {
     },
     {
       id: 'eng.cost.inventory',
+      gist: 'Voorraad verlagen maakt één keer kasgeld vrij; de jaarlijkse besparing zit alleen in voorraadkosten die echt uit de boeken verdwijnen.',
       title: 'Wat voorraad kost',
       pre: [
         {
@@ -960,6 +973,7 @@ export default {
     },
     {
       id: 'eng.cost.waste',
+      gist: 'Prijs uitval en herbewerking tegen wat echt verloren gaat: variabele kosten bij vrije capaciteit, en herbewerkingstijd alleen als die overwerk of uitzendkrachten kost.',
       title: 'Verspilling in euro’s',
       pre: [
         {
@@ -1033,6 +1047,7 @@ export default {
     },
     {
       id: 'eng.cost.vsc',
+      gist: 'Meer maken dan je verkoopt laat de winst beter lijken, omdat overhead in voorraad gaat; waardestroomkosten delen de kosten door de verzonden eenheden.',
       title: 'Waardestroomkosten en de absorptieval',
       pre: [
         {
@@ -1107,6 +1122,7 @@ export default {
     },
     {
       id: 'eng.cost.savings',
+      gist: 'Vertaal een verbetering met een besparingsbrug naar de tarieven en volumes van de controller, en scheid het effect van prijs en volume.',
       title: 'Besparingen die de controller tekent',
       pre: [
         {

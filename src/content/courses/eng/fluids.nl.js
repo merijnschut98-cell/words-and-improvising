@@ -4,6 +4,7 @@ export default {
     // Onderwerp: Stroming en druk in leidingen
     {
       id: 'eng.fluids.flow',
+      gist: 'Wrijving verbruikt de druk die de pomp maakt; bij turbulente stroming groeit de drukval ongeveer met het kwadraat van het debiet.',
       title: 'Druk, debiet en drukval',
       pre: [
         {
@@ -77,6 +78,7 @@ export default {
     },
     {
       id: 'eng.fluids.friction',
+      gist: 'Drukval = f × (L / D) × ρ × v² / 2, met wrijvingsfactor f uit het Moody-diagram bij turbulente stroming.',
       title: 'Leidingwrijving: Darcy–Weisbach en het Moody-diagram',
       pre: [
         {
@@ -149,6 +151,7 @@ export default {
     },
     {
       id: 'eng.fluids.valves',
+      gist: 'Een regelklep regelt het debiet met drukval: voor water is debiet = Kv × √(drukval in bar); elke bar in de klep is verstookte pompenergie.',
       title: 'Regelkleppen, Kv en drukstoten',
       pre: [
         {
@@ -223,6 +226,7 @@ export default {
     },
     {
       id: 'eng.fluids.sizing',
+      gist: 'De wrijvingsdrukval schaalt ongeveer met 1 / D⁵, dus leidingmaat is een economische keuze: de economische diameter heeft de laagste levensduurkosten.',
       title: 'Leidingmaat en levensduurkosten',
       pre: [
         {
@@ -297,6 +301,7 @@ export default {
     // Onderwerp: Pompen
     {
       id: 'eng.fluids.pumps',
+      gist: 'Het werkpunt van een centrifugaalpomp ligt waar pompkarakteristiek en leidingkarakteristiek elkaar snijden; een verdringerpomp heeft een overdrukventiel nodig.',
       title: 'Pompkarakteristiek, leidingkarakteristiek en werkpunt',
       pre: [
         {
@@ -368,6 +373,7 @@ export default {
     },
     {
       id: 'eng.fluids.speed',
+      gist: 'Bij een centrifugaalpomp schaalt het vermogen met het toerental tot de derde macht, dus toerenregeling bespaart veel in wrijvingssystemen en minder bij veel statische opvoerhoogte.',
       title: 'Toerenregeling en de affiniteitswetten',
       pre: [
         {
@@ -440,6 +446,7 @@ export default {
     },
     {
       id: 'eng.fluids.cavitation',
+      gist: 'Een pomp cavitateert als de druk bij de inlaat onder de dampspanning zakt; houd NPSHa boven NPSHr, met marge.',
       title: 'Cavitatie en NPSH',
       pre: [
         {
@@ -512,6 +519,7 @@ export default {
     },
     {
       id: 'eng.fluids.pumpsystem',
+      gist: 'Het systeemrendement van net tot water is motor × frequentieregelaar × pomp; bespaar ruwweg in deze volgorde: uitzetten, verliezen weghalen, dimensioneren, toerenregeling, revisie.',
       title: 'Pompsystemen: van net tot water',
       pre: [
         {
@@ -588,6 +596,7 @@ export default {
     // Onderwerp: Warmteoverdracht en warmtewisselaars
     {
       id: 'eng.fluids.transfer',
+      gist: 'Warmte gaat door geleiding, convectie en straling; warmtestroom Q = U × A × ΔT, en het zwakste laagje bepaalt U.',
       title: 'Hoe warmte beweegt: geleiding, convectie, isolatie',
       pre: [
         {
@@ -660,6 +669,7 @@ export default {
     },
     {
       id: 'eng.fluids.heat',
+      gist: 'De warmtelast Q = m × cp × ΔT volgt uit elke stroom; tegenstroom draagt de meeste warmte over per oppervlak.',
       title: 'Warmtewisselaars',
       pre: [
         {
@@ -733,6 +743,7 @@ export default {
     },
     {
       id: 'eng.fluids.lmtd',
+      gist: 'Q = U × A × LMTD, het gemiddelde temperatuurverschil: vervuiling verlaagt U en een krappe nadering verkleint de LMTD, dus het oppervlak moet groeien.',
       title: 'LMTD, U en waarom wisselaars tekortschieten',
       pre: [
         {
@@ -806,6 +817,7 @@ export default {
     },
     {
       id: 'eng.fluids.recovery',
+      gist: 'Regeneratie wint warmte terug maar kost platen en drukval; reinig op het interval waar energieverlies plus reinigingskosten per productie-uur het laagst zijn.',
       title: 'Warmteterugwinning en de economie van reinigen',
       pre: [
         {
@@ -881,6 +893,7 @@ export default {
     // Onderwerp: Stoom en utilities
     {
       id: 'eng.fluids.steam',
+      gist: 'Stoom geeft zijn warmte vooral bij het condenseren; een condenspot laat condensaat door en houdt stoom tegen, en gaat stilletjes stuk.',
       title: 'Stoom en condensaat',
       pre: [
         {
@@ -951,6 +964,7 @@ export default {
     },
     {
       id: 'eng.fluids.cooling',
+      gist: 'Een koeltoren koelt door verdamping richting de natteboltemperatuur; de spui is verdamping / (indikkingsfactor − 1).',
       title: 'Koelwater, koeltorens en koelmachines',
       pre: [
         {
@@ -1024,6 +1038,7 @@ export default {
     },
     {
       id: 'eng.fluids.steamloss',
+      gist: 'De stoomprijs volgt uit stoomwarmte min voedingswarmte, ketelrendement en brandstofprijs; verliezen zitten in het ketelhuis (rookgas, spui) en in de distributie.',
       title: 'Verliezen in het stoomsysteem, van ketel tot condenspot',
       pre: [
         {
@@ -1098,6 +1113,7 @@ export default {
     },
     {
       id: 'eng.fluids.audit',
+      gist: 'Zoek verspilling in utilities met de weekendtest, bewijs besparing tegen een energiebaseline, en werk in volgorde: vraag verlagen, opwekking verbeteren, bron veranderen.',
       title: 'De rondgang langs de utilities en de energiecase',
       pre: [
         {
