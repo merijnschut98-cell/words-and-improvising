@@ -3,6 +3,7 @@ export default {
   lessons: [
     {
       id: 'pm.negotiate.interests',
+      gist: 'Vraag naar het belang achter een standpunt, want de meeste belangen kun je op meer dan één manier dienen.',
       film: 'pm.negotiate.batna',
       title: 'Standpunten en belangen',
       pre: [
@@ -84,6 +85,7 @@ export default {
     },
     {
       id: 'pm.negotiate.batna',
+      gist: 'Je BATNA, wat je doet als je wegloopt, bepaalt je ondergrens; bij verder gelijke voorwaarden sla je een bod eronder af.',
       film: 'pm.negotiate.batna',
       title: 'Jouw alternatief en dat van hen',
       pre: [
@@ -167,6 +169,7 @@ export default {
     },
     {
       id: 'pm.negotiate.prepare',
+      gist: 'Een voorbereidingsblad heeft per kant vijf regels: onderhandelpunten, prioriteiten, BATNA, ondergrens en streefpunt; die van de ander schat je.',
       title: 'Een voorbereidingsblad dat standhoudt',
       pre: [
         {
@@ -248,6 +251,7 @@ export default {
     },
     {
       id: 'pm.negotiate.leverage',
+      gist: 'Als zwakkere kant zeg je in hun termen wat jij biedt dat ze niet makkelijk elders krijgen, en verraad je een zwakke BATNA niet.',
       title: 'Onderhandelen vanuit een zwakkere positie',
       pre: [
         {
@@ -329,6 +333,7 @@ export default {
     },
     {
       id: 'pm.negotiate.anchor',
+      gist: 'Noem bij goede marktkennis meestal zelf het eerste getal, ambitieus en onderbouwd; op een onredelijk getal doe je geen tegenbod.',
       film: 'pm.negotiate.batna',
       title: 'Het eerste bod en framing',
       pre: [
@@ -412,6 +417,7 @@ export default {
     },
     {
       id: 'pm.negotiate.concede',
+      gist: 'Geef concessies voorwaardelijk (“als jij…, dan ik…”), elke keer kleiner, en krijg er iets voor terug.',
       title: 'Concessies: geef weinig, krijg iets terug',
       pre: [
         {
@@ -493,6 +499,7 @@ export default {
     },
     {
       id: 'pm.negotiate.package',
+      gist: 'Ruil punten die beide kanten verschillend waarderen, en bied twee of drie voor jou even waardevolle pakketten tegelijk aan (MESO’s).',
       title: 'Ruilen tussen punten: pakketten en MESO’s',
       pre: [
         {
@@ -577,6 +584,7 @@ export default {
     },
     {
       id: 'pm.negotiate.tactics',
+      gist: 'Herken, benoem en bevraag een harde tactiek; het gereedschap van Voss komt uit eenmalige gijzelingen, en bij een vaste klant kost een truc vertrouwen.',
       title: 'Harde tactieken, en gereedschap uit gijzelingsgesprekken',
       pre: [
         {
@@ -660,6 +668,7 @@ export default {
     },
     {
       id: 'pm.negotiate.scope',
+      gist: 'Scope, tijd en kosten hangen aan elkaar: weiger niet, maar maak de ruil zichtbaar met opties en houd een wijzigingslog bij.',
       film: 'pm.run.scope',
       title: 'Scope en tijd onderhandelen met een klant',
       pre: [
@@ -744,6 +753,7 @@ export default {
     },
     {
       id: 'pm.negotiate.price',
+      gist: 'Een eerste “te duur” is informatie: vraag eerst waarmee vergeleken, houd je tarief vast en beweeg de scope.',
       title: 'Als de klant op je tarief duwt',
       pre: [
         {
@@ -825,6 +835,7 @@ export default {
     },
     {
       id: 'pm.negotiate.terms',
+      gist: 'Zwakke voorwaarden kosten je bij een vaste prijs vaak meer dan een zwakke prijs: leg aannames, klantafhankelijkheden en acceptatiecriteria vroeg vast.',
       title: 'Aannames en voorwaarden naast de prijs',
       pre: [
         {
@@ -906,6 +917,7 @@ export default {
     },
     {
       id: 'pm.negotiate.renegotiate',
+      gist: 'Heropen een deal zodra je het ziet, met feiten, scheid de oorzaak van de oplossing, en benoem eerst je eigen aandeel.',
       title: 'Een deal heropenen midden in een project',
       pre: [
         {
@@ -987,6 +999,7 @@ export default {
     },
     {
       id: 'pm.negotiate.no',
+      gist: 'Zeg nee in drie stappen, ja, nee, ja: duidelijk, met één echte reden, en bied een optie of ruil.',
       film: 'pm.negotiate.batna',
       title: 'Nee zeggen en een ruil aanbieden',
       pre: [
@@ -1066,6 +1079,7 @@ export default {
     },
     {
       id: 'pm.negotiate.assert',
+      gist: 'Assertief is opkomen voor je mening en de ander respecteren; denk je te hard te hebben geduwd, check dat voordat je je excuses aanbiedt.',
       title: 'Assertief, niet agressief',
       pre: [
         {
@@ -1146,6 +1160,7 @@ export default {
     },
     {
       id: 'pm.negotiate.senior',
+      gist: 'Gebruik feit, visie en verzoek om het oneens te zijn met wie hoger staat; geldt het veiligheid of integriteit, dan escaleer je.',
       film: 'pm.lead.feedback',
       title: 'Het oneens zijn met iemand die hoger staat',
       pre: [
@@ -1230,6 +1245,7 @@ export default {
     },
     {
       id: 'pm.negotiate.escalate',
+      gist: 'Noem onder druk een tijdstip in plaats van in de kamer te beslissen; escaleer openlijk en gezamenlijk, en bouw een gouden brug.',
       title: 'Onder druk: escaleren zonder bruggen te verbranden',
       pre: [
         {

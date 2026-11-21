@@ -3,6 +3,7 @@ export default {
   lessons: [
     {
       id: 'pm.scaled.why',
+      gist: 'Teams die los Scrum doen lopen vast op afhankelijkheden; SAFe laat een release train van meestal 50 tot 125 mensen als één geheel leveren.',
       film: 'pm.scaled.pi',
       title: 'Waarom opschalen, en wat een release train is',
       pre: [
@@ -86,6 +87,7 @@ export default {
     },
     {
       id: 'pm.scaled.piplanning',
+      gist: 'In PI Planning plant de hele trein samen, meestal twee dagen; een doel waar een team niet zeker van is, wordt uncommitted: geen belofte.',
       film: 'pm.scaled.pi',
       title: 'PI Planning: twee dagen samen plannen',
       pre: [
@@ -169,6 +171,7 @@ export default {
     },
     {
       id: 'pm.scaled.roles',
+      gist: 'De Release Train Engineer is coach, geen projectmanager; Product Management ordent de ART Backlog, de Product Owner de backlog van één team.',
       film: 'pm.scaled.pi',
       title: 'De rollen: wie beslist wat',
       pre: [
@@ -254,6 +257,7 @@ export default {
     },
     {
       id: 'pm.scaled.configs',
+      gist: 'SAFe kent vier configuraties; Essential SAFe is het eenvoudigste startpunt, groter is niet beter, en elke PI sluit af met Inspect and Adapt.',
       title: 'De vier configuraties, en hoeveel SAFe je nodig hebt',
       pre: [
         {
@@ -338,6 +342,7 @@ export default {
     },
     {
       id: 'pm.scaled.lpm',
+      gist: 'Lean Portfolio Management financiert waardestromen met hun vaste teams en stuurt regelmatig bij, in plaats van losse projecten in een jaarronde.',
       title: 'Van projecten naar waardestromen',
       pre: [
         {
@@ -420,6 +425,7 @@ export default {
     },
     {
       id: 'pm.scaled.epics',
+      gist: 'Toets een grote epic klein met een MVP; steunt de meting de hypothese niet, dan stuur je bij of stop je.',
       title: 'Epics: grote initiatieven in kleine stappen',
       pre: [
         {
@@ -502,6 +508,7 @@ export default {
     },
     {
       id: 'pm.scaled.wsjf',
+      gist: 'WSJF rangschikt werk op Cost of Delay gedeeld door duur, zodat kort werk bij gelijke Cost of Delay voorgaat; verzonken kosten tellen niet mee.',
       title: 'Prioriteren met WSJF',
       pre: [
         {
@@ -586,6 +593,7 @@ export default {
     },
     {
       id: 'pm.scaled.budgets',
+      gist: 'Een Lean budget financiert waardestromen in plaats van projecten; belanghebbenden verdelen het samen, binnen guardrails als capaciteitsallocatie.',
       title: 'Lean budgets en guardrails',
       pre: [
         {
@@ -669,6 +677,7 @@ export default {
     },
     {
       id: 'pm.scaled.less',
+      gist: 'LeSS schaalt op door weg te laten: één Product Owner, één backlog, één Definition of Done en één sprint voor alle teams.',
       title: 'LeSS: opschalen door weg te laten',
       pre: [
         {
@@ -751,6 +760,7 @@ export default {
     },
     {
       id: 'pm.scaled.nexus',
+      gist: 'Nexus is Scrum met ongeveer drie tot negen teams; het Nexus Integration Team zorgt dat er elke sprint één bruikbaar Integrated Increment is.',
       title: 'Nexus: Scrum met een integratieteam',
       pre: [
         {
@@ -832,6 +842,7 @@ export default {
     },
     {
       id: 'pm.scaled.spotify',
+      gist: 'Het Spotify-artikel beschrijft een momentopname, geen raamwerk; het probleem zit in kopiëren zonder te begrijpen.',
       title: 'Het ‘Spotify-model’ en zijn valkuilen',
       pre: [
         {
@@ -916,6 +927,7 @@ export default {
     },
     {
       id: 'pm.scaled.critique',
+      gist: 'Het bewijs voor SAFe is mager en elk raamwerk kan een cargo cult worden; oordeel op wat je ziet, niet op de vormen.',
       title: 'Kritiek op SAFe, eerlijk gewogen',
       pre: [
         {
@@ -998,6 +1010,7 @@ export default {
     },
     {
       id: 'pm.scaled.stagegate',
+      gist: 'Wijzigen wordt duurder naarmate het ontwerp vordert, dus plant hardware meer vooraf: gates voor grote investeringen, sprints binnen de fases.',
       film: 'pm.scaled.hybrid',
       title: 'Stage-gate en agile in de maakindustrie',
       pre: [
@@ -1080,6 +1093,7 @@ export default {
     },
     {
       id: 'pm.scaled.longlead',
+      gist: 'Reken terug vanaf de SOP om de design freeze te vinden; leg interfaces en long-lead items vroeg vast, de rest blijft flexibel.',
       film: 'pm.scaled.hybrid',
       title: 'Lange levertijden en terugplannen',
       pre: [
@@ -1162,6 +1176,7 @@ export default {
     },
     {
       id: 'pm.scaled.integration',
+      gist: 'Integreer hardware en software zo vaak als economisch zinvol is: bij integratie aan het eind stapelen de problemen zich op.',
       title: 'Integratiepunten: hardware en software samen',
       pre: [
         {
@@ -1245,6 +1260,7 @@ export default {
     },
     {
       id: 'pm.scaled.hybridgov',
+      gist: 'Een hybride werkt als de gate vraagt wat bewezen is, niet of de documenten er zijn; anders wordt het Water-Scrum-Fall.',
       title: 'Een hybride aanpak inrichten en besturen',
       pre: [
         {

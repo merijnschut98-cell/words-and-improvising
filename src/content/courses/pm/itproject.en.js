@@ -3,6 +3,7 @@ export default {
   lessons: [
     {
       id: 'pm.itproject.requirements',
+      gist: 'A requirement is testable and follows the to-be process, not the old screens: functional says what the system does, non-functional how well.',
       film: 'pm.itproject.mvp',
       title: 'What a requirement is, and how to write one',
       pre: [
@@ -85,6 +86,7 @@ export default {
     },
     {
       id: 'pm.itproject.mvp',
+      gist: 'MoSCoW: a Must is what would make you postpone go-live if missing; an MVP covers the whole process, thin but complete.',
       film: 'pm.itproject.mvp',
       title: 'MoSCoW and the MVP',
       pre: [
@@ -168,6 +170,7 @@ export default {
     },
     {
       id: 'pm.itproject.fitgap',
+      gist: 'Custom code costs again with every update; choose it only if it sets you apart or the law or a large customer demands it.',
       title: 'Standard or custom: fit-to-standard',
       pre: [
         {
@@ -252,6 +255,7 @@ export default {
     },
     {
       id: 'pm.itproject.scopegov',
+      gist: 'Fix time and money and let the scope move; the Coulds, about 20% of the effort, are the reserve that drops first.',
       title: 'Fixed date, flexible scope',
       pre: [
         {
@@ -334,6 +338,7 @@ export default {
     },
     {
       id: 'pm.itproject.saas',
+      gist: 'For ERP and MES you mostly choose between buying and renting (SaaS), and you agree in writing who does what: supplier, implementation partner or you.',
       title: 'Build, buy or rent: SaaS and who does what',
       pre: [
         {
@@ -416,6 +421,7 @@ export default {
     },
     {
       id: 'pm.itproject.selection',
+      gist: 'Fix criteria and weights before you see the proposals, and have every supplier show your scenarios in a scripted demo.',
       title: 'A selection that holds',
       pre: [
         {
@@ -499,6 +505,7 @@ export default {
     },
     {
       id: 'pm.itproject.tco',
+      gist: 'TCO is all costs over the lifetime, not just the licence; count your own hours when they need backfill or push out other work.',
       title: 'Total cost over five years',
       pre: [
         {
@@ -581,6 +588,7 @@ export default {
     },
     {
       id: 'pm.itproject.contract',
+      gist: 'Tie payments to accepted results, and set down in the contract how you get all your data back when the contract ends.',
       title: 'The contract: what you fix before signing',
       pre: [
         {
@@ -664,6 +672,7 @@ export default {
     },
     {
       id: 'pm.itproject.rollout',
+      gist: 'A rollout is big bang or phased: phased costs extra but shrinks the risk per step; never go live in your peak season.',
       film: 'pm.itproject.migration',
       title: 'How an implementation runs: big bang or phased',
       pre: [
@@ -746,6 +755,7 @@ export default {
     },
     {
       id: 'pm.itproject.migration',
+      gist: 'Clean data before you move it, practise with trial migrations, and let the business sign for the reconciliation of old and new.',
       film: 'pm.itproject.migration',
       title: 'Data migration: moving, cleaning and counting',
       pre: [
@@ -828,6 +838,7 @@ export default {
     },
     {
       id: 'pm.itproject.cutover',
+      gist: 'Practise the cutover weekend in a dress rehearsal; let a named person decide at the go/no-go on criteria agreed in advance.',
       film: 'pm.itproject.cutover',
       title: 'The cutover weekend',
       pre: [
@@ -913,6 +924,7 @@ export default {
     },
     {
       id: 'pm.itproject.hypercare',
+      gist: 'Hypercare is temporary extra support with a war room and floor support; stop on exit criteria, not on a calendar date.',
       title: 'Hypercare: the IT side of the first weeks',
       pre: [
         {
@@ -996,6 +1008,7 @@ export default {
     },
     {
       id: 'pm.itproject.uat',
+      gist: 'In UAT, key users check with scenarios from their real work and data from the trial migration whether the system supports their work.',
       film: 'pm.itproject.uat',
       title: 'The user acceptance test',
       pre: [
@@ -1079,6 +1092,7 @@ export default {
     },
     {
       id: 'pm.itproject.defects',
+      gist: 'Severity is a defect\'s impact, priority is how fast it must be fixed; the process owner sets the severity, not the partner.',
       film: 'pm.itproject.uat',
       title: 'Defects, triage and exit criteria',
       pre: [
@@ -1162,6 +1176,7 @@ export default {
     },
     {
       id: 'pm.itproject.roles',
+      gist: 'Set up authorisations and training per role, test authorisations with real user accounts, and train through key users in a training environment.',
       title: 'Roles, authorisations and training for a new system',
       pre: [
         {
@@ -1246,6 +1261,7 @@ export default {
     },
     {
       id: 'pm.itproject.change',
+      gist: 'Measure adoption in the usage data; a shadow system or workaround is a signal that the system does not fit yet, not sabotage.',
       title: 'Adoption: is the system really used?',
       pre: [
         {

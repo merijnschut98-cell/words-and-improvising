@@ -3,6 +3,7 @@ export default {
   lessons: [
     {
       id: 'pm.perform.kpis',
+      gist: 'A KPI is a number someone acts on; leading indicators show what to do, lagging indicators measure the result afterwards.',
       film: 'pm.perform.tree',
       title: 'A few indicators that steer',
       pre: [
@@ -86,6 +87,7 @@ export default {
     },
     {
       id: 'pm.perform.tree',
+      gist: 'A KPI tree splits a goal into drivers, until you reach numbers a team can steer on every week.',
       film: 'pm.perform.tree',
       title: 'From strategy to a team’s numbers',
       pre: [
@@ -171,6 +173,7 @@ export default {
     },
     {
       id: 'pm.perform.kpicard',
+      gist: 'Record every KPI on a KPI card with an operational definition, so two people measuring the same week get the same number.',
       title: 'Defining a KPI so nobody argues',
       pre: [
         {
@@ -255,6 +258,7 @@ export default {
     },
     {
       id: 'pm.perform.strategymap',
+      gist: 'A strategy map turns the four perspectives into a chain of cause-and-effect hypotheses; test the arrows, because an arrow is a guess.',
       title: 'Strategy maps and testing the links',
       pre: [
         {
@@ -338,6 +342,7 @@ export default {
     },
     {
       id: 'pm.perform.smart',
+      gist: 'SMART tests the form of a goal, not whether it is the right goal; write down goal, KPI, target and deadline separately.',
       title: 'SMART goals and their limits',
       pre: [
         {
@@ -419,6 +424,7 @@ export default {
     },
     {
       id: 'pm.perform.targets',
+      gist: 'A hard, specific goal works only if people accept it, can do it and get feedback; base it on data, with a range.',
       film: 'pm.perform.tree',
       title: 'Targets people believe',
       pre: [
@@ -502,6 +508,7 @@ export default {
     },
     {
       id: 'pm.perform.hoshin',
+      gist: 'Pick about three to five breakthrough objectives per plant and let them travel up and down in catchball, so people become owners of them.',
       title: 'Hoshin kanri and catchball',
       pre: [
         {
@@ -585,6 +592,7 @@ export default {
     },
     {
       id: 'pm.perform.deming',
+      gist: 'A goal without a method changes the pressure, not the result: in a stable process the system decides the outcome.',
       title: 'Targets and variation: Deming’s challenge',
       pre: [
         {
@@ -668,6 +676,7 @@ export default {
     },
     {
       id: 'pm.perform.dialogue',
+      gist: 'A performance conversation has three steps: facts, cause, agreement; do not jump from a red number to “try harder”.',
       film: 'pm.lead.feedback',
       title: 'The performance conversation',
       pre: [
@@ -751,6 +760,7 @@ export default {
     },
     {
       id: 'pm.perform.gaming',
+      gist: 'Once a measure becomes a target it stops being a good measure: people move the number without improving what it shows.',
       film: 'pm.perform.tree',
       title: 'Gaming and perverse incentives',
       pre: [
@@ -834,6 +844,7 @@ export default {
     },
     {
       id: 'pm.perform.campbell',
+      gist: 'The more a number serves important decisions, the greater the pressure to corrupt it; keep numbers you want more of away from rewards.',
       title: 'Measuring to learn or to judge',
       pre: [
         {
@@ -918,6 +929,7 @@ export default {
     },
     {
       id: 'pm.perform.coach',
+      gist: 'The leader’s first reaction to red decides whether people keep reporting; as a coach, observe first, then give feedback in private.',
       title: 'Coaching the leader in the review',
       pre: [
         {
@@ -1001,6 +1013,7 @@ export default {
     },
     {
       id: 'pm.perform.board',
+      gist: 'A board steers when you see in a minute whether the team is on schedule, and every red has an action or note beside it.',
       title: 'A performance board that steers',
       pre: [
         {
@@ -1083,6 +1096,7 @@ export default {
     },
     {
       id: 'pm.perform.rhythm',
+      gist: 'Build a chain of short meetings, daily to monthly, with the same definitions; set the frequency by how often the number can really change.',
       film: 'pm.run.rhythm',
       title: 'A review rhythm that lasts',
       pre: [
@@ -1166,6 +1180,7 @@ export default {
     },
     {
       id: 'pm.perform.monthly',
+      gist: 'The monthly review is about trends and decisions: a bowling chart with year-to-date shows where the year is off course, and you manage by exception.',
       title: 'The plant manager’s monthly review',
       pre: [
         {
@@ -1250,6 +1265,7 @@ export default {
     },
     {
       id: 'pm.perform.signals',
+      gist: 'In the meeting ask not “why was this week red?” but “is there a signal?”; natural process limits show what is ordinary noise.',
       title: 'Signals and noise in the review',
       pre: [
         {

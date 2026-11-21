@@ -3,6 +3,7 @@ export default {
   lessons: [
     {
       id: 'pm.stuck.diagnose',
+      gist: 'Vastzitten heeft vier soorten: onduidelijk doel, onduidelijke weg, mensen en capaciteit; begin meestal bij het eerste “nee” op de vier vragen.',
       film: 'pm.stuck.diagnose',
       title: 'Het probleem benoemen',
       pre: [
@@ -84,6 +85,7 @@ export default {
     },
     {
       id: 'pm.stuck.facts',
+      gist: 'Onderbouw je diagnose met feiten uit drie bronnen, papier, wat je ziet, wat mensen zeggen; waar ze elkaar tegenspreken zit vaak het probleem.',
       title: 'Feiten verzamelen',
       pre: [
         {
@@ -166,6 +168,7 @@ export default {
     },
     {
       id: 'pm.stuck.rootcause',
+      gist: 'Stuur op oorzaken, niet op symptomen: vraag door via het ijsbergmodel tot iets concreets wat iemand kan veranderen.',
       title: 'Oorzaken onder de oppervlakte',
       pre: [
         {
@@ -248,6 +251,7 @@ export default {
     },
     {
       id: 'pm.stuck.healthcheck',
+      gist: 'Een projectreview is een onafhankelijke doorlichting: spreek vooraf de vraag af, laat de projectleider het rapport eerst zien en geef drie tot vijf aanbevelingen.',
       title: 'Een projectreview leiden',
       pre: [
         {
@@ -330,6 +334,7 @@ export default {
     },
     {
       id: 'pm.stuck.buytime',
+      gist: 'Weet je het niet, noem dan een concreet moment waarop je terugkomt en houd je eraan; scheid wat je weet, denkt en niet weet.',
       title: 'Professioneel tijd kopen',
       pre: [
         {
@@ -410,6 +415,7 @@ export default {
     },
     {
       id: 'pm.stuck.askhelp',
+      gist: 'Vraag om hulp na een dag of twee vastzitten: zeg wat je probeerde, wat je vraagt en wanneer je het nodig hebt.',
       title: 'Goed om hulp vragen',
       pre: [
         {
@@ -491,6 +497,7 @@ export default {
     },
     {
       id: 'pm.stuck.experiment',
+      gist: 'Neem een omkeerbaar besluit snel en test het met een klein experiment, met een hypothese en een vooraf afgesproken stopcriterium; onomkeerbare besluiten analyseer je zorgvuldig.',
       film: 'pm.stuck.diagnose',
       title: 'Handelen onder onzekerheid',
       pre: [
@@ -577,6 +584,7 @@ export default {
     },
     {
       id: 'pm.stuck.cynefin',
+      gist: 'Kies je aanpak naar het soort probleem: bij gecompliceerd zoek je een expert, bij complex tast je af met kleine proeven.',
       title: 'Welk soort probleem is dit? Cynefin',
       pre: [
         {
@@ -659,6 +667,7 @@ export default {
     },
     {
       id: 'pm.stuck.blocker',
+      gist: 'Een blokkeerder zegt zelden hard nee; begin met begrijpen waarom, op Maurers drie niveaus van weerstand, want duwen maakt het meestal erger.',
       title: 'De persoon die blokkeert',
       pre: [
         {
@@ -738,6 +747,7 @@ export default {
     },
     {
       id: 'pm.stuck.pressure',
+      gist: 'Haal bij klantdruk eerst het tempo eruit: erken de druk, noem een terugbelmoment en zoek de echte behoefte, vaak kleiner dan de eis.',
       title: 'Als de klant druk zet',
       pre: [
         {
@@ -818,6 +828,7 @@ export default {
     },
     {
       id: 'pm.stuck.hidden',
+      gist: 'Een stil veto is ja zeggen in het overleg en niks doen; maak toezeggingen specifiek met wie, wat, voor wanneer en hoe je het ziet.',
       title: 'Ja zeggen, nee doen',
       pre: [
         {
@@ -899,6 +910,7 @@ export default {
     },
     {
       id: 'pm.stuck.turf',
+      gist: 'Afdelingen die botsen sturen elk op hun eigen KPI; escaleer samen een keuze, geen persoon, en pas zo nodig de KPI aan.',
       title: 'Vast tussen twee afdelingen',
       pre: [
         {
@@ -982,6 +994,7 @@ export default {
     },
     {
       id: 'pm.stuck.sponsor',
+      gist: 'Een sponsor kan een vastzittend project meestal losmaken door te beslissen, ruimte te maken en rugdekking te geven; vraag concreet, met naam en datum.',
       title: 'Wat je van je sponsor nodig hebt',
       pre: [
         {
@@ -1063,6 +1076,7 @@ export default {
     },
     {
       id: 'pm.stuck.smallwins',
+      gist: 'Een nieuw plan alleen brengt de energie niet terug; een klein, zichtbaar succes wel, want vooruitgang merken in betekenisvol werk telt het sterkst.',
       title: 'Weer in beweging: kleine successen',
       pre: [
         {
@@ -1145,6 +1159,7 @@ export default {
     },
     {
       id: 'pm.stuck.reset',
+      gist: 'Ligt het doel buiten bereik, dan is hopen het in te halen de duurste keuze; stop, analyseer op één A4 en maak een nieuwe afspraak.',
       film: 'pm.stuck.diagnose',
       title: 'Een vastgelopen project herstarten',
       pre: [
@@ -1228,6 +1243,7 @@ export default {
     },
     {
       id: 'pm.stuck.recovery',
+      gist: 'Een herstelplan beslaat vier tot zes weken met wekelijkse mijlpalen en snijdt eerst in de scope: is alles must, dan heb je niet gekozen.',
       title: 'Een rood project redden',
       pre: [
         {
