@@ -4,6 +4,7 @@ export default {
     // Topic: Reading a technical drawing
     {
       id: 'eng.drawings.views',
+      gist: 'A part is drawn in views, sections and details; read the dimensions and never measure with a ruler on a printout.',
       film: 'eng.drawings.reading',
       title: 'Reading a technical drawing',
       pre: [
@@ -76,6 +77,7 @@ export default {
     },
     {
       id: 'eng.drawings.assembly',
+      gist: 'Every line type means something; the parts list on an assembly drawing gives quantity, part number and description per item number.',
       title: 'Lines, assembly drawings and the parts list',
       pre: [
         {
@@ -147,6 +149,7 @@ export default {
     },
     {
       id: 'eng.drawings.callouts',
+      gist: 'Threads, holes, roughness and welds appear as short codes: M10 is a metric thread of 10 mm with a coarse pitch of 1.5 mm.',
       title: 'Callouts: threads, holes, surface finish and welds',
       pre: [
         {
@@ -221,6 +224,7 @@ export default {
     },
     {
       id: 'eng.drawings.change',
+      gist: 'A change goes from ECR through ECN to a new revision; the effectivity says from when it applies.',
       title: 'Drawing control: changes, effectivity and the 3D model',
       pre: [
         {
@@ -296,6 +300,7 @@ export default {
     // Topic: Tolerances and GD&T
     {
       id: 'eng.drawings.dims',
+      gist: 'A tolerance is written as plus-minus, one-sided, limit dimensions or a fit code; with none, the general tolerance (ISO 2768) in the title block applies.',
       title: 'Reading dimensions and tolerance notes',
       pre: [
         {
@@ -368,6 +373,7 @@ export default {
     },
     {
       id: 'eng.drawings.gdt',
+      gist: 'A plus-minus tolerance sets only the size; GD&T adds form and position through a feature control frame and datums, whose order matters.',
       film: 'eng.drawings.reading',
       title: 'Tolerances on drawings and GD&T',
       pre: [
@@ -440,6 +446,7 @@ export default {
     },
     {
       id: 'eng.drawings.gdtsymbols',
+      gist: 'GD&T symbols come in families: form, orientation, location, runout and profile; the value is the full width of the tolerance zone, with Ø a cylinder.',
       title: 'The GD&T symbols in depth: form, runout and profile',
       pre: [
         {
@@ -514,6 +521,7 @@ export default {
     },
     {
       id: 'eng.drawings.gps',
+      gist: 'The first question in a drawing dispute is which rules apply, ISO or ASME; the same bent pin can get a different verdict under each.',
       title: 'ISO versus ASME, and settling drawing disputes',
       pre: [
         {
@@ -589,6 +597,7 @@ export default {
     // Topic: P&IDs, schematics and the control system
     {
       id: 'eng.drawings.pid',
+      gist: 'A P&ID shows, not to scale, what in a plant is connected to what; line types and tags say what each item is.',
       title: 'Reading a P&ID',
       pre: [
         {
@@ -660,6 +669,7 @@ export default {
     },
     {
       id: 'eng.drawings.plc',
+      gist: 'A PLC reads inputs and drives outputs; an interlock protects machine and product, a separately designed safety function protects people.',
       title: 'PLC, HMI, SCADA and safety',
       pre: [
         {
@@ -731,6 +741,7 @@ export default {
     },
     {
       id: 'eng.drawings.electrical',
+      gist: 'Contacts are drawn at rest; a reference designation gives function, location and device; contact numbers ending in 3-4 are make contacts, 1-2 break contacts.',
       title: 'Reading an electrical schematic',
       pre: [
         {
@@ -804,6 +815,7 @@ export default {
     },
     {
       id: 'eng.drawings.sis',
+      gist: 'A process plant protects in layers; a safety function is sensor, logic and final element, and the SIL says how much risk reduction is needed.',
       title: 'Trips and safety functions on the drawings',
       pre: [
         {
@@ -879,6 +891,7 @@ export default {
     // Topic: Control loops and PID
     {
       id: 'eng.drawings.loop',
+      gist: 'A control loop measures, compares with the setpoint and corrects; SP, PV and OP together show whether the loop can still cope.',
       figure: 'eng.drawings.loop',
       title: 'The control loop',
       pre: [
@@ -951,6 +964,7 @@ export default {
     },
     {
       id: 'eng.drawings.pid_control',
+      gist: 'P reacts to the error, I removes the lasting error but can overshoot, D brakes; most industrial loops run PI.',
       title: 'PID control intuition',
       pre: [
         {
@@ -1022,6 +1036,7 @@ export default {
     },
     {
       id: 'eng.drawings.tuning',
+      gist: 'A step test gives process gain, dead time and time constant; lambda tuning: choose λ, then Kc = τ / (Kp × (λ + θ)).',
       title: 'Tuning a loop: bump test and tuning rules',
       pre: [
         {
@@ -1097,6 +1112,7 @@ export default {
     },
     {
       id: 'eng.drawings.loopaudit',
+      gist: 'A loop audit ranks loops using historian data, and you fix first those on the bottleneck, quality and energy: less variation pays off.',
       title: 'Loop performance: finding the loops that cost money',
       pre: [
         {
