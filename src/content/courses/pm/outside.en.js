@@ -4,6 +4,7 @@ export default {
     // Topic 1: mindset
     {
       id: 'pm.outside.director',
+      gist: 'See yourself as a director, not an expert: you own the process, the experts own the content.',
       title: 'Director, not expert',
       pre: [
         {
@@ -84,6 +85,7 @@ export default {
     },
     {
       id: 'pm.outside.humility',
+      gist: 'Be curious and admit your picture may be incomplete or wrong; three weeks into a new field is when you make confident mistakes.',
       title: 'Curious and humble',
       pre: [
         {
@@ -164,6 +166,7 @@ export default {
     },
     {
       id: 'pm.outside.credibility',
+      gist: 'Outside your field you earn trust through the process: keep your word and show little self-orientation, because self-orientation divides everything else.',
       title: 'Credible without the content',
       pre: [
         {
@@ -246,6 +249,7 @@ export default {
     },
     {
       id: 'pm.outside.keep',
+      gist: 'You never hand over the goal, the risks and the decisions: you delegate tasks, not accountability.',
       title: 'What you never hand over',
       pre: [
         {
@@ -329,6 +333,7 @@ export default {
     // Topic 2: asking questions
     {
       id: 'pm.outside.phasequestions',
+      gist: 'Your questions are your expertise: go through scope, assumptions, risks, estimates and dependencies, in that order.',
       film: 'pm.outside.questions',
       title: 'Questions for each phase',
       pre: [
@@ -410,6 +415,7 @@ export default {
     },
     {
       id: 'pm.outside.fail',
+      gist: 'Ask “What would make this fail?” and “How do you know?”, and hold a premortem where everyone first writes down why the project failed.',
       film: 'pm.outside.jargon',
       title: '“What would make this fail?”',
       pre: [
@@ -491,6 +497,7 @@ export default {
     },
     {
       id: 'pm.outside.estimates',
+      gist: 'Test an estimate by how it was made: with a range, a reference class of earlier projects and a second estimate.',
       film: 'pm.outside.questions',
       title: 'Checking estimates without the content',
       pre: [
@@ -575,6 +582,7 @@ export default {
     },
     {
       id: 'pm.outside.jargon',
+      gist: 'Translate jargon back to goal, cost, time and risk: paraphrase in plain words, check “Is that right?” and ask on until you reach the consequence.',
       film: 'pm.outside.jargon',
       title: 'Translating jargon back',
       pre: [
@@ -659,6 +667,7 @@ export default {
     // Topic 3: working with experts
     {
       id: 'pm.outside.trust',
+      gist: 'Trust experts, but check the results that count, not the method, and check harder where a mistake hurts most.',
       film: 'pm.outside.experts',
       title: 'Trust and verify',
       pre: [
@@ -739,6 +748,7 @@ export default {
     },
     {
       id: 'pm.outside.disagree',
+      gist: 'When experts disagree, first put the decision criteria on the table, separate fact from judgement, and let the sponsor set the weights.',
       film: 'pm.outside.disagree',
       title: 'When experts disagree',
       pre: [
@@ -819,6 +829,7 @@ export default {
     },
     {
       id: 'pm.outside.time',
+      gist: 'Experts are scarce and context switching costs them time: ask for blocks, prepare so their hours count, and give autonomy in the how.',
       film: 'pm.outside.disagree',
       title: 'Their time and motivation',
       pre: [
@@ -902,6 +913,7 @@ export default {
     },
     {
       id: 'pm.outside.redflags',
+      gist: 'Three red flags: always “nearly done”, vague answers and no demo; respond with pointed questions and ask for evidence.',
       film: 'pm.outside.experts',
       title: 'Red flags',
       pre: [
@@ -985,6 +997,7 @@ export default {
     // Topic 4: steering and deciding
     {
       id: 'pm.outside.progress',
+      gist: 'Measure progress by milestones that are yes or no and count only when the evidence is there; percent complete is an opinion.',
       film: 'pm.outside.steering',
       title: 'Measuring progress without the content',
       pre: [
@@ -1067,6 +1080,7 @@ export default {
     },
     {
       id: 'pm.outside.decide',
+      gist: 'Ask whether a decision is reversible: decide a two-way door quickly, slow down at a one-way door, and escalate early with options and a recommendation.',
       film: 'pm.outside.steering',
       title: 'Deciding under uncertainty, and escalating',
       pre: [
@@ -1148,6 +1162,7 @@ export default {
     },
     {
       id: 'pm.outside.stakeholders',
+      gist: 'Start with the conclusion and give each stakeholder the same facts in their own language; hedge the forecast, not the facts.',
       title: 'Communicating with stakeholders',
       pre: [
         {
@@ -1229,6 +1244,7 @@ export default {
     },
     {
       id: 'pm.outside.learnfast',
+      gist: 'Learn with a 30-60-90 plan: first the words, then draw the system and have an expert correct it, then contribute.',
       title: 'Learning a new field fast',
       pre: [
         {

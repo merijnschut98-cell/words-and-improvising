@@ -1,0 +1,293 @@
+WEBVTT
+
+1
+00:00:00.835 --> 00:00:03.552
+A new program is ready for the machining centre.
+
+2
+00:00:04.289 --> 00:00:07.505
+The setter reads it first, before the machine sees it.
+
+3
+00:00:08.598 --> 00:00:10.514
+A program is a list of lines.
+
+4
+00:00:11.228 --> 00:00:12.853
+Each line is called a block.
+
+5
+00:00:13.613 --> 00:00:17.421
+The control reads them from top to bottom, one block at a time.
+
+6
+00:00:18.439 --> 00:00:22.189
+A block starts with a line number, such as N10 or N20.
+
+7
+00:00:23.026 --> 00:00:24.733
+Then follow a few words.
+
+8
+00:00:25.447 --> 00:00:27.351
+A word is a letter plus a number.
+
+9
+00:00:28.376 --> 00:00:30.129
+G words say how to move.
+
+10
+00:00:30.882 --> 00:00:33.100
+X, Y and Z say where to.
+
+11
+00:00:34.152 --> 00:00:37.344
+F is the feed, on a mill in millimetres per minute.
+
+12
+00:00:38.119 --> 00:00:41.219
+S is the spindle speed in revolutions per minute.
+
+13
+00:00:41.965 --> 00:00:43.347
+T is the tool number.
+
+14
+00:00:44.684 --> 00:00:46.112
+Most codes are modal.
+
+15
+00:00:46.809 --> 00:00:50.884
+They stay active until another code of the same group replaces them.
+
+16
+00:00:51.880 --> 00:00:53.633
+Write G01 once,
+
+17
+00:00:53.819 --> 00:00:57.894
+and every following line with only coordinates is also a straight cut.
+
+18
+00:00:58.664 --> 00:00:59.779
+At the same F.
+
+19
+00:01:00.797 --> 00:01:02.562
+That keeps programs short.
+
+20
+00:01:03.297 --> 00:01:06.188
+But you must read upwards to know what a line does.
+
+21
+00:01:07.217 --> 00:01:10.096
+G90 switches on absolute programming.
+
+22
+00:01:10.816 --> 00:01:15.680
+X20 then means 20 mm from the zero point, G54.
+
+23
+00:01:16.678 --> 00:01:19.987
+G91 switches on incremental programming.
+
+24
+00:01:20.706 --> 00:01:25.060
+X20 then means 20 mm further than where the tool is now.
+
+25
+00:01:25.823 --> 00:01:28.017
+Mixing them up is a classic crash.
+
+26
+00:01:29.348 --> 00:01:30.822
+Now the motion codes.
+
+27
+00:01:31.591 --> 00:01:37.233
+G00 is a rapid move, as fast as the machine can go and never in the material.
+
+28
+00:01:38.207 --> 00:01:41.214
+G01 is a straight cut at feed F.
+
+29
+00:01:41.926 --> 00:01:46.617
+G02 is an arc clockwise and G03 anticlockwise.
+
+30
+00:01:47.341 --> 00:01:48.595
+R is the radius.
+
+31
+00:01:49.585 --> 00:01:51.698
+An M-code is a machine switch.
+
+32
+00:01:52.431 --> 00:01:55.578
+M03 turns the spindle on, clockwise.
+
+33
+00:01:56.340 --> 00:02:00.729
+M05 is spindle stop and M06 is tool change.
+
+34
+00:02:01.758 --> 00:02:06.588
+M08 switches the coolant on and M09 switches it off.
+
+35
+00:02:07.286 --> 00:02:09.457
+M30 is the end of the program.
+
+36
+00:02:10.463 --> 00:02:12.286
+Every control has extras.
+
+37
+00:02:13.004 --> 00:02:18.449
+But these basics follow ISO 6983 and are almost the same everywhere.
+
+38
+00:02:19.799 --> 00:02:22.179
+This is how a setter reads a new program.
+
+39
+00:02:22.931 --> 00:02:26.716
+First the top, with the work offset, the tools and the speeds.
+
+40
+00:02:27.749 --> 00:02:29.688
+Then the first moves of each tool.
+
+41
+00:02:30.381 --> 00:02:32.169
+Always with the same question.
+
+42
+00:02:32.889 --> 00:02:35.270
+Where is the tool now, and where will it go?
+
+43
+00:02:36.259 --> 00:02:39.243
+The dangerous lines are rapid moves near the part.
+
+44
+00:02:39.992 --> 00:02:44.451
+A G00 to Z2, 2 mm above the part, is fine.
+
+45
+00:02:45.152 --> 00:02:50.040
+A G00 to Z minus 3 goes into the material at full speed.
+
+46
+00:02:51.119 --> 00:02:54.916
+That is why the setter watches the distance-to-go during the first run.
+
+47
+00:02:55.635 --> 00:02:58.526
+That is how far the current move still has to go.
+
+48
+00:02:59.872 --> 00:03:03.889
+The example is a slot in a steel plate, 3 mm deep.
+
+49
+00:03:04.655 --> 00:03:07.929
+It is cut with a 10 mm end mill, tool 3.
+
+50
+00:03:08.644 --> 00:03:09.747
+This is the program.
+
+51
+00:03:10.773 --> 00:03:14.372
+N10 is absolute, from zero point G54.
+
+52
+00:03:15.102 --> 00:03:17.029
+N20 puts tool 3 in.
+
+53
+00:03:18.047 --> 00:03:22.830
+N30 gives 3,200 revolutions per minute, clockwise.
+
+54
+00:03:23.579 --> 00:03:27.596
+N40 goes in rapid to 25 mm above the part.
+
+55
+00:03:28.354 --> 00:03:32.371
+The tool length is switched on, but the next level explains that code.
+
+56
+00:03:33.130 --> 00:03:34.314
+The coolant goes on.
+
+57
+00:03:35.350 --> 00:03:37.637
+N50 is a rapid above the start.
+
+58
+00:03:38.413 --> 00:03:44.381
+N60 feeds down to 3 mm deep, at 150 mm/min.
+
+59
+00:03:45.449 --> 00:03:52.474
+N70 is still G01, a straight cut of 50 mm, from Y minus 10 to Y40.
+
+60
+00:03:53.249 --> 00:03:56.035
+At 640 mm per minute.
+
+61
+00:03:56.837 --> 00:04:01.922
+That comes from 0.05 mm per tooth, times 4 teeth,
+
+62
+00:04:02.165 --> 00:04:05.648
+times 3,200 revolutions per minute.
+
+63
+00:04:06.439 --> 00:04:07.530
+That is an assumption.
+
+64
+00:04:08.551 --> 00:04:13.125
+N80 is a quarter circle of radius 20 mm, clockwise.
+
+65
+00:04:13.847 --> 00:04:16.761
+N90 goes up and switches the coolant off.
+
+66
+00:04:17.491 --> 00:04:19.302
+N100 is the end.
+
+67
+00:04:20.645 --> 00:04:21.910
+One thing to fix.
+
+68
+00:04:22.661 --> 00:04:30.730
+N60 feeds 28 mm, from Z25 to Z minus 3, at 150 mm per minute.
+
+69
+00:04:31.509 --> 00:04:34.493
+That takes 11 seconds, mostly through air.
+
+70
+00:04:35.516 --> 00:04:40.334
+A G00 to Z2 first leaves only 5 mm at feed.
+
+71
+00:04:41.107 --> 00:04:42.372
+That is 2 seconds.
+
+72
+00:04:43.400 --> 00:04:49.193
+On 2,000 parts that saves 9 times 2,000 which is 18,000 seconds.
+
+73
+00:04:49.909 --> 00:04:51.209
+That is 5 hours.

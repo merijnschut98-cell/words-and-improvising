@@ -19,6 +19,7 @@ function micShareNote(t) {
   return h('p', { class: 'note mic-share-note' }, t(tested === false ? 'micShareAndroid' : 'micShareAndroidTest'));
 }
 import { speechSupported } from '../core/speech.js';
+import { REVIEW_CAPS, reviewCapOf } from '../core/coursereview.js';
 
 export function renderSettings(app, _params, root) {
   const t = app.t;
@@ -185,6 +186,10 @@ export function renderSettings(app, _params, root) {
         h('label', { class: 'field-label' }, t('goalTitle')),
         h('p', { class: 'muted small' }, t('goalHelp')),
         goalPicker(app),
+        // The daily review limit sits with the goal, not between the plan's heading and its picker.
+        h('label', { class: 'field-label' }, t('reviewCapTitle')),
+        h('p', { class: 'muted small' }, t('reviewCapHelp')),
+        segmented(reviewCapOf(s), REVIEW_CAPS.map((v) => [v, t(`reviewCap_${v}`)]), (v) => set({ reviewCap: v }, true)),
         h('label', { class: 'field-label' }, t('planTitle')),
         h('p', { class: 'muted small' }, t('planHelp')),
         planPicker(app, flash),

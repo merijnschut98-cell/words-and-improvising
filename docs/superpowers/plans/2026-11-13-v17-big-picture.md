@@ -10,6 +10,8 @@
 
 **Spec:** `docs/superpowers/specs/2026-11-13-v17-big-picture-design.md`
 
+> **18 Nov:** Merijn's improvement points have priority over the remaining work here: `2026-11-18-v18-merijn-improvements.md` (recorded, not started).
+
 ## Global Constraints
 
 - The integrator works in `/home/user/words-and-improvising` on branch `claude/improvisation-practice-game-voon91`; agents work in their own worktrees and never push.

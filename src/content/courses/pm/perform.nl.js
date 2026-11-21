@@ -3,6 +3,7 @@ export default {
   lessons: [
     {
       id: 'pm.perform.kpis',
+      gist: 'Een KPI is een cijfer waar iemand op handelt; voorlopende indicatoren laten zien wat je moet doen, achterlopende meten het resultaat achteraf.',
       film: 'pm.perform.tree',
       title: 'Een paar indicatoren die sturen',
       pre: [
@@ -86,6 +87,7 @@ export default {
     },
     {
       id: 'pm.perform.tree',
+      gist: 'Een KPI-boom deelt een doel op in drivers, tot je bij cijfers komt waar een team wekelijks op kan sturen.',
       film: 'pm.perform.tree',
       title: 'Van strategie naar de cijfers van een team',
       pre: [
@@ -171,6 +173,7 @@ export default {
     },
     {
       id: 'pm.perform.kpicard',
+      gist: 'Leg elke KPI vast op een KPI-kaart met een operationele definitie, zodat twee mensen die dezelfde week meten hetzelfde cijfer krijgen.',
       title: 'Een KPI definiëren zodat niemand discussieert',
       pre: [
         {
@@ -255,6 +258,7 @@ export default {
     },
     {
       id: 'pm.perform.strategymap',
+      gist: 'Een strategiekaart maakt van de vier invalshoeken een keten van oorzaak-gevolghypotheses; toets die pijlen, want een pijl is een gok.',
       title: 'Strategiekaarten en de verbanden toetsen',
       pre: [
         {
@@ -338,6 +342,7 @@ export default {
     },
     {
       id: 'pm.perform.smart',
+      gist: 'SMART toetst de vorm van een doel, niet of het het juiste doel is; schrijf doel, KPI, streefwaarde en deadline apart op.',
       title: 'SMART-doelen en hun grenzen',
       pre: [
         {
@@ -419,6 +424,7 @@ export default {
     },
     {
       id: 'pm.perform.targets',
+      gist: 'Een moeilijk, specifiek doel werkt alleen als mensen het accepteren, het kunnen en feedback krijgen; baseer het op data, met een bandbreedte.',
       film: 'pm.perform.tree',
       title: 'Doelen waar mensen in geloven',
       pre: [
@@ -502,6 +508,7 @@ export default {
     },
     {
       id: 'pm.perform.hoshin',
+      gist: 'Kies zo’n drie tot vijf doorbraakdoelen per fabriek en laat ze in catchball op en neer reizen, zodat mensen er eigenaar van worden.',
       title: 'Hoshin kanri en catchball',
       pre: [
         {
@@ -585,6 +592,7 @@ export default {
     },
     {
       id: 'pm.perform.deming',
+      gist: 'Een doel zonder methode verandert de druk, niet het resultaat: in een stabiel proces bepaalt het systeem de uitkomst.',
       title: 'Doelen en spreiding: de uitdaging van Deming',
       pre: [
         {
@@ -668,6 +676,7 @@ export default {
     },
     {
       id: 'pm.perform.dialogue',
+      gist: 'Een prestatiegesprek heeft drie stappen: feiten, oorzaak, afspraak; spring niet van een rood cijfer naar “beter je best doen”.',
       film: 'pm.lead.feedback',
       title: 'Het prestatiegesprek',
       pre: [
@@ -751,6 +760,7 @@ export default {
     },
     {
       id: 'pm.perform.gaming',
+      gist: 'Zodra een maatstaf een doel wordt, is het geen goede maatstaf meer: mensen laten het cijfer bewegen zonder te verbeteren wat het toont.',
       film: 'pm.perform.tree',
       title: 'Gaming en verkeerde prikkels',
       pre: [
@@ -834,6 +844,7 @@ export default {
     },
     {
       id: 'pm.perform.campbell',
+      gist: 'Hoe meer een cijfer voor belangrijke besluiten dient, hoe groter de druk het te vervalsen; houd cijfers waar je meer van wilt weg van beloning.',
       title: 'Meten om te leren of om te oordelen',
       pre: [
         {
@@ -918,6 +929,7 @@ export default {
     },
     {
       id: 'pm.perform.coach',
+      gist: 'De eerste reactie van de leidinggevende op rood bepaalt of mensen blijven melden; observeer als coach eerst, geef dan onder vier ogen feedback.',
       title: 'De leidinggevende coachen in het overleg',
       pre: [
         {
@@ -1001,6 +1013,7 @@ export default {
     },
     {
       id: 'pm.perform.board',
+      gist: 'Een bord stuurt als je in een minuut ziet of het team op schema ligt, en bij elk rood een actie of notitie staat.',
       title: 'Een prestatiebord dat stuurt',
       pre: [
         {
@@ -1083,6 +1096,7 @@ export default {
     },
     {
       id: 'pm.perform.rhythm',
+      gist: 'Bouw een keten van korte overleggen, dagelijks tot maandelijks, met dezelfde definities; kies de frequentie naar hoe vaak het cijfer echt kan veranderen.',
       film: 'pm.run.rhythm',
       title: 'Een overlegritme dat blijft',
       pre: [
@@ -1166,6 +1180,7 @@ export default {
     },
     {
       id: 'pm.perform.monthly',
+      gist: 'Het maandoverleg gaat over trends en besluiten: een bowlingkaart met year-to-date toont waar het jaar uit koers ligt, en je stuurt op uitzonderingen.',
       title: 'Het maandoverleg van de plantmanager',
       pre: [
         {
@@ -1250,6 +1265,7 @@ export default {
     },
     {
       id: 'pm.perform.signals',
+      gist: 'Vraag in het overleg niet “waarom was deze week rood?” maar “is er een signaal?”; natuurlijke procesgrenzen tonen wat gewone ruis is.',
       title: 'Signaal en ruis in het overleg',
       pre: [
         {

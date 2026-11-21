@@ -4,17 +4,21 @@
 // not climb a box (sure = !hinted).
 import { h } from './dom.js';
 import { ico } from './icons.js';
-import { startQuiz, answerQuiz, backQuiz, continueQuiz, hintQuiz, judge, guessCompare } from '../core/course.js';
+import { startQuiz, answerQuiz, backQuiz, continueQuiz, hintQuiz, skipQuiz, judge, guessCompare } from '../core/course.js';
 import { questionHint } from '../core/hint.js';
+import { kindOf, grade, answerText, valueText } from '../core/questionkinds.js';
+import { hasBody, kindBody } from './quizkinds.js';
 import { guide, guideLine } from './guide.js';
 
-const shown = (q, v) => ('number' in q ? `${v}${q.unit ? ` ${q.unit}` : ''}` : v);
-const correct = (q) => ('number' in q ? `${String(q.number)}${q.unit ? ` ${q.unit}` : ''}` : q.answer);
+const shown = (q, v) => valueText(q, v);
+const correct = (q) => answerText(q);
+const KIND_LABEL = { best: 'kindBest', all: 'kindAll', gap: 'kindGap', order: 'kindOrder', match: 'kindMatch' };
 
 // termsOf(question): the terms of the question's lesson, for the hint.
 // onePass (the module check, v16): one pass, no hint, no back, no retry
 // passes; the review ends the quiz.
-export function renderQuiz(app, { questions, onDone, onBack = null, termsOf = () => [], onePass = false }, box) {
+// skippable (due sessions, v18): an "Overslaan" under each first-pass question; it is not an answer.
+export function renderQuiz(app, { questions, onDone, onBack = null, termsOf = () => [], onePass = false, skippable = false }, box) {
   const t = app.t;
   let st = startQuiz(questions);
   let lastPass = [];
@@ -34,17 +38,26 @@ export function renderQuiz(app, { questions, onDone, onBack = null, termsOf = ()
     draw();
   };
 
+  // Ghost button: the question goes to the end; skipped again it stays due, unanswered, unpenalised.
+  const skipBtn = () => (skippable && !onePass && st.pass === 1
+    ? h('button', { class: 'btn btn-ghost small quiz-skip', onclick: () => { st = skipQuiz(st, questions); draw(); } }, t('quizSkip'))
+    : null);
+
   // The hint's lines; a struck option is also struck in the list itself.
   const hintLines = (hint) => {
     if (!hint) return [];
     const term = hint.term ? h('p', { class: 'hint-term' }, h('b', {}, hint.term.term), `: ${hint.term.def}`) : null;
     if (hint.kind === 'own') return [h('p', {}, hint.text)];
     if (hint.kind === 'choice') return [h('p', {}, t('hintStrike', hint.strike)), term];
+    if (hint.kind === 'count') return [h('p', {}, t('hintCount', hint.count))];
+    if (hint.kind === 'letter') return [h('p', {}, t('hintLetter', hint.letter))];
+    if (hint.kind === 'first') return [h('p', {}, t('hintFirst', hint.item))];
+    if (hint.kind === 'pair') return [h('p', {}, t('hintPair', hint.left, hint.right))];
     return [hint.step ? h('p', { class: 'hint-step' }, t('hintStep', hint.step)) : null, hint.unit ? h('p', {}, t('hintUnit', hint.unit)) : null, term];
   };
 
   // Secondary, never the primary button; once per question, then the hint stays.
-  function hintParts(q, opts) {
+  function hintParts(q, opts, apply = null) {
     const hint = questionHint(q, termsOf(q) || []);
     const panel = h('div', { class: 'quiz-hint', 'aria-live': 'polite' });
     const strike = () => {
@@ -60,6 +73,7 @@ export function renderQuiz(app, { questions, onDone, onBack = null, termsOf = ()
       panel.replaceChildren(h('p', { class: 'hint-title' }, t('hintTitle')), ...hintLines(hint).filter(Boolean));
       panel.classList.add('on');
       strike();
+      if (apply) apply(hint);
     };
     if ((st.hints || {})[q.id]) { show(); return { panel, btn: null }; }
     const btn = hint ? h('button', {
@@ -76,15 +90,16 @@ export function renderQuiz(app, { questions, onDone, onBack = null, termsOf = ()
     const backBtn = onePass ? null : st.i > 0
       ? h('button', { class: 'btn btn-ghost small quiz-back', onclick: back }, ico('chevron-left'), ' ', t('quizBack'))
       : (onBack && st.pass === 1 ? h('button', { class: 'btn btn-ghost small lesson-back', onclick: onBack }, ico('chevron-left'), ' ', t('lessonBack')) : null);
+    const skip = skipBtn();
     const progress = h('p', { class: 'quiz-progress muted small' }, `${st.pass > 1 ? `${t('quizAgain')} · ` : ''}${st.i + 1}/${st.order.length}`);
     // Back on a question he already answered: show what he picked.
-    const prev = st.prev && st.prev.id === q.id && st.prev.value != null ? String(st.prev.value) : null;
+    const prev = st.prev && st.prev.id === q.id && st.prev.value != null && !hasBody(kindOf(q)) ? String(st.prev.value) : null;
     const picked = prev ? h('p', { class: 'quiz-picked muted small', 'aria-live': 'polite' }, t('quizPicked', shown(q, prev))) : null;
     // The guess from the start of the lesson, back as the last question (v16):
     // what he guessed is shown and preselected; he keeps it or changes it.
     const hasGuess = 'guess' in q && q.guess != null && q.guess !== '?';
     const guessLine = 'guess' in q ? h('p', { class: 'quiz-guess muted small' }, ico('repeat'), ' ', hasGuess ? t('quizGuessWas', shown(q, q.guess)) : t('quizGuessBack')) : null;
-    if ('number' in q) {
+    if (kindOf(q) === 'num') {
       const input = h('input', { type: 'text', inputmode: 'decimal', class: 'text-input quiz-num', placeholder: t('numericPh'), 'aria-label': t('numericPh') });
       if (prev) input.value = prev;
       else if (hasGuess) input.value = String(q.guess);
@@ -98,7 +113,18 @@ export function renderQuiz(app, { questions, onDone, onBack = null, termsOf = ()
         hp.panel,
         h('div', { class: 'quiz-num-row' }, input, q.unit ? h('span', { class: 'quiz-unit' }, q.unit) : null),
         picked,
-        h('div', { class: 'quiz-actions' }, h('button', { class: 'btn btn-primary', onclick: submit }, t('quizNext')), hp.btn, backBtn));
+        h('div', { class: 'quiz-actions' }, h('button', { class: 'btn btn-primary', onclick: submit }, t('quizNext')), hp.btn, backBtn, skip));
+    }
+    const kind = kindOf(q);
+    if (hasBody(kind)) {
+      const body = kindBody(kind, q, { t, prev: st.prev && st.prev.id === q.id ? st.prev.value : null, submit: answer });
+      const hp = onePass ? { panel: null, btn: null } : hintParts(q, null, body.applyHint);
+      return h('section', { class: 'card quiz-card' }, progress,
+        h('p', { class: 'quiz-q' }, q.q),
+        h('p', { class: 'quiz-kind muted small' }, t(KIND_LABEL[kind])),
+        hp.panel,
+        body.el,
+        hp.btn || backBtn || skip ? h('div', { class: 'quiz-actions' }, hp.btn, backBtn, skip) : null);
     }
     const mark = prev != null ? prev : hasGuess ? String(q.guess) : null;
     const opts = h('div', { class: 'quiz-opts' }, q.options.map((o) => h('button', {
@@ -108,10 +134,11 @@ export function renderQuiz(app, { questions, onDone, onBack = null, termsOf = ()
     return h('section', { class: 'card quiz-card' }, progress,
       guessLine,
       h('p', { class: 'quiz-q' }, q.q),
+      kind === 'best' ? h('p', { class: 'quiz-kind muted small' }, t('kindBest')) : null,
       hp.panel,
       opts,
       picked,
-      hp.btn || backBtn ? h('div', { class: 'quiz-actions' }, hp.btn, backBtn) : null);
+      hp.btn || backBtn || skip ? h('div', { class: 'quiz-actions' }, hp.btn, backBtn, skip) : null);
   }
 
   // Guess at the start → answer now → the right answer, each marked, so he
@@ -124,6 +151,27 @@ export function renderQuiz(app, { questions, onDone, onBack = null, termsOf = ()
       step(t('quizGuessStart'), c.guess, c.guessOk),
       step(t('quizGuessNow'), c.now, c.nowOk),
       h('li', { class: 'guess-step answer' }, h('span', { class: 'muted' }, t('quizGuessRight')), ' ', h('b', {}, c.answer)));
+  }
+
+  // What the review adds per kind: the runner-up, how many ticks were right,
+  // the typo, the wrong places and the wrong pairs.
+  function kindDetail(q, value, ok) {
+    const g = grade(q, value);
+    const note = (text) => h('p', { class: 'small review-detail' }, text);
+    if (g.kind === 'best') return note(t('reviewAlso', q.close));
+    if (g.kind === 'all' && !g.exact) return note(t('reviewAllScore', g.right, g.total, g.wrong));
+    if (g.kind === 'gap' && g.typo) return note(t('reviewTypo', g.spelled));
+    if (g.kind === 'order' && !ok) return note(t('reviewOrderWrong', g.wrongAt.length));
+    if (g.kind === 'match' && !ok) return note(t('reviewMatchWrong', g.wrongLeft.join(', ')));
+    return null;
+  }
+
+  // The right answer; an order or a set of pairs reads better as a list.
+  function answerNode(q) {
+    const kind = kindOf(q);
+    if (kind === 'order') return h('ol', { class: 'review-list small' }, q.items.map((x) => h('li', {}, h('b', {}, x))));
+    if (kind === 'match') return h('ul', { class: 'review-list small' }, q.pairs.map(([l, r]) => h('li', {}, h('b', {}, `${l} → ${r}`))));
+    return h('p', { class: 'small' }, h('b', {}, correct(q)));
   }
 
   function reviewCard() {
@@ -142,7 +190,8 @@ export function renderQuiz(app, { questions, onDone, onBack = null, termsOf = ()
         hinted ? h('p', { class: 'hint-mark small' }, t('hintUsed')) : null,
         'guess' in q ? guessSteps(q, value) : [
           ok ? null : h('p', { class: 'small' }, t('quizYours', shown(q, value))),
-          h('p', { class: 'small' }, h('b', {}, correct(q)))],
+          kindDetail(q, value, ok),
+          answerNode(q)],
         h('p', { class: 'muted small' }, q.why))),
       onePass
         ? h('button', { class: 'btn btn-primary', onclick: () => onDone(st.firstTry, st.sure || {}) }, t('quizFinish'))
@@ -155,7 +204,12 @@ export function renderQuiz(app, { questions, onDone, onBack = null, termsOf = ()
   function draw() {
     // sure is !hinted: the screens pass it on to the scheduling as before.
     if (st.phase === 'done') { onDone(st.firstTry, st.sure || {}); return; }
+    // A keyboard or screen reader user who just answered lands on the next
+    // card's heading, not on the page body (an input still takes focus itself).
+    const had = typeof box.contains === 'function' && typeof document !== 'undefined' && box.contains(document.activeElement);
     box.replaceChildren(st.phase === 'review' ? reviewCard() : askCard());
+    const head = had ? box.querySelector('.card-title, .quiz-q') : null;
+    if (head && head.focus) { head.setAttribute('tabindex', '-1'); head.focus({ preventScroll: true }); }
     window.scrollTo(0, 0);
   }
   draw();

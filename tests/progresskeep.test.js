@@ -8,6 +8,7 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import { MODULES, loadModule, moduleOf } from '../src/content/courses/index.js';
+import { kindOf } from '../src/core/questionkinds.js';
 
 const fixture = (name) => JSON.parse(fs.readFileSync(new URL(`./fixtures/${name}`, import.meta.url), 'utf8'));
 const pinned = fixture('v9-recall-keys.json');
@@ -32,6 +33,9 @@ async function assertKept(pins) {
           assert.ok('number' in q, `${at}: was numeric`);
           assert.equal(q.number, w.number, `${at}: number changed`);
         } else {
+          // v18: best is MC-shaped, so a rewritten slot may become best and keeps its key position;
+          // all, gap, order and match belong in the test banks, not in a pinned recall slot.
+          assert.ok(['mc', 'best'].includes(kindOf(q)), `${at}: was multiple choice, is now ${kindOf(q)}`);
           assert.ok(!('number' in q), `${at}: was multiple choice`);
           assert.equal(q.options.indexOf(q.answer), w.answerIndex, `${at}: answer position changed`);
         }
@@ -66,4 +70,10 @@ test('v16: flair fields add no change to existing lesson records', async () => {
   const s = load({ getItem: (k) => (k === KEY ? raw : null), setItem() {} });
   assert.deepEqual(s.courses.eng.lessons, lessons);
   assert.deepEqual(awardFlair(s, 10).state.courses.eng.lessons, lessons);
+});
+
+test('v18: a pinned multiple-choice slot may become best, but not a puzzle kind', () => {
+  assert.equal(kindOf({ options: [], answer: 'a' }), 'mc');
+  assert.equal(kindOf({ kind: 'best', options: [], answer: 'a', close: 'b' }), 'best');
+  assert.ok(!['mc', 'best'].includes(kindOf({ kind: 'all', options: [], answers: [] })));
 });

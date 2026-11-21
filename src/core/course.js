@@ -2,13 +2,14 @@
 // work feeds the shared XP, days and streak. Pure.
 import { updateStreak, reconcileStreak, dayKey } from './progress.js';
 import { isoWeekKey } from './boss.js';
-import { scheduleCourseReview, dueCount, maintenanceQuestion, OWNED_BOX } from './coursereview.js';
+import { scheduleCourseReview, dueCount, maintenanceQuestion, reviewCapOf, reviewsLeft, OWNED_BOX } from './coursereview.js';
 import { lessonOf, moduleOf, MODULES, TRACKS, topicsOf, placeOf } from '../content/courses/index.js';
 import { mapFor } from '../content/courses/maps/index.js';
 import { TEXT_FIRST_FILMS } from '../content/courses/films/textfirst.js';
 import { upcoming } from './realweek.js';
 import { creditXp, isPerfect, goalJustReached } from './xp.js';
 import { awardFlair } from './flair.js';
+import { judge, answerText, valueText } from './questionkinds.js';
 
 const LESSON_XP = 20;
 const SITUATION_XP = 10;
@@ -19,17 +20,9 @@ const PREPPED_CAP = 50;
 const PREP_DAYS = 2;
 const PREP_MIN = 3;
 
-// Numeric answers accept a Dutch decimal comma and always use the tolerance.
-export function judge(question, answer) {
-  if (!question) return false;
-  if ('number' in question) {
-    const s = String(answer ?? '').trim().replace(',', '.');
-    if (!s) return false;
-    const n = Number(s);
-    return Number.isFinite(n) && Math.abs(n - question.number) <= question.tolerance + 1e-9;
-  }
-  return answer === question.answer;
-}
+// Judging lives in questionkinds.js (one rule per kind); numeric answers accept
+// a Dutch decimal comma and always use the tolerance.
+export { judge };
 
 // One pass asks every question; review shows them all; the next pass asks only
 // the misses, until every question has been right once. hints holds the
@@ -87,6 +80,21 @@ export function backQuiz(state, questions) {
     misses: at < 0 ? state.misses : state.misses.filter((_, k) => k !== at),
     prev: { id, value: (state.answers || {})[id], sure: state.pass === 1 ? (state.sure || {})[id] !== false : true },
   };
+}
+
+// "Overslaan" on a due question (v18 F3): to the end of the pass; skipped again, or
+// when nothing else is left to ask, it is left out: not an answer, not a miss, still
+// due. Only in the first pass. Nothing is ever recorded for it.
+export function skipQuiz(state, questions) {
+  if (state.phase !== 'ask' || state.pass !== 1) return state;
+  const idx = state.order[state.i];
+  const id = questions[idx].id;
+  const again = (state.skipped || []).includes(id) || state.i === state.order.length - 1;
+  const rest = state.order.filter((_, k) => k !== state.i);
+  const order = again ? rest : [...rest, idx];
+  const next = { ...state, order, prev: null, skipped: [...(state.skipped || []), id], left: [...(state.left || []), ...(again ? [id] : [])] };
+  if (next.i >= order.length) return { ...next, phase: Object.keys(state.answers).length ? 'review' : 'done' };
+  return next;
 }
 
 export function continueQuiz(state) {
@@ -158,7 +166,7 @@ export function applyDue(state, { subject, results, sure = {}, lang, maintenance
   const marked = (c) => (prep ? { ...c, prepped: [prep, ...(c.prepped || []).filter((x) => x !== prep)].slice(0, PREPPED_CAP) } : c);
   next = withSubject(next, subject, (c) => logSession(
     marked(maintenance ? { ...c, lastMaintenance: isoWeekKey(new Date(y, m - 1, d)) } : c),
-    { day: today, kind: 'due', correct, total: entries.length, ts: now },
+    { day: today, kind: 'due', correct, total: entries.length, ts: now, ...(maintenance || prep ? { extra: true } : {}) },
   ));
   return { state: next, xp, goalReached: goalJustReached(state, next, today) };
 }
@@ -408,6 +416,25 @@ export function lessonEndNext(state, meta, lessonId, fromModule, modules = MODUL
   return next && next.lessonId !== lessonId ? next : null;
 }
 
+// Review load (v18 F3). Questions answered in today's due sessions count against
+// the daily limit; a refresh before an event or a weekly keep-sharp question does not.
+export function reviewsToday(state, subject, today) {
+  const sessions = (((state.courses || {})[subject]) || {}).sessions || [];
+  return sessions.filter((x) => x.kind === 'due' && x.day === today && !x.extra).reduce((n, x) => n + (Number(x.total) || 0), 0);
+}
+export const reviewsLeftToday = (state, subject, today) => reviewsLeft(reviewCapOf(state.settings), reviewsToday(state, subject, today));
+// What the due card and a session can show: capped by what is left of today's limit.
+export const dueNow = (state, subject, lang, today) => dueCount(state.courseReviews || {}, today, subject, lang, reviewsLeftToday(state, subject, today));
+// What is due in all, limit or not (the quiet "n wachten").
+export const dueWaiting = (state, subject, lang, today) => dueCount(state.courseReviews || {}, today, subject, lang);
+// "Vandaag overslaan": the reviews stay due and untouched; only today's next step changes.
+export const dueSkipped = (state, subject, today) => ((((state.courses || {})[subject]) || {}).dueSkip) === today;
+// What the guide's light counts: nothing once he skipped today (the card is quiet too).
+export const dueSignal = (state, subject, lang, today) => (dueSkipped(state, subject, today) ? 0 : dueNow(state, subject, lang, today));
+export function skipDueToday(state, subject, today) {
+  return withSubject(state, subject, (c) => ({ ...c, dueSkip: today }));
+}
+
 // One next thing per course, deterministic for a state and day.
 export function courseTodayPick(state, subject, lang, today, modules = MODULES) {
   const reviews = state.courseReviews || {};
@@ -420,7 +447,8 @@ export function courseTodayPick(state, subject, lang, today, modules = MODULES) 
   // A real event within two days with a topic in this course: refresh it.
   const prep = prepPick(state, subject, lang, today, modules);
   if (prep) return prep;
-  const due = dueCount(reviews, today, subject, lang);
+  // Skipped today (v18): the reviews wait, the lesson comes first. The daily limit also caps the count.
+  const due = dueSignal(state, subject, lang, today);
   if (due >= 5) return { reason: 'due', count: due };
   const rec = nextCourseLesson(state, subject, modules);
   if (rec) return placed({ reason: 'lesson', ...rec }, modules);
@@ -548,9 +576,9 @@ export function lessonQuiz(lesson, { level = null, ask = (d) => d, pool = [], ea
 // right answer, each judged, so the gap is visible.
 export function guessCompare(q, now) {
   return {
-    guess: q.guess == null ? '?' : 'number' in q ? withUnit(q, q.guess) : q.guess,
-    now: 'number' in q ? withUnit(q, now) : now,
-    answer: 'number' in q ? withUnit(q, q.number) : q.answer,
+    guess: q.guess == null ? '?' : valueText(q, q.guess),
+    now: valueText(q, now),
+    answer: answerText(q),
     guessOk: q.guess != null && judge(q, q.guess),
     nowOk: judge(q, now),
   };
@@ -581,7 +609,7 @@ export function courseSummary(state, subject, lang, today, modules = MODULES) {
     return sessions.filter((x) => x.day === key).length;
   });
   const situations = sessions.filter((x) => x.kind === 'situation').slice(0, 5).map((x) => ({ lessonId: x.lessonId, pts: x.correct, ts: x.ts }));
-  return { tracks, due: dueCount(state.courseReviews || {}, today, subject, lang), strip, situations };
+  return { tracks, due: dueNow(state, subject, lang, today), strip, situations };
 }
 
 // The step indicator at the top of a lesson: Guess · Read · Example · Check.
@@ -591,16 +619,13 @@ export function lessonSteps(phases, current) {
   return phases.map((p, i) => ({ id: STEP_OF[p], state: i < at ? 'done' : i === at ? 'current' : 'todo' }));
 }
 
-const withUnit = (q, v) => (q.unit ? `${v} ${q.unit}` : String(v));
-
 // The guesses from the start of a lesson, each next to the right answer and
 // why: the gap between guess and answer is what makes the lesson stick.
 export function guessFeedback(lesson, guesses) {
   return (lesson.pre || []).flatMap((q, i) => {
     const g = guesses[i];
     if (g == null) return [];
-    const num = 'number' in q;
-    return [{ q: q.q, guess: num ? withUnit(q, g) : g, answer: num ? withUnit(q, q.number) : q.answer, ok: judge(q, g), why: q.why }];
+    return [{ q: q.q, guess: valueText(q, g), answer: answerText(q), ok: judge(q, g), why: q.why }];
   });
 }
 

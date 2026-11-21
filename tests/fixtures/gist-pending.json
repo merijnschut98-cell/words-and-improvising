@@ -17,12 +17,5 @@
 "eng.safety",
 "eng.spc",
 "eng.switchgear",
-"eng.transformers",
-"pm.itproject",
-"pm.negotiate",
-"pm.outside",
-"pm.perform",
-"pm.portfolio",
-"pm.scaled",
-"pm.stuck"
+"eng.transformers"
 ]

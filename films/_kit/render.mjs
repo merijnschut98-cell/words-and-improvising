@@ -120,8 +120,8 @@ export async function render(id, { langs = ['nl', 'en'], seconds = null, theme =
         '-f', 'image2pipe', '-framerate', String(FPS), '-c:v', 'mjpeg', '-i', '-',
         '-i', join(dir, `${lang}.wav`),
         '-map', '0:v', '-map', '1:a', '-t', String(frames / FPS),
-        '-c:v', 'libx264', '-preset', 'slow', '-tune', 'animation', '-crf', '26', '-pix_fmt', 'yuv420p', '-r', String(FPS), '-g', String(FPS * 4),
-        '-c:a', 'aac', '-b:a', '96k', '-ac', '1',
+        '-c:v', 'libx264', '-preset', 'slow', '-tune', 'animation', '-crf', '34', '-pix_fmt', 'yuv420p', '-r', String(FPS), '-g', String(FPS * 4),
+        '-c:a', 'aac', '-b:a', '64k', '-ac', '1',
         '-movflags', '+faststart', out], { stdio: ['pipe', 'inherit', 'inherit'] });
       const done = new Promise((res, rej) => ff.on('close', (code) => (code === 0 ? res() : rej(new Error(`ffmpeg exited ${code}`)))));
       const t0 = Date.now();

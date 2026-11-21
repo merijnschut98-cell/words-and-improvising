@@ -290,26 +290,26 @@ export default {
     },
     {
       id: 'pm.approach.families',
-      gist: 'Er zijn vier methodefamilies en een mengvorm; een certificaat bewijst dat iemand een examen haalde, niet hoe een project in de praktijk werkt.',
+      gist: 'Vier methodefamilies en een mengvorm; DMAIC is een projectstructuur voor elke verbetering, niet alleen voor Six Sigma.',
       title: 'De methodefamilies',
       pre: [
         {
           q: 'Een klant zegt: “Wij werken volgens PRINCE2.” Wat weet je daarmee over hoe het project verloopt?',
-          options: ['Dat het team werkt in sprints van twee weken met een review aan het eind', 'Dat alle projectleiders een bepaald diploma in de methode hebben gehaald', 'Dat er een vaste methode is, niet hoe strak die wordt gevolgd', 'Dat het project met DMAIC data-gedreven wordt verbeterd in vijf fasen'],
+          options: ['Dat het team werkt in sprints van twee weken met een review aan het eind', 'Dat alle projectleiders een bepaald diploma in de methode hebben gehaald', 'Dat er een vaste methode is, niet hoe strak die wordt gevolgd', 'Dat het project met DMAIC in vijf fasen wordt verbeterd'],
           answer: 'Dat er een vaste methode is, niet hoe strak die wordt gevolgd',
           why: 'PRINCE2 is een methode; hoe streng ze wordt toegepast, moet je navragen.',
         },
       ],
       teach: [
-        'Er zijn vier methodefamilies (method families) en een mengvorm. Voorspellend (predictive): eerst plannen, dan uitvoeren en afwijkingen beheren; waterfall en PRINCE2 horen hier. Agile: korte rondes met elke keer iets werkends, zoals Scrum en Kanban; de lessen Een werkwijze kiezen en De vijf events van Scrum leggen die uit.\n\nHybride (hybrid): een mix, bijvoorbeeld vaste mijlpalen met korte rondes erbinnen.',
-        'Lean-verbeteren (Lean improvement): de mensen die het werk doen verbeteren het met kleine experimenten. Hier horen de A3 (een verbeterrapport op één blad) en het kaizenevent (een team verbetert een gebied in een paar dagen) thuis. Hoe die werken, staat in de module Technisch probleemoplossen in Engineering.\n\nSix Sigma: verbeteren met data, in vaste stappen die DMAIC heten: Define, Measure, Analyse, Improve, Control.',
-        'Wat zijn de bekende namen? De PMBOK Guide van PMI en de ICB van IPMA zijn een kennisraamwerk (body of knowledge): ze beschrijven wat een projectmanager moet weten en kunnen. PMI werkt met principes en prestatiedomeinen; IPMA met competenties in drie gebieden: mensen, praktijk en perspectief.\n\nPRINCE2 is anders: dat is een methode, met thema’s, fasen en rollen.',
-        'Een certificaat (certificate) bewijst dat iemand heeft geleerd en een examen heeft gehaald. Het bewijst niet hoe een project in de praktijk werkt. Een klant die “PRINCE2” zegt, bedoelt soms de methode, soms alleen de sjablonen.\n\nVraag daarom door: welke onderdelen gebruiken jullie echt, en welke beslissingen worden erdoor genomen? Dat zegt meer dan een diploma op de muur.',
-        'Wat experts bespreken: sommigen zien agile en PRINCE2 als tegenpolen. PeopleCert, de beheerder van PRINCE2, schrijft dat de nieuwste PRINCE2 samengaat met Agile, Lean en ITIL (de IT-beheerpraktijk).\n\nIn de praktijk bevatten de meeste projecten meer dan één familie. Een scherpe vraag: “Welke familie bedoelt de klant eigenlijk als hij het woord agile of Six Sigma gebruikt?”',
+        'Er zijn vier methodefamilies (method families) en een mengvorm. Een methodefamilie is een groep werkwijzen met dezelfde grondgedachte.\n\nDe vier families: voorspellend, agile, Lean-verbeteren en verbeteren met DMAIC. De mengvorm heet hybride (hybrid): bijvoorbeeld vaste mijlpalen met korte rondes erbinnen. Hieronder staat bij elke familie welke bekende methoden erbij horen.',
+        'Voorspellend (predictive): eerst plannen, dan uitvoeren en afwijkingen beheren. Hier horen waterfall (vaste volgorde van fasen), PRINCE2 (fasen, thema’s en rollen) en stage-gate (een besluitpoort na elke fase) bij.\n\nAgile: korte rondes met elke keer iets werkends. Hier horen Scrum (sprints), Kanban (werk op een bord, met een grens aan wat tegelijk loopt) en SAFe (agile voor veel teams samen) bij. De lessen Een werkwijze kiezen en De vijf events van Scrum leggen dit uit.',
+        'Lean-verbeteren (Lean improvement): de mensen die het werk doen verbeteren het met kleine experimenten. Hier horen PDCA (plannen, doen, controleren, bijsturen: een kleine cirkel), de A3 (een verbeterrapport op één blad), het kaizenevent (een team verbetert een gebied in een paar dagen) en de waardestroomanalyse (je tekent hoe het werk stroomt en waar het wacht) bij.\n\nHoe die werken, staat in de module Technisch probleemoplossen in Engineering.',
+        'Verbeteren met DMAIC: een projectstructuur voor elke verbetering, niet alleen voor Six Sigma. Vijf fasen: Define, Measure, Analyse, Improve, Control (definiëren, meten, analyseren, verbeteren, borgen). Elke fase levert iets op dat de volgende nodig heeft; zo houdt DMAIC het project bij elkaar.\n\nSix Sigma voegt er statistiek aan toe. Lean gebruikt dezelfde fasen zonder die statistiek, bijvoorbeeld met een kaizenevent in de fase Verbeteren. Verwant zijn 8D (acht stappen voor één kwaliteitsprobleem, vaak een klantklacht) en DMADV (als je iets nieuws ontwerpt).',
+        'De PMBOK Guide van PMI en de ICB van IPMA zijn geen methode maar een kennisraamwerk (body of knowledge): ze beschrijven wat een projectmanager moet weten en kunnen. PRINCE2 is een methode, met thema’s, fasen en rollen.\n\nEen certificaat (certificate) bewijst dat iemand een examen haalde, niet hoe een project werkt. Vraag door: welke onderdelen gebruiken jullie echt? PeopleCert, de beheerder van PRINCE2, schrijft dat de nieuwste PRINCE2 samengaat met Agile, Lean en ITIL.',
       ],
       example: {
         kind: 'worked',
-        text: 'Eén probleem bij een netbeheerder: van de 100 werkorders per week komen er 30 te laat bij de monteurs.\n\nVoorspellend: je analyseert het proces, ontwerpt een nieuw orderproces, bouwt het en voert het in; na ongeveer zes maanden is het klaar.\n\nAgile: in rondes van twee weken test je een nieuwe wekelijkse afsluittijd met één team, kijkt wat er gebeurt en past aan.\n\nSix Sigma: je meet vier weken waar de orders wachten, vindt dat de goedkeuring de grootste vertraging is, verbetert die stap en zet een wekelijkse meting neer die het vasthoudt.',
+        text: 'Eén probleem bij een netbeheerder: van de 100 werkorders per week komen er 30 te laat bij de monteurs. Hoe pakt elke familie dat aan?\n\nVoorspellend: je ontwerpt een nieuw orderproces, bouwt het en voert het in; na ongeveer zes maanden is het klaar.\n\nAgile: in rondes van twee weken test je een nieuwe wekelijkse afsluittijd met één team, kijkt wat er gebeurt en past aan.\n\nLean-verbeteren: in een kaizenevent van drie dagen tekent een team met de planners de waardestroom van een order en haalt de eerste wachttijd weg.\n\nDMAIC: je legt het doel vast, meet vier weken waar de orders wachten, vindt dat de goedkeuring de grootste vertraging is, verbetert die stap en zet een wekelijkse meting neer die het vasthoudt. Met statistiek heet dit Six Sigma; zonder is het een goed gestructureerd verbeterproject.\n\nHybride: DMAIC als structuur, met in de fase Verbeteren korte rondes om de nieuwe afsluittijd te testen.',
       },
       said: 'Wat je hoort in projecten: “Wij doen PRINCE2, dus de sjablonen moeten wel ingevuld.”',
       recall: [
@@ -326,10 +326,10 @@ export default {
           why: 'Een certificaat meet kennis op een dag, niet gedrag in een project.',
         },
         {
-          q: 'Welke familie past bij een terugkerend probleem waarover je veel data hebt?',
-          options: ['Six Sigma met DMAIC', 'Een voorspellende aanpak met een vast ontwerp', 'Scrum met sprints van twee weken', 'Een kick-off zonder verdere methode'],
-          answer: 'Six Sigma met DMAIC',
-          why: 'Data en herhaling zijn de kracht van DMAIC.',
+          q: 'Waar is DMAIC voor bedoeld?',
+          options: ['Als projectstructuur voor elke verbetering, ook zonder Six Sigma-statistiek', 'Als agile werkwijze waarmee een team nieuwe producten in sprints bouwt', 'Als kennisraamwerk dat beschrijft wat een projectmanager moet weten', 'Als voorspellende methode voor projecten met een vast ontwerp en einddatum'],
+          answer: 'Als projectstructuur voor elke verbetering, ook zonder Six Sigma-statistiek',
+          why: 'DMAIC houdt een verbeterproject bij elkaar in vijf fasen. Six Sigma voegt statistiek toe, maar de structuur werkt ook voor Lean.',
         },
         {
           q: 'Van de 100 werkorders per week komen er 30 te laat. Na een verbetering zijn dat er 12 van de 100. Met hoeveel procentpunt daalt het aandeel te late werkorders?',
@@ -353,16 +353,16 @@ export default {
       },
       sayIt: 'Leg in 60 seconden uit welke methodefamilies er zijn en wat PRINCE2, de PMBOK Guide en een certificaat van elkaar onderscheidt.',
       terms: [
-        { term: 'Methodefamilie', def: 'Een groep werkwijzen met dezelfde grondgedachte: voorspellend, agile, Lean, Six Sigma of een mix.' },
+        { term: 'Methodefamilie', def: 'Een groep werkwijzen met dezelfde grondgedachte: voorspellend, agile, Lean-verbeteren, verbeteren met DMAIC of een mix.' },
         { term: 'Kennisraamwerk', def: 'Een beschrijving van wat een vakgenoot moet weten en kunnen, zonder een vaste werkwijze voor te schrijven.' },
         { term: 'Methode', def: 'Een voorgeschreven manier van werken met stappen, rollen en producten, zoals PRINCE2.' },
         { term: 'Certificaat', def: 'Bewijs dat iemand een cursus heeft gevolgd en een examen heeft gehaald.' },
-        { term: 'DMAIC', def: 'De vijf stappen van Six Sigma: definiëren, meten, analyseren, verbeteren en borgen.' },
+        { term: 'DMAIC', def: 'Vijf fasen die een verbeterproject structureren en bij elkaar houden: definiëren, meten, analyseren, verbeteren en borgen. Gebruikt in Lean, Six Sigma en daarbuiten.' },
       ],
     },
     {
       id: 'pm.approach.dmaic',
-      gist: 'DMAIC is een vaste route voor een terugkerend probleem met data: definiëren, meten, analyseren, verbeteren en borgen, met na elke fase een fasepoort.',
+      gist: 'DMAIC is een projectstructuur voor elke verbetering: definiëren, meten, analyseren, verbeteren en borgen, met na elke fase een fasepoort.',
       title: 'DMAIC op een klein probleem',
       pre: [
         {
@@ -373,11 +373,11 @@ export default {
         },
       ],
       teach: [
-        'DMAIC is een vaste route voor een terugkerend probleem waar je data over kunt krijgen. Vijf fasen: definiëren (define), meten (measure), analyseren (analyse), verbeteren (improve) en borgen (control).\n\nElke fase levert iets op dat de volgende nodig heeft. Dat maakt het saai maar betrouwbaar: je springt niet naar een oplossing voordat je weet wat er aan de hand is.',
+        'DMAIC is een projectstructuur voor elke verbetering waar je een getal van kunt krijgen, niet alleen voor Six Sigma. Vijf fasen: definiëren (define), meten (measure), analyseren (analyse), verbeteren (improve) en borgen (control).\n\nElke fase levert iets op dat de volgende nodig heeft. Zo houdt de structuur het project bij elkaar: je springt niet naar een oplossing voordat je weet wat er aan de hand is.',
         'Definiëren: je schrijft een projectdefinitie (Six Sigma project charter): het probleem, het doel in getallen, de scope, het team en de datum. Meten: je maakt een nulmeting (baseline) van de huidige prestatie, met een vaste definitie, een vaste bron en een vaste periode.\n\nResultaat van deze twee fasen: één getal waar iedereen het over eens is, en een doel dat je later kunt controleren.',
         'Analyseren: je zoekt waar het verlies zit. Eenvoudig kan dat zijn door te tellen waar het werk wacht. Verbeteren: je test een oplossing op kleine schaal en meet of het getal beweegt. Borgen: je zorgt dat het blijft werken met een eigenaar, een vaste meting en afspraken in het dagelijkse werk.\n\nDe laatste fase wordt vaak overgeslagen. Dan zakt het resultaat terug zodra de aandacht weg is.',
         'Aan het eind van elke fase hoort een fasepoort (tollgate review): een kort besluitmoment met de sponsor. Klopt wat we hebben, en gaan we door? Zo stop je tijdig als het probleem kleiner blijkt of de data ontbreekt.\n\nHet is geen examen maar een gesprek: wat weten we nu, wat is het getal, wat is de volgende stap?',
-        'Welke verbeterweg past bij welke maat? Als vuistregel: een A3 voor één eigenaar die in een paar weken één probleem aanpakt. Een kaizenevent voor één gebied in een paar dagen, vaak drie tot vijf, met de mensen die het werk doen. DMAIC voor een terugkerend probleem met data over enkele maanden.\n\nHoe een A3 of kaizenevent werkt, staat in de module Technisch probleemoplossen in Engineering.',
+        'Welke verbeterweg past bij welke maat? Als vuistregel: een A3 voor één eigenaar die in een paar weken één probleem aanpakt. Een kaizenevent voor één gebied in een paar dagen, vaak drie tot vijf, met de mensen die het werk doen. DMAIC voor een verbeterproject met een vaste structuur over enkele maanden, met of zonder Six Sigma-statistiek.\n\nHoe een A3 of kaizenevent werkt, staat in de module Technisch probleemoplossen in Engineering.',
       ],
       example: {
         kind: 'worked',
@@ -393,7 +393,7 @@ export default {
         },
         {
           q: 'Waarom is borgen een eigen fase?',
-          options: ['Omdat het resultaat anders terugzakt zodra de aandacht weg is', 'Omdat de sponsor aan het eind van elke fase een extra besluitmoment wil', 'Omdat de analyse anders niet wordt goedgekeurd door de fasepoort', 'Omdat Six Sigma altijd precies vijf fasen eist'],
+          options: ['Omdat het resultaat anders terugzakt zodra de aandacht weg is', 'Omdat de sponsor aan het eind van elke fase een extra besluitmoment wil', 'Omdat de analyse anders niet wordt goedgekeurd door de fasepoort', 'Omdat de fase analyseren anders te weinig tijd krijgt'],
           answer: 'Omdat het resultaat anders terugzakt zodra de aandacht weg is',
           why: 'Een verbetering zonder eigenaar en meting verdwijnt vaak weer.',
         },
@@ -445,7 +445,7 @@ export default {
       ],
       teach: [
         'Vijf vragen bepalen de keuze, de keuzecriteria (selection criteria). Hoe duidelijk is de oplossing? Hoe duidelijk zijn de eisen? Bestaat er data over het probleem? Is het team vast of geleend, dus deels beschikbaar? Wat legt het contract vast, zoals scope en prijs?\n\nJe stelt ze aan de sponsor en het team, en je schrijft de antwoorden op.',
-        'Lees de antwoorden samen. Onduidelijke oplossing en eisen die nog bewegen wijzen naar korte rondes; zie ook de les Wanneer agile past, en wanneer niet. Een bekende oplossing, vaste eisen en een vast contract wijzen naar voorspellend.\n\nEen terugkerend probleem met data wijst naar DMAIC. Eén eigenaar, één gebied en een paar weken wijzen naar een A3 of kaizenevent. Een geleend team vraagt om weinig vaste overleggen en duidelijke weekafspraken.',
+        'Lees de antwoorden samen. Onduidelijke oplossing en eisen die nog bewegen wijzen naar korte rondes; zie ook de les Wanneer agile past, en wanneer niet. Een bekende oplossing, vaste eisen en een vast contract wijzen naar voorspellend.\n\nEen verbeterproject met een getal dat je kunt meten wijst naar DMAIC; bij veel data komt er Six Sigma-statistiek bij. Eén eigenaar, één gebied en een paar weken wijzen naar een A3 of kaizenevent. Een geleend team vraagt om weinig vaste overleggen en duidelijke weekafspraken.',
         'Vaak is het antwoord een hybride vorm (hybrid form). Voorbeelden: een stage-gate met sprints erbinnen, zoals de les Stage-gate en agile in de maakindustrie laat zien voor hardware; of een DMAIC-project met een kaizenevent in de fase Verbeteren.\n\nHybride is geen halfslachtig compromis. Je geeft elk deel van het project de aanpak die bij dat deel past, en je maakt duidelijk waar de grens loopt.',
         'De uitzondering: de klant heeft de methode al gekozen, een opgelegde methode (imposed method). Vecht daar niet tegen. Vraag wat vastligt, zoals gates en sjablonen, en wat vrij is, namelijk hoe het team binnen de kaders werkt.\n\nAls je twijfelt of het probleem eenvoudig, ingewikkeld of complex is, helpt de les Welk soort probleem is dit? Cynefin; hier hoef je dat niet te herhalen.',
         'De mensenkant. De beste methode is die waar sponsor en team zich aan houden. Een voorspellende aanpak die niemand volgt, is slechter dan een lichte aanpak die wel wordt gebruikt.\n\nEen scherpe vraag aan jezelf: “Welke twee antwoorden op de vijf vragen wegen hier het zwaarst, en wat zou me van gedachten doen veranderen?” Zo kun je je keuze ook uitleggen aan een kritische sponsor.',

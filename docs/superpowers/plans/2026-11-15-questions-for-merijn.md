@@ -57,3 +57,9 @@ Never resume or start agents on my own after a usage limit or a pause. When agen
 
 ## Merijn, 17 Nov: text-first Projects films
 "Gewoon de volledige sessie opmaken." Projects lessons where the picture adds little become text-first: the reading is the main path, the film stays as "Bekijk de film". Difficult or visual topics keep the film. Done in v367: 18 of 40 Projects lesson films are text-first (list `src/content/courses/films/textfirst.js`, triage and rulings `2026-11-17-text-first-films.md`). Task 17 skips text-first films (no extension or split); pilot C (`pm.scaled.pi`, KEEP) is held for now, pilots A (cnc render) and B (moulding.cycle) run.
+
+## Merijn, 18 Nov: improvement points with priority
+Recorded in `2026-11-18-v18-merijn-improvements.md`; not started until Merijn says so. Three agents stopped on the usage limit on 17 Nov and wait (list in that file).
+
+## Merijn, 21 Nov: Supabase storage over the free limit
+Chose "alleen hercoderen en snoeien". Done in v376: all videos re-encoded at CRF 34 / 64k mono (2.1 GB to 1.0 GB, no visible loss), the 36 videos of the 18 text-first films and 4 stale old versions deleted; bucket now 244 objects, 1.06 GB. The render kit encodes at these settings from now on. Next renders (Task 17, joining and moulding splits) add to it again; watch the total.
