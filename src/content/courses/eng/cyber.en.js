@@ -208,7 +208,7 @@ export default {
     },
     {
       id: 'eng.cyber.leastpriv',
-      gist: 'Give only the rights the task needs; whoever changes role or leaves loses them, and an access review catches privilege creep.',
+      gist: 'Give only the rights the task needs; a change of role removes the old ones, and an access review catches privilege creep.',
       title: 'Least privilege and account management',
       pre: [
         {
@@ -621,7 +621,7 @@ export default {
     },
     {
       id: 'eng.cyber.scope',
-      gist: 'You are covered if you are in a listed sector and have 50 or more employees, or turnover and balance sheet both above €10 million.',
+      gist: 'You fall under the law in a listed sector with 50 or more employees, or with turnover and balance sheet each above €10 million.',
       title: 'Who is covered: sectors and size',
       pre: [
         {

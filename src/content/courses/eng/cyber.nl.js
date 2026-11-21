@@ -208,7 +208,7 @@ export default {
     },
     {
       id: 'eng.cyber.leastpriv',
-      gist: 'Geef alleen de rechten die de taak nodig heeft; wie van functie wisselt of vertrekt verliest ze, en een toegangsreview vangt rechtenophoping op.',
+      gist: 'Geef alleen de rechten die de taak nodig heeft; bij een functiewissel vervallen de oude, en een toegangsreview vangt rechtenophoping op.',
       title: 'Minimale rechten en accountbeheer',
       pre: [
         {
@@ -621,7 +621,7 @@ export default {
     },
     {
       id: 'eng.cyber.scope',
-      gist: 'Je valt eronder met een sector uit de bijlagen en vanaf 50 medewerkers, of meer dan €10 miljoen omzet én balanstotaal.',
+      gist: 'Je valt onder de wet met een sector uit de bijlagen en minstens 50 medewerkers, of omzet én balanstotaal elk boven €10 miljoen.',
       title: 'Wie valt eronder: sectoren en omvang',
       pre: [
         {
