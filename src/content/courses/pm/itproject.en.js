@@ -86,7 +86,7 @@ export default {
     },
     {
       id: 'pm.itproject.mvp',
-      gist: 'Sort requirements with MoSCoW; a Must is only what would make you postpone go-live if it were missing, and an MVP covers the whole process, thin but complete.',
+      gist: 'MoSCoW: a Must is what would make you postpone go-live if missing; an MVP covers the whole process, thin but complete.',
       film: 'pm.itproject.mvp',
       title: 'MoSCoW and the MVP',
       pre: [

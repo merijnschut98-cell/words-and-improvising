@@ -86,7 +86,7 @@ export default {
     },
     {
       id: 'pm.itproject.mvp',
-      gist: 'Sorteer requirements met MoSCoW; een Must is alleen wat je de go-live laat uitstellen als het ontbreekt, en een MVP dekt het hele proces dun maar compleet.',
+      gist: 'MoSCoW: een Must is wat je de go-live laat uitstellen als het ontbreekt; een MVP dekt het hele proces dun maar compleet.',
       film: 'pm.itproject.mvp',
       title: 'MoSCoW en de MVP',
       pre: [
