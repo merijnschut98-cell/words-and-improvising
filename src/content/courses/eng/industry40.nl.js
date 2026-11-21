@@ -3,6 +3,7 @@ export default {
   lessons: [
     {
       id: 'eng.industry40.dimensions',
+      gist: 'Datakwaliteit is geschikt zijn voor het gebruik; je meet het langs zes dimensies, elk als het aandeel records dat door een regel komt.',
       title: 'Zes dimensies van datakwaliteit',
       pre: [
         {
@@ -74,6 +75,7 @@ export default {
     },
     {
       id: 'eng.industry40.machinedata',
+      gist: 'Automatisch vastleggen wint van handmatig loggen voor wanneer en hoe lang; voor het waarom heb je mensen nog nodig.',
       title: 'Machinedata vastleggen: met de hand of automatisch',
       pre: [
         {
@@ -144,6 +146,7 @@ export default {
     },
     {
       id: 'eng.industry40.mes',
+      gist: 'Een MES is zo goed als zijn stamdata: een ideale cyclustijd op een norm in plaats van de topsnelheid geeft een te mooie performance.',
       title: 'Stamdata, MES en de OEE-valkuil',
       pre: [
         {
@@ -216,6 +219,7 @@ export default {
     },
     {
       id: 'eng.industry40.dqrules',
+      gist: 'Datakwaliteit managen is een doorlopende cyclus van regels die slagingspercentages meten, en je lost fouten op bij de bron, niet in het rapport.',
       title: 'Datakwaliteit managen: regels, oorzaken en ISO 8000',
       pre: [
         {
@@ -288,6 +292,7 @@ export default {
     },
     {
       id: 'eng.industry40.kpi',
+      gist: 'Een dashboard dient een doel en een publiek en toont alleen de belangrijkste getallen; een KPI heeft pas betekenis naast doelwaarde en trend.',
       title: 'Wat een goed KPI-dashboard is',
       pre: [
         {
@@ -359,6 +364,7 @@ export default {
     },
     {
       id: 'eng.industry40.powerbi',
+      gist: 'Power BI heeft drie lagen; bouw een stermodel en schrijf verhoudingen zoals OEE als DAX-meting die sommen deelt, niet als gemiddelde van percentages.',
       title: 'Power BI-basis voor een prestatierapport',
       pre: [
         {
@@ -430,6 +436,7 @@ export default {
     },
     {
       id: 'eng.industry40.floor',
+      gist: 'Een scherm op de vloer vraagt of je nu op plan ligt, een managementrapport waar de structurele verliezen zitten; haal ze niet door elkaar.',
       title: 'Scherm op de vloer of managementrapport',
       pre: [
         {
@@ -502,6 +509,7 @@ export default {
     },
     {
       id: 'eng.industry40.alerts',
+      gist: 'Een goede alert vraagt om actie, heeft een eigenaar en is zeldzaam genoeg; de drempel volgt de normale variatie van het proces.',
       title: 'Alerts zonder alertmoeheid',
       pre: [
         {
@@ -574,6 +582,7 @@ export default {
     },
     {
       id: 'eng.industry40.stack',
+      gist: 'Dezelfde productie is vaak in PLC, MES en ERP drie verschillende getallen; spreek per KPI één bron van waarheid af, met een eigenaar.',
       title: 'Waar de data vandaan komen',
       pre: [
         {
@@ -645,6 +654,7 @@ export default {
     },
     {
       id: 'eng.industry40.pipeline',
+      gist: 'In een dataplatform voegt elke stap tussen machine en rapport vertraging toe; lineage laat zien waar een getal vandaan komt.',
       title: 'Van bron tot rapport: het dataplatform',
       pre: [
         {
@@ -716,6 +726,7 @@ export default {
     },
     {
       id: 'eng.industry40.ownership',
+      gist: 'In de meeste kaders beslist de business wat een gegeven betekent en draait IT de systemen; een datacontract legt de afspraak vast.',
       title: 'Data-eigenaarschap en datacontracten',
       pre: [
         {
@@ -789,6 +800,7 @@ export default {
     },
     {
       id: 'eng.industry40.case',
+      gist: 'Begin bij een verlies in euro\'s, tel alle kosten over drie tot vijf jaar mee, en pilot met een nulmeting en vooraf afgesproken succescriteria.',
       title: 'Business case en uitrol',
       pre: [
         {
@@ -862,6 +874,7 @@ export default {
     },
     {
       id: 'eng.industry40.ml',
+      gist: 'Machine learning leert een patroon uit voorbeelden; toets een model op data die het nooit zag, anders merk je overfitting niet.',
       title: 'Wat machine learning is, en wat niet',
       pre: [
         {
@@ -933,6 +946,7 @@ export default {
     },
     {
       id: 'eng.industry40.predictive',
+      gist: 'Anomaliedetectie leert wat normaal is en markeert wat afwijkt; beoordeel het op detectiegraad en precisie, en op genoeg waarschuwingstijd.',
       title: 'Voorspellend onderhoud en anomaliedetectie',
       pre: [
         {
@@ -1004,6 +1018,7 @@ export default {
     },
     {
       id: 'eng.industry40.vision',
+      gist: 'Gebruik regelgebaseerde vision voor wat je kunt meten en AI voor uiterlijk; beoordeel elk systeem op escapes en onterechte afkeur, niet op nauwkeurigheid.',
       figure: 'eng.industry40.vision',
       title: 'Machine vision en AI-inspectie',
       pre: [
@@ -1078,6 +1093,7 @@ export default {
     },
     {
       id: 'eng.industry40.twin',
+      gist: 'Een simulatie is pas bruikbaar als er een beslissing van afhangt en ze tegen de huidige lijn gevalideerd is; één run bewijst niets.',
       title: 'Digital twins en simulatie',
       pre: [
         {

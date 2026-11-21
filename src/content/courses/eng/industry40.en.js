@@ -3,6 +3,7 @@ export default {
   lessons: [
     {
       id: 'eng.industry40.dimensions',
+      gist: 'Data quality means fit for the intended use; you measure it along six dimensions, each as the share of records that pass a rule.',
       title: 'Six dimensions of data quality',
       pre: [
         {
@@ -74,6 +75,7 @@ export default {
     },
     {
       id: 'eng.industry40.machinedata',
+      gist: 'Automatic capture beats manual logging for when and how long; for the why you still need people.',
       title: 'Capturing machine data: manual or automatic',
       pre: [
         {
@@ -144,6 +146,7 @@ export default {
     },
     {
       id: 'eng.industry40.mes',
+      gist: 'An MES is only as good as its master data: an ideal cycle time set at a norm, not top speed, flatters performance.',
       title: 'Master data, MES and the OEE trap',
       pre: [
         {
@@ -216,6 +219,7 @@ export default {
     },
     {
       id: 'eng.industry40.dqrules',
+      gist: 'Managing data quality is a continuous cycle of rules that measure pass rates, and you fix errors at the source, not in the report.',
       title: 'Managing data quality: rules, root causes and ISO 8000',
       pre: [
         {
@@ -288,6 +292,7 @@ export default {
     },
     {
       id: 'eng.industry40.kpi',
+      gist: 'A dashboard serves a goal and an audience and shows only the most important numbers; a KPI means little without a target and a trend.',
       title: 'What makes a good KPI dashboard',
       pre: [
         {
@@ -359,6 +364,7 @@ export default {
     },
     {
       id: 'eng.industry40.powerbi',
+      gist: 'Power BI has three layers; build a star schema and write ratios like OEE as a DAX measure dividing sums, not averaging percentages.',
       title: 'Power BI basics for a performance report',
       pre: [
         {
@@ -430,6 +436,7 @@ export default {
     },
     {
       id: 'eng.industry40.floor',
+      gist: 'A shop-floor screen asks whether you are on plan now, a management report where the structural losses are; do not mix them up.',
       title: 'Shop-floor screen or management report',
       pre: [
         {
@@ -502,6 +509,7 @@ export default {
     },
     {
       id: 'eng.industry40.alerts',
+      gist: 'A good alert asks for action, has an owner and is rare enough; its threshold follows the normal variation of the process.',
       title: 'Alerts without alert fatigue',
       pre: [
         {
@@ -574,6 +582,7 @@ export default {
     },
     {
       id: 'eng.industry40.stack',
+      gist: 'The same production is often three different numbers in PLC, MES and ERP; agree one source of truth per KPI, with an owner.',
       title: 'Where the data come from',
       pre: [
         {
@@ -645,6 +654,7 @@ export default {
     },
     {
       id: 'eng.industry40.pipeline',
+      gist: 'In a data platform every step between machine and report adds delay; lineage shows where a number came from.',
       title: 'From source to report: the data platform',
       pre: [
         {
@@ -716,6 +726,7 @@ export default {
     },
     {
       id: 'eng.industry40.ownership',
+      gist: 'In most frameworks the business decides what a data item means and IT runs the systems; a data contract writes the agreement down.',
       title: 'Data ownership and data contracts',
       pre: [
         {
@@ -789,6 +800,7 @@ export default {
     },
     {
       id: 'eng.industry40.case',
+      gist: 'Start from a loss in euros, count all costs over three to five years, and pilot with a baseline and success criteria agreed in advance.',
       title: 'Business case and rollout',
       pre: [
         {
@@ -862,6 +874,7 @@ export default {
     },
     {
       id: 'eng.industry40.ml',
+      gist: 'Machine learning learns a pattern from examples; test a model on data it never saw, or you will not notice overfitting.',
       title: 'What machine learning is, and is not',
       pre: [
         {
@@ -933,6 +946,7 @@ export default {
     },
     {
       id: 'eng.industry40.predictive',
+      gist: 'Anomaly detection learns what normal is and flags what deviates; judge it on detection rate and precision, and on enough warning time.',
       title: 'Predictive maintenance and anomaly detection',
       pre: [
         {
@@ -1004,6 +1018,7 @@ export default {
     },
     {
       id: 'eng.industry40.vision',
+      gist: 'Use rule-based vision for what you can measure and AI for appearance; judge any system on escapes and false rejects, not accuracy.',
       figure: 'eng.industry40.vision',
       title: 'Machine vision and AI inspection',
       pre: [
@@ -1078,6 +1093,7 @@ export default {
     },
     {
       id: 'eng.industry40.twin',
+      gist: 'A simulation is only useful if a decision depends on it and it is validated against the current line; one run proves nothing.',
       title: 'Digital twins and simulation',
       pre: [
         {
