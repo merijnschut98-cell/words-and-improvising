@@ -237,3 +237,5 @@ Outcome: accepted (merged as delivered), sent back N times, redone.
 | 2026-11-21 | v18 T1: bank and blueprint schema and validator | sonnet | ~50 | ~30 min | - | done (3b92ab0); opus review dispatched |
 | 2026-11-21 | Render of pm.approach.intro (v18 F4) | sonnet | ~37 | 14 min | - | done (fa59852); both guard PASS, DMAIC heard as letters |
 | 2026-11-21 | Review of v18 F3 (review skip) | opus | 38 | 4 min | 136k | approved (b5e3505); 4 fixes (guide light after skip, settings order, double button, wording) |
+| 2026-11-21 | Kernzin batch 4: eng.cost, cyber, drawings, fluids, gridbasics, gridops (96 lessons) | sonnet | ~90 | two sessions (usage-limit pause) | - | done (8835625); review dispatched |
+| 2026-11-21 | Review of v18 T1 (bank schema and validator) | opus | ~40 | 6 min | - | approved (8572f90); fixes: banklist.js so a failed load throws, gap-free ids, bank id helpers, quote rules (6 words, gist allowed) |

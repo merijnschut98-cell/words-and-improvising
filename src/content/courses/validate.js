@@ -526,6 +526,7 @@ export async function runAll() {
         if (!fs.existsSync(new URL(`src/content/courses/figures/${l.figure}.html`, root))) errs.push(`${l.id}: figure ${l.figure} missing`);
       }
     }
+    errs.push(...await (await import('./validatebank.js')).bankProblems(m)); // a module without a bank passes
     report(`module ${m.id}`, errs);
   }
   for (const subject of SUBJECTS) {
@@ -539,6 +540,9 @@ export async function runAll() {
 // The browser also loads this file (src/ui/subjectmap.js), so nothing Node-only
 // is imported until we know we are the program being run.
 if (typeof process !== 'undefined' && process.argv && process.argv[1]) {
-  const { pathToFileURL } = await import('node:url');
-  if (import.meta.url === pathToFileURL(process.argv[1]).href) process.exitCode = (await runAll()) ? 1 : 0;
+  // Not a top-level await: runAll loads validatebank.js, which imports this file, and a
+  // module that is still awaiting at the top level would wait on itself.
+  import('node:url').then(({ pathToFileURL }) => {
+    if (import.meta.url === pathToFileURL(process.argv[1]).href) return runAll().then((n) => { process.exitCode = n ? 1 : 0; });
+  });
 }
