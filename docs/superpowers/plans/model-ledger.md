@@ -228,3 +228,9 @@ Outcome: accepted (merged as delivered), sent back N times, redone.
 | 2026-11-21 | Design pass for Merijn's v18 points | opus | 41 | 13 min | 233k | done (fd85259); docs/superpowers/specs/2026-11-21-v18-design.md, 10 MC questions |
 | 2026-11-21 | v18 F2: question standard and lint | sonnet | ~30 | 20 min | - | done (ad51e0e); 5,498 findings, ratchet baseline; review dispatched |
 | 2026-11-21 | v18 F4: method families and DMAIC fix (pm.approach + intro film) | sonnet | ~45 | 20 min | - | done (08099a8); 14 methods in 4 families + hybrid, DMAIC as project structure; review dispatched, render after |
+| 2026-11-21 | v18 F1: question kinds engine (best, all, gap, order, match) | sonnet | ~45 | - | - | done (9b47ec0); 1187 tests; opus review dispatched |
+| 2026-11-21 | Review of v18 F2 (question standard and lint) | sonnet | ~45 | ~30 min | - | done (04fda51); lint moved to scripts/, tuned, new nobody rule; 5,609 findings baseline |
+| 2026-11-21 | Review of v18 F4 (method families, approach intro film) | sonnet | 47 | 7 min | 146k | approved (cbf7fd0); 3 small fixes (choose line, 8D scope); integrator added SAY rules; render dispatched |
+| 2026-11-21 | Review of v18 F1 (question kinds engine) | opus | ~40 | 7 min | - | approved (855db1f); 6 fixes: word-bank typo, digits, ij and spacing, number guard, best pre parity, focus |
+| 2026-11-21 | v18 D1: DMAIC proposal (road, pm.measure, pm.analyse) | opus | ~40 | 11 min | - | done (4c3e002); 5 MC questions for Merijn |
+| 2026-11-21 | v18 F3: skip recurring reviews (option A, three controls) | sonnet | ~45 | ~8 min | - | done (0c5339e); opus review dispatched (storage, sync) |
