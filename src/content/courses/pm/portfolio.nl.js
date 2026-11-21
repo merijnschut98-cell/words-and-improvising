@@ -88,7 +88,7 @@ export default {
     },
     {
       id: 'pm.portfolio.msp',
-      gist: 'MSP stuurt projecten plus de verandering die hun output omzet in baten, voor wat te groot of te onzeker is voor één project.',
+      gist: 'MSP stuurt projecten plus de verandering die hun output omzet in baten; gebruik het als één project te groot of te onzeker is.',
       title: 'Een programma sturen met MSP',
       pre: [
         {
