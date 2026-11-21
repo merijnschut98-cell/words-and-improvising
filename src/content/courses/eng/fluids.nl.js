@@ -4,7 +4,7 @@ export default {
     // Onderwerp: Stroming en druk in leidingen
     {
       id: 'eng.fluids.flow',
-      gist: 'Wrijving verbruikt de druk die de pomp maakt; bij turbulente stroming groeit de drukval met het kwadraat van het debiet.',
+      gist: 'Wrijving verbruikt de druk die de pomp maakt; bij turbulente stroming groeit de drukval ongeveer met het kwadraat van het debiet.',
       title: 'Druk, debiet en drukval',
       pre: [
         {
@@ -78,7 +78,7 @@ export default {
     },
     {
       id: 'eng.fluids.friction',
-      gist: 'Drukval = f × (L / D) × ρ × v² / 2, met f uit het Moody-diagram bij turbulente stroming.',
+      gist: 'Drukval = f × (L / D) × ρ × v² / 2, met wrijvingsfactor f uit het Moody-diagram bij turbulente stroming.',
       title: 'Leidingwrijving: Darcy–Weisbach en het Moody-diagram',
       pre: [
         {
@@ -151,7 +151,7 @@ export default {
     },
     {
       id: 'eng.fluids.valves',
-      gist: 'Een regelklep verandert het debiet door drukval toe te voegen: voor water debiet = Kv × √drukval; elke bar in de klep is verstookte pompenergie.',
+      gist: 'Een regelklep regelt het debiet met drukval: voor water is debiet = Kv × √(drukval in bar); elke bar in de klep is verstookte pompenergie.',
       title: 'Regelkleppen, Kv en drukstoten',
       pre: [
         {
@@ -226,7 +226,7 @@ export default {
     },
     {
       id: 'eng.fluids.sizing',
-      gist: 'De wrijvingsdrukval schaalt met 1 / D⁵, dus leidingmaat is een economische keuze: de economische diameter heeft de laagste levensduurkosten.',
+      gist: 'De wrijvingsdrukval schaalt ongeveer met 1 / D⁵, dus leidingmaat is een economische keuze: de economische diameter heeft de laagste levensduurkosten.',
       title: 'Leidingmaat en levensduurkosten',
       pre: [
         {
@@ -373,7 +373,7 @@ export default {
     },
     {
       id: 'eng.fluids.speed',
-      gist: 'Bij een centrifugaalpomp schaalt het vermogen met het toerental tot de derde macht, dus toerenregeling bespaart veel, behalve bij veel statische opvoerhoogte.',
+      gist: 'Bij een centrifugaalpomp schaalt het vermogen met het toerental tot de derde macht, dus toerenregeling bespaart veel in wrijvingssystemen en minder bij veel statische opvoerhoogte.',
       title: 'Toerenregeling en de affiniteitswetten',
       pre: [
         {
@@ -519,7 +519,7 @@ export default {
     },
     {
       id: 'eng.fluids.pumpsystem',
-      gist: 'Het systeemrendement van net tot water is motor × frequentieregelaar × pomp; bespaar in volgorde: uitzetten, verliezen weghalen, dimensioneren, toerenregeling, revisie.',
+      gist: 'Het systeemrendement van net tot water is motor × frequentieregelaar × pomp; bespaar ruwweg in deze volgorde: uitzetten, verliezen weghalen, dimensioneren, toerenregeling, revisie.',
       title: 'Pompsystemen: van net tot water',
       pre: [
         {
@@ -743,7 +743,7 @@ export default {
     },
     {
       id: 'eng.fluids.lmtd',
-      gist: 'Q = U × A × LMTD: vervuiling verlaagt U en een krappe nadering verkleint de LMTD, dus het benodigde oppervlak groeit.',
+      gist: 'Q = U × A × LMTD, het gemiddelde temperatuurverschil: vervuiling verlaagt U en een krappe nadering verkleint de LMTD, dus het oppervlak moet groeien.',
       title: 'LMTD, U en waarom wisselaars tekortschieten',
       pre: [
         {

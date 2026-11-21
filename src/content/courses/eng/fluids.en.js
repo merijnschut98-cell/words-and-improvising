@@ -4,7 +4,7 @@ export default {
     // Topic: Flow and pressure in pipes
     {
       id: 'eng.fluids.flow',
-      gist: 'Friction uses up the pressure the pump makes; in turbulent flow the pressure drop grows with the square of the flow.',
+      gist: 'Friction uses up the pressure the pump makes; in turbulent flow the pressure drop grows roughly with the square of the flow.',
       title: 'Pressure, flow and pressure drop',
       pre: [
         {
@@ -78,7 +78,7 @@ export default {
     },
     {
       id: 'eng.fluids.friction',
-      gist: 'Pressure drop = f × (L / D) × ρ × v² / 2, with f read from the Moody chart in turbulent flow.',
+      gist: 'Pressure drop = f × (L / D) × ρ × v² / 2, with friction factor f from the Moody chart in turbulent flow.',
       title: 'Pipe friction: Darcy–Weisbach and the Moody chart',
       pre: [
         {
@@ -151,7 +151,7 @@ export default {
     },
     {
       id: 'eng.fluids.valves',
-      gist: 'A control valve changes flow by adding pressure drop: for water flow = Kv × √drop; every bar in the valve is wasted pump energy.',
+      gist: 'A control valve sets flow by pressure drop: for water, flow = Kv × √(drop in bar); every bar in it is wasted pump energy.',
       title: 'Control valves, Kv and pressure surges',
       pre: [
         {
@@ -226,7 +226,7 @@ export default {
     },
     {
       id: 'eng.fluids.sizing',
-      gist: 'Friction pressure drop scales with 1 / D⁵, so pipe size is an economic choice: the economic diameter has the lowest lifetime cost.',
+      gist: 'Friction pressure drop scales roughly with 1 / D⁵, so pipe size is an economic choice: the economic diameter has the lowest lifetime cost.',
       title: 'Pipe size and life-cycle cost',
       pre: [
         {
@@ -373,7 +373,7 @@ export default {
     },
     {
       id: 'eng.fluids.speed',
-      gist: 'For a centrifugal pump power scales with speed to the third power, so speed control saves a lot, except where static head is large.',
+      gist: 'For a centrifugal pump power scales with speed cubed, so speed control saves a lot in friction systems and less with large static head.',
       title: 'Speed control and the affinity laws',
       pre: [
         {
@@ -519,7 +519,7 @@ export default {
     },
     {
       id: 'eng.fluids.pumpsystem',
-      gist: 'Wire-to-water efficiency is motor × drive × pump; save in order: switch off, remove losses, right-size, speed control, overhaul.',
+      gist: 'Wire-to-water efficiency is motor × drive × pump; save roughly in this order: switch off, remove losses, right-size, speed control, overhaul.',
       title: 'Pump systems: from wire to water',
       pre: [
         {
@@ -743,7 +743,7 @@ export default {
     },
     {
       id: 'eng.fluids.lmtd',
-      gist: 'Q = U × A × LMTD: fouling lowers U and a tight approach shrinks the LMTD, so the area needed grows.',
+      gist: 'Q = U × A × LMTD, the mean temperature difference: fouling lowers U and a tight approach shrinks it, so more area is needed.',
       title: 'LMTD, U and why exchangers fall short',
       pre: [
         {
