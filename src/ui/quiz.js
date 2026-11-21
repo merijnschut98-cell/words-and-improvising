@@ -199,10 +199,10 @@ export function renderQuiz(app, { questions, onDone, onBack = null, termsOf = ()
     if (st.phase === 'done') { onDone(st.firstTry, st.sure || {}); return; }
     // A keyboard or screen reader user who just answered lands on the next
     // card's heading, not on the page body (an input still takes focus itself).
-    const had = box.contains(document.activeElement);
+    const had = typeof box.contains === 'function' && typeof document !== 'undefined' && box.contains(document.activeElement);
     box.replaceChildren(st.phase === 'review' ? reviewCard() : askCard());
     const head = had ? box.querySelector('.card-title, .quiz-q') : null;
-    if (head) { head.setAttribute('tabindex', '-1'); head.focus({ preventScroll: true }); }
+    if (head && head.focus) { head.setAttribute('tabindex', '-1'); head.focus({ preventScroll: true }); }
     window.scrollTo(0, 0);
   }
   draw();
