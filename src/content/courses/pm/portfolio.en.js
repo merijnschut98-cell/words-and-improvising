@@ -88,7 +88,7 @@ export default {
     },
     {
       id: 'pm.portfolio.msp',
-      gist: 'MSP steers projects plus the change that turns their output into benefits, use it when one project is too big or too uncertain.',
+      gist: 'MSP steers projects plus the change that turns their output into benefits; use it when one project is too big or too uncertain.',
       title: 'Running a programme with MSP',
       pre: [
         {
