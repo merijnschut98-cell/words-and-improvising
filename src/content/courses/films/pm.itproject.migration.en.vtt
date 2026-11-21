@@ -1,0 +1,313 @@
+WEBVTT
+
+1
+00:00:00.855 --> 00:00:05.533
+An ERP is the business system for orders and purchasing, stock and costs,
+
+2
+00:00:05.650 --> 00:00:06.788
+such as SAP.
+
+3
+00:00:07.773 --> 00:00:10.211
+An MES is the system on the floor.
+
+4
+00:00:10.956 --> 00:00:15.228
+It runs orders per line and records what is made, used and scrapped.
+
+5
+00:00:16.307 --> 00:00:17.758
+It runs in phases.
+
+6
+00:00:18.497 --> 00:00:21.574
+SAP's method is called SAP Activate.
+
+7
+00:00:22.321 --> 00:00:26.931
+It calls the core phases prepare, explore, realize, deploy and run.
+
+8
+00:00:27.969 --> 00:00:31.336
+Every vendor uses other names; the order is the same.
+
+9
+00:00:32.659 --> 00:00:36.119
+Go-live is the day the new system becomes the official one.
+
+10
+00:00:36.799 --> 00:00:39.585
+From then on new work goes only into it.
+
+11
+00:00:40.643 --> 00:00:44.788
+The old one, the legacy system, is no longer used for new work.
+
+12
+00:00:45.569 --> 00:00:49.111
+Everything points at that day, so choose the date carefully.
+
+13
+00:00:50.145 --> 00:00:51.318
+There are two ways.
+
+14
+00:00:52.089 --> 00:00:56.036
+In a big bang, all sites and departments switch on the same day.
+
+15
+00:00:57.064 --> 00:01:00.815
+The advantage is one switchover, with no temporary links.
+
+16
+00:01:01.519 --> 00:01:04.538
+The drawback is that everything is at risk at once.
+
+17
+00:01:05.846 --> 00:01:09.364
+A phased rollout goes per site, per line or per module.
+
+18
+00:01:10.357 --> 00:01:12.099
+It often starts with a pilot.
+
+19
+00:01:12.888 --> 00:01:16.998
+One site or line goes first, so you learn before the rest follows.
+
+20
+00:01:18.029 --> 00:01:21.976
+In factories an MES often goes per line or per plant.
+
+21
+00:01:22.791 --> 00:01:26.042
+An ERP usually switches a whole site at once.
+
+22
+00:01:27.050 --> 00:01:31.624
+Phased costs extra, with temporary interfaces and a longer project.
+
+23
+00:01:32.420 --> 00:01:34.951
+That is the price of a smaller risk per step.
+
+24
+00:01:36.263 --> 00:01:37.679
+Timing matters as much.
+
+25
+00:01:38.408 --> 00:01:41.833
+In nineteen ninety-nine the American chocolate maker Hershey
+
+26
+00:01:41.903 --> 00:01:46.024
+went live with a new ERP just as the Halloween orders came in.
+
+27
+00:01:47.042 --> 00:01:48.853
+According to CIO magazine,
+
+28
+00:01:49.062 --> 00:01:53.230
+Hershey could not deliver about a hundred million dollars of orders that season.
+
+29
+00:01:54.215 --> 00:01:56.293
+So never go live in your peak season.
+
+30
+00:01:56.998 --> 00:02:01.329
+Ask which month is the quietest, and whether go-live is planned there.
+
+31
+00:02:02.745 --> 00:02:06.623
+A dairy group brings a new MES into three plants.
+
+32
+00:02:07.347 --> 00:02:09.623
+Plant A makes twenty percent of the volume.
+
+33
+00:02:10.318 --> 00:02:11.526
+December is the peak.
+
+34
+00:02:12.555 --> 00:02:15.829
+Option one is a big bang in one weekend in October.
+
+35
+00:02:16.556 --> 00:02:20.898
+If it goes wrong, all production is at risk, two months before the peak.
+
+36
+00:02:21.916 --> 00:02:23.274
+Option two is phased.
+
+37
+00:02:24.041 --> 00:02:28.104
+A pilots in March, B follows in June and C in September.
+
+38
+00:02:28.957 --> 00:02:32.277
+A temporary interface costs forty thousand euros,
+
+39
+00:02:32.533 --> 00:02:35.006
+and the project runs six months longer.
+
+40
+00:02:36.055 --> 00:02:37.739
+The group chooses option two.
+
+41
+00:02:38.481 --> 00:02:42.777
+If the pilot goes wrong, twenty percent is at risk instead of a hundred.
+
+42
+00:02:43.767 --> 00:02:47.634
+C, the biggest, then has three months to settle before December.
+
+43
+00:02:48.949 --> 00:02:53.129
+Data migration is moving data from the old system into the new one.
+
+44
+00:02:54.139 --> 00:02:57.854
+Master data is the fixed information many orders use,
+
+45
+00:02:57.993 --> 00:03:00.803
+such as articles and bills of materials.
+
+46
+00:03:01.805 --> 00:03:06.484
+Open items are what is in progress on go-live day, such as open orders,
+
+47
+00:03:06.682 --> 00:03:08.435
+stock and unpaid invoices.
+
+48
+00:03:09.473 --> 00:03:13.733
+History, such as orders from past years, is usually not migrated.
+
+49
+00:03:14.489 --> 00:03:17.995
+It stays readable in the old system or in an archive.
+
+50
+00:03:19.305 --> 00:03:23.751
+First comes data cleansing, removing duplicates, unused articles,
+
+51
+00:03:23.938 --> 00:03:25.912
+wrong units and empty fields.
+
+52
+00:03:26.643 --> 00:03:29.673
+Rubbish in the old system becomes rubbish in the new.
+
+53
+00:03:30.711 --> 00:03:33.416
+That is work for the business, who own the data.
+
+54
+00:03:34.172 --> 00:03:35.577
+IT shows what is wrong,
+
+55
+00:03:35.681 --> 00:03:39.245
+but not which of two near-identical articles is the real one.
+
+56
+00:03:40.261 --> 00:03:42.722
+The migration itself has three steps.
+
+57
+00:03:43.432 --> 00:03:47.693
+Extract from the old system, transform to the new structure, and load.
+
+58
+00:03:48.752 --> 00:03:53.687
+You rehearse that in a mock migration, a trial run into a test environment.
+
+59
+00:03:54.441 --> 00:03:59.108
+Each trial is cleaner and faster, and the last is timed for the go-live plan.
+
+60
+00:04:00.430 --> 00:04:02.984
+After every load comes reconciliation.
+
+61
+00:04:03.802 --> 00:04:07.993
+Compare the numbers in old and new, and explain every difference.
+
+62
+00:04:08.796 --> 00:04:12.511
+How many went out, how many came in, what was rejected and why?
+
+63
+00:04:13.483 --> 00:04:16.420
+The business signs off on the result, not IT.
+
+64
+00:04:17.114 --> 00:04:21.282
+The controller signs for the stock value, the planner for open orders.
+
+65
+00:04:22.285 --> 00:04:26.860
+Often the migration starts late, and cleaning only at the third trial.
+
+66
+00:04:27.616 --> 00:04:32.109
+Then there is no time left, and dirty data goes live to be fixed later.
+
+67
+00:04:33.148 --> 00:04:37.537
+Ask at every project meeting how many records failed in the last trial,
+
+68
+00:04:37.665 --> 00:04:39.128
+and who owns fixing them.
+
+69
+00:04:40.443 --> 00:04:45.575
+A metal parts maker moves to a new ERP; this is its second mock migration.
+
+70
+00:04:46.293 --> 00:04:48.522
+Unused articles go to the archive,
+
+71
+00:04:48.697 --> 00:04:51.936
+so nine thousand nine hundred and fifty should move.
+
+72
+00:04:53.000 --> 00:04:58.108
+Nine thousand eight hundred and seventy-one arrive, so seventy-nine are rejected.
+
+73
+00:04:58.838 --> 00:05:03.470
+Fifty-two have no unit, twenty-seven a drawing number that already exists.
+
+74
+00:05:04.470 --> 00:05:08.475
+The stock value differs by thirteen thousand five hundred euros.
+
+75
+00:05:09.183 --> 00:05:12.445
+That is exactly the stock of the rejected articles.
+
+76
+00:05:13.452 --> 00:05:17.689
+Engineering fixes the duplicates, purchasing fills in the units,
+
+77
+00:05:17.852 --> 00:05:20.023
+each with a date before the third trial.
+
+78
+00:05:20.732 --> 00:05:26.003
+The target is zero rejected and zero euros difference, signed off by the controller.

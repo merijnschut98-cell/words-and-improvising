@@ -1,0 +1,361 @@
+WEBVTT
+
+1
+00:00:00.853 --> 00:00:04.557
+Een machine werkt als een mens: met ogen, een brein en handen.
+
+2
+00:00:05.297 --> 00:00:10.394
+De ogen zijn sensoren: ligt er een onderdeel, is de klem dicht, is de druk bereikt?
+
+3
+00:00:11.395 --> 00:00:12.835
+Het brein is de PLC,
+
+4
+00:00:13.183 --> 00:00:16.701
+een kleine industriële computer in de kast die beslist wat er daarna gebeurt.
+
+5
+00:00:17.685 --> 00:00:21.970
+De handen zijn actuatoren: ze laten iets bewegen, zoals een motor,
+
+6
+00:00:22.341 --> 00:00:24.965
+een ventiel of de luchtcilinder die de klem dichtduwt.
+
+7
+00:00:26.045 --> 00:00:31.687
+Sensoren zitten op ingangen van de PLC, actuatoren op uitgangen: samen de I/O.
+
+8
+00:00:32.432 --> 00:00:35.821
+De meeste zijn aan of uit, meestal op 24 volt.
+
+9
+00:00:37.174 --> 00:00:41.772
+De PLC werkt in rondes, de scancyclus (scan cycle): ingangen lezen,
+
+10
+00:00:42.004 --> 00:00:46.636
+het programma van boven naar beneden doorlopen, uitgangen schrijven, en opnieuw.
+
+11
+00:00:47.621 --> 00:00:50.872
+Eén ronde duurt meestal een paar tot tientallen milliseconden.
+
+12
+00:00:51.634 --> 00:00:55.709
+Bij 10 milliseconden leest de PLC elke ingang 100 keer per seconde.
+
+13
+00:00:56.710 --> 00:00:59.078
+Het programma staat vaak in een ladderdiagram (ladder diagram),
+
+14
+00:00:59.287 --> 00:01:03.281
+een schema met sporten: links de voorwaarden, rechts wat er moet gebeuren.
+
+15
+00:01:04.258 --> 00:01:07.451
+Op deze sport: ligt er een onderdeel en drukt niemand op stop?
+
+16
+00:01:08.121 --> 00:01:09.781
+Dan gaat de uitgang klem sluiten aan.
+
+17
+00:01:11.129 --> 00:01:13.979
+De operator praat met de machine via de HMI.
+
+18
+00:01:14.613 --> 00:01:17.632
+Dat is het scherm met status, alarmen en recepten.
+
+19
+00:01:18.623 --> 00:01:24.068
+Het programma loopt in stappen: wachten op onderdeel, klemmen, checken, persen,
+
+20
+00:01:24.323 --> 00:01:24.962
+loslaten.
+
+21
+00:01:25.651 --> 00:01:28.739
+Elke stap wacht op zijn voorwaarde; een interlock werkt net zo.
+
+22
+00:01:29.748 --> 00:01:31.002
+Nu valt het station stil.
+
+23
+00:01:31.711 --> 00:01:35.055
+Op de HMI staat: stap 3, wacht op klem dicht.
+
+24
+00:01:35.750 --> 00:01:38.177
+De PLC is niet traag; hij wacht.
+
+25
+00:01:39.186 --> 00:01:40.045
+Kijk dus naar de klem.
+
+26
+00:01:40.791 --> 00:01:41.197
+Dicht?
+
+27
+00:01:41.883 --> 00:01:46.051
+Dan ligt het aan de sensor: verschoven, vuil of een kapotte kabel.
+
+28
+00:01:46.775 --> 00:01:47.239
+Open?
+
+29
+00:01:48.001 --> 00:01:49.290
+Dan de lucht of het ventiel.
+
+30
+00:01:50.649 --> 00:01:52.472
+De noodstop (emergency stop), rood op geel,
+
+31
+00:01:52.773 --> 00:01:58.114
+stopt de machine: meteen de energie eraf, of eerst afremmen en dan de energie eraf.
+
+32
+00:01:59.101 --> 00:02:01.040
+Hij hangt niet aan de gewone PLC,
+
+33
+00:02:01.377 --> 00:02:03.432
+maar via twee draden aan een veiligheidsrelais
+
+34
+00:02:03.455 --> 00:02:05.661
+dat twee magneetschakelaars laat afvallen:
+
+35
+00:02:05.893 --> 00:02:07.065
+een veiligheidsfunctie (safety function).
+
+36
+00:02:08.046 --> 00:02:12.422
+Breekt er een draad, dan valt het relais ook af: een fout maakt de machine stil,
+
+37
+00:02:12.713 --> 00:02:13.503
+niet gevaarlijk.
+
+38
+00:02:14.482 --> 00:02:19.346
+Hij blijft ingedrukt staan, en knop eruit start niets: eerst bewust resetten,
+
+39
+00:02:19.590 --> 00:02:20.205
+dan starten.
+
+40
+00:02:20.905 --> 00:02:22.948
+Een noodstop vervangt nooit de afscherming.
+
+41
+00:02:24.205 --> 00:02:25.830
+Hoe betrouwbaar moet zo’n functie zijn?
+
+42
+00:02:26.528 --> 00:02:30.232
+Een operator opent de deur van een robotcel zo’n 10 keer per uur.
+
+43
+00:02:30.959 --> 00:02:32.991
+Deur open, robot stopt.
+
+44
+00:02:33.998 --> 00:02:37.318
+Dat is het performance level, van PL a tot PL e.
+
+45
+00:02:38.034 --> 00:02:42.957
+De risicobeoordeling vraagt: hoe ernstig, hoe vaak, en kun je nog wegkomen?
+
+46
+00:02:43.955 --> 00:02:48.587
+Ernstig letsel; tien keer per uur lezen wij als vaak; de robot is hier traag,
+
+47
+00:02:48.820 --> 00:02:49.702
+dus wegkomen kan.
+
+48
+00:02:50.397 --> 00:02:51.384
+Dat geeft PL d.
+
+49
+00:02:52.083 --> 00:02:53.964
+Een snelle robot: PL e.
+
+50
+00:02:54.929 --> 00:02:56.009
+Met de CE-markering (CE marking)
+
+51
+00:02:56.067 --> 00:02:58.679
+verklaart de maker dat de machine aan de regels voldoet.
+
+52
+00:02:59.425 --> 00:03:04.057
+Vanaf 20 januari 2027 vervangt de Machineverordening (Machinery Regulation)
+
+53
+00:03:04.092 --> 00:03:05.056
+de Machinerichtlijn.
+
+54
+00:03:06.337 --> 00:03:10.354
+Nu een bottellijn: zes machines achter elkaar, met de vuller,
+
+55
+00:03:10.714 --> 00:03:12.467
+de sluiter en de etiketteerder.
+
+56
+00:03:13.459 --> 00:03:17.163
+OEE is beschikbaarheid maal prestatie maal kwaliteit.
+
+57
+00:03:17.903 --> 00:03:23.650
+Elke machine meldt boven 90 procent beschikbaarheid, maar de lijn-OEE is 58 procent.
+
+58
+00:03:24.644 --> 00:03:28.847
+Het verborgen verlies: de microstop (micro-stop), seconden tot minuten stil,
+
+59
+00:03:29.126 --> 00:03:31.680
+snel gereset en bijna nooit opgeschreven.
+
+60
+00:03:32.633 --> 00:03:35.884
+Het team wil de vuller vervangen, op papier de langzaamste.
+
+61
+00:03:36.574 --> 00:03:37.027
+Terecht?
+
+62
+00:03:38.328 --> 00:03:41.498
+Elke PLC logt zijn machinestatussen (machine states): draaien,
+
+63
+00:03:41.718 --> 00:03:46.234
+storing, starved, wachten op aanvoer, of blocked, niet kwijt kunnen.
+
+64
+00:03:47.226 --> 00:03:51.150
+De vuller draait 71 procent, 22 procent blocked.
+
+65
+00:03:51.838 --> 00:03:55.774
+De sluiter 68 procent, 25 procent blocked.
+
+66
+00:03:56.452 --> 00:04:01.177
+De etiketteerder draait 74 procent, 23 procent in storing.
+
+67
+00:04:02.196 --> 00:04:03.996
+De etiketteerder wacht bijna nooit:
+
+68
+00:04:04.251 --> 00:04:05.749
+hij is de verborgen bottleneck (hidden bottleneck).
+
+69
+00:04:06.468 --> 00:04:08.581
+Een nieuwe vuller staat alleen vaker blocked.
+
+70
+00:04:09.560 --> 00:04:11.383
+Hij logt zo’n 40 stops per uur.
+
+71
+00:04:12.013 --> 00:04:16.854
+Pak die microstops aan, en kijk daarna opnieuw: de bottleneck kan verschuiven.
+
+72
+00:04:18.146 --> 00:04:19.400
+Terug naar het persstation.
+
+73
+00:04:20.148 --> 00:04:25.233
+Elke stop staat in de alarmlog (alarm log): tijd, alarmcode, tekst en duur.
+
+74
+00:04:26.198 --> 00:04:28.799
+Maar één vastloper geeft een hele keten alarmen.
+
+75
+00:04:29.771 --> 00:04:33.567
+Het first-out alarm is het eerste in die keten, meestal de oorzaak.
+
+76
+00:04:34.330 --> 00:04:38.033
+Zonder first-out jagen mensen op symptomen, zoals deur open.
+
+77
+00:04:39.006 --> 00:04:44.776
+Een week van 10 diensten: onderdeel niet aanwezig 1.200 keer, servostoring 6 keer,
+
+78
+00:04:45.124 --> 00:04:46.657
+deur geopend 300 keer.
+
+79
+00:04:47.932 --> 00:04:50.823
+Zet ze in een pareto-diagram (Pareto chart), van groot naar klein,
+
+80
+00:04:51.160 --> 00:04:52.155
+en maak hem twee keer.
+
+81
+00:04:52.802 --> 00:04:55.124
+Op aantal wint onderdeel niet aanwezig ruim.
+
+82
+00:04:56.151 --> 00:05:00.203
+Op minuten: 1.200 keer 20 seconden is 400 minuten;
+
+83
+00:05:00.458 --> 00:05:03.523
+servostoring en deur geopend elk 150.
+
+84
+00:05:04.324 --> 00:05:05.740
+Ook hier staat hij bovenaan.
+
+85
+00:05:06.764 --> 00:05:08.889
+Check de first-out en kijk naar de toevoer.
+
+86
+00:05:09.566 --> 00:05:12.782
+De deur gaat vermoedelijk open om die onderdelen los te halen.
+
+87
+00:05:13.437 --> 00:05:14.877
+De servo gaat naar onderhoud.
+
+88
+00:05:16.025 --> 00:05:21.656
+Een MES, software boven de machines, koppelt statussen en alarmen aan order,
+
+89
+00:05:21.934 --> 00:05:22.793
+dienst en reden.
+
+90
+00:05:23.484 --> 00:05:25.609
+Bespreek elke ochtend de top drie aan de lijn.

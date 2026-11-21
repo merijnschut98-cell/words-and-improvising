@@ -1,0 +1,337 @@
+WEBVTT
+
+1
+00:00:00.842 --> 00:00:03.280
+A lathe makes the same shaft all day.
+
+2
+00:00:03.964 --> 00:00:09.096
+With SPC, statistical process control, you watch that process while it runs,
+
+3
+00:00:09.224 --> 00:00:12.057
+so you see a change before it makes bad parts.
+
+4
+00:00:13.097 --> 00:00:18.670
+These shafts must be 20 millimetres in diameter, plus or minus five hundredths.
+
+5
+00:00:19.680 --> 00:00:24.579
+Every hour the operator takes a subgroup: 5 shafts made one after another.
+
+6
+00:00:25.331 --> 00:00:26.631
+He measures all five.
+
+7
+00:00:27.642 --> 00:00:30.881
+The result goes on the control chart next to the machine:
+
+8
+00:00:31.078 --> 00:00:32.890
+a measurement plotted over time,
+
+9
+00:00:33.075 --> 00:00:35.687
+with a centre line and two control limits.
+
+10
+00:00:36.977 --> 00:00:39.531
+The classic is the X-bar and R chart.
+
+11
+00:00:40.346 --> 00:00:43.237
+At the top the average of the five, the X-bar.
+
+12
+00:00:43.961 --> 00:00:47.305
+At the bottom the range: the largest minus the smallest.
+
+13
+00:00:48.359 --> 00:00:52.864
+X-bar shows whether the centre moves; the range whether the spread changes.
+
+14
+00:00:53.886 --> 00:00:58.739
+The control limits come from the process itself: three sigma of the averages.
+
+15
+00:00:59.425 --> 00:01:01.736
+From 20.000,
+
+16
+00:01:01.945 --> 00:01:13.520
+an average range of 0.020 and the table constant 0.577 follows 19.9885 to 20.0115.
+
+17
+00:01:14.497 --> 00:01:16.900
+Spec limits are what the customer needs,
+
+18
+00:01:17.098 --> 00:01:19.838
+control limits what the process normally does.
+
+19
+00:01:20.534 --> 00:01:24.795
+Spec stays off this chart: averages spread less than single shafts.
+
+20
+00:01:26.100 --> 00:01:27.900
+Hour by hour the chart fills.
+
+21
+00:01:28.644 --> 00:01:38.129
+At ten o’clock 20.002, then 20.004, 20.005 and 20.006.
+
+22
+00:01:39.194 --> 00:01:46.520
+Then 20.008, 20.009, and at four o’clock 20.011.
+
+23
+00:01:47.245 --> 00:01:50.426
+All inside the limits, and far inside spec.
+
+24
+00:01:51.440 --> 00:01:55.164
+But seven rising in a row hardly ever happens by chance.
+
+25
+00:01:55.856 --> 00:01:59.722
+The rule says: six or more points in a row that keep rising.
+
+26
+00:02:00.429 --> 00:02:02.774
+This is a trend, and the rule fires.
+
+27
+00:02:03.904 --> 00:02:08.292
+Other rules: one point outside a limit, seven in a row on one side,
+
+28
+00:02:08.478 --> 00:02:10.289
+or two of three beyond two sigma.
+
+29
+00:02:11.055 --> 00:02:13.714
+Some plants use eight or nine in a row.
+
+30
+00:02:14.412 --> 00:02:18.023
+More rules catch more, but also give more false alarms.
+
+31
+00:02:19.388 --> 00:02:24.067
+Every chart needs a reaction plan: what does the operator do when a rule fires,
+
+32
+00:02:24.275 --> 00:02:25.273
+and who does he call?
+
+33
+00:02:26.230 --> 00:02:29.330
+He stops and checks the insert, the cutting tip.
+
+34
+00:02:30.060 --> 00:02:30.420
+Worn.
+
+35
+00:02:31.124 --> 00:02:33.446
+At ten past four a new one is in.
+
+36
+00:02:34.471 --> 00:02:38.174
+Then the suspect parts: everything since the last good check.
+
+37
+00:02:38.934 --> 00:02:40.397
+They are held and checked.
+
+38
+00:02:41.467 --> 00:02:43.406
+Not one shaft out of spec.
+
+39
+00:02:44.143 --> 00:02:46.674
+A chart nobody reacts to is wallpaper.
+
+40
+00:02:48.045 --> 00:02:49.450
+Now a stable process.
+
+41
+00:02:50.132 --> 00:02:53.174
+The operator measures every shaft and after every
+
+42
+00:02:53.255 --> 00:02:56.204
+part moves the offset by that part’s deviation.
+
+43
+00:02:57.218 --> 00:02:58.240
+That is tampering.
+
+44
+00:02:58.965 --> 00:03:04.537
+Each deviation is mostly noise, so correcting for it adds a second noise on top.
+
+45
+00:03:05.564 --> 00:03:08.176
+On the chart: a zig-zag from part to part,
+
+46
+00:03:08.362 --> 00:03:10.939
+and more spread than the gauge study explains.
+
+47
+00:03:11.952 --> 00:03:12.881
+He means well.
+
+48
+00:03:13.628 --> 00:03:15.543
+I keep it on nominal, he says.
+
+49
+00:03:16.870 --> 00:03:20.736
+The funnel experiment, made famous by Deming, shows why.
+
+50
+00:03:21.468 --> 00:03:24.127
+Marbles drop through a funnel onto a target.
+
+51
+00:03:25.199 --> 00:03:26.592
+If the funnel stays still,
+
+52
+00:03:26.801 --> 00:03:30.435
+they land in a cloud around the target: the ordinary spread.
+
+53
+00:03:31.486 --> 00:03:34.226
+Move it after every drop to correct the miss,
+
+54
+00:03:34.470 --> 00:03:38.371
+and the standard deviation rises by about 41 percent.
+
+55
+00:03:39.420 --> 00:03:40.662
+The variance doubles.
+
+56
+00:03:41.369 --> 00:03:44.666
+So does the operator who adjusts after every part.
+
+57
+00:03:45.458 --> 00:03:47.675
+Explain it this way, not as blame.
+
+58
+00:03:48.989 --> 00:03:51.996
+The rule: adjust only on a signal from the chart.
+
+59
+00:03:52.768 --> 00:03:55.078
+In between, leave the machine alone.
+
+60
+00:03:56.097 --> 00:03:59.313
+Known wear is handled by wear compensation: a planned,
+
+61
+00:03:59.487 --> 00:04:02.250
+fixed offset after a set number of parts.
+
+62
+00:04:03.262 --> 00:04:05.154
+If tampering was the main source,
+
+63
+00:04:05.305 --> 00:04:11.331
+the standard deviation drops by roughly 30 percent after two weeks; exactly 29.
+
+64
+00:04:12.335 --> 00:04:14.738
+An in-machine gauge that sets the offset
+
+65
+00:04:14.773 --> 00:04:17.362
+must adjust on the average of several parts,
+
+66
+00:04:17.513 --> 00:04:18.895
+never on one reading.
+
+67
+00:04:20.212 --> 00:04:22.858
+If you can only count, there are four charts.
+
+68
+00:04:23.556 --> 00:04:28.547
+The p chart plots the fraction defective, even when the sample size varies.
+
+69
+00:04:29.546 --> 00:04:33.993
+The np chart counts the defective parts in a sample of fixed size.
+
+70
+00:04:35.009 --> 00:04:37.819
+If you count defects, such as scratches per panel,
+
+71
+00:04:37.969 --> 00:04:43.263
+use a c chart for units of the same size, and a u chart when the size varies.
+
+72
+00:04:44.285 --> 00:04:45.841
+Count charts react late.
+
+73
+00:04:46.578 --> 00:04:49.527
+At 1 percent defective and samples of 50,
+
+74
+00:04:49.736 --> 00:04:54.368
+the upper limit is about 5.2 percent: two bad parts stay inside.
+
+75
+00:04:55.084 --> 00:04:56.303
+So measure if you can.
+
+76
+00:04:57.611 --> 00:04:59.887
+Finally: what goes into one subgroup?
+
+77
+00:05:00.657 --> 00:05:02.248
+A mould with 4 cavities.
+
+78
+00:05:02.958 --> 00:05:06.778
+Every hour one part from each cavity goes on the chart together.
+
+79
+00:05:07.771 --> 00:05:11.300
+The R chart is wide and the X-bar chart never signals,
+
+80
+00:05:11.463 --> 00:05:13.762
+yet cavity 3 makes thin walls.
+
+81
+00:05:14.454 --> 00:05:17.542
+The range here measures the difference between the cavities.
+
+82
+00:05:18.585 --> 00:05:23.253
+A rational subgroup is made of parts made close together, from one cavity.
+
+83
+00:05:23.926 --> 00:05:25.772
+So a chart for each cavity.
+
+84
+00:05:26.780 --> 00:05:32.852
+Work out the limits from 20 to 25 subgroups in a stable period, then freeze them.

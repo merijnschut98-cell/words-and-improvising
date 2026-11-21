@@ -1,0 +1,337 @@
+WEBVTT
+
+1
+00:00:00.835 --> 00:00:04.725
+A machine works like a person: with eyes, a brain and hands.
+
+2
+00:00:05.506 --> 00:00:10.545
+The eyes are sensors: is there a part, is the clamp closed, is the pressure reached?
+
+3
+00:00:11.584 --> 00:00:13.209
+The brain is the PLC,
+
+4
+00:00:13.407 --> 00:00:15.230
+the programmable logic controller:
+
+5
+00:00:15.392 --> 00:00:19.909
+a small industrial computer in the cabinet that decides what happens next.
+
+6
+00:00:20.946 --> 00:00:24.824
+The hands are actuators: they make something move, like a motor,
+
+7
+00:00:24.963 --> 00:00:27.970
+a valve or the air cylinder that pushes the clamp shut.
+
+8
+00:00:29.016 --> 00:00:34.055
+Sensors sit on inputs of the PLC, actuators on outputs: together the I/O.
+
+9
+00:00:34.772 --> 00:00:38.255
+Most are on or off, usually at 24 volts.
+
+10
+00:00:39.583 --> 00:00:43.693
+The PLC works in rounds, the scan cycle: read the inputs,
+
+11
+00:00:43.867 --> 00:00:47.908
+run the program from top to bottom, write the outputs, and again.
+
+12
+00:00:48.902 --> 00:00:52.594
+One round usually takes a few to a few tens of milliseconds.
+
+13
+00:00:53.310 --> 00:00:58.732
+At 10 milliseconds, the PLC reads every input 100 times a second.
+
+14
+00:00:59.755 --> 00:01:02.321
+The program is often written as a ladder diagram,
+
+15
+00:01:02.483 --> 00:01:06.964
+a drawing with rungs: the conditions on the left, what should happen on the right.
+
+16
+00:01:08.141 --> 00:01:11.682
+On this rung: is there a part, and is nobody pressing stop?
+
+17
+00:01:12.486 --> 00:01:14.843
+Then the output close clamp switches on.
+
+18
+00:01:16.140 --> 00:01:19.147
+The operator talks to the machine through the HMI,
+
+19
+00:01:19.309 --> 00:01:24.500
+the human-machine interface: the screen with the status, alarms and recipes.
+
+20
+00:01:25.570 --> 00:01:30.736
+The program runs in steps: wait for a part, clamp, check, press, release.
+
+21
+00:01:31.439 --> 00:01:35.654
+Each step waits for its condition; an interlock works the same way.
+
+22
+00:01:36.716 --> 00:01:38.330
+Now the station stops.
+
+23
+00:01:39.053 --> 00:01:42.920
+The HMI says: step 3, waiting for clamp closed.
+
+24
+00:01:43.661 --> 00:01:46.308
+The PLC is not slow; it is waiting.
+
+25
+00:01:47.323 --> 00:01:48.565
+So look at the clamp.
+
+26
+00:01:49.308 --> 00:01:49.819
+Closed?
+
+27
+00:01:50.598 --> 00:01:54.290
+Then it is the sensor: shifted, dirty or a broken cable.
+
+28
+00:01:55.004 --> 00:01:55.399
+Open?
+
+29
+00:01:56.152 --> 00:01:57.650
+Then the air or the valve.
+
+30
+00:01:59.017 --> 00:02:04.114
+The emergency stop, red on yellow, stops the machine: the power off at once,
+
+31
+00:02:04.276 --> 00:02:06.656
+or braking first and then the power off.
+
+32
+00:02:07.646 --> 00:02:12.743
+It is not wired to the ordinary PLC but with two wires to a safety relay,
+
+33
+00:02:12.836 --> 00:02:16.029
+which drops out two contactors: a safety function.
+
+34
+00:02:17.035 --> 00:02:21.853
+If a wire breaks, the relay drops out too: a fault makes the machine stop,
+
+35
+00:02:22.028 --> 00:02:23.061
+not dangerous.
+
+36
+00:02:24.083 --> 00:02:29.006
+It stays pressed in, and pulling it out starts nothing: first a deliberate reset,
+
+37
+00:02:29.226 --> 00:02:29.958
+then start.
+
+38
+00:02:30.738 --> 00:02:33.571
+An emergency stop never replaces the guarding.
+
+39
+00:02:34.882 --> 00:02:37.552
+How reliable does such a function have to be?
+
+40
+00:02:38.232 --> 00:02:42.563
+An operator opens the door of a robot cell about 10 times an hour.
+
+41
+00:02:43.256 --> 00:02:44.986
+Door open, robot stops.
+
+42
+00:02:45.994 --> 00:02:49.303
+That is the performance level, from PL a to PL e.
+
+43
+00:02:49.957 --> 00:02:54.729
+The risk assessment asks: how severe, how often, and can you still get away?
+
+44
+00:02:55.696 --> 00:03:00.874
+Severe injury; we read ten times an hour as frequent; the robot is slow here,
+
+45
+00:03:01.025 --> 00:03:02.662
+so getting away is possible.
+
+46
+00:03:03.411 --> 00:03:04.758
+That gives PL d.
+
+47
+00:03:05.460 --> 00:03:07.434
+A fast robot: PL e.
+
+48
+00:03:08.418 --> 00:03:12.447
+With the CE marking the maker declares that the machine meets the rules.
+
+49
+00:03:13.126 --> 00:03:19.860
+From 20 January 2027 the Machinery Regulation replaces the Machinery Directive.
+
+50
+00:03:21.169 --> 00:03:24.815
+Now a bottling line: six machines in a row, with the filler,
+
+51
+00:03:24.977 --> 00:03:26.324
+the capper and the labeller.
+
+52
+00:03:27.332 --> 00:03:31.488
+OEE is availability times performance times quality.
+
+53
+00:03:32.199 --> 00:03:38.851
+Every machine reports above 90 percent availability, but the line OEE is 58 percent.
+
+54
+00:03:39.889 --> 00:03:43.407
+The hidden loss: the micro-stop, seconds to minutes stopped,
+
+55
+00:03:43.592 --> 00:03:46.181
+quickly reset and hardly ever written down.
+
+56
+00:03:47.205 --> 00:03:50.467
+The team wants to replace the filler, the slowest on paper.
+
+57
+00:03:51.219 --> 00:03:51.660
+Rightly?
+
+58
+00:03:52.946 --> 00:03:58.565
+Every PLC logs its machine states: running, faulted, starved, waiting for supply,
+
+59
+00:03:58.751 --> 00:04:00.736
+or blocked, unable to pass on.
+
+60
+00:04:01.749 --> 00:04:05.511
+The filler runs 71 percent, 22 percent blocked.
+
+61
+00:04:06.287 --> 00:04:09.804
+The capper 68 percent, 25 percent blocked.
+
+62
+00:04:10.569 --> 00:04:14.586
+The labeller runs 74 percent, 23 percent faulted.
+
+63
+00:04:15.651 --> 00:04:19.215
+The labeller hardly ever waits: it is the hidden bottleneck.
+
+64
+00:04:19.939 --> 00:04:22.458
+A new filler would just be blocked more often.
+
+65
+00:04:23.512 --> 00:04:25.799
+It logs about 40 stops an hour.
+
+66
+00:04:26.531 --> 00:04:30.652
+Tackle those micro-stops, then look again: the bottleneck may move.
+
+67
+00:04:31.961 --> 00:04:33.412
+Back to the press station.
+
+68
+00:04:34.106 --> 00:04:38.866
+Every stop is in the alarm log: time, alarm code, text and duration.
+
+69
+00:04:39.844 --> 00:04:42.421
+But one jam gives a whole chain of alarms.
+
+70
+00:04:43.452 --> 00:04:47.377
+The first-out alarm is the first in that chain, usually the cause.
+
+71
+00:04:48.123 --> 00:04:52.164
+Without the first-out, people chase symptoms, such as door open.
+
+72
+00:04:53.220 --> 00:04:59.083
+A week of 10 shifts: part missing 1,200 times, servo fault 6 times,
+
+73
+00:04:59.257 --> 00:05:01.219
+door opened 300 times.
+
+74
+00:05:02.547 --> 00:05:07.447
+Put them in a Pareto chart, from largest to smallest, and make it twice.
+
+75
+00:05:08.139 --> 00:05:10.380
+By count, part missing wins by far.
+
+76
+00:05:11.403 --> 00:05:16.605
+By minutes: 1,200 times 20 seconds is 400 minutes;
+
+77
+00:05:16.744 --> 00:05:20.424
+servo fault and door opened 150 each.
+
+78
+00:05:21.145 --> 00:05:22.538
+It is on top here too.
+
+79
+00:05:23.569 --> 00:05:25.961
+Check the first-out and look at the feeder.
+
+80
+00:05:26.704 --> 00:05:29.502
+The door probably opens to free those parts.
+
+81
+00:05:30.220 --> 00:05:32.031
+The servo goes to maintenance.
+
+82
+00:05:33.017 --> 00:05:39.054
+An MES, a manufacturing execution system, links states and alarms to order,
+
+83
+00:05:39.309 --> 00:05:40.447
+shift and reason.
+
+84
+00:05:41.143 --> 00:05:43.883
+Go over the top three at the line every morning.

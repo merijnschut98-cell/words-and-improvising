@@ -1,0 +1,325 @@
+WEBVTT
+
+1
+00:00:00.884 --> 00:00:02.266
+Een stuk komt van de machine.
+
+2
+00:00:02.999 --> 00:00:06.634
+Of het goed is, weet je pas als je het meet, en op dat meten kunt bouwen.
+
+3
+00:00:07.621 --> 00:00:11.069
+Eerst het oppervlak, de meetmiddelen en wat warmte met een maat doet.
+
+4
+00:00:12.161 --> 00:00:15.052
+Dan: hoeveel tolerantie kost het meten zelf?
+
+5
+00:00:15.754 --> 00:00:17.983
+En hoe blijft het proces de hele dag capabel?
+
+6
+00:00:19.321 --> 00:00:23.594
+Een ruwheidsmeter trekt een naaldje over het oppervlak en tekent de pieken en dalen.
+
+7
+00:00:24.296 --> 00:00:28.940
+Ra is hun gemiddelde hoogte, in micron: hoe lager, hoe gladder.
+
+8
+00:00:29.619 --> 00:00:35.146
+Voordraaien geeft zo’n 3,2 tot 6,3, nadraaien 0,8 tot 1,6.
+
+9
+00:00:36.154 --> 00:00:39.022
+Een regelmatig golfpatroon is chatter: trilling,
+
+10
+00:00:39.242 --> 00:00:43.631
+omdat het gereedschap te ver uitsteekt, de wand dun is of het toerental niet klopt.
+
+11
+00:00:44.637 --> 00:00:48.967
+Waar het gereedschap eruit loopt, blijven bramen (burrs) achter: scherpe randjes,
+
+12
+00:00:49.153 --> 00:00:50.778
+vaak van versleten gereedschap.
+
+13
+00:00:52.058 --> 00:00:55.715
+Een schuifmaat is in de praktijk goed tot zo’n twee à drie honderdste.
+
+14
+00:00:56.434 --> 00:00:59.220
+Een micrometer, een meetklem met een fijne schroef,
+
+15
+00:00:59.511 --> 00:01:02.715
+leest één micron af: genoeg voor plus-min een honderdste.
+
+16
+00:01:03.773 --> 00:01:07.558
+De vuistregel: lees zo’n tien keer fijner af dan de tolerantie.
+
+17
+00:01:08.262 --> 00:01:11.641
+En kalibreer volgens schema, tegen een bekende referentie.
+
+18
+00:01:12.671 --> 00:01:16.061
+Voor gaten is er een vast kaliber: gaat/gaat-niet (go/no-go).
+
+19
+00:01:16.764 --> 00:01:19.295
+De ene kant moet erin passen, de andere niet.
+
+20
+00:01:20.057 --> 00:01:23.168
+Geen getal aflezen, dus snel en moeilijk fout te doen.
+
+21
+00:01:24.512 --> 00:01:26.741
+Vorm en positie meet je in de meetkamer.
+
+22
+00:01:27.415 --> 00:01:32.755
+Een CMM, een 3D-meetmachine, tast met een taster, een meetpennetje met een kogeltje,
+
+23
+00:01:33.127 --> 00:01:34.183
+punten af in de boring.
+
+24
+00:01:35.232 --> 00:01:38.494
+Daaruit rekent hij diameter, rondheid en positie,
+
+25
+00:01:38.831 --> 00:01:41.002
+vanaf de referentievlakken op de tekening.
+
+26
+00:01:42.049 --> 00:01:47.714
+De meetkamer staat op 20 graden: de referentietemperatuur voor maten, uit ISO 1.
+
+27
+00:01:48.999 --> 00:01:53.260
+Staal zet uit als het warm wordt, zo’n elf en een halve micron per meter per graad.
+
+28
+00:01:53.967 --> 00:01:55.674
+Aluminium twee keer zoveel.
+
+29
+00:01:56.656 --> 00:02:02.066
+Een as van dertig, h6, moet tussen 29,987 en dertig liggen.
+
+30
+00:02:02.817 --> 00:02:08.820
+De operator meet hem warm uit de machine, op 35 graden: 29,990.
+
+31
+00:02:09.538 --> 00:02:09.979
+Goed.
+
+32
+00:02:10.965 --> 00:02:12.672
+Maar de klant meet op twintig graden.
+
+33
+00:02:13.449 --> 00:02:19.625
+Daar is de as vijf micron gekrompen, naar 29,985: buiten de tolerantie.
+
+34
+00:02:20.322 --> 00:02:21.727
+De partij wordt afgekeurd.
+
+35
+00:02:22.772 --> 00:02:26.069
+Dus: laat het stuk een kwartier afkoelen op een vaste plek,
+
+36
+00:02:26.348 --> 00:02:29.901
+of stel het meetmiddel af met een meesterstuk op dezelfde temperatuur.
+
+37
+00:02:31.199 --> 00:02:33.277
+Elke meting heeft een meetonzekerheid (measurement uncertainty):
+
+38
+00:02:33.637 --> 00:02:36.517
+een bereik rond de aflezing waarin de echte waarde ligt.
+
+39
+00:02:37.248 --> 00:02:42.008
+Door het meetmiddel, de persoon, het werkstuk, de temperatuur en de methode.
+
+40
+00:02:43.014 --> 00:02:45.928
+De regel van tien keer fijner gaat over de resolutie (resolution):
+
+41
+00:02:46.276 --> 00:02:48.308
+de kleinste stap die het meetmiddel toont.
+
+42
+00:02:49.391 --> 00:02:52.015
+Bij plus-min twee honderdste is de band vier honderdste,
+
+43
+00:02:52.305 --> 00:02:53.988
+dus die stap hooguit vier micron.
+
+44
+00:02:54.970 --> 00:02:58.116
+Maar een meter kan één micron tonen en toch vijf micron spreiden.
+
+45
+00:02:59.448 --> 00:03:02.455
+Daarom test je het hele meetsysteem met een gauge R&amp;R:
+
+46
+00:03:02.791 --> 00:03:05.229
+herhaalbaarheid en reproduceerbaarheid samen,
+
+47
+00:03:05.636 --> 00:03:07.703
+de toevallige spreiding van het meetsysteem.
+
+48
+00:03:08.440 --> 00:03:14.094
+Bijvoorbeeld tien stuks, drie operators, elk stuk drie keer, blind en door elkaar.
+
+49
+00:03:15.068 --> 00:03:15.741
+Herhaalbaarheid (repeatability)
+
+50
+00:03:15.776 --> 00:03:18.853
+is de spreiding als één persoon hetzelfde stuk steeds opnieuw meet:
+
+51
+00:03:19.166 --> 00:03:20.246
+vooral het meetmiddel.
+
+52
+00:03:21.240 --> 00:03:23.921
+Reproduceerbaarheid (reproducibility) is het verschil tussen mensen:
+
+53
+00:03:24.177 --> 00:03:25.512
+methode en hantering.
+
+54
+00:03:26.582 --> 00:03:28.242
+Bij plus-min twee honderdste is de
+
+55
+00:03:28.277 --> 00:03:31.052
+standaardafwijking van het meten anderhalve micron.
+
+56
+00:03:31.787 --> 00:03:36.268
+Zes keer dat is negen micron: 22,5 procent van de band.
+
+57
+00:03:37.047 --> 00:03:39.485
+Volgens het AIAG-handboek is onder tien procent goed,
+
+58
+00:03:39.764 --> 00:03:42.771
+tot dertig voorwaardelijk acceptabel, daarboven niet.
+
+59
+00:03:43.542 --> 00:03:45.353
+De module SPC gaat dieper.
+
+60
+00:03:46.661 --> 00:03:49.099
+Ook de machine groeit: thermische groei (thermal growth).
+
+61
+00:03:49.796 --> 00:03:55.369
+Spil, kogelomloopspindels en frame zetten uit, en posities schuiven honderdsten op,
+
+62
+00:03:55.612 --> 00:03:56.947
+vooral tijdens het opwarmen.
+
+63
+00:03:57.975 --> 00:04:01.586
+Cpk is de afstand van het gemiddelde tot de dichtstbijzijnde grens,
+
+64
+00:04:01.829 --> 00:04:04.708
+gedeeld door drie sigma: past hij waar hij nu zit?
+
+65
+00:04:05.477 --> 00:04:07.404
+De kwaliteitsmodule legt het uit.
+
+66
+00:04:08.408 --> 00:04:13.841
+Een boring van 25, plus-min vijftien micron, standaardafwijking drie micron.
+
+67
+00:04:14.570 --> 00:04:18.575
+’s Ochtends ligt het gemiddelde op de maat: Cpk 1,67.
+
+68
+00:04:19.338 --> 00:04:21.869
+Veel klanten vragen 1,33 in serie.
+
+69
+00:04:22.904 --> 00:04:28.233
+’s Middags hebben warmte en slijtage het gemiddelde naar 25,006 geschoven:
+
+70
+00:04:28.570 --> 00:04:30.416
+nog negen micron tot de grens,
+
+71
+00:04:30.555 --> 00:04:31.414
+Cpk 1,0.
+
+72
+00:04:32.082 --> 00:04:34.892
+Dezelfde spreiding; alleen het gemiddelde wandelde.
+
+73
+00:04:36.232 --> 00:04:38.740
+De oplossing is dus niet meteen een nieuwe machine.
+
+74
+00:04:39.431 --> 00:04:42.740
+Een opwarmprogramma (warm-up cycle) laat spil en assen eerst in stappen draaien,
+
+75
+00:04:43.076 --> 00:04:45.119
+bij sommige machines zo’n twintig minuten.
+
+76
+00:04:46.120 --> 00:04:47.931
+En meten in de machine (in-machine probing) sluit de lus:
+
+77
+00:04:48.233 --> 00:04:50.033
+een taster in de spil meet de boring.
+
+78
+00:04:51.046 --> 00:04:53.635
+De besturing past de slijtagecorrectie aan,
+
+79
+00:04:53.913 --> 00:04:59.022
+en het gemiddelde blijft binnen één micron van de maat: Cpk 1,56, de hele dag.
+
+80
+00:04:59.759 --> 00:05:01.814
+Mits de taster zelf gekalibreerd is.
+
+81
+00:05:02.874 --> 00:05:06.357
+Dus: eerst het meten op orde, dan het proces beoordelen.

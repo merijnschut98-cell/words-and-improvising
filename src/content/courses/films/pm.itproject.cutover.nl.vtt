@@ -1,0 +1,281 @@
+WEBVTT
+
+1
+00:00:00.877 --> 00:00:04.615
+De cutover is de geplande omschakeling van het oude naar het nieuwe systeem:
+
+2
+00:00:04.963 --> 00:00:06.055
+het oude stoppen,
+
+3
+00:00:06.473 --> 00:00:09.294
+de laatste data verhuizen, en het nieuwe starten.
+
+4
+00:00:10.285 --> 00:00:13.617
+Meestal gebeurt dat in een weekend, of tijdens een geplande stop.
+
+5
+00:00:14.533 --> 00:00:16.713
+Het script daarvoor is het cutoverdraaiboek (cutover plan),
+
+6
+00:00:17.107 --> 00:00:22.181
+uur voor uur: elke taak met een eigenaar, een starttijd, een duur en een controle.
+
+7
+00:00:23.275 --> 00:00:25.725
+Vaak zijn dat tweehonderd tot vierhonderd regels,
+
+8
+00:00:25.992 --> 00:00:27.815
+en niets daarin wordt geïmproviseerd.
+
+9
+00:00:29.157 --> 00:00:33.696
+Het begint met een freeze: vanaf een vast moment, hier vrijdag om achttien uur,
+
+10
+00:00:34.056 --> 00:00:36.424
+voert niemand nog iets nieuws in het oude systeem in.
+
+11
+00:00:37.394 --> 00:00:41.597
+Eerst nog de laatste orders en goederenbewegingen, dan een laatste voorraadtelling.
+
+12
+00:00:42.598 --> 00:00:44.490
+Gaat de productie in het weekend door,
+
+13
+00:00:44.896 --> 00:00:48.646
+dan wordt die op papier vastgelegd en daarna in het nieuwe systeem ingevoerd.
+
+14
+00:00:49.676 --> 00:00:52.195
+En weken eerder is er al een freeze op instellingen,
+
+15
+00:00:52.486 --> 00:00:55.702
+zodat niemand op het laatste moment de configuratie verandert.
+
+16
+00:00:57.069 --> 00:01:01.806
+Op vaste punten is er een go/no-go: het besluit om door te gaan of te stoppen,
+
+17
+00:01:02.085 --> 00:01:04.604
+tegen criteria die vooraf zijn afgesproken.
+
+18
+00:01:05.594 --> 00:01:10.679
+Bijvoorbeeld: de afstemming van voorraad en open orders valt binnen de tolerantie,
+
+19
+00:01:10.946 --> 00:01:12.862
+en de belangrijkste koppelingen werken.
+
+20
+00:01:13.889 --> 00:01:17.430
+Er zijn geen open blokkerende bevindingen, en de key users zijn klaar.
+
+21
+00:01:18.413 --> 00:01:22.012
+Een benoemd persoon beslist, meestal de sponsor of de plantmanager.
+
+22
+00:01:22.713 --> 00:01:25.465
+Niet de partner, want die heeft er belang bij om door te gaan.
+
+23
+00:01:26.739 --> 00:01:28.051
+Het point of no return (rollback point)
+
+24
+00:01:28.121 --> 00:01:30.071
+is het laatste moment waarop je terug kunt naar
+
+25
+00:01:30.094 --> 00:01:32.149
+het oude systeem zonder werk te verliezen.
+
+26
+00:01:33.168 --> 00:01:35.316
+Daarvoor ligt er een terugdraaiplan klaar.
+
+27
+00:01:35.990 --> 00:01:40.053
+Daarna los je problemen op in het nieuwe systeem, omdat teruggaan meer zou kosten.
+
+28
+00:01:41.045 --> 00:01:44.052
+Leg het zo dat terugzetten ruim voor de eerste ploeg klaar zou zijn.
+
+29
+00:01:45.015 --> 00:01:48.220
+En oefen het hele weekend één keer in een generale repetitie (dress rehearsal):
+
+30
+00:01:48.510 --> 00:01:50.240
+een volledige proef van de cutover,
+
+31
+00:01:50.518 --> 00:01:51.389
+met een stopwatch.
+
+32
+00:01:52.704 --> 00:01:55.026
+In een fabriek bepaalt maandagochtend de klok:
+
+33
+00:01:55.247 --> 00:01:57.592
+de eerste ploeg heeft om zes uur orders,
+
+34
+00:01:57.894 --> 00:01:59.891
+etiketten en de weegschalen nodig.
+
+35
+00:02:00.642 --> 00:02:02.163
+Reken vanaf die tijd terug.
+
+36
+00:02:03.191 --> 00:02:06.477
+Wat vaak misgaat: er is geen generale repetitie,
+
+37
+00:02:06.801 --> 00:02:09.959
+dus het laden van de data duurt veertien uur in plaats van negen.
+
+38
+00:02:10.950 --> 00:02:14.421
+En de go/no-go wordt dan: we zijn te ver om nog te stoppen.
+
+39
+00:02:15.414 --> 00:02:19.280
+Een scherpe vraag: als de go/no-go op zaterdag nee zegt,
+
+40
+00:02:19.466 --> 00:02:21.103
+wat doen de lijnen dan op maandag?
+
+41
+00:02:22.500 --> 00:02:23.243
+Een voorbeeld.
+
+42
+00:02:23.990 --> 00:02:28.297
+Een snackfabrikant schakelt in één weekend over op een nieuw ERP en MES,
+
+43
+00:02:28.622 --> 00:02:31.594
+met een draaiboek vol tijden uit de generale repetitie.
+
+44
+00:02:32.608 --> 00:02:36.916
+Vrijdag om achttien uur de freeze, tot eenentwintig uur de laatste voorraadtelling,
+
+45
+00:02:37.113 --> 00:02:41.026
+en van eenentwintig tot zes uur de migratie van open orders en voorraad.
+
+46
+00:02:41.984 --> 00:02:45.502
+Het laden duurde in de generale repetitie zeven en een half uur.
+
+47
+00:02:46.152 --> 00:02:48.590
+Met twintig procent marge plan je negen uur.
+
+48
+00:02:49.573 --> 00:02:54.484
+Zaterdag van zes tot twaalf uur de afstemming, om twaalf uur de eerste go/no-go,
+
+49
+00:02:54.890 --> 00:02:59.651
+en tot twintig uur koppelingen aan, testorders, en etiketten om te testen.
+
+50
+00:03:00.616 --> 00:03:04.610
+Dan spelen de key users tot zondag acht uur hun belangrijkste processen na,
+
+51
+00:03:05.016 --> 00:03:06.432
+en lost het team bevindingen op.
+
+52
+00:03:07.100 --> 00:03:09.143
+Om acht uur de tweede go/no-go,
+
+53
+00:03:09.457 --> 00:03:13.381
+ook het point of no return: het oude systeem terugzetten kost tien uur.
+
+54
+00:03:14.362 --> 00:03:17.624
+Maandag om zes uur begint de eerste ploeg op het nieuwe systeem.
+
+55
+00:03:18.939 --> 00:03:23.177
+Zaterdag half twaalf: het voorraadverschil is nul komma twee procent,
+
+56
+00:03:23.490 --> 00:03:26.776
+binnen de afgesproken tolerantie van nul komma vijf procent.
+
+57
+00:03:27.791 --> 00:03:30.647
+Maar de koppeling met de weegschalen voor de controle werkt niet.
+
+58
+00:03:31.728 --> 00:03:34.131
+Wat adviseer je bij de eerste go/no-go?
+
+59
+00:03:34.833 --> 00:03:36.377
+Go, met een voorwaarde.
+
+60
+00:03:37.436 --> 00:03:40.130
+Die koppeling is pas vanaf maandag zes uur nodig,
+
+61
+00:03:40.467 --> 00:03:43.242
+dus er is tot zondag acht uur tijd om hem te repareren.
+
+62
+00:03:44.527 --> 00:03:46.106
+Wat moet er zondag om acht uur kloppen?
+
+63
+00:03:46.863 --> 00:03:49.777
+De koppeling werkt, of er is een handmatige omweg getest.
+
+64
+00:03:50.824 --> 00:03:54.423
+De omweg: operators voeren de gewichten met de hand in,
+
+65
+00:03:54.749 --> 00:03:56.595
+gecontroleerd door een tweede persoon.
+
+66
+00:03:57.569 --> 00:04:00.391
+Klopt geen van beide om acht uur, dan is het no-go.
+
+67
+00:04:01.017 --> 00:04:03.876
+Het oude systeem staat zondag rond achttien uur weer,
+
+68
+00:04:04.259 --> 00:04:06.001
+ruim voor de eerste ploeg op maandag.
+
+69
+00:04:06.965 --> 00:04:09.543
+Het besluit gaat met de reden in het cutoverlogboek.
+
+70
+00:04:10.216 --> 00:04:14.175
+En na maandag volgt de hypercare: de extra steun na de livegang.

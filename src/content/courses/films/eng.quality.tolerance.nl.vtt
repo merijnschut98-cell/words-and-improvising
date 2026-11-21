@@ -1,0 +1,357 @@
+WEBVTT
+
+1
+00:00:00.843 --> 00:00:04.558
+Op de tekening staat de nominale maat (nominal): de doelwaarde van een maat.
+
+2
+00:00:05.320 --> 00:00:09.058
+Ø20 betekent iets ronds van 20 millimeter doorsnee.
+
+3
+00:00:10.028 --> 00:00:13.545
+De tolerantie (tolerance) zegt hoeveel het onderdeel mag afwijken en nog werkt:
+
+4
+00:00:13.871 --> 00:00:15.542
+hier plus-min vijf honderdste,
+
+5
+00:00:15.833 --> 00:00:17.493
+een veld van een tiende millimeter.
+
+6
+00:00:18.459 --> 00:00:24.786
+Dat geeft twee specgrenzen (spec limits): ondergrens 19,95, bovengrens 20,05.
+
+7
+00:00:25.543 --> 00:00:27.354
+Alles daartussen accepteert de klant.
+
+8
+00:00:28.414 --> 00:00:30.399
+Een tolerantie kan ook ongelijk zijn.
+
+9
+00:00:31.081 --> 00:00:34.135
+Een boring van 12, nul tot plus achttien micron,
+
+10
+00:00:34.425 --> 00:00:39.220
+loopt van precies twaalf tot 12,018: groter mag, kleiner nooit.
+
+11
+00:00:40.547 --> 00:00:42.869
+Maten zonder eigen tolerantie vallen onder
+
+12
+00:00:42.893 --> 00:00:44.356
+de algemene tolerantie (general tolerance)
+
+13
+00:00:44.379 --> 00:00:45.145
+in de stempel,
+
+14
+00:00:45.458 --> 00:00:47.420
+het kader rechtsonder op de tekening.
+
+15
+00:00:48.460 --> 00:00:51.595
+Vaak is dat ISO 2768,
+
+16
+00:00:51.838 --> 00:00:57.062
+klasse m: plus-min 0,2 millimeter voor maten boven 6 tot en met 30 millimeter.
+
+17
+00:00:58.009 --> 00:01:02.583
+Nauwer kost geld: een betere machine, langzamer verspanen, meer meten.
+
+18
+00:01:03.300 --> 00:01:06.202
+Een lagerzitting vraagt misschien plus-min 0,01,
+
+19
+00:01:06.515 --> 00:01:08.628
+een gat in een afdekplaat kan met twee tiende.
+
+20
+00:01:09.631 --> 00:01:11.663
+Vraag dus wat de functie nodig heeft.
+
+21
+00:01:12.345 --> 00:01:15.236
+Een extra decimaal voor de zekerheid betaalt de productie.
+
+22
+00:01:16.529 --> 00:01:18.352
+Een serie van 500 bussen.
+
+23
+00:01:19.064 --> 00:01:23.290
+Bij 15 meet de boring 12,021: drie micron te groot.
+
+24
+00:01:24.042 --> 00:01:25.691
+Dat is 3 procent buiten spec.
+
+25
+00:01:26.710 --> 00:01:31.831
+Zo’n onderdeel is afwijkend (nonconforming): afkeuren, nabewerken, of zo gebruiken,
+
+26
+00:01:32.086 --> 00:01:33.247
+maar alleen met toestemming.
+
+27
+00:01:34.289 --> 00:01:36.089
+Die toestemming heet een deviatie (deviation),
+
+28
+00:01:36.448 --> 00:01:39.548
+ook wel concessie: een schriftelijk akkoord van de klant.
+
+29
+00:01:40.603 --> 00:01:46.338
+Gevonden bij de machine: 15 keer 4 euro 50 is 67 euro 50.
+
+30
+00:01:47.077 --> 00:01:53.439
+Bij de klant: €400 om alles te sorteren, €250 klachtkosten en een 8D.
+
+31
+00:01:54.144 --> 00:01:55.270
+Zo’n tien keer zoveel.
+
+32
+00:01:56.648 --> 00:01:57.902
+Geen twee assen zijn gelijk.
+
+33
+00:01:58.648 --> 00:02:02.305
+Elke gemeten as valt in het vak van zijn maat, en er groeit een stapel.
+
+34
+00:02:03.284 --> 00:02:05.130
+Twee getallen beschrijven die spreiding.
+
+35
+00:02:05.812 --> 00:02:11.246
+Het gemiddelde (mean) zegt waar het proces zit: bij deze 25 assen 20,003.
+
+36
+00:02:12.268 --> 00:02:14.242
+De standaardafwijking (standard deviation), sigma,
+
+37
+00:02:14.543 --> 00:02:19.303
+is de typische afstand van een as tot het gemiddelde: hier 0,008 millimeter.
+
+38
+00:02:20.302 --> 00:02:22.566
+Veel metingen volgen een normale verdeling (normal distribution),
+
+39
+00:02:22.903 --> 00:02:30.531
+de klokvorm: 68 procent binnen één sigma, 95 binnen twee, 99,7 binnen drie.
+
+40
+00:02:31.308 --> 00:02:36.254
+Bijna alles ligt dus tussen 19,979 en 20,027.
+
+41
+00:02:37.552 --> 00:02:39.201
+Spreiding met een gewone oorzaak (common cause)
+
+42
+00:02:39.224 --> 00:02:41.720
+komt uit vele kleine bronnen die er altijd zijn:
+
+43
+00:02:42.103 --> 00:02:42.800
+materiaal,
+
+44
+00:02:43.079 --> 00:02:44.646
+temperatuur, speling.
+
+45
+00:02:45.711 --> 00:02:48.195
+Die spreiding is stabiel en voorspelbaar.
+
+46
+00:02:48.876 --> 00:02:52.208
+Omlaag krijg je haar alleen door het systeem te veranderen: machine,
+
+47
+00:02:52.475 --> 00:02:53.624
+opspanning of methode.
+
+48
+00:02:54.667 --> 00:02:57.477
+Een speciale oorzaak (special cause) is een concrete gebeurtenis.
+
+49
+00:02:58.207 --> 00:03:02.595
+Maandag om zes uur zitten de eerste assen gemiddeld op 20,025,
+
+50
+00:03:02.758 --> 00:03:05.266
+om zeven uur weer op 20,005.
+
+51
+00:03:06.248 --> 00:03:08.117
+De machine was koud na het weekend.
+
+52
+00:03:08.815 --> 00:03:13.053
+De oplossing: 20 minuten opwarmen, niet aan de offsets draaien.
+
+53
+00:03:14.364 --> 00:03:16.024
+Een operator die het goed bedoelt,
+
+54
+00:03:16.372 --> 00:03:19.402
+draait na elke as de offset bij met de afwijking van die as.
+
+55
+00:03:20.388 --> 00:03:23.430
+Dat is overbijsturen: bijsturen op ruis.
+
+56
+00:03:24.138 --> 00:03:27.493
+Elke afwijking is vooral toeval, dus wie daarop corrigeert,
+
+57
+00:03:27.738 --> 00:03:29.305
+zet er een tweede ruis bovenop.
+
+58
+00:03:30.261 --> 00:03:33.918
+De stapels worden breder: zo’n 40 procent meer spreiding.
+
+59
+00:03:34.625 --> 00:03:36.274
+Het omgekeerde van wat hij wilde.
+
+60
+00:03:37.306 --> 00:03:42.217
+Vraag dus eerst: is er iets veranderd, of is dit gewoon hoe breed het proces is?
+
+61
+00:03:43.500 --> 00:03:45.149
+Past het proces in de tolerantie?
+
+62
+00:03:45.900 --> 00:03:47.432
+Dat is procesgeschiktheid (capability):
+
+63
+00:03:47.815 --> 00:03:50.346
+je legt de spreiding naast de tolerantiebreedte.
+
+64
+00:03:51.371 --> 00:03:58.174
+Een boring van 30, nul tot plus vier honderdste: grenzen 30,000 en 30,040.
+
+65
+00:03:58.897 --> 00:04:03.656
+Vijftig delen geven gemiddeld 30,026, sigma 0,004.
+
+66
+00:04:04.604 --> 00:04:07.750
+Cp is de tolerantiebreedte gedeeld door zes sigma,
+
+67
+00:04:08.028 --> 00:04:10.141
+want zes sigma bevat bijna alle delen.
+
+68
+00:04:10.835 --> 00:04:14.771
+0,040 gedeeld door 0,024 is 1,67.
+
+69
+00:04:15.779 --> 00:04:19.668
+Cp kijkt alleen naar de breedte, alsof het proces precies in het midden zit.
+
+70
+00:04:21.003 --> 00:04:22.640
+Cpk telt het midden mee:
+
+71
+00:04:23.035 --> 00:04:25.914
+de afstand van het gemiddelde tot de dichtstbijzijnde grens,
+
+72
+00:04:26.111 --> 00:04:27.469
+gedeeld door drie sigma.
+
+73
+00:04:28.491 --> 00:04:36.212
+Van 30,026 tot de bovengrens is veertien duizendste, gedeeld door 0,012: Cpk 1,17.
+
+74
+00:04:36.894 --> 00:04:38.566
+Te dicht tegen de bovengrens.
+
+75
+00:04:39.619 --> 00:04:45.946
+Eén offset van min 0,006 zet het gemiddelde op 30,020: Cpk ook 1,67.
+
+76
+00:04:46.696 --> 00:04:48.751
+Geen investering, alleen centreren.
+
+77
+00:04:49.770 --> 00:04:55.911
+Het gangbare minimum is 1,33: gecentreerd zo’n 63 ppm, delen per miljoen,
+
+78
+00:04:56.167 --> 00:04:56.782
+buiten spec.
+
+79
+00:04:57.493 --> 00:04:59.420
+Bij 1,0 zo’n 2.700.
+
+80
+00:05:00.759 --> 00:05:05.983
+Cp en Cpk gebruiken de korte termijn: de spreiding binnen kleine groepjes delen,
+
+81
+00:05:06.250 --> 00:05:07.690
+direct na elkaar gemaakt.
+
+82
+00:05:08.668 --> 00:05:13.870
+Ppk gebruikt de totale spreiding van alle delen, ook het verloop over uren en dagen.
+
+83
+00:05:14.552 --> 00:05:15.887
+Veel lager dan de Cpk?
+
+84
+00:05:16.546 --> 00:05:17.765
+Dan zwerft het proces.
+
+85
+00:05:18.793 --> 00:05:23.576
+Bij een opstartstudie vragen klanten vaak een Ppk van minstens 1,67,
+
+86
+00:05:23.995 --> 00:05:25.667
+en alleen van een stabiel proces.
+
+87
+00:05:26.690 --> 00:05:29.058
+Een Cpk uit dertig delen zegt weinig.
+
+88
+00:05:29.754 --> 00:05:33.110
+Neem 100 delen of meer, in 25 steekproeven.
+
+89
+00:05:33.852 --> 00:05:36.859
+Vraag: hoeveel stuks, over hoeveel dagen?

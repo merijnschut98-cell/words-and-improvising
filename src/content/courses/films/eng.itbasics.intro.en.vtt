@@ -1,0 +1,165 @@
+WEBVTT
+
+1
+00:00:00.833 --> 00:00:04.780
+The MES sends an order to the filling unit of line 3.
+
+2
+00:00:05.468 --> 00:00:06.780
+You connect that unit.
+
+3
+00:00:07.851 --> 00:00:12.286
+IT fundamentals teaches you enough to talk with IT about MES,
+
+4
+00:00:12.449 --> 00:00:14.260
+ERP and the plant network.
+
+5
+00:00:15.303 --> 00:00:17.079
+Four topics follow the order.
+
+6
+00:00:17.797 --> 00:00:21.187
+First the road it takes and where the MES runs.
+
+7
+00:00:22.255 --> 00:00:26.539
+Then where orders and counts are kept and how programs talk to each other.
+
+8
+00:00:27.875 --> 00:00:29.675
+The first topic is Networks.
+
+9
+00:00:30.394 --> 00:00:33.772
+Every device has an IP address, like a house number.
+
+10
+00:00:34.789 --> 00:00:37.784
+The unit hangs on the network cabinet by a cable.
+
+11
+00:00:38.531 --> 00:00:40.679
+The MES is in another network.
+
+12
+00:00:41.745 --> 00:00:45.042
+A router carries the order from one network to the other.
+
+13
+00:00:46.335 --> 00:00:48.808
+The second topic is Servers and cloud.
+
+14
+00:00:49.570 --> 00:00:52.716
+The MES on the laptop runs on a server.
+
+15
+00:00:53.754 --> 00:00:56.668
+A server is a computer that provides services.
+
+16
+00:00:57.397 --> 00:01:01.043
+It stands at the company itself or you rent it in the cloud.
+
+17
+00:01:02.121 --> 00:01:06.742
+The MES often runs in a virtual machine of its own on that server.
+
+18
+00:01:08.052 --> 00:01:10.862
+The third topic is Databases and SQL.
+
+19
+00:01:11.604 --> 00:01:15.157
+The MES keeps orders and counts in a database.
+
+20
+00:01:16.296 --> 00:01:18.049
+The data sits in tables.
+
+21
+00:01:18.763 --> 00:01:22.130
+Each row is one order and each column is one property.
+
+22
+00:01:23.136 --> 00:01:25.679
+With a query you read which orders are in it.
+
+23
+00:01:27.017 --> 00:01:29.803
+The fourth topic is Software and APIs.
+
+24
+00:01:30.538 --> 00:01:34.021
+The laptop is the client and asks, the server answers.
+
+25
+00:01:35.021 --> 00:01:37.122
+The order comes from the ERP.
+
+26
+00:01:37.817 --> 00:01:41.544
+An API is the agreed way programs talk to each other.
+
+27
+00:01:42.555 --> 00:01:46.955
+You usually open the MES as a web application in the browser.
+
+28
+00:01:47.962 --> 00:01:49.715
+So the order finds the unit.
+
+29
+00:01:50.627 --> 00:01:52.682
+Then you connect it step by step.
+
+30
+00:01:54.014 --> 00:01:54.827
+The whole map.
+
+31
+00:01:55.573 --> 00:01:59.741
+IT fundamentals is the first station of Automation and IT.
+
+32
+00:02:00.740 --> 00:02:02.470
+Every topic has four levels.
+
+33
+00:02:03.478 --> 00:02:07.530
+Start with IP addresses, LAN and DNS at Basics level.
+
+34
+00:02:08.258 --> 00:02:11.277
+That lesson shows how messages find their device.
+
+35
+00:02:12.289 --> 00:02:16.004
+At Working knowledge level come ports, the forms of cloud,
+
+36
+00:02:16.190 --> 00:02:18.303
+filtering data and interfaces.
+
+37
+00:02:19.343 --> 00:02:21.653
+At Advanced level come the OT network,
+
+38
+00:02:21.851 --> 00:02:25.473
+backups, reports that disagree and interfaces that break.
+
+39
+00:02:26.529 --> 00:02:30.755
+At Expert level it is about judging a network, what an outage costs,
+
+40
+00:02:30.929 --> 00:02:32.671
+double counting and updates.
+
+41
+00:02:33.693 --> 00:02:37.873
+Every lesson and every film in this module has a place on this map.

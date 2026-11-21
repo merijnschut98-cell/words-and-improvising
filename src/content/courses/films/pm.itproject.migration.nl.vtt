@@ -1,0 +1,345 @@
+WEBVTT
+
+1
+00:00:00.850 --> 00:00:06.865
+Een ERP is het bedrijfssysteem voor orders en inkoop, voorraad en kosten, zoals SAP.
+
+2
+00:00:07.878 --> 00:00:09.921
+Een MES is het systeem op de vloer.
+
+3
+00:00:10.565 --> 00:00:13.599
+Het stuurt de orders per lijn aan en registreert wat er gemaakt,
+
+4
+00:00:13.761 --> 00:00:15.119
+verbruikt en afgekeurd wordt.
+
+5
+00:00:16.124 --> 00:00:17.657
+Invoeren gaat in fases.
+
+6
+00:00:18.363 --> 00:00:21.010
+De methode van SAP heet SAP Activate.
+
+7
+00:00:21.773 --> 00:00:26.672
+Die noemt de kernfases prepare, explore, realize, deploy en run.
+
+8
+00:00:27.692 --> 00:00:31.802
+Elke leverancier gebruikt andere namen; de volgorde is dezelfde.
+
+9
+00:00:33.088 --> 00:00:36.107
+De go-live is de dag dat het nieuwe systeem het officiële wordt.
+
+10
+00:00:36.865 --> 00:00:38.885
+Vanaf dan gaat nieuw werk alleen nog daarin.
+
+11
+00:00:39.822 --> 00:00:41.969
+Het oude, het legacysysteem (legacy system),
+
+12
+00:00:42.294 --> 00:00:43.769
+wordt niet meer gebruikt voor nieuw werk.
+
+13
+00:00:44.530 --> 00:00:47.757
+Alles wijst naar die dag, dus kies je de datum zorgvuldig.
+
+14
+00:00:48.802 --> 00:00:49.870
+Er zijn twee manieren.
+
+15
+00:00:50.584 --> 00:00:54.427
+Bij een big bang schakelen alle vestigingen en afdelingen op dezelfde dag om.
+
+16
+00:00:55.394 --> 00:00:58.854
+Het voordeel is één omschakeling, zonder tijdelijke koppelingen.
+
+17
+00:00:59.489 --> 00:01:01.922
+Het nadeel is dat alles tegelijk op het spel staat.
+
+18
+00:01:03.224 --> 00:01:05.476
+Een gefaseerde invoering (phased rollout) gaat per vestiging,
+
+19
+00:01:05.976 --> 00:01:07.137
+per lijn of per module.
+
+20
+00:01:08.184 --> 00:01:09.566
+Vaak begint die met een pilot.
+
+21
+00:01:10.367 --> 00:01:14.489
+Daarbij gaat één vestiging of lijn voor, zodat je leert voordat de rest volgt.
+
+22
+00:01:15.471 --> 00:01:18.060
+In fabrieken gaat een MES vaak per lijn of per fabriek.
+
+23
+00:01:18.804 --> 00:01:21.718
+Een ERP schakelt meestal een hele vestiging tegelijk om.
+
+24
+00:01:22.711 --> 00:01:26.716
+Gefaseerd kost extra, met tijdelijke koppelingen en een langer project.
+
+25
+00:01:27.399 --> 00:01:29.872
+Dat is de prijs van een kleiner risico per stap.
+
+26
+00:01:31.129 --> 00:01:32.743
+De timing telt net zo zwaar.
+
+27
+00:01:33.418 --> 00:01:36.135
+In negentien negenennegentig ging de Amerikaanse
+
+28
+00:01:36.182 --> 00:01:38.980
+chocolademaker Hershey over op een nieuw ERP,
+
+29
+00:01:39.386 --> 00:01:41.859
+precies toen de bestellingen voor Halloween binnenkwamen.
+
+30
+00:01:42.871 --> 00:01:45.507
+Volgens het blad CIO kon Hershey dat seizoen voor
+
+31
+00:01:45.530 --> 00:01:47.945
+zo'n honderd miljoen dollar aan orders niet leveren.
+
+32
+00:01:48.961 --> 00:01:50.668
+Ga dus nooit live in je piekseizoen.
+
+33
+00:01:51.419 --> 00:01:55.610
+Vraag daarom wat de rustigste maand is, en of de go-live daar gepland staat.
+
+34
+00:01:56.907 --> 00:01:59.937
+Een zuivelgroep voert een nieuw MES in bij drie fabrieken.
+
+35
+00:02:00.621 --> 00:02:02.688
+A maakt twintig procent van het volume.
+
+36
+00:02:03.369 --> 00:02:04.565
+December is de piek.
+
+37
+00:02:05.611 --> 00:02:08.281
+Optie één is een big bang in één weekend in oktober.
+
+38
+00:02:08.975 --> 00:02:13.015
+Gaat het mis, dan staat alle productie op het spel, twee maanden voor de piek.
+
+39
+00:02:14.042 --> 00:02:15.470
+Optie twee is gefaseerd.
+
+40
+00:02:16.228 --> 00:02:19.977
+A start als pilot in maart, dan B in juni en C in september.
+
+41
+00:02:20.665 --> 00:02:23.184
+Een tijdelijke koppeling kost veertigduizend euro,
+
+42
+00:02:23.509 --> 00:02:25.436
+en het project duurt zes maanden langer.
+
+43
+00:02:26.431 --> 00:02:27.824
+De groep kiest optie twee.
+
+44
+00:02:28.489 --> 00:02:32.796
+Gaat de pilot mis, dan staat twintig procent op het spel in plaats van honderd.
+
+45
+00:02:33.792 --> 00:02:38.123
+C, de grootste, heeft dan drie maanden om te stabiliseren voor december.
+
+46
+00:02:39.422 --> 00:02:40.340
+Datamigratie (data migration)
+
+47
+00:02:40.421 --> 00:02:43.079
+is data uit het oude systeem naar het nieuwe verhuizen.
+
+48
+00:02:44.119 --> 00:02:47.335
+Stamdata (master data) zijn de vaste gegevens die veel orders gebruiken,
+
+49
+00:02:47.614 --> 00:02:49.541
+zoals artikelen en stuklijsten.
+
+50
+00:02:50.522 --> 00:02:54.771
+Open posten zijn wat op de dag van de go-live onderweg is, zoals open orders,
+
+51
+00:02:54.957 --> 00:02:57.012
+voorraad en onbetaalde facturen.
+
+52
+00:02:57.925 --> 00:03:02.121
+Historie, zoals orders van vorige jaren, gaat meestal niet mee.
+
+53
+00:03:02.837 --> 00:03:05.705
+Die blijft leesbaar in het oude systeem of in een archief.
+
+54
+00:03:07.029 --> 00:03:08.515
+Eerst komt data opschonen (data cleansing).
+
+55
+00:03:09.195 --> 00:03:14.106
+Je haalt dubbelingen, ongebruikte artikelen, verkeerde eenheden en lege velden weg.
+
+56
+00:03:14.920 --> 00:03:17.486
+Rommel in het oude systeem wordt rommel in het nieuwe.
+
+57
+00:03:18.455 --> 00:03:21.404
+Dat is werk voor de business, de eigenaren van de data.
+
+58
+00:03:22.108 --> 00:03:23.490
+IT ziet wat er mis is,
+
+59
+00:03:23.664 --> 00:03:26.799
+maar niet welke van twee bijna gelijke artikelen het echte is.
+
+60
+00:03:27.836 --> 00:03:29.775
+De migratie zelf heeft drie stappen.
+
+61
+00:03:30.502 --> 00:03:34.763
+Uit het oude systeem halen, omzetten naar de nieuwe structuur, en laden.
+
+62
+00:03:35.760 --> 00:03:37.676
+Dat oefen je in een proefmigratie (mock migration),
+
+63
+00:03:37.908 --> 00:03:39.754
+een proefrun naar een testomgeving.
+
+64
+00:03:40.437 --> 00:03:42.353
+Elke proef is schoner en sneller,
+
+65
+00:03:42.620 --> 00:03:45.348
+en de laatste wordt getimed voor het draaiboek van de go-live.
+
+66
+00:03:46.672 --> 00:03:48.704
+Na elke lading volgt de afstemming (reconciliation).
+
+67
+00:03:49.393 --> 00:03:52.446
+Vergelijk de getallen in oud en nieuw, en verklaar elk verschil.
+
+68
+00:03:53.160 --> 00:03:57.014
+Hoeveel ging eruit, hoeveel kwam erin, wat is geweigerd en waarom?
+
+69
+00:03:58.045 --> 00:04:00.843
+Voor het resultaat tekent de business, niet IT.
+
+70
+00:04:01.591 --> 00:04:05.794
+De controller tekent voor de voorraadwaarde, de planner voor de open orders.
+
+71
+00:04:06.811 --> 00:04:10.585
+Vaak begint de migratie laat, en het opschonen pas bij de derde proef.
+
+72
+00:04:11.261 --> 00:04:15.173
+Dan is er geen tijd meer, en gaat vuile data live om later op te lossen.
+
+73
+00:04:16.159 --> 00:04:20.281
+Vraag in elk projectoverleg hoeveel records er bij de laatste proef mislukt zijn,
+
+74
+00:04:20.606 --> 00:04:22.394
+en wie eigenaar is van het oplossen.
+
+75
+00:04:23.657 --> 00:04:27.047
+Een maker van metalen onderdelen gaat over op een nieuw ERP,
+
+76
+00:04:27.476 --> 00:04:29.264
+en dit is de tweede proefmigratie.
+
+77
+00:04:30.016 --> 00:04:32.361
+De ongebruikte artikelen gaan naar het archief,
+
+78
+00:04:32.710 --> 00:04:35.229
+dus moeten er negenduizend negenhonderdvijftig mee.
+
+79
+00:04:36.249 --> 00:04:39.047
+Er komen er negenduizend achthonderdeenenzeventig aan,
+
+80
+00:04:39.314 --> 00:04:41.276
+dus negenenzeventig zijn geweigerd.
+
+81
+00:04:41.969 --> 00:04:46.323
+Tweeënvijftig hebben geen eenheid, zevenentwintig een tekeningnummer dat al bestaat.
+
+82
+00:04:47.384 --> 00:04:50.693
+De voorraadwaarde verschilt dertienduizend vijfhonderd euro.
+
+83
+00:04:51.371 --> 00:04:54.030
+Dat is precies de voorraad van de geweigerde artikelen.
+
+84
+00:04:55.028 --> 00:04:58.720
+Engineering lost de dubbelingen op, inkoop vult de eenheden in,
+
+85
+00:04:59.080 --> 00:05:00.787
+elk met een datum voor de derde proef.
+
+86
+00:05:01.425 --> 00:05:05.668
+Het doel is nul geweigerd en nul euro verschil, getekend door de controller.

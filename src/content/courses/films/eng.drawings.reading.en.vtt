@@ -1,0 +1,325 @@
+WEBVTT
+
+1
+00:00:00.847 --> 00:00:05.421
+A drawing shows a part in views: straight from the front, the top and the side,
+
+2
+00:00:05.572 --> 00:00:06.675
+without perspective.
+
+3
+00:00:07.379 --> 00:00:08.737
+Here, a bent bracket.
+
+4
+00:00:09.790 --> 00:00:11.996
+Europe uses first-angle projection:
+
+5
+00:00:12.112 --> 00:00:14.991
+what you see from the top goes below the front view,
+
+6
+00:00:15.119 --> 00:00:17.499
+what you see from the left goes on the right.
+
+7
+00:00:18.528 --> 00:00:23.009
+The United States uses third-angle projection: the top view sits above,
+
+8
+00:00:23.207 --> 00:00:25.703
+and on the right goes what you see from the right.
+
+9
+00:00:26.727 --> 00:00:30.187
+A small cone symbol in the title block tells you which.
+
+10
+00:00:30.950 --> 00:00:33.899
+Mix them up and you make the part as a mirror image.
+
+11
+00:00:35.245 --> 00:00:40.423
+A section view shows the inside: you cut the part in your mind along the line A-A.
+
+12
+00:00:41.157 --> 00:00:45.348
+Hatching, thin diagonal lines, marks the material that was cut.
+
+13
+00:00:46.381 --> 00:00:50.061
+The 3D picture in the corner is for orientation only:
+
+14
+00:00:50.247 --> 00:00:52.186
+you never take dimensions from it.
+
+15
+00:00:53.212 --> 00:00:58.540
+The scale says how big it is drawn: one to one is true size, one to two half size,
+
+16
+00:00:58.738 --> 00:00:59.725
+two to one double.
+
+17
+00:01:00.739 --> 00:01:03.200
+Never measure off a print: paper stretches.
+
+18
+00:01:03.938 --> 00:01:09.476
+At a scale of one to five, 40 millimetres on paper is 200 in real life,
+
+19
+00:01:09.603 --> 00:01:12.413
+but just read the dimension written beside it.
+
+20
+00:01:13.747 --> 00:01:18.078
+You start at the title block, the box at the bottom right: part number,
+
+21
+00:01:18.275 --> 00:01:22.258
+name, material, scale, projection symbol, who drew and approved it,
+
+22
+00:01:22.490 --> 00:01:23.756
+and the revision letter.
+
+23
+00:01:24.779 --> 00:01:31.408
+This is a bracket in S235, a common structural steel, at one to one, revision C.
+
+24
+00:01:32.388 --> 00:01:34.350
+The general tolerance is here too:
+
+25
+00:01:34.512 --> 00:01:37.670
+it covers every dimension without its own tolerance.
+
+26
+00:01:38.381 --> 00:01:41.598
+Here ISO 2768, class m.
+
+27
+00:01:42.609 --> 00:01:46.533
+A dimension of 50 millimetres, like the depth of this bracket,
+
+28
+00:01:46.696 --> 00:01:49.993
+may then be 49.7 to 50.3.
+
+29
+00:01:50.672 --> 00:01:54.619
+If it must be tighter, the dimension gets a tolerance of its own.
+
+30
+00:01:55.944 --> 00:01:59.067
+Every change gets a new revision, with a new letter.
+
+31
+00:01:59.779 --> 00:02:02.519
+The revision table says what changed and when.
+
+32
+00:02:03.537 --> 00:02:07.786
+Revision B made the hole 9 millimetres instead of 8.5.
+
+33
+00:02:08.501 --> 00:02:14.759
+Revision C, in January 2025, made the bend radius 3 instead of 2.
+
+34
+00:02:15.747 --> 00:02:18.139
+But at the press brake the setter worked from
+
+35
+00:02:18.185 --> 00:02:20.972
+a printed revision B in a plastic sleeve:
+
+36
+00:02:21.123 --> 00:02:23.607
+400 brackets with the old radius,
+
+37
+00:02:23.770 --> 00:02:25.302
+rejected at the customer.
+
+38
+00:02:26.327 --> 00:02:29.775
+The fix is not being more careful, but a screen at the machine,
+
+39
+00:02:29.868 --> 00:02:31.714
+straight from the PDM system.
+
+40
+00:02:32.485 --> 00:02:35.562
+Then only the current revision exists on the floor.
+
+41
+00:02:36.893 --> 00:02:41.560
+A plus-or-minus tolerance controls only size: this 10.2 hole,
+
+42
+00:02:41.711 --> 00:02:43.325
+zero to plus one tenth.
+
+43
+00:02:44.188 --> 00:02:48.078
+Where it sits and what form it has, plus or minus does not say.
+
+44
+00:02:49.052 --> 00:02:51.467
+That is what geometric tolerances are for,
+
+45
+00:02:51.629 --> 00:02:55.205
+in a feature control frame: a row of boxes with a symbol,
+
+46
+00:02:55.310 --> 00:02:57.110
+a tolerance and the datums.
+
+47
+00:02:58.170 --> 00:03:04.451
+Read it from left to right: position, within a round zone 0.3 across, the circled M,
+
+48
+00:03:04.613 --> 00:03:06.738
+and the datums A, B and C.
+
+49
+00:03:07.701 --> 00:03:11.103
+Europe and the United States read some drawings differently:
+
+50
+00:03:11.312 --> 00:03:14.203
+ask first which standard the drawing invokes.
+
+51
+00:03:15.527 --> 00:03:19.080
+You measure from a datum: the surface the part is located on,
+
+52
+00:03:19.242 --> 00:03:21.506
+drawn as a small triangle with a letter.
+
+53
+00:03:22.224 --> 00:03:23.791
+Think of the corner of a room.
+
+54
+00:03:24.780 --> 00:03:27.172
+Primary is A, here the bottom face.
+
+55
+00:03:27.873 --> 00:03:32.203
+The plate rests on three points, because three points define a plane.
+
+56
+00:03:33.188 --> 00:03:36.636
+Secondary is B, the long edge, against two pins.
+
+57
+00:03:37.340 --> 00:03:40.788
+Tertiary is C, the short edge, against one pin.
+
+58
+00:03:41.795 --> 00:03:45.301
+The order matters: that is how the part sits in the fixture,
+
+59
+00:03:45.533 --> 00:03:47.739
+and how the measuring machine aligns it.
+
+60
+00:03:48.499 --> 00:03:51.239
+Measure from another edge and you get another number.
+
+61
+00:03:52.539 --> 00:03:56.823
+The plate has four holes of 10.2 millimetres for M10 bolts.
+
+62
+00:03:57.537 --> 00:03:58.593
+Where must they sit?
+
+63
+00:03:59.651 --> 00:04:01.381
+A basic dimension says that,
+
+64
+00:04:01.543 --> 00:04:07.719
+in a box without plus or minus: this hole sits exactly 25 from B and 40 from C.
+
+65
+00:04:08.709 --> 00:04:11.855
+The tolerance is in the frame: the position tolerance.
+
+66
+00:04:12.573 --> 00:04:18.215
+The centre of the hole must lie within a round zone 0.3 across, around that spot.
+
+67
+00:04:19.273 --> 00:04:19.912
+Why round?
+
+68
+00:04:20.646 --> 00:04:23.224
+A bolt can shift the same amount every way.
+
+69
+00:04:23.999 --> 00:04:27.506
+A circle of 0.28 around a square of plus or
+
+70
+00:04:27.575 --> 00:04:30.803
+minus one tenth has 57 percent more area:
+
+71
+00:04:30.954 --> 00:04:32.742
+more good parts get accepted.
+
+72
+00:04:34.080 --> 00:04:36.321
+You do not check position with a caliper.
+
+73
+00:04:37.082 --> 00:04:41.749
+A CMM, a coordinate measuring machine, aligns on A, B and C,
+
+74
+00:04:41.854 --> 00:04:44.223
+probes the hole and computes the centre.
+
+75
+00:04:45.238 --> 00:04:53.075
+The centre is 0.12 off in X and 0.09 in Y: 0.15 millimetres together.
+
+76
+00:04:53.795 --> 00:04:57.731
+As a diameter that is 0.30, right on the limit.
+
+77
+00:04:58.739 --> 00:05:00.898
+But the circled M means MMC,
+
+78
+00:05:01.049 --> 00:05:04.822
+maximum material condition: the size with the most material,
+
+79
+00:05:04.973 --> 00:05:06.529
+for a hole the smallest hole.
+
+80
+00:05:07.505 --> 00:05:13.530
+This hole measures 10.25: 0.05 bigger, and it gets that as a bonus.
+
+81
+00:05:14.228 --> 00:05:18.199
+The zone grows to 0.35, and the part is good.

@@ -1,0 +1,189 @@
+WEBVTT
+
+1
+00:00:00.830 --> 00:00:03.001
+De vuleenheid op lijn 3 in hal B draait.
+
+2
+00:00:03.699 --> 00:00:05.638
+Hij vult de dozen met product uit de tank.
+
+3
+00:00:06.622 --> 00:00:07.586
+Jij bent de engineer.
+
+4
+00:00:08.271 --> 00:00:10.639
+Met de teamleider houd je hem een hele dienst aan de gang.
+
+5
+00:00:11.736 --> 00:00:13.176
+Die dienst vraagt vier dingen.
+
+6
+00:00:13.903 --> 00:00:17.432
+Tempo, goede dozen, een eenheid die heel blijft en veilig werk.
+
+7
+00:00:18.537 --> 00:00:19.895
+Dat zijn vier stations.
+
+8
+00:00:20.617 --> 00:00:23.926
+Van capaciteit en kwaliteit tot onderhoud en veiligheid.
+
+9
+00:00:25.219 --> 00:00:27.796
+Het eerste station is Capaciteit en flow.
+
+10
+00:00:28.557 --> 00:00:30.751
+Lijn 3 moet genoeg dozen maken voor de klant.
+
+11
+00:00:31.778 --> 00:00:33.020
+De klant bepaalt het tempo.
+
+12
+00:00:33.689 --> 00:00:36.139
+Elke minuut stilstand is een minuut achterstand.
+
+13
+00:00:37.153 --> 00:00:38.233
+Je rekent de takttijd (takt time)
+
+14
+00:00:38.291 --> 00:00:40.555
+uit en houdt een stilstandregistratie (downtime log) bij.
+
+15
+00:00:41.581 --> 00:00:45.703
+Zonder dit weet niemand welk tempo de lijn moet halen, of waar de minuten blijven.
+
+16
+00:00:46.949 --> 00:00:48.795
+Het tweede station is Kwaliteit.
+
+17
+00:00:49.524 --> 00:00:51.985
+Elke doos die de lijn verlaat, moet goed zijn.
+
+18
+00:00:52.958 --> 00:00:54.769
+Aan het eind van de band let je op fouten.
+
+19
+00:00:55.481 --> 00:00:56.886
+Een foute doos gaat apart.
+
+20
+00:00:57.900 --> 00:00:59.897
+Je noteert fouten op een turflijst (check sheet)
+
+21
+00:00:59.955 --> 00:01:01.534
+en schrijft een afwijkingsrapport (nonconformance report).
+
+22
+00:01:02.597 --> 00:01:06.742
+Zonder dit weet niemand wat er fout gaat, en kan een foute doos bij de klant komen.
+
+23
+00:01:08.015 --> 00:01:09.664
+Het derde station is Onderhoud.
+
+24
+00:01:10.421 --> 00:01:12.905
+De eenheid moet heel blijven, dienst na dienst.
+
+25
+00:01:13.898 --> 00:01:16.742
+Aan het begin van de dienst loop je een ronde langs de eenheid.
+
+26
+00:01:17.493 --> 00:01:19.200
+Wat afwijkt, krijgt een label.
+
+27
+00:01:20.240 --> 00:01:24.455
+Je volgt een CILT-standaard (CILT standard) en meldt wat je vindt in het CMMS.
+
+28
+00:01:25.453 --> 00:01:28.924
+Zonder dit kan slijtage onopgemerkt blijven tot de lijn stilstaat.
+
+29
+00:01:30.242 --> 00:01:32.216
+Het vierde station is Veilig werken.
+
+30
+00:01:32.906 --> 00:01:35.182
+Loopt de eenheid vast, dan moet iemand erbij.
+
+31
+00:01:36.155 --> 00:01:37.710
+Voor je begint, kijk je rond.
+
+32
+00:01:38.512 --> 00:01:42.157
+Dan gaat de energie eraf bij de schakelaar, met een slot en een label.
+
+33
+00:01:43.134 --> 00:01:46.083
+Je doet een LMRA en past vergrendelen en labelen (LOTO) toe.
+
+34
+00:01:47.146 --> 00:01:50.095
+Zonder dit kan de eenheid starten terwijl je handen erin zitten.
+
+35
+00:01:51.447 --> 00:01:52.480
+Dit is de hele kaart.
+
+36
+00:01:53.258 --> 00:01:56.497
+De vier stations van De fabriek draaiend houden liggen in één gebied.
+
+37
+00:01:57.556 --> 00:02:02.293
+Eerst Capaciteit en flow, van takt en lijnbalans tot omstellen en seriegrootte.
+
+38
+00:02:03.308 --> 00:02:07.313
+Dan Kwaliteit, van toleranties en meten tot risico en beheersing.
+
+39
+00:02:08.337 --> 00:02:11.739
+Dan Onderhoud, van onderhoudsstrategieën tot onderhoud meten.
+
+40
+00:02:12.714 --> 00:02:14.072
+Tot slot Veilig werken,
+
+41
+00:02:14.316 --> 00:02:18.391
+van risico’s en maatregelen tot incidenten en veiligheidscultuur.
+
+42
+00:02:19.414 --> 00:02:20.378
+Zo hangen ze samen.
+
+43
+00:02:21.044 --> 00:02:24.840
+De klant bepaalt het tempo, en kwaliteit zorgt dat elke doos goed is.
+
+44
+00:02:25.896 --> 00:02:27.208
+Onderhoud houdt de eenheid heel.
+
+45
+00:02:27.948 --> 00:02:29.864
+Veiligheid bepaalt hoe je erbij werkt.
+
+46
+00:02:30.851 --> 00:02:33.730
+Elk station is een module met vier niveaus per onderwerp.
+
+47
+00:02:34.410 --> 00:02:36.268
+Begin bij wat jouw lijn nu nodig heeft.

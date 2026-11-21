@@ -1,0 +1,341 @@
+WEBVTT
+
+1
+00:00:00.840 --> 00:00:04.602
+Een middenspanningsring loopt van het onderstation langs zeven netstations,
+
+2
+00:00:04.915 --> 00:00:06.540
+met samen 1.200 klanten.
+
+3
+00:00:07.204 --> 00:00:10.141
+In station 7 zit het normaal openpunt naar een buurring:
+
+4
+00:00:10.501 --> 00:00:12.800
+de schakelaar in een MS-ring die openstaat;
+
+5
+00:00:13.055 --> 00:00:15.493
+je sluit hem om een deel van de andere kant te voeden.
+
+6
+00:00:16.470 --> 00:00:19.860
+Dan raakt een graafmachine de kabel tussen station 5 en 6.
+
+7
+00:00:20.530 --> 00:00:22.887
+Het beveiligingsrelais ziet de kortsluiting,
+
+8
+00:00:23.236 --> 00:00:25.999
+en de vermogensschakelaar in het onderstation gaat uit.
+
+9
+00:00:26.720 --> 00:00:28.009
+Iedereen zit zonder stroom.
+
+10
+00:00:29.021 --> 00:00:32.469
+Zonder automatisering rijdt een monteur van station naar station.
+
+11
+00:00:33.181 --> 00:00:34.563
+Hij leest de verklikkers af,
+
+12
+00:00:34.957 --> 00:00:38.974
+opent de lastscheiders rond het kapotte stuk met de hand, en sluit het openpunt.
+
+13
+00:00:39.687 --> 00:00:42.787
+Dat kost één tot twee uur zonder stroom voor de meeste klanten.
+
+14
+00:00:43.825 --> 00:00:46.461
+Zeg dat alle klanten 90 minuten zonder zitten.
+
+15
+00:00:47.133 --> 00:00:49.211
+Dat telt de netbeheerder in klantminuten (customer minutes):
+
+16
+00:00:49.467 --> 00:00:52.346
+het aantal klanten zonder stroom maal de minuten zonder stroom.
+
+17
+00:00:53.060 --> 00:00:56.183
+1.200 maal 90 is 108.000 klantminuten.
+
+18
+00:00:57.522 --> 00:00:59.786
+Distributieautomatisering (distribution automation) betekent:
+
+19
+00:01:00.053 --> 00:01:02.863
+het middenspanningsnet op afstand bedienen en bewaken.
+
+20
+00:01:03.881 --> 00:01:06.354
+Een aantal netstations krijgt een afstandsbediende
+
+21
+00:01:06.389 --> 00:01:07.016
+schakelaar (remote-controlled switch).
+
+22
+00:01:07.715 --> 00:01:09.816
+Dat is een lastscheider met motoraandrijving,
+
+23
+00:01:10.223 --> 00:01:14.124
+die het bedrijfsvoeringscentrum via een verbinding open en dicht kan zetten.
+
+24
+00:01:15.105 --> 00:01:18.843
+In het station zie je een kastje met een modem, een accu en de besturing,
+
+25
+00:01:19.168 --> 00:01:21.142
+en de motoraandrijving op de schakelaar.
+
+26
+00:01:21.821 --> 00:01:25.234
+De accu houdt alles werkend als de spanning in het station weg is,
+
+27
+00:01:25.455 --> 00:01:26.755
+precies tijdens een storing.
+
+28
+00:01:27.768 --> 00:01:31.808
+In het bedrijfsvoeringscentrum ziet de bedrijfsvoerder in SCADA waar de fout zit.
+
+29
+00:01:32.502 --> 00:01:36.554
+Hij schakelt in minuten, zonder te wachten tot er een monteur ter plaatse is.
+
+30
+00:01:37.872 --> 00:01:40.102
+Elk ringveld heeft een kortsluitverklikker (fault indicator):
+
+31
+00:01:40.345 --> 00:01:42.412
+een sensor rond de kabel en een lampje.
+
+32
+00:01:43.083 --> 00:01:46.937
+Hij gaat branden, of geeft een signaal, als er foutstroom langs is gekomen.
+
+33
+00:01:47.962 --> 00:01:51.027
+Foutstroom loopt van de bron naar de fout, en niet verder.
+
+34
+00:01:51.668 --> 00:01:54.553
+Hier gaan de verklikkers in station 1 tot en met 5 branden.
+
+35
+00:01:55.255 --> 00:01:57.693
+In station 6 en 7 blijven ze uit.
+
+36
+00:01:58.735 --> 00:02:02.950
+De fout zit dus tussen de laatste verklikker die hem zag en de eerste die niks zag:
+
+37
+00:02:03.240 --> 00:02:04.819
+tussen station 5 en 6.
+
+38
+00:02:05.900 --> 00:02:08.617
+Verklikkers die zich bij het bedrijfsvoeringscentrum melden,
+
+39
+00:02:08.884 --> 00:02:10.846
+besparen de rit om ze af te lezen.
+
+40
+00:02:11.568 --> 00:02:14.621
+Ook zonder schakelen op afstand scheelt dat alleen al veel minuten.
+
+41
+00:02:15.264 --> 00:02:19.804
+Hoe het centrum de hele storing afhandelt, zie je in Netbedrijf en assetmanagement.
+
+42
+00:02:21.098 --> 00:02:22.236
+Nu dezelfde fout,
+
+43
+00:02:22.573 --> 00:02:26.660
+met afstandsbediende schakelaars in twee sleutelstations: station 4,
+
+44
+00:02:26.961 --> 00:02:28.865
+en station 7 met het openpunt.
+
+45
+00:02:29.832 --> 00:02:33.954
+Het bedrijfsvoeringscentrum opent in station 4 de schakelaar richting 5,
+
+46
+00:02:34.279 --> 00:02:36.288
+en in station 7 die richting 6.
+
+47
+00:02:37.003 --> 00:02:40.590
+De vermogensschakelaar gaat weer in, en het openpunt gaat dicht.
+
+48
+00:02:41.286 --> 00:02:46.116
+Zo is het defecte stuk in 3 minuten vrijgeschakeld, en zijn 1.000 klanten terug.
+
+49
+00:02:47.111 --> 00:02:50.803
+De 200 klanten van station 5 en 6 zitten in het stuk ertussen.
+
+50
+00:02:51.509 --> 00:02:55.654
+Zij blijven 90 minuten zonder, tot de monteur daar met de hand heeft geschakeld.
+
+51
+00:02:56.762 --> 00:03:03.624
+1.000 maal 3 plus 200 maal 90 is 3.000 plus 18.000, samen 21.000 klantminuten.
+
+52
+00:03:04.309 --> 00:03:09.243
+Dat is zo’n 80% minder dan 108.000, met maar twee aangepaste netstations.
+
+53
+00:03:10.591 --> 00:03:12.333
+Eerst doet de beveiliging haar werk:
+
+54
+00:03:12.670 --> 00:03:16.362
+de vermogensschakelaar in het onderstation schakelt de kortsluiting af.
+
+55
+00:03:17.055 --> 00:03:19.830
+Een lastscheider onderbreekt nooit zelf een kortsluiting.
+
+56
+00:03:20.851 --> 00:03:22.058
+Een zelfherstellende ring (self-healing ring)
+
+57
+00:03:22.116 --> 00:03:24.276
+gaat een stap verder dan schakelen op afstand.
+
+58
+00:03:25.001 --> 00:03:27.068
+Het systeem vindt de fout uit de verklikkers,
+
+59
+00:03:27.416 --> 00:03:30.249
+opent de schakelaars eromheen en sluit het openpunt,
+
+60
+00:03:30.597 --> 00:03:32.664
+helemaal zelf, vaak binnen een minuut.
+
+61
+00:03:33.687 --> 00:03:37.460
+Dat vraagt betrouwbare communicatie, kloppende gegevens van het net,
+
+62
+00:03:37.808 --> 00:03:39.248
+en goed geteste logica.
+
+63
+00:03:39.996 --> 00:03:42.353
+Daarom voeren netbeheerders het stap voor stap in.
+
+64
+00:03:43.337 --> 00:03:45.659
+Experts discussiëren over vertrouwen.
+
+65
+00:03:46.377 --> 00:03:50.673
+Sommige bedrijfsvoeringscentra willen dat een bedrijfsvoerder elke stap bevestigt.
+
+66
+00:03:51.427 --> 00:03:53.552
+Andere laten de logica zijn gang gaan.
+
+67
+00:03:54.862 --> 00:03:57.091
+Elk netstation automatiseren is te duur.
+
+68
+00:03:57.826 --> 00:04:01.924
+Netbeheerders kiezen per ring een paar sleutelstations, vaak twee of drie,
+
+69
+00:04:02.295 --> 00:04:05.209
+waar een afstandsbediende schakelaar de ring in stukken verdeelt.
+
+70
+00:04:06.263 --> 00:04:11.186
+Dat is een zakelijke afweging: de kosten per station tegenover minder klantminuten,
+
+71
+00:04:11.371 --> 00:04:12.207
+en minder rijden.
+
+72
+00:04:13.254 --> 00:04:15.576
+Door onvoorziene storingen zit een Nederlandse klant
+
+73
+00:04:15.611 --> 00:04:19.384
+gemiddeld zo’n 20 tot 25 minuten per jaar zonder stroom,
+
+74
+00:04:19.744 --> 00:04:22.403
+in 2025 zo’n 23.
+
+75
+00:04:23.161 --> 00:04:25.170
+En de toezichthouder koppelt een deel van de
+
+76
+00:04:25.205 --> 00:04:27.515
+inkomsten van netbeheerders aan die kwaliteit.
+
+77
+00:04:28.835 --> 00:04:29.648
+Wat gaat er mis?
+
+78
+00:04:30.339 --> 00:04:34.240
+Accu’s die leeg zijn als het erop aankomt: dan geen motor en geen modem.
+
+79
+00:04:35.230 --> 00:04:37.505
+Communicatie die wegvalt tijdens een storm.
+
+80
+00:04:38.230 --> 00:04:41.005
+En gegevens van het net die niet kloppen met de werkelijkheid,
+
+81
+00:04:41.295 --> 00:04:43.640
+zodat het systeem de verkeerde schakelaar kiest.
+
+82
+00:04:44.630 --> 00:04:48.531
+En elke verbinding naar een station is ook een mogelijke ingang voor aanvallers.
+
+83
+00:04:49.275 --> 00:04:54.058
+Behandel hem daarom als OT, met zones en conduits, net als in een fabriek.
+
+84
+00:04:55.091 --> 00:04:59.038
+Een scherpe vraag: welke ringen veroorzaken de meeste klantminuten,
+
+85
+00:04:59.328 --> 00:05:01.894
+en waar helpt één afstandsbediende schakelaar het meest?

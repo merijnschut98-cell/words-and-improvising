@@ -1,0 +1,329 @@
+WEBVTT
+
+1
+00:00:00.858 --> 00:00:03.680
+A pump set: pump, coupling and electric motor.
+
+2
+00:00:04.419 --> 00:00:09.503
+Inside the motor the shaft runs on bearings, and every bearing fails one day.
+
+3
+00:00:10.208 --> 00:00:11.334
+When do you step in?
+
+4
+00:00:12.067 --> 00:00:13.518
+There are four strategies.
+
+5
+00:00:14.543 --> 00:00:18.943
+With reactive maintenance you run it until it breaks, and then you repair it.
+
+6
+00:00:19.744 --> 00:00:21.834
+Fine when that is cheap and safe.
+
+7
+00:00:22.535 --> 00:00:25.565
+As a default it is expensive: by the rule of thumb,
+
+8
+00:00:25.763 --> 00:00:29.304
+an unplanned repair costs three to five times a planned one.
+
+9
+00:00:30.308 --> 00:00:33.663
+With preventive maintenance you replace at a fixed interval,
+
+10
+00:00:33.756 --> 00:00:35.590
+however good the part still is.
+
+11
+00:00:36.319 --> 00:00:38.931
+That works for parts that clearly wear out.
+
+12
+00:00:40.029 --> 00:00:42.862
+With condition-based maintenance you measure the condition,
+
+13
+00:00:42.989 --> 00:00:47.285
+such as the vibration on the bearing housing, and act above an agreed limit.
+
+14
+00:00:48.321 --> 00:00:50.225
+Predictive maintenance goes further:
+
+15
+00:00:50.330 --> 00:00:53.418
+from the trend you forecast when the limit will be reached,
+
+16
+00:00:53.557 --> 00:00:57.388
+and you plan the repair into a stop when the line is down anyway.
+
+17
+00:00:58.659 --> 00:01:02.061
+Which strategy fits depends on what the failure costs.
+
+18
+00:01:02.750 --> 00:01:07.963
+Take the gearbox of the bottleneck press in a stamping plant: 60,000 euros new,
+
+19
+00:01:08.172 --> 00:01:09.600
+and 10 weeks delivery.
+
+20
+00:01:10.602 --> 00:01:13.470
+Running it to failure would stop the plant for weeks.
+
+21
+00:01:14.173 --> 00:01:17.958
+A monthly vibration route spots bearing damage months ahead.
+
+22
+00:01:18.693 --> 00:01:20.086
+So: condition-based.
+
+23
+00:01:21.115 --> 00:01:24.865
+The conveyor motors on the packing line cost 400 euros,
+
+24
+00:01:24.993 --> 00:01:27.907
+are in stock and are swapped in 15 minutes.
+
+25
+00:01:28.595 --> 00:01:29.988
+Those you run to failure.
+
+26
+00:01:31.028 --> 00:01:35.510
+Choosing like this, per asset and per failure mode, by the consequences,
+
+27
+00:01:35.753 --> 00:01:36.879
+is called RCM.
+
+28
+00:01:37.569 --> 00:01:42.643
+Good plants do 85 percent or more of their maintenance hours as planned work.
+
+29
+00:01:43.965 --> 00:01:45.788
+How do parts actually fail?
+
+30
+00:01:46.524 --> 00:01:51.238
+The textbook shows the bathtub curve: the failure rate plotted against age.
+
+31
+00:01:52.242 --> 00:01:55.435
+First infant mortality: failures soon after fitting,
+
+32
+00:01:55.551 --> 00:01:57.710
+from fitting errors or bad parts.
+
+33
+00:01:58.731 --> 00:02:03.433
+Then a long flat period of random failure, the same chance at any age.
+
+34
+00:02:04.140 --> 00:02:05.707
+And at the end wear-out.
+
+35
+00:02:06.763 --> 00:02:11.895
+But in a well-known airline study only 11 percent of the parts wore out with age;
+
+36
+00:02:12.034 --> 00:02:14.089
+68 percent failed early.
+
+37
+00:02:14.771 --> 00:02:18.335
+What wears is mostly what rubs, cuts or carries load.
+
+38
+00:02:19.687 --> 00:02:25.643
+Every 12 months, a packaging plant replaces the bearings in all 24 servo axes.
+
+39
+00:02:26.387 --> 00:02:29.081
+That costs 18,000 euros a year.
+
+40
+00:02:30.106 --> 00:02:33.229
+Before the programme there were 6 bearing failures a year,
+
+41
+00:02:33.414 --> 00:02:35.597
+after it not fewer but more: 9.
+
+42
+00:02:36.634 --> 00:02:41.580
+And 5 of those came within two weeks after a swap: maintenance-induced failure.
+
+43
+00:02:42.310 --> 00:02:44.400
+The work itself causes the failure.
+
+44
+00:02:45.433 --> 00:02:49.415
+Opening a machine can let dirt in or leave a seal badly fitted.
+
+45
+00:02:50.177 --> 00:02:53.892
+You then see a cluster of failures just after the maintenance.
+
+46
+00:02:55.187 --> 00:02:59.181
+You test the pattern with a Weibull analysis of the failure ages.
+
+47
+00:02:59.880 --> 00:03:02.922
+The output is the Weibull beta, the shape factor.
+
+48
+00:03:03.924 --> 00:03:06.838
+Beta below 1: early failure, fix the fitting.
+
+49
+00:03:07.640 --> 00:03:09.103
+Around 1: random.
+
+50
+00:03:09.826 --> 00:03:15.410
+Above 1, and especially above 3: wear-out, and then replacing on time makes sense.
+
+51
+00:03:16.399 --> 00:03:21.217
+For the servo bearings the fit gives beta 1.0: random failure, not wear-out.
+
+52
+00:03:22.007 --> 00:03:23.981
+So the yearly swap could never help.
+
+53
+00:03:25.028 --> 00:03:26.421
+The plant stops the swap,
+
+54
+00:03:26.538 --> 00:03:31.194
+checks the 6 critical axes for vibration every month and trains the fitters.
+
+55
+00:03:31.940 --> 00:03:33.716
+Next year: 3 failures.
+
+56
+00:03:35.067 --> 00:03:38.074
+A bearing defect starts as a pit in the raceway.
+
+57
+00:03:38.781 --> 00:03:43.750
+At point P it becomes measurable; at point F the pump no longer does its job.
+
+58
+00:03:44.791 --> 00:03:47.311
+The time in between is the P-F interval:
+
+59
+00:03:47.473 --> 00:03:50.295
+your window to see the defect and plan the repair.
+
+60
+00:03:51.320 --> 00:03:55.372
+So, as a rule of thumb, measure at half the window: at 8 weeks,
+
+61
+00:03:55.500 --> 00:03:57.125
+at least every 4 weeks.
+
+62
+00:03:58.150 --> 00:04:01.401
+With a window of 10 weeks and a route every 12 weeks,
+
+63
+00:04:01.564 --> 00:04:04.559
+you are in time only 83 percent of the time.
+
+64
+00:04:05.850 --> 00:04:08.915
+Each method sees the defect at its own moment.
+
+65
+00:04:09.691 --> 00:04:14.231
+Ultrasound listens far above our hearing and hears a dry bearing first:
+
+66
+00:04:14.335 --> 00:04:16.285
+about 12 weeks before F.
+
+67
+00:04:17.281 --> 00:04:21.867
+Vibration analysis on the bearing housing sees it about 10 weeks ahead;
+
+68
+00:04:22.029 --> 00:04:24.224
+each fault has its own frequency.
+
+69
+00:04:25.215 --> 00:04:29.174
+In oil analysis a lab looks for wear metals in an oil sample:
+
+70
+00:04:29.313 --> 00:04:31.043
+about 6 weeks before F.
+
+71
+00:04:32.032 --> 00:04:35.469
+Thermography only sees it once the bearing runs warm,
+
+72
+00:04:35.597 --> 00:04:38.871
+about 4 weeks ahead; a hand on the housing 1 week.
+
+73
+00:04:39.561 --> 00:04:42.197
+So the P-F interval depends on the method.
+
+74
+00:04:43.530 --> 00:04:48.453
+The monthly route on a cooling-water pump measures 1.8 millimetres per second,
+
+75
+00:04:48.674 --> 00:04:52.888
+then 1.9, 2.6 and in April 3.4.
+
+76
+00:04:53.613 --> 00:04:56.237
+A bearing frequency shows in the spectrum.
+
+77
+00:04:57.329 --> 00:05:00.185
+That is about 0.8 more each month.
+
+78
+00:05:00.872 --> 00:05:03.090
+The action level is 4.5.
+
+79
+00:05:04.090 --> 00:05:10.267
+The gap to the limit, divided by 0.8, is 1.4 months: about six weeks.
+
+80
+00:05:10.952 --> 00:05:16.281
+A new bearing costs 350 euros; the next planned stop is in mid-May.
+
+81
+00:05:17.272 --> 00:05:21.347
+So the planner orders the bearing now and books four hours in that stop.
+
+82
+00:05:22.121 --> 00:05:24.338
+No pump seizing on a Friday night.

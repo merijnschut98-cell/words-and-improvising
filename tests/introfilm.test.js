@@ -1,0 +1,683 @@
+// v17: the kit's module intro film. A lesson film serves lessons and is held to
+// their text; an intro film is defined by a module id, and its source text is
+// the module's title, blurb, topic titles and all of its lesson texts. Its
+// terms and numbers must come from that text, and its coverage rule is the map:
+// every topic of the module is named (its title in a caption or on a card, in
+// both languages) and shown (a beat of its scene lights the topic's part).
+// These tests run the kit on a small made-up module; tests/filmcontent.test.js
+// rechecks the shipped intro pages against the real module text.
+import { test } from 'node:test';
+import assert from 'node:assert/strict';
+import fs from 'node:fs';
+import { resolveFilm } from '../films/_kit/build-film.mjs';
+import { checkFilm, checkNarration, checkLabels, readFilmData, moduleTextOf, textUnits, wrapUnits, CHAR_W, TILE_UNITS, STATION_UNITS, STATION_LINES } from '../films/_kit/assert.mjs';
+import { MODULES as INDEX_MODULES, FIELDS as INDEX_FIELDS } from '../src/content/courses/index.js';
+
+const lesson = (id, terms, teach) => ({ id, title: 'T', pre: [], recall: [], teach, example: { text: '' }, terms: terms.map((term) => ({ term, def: 'D.' })) });
+const LESSONS = {
+  nl: new Map([
+    ['pm.fx.a', lesson('pm.fx.a', ['Werkpakket', 'Mijlpaal'], ['Een werkpakket duurt 8 tot 80 uur.'])],
+    ['pm.fx.b', lesson('pm.fx.b', ['Buffer'], ['Een buffer van 3 weken.'])],
+    ['pm.other.c', lesson('pm.other.c', ['Sprint'], ['Een sprint van 14 dagen.'])],
+  ]),
+  en: new Map([
+    ['pm.fx.a', lesson('pm.fx.a', ['Work package', 'Milestone'], ['A work package takes 8 to 80 hours.'])],
+    ['pm.fx.b', lesson('pm.fx.b', ['Buffer'], ['A buffer of 3 weeks.'])],
+    ['pm.other.c', lesson('pm.other.c', ['Sprint'], ['A sprint of 14 days.'])],
+  ]),
+};
+const MOD = {
+  id: 'pm.fx', subject: 'pm', track: 'project', level: 1, intro: 'pm.fx.intro',
+  title: { nl: 'Plannen', en: 'Plan' }, blurb: { nl: 'Van doel naar plan in 2 stappen.', en: 'From goal to plan in 2 steps.' },
+  topics: [
+    { id: 'split', title: { nl: 'Opdelen', en: 'Breaking down' }, levels: ['pm.fx.a'] },
+    { id: 'time', title: { nl: 'Tijd en buffers', en: 'Time and buffers' }, levels: ['pm.fx.b'] },
+  ],
+  lessons: ['pm.fx.a', 'pm.fx.b'],
+};
+const MODULES = [MOD, { id: 'pm.other', lessons: ['pm.other.c'], topics: [] }];
+const beat = (nl, en, focus, extra = {}) => ({ nl, en, focus, ...extra });
+const spec = () => ({
+  id: 'pm.fx.intro',
+  title: { nl: 'Een plan', en: 'A plan' },
+  module: 'pm.fx',
+  topics: { split: { scene: 's2', cue: 'tSplit' }, time: { scene: 's3', cue: 'tTime' } },
+  strictFocus: true,
+  scenes: [
+    { id: 's1', level: 1, dur: 20, still: 0.9, title: { nl: 'Doel', en: 'Goal' }, beats: [beat('Eén lijn gaat verhuizen.', 'One line is moving.', 'goal')] },
+    { id: 's2', level: 1, dur: 20, still: 0.9, title: { nl: 'Opdelen', en: 'Breaking down' }, beats: [
+      beat('Onderwerp één, Opdelen.', 'Topic one, Breaking down.', 'tSplit'),
+      beat('Elk {t:Werkpakket|werkpakket} krijgt een eigenaar.', 'Each {t:Work package|work package} gets an owner.', 'pkg', { cue: { Werkpakket: 'pkg' } }),
+    ] },
+    { id: 's3', level: 1, dur: 20, still: 0.9, title: { nl: 'Tijd', en: 'Time' }, beats: [
+      beat('Onderwerp twee, Tijd en buffers.', 'Topic two, Time and buffers.', 'tTime'),
+      beat('Eén {t:Buffer|buffer} van {n:3} weken.', 'One {t:Buffer|buffer} of {n:3} weeks.', 'buf', { cue: { Buffer: 'buf' } }),
+    ] },
+    { id: 's4', level: 1, dur: 20, still: 0.9, title: { nl: 'De kaart', en: 'The map' }, beats: [beat('De kaart, in {n:2} stappen.', 'The map, in {n:2} steps.', ['tSplit', 'tTime'])] },
+  ],
+});
+const ctx = (extra = {}) => ({ lessons: LESSONS, levelOf: () => 1, wiredBy: [], module: MOD, stageText: '<svg></svg>', ...extra });
+const clone = (x) => JSON.parse(JSON.stringify(x));
+
+test('moduleTextOf: the module title, blurb, topic titles and all lesson texts, per language', () => {
+  const nl = moduleTextOf(MOD, LESSONS, 'nl');
+  for (const s of ['Plannen', 'Van doel naar plan', 'Opdelen', 'Tijd en buffers', '8 tot 80 uur', 'buffer van 3 weken']) assert.ok(nl.includes(s), s);
+  assert.ok(!nl.includes('sprint'), 'no text of another module');
+  assert.ok(moduleTextOf(MOD, LESSONS, 'en').includes('Time and buffers'));
+});
+
+test('resolveFilm: an intro film is defined by its module and serves all of its lessons', () => {
+  const data = resolveFilm(spec(), LESSONS, MODULES);
+  assert.equal(data.module, 'pm.fx');
+  assert.deepEqual(data.lessons, ['pm.fx.a', 'pm.fx.b']);
+  assert.deepEqual(data.topics, [
+    { id: 'split', title: { nl: 'Opdelen', en: 'Breaking down' }, scene: 's2', cue: 'tSplit' },
+    { id: 'time', title: { nl: 'Tijd en buffers', en: 'Time and buffers' }, scene: 's3', cue: 'tTime' },
+  ]);
+  assert.deepEqual(data.scenes[1].terms.map((t) => [t.lesson, t.nl, t.en]), [['pm.fx.a', 'Werkpakket', 'Work package']]);
+  // a number from a lesson names that lesson; one only in the module's own text names the module
+  assert.deepEqual(data.numbers.map((n) => [n.value, n.lesson]), [['3', 'pm.fx.b'], ['2', 'pm.fx']]);
+});
+
+test('resolveFilm: a lesson film has no module or topics in its data', () => {
+  const s = spec();
+  delete s.module;
+  delete s.topics;
+  s.lessons = ['pm.fx.a', 'pm.fx.b'];
+  s.scenes[3].beats[0] = beat('De kaart.', 'The map.', ['tSplit', 'tTime']);
+  const data = resolveFilm(s, LESSONS, MODULES);
+  assert.ok(!('module' in data) && !('topics' in data));
+});
+
+test('resolveFilm: an intro film refuses lessons, unknown modules and topics, and text from outside its module', () => {
+  const both = { ...spec(), lessons: ['pm.fx.a'] };
+  assert.throws(() => resolveFilm(both, LESSONS, MODULES), /module or lessons, not both/);
+  assert.throws(() => resolveFilm({ ...spec(), module: 'pm.nope' }, LESSONS, MODULES), /unknown module pm\.nope/);
+  const missing = spec();
+  delete missing.topics.time;
+  assert.throws(() => resolveFilm(missing, LESSONS, MODULES), /topic time of pm\.fx has no scene/);
+  const extra = spec();
+  extra.topics.nope = { scene: 's2', cue: 'x' };
+  assert.throws(() => resolveFilm(extra, LESSONS, MODULES), /topic nope is no topic of pm\.fx/);
+  const badScene = spec();
+  badScene.topics.time.scene = 's9';
+  assert.throws(() => resolveFilm(badScene, LESSONS, MODULES), /topic time: no scene s9/);
+  const outside = spec();
+  outside.scenes[0].beats[0] = beat('Een {t:Sprint|sprint}.', 'A {t:Sprint|sprint}.', 'x', { cue: { Sprint: 'x' } });
+  assert.throws(() => resolveFilm(outside, LESSONS, MODULES), /term "Sprint" \(nl\) is in none of the served lessons/);
+  const num = spec();
+  num.scenes[0].beats[0] = beat('Na {n:14} dagen.', 'After {n:14} days.', 'goal');
+  assert.throws(() => resolveFilm(num, LESSONS, MODULES), /number 14 is in none of the served Dutch lessons/);
+});
+
+test('checkFilm: an intro film passes on the map, not on per-term coverage', () => {
+  const data = resolveFilm(spec(), LESSONS, MODULES);
+  // Mijlpaal (pm.fx.a) is in no scene: an intro film need not show every term of its lessons
+  assert.deepEqual(checkFilm(data, ctx()), []);
+});
+
+test('checkFilm: each topic is named in a caption of its OWN scene, in both languages', () => {
+  const data = resolveFilm(spec(), LESSONS, MODULES);
+  const noName = clone(data);
+  for (const lang of ['nl', 'en']) { noName.scenes[2].beats[0].text[lang] = lang === 'nl' ? 'Onderwerp twee.' : 'Topic two.'; noName.scenes[2].beats[0].seg[lang] = [noName.scenes[2].beats[0].text[lang]]; }
+  const out = checkFilm(noName, ctx()).join('\n');
+  assert.match(out, /topic time: "Tijd en buffers" \(nl\) is in no caption of its scene s3/);
+  assert.match(out, /topic time: "Time and buffers" \(en\) is in no caption of its scene s3/);
+  // a card on the stage no longer counts: the stage draws titles from page data at runtime
+  assert.match(checkFilm(noName, ctx({ stageText: "tr('Tijd en buffers', 'Time and buffers')" })).join('\n'), /"Tijd en buffers" \(nl\) is in no caption of its scene s3/);
+  // a caption of ANOTHER scene does not count either (the closing map names every topic)
+  const elsewhere = clone(noName);
+  elsewhere.scenes[3].beats[0].text.nl = 'De kaart: Tijd en buffers.';
+  elsewhere.scenes[3].beats[0].seg.nl = [elsewhere.scenes[3].beats[0].text.nl];
+  assert.match(checkFilm(elsewhere, ctx()).join('\n'), /"Tijd en buffers" \(nl\) is in no caption of its scene s3/);
+  // one language alone is not enough
+  const onlyNl = clone(data);
+  onlyNl.scenes[2].beats[0].text.en = 'Topic two.';
+  onlyNl.scenes[2].beats[0].seg.en = ['Topic two.'];
+  assert.match(checkFilm(onlyNl, ctx()).join('\n'), /"Time and buffers" \(en\)/);
+});
+
+test('checkFilm: each topic has at least two beats in its scene', () => {
+  const data = resolveFilm(spec(), LESSONS, MODULES);
+  const thin = clone(data);
+  thin.scenes[2].beats.pop();
+  assert.match(checkFilm(thin, ctx()).join('\n'), /topic time: scene s3 has 1 beat, needs at least 2/);
+  assert.deepEqual(checkFilm(data, ctx()), []);
+});
+
+test('checkFilm: each topic is shown, a beat of its scene lights its part', () => {
+  const data = resolveFilm(spec(), LESSONS, MODULES);
+  const dark = clone(data);
+  dark.scenes[2].beats[0].focus = ['buf'];
+  dark.scenes[2].beats[0].cues = ['buf'];
+  assert.match(checkFilm(dark, ctx()).join('\n'), /topic time: no beat of scene s3 lights its part tTime/);
+});
+
+test('checkFilm: an intro film drifts with its module', () => {
+  const data = resolveFilm(spec(), LESSONS, MODULES);
+  // a topic renamed in the index
+  const renamed = clone(MOD);
+  renamed.topics[1].title.en = 'Time and reserves';
+  assert.match(checkFilm(data, ctx({ module: renamed })).join('\n'), /topic time: title "Time and buffers" \(en\) is now "Time and reserves"/);
+  // a topic added to the module
+  const grown = clone(MOD);
+  grown.topics.push({ id: 'risk', title: { nl: 'Risico', en: 'Risk' }, levels: [] });
+  assert.match(checkFilm(data, ctx({ module: grown })).join('\n'), /topic risk of pm\.fx is not on the film's map/);
+  // a lesson taken out of the module
+  const shrunk = clone(MOD);
+  shrunk.lessons = ['pm.fx.a'];
+  assert.match(checkFilm(data, ctx({ module: shrunk })).join('\n'), /served lesson pm\.fx\.b is no longer in module pm\.fx/);
+  // a number gone from all of the module's text (the 3 of pm.fx.b)
+  const gone = { nl: new Map(LESSONS.nl), en: LESSONS.en };
+  gone.nl.set('pm.fx.b', { ...LESSONS.nl.get('pm.fx.b'), teach: ['Een buffer van drie weken.'] });
+  assert.match(checkFilm(data, ctx({ lessons: gone })).join('\n'), /number 3 \(scene s3\) no longer in the text of module pm\.fx/);
+  // the module's own text counts: the 2 of the blurb
+  const blurb = clone(MOD);
+  blurb.blurb.nl = 'Van doel naar plan.';
+  assert.match(checkFilm(data, ctx({ module: blurb })).join('\n'), /number 2 \(scene s4\) no longer in the text of module pm\.fx/);
+  // without its module the check cannot run
+  assert.match(checkFilm(data, ctx({ module: undefined })).join('\n'), /intro film of pm\.fx: module pm\.fx not given/);
+});
+
+// ---------------------------------------------------------------- the narration guard (kit, every module and field film)
+const said = (nl, en) => ({ nl: [nl], en: [en] });
+const narrated = (edit = {}) => {
+  const data = resolveFilm(spec(), LESSONS, MODULES);
+  const out = clone(data);
+  out.scenes.forEach((s, si) => s.beats.forEach((b, bi) => {
+    const spoken = (seg) => seg.map((p) => (typeof p === 'string' ? p : p.t)).join('');
+    const nl = spoken(b.seg.nl);
+    const en = spoken(b.seg.en);
+    b.say = said(nl, en);
+    b.voice = { nl, en };
+    if (edit[`${si}.${bi}`]) { b.say = said(...edit[`${si}.${bi}`]); b.voice = { nl: edit[`${si}.${bi}`][0], en: edit[`${si}.${bi}`][1] }; }
+  }));
+  return out;
+};
+
+test('checkNarration: a plain narration passes', () => {
+  assert.deepEqual(checkNarration(narrated()), []);
+});
+
+test('checkNarration: no symbol the voice reads aloud, no colon, in either language', () => {
+  for (const bad of ['Dat kost 5 + 3 uur.', 'Zo: eerst dit.', 'Het (bijna) klaar.', 'Of dit/dat.', 'Honderd%.', 'A & B.']) {
+    assert.match(checkNarration(narrated({ '0.0': [bad, 'Fine.'] })).join('\n'), /a symbol the voice reads aloud, or a colon/, bad);
+    assert.match(checkNarration(narrated({ '0.0': ['Goed.', bad] })).join('\n'), /a symbol the voice reads aloud, or a colon/, bad);
+  }
+});
+
+test('checkNarration: at most two commas in a sentence', () => {
+  assert.deepEqual(checkNarration(narrated({ '0.0': ['Een, twee, drie. Vier, vijf.', 'One, two, three.'] })), []);
+  assert.match(checkNarration(narrated({ '0.0': ['Een, twee, drie, vier.', 'Fine.'] })).join('\n'), /more than two commas in "Een, twee, drie, vier\.?"/);
+});
+
+test('checkNarration: the words the Dutch voice misreads', () => {
+  for (const w of ['deliverable', 'definition of done', 'PMI', 'Deadline']) {
+    assert.match(checkNarration(narrated({ '0.0': [`Het ${w} komt.`, 'Fine.'] })).join('\n'), /a word the Dutch voice misreads/, w);
+  }
+  // the English narration may say them
+  assert.deepEqual(checkNarration(narrated({ '0.0': ['Goed.', 'The deliverable and the deadline.'] })), []);
+});
+
+test('checkFilm: an intro film is held to the narration guard', () => {
+  assert.match(checkFilm(narrated({ '0.0': ['Zo: dit.', 'Fine.'] }), ctx()).join('\n'), /a symbol the voice reads aloud, or a colon/);
+});
+
+// ---------------------------------------------------------------- drawn labels fit (22-unit text)
+// Widths are measured per character in the film font (Inter at 22 units, the
+// wider of weights 600 and 700, Chromium); a flat 10.5 units a character, the
+// first rule, let "Schedule and" (146 units measured) through a 128-unit tile.
+test('textUnits and wrapUnits: measured widths, never under the real text', () => {
+  // measured in the film page: Schedule and 146.3, and critical 119.4, Werkkennis 127.9, Advanced 109.3, meest waarschijnlijk 220.1
+  for (const [s, real] of [['Schedule and', 146.3], ['and critical', 119.4], ['Werkkennis', 127.9], ['Advanced', 109.3], ['meest waarschijnlijk', 220.1]]) {
+    const est = textUnits(s);
+    assert.ok(est >= real && est <= real * 1.1, `${s}: ${est} against ${real}`);
+  }
+  assert.deepEqual(wrapUnits('Schedule and critical path', TILE_UNITS, CHAR_W), ['Schedule', 'and critical', 'path']);
+  assert.deepEqual(wrapUnits('Opdeling en scope', TILE_UNITS, CHAR_W), ['Opdeling', 'en scope']);
+  // wrapUnits is self-contained, so a stage script can carry it as source text
+  assert.deepEqual(new Function(`return ${wrapUnits.toString()}`)()('Schedule and critical path', TILE_UNITS, CHAR_W), ['Schedule', 'and critical', 'path']);
+});
+
+test('checkLabels: a topic title wraps by width into at most 3 lines inside a tile', () => {
+  const data = resolveFilm(spec(), LESSONS, MODULES);
+  assert.deepEqual(checkLabels(data, ''), []);
+  const wide = clone(data);
+  wide.topics[0].title.nl = 'Onderhandelingstechnieken';
+  assert.match(checkLabels(wide, '').join('\n'), /topic split: "Onderhandelingstechnieken" \(nl\) has a word of \d+ units, a tile is 128/);
+  const tall = clone(data);
+  tall.topics[1].title.en = 'One two three four five six seven';
+  assert.match(checkLabels(tall, '').join('\n'), /topic time: "One two three four five six seven" \(en\) wraps to 4 lines in a tile of 128 units, a tile holds 3/);
+});
+
+test('checkLabels: a film that draws wider tiles declares tileUnits, and its titles are held to that', () => {
+  // pm.intake.intro: the index titles Stakeholders (143 units) and projectopdracht (174) do not fit the default
+  // tile; it declares the room of the narrowest box it draws a title in. The default stays for every other film,
+  // and the messages name the width in force (TILE_UNITS, not a literal, so a change of the default needs no edit)
+  const data = resolveFilm(spec(), LESSONS, MODULES);
+  const wide = clone(data);
+  wide.topics[0].title.nl = 'Projectopdracht';
+  assert.match(checkLabels(wide, '').join('\n'), new RegExp(`a tile is ${TILE_UNITS}\\b`));
+  wide.tileUnits = 272;
+  assert.deepEqual(checkLabels(wide, ''), [], 'a word of about 175 units fits a tile of 272');
+  wide.tileUnits = 178;
+  assert.deepEqual(checkLabels(wide, ''), [], 'and one of 178');
+  wide.tileUnits = 170;
+  assert.match(checkLabels(wide, '').join('\n'), /has a word of 174 units, a tile is 170\b/, 'but not one of 170');
+  wide.tileUnits = 272;
+  wide.topics[0].title.nl = 'Een heleboel hele lange woorden achter elkaar in een titel van een onderwerp';
+  assert.match(checkLabels(wide, '').join('\n'), /wraps to 4 lines in a tile of 272 units/);
+  // the declared width stays inside the panel: never narrower than the default, never wider than the panel's text
+  for (const bad of [0, 100, TILE_UNITS - 1, 273, 'wide', null, NaN]) assert.match(checkLabels({ ...data, tileUnits: bad }, '').join('\n'), new RegExp(`tileUnits must be between ${TILE_UNITS} and 272`), String(bad));
+  // the spec's tileUnits reaches the page data as given (0 too, so the check refuses it); without it the data has
+  // none (existing pages stay byte-identical)
+  assert.equal(data.tileUnits, undefined);
+  assert.ok(!('tileUnits' in data));
+  assert.equal(resolveFilm({ ...spec(), tileUnits: 272 }, LESSONS, MODULES).tileUnits, 272);
+  assert.equal(resolveFilm({ ...spec(), tileUnits: 0 }, LESSONS, MODULES).tileUnits, 0);
+  // only a module intro draws topic tiles: a field film that declares one fails, it is not silently dropped
+  assert.throws(() => fresolve({ ...fspec(), tileUnits: 200 }), /tileUnits is for a module intro film/);
+});
+
+test('checkLabels: every tr(nl, en) label of the stage fits its box at 22 units, by measured width', () => {
+  const data = resolveFilm(spec(), LESSONS, MODULES);
+  assert.deepEqual(checkLabels(data, "tr('Lijn 4: buiten scope', 'Line 4: out of scope')"), []);
+  assert.match(checkLabels(data, "tr('Een veel te lange tekst voor het paneel', 'Short')").join('\n'), /label "Een veel te lange tekst voor het paneel" \(nl\) is \d+ units wide, the panel is 284/);
+  assert.match(checkLabels(data, "tr('Short', 'Een veel te lange tekst voor het paneel')").join('\n'), /\(en\) is \d+ units wide/);
+  // a narrower box names its width as a third argument
+  assert.match(checkLabels(data, "tr('Vloer klaar', 'Floor ready', 100)").join('\n'), /label "Vloer klaar" \(nl\) is 1\d\d units wide, its box is 100/);
+  assert.deepEqual(checkLabels(data, "tr('Vloer klaar', 'Floor ready', 160)"), []);
+});
+
+test('checkFilm: an intro film is held to its drawn labels', () => {
+  const data = resolveFilm(spec(), LESSONS, MODULES);
+  assert.match(checkFilm(data, ctx({ stageText: "tr('Een veel te lange tekst voor het paneel', 'Short')" })).join('\n'), /units wide, the panel is 284/);
+});
+
+// ---------------------------------------------------------------- review of the pilot (14 Nov): gaps a copy would inherit
+test('checkNarration: the misread Dutch words in the plural too', () => {
+  for (const w of ['deliverables', 'deadlines', 'definitions of done']) {
+    assert.match(checkNarration(narrated({ '0.0': [`De ${w} komen.`, 'Fine.'] })).join('\n'), /a word the Dutch voice misreads/, w);
+  }
+});
+
+test('checkLabels: a tr() label in double quotes or backticks is not measured, so it is an error', () => {
+  const data = resolveFilm(spec(), LESSONS, MODULES);
+  for (const src of ['tr("Een veel te lange tekst voor het paneel", "Short")', 'tr(`Lang`, `Long`)', "tr('Kort', \"Short\")"]) {
+    assert.match(checkLabels(data, src).join('\n'), /write it as tr\('nl', 'en'\)/, src);
+  }
+  // the stage's own definition and a title from the page data are no literal labels
+  assert.deepEqual(checkLabels(data, 'const tr = (nl, en) => (NL ? nl : en); tr(t.title.nl, t.title.en);'), []);
+});
+
+test('checkFilm: a field film is held to its drawn labels as well', () => {
+  const field = clone(narrated());
+  delete field.module;
+  delete field.topics;
+  field.field = 'pm.field.fx';
+  field.lessons = [];
+  assert.match(checkFilm(field, ctx({ module: undefined, stageText: "tr('Een veel te lange tekst voor het paneel', 'Short')" })).join('\n'), /units wide, the panel is 284/);
+});
+
+// ---------------------------------------------------------------- field films (v17, Task 4)
+// A field film is defined by a field of the index (FIELDS): its source text is
+// the field's title and blurb plus the title, blurb, topic titles and lessons of
+// each of its modules. Its coverage rule is the road: every module of the field
+// is a station, named in a caption of its OWN scene in both languages, in the
+// order of the road, explained in at least two beats and lit; and the film ends
+// on the shared map with exactly the field's places lit.
+const FY = {
+  id: 'pm.fy', subject: 'pm', track: 'project', level: 2,
+  title: { nl: 'Uitvoeren', en: 'Run' }, blurb: { nl: 'Het project in beweging houden.', en: 'Keep the project moving.' },
+  topics: [{ id: 'steer', title: { nl: 'Sturen', en: 'Steering' }, levels: ['pm.fy.a'] }],
+  lessons: ['pm.fy.a'],
+};
+const FLESSONS = {
+  nl: new Map([...LESSONS.nl, ['pm.fy.a', lesson('pm.fy.a', ['Stuurgroep'], ['Een stuurgroep komt elke 4 weken samen.'])]]),
+  en: new Map([...LESSONS.en, ['pm.fy.a', lesson('pm.fy.a', ['Steering committee'], ['A steering committee meets every 4 weeks.'])]]),
+};
+const FIELD = {
+  id: 'pm.field.fx', subject: 'pm', film: 'pm.field.fx',
+  title: { nl: 'Van begin tot eind', en: 'Start to finish' }, blurb: { nl: 'Plannen en uitvoeren, de weg in 5 stappen.', en: 'Plan and run, the road in 5 steps.' },
+  modules: ['pm.fx', 'pm.fy'],
+};
+const FMODULES = [MOD, FY, { id: 'pm.other', lessons: ['pm.other.c'], topics: [] }];
+const FIELDS_FX = [FIELD];
+const LIT = '<g class="map-place is-lit" data-module="pm.fx" data-cue="map-fx"></g><g class="map-place is-lit" data-module="pm.fy" data-cue="map-fy"></g>';
+const fspec = () => ({
+  id: 'pm.field.fx',
+  title: { nl: 'De weg', en: 'The road' },
+  field: 'pm.field.fx',
+  stations: { 'pm.fx': { scene: 's2', cue: 'stFx' }, 'pm.fy': { scene: 's3', cue: 'stFy' } },
+  strictFocus: true,
+  scenes: [
+    { id: 's1', level: 1, dur: 20, still: 0.9, title: { nl: 'De weg', en: 'The road' }, beats: [beat('Elk project loopt een weg, in {n:5} stappen.', 'Every project walks a road, in {n:5} steps.', 'road')] },
+    { id: 's2', level: 1, dur: 20, still: 0.9, title: { nl: 'Plannen', en: 'Plan' }, beats: [
+      beat('Het eerste station is Plannen.', 'The first station is Plan.', 'stFx'),
+      beat('Elk {t:Werkpakket|werkpakket} krijgt een eigenaar.', 'Each {t:Work package|work package} gets an owner.', 'pkg', { cue: { Werkpakket: 'pkg' } }),
+    ] },
+    { id: 's3', level: 1, dur: 20, still: 0.9, title: { nl: 'Uitvoeren', en: 'Run' }, beats: [
+      beat('Het tweede station is Uitvoeren.', 'The second station is Run.', 'stFy'),
+      beat('De {t:Stuurgroep|stuurgroep} komt elke {n:4} weken.', 'The {t:Steering committee|steering committee} meets every {n:4} weeks.', 'steer', { cue: { Stuurgroep: 'steer' } }),
+    ] },
+    { id: 's4', level: 1, dur: 20, still: 0.9, title: { nl: 'De kaart', en: 'The map' }, beats: [
+      beat('De kaart, met beide stations.', 'The map, with both stations.', ['map-fx', 'map-fy']),
+      beat('Begin bij het eerste.', 'Start with the first.', 'map-fx'),
+    ] },
+  ],
+});
+const fctx = (extra = {}) => ({ lessons: FLESSONS, levelOf: () => 1, wiredBy: [], field: FIELD, modules: FMODULES, stageText: LIT, ...extra });
+const fresolve = (s = fspec()) => resolveFilm(s, FLESSONS, FMODULES, FIELDS_FX);
+const caption = (data, si, bi, lang, text) => { data.scenes[si].beats[bi].text[lang] = text; data.scenes[si].beats[bi].seg[lang] = [text]; };
+
+test('resolveFilm: a field film is defined by its field and serves all lessons of its modules', () => {
+  const data = fresolve();
+  assert.equal(data.field, 'pm.field.fx');
+  assert.ok(!('module' in data) && !('topics' in data));
+  assert.deepEqual(data.lessons, ['pm.fx.a', 'pm.fx.b', 'pm.fy.a']);
+  assert.deepEqual(data.stations, [
+    { id: 'pm.fx', title: { nl: 'Plannen', en: 'Plan' }, scene: 's2', cue: 'stFx' },
+    { id: 'pm.fy', title: { nl: 'Uitvoeren', en: 'Run' }, scene: 's3', cue: 'stFy' },
+  ]);
+  assert.deepEqual(data.scenes[2].terms.map((t) => [t.lesson, t.nl, t.en]), [['pm.fy.a', 'Stuurgroep', 'Steering committee']]);
+  // a number from a lesson names that lesson; one only in the field's own text names the field
+  assert.deepEqual(data.numbers.map((n) => [n.value, n.lesson]), [['5', 'pm.field.fx'], ['4', 'pm.fy.a']]);
+});
+
+test('resolveFilm: a field film refuses a module or lessons as well, an unknown field, another id, and a road that is not its field', () => {
+  assert.throws(() => fresolve({ ...fspec(), module: 'pm.fx' }), /a field, a module or lessons, not more than one/);
+  assert.throws(() => fresolve({ ...fspec(), lessons: ['pm.fx.a'] }), /a field, a module or lessons, not more than one/);
+  assert.throws(() => fresolve({ ...fspec(), field: 'pm.field.nope', id: 'pm.field.nope' }), /unknown field pm\.field\.nope/);
+  assert.throws(() => fresolve({ ...fspec(), id: 'pm.field.other' }), /a field film's id is its field id/);
+  const missing = fspec();
+  delete missing.stations['pm.fy'];
+  assert.throws(() => fresolve(missing), /module pm\.fy of pm\.field\.fx has no scene and cue in the film's stations/);
+  const extra = fspec();
+  extra.stations['pm.other'] = { scene: 's2', cue: 'x' };
+  assert.throws(() => fresolve(extra), /station pm\.other is no module of pm\.field\.fx/);
+  const badScene = fspec();
+  badScene.stations['pm.fy'].scene = 's9';
+  assert.throws(() => fresolve(badScene), /station pm\.fy: no scene s9/);
+  const outside = fspec();
+  outside.scenes[0].beats[0] = beat('Een {t:Sprint|sprint}.', 'A {t:Sprint|sprint}.', 'x', { cue: { Sprint: 'x' } });
+  assert.throws(() => fresolve(outside), /term "Sprint" \(nl\) is in none of the served lessons/);
+  const num = fspec();
+  num.scenes[0].beats[0] = beat('Na {n:14} dagen.', 'After {n:14} days.', 'road');
+  assert.throws(() => fresolve(num), /number 14 is in none of the served Dutch lessons nor in the text of field pm\.field\.fx/);
+});
+
+test('checkFilm: a field film passes on its road, not on per-term coverage', () => {
+  assert.deepEqual(checkFilm(fresolve(), fctx()), []);
+});
+
+test('checkFilm: each module of the field is named in a caption of its OWN scene, in both languages', () => {
+  const data = fresolve();
+  const mute = clone(data);
+  caption(mute, 2, 0, 'nl', 'Het tweede station.');
+  caption(mute, 2, 0, 'en', 'The second station.');
+  const out = checkFilm(mute, fctx()).join('\n');
+  assert.match(out, /station pm\.fy: "Uitvoeren" \(nl\) is in no caption of its scene s3/);
+  assert.match(out, /station pm\.fy: "Run" \(en\) is in no caption of its scene s3/);
+  // the map scene naming it does not count
+  const elsewhere = clone(mute);
+  caption(elsewhere, 3, 0, 'en', 'The map, with Run.');
+  assert.match(checkFilm(elsewhere, fctx()).join('\n'), /"Run" \(en\) is in no caption of its scene s3/);
+  // a whole word: "Running" is not "Run"
+  const part = clone(data);
+  caption(part, 2, 0, 'en', 'The second station is Running.');
+  assert.match(checkFilm(part, fctx()).join('\n'), /"Run" \(en\) is in no caption of its scene s3/);
+});
+
+test('checkFilm: each station is explained in two beats and lit', () => {
+  const thin = clone(fresolve());
+  thin.scenes[2].beats.pop();
+  assert.match(checkFilm(thin, fctx()).join('\n'), /station pm\.fy: scene s3 has 1 beat, needs at least 2/);
+  const dark = clone(fresolve());
+  dark.scenes[2].beats[0].focus = ['steer'];
+  dark.scenes[2].beats[0].cues = ['steer'];
+  assert.match(checkFilm(dark, fctx()).join('\n'), /station pm\.fy: no beat of scene s3 lights its part stFy/);
+});
+
+test('checkFilm: the stations follow the order of the road', () => {
+  const s = fspec();
+  s.stations['pm.fx'].scene = 's3';
+  s.stations['pm.fy'].scene = 's2';
+  for (const [i, nl, en] of [[1, 'Het eerste station is Uitvoeren.', 'The first station is Run.'], [2, 'Het tweede station is Plannen.', 'The second station is Plan.']]) { s.scenes[i].beats[0].nl = nl; s.scenes[i].beats[0].en = en; }
+  s.scenes[1].beats[0].focus = 'stFy';
+  s.scenes[2].beats[0].focus = 'stFx';
+  assert.match(checkFilm(fresolve(s), fctx()).join('\n'), /station pm\.fy \(scene s2\) comes before pm\.fx \(scene s3\); the stations follow the road/);
+});
+
+test('checkFilm: a field film ends on the map with exactly its places lit', () => {
+  const data = fresolve();
+  // the last scene lights no place of the map
+  const dark = clone(data);
+  for (const b of dark.scenes[3].beats) { b.focus = ['road']; b.cues = ['road']; }
+  assert.match(checkFilm(dark, fctx()).join('\n'), /the last scene lights no map place map-fy/);
+  // the drawing does not light a place
+  assert.match(checkFilm(data, fctx({ stageText: LIT.split('</g>')[0] })).join('\n'), /the map does not light pm\.fy/);
+  // or lights one that is not of the field
+  assert.match(checkFilm(data, fctx({ stageText: `${LIT}<g class="map-place is-lit" data-module="pm.other" data-cue="map-other">` })).join('\n'), /the map lights pm\.other, which is no module of pm\.field\.fx/);
+});
+
+test('checkFilm: a field film drifts with its field and modules', () => {
+  const data = fresolve();
+  // a module renamed in the index
+  const renamed = clone(FY);
+  renamed.title.en = 'Execute';
+  assert.match(checkFilm(data, fctx({ modules: [MOD, renamed] })).join('\n'), /station pm\.fy: title "Run" \(en\) is now "Execute"/);
+  // a module moved to another field
+  const moved = { ...FIELD, modules: ['pm.fx'] };
+  assert.match(checkFilm(data, fctx({ field: moved })).join('\n'), /station pm\.fy is no longer a module of pm\.field\.fx/);
+  // a module added to the field
+  const grown = { ...FIELD, modules: ['pm.fx', 'pm.fy', 'pm.other'] };
+  assert.match(checkFilm(data, fctx({ field: grown })).join('\n'), /module pm\.other of pm\.field\.fx is not on the film's road/);
+  // a lesson taken out of its module
+  const shrunk = { ...FY, lessons: [] };
+  assert.match(checkFilm(data, fctx({ modules: [MOD, shrunk] })).join('\n'), /served lesson pm\.fy\.a is no longer in a module of pm\.field\.fx/);
+  // a number gone from all of the field's text
+  const gone = { nl: new Map(FLESSONS.nl), en: FLESSONS.en };
+  gone.nl.set('pm.fy.a', { ...FLESSONS.nl.get('pm.fy.a'), teach: ['Een stuurgroep komt elke maand samen.'] });
+  assert.match(checkFilm(data, fctx({ lessons: gone })).join('\n'), /number 4 \(scene s3\) no longer in the text of field pm\.field\.fx/);
+  assert.match(checkFilm(data, fctx({ field: { ...FIELD, blurb: { nl: 'De weg.', en: 'The road.' } } })).join('\n'), /number 5 \(scene s1\) no longer in the text of field pm\.field\.fx/);
+  // without its field the check cannot run
+  assert.match(checkFilm(data, fctx({ field: undefined })).join('\n'), /field film of pm\.field\.fx: field pm\.field\.fx not given/);
+});
+
+test('checkFilm: a field film is held to the narration guard and to its station titles fitting the road', () => {
+  const data = fresolve();
+  const loud = clone(data);
+  for (const s of loud.scenes) for (const b of s.beats) { const nl = b.text.nl; const en = b.text.en; b.say = { nl: [nl], en: [en] }; b.voice = { nl, en }; }
+  loud.scenes[0].beats[0].say.nl = ['Zo: dit.'];
+  assert.match(checkFilm(loud, fctx()).join('\n'), /a symbol the voice reads aloud, or a colon/);
+  // a station title wraps into at most two lines of a row of the road
+  const two = clone(data);
+  two.stations[1].title.en = 'Negotiating and holding your ground';
+  assert.deepEqual(checkLabels(two, '').filter((e) => e.startsWith('station')), []);
+  const wide = clone(data);
+  wide.stations[1].title.nl = 'Onderhandelen en voet bij stuk houden met alle partijen';
+  assert.match(checkLabels(wide, '').join('\n'), new RegExp(`station pm\\.fy: "Onderhandelen en voet bij stuk houden met alle partijen" \\(nl\\) wraps to 3 lines, a station on the road holds ${STATION_LINES} lines of ${STATION_UNITS} units`));
+  const long = clone(data);
+  long.stations[1].title.en = 'Projectportfoliomanagementsystemsrenewal';
+  assert.match(checkLabels(long, '').join('\n'), /station pm\.fy: the word "Projectportfoliomanagementsystemsrenewal" \(en\) is \d+ units wide, a station on the road holds 236/);
+});
+
+// A station label (15 Nov, eng.field.energy): a title that does not fit a station of the road
+// ("Motoren, aandrijvingen en perslucht") gets a shorter label in the film only. The index title
+// stays; the film names the label in its caption, the road draws it and the fit is held to it.
+// The fixture's second module gets a title too long for the purpose of the test; the label keeps words of it.
+const FY_LONG = { ...FY, title: { nl: 'Uitvoeren en bijsturen', en: 'Run and steer' } };
+const LMODULES = [MOD, FY_LONG, { id: 'pm.other', lessons: ['pm.other.c'], topics: [] }];
+const labelled = (label) => { const s = fspec(); s.stations['pm.fy'] = { ...s.stations['pm.fy'], label }; return s; };
+const lresolve = (label) => resolveFilm(labelled(label), FLESSONS, LMODULES, FIELDS_FX);
+test('resolveFilm: a station may carry a label, a short name for the road, in both languages', () => {
+  const data = lresolve({ nl: 'Bijsturen', en: 'Steer' });
+  assert.deepEqual(data.stations[1], { id: 'pm.fy', title: { nl: 'Uitvoeren en bijsturen', en: 'Run and steer' }, label: { nl: 'Bijsturen', en: 'Steer' }, scene: 's3', cue: 'stFy' });
+  assert.ok(!('label' in data.stations[0]), 'a station without a label has none in the data');
+  for (const bad of [{ nl: 'Bijsturen' }, { nl: 'Bijsturen', en: '' }, 'Bijsturen', { nl: 5, en: 'Steer' }, null]) assert.throws(() => lresolve(bad), /station pm\.fy: a label needs a Dutch and an English text/, JSON.stringify(bad));
+});
+
+test('checkFilm: a labelled station is named by its label in the caption of its own scene, not by the index title', () => {
+  const data = lresolve({ nl: 'Bijsturen', en: 'Steer' });
+  const ctx = fctx({ modules: LMODULES });
+  const out = checkFilm(data, ctx).join('\n');
+  assert.match(out, /station pm\.fy: "Bijsturen" \(nl\) is in no caption of its scene s3/);
+  assert.match(out, /station pm\.fy: "Steer" \(en\) is in no caption of its scene s3/);
+  const named = clone(data);
+  caption(named, 2, 0, 'nl', 'Het tweede station is Bijsturen.');
+  caption(named, 2, 0, 'en', 'The second station is Steer.');
+  assert.deepEqual(checkFilm(named, ctx), []);
+  // the index title is still checked for drift
+  const renamed = clone(FY_LONG);
+  renamed.title.en = 'Execute and steer';
+  assert.match(checkFilm(named, fctx({ modules: [MOD, renamed] })).join('\n'), /station pm\.fy: title "Run and steer" \(en\) is now "Execute and steer"/);
+});
+
+// A label only shortens the module's own title: its words are words of the title, in their order. So a label cannot
+// put another module's name (or any other name) on a station, while the station's id and title say something else.
+test('checkFilm: a station label is a shortening of its index title, never another name', () => {
+  for (const [label, lang, shown] of [
+    [{ nl: 'Plannen', en: 'Steer' }, 'nl', 'Plannen'], // the other station's name
+    [{ nl: 'Bijsturen', en: 'Plan' }, 'en', 'Plan'],
+    [{ nl: 'Bijsturen en uitvoeren', en: 'Steer' }, 'nl', 'Bijsturen en uitvoeren'], // the title's words, out of order
+    [{ nl: 'Bijsturen', en: 'Run steering' }, 'en', 'Run steering'], // part of a word is not a word
+  ]) {
+    const data = lresolve(label);
+    for (const l of ['nl', 'en']) caption(data, 2, 0, l, `${l === 'nl' ? 'Het tweede station is' : 'The second station is'} ${label[l]}.`);
+    assert.match(checkFilm(data, fctx({ modules: LMODULES })).join('\n'), new RegExp(`station pm\\.fy: the label "${shown}" \\(${lang}\\) is no shortening of the title "[^"]+"`), JSON.stringify(label));
+  }
+  // the title's own words, in order, with its punctuation dropped: as eng.power's "Motoren, aandrijvingen en perslucht"
+  const ok = lresolve({ nl: 'Uitvoeren', en: 'Run steer' });
+  for (const l of ['nl', 'en']) caption(ok, 2, 0, l, `Station ${ok.stations[1].label[l]}.`);
+  assert.deepEqual(checkFilm(ok, fctx({ modules: LMODULES })), []);
+});
+
+test('checkLabels: the road is held to the label of a labelled station, not to its index title', () => {
+  const long = 'Onderhandelen en voet bij stuk houden met alle partijen';
+  const wide = clone(fresolve());
+  wide.stations[1].title.nl = long;
+  assert.match(checkLabels(wide, '').join('\n'), new RegExp(`station pm\\.fy: "${long}" \\(nl\\) wraps to 3 lines`));
+  wide.stations[1].label = { nl: 'Onderhandelen en voet bij stuk', en: 'Do' };
+  assert.deepEqual(checkLabels(wide, '').filter((e) => e.startsWith('station')), [], 'the short label fits, the long title is no longer drawn');
+  wide.stations[1].label = { nl: long, en: 'Do' };
+  assert.match(checkLabels(wide, '').join('\n'), new RegExp(`station pm\\.fy: "${long}" \\(nl\\) wraps to 3 lines`));
+});
+
+// The next field films (people, portfolio, IT) take their station titles from the
+// index; the kit's road must hold every one of them, or those films cannot be built.
+// Engineering's four fields (14 Nov, Task 13 step 1) have no film yet. One of its
+// titles does not fit a station: the Dutch title of eng.power wraps to three lines.
+// It is listed here, and the list must stay exactly the titles that do not fit, so
+// it cannot grow unseen. The first Engineering film that carries eng.power (eng.field.energy,
+// 15 Nov) chose a shorter station LABEL in the film only ("Motoren en perslucht", "Motors and
+// fluid power"); the module title is unchanged. Every module listed here must carry such a
+// label in the shipped film (test below), so a title that does not fit never reaches the road.
+const STATION_LATER = { 'eng.power': ['nl'] };
+test('checkLabels: every module title of every field fits a station of the road', () => {
+  const tooLong = {};
+  for (const f of INDEX_FIELDS) for (const id of f.modules) {
+    const m = INDEX_MODULES.find((x) => x.id === id);
+    // the reference film draws a station title with the kit's own wrap
+    for (const lang of ['nl', 'en']) if (wrapUnits(m.title[lang], STATION_UNITS, CHAR_W).length > STATION_LINES) (tooLong[id] = tooLong[id] || []).push(lang);
+    const errs = checkLabels({ scenes: [], stations: [{ id, title: { nl: m.title.nl, en: m.title.en } }] }, '');
+    assert.equal(errs.length > 0, Boolean(tooLong[id]), `${id}: ${errs.join('; ')}`);
+  }
+  assert.deepEqual(tooLong, STATION_LATER);
+});
+
+test('checkLabels: a module whose title does not fit a station is a station of its film under a label that does', () => {
+  for (const [id, langs] of Object.entries(STATION_LATER)) {
+    const f = INDEX_FIELDS.find((x) => x.modules.includes(id));
+    assert.ok(f && f.film, `${id}: its field ${f && f.id} has no film yet, so the long title would reach the road`);
+    const data = readFilmData(fs.readFileSync(new URL(`../src/content/courses/films/${f.film}.html`, import.meta.url), 'utf8'));
+    const st = data.stations.find((x) => x.id === id);
+    assert.ok(st && st.label, `${id}: the station carries a label`);
+    for (const lang of langs) assert.ok(st.label[lang] !== st.title[lang], `${id} (${lang}): the label is shorter than the title`);
+    assert.deepEqual(checkLabels({ scenes: [], stations: [st] }, ''), [], `${id}: the label fits the road`);
+  }
+});
+
+// ---------------------------------------------------------------- short films (Task 4a)
+// Merijn, 14 Nov: a film of a minute or half a minute is enough when the content
+// says so. The kit accepts 25 s, 2 scenes and about 60 narration words; every
+// per-beat, readability and narration rule still applies.
+const words = (n, w) => Array.from({ length: n }, () => w).join(' ');
+const shortSpec = (scenes = 2, dur = 15) => ({
+  id: 'pm.fx.short',
+  title: { nl: 'Kort', en: 'Short' },
+  lessons: ['pm.fx.b'],
+  strictFocus: true,
+  scenes: Array.from({ length: scenes }, (_, i) => ({
+    id: `s${i + 1}`, level: 1, dur, still: 0.9, title: { nl: `Deel ${i + 1}`, en: `Part ${i + 1}` },
+    beats: [
+      beat('Eén {t:Buffer|buffer} van {n:3} weken.', 'One {t:Buffer|buffer} of {n:3} weeks.', 'buf', { cue: { Buffer: 'buf' } }),
+      beat('Dan volgt de rest.', 'Then the rest follows.', 'rest'),
+    ],
+  })),
+});
+// every beat gets a narration script; `perBeat` words in each language
+const voiced = (data, perBeat) => {
+  const out = clone(data);
+  out.scenes.forEach((s) => s.beats.forEach((b) => {
+    const nl = `${words(perBeat, 'woord')}.`;
+    const en = `${words(perBeat, 'word')}.`;
+    b.say = said(nl, en);
+    b.voice = { nl, en };
+  }));
+  return out;
+};
+const shortCtx = () => ctx({ module: undefined });
+const shortFilm = (scenes, dur, perBeat) => voiced(resolveFilm(shortSpec(scenes, dur), LESSONS, MODULES), perBeat);
+
+test('short films: 30 s, 2 scenes and about 60 narration words pass the build checks', () => {
+  const data = shortFilm(2, 15, 16); // 4 beats x 16 = 64 words
+  assert.equal(data.scenes.length, 2);
+  assert.equal(data.scenes.reduce((a, s) => a + s.dur, 0), 30);
+  assert.deepEqual(checkFilm(data, shortCtx()), []);
+});
+
+test('short films: exactly 25 s passes, 24 s fails', () => {
+  const at = (a, b) => { const d = shortFilm(2, 15, 16); d.scenes[0].dur = a; d.scenes[1].dur = b; return checkFilm(d, shortCtx()); };
+  assert.deepEqual(at(12, 13), []);
+  assert.match(at(12, 12).join('\n'), /film is 24 s, must be 25–360/);
+});
+
+test('short films: one scene still fails, and so do thirteen (Task 17: up to 12)', () => {
+  assert.match(checkFilm(shortFilm(1, 30, 32), shortCtx()).join('\n'), /needs 2–12 scenes, has 1/);
+  assert.match(checkFilm(shortFilm(13, 4, 7), shortCtx()).join('\n'), /needs 2–12 scenes, has 13/);
+});
+
+test('short films: under 25 s, under 25 s of narration and over the caps still fail', () => {
+  assert.match(checkFilm(shortFilm(2, 11, 16), shortCtx()).join('\n'), /film is 22 s, must be 25–360/);
+  assert.match(checkFilm(shortFilm(2, 15, 10), shortCtx()).join('\n'), /narration nl would take about 16 s, must be 25–360/);
+  assert.match(checkFilm(shortFilm(2, 15, 300), shortCtx()).join('\n'), /narration nl would take about \d+ s, must be 25–360/);
+  assert.match(checkFilm(shortFilm(9, 41, 16), shortCtx()).join('\n'), /film is 369 s, must be 25–360/);
+});
+
+test('short films: a beat too short to read still fails', () => {
+  // a scene whose captions hold 20 words needs 20 / 2.5 + 2 = 10 s; 5 s is too short
+  const s = shortSpec();
+  s.scenes[0].dur = 5;
+  s.scenes[0].beats[1] = beat(`${words(11, 'dan')} klaar.`, `${words(11, 'then')} done.`, 'rest');
+  const data = voiced(resolveFilm(s, LESSONS, MODULES), 16);
+  assert.match(checkFilm(data, shortCtx()).join('\n'), /scene s1: 5 s is too short for/);
+});
+
+test('short films: the narration guard still applies', () => {
+  const data = shortFilm(2, 15, 16);
+  data.scenes[0].beats[0].say = said('Zo: dit.', 'Fine.');
+  data.scenes[0].beats[0].voice = { nl: 'Zo: dit.', en: 'Fine.' };
+  assert.match(checkNarration(data).join('\n'), /a symbol the voice reads aloud, or a colon/);
+});
+
+// pm.run.intro: "rapporteren" of "Sturen en rapporteren" is 129 units measured; its tiles are 140 wide with 5 units
+// of padding a side, so the film declares tileUnits 130; at the kit default (128) the word is refused
+test('checkLabels: the word "rapporteren" of "Sturen en rapporteren" fits a tile of 130 the film declares', () => {
+  const data = resolveFilm(spec(), LESSONS, MODULES);
+  const run = clone(data);
+  run.topics[0].title.nl = 'Sturen en rapporteren';
+  assert.match(checkLabels(run, '').join('\n'), new RegExp(`a tile is ${TILE_UNITS}\\b`));
+  run.tileUnits = 130;
+  assert.deepEqual(checkLabels(run, ''), []);
+  assert.deepEqual(wrapUnits('Sturen en rapporteren', 130, CHAR_W), ['Sturen en', 'rapporteren']);
+});

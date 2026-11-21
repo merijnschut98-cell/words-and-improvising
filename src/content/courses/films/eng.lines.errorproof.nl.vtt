@@ -1,0 +1,341 @@
+WEBVTT
+
+1
+00:00:00.871 --> 00:00:02.241
+Een montageplek aan een lijn.
+
+2
+00:00:02.965 --> 00:00:05.670
+De operator legt een behuizing in de houder en zet
+
+3
+00:00:05.693 --> 00:00:07.945
+er een stalen beugel en een kunststof clip op.
+
+4
+00:00:08.596 --> 00:00:11.684
+Dan gaan er schroeven in, en perst de pers er een lager in.
+
+5
+00:00:12.637 --> 00:00:16.340
+Links de bakken met beugels, erboven de schroefmachine en de pers.
+
+6
+00:00:17.360 --> 00:00:19.171
+Dit gebeurt honderden keren per dag,
+
+7
+00:00:19.415 --> 00:00:22.677
+dus zelfs een heel kleine foutkans geeft elke week foute producten.
+
+8
+00:00:23.952 --> 00:00:28.039
+De lijn bouwt twee kachels, met een beugel van 6 of van 8 millimeter.
+
+9
+00:00:28.743 --> 00:00:31.158
+Die lijken bijna hetzelfde en liggen naast elkaar.
+
+10
+00:00:32.129 --> 00:00:36.262
+Na een onderbreking pakt de operator uit de verkeerde bak: een vergissing (mistake),
+
+11
+00:00:36.657 --> 00:00:38.480
+de menselijke handeling die misgaat.
+
+12
+00:00:39.205 --> 00:00:40.412
+Iedereen vergist zich soms.
+
+13
+00:00:41.540 --> 00:00:45.488
+Gaat hij zo door, dan krijgt de klant een defect: een fout product.
+
+14
+00:00:46.254 --> 00:00:50.190
+Shigeo Shingo zei: vergissingen gebeuren, defecten hoeven niet,
+
+15
+00:00:50.538 --> 00:00:52.187
+als je de vergissing op tijd vangt.
+
+16
+00:00:53.241 --> 00:00:56.051
+Je telt fouten in ppm, per miljoen stuks.
+
+17
+00:00:56.778 --> 00:00:59.112
+Eén op de 5.000 is 200 ppm.
+
+18
+00:00:59.841 --> 00:01:02.267
+Vraag niet wie het deed, maar hoe het kon gebeuren.
+
+19
+00:01:03.552 --> 00:01:05.410
+Shingo’s antwoord was poka-yoke,
+
+20
+00:01:05.746 --> 00:01:08.265
+Japans voor het vermijden van onbedoelde fouten:
+
+21
+00:01:08.463 --> 00:01:11.214
+simpele middelen die een vergissing onmogelijk maken,
+
+22
+00:01:11.505 --> 00:01:12.411
+of meteen vangen.
+
+23
+00:01:13.333 --> 00:01:16.733
+Hier is dat pick-to-light: bij de goede bak brandt een lampje,
+
+24
+00:01:17.116 --> 00:01:19.055
+en een lichtstraal ziet of de hand erin ging.
+
+25
+00:01:20.056 --> 00:01:22.831
+Gaat de hand in de verkeerde bak, dan blijft de klem dicht.
+
+26
+00:01:23.515 --> 00:01:27.404
+Een stop is sterker dan een waarschuwing: een zoemer mis je in een lawaaiige hal.
+
+27
+00:01:28.396 --> 00:01:30.822
+Nog beter: maak de fout onmogelijk.
+
+28
+00:01:31.507 --> 00:01:33.260
+De mal (fixture) zet de behuizing op zijn plek;
+
+29
+00:01:33.423 --> 00:01:35.339
+zijn pen past alleen in de schuine hoek,
+
+30
+00:01:35.687 --> 00:01:37.011
+dus verkeerd om kan niet.
+
+31
+00:01:38.318 --> 00:01:40.872
+Kan dat niet, detecteer de fout dan en stop.
+
+32
+00:01:41.605 --> 00:01:44.786
+Een inductieve sensor (inductive sensor) ziet metaal op een paar millimeter,
+
+33
+00:01:45.088 --> 00:01:47.143
+zonder aanraken: hier de beugel.
+
+34
+00:01:48.132 --> 00:01:50.419
+Een foto-elektrische sensor (photoelectric sensor) werkt met licht:
+
+35
+00:01:50.837 --> 00:01:52.892
+de behuizing in de mal onderbreekt de straal.
+
+36
+00:01:53.889 --> 00:01:58.649
+Ze melden het aan de PLC: de kleine industriële computer die de machine aanstuurt.
+
+37
+00:01:59.944 --> 00:02:03.311
+Eerst miste bij één op de 2.000 behuizingen een van de 8 schroeven.
+
+38
+00:02:04.014 --> 00:02:08.461
+Nu meet de schroefmachine van elke schroef moment en hoek; de PLC telt mee.
+
+39
+00:02:09.454 --> 00:02:14.551
+De interlock is een regel in de PLC: de volgende stap pas als alle checks OK zijn.
+
+40
+00:02:15.217 --> 00:02:17.748
+Pas bij acht keer OK laat de klem de behuizing los.
+
+41
+00:02:18.774 --> 00:02:19.947
+Een extra controleur?
+
+42
+00:02:20.656 --> 00:02:23.338
+Met het oog vang je meestal 80 tot 90 procent.
+
+43
+00:02:24.098 --> 00:02:29.997
+Van 400 ppm fout, bij 85 procent gevangen, komt nog 60 ppm bij de klant.
+
+44
+00:02:31.027 --> 00:02:34.510
+Let ook op valse afkeur (false reject): een goed product dat de check afkeurt.
+
+45
+00:02:35.270 --> 00:02:38.312
+Te ruim laat fouten door, te streng geeft valse afkeur.
+
+46
+00:02:39.290 --> 00:02:41.949
+Keurt een camera 3 procent goede producten af,
+
+47
+00:02:42.146 --> 00:02:44.062
+dan vindt iemand de overbruggingssleutel.
+
+48
+00:02:44.786 --> 00:02:47.131
+Vraag dus hoe vaak elke check wordt overbrugd.
+
+49
+00:02:48.445 --> 00:02:51.173
+Begin bij het defect: wat is er fysiek anders?
+
+50
+00:02:51.864 --> 00:02:53.106
+Hier een kunststof clip.
+
+51
+00:02:53.815 --> 00:02:56.857
+Een inductieve sensor ziet alleen de stalen beugel erachter,
+
+52
+00:02:57.263 --> 00:02:58.854
+en meldt dus altijd aanwezig.
+
+53
+00:02:59.922 --> 00:03:03.184
+Een capacitieve sensor (capacitive sensor) ziet ook kunststof en vloeistof,
+
+54
+00:03:03.452 --> 00:03:05.344
+maar reageert ook op vocht en vuil.
+
+55
+00:03:06.253 --> 00:03:09.502
+Hier past een reflectietaster met achtergrondonderdrukking (background suppression):
+
+56
+00:03:09.873 --> 00:03:12.381
+die negeert alles voorbij een ingestelde afstand,
+
+57
+00:03:12.706 --> 00:03:13.670
+net vóór de beugel.
+
+58
+00:03:14.985 --> 00:03:15.949
+Kracht-wegbewaking (force-displacement monitoring)
+
+59
+00:03:15.972 --> 00:03:18.399
+registreert de kracht over de slag van de pers,
+
+60
+00:03:18.793 --> 00:03:21.336
+en toetst de curve aan vensters van goede producten.
+
+61
+00:03:22.326 --> 00:03:25.414
+Een ontbrekend lager of een gescheurd huis geeft een andere curve.
+
+62
+00:03:26.113 --> 00:03:28.342
+Zo beoordeelt de pers de verbinding zelf.
+
+63
+00:03:29.396 --> 00:03:33.169
+Bewijs elke check met een referentiedeel (reference part) per faalwijze: goed,
+
+64
+00:03:33.355 --> 00:03:36.722
+zonder clip, en het grensgeval: half ingedrukt.
+
+65
+00:03:37.402 --> 00:03:38.563
+Elk fout deel moet eruit.
+
+66
+00:03:39.919 --> 00:03:41.359
+Waar zet je eerst een poka-yoke?
+
+67
+00:03:42.032 --> 00:03:47.059
+Dat bepaalt de PFMEA, de procesgerichte faalwijze- en effectenanalyse.
+
+68
+00:03:47.746 --> 00:03:51.473
+Elke faalwijze krijgt 1 tot 10 voor ernst, optreden en detectie.
+
+69
+00:03:52.484 --> 00:03:55.584
+Een tabel maakt daar een actieprioriteit (action priority) van: hoog,
+
+70
+00:03:55.909 --> 00:03:56.861
+middel of laag.
+
+71
+00:03:57.558 --> 00:03:58.533
+Ernst gaat voor.
+
+72
+00:03:59.179 --> 00:04:01.269
+Keuren met het oog scoort slecht op detectie,
+
+73
+00:04:01.605 --> 00:04:03.718
+een gevalideerde sensor met interlock goed.
+
+74
+00:04:04.737 --> 00:04:07.233
+Een escape glipt langs elke check, tot bij de klant.
+
+75
+00:04:08.003 --> 00:04:14.214
+1.000 ppm met 99,9 procent gevangen geeft 1 ppm; met het oog 150.
+
+76
+00:04:15.575 --> 00:04:17.166
+Een check telt alleen zolang hij werkt.
+
+77
+00:04:17.887 --> 00:04:21.451
+Daarom gaat elke dienst een red rabbit door: een bekend fout deel,
+
+78
+00:04:21.754 --> 00:04:25.411
+vaak rood gespoten; hier de donkere behuizing zonder lager.
+
+79
+00:04:26.402 --> 00:04:29.258
+Om zes uur ’s ochtends keurt de pers hem af: goed.
+
+80
+00:04:29.987 --> 00:04:33.017
+Om twee uur ’s middags keurt hij hem goed: de check is stuk.
+
+81
+00:04:34.035 --> 00:04:38.679
+Dan begint het reactieplan (reaction plan): stoppen, repareren, opnieuw verifiëren,
+
+82
+00:04:39.074 --> 00:04:41.617
+en alles blokkeren sinds de laatste goede check,
+
+83
+00:04:41.779 --> 00:04:43.648
+want niks daarvan is echt gecontroleerd.
+
+84
+00:04:44.792 --> 00:04:48.275
+8 uur maal 60 per uur: 480 delen.
+
+85
+00:04:48.944 --> 00:04:52.276
+Het interval van de check is ook de omvang van elke terugroepactie.

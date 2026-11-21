@@ -1,0 +1,333 @@
+WEBVTT
+
+1
+00:00:00.866 --> 00:00:04.210
+Many manufacturers develop products with stage-gate,
+
+2
+00:00:04.407 --> 00:00:07.600
+worked out by Robert Cooper from the nineteen eighties.
+
+3
+00:00:08.612 --> 00:00:12.119
+The work runs in stages: scoping, the business case,
+
+4
+00:00:12.339 --> 00:00:14.371
+development, testing and launch.
+
+5
+00:00:15.400 --> 00:00:18.662
+Between two stages sits a gate: a decision moment,
+
+6
+00:00:18.744 --> 00:00:21.612
+where management chooses on agreed deliverables.
+
+7
+00:00:22.658 --> 00:00:27.116
+That is a go/kill decision: continue, stop, hold, or redo a stage.
+
+8
+00:00:28.427 --> 00:00:31.272
+For hardware that is sensible, not old-fashioned.
+
+9
+00:00:32.074 --> 00:00:35.000
+The cost of change rises the further along you are.
+
+10
+00:00:36.015 --> 00:00:38.988
+Changing a CAD drawing takes a few hours;
+
+11
+00:00:39.104 --> 00:00:43.481
+changing a hardened steel mould can cost tens of thousands of euros.
+
+12
+00:00:44.505 --> 00:00:47.326
+And a change after delivery can mean a recall.
+
+13
+00:00:48.335 --> 00:00:50.715
+On top come long lead times for tooling,
+
+14
+00:00:50.843 --> 00:00:52.898
+and requirements like CE marking:
+
+15
+00:00:53.072 --> 00:00:56.938
+the European declaration that a product meets safety requirements.
+
+16
+00:00:58.228 --> 00:01:02.408
+Still, the stages hold much uncertainty: does the customer want this,
+
+17
+00:01:02.535 --> 00:01:03.812
+does the design work?
+
+18
+00:01:04.534 --> 00:01:06.217
+That is where agile helps.
+
+19
+00:01:07.229 --> 00:01:12.698
+Cooper described in 2016, and with Sommer in 2018,
+
+20
+00:01:12.837 --> 00:01:16.030
+sprints inside the stages: Agile-Stage-Gate.
+
+21
+00:01:17.078 --> 00:01:19.075
+Sprints, short daily meetings,
+
+22
+00:01:19.238 --> 00:01:22.431
+demos and retrospectives sit inside the stages;
+
+23
+00:01:22.593 --> 00:01:25.171
+the gates stay for big investment decisions.
+
+24
+00:01:26.306 --> 00:01:29.696
+Cooper reports good first results in a handful of companies,
+
+25
+00:01:29.940 --> 00:01:35.037
+like faster time to market, but also struggles; the evidence is still limited.
+
+26
+00:01:36.373 --> 00:01:38.300
+What is done after a hardware sprint?
+
+27
+00:01:39.086 --> 00:01:42.081
+Rarely a shippable product: something to test or show.
+
+28
+00:01:43.126 --> 00:01:48.768
+A CAD model you walk through with a customer, a 3D-printed model, a prototype test,
+
+29
+00:01:48.931 --> 00:01:51.090
+or control software on a test rig.
+
+30
+00:01:52.121 --> 00:01:55.929
+The question stays: what did we learn these two weeks that we didn't know?
+
+31
+00:01:56.940 --> 00:02:00.249
+For a Lean consultant: a gate resembles a quality gate;
+
+32
+00:02:00.446 --> 00:02:03.697
+the pitfall is a paperwork check: are the documents there,
+
+33
+00:02:03.848 --> 00:02:05.450
+not: does the product work?
+
+34
+00:02:06.480 --> 00:02:11.449
+Ask: what must be proven at the next gate, and which sprint delivers that evidence?
+
+35
+00:02:12.155 --> 00:02:15.730
+If the answer is the design file, the gate is a formality.
+
+36
+00:02:17.053 --> 00:02:22.359
+An example with illustrative amounts: a new pump housing, each time the same change,
+
+37
+00:02:22.487 --> 00:02:23.903
+another flange size.
+
+38
+00:02:24.915 --> 00:02:28.828
+In the CAD drawing: four hours at ninety euros an hour,
+
+39
+00:02:28.956 --> 00:02:31.057
+three hundred and sixty euros.
+
+40
+00:02:32.066 --> 00:02:36.060
+After the first prototype: a new printed or milled prototype,
+
+41
+00:02:36.245 --> 00:02:38.068
+about three thousand euros.
+
+42
+00:02:39.089 --> 00:02:44.140
+After the hardened mould: thirty-five thousand euros, and six weeks of delay.
+
+43
+00:02:45.122 --> 00:02:48.953
+Development takes twenty-six weeks: thirteen two-week sprints,
+
+44
+00:02:49.069 --> 00:02:53.051
+thirteen chances to find mistakes while changes cost hundreds,
+
+45
+00:02:53.214 --> 00:02:54.770
+not tens of thousands.
+
+46
+00:02:56.102 --> 00:03:00.270
+A long-lead item has a lead time so long it drives the whole schedule.
+
+47
+00:03:01.255 --> 00:03:05.040
+An injection mould, a casting, a special motor, a chip.
+
+48
+00:03:05.781 --> 00:03:10.228
+Eight to twenty weeks for a mould is not unusual; always ask the supplier.
+
+49
+00:03:11.228 --> 00:03:16.012
+The start of series production is the SOP, often fixed by a trade fair,
+
+50
+00:03:16.162 --> 00:03:18.136
+a customer contract or a season.
+
+51
+00:03:19.214 --> 00:03:22.256
+Then backward planning: count back from the SOP.
+
+52
+00:03:22.995 --> 00:03:28.452
+Minus validation, minus trial runs and corrections, minus building the tool,
+
+53
+00:03:28.661 --> 00:03:29.729
+minus ordering.
+
+54
+00:03:30.748 --> 00:03:34.904
+What is left is the last moment to fix the design: the design freeze.
+
+55
+00:03:35.723 --> 00:03:38.916
+Then changes go through a formal engineering change.
+
+56
+00:03:40.231 --> 00:03:42.239
+Here agile clashes with hardware.
+
+57
+00:03:42.934 --> 00:03:47.741
+Sprints want to learn and adjust; long-lead items demand early decisions.
+
+58
+00:03:48.741 --> 00:03:52.769
+So decide early on the long-lead items, keep the rest flexible,
+
+59
+00:03:52.909 --> 00:03:57.100
+and fix the interfaces early, like mounting points and connections,
+
+60
+00:03:57.193 --> 00:03:59.956
+so the inside of a module can still change.
+
+61
+00:04:01.015 --> 00:04:03.175
+A second tool is set-based design:
+
+62
+00:04:03.372 --> 00:04:07.575
+keep a few design options open and drop them only with enough knowledge,
+
+63
+00:04:07.831 --> 00:04:10.072
+rather than repairing one early design.
+
+64
+00:04:11.069 --> 00:04:16.456
+It comes from research on Toyota in the nineteen nineties, and SAFe names it too.
+
+65
+00:04:17.494 --> 00:04:21.894
+In practice: cheap aluminium trial moulds for two variants first,
+
+66
+00:04:22.045 --> 00:04:25.087
+soft tooling; then the hardened steel mould for the winner.
+
+67
+00:04:26.389 --> 00:04:30.046
+Often purchasing is not at the sprint planning or the PI Planning.
+
+68
+00:04:31.051 --> 00:04:34.824
+Purchasing hears about a mould when the design is almost done.
+
+69
+00:04:35.523 --> 00:04:37.624
+By then the lead time is too long.
+
+70
+00:04:38.641 --> 00:04:42.426
+Put long-lead items on the planning board as fixed milestones,
+
+71
+00:04:42.600 --> 00:04:44.016
+and invite purchasing.
+
+72
+00:04:45.045 --> 00:04:49.016
+Ask in every hardware project: which part has the longest lead time,
+
+73
+00:04:49.201 --> 00:04:51.790
+and by which week must its design be fixed?
+
+74
+00:04:53.152 --> 00:04:57.135
+An e-bike maker wants series production to start in week forty;
+
+75
+00:04:57.320 --> 00:04:59.701
+the battery housing is injection moulded.
+
+76
+00:05:00.718 --> 00:05:04.677
+Back from week forty: validating the first series takes four weeks,
+
+77
+00:05:04.758 --> 00:05:06.801
+so start by week thirty-six.
+
+78
+00:05:07.807 --> 00:05:10.802
+Trial runs and mould corrections: three weeks,
+
+79
+00:05:10.907 --> 00:05:13.357
+so the mould is ready in week thirty-three.
+
+80
+00:05:14.325 --> 00:05:18.981
+Building the mould takes fourteen weeks by the quote: start in week nineteen.
+
+81
+00:05:19.671 --> 00:05:23.839
+Ordering and approval take a week: design freeze by week eighteen.
+
+82
+00:05:24.841 --> 00:05:30.321
+Check: forty minus four, minus three, minus fourteen, minus one, is eighteen.
+
+83
+00:05:31.071 --> 00:05:35.622
+Until then the housing can improve; the rest of the bike stays flexible longer.

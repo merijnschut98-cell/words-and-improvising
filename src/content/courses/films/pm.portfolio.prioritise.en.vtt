@@ -1,0 +1,325 @@
+WEBVTT
+
+1
+00:00:00.870 --> 00:00:05.931
+A project delivers an output: a readiness check, a rebuilt line, a planning tool.
+
+2
+00:00:06.948 --> 00:00:09.618
+A programme runs projects together that deliver
+
+3
+00:00:09.688 --> 00:00:11.952
+one outcome none of them reaches alone:
+
+4
+00:00:12.079 --> 00:00:14.843
+cancelled jobs from 14 to 8 percent.
+
+5
+00:00:15.877 --> 00:00:18.640
+If you can drop one and the goal still holds,
+
+6
+00:00:18.814 --> 00:00:20.509
+it belongs in the portfolio:
+
+7
+00:00:20.613 --> 00:00:23.841
+all the projects competing for the same money and people.
+
+8
+00:00:25.176 --> 00:00:29.089
+A dependency: B needs A's data definition by week 10,
+
+9
+00:00:29.309 --> 00:00:32.653
+and C wants B's two planners in the second quarter.
+
+10
+00:00:33.680 --> 00:00:37.546
+Keep one list: owner, date, and what happens if it slips.
+
+11
+00:00:38.571 --> 00:00:42.275
+Four independent projects, each 90 percent on time,
+
+12
+00:00:42.414 --> 00:00:45.259
+all make it only 66 percent of the time.
+
+13
+00:00:46.265 --> 00:00:49.318
+The check reads data team B is redesigning.
+
+14
+00:00:50.039 --> 00:00:55.671
+On one page: B freezes the definition by week 6, IT tests before go-live.
+
+15
+00:00:57.010 --> 00:01:01.480
+The programme board: the sponsor, the project owners, the outcome's owner,
+
+16
+00:01:01.689 --> 00:01:04.592
+and finance if money moves between projects.
+
+17
+00:01:05.632 --> 00:01:10.311
+Monthly, the board decides on the seams: sequencing, shared people, scope.
+
+18
+00:01:11.031 --> 00:01:14.491
+Decisions inside a project stay in its steering group.
+
+19
+00:01:15.569 --> 00:01:18.889
+Watermelon reporting: green outside, red inside.
+
+20
+00:01:19.639 --> 00:01:23.830
+All three report green, cancellations are still at 14 percent.
+
+21
+00:01:24.897 --> 00:01:29.182
+Report the outcome number itself monthly, with each project's share.
+
+22
+00:01:30.186 --> 00:01:33.842
+You own the story, the list and the rhythm, not the projects.
+
+23
+00:01:34.542 --> 00:01:38.942
+Ask: which number moves, how much, and which project moves which part?
+
+24
+00:01:40.286 --> 00:01:44.896
+Score roughly, 1 to 5, on value, effort, risk and strategy.
+
+25
+00:01:45.561 --> 00:01:47.929
+Whoever sets the weights sets the outcome.
+
+26
+00:01:48.986 --> 00:01:54.198
+The bottleneck limits how much gets done: usually a few scarce experts, not money.
+
+27
+00:01:55.185 --> 00:01:57.275
+So count in value per scarce day.
+
+28
+00:01:57.963 --> 00:02:02.107
+A brings two and a half thousand euros a day, B five thousand.
+
+29
+00:02:02.845 --> 00:02:05.237
+B goes first, although A looks bigger.
+
+30
+00:02:06.247 --> 00:02:07.652
+The risk-adjusted value:
+
+31
+00:02:07.756 --> 00:02:13.213
+300 thousand at 50 percent confidence counts as 150 thousand.
+
+32
+00:02:14.546 --> 00:02:20.746
+Count the scarce people: two engineers with 120 days each give 240.
+
+33
+00:02:21.761 --> 00:02:23.886
+A food producer wants all five.
+
+34
+00:02:24.603 --> 00:02:29.374
+Per engineer day: B four and a half thousand, D three, A two and a half,
+
+35
+00:02:29.526 --> 00:02:34.320
+and C, a new MES for the orders on the floor, one at 50 percent risk.
+
+36
+00:02:35.387 --> 00:02:40.611
+Rank, and draw the capacity line where the running total reaches 240.
+
+37
+00:02:41.301 --> 00:02:42.764
+Everything below waits.
+
+38
+00:02:43.774 --> 00:02:46.676
+B, D and A: 150 days.
+
+39
+00:02:47.384 --> 00:02:51.088
+C first gets a 60-day phase that tests the big assumption.
+
+40
+00:02:51.807 --> 00:02:54.431
+210 in all, 30 as buffer.
+
+41
+00:02:55.458 --> 00:03:00.288
+For E, ask the director for a number: above two and a half thousand a day,
+
+42
+00:03:00.485 --> 00:03:01.449
+it goes ahead of A.
+
+43
+00:03:02.164 --> 00:03:03.255
+The team chooses.
+
+44
+00:03:03.976 --> 00:03:06.263
+Trap: by March the line is ignored.
+
+45
+00:03:07.618 --> 00:03:11.264
+Work in progress is everything started and not yet finished.
+
+46
+00:03:12.359 --> 00:03:18.431
+Little's law, 1961: lead time is work in progress divided by throughput.
+
+47
+00:03:19.349 --> 00:03:24.504
+At three finished a quarter, twelve open projects take four quarters, six take two.
+
+48
+00:03:25.546 --> 00:03:27.660
+Switching and waiting cut throughput too:
+
+49
+00:03:27.764 --> 00:03:31.944
+twelve projects at half speed deliver less than six at full speed.
+
+50
+00:03:33.069 --> 00:03:37.783
+Never a bare no, but: then project B stops, or slips three months.
+
+51
+00:03:38.490 --> 00:03:39.489
+Which do you prefer?
+
+52
+00:03:40.481 --> 00:03:42.223
+Whoever owns both chooses.
+
+53
+00:03:42.934 --> 00:03:44.664
+Keep a visible waiting list.
+
+54
+00:03:45.440 --> 00:03:48.041
+Ask: what do we stop to make room for this?
+
+55
+00:03:49.350 --> 00:03:51.591
+Usually it is the same five people.
+
+56
+00:03:52.300 --> 00:03:56.828
+A capacity matrix puts names down, projects across, days per month,
+
+57
+00:03:57.014 --> 00:03:58.314
+and their real days.
+
+58
+00:03:59.319 --> 00:04:03.545
+Overbooked rows are resource conflicts: more days promised than there are.
+
+59
+00:04:04.246 --> 00:04:07.358
+Two or three red rows explain most of the delay.
+
+60
+00:04:08.398 --> 00:04:14.029
+Real availability is lower than you think: of 260 weekdays, 50 go to leave,
+
+61
+00:04:14.180 --> 00:04:17.093
+sickness and training, and 20 to meetings.
+
+62
+00:04:17.837 --> 00:04:19.544
+190 remain.
+
+63
+00:04:20.581 --> 00:04:25.493
+With 70 percent day job, 57 project days are left, five a month.
+
+64
+00:04:26.799 --> 00:04:28.784
+A context switch costs time.
+
+65
+00:04:29.485 --> 00:04:37.763
+Gerald Weinberg estimated in 1992: two projects 20 percent lost, three 40, five 75.
+
+66
+00:04:38.466 --> 00:04:40.475
+An estimate, but recognisable.
+
+67
+00:04:41.492 --> 00:04:46.136
+Better: fewer at once, in real blocks, such as Tuesday and Thursday for A.
+
+68
+00:04:47.154 --> 00:04:51.090
+The owner chooses: Jan does A and B and C starts in May,
+
+69
+00:04:51.253 --> 00:04:53.854
+or a contractor does C for 40 thousand.
+
+70
+00:04:54.898 --> 00:04:58.404
+Don't solve it quietly with evenings: that hides the cost.
+
+71
+00:04:59.436 --> 00:05:02.652
+Some book to 80 percent, others plan a quarter ahead.
+
+72
+00:05:03.393 --> 00:05:06.528
+Whose days are we counting on, and has she seen this plan?
+
+73
+00:05:07.834 --> 00:05:10.934
+Planner Fatima is on four projects, yours too.
+
+74
+00:05:11.624 --> 00:05:15.420
+Each assumes a day a week: 16 to 17 days a month.
+
+75
+00:05:16.090 --> 00:05:16.903
+She has 4.
+
+76
+00:05:17.915 --> 00:05:22.989
+Your pilot needs her for 8 days in March, and two other leads count on March too.
+
+77
+00:05:23.995 --> 00:05:27.396
+Build the matrix, ask Fatima first what is realistic,
+
+78
+00:05:27.594 --> 00:05:30.346
+and go to whoever owns all four, not to her.
+
+79
+00:05:31.370 --> 00:05:36.722
+Options: the rest to April and May, a planner from the regional office for 10 days,
+
+80
+00:05:36.943 --> 00:05:38.197
+or the pilot later.
+
+81
+00:05:38.987 --> 00:05:41.901
+Then everyone plans on the decision, not hope.

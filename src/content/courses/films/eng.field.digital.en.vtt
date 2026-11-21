@@ -1,0 +1,193 @@
+WEBVTT
+
+1
+00:00:00.831 --> 00:00:04.511
+The new filling unit on line 3 in hall B is ready.
+
+2
+00:00:05.188 --> 00:00:07.661
+It fills cartons with product from the tank.
+
+3
+00:00:08.727 --> 00:00:13.499
+The new MES from the IT team sends it orders and gets counts back.
+
+4
+00:00:14.557 --> 00:00:15.776
+You are the engineer.
+
+5
+00:00:16.500 --> 00:00:18.683
+You connect the unit step by step.
+
+6
+00:00:19.703 --> 00:00:21.421
+That makes five stations.
+
+7
+00:00:22.148 --> 00:00:26.293
+From network and OT to security, the line itself and data.
+
+8
+00:00:27.755 --> 00:00:30.483
+The first station is IT fundamentals.
+
+9
+00:00:31.205 --> 00:00:35.977
+The unit’s control cabinet has to join the plant network via the network cabinet.
+
+10
+00:00:37.055 --> 00:00:40.073
+Every device has an address, like a house number.
+
+11
+00:00:40.822 --> 00:00:42.633
+Messages go to that address.
+
+12
+00:00:43.637 --> 00:00:45.518
+You use a switch and a VLAN.
+
+13
+00:00:46.521 --> 00:00:48.971
+Without this an order does not find the unit,
+
+14
+00:00:49.145 --> 00:00:51.444
+or the line sits on the office network.
+
+15
+00:00:52.770 --> 00:00:56.346
+The second station is IT and OT on the shop floor.
+
+16
+00:00:57.071 --> 00:01:00.577
+The PLC in the control cabinet controls the unit.
+
+17
+00:01:01.626 --> 00:01:03.693
+Orders go down to the PLC.
+
+18
+00:01:04.360 --> 00:01:07.019
+Confirmations go up to the MES.
+
+19
+00:01:08.054 --> 00:01:10.748
+You set up an OPC server and tags.
+
+20
+00:01:11.780 --> 00:01:15.321
+Without this the MES does not know what the line makes.
+
+21
+00:01:16.624 --> 00:01:19.004
+The third station is Cybersecurity.
+
+22
+00:01:19.703 --> 00:01:22.524
+An attack on the office must not stop line 3.
+
+23
+00:01:23.551 --> 00:01:27.405
+Line 3 gets its own zone, with one guarded link to the rest.
+
+24
+00:01:28.548 --> 00:01:30.858
+You define zones and conduits.
+
+25
+00:01:31.872 --> 00:01:35.239
+Without this an infection from the office can stop the line.
+
+26
+00:01:36.509 --> 00:01:39.191
+The fourth station is Lines and automation.
+
+27
+00:01:39.926 --> 00:01:43.641
+That is the line itself, where cartons arrive and get filled.
+
+28
+00:01:44.701 --> 00:01:48.648
+The unit may only fill when a sensor sees a carton under the plate.
+
+29
+00:01:49.726 --> 00:01:51.978
+You use poka-yoke and an interlock.
+
+30
+00:01:53.062 --> 00:01:56.638
+Without this product runs onto the belt when no carton is there.
+
+31
+00:01:57.951 --> 00:02:01.480
+The fifth station is Data and digital manufacturing.
+
+32
+00:02:02.191 --> 00:02:05.175
+What line 3 makes has to be visible on the floor.
+
+33
+00:02:06.185 --> 00:02:10.411
+The unit’s numbers go to the MES and to a screen by the line.
+
+34
+00:02:11.384 --> 00:02:13.787
+You use an edge gateway and a dashboard.
+
+35
+00:02:14.852 --> 00:02:17.941
+Without this the numbers come too late, or they are wrong.
+
+36
+00:02:19.241 --> 00:02:20.449
+This is the whole map.
+
+37
+00:02:21.171 --> 00:02:25.200
+The five stations of Automation and IT lie in one zone.
+
+38
+00:02:26.195 --> 00:02:31.199
+First IT fundamentals, from networks and cloud to databases and software.
+
+39
+00:02:32.282 --> 00:02:37.147
+Then IT and OT on the shop floor, from ISA-95 to who owns what.
+
+40
+00:02:38.270 --> 00:02:42.670
+Then Cybersecurity, from the basics to the law and incident response.
+
+41
+00:02:43.731 --> 00:02:48.537
+Then Lines and automation, with robots, error-proofing and the business case.
+
+42
+00:02:49.540 --> 00:02:54.022
+Finally Data and digital manufacturing, from data quality to AI.
+
+43
+00:02:55.065 --> 00:02:56.447
+That is how they connect.
+
+44
+00:02:57.171 --> 00:03:02.186
+The network joins the systems, and the line talks over it with the MES.
+
+45
+00:03:03.199 --> 00:03:05.126
+Cybersecurity guards that link.
+
+46
+00:03:05.863 --> 00:03:09.463
+The line makes the products, and data shows how it goes.
+
+47
+00:03:10.502 --> 00:03:13.602
+Each station is a module with four levels per topic.
+
+48
+00:03:14.390 --> 00:03:16.433
+Start with what your line needs now.

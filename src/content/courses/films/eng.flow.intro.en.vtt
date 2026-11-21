@@ -1,0 +1,165 @@
+WEBVTT
+
+1
+00:00:00.864 --> 00:00:04.533
+Line 3 must make enough cartons for the customer in a shift.
+
+2
+00:00:05.565 --> 00:00:08.445
+The module Capacity and flow is about how much a
+
+3
+00:00:08.514 --> 00:00:11.034
+line can make and why it does not always work.
+
+4
+00:00:12.108 --> 00:00:13.304
+You are the engineer.
+
+5
+00:00:14.033 --> 00:00:17.563
+With the team lead you keep the line on pace for a whole shift.
+
+6
+00:00:18.563 --> 00:00:20.757
+First the pace and what limits the line,
+
+7
+00:00:20.874 --> 00:00:24.485
+with takt and line balance and with bottleneck and capacity.
+
+8
+00:00:25.573 --> 00:00:31.111
+Then where the minutes go, with OEE and losses and with changeover and batch size.
+
+9
+00:00:32.422 --> 00:00:35.092
+The first topic is Takt and line balance.
+
+10
+00:00:35.777 --> 00:00:38.482
+Takt time is the pace the customer asks for.
+
+11
+00:00:39.527 --> 00:00:42.708
+Line balancing divides the work over the stations,
+
+12
+00:00:42.952 --> 00:00:45.645
+so each station sits just under takt.
+
+13
+00:00:46.687 --> 00:00:49.369
+You draw the work per station in a yamazumi.
+
+14
+00:00:50.660 --> 00:00:53.446
+The second topic is Bottleneck and capacity.
+
+15
+00:00:54.196 --> 00:00:56.994
+A line never makes more than its slowest step.
+
+16
+00:00:58.047 --> 00:01:01.321
+Capacity is what the line can really make after losses.
+
+17
+00:01:02.035 --> 00:01:03.951
+Plan on that, not on the paper.
+
+18
+00:01:04.990 --> 00:01:07.800
+You fix the hours of the line in a shift model.
+
+19
+00:01:09.085 --> 00:01:11.721
+The third topic is OEE and losses.
+
+20
+00:01:12.501 --> 00:01:16.588
+OEE measures how much planned time goes into good parts.
+
+21
+00:01:17.594 --> 00:01:21.809
+You lose the rest to the six big losses, from breakdowns to rejects.
+
+22
+00:01:22.904 --> 00:01:24.843
+OEE does not say why.
+
+23
+00:01:25.701 --> 00:01:29.648
+On the board you note time, duration and cause in a downtime log.
+
+24
+00:01:30.961 --> 00:01:33.829
+The fourth topic is Changeover and batch size.
+
+25
+00:01:34.580 --> 00:01:37.181
+A changeover is switching to another product.
+
+26
+00:01:38.213 --> 00:01:42.079
+The batch size is the number of parts between two changeovers.
+
+27
+00:01:42.806 --> 00:01:45.186
+A changeover costs time without output.
+
+28
+00:01:46.254 --> 00:01:49.423
+You put the tools ready beforehand on a changeover cart.
+
+29
+00:01:50.487 --> 00:01:55.224
+That is how you and the team lead can keep line 3 on pace for the whole shift.
+
+30
+00:01:56.562 --> 00:01:57.340
+The whole map.
+
+31
+00:01:58.080 --> 00:02:02.097
+The first station is Capacity and flow, in Keeping the plant running.
+
+32
+00:02:03.120 --> 00:02:05.314
+Each of the four topics has four levels.
+
+33
+00:02:06.323 --> 00:02:09.922
+Start at Basics level with takt, cycle and lead time.
+
+34
+00:02:10.603 --> 00:02:13.285
+The customer’s pace is the yardstick for the rest.
+
+35
+00:02:14.350 --> 00:02:17.009
+At Working knowledge level come line balancing,
+
+36
+00:02:17.183 --> 00:02:20.318
+utilisation, the Pareto and the SMED workshop.
+
+37
+00:02:21.364 --> 00:02:26.066
+At Advanced level come precedence and variation, five focusing steps,
+
+38
+00:02:26.264 --> 00:02:29.201
+defining OEE honestly and batch size.
+
+39
+00:02:30.221 --> 00:02:33.576
+At Expert level come staffing, an hour on the bottleneck,
+
+40
+00:02:33.832 --> 00:02:36.235
+OEE in money and the product wheel.
+
+41
+00:02:37.244 --> 00:02:41.296
+Every lesson and every film in this module has a place on this map.

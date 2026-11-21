@@ -1,0 +1,349 @@
+WEBVTT
+
+1
+00:00:00.881 --> 00:00:01.868
+Dit is een trekbank.
+
+2
+00:00:02.553 --> 00:00:06.616
+Onderin zit een vaste klem, bovenin een dwarsbalk die langzaam omhoog loopt.
+
+3
+00:00:07.323 --> 00:00:09.424
+Daartussen klemmen we een ronde staaf van staal.
+
+4
+00:00:10.419 --> 00:00:12.892
+Bij een trekproef (tensile test) trek je de staaf uit tot hij breekt.
+
+5
+00:00:13.581 --> 00:00:15.253
+Een krachtopnemer meet de kracht,
+
+6
+00:00:15.497 --> 00:00:18.202
+een rekopnemer op de staaf meet hoeveel langer hij wordt.
+
+7
+00:00:18.893 --> 00:00:21.877
+De computer tekent daaruit de lijn van spanning tegen rek.
+
+8
+00:00:22.934 --> 00:00:27.044
+Spanning is de kracht gedeeld door de doorsnede van de staaf, in megapascal.
+
+9
+00:00:27.742 --> 00:00:31.747
+Rek is hoeveel de staaf langer wordt, gedeeld door zijn oorspronkelijke lengte.
+
+10
+00:00:32.454 --> 00:00:34.776
+Zo vergelijk je dikke en dunne staven eerlijk.
+
+11
+00:00:35.779 --> 00:00:39.192
+In het begin loopt de lijn recht omhoog: het elastische gebied.
+
+12
+00:00:39.939 --> 00:00:41.646
+De staaf gedraagt zich als een veer.
+
+13
+00:00:42.317 --> 00:00:45.533
+Haal je de kracht weg, dan veert hij terug naar zijn oude lengte.
+
+14
+00:00:46.206 --> 00:00:49.265
+Hoe steil die lijn loopt, is de elasticiteitsmodulus.
+
+15
+00:00:50.022 --> 00:00:51.741
+Op de kaart is dit stuk uitgerekt:
+
+16
+00:00:52.135 --> 00:00:54.771
+echt staal rekt hier maar één à twee tiende procent.
+
+17
+00:00:56.069 --> 00:00:57.044
+Dan buigt de lijn af.
+
+18
+00:00:57.811 --> 00:00:59.367
+Dat punt is de vloeigrens (yield strength):
+
+19
+00:00:59.785 --> 00:01:01.712
+daar begint het staal blijvend te vervormen.
+
+20
+00:01:02.362 --> 00:01:04.150
+Het metaal gaat als het ware vloeien.
+
+21
+00:01:05.124 --> 00:01:09.118
+Haal je de kracht nu weg, dan zakt de lijn evenwijdig aan het rechte stuk terug,
+
+22
+00:01:09.443 --> 00:01:10.523
+en blijft er rek over.
+
+23
+00:01:11.192 --> 00:01:12.783
+De staaf is langer gebleven.
+
+24
+00:01:13.742 --> 00:01:18.084
+Europese constructiestaalsoorten dragen hun minimale vloeigrens in de naam.
+
+25
+00:01:18.804 --> 00:01:26.989
+S235 vloeit bij 235 megapascal of meer, S355 bij 355.
+
+26
+00:01:28.040 --> 00:01:32.359
+Dat geldt voor plaat tot 16 mm dik; dikkere plaat zit iets lager.
+
+27
+00:01:33.033 --> 00:01:35.727
+Ontwerpers houden de spanning onder de vloeigrens,
+
+28
+00:01:35.970 --> 00:01:40.115
+met marge: een onderdeel dat blijvend verbuigt, is meestal al kapot.
+
+29
+00:01:41.432 --> 00:01:43.846
+Trek je door, dan stijgt de spanning nog verder.
+
+30
+00:01:44.565 --> 00:01:48.071
+Over de hele meetlengte wordt de staaf gelijkmatig dunner en langer,
+
+31
+00:01:48.396 --> 00:01:50.428
+en het staal wordt daarbij zelfs iets sterker.
+
+32
+00:01:51.376 --> 00:01:53.813
+Het hoogste punt van de lijn is de treksterkte (tensile strength):
+
+33
+00:01:54.207 --> 00:01:56.088
+de grootste spanning die het materiaal haalt.
+
+34
+00:01:56.822 --> 00:02:00.375
+Je rekent die uit met de grootste kracht en de oorspronkelijke doorsnede.
+
+35
+00:02:01.353 --> 00:02:02.653
+Daarna snoert de staaf in.
+
+36
+00:02:03.354 --> 00:02:06.953
+Op één plek wordt hij zichtbaar dunner, alle verdere rek gaat naar die hals,
+
+37
+00:02:07.336 --> 00:02:09.588
+en de kracht die nodig is om door te trekken zakt.
+
+38
+00:02:10.573 --> 00:02:11.978
+Tot slot breekt hij in de hals.
+
+39
+00:02:12.708 --> 00:02:15.855
+Maar voor een ontwerp is de vloeigrens de grens, niet de breuk.
+
+40
+00:02:17.258 --> 00:02:18.790
+Bouten hebben een sterkteklasse.
+
+41
+00:02:19.510 --> 00:02:21.518
+Op de kop staat bijvoorbeeld acht punt acht.
+
+42
+00:02:22.480 --> 00:02:25.754
+Het eerste getal maal honderd is de treksterkte in megapascal.
+
+43
+00:02:26.467 --> 00:02:29.056
+Acht maal honderd: 800 megapascal.
+
+44
+00:02:30.039 --> 00:02:34.706
+Het tweede getal maal tien is de vloeigrens, als percentage van de treksterkte.
+
+45
+00:02:35.408 --> 00:02:38.787
+80 procent van 800 is 640 megapascal.
+
+46
+00:02:39.733 --> 00:02:42.090
+Dat zijn de nominale waarden waarmee je rekent.
+
+47
+00:02:42.826 --> 00:02:46.286
+Vervang een gebroken bout dus nooit door wat er toevallig in de la ligt:
+
+48
+00:02:46.646 --> 00:02:48.359
+een lagere klasse vloeit eerder.
+
+49
+00:02:49.559 --> 00:02:50.847
+Het staal dat we net trokken,
+
+50
+00:02:51.230 --> 00:02:53.958
+is taai (ductile): het rekt flink uit voordat het breekt.
+
+51
+00:02:54.643 --> 00:02:58.660
+Dat geeft een waarschuwing, want een onderdeel buigt, snoert in of zakt door.
+
+52
+00:02:59.357 --> 00:03:02.713
+De meeste staalsoorten, aluminium en koper zijn taai.
+
+53
+00:03:03.688 --> 00:03:05.174
+Nu een staaf grijs gietijzer.
+
+54
+00:03:05.903 --> 00:03:08.399
+Die is bros (brittle): de lijn stopt bijna meteen,
+
+55
+00:03:08.782 --> 00:03:10.372
+en hij breekt zonder in te snoeren.
+
+56
+00:03:11.054 --> 00:03:15.164
+Glas, keramiek en heel hard staal breken net zo, zonder waarschuwing.
+
+57
+00:03:16.156 --> 00:03:17.967
+Kou maakt sommige staalsoorten bros.
+
+58
+00:03:18.819 --> 00:03:20.224
+Dat meet de kerfslagproef:
+
+59
+00:03:20.560 --> 00:03:23.672
+een staafje met een kerf wordt met een slingerhamer stukgeslagen.
+
+60
+00:03:24.309 --> 00:03:28.571
+Hoe minder hoog de hamer daarna doorzwaait, hoe meer energie het staafje opnam.
+
+61
+00:03:29.576 --> 00:03:32.525
+Een gangbare eis, bijvoorbeeld voor kwaliteit J2,
+
+62
+00:03:32.885 --> 00:03:35.671
+is minstens 27 joule bij min 20 graden.
+
+63
+00:03:36.411 --> 00:03:40.300
+Veel energie in de kou betekent: dit staal blijft ook in de winter taai.
+
+64
+00:03:41.032 --> 00:03:44.039
+Die waarde staat op het materiaalcertificaat van de partij,
+
+65
+00:03:44.306 --> 00:03:47.881
+vaak een certificaat drie punt één, naast de gemeten vloeigrens,
+
+66
+00:03:48.206 --> 00:03:49.773
+treksterkte en rek bij breuk.
+
+67
+00:03:50.471 --> 00:03:53.106
+Vraag erom bij veiligheidskritische onderdelen.
+
+68
+00:03:54.366 --> 00:03:55.295
+Hoeveel marge heb je?
+
+69
+00:03:56.011 --> 00:03:59.320
+De veiligheidsfactor (safety factor) is de vloeigrens gedeeld door de werkspanning,
+
+70
+00:03:59.563 --> 00:04:00.945
+de spanning bij normaal gebruik.
+
+71
+00:04:01.686 --> 00:04:06.771
+Een console van S235 heeft een werkspanning van 120 megapascal:
+
+72
+00:04:07.119 --> 00:04:11.241
+235 gedeeld door 120 is 1,96.
+
+73
+00:04:11.978 --> 00:04:13.627
+Prima bij een rustige belasting.
+
+74
+00:04:14.640 --> 00:04:19.145
+Na een proceswijziging verdubbelt de belasting: 240 megapascal.
+
+75
+00:04:19.838 --> 00:04:23.832
+Dat is boven de vloeigrens, dus de console gaat blijvend verbuigen.
+
+76
+00:04:24.817 --> 00:04:31.864
+Overstappen op S355 geeft 355 gedeeld door 240, is 1,48.
+
+77
+00:04:32.555 --> 00:04:35.272
+Hij houdt het, maar de marge is krap als de last trilt,
+
+78
+00:04:35.632 --> 00:04:37.826
+en dan wordt vermoeiing misschien het volgende probleem.
+
+79
+00:04:38.526 --> 00:04:42.949
+Een dikkere console in S235 brengt de spanning terug naar 120,
+
+80
+00:04:43.263 --> 00:04:44.598
+en herstelt de oude marge.
+
+81
+00:04:45.641 --> 00:04:48.149
+Gangbaar is zo'n 1,5 bij goed bekende,
+
+82
+00:04:48.463 --> 00:04:51.749
+rustige lasten, en 3 of meer bij onzekere of wisselende.
+
+83
+00:04:52.456 --> 00:04:56.298
+Voor hijsen geldt 4 tot 7 tegen breuk, afhankelijk van het type.
+
+84
+00:04:56.981 --> 00:05:00.905
+De factor dekt het onbekende af; het is geen ruimte voor extra last.
+
+85
+00:05:01.619 --> 00:05:04.568
+Een factor twee tegen breuk is geen twee tegen vloeien,
+
+86
+00:05:04.893 --> 00:05:08.318
+en een factor op het stilstaande gewicht zegt weinig over een last die trilt.
+
+87
+00:05:09.104 --> 00:05:13.656
+Vraag dus altijd: veiligheidsfactor tegen wat, en op welke belasting?

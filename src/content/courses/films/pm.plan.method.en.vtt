@@ -1,0 +1,233 @@
+WEBVTT
+
+1
+00:00:00.875 --> 00:00:03.023
+There are two ways to plan a project.
+
+2
+00:00:03.752 --> 00:00:06.724
+The first is called waterfall: phases in order.
+
+3
+00:00:07.446 --> 00:00:10.012
+Analyse, design, build, implement.
+
+4
+00:00:11.070 --> 00:00:14.332
+Each phase is signed off before the next one starts.
+
+5
+00:00:15.064 --> 00:00:19.441
+And the scope is fixed: what the project covers is on paper up front.
+
+6
+00:00:20.510 --> 00:00:23.993
+You plan once in detail, and manage deviations.
+
+7
+00:00:24.709 --> 00:00:28.227
+That fits work that is predictable and hard to change later:
+
+8
+00:00:28.401 --> 00:00:32.047
+installing a new medium-voltage substation in a neighbourhood,
+
+9
+00:00:32.198 --> 00:00:33.858
+or moving a production line.
+
+10
+00:00:35.140 --> 00:00:38.321
+The second way is agile: working in short rounds.
+
+11
+00:00:39.056 --> 00:00:43.502
+Each round ends with something working, which users see and react to.
+
+12
+00:00:44.506 --> 00:00:46.178
+The scope adjusts as you learn.
+
+13
+00:00:46.905 --> 00:00:49.401
+What the planners say steers the next round.
+
+14
+00:00:50.459 --> 00:00:53.048
+The term comes from the Agile Manifesto,
+
+15
+00:00:53.176 --> 00:00:57.112
+written by seventeen software developers in 2001.
+
+16
+00:00:58.113 --> 00:01:02.478
+It fits work where the solution is unclear and the users' reaction matters:
+
+17
+00:01:02.594 --> 00:01:03.767
+a new planning meeting,
+
+18
+00:01:03.906 --> 00:01:06.971
+or a new dashboard of key figures for shift leads.
+
+19
+00:01:08.314 --> 00:01:10.532
+The best-known agile method is Scrum.
+
+20
+00:01:11.273 --> 00:01:16.648
+Its rounds are called sprints: a fixed period of at most a month, often two weeks.
+
+21
+00:01:17.662 --> 00:01:21.331
+Each sprint starts with a short planning, and ends with a review,
+
+22
+00:01:21.481 --> 00:01:23.048
+where users see the result.
+
+23
+00:01:24.148 --> 00:01:27.759
+Then the team looks back at how it worked: the retrospective.
+
+24
+00:01:28.823 --> 00:01:31.377
+In a factory you rarely need the full method.
+
+25
+00:01:32.127 --> 00:01:36.226
+The core is enough: short rounds, something real at the end of each,
+
+26
+00:01:36.423 --> 00:01:37.979
+and feedback from the floor.
+
+27
+00:01:39.307 --> 00:01:42.720
+Most improvement projects are hybrid: fixed milestones,
+
+28
+00:01:42.918 --> 00:01:47.109
+budget and end date for the steering group, and short rounds inside.
+
+29
+00:01:48.144 --> 00:01:51.836
+The steering group sees one date: pilot live in week 10.
+
+30
+00:01:52.547 --> 00:01:55.287
+The team works towards it in two-week rounds.
+
+31
+00:01:56.446 --> 00:02:01.739
+A pilot is a small, bounded trial in one area, with an end date and a way back.
+
+32
+00:02:02.787 --> 00:02:05.434
+Experts argue whether pilots prove much:
+
+33
+00:02:05.562 --> 00:02:09.648
+a pilot with extra attention often does better than the rollout will.
+
+34
+00:02:10.976 --> 00:02:11.882
+An example.
+
+35
+00:02:12.614 --> 00:02:16.829
+At a grid operator you lead a project to introduce a readiness check:
+
+36
+00:02:17.003 --> 00:02:18.175
+a check that permits,
+
+37
+00:02:18.280 --> 00:02:22.425
+materials and crew are in place before a job enters the week plan.
+
+38
+00:02:23.484 --> 00:02:26.363
+Nobody knows exactly which checks will matter.
+
+39
+00:02:27.109 --> 00:02:30.859
+As a waterfall, the planners would first see the check at the go-live.
+
+40
+00:02:31.573 --> 00:02:33.001
+So you work in rounds.
+
+41
+00:02:34.145 --> 00:02:38.244
+For the steering group, a milestone plan: baseline done in week 4,
+
+42
+00:02:38.348 --> 00:02:42.980
+pilot live in week 8, and the go/no-go for rollout in week 16.
+
+43
+00:02:44.029 --> 00:02:48.499
+Inside it, the team works in two-week rounds, with the planners involved.
+
+44
+00:02:49.973 --> 00:02:54.548
+Round one: a paper checklist with five checks, used by two planners.
+
+45
+00:02:55.580 --> 00:02:59.608
+At the review they say: check four takes too long, and never fails.
+
+46
+00:03:00.310 --> 00:03:01.169
+So it goes.
+
+47
+00:03:02.261 --> 00:03:06.522
+Round two: add the switching plan check the control room asked for.
+
+48
+00:03:07.542 --> 00:03:11.408
+By week 8 the checklist has been tested on 60 real jobs.
+
+49
+00:03:12.156 --> 00:03:15.036
+And the planners helped shape it, so they defend it.
+
+50
+00:03:16.421 --> 00:03:18.801
+Then the people side: don't sell jargon.
+
+51
+00:03:19.537 --> 00:03:23.508
+A plant manager who hears Scrum may think of software and chaos.
+
+52
+00:03:24.501 --> 00:03:27.241
+Say instead: we work in two-week rounds,
+
+53
+00:03:27.438 --> 00:03:30.642
+and every round you'll see something working on the floor.
+
+54
+00:03:31.654 --> 00:03:32.455
+Resistance?
+
+55
+00:03:33.166 --> 00:03:34.803
+The board wants a full plan.
+
+56
+00:03:35.614 --> 00:03:39.527
+Then give them the milestone plan; the rounds are how the team gets there.
+
+57
+00:03:40.599 --> 00:03:42.561
+And if you're unsure which approach fits,
+
+58
+00:03:42.771 --> 00:03:45.848
+ask: how sure are we about what the solution looks like?

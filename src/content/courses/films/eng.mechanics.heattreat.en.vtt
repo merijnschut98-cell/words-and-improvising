@@ -1,0 +1,329 @@
+WEBVTT
+
+1
+00:00:00.858 --> 00:00:02.414
+This is a hardness tester.
+
+2
+00:00:03.160 --> 00:00:06.283
+Hardness is a material's resistance to being dented.
+
+3
+00:00:07.031 --> 00:00:10.735
+The tester presses a hard tip into the surface with a set force,
+
+4
+00:00:11.025 --> 00:00:12.140
+and measures the dent.
+
+5
+00:00:12.867 --> 00:00:15.189
+The smaller the dent, the harder the material.
+
+6
+00:00:16.199 --> 00:00:19.461
+Brinell presses in a ball and measures the width of the dent:
+
+7
+00:00:19.601 --> 00:00:21.749
+for softer steels and castings.
+
+8
+00:00:22.465 --> 00:00:27.620
+Vickers presses in a diamond pyramid and measures the diagonals: for any material,
+
+9
+00:00:27.794 --> 00:00:28.862
+thin layers too.
+
+10
+00:00:29.570 --> 00:00:34.202
+Rockwell C measures how deep a diamond cone sinks: the scale for hardened steel.
+
+11
+00:00:35.204 --> 00:00:38.687
+Mild steel is about 120 HB.
+
+12
+00:00:39.410 --> 00:00:42.777
+A hardened tool steel reaches 60 HRC or more.
+
+13
+00:00:43.516 --> 00:00:47.894
+Converting between the scales goes by tables, and stays an estimate.
+
+14
+00:00:48.946 --> 00:00:52.359
+Harder steel is usually stronger and more wear resistant.
+
+15
+00:00:53.132 --> 00:00:57.079
+The test is quick and cheap, so it is a standard incoming check.
+
+16
+00:00:57.767 --> 00:00:59.346
+But how do you make steel hard?
+
+17
+00:01:00.152 --> 00:01:00.721
+With heat.
+
+18
+00:01:02.044 --> 00:01:06.792
+Steel with enough carbon, roughly 0.3 percent or more, can be hardened.
+
+19
+00:01:07.524 --> 00:01:11.668
+The hoist lowers this shaft into the furnace, and the lid goes shut.
+
+20
+00:01:12.768 --> 00:01:18.225
+The shaft heats up to roughly 800 to 900 degrees, depending on the steel.
+
+21
+00:01:18.972 --> 00:01:23.012
+Then the carbon dissolves in the iron: the steel turns to austenite.
+
+22
+00:01:24.145 --> 00:01:26.351
+Then quenching: cooling very fast.
+
+23
+00:01:27.103 --> 00:01:30.621
+Within seconds the shaft goes from the furnace into the oil;
+
+24
+00:01:30.737 --> 00:01:33.187
+water or a polymer solution works too.
+
+25
+00:01:33.868 --> 00:01:38.489
+The carbon has nowhere to go, and is trapped in a strained structure: martensite.
+
+26
+00:01:39.497 --> 00:01:43.863
+The steel is now very hard, but also brittle: it breaks without warning.
+
+27
+00:01:44.580 --> 00:01:48.574
+The same happens in the HAZ of a weld that cools too fast;
+
+28
+00:01:48.760 --> 00:01:51.035
+that is why thick steel is preheated.
+
+29
+00:01:52.370 --> 00:01:54.077
+Quenching comes at a price.
+
+30
+00:01:54.841 --> 00:01:59.183
+The outside cools before the core, and that builds up large stresses.
+
+31
+00:01:59.919 --> 00:02:02.218
+A long shaft can bend: distortion.
+
+32
+00:02:03.251 --> 00:02:06.143
+Where the stress piles up, the steel can crack.
+
+33
+00:02:06.907 --> 00:02:11.760
+A quench crack usually starts at a sharp corner or a sudden change in thickness,
+
+34
+00:02:11.969 --> 00:02:13.223
+like here at the collar.
+
+35
+00:02:14.211 --> 00:02:16.753
+The faster it cools, the bigger the risk.
+
+36
+00:02:17.500 --> 00:02:19.950
+Water is the harshest, oil the mildest,
+
+37
+00:02:20.124 --> 00:02:23.003
+and a polymer solution usually sits in between.
+
+38
+00:02:24.034 --> 00:02:27.459
+What helps: a generous radius instead of a sharp corner,
+
+39
+00:02:27.645 --> 00:02:29.247
+and you settle that on the drawing.
+
+40
+00:02:30.003 --> 00:02:31.907
+Long shafts are quenched hanging.
+
+41
+00:02:33.266 --> 00:02:37.852
+So tempering follows straight away: the shaft goes into a furnace again,
+
+42
+00:02:38.108 --> 00:02:42.787
+now typically between 150 and 650 degrees.
+
+43
+00:02:43.792 --> 00:02:45.696
+The martensite relaxes a little.
+
+44
+00:02:46.411 --> 00:02:50.718
+You give up some hardness, and gain toughness: taking a blow without cracking.
+
+45
+00:02:51.729 --> 00:02:55.491
+Low tempering keeps the steel hard, for tools such as a chisel.
+
+46
+00:02:56.315 --> 00:03:00.390
+High tempering makes it tough, for shafts and bolts that take shocks.
+
+47
+00:03:01.385 --> 00:03:05.925
+Quench and temper together set the properties of shafts, gears and tools.
+
+48
+00:03:06.646 --> 00:03:11.963
+A quenched part that is never tempered can crack by itself, sometimes days later.
+
+49
+00:03:13.281 --> 00:03:16.752
+Annealing does the opposite: heating and cooling very slowly,
+
+50
+00:03:16.915 --> 00:03:18.680
+often in the furnace itself.
+
+51
+00:03:19.367 --> 00:03:22.792
+The steel becomes soft, and easy to machine or form.
+
+52
+00:03:23.820 --> 00:03:30.589
+Stress relieving is gentler: for steel typically around 550 to 650 degrees,
+
+53
+00:03:30.751 --> 00:03:33.340
+below the temperature where the structure changes.
+
+54
+00:03:34.057 --> 00:03:36.135
+It removes internal stresses.
+
+55
+00:03:37.299 --> 00:03:38.518
+Take a welded part.
+
+56
+00:03:39.278 --> 00:03:41.472
+Welding locks stresses into the steel.
+
+57
+00:03:42.189 --> 00:03:46.635
+Machine a face, and that stress is released, and the whole part warps.
+
+58
+00:03:47.661 --> 00:03:51.248
+Stress relieve first, then machine: then it stays straight.
+
+59
+00:03:52.019 --> 00:03:53.517
+Put that step in the routing.
+
+60
+00:03:54.796 --> 00:03:57.478
+Sometimes you want a hard surface against wear,
+
+61
+00:03:57.676 --> 00:03:59.603
+on a tough core that takes the blows.
+
+62
+00:04:00.329 --> 00:04:01.478
+That is case hardening.
+
+63
+00:04:02.214 --> 00:04:04.757
+Gears and bearing seats are treated this way.
+
+64
+00:04:05.776 --> 00:04:11.314
+In carburising, carbon soaks a little way into the surface at about 900 degrees.
+
+65
+00:04:12.038 --> 00:04:15.277
+After the quench, only that skin becomes really hard.
+
+66
+00:04:16.378 --> 00:04:21.278
+Nitriding brings nitrogen into the surface, at about 500 degrees.
+
+67
+00:04:22.075 --> 00:04:25.129
+There is no quench, so the part distorts very little.
+
+68
+00:04:26.175 --> 00:04:30.645
+In induction hardening a coil heats only the outer layer in a few seconds,
+
+69
+00:04:30.819 --> 00:04:32.781
+and the quench follows straight after.
+
+70
+00:04:33.517 --> 00:04:36.176
+The core stays cool, and so stays tough.
+
+71
+00:04:37.483 --> 00:04:43.903
+The drawing then says, for example: carburised and hardened, 58 to 62 HRC,
+
+72
+00:04:44.042 --> 00:04:47.351
+case depth 0.8 to 1.2 millimetres.
+
+73
+00:04:48.101 --> 00:04:50.237
+A spec to check, not decoration.
+
+74
+00:04:51.239 --> 00:04:54.536
+Gears from a new supplier wear out within a few weeks.
+
+75
+00:04:55.242 --> 00:05:00.327
+The incoming check measures 48 HRC at the surface: far too soft.
+
+76
+00:05:01.340 --> 00:05:05.009
+Was the carburising too short, did the surface lose carbon,
+
+77
+00:05:05.183 --> 00:05:06.611
+or was the quench too slow?
+
+78
+00:05:07.317 --> 00:05:09.732
+Quarantine the stock, cut one gear through,
+
+79
+00:05:09.952 --> 00:05:12.355
+and measure with Vickers from the surface inward.
+
+80
+00:05:13.170 --> 00:05:15.190
+Then you see the real case depth.
+
+81
+00:05:16.218 --> 00:05:18.818
+And ask the supplier for the furnace records and
+
+82
+00:05:18.865 --> 00:05:21.187
+the heat-treatment certificate of that batch.

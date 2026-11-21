@@ -1,0 +1,333 @@
+WEBVTT
+
+1
+00:00:00.841 --> 00:00:03.395
+Trust but verify is an old Russian proverb,
+
+2
+00:00:03.534 --> 00:00:06.912
+made famous by Reagan in arms talks in the eighties.
+
+3
+00:00:07.936 --> 00:00:11.744
+It is the working rule with experts: trust their skill and intent,
+
+4
+00:00:11.871 --> 00:00:13.427
+check the results that matter.
+
+5
+00:00:14.477 --> 00:00:18.575
+Verifying is not distrust: experts check each other constantly,
+
+6
+00:00:18.726 --> 00:00:21.106
+with code reviews and test reports.
+
+7
+00:00:21.806 --> 00:00:22.909
+You ask the same.
+
+8
+00:00:23.939 --> 00:00:25.820
+Check results, not methods.
+
+9
+00:00:26.552 --> 00:00:30.011
+You can't judge a cable sizing, but you can ask who checked it,
+
+10
+00:00:30.232 --> 00:00:31.358
+and where it is signed.
+
+11
+00:00:32.412 --> 00:00:35.245
+You can't read code, but you can watch the test.
+
+12
+00:00:36.395 --> 00:00:37.614
+The four-eyes principle:
+
+13
+00:00:37.753 --> 00:00:42.107
+every important piece of work is checked by a second qualified person.
+
+14
+00:00:43.138 --> 00:00:47.502
+Your job: make sure the second pair of eyes exists, not be it.
+
+15
+00:00:48.905 --> 00:00:52.678
+Risk-based checking: check harder where a mistake would hurt most.
+
+16
+00:00:53.704 --> 00:00:57.384
+Safety, money and anything you can't undo: a full check.
+
+17
+00:00:58.459 --> 00:01:01.605
+Routine gets a spot check: a small random sample,
+
+18
+00:01:01.733 --> 00:01:03.869
+such as three of the forty drawings.
+
+19
+00:01:04.890 --> 00:01:07.096
+Avoid two failures: checking nothing,
+
+20
+00:01:07.270 --> 00:01:10.718
+and everything, so experts feel watched and slow down.
+
+21
+00:01:12.077 --> 00:01:16.802
+Ask without offending: about the process, not the person, and said upfront.
+
+22
+00:01:17.889 --> 00:01:22.556
+On every project I ask to see the test results for the safety items.
+
+23
+00:01:23.273 --> 00:01:24.411
+It's not about you.
+
+24
+00:01:25.415 --> 00:01:29.665
+Upfront, it is routine; after a problem, it feels like suspicion.
+
+25
+00:01:30.399 --> 00:01:33.093
+Checking only once you distrust is too late.
+
+26
+00:01:34.171 --> 00:01:36.818
+Experts push back: no time for paperwork.
+
+27
+00:01:37.559 --> 00:01:39.718
+Often fair, some checks are ritual.
+
+28
+00:01:40.409 --> 00:01:43.625
+Ask which ones catch problems, and keep those.
+
+29
+00:01:44.673 --> 00:01:48.970
+Sharp question: if this were wrong, how and how soon would we find out?
+
+30
+00:01:49.756 --> 00:01:50.522
+At go-live?
+
+31
+00:01:51.302 --> 00:01:52.695
+Then check before that.
+
+32
+00:01:54.058 --> 00:01:59.236
+A robot cell: forty items on the supplier's checklist, none you can judge yourself.
+
+33
+00:02:00.216 --> 00:02:03.954
+Step one, with the client's safety engineer: sort by risk.
+
+34
+00:02:04.654 --> 00:02:08.740
+Five safety, three contract performance, such as speed and uptime,
+
+35
+00:02:08.926 --> 00:02:10.099
+thirty-two routine.
+
+36
+00:02:11.107 --> 00:02:13.824
+Safety: emergency stops, the light curtain,
+
+37
+00:02:14.021 --> 00:02:16.947
+a beam that stops the robot if someone reaches in,
+
+38
+00:02:17.133 --> 00:02:20.268
+and fence interlocks that stop it if a gate opens.
+
+39
+00:02:21.283 --> 00:02:24.058
+Step two: safety and performance in full.
+
+40
+00:02:24.764 --> 00:02:27.921
+You watch the test, the safety engineer signs.
+
+41
+00:02:28.660 --> 00:02:31.818
+Step three: you see three random routine items.
+
+42
+00:02:32.877 --> 00:02:35.733
+Step four: agree it with the supplier upfront.
+
+43
+00:02:36.473 --> 00:02:38.911
+This is how I check, on every project.
+
+44
+00:02:39.623 --> 00:02:42.839
+Grip on the eight that matter, a light touch on the rest.
+
+45
+00:02:44.198 --> 00:02:49.133
+A red flag is a warning sign that something is wrong, before it shows in the plan.
+
+46
+00:02:50.125 --> 00:02:55.327
+You can't see the technical problem, only its signals: how people talk and report.
+
+47
+00:02:56.367 --> 00:03:01.081
+Three cover a lot: always almost done, vague answers, and no demo.
+
+48
+00:03:02.091 --> 00:03:05.876
+The ninety-ninety rule, credited to Tom Cargill of Bell Labs,
+
+49
+00:03:06.061 --> 00:03:10.392
+popularised by Jon Bentley in 1985, jokes:
+
+50
+00:03:11.391 --> 00:03:15.420
+the first 90 percent of the code takes 90 percent of the time.
+
+51
+00:03:16.068 --> 00:03:18.553
+The last 10 percent takes the other 90.
+
+52
+00:03:19.562 --> 00:03:24.403
+If the percentage barely moves for weeks, ask what is left, item by item,
+
+53
+00:03:24.612 --> 00:03:25.843
+and which is hardest.
+
+54
+00:03:27.306 --> 00:03:30.986
+Vague answers: we're working on it, some minor issues.
+
+55
+00:03:31.711 --> 00:03:33.917
+One is normal; a pattern is a signal.
+
+56
+00:03:34.905 --> 00:03:37.958
+Ask which issues, and the next step on each.
+
+57
+00:03:38.673 --> 00:03:42.435
+Someone in control answers in a sentence; others get vaguer.
+
+58
+00:03:43.533 --> 00:03:47.155
+A watermelon status: green outside, red inside.
+
+59
+00:03:47.906 --> 00:03:50.785
+Reported fine, while the team knows it isn't.
+
+60
+00:03:52.178 --> 00:03:56.276
+A demo is showing the thing working, live, not slides about it.
+
+61
+00:03:57.355 --> 00:04:00.699
+If a team building for months can't show anything working,
+
+62
+00:04:00.838 --> 00:04:02.870
+that is the strongest flag of the three.
+
+63
+00:04:03.872 --> 00:04:07.599
+Other signals: one person who knows it all and won't share,
+
+64
+00:04:07.739 --> 00:04:12.638
+changing contacts, tests that keep slipping, bad news the day before a deadline.
+
+65
+00:04:13.930 --> 00:04:17.390
+Careful: one flag is a reason to ask, not proof.
+
+66
+00:04:18.115 --> 00:04:20.634
+Experts are often honestly optimistic.
+
+67
+00:04:21.709 --> 00:04:25.575
+Respond with questions and evidence, not accusations.
+
+68
+00:04:26.600 --> 00:04:29.537
+And look at yourself: if bad news comes late,
+
+69
+00:04:29.688 --> 00:04:32.184
+maybe people don't feel safe bringing it.
+
+70
+00:04:33.193 --> 00:04:36.862
+A sharp question: what are you worried about that you haven't told me yet?
+
+71
+00:04:38.232 --> 00:04:40.751
+An MES project, month 4.
+
+72
+00:04:41.480 --> 00:04:45.172
+For three weeks the supplier reports the label module almost done,
+
+73
+00:04:45.323 --> 00:04:46.647
+a few small issues.
+
+74
+00:04:47.393 --> 00:04:48.310
+Status green.
+
+75
+00:04:49.380 --> 00:04:53.153
+Last Friday's demo moved: the test environment was down.
+
+76
+00:04:53.885 --> 00:04:57.356
+And the developer who built it just left for another client.
+
+77
+00:04:58.445 --> 00:05:03.994
+At least 4 red flags: almost done for weeks, vague small issues, a postponed demo,
+
+78
+00:05:04.238 --> 00:05:05.445
+the key person leaving.
+
+79
+00:05:06.232 --> 00:05:08.600
+That green status may be a watermelon.
+
+80
+00:05:09.664 --> 00:05:13.310
+This week: the open issues as a list, with owner and date.
+
+81
+00:05:14.079 --> 00:05:19.060
+The demo on a fixed day, on any environment that works, even a laptop.
+
+82
+00:05:20.182 --> 00:05:23.526
+Ask who owns the module now and how the handover went.
+
+83
+00:05:24.269 --> 00:05:27.833
+Tell the sponsor: amber until the demo, with the reasons.

@@ -1,0 +1,269 @@
+WEBVTT
+
+1
+00:00:00.844 --> 00:00:04.257
+CAM-software maakt van het 3D-model een gereedschapsbaan (toolpath).
+
+2
+00:00:04.955 --> 00:00:08.391
+Dat is de route van het gereedschap, met voedingen en toerentallen.
+
+3
+00:00:09.370 --> 00:00:11.773
+De programmeur kiest de baan per vormelement.
+
+4
+00:00:12.525 --> 00:00:15.091
+Een kamer krijgt een adaptieve voorbewerkingsbaan.
+
+5
+00:00:15.797 --> 00:00:17.248
+Een gat krijgt een boorcyclus.
+
+6
+00:00:18.057 --> 00:00:19.857
+Een vlak krijgt een nabewerkingssnede.
+
+7
+00:00:20.904 --> 00:00:22.599
+Daarna vertaalt een postprocessor (post-processor)
+
+8
+00:00:22.622 --> 00:00:26.627
+die baan naar het dialect van de G-code van één specifieke machine en besturing.
+
+9
+00:00:27.682 --> 00:00:29.853
+Zelfde onderdeel, twee machines.
+
+10
+00:00:30.614 --> 00:00:32.901
+Dat betekent twee posts en twee programma’s.
+
+11
+00:00:33.958 --> 00:00:37.882
+Een slechte post is een verborgen crashrisico in elk programma dat hij maakt.
+
+12
+00:00:39.246 --> 00:00:40.082
+Een simulatie (simulation)
+
+13
+00:00:40.140 --> 00:00:43.460
+draait de geposte G-code op een digitale kopie van de machine,
+
+14
+00:00:43.728 --> 00:00:46.293
+met de mal, de houders en het ruwe werkstuk.
+
+15
+00:00:47.292 --> 00:00:51.263
+Je ziet botsingen, sneden in de klemmen en achtergebleven materiaal.
+
+16
+00:00:51.959 --> 00:00:54.687
+Dat gebeurt voordat de echte machine het programma ziet.
+
+17
+00:00:55.657 --> 00:00:57.015
+Hij is zo goed als zijn modellen.
+
+18
+00:00:57.724 --> 00:00:59.953
+Een mal die 10 millimeter te laag getekend is,
+
+19
+00:01:00.209 --> 00:01:02.775
+geeft een schone simulatie en een echte crash.
+
+20
+00:01:03.792 --> 00:01:08.320
+Vraag of de simulatie de echte G-code na de post draait, of alleen de CAM-baan.
+
+21
+00:01:09.597 --> 00:01:12.639
+Proefdraaien (prove-out) is de eerste echte run van een nieuw programma.
+
+22
+00:01:13.380 --> 00:01:16.491
+De machine loopt regel voor regel, in enkelregel.
+
+23
+00:01:17.225 --> 00:01:18.583
+Ze stopt na elke regel.
+
+24
+00:01:19.608 --> 00:01:20.978
+De ijlgangen gaan langzamer.
+
+25
+00:01:21.676 --> 00:01:23.743
+Soms draait de machine eerst in de lucht.
+
+26
+00:01:24.807 --> 00:01:27.442
+Dan volgt de vrijgave na de eerste-stukcontrole.
+
+27
+00:01:28.135 --> 00:01:32.465
+Het eerste stuk is volledig gemeten, en het programma is vrijgegeven als beproefd.
+
+28
+00:01:33.498 --> 00:01:36.064
+Wijzigingen aan de machine moeten terug in CAM.
+
+29
+00:01:36.766 --> 00:01:39.448
+Anders begint de volgende herhaalorder met de oude fout.
+
+30
+00:01:40.557 --> 00:01:44.284
+Goede bedrijven houden bij hoeveel uur proefdraaien een nieuw programma kost,
+
+31
+00:01:44.551 --> 00:01:45.143
+en waarom.
+
+32
+00:01:46.162 --> 00:01:50.097
+Dat laat zien of het programmeren de bottleneck is, of het vertrouwen erin.
+
+33
+00:01:51.383 --> 00:01:52.753
+Wat een manager afweegt.
+
+34
+00:01:53.465 --> 00:01:57.447
+Programmeertijd groeit met de complexiteit en met het aantal nieuwe onderdelen.
+
+35
+00:01:58.515 --> 00:02:02.370
+Bij kleine series kan de programmeertijd groter zijn dan de machinetijd.
+
+36
+00:02:03.369 --> 00:02:04.205
+Er zijn hefbomen.
+
+37
+00:02:04.966 --> 00:02:06.742
+Sjablonen voor terugkerende vormen.
+
+38
+00:02:07.400 --> 00:02:09.327
+En een gevalideerde post per machine.
+
+39
+00:02:10.326 --> 00:02:12.288
+Simulatie van de complete machine.
+
+40
+00:02:12.978 --> 00:02:16.960
+En een gereedschapsbibliotheek in CAM die klopt met het echte gereedschapsrek.
+
+41
+00:02:17.978 --> 00:02:19.197
+Geloofwaardige vragen.
+
+42
+00:02:19.895 --> 00:02:23.053
+Hoeveel uur proefdraaien kost elk nieuw programma op de machine?
+
+43
+00:02:24.033 --> 00:02:27.423
+Hoeveel programma’s worden aan de machine gewijzigd en nooit teruggezet?
+
+44
+00:02:28.472 --> 00:02:30.736
+Welke machine heeft een post die niemand vertrouwt?
+
+45
+00:02:32.049 --> 00:02:35.497
+Een loonbedrijf schrijft zo’n 150 nieuwe programma’s per jaar.
+
+46
+00:02:36.467 --> 00:02:38.766
+Nu kost CAM 4 uur per programma.
+
+47
+00:02:39.446 --> 00:02:41.768
+De programmeur kost 70 euro per uur.
+
+48
+00:02:42.725 --> 00:02:45.256
+Proefdraaien kost 2,5 uur op de machine.
+
+49
+00:02:45.960 --> 00:02:49.350
+Machine en insteller samen kosten 110 euro per uur.
+
+50
+00:02:50.019 --> 00:02:53.049
+Dit zijn de eigen cijfers van het bedrijf, als aanname.
+
+51
+00:02:54.017 --> 00:02:57.372
+Het voorstel is simulatiesoftware voor de complete machine.
+
+52
+00:02:58.061 --> 00:03:02.438
+Aangenomen is 20.000 euro per jaar, inclusief ondersteuning.
+
+53
+00:03:03.408 --> 00:03:06.171
+Het bedrijf verwacht dat proefdraaien naar 1 uur gaat.
+
+54
+00:03:06.901 --> 00:03:10.721
+De CAM-tijd stijgt dan 0,25 uur om de simulatie te draaien.
+
+55
+00:03:11.676 --> 00:03:15.275
+Wat bespaart het per jaar, na aftrek van de extra programmeertijd?
+
+56
+00:03:15.994 --> 00:03:17.875
+En is het de 20.000 euro waard?
+
+57
+00:03:19.230 --> 00:03:23.212
+De machine bespaart 1,5 uur maal 150 maal 110 euro.
+
+58
+00:03:23.917 --> 00:03:27.028
+Dat is 24.750 euro.
+
+59
+00:03:27.993 --> 00:03:32.637
+De programmeur kost 0,25 uur maal 150 maal 70 euro extra.
+
+60
+00:03:33.333 --> 00:03:36.096
+Dat is 2.625 euro.
+
+61
+00:03:37.096 --> 00:03:42.646
+Netto is dat 22.125 euro per jaar, tegen 20.000 euro.
+
+62
+00:03:43.314 --> 00:03:47.633
+Op uren alleen is dat maar 2.125 euro in de plus.
+
+63
+00:03:48.680 --> 00:03:50.712
+De case rust dus op twee andere dingen.
+
+64
+00:03:51.431 --> 00:03:52.778
+De crashes die het voorkomt.
+
+65
+00:03:53.518 --> 00:03:58.916
+En de 225 machine-uren die vrijkomen, 1,5 maal 150.
+
+66
+00:04:00.018 --> 00:04:02.166
+Die uren tellen alleen als er werk voor is.
+
+67
+00:04:02.902 --> 00:04:06.025
+Vraag naar de crashkosten van vorig jaar voordat je beslist.

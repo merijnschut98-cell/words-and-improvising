@@ -1,0 +1,317 @@
+WEBVTT
+
+1
+00:00:00.890 --> 00:00:02.504
+A part comes off the machine.
+
+2
+00:00:03.194 --> 00:00:07.571
+Whether it is good, you only know when you measure it and can trust that measuring.
+
+3
+00:00:08.545 --> 00:00:12.644
+First the surface, the gauges, and what heat does to a size.
+
+4
+00:00:13.713 --> 00:00:16.964
+Then: how much tolerance does the measuring itself use up?
+
+5
+00:00:17.737 --> 00:00:20.210
+And how does the process stay capable all day?
+
+6
+00:00:21.523 --> 00:00:24.461
+A roughness tester draws a fine stylus across the
+
+7
+00:00:24.507 --> 00:00:27.839
+surface and traces its tiny peaks and valleys.
+
+8
+00:00:28.548 --> 00:00:32.589
+Ra is their average height, in microns: the lower, the smoother.
+
+9
+00:00:33.332 --> 00:00:40.194
+Rough turning gives about 3.2 to 6.3, fine turning 0.8 to 1.6.
+
+10
+00:00:41.185 --> 00:00:46.154
+A regular wavy pattern is chatter: vibration, because the tool sticks out too far,
+
+11
+00:00:46.340 --> 00:00:48.348
+the wall is thin or the speed is wrong.
+
+12
+00:00:49.370 --> 00:00:54.549
+Where the tool runs out, burrs are left: sharp ridges, often from worn tools.
+
+13
+00:00:55.861 --> 00:01:00.563
+In practice a caliper is good to about two or three hundredths of a millimetre.
+
+14
+00:01:01.304 --> 00:01:04.497
+A micrometer, a measuring clamp with a fine screw,
+
+15
+00:01:04.694 --> 00:01:08.235
+reads one micron: enough for plus or minus one hundredth.
+
+16
+00:01:09.193 --> 00:01:12.990
+The rule of thumb: read about ten times finer than the tolerance.
+
+17
+00:01:13.711 --> 00:01:17.182
+And calibrate on a schedule, against a known reference.
+
+18
+00:01:18.254 --> 00:01:23.735
+For holes there is the go/no-go plug gauge: one end must fit, the other must not.
+
+19
+00:01:24.525 --> 00:01:28.031
+No number to read, so it is quick and hard to get wrong.
+
+20
+00:01:29.417 --> 00:01:32.145
+For form and position you go to the measuring room.
+
+21
+00:01:32.841 --> 00:01:37.565
+A CMM, a coordinate measuring machine, touches points in the bore with a probe,
+
+22
+00:01:37.752 --> 00:01:39.668
+a small pin with a ball on its tip.
+
+23
+00:01:40.693 --> 00:01:44.164
+From them it works out diameter, roundness and position,
+
+24
+00:01:44.280 --> 00:01:45.929
+from the datums on the drawing.
+
+25
+00:01:46.922 --> 00:01:52.495
+The room is kept at 20 degrees: the reference temperature for sizes, from ISO 1.
+
+26
+00:01:53.803 --> 00:01:58.854
+Steel expands as it warms up, about eleven and a half microns per metre per degree.
+
+27
+00:01:59.539 --> 00:02:01.014
+Aluminium twice that.
+
+28
+00:02:02.053 --> 00:02:08.334
+A shaft of thirty, h6, must measure between 29.987 and thirty.
+
+29
+00:02:09.015 --> 00:02:15.749
+The operator measures it warm from the machine, at 35 degrees: 29.990.
+
+30
+00:02:16.445 --> 00:02:16.712
+Good.
+
+31
+00:02:17.737 --> 00:02:20.314
+But the customer measures at twenty degrees.
+
+32
+00:02:21.075 --> 00:02:27.449
+There the shaft has shrunk by five microns, to 29.985: out of tolerance.
+
+33
+00:02:28.160 --> 00:02:29.507
+The batch is rejected.
+
+34
+00:02:30.522 --> 00:02:34.435
+So: let the part cool for a quarter of an hour in a set place,
+
+35
+00:02:34.644 --> 00:02:37.964
+or set the gauge with a master part at the same temperature.
+
+36
+00:02:39.317 --> 00:02:41.790
+Every measurement has a measurement uncertainty:
+
+37
+00:02:42.033 --> 00:02:45.458
+a range around the reading in which the true value lies.
+
+38
+00:02:46.161 --> 00:02:50.434
+From the instrument, the person, the part, the temperature and the method.
+
+39
+00:02:51.580 --> 00:02:54.529
+The rule of ten times finer is about resolution:
+
+40
+00:02:54.691 --> 00:02:57.106
+the smallest step the instrument shows.
+
+41
+00:02:58.120 --> 00:03:01.580
+At plus or minus two hundredths the band is four hundredths,
+
+42
+00:03:01.696 --> 00:03:04.273
+so that step is four microns at most.
+
+43
+00:03:05.306 --> 00:03:08.951
+But a gauge can show one micron and still scatter by five.
+
+44
+00:03:10.255 --> 00:03:13.529
+So you test the whole measuring system with a gauge R&amp;R:
+
+45
+00:03:13.645 --> 00:03:16.315
+repeatability and reproducibility together,
+
+46
+00:03:16.489 --> 00:03:18.590
+the random spread of the measuring system.
+
+47
+00:03:19.296 --> 00:03:23.917
+For example ten parts, three operators, each part three times,
+
+48
+00:03:24.091 --> 00:03:25.681
+blind and in random order.
+
+49
+00:03:26.707 --> 00:03:31.618
+Repeatability is the spread when one person measures the same part again and again:
+
+50
+00:03:31.758 --> 00:03:33.221
+mostly the instrument.
+
+51
+00:03:34.289 --> 00:03:38.352
+Reproducibility is the difference between people: method and handling.
+
+52
+00:03:39.411 --> 00:03:42.128
+On a shaft of plus or minus two hundredths,
+
+53
+00:03:42.337 --> 00:03:46.284
+the standard deviation of the measuring is one and a half microns.
+
+54
+00:03:47.017 --> 00:03:51.696
+Six times that is nine microns: 22.5 percent of the band.
+
+55
+00:03:52.465 --> 00:03:55.298
+By the AIAG manual, under ten percent is good,
+
+56
+00:03:55.472 --> 00:03:58.583
+up to thirty conditionally acceptable, above that not.
+
+57
+00:03:59.355 --> 00:04:01.433
+The SPC module goes deeper.
+
+58
+00:04:02.780 --> 00:04:05.206
+The machine grows too: thermal growth.
+
+59
+00:04:05.889 --> 00:04:10.661
+Spindle, ball screws and frame expand, and positions shift by hundredths,
+
+60
+00:04:10.800 --> 00:04:12.275
+mostly while warming up.
+
+61
+00:04:13.312 --> 00:04:16.516
+Cpk is the distance from the mean to the nearest limit,
+
+62
+00:04:16.714 --> 00:04:19.849
+divided by three sigma: does it fit where it is?
+
+63
+00:04:20.547 --> 00:04:22.463
+The quality module explains it.
+
+64
+00:04:23.517 --> 00:04:29.833
+A bore of 25, plus or minus fifteen microns, a standard deviation of three microns.
+
+65
+00:04:30.552 --> 00:04:35.034
+In the morning the average sits on size: Cpk 1.67.
+
+66
+00:04:35.764 --> 00:04:39.143
+Many customers ask 1.33 in series.
+
+67
+00:04:40.160 --> 00:04:45.814
+By the afternoon heat and wear have moved the average to 25.006:
+
+68
+00:04:46.000 --> 00:04:47.950
+nine microns left to the limit,
+
+69
+00:04:48.147 --> 00:04:49.122
+Cpk 1.0.
+
+70
+00:04:49.840 --> 00:04:52.371
+The same spread; only the average walked.
+
+71
+00:04:53.714 --> 00:04:56.547
+So the fix is not straight away a new machine.
+
+72
+00:04:57.258 --> 00:05:01.739
+A warm-up cycle runs the spindle and axes at stepped speeds first,
+
+73
+00:05:01.879 --> 00:05:04.282
+about twenty minutes on some machines.
+
+74
+00:05:05.294 --> 00:05:07.454
+And in-machine probing closes the loop:
+
+75
+00:05:07.593 --> 00:05:10.031
+a touch probe in the spindle measures the bore.
+
+76
+00:05:11.037 --> 00:05:13.196
+The control corrects the wear offset,
+
+77
+00:05:13.370 --> 00:05:19.315
+and the average stays within one micron of size: Cpk 1.56, all day.
+
+78
+00:05:19.994 --> 00:05:22.629
+Provided the probe itself is calibrated.
+
+79
+00:05:23.674 --> 00:05:27.251
+So: get the measuring right first, then judge the process.

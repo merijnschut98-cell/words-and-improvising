@@ -1,0 +1,185 @@
+WEBVTT
+
+1
+00:00:00.836 --> 00:00:04.296
+In de procesfabriek wordt het product gemaakt dat in de tank van lijn 3 zit.
+
+2
+00:00:05.302 --> 00:00:10.503
+Een procesfabriek bestaat uit vaste stappen, zoals pompen, verwarmen en mengen.
+
+3
+00:00:11.224 --> 00:00:12.791
+Die heten unit operations.
+
+4
+00:00:13.868 --> 00:00:15.679
+Vier onderwerpen volgen het product.
+
+5
+00:00:16.438 --> 00:00:18.609
+Twee gaan over maken en laten stromen.
+
+6
+00:00:19.578 --> 00:00:22.457
+De andere twee gaan over tellen en over capaciteit.
+
+7
+00:00:23.755 --> 00:00:27.110
+Het eerste onderwerp is Procestypen en processchema’s.
+
+8
+00:00:27.836 --> 00:00:30.576
+In de ketel maak je één partij tegelijk, een batch.
+
+9
+00:00:31.571 --> 00:00:34.497
+Vanaf de tank stroomt het product non-stop naar de vuleenheid,
+
+10
+00:00:34.624 --> 00:00:35.982
+want de dozen blijven komen.
+
+11
+00:00:37.026 --> 00:00:39.696
+Bij procestypen gebruiken we vaak een blokschema (block flow diagram)
+
+12
+00:00:39.766 --> 00:00:40.788
+en een processchema (process flow diagram).
+
+13
+00:00:41.528 --> 00:00:45.627
+Daarin heeft elk apparaat een code, zodat iedereen hetzelfde apparaat bedoelt.
+
+14
+00:00:47.002 --> 00:00:50.195
+Het tweede onderwerp is Procesgrootheden en regelen.
+
+15
+00:00:50.927 --> 00:00:52.738
+Vier grootheden sturen de fabriek.
+
+16
+00:00:53.472 --> 00:00:56.769
+Dat zijn druk, temperatuur, debiet en niveau.
+
+17
+00:00:57.763 --> 00:00:58.959
+Je houdt ze op hun waarde,
+
+18
+00:00:59.168 --> 00:01:02.047
+zodat elke doos in de vuleenheid hetzelfde product krijgt.
+
+19
+00:01:03.056 --> 00:01:05.540
+Bij meten gebruiken we vaak een Coriolismeter (Coriolis meter)
+
+20
+00:01:05.563 --> 00:01:08.257
+voor het debiet en een Pt100 voor de temperatuur.
+
+21
+00:01:08.973 --> 00:01:11.225
+De Coriolismeter meet direct de massa.
+
+22
+00:01:12.475 --> 00:01:15.250
+Het derde onderwerp is Massa- en energiebalans.
+
+23
+00:01:15.981 --> 00:01:19.997
+Wat erin gaat, zoals de zakken op de pallet, komt eruit of blijft erin.
+
+24
+00:01:20.974 --> 00:01:23.017
+Mist er iets in de som, dan zoek je een lek.
+
+25
+00:01:23.708 --> 00:01:26.715
+Product kan bijvoorbeeld via de vloer naar het riool verdwijnen.
+
+26
+00:01:27.668 --> 00:01:30.129
+Bij balansen gebruiken we vaak een massabalans (mass balance).
+
+27
+00:01:30.892 --> 00:01:32.378
+Die laat zien waar product blijft.
+
+28
+00:01:33.703 --> 00:01:36.698
+Het vierde onderwerp is Batchcapaciteit en opschalen.
+
+29
+00:01:37.400 --> 00:01:41.312
+Een cyclus loopt van de ene start tot de volgende, en het wachten telt mee.
+
+30
+00:01:42.298 --> 00:01:45.386
+Wat in een kolf werkt, gaat in de grote ketel vaak mis.
+
+31
+00:01:46.096 --> 00:01:47.466
+Daarom schaal je in stappen op.
+
+32
+00:01:48.456 --> 00:01:50.883
+Bij opschalen gebruiken we vaak een proeffabriek (pilot plant).
+
+33
+00:01:51.562 --> 00:01:53.257
+Daar test je klein wat later groot moet.
+
+34
+00:01:54.292 --> 00:01:57.647
+Het product is klaar en gaat via de leiding naar de vuleenheid in hal B.
+
+35
+00:01:59.049 --> 00:02:00.082
+Dit is de hele kaart.
+
+36
+00:02:00.804 --> 00:02:04.856
+Procestechniek, de basis, is het derde station van Dingen maken.
+
+37
+00:02:05.864 --> 00:02:07.478
+Elk onderwerp heeft vier niveaus.
+
+38
+00:02:08.522 --> 00:02:12.156
+Begin bij Procestypen en processchema’s op niveau Basis.
+
+39
+00:02:12.913 --> 00:02:14.747
+Die les laat zien hoe een fabriek draait.
+
+40
+00:02:15.776 --> 00:02:18.957
+Op niveau Werkkennis lees je tekeningen en regelkringen,
+
+41
+00:02:19.317 --> 00:02:21.477
+reken je met energie en schaal je op.
+
+42
+00:02:22.456 --> 00:02:24.557
+Op niveau Gevorderd komen buffertanks,
+
+43
+00:02:24.743 --> 00:02:28.749
+cascaderegeling, standaardiseren en het plannen van meer producten.
+
+44
+00:02:29.764 --> 00:02:32.318
+Op niveau Expert gaat het om opstartverlies,
+
+45
+00:02:32.596 --> 00:02:36.091
+minder spreiding, pinch-analyse en knelpunten wegnemen.
+
+46
+00:02:37.072 --> 00:02:40.474
+Elke les en elke film van deze module heeft een plek op deze kaart.

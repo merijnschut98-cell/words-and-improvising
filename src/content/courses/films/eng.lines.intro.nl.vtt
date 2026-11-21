@@ -1,0 +1,201 @@
+WEBVTT
+
+1
+00:00:00.843 --> 00:00:02.480
+Lijn 3 is een rij stations.
+
+2
+00:00:03.176 --> 00:00:05.196
+Elk station doet één vast deel van het werk.
+
+3
+00:00:06.291 --> 00:00:11.156
+Lijnen en automatisering leert je lijnen ontwerpen en verbeteren met automatisering.
+
+4
+00:00:12.152 --> 00:00:14.949
+Eerst de lijn zelf, met ontwerp en robots.
+
+5
+00:00:15.952 --> 00:00:17.287
+Dan wat hem goed laat draaien.
+
+6
+00:00:18.056 --> 00:00:20.726
+Foutvrij maken, varianten en besturing.
+
+7
+00:00:21.735 --> 00:00:23.372
+Tot slot de businesscase.
+
+8
+00:00:24.672 --> 00:00:26.646
+Het eerste onderwerp is Lijnontwerp.
+
+9
+00:00:27.331 --> 00:00:29.258
+Je volgt één doos en telt de stations.
+
+10
+00:00:30.267 --> 00:00:33.193
+Het langzaamste station bepaalt hoe snel de hele lijn kan.
+
+11
+00:00:34.206 --> 00:00:36.737
+Op een signaalzuil (stack light) lees je af of een station draait,
+
+12
+00:00:36.993 --> 00:00:38.282
+wacht of storing heeft.
+
+13
+00:00:39.582 --> 00:00:41.416
+Het tweede onderwerp is Robots.
+
+14
+00:00:42.169 --> 00:00:45.002
+Een robot is een arm met meestal zes assen en een grijper.
+
+15
+00:00:46.005 --> 00:00:48.826
+Een robot kan aan het begin van de band de dozen neerzetten.
+
+16
+00:00:49.788 --> 00:00:51.831
+Posities leer je in met een teach pendant.
+
+17
+00:00:53.127 --> 00:00:55.147
+Het derde onderwerp is Foutvrij maken.
+
+18
+00:00:55.846 --> 00:00:58.598
+De eenheid vult alleen als er een doos onder de plaat staat.
+
+19
+00:00:59.670 --> 00:01:01.748
+Twee sensoren zien of die doos er is.
+
+20
+00:01:02.508 --> 00:01:03.924
+Anders loopt product de band op.
+
+21
+00:01:04.919 --> 00:01:07.624
+Daartegen gebruik je poka-yoke en een interlock.
+
+22
+00:01:08.853 --> 00:01:11.512
+Het vierde onderwerp is Varianten en omstellen.
+
+23
+00:01:12.185 --> 00:01:14.681
+Een variant is een versie van hetzelfde product.
+
+24
+00:01:15.762 --> 00:01:18.339
+Omstellen is wisselen naar de volgende variant.
+
+25
+00:01:19.015 --> 00:01:21.001
+Zolang dat duurt, maakt de lijn niks.
+
+26
+00:01:22.023 --> 00:01:23.787
+Daarvoor laadt de machine een recept (recipe)
+
+27
+00:01:23.810 --> 00:01:26.365
+met instellingen zoals snelheid en posities.
+
+28
+00:01:27.747 --> 00:01:30.278
+Het vijfde onderwerp is Besturing en data.
+
+29
+00:01:30.972 --> 00:01:33.573
+Een machine heeft ogen, een brein en handen.
+
+30
+00:01:34.541 --> 00:01:38.349
+Dat zijn de sensoren, de PLC in de kast en de actuatoren.
+
+31
+00:01:39.376 --> 00:01:40.618
+De PLC ken je al.
+
+32
+00:01:41.265 --> 00:01:44.297
+Hier schrijf je de logica van de lijn als ladderdiagram (ladder diagram).
+
+33
+00:01:45.562 --> 00:01:47.791
+Het zesde onderwerp is Businesscase.
+
+34
+00:01:48.464 --> 00:01:52.422
+Het draait om arbeid, volume, variatie en kwaliteit.
+
+35
+00:01:53.417 --> 00:01:55.785
+Investering gedeeld door besparing per jaar.
+
+36
+00:01:56.482 --> 00:01:58.421
+Zo reken je de terugverdientijd (payback time) uit.
+
+37
+00:01:59.434 --> 00:02:01.443
+Zo draait lijn 3 geautomatiseerd.
+
+38
+00:02:02.209 --> 00:02:04.427
+Daarna ga jij verder met de cijfers van de lijn.
+
+39
+00:02:05.674 --> 00:02:06.475
+De hele kaart.
+
+40
+00:02:07.207 --> 00:02:11.828
+Lijnen en automatisering is het vierde station van Automatisering en IT.
+
+41
+00:02:12.800 --> 00:02:15.064
+Elk van de zes onderwerpen heeft vier niveaus.
+
+42
+00:02:16.068 --> 00:02:18.541
+Begin op niveau Basis bij het lezen van een lijn.
+
+43
+00:02:19.186 --> 00:02:20.916
+Dat laat zien waar de rest op past.
+
+44
+00:02:21.907 --> 00:02:26.818
+Op niveau Werkkennis komen soorten lijnen en robots, sensoren en omstellen,
+
+45
+00:02:27.201 --> 00:02:28.780
+veiligheid en investering.
+
+46
+00:02:29.774 --> 00:02:32.769
+Op niveau Gevorderd komen buffers en robotcellen,
+
+47
+00:02:32.943 --> 00:02:36.472
+sensoren kiezen, OEE en de businesscase.
+
+48
+00:02:37.501 --> 00:02:42.493
+Op niveau Expert komen simulatie en vision, foutvrij maken en volgorde,
+
+49
+00:02:42.946 --> 00:02:44.525
+microstops en risico.
+
+50
+00:02:45.518 --> 00:02:48.931
+Elke les en elke film van deze module heeft een plek op deze kaart.

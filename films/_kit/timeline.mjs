@@ -1,0 +1,1252 @@
+// Pure parts of the film player: caption markers, number formats, the speak
+// variant, the timeline, beats, the narration hold and the page parameters.
+// No imports and no DOM: the build inlines this file into every film page (with
+// its `export` words stripped), and tests/film.test.js imports it as it is.
+// The part between the build-only markers (caption markers, numbers, the SAY
+// table and the speak variants) runs only at build time: the page's film data
+// already carries the resolved captions and voice/speak strings, so the page
+// inlines everything except that part (runtimeTimeline in films/_kit/player.mjs).
+// Keep runtime code out of it, and build-only code in it.
+
+export const wordsOf = (text) => String(text || '').trim().split(/\s+/).filter(Boolean).length;
+
+// build-only:start
+// A scene lasts at least (caption words / 2.5) + 2 s, so it can be read.
+export const minSceneDur = (words) => words / 2.5 + 2;
+
+// "De {t:Snijsnelheid} is {n:220} m/min" → text, term and number pieces.
+// {t:Term|shown} names lesson term Term but shows "shown" (another form).
+export function parseMarked(src) {
+  const out = [];
+  const re = /\{([a-z]):([^{}]*)\}/g;
+  let last = 0;
+  let m;
+  const plain = (s) => {
+    if (/[{}]/.test(s)) throw new Error(`bad marker in "${src}"`);
+    if (s) out.push({ text: s });
+  };
+  while ((m = re.exec(src))) {
+    plain(src.slice(last, m.index));
+    if (m[1] === 't') {
+      const [term, shown] = m[2].split('|');
+      out.push({ term: term.trim(), shown: (shown ?? term).trim() });
+    } else if (m[1] === 'n') out.push({ num: m[2].trim() });
+    else throw new Error(`bad marker {${m[1]}:} in "${src}"`);
+    last = re.lastIndex;
+  }
+  plain(src.slice(last));
+  return out;
+}
+
+// "1167" → 1.167 (nl) or 1,167 (en); "0.3" → 0,3 or 0.3. Decimals as written.
+export function formatNumber(raw, lang) {
+  const s = String(raw);
+  if (!/^-?\d+(\.\d+)?$/.test(s)) throw new Error(`not a plain number: ${s}`);
+  const [int, dec] = s.split('.');
+  const group = lang === 'en' ? ',' : '.';
+  const point = lang === 'en' ? '.' : ',';
+  const body = int.replace(/^-/, '');
+  const grouped = body.length >= 4 ? body.replace(/\B(?=(\d{3})+(?!\d))/g, group) : body;
+  return (int.startsWith('-') ? '-' : '') + grouped + (dec !== undefined ? point + dec : '');
+}
+
+// A resolved caption is a list of strings and term pieces {t, en?, c}. In Dutch
+// a term carries its English word (en) on first use only.
+export const plainOf = (seg) => seg.map((p) => (typeof p === 'string' ? p : p.t + (p.en ? ` (${p.en})` : ''))).join('');
+// Units and signs a voice would spell out or skip, said as words. Longest first.
+// Also for Piper (espeak-ng reads "6,0" as "zes komma nul" and "€8,67" badly).
+const SAY = {
+  // 1.167 is "elfhonderdzevenenzestig" (espeak-ng says "duizend honderd zevenenzestig")
+  nl: [[/\b([1-9])\.([1-9])(\d\d)\b/g, (m, a, b, cd) => `${a}${b}honderd${cd === '00' ? '' : ` ${Number(cd)}`}`],
+    [/omw\/min/g, 'omwentelingen per minuut'], [/\bmm\/min\b/g, 'millimeter per minuut'], [/\bm\/min\b/g, 'meter per minuut'], [/µm\b/g, 'micrometer'], [/\brpm\b/g, 'omwentelingen per minuut'],
+    [/€\s?(\d[\d.]*(?:,\d+)?)/g, '$1 euro'], [/(\d),0(?![\d])/g, '$1'], [/(\d)\s?mm\b/g, '$1 millimeter'], [/(\d)\s?min\b/g, '$1 minuten'], [/(\d)\s?%/g, '$1 procent'],
+    [/Ø\s*/g, 'diameter '], [/(\d)\+(\d)/g, '$1 plus $2'], [/\s×\s/g, ' maal '], [/\s\/\s/g, ' gedeeld door '], [/\s=\s/g, ' is '], [/°/g, ' graden'], [/\bRa\b/g, 'R a'], [/’/g, "'"],
+    // acronym pairs (MIG/MAG, IQ/OQ/PQ) without the slash, t8/5, and a standard's number in parts
+    [/\b([A-Z]{2,})\/(?=[A-Z]{2,}\b)/g, '$1 '], [/\bt8\/5\b/g, 't 8 5'], [/\bISO (\d\d)(\d\d)-(\d)\b/g, 'ISO $1 $2 deel $3'],
+    // the weld standards as said on the floor (ISO 58 17, not "vijfduizend..."), the execution
+    // classes as letters, and the ISO 6520-1 code 401 digit by digit; only these, so ISO 9001 stays
+    [/\bISO (5817|9712)\b/g, (m, n) => `ISO ${n.slice(0, 2)} ${n.slice(2)}`], [/\bEXC([1-4])\b/g, 'E X C $1'], [/\b401\b/g, 'vier nul één'],
+    // MIG, MAG and TIG on their own as letters, like MAG-lassen (espeak-ng reads MAG as the verb "mag")
+    [/\b(MIG|MAG|TIG)\b(?!-)/g, (m) => m.split('').join(' ')],
+    // DOE (design of experiments) as letters in both languages, not the Dutch verb "doe" or the English "doe"
+    [/\bDOE\b/g, 'D O E'],
+    // PFMEA as letters (espeak-ng says "pfmeea" in Dutch and drops the A in English)
+    [/\bPFMEA\b/g, 'P F M E A'],
+    // the go/no-go gauge and gauge R&R without "slash" or "ampersand": gaat, gaat niet; R en R
+    [/\b([Gg])aat\/gaat-niet\b/g, '$1aat, gaat niet'], [/\bR&R\b/g, 'R en R'],
+    // capability as the English loan the floor says (espeak-ng reads the Dutch spelling "kaa-paa-bili-tie"): kepeibiliti
+    [/\b([Cc])apability/g, (m, c) => `${c === 'C' ? 'K' : 'k'}epeibiliti`],
+    // I/O without "slash"; OEE, MES and HMI as letters (espeak-ng says "oe", the word "mes", "hmie"); CE needs
+    // nothing: espeak-ng already spells it in CE-markering. But a lone S with a word after it ("M E S in", "M E
+    // S-leverancier") is read as a bare hiss, the clitic 's (phon.py, 2026-11-11): there MES is "em ee es"
+    [/\bI\/O\b/g, 'I O'], [/\bOEE\b/g, 'O E E'], [/\bMES(?=[\s-]+[\p{L}\p{N}])/gu, 'em ee es'], [/\bMES\b/g, 'M E S'], [/\bHMI\b/g, 'H M I'],
+    // CILT (clean, inspect, lubricate, tighten) as letters: espeak-ng reads it as the word "silt"
+    [/\bCILT\b/g, 'C I L T'],
+    // English robot words in a Dutch sentence as the floor says them (espeak-ng reads "pajlo-at", "te-ach", "tolling", French "vision")
+    [/\b([Pp])ayload/g, '$1ee-lood'], [/\b([Tt])each pendant\b/g, '$1ietsj pendant'], [/\btooling\b/g, 'toeling'], [/\b([Vv])ision\b/g, '$1izjun'],
+    // espeak-ng reads "miksed-model", "heijunka" with the u of "bus", and drops the pr of "robotprogramma's"
+    [/\b([Mm])ixed-model\b/g, '$1ikst moddul'], [/\b([Hh])eijunka/g, '$1eijoenka'], [/\b([Rr])obotprogramma/g, '$1obot-programma'],
+    // the machine states and the Pareto chart (espeak-ng reads "star-vet", "blok-ket", and stresses "PA-re-to-diagram";
+    // the texts write pareto-diagram since 2026-11-11, which it stresses right, pa-RE-to, and needs no rule)
+    [/\b([Ss])tarved\b/g, '$1taarft'], [/\b([Bb])locked\b/g, '$1lokt'], [/\b([Pp])aretodiagram/g, '$1areto-diagram'],
+    // the range of a subgroup as the floor says it (espeak-ng reads the Dutch "rang-e"), and slijtagecompensatie
+    // with its parts apart (espeak-ng reads "slijtaaɣee" in the compound; "slijtage" alone is right)
+    [/\b([Rr])ange\b/g, '$1eenzj'], [/\b([Ss])lijtagecompensatie/g, '$1lijtage-compensatie'],
+    // ISO 2768 as "ISO 27 68" (espeak-ng says "tweeduizend zevenhonderd ...")
+    [/\bISO 2768\b/g, 'ISO 27 68'],
+    // the Weibull shape factor: espeak-ng reads "bèta" as "be-TAA" with a schwa; said as "beeta"
+    [/\b([Bb])èta\b/g, '$1eeta'],
+    // espeak-ng stresses "hoofdschaKElaar" (with the e of "bed") and "veiligheidsreGELS": split, each part
+    // keeps its own stress and vowels (HOOFD-SCHAkelaar, VEILigheids-REgels)
+    [/\b([Hh])oofdschakelaar/g, '$1oofd-schakelaar'], [/\b([Vv])eiligheidsregels\b/g, '$1eiligheids-regels'],
+    // the motor efficiency classes as letters (espeak-ng reads "IE3" with the vowel of "die": "ie drie"), and
+    // typeplaatje, isolatieklasse and draaistroom with their parts apart (espeak-ng reads "tipɛplaatje", stresses
+    // "Isolatieklasse" with a t for ts, and "draaiSTROOM"; split, each part keeps its own reading)
+    [/\bIE([1-5])\b/g, 'I-E $1'], [/\b([Tt])ypeplaatje/g, '$1iepe-plaatje'], [/\b([Ii])solatieklasse/g, '$1solatie-klasse'],
+    [/\b([Dd])raaistroom/g, '$1raai-stroom'],
+    // steel grades with the letter said as "es" (espeak-ng gives a bare hiss for the S in S235; capital at a
+    // sentence start, so the sentence still ends before it), and compounds espeak-ng stresses at the end
+    // (kerfslagPROEF, Elasticiteitsmodulus): split at the head
+    [/(^|[.!?]\s+)S(235|275|355)\b/g, '$1Es $2'], [/\bS(235|275|355)\b/g, 'es $1'],
+    [/\b([Kk])erfslagproef/g, '$1erfslag-proef'], [/\b([Ee])lasticiteitsmodulus/g, '$1lasticiteits-modulus'],
+    // trekproef the same way (espeak-ng stresses trekPROEF): TREK-proef
+    [/\b([Tt])rekproef/g, '$1rek-proef'],
+    // LMRA and VCA as letters (espeak-ng reads the words "lmraa" and "vkaa"), Piper Alpha as its English name
+    // (espeak-ng gives the Dutch i of "pieper" and a p-h in "alpha"), and compounds espeak-ng stresses or voices
+    // wrong: blusDEken with a z, gasmEting with a schwa, dienstWISsel, dakventiLAtor, KONtroleekamer, stopreGEL;
+    // split, each part keeps its own reading
+    [/\bLMRA\b/g, 'L M R A'], [/\bVCA\b/g, 'V C A'], [/\bPiper Alpha\b/g, 'Paiper Alfa'],
+    [/\b([Bb])lusdeken/g, '$1lus-deken'], [/\b([Gg])asmeting/g, '$1as-meting'], [/\b([Dd])ienstwissel/g, '$1ienst-wissel'],
+    [/\b([Dd])akventilator/g, '$1ak-ventilator'], [/\b([Cc])ontrolekamer/g, '$1ontrole-kamer'], [/\b([Ss])topregel/g, '$1top-regel'],
+    // hydraulics: espeak-ng stresses the valve compounds on "-tiel" (stuurvenTIEL), cilindersnelheid on "snel"
+    // (cilinderbenutting, in the moulding machine film, on "CI-" with the e of "bed"; split, so "cilinder" gets
+    // its lexicon entry, ci-LIN-der),
+    // reads zuigeroppervlak as "zuigiir-oppervlak"
+    // and reads injectieletsel as "INjektie-letsel"; split at the head (STUUR-venTIEL, in-JECtie-LETsel),
+    // and ISO 4406 as the floor says it, "ISO 44 06" (as ISO 2768)
+    [/\b([Ss])tuurventiel/g, '$1tuur-ventiel'], [/\b([Ss])moorventiel/g, '$1moor-ventiel'], [/\b([Dd])rukbegrenzingsventiel/g, '$1rukbegrenzings-ventiel'],
+    [/\b([Cc])ilindersnelheid/g, '$1ilinder-snelheid'], [/\b([Cc])ilinderbenutting/g, '$1ilinder-benutting'], [/\b([Zz])uigeroppervlak/g, '$1uiger-oppervlak'], [/\b([Ii])njectieletsel/g, '$1n-jectie-letsel'], [/\bISO 4406\b/g, 'ISO 44 06'],
+    // drives: espeak-ng stresses the singular magneetschakelaar and the -regelaar compounds on "-ke-"/"-ge-"
+    // with the e of "bed" (frequentieregeLAAR); split at the head (frequentie-REgelaar). It stresses
+    // "DIrect" in direct inschakelen (only there: "direct na elkaar" in other films stays), said as the
+    // floor says it, "d'rect"; and harmonischen with "sch" as in "school", said "harmonische" (-ise)
+    [/\b([Mm])agneetschakelaar\b/g, '$1agneet-schakelaar'], [/\b([Ff])requentieregelaar/g, '$1requentie-regelaar'], [/\b([Ss])ervoregelaar/g, '$1ervo-regelaar'],
+    [/\b([Dd])irect (?=in(?:schakel|geschakeld))/g, '$1e-rekt '], [/\b([Hh])armonischen\b/g, '$1armonische'],
+    // fatigue: espeak-ng reads Wöhler with the o of "bot" and a sounded h (said "Weuler"), stresses
+    // lastwisSEEling, puts a schwa in vermoeiingsgrens, and stresses kogelSTRAlen and lasTEEN; split at the head
+    [/Wöhler/g, 'Weuler'], [/\b([Ll])astwisseling/g, '$1ast-wisseling'], [/\b([Vv])ermoeiingsgrens/g, '$1ermoeiings-grens'],
+    [/\b([Kk])ogelstralen\b/g, '$1ogel-stralen'], [/\b([Ll])asteen\b/g, '$1as-teen'],
+    // process plant: English words in a Dutch sentence as the floor says them (espeak-ng reads "batx" with the g of
+    // "lachen", "uunit oopiraasjon", stresses "KOrioliss" and "KONtinu", and sounds the h in ohm): betsj
+    // (betsj- in compounds: batchproces, batchnummer), joenit oppe-reesjen, kori-olis (KO-ri-O-lis; "korie-olis"
+    // stressed the ie), konti-nu (continue as konti-nuwe), oom
+    [/\b([Bb])atch(\p{L}?)/gu, (m, b, l) => `${b}etsj${l ? `-${l}` : ''}`],
+    [/\b([Uu])nit operation(s?)\b/g, (m, u, s) => `${u === 'U' ? 'J' : 'j'}oenit oppe-reesjen${s}`],
+    [/\b([Cc])oriolis/g, (m, c) => (c === 'C' ? 'Kori-olis' : 'kori-olis')], [/\bohm\b/g, 'oom'],
+    [/\b([Cc])ontinue\b/g, (m, c) => (c === 'C' ? 'Konti-nuwe' : 'konti-nuwe')], [/\b([Cc])ontinu\b/g, (m, c) => (c === 'C' ? 'Konti-nu' : 'konti-nu')],
+    // measuring the process variables: espeak-ng reads psi as one hiss ("psie"), FDA as "vdaa", stresses
+    // thermokopPEL, drops the h in toezichthouders and reads magnetisch-inductieve as "INduktieve"; said
+    // pee-es-ie, ef-dee-aa, thermo-koppel, toezicht-houders, magnetisch in-duktieve (only after "magnetisch",
+    // so the inductieve sensor of eng.lines.errorproof keeps its reading); it also stresses DEbietmeter and
+    // drops the h in heethoudbuis (debiet-meter, heet-houdbuis)
+    [/\b([Dd])ebietmeter/g, '$1ebiet-meter'], [/\b([Hh])eethoudbuis/g, '$1eet-houdbuis'],
+    [/\bpsi\b/g, 'pee-es-ie'], [/\bFDA\b/g, 'ef-dee-aa'], [/\b([Tt])hermokoppel/g, '$1hermo-koppel'], [/\b([Tt])oezichthouder/g, '$1oezicht-houder'],
+    [/\b([Mm])agnetisch-inductie(ve|f)\b/g, '$1agnetisch in-duktie$2'],
+    // heat treatment: espeak-ng stresses BRInell and PIramide (said Brie-NEL, pira-MIE-de), drops the h in
+    // inzetharden, reads inductieharden as "INduktie-harden", and stresses warmtebehandeling (-be-HAN-deling
+    // read "bee-han-DEE-ling"), tandwielen (tandWIElen), polymeeroplossing (POlymeer) and diktesprong (with
+    // the e of "bed") wrong; split at the head, each part keeps its own reading
+    [/\bBrinell\b/g, 'Brienel'], [/\b([Pp])iramide/g, '$1iramiede'], [/\b([Ii])nzetharden/g, '$1nzet-harden'], [/\b([Ii])nductieharden/g, '$1nductie-harden'],
+    [/\b([Ww])armtebehandeling/g, '$1armte-behandeling'], [/\b([Tt])andwielen\b/g, '$1and-wielen'], [/\b([Pp])olymeeroplossing/g, '$1olymeer-oplossing'], [/\b([Dd])iktesprong/g, '$1ikte-sprong'],
+    // grid: espeak-ng stresses the head of wisselSTROOM, gelijkSTROOM, netstaSJON and laadPAAL; split, each part
+    // keeps its own stress (WISsel-STROOM, NET-staSJON, LAAD-PAAL)
+    [/\b([Ww])isselstroom/g, '$1issel-stroom'], [/\b([Gg])elijkstroom/g, '$1elijk-stroom'], [/\b([Nn])etstation/g, '$1et-station'],
+    [/\b([Ll])aadpa(al|len)\b/g, '$1aad-pa$2'],
+    // switchgear: espeak-ng stresses the singular vermogensschakelaar and aardingsschakelaar on "-ke-" with the
+    // e of "bed" (as magneetschakelaar; the plurals are read right) and kortsluitvermogen on "-mo-"; split at
+    // the head (verMOgens-SCHAkelaar, KORTsluit-vermogen). RMU as letters (espeak-ng reads the word "rmu")
+    [/\b([Vv])ermogensschakelaar\b/g, '$1ermogens-schakelaar'], [/\b([Aa])ardingsschakelaar\b/g, '$1ardings-schakelaar'],
+    [/\b([Kk])ortsluitvermogen\b/g, '$1ortsluit-vermogen'], [/\bRMU\b/g, 'R M U'],
+    // and vrijschakelen, the first safety rule, stressed on "-ke-" with a long e: VRIJ-schakelen
+    [/\b([Vv])rijschakelen\b/g, '$1rij-schakelen'],
+    // and schakelstation and klantstation, said like netstation above (SCHAkel-staSJON, KLANT-staSJON)
+    [/\b([Ss])chakelstation/g, '$1chakel-station'], [/\b([Kk])lantstation/g, '$1lant-station'],
+    // and sleutelstation (espeak-ng reads "-tɛl-" with the e of "bed"; said SLEUtel-staSJON) and foutstroom
+    // (stressed on "stroom"; said FOUT-STROOM), for eng.switchgear.automation
+    [/\b([Ss])leutelstation/g, '$1leutel-station'], [/\b([Ff])outstroom/g, '$1out-stroom'],
+    // outages: espeak-ng drops "-burige" in naburige (it says "naa-e") and stresses vrijgeschakeld(e) on "-GE-"
+    // with the e of "bed"; said na-burige and vrij-geschakeld, each part with its own reading
+    [/\b([Nn])aburige\b/g, '$1a-burige'], [/\b([Vv])rijgeschakeld/g, '$1rij-geschakeld'],
+    // IT/OT: espeak-ng reads Purdue as "pur-du-e" (said as the floor says it, "Pur-djoe"), firewall as "fie-re-wal"
+    // (said "fajerwol", with "regels" apart, else it stresses "re-GELS"), historian as "HIStoorian" and conduits
+    // with the Dutch ui (said "his-toorjen", "kondjoe-its"); and it stresses the head of functieMOdel (with "kti"),
+    // PROductieorder, stamDAta and tijdSCHAAL: split, each part keeps its own reading
+    [/\bPurdue\b/g, 'Pur-djoe'], [/\b([Ff])irewallregels\b/g, '$1ajerwol regels'], [/\b([Ff])irewall(s?)\b/g, '$1ajerwol$2'],
+    [/\bhistorian\b/g, 'his-toorjen'], [/\bconduits\b/g, 'kondjoe-its'],
+    [/\b([Ff])unctiemodel/g, '$1unctie-model'], [/\b([Pp])roductieorder/g, '$1roductie-order'], [/\b([Ss])tamdata\b/g, '$1tam-data'], [/\b([Tt])ijdschaal\b/g, '$1ijd-schaal'],
+    // the order flow: espeak-ng reads goederenontvangst as "goe-dier-een-ontvangst"; split, each part keeps its reading
+    [/\b([Gg])oederenontvangst/g, '$1oederen-ontvangst'],
+    // and, like productieorder, it stresses PROductieplanning and PROductieprestaties (with "kti"): split, so
+    // both are said pro-DUC-tie (this changes eng.ot.isa95's voice, which had no rendered video yet)
+    [/\b([Pp])roductie(planning|prestaties)/g, '$1roductie-$2'],
+    // congestion and roles (eng.gridbasics.congestion): ACM as letters (espeak-ng reads the word "akm") and
+    // TenneT as one word (it reads "Tenne T"); energiewet, capaciteitskaart, energieleverancier and piekuren split at the head (espeak-ng
+    // stresses "E-nergiewet", "KA-paciteitskaart", "energieleveranCIER" and "pie-KUUR-en"); and the grid's
+    // "de/een wachtrij", stressed "wacht-RIJ", said WACHT-rij (only after de or een, so the lines film's
+    // "kleine wachtrij" and "wachtrijen" stay as they are)
+    [/\bACM\b/g, 'A C M'], [/\bTenneT\b/g, 'Tennet'], [/\b([Ee])nergiewet/g, '$1nergie-wet'], [/\b([Cc])apaciteitskaart/g, '$1apaciteits-kaart'],
+    [/\b([Ee])nergieleverancier/g, '$1nergie-leverancier'], [/\b([Pp])iekuren\b/g, '$1iek-uren'], [/\b([Dd]e|[Ee]en) wachtrij\b/g, '$1 wacht-rij'],
+    // and congestiemanagement, stressed "KON-gestiemanagement": split, so it is said con-GES-tie-management
+    [/\b([Cc])ongestiemanagement/g, '$1ongestie-management'],
+    // compressed air (eng.power.air): espeak-ng stresses oliene-VEL-aar (with the e of "bed"), verzorgings-EEN-heid,
+    // warmte-TEE-rugwinning (with a long e) and reads toerenregeling as "toer-en-regeling"; split at the head, each
+    // part keeps its own reading (OLie-NEvelaar, verZORgings-eenheid, warmte-teRUGwinning, TOEren-REgeling). And
+    // booster as the floor says it, "boester" (espeak-ng reads the Dutch oo).
+    [/\b([Oo])lienevel/g, '$1lie-nevel'], [/\b([Vv])erzorgingseenheid/g, '$1erzorgings-eenheid'], [/\b([Ww])armteterugwinning/g, '$1armte-terugwinning'],
+    [/\b([Tt])oerenregeling/g, '$1oeren-regeling'], [/\b([Bb])ooster/g, '$1oester'],
+    // batch capacity (eng.process.batch): espeak-ng reads CIP as the word "sip" (said as letters, C I P), inline
+    // as "in-lie-ne" (said "inlain"), stresses VIScositeitsmeter, vrijGAve, ploegWISsel, besturingsSYSteem and
+    // spoedmoMENT, and reads labuitslag with the long a of "laaf"; split at the head, each part keeps its reading
+    [/\bCIP\b/g, 'C I P'], [/\binline\b/g, 'inlain'], [/\b([Vv])iscositeitsmeter/g, '$1iscositeits-meter'], [/\bQC-vrijgave\b/g, 'QC-vrij-gave'],
+    [/\b([Pp])loegwissel/g, '$1loeg-wissel'], [/\b([Bb])esturingssysteem/g, '$1esturings-systeem'], [/\b([Ss])poedmoment/g, '$1poed-moment'], [/\b([Ll])abuitslag/g, '$1ab-uitslag'],
+    // load flow and N-1 (eng.gridplanning.loadflow): loadflow as the floor says it, "loodflo" (espeak-ng reads
+    // "lo-ad-flow"; in a compound "loodflo-"), N-1 as "N min één" (espeak-ng drops the minus: "N één"),
+    // vluchtstrook and Netcode split at the head (espeak-ng stresses vluchtSTROOK and netCOde), and EN 50160
+    // as "E N vijftig honderdzestig" (not "vijftigduizend honderdzestig")
+    [/\b([Ll])oadflow(?=\p{L})/gu, '$1oodflo-'], [/\b([Ll])oadflow\b/g, '$1oodflo'], [/\bN-1-/g, 'N min één '], [/\bN-1\b/g, 'N min één'],
+    [/\b([Vv])luchtstrook/g, '$1lucht-strook'], [/\bNetcode\b/g, 'Net-code'], [/\bEN 50160\b/g, 'E N vijftig honderdzestig'],
+    // non-firm as the floor says it, "non-furm" (espeak-ng reads the Dutch short i, "non-fim")
+    [/\b([Nn])on-firm\b/g, '$1on-furm'],
+    // flex and batteries (eng.gridplanning.flex): redispatch, peak shaving and the day-aheadmarkt as the floor
+    // says them (espeak-ng reads "reedisp-atch" with the ch of "lachen", "pe-ak sjaaving" and "daaj-aahe-admarkt");
+    // compounds it stresses at the end or on every part, split at the head: systeemCOde, KA-paciteitsbeperkings-
+    // contract, tijdsduurGEEbonden (with a long e), trafoWISsel and piek-UUR (as piekuren above)
+    [/\b([Rr])edispatch\b/g, '$1iedispetsj'], [/\b([Pp])eak shaving\b/g, '$1iek sjeeving'], [/\b([Dd])ay-aheadmarkt/g, '$1ee-ahed-markt'],
+    [/\b([Ss])ysteemcode\b/g, '$1ysteem-code'], [/\b([Cc])apaciteits(beperkings|sturings)contract/g, '$1apaciteits-$2contract'],
+    [/\b([Tt])ijdsduurgebonden\b/g, '$1ijdsduur-gebonden'], [/\b([Tt])rafowissel/g, '$1rafo-wissel'], [/\b([Pp])iekuur\b/g, '$1iek-uur'],
+    // from substation to socket (eng.gridbasics.path): espeak-ng says EE-neksis, LIE-ander, westLAND, wijkTRAfo
+    // and hoofdze-KIE-ring. "En-exis" and "Ljander" give one main stress in the right place (en-NEK-sis,
+    // LJAN-der); Westland, wijktrafo and hoofdzekering are split at the head, which stresses both parts (WEST-LAND,
+    // WIJK-TRAfo, HOOFD-ZEkering) but no longer the wrong one alone. hoofdzekering only after "aan de", so the
+    // load film's "De hoofdzekering" stays as it is
+    [/\bEnexis\b/g, 'En-exis'], [/\bLiander\b/g, 'Ljander'], [/\bWestland\b/g, 'West-land'],
+    [/\b([Ww])ijktrafo/g, '$1ijk-trafo'], [/\baan de hoofdzekering\b/g, 'aan de hoofd-zekering'],
+    // how a transformer works (eng.transformers.principle): ONAN and Dyn5 as letters (espeak-ng reads the words
+    // "onan" and "din vijf"); nullastverliezen and regelschakelaar, stressed nullastverLIEzen and regelschaKElaar
+    // (with the e of "bed"), split at the head (NULlast-verLIEzen, REgel-SCHAkelaar, as vermogensschakelaar
+    // above); and "in driehoek", stressed drie-HOEK, said drie-hoek (only after "in", so the drives film's
+    // "naar driehoek" stays as it is)
+    [/\bONAN\b/g, 'O N A N'], [/\bDyn5\b/g, 'D Y N 5'], [/\b([Nn])ullastverliezen/g, '$1ullast-verliezen'],
+    [/\b([Rr])egelschakelaar/g, '$1egel-schakelaar'], [/\bin driehoek\b/g, 'in drie-hoek'],
+    // the five safety rules (eng.switchgear.fiverules): espeak-ng reads NEN-EN 50110 as "en ee en ee en
+    // vijftig duizend honderd tien" and NEN 3140 as "en ee en drieduizend honderdveertig"; said as the floor
+    // says them, "nen E N vijftig honderdtien" and "nen 31 40" (only NEN with a four-digit number, so ISO and
+    // EN numbers elsewhere stay). IV is read as the word "if", VOP as the word "vop" and WV with a v for the
+    // w: said I V, vee oo pee and wee vee (VP is read right). It stresses ARbobesluit (with "bes-luit"),
+    // the head of schakelmonTEUR, schakelmoMENten and moffenPLOEG, and reads installatieverantwoordelijke
+    // as "INstalaativerantwoordelijke" (t, not ts): split at the head, each part keeps its own reading
+    [/\bNEN-EN 50110\b/g, 'nen E N vijftig honderdtien'], [/\bNEN (\d\d)(\d\d)\b/g, 'nen $1 $2'],
+    [/\bIV\b/g, 'I V'], [/\bVOP\b/g, 'vee oo pee'], [/\bWV\b/g, 'wee vee'], [/\bArbobesluit\b/g, 'Arbo-besluit'],
+    [/\b([Ss])chakelmonteur/g, '$1chakel-monteur'], [/\b([Ss])chakelmoment/g, '$1chakel-moment'], [/\b([Mm])offenploeg/g, '$1offen-ploeg'],
+    [/\b([Ii])nstallatieverantwoordelijke/g, '$1nstallatie-verantwoordelijke'],
+    // protection (eng.switchgear.protection): espeak-ng reads relais as "REE-lice" (said as the floor says it,
+    // re-LEE; only where no film with a video says it: not before "ziet", "ook" or "meet", nor at a full stop,
+    // so eng.lines.control, eng.switchgear.devices and eng.switchgear.automation keep their voice), NAI-jlen
+    // (said naa-ijlen), and it stresses or voices these compounds wrong: uitschaKEL-signaal with the e of "bed",
+    // REEzervee-beveiliging, aardfout-beeveiLIEging, middenspannings-sə-KIEring,
+    // lekSTROOM, faseSTROmen, foutSTROmen, laagspanningsKAbel, straatKAbel; split at the head, each part keeps
+    // its own reading
+    [/\b([Bb]eveiligings)?([Rr])elais\b(?! (?:ziet|ook|meet)\b)(?!\.)/g, '$1$2elee'], [/\bnaijlen\b/g, 'naa-ijlen'],
+    [/\b([Uu])itschakelsignaal/g, '$1itschakel-signaal'],
+    [/\b([Rr])eservebeveiliging/g, '$1eserve-beveiliging'], [/\b([Aa])ardfoutbeveiliging/g, '$1ardfout-beveiliging'],
+    [/\b([Mm])iddenspanningszekering/g, '$1iddenspannings-zekering'], [/\b([Ll])aagspanningszekering/g, '$1aagspannings-zekering'],
+    [/\b([Ll])ekstroom/g, '$1ek-stroom'], [/\b([Ff])asestromen\b/g, '$1ase-stromen'],
+    [/\b([Ff])outstromen\b/g, '$1out-stromen'], [/\b([Ll])aagspanningskabel/g, '$1aagspannings-kabel'], [/\b([Ss])traatkabel/g, '$1traat-kabel'],
+    // the critical path (pm.plan.schedule, the first pm film): go/no-go without "slash" (espeak-ng says
+    // "go slash no-go"; as the English rule), pilot as the Dutch say it, "pailot" (espeak-ng reads "pie-lot"),
+    // and compounds it stresses at the end or reads wrong, split at the head: stuurGROEP, mijlPAAL, nulmEting
+    // with a schwa, gereedheidsCHeck with s-ch, piekseiZOEN (STUUR-groep, MIJL-paal, NUL-meting, -check as tsjek)
+    [/\b([Gg])o\/no-go\b/g, '$1o, no-go'], [/\b([Pp])ilot/g, '$1ailot'], [/\b([Ss])tuurgroep/g, '$1tuur-groep'],
+    [/\b([Mm])ijlpa(al|len)\b/g, '$1ijl-pa$2'], [/\b([Nn])ulmeting/g, '$1ul-meting'], [/\b([Gg])ereedheidscheck/g, '$1ereedheids-check'],
+    [/\b([Pp])iekseizoen/g, '$1iek-seizoen'],
+    // the stakeholder map (pm.intake.stakeholders): espeak-ng reads stakeholder as "staa-ke-holder" (said
+    // steekholder; in stakeholdermap the map as "mep", else "-dər-map" runs together), stresses proceseigenaar
+    // as "PROOsə-zeigenaar" (split at the head), and reads the RACI letters' English words as Dutch
+    // ("res-pon-SI-ble", "ak-kaunt-ab-le", "IN-for-met"); said riesponsibel, akauntebel, informt. Consulted is
+    // read well enough as it is
+    [/\b([Ss])takeholdermap/g, '$1teekholdermep'], [/\b([Ss])takeholder/g, '$1teekholder'], [/\b([Pp])roceseigenaar/g, '$1roces-eigenaar'],
+    [/\b([Rr])esponsible\b/g, '$1iesponsibel'], [/\b([Aa])ccountable\b/g, (m, a) => (a === 'A' ? 'Akauntebel' : 'akauntebel')], [/\b([Ii])nformed\b/g, '$1nformt'],
+    // the first conversation (pm.intake.firsttalk): the listening checklist MORE PIES as its English name, "Mor
+    // pais" (espeak-ng reads PIES as the Dutch "pis"); only in capitals, as the lessons write it
+    [/\bMORE PIES\b/g, 'Mor pais'],
+    // escalation (pm.run.escalation): espeak-ng reads governance the Dutch way, "GOO-ver-nan-se" (said as the
+    // floor says it, "gavvernens"), MUM-effect as letters and keep with a long e (said mum-effect, kiep mum), and
+    // stresses ESkalatieroute; split at the head, so it keeps es-ka-LA-tie
+    [/\b([Gg])overnance\b/g, (m, g) => `${g === 'G' ? 'G' : 'g'}avvernens`], [/\bMUM-effect\b/g, 'mum-effect'], [/\bkeep mum\b/g, 'kiep mum'],
+    [/\b([Ee])scalatieroute/g, '$1scalatie-route'],
+    // the pre-mortem (pm.plan.risk): issue as Dutch project people say it, "isjoe" (espeak-ng reads "is-uu-e");
+    // pm.outside.experts says issues (isjoes) through this rule too
+    [/\b([Ii])ssue(s?)\b/g, '$1sjoe$2'],
+    // ways of working (pm.plan.method): espeak-ng reads agile the Dutch way, "AA-gie-le" (said as the floor says
+    // it, "edjail": ɛtjɑjl, the nearest it voices to the dzj of "Agile"; "etsjail" (ɛtʃɑjl, tsj) was heard
+    // as "HL", "Etchel" or "HCL" by the free large-v3-turbo transcript, 2 of 10 sentences against 5 of 10, Task 22),
+    // and stresses HYbride (said hie-BRIE-de); not before
+    // "machine", so eng.moulding.machine, which has a rendered video, keeps its voice
+    [/\b([Aa])gile\b/g, (m, a) => `${a === 'A' ? 'E' : 'e'}djail`], [/\b([Hh])ybride\b(?! machine)/g, '$1iebriede'],
+    // breaking down the work (pm.plan.wbs): scope and scope creep as said in Dutch projects (espeak-ng reads
+    // "skoo-pe" and "kreep"): skoop, kriep; and werkpakket and nachtploeg, stressed werkPAKket and nachtPLOEG,
+    // split at the head (WERK-pakket, NACHT-ploeg); not before "accepteert", so pm.plan.risk's "De nachtploeg
+    // accepteert het niet" keeps the voice it was reviewed with
+    [/\b([Ss])cope creep\b/g, (m, s) => `${s === 'S' ? 'S' : 's'}koop kriep`], [/\b([Ss])cope\b/g, (m, s) => `${s === 'S' ? 'S' : 's'}koop`],
+    [/\b([Ww])erkpakket/g, '$1erk-pakket'], [/\b([Nn])achtploeg\b(?! accepteert)/g, '$1acht-ploeg'],
+    // five small requests (pm.run.scope): espeak-ng stresses wijzigingsverZOEK, wijzigingscomMISsie and
+    // duivelsdrieHOEK (with a full e in duivels); split at the head, as stuur-groep, so they keep WIJzigings-
+    // and DUIvels-; no other film says them
+    [/\b([Ww])ijzigings(verzoek|commissie)/g, '$1ijzigings-$2'], [/\b([Dd])uivelsdriehoek/g, '$1uivels-driehoek'],
+    // feedback, upward too (pm.lead.feedback): espeak-ng reads feedback as "feed-bak" with a Dutch long e (said
+    // fiedbek, also in feedbacksandwich and feedforward), SBI as one word, "zbie" (said as letters), disagree and
+    // commit as "die-za-grée ant" and the English names as Dutch ("krée-aa-tie-ve lée-aa-der-ship", "mars-hal",
+    // "dzjef" as "jef"); it stresses PRES-tatiegesprek, ES-kalatiepad and IN-tegriteit; split at the head, each
+    // keeps its own stress. Not before "van de vloer", so pm.plan.method keeps the voice it was built with
+    [/\b([Ff])eedbacksandwich/g, '$1iedbek-sendwitsj'], [/\b([Ff])eedforward\b/g, '$1iedforwerd'], [/\b([Ff])eedback\b(?! van de vloer)/g, '$1iedbek'],
+    [/\bSBI\b/g, 'es bee ie'], [/\bCenter for Creative Leadership\b/g, 'Senter for Krie-eetif Liedersjip'], [/\bMarshall\b/g, 'Marsjal'],
+    [/\bEdmondson\b/g, 'Edmondsen'], [/\bJeff Bezos\b/g, 'Djef Beezos'], [/\b([Dd])isagree and commit\b/g, '$1issegrie en kommit'],
+    [/\b([Pp])restatiegesprek/g, '$1restatie-gesprek'], [/\b([Ee])scalatiepad/g, '$1scalatie-pad'], [/\b([Ii])ntegriteit\b/g, '$1n-tegriteit'],
+    // and COO as letters (before a colon espeak-ng reads the word "koo"); commitment as Dutch project people say
+    // it, k'MIT-ment (espeak-ng reads "kommit-MENT", heard as "comment meer"; "kmitmunt" heard as commitment)
+    [/\bCOO\b/g, 'C O O'], [/\bCommitment\b/g, 'Kmitmunt'], [/\bcommitment\b/g, 'kmitmunt'],
+    // handing over and holding on (pm.land.handover): hypercare as said in Dutch IT projects, "haiperkeer"
+    // (espeak-ng reads "hie-per-kaa-re"); the KPI after "de" and KPI's as letters (espeak-ng reads the word
+    // "kpie"; not "een KPI", so pm.intake.firsttalk keeps its voice, and KPI- compounds are read as letters
+    // already); and compounds it misreads, split at the head: acceptatiecriteria with "ti" for "tsie" (lower
+    // case only, so pm.plan.wbs's "Acceptatiecriteria:" keeps its voice), PROjectopdracht, PROOsə-zaudit,
+    // baTENreview and overdrachts-sx-ecklist (with the s-ch of "schip"); no other film says them
+    [/\b([Hh])ypercare\b/g, '$1aiperkeer'], [/\b([Dd]e) KPI\b(?!-)/g, '$1 K P I'], [/\bKPI's\b/g, "K P I's"],
+    [/\bacceptatiecriteria\b/g, 'acceptatie-criteria'], [/\b([Pp])rojectopdracht/g, '$1roject-opdracht'], [/\b([Pp])rocesaudit/g, '$1roces-audit'],
+    [/\b([Bb])atenreview/g, '$1aten-review'], [/\b([Oo])verdrachtschecklist/g, '$1verdrachts-checklist'],
+    // adoption (pm.land.adoption): the five ADKAR steps as their English words, as the floor says them (espeak-ng
+    // reads "AA-va-ree-nus", "DEE-zie-re", "knoow-ledge" with a g, "AA-bi-lie-ti", "rein-fors-e-MENT"): e-WER-nus,
+    // di-ZAAI-er, NOL-litsj, e-BIL-li-ti, rie-in-FORS-ment; only with a capital, as the lessons write them.
+    // livegang as said in Dutch projects (espeak-ng reads "LIE-ve-gang"): laif-gang; communicatieplan stressed
+    // KOM- with a t for ts, middenmanager with a Dutch "manager" (said midden-menetsjer, tsj for the dzj it cannot
+    // voice), and town hall with the o of "town" (taun hol). Coch and French ("kox en frenx") and Mark Hughes
+    // ("hux-hes") as their English names, only in these pairs; no other film says them
+    [/\bAwareness\b/g, 'E-wèrnus'], [/\bDesire\b/g, 'Die-zaaijer'], [/\bKnowledge\b/g, 'Nollitsj'], [/\bAbility\b/g, 'E-billiti'], [/\bReinforcement\b/g, 'Rie-in-forsmunt'],
+    [/\b([Ll])ivegang/g, '$1aif-gang'], [/\b([Cc])ommunicatieplan/g, '$1ommunicatie-plan'], [/\b([Mm])iddenmanager/g, '$1idden-menetsjer'], [/\b([Tt])own hall\b/g, '$1aun hol'],
+    [/\bCoch en French\b/g, 'Kootsj en Frensj'], [/\bMark Hughes\b/g, 'Mark Hjoes'],
+    // from strategy to team number (pm.perform.tree): the English words Dutch performance people use, as they
+    // say them (espeak-ng reads "drie-vur", "baa-lan-set skoo-re-kart", gaming with the g of "lachen" and a long
+    // a, "Goo-dhart", "Strat-ern", "lok-ke en lat-tam" and stresses NORton on its last syllable): draiver,
+    // bellenst skoorkart, geeming, Goedhart, Strèthurn, Lok en Leetum, Norten (the names only in their pairs);
+    // and words it stresses or voices wrong: IN-dicator (said indie-KAtor, indie-kaTOren, only after voorlopende,
+    // achterlopende and gekoppelde, so the grid films' "kleine indicatoren" stay), actiegrens with a schwa (only
+    // after "een", so eng.maintenance.failure's "De actiegrens ligt" keeps its voice), "dee-ad-lie-ne",
+    // "dasj-boo-arts" (only the plural: the singular in pm.intake.firsttalk, pm.plan.method and pm.run.scope
+    // stays), RAPportagecijfer and "orderrə-GEL"; said actie-grens, dedlain, desjbords, rapportage-cijfer and
+    // order-regel. No other film's spoken text changes
+    [/\b([Dd])river/g, '$1raiver'], [/\b([Bb])alanced scorecard\b/g, (m, b) => `${b === 'B' ? 'B' : 'b'}ellenst skoorkart`], [/\bKaplan en Norton\b/g, 'Kaplan en Norten'],
+    [/\b([Gg])aming\b/g, '$1eeming'], [/\bGoodhart\b/g, 'Goedhart'], [/\bStrathern\b/g, 'Strèthurn'], [/\bLocke en Latham\b/g, 'Lok en Leetum'],
+    [/\b([Vv]oorlopende|[Aa]chterlopende|[Gg]ekoppelde) indicator/g, '$1 indie-kator'], [/\b([Ee]en) actiegrens\b/g, '$1 actie-grens'], [/\b([Dd])eadline/g, '$1edlain'],
+    [/\b([Dd])ashboards\b/g, '$1esjbords'],
+    [/\b([Rr])apportagecijfer/g, '$1apportage-cijfer'], [/\b([Oo])rderregel/g, '$1rder-regel'],
+    // on-the-job instruction (pm.land.training): Toyota as the Dutch say it, "tojota" (espeak-ng reads
+    // "too-ie-oota"); no other film says Toyota in Dutch
+    [/\bToyota\b/g, 'Tojota'],
+    // proving results (pm.close.results): espeak-ng stresses controller on the first part, "KON-trol-ler" (said
+    // kon-TROL-ler), dekkingsbijdrage on "-DRAA-" with a French zj (split at the head: DEK-kings-BIJ-drage), and
+    // reads run chart with a French sj (said run tsjart); no other film says them. procentpunt stressed PRO-
+    // (split: pro-CENT-punt); no other film's voice says it. investering is read IN-ves-te-ring (said
+    // in-ves-TEE-ring), but eng.lines.variants and eng.quality.tolerance say it in rendered videos, so only
+    // this film's phrase "investering die niet nodig" is split
+    [/\b([Cc])ontroller(s?)\b/g, (m, c, s) => `${c === 'C' ? 'K' : 'k'}on-troller${s}`], [/\b([Dd])ekkingsbijdrage/g, '$1ekkings-bijdrage'],
+    [/\b([Rr])un chart\b/g, '$1un tsjart'], [/\b([Pp])rocentpunt/g, '$1rocent-punt'], [/\b([Ii])nvestering die niet nodig\b/g, '$1n-ves-tering die niet nodig'],
+    // what fits under the line (pm.portfolio.prioritise): espeak-ng stresses programmaRAAD, capaciteitsSTREEP,
+    // KApaciteitsmatrix, KApaciteitsconflict and risicogecorrigEERde: split at the head, each part keeps its own
+    // stress (pro-GRAM-ma-RAAD, ca-pa-ci-TEITS-STREEP, RI-si-co-ge-cor-ri-GEER-de). It stresses ONderhanden werk
+    // (said onder-HANden), but eng.lines.design says "onderhanden werk" in a rendered video, so only this film's
+    // two phrases are split. contextswitch with the tsj of "switch" (espeak-ng reads the ch of "lachen"),
+    // planningstool with the oe Dutch speakers say (it reads planningsTOOL with a Dutch oo), and Gerald Weinberg
+    // as his English name (it reads a Dutch g and ei); no other film says them
+    [/\b([Pp])rogrammaraad/g, '$1rogramma-raad'], [/\b([Cc])apaciteits(streep|matrix|conflict)/g, '$1apaciteits-$2'], [/\b([Rr])isicogecorrigeerd/g, '$1isico-gecorrigeerd'],
+    [/\b([Oo])nderhanden werk(?= is alles| gedeeld door)/g, '$1nder-handen werk'],
+    [/\b([Cc])ontextswitch/g, '$1ontext-switsj'], [/\b([Pp])lanningstool/g, '$1lannings-toel'], [/\bGerald Weinberg\b/g, 'Djerreld Wainburk'],
+    // BATNA, ZOPA and the first offer (pm.negotiate.batna): pakketdeal with "deal" as the Dutch say it, "diel"
+    // (espeak-ng drops the d: "pakket-eeal"), framing as "freeming" (espeak-ng reads "fraa-ming"), and the
+    // example's gecoate beugels and coaten with the English oa, "koote" (espeak-ng reads "ge-koo-aa-te"); gecoate
+    // only before beugels, so eng.joining.bonding's "gecoate nagels" keeps its voice. Also deal on its own as
+    // "diel" (espeak-ng reads "dee-al"). integriteit takes pm.lead.feedback's in-tegriteit above (stress on
+    // -TEIT, full e). BATNA and ZOPA need no rule (espeak-ng reads BAT-naa and ZOO-paa); no other film says
+    // these words in Dutch
+    [/\b([Pp])akketdeal/g, '$1akket-diel'], [/\b([Dd])eal(s?)\b/g, '$1iel$2'], [/\b([Ff])raming\b/g, '$1reeming'],
+    [/\b([Gg])ecoate beugels\b/g, '$1ekoote beugels'], [/\bcoaten\b/g, 'kooten'],
+    // from output to benefits (pm.portfolio.benefits): batenhouder and ploegdagen split at the head (espeak-ng reads
+    // a full e in "baa-tèn-houder" and stresses ploeg-DA-gen; ploegdag on its own is read right), business case as
+    // Dutch project people say it, "biznis kees" (espeak-ng reads "bu-zie-nus kaa-se"), weekenddienst as "wieken-dienst"
+    // (it reads "wee-kend-DIENST"), and lijnmanager and operationeel manager with a Dutch "manager" as the
+    // middenmanager rule above says it (it reads MAA-naa-cher), operationeel stressed on -NEEL (it stresses OO-);
+    // no other film says them in Dutch. And the lesson's trigger before its Dutch gloss as "trikker" (espeak-ng
+    // reads a soft g, "tri-gher"), only in this film's "trigger, een actiegrens", so pm.land.handover keeps its voice
+    [/\b([Tt])rigger(?=, een actie-?grens\b)/g, '$1rikker'],
+    [/\b([Bb])atenhouder/g, '$1aten-houder'], [/\b([Pp])loegdagen\b/g, '$1loeg-dagen'], [/\b([Bb])usiness case/g, '$1iznis kees'],
+    [/\b([Ww])eekenddienst/g, '$1ieken-dienst'], [/\b([Ll])ijnmanager/g, '$1ijn-menetsjer'], [/\b([Oo])perationeel manager/g, '$1pperaatsjoneel menetsjer'],
+    // asking questions outside your field (pm.outside.questions): the names behind the planning fallacy and the
+    // reference class as English and Danish speakers say them (espeak-ng reads Kahneman with a sounded h,
+    // Flyvbjerg as "flif-bjerg"): Kaaneman, Fluubjerg (Gardner is on the card only: no spelling gives
+    // espeak-ng a hard g, and Kardner is another name); and words it
+    // misreads, split at the head: REferentieklasse with "ti" for "tsie" (referentie-KLASse), basiscijfer without
+    // the s of cijfer ("basis-eifer"), IT-lead as "lee-ad" (said IT-lied), and OPtimistisch and VOORspelling
+    // (said op-timistisch, voor-spelling: op-ti-MIS-tisch, voor-SPEL-ling); no other film says them, and
+    // optimistisch only before "e", "en", a number or ", plus", so pm.plan.wbs's "optimistisch, meest
+    // waarschijnlijk" keeps the voice it was built with
+    [/\bKahneman\b/g, 'Kaaneman'], [/\bFlyvbjerg\b/g, 'Fluubjerg'],
+    [/\b([Rr])eferentieklasse/g, '$1eferentie-klasse'], [/\b([Bb])asiscijfer/g, '$1asis-cijfer'], [/\bIT-lead\b/g, 'IT-lied'],
+    [/\b([Oo])ptimistisch(?=e\b| en\b| \d|, plus\b)/g, '$1p-timistisch'], [/\b([Vv])oorspelling/g, '$1oor-spelling'],
+    // three conversations in one (pm.lead.difficult): the authors and the book's title as English names (espeak-ng
+    // reads "stoo-ne", pat-TON and a Dutch "kon-ver-saa-sjons"): Stoon, Petten, Diffikkelt Konver-seesjens;
+    // identiteitsgesprek and identiteitsval split at the head (it stresses I-dentiteits; split, i-den-ti-TEITS),
+    // ge-kwetstheid (it stresses GE-), smalltalk as said in Dutch (smoltok); analyse is stressed AA-na-ly-se, but
+    // other films say it, so only this film's two phrases get "analiese"; stilstanddata, stilstandlogboek and
+    // lijndata split at the head (it stresses the last part). No other film says them
+    [/\bStone, Patton en Heen\b/g, 'Stoon, Petten en Heen'], [/\bDifficult Conversations\b/g, 'Diffikkelt Konver-seesjens'],
+    [/\b([Ii])dentiteits(gesprek|val)/g, '$1dentiteits-$2'], [/\b([Gg])ekwetstheid\b/g, '$1e-kwetstheid'], [/\b([Ss])malltalk\b/g, '$1moltok'],
+    [/\banalyse (?=moet vrijdag|vóór vrijdag)/g, 'analiese '], [/\b([Ss])tilstandlogboek\b/g, '$1tilstand-log-boek'],
+    [/\b([Ss])tilstanddata\b/g, '$1tilstand-data'], [/\b([Ll])ijndata\b/g, '$1ijn-data'],
+    // from phone call to proposal (pm.consult.proposal): espeak-ng stresses dagtaRIEF and extrusieLIJN (split at
+    // the head: DAG-tarief, ex-TRU-sie-lijn), drops the d of plantdirecteur ("plantirecteur"), reads engineer as
+    // "eng-i-neer" (said as Dutch makers say it, "entsjinier", tsj for the dzj it cannot voice) and Alan Weiss
+    // as "AA-lan" (said as his English name, "Ellun Wais"). It stresses OF-ferte and offerTES (French -tes):
+    // split as off-erte, which keeps a stress on -FER-, and the plural with an apostrophe, off-erte's, which ends
+    // on a schwa. dagtarief in lower case only, so pm.run.scope's "Dagtarief: bij de klant" keeps the voice it
+    // was built with. Vantage, the consultancy of the lessons' examples, as its English name, "Ventitsj"
+    // (espeak-ng reads a French van-TAA-zje); no other film says the others or Vantage in Dutch
+    [/\b([Oo])fferte(s?)\b/g, (m, o, s) => `${o}ff-erte${s ? "'s" : ''}`],
+    [/\bdagtarie(f|ven)\b/g, 'dag-tarie$1'], [/\b([Pp])lantdirecteur/g, '$1lant-directeur'], [/\b([Ee])xtrusielijn/g, '$1xtrusie-lijn'],
+    [/\b([Pp])roductie-engineer\b/g, '$1roductie-entsjinier'], [/\bAlan Weiss\b/g, 'Ellun Wais'], [/\bVantage\b/g, 'Ventitsj'],
+    // stuck: which kind of problem (pm.stuck.diagnose): espeak-ng stresses mensenproBLEEM, capaciteitsproBLEEM,
+    // ijkmoMENT and planningsreGEL (with the e of "bed"), split at the head as stuur-groep, and vrijgeven on
+    // -GEE- (said VRIJ-geven). Not vrijgave, which films with a video say; no other film says these
+    [/\b([Mm])ensenprobl/g, '$1ensen-probl'], [/\b([Cc])apaciteitsprobl/g, '$1apaciteits-probl'], [/\b(I[Jj]|ij)kmoment/g, '$1k-moment'],
+    [/\b([Pp])lanningsregel/g, '$1lannings-regel'], [/\b([Vv])rijgeven\b/g, '$1rij-geven'],
+    // seeing progress without the expertise (pm.outside.steering): espeak-ng reads definition of done (also with
+    // a capital D, pm.agile.scrum's Scrum Guide name) as
+    // "dee-fie-nie-SJON of doo-ne" (said deffi-nisjun of dun; not in pm.plan.wbs's caption "definition of done:
+    // klaar als", so that film's spoken text stays), FAT and SAT as the words "fat" and "sat" (said as letters,
+    // as on the floor; capitals only), stresses FABrieksacceptatietest and LOcatieacceptatietest with "ti" for
+    // "tsie" (split at the heads: fa-BRIEKS-ak-sep-TAA-tsie-TEST), and reads Jeffrey Pfeffer with a stressed
+    // -REY and a sounded p (said as his English name, Djeffri Feffer); no other film says them in Dutch
+    [/\b([Dd])efinition of [Dd]one\b(?!: klaar als)/g, '$1effi-nisjun of dun'], [/\b([FS])AT\b/g, '$1 A T'],
+    [/\b([Ff])abrieksacceptatietest/g, '$1abrieks-acceptatie-test'], [/\b([Ll])ocatieacceptatietest/g, '$1ocatie-acceptatie-test'],
+    [/\bJeffrey Pfeffer\b/g, 'Djeffri Feffer'],
+    // testing plans, translating jargon (pm.outside.jargon): espeak-ng stresses PREmortem (said pree-mortem), reads
+    // single point of failure as "poo-int of fa-LU-re" (said singel pojnt of feeljer), stresses beheersmaatreGEL and
+    // nachtDIENST and reads barcodescanners as "barcoo-des-kanners" (said barkoodskenners; split at the head; beheersmaatregel only after
+    // "een", so pm.plan.risk's caption "De beheersmaatregel" keeps its voice), and the integration specialist's
+    // jargon: "ree-al-TAIM", "laa-ten-sie", "re-TRIES" (said riel-taim, lee-tensie, rie-traiz; batch already has its
+    // rule above, betsj), and jargon as "sjargon", near the Dutch zj espeak-ng cannot give (it reads "jar-gon"), only
+    // in this film's phrases, so pm.plan.method's "geen jargon" keeps its voice; Harvard Business Review as "Harvard
+    // Biznis Rievjoe" (it reads "bu-ZIE-nus ree-VIEW"; the business case rule above has the same Biznis); no other
+    // film says them in Dutch
+    [/\b([Pp])remortem/g, '$1ree-mortem'], [/\b([Ss])ingle point of failure\b/g, '$1ingel pojnt of feeljer'],
+    [/\b([Ee]en) beheersmaatregel\b/g, '$1 beheers-maatregel'], [/\b([Bb])arcodescanner/g, '$1arkoodskenner'], [/\b([Nn])achtdienst/g, '$1acht-dienst'],
+    [/\breal-time\b/g, 'riel-taim'], [/\blatency\b/g, 'lee-tensie'], [/\bretries\b/g, 'rie-traiz'],
+    [/\b([Jj])argon(?= is de vaktaal|: de vaktaal| aan het bestuur)/g, (m, j) => `${j === 'J' ? 'S' : 's'}jargon`], [/\bHarvard Business Review\b/g, 'Harvard Biznis Rievjoe'],
+    // conflict: interests and the difficult conversation (pm.run.conflict): the authors of Getting to Yes as their
+    // names sound, only after "van" (so pm.negotiate.batna's captions "Fisher en Ury:" keep their voice): espeak-ng
+    // sounds the h of Fisher and reads Ury as "uu-rie" (said Fisjer en Joeri); and Lean-consultant as
+    // "Lien consultant", two words (espeak-ng reads "lee-an"; "Lien-consultant" runs on into "link-consultant",
+    // as Whisper hears it); no other film says them in Dutch
+    [/\bvan Fisher en Ury\b/g, 'van Fisjer en Joeri'], [/\bLean-consultant\b/g, 'Lien consultant'],
+    // working with experts (pm.outside.experts): espeak-ng reads codereviews as "koo-di-re-views" (said as Dutch
+    // makers say it, kood-rievjoes; its issues goes through the pre-mortem's rule above) and vage with a French g
+    // ("vaazje": vaage),
+    // stresses risico-GE-stuurd and sleu-TEL-persoon with the e of "bed" (split at the head), negentig-
+    // negentigregEL and routineNEEpunten (the last part apart), and after "eerlijk" OPtimistisch (op-timistisch,
+    // as the questions film's rule says it). No other film says these; eng.quality.spc's steekproef and the
+    // other films' optimistisch keep their voice
+    [/\b([Cc])odereviews\b/g, (m, c) => `${c === 'C' ? 'K' : 'k'}ood-rievjoes`],
+    [/\b([Rr])isicogestuurd/g, '$1isico-gestuurd'], [/\b([Ss])leutelpersoon/g, '$1leutel-persoon'],
+    [/\b([Nn])egentig-negentigregel/g, '$1egentig-negentig-regel'], [/\b(eerlijk )optimistisch\b/g, '$1op-timistisch'],
+    [/\b([Vv])age\b/g, '$1aage'], [/\b([Rr])outinepunt/g, '$1outine-punt'],
+    // disagreement and busy experts (pm.outside.disagree): espeak-ng reads second opinion as "se-KONT OP-i-ni-on"
+    // (said sekkend opinjun, only in this film's phrases, so pm.outside.steering's "een second opinion, de
+    // sponsor" keeps its voice), timebox as "TIE-me-box" (taimboks), Weinberg after "van" with a Dutch ei and g
+    // (Wainburk, as the Gerald Weinberg rule above), Daniel Pink's Drive as "dri-ve" (Deniel Pink, Draiv), Edward
+    // Deci and Richard Ryan with a Dutch ch and "rie-an" (Edwerd Diessie, Ritsjerd Rajen), manager as MAA-naa-gher
+    // (menetsjer, as the middenmanager rule; only in this film's phrases, so pm.plan.wbs keeps its voice), and
+    // stresses OO-pi-raa-tors (ope-raators, only before "verliezen", so the TPM and LOTO films keep theirs),
+    // IN-stal-la-teur, zelfdeterminatie with "ti" for "tsie", bouwPLAATS, drijfVEren and, after
+    // "als" and before a colon only (other films keep their vuistregel), vuistreGEL: split at the head. No other film says them in Dutch
+    [/\b([Ss])econd opinion\b(?=:| is een| van een onafhankelijk| steunt)/g, '$1ekkend opinjun'], [/\b([Tt])imebox\b/g, '$1aimboks'],
+    [/\bvan Weinberg\b/g, 'van Wainburk'], [/\bDaniel Pink noemt in Drive\b/g, 'Deniel Pink noemt in Draiv'],
+    [/\bEdward Deci en Richard Ryan\b/g, 'Edwerd Diessie en Ritsjerd Rajen'],
+    [/\b(de|[Zz]ijn) manager\b(?= van de expert| verdeelt| zegt| om )/g, '$1 menetsjer'], [/\bde operators(?= verliezen)/g, 'de ope-raators'],
+    [/\b([Ii])nstallateur\b/g, '$1nstal-lateur'], [/\bzelfdeterminatietheorie\b/g, 'zelf-determinatie-theorie'],
+    [/\b([Bb])ouwplaats/g, '$1ouw-plaats'], [/\b([Dd])rijfveren\b/g, '$1rijf-veren'], [/\bals vuistregel:/g, 'als vuist-regel:'],
+    // a two-week sprint (pm.agile.scrum): the Scrum Guide's English names as Dutch Scrum teams say them, checked
+    // with espeak-ng phonemes through Piper's nl_NL-alex bridge: it reads "PROO-dukt OU-ner", "BAK-loch" and
+    // "GOO-al" (said Prodduct Ooner, Bek-lok, Gool, the goal of Dutch football), "DEE-ve-loo-pers" (Di-vellopers),
+    // "DAI-lie" (Deili, Task 22: "Deeli" was heard as "Dilly", "Deili" is dˈɛɪli, heard as Daily 3 of 4), "ree-VIEW" (Rievjoe, as Harvard Business Review above), "RE-tros-pek-tie-ve"
+    // (Retro-spektif), a Dutch "guide" (Gaid), Schwaber with sch and Jeff as "yef" (Sjwaaber, Djef), "ee-VENTS" (ievents) and
+    // "ree-fie-ne-MENT" (ri-fainmunt), and it stresses productieLEIder with "ti",
+    // acceptatieomGEving with "ti", sprintDOEL and, in this film's phrases only, vuistreGEL (pm.outside.disagree's
+    // rule covers "als vuistregel:"): split at the head; "uit het Lean-team" as "Lien team", as the Lean-consultant
+    // rule above (espeak-ng reads "lee-an"; pm.run.conflict's "een Lean-team" stays). Capitalised names only (a
+    // lower-case goal, review or developer keeps its voice), the Guide only as "Scrum Guide van" (and, for
+    // pm.agile.backlog, before "schrijft" and "noemt")
+    // (pm.outside.steering's "Uit de Scrum Guide" stays); ERP stays the word "erp", as the films with a video say
+    // it; Definition of Done with a capital D goes through pm.outside.steering's rule above; no other film's voice changes
+    [/\bProduct (?=(?:Owner|Backlog|Goal)\b)/g, 'Prodduct '], [/\bOwner\b/g, 'Ooner'], [/\bBacklog\b/g, 'Bek-lok'], [/\bGoal\b/g, 'Gool'],
+    [/\bDeveloper(s?)\b/g, 'Di-velloper$1'], [/\bDaily Scrum\b/g, 'Deili Scrum'], [/\bSprint Review\b/g, 'Sprint Rievjoe'],
+    [/\bSprint Retrospective\b/g, 'Sprint Retro-spektif'], [/\bScrum Guide (?=(?:van|schrijft|noemt)\b)/g, 'Scrum Gaid '],
+    [/\bKen Schwaber en Jeff Sutherland\b/g, 'Ken Sjwaaber en Djef Sutherland'], [/\b([Ee])vent(s?)\b/g, (m, e, s) => `${e === 'E' ? 'I' : 'i'}event${s}`],
+    [/\b([Rr])efinement\b/g, '$1i-fainmunt'],
+    [/\b([Pp])roductieleider/g, '$1roductie-leider'],
+    [/\b([Aa])cceptatieomgeving/g, '$1cceptatie-omgeving'], [/\b([Ss])printdoel/g, '$1print-doel'], [/\b([Uu])it het Lean-team\b/g, '$1it het Lien team'],
+    [/\bgangbare vuistregel\b/g, 'gangbare vuist-regel'],
+    // from idea to sprint-ready (pm.agile.backlog): the backlog and estimating words as Dutch agile teams say
+    // them, checked with espeak-ng phonemes through Piper's nl_NL-alex bridge: it reads user story with
+    // "uuzer" (said joezer story), stresses "sto-RIES" (story's), reads story points as "po-ints" (pojnts),
+    // epic with a long e (eppik), velocity as "VEE-loo-si-ti" (ve-lossetti), the Fibonacci-reeks as
+    // "FIE-boo-nak-si" (Fiebo-natsjie reeks), Definition of Ready as "dee-fie-nie-SJON of REE-aa-die" (Deffi-nisjun of
+    // Reddi, as the Done rule above), Jeffries with a Dutch j, Wake as "waa-ke" and James as "jaa-mes" (Djeffriz,
+    // Weejk, Djeems; Bill already sounds right), Card, Conversation and Confirmation as Dutch words and Extreme Programming as "ek-STREE-me"
+    // (said in English sounds), the Scrum Guide as a Dutch "guide" (Gaid: the Scrum film's rule above, widened to
+    // "schrijft" and "noemt"; pm.outside.steering's "Uit de Scrum Guide" stays), and acceptatiecriteria with
+    // "ti", zaagmachines and trekhaken stressed at the end: split at the head. A story alone, planning poker and
+    // INVEST keep their voice; a capital Acceptatiecriteria only before "zijn concrete" (the lower-case rule above
+    // covers the rest; pm.plan.wbs's "Acceptatiecriteria:" stays); no other film's spoken text changes
+    [/\b([Uu])ser stor(y|ies)\b/g, (m, u, e) => `${u === 'U' ? 'J' : 'j'}oezer story${e === 'ies' ? '\'s' : ''}`],
+    [/\b([Ss])tories\b/g, '$1tory\'s'], [/\b([Ss])tory points\b/g, '$1tory pojnts'], [/\b([Ee])pic(s?)\b/g, '$1ppik$2'],
+    [/\b([Vv])elocity\b/g, '$1e-lossetti'], [/\bFibonacci-reeks\b/g, 'Fiebo-natsjie reeks'], [/\bDefinition of Ready\b/g, 'Deffi-nisjun of Reddi'],
+    [/\bRon Jeffries\b/g, 'Ron Djeffriz'], [/\bBill Wake\b/g, 'Bill Weejk'], [/\bJames Grenning\b/g, 'Djeems Grenning'],
+    [/\bCard, Conversation en Confirmation\b/g, 'Kaard, Konver-seesjun en Konfur-meesjun'], [/\bExtreme Programming\b/g, 'Ekstriem Proogremming'],
+    [/\b([Aa])cceptatiecriteria(?= zijn concrete)/g, '$1cceptatie-criteria'],
+    [/\bzaagmachines\b/g, 'zaag-machines'], [/\b([Tt])rekhaken\b/g, '$1rek-haken'],
+    // flow on a kanban board (pm.agile.kanban): the names and the Kanban Guide's English measures as Dutch
+    // practitioners say them, checked with espeak-ng phonemes through Piper's nl_NL-alex bridge: it reads
+    // "TA-jich-ie OH-noo" (said Taitsjie Oono), David Anderson and John Little with a Dutch a and j (Deevid
+    // Enderson, Djon), "VAA-kan-tie" (Va-kenti), a Dutch "guide" (Gaid, as the Scrum Guide rule above),
+    // "dee-fie-nie-SJON of WORK-flow" (Deffi-nisjun of Wurkflo, as the definition-of-done rule), "TRAUCH-put"
+    // (Troepoet), "SIK-le time" (Saikl taim), "lee-at" (Lied taim), "ie-tem aa-zje" (Wurk aitem eetsj), pull
+    // with the u of "bus" (poel, also in pullsysteem; pullover keeps its voice), flowMAten (floo-maten), and
+    // engineering and engineer as "eng-i-neer" (entsjinieering after "afdeling", and pm.consult.proposal's
+    // entsjinier in this film's two phrases only); it stresses ONderhanden: split as pm.portfolio.prioritise's
+    // rule, in this film's phrases only, so eng.lines.design keeps its voice. No other film's spoken text changes
+    [/\bTaiichi Ohno\b/g, 'Taitsjie Oono'], [/\bDavid Anderson\b/g, 'Deevid Enderson'], [/\bJohn Little\b/g, 'Djon Little'], [/\bVacanti\b/g, 'Va-kenti'],
+    [/\bKanban Guide\b/g, 'Kanban Gaid'], [/\bDefinition of Workflow\b/g, 'Deffi-nisjun of Wurkflo'],
+    [/\b([Tt])hroughput\b/g, (m, t) => `${t === 'T' ? 'T' : 't'}roepoet`], [/\b([Cc])ycle time\b/g, (m, c) => `${c === 'C' ? 'S' : 's'}aikl taim`],
+    [/\b([Ll])ead time\b/g, '$1ied taim'], [/\b([Ww])ork item age\b/g, (m, c) => `${c === 'W' ? 'W' : 'w'}urk aitem eetsj`],
+    [/\b([Pp])ull(?=systeem\b|\b)/g, '$1oel'], [/\b([Ff])lowmaten\b/g, '$1loo-maten'], [/\bafdeling engineering\b/g, 'afdeling entsjinieering'],
+    [/\been engineer\b(?= pakt de kaart| doet de controle)/g, 'een entsjinier'], [/\b([Hh]eet dat|items|werkitems|twaalf) onderhanden\b/g, '$1 onder-handen'],
+    // a two-day PI planning (pm.scaled.pi): SAFe's English names as Dutch practitioners say them, checked with
+    // espeak-ng phonemes through Piper's nl_NL-alex bridge: it reads SAFe as "SAA-fe" (said Seef, also in
+    // SAFe-rol), Release Train as "ree-le-AA-ze treen" (Rieliez Treen; its Engineer as pm.consult.proposal's
+    // entsjinier), ART as the word "art" and RTE as "r-tee" (said as letters), Board as "boo-art" (Bord, only in
+    // Planning Board), confidence vote with a sounded e ("konfidens voot"), Business Owners as "bu-ZIE-nus
+    // OW-ners" (Biznis Ooners, as the business case and Owner rules above; the Owner rule has already made
+    // "Ooner" of the singular), ROAM as "roo-am" (Room, one syllable as in English), objectives as "ob-jek-tie-ves" (ob-tsjektivs, tsj for the
+    // dzj it cannot voice), (un)committed as "OEN-kom-it-et" (un-kommittid), Product Management as
+    // "MAA-nidzj-ment" (Prodduct Mennitsjmunt, as kmitmunt above), System Architect with the ch of "lachen"
+    // (Sistum Arkitekt), feature as "fee-aa-TUU-re" (fietsjer; user stories and story points go
+    // through pm.agile.backlog's rules above), obeya as "OO-be-ie-aa" (oobeeja), and program-, project- and productmanager with a Dutch "manager" (said
+    // -menetsjer, as the middenmanager rule above). Capitals as the lessons write them (a lower-case safe or
+    // art keeps its voice); no other film's spoken text changes
+    [/\bSAFe\b/g, 'Seef'], [/\bRelease Train Engineer\b/g, 'Rieliez Treen Entsjinier'], [/\bRelease Train\b/g, 'Rieliez Treen'],
+    [/\b(ART|RTE)\b/g, (m) => m.split('').join(' ')], [/\bPlanning Board\b/g, 'Planning Bord'],
+    [/\b([Cc])onfidence vote\b/g, (m, c) => `${c === 'C' ? 'K' : 'k'}onfidens voot`], [/\bBusiness O(?:oner|wner)(s?)\b/g, 'Biznis Ooner$1'],
+    [/\bROAM\b/g, 'Room'], [/\bobjectives\b/g, 'ob-tsjektivs'], [/\b(un)?committed\b/g, (m, u) => (u ? 'un-kommittid' : 'kommittid')],
+    [/\bProduct Management\b/g, 'Prodduct Mennitsjmunt'], [/\bSystem Architect\b/g, 'Sistum Arkitekt'], [/\b([Ff])eature(s?)\b/g, '$1ietsjer$2'],
+    [/\b([Oo])beya\b/g, '$1obeeja'], [/\b([Pp]rogramma|[Pp]roject|[Pp]roduct)manager\b/g, '$1-menetsjer'],
+    // stage-gate with sprints (pm.scaled.hybrid): the stage-gate and lead-time words as Dutch product
+    // developers say them, checked with espeak-ng phonemes through Piper's nl_NL-alex bridge: it reads
+    // stage-gate as "staa-zje-GAA-te" and gate as "GAA-te" (said steetsj-geet, geet, tsj as in the agile rule
+    // above, which turns Agile-Stage-Gate into Edjail-Stage-Gate first; not in eng.moulding.setting's
+    // gate-freeze-studie), go/kill as "go slash kill" (go-kill, as the go/no-go rule), Cooper as "koo-per"
+    // (Koeper), long-lead item as "lee-at ie-tem" (long-lied aitem, as the lead time and work item rules), SOP
+    // as the word "sop" before a comma (letters: es oo pee, not "S O P": a lone S is a hiss), design freeze as
+    // "DEE-zich FREE-ze" (di-zain friez), set-based design (set-beesd di-zain), SAFe as "saa-fe" (Seef) and
+    // stresses MAtrijsbouw (matrijs-bouw); Toyota goes through pm.land.training's rule above (Tojota). No other
+    // film's spoken text changes. SAFe → Seef comes from pm.scaled.pi's rule above, so both
+    // films say it the same way
+    [/\b([Ss])tage-([Gg])ate(s?)\b/g, (m, s, g, n) => `${s === 'S' ? 'S' : 's'}teetsj-${g === 'G' ? 'G' : 'g'}eet${n}`],
+    [/\b([Gg])ate(s?)\b(?!-freeze)/g, '$1eet$2'], [/\b([Gg])o\/kill\b/g, '$1o-kill'], [/\bCooper\b/g, 'Koeper'],
+    [/\b([Ll])ong-lead item(s?)\b/g, '$1ong-lied aitem$2'], [/\bSOP\b/g, 'es oo pee'], [/\b([Dd])esign freeze\b/g, '$1i-zain friez'],
+    [/\b([Ss])et-based design\b/g, '$1et-beesd di-zain'], [/\b([Mm])atrijsbouw\b/g, '$1atrijs-bouw'],
+    // the cutover weekend (pm.itproject.cutover): the go-live words as Dutch ERP and MES projects say them,
+    // checked with espeak-ng phonemes through Piper's nl_NL-alex bridge: it reads cutover as "KUU-too-ver"
+    // (said kattoover; in cutoverdraaiboek and cutoverlogboek split at the head, kattoover-draaiboek, as espeak-ng
+    // stresses -BOEK in the compound), freeze as "FREE-ze" (friez, as the design
+    // freeze rule above, which runs first; not in eng.moulding.setting's gate-freeze-studie, nor in
+    // pm.scaled.hybrid's caption "freeze in week 18"), key users as "kee-i uu-zers" (kie joezers, as the user
+    // story rule), point of no return as "po-int ... ree-turn" (pojnt of noo rie-turn), and, in this film's
+    // phrases only, plantmanager as "maa-naa-ger" (plant-menetsjer, as the manager rules above; other films'
+    // plantmanager keeps its voice), stopwatch with a Dutch "watch" (stop-wotsj; eng.lines.design's "Met de
+    // stopwatch" stays) and controleweegschalen run together (split at the head). go/no-go, MES and hypercare
+    // go through the rules above; no other film's spoken text changes
+    [/\b([Cc])utover(-?)(?=(\p{L})?)/gu, (m, c, d, l) => `${c === 'C' ? 'K' : 'k'}attoover${l ? '-' : d}`], [/(?<![\p{L}-])([Ff])reeze\b(?!-| in week)/gu, '$1riez'],
+    [/\b([Kk])ey user(s?)\b/g, (m, k, s) => `${k === 'K' ? 'K' : 'k'}ie joezer${s}`], [/\b([Pp])oint of no return\b/g, '$1ojnt of noo rie-turn'],
+    [/\bof de plantmanager\b/g, 'of de plant-menetsjer'], [/\b([Mm])et een stopwatch\b/g, '$1et een stop-wotsj'],
+    [/\b([Cc])ontroleweegschalen\b/g, '$1ontrole-weegschalen'],
+    // a commit through the pipeline (pm.devops.pipeline): the DevOps words as Dutch IT teams say them, checked with
+    // espeak-ng phonemes through Piper's nl_NL-alex bridge: it reads pipeline as "pi-pe-LIE-ne" (paiplain), build
+    // with the ui of "huis" (bild), deploy, deploys, deployen and deployfrequentie as "DE-ploo-ie" (die-ploj), Debois
+    // as "DEE-boo-is" (De-bwa), Jez Humble and Gene Kim with a Dutch j, u and g (Djez Hambul, Djien), Accelerate as
+    // "ak-se-lee-RAA-te" (Ek-sellereet), State of as "STAA-te" (Steet), mean time to restore with "mee-aan" (mien
+    // taim toe ristoor), four keys as "fau-r kee-is" (for kies), CI/CD (made "CI CD" by the acronym-pair rule above)
+    // as "si see-dee" (sie ie sie die), continuous integration and continuous delivery in Dutch sounds, and it
+    // stresses softwarebedrijf with "waa-re", ARtefact and waardeSTROOM: split, the last only in "in een
+    // waardestroom"; jidoka as "jie-DOO-kaa" with the j of "ja" (said Djidoka, the dzj of Japanese and of Dutch Lean
+    // practice, as Djez above). Commit, Git, DORA, DevOps and MTTR (letters) keep their voice; no other film's spoken text changes
+    [/\b([Pp])ipeline(s?)\b/g, '$1aiplain$2'], [/\b([Bb])uild\b/g, '$1ild'], [/\b([Dd])eployfrequentie\b/g, '$1ie-ploj-frequentie'],
+    [/\b([Dd])eploy(s|en)?\b/g, (m, d, e) => `${d === 'D' ? 'D' : 'd'}ie-ploj${e || ''}`], [/\bDebois\b/g, 'De-bwa'],
+    [/\bJez Humble en Gene Kim\b/g, 'Djez Hambul en Djien Kim'], [/\bAccelerate\b/g, 'Ek-sellereet'], [/\bState of DevOps\b/g, 'Steet of DevOps'],
+    [/\bmean time to restore\b/g, 'mien taim toe ristoor'], [/\bfour keys\b/g, 'for kies'], [/\bCI CD\b/g, 'sie ie sie die'],
+    [/\bcontinuous integration en continuous delivery\b/g, 'kon-tinjoe-wus inte-gree-sjun en kon-tinjoe-wus de-livvrie'],
+    [/\b([Ss])oftwarebedrijf\b/g, '$1oftware-bedrijf'], [/\b([Aa])rtefact\b/g, '$1rte-fact'], [/\bin een waardestroom\b/g, 'in een waarde-stroom'],
+    [/\b([Jj])idoka\b/g, (m, j) => `${j === 'J' ? 'D' : 'd'}jidoka`],
+    // MoSCoW and an MVP (pm.itproject.mvp): the requirements and MoSCoW words as Dutch IT projects say them,
+    // checked with espeak-ng phonemes through Piper's nl_NL-alex bridge: it reads requirement as
+    // "ree-kvi-re-MENT" (said ri-kwaijurmunt), spells MoSCoW as "mo S ko W" (Moskou), reads the bins as
+    // "haa-ve", "sjout", "kout" and "won" (Must hev, Sjoed hev, Koed hev, Woont hev dis taim; Shoulds and
+    // Coulds as Sjoeds, Koeds; a lone Must is read right), Oracle as "OO-rak-le" (Orrekul), Business as
+    // "buu-ZIE-nes" (Biznis, as the business case rule, here in the Agile Business Consortium, which the agile
+    // rule above has already made Edjail), MVP as "em-fee-pee" (em vee pee), minimum viable product as
+    // "vie-ab-le PROO-dukt" (vaaiebul prodduct, as Prodduct above), Robinson stressed "-SON" (Robbinsun), Eric
+    // as "e-RIK" (Erik), The Lean Startup with "lee-an" (de Lien Startap, as the Lean-consultant rule), the
+    // Minimum Usable SubseT as "uu-za-ble sub-se tee" (Joezebul Sabset), to-be-proces as "too-bee-ee" (toe-bie),
+    // go-live as "go-lie-ve" (goo-laiv), businessanalist with "buu-zie-nes" (biznis-analist) and voedselbatches
+    // with "bat-chès" (betsj, as the batch rule above, which only reads a word that starts with batch).
+    // Capitals as the lessons write them; no other film's spoken text changes
+    [/\b([Rr])equirement(s?)\b/g, '$1i-kwaijurmunt$2'], [/\bMoSCoW\b/g, 'Moskou'],
+    [/\bMust have\b/g, 'Must hev'], [/\bShould have\b/g, 'Sjoed hev'], [/\bCould have\b/g, 'Koed hev'],
+    [/\bWon[’']t have this time\b/g, 'Woont hev dis taim'], [/\bWon[’']t have\b/g, 'Woont hev'], [/\bShould(s?)\b/g, 'Sjoed$1'], [/\bCould(s?)\b/g, 'Koed$1'],
+    [/\bOracle\b/g, 'Orrekul'], [/\bBusiness Consortium\b/g, 'Biznis Consortium'], [/\bMVP\b/g, 'em vee pee'],
+    [/\bminimum viable product\b/g, 'minimum vaaiebul prodduct'], [/\bFrank Robinson\b/g, 'Frank Robbinsun'], [/\bEric Ries\b/g, 'Erik Ries'],
+    [/\bThe Lean Startup\b/g, 'de Lien Startap'], [/\bMinimum Usable SubseT\b/g, 'Minimum Joezebul Sabset'], [/\b([Tt])o-be-proces\b/g, '$1oe-bie-proces'],
+    [/\b([Gg])o-live\b/g, '$1oo-laiv'], [/\b([Bb])usinessanalist\b/g, '$1iznis-analist'], [/\bvoedselbatches\b/g, 'voedselbetsjes'],
+    // and, in this film's phrases only, business as Biznis in "tussen business en IT" and live as "laiv" in "live te
+    // gaan" (it reads "buu-ZIE-nes" and the Dutch "lie-ve")
+    [/\btussen business en IT\b/g, 'tussen biznis en IT'], [/\blijn live te gaan\b/g, 'lijn laiv te gaan'],
+    // the user acceptance test (pm.itproject.uat): the test words as Dutch ERP and MES projects say them, checked
+    // with espeak-ng phonemes through Piper's nl_NL-alex bridge: it reads UAT as the word "uu-at" (U A T, letters),
+    // acceptatietest, acceptatietesten and gebruikersacceptatietest with a t for ts in "-taa-ti-test" (split at their
+    // parts), testdata as "tes-TAA-taa" (test-data), softwaretesten as "soft-waa-ree-testen" (software-testen, as
+    // the softwarebedrijf rule above), ISTQB as "ist-k-p" (ie es tee kuu bee; not "S": a lone S is a
+    // hiss), sign-off with a Dutch g (sain-of), happy path as "hap-pie pat" (heppi paath), stresses REgressietest
+    // and REgressieset (split at the head); hertest it stresses on TEST already. Sign-off only outside a
+    // bracket: a Dutch caption's gloss, "De ondertekening (sign-off)" in pm.land.handover, keeps its voice. key
+    // users, go-live and MES go through the rules above; no other film's spoken text changes
+    [/\bUAT\b/g, 'U A T'], [/\b([Gg]ebruikers)?([Aa])cceptatietest(en)?\b/g, (m, g, a, e) => `${g ? `${g}-` : ''}${a}cceptatie-test${e || ''}`],
+    [/\b([Tt])estdata\b/g, '$1est-data'], [/\b([Ss])oftwaretest(en)?\b/g, '$1oftware-test$2'], [/\bISTQB\b/g, 'ie es tee kuu bee'],
+    [/(?<!\()\b([Ss])ign-off\b/g, '$1ain-of'], [/\bhappy path\b/g, 'heppi paath'], [/\b([Rr])egressie(test|set)/g, '$1egressie-$2'],
+    // incident, problem, change (pm.devops.incident): the ITIL words as Dutch IT teams say them, checked with
+    // espeak-ng phonemes through Piper's nl_NL-alex bridge: it reads PeopleCert as "PEE-o-ple sert" (said
+    // Piepul-surt), change enablement and change control with a French "change", "SJAN-zje" (tsjeensj
+    // e-neebul-munt, tsjeensj kontrool; a lone change keeps its voice), and printerdriver with "drie-ver"
+    // (printer-draiver, as the driver rule above, which only reads a word that starts with driver). ITIL,
+    // servicedesk and firewall-regel (the firewall rule above) need nothing; no other film's spoken text changes
+    [/\bPeopleCert\b/g, 'Piepul-surt'], [/\bchange enablement\b/g, 'tsjeensj e-neebul-munt'], [/\bchange control\b/g, 'tsjeensj kontrool'],
+    [/\b([Pp])rinterdriver(s?)\b/g, '$1rinter-draiver$2'],
+    // the post-mortem (pm.devops.postmortem): the words of a post-mortem as Dutch IT teams say them, checked
+    // with espeak-ng phonemes through Piper's nl_NL-alex bridge: it reads incidentreview with "re-VIEW"
+    // (incident-rievjoe, as Sprint Review above), Site Reliability Engineering as "ree-li-aa-bi-li-ti
+    // eng-i-neer-ing" (Sait Rielaaje-bilitti Entsjinieering), stresses postmortemcultuur on -TEM- (split at its
+    // head: post-mortem-cultuur), reads blameless as "blaa-me-less" (bleemlus), workaround as "wor-kaa-raunt"
+    // (wurk-erraund) and update as "up-DAA-te" (updeet, also in IT-updates). Post-mortem, schuldvrij,
+    // servicedesk, scanners, OT and IT-manager need nothing; Taiichi Ohno and Toyota go through the rules
+    // above; no other film's spoken text changes
+    [/\b([Ii])ncidentreview(s?)\b/g, '$1ncident-rievjoe$2'], [/\bSite Reliability Engineering\b/g, 'Sait Rielaaje-bilitti Entsjinieering'],
+    [/\b([Pp])ostmortemcultuur\b/g, '$1ost-mortem-cultuur'], [/\b([Bb])lameless\b/g, '$1leemlus'], [/\b([Ww])orkaround(s?)\b/g, '$1urk-erraund$2'],
+    [/\b([Uu])pdate(s?)\b/g, '$1pdeet$2'],
+    // forecasting and steering on flow (pm.agile.forecast): the forecasting and flow words as Dutch agile teams say
+    // them, checked with espeak-ng phonemes through Piper's nl_NL-alex bridge: it stresses onzekerheidskeGEL with
+    // the e of "bed" (onzekerheids-kegel), reads Boehm as "boehm" (Beem), Steve McConnell as "stee-ve em-see konnel"
+    // (Stiev Me-konnul), Troy Magennis as "troo-ie MAA-ge-nis" (Troj Me-gennis), NoEstimates as "es-ti-MAA-tes"
+    // (Noo-estimets), stresses verpakkingsfoLIE
+    // (verpakkings-fooli), reads labelsysteem with "laa-bel" (leebul-systeem), service level expectation as "su-ves
+    // lee-VEL" (Surrvis levvul ekspek-teesjun), cycle times as "sik-le tie-mes" (saikl taims; the cycle time rule
+    // above only reads the singular) and flow in "behoud van flow" as "flouw" (floo, as the flowmaten rule), stresses
+    // bezettingsGRAAD, wachtrijmoDEL, productontwikKEEling and, in "vastloopt in wachtrijen" only, wachtRIJen (split at the head;
+    // eng.lines.design's "kleine wachtrijen" keeps its voice), reads Donald
+    // Reinertsen as "doo-nalt REI-nert-sen" (Donnuld Rainurtsen), machinesoftware with "soft-waa-re" (machine-software,
+    // read in English, as the software-test rule above; only in "voor machinesoftware bij", so pm.agile.scrum's caption
+    // keeps its voice), a single item as "ie-tem" (aitem, as the work item age rule; only after per, zeventiende and
+    // Één and in "een item duurt" and "een item de grens", so the plural items and the kanban film's item keep their voice) and the
+    // lower-case backlog as "bak-loch" (bek-lok, as the Backlog rule; only in "meer backlog"). No other film's spoken
+    // text changes
+    [/\b([Oo])nzekerheidskegel/g, '$1nzekerheids-kegel'], [/\bBarry Boehm\b/g, 'Barry Beem'], [/\bSteve McConnell\b/g, 'Stiev Me-konnul'],
+    [/\bTroy Magennis\b/g, 'Troj Me-gennis'], [/\bNoEstimates\b/g, 'Noo-estimets'],
+    [/\b([Vv])erpakkingsfolie\b/g, '$1erpakkings-fooli'], [/\b([Ll])abelsysteem\b/g, (m, l) => `${l === 'L' ? 'L' : 'l'}eebul-systeem`],
+    [/\b([Ss])ervice level expectation\b/g, '$1urrvis levvul ekspek-teesjun'], [/\b([Cc])ycle times\b/g, (m, c) => `${c === 'C' ? 'S' : 's'}aikl taims`],
+    [/\bbehoud van flow\b/g, 'behoud van floo'], [/\b([Bb])ezettingsgraad\b/g, '$1ezettings-graad'], [/\b([Ww])achtrijmodel\b/g, '$1acht-rij-model'],
+    [/\bDonald Reinertsen\b/g, 'Donnuld Rainurtsen'], [/\b([Pp])roductontwikkeling\b/g, '$1roduct-ontwikkeling'], [/\bvastloopt in wachtrijen\b/g, 'vastloopt in wacht-rijen'],
+    [/\bvoor machinesoftware bij\b/g, 'voor machine-software bij'], [/(?<!\p{L})(per|zeventiende|Één) item\b|\been item(?= duurt| de grens)/gu, (m, w) => `${w || 'een'} aitem`], [/\bmeer backlog\b/g, 'meer bek-lok'],
+    // rollout and data migration (pm.itproject.migration): the words of an ERP or MES rollout as Dutch projects say
+    // them, checked with espeak-ng phonemes through Piper's nl bridge: it reads SAP Activate's phase names as
+    // "pree-paa-re, eks-ploo-re, ree-aa-lie-ze" (pri-peer, ek-sploor, rie-je-laaiz; run with the Dutch u, said
+    // ran; deploy has already become die-ploj through the pipeline rule above, so the phrase is matched after it),
+    // Activate as "ak-tie-VAA-te" (Ektiveet), legacysysteem as "lee-gaa-sie" (legge-sie-systeem), big bang with a
+    // Dutch a (big beng), Hershey as "her-SJEE-ie" (Hur-sjie), Halloween as "ha-lo-ween" (Hellowien), and, in this
+    // film's phrases only, business as "bu-ZIE-nes" (biznis, as the business case rule above), Engineering as
+    // "ENG-ie-nie-ring" (Entsjinieering, as the post-mortem rule above), records as "re-KORTS" (rekkords),
+    // getimed as "ge-TIE-med" (getaimd), timing as "TIE-ming" (taiming) and live as "lie-ve" (laiv); proefrun as "proef-run" (proef-ran).
+    // Stamdata, pilot, piekseizoen, go-live and MES go through the rules above; no other film's spoken text changes
+    [/\bprepare, explore, realize, die-ploj en run\b/g, 'pri-peer, ek-sploor, rie-je-laaiz, die-ploj en ran'], [/\bSAP Activate\b/g, 'SAP Ektiveet'],
+    [/\b([Ll])egacysysteem\b/g, '$1egge-sie-systeem'], [/\b([Bb])ig bang\b/g, '$1ig beng'], [/\bHershey\b/g, 'Hur-sjie'], [/\bHalloween\b/g, 'Hellowien'],
+    [/\b(werk voor|resultaat tekent) de business\b/g, '$1 de biznis'], [/\bEngineering lost\b/g, 'Entsjinieering lost'], [/\b([Pp])roefrun\b/g, '$1roef-ran'],
+    [/\b([Hh])oeveel records\b/g, '$1oeveel rekkords'], [/\bwordt getimed\b/g, 'wordt getaimd'], [/\bDe timing telt\b/g, 'De taiming telt'],
+    [/\b(nooit|data) live\b/g, '$1 laiv'],
+    // the module intro film (pm.plan.intro), a self-contained group at the end of the Dutch list: espeak-ng reads
+    // operators as "OO-pi-ra-tors" (checked with phonemes through Piper's nl_NL-alex bridge); said ope-raators, as
+    // the existing "de operators" rule above, but only in this film's "getrainde operators". Schakelkast, inkoper,
+    // monteurs, zomerstop and the plan words go through the rules above or need nothing; no other film's spoken
+    // text changes
+    [/\bgetrainde operators\b/g, 'getrainde ope-raators'],
+    // the field film (pm.field.lifecycle), a self-contained group at the end of the Dutch list: espeak-ng reads
+    // intake as "IN-taa-ke" (checked with phonemes through Piper's nl_NL-alex bridge); said in-teek, as Dutch
+    // project people say it, only after "de" as the film says it. Operators as "OO-pi-raa-tors" (ope-raators, as
+    // the rules above, only in "De operators krijgen") and oranje with the stress on the o (o-ranje, only in "nu
+    // op oranje"). Werkinstructie, nulmeting, terugblik, stuurgroep and watermeloenproject need nothing; no
+    // other film's spoken text changes
+    [/\bde intake\b/g, 'de in-teek'], [/\bDe operators krijgen\b/g, 'De ope-raators krijgen'], [/\bnu op oranje\b/g, 'nu op o-ranje'],
+    // the tools named in the module intro and the field film (the Checkpoint of 14 Nov), a self-contained group at
+    // the end of the Dutch list (checked with phonemes through Piper's nl_NL-alex bridge): scopeomschrijving as
+    // skoop-omschrijving (espeak-ng reads "skoope") and resourcehistogram as ri-sors-histogram ("REE-zoors").
+    // Run chart has its rule above (run tsjart). WBS, Gantt-chart, netwerkplanning, driepuntsschatting, analoog
+    // schatten, RACI, SIPOC, A3-statusrapport, besluitenlijst, vaardigheidsmatrix, overdrachtschecklist and
+    // eindrapport need nothing (projectopdracht has its rule above); no other film's spoken text changes
+    [/\b([Ss])copeomschrijving/g, '$1koop-omschrijving'], [/\b([Rr])esourcehistogram\b/g, '$1i-sors-histogram'],
+    // the field film (pm.field.people), a self-contained group at the end of the Dutch list: espeak-ng reads the
+    // English "second opinion" as "sekont opinion" (said sekkend opinjen), checked with phonemes through Piper's
+    // nl_NL-alex bridge; only in this film's phrase. SBI has its rule above; BATNA, KPI-boom, mensenprobleem,
+    // vragenset and prestatiebord need nothing; no other film's spoken text changes
+    [/\bvragenset en een second opinion\b/g, 'vragenset en een sekkend opinjen'],
+    // the field film (pm.field.portfolio), a self-contained group at the end of the Dutch list, checked with phonemes
+    // through Piper's nl_NL-alex bridge: espeak-ng stresses ADvies-vak on its first syllable and devoices the v
+    // (said advies-vak, stress on vies), reads vertrouwensformule with the primary stress on mu and a secondary on
+    // trou, the wrong way round for a compound (said vertrouwens-formule, stress on trou, the long u kept), and
+    // plantmanager as "plant-maa-naa-ger" with a hard g (plant-menetsjer, as the "of de plantmanager" rule above, in
+    // this film's two phrases only: other films' plantmanager keeps its voice). diagnosefase keeps the voice it has in
+    // pm.consult.proposal; governance, capaciteitsstreep, offerte, besluitenlijst and programma's have rules above or
+    // need nothing; no other film's spoken text changes
+    [/\b([Aa])dviesvak\b/g, '$1dvies-vak'], [/\b([Vv])ertrouwensformule\b/g, '$1ertrouwens-formule'],
+    [/\badviseer je de plantmanager\b/g, 'adviseer je de plant-menetsjer'], [/\bDe plantmanager betaalt\b/g, 'De plant-menetsjer betaalt'],
+    // the field film (pm.field.it), a self-contained group at the end of the Dutch list, checked with phonemes through
+    // Piper's nl_NL-alex bridge: espeak-ng reads the letter W as "vee" (WSJF said wee es jee ef), and plantmanager
+    // with a hard g (plant-menetsjer, in this film's phrase "voor de plantmanager" only: other films' plantmanager
+    // keeps its voice). sprint, kanbanbord, planning poker, PI Planning, pipeline, feature flag, go-live, cutover,
+    // MoSCoW, MES, SAFe, agile, DORA, IT-team and IT-project have rules above or need nothing; no other film's
+    // spoken text changes
+    [/\bWSJF\b/g, 'wee es jee ef'], [/\bvoor de plantmanager\b/g, 'voor de plant-menetsjer'],
+    // DevOps (Task 20), a self-contained group at the end of the Dutch list, checked with phonemes through Piper's
+    // nl_NL-alex bridge: espeak-ng reads "DevOps" as dˈɛf ˈɔps ("def ops"); "Dev-ops" gives dˈɛvˈɔps, the v of
+    // "developer" as Dutch IT people say it, first syllable stressed. Also inside DevOps-rapport and DevOpsDays;
+    // English reads dˈɛv ˈɒps and needs nothing
+    [/\b([Dd])ev[Oo]ps/g, '$1ev-ops'],
+    // the module intro film of Intake (pm.intake.intro), a self-contained group at the end of the Dutch list, checked
+    // with phonemes through Piper's nl_NL-alex bridge: espeak-ng reads blokkeerder as "BLOK-i-der" (the long ee
+    // shortened, the stress on blok); said blok-keerder, with the second stress on keer, only in this film's phrase
+    // "(E)n een blokkeerder kan het stoppen", so pm.run.escalation and pm.intake.stakeholders keep their voice. The
+    // film says business case as two words (the business case rule above), de intake (the field film's rule),
+    // stakeholdermap, proceseigenaar and nulmeting (the rules above), and kick-off, SCQ, 5 keer waarom,
+    // vragenboom, terugverdientijd, ondernemingsraad, hypotheses and fasering are read right as they are; no other
+    // film's spoken text changes
+    [/\b([Ee])n een blokkeerder kan het stoppen\b/g, '$1n een blok-keerder kan het stoppen'],
+    // the Run module intro (pm.run.intro), a self-contained group at the end of the Dutch list, checked with
+    // phonemes through Piper's nl_NL-alex bridge: espeak-ng reads impactanalyse as "-lie-se" with an s (said
+    // impact-analiese, a z) and issuelog as "is-uu-eh-log" (said isjoelog, as the pre-mortem's rule says issue).
+    // Stand-up, wijzigingslog, besluitnotitie, notulen, besluitenlijst, A3-statusrapport, escalatie and the
+    // other words of the film go through the rules above or need nothing; no other film's spoken text changes
+    [/\b([Ii])mpactanalyse\b/g, '$1mpact-analiese'], [/\b([Ii])ssuelog\b/g, '$1sjoelog'],
+    // the Land module intro (pm.land.intro), a self-contained group at the end of the Dutch list, checked with
+    // phonemes through Piper's nl_NL-alex bridge: espeak-ng reads follow-up with a Dutch-English switch, said
+    // follo-ap; trigger with a soft g ("tri-gher"), said trikker (as the handover rule above); after-action review
+    // as "afterakshon" and "ree-viw", said after-eksjun (stress on eks) and rievjoe (as Sprint Review). Only in
+    // this film's phrases, so pm.land.handover's trigger and other films' reviews keep their voice. The film's
+    // operators are only in "De operators krijgen" (the field film's rule above); the other sentences say
+    // "iemand", "ze" and "mensen", as the captions do, so they need no rule.
+    // Werkinstructie, vaardigheidsmatrix, trainingsrooster, communicatieplan, overdrachtschecklist, proceseigenaar,
+    // gelaagde procesaudit, KPI-bord, nulmeting, baateigenaar and A3-rapport go through the rules above or are read
+    // right as they are; no other film's spoken text changes
+    [/\bvooraf een follow-up af en een trigger\b/g, 'vooraf een follo-ap af en een trikker'],
+    [/\bA3-rapport en een after-action review\b/g, 'A3-rapport en een after-eksjun rievjoe'],
+    // the DevOps module intro (pm.devops.intro), a self-contained group at the end of the Dutch list, checked with
+    // phonemes through Piper's nl_NL-alex bridge: espeak-ng stresses testpiramide on "raa" (test-pi-RAA-mi-de); said
+    // test-piramiede, the stress of piramide. The film's other words (mediaan, feature flag, post-mortem, DORA,
+    // prioriteitsmatrix, A3, impactstraal, servicedesk, MES) are read right as they are or have rules
+    // above; the film does not say live, release, SLA, benchmarks or continuous integration; no other film's spoken
+    // text changes
+    [/\b([Tt])estpiramide\b/g, '$1est-piramiede'],
+    // the Scaling intro (pm.scaled.intro), a self-contained group at the end of the Dutch list, checked with phonemes
+    // through Piper's nl_NL-alex bridge: espeak-ng reads LeSS as the letters "le es es" (said Less, lˈɛss), "Sprint
+    // Planning One" with the Dutch number "oone" (said Wan, ʋˈɑn), Spotify with the Dutch i (said Spotifai,
+    // spˈoːtifˌɑj; no other film says it) and Lean as "lee-an" (said Lien, as the Lean-consultant rule above) in
+    // "Lean budgets" and in "Lean business case" (which has already become "Lean biznis kees" by then) only: the other
+    // films' Lean (pm.agile.kanban's "in Lean") keeps its voice. The plant manager phrases of the film are the ones
+    // the rules above already cover (voor de plantmanager). Cross-Team Refinement, SAFe, PI Planning, ART Planning
+    // Board, stage-gate, gate and design freeze have rules above and the rest reads right; no other film's spoken
+    // text changes
+    [/\bLeSS\b/g, 'Less'], [/\bSprint Planning One\b/g, 'Sprint Planning Wan'], [/\bSpotify\b/g, 'Spotifai'],
+    [/\bLean (?=budgets\b|biznis kees\b)/g, 'Lien '],
+    // the When you're stuck module intro (pm.stuck.intro), a self-contained group at the end of the Dutch list, checked
+    // with phonemes through Piper's nl_NL-alex bridge: espeak-ng reads tussenbericht as "tussen-BEER-icht"
+    // (tˈɵsənbˌɪːrɪxt); said tussen-bericht, tˈɵsənbərˈɪxt, with the stress of bericht. Only in this film's phrase "een
+    // tussenbericht en een bandbreedte" (no other film says the word). Its other words (triangulatie, besluitenlijst,
+    // bandbreedte, weerstand, terugbelmoment, sponsorgesprek, rugdekking, kleine successen) are read right as they
+    // are; no other film's spoken text changes
+    [/\been tussenbericht en een bandbreedte\b/g, 'een tussen-bericht en een bandbreedte'],
+    // the IT projects intro (pm.itproject.intro), a self-contained group at the end of the Dutch list, checked with phonemes
+    // through Piper's nl_NL-alex bridge: espeak-ng reads SaaS as the letters "saa es" (said Sas, sˈɑs); the rest of the film
+    // (RFP, MVP, ERP, triage, testscript, proefmigratie, shortlist, pilot, key users, sign-off, go-live, MoSCoW, to-be-proces,
+    // requirements, UAT, hypercare, cutover) has a rule above or reads right; no other film's spoken text changes
+    [/\bSaaS\b/g, 'Sas'],
+    // the Leading people module intro (pm.lead.intro), a self-contained group at the end of the Dutch list, checked with
+    // phonemes through Piper's nl_NL-alex bridge: espeak-ng reads "Radical Candor" in the Dutch way, "RAA-dikal KAN-dor"
+    // (rˈaːdikˌɑl kˈɑndɔr); said "Redikal Kander" it reads rˈeːdikˌɑl kˈɑndər, as the English name sounds. Only in this
+    // film's phrase "en Radical Candor" (the Werkkennis sentence of the closing map; Toyota has pm.land.training's rule): no
+    // other film says the name. Its other words (stakeholderkaart, feedforward, actief luisteren, MORE PIES, Kata, herkaderen,
+    // valuta, coachingscycli, psychologische) are read right as they are; no other film's spoken text changes
+    [/\ben Radical Candor\b/g, 'en Redikal Kander'],
+    // English IT words in the Dutch voice (Task 22), a self-contained group at the end of the Dutch list, checked with
+    // phonemes through Piper's nl_NL-alex bridge and the free large-v3-turbo transcript of the voice (4 to 5 sentences
+    // per spelling). WIP: espeak-ng spells the capitals "vee ie pee" (heard "VIP-limiet", 0 of 5); said "wip" as Dutch
+    // teams do (ʋˈɪp, heard 3 of 5), also in WIP-limiet. Rollbackplan: espeak-ng reads "rol-bak-plan" (rˈɔlbɑkplˌɑn,
+    // heard "rolbakplan", 0 of 4); said "rolbek plan" (rˈɔlbɛk plˈɑn, 4 of 4), rollback alone as rolbek. Versiebeheer:
+    // espeak-ng reads the compound with an s and the stress on "-sie-" (vərsˈibəhˌɪːr, heard "versietbeheer", 3 of 5);
+    // split, "versie" keeps the z of the word alone (vˈɛrzibəhˈɪːr, 5 of 5). Agile (edjail, in the rule for
+    // pm.plan.method above) and Daily Scrum (Deili, in the Scrum rules above) are changed where they stand. Planning
+    // poker (pˈoːkər), DORA (dˈoːraː), post-mortem (pˈɔstmˈɔrtəm) and feature flag (fietsjer flag, from the feature
+    // rule above) are read right as they are: Whisper writes planning poker as one word and "Dora" as "Tora" or "DORM"
+    // only next to "meet" or "-metingen", and no other spelling does better; English needs nothing
+    [/\bWIP\b/g, 'wip'], [/\b([Rr])ollbackplan(s?)\b/g, '$1olbek plan$2'], [/\b([Rr])ollback\b/g, '$1olbek'],
+    [/\b([Vv])ersiebeheer\b/g, '$1ersie-beheer'],
+    // the Leading projects outside your field module intro (pm.outside.intro), a self-contained group at the end of
+    // the Dutch list, checked with phonemes through Piper's nl_NL-alex bridge: espeak-ng reads the English "second
+    // opinion" as "sekont opinion" (said sekkend opinjen, as the people field film's rule above), only after
+    // "steekproef en een" in this film's tool sentence, so the other films keep their voice. Naïeve vraag, vragenset,
+    // premortem, besliscriteria, eenrichtingsdeuren, vertrouwensformule, contextwisseling, referentieklassen,
+    // piramideprincipe, terugvertellen, watermeloenstatus, meelopen and fabrieksacceptatietest go
+    // through the rules above or are read right as they are; no other film's spoken text changes
+    [/\bsteekproef en een second opinion\b/g, 'steekproef en een sekkend opinjen'],
+    // the Programmes and governance module intro (pm.portfolio.intro), a self-contained group at the end of the Dutch
+    // list, checked with phonemes through Piper's nl_NL-alex bridge: espeak-ng reads procesingenieurs with a voiced z,
+    // "pro-ze-ingenieurs", said "proces ingenieurs" as two words (pro-SES in-zje-NJEURS; the hyphen was run together by the listen guard, PM-20), and plain managers with a hard g (MAA-naa-gers),
+    // said menetsjers as the manager rules above, only in this film's phrase "De managers die de fabriek draaien", so no
+    // other film's managers change. Programmaraad, MSP, capaciteitsstreep, capaciteitsmatrix, besluitenlijst,
+    // batenkaart, batenprofiel, stage-gates, afhankelijkhedenregister, veranderverzadiging, zombieprojecten and
+    // ijzeren wet go through the rules above or are read right as they are; no other film's spoken text changes
+    [/\b([Pp])rocesingenieurs\b/g, '$1roces ingenieurs'], [/\b([Dd])e managers die de fabriek draaien\b/g, '$1e menetsjers die de fabriek draaien'],
+    // the Consulting craft module intro (pm.consult.intro), a self-contained group at the end of the Dutch list, checked with
+    // phonemes through Piper's nl_NL-alex bridge: espeak-ng reads plantmanager with a soft g (plant-maa-naa-ger; said
+    // plant-menetsjer, only in "De plantmanager vraagt" as the other films' phrases above) and doorverwijzingen with a
+    // devoiced d ("toor-"; said door-verwijzingen).
+    // Offerte, adviesvak, vertrouwensformule, diagnosefase, dagtarief, opties, dataminimalisatie, pseudonimiseren,
+    // positionering, nulmeting, declarabele dagen, bezettingsgraad, succesfee, weerstand, krantentest, nederig vragen,
+    // risicoreservering, opzegclausule and hefboom
+    // have rules above or are read right; no other film's spoken text changes
+    [/\bDe plantmanager vraagt\b/g, 'De plant-menetsjer vraagt'],
+    [/\b([Dd])oorverwijzingen\b/g, '$1oor-verwijzingen'],
+    // the field film "Making things" (eng.field.making), a self-contained group at the end of the Dutch list, checked
+    // with phonemes through Piper's nl_NL-alex bridge: espeak-ng reads frame as "fra-me" (said freem) and engineer as
+    // "eng-i-neer" (said entsjinier). Only this film's phrases: eng.mechanics.load, eng.machining.measuring and
+    // eng.joining.production say frame in other sentences and keep their voice. The closing says "de hele kaart", so
+    // the subject's English name needs no rule. Verspanen, spuitgieten, vingerfrees, spiraalboor, heetkanaal,
+    // tolerantiekader, processchema, massabalans, lasmal, instelkaart, bramen, inzakplekken and the rest have rules
+    // above or are read right; no other film's spoken text changes
+    [/\b([Ee]en|[Hh]et) frame(?=, een plaat| moet de hele| bestaat uit| na maanden| krom)/g, '$1 freem'], [/\bFrame(?=, plaat en tank)/g, 'Freem'],
+    [/\bJij bent de engineer\b/g, 'Jij bent de entsjinier'],
+    // the field film "Automation and IT" (eng.field.digital), a self-contained group at the end of the Dutch list, checked
+    // with phonemes through Piper's nl_NL-alex bridge: espeak-ng reads Cybersecurity as "sie-ber-see-ku-ri-ti" (said
+    // Saibersikjoeriti), switch with the x of "lachen" (said switsj), VLAN as the word "vlan" (said vee-lan), tags with that
+    // x, heard "tax" (said tekz, the k-s of "teks"), edge gateway as "edge-gaa-te-waaj" (said etsj geitwee) and a lone dashboard as "dasj-boo-art" (said
+    // desjbord). The phrase rules keep to this film's own sentences (pm.devops.intro says dashboard in the singular and
+    // other films say switch and tag). PLC, SCADA, IT, OT, OPC-server, zones and conduits and the MES have rules above or are
+    // read right. No other film's spoken text changes
+    [/\bCybersecurity\b/g, 'Saibersikjoeriti'], [/\bgebruikt een switch en een VLAN\b/g, 'gebruikt een switsj en een vee-lan'],
+    [/\bOPC-server en tags\b/g, 'OPC-server en tekz'], [/\bgebruikt een edge gateway en een dashboard\b/g, 'gebruikt een etsj geitwee en een desjbord'],
+    // the field film "Energy and the grid" (eng.field.energy), a self-contained group at the end of the Dutch list, checked
+    // with phonemes through Piper's nl_NL-alex bridge: espeak-ng reads reflectiemeter as "reflek-tie-meter" (said
+    // reflexiemeter, only in "met een reflectiemeter"). Installateur, wachtrij, capaciteitskaart, gereedheidscheck,
+    // beveiligingsrelais, loadflow, congestiemanagement and "Jij bent de engineer" have rules above; aardgarnituur,
+    // stroomtang, lektest, scenario, pompkarakteristiek, platenwarmtewisselaar, schakelplan, netbedrijf and the rest
+    // are read right ("met een DGA" is said d-g-a); no other film's spoken text changes
+    [/\bmet een reflectiemeter\b/g, 'met een reflexiemeter'],
+    // the module intro film "Welding and joining" (eng.joining.intro), a self-contained group at the end of the Dutch list,
+    // checked with phonemes through Piper's nl_NL-alex bridge: espeak-ng stresses schroefspindel on "-del" (said
+    // schroef-spindul) and puts the stress of kappenfrees on "frees" (said kappen-frees, both words stressed), only in the
+    // intro's two tool sentences ("vaak een schroefspindel", "vaak een kappenfrees"). MIG, MAG and TIG have a rule above;
+    // booglassen, puntlassen, laslens, penetrantonderzoek, ultrasoon onderzoek, statische menger, lasmal, positioner, clinchen
+    // and the level words are read right; no other film's spoken text changes
+    [/\bvaak een schroefspindel\b/g, 'vaak een schroef-spindul'], [/\bvaak een kappenfrees\b/g, 'vaak een kappen-frees'],
+    // render batch PM-26, a self-contained group at the end of the Dutch list: Whisper (large-v3-turbo) heard the Piper voice
+    // say "G-code" as "geen code", "werkstuknulpunt" as "werkstukknoppunt", "centreerboor" as "centraalboor" and "doet een
+    // lektest" as "doet het lekkerst". Several spellings were tried in the film's own sentence: "de G-code" (the article makes
+    // it heard right every time; bare G-code and gee-code after "vaak" stay "geen code"), "werkstuk nul-punt", "centreer-boor"
+    // and "lek-test". Only the machining intro's and the energy film's phrases, by what stands before the word (the nulpunt
+    // rule first, while G-code is still unchanged): eng.machining.cnc, eng.machining.drilling and eng.power.air say the words
+    // in other sentences and keep their voice
+    [/(?<=\bBij CNC gebruiken we vaak G-code en een )werkstuknulpunt\b/g, 'werkstuk nul-punt'], [/(?<=\bBij CNC gebruiken we vaak )G-code\b/g, 'de G-code'],
+    [/(?<=\bBij boren gebruiken we vaak een )centreerboor\b/g, 'centreer-boor'], [/(?<=\bdoet een )lektest\b/g, 'lek-test'],
+    // the module intro film "Process engineering basics" (eng.process.intro), a self-contained group at the end of the Dutch
+    // list, checked with phonemes through Piper's nl_NL-alex bridge: espeak-ng reads cascaderegeling as "kaskaadiereegeling"
+    // (said cascade-regeling) and pinch-analyse with the ch of "lachen" (said pintsj-analyse), only in the intro's closing
+    // level sentences ("buffertanks, cascaderegeling, standaardiseren", "pinch-analyse en knelpunten"). Batch and unit
+    // operations and Coriolismeter have rules above; Pt100, blokschema, apparaatcode, massabalans, proeffabriek, vuleenheid,
+    // kolf, ketel and the level words are read right; no other film's spoken text changes
+    [/\bcascaderegeling, standaardiseren\b/g, 'cascade-regeling, standaardiseren'], [/\bpinch-analyse en knelpunten\b/g, 'pintsj-analyse en knelpunten'],
+    // the module intro film "From drawing to control" (eng.drawings.intro), a self-contained group at the end of the Dutch
+    // list, checked with phonemes through Piper's nl_NL-alex bridge: espeak-ng reads tagnummer with the Dutch g of "tag"
+    // (tach-nummer; said tek-nummer) and stresses operator on the first syllable (said ope-raator), only in the intro's two
+    // sentences ("lezen we het tagnummer", "De operator loopt"). P&ID is written "P en I D" in its narration; GD en T, PID,
+    // PLC, stempel, tolerantiekader, niveaumeter, regelklep and streefwaarde are read right; no other film's spoken text changes
+    [/\blezen we het tagnummer\b/g, 'lezen we het tek-nummer'], [/\bDe operator loopt\b/g, 'De ope-raator loopt'],
+    // the module intro film "The pipe to line 3" (eng.fluids.intro), a self-contained group at the end of the Dutch list,
+    // checked with phonemes through Piper's nl_NL-alex bridge: espeak-ng reads Moody with a long Dutch oo (said Moodi; a Dutch
+    // engineer says Moedi) and utilities with the Dutch ü (said ütilitsis; said joetilletiez), only in the intro's own
+    // sentences ("af in het Moody-diagram", "koelwater zijn utilities", "onderwerp is Stoom en utilities"). Pompkarakteristiek,
+    // platenwarmtewisselaar, condenspot, debiet, drukval, cavitatie, energiecase, tekortschietende and the level words are read
+    // right; toerenregeling and warmteterugwinning have rules above; no other film's spoken text changes
+    [/(?<=\baf in het )Moody-diagram\b/g, 'Moedi-diagram'], [/(?<=\bkoelwater zijn )utilities\b/g, 'joetilletiez'],
+    [/(?<=\bonderwerp is Stoom en )utilities\b/g, 'joetilletiez'],
+    // the module intro film "Why line 3 has to wait" (eng.gridplanning.intro), a self-contained group at the end of the Dutch
+    // list, checked with phonemes through Piper's nl bridge: espeak-ng stresses investeringsplanning and investeringsplan on
+    // the first syllable (said in-ves-terings-plan, as "investering die niet nodig" above) and reads the g of budget as a
+    // Dutch g ("buddegat"; said spannings-budget), only in the intro's own sentences ("onderwerp is Investeringsplanning",
+    // "vast in het investeringsplan", "verdeelt hij het spanningsbudget"). Loadflow, N-1, congestiemanagement and
+    // capaciteitssturingscontract have rules above; netplanner, scenario and the rest are read right
+    [/(?<=\bonderwerp is )Investeringsplanning\b/g, 'In-ves-terings-planning'], [/(?<=\bvast in het )investeringsplan\b/g, 'in-ves-terings-plan'],
+    [/(?<=\bverdeelt hij het )spanningsbudget\b/g, 'spannings-budget'],
+    // the module intro film "The order to line 3" (eng.itbasics.intro), a self-contained group at the end of the Dutch list,
+    // checked with phonemes through Piper's nl_NL-alex bridge: espeak-ng reads API's as the word "apis" (said A P I's) and query
+    // with a v for the w and a long vowel (said kwiri), each only in the intro's own sentences ("Software en API's", "Met een
+    // query lees je"). Router, server, virtual machine, cloud, webapplicatie, SQL, ERP and MES are read right; no other film's
+    // spoken text changes
+    [/\bSoftware en API's\b/g, "Software en A P I's"], [/\b([Mm])et een query lees je\b/g, '$1et een kwiri lees je'],
+    // the module intro film "An attack on the office" (eng.cyber.intro), a self-contained group at the end of the Dutch list,
+    // checked with phonemes through Piper's nl_NL-alex bridge: espeak-ng reads IEC 62443 as the number "tweeënzestigduizend
+    // vierhonderd drieënveertig" (said I E C zes twee vier vier drie), bijlage II as "ie ie" and bijlage I with a schwa
+    // (said bijlage één en bijlage twee), Cyberbeveiligingswet with sieber and a stress on the head of beveiliging (said
+    // Saiber-beveiligingswet, as the Cybersecurity rule above says Saiber), phishing as "fis-hing" (said fisjing) and
+    // patchen with a velar ch (said petsjen), each only in the intro's own sentences ("OT-beveiliging met IEC 62443", "op in
+    // bijlage I en bijlage II", "heet die wet de Cyberbeveiligingswet", "Dat heet phishing", "Werkkennis komen phishing",
+    // "minimale rechten, patchen"). Cybersecurity, conduits, zones, MES, MFA, NIS2, meldknop, noodprocedure, zorgplicht,
+    // incidentrespons and the level words are read right or have rules above; no other film's spoken text changes
+    [/(?<=\bOT-beveiliging met )IEC 62443\b/g, 'I E C zes twee vier vier drie'],
+    [/(?<=\bop in )bijlage I en bijlage II\b/g, 'bijlage één en bijlage twee'], [/(?<=\bheet die wet de )Cyberbeveiligingswet\b/g, 'Saiber-beveiligingswet'],
+    [/(?<=\bDat heet )phishing\b/g, 'fisjing'], [/(?<=\bWerkkennis komen )phishing\b/g, 'fisjing'], [/(?<=\bminimale rechten, )patchen\b/g, 'petsjen'],
+    // the module intro films' words a Dutch listener would mishear (render batch PM-28; Piper's nl_NL-alex voice in each film's own
+    // sentence, transcribed with large-v3-turbo, the spelling heard right most often): espeak-ng reads vuleenheid with a long ue
+    // (heard "verleenheid"; "vul eenheid" 3 of 4, vul-eenheid 0 of 3), frame as "fraame" (heard "framen", "vramen"; "freem" 3 of 3,
+    // 1 of 3), Spuitgieten with the stress on "gie" (heard "Spijt te gieten"; "Spuit-gieten" 3 of 3, 0 of 3), spuitunit and sluitunit
+    // with one stress ("spuit-unit" 2 of 3, 1 of 3; "sluit-unit" 2 of 2, 1 of 2) and hardheidsmeting with a voiced d ("hardheids-meting"
+    // 5 of 5, 4 of 5). vuleenheid and "het frame" (also "stalen frame", "want frame,") only occur in the intro and field films, which
+    // are all rebuilt; the other words only in the phrases of the intros ("Spuitgieten is het zesde station", "De spuitunit smelt",
+    // "vaak een hardheidsmeting"), so the moulding machine film, the field film and "6 frames per uur" keep their voice. MIG/MAG
+    // (heard "IG" once in a sentence, "MIG" in 2 of 3), positioner, lijm, droger, hal B, staalnamen, FEM-plot, materiaal and unit
+    // operations are read right by the voice (phonemes) and heard right by a second transcription: no rule
+    [/(?<=\bnaar hal B, naar de )vuleenheid\b/g, 'vul-eenheid'], [/\b([Vv])uleenheid\b/g, '$1ul eenheid'], [/\b([Hh]et |stalen |want )frame\b/g, '$1freem'],
+    [/\bSpuitgieten is het zesde station\b/g, 'Spuit-gieten is het zesde station'],
+    [/\bDe spuitunit smelt de kunststof en de sluitunit\b/g, 'De spuit-unit smelt de kunststof en de sluit-unit'],
+    [/(?<=\bgebruiken we vaak een )hardheidsmeting\b/g, 'hardheids-meting'],
+    // the module intro film "From MES order to a running unit" (eng.ot.intro), a self-contained group at the end of the Dutch list,
+    // checked with phonemes through Piper's nl_NL-alex bridge: espeak-ng reads unified namespace as Dutch ("unifit"; said joenifaid
+    // nejmspeis), only in the intro's own sentence ("beoordelen, de unified namespace"). The engineer is "Jij bent de engineer" above;
+    // PLC, SCADA, MES, ERP, MQTT, OPC UA, ISA-95, historian, Purdue, productieorder, informatiestroom, machinebouwer, OPC-server en tags,
+    // cloud, governance and the level words are read right or have rules above; no other film's spoken text changes
+    [/(?<=\bbeoordelen, de )unified namespace\b/g, 'joenifaid nejmspeis'],
+    // the module intro film "Data and digital manufacturing" (eng.industry40.intro), a self-contained group at the end of the Dutch list,
+    // checked with phonemes through Piper's nl_NL-alex bridge: espeak-ng reads edge gateway as "edge-gaa-te-waaj" (said etsj geitwee),
+    // a lone dashboard as "dasj-boo-art" (said desjbord), datawarehouse with the English "ware" (a Dutch "weer" would be heard as the word for weather) (said data wèrhaus) and Power BI as
+    // "pooer" (said Pauwer B I). Each rule keeps to the intro's own sentence, so the field film's "gebruikt een edge gateway en een
+    // dashboard", pm.devops.intro and the lessons keep their voice. PLC-kast, MES, AI, KPI, machinedata, dataplatform,
+    // anomaliedetectie, digitale tweelingen and the level words are read right; no other film's spoken text changes
+    [/(?<=\bde PLC-kast met een )edge gateway\b/g, 'etsj geitwee'], [/(?<=\bvolg je de lijn op een )dashboard\b/g, 'desjbord'],
+    [/(?<=\bde cijfers op in een )datawarehouse\b/g, 'data wèrhaus'], [/(?<=\bWerkkennis komen machinedata, )Power BI\b/g, 'Pauwer B I'],
+    // the Leading people intro (pm.lead.intro), PM-30, a self-contained group at the end of the Dutch list, checked with phonemes
+    // through Piper's nl_NL-alex bridge and the large-v3-turbo transcript of the voice (5 to 6 spellings, 4 to 6 takes each): the
+    // two names as a Dutch coach says them in English. "Redikal Kander" (rˈeːdikˌɑl kˈɑndər) was heard "Radical Kander" 2 of 4 and
+    // "Redi Kalkander" 2 of 4; "Rèddikal Kender" (rˈɛdikˌɑl kˈɛndər) "Radical Kender" 5 of 6. "Mor pais" (mˈɔr pˈɑjs) was heard
+    // "molpies" and "modpies"; "More paiz" (mˈoːrə pˈɑjs, "more pies") "morepies", "more pice" or "more pais" 6 of 6. Each rule
+    // keeps to the intro's own phrase (it runs after the earlier rules for the two names), so pm.intake.firsttalk and
+    // pm.outside.jargon keep their voice for MORE PIES; no other film's spoken text changes
+    [/\ben Redikal Kander\b/g, 'en Rèddikal Kender'], [/(?<=\bactief luisteren en )Mor pais\b/g, 'More paiz'],
+    // the module intro film Approach and tools (pm.approach.intro), a self-contained group at the end of the Dutch list, checked with
+    // phonemes through Piper's nl_NL-alex bridge: espeak-ng reads Lean as "lee-an" (lˈeːɑn; said Lien, lˈin, as the Lean-consultant
+    // rule above), Six Sigma as "sik sigma" (sˈɪk; said Sikss Sigma, sˈɪks sˈɪɣmaː) and DMAIC as the word "dmaik" (mɛ tmˈɑjk; said as
+    // the letters, dee em aa ie see, tˈeː ˈɛm ˈaː ˈi sˈeː). Each rule keeps to the intro's own phrase (the list of the families after
+    // agile, which has become edjail by now, and DMAIC with the steps of Six Sigma), so the lessons and the other films keep their
+    // voice; no other film's spoken text changes
+    [/(?<=\bVoorspellend, edjail, )Lean en verbeteren met DMAIC\b/g, 'Lien en verbeteren met dee em aa ie see'], [/(?<=\bElk verbeterproject bouw je op met )DMAIC\b/g, 'dee em aa ie see'],
+    // and toolfamilies (espeak-ng reads tool as tˈoːl, "tole") as toel-families, as the planningstool rule says its tool, only after "Denk in"
+    [/(?<=\bDenk in )toolfamilies\b/g, 'toel-families'],
+    // the module intro film Formats and meetings (pm.formats.intro), a self-contained group at the end of the Dutch list, checked with
+    // phonemes through Piper's nl_NL-alex bridge: espeak-ng reads brown paper with the Dutch o of "bron" (brˈɔwn pˈaːpər; said braun peeper,
+    // brˈʌʊn pˈeːpər, as a Dutch coach says it) and whiteboard as "wiete-bord" (ʋhˈitəbˌoːɑrd; said wajtbord, ʋˈɑjtbɔrd). Each rule keeps to
+    // the intro's own phrase (the paper the group draws the process on, the digital whiteboard it works on), so the lessons and the other
+    // films keep their voice; no other film's spoken text changes
+    [/(?<=\bmet geeltjes op een )brown paper\b/g, 'braun peeper'], [/(?<=\bDat doen we op een digitaal )whiteboard\b/g, 'wajtbord'],
+    // the field film (pm.field.lifecycle) names the same tool in its Formats and meetings station, after "een voorleesstuk en een":
+    // brown paper as in the intro rule above (braun peeper), only in the field film's phrase; the other tools of its two new
+    // stations (takenbord, ERP, voorleesstuk, werkvormen, aanpak) are read right; no other film's spoken text changes
+    [/(?<=\bgebruiken we vaak een voorleesstuk en een )brown paper\b/g, 'braun peeper'],
+    // the field film "Keeping the plant running" (eng.field.run), a self-contained group at the end of the Dutch list, checked with
+    // phonemes through Piper's nl_NL-alex bridge: espeak-ng reads flow as "flaw" (flɔw; said flouw, flˈʌʊ, as the flow rule of
+    // pm.agile.forecast), only in the two phrases that name the module ("station is Capaciteit en flow", "Eerst Capaciteit en
+    // flow"). Takttijd, stilstandregistratie, turflijst, afwijkingsrapport, CMMS (letters), CILT and LMRA (the rules above),
+    // vergrendelen en labelen, lijnbalans, omstellen and teamleider are read right; no other film's spoken text changes
+    [/(?<=\b(?:station is|Eerst) )Capaciteit en flow\b/g, 'Capaciteit en flouw'],
+    // the module intro film "Capacity and flow" (eng.flow.intro), a self-contained group at the end of the Dutch list, checked with
+    // phonemes through Piper's nl_NL-alex bridge: espeak-ng reads flow as "flaw" (flɔw; said flouw, as the field film's rule above), only
+    // in the intro's own sentence ("De module Capaciteit en flow"), and yamazumi with the Dutch u (jˈaːmaːzˌymi; said jamazoemi), only
+    // in "in een yamazumi" (lowercase, so the lesson's "Een Yamazumi" and the lessons' films keep their voice). Takt, bottleneck, OEE
+    // (letters, the rule above), ploegenrooster, stilstandregistratie, omstelkar, seriegrootte, bezettingsgraad (the rule above),
+    // pareto, SMED-workshop, teamleider and the level words are read right; no other film's spoken text changes
+    [/(?<=\bDe module )Capaciteit en flow\b/g, 'Capaciteit en flouw'], [/(?<=\bin een )yamazumi\b/g, 'jamazoemi'],
+    // the field film "Making the plant better" (eng.field.better), a self-contained group at the end of the Dutch list, checked with
+    // phonemes through Piper's nl_NL-alex bridge: espeak-ng reads FMECA as the word "fmeeka" (fmˈeːkaː; said as letters, ˈɛf ˈɛm ˈeː sˈeː
+    // ˈaː), only in the film's one phrase that names it ("en maakt een FMECA"), so the lessons and the other films keep their voice.
+    // Ohno-cirkel, waaromboom, eerstestukcontrole, np-kaart, faalkosten, kasbesparing, risicomatrix, kaizen and SPC are read right;
+    // no other film's spoken text changes
+    [/(?<=\ben maakt een )FMECA\b/g, 'F M E C A'],
+    // the module intro film for Maintenance (eng.maintenance.intro), a self-contained group at the end of the Dutch list: espeak-ng
+    // reads operators as "OO-pi-ra-tors" (checked with phonemes through Piper's nl_NL-alex bridge); said ope-raators, as the rules
+    // above, only in this film's one sentence ("Operators doen zelf de basiszorg"), so the other films keep their voice. Badkuipkromme,
+    // multimomentopname, CILT-standaard (the rule above) and CMMS are read right; no other film's spoken text changes
+    [/\bOperators doen zelf\b/g, 'Ope-raators doen zelf'],
+    // the module intro film for Engineering problem solving (eng.improve.intro), a self-contained group at the end of the Dutch list,
+    // checked with phonemes through Piper's nl_NL-alex bridge: espeak-ng reads PDCA as the word "pdka" (pdkˈaː; said as letters, as
+    // FMECA above) only in the film's phrase that names the topic ("Het derde onderwerp is PDCA en de A3"), and 8D as "acht tee" (ˈɑx tˈeː, the
+    // d is lost after acht; said acht-dee, ɑxtdˈeː) only in its phrase "de 8D en een sessie", so the lessons and the other films keep
+    // their voice. Ohno-cirkel, waaromboom, andon, kaizen, A3 (aa drie) and the level words are read right; no other film's spoken text changes
+    [/(?<=\bderde onderwerp is )PDCA en de A3\b/g, 'P D C A en de A3'], [/\bde 8D en een sessie\b/g, 'de acht-dee en een sessie'],
+    // the module intro film for Cost engineering (eng.cost.intro), a self-contained group at the end of the Dutch list, checked with
+    // phonemes through Piper's nl_NL-alex bridge: espeak-ng reads Lean as "lee-an" (lˈeːɑn; said Lien, as the Lean-consultant rule above)
+    // only in the film's phrase that names the topic ("vierde onderwerp is Lean accounting"), and overheadopslag as "overhee-aad-opslag"
+    // (ˌoːvərhˈeːaːdˌɔpslɑx; said overhed-opslag, ˌoːvərhˈɛdˈɔpslɑx) only in its phrase "met een overheadopslag", so the lessons and the
+    // other films keep their voice. Kostprijs, faalkosten, kasbesparing, dekkingsbijdrage (the rule above), terugverdientijd and the
+    // level words are read right; no other film's spoken text changes
+    [/(?<=\bvierde onderwerp is )Lean accounting\b/g, 'Lien accounting'], [/(?<=\bmet een )overheadopslag\b/g, 'overhed-opslag'],
+    // the G-code film (eng.machining.gcode, Task 17 pilot P1): ISO 6983 as the floor says the other ISO numbers (ISO 27 68), only this number
+    [/\bISO 6983\b/g, 'ISO 69 83'],
+    // the first-talk and jargon films (PM-32), a narrow group at the end of the Dutch list: MORE PIES as "More paiz", the voice the
+    // Leading people intro has since PM-30 (the "Mor pais" rule above is kept for any other sentence), one rule per sentence of
+    // pm.intake.firsttalk ("De checklist MORE PIES komt uit de crisisonderhandeling") and pm.outside.jargon ("uit MORE PIES:" and
+    // "MORE PIES is een lijst voor actief luisteren"); no other film's spoken text changes
+    [/(?<=\bDe checklist )Mor pais(?= komt uit de crisisonderhandeling)/g, 'More paiz'], [/(?<=\bdoorvragen uit )Mor pais(?=: zwijg even)/g, 'More paiz'],
+    [/\bMor pais(?= is een lijst voor actief luisteren)/g, 'More paiz'],
+    // the arc-welding split (eng.joining.weldparams, .wps, .metallurgy; review 17 Nov): five-digit welding ISO numbers in parts with
+    // the part number, EN 1011 and EN 1090 with their part, and the alloy 6082-T6 digit by digit; besides these films only the
+    // unrendered eng.joining.production ("EN 1090-1") changes
+    [/\bISO (14731|14732|15609|15612|15614)(?:-(\d))?\b/g, (m, n, p) => `ISO ${n.slice(0, 2)} ${n[2]} ${n.slice(3)}${p ? ` deel ${p}` : ''}`],
+    [/\bEN (10(?:11|90))-(\d)\b/g, (m, n, p) => `E N ${n.slice(0, 2)} ${n.slice(2)} deel ${p}`], [/\b6082-T6\b/g, 'zes nul acht twee T zes']],
+  en: [[/\brpm\b/g, 'revolutions per minute'], [/\bmm\/min\b/g, 'millimetres per minute'], [/\bm\/min\b/g, 'metres per minute'], [/µm\b/g, 'micrometres'],
+    [/€\s?(\d[\d,]*(?:\.\d+)?)/g, '$1 euros'], [/(\d)\.0(?![\d])/g, '$1'], [/(\d)\s?mm\b/g, '$1 millimetres'], [/(\d)\s?min\b/g, '$1 minutes'], [/(\d)\s?%/g, '$1 percent'],
+    [/Ø\s*/g, 'diameter '], [/(\d)\+(\d)/g, '$1 plus $2'], [/\s×\s/g, ' times '], [/\s\/\s/g, ' divided by '], [/\s=\s/g, ' is '], [/°/g, ' degrees'], [/\bRa\b/g, 'R a'], [/’/g, "'"],
+    [/\b([A-Z]{2,})\/(?=[A-Z]{2,}\b)/g, '$1 '], [/\bt8\/5\b/g, 't 8 5'], [/\bISO (\d\d)(\d\d)-(\d)\b/g, 'ISO $1 $2 part $3'],
+    [/\bISO (5817|9712)\b/g, (m, n) => `ISO ${n.slice(0, 2)} ${n.slice(2)}`], [/\bEXC([1-4])\b/g, 'E X C $1'], [/\b401\b/g, 'four oh one'],
+    [/\bDOE\b/g, 'D O E'], [/\bPFMEA\b/g, 'P F M E A'],
+    [/\b([Gg])o\/no-go\b/g, '$1o, no-go'], [/\bR&R\b/g, 'R and R'],
+    [/\bI\/O\b/g, 'I O'], [/\bOEE\b/g, 'O E E'], [/\bMES\b/g, 'M E S'], [/\bISO 2768\b/g, 'ISO 27 68'],
+    // CILT as letters here too: espeak-ng's English reads it as the word "silt"
+    [/\bCILT\b/g, 'C I L T'],
+    // the Dutch regulator as letters (espeak-ng's English reads "ackem") and TenneT as one word ("Ten T")
+    [/\bACM\b/g, 'A C M'], [/\bTenneT\b/g, 'Tennet'],
+    // the five safety rules (eng.switchgear.fiverules): espeak-ng's English reads IV as "Roman four" and the
+    // standards as "three thousand one hundred and forty", "fifty thousand one hundred and ten"; said I V,
+    // "nen thirty-one forty" and "nen E N fifty one ten"; before a comma it reads VOP as the word "vop"
+    // (letters elsewhere), so V O P throughout
+    [/\bIV\b/g, 'I V'], [/\bVOP\b/g, 'V O P'], [/\bNEN-EN 50110\b/g, 'nen E N fifty one ten'], [/\bNEN (\d\d)(\d\d)\b/g, 'nen $1 $2'],
+    // translating jargon (pm.outside.jargon): espeak-ng's English reads idempotency as "AID-mpoatency"; said idem-potency
+    [/\bidempotency\b/g, 'idem-potency'],
+    // conflict: interests and the difficult conversation (pm.run.conflict): Ury as his name sounds, "Yuri"
+    // (espeak-ng's English reads "urry"), only after "by", so pm.negotiate.batna's caption "Fisher and Ury:" stays
+    [/\bby Fisher and Ury\b/g, 'by Fisher and Yuri'],
+    // from idea to sprint-ready (pm.agile.backlog): Ron Jeffries' three Cs with an apostrophe, as the letter's
+    // plural sounds (espeak-ng's English reads "three Cs" as "three C S")
+    [/\b([Tt])hree Cs\b/g, '$1hree C\'s'],
+    // stage-gate with sprints (pm.scaled.hybrid): go/kill without "slash" (as the go/no-go rule) and SOP as
+    // letters (espeak-ng's English reads the word "sop" before a comma)
+    [/\b([Gg])o\/kill\b/g, '$1o-kill'], [/\bSOP\b/g, 'S O P'],
+    // the cutover weekend (pm.itproject.cutover): cutover as English says it, "cut-over" (en_GB reads
+    // "cute-over"), also in cutover plan and cutover log; no other film's spoken text changes
+    [/\b([Cc])utover/g, '$1uttover'],
+    // a commit through the pipeline (pm.devops.pipeline): CI/CD (made "CI CD" by the acronym-pair rule above) as
+    // letters (espeak-ng's English reads CI as the word "sigh")
+    [/\bCI CD\b/g, 'C I C D'],
+    // MoSCoW and an MVP (pm.itproject.mvp): MoSCoW as Moscow (espeak-ng's English spells it), Eric Ries as
+    // Reese (it reads "rise") and the Minimum Usable SubseT as a plain Subset (it reads "subs tee")
+    [/\bMoSCoW\b/g, 'Moscow'], [/\bEric Ries\b/g, 'Eric Reese'], [/\bSubseT\b/g, 'Subset'],
+    // the user acceptance test (pm.itproject.uat): ISTQB as letters (espeak-ng's English reads "ist-k-b")
+    [/\bISTQB\b/g, 'I S T Q B'],
+    // forecasting and steering on flow (pm.agile.forecast): the names as they sound (espeak-ng's English reads Boehm
+    // as "bohm", Vacanti as "VAY-kanti", Magennis as "MAY-jenis" and Reinertsen as "ree-in-ERT-sen"; said Beem,
+    // Vuh-kanti, Muh-ghennis, Rine-ertsen), and heijunka with its Japanese vowels after "buffers and" (it reads
+    // "HIGH-junka"; heyjoonka), so the kanban film's Vacanti and eng.lines.variants' heijunka keep their voice
+    [/\bBarry Boehm\b/g, 'Barry Beem'], [/\bDaniel Vacanti and Troy Magennis\b/g, 'Daniel Vuh-kanti and Troy Muh-ghennis'],
+    [/\bDonald Reinertsen\b/g, 'Donald Rine-ertsen'], [/\bbuffers and heijunka\b/g, 'buffers and heyjoonka'],
+    // the Scaling intro (pm.scaled.intro): LeSS as the word "less" (espeak-ng's English spells it "le S S")
+    [/\bLeSS\b/g, 'Less'],
+    // the IT projects intro (pm.itproject.intro): SaaS as the word "sass" (espeak-ng's English reads "sah S"), and UAT as
+    // letters in this film's one phrase only (it reads "you-at"; the UAT film keeps its voice)
+    [/\bSaaS\b/g, 'sass'], [/\bIn the UAT, the user acceptance test\b/g, 'In the U A T, the user acceptance test'],
+    // the field film "Automation and IT" (eng.field.digital): VLAN as "vee-lan" (espeak-ng reads the word "vlan")
+    [/\bswitch and a VLAN\b/g, 'switch and a vee-lan'],
+    // the field film "Making the plant better" (eng.field.better): FMECA as letters in the one phrase that names it ("and make an
+    // FMECA"; espeak-ng's English reads "ef-meka"), so the lessons and the other films keep their voice
+    [/(?<=\band make an )FMECA\b/g, 'F M E C A'],
+    // the G-code film (eng.machining.gcode, Task 17 pilot P1): ISO 6983 as pairs of digits, as ISO 2768 above, only this number
+    [/\bISO 6983\b/g, 'ISO 69 83'],
+    // the arc-welding split (eng.joining.weldparams, .wps, .metallurgy; review 17 Nov): five-digit welding ISO numbers in parts with
+    // the part number, EN 1011 and EN 1090 with their part, and the alloy 6082-T6 digit by digit; besides these films only the
+    // unrendered eng.joining.production ("EN 1090-1") changes
+    [/\bISO (14731|14732|15609|15612|15614)(?:-(\d))?\b/g, (m, n, p) => `ISO ${n.slice(0, 2)} ${n[2]} ${n.slice(3)}${p ? ` part ${p}` : ''}`],
+    [/\bEN (10(?:11|90))-(\d)\b/g, (m, n, p) => `E N ${n.slice(0, 2)} ${n.slice(2)} part ${p}`], [/\b6082-T6\b/g, 'six oh eight two T six'],
+    // the moulding split (eng.moulding.cooling, review 17 Nov): PA6 as "PA six", not "pah six"; PA alone is already letters
+    [/\bPA6\b/g, 'PA six']],
+};
+export const sayable = (text, lang) => (SAY[lang] || []).reduce((s, [re, w]) => s.replace(re, w), text);
+// The words the voice says: no English gloss, and with a language, units as words.
+export const speakOf = (seg, lang) => sayable(seg.map((p) => (typeof p === 'string' ? p : p.t)).join(''), lang).replace(/\s+/g, ' ').trim();
+// What is said, as written (no gloss, units kept): the subtitles of the video.
+export const saidOf = (seg) => seg.map((p) => (typeof p === 'string' ? p : p.t)).join('').replace(/\s+/g, ' ').trim();
+// build-only:end
+
+// v14b, the timeline driven by the narration audio. durs[scene][beat] is the
+// length of each beat's recorded line (s). Each scene opens with a short look
+// before the first line (the film itself with a longer lead), lines follow with
+// a breath in between, and a scene holds a moment after its last line.
+// The pauses of the narration, all in one place (seconds). Each sentence is one
+// Piper clip (films/_kit/narrate.mjs), commas inside: the voice makes its own
+// comma pause and keeps the sentence melody. Piper's own edge silence is
+// trimmed to about 40 ms (films/_kit/speak.py), so these are the pauses heard:
+// sentence after a full stop, beat between two lines, hold at a scene's end.
+// The listen guard (films/_kit/listen-guard.mjs) checks them on the render.
+export const PAUSES = { sentence: 0.6, beat: 0.9, hold: 0.8 };
+export const AUDIO_GAPS = { lead: 0.8, look: 0.4, gap: PAUSES.beat, hold: PAUSES.hold, tail: 1.6 };
+export function audioTimeline(durs, gaps = AUDIO_GAPS) {
+  const g = { ...AUDIO_GAPS, ...gaps };
+  const scenes = [];
+  let t = 0;
+  durs.forEach((beats, si) => {
+    const start = t;
+    let at = start + (si === 0 ? g.lead : g.look);
+    const out = beats.map((d, bi) => {
+      if (!(d > 0)) throw new Error(`scene ${si + 1} beat ${bi + 1}: no audio`);
+      const b = { start: round3(at), dur: round3(d) };
+      at += d + (bi + 1 < beats.length ? g.gap : 0);
+      return b;
+    });
+    t = round3(at + (si + 1 < durs.length ? g.hold : g.tail));
+    scenes.push({ start: round3(start), dur: round3(t - start), beats: out });
+  });
+  return { scenes, total: t };
+}
+const round3 = (x) => Math.round(x * 1000) / 1000;
+
+// Where time t falls on an audio timeline: the scene, the beat on screen (the
+// last one started; the first while the scene opens) and the scene's progress u.
+export function timedAt(t, atl) {
+  const sc = atl.scenes;
+  let si = 0;
+  for (let k = 0; k < sc.length; k++) if (t >= sc[k].start) si = k;
+  const s = sc[si];
+  let bi = 0;
+  for (let k = 0; k < s.beats.length; k++) if (t >= s.beats[k].start) bi = k;
+  const u = Math.min(1, Math.max(0, (t - s.start) / s.dur));
+  return { si, bi, u };
+}
+
+export function timelineOf(scenes) {
+  const starts = [];
+  let t = 0;
+  for (const s of scenes) { starts.push(t); t += s.dur; }
+  return { starts, total: t };
+}
+
+export function sceneIndexAt(t, tl) {
+  let i = 0;
+  for (let k = 0; k < tl.starts.length; k++) if (t >= tl.starts[k]) i = k;
+  return i;
+}
+
+// ?scene=n is 1-based; anything odd opens the first scene.
+export function clampScene(param, count) {
+  const n = parseInt(param, 10);
+  if (!Number.isFinite(n) || n < 1) return 0;
+  return Math.min(count, n) - 1;
+}
+
+// Beat starts within a scene (seconds), by each beat's share of the words.
+export function beatStarts(scene, lang) {
+  const counts = scene.beats.map((b) => Math.max(1, wordsOf(b.text[lang] ?? b.text.nl)));
+  const all = counts.reduce((a, b) => a + b, 0);
+  const out = [];
+  let acc = 0;
+  for (const c of counts) { out.push(Math.round((acc / all) * scene.dur * 100) / 100); acc += c; }
+  return out;
+}
+
+// The stage's u (0..1) in the HTML film. A stage drawn on the Dutch beats
+// (nlBeats, set by beatwarp.js) runs, while caption beat k shows in `lang`,
+// from Dutch beat k's fraction to k+1's, so English is never a beat off.
+export function stageU(scene, lang, local, nlBeats) {
+  const u = Math.min(1, Math.max(0, local / scene.dur));
+  if (!nlBeats || lang === 'nl' || !scene.beats || !scene.beats.length) return u;
+  const own = beatStarts(scene, lang);
+  const nl = beatStarts(scene, 'nl');
+  let k = 0;
+  for (let i = 0; i < own.length; i++) if (local >= own[i]) k = i;
+  const a0 = own[k];
+  const a1 = k + 1 < own.length ? own[k + 1] : scene.dur;
+  const b0 = nl[k];
+  const b1 = k + 1 < nl.length ? nl[k + 1] : scene.dur;
+  const p = Math.min(1, Math.max(0, (local - a0) / Math.max(1e-6, a1 - a0)));
+  return Math.min(1, Math.max(0, (b0 + p * (b1 - b0)) / scene.dur));
+}
+
+export function beatIndexAt(scene, lang, local) {
+  const starts = beatStarts(scene, lang);
+  let i = 0;
+  for (let k = 0; k < starts.length; k++) if (local >= starts[k]) i = k;
+  return i;
+}
+
+// While a beat is being spoken the clock may run up to the next beat, or to the
+// end of the scene for the last beat, and then holds there.
+export function holdLimit(tl, scenes, lang, sceneIndex, beatIndex) {
+  const scene = scenes[sceneIndex];
+  const starts = beatStarts(scene, lang);
+  const local = beatIndex + 1 < starts.length ? starts[beatIndex + 1] : scene.dur;
+  return tl.starts[sceneIndex] + local;
+}
+
+// The page's parameters: from its URL when opened on its own, else from the
+// frame's name. The app hands the page over as srcdoc (a sandboxed frame's own
+// navigation skips the service worker, so a src would be blank offline) and
+// puts "?theme=…&lang=…" in the iframe's name attribute.
+export const searchOf = (search, name) => (search && search.length > 1 ? search
+  : typeof name === 'string' && name.charAt(0) === '?' ? name : '');
+
+export function parseParams(search) {
+  const q = new URLSearchParams(search || '');
+  const theme = q.get('theme');
+  const level = parseInt(q.get('level'), 10);
+  return {
+    theme: theme === 'light' || theme === 'dark' ? theme : null,
+    lang: q.get('lang') === 'en' ? 'en' : 'nl',
+    scene: q.get('scene'),
+    reduce: q.get('motion') === 'reduce',
+    muted: q.get('muted') === '1',
+    level: [1, 2, 3, 4].includes(level) ? level : null,
+    render: q.get('render') === '1',
+  };
+}
+
+export function fmtClock(sec) {
+  const s = Math.max(0, Math.floor(sec));
+  return `${Math.floor(s / 60)}:${String(s % 60).padStart(2, '0')}`;
+}
+
+// Calm ease-in-out, and the eased progress of u through [a, b].
+export const ease = (t) => (t <= 0 ? 0 : t >= 1 ? 1 : t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2);
+export const span = (u, a, b) => ease(Math.min(1, Math.max(0, (u - a) / (b - a))));

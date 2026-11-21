@@ -1,0 +1,365 @@
+WEBVTT
+
+1
+00:00:00.865 --> 00:00:05.637
+A team lead at a grid operator asks for a better dashboard for the work orders:
+
+2
+00:00:05.799 --> 00:00:07.297
+a screen full of figures.
+
+3
+00:00:08.032 --> 00:00:11.539
+Clients rarely bring a problem, but a solution or a symptom.
+
+4
+00:00:12.545 --> 00:00:13.799
+Separate three layers.
+
+5
+00:00:14.528 --> 00:00:16.119
+The symptom: what they see.
+
+6
+00:00:16.801 --> 00:00:20.714
+The problem: the cause underneath, which a project can change.
+
+7
+00:00:21.403 --> 00:00:23.795
+The goal: what should be measurably different.
+
+8
+00:00:24.859 --> 00:00:25.382
+What for?
+
+9
+00:00:26.076 --> 00:00:27.852
+Seeing which jobs get stuck.
+
+10
+00:00:28.624 --> 00:00:34.453
+140 of 600 orders have waited over 4 weeks, 90 for materials.
+
+11
+00:00:35.453 --> 00:00:38.170
+The problem: materials aren't linked to the planning.
+
+12
+00:00:38.879 --> 00:00:42.432
+The goal: no order waits over 4 weeks for materials.
+
+13
+00:00:43.137 --> 00:00:47.514
+The dashboard becomes a small part: a project on the symptom fixes nothing.
+
+14
+00:00:48.821 --> 00:00:52.361
+Ask how they notice it, since when, and what has been tried.
+
+15
+00:00:53.129 --> 00:00:57.506
+Walk through one recent case: it shows the mechanism, not their opinion.
+
+16
+00:00:58.508 --> 00:01:01.179
+What does it cost per week, or after a year?
+
+17
+00:01:01.944 --> 00:01:04.881
+That is the cost of inaction: is a project worth it?
+
+18
+00:01:05.935 --> 00:01:08.094
+Often it is a target on a KPI,
+
+19
+00:01:08.269 --> 00:01:13.482
+like OEE: the share of planned time a machine makes good parts at full speed.
+
+20
+00:01:14.510 --> 00:01:20.187
+From 58 to 75 percent is still a wish; 85 is called world class,
+
+21
+00:01:20.304 --> 00:01:21.407
+but is a convention.
+
+22
+00:01:22.126 --> 00:01:27.037
+Where do the 42 points go: breakdowns, changeovers, slow running or scrap?
+
+23
+00:01:28.343 --> 00:01:31.071
+Whoever asks often has their name tied to it.
+
+24
+00:01:31.808 --> 00:01:34.223
+Don't attack it: a dashboard could well help,
+
+25
+00:01:34.397 --> 00:01:36.812
+but can I first see where the delays come from?
+
+26
+00:01:37.835 --> 00:01:38.973
+Analysed already?
+
+27
+00:01:39.639 --> 00:01:40.672
+Great, show me.
+
+28
+00:01:41.372 --> 00:01:43.705
+If they can't, you've learned something too.
+
+29
+00:01:44.726 --> 00:01:46.189
+Experts disagree here.
+
+30
+00:01:46.934 --> 00:01:51.938
+A fair middle: their solution is a hypothesis you check with data in a week or two.
+
+31
+00:01:52.914 --> 00:01:56.652
+Ask naive questions, and write their words down literally.
+
+32
+00:01:57.932 --> 00:02:02.355
+The first conversation: an hour with the production manager of a dairy plant.
+
+33
+00:02:03.121 --> 00:02:07.521
+Open 5 minutes, explore 35, check 10, close 10.
+
+34
+00:02:08.534 --> 00:02:12.690
+Say the structure: I'd like to mostly listen and end with a next step.
+
+35
+00:02:13.407 --> 00:02:14.974
+It puts people at ease.
+
+36
+00:02:16.032 --> 00:02:17.367
+Explore: their story.
+
+37
+00:02:18.066 --> 00:02:20.005
+Check: summarise, what's missing?
+
+38
+00:02:20.716 --> 00:02:22.411
+Close: a step with a date.
+
+39
+00:02:23.781 --> 00:02:27.577
+Active listening means listening to understand, not to reply.
+
+40
+00:02:28.262 --> 00:02:31.583
+The checklist MORE PIES comes from crisis negotiation.
+
+41
+00:02:32.599 --> 00:02:34.317
+M, mood: read the room.
+
+42
+00:02:35.010 --> 00:02:38.203
+O: open questions: how does a normal Monday go?
+
+43
+00:02:38.939 --> 00:02:41.400
+R: reflecting: that sounds frustrating.
+
+44
+00:02:42.168 --> 00:02:43.166
+E: empathy.
+
+45
+00:02:44.189 --> 00:02:47.324
+P: paraphrasing, the core in your own words.
+
+46
+00:02:48.018 --> 00:02:49.214
+I: inquiry.
+
+47
+00:02:49.922 --> 00:02:52.894
+E: your experience, briefly, for trust.
+
+48
+00:02:53.684 --> 00:02:55.762
+S: three seconds of silence.
+
+49
+00:02:56.743 --> 00:03:01.503
+For negotiators, M is minimal encouragers, and S is summarising.
+
+50
+00:03:02.855 --> 00:03:06.187
+Let the client talk 70 to 80 percent of the time.
+
+51
+00:03:06.871 --> 00:03:08.171
+Talked for two minutes?
+
+52
+00:03:08.884 --> 00:03:09.882
+Ask a question.
+
+53
+00:03:10.898 --> 00:03:13.534
+6 changeovers a day, of 50 minutes.
+
+54
+00:03:14.239 --> 00:03:18.535
+You paraphrase: so five hours of changeovers block the extra volume?
+
+55
+00:03:19.555 --> 00:03:21.761
+No, the cleaning is the bigger issue.
+
+56
+00:03:22.448 --> 00:03:23.714
+That is the real point:
+
+57
+00:03:23.842 --> 00:03:28.776
+people correct a wrong paraphrase far more readily than they tell it all themselves.
+
+58
+00:03:29.767 --> 00:03:35.131
+Juniors fill silences out of nerves; the important sentence often comes right after.
+
+59
+00:03:36.487 --> 00:03:40.678
+Resistance is usually quiet: short answers, it's in the report.
+
+60
+00:03:41.505 --> 00:03:43.885
+Name it lightly: what happened last time?
+
+61
+00:03:44.899 --> 00:03:49.218
+Often a previous consultant left a slide deck, and nothing changed.
+
+62
+00:03:49.992 --> 00:03:51.002
+Let them tell it.
+
+63
+00:03:51.786 --> 00:03:54.561
+A notebook feels less like an interrogation.
+
+64
+00:03:55.602 --> 00:04:00.582
+Leave with five things: the problem in their words, three names, which data,
+
+65
+00:04:00.710 --> 00:04:03.450
+what success means to the sponsor, and a date.
+
+66
+00:04:04.216 --> 00:04:09.011
+Within 24 hours on one page: open questions, not guesses.
+
+67
+00:04:10.010 --> 00:04:14.909
+The line on Thursday with two shift leads, and the summary that same evening.
+
+68
+00:04:15.874 --> 00:04:20.100
+Closing question: what would make you say in six months that this was worth it?
+
+69
+00:04:21.452 --> 00:04:25.957
+In a team meeting the senior work preparer says: we did this three years ago.
+
+70
+00:04:26.635 --> 00:04:28.295
+We just got more forms.
+
+71
+00:04:29.341 --> 00:04:31.245
+Under pressure you want to defend.
+
+72
+00:04:31.998 --> 00:04:36.294
+The rule: reflect or paraphrase first, then ask, then answer.
+
+73
+00:04:37.010 --> 00:04:40.713
+An attack often hides a worry: workload, blame, control.
+
+74
+00:04:41.721 --> 00:04:42.963
+The mood is tense.
+
+75
+00:04:43.695 --> 00:04:46.458
+You reflect: it mostly gave you more work.
+
+76
+00:04:47.285 --> 00:04:49.085
+Then you wait five seconds.
+
+77
+00:04:50.144 --> 00:04:52.222
+An open question: what happened then?
+
+78
+00:04:52.926 --> 00:04:57.338
+You paraphrase: so you weren't asked, and the forms came from head office.
+
+79
+00:04:58.357 --> 00:04:59.704
+I get why you're sceptical.
+
+80
+00:05:00.428 --> 00:05:02.576
+Will you look at the check with me on Thursday?
+
+81
+00:05:03.881 --> 00:05:06.517
+Wait three seconds, five under pressure.
+
+82
+00:05:07.253 --> 00:05:12.141
+Teachers waited about one second; at three, answers got longer and better.
+
+83
+00:05:12.855 --> 00:05:16.733
+Calm in silence reads as confidence, which helps the youngest.
+
+84
+00:05:17.792 --> 00:05:19.197
+Open with: what am I missing?
+
+85
+00:05:19.926 --> 00:05:21.110
+What would have to be true?
+
+86
+00:05:21.862 --> 00:05:26.041
+No why when it gets heated, it sounds like blame; say: what made you.
+
+87
+00:05:27.040 --> 00:05:30.569
+No fake question like don't you think: then you learn nothing.
+
+88
+00:05:31.618 --> 00:05:35.263
+Your experience is a bridge: one sentence, then back.
+
+89
+00:05:35.980 --> 00:05:37.338
+Check: what did I learn?
+
+90
+00:05:38.071 --> 00:05:38.535
+Nothing?
+
+91
+00:05:39.328 --> 00:05:40.826
+Then you talked too much.

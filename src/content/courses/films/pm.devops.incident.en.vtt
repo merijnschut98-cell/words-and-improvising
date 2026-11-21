@@ -1,0 +1,201 @@
+WEBVTT
+
+1
+00:00:00.847 --> 00:00:05.270
+ITIL is the best-known collection of good practice for IT service management:
+
+2
+00:00:05.421 --> 00:00:08.672
+organising IT so that users can work reliably.
+
+3
+00:00:09.653 --> 00:00:13.380
+It began in the late nineteen eighties at the British government.
+
+4
+00:00:14.152 --> 00:00:15.139
+The current version,
+
+5
+00:00:15.302 --> 00:00:20.468
+ITIL four, appeared in twenty nineteen and is now owned by the company PeopleCert.
+
+6
+00:00:21.517 --> 00:00:23.456
+You do not need to know it by heart.
+
+7
+00:00:24.234 --> 00:00:28.924
+But you must keep three words sharply apart: incident, problem and change.
+
+8
+00:00:30.251 --> 00:00:33.351
+An incident is an unplanned interruption of a service,
+
+9
+00:00:33.560 --> 00:00:35.685
+or a service working worse than it should.
+
+10
+00:00:36.458 --> 00:00:40.337
+The MES does not respond, the label printer does not print.
+
+11
+00:00:41.377 --> 00:00:44.872
+The goal with an incident: working again as fast as possible,
+
+12
+00:00:45.035 --> 00:00:47.067
+even if you do not know the cause yet.
+
+13
+00:00:48.163 --> 00:00:50.183
+Incidents come in at the service desk:
+
+14
+00:00:50.322 --> 00:00:54.130
+the central point where users report outages and questions,
+
+15
+00:00:54.304 --> 00:00:56.243
+by phone, email or portal.
+
+16
+00:00:57.575 --> 00:01:02.510
+A problem in ITIL is the cause, or potential cause, of one or more incidents.
+
+17
+00:01:03.515 --> 00:01:07.242
+With a problem the goal is different: understanding why it happens,
+
+18
+00:01:07.486 --> 00:01:08.995
+so it does not come back.
+
+19
+00:01:10.005 --> 00:01:14.069
+The printer that fails every week: that is fifty-two incidents a year,
+
+20
+00:01:14.185 --> 00:01:15.880
+but maybe only one problem,
+
+21
+00:01:16.066 --> 00:01:19.781
+like a power supply that dips briefly when the press starts up.
+
+22
+00:01:20.508 --> 00:01:22.760
+Problem management looks for that cause.
+
+23
+00:01:24.116 --> 00:01:25.149
+A change is adding,
+
+24
+00:01:25.265 --> 00:01:30.524
+modifying or removing anything that could affect a service: a new MES version,
+
+25
+00:01:30.687 --> 00:01:33.950
+a different printer driver, an adjusted firewall rule.
+
+26
+00:01:34.937 --> 00:01:37.596
+Many incidents are caused by a change.
+
+27
+00:01:38.304 --> 00:01:42.751
+That is why the first question at an outage is often: what changed recently?
+
+28
+00:01:43.739 --> 00:01:47.303
+ITIL four now calls managing changes change enablement,
+
+29
+00:01:47.431 --> 00:01:51.611
+at first change control: making changes possible, not stopping them.
+
+30
+00:01:52.886 --> 00:01:54.523
+For you as a Lean consultant:
+
+31
+00:01:54.628 --> 00:01:58.587
+handling an incident is like quickly fixing a breakdown on the line.
+
+32
+00:01:59.586 --> 00:02:03.917
+Problem management is like a root-cause analysis, so it does not return.
+
+33
+00:02:04.621 --> 00:02:08.324
+The difference is in the goal: working again, versus never again.
+
+34
+00:02:09.326 --> 00:02:13.064
+What you often see: a service desk that is good at incidents,
+
+35
+00:02:13.181 --> 00:02:15.213
+while nobody has time for problems.
+
+36
+00:02:16.248 --> 00:02:20.683
+A sharp question: which five outages came back most often last month,
+
+37
+00:02:20.857 --> 00:02:22.529
+and who is looking for the cause?
+
+38
+00:02:23.856 --> 00:02:28.430
+An example: at a cooked-meats plant these reports come in at the service desk.
+
+39
+00:02:29.135 --> 00:02:30.435
+This is how you sort them.
+
+40
+00:02:31.472 --> 00:02:36.940
+Monday, ten past six: the scale on line two sends no weights to the MES.
+
+41
+00:02:37.658 --> 00:02:40.270
+An incident: the service is interrupted.
+
+42
+00:02:41.310 --> 00:02:46.291
+The service desk restarts the link, and at twenty-five past six it works again.
+
+43
+00:02:47.276 --> 00:02:52.489
+Tuesday at five past six and Wednesday at twelve past six: the same report.
+
+44
+00:02:53.244 --> 00:02:54.591
+Two more incidents.
+
+45
+00:02:55.621 --> 00:03:00.590
+Wednesday afternoon the IT administrator sees the pattern: three incidents,
+
+46
+00:03:00.787 --> 00:03:02.134
+always around six.
+
+47
+00:03:02.860 --> 00:03:07.458
+That becomes one problem: scale link line two fails at shift start.
+
+48
+00:03:08.530 --> 00:03:10.945
+On Thursday the cause turns out to be a
+
+49
+00:03:11.015 --> 00:03:13.511
+scheduled backup at six that blocks the link.
+
+50
+00:03:14.277 --> 00:03:18.781
+Moving the backup to four is a change, which is first discussed and planned.

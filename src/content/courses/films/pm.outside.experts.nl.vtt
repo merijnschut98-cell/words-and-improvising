@@ -1,0 +1,357 @@
+WEBVTT
+
+1
+00:00:00.858 --> 00:00:03.819
+Vertrouwen maar controleren (trust but verify) is een oud Russisch spreekwoord,
+
+2
+00:00:04.155 --> 00:00:07.081
+in de jaren tachtig beroemd geworden bij wapenonderhandelingen.
+
+3
+00:00:08.081 --> 00:00:12.296
+Het is de werkregel met experts: vertrouw hun vakmanschap en bedoelingen,
+
+4
+00:00:12.632 --> 00:00:14.582
+controleer de resultaten die echt tellen.
+
+5
+00:00:15.547 --> 00:00:19.936
+Controleren is geen wantrouwen: experts controleren elkaar voortdurend,
+
+6
+00:00:20.238 --> 00:00:22.305
+met codereviews en testrapporten.
+
+7
+00:00:23.017 --> 00:00:24.259
+Jij vraagt hetzelfde.
+
+8
+00:00:25.248 --> 00:00:27.826
+Controleer resultaten, geen methodes.
+
+9
+00:00:28.478 --> 00:00:33.073
+Hoe een kabel is berekend, kun je niet beoordelen, wel vragen: wie controleerde het,
+
+10
+00:00:33.421 --> 00:00:34.687
+en waar is dat getekend?
+
+11
+00:00:35.702 --> 00:00:38.373
+Code lezen kun je niet, maar bij de test kijken wel.
+
+12
+00:00:39.352 --> 00:00:40.723
+Het vier-ogenprincipe (four-eyes principle):
+
+13
+00:00:41.014 --> 00:00:44.868
+elk belangrijk stuk werk wordt gecontroleerd door een tweede bevoegde persoon.
+
+14
+00:00:45.870 --> 00:00:50.003
+Jouw taak: zorgen dat dat tweede paar ogen er is, niet het zelf zijn.
+
+15
+00:00:51.310 --> 00:00:53.098
+Risicogestuurd controleren (risk-based checking):
+
+16
+00:00:53.400 --> 00:00:55.826
+controleer harder waar een fout het meest pijn doet.
+
+17
+00:00:56.911 --> 00:01:01.381
+Veiligheid, geld en alles wat je niet terug kunt draaien: een volledige controle.
+
+18
+00:01:02.441 --> 00:01:05.645
+Routine krijgt een steekproef (spot check): een klein willekeurig deel,
+
+19
+00:01:05.913 --> 00:01:07.817
+zoals drie van de veertig tekeningen.
+
+20
+00:01:08.781 --> 00:01:10.987
+Twee fouten: niks controleren,
+
+21
+00:01:11.231 --> 00:01:14.946
+en alles, zodat experts zich bekeken voelen en trager werken.
+
+22
+00:01:16.292 --> 00:01:21.656
+Vraag zonder te beledigen: over het proces, niet over de persoon, en vooraf gezegd.
+
+23
+00:01:22.655 --> 00:01:26.242
+In elk project vraag ik om de testresultaten van de veiligheidspunten.
+
+24
+00:01:26.878 --> 00:01:27.830
+Het gaat niet om jou.
+
+25
+00:01:28.843 --> 00:01:32.221
+Vooraf is het routine; na een probleem voelt het als verdenking.
+
+26
+00:01:32.924 --> 00:01:35.130
+Pas controleren bij wantrouwen is te laat.
+
+27
+00:01:36.153 --> 00:01:39.601
+Experts duwen terug: geen tijd voor al dat papierwerk.
+
+28
+00:01:40.380 --> 00:01:43.050
+Vaak terecht, sommige controles zijn ritueel.
+
+29
+00:01:43.770 --> 00:01:46.371
+Vraag welke echt problemen vangen, en houd die.
+
+30
+00:01:47.385 --> 00:01:51.553
+Scherpe vraag: als dit fout was, hoe en hoe snel komen we erachter?
+
+31
+00:01:52.248 --> 00:01:52.887
+Bij livegang?
+
+32
+00:01:53.577 --> 00:01:55.353
+Dan heb je daarvoor een controle nodig.
+
+33
+00:01:56.698 --> 00:02:00.251
+Een robotcel: veertig punten op de lijst van de leverancier,
+
+34
+00:02:00.622 --> 00:02:02.456
+geen ervan kun je zelf beoordelen.
+
+35
+00:02:03.448 --> 00:02:07.825
+Stap één, met de veiligheidskundige van de klant: sorteer op risico.
+
+36
+00:02:08.500 --> 00:02:13.527
+Vijf punten veiligheid, drie contractprestaties, zoals snelheid en beschikbaarheid,
+
+37
+00:02:13.783 --> 00:02:14.967
+tweeëndertig routine.
+
+38
+00:02:15.977 --> 00:02:17.846
+Veiligheid: de noodstoppen,
+
+39
+00:02:18.206 --> 00:02:21.410
+het lichtscherm, dat de robot stopt als iemand erin grijpt,
+
+40
+00:02:21.654 --> 00:02:25.149
+en hekvergrendelingen, die hem stoppen als een deur opengaat.
+
+41
+00:02:26.177 --> 00:02:29.428
+Stap twee: veiligheid en prestaties volledig.
+
+42
+00:02:30.138 --> 00:02:33.017
+Jij kijkt bij de test, de veiligheidskundige tekent.
+
+43
+00:02:33.750 --> 00:02:36.978
+Stap drie: drie willekeurige routinepunten bekijken.
+
+44
+00:02:38.026 --> 00:02:41.280
+Stap vier: spreek dit vooraf af met de leverancier.
+
+45
+00:02:41.913 --> 00:02:43.910
+Zo controleer ik, in elk project.
+
+46
+00:02:44.662 --> 00:02:47.367
+Grip op de acht die tellen, een lichte hand op de rest.
+
+47
+00:02:48.696 --> 00:02:51.900
+Een rode vlag (red flag) is een waarschuwingsteken: er is iets mis,
+
+48
+00:02:52.051 --> 00:02:53.827
+voordat het in de planning zichtbaar wordt.
+
+49
+00:02:54.860 --> 00:02:56.671
+Het technische probleem zie je niet,
+
+50
+00:02:57.066 --> 00:03:00.305
+de signalen wel: hoe mensen praten en rapporteren.
+
+51
+00:03:01.382 --> 00:03:06.141
+Drie dekken veel: altijd bijna klaar, vage antwoorden, en geen demo.
+
+52
+00:03:07.121 --> 00:03:08.619
+De negentig-negentigregel (ninety-ninety rule),
+
+53
+00:03:08.955 --> 00:03:11.417
+toegeschreven aan een programmeur van Bell Labs,
+
+54
+00:03:11.672 --> 00:03:14.168
+in 1985 bekend gemaakt:
+
+55
+00:03:15.201 --> 00:03:18.893
+de eerste 90 procent van de code kost 90 procent van de tijd.
+
+56
+00:03:19.649 --> 00:03:22.110
+De laatste 10 procent kost de andere 90.
+
+57
+00:03:23.109 --> 00:03:25.327
+Beweegt het percentage wekenlang nauwelijks?
+
+58
+00:03:26.042 --> 00:03:29.606
+Vraag wat er over is, punt voor punt, en wat het moeilijkst is.
+
+59
+00:03:30.977 --> 00:03:36.119
+Vage antwoorden: we zijn ermee bezig, wat kleine issues; één keer is normaal,
+
+60
+00:03:36.456 --> 00:03:37.664
+een patroon is een signaal.
+
+61
+00:03:38.632 --> 00:03:39.329
+Vraag door.
+
+62
+00:03:39.997 --> 00:03:42.540
+Welke issues, en wat is bij elk de volgende stap?
+
+63
+00:03:43.202 --> 00:03:46.720
+Wie grip heeft, antwoordt in één zin; anderen worden vager.
+
+64
+00:03:47.697 --> 00:03:51.493
+Een watermeloenstatus (watermelon status): van buiten groen, van binnen rood.
+
+65
+00:03:52.305 --> 00:03:54.871
+Gemeld als prima, terwijl het team weet van niet.
+
+66
+00:03:56.186 --> 00:03:59.518
+Een demo is het ding live laten werken, geen dia's erover.
+
+67
+00:04:00.499 --> 00:04:03.088
+Kan een team na maanden bouwen niets werkends laten zien,
+
+68
+00:04:03.425 --> 00:04:05.178
+dan is dat de sterkste vlag van de drie.
+
+69
+00:04:06.180 --> 00:04:09.466
+Andere signalen: één persoon die alles weet en niks deelt,
+
+70
+00:04:09.733 --> 00:04:13.088
+wisselende aanspreekpunten, steeds uitgestelde testen,
+
+71
+00:04:13.390 --> 00:04:15.398
+slecht nieuws vlak voor de opleverdatum.
+
+72
+00:04:16.738 --> 00:04:20.500
+Let op: één vlag is een reden om te vragen, geen bewijs.
+
+73
+00:04:21.266 --> 00:04:23.367
+Experts zijn vaak eerlijk optimistisch.
+
+74
+00:04:24.437 --> 00:04:27.665
+Reageer met vragen en bewijs, niet met beschuldigingen.
+
+75
+00:04:28.668 --> 00:04:31.338
+En kijk naar jezelf: komt slecht nieuws laat,
+
+76
+00:04:31.675 --> 00:04:33.416
+dan voelt het brengen misschien niet veilig.
+
+77
+00:04:34.459 --> 00:04:38.801
+Scherpe vraag: waar maak je je zorgen over, dat je me nog niet verteld hebt?
+
+78
+00:04:40.154 --> 00:04:42.109
+Een MES-project, maand 4.
+
+79
+00:04:42.749 --> 00:04:47.277
+Al drie weken meldt de leverancier de labelmodule bijna klaar, wat kleine issues.
+
+80
+00:04:47.992 --> 00:04:48.758
+Status groen.
+
+81
+00:04:49.815 --> 00:04:53.948
+De demo van vrijdag is verschoven: de testomgeving lag plat.
+
+82
+00:04:54.675 --> 00:04:57.601
+En de ontwikkelaar die het bouwde, zit nu bij een andere klant.
+
+83
+00:04:58.637 --> 00:05:03.119
+Minstens 4 rode vlaggen: wekenlang bijna klaar, vage kleine issues,
+
+84
+00:05:03.409 --> 00:05:06.915
+een uitgestelde demo, en de sleutelpersoon die vertrekt.
+
+85
+00:05:07.601 --> 00:05:09.842
+Die groene status is misschien een watermeloen.
+
+86
+00:05:10.885 --> 00:05:15.181
+Deze week: de open issues als lijst, elk met eigenaar en datum.
+
+87
+00:05:15.863 --> 00:05:20.233
+De demo op een vaste dag, op elke omgeving die werkt, desnoods een laptop.
+
+88
+00:05:21.210 --> 00:05:23.497
+Vraag wie nu eigenaar is en hoe de overdracht ging.
+
+89
+00:05:24.204 --> 00:05:28.221
+En vertel de sponsor: oranje tot de demo, met de redenen.

@@ -1,0 +1,173 @@
+WEBVTT
+
+1
+00:00:00.849 --> 00:00:03.241
+You connect the filling unit of line 3.
+
+2
+00:00:03.949 --> 00:00:06.584
+An attack on the office must not stop that line.
+
+3
+00:00:07.581 --> 00:00:12.225
+Cybersecurity teaches you what a plant must arrange and how to talk about it.
+
+4
+00:00:13.280 --> 00:00:15.091
+Four topics follow the attack.
+
+5
+00:00:15.806 --> 00:00:19.254
+First how it gets in and how the line defends itself.
+
+6
+00:00:20.310 --> 00:00:23.874
+Then what the law asks and what you do when it happens anyway.
+
+7
+00:00:25.134 --> 00:00:26.922
+The first topic is Basics.
+
+8
+00:00:27.646 --> 00:00:31.071
+In the office, confidentiality often comes first.
+
+9
+00:00:32.130 --> 00:00:35.393
+In the plant, availability and safety come first.
+
+10
+00:00:36.436 --> 00:00:38.909
+A fake mail is the most common way in.
+
+11
+00:00:39.612 --> 00:00:40.854
+That is called phishing.
+
+12
+00:00:41.857 --> 00:00:45.967
+With a report button you send a suspicious mail to IT in one click.
+
+13
+00:00:47.274 --> 00:00:53.416
+The second topic is OT security with IEC 62443.
+
+14
+00:00:54.136 --> 00:00:57.038
+A standard for plant, integrator and supplier.
+
+15
+00:00:58.083 --> 00:01:00.649
+Line 3 gets a floor area of its own.
+
+16
+00:01:01.391 --> 00:01:05.617
+One guarded link runs from the network cabinet to the control cabinet.
+
+17
+00:01:06.661 --> 00:01:10.353
+So an infection from the office does not simply get onto the line.
+
+18
+00:01:11.324 --> 00:01:14.145
+You lay out the plant with zones and conduits.
+
+19
+00:01:15.433 --> 00:01:17.987
+The third topic is NIS2 and the law.
+
+20
+00:01:18.745 --> 00:01:21.926
+In the Netherlands that law is the Cybersecurity Act.
+
+21
+00:01:22.962 --> 00:01:27.386
+The law has a duty of care, a reporting duty and a registration duty.
+
+22
+00:01:28.382 --> 00:01:31.598
+An attack that stops line 3 may call for a report.
+
+23
+00:01:32.651 --> 00:01:36.157
+Whether the plant is covered depends on sector and size.
+
+24
+00:01:37.216 --> 00:01:40.560
+You look up your sector in Annex I and Annex II.
+
+25
+00:01:41.850 --> 00:01:44.323
+The fourth topic is Incident response.
+
+26
+00:01:45.015 --> 00:01:47.732
+That is the fixed way of handling an incident.
+
+27
+00:01:48.811 --> 00:01:53.815
+First preparation and detection, then containment, recovery and lessons learned.
+
+28
+00:01:54.892 --> 00:01:58.909
+In containment you might close the link between the office and the plant.
+
+29
+00:01:59.991 --> 00:02:04.495
+For when the MES fails, you write a manual fallback procedure.
+
+30
+00:02:05.560 --> 00:02:08.962
+So line 3 can keep running when the office is attacked.
+
+31
+00:02:09.786 --> 00:02:12.073
+Then you move on to the line itself.
+
+32
+00:02:13.351 --> 00:02:14.140
+The whole map.
+
+33
+00:02:14.869 --> 00:02:18.793
+Cybersecurity is the third station of Automation and IT.
+
+34
+00:02:19.790 --> 00:02:21.497
+Every topic has four levels.
+
+35
+00:02:22.504 --> 00:02:27.415
+Start at Basics level with confidentiality, integrity and availability.
+
+36
+00:02:28.136 --> 00:02:29.529
+That is what you protect.
+
+37
+00:02:30.584 --> 00:02:33.882
+At Working knowledge level come phishing, dividing the plant,
+
+38
+00:02:34.033 --> 00:02:35.635
+who is covered and preparing.
+
+39
+00:02:36.659 --> 00:02:40.444
+At Advanced level it is about MFA, how strict to be,
+
+40
+00:02:40.653 --> 00:02:43.950
+the duty of care in practice and containing an attack.
+
+41
+00:02:44.975 --> 00:02:48.922
+At Expert level it is about least privilege, patching in OT,
+
+42
+00:02:49.085 --> 00:02:51.186
+reporting incidents and recovering.
+
+43
+00:02:52.198 --> 00:02:56.343
+Every lesson and every film in this module has a place on this map.

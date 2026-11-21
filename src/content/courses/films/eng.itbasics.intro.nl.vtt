@@ -1,0 +1,165 @@
+WEBVTT
+
+1
+00:00:00.801 --> 00:00:03.436
+Het MES stuurt een order naar de vuleenheid van lijn 3.
+
+2
+00:00:04.132 --> 00:00:05.444
+Jij sluit die eenheid aan.
+
+3
+00:00:06.435 --> 00:00:10.557
+IT-fundamenten leert je genoeg om met IT te praten over MES,
+
+4
+00:00:10.858 --> 00:00:12.611
+ERP en het fabrieksnetwerk.
+
+5
+00:00:13.664 --> 00:00:15.359
+Vier onderwerpen volgen de order.
+
+6
+00:00:16.055 --> 00:00:18.807
+Eerst langs welke weg hij gaat en waar het MES draait.
+
+7
+00:00:19.875 --> 00:00:23.617
+Daarna waar orders en tellingen blijven en hoe programma’s met elkaar praten.
+
+8
+00:00:24.820 --> 00:00:26.712
+Het eerste onderwerp is Netwerken.
+
+9
+00:00:27.411 --> 00:00:30.209
+Elk apparaat heeft een IP-adres, als een huisnummer.
+
+10
+00:00:31.184 --> 00:00:33.506
+De eenheid hangt met een kabel aan de netwerkkast.
+
+11
+00:00:34.243 --> 00:00:36.019
+Het MES zit in een ander netwerk.
+
+12
+00:00:37.079 --> 00:00:39.958
+Een router brengt de order van het ene netwerk naar het andere.
+
+13
+00:00:41.237 --> 00:00:43.582
+Het tweede onderwerp is Servers en cloud.
+
+14
+00:00:44.300 --> 00:00:46.529
+Het MES op de laptop draait op een server.
+
+15
+00:00:47.517 --> 00:00:50.013
+Een server is een computer die diensten levert.
+
+16
+00:00:50.725 --> 00:00:53.337
+Hij staat bij het bedrijf zelf of je huurt hem in de cloud.
+
+17
+00:00:54.322 --> 00:00:57.944
+Het MES draait vaak in een eigen virtuele machine (virtual machine) op die server.
+
+18
+00:00:59.179 --> 00:01:01.780
+Het derde onderwerp is Databases en SQL.
+
+19
+00:01:02.464 --> 00:01:05.274
+Het MES bewaart orders en tellingen in een database.
+
+20
+00:01:06.255 --> 00:01:07.718
+De gegevens staan in tabellen.
+
+21
+00:01:08.414 --> 00:01:11.350
+Elke rij is één order en elke kolom is één eigenschap.
+
+22
+00:01:12.293 --> 00:01:14.464
+Met een query lees je welke orders erin staan.
+
+23
+00:01:15.735 --> 00:01:18.521
+Het vierde onderwerp is Software en API’s.
+
+24
+00:01:19.284 --> 00:01:22.569
+De laptop is de client en vraagt, de server antwoordt.
+
+25
+00:01:23.634 --> 00:01:25.213
+De order komt uit het ERP.
+
+26
+00:01:25.905 --> 00:01:29.736
+Een API is de afgesproken manier waarop programma’s met elkaar praten.
+
+27
+00:01:30.719 --> 00:01:34.132
+Meestal open je het MES als webapplicatie (web application) in de browser.
+
+28
+00:01:35.233 --> 00:01:36.591
+Zo vindt de order de eenheid.
+
+29
+00:01:37.337 --> 00:01:39.020
+Dan sluit jij hem stap voor stap aan.
+
+30
+00:01:40.326 --> 00:01:41.115
+De hele kaart.
+
+31
+00:01:41.862 --> 00:01:45.682
+IT-fundamenten is het eerste station van Automatisering en IT.
+
+32
+00:01:46.649 --> 00:01:48.263
+Elk onderwerp heeft vier niveaus.
+
+33
+00:01:49.332 --> 00:01:53.314
+Begin bij IP-adressen, LAN en DNS op niveau Basis.
+
+34
+00:01:54.075 --> 00:01:56.618
+Die les laat zien hoe berichten hun apparaat vinden.
+
+35
+00:01:57.598 --> 00:02:01.116
+Op niveau Werkkennis komen poorten, de vormen van cloud,
+
+36
+00:02:01.325 --> 00:02:03.229
+gegevens filteren en koppelingen.
+
+37
+00:02:04.211 --> 00:02:06.707
+Op niveau Gevorderd komen het OT-netwerk,
+
+38
+00:02:06.974 --> 00:02:10.318
+back-ups, rapporten die verschillen en koppelingen die breken.
+
+39
+00:02:11.323 --> 00:02:15.328
+Op niveau Expert gaat het om een netwerk beoordelen, wat uitval kost,
+
+40
+00:02:15.641 --> 00:02:17.046
+dubbeltellingen en updates.
+
+41
+00:02:18.031 --> 00:02:21.410
+Elke les en elke film van deze module heeft een plek op deze kaart.

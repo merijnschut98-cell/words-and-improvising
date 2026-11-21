@@ -1,0 +1,173 @@
+WEBVTT
+
+1
+00:00:00.836 --> 00:00:03.762
+The filling unit of line 3 sometimes fails.
+
+2
+00:00:04.478 --> 00:00:06.347
+Then the whole line stands still.
+
+3
+00:00:07.352 --> 00:00:10.255
+The module Reliability and asset strategy is
+
+4
+00:00:10.301 --> 00:00:13.122
+about how parts fail and what you do about it.
+
+5
+00:00:14.177 --> 00:00:15.408
+You are the engineer.
+
+6
+00:00:16.104 --> 00:00:19.761
+After the shift you and the team lead make the unit more reliable.
+
+7
+00:00:20.748 --> 00:00:24.359
+First you know how parts fail and which part weighs most.
+
+8
+00:00:25.471 --> 00:00:29.105
+Then you choose which maintenance fits and let the numbers decide.
+
+9
+00:00:30.402 --> 00:00:33.037
+The first topic is Failure and its patterns.
+
+10
+00:00:33.748 --> 00:00:36.697
+First you look at how a part of the unit fails.
+
+11
+00:00:37.740 --> 00:00:40.213
+A handy picture is that a part fails when
+
+12
+00:00:40.248 --> 00:00:42.628
+the load on it is higher than its strength.
+
+13
+00:00:43.629 --> 00:00:45.150
+Wear usually gives a warning.
+
+14
+00:00:45.870 --> 00:00:47.577
+A sudden overload does not.
+
+15
+00:00:48.631 --> 00:00:52.323
+You read the pattern in the failure data from the shape parameter.
+
+16
+00:00:53.647 --> 00:00:56.851
+The second topic is F M E A and criticality.
+
+17
+00:00:57.562 --> 00:00:59.420
+Not every part counts the same.
+
+18
+00:01:00.436 --> 00:01:04.151
+You look at what happens when it fails, and how likely that is.
+
+19
+00:01:05.164 --> 00:01:09.390
+You put the parts in a risk matrix and make an FMECA.
+
+20
+00:01:10.360 --> 00:01:14.261
+The marked cell stands for a big consequence and a high likelihood.
+
+21
+00:01:15.010 --> 00:01:16.601
+You tackle that part first.
+
+22
+00:01:17.928 --> 00:01:21.028
+The third topic is RCM and asset strategy.
+
+23
+00:01:21.718 --> 00:01:24.888
+You choose which maintenance each part really needs.
+
+24
+00:01:25.905 --> 00:01:29.261
+You start with what the unit must do, with a standard in it.
+
+25
+00:01:30.293 --> 00:01:33.149
+A protection can fail without anyone noticing.
+
+26
+00:01:34.186 --> 00:01:36.821
+For that you schedule a failure-finding task.
+
+27
+00:01:38.155 --> 00:01:41.417
+The fourth topic is Reliability data and decisions.
+
+28
+00:01:42.124 --> 00:01:44.318
+You let the numbers say what pays off.
+
+29
+00:01:45.322 --> 00:01:49.443
+You count how often the unit fails and how long it then stands still.
+
+30
+00:01:50.429 --> 00:01:54.585
+In many plants waiting is the biggest share of the downtime, not the repair.
+
+31
+00:01:55.610 --> 00:01:58.385
+You work out the operational availability.
+
+32
+00:01:59.373 --> 00:02:02.810
+That is how you make the unit more reliable, where it counts.
+
+33
+00:02:04.132 --> 00:02:04.991
+The whole map.
+
+34
+00:02:05.724 --> 00:02:10.937
+The fourth station is Reliability and asset strategy, in Making the plant better.
+
+35
+00:02:11.963 --> 00:02:13.705
+Each topic has four levels.
+
+36
+00:02:14.713 --> 00:02:17.859
+Start at Basics level with how parts physically fail.
+
+37
+00:02:18.582 --> 00:02:20.405
+It shows what breaks and why.
+
+38
+00:02:21.436 --> 00:02:26.034
+At Working knowledge level come reading failure data, F M E A on plant,
+
+39
+00:02:26.173 --> 00:02:28.472
+RCM and where the downtime goes.
+
+40
+00:02:29.495 --> 00:02:31.747
+At Advanced level come root causes,
+
+41
+00:02:31.910 --> 00:02:35.648
+standby units, a reliability programme and spare parts.
+
+42
+00:02:36.680 --> 00:02:40.384
+At Expert level come fitting life data, risk in euros,
+
+43
+00:02:40.605 --> 00:02:42.997
+asset management and life-cycle cost.

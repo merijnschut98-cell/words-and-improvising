@@ -1,0 +1,381 @@
+WEBVTT
+
+1
+00:00:00.846 --> 00:00:04.283
+Scrum is a framework for a small team and complex products:
+
+2
+00:00:04.422 --> 00:00:05.874
+the best-known agile way.
+
+3
+00:00:06.859 --> 00:00:10.911
+The Scrum Guide by Ken Schwaber and Jeff Sutherland describes it,
+
+4
+00:00:11.108 --> 00:00:12.768
+in about thirteen pages.
+
+5
+00:00:13.771 --> 00:00:16.406
+Fixed accountabilities, events and lists;
+
+6
+00:00:16.522 --> 00:00:18.972
+the rest it deliberately leaves to the team.
+
+7
+00:00:20.109 --> 00:00:24.661
+Work runs in sprints of a month or less, often two weeks, back to back.
+
+8
+00:00:25.740 --> 00:00:29.060
+Each sprint delivers something usable, in a fixed rhythm.
+
+9
+00:00:30.084 --> 00:00:33.962
+Longer is risky: the goal goes stale, problems stay hidden.
+
+10
+00:00:35.309 --> 00:00:39.186
+The Scrum Team is small: typically ten or fewer, with no hierarchy.
+
+11
+00:00:40.200 --> 00:00:42.301
+It holds three accountabilities.
+
+12
+00:00:43.034 --> 00:00:46.494
+Since 2020, they are not job titles.
+
+13
+00:00:47.502 --> 00:00:52.553
+The Product Owner is one person, not a committee, guarding value: what comes first,
+
+14
+00:00:52.785 --> 00:00:53.377
+and why.
+
+15
+00:00:54.369 --> 00:00:58.850
+The Scrum Master helps people use Scrum well and removes impediments.
+
+16
+00:00:59.552 --> 00:01:00.423
+Not the boss.
+
+17
+00:01:01.444 --> 00:01:06.112
+The Developers do the work: anyone who builds, testers and analysts too.
+
+18
+00:01:07.100 --> 00:01:10.618
+In Lean terms: the Product Owner is the customer's voice,
+
+19
+00:01:10.792 --> 00:01:12.905
+the Scrum Master a coach of the system.
+
+20
+00:01:14.252 --> 00:01:21.125
+In factories, mostly IT teams work this way: MES, ERP, data and machine software.
+
+21
+00:01:22.138 --> 00:01:26.387
+Common mistake: the IT manager as Product Owner and Scrum Master.
+
+22
+00:01:27.124 --> 00:01:28.819
+Nobody holds up a mirror.
+
+23
+00:01:29.882 --> 00:01:33.656
+Ask: who decides what comes first, and who guards how we work?
+
+24
+00:01:34.701 --> 00:01:37.592
+Example: a pipe maker, a team of seven.
+
+25
+00:01:38.306 --> 00:01:41.661
+Product Owner: the production manager, two days a week.
+
+26
+00:01:42.744 --> 00:01:46.041
+Scrum Master: a process improver from the Lean team.
+
+27
+00:01:46.707 --> 00:01:48.054
+Plus five Developers.
+
+28
+00:01:49.058 --> 00:01:54.051
+Sprint five's goal: operators report scrap by cause on a screen, not paper.
+
+29
+00:01:55.069 --> 00:01:57.449
+After two weeks, all shifts use it.
+
+30
+00:01:58.208 --> 00:02:00.228
+Sprint six starts the next Monday.
+
+31
+00:02:01.625 --> 00:02:05.909
+Scrum has five events: fixed moments to plan, inspect and adapt.
+
+32
+00:02:06.673 --> 00:02:08.705
+The sprint contains the other four.
+
+33
+00:02:09.698 --> 00:02:12.286
+Each has a timebox, a maximum duration.
+
+34
+00:02:13.004 --> 00:02:17.659
+For a month: planning at most eight hours, the Daily Scrum fifteen minutes.
+
+35
+00:02:18.669 --> 00:02:21.142
+Sprint Planning answers three questions.
+
+36
+00:02:21.852 --> 00:02:23.373
+Why is this sprint valuable?
+
+37
+00:02:24.128 --> 00:02:25.811
+That becomes the sprint goal.
+
+38
+00:02:26.839 --> 00:02:27.652
+What can be done?
+
+39
+00:02:28.349 --> 00:02:29.615
+The Developers pick it.
+
+40
+00:02:30.650 --> 00:02:31.126
+And how?
+
+41
+00:02:31.833 --> 00:02:34.202
+In pieces of usually a day or less.
+
+42
+00:02:35.199 --> 00:02:37.184
+The Developers decide how much.
+
+43
+00:02:37.902 --> 00:02:40.212
+The Product Owner says what matters most.
+
+44
+00:02:41.579 --> 00:02:45.666
+The Daily Scrum: fifteen minutes for the Developers, every working day,
+
+45
+00:02:45.759 --> 00:02:48.546
+same time and place, toward the sprint goal.
+
+46
+00:02:49.582 --> 00:02:53.286
+Not a status meeting for a manager; the team picks the format.
+
+47
+00:02:54.327 --> 00:02:57.067
+The Sprint Review shows stakeholders what is done;
+
+48
+00:02:57.195 --> 00:02:59.656
+together they discuss what matters most now.
+
+49
+00:03:00.363 --> 00:03:02.778
+A working session, not a presentation.
+
+50
+00:03:03.828 --> 00:03:07.137
+Never a gate: what is done may go into use earlier.
+
+51
+00:03:08.161 --> 00:03:12.457
+In the Sprint Retrospective the team looks back: Scrum's kaizen engine,
+
+52
+00:03:12.666 --> 00:03:14.187
+with one concrete action.
+
+53
+00:03:15.333 --> 00:03:19.245
+Refinement is not an event: refining the list runs all the time.
+
+54
+00:03:20.507 --> 00:03:22.899
+A beverage maker with ten-day sprints.
+
+55
+00:03:23.590 --> 00:03:26.597
+The team halves the timeboxes, a common rule of thumb.
+
+56
+00:03:27.689 --> 00:03:30.499
+Monday, the planning, at most four hours.
+
+57
+00:03:31.520 --> 00:03:34.237
+Every working day at nine, the Daily Scrum.
+
+58
+00:03:35.291 --> 00:03:40.028
+Friday of week two, the review with the shift leaders, then the retrospective.
+
+59
+00:03:41.022 --> 00:03:45.492
+Ten days of fifteen minutes: two and a half hours per person per sprint.
+
+60
+00:03:46.851 --> 00:03:48.024
+Three artefacts.
+
+61
+00:03:48.734 --> 00:03:51.811
+Since 2020, each has a commitment.
+
+62
+00:03:52.865 --> 00:03:55.048
+The Product Backlog is the ordered list of
+
+63
+00:03:55.129 --> 00:03:57.277
+everything that could improve the product.
+
+64
+00:03:58.021 --> 00:04:00.018
+The Product Owner decides the order.
+
+65
+00:04:01.062 --> 00:04:04.708
+Its commitment: the Product Goal, the longer-term objective.
+
+66
+00:04:05.728 --> 00:04:09.037
+The Sprint Backlog is the Developers' plan for this sprint.
+
+67
+00:04:09.816 --> 00:04:11.465
+It changes as they learn.
+
+68
+00:04:12.470 --> 00:04:17.009
+Its commitment: the Sprint Goal, the single objective, which gives focus.
+
+69
+00:04:18.000 --> 00:04:18.453
+Too big?
+
+70
+00:04:19.219 --> 00:04:23.224
+They renegotiate the scope with the Product Owner; the goal stands.
+
+71
+00:04:24.553 --> 00:04:28.756
+The Increment is working product that is done; a sprint can have several.
+
+72
+00:04:29.770 --> 00:04:33.788
+Its commitment: the Definition of Done, when work is really done,
+
+73
+00:04:33.869 --> 00:04:35.622
+such as tested and installed.
+
+74
+00:04:36.717 --> 00:04:40.363
+Work that fails it is not shown: back to the Product Backlog.
+
+75
+00:04:41.410 --> 00:04:43.848
+A quality gate at the end of the line.
+
+76
+00:04:44.555 --> 00:04:46.308
+Half-done work doesn't count.
+
+77
+00:04:47.352 --> 00:04:48.606
+Sprint Goal obsolete?
+
+78
+00:04:49.339 --> 00:04:52.021
+Only the Product Owner may cancel the sprint.
+
+79
+00:04:52.768 --> 00:04:53.198
+Rarely.
+
+80
+00:04:54.198 --> 00:04:57.728
+Mistakes: four hundred items, the manager's task list,
+
+81
+00:04:57.902 --> 00:04:59.957
+a Definition of Done of just code.
+
+82
+00:05:01.020 --> 00:05:02.889
+So ask: what is the Product Goal?
+
+83
+00:05:03.588 --> 00:05:04.552
+This sprint's goal?
+
+84
+00:05:05.254 --> 00:05:06.961
+May I see your Definition of Done?
+
+85
+00:05:08.305 --> 00:05:11.509
+Linking a meat plant's scales to the MES.
+
+86
+00:05:12.269 --> 00:05:15.241
+Sprint four's goal: line one sends weights.
+
+87
+00:05:16.232 --> 00:05:20.597
+The Definition of Done: tested with real weighing data, checked by quality,
+
+88
+00:05:20.841 --> 00:05:22.745
+on the acceptance environment.
+
+89
+00:05:23.783 --> 00:05:25.942
+Of five items, three meet it.
+
+90
+00:05:26.698 --> 00:05:29.914
+Item four is not checked, item five not started.
+
+91
+00:05:30.950 --> 00:05:32.157
+What does the team show?
+
+92
+00:05:32.865 --> 00:05:33.933
+Only those three.
+
+93
+00:05:34.924 --> 00:05:39.707
+Four and five go back to the Product Backlog; the Product Owner decides the order.
+
+94
+00:05:40.697 --> 00:05:42.636
+Do line one's weights get through?
+
+95
+00:05:43.367 --> 00:05:46.838
+Then the goal is met: a sprint goal beats a task list.

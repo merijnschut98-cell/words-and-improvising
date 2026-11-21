@@ -1,0 +1,351 @@
+{
+  "eng.flow": {
+    "absolute": 28,
+    "offtopic": 21,
+    "length": 3,
+    "echo": 2,
+    "definition": 1,
+    "shortstem": 5
+  },
+  "eng.quality": {
+    "absolute": 36,
+    "offtopic": 35,
+    "shortstem": 20,
+    "length": 7,
+    "definition": 6,
+    "nobody": 2,
+    "echo": 2
+  },
+  "eng.process": {
+    "absolute": 36,
+    "length": 1,
+    "offtopic": 21,
+    "echo": 5,
+    "shortstem": 13,
+    "definition": 4
+  },
+  "eng.mechanics": {
+    "absolute": 36,
+    "offtopic": 27,
+    "shortstem": 6,
+    "echo": 3,
+    "length": 4,
+    "definition": 3
+  },
+  "eng.maintenance": {
+    "absolute": 32,
+    "offtopic": 24,
+    "shortstem": 9,
+    "definition": 6,
+    "echo": 1
+  },
+  "eng.drawings": {
+    "offtopic": 29,
+    "absolute": 28,
+    "length": 5,
+    "echo": 8,
+    "definition": 2,
+    "shortstem": 7,
+    "nobody": 2
+  },
+  "eng.safety": {
+    "absolute": 52,
+    "offtopic": 61,
+    "shortstem": 25,
+    "echo": 7,
+    "definition": 11
+  },
+  "eng.fluids": {
+    "absolute": 50,
+    "shortstem": 9,
+    "length": 6,
+    "offtopic": 12,
+    "echo": 2
+  },
+  "eng.power": {
+    "absolute": 18,
+    "offtopic": 16,
+    "echo": 6,
+    "definition": 5,
+    "shortstem": 7
+  },
+  "eng.improve": {
+    "absolute": 49,
+    "offtopic": 34,
+    "shortstem": 31,
+    "echo": 4,
+    "definition": 12
+  },
+  "eng.spc": {
+    "absolute": 41,
+    "length": 4,
+    "offtopic": 20,
+    "definition": 2,
+    "shortstem": 8,
+    "echo": 1
+  },
+  "eng.reliability": {
+    "offtopic": 27,
+    "absolute": 40,
+    "nobody": 1,
+    "shortstem": 8,
+    "definition": 5
+  },
+  "eng.machining": {
+    "length": 67,
+    "offtopic": 80,
+    "absolute": 36,
+    "definition": 18,
+    "shortstem": 26,
+    "echo": 5
+  },
+  "eng.joining": {
+    "length": 66,
+    "offtopic": 49,
+    "absolute": 32,
+    "shortstem": 15,
+    "definition": 8
+  },
+  "eng.moulding": {
+    "length": 68,
+    "absolute": 27,
+    "echo": 12,
+    "offtopic": 62,
+    "shortstem": 23,
+    "definition": 6
+  },
+  "eng.lines": {
+    "absolute": 44,
+    "offtopic": 63,
+    "length": 58,
+    "echo": 7,
+    "shortstem": 29,
+    "definition": 14
+  },
+  "eng.cost": {
+    "absolute": 44,
+    "offtopic": 15,
+    "shortstem": 12,
+    "definition": 5,
+    "length": 2,
+    "echo": 2
+  },
+  "eng.itbasics": {
+    "absolute": 70,
+    "offtopic": 17,
+    "echo": 5,
+    "definition": 17,
+    "shortstem": 18,
+    "length": 1
+  },
+  "eng.ot": {
+    "offtopic": 49,
+    "absolute": 45,
+    "definition": 22,
+    "shortstem": 29,
+    "echo": 7
+  },
+  "eng.cyber": {
+    "absolute": 71,
+    "offtopic": 28,
+    "length": 1,
+    "definition": 12,
+    "shortstem": 28,
+    "echo": 2
+  },
+  "eng.industry40": {
+    "absolute": 45,
+    "offtopic": 26,
+    "shortstem": 23,
+    "definition": 10,
+    "echo": 3
+  },
+  "eng.gridbasics": {
+    "absolute": 54,
+    "definition": 14,
+    "shortstem": 15,
+    "offtopic": 22,
+    "nobody": 4
+  },
+  "eng.transformers": {
+    "absolute": 37,
+    "offtopic": 27,
+    "definition": 11,
+    "shortstem": 15,
+    "echo": 1
+  },
+  "eng.switchgear": {
+    "absolute": 52,
+    "offtopic": 30,
+    "definition": 15,
+    "shortstem": 25,
+    "echo": 7,
+    "length": 2
+  },
+  "eng.gridops": {
+    "absolute": 39,
+    "echo": 5,
+    "offtopic": 37,
+    "definition": 9,
+    "shortstem": 24,
+    "nobody": 2
+  },
+  "eng.gridplanning": {
+    "absolute": 49,
+    "offtopic": 30,
+    "shortstem": 13,
+    "echo": 1,
+    "definition": 5,
+    "length": 1
+  },
+  "pm.approach": {
+    "offtopic": 28,
+    "absolute": 53,
+    "shortstem": 26,
+    "definition": 13,
+    "echo": 4,
+    "nobody": 6,
+    "length": 1
+  },
+  "pm.intake": {
+    "length": 14,
+    "absolute": 49,
+    "offtopic": 48,
+    "echo": 1,
+    "shortstem": 28,
+    "definition": 16
+  },
+  "pm.plan": {
+    "length": 24,
+    "offtopic": 41,
+    "absolute": 40,
+    "shortstem": 22,
+    "definition": 18,
+    "echo": 4,
+    "nobody": 8
+  },
+  "pm.formats": {
+    "absolute": 54,
+    "offtopic": 41,
+    "shortstem": 43,
+    "definition": 23,
+    "echo": 7,
+    "nobody": 2
+  },
+  "pm.run": {
+    "length": 6,
+    "offtopic": 37,
+    "absolute": 44,
+    "definition": 13,
+    "shortstem": 33,
+    "nobody": 8,
+    "echo": 1
+  },
+  "pm.land": {
+    "offtopic": 42,
+    "absolute": 45,
+    "nobody": 3,
+    "definition": 11,
+    "shortstem": 31,
+    "echo": 2
+  },
+  "pm.close": {
+    "length": 25,
+    "absolute": 49,
+    "offtopic": 42,
+    "definition": 11,
+    "shortstem": 24,
+    "echo": 8,
+    "nobody": 3
+  },
+  "pm.stuck": {
+    "offtopic": 48,
+    "absolute": 39,
+    "nobody": 2,
+    "definition": 11,
+    "shortstem": 31,
+    "echo": 4,
+    "length": 2
+  },
+  "pm.lead": {
+    "absolute": 39,
+    "offtopic": 37,
+    "echo": 5,
+    "definition": 13,
+    "shortstem": 31,
+    "nobody": 3,
+    "length": 1
+  },
+  "pm.perform": {
+    "absolute": 60,
+    "offtopic": 15,
+    "length": 2,
+    "shortstem": 19,
+    "definition": 9
+  },
+  "pm.negotiate": {
+    "absolute": 49,
+    "offtopic": 35,
+    "echo": 2,
+    "definition": 25,
+    "shortstem": 36,
+    "nobody": 2
+  },
+  "pm.outside": {
+    "absolute": 40,
+    "offtopic": 43,
+    "definition": 21,
+    "shortstem": 40,
+    "echo": 3,
+    "nobody": 2
+  },
+  "pm.portfolio": {
+    "offtopic": 34,
+    "absolute": 53,
+    "length": 5,
+    "definition": 9,
+    "shortstem": 19,
+    "echo": 1
+  },
+  "pm.consult": {
+    "offtopic": 51,
+    "absolute": 59,
+    "shortstem": 30,
+    "definition": 10,
+    "nobody": 4,
+    "echo": 8
+  },
+  "pm.agile": {
+    "offtopic": 44,
+    "absolute": 25,
+    "definition": 17,
+    "shortstem": 32,
+    "echo": 7,
+    "length": 1
+  },
+  "pm.scaled": {
+    "absolute": 68,
+    "offtopic": 40,
+    "shortstem": 28,
+    "nobody": 6,
+    "echo": 5,
+    "length": 3,
+    "definition": 18
+  },
+  "pm.devops": {
+    "absolute": 72,
+    "offtopic": 24,
+    "definition": 27,
+    "shortstem": 37,
+    "nobody": 3,
+    "echo": 1
+  },
+  "pm.itproject": {
+    "absolute": 52,
+    "offtopic": 17,
+    "definition": 16,
+    "shortstem": 32,
+    "echo": 2,
+    "nobody": 2
+  }
+}
