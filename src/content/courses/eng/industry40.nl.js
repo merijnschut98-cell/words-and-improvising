@@ -292,7 +292,7 @@ export default {
     },
     {
       id: 'eng.industry40.kpi',
-      gist: 'Een dashboard dient een doel en een publiek en toont alleen de belangrijkste getallen; een KPI heeft pas betekenis naast doelwaarde en trend.',
+      gist: 'Een dashboard dient een doel en een publiek en toont alleen de belangrijkste getallen; een KPI zegt weinig zonder doelwaarde en trend.',
       title: 'Wat een goed KPI-dashboard is',
       pre: [
         {
@@ -654,7 +654,7 @@ export default {
     },
     {
       id: 'eng.industry40.pipeline',
-      gist: 'In een dataplatform voegt elke stap tussen machine en rapport vertraging toe; lineage laat zien waar een getal vandaan komt.',
+      gist: 'In een dataplatform stapelt de latentie zich op langs elke stap van machine tot rapport; data lineage laat zien waar een getal vandaan komt.',
       title: 'Van bron tot rapport: het dataplatform',
       pre: [
         {

@@ -654,7 +654,7 @@ export default {
     },
     {
       id: 'eng.industry40.pipeline',
-      gist: 'In a data platform every step between machine and report adds delay; lineage shows where a number came from.',
+      gist: 'In a data platform latency adds up along every step from machine to report; data lineage shows where a number came from.',
       title: 'From source to report: the data platform',
       pre: [
         {
