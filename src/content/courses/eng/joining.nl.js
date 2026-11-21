@@ -661,7 +661,7 @@ export default {
     },
     {
       id: 'eng.joining.inspection',
-      gist: 'Visueel onderzoek komt eerst maar ziet alleen het oppervlak; kies voor fouten binnenin een NDO-methode die bij de gevreesde fout past.',
+      gist: 'Visueel onderzoek komt eerst; kies daarna de methode bij de gevreesde fout: PT of MT voor het oppervlak, UT of RT voor binnenin.',
       film: 'eng.joining.defects',
       figure: 'eng.joining.ndt',
       title: 'Lasinspectie, LMB en LMK',
@@ -1313,7 +1313,7 @@ export default {
     },
     {
       id: 'eng.joining.rivets',
-      gist: 'Klinken en clinchen bewaak je in serie met de kracht-wegcurve of de bodemdikte, en je grijpt in op een trend voordat de grens raakt.',
+      gist: 'Bewaak zelfponsende klinknagels en clinchpunten in serie met de kracht-wegcurve, clinchen ook met de bodemdikte; grijp in op een trend voordat de grens raakt.',
       film: 'eng.joining.bonding',
       figure: 'eng.joining.rivet',
       title: 'Klinken en clinchen in serie: procesbewaking',

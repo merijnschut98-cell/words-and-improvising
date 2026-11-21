@@ -661,7 +661,7 @@ export default {
     },
     {
       id: 'eng.joining.inspection',
-      gist: 'Visual inspection comes first but sees only the surface; for flaws inside, pick an NDT method that fits the flaw you fear.',
+      gist: 'Visual inspection comes first; then pick the method for the flaw you fear: PT or MT for the surface, UT or RT for the inside.',
       film: 'eng.joining.defects',
       figure: 'eng.joining.ndt',
       title: 'Weld inspection, WPS and WPQR',
@@ -1313,7 +1313,7 @@ export default {
     },
     {
       id: 'eng.joining.rivets',
-      gist: 'You monitor riveting and clinching in series with the force-displacement curve or bottom thickness, and act on a trend before it hits the limit.',
+      gist: 'Monitor self-piercing rivets and clinch joints in series by force-displacement curve, clinching also by bottom thickness; act on a trend before the limit.',
       film: 'eng.joining.bonding',
       figure: 'eng.joining.rivet',
       title: 'Riveting and clinching in series: process monitoring',
