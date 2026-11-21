@@ -232,3 +232,4 @@ Outcome: accepted (merged as delivered), sent back N times, redone.
 | 2026-11-21 | Review of v18 F2 (question standard and lint) | sonnet | ~45 | ~30 min | - | done (04fda51); lint moved to scripts/, tuned, new nobody rule; 5,609 findings baseline |
 | 2026-11-21 | Review of v18 F4 (method families, approach intro film) | sonnet | 47 | 7 min | 146k | approved (cbf7fd0); 3 small fixes (choose line, 8D scope); integrator added SAY rules; render dispatched |
 | 2026-11-21 | Review of v18 F1 (question kinds engine) | opus | ~40 | 7 min | - | approved (855db1f); 6 fixes: word-bank typo, digits, ij and spacing, number guard, best pre parity, focus |
+| 2026-11-21 | v18 D1: DMAIC proposal (road, pm.measure, pm.analyse) | opus | ~40 | 11 min | - | done (4c3e002); 5 MC questions for Merijn |
