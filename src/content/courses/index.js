@@ -1,7 +1,9 @@
 // Course index: subjects, tracks and module metadata, without lesson bodies,
 // so the course home renders without loading content. Ids are stable:
 // progress hangs on them. Module id '<subject>.<slug>', lesson id
-// '<moduleId>.<slug>', question id '<lessonId>#r<n>' (recall) or '#p<n>' (pre).
+// '<moduleId>.<slug>', question id '<lessonId>#r<n>' (recall) or '#p<n>' (pre),
+// or '<lessonId>#b<n>' for a practice-test bank item (v18).
+import { BANKS } from './banklist.js';
 
 export const SUBJECTS = ['eng', 'pm'];
 export const TRACKS = { eng: ['basics', 'discrete', 'grid', 'it'], pm: ['project', 'agile'] };
@@ -493,3 +495,29 @@ export async function loadOpeners(subject, attempt = 0) {
   const mod = await import(`./openers.${subject}.js${attempt ? `?retry=${attempt}` : ''}`);
   return mod.default;
 }
+
+// v18 T1: the practice-test bank and blueprint of a module (design 3.2). One file per
+// module and language, banks/<moduleId>.<lang>.js, and one blueprint per module.
+// Resolves null when the module has no bank (it is not in BANKS; the banks arrive
+// module by module). For a module with a bank a failed load throws, like loadModule,
+// so a practice test never quietly runs without its bank; retry with attempt + 1.
+export { BANKS };
+export const hasBank = (moduleId) => BANKS.includes(moduleId);
+
+export async function loadBank(moduleId, lang, attempt = 0) {
+  if (!hasBank(moduleId)) return null;
+  const mod = await import(`./banks/${moduleId}.${lang === 'en' ? 'en' : 'nl'}.js${attempt ? `?retry=${attempt}` : ''}`);
+  return mod.default;
+}
+
+export async function loadBlueprint(moduleId, attempt = 0) {
+  if (!hasBank(moduleId)) return null;
+  const mod = await import(`./banks/${moduleId}.blueprint.js${attempt ? `?retry=${attempt}` : ''}`);
+  return mod.default;
+}
+
+// The full id of a bank item, <lessonId>#b<n>: lessonOf and moduleOf work on it, and
+// questionById (recall only, #r<n>) never finds it, so a bank item cannot land in the
+// review pile. isBankQuestion tells the two apart where answers are recorded.
+export const bankQuestionId = (item) => `${item.source.lesson}#${item.id}`;
+export const isBankQuestion = (questionId) => /#b[1-9]\d*$/.test(String(questionId));

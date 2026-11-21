@@ -130,6 +130,19 @@ export function lintModule(moduleContent, meta, lang) {
   return out;
 }
 
+// v18 T1: a test bank in one language, linted like recall questions at the item's own level.
+// bank: the bank file's default export; lessons: the module's lessons in that language.
+// Finding ids are the full question ids, <lessonId>#b<n>.
+export function lintBank(bank, meta, lang, lessons = []) {
+  const out = [];
+  for (const it of (bank && bank.items) || []) {
+    const l = lessons.find((x) => x.id === (it.source && it.source.lesson)) || {};
+    const topicText = [l.title, ...(l.teach || []), l.example && l.example.text, l.said, ...(l.terms || []).flatMap((t) => [t.term, t.def])].filter(Boolean).join(' ');
+    for (const f of lintQuestion(it, { lang, tier: it.level, kind: 'recall', topicText })) out.push({ module: meta.id, lesson: l.id, id: `${l.id}#${it.id}`, lang, level: it.level, q: it.q, ...f });
+  }
+  return out;
+}
+
 export async function lintAll(modules, loadModule, langs = ['nl', 'en']) {
   const out = [];
   for (const m of modules) for (const lang of langs) out.push(...lintModule(await loadModule(m.subject, m.id, lang), m, lang));
@@ -146,6 +159,14 @@ export function countsOf(findings) {
 export async function main(argv = []) {
   const { MODULES, loadModule } = await import('../src/content/courses/index.js');
   const findings = await lintAll(MODULES, loadModule);
+  // test banks, for the modules that have one (v18 T1)
+  const { loadBank } = await import('../src/content/courses/index.js');
+  for (const m of MODULES) {
+    for (const lang of ['nl', 'en']) {
+      const bank = await loadBank(m.id, lang);
+      if (bank) findings.push(...lintBank(bank, m, lang, (await loadModule(m.subject, m.id, lang)).lessons));
+    }
+  }
   const counts = countsOf(findings);
   if (argv.includes('--json')) { console.log(JSON.stringify(counts, null, 2)); return; }
   if (argv.includes('--list')) { for (const f of findings) console.log(`${f.id} [${f.lang}] ${f.rule}: ${f.detail} | ${f.q}`); return; }
