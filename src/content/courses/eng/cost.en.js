@@ -305,7 +305,7 @@ export default {
     },
     {
       id: 'eng.cost.contribution',
-      gist: 'With free capacity, an extra order earns money as long as the price is above the variable cost, even below the full cost price.',
+      gist: 'With free capacity, a one-off extra order earns money as long as the price is above the variable cost, even below the full cost price.',
       title: 'Fixed, variable and the extra order',
       pre: [
         {
@@ -1047,7 +1047,7 @@ export default {
     },
     {
       id: 'eng.cost.vsc',
-      gist: 'Making more than you sell improves profit, because overhead goes into stock; value stream costing divides the stream\'s cost by the units shipped.',
+      gist: 'Making more than you sell makes profit look better, because overhead goes into stock; value stream costing divides the stream\'s cost by the units shipped.',
       title: 'Value stream costing and the absorption trap',
       pre: [
         {

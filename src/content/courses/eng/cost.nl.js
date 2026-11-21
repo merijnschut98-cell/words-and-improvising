@@ -305,7 +305,7 @@ export default {
     },
     {
       id: 'eng.cost.contribution',
-      gist: 'Bij vrije capaciteit levert een extra order winst op zolang de prijs boven de variabele kosten ligt, ook onder de integrale kostprijs.',
+      gist: 'Bij vrije capaciteit levert een eenmalige extra order winst op zolang de prijs boven de variabele kosten ligt, ook onder de integrale kostprijs.',
       title: 'Vast, variabel en de extra order',
       pre: [
         {
@@ -1047,7 +1047,7 @@ export default {
     },
     {
       id: 'eng.cost.vsc',
-      gist: 'Meer maken dan je verkoopt verbetert de winst, omdat overhead in voorraad gaat; waardestroomkosten delen de kosten door de verzonden eenheden.',
+      gist: 'Meer maken dan je verkoopt laat de winst beter lijken, omdat overhead in voorraad gaat; waardestroomkosten delen de kosten door de verzonden eenheden.',
       title: 'Waardestroomkosten en de absorptieval',
       pre: [
         {
