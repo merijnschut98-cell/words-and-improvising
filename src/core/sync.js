@@ -131,6 +131,10 @@ function mergeCourses(a, b) {
       // v17 Task 19: topic levels whose opener he has seen; the same union.
       seenLevels: [...new Set([...strings(cx.seenLevels), ...strings(cy.seenLevels)])].sort().slice(0, SEEN_LEVELS_CAP),
     };
+    // v18 F3: the day he skipped the reviews; the later day wins, a malformed one is dropped.
+    delete out.dueSkip;
+    const ds = [cx.dueSkip, cy.dueSkip].filter((v) => typeof v === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(v)).sort().pop();
+    if (ds) out.dueSkip = ds;
     const lm = [cx.lastMaintenance, cy.lastMaintenance].filter(Boolean).sort().pop();
     if (lm) out.lastMaintenance = lm;
     return out;

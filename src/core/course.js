@@ -2,7 +2,7 @@
 // work feeds the shared XP, days and streak. Pure.
 import { updateStreak, reconcileStreak, dayKey } from './progress.js';
 import { isoWeekKey } from './boss.js';
-import { scheduleCourseReview, dueCount, maintenanceQuestion, OWNED_BOX } from './coursereview.js';
+import { scheduleCourseReview, dueCount, maintenanceQuestion, reviewCapOf, reviewsLeft, OWNED_BOX } from './coursereview.js';
 import { lessonOf, moduleOf, MODULES, TRACKS, topicsOf, placeOf } from '../content/courses/index.js';
 import { mapFor } from '../content/courses/maps/index.js';
 import { TEXT_FIRST_FILMS } from '../content/courses/films/textfirst.js';
@@ -82,6 +82,21 @@ export function backQuiz(state, questions) {
   };
 }
 
+// "Overslaan" on a due question (v18 F3): to the end of the pass; skipped again, or
+// when nothing else is left to ask, it is left out: not an answer, not a miss, still
+// due. Only in the first pass. Nothing is ever recorded for it.
+export function skipQuiz(state, questions) {
+  if (state.phase !== 'ask' || state.pass !== 1) return state;
+  const idx = state.order[state.i];
+  const id = questions[idx].id;
+  const again = (state.skipped || []).includes(id) || state.i === state.order.length - 1;
+  const rest = state.order.filter((_, k) => k !== state.i);
+  const order = again ? rest : [...rest, idx];
+  const next = { ...state, order, prev: null, skipped: [...(state.skipped || []), id], left: [...(state.left || []), ...(again ? [id] : [])] };
+  if (next.i >= order.length) return { ...next, phase: Object.keys(state.answers).length ? 'review' : 'done' };
+  return next;
+}
+
 export function continueQuiz(state) {
   if (state.phase !== 'review') return state;
   if (!state.misses.length) return { ...state, phase: 'done' };
@@ -151,7 +166,7 @@ export function applyDue(state, { subject, results, sure = {}, lang, maintenance
   const marked = (c) => (prep ? { ...c, prepped: [prep, ...(c.prepped || []).filter((x) => x !== prep)].slice(0, PREPPED_CAP) } : c);
   next = withSubject(next, subject, (c) => logSession(
     marked(maintenance ? { ...c, lastMaintenance: isoWeekKey(new Date(y, m - 1, d)) } : c),
-    { day: today, kind: 'due', correct, total: entries.length, ts: now },
+    { day: today, kind: 'due', correct, total: entries.length, ts: now, ...(maintenance || prep ? { extra: true } : {}) },
   ));
   return { state: next, xp, goalReached: goalJustReached(state, next, today) };
 }
@@ -401,6 +416,25 @@ export function lessonEndNext(state, meta, lessonId, fromModule, modules = MODUL
   return next && next.lessonId !== lessonId ? next : null;
 }
 
+// Review load (v18 F3). Questions answered in today's due sessions count against
+// the daily limit; a refresh before an event or a weekly keep-sharp question does not.
+export function reviewsToday(state, subject, today) {
+  const sessions = (((state.courses || {})[subject]) || {}).sessions || [];
+  return sessions.filter((x) => x.kind === 'due' && x.day === today && !x.extra).reduce((n, x) => n + (Number(x.total) || 0), 0);
+}
+export const reviewsLeftToday = (state, subject, today) => reviewsLeft(reviewCapOf(state.settings), reviewsToday(state, subject, today));
+// What the due card and a session can show: capped by what is left of today's limit.
+export const dueNow = (state, subject, lang, today) => dueCount(state.courseReviews || {}, today, subject, lang, reviewsLeftToday(state, subject, today));
+// What is due in all, limit or not (the quiet "n wachten").
+export const dueWaiting = (state, subject, lang, today) => dueCount(state.courseReviews || {}, today, subject, lang);
+// "Vandaag overslaan": the reviews stay due and untouched; only today's next step changes.
+export const dueSkipped = (state, subject, today) => ((((state.courses || {})[subject]) || {}).dueSkip) === today;
+// What the guide's light counts: nothing once he skipped today (the card is quiet too).
+export const dueSignal = (state, subject, lang, today) => (dueSkipped(state, subject, today) ? 0 : dueNow(state, subject, lang, today));
+export function skipDueToday(state, subject, today) {
+  return withSubject(state, subject, (c) => ({ ...c, dueSkip: today }));
+}
+
 // One next thing per course, deterministic for a state and day.
 export function courseTodayPick(state, subject, lang, today, modules = MODULES) {
   const reviews = state.courseReviews || {};
@@ -413,7 +447,8 @@ export function courseTodayPick(state, subject, lang, today, modules = MODULES) 
   // A real event within two days with a topic in this course: refresh it.
   const prep = prepPick(state, subject, lang, today, modules);
   if (prep) return prep;
-  const due = dueCount(reviews, today, subject, lang);
+  // Skipped today (v18): the reviews wait, the lesson comes first. The daily limit also caps the count.
+  const due = dueSignal(state, subject, lang, today);
   if (due >= 5) return { reason: 'due', count: due };
   const rec = nextCourseLesson(state, subject, modules);
   if (rec) return placed({ reason: 'lesson', ...rec }, modules);
@@ -574,7 +609,7 @@ export function courseSummary(state, subject, lang, today, modules = MODULES) {
     return sessions.filter((x) => x.day === key).length;
   });
   const situations = sessions.filter((x) => x.kind === 'situation').slice(0, 5).map((x) => ({ lessonId: x.lessonId, pts: x.correct, ts: x.ts }));
-  return { tracks, due: dueCount(state.courseReviews || {}, today, subject, lang), strip, situations };
+  return { tracks, due: dueNow(state, subject, lang, today), strip, situations };
 }
 
 // The step indicator at the top of a lesson: Guess · Read · Example · Check.

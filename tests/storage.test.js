@@ -10,7 +10,7 @@ function fakeBackend(init = {}) {
 test('missing data gives defaults', () => {
   const s = load(fakeBackend());
   assert.deepEqual(s, defaultState());
-  assert.deepEqual(s.settings, { lang: 'nl', mode: 'speak', apiKey: '', model: 'claude-opus-5-5', record: false, remind: false, theme: 'auto', voiceStats: false, context: '', guide: true, cheer: false });
+  assert.deepEqual(s.settings, { lang: 'nl', mode: 'speak', apiKey: '', model: 'claude-opus-5-5', record: false, remind: false, theme: 'auto', voiceStats: false, context: '', guide: true, cheer: false, reviewCap: 20 });
 });
 
 test('corrupt data gives defaults and is backed up', () => {
