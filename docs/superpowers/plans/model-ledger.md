@@ -239,3 +239,8 @@ Outcome: accepted (merged as delivered), sent back N times, redone.
 | 2026-11-21 | Review of v18 F3 (review skip) | opus | 38 | 4 min | 136k | approved (b5e3505); 4 fixes (guide light after skip, settings order, double button, wording) |
 | 2026-11-21 | Kernzin batch 4: eng.cost, cyber, drawings, fluids, gridbasics, gridops (96 lessons) | sonnet | ~90 | two sessions (usage-limit pause) | - | done (8835625); review dispatched |
 | 2026-11-21 | Review of v18 T1 (bank schema and validator) | opus | ~40 | 6 min | - | approved (8572f90); fixes: banklist.js so a failed load throws, gap-free ids, bank id helpers, quote rules (6 words, gist allowed) |
+| 2026-11-21 | Review of kernzin batch 4 (eng.cost … eng.gridops) | sonnet | ~60 | two sessions (usage-limit pause) | - | done (8caec5d); 26 of 96 changed (hedges, units, five rules, narrowed claims) |
+| 2026-11-21 | v18 G1: picture kit and lesson pictures field | sonnet | - | two sessions (usage-limit pause) | - | done (52e7cac); families table in pm.approach; review dispatched |
+| 2026-11-21 | Review of v18 G1 (picture kit) | sonnet | - | - | - | approved (912f1e6); 4 fixes (grid labels, cycle overlap, hyphenation, tone bars) |
+| 2026-11-21 | v18 T2: practice test engine and screen | sonnet | ~95 | ~1 h 50 min | - | done (c8c9ba9); opus review dispatched with three rulings (earlier pick, score on last answer, smoke count) |
+| 2026-11-21 | Kernzin batch 5: eng.gridplanning, improve, industry40, itbasics, joining, lines (112 lessons) | sonnet | ~70 | - | - | done (5ee2961); review dispatched |

@@ -490,6 +490,13 @@ export async function loadModule(subject, moduleId, lang, attempt = 0) {
 
 // v17 Task 19: the level openers of a subject, { '<moduleId>/<topicId>': { 2|3|4: { nl, en } } }.
 // One file per subject, loaded when a lesson at level 2 to 4 opens or the module screen needs it.
+// v18 G1: the pictures of a module, { [pictureId]: { kind, ... } }. Loaded only for
+// a lesson that lists pictures; the file is named after the module.
+export async function loadPictures(moduleId, attempt = 0) {
+  const mod = await import(`./pictures/${moduleId}.js${attempt ? `?retry=${attempt}` : ''}`);
+  return mod.default;
+}
+
 export async function loadOpeners(subject, attempt = 0) {
   if (!SUBJECTS.includes(subject)) throw new Error(`no openers for ${subject}`);
   const mod = await import(`./openers.${subject}.js${attempt ? `?retry=${attempt}` : ''}`);
