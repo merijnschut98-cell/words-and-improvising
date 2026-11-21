@@ -3,6 +3,7 @@ export default {
   lessons: [
     {
       id: 'eng.lines.linebasics',
+      gist: 'Het station met de langste cyclustijd bepaalt de output van de lijn, en elke cyclustijd moet op of onder de takt blijven.',
       figure: 'eng.lines.buffer',
       film: 'eng.lines.design',
       title: 'Een lijn lezen: stations, cyclustijd en transport',
@@ -75,6 +76,7 @@ export default {
     },
     {
       id: 'eng.lines.layout',
+      gist: 'Een buffer vangt stops op maar kost ruimte en voorraad en verstopt problemen; leg buffers en inspectiepunten bewust neer.',
       figure: 'eng.lines.buffer',
       film: 'eng.lines.design',
       title: 'Lijntypes, buffers en inspectie',
@@ -145,6 +147,7 @@ export default {
     },
     {
       id: 'eng.lines.buffers',
+      gist: 'Een buffer moet stopduur gedeeld door de cyclustijd aan plekken hebben, en werkt alleen als hij na een stop weer vol kan lopen.',
       figure: 'eng.lines.buffer',
       film: 'eng.lines.design',
       title: 'Buffers dimensioneren: blocked, starved en bijvullen',
@@ -217,6 +220,7 @@ export default {
     },
     {
       id: 'eng.lines.simulation',
+      gist: 'Simuleer een gekoppelde lijn bij dure beslissingen, vertrouw het model pas als het het heden nabootst, en check met de wet van Little.',
       figure: 'eng.lines.buffer',
       film: 'eng.lines.design',
       title: 'Lijnsimulatie, de wet van Little en opstarten',
@@ -289,6 +293,7 @@ export default {
     },
     {
       id: 'eng.lines.robotbasics',
+      gist: 'Een robotarm heeft meestal zes assen; het gereedschap op de pols bepaalt de klus, en elke ingeleerde positie is een positie van de TCP.',
       film: 'eng.lines.robots',
       figure: 'eng.lines.robotcell',
       title: 'Wat een robot is: assen, grijper en teach pendant',
@@ -359,6 +364,7 @@ export default {
     },
     {
       id: 'eng.lines.robots',
+      gist: 'Payload is grijper plus product, de echte cyclus is langer dan de bewegingstijd in de datasheet, en ook een cobot vraagt een risicobeoordeling.',
       film: 'eng.lines.robots',
       figure: 'eng.lines.robotcell',
       title: 'Robots: types, bereik en veiligheid',
@@ -431,6 +437,7 @@ export default {
     },
     {
       id: 'eng.lines.robotcell',
+      gist: 'De machine bepaalt meestal het tempo van een robotcel, en de veiligheidsafstand van een lichtscherm hangt af van de gemeten stoptijd.',
       film: 'eng.lines.robots',
       figure: 'eng.lines.robotcell',
       title: 'Een robotcel ontwerpen: cyclus, aanvoer en veiligheidsafstand',
@@ -504,6 +511,7 @@ export default {
     },
     {
       id: 'eng.lines.vision',
+      gist: 'Geloof een bin-picking-demo pas met pakpercentage en cyclus op je eigen onderdelen, en reken een cobot op de toegestane snelheid.',
       film: 'eng.lines.robots',
       figure: 'eng.lines.robotcell',
       title: 'Vision, offline programmeren en wanneer een cobot past',
@@ -576,6 +584,7 @@ export default {
     },
     {
       id: 'eng.lines.errors',
+      gist: 'Poka-yoke vangt een vergissing voordat die een defect wordt; een stop is sterker dan een waarschuwing.',
       figure: 'eng.lines.pokayoke',
       film: 'eng.lines.errorproof',
       title: 'Waarom mensen zich vergissen, en poka-yoke',
@@ -646,6 +655,7 @@ export default {
     },
     {
       id: 'eng.lines.pokayoke',
+      gist: 'Voorkomen gaat boven detecteren en detecteren boven eindcontrole; een sensor telt pas als een interlock in de PLC de volgende stap blokkeert.',
       figure: 'eng.lines.pokayoke',
       film: 'eng.lines.errorproof',
       title: 'Foutvrij maken met sensoren en mallen',
@@ -718,6 +728,7 @@ export default {
     },
     {
       id: 'eng.lines.sensors',
+      gist: 'Kies een sensor naar wat een goed en fout product fysiek onderscheidt, en valideer hem met referentiedelen voor elke faalwijze, ook het grensgeval.',
       figure: 'eng.lines.pokayoke',
       film: 'eng.lines.errorproof',
       title: 'Sensoren kiezen en valideren voor foutvrij maken',
@@ -789,6 +800,7 @@ export default {
     },
     {
       id: 'eng.lines.detection',
+      gist: 'Escapes zijn gemaakte fouten maal het deel dat gemist wordt; een red rabbit bewijst elke dienst dat een check nog werkt.',
       figure: 'eng.lines.pokayoke',
       film: 'eng.lines.errorproof',
       title: 'Foutvrij maken als strategie: PFMEA, escapes en dagelijkse checks',
@@ -862,6 +874,7 @@ export default {
     },
     {
       id: 'eng.lines.variants',
+      gist: 'Omstellen loopt van het laatste goede product tot het eerste goede product van de volgende variant; grotere series kosten minder omsteltijd maar meer voorraad.',
       film: 'eng.lines.variants',
       figure: 'eng.lines.mixed',
       title: 'Meerdere producten op één lijn: varianten en wat ze kosten',
@@ -932,6 +945,7 @@ export default {
     },
     {
       id: 'eng.lines.linechange',
+      gist: 'Omstellen op een geautomatiseerde lijn heeft een softwarehelft, het recept, en een hardwarehelft, de formaatdelen; SMED haalt extern werk uit de stilstand.',
       film: 'eng.lines.variants',
       figure: 'eng.lines.mixed',
       title: 'Omstellen op een geautomatiseerde lijn: recepten, formaatdelen en SMED',
@@ -1002,6 +1016,7 @@ export default {
     },
     {
       id: 'eng.lines.mixed',
+      gist: 'Een mixed-model lijn balanceer je op het gewogen gemiddelde, maar de zwaarste variant en de volgorde bepalen of het station echt bijblijft.',
       film: 'eng.lines.variants',
       figure: 'eng.lines.mixed',
       title: 'Mixed-model lijnen',
@@ -1075,6 +1090,7 @@ export default {
     },
     {
       id: 'eng.lines.sequencing',
+      gist: 'Heijunka egaliseert mix en volume in een klein herhalend patroon, maar werkt alleen als wisselen weinig of geen omsteltijd kost.',
       film: 'eng.lines.variants',
       figure: 'eng.lines.mixed',
       title: 'Volgorde en heijunka: het werk op een lijn egaliseren',
@@ -1147,6 +1163,7 @@ export default {
     },
     {
       id: 'eng.lines.plc',
+      gist: 'Een sensor ziet, de PLC beslist en een actuator doet; staat een machine stil, vraag dan op welke ingang de PLC wachtte.',
       film: 'eng.lines.control',
       figure: 'eng.lines.plc',
       title: 'PLC, sensoren en actuatoren: hoe een machine denkt',
@@ -1218,6 +1235,7 @@ export default {
     },
     {
       id: 'eng.lines.safety',
+      gist: 'Een noodstop is een extra maatregel en vervangt nooit de afscherming; de risicobeoordeling bepaalt het vereiste performance level.',
       film: 'eng.lines.control',
       figure: 'eng.lines.plc',
       title: 'Machineveiligheid: noodstop, afscherming en de regels',
@@ -1287,6 +1305,7 @@ export default {
     },
     {
       id: 'eng.lines.oee_auto',
+      gist: 'Op geautomatiseerde lijnen zijn microstops het verborgen verlies; alleen PLC-data laat ze zien, en daaruit blijkt ook waar de verborgen bottleneck zit.',
       film: 'eng.lines.control',
       figure: 'eng.lines.auto',
       title: 'OEE op geautomatiseerde lijnen',
@@ -1359,6 +1378,7 @@ export default {
     },
     {
       id: 'eng.lines.stoppages',
+      gist: 'Leg first-out alarmen vast en zet stops in een pareto, op aantal en op verloren minuten; geef elke topstop een eigenaar.',
       film: 'eng.lines.control',
       figure: 'eng.lines.plc',
       title: 'Microstops en storingsdata: van alarmlog naar actie',
@@ -1430,6 +1450,7 @@ export default {
     },
     {
       id: 'eng.lines.autobasics',
+      gist: 'Of automatiseren zinvol is hangt af van arbeid, volume, variatie en kwaliteit: hoog volume en weinig variatie past bij een machine.',
       figure: 'eng.lines.case',
       title: 'Automatiseren of niet: arbeid, volume, variatie en kwaliteit',
       pre: [
@@ -1499,6 +1520,7 @@ export default {
     },
     {
       id: 'eng.lines.payback',
+      gist: 'Terugverdientijd is investering gedeeld door jaarlijkse netto besparing, en het aantal diensten telt het zwaarst.',
       figure: 'eng.lines.case',
       title: 'Terugverdientijd: investering, jaarlijkse besparing en diensten',
       pre: [
@@ -1567,6 +1589,7 @@ export default {
     },
     {
       id: 'eng.lines.business',
+      gist: 'Een businesscase telt alle kosten van de hele cel; automatiseer niet een instabiel proces, want dan automatiseer je de problemen.',
       figure: 'eng.lines.case',
       title: 'De businesscase voor automatisering',
       pre: [
@@ -1636,6 +1659,7 @@ export default {
     },
     {
       id: 'eng.lines.risk',
+      gist: 'NPV rekent de besparing van elk jaar terug naar vandaag; opstartverlies, restwaarde en een gevoeligheidsanalyse laten zien waar een automatiseringscase echt op rust.',
       figure: 'eng.lines.case',
       title: 'Risico en waarde: NPV, opstartverlies en waarom automatiseringsprojecten mislukken',
       pre: [
