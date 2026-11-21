@@ -240,3 +240,4 @@ Outcome: accepted (merged as delivered), sent back N times, redone.
 | 2026-11-21 | Kernzin batch 4: eng.cost, cyber, drawings, fluids, gridbasics, gridops (96 lessons) | sonnet | ~90 | two sessions (usage-limit pause) | - | done (8835625); review dispatched |
 | 2026-11-21 | Review of v18 T1 (bank schema and validator) | opus | ~40 | 6 min | - | approved (8572f90); fixes: banklist.js so a failed load throws, gap-free ids, bank id helpers, quote rules (6 words, gist allowed) |
 | 2026-11-21 | Review of kernzin batch 4 (eng.cost … eng.gridops) | sonnet | ~60 | two sessions (usage-limit pause) | - | done (8caec5d); 26 of 96 changed (hedges, units, five rules, narrowed claims) |
+| 2026-11-21 | v18 G1: picture kit and lesson pictures field | sonnet | - | two sessions (usage-limit pause) | - | done (52e7cac); families table in pm.approach; review dispatched |
