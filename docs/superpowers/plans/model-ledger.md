@@ -229,3 +229,4 @@ Outcome: accepted (merged as delivered), sent back N times, redone.
 | 2026-11-21 | v18 F2: question standard and lint | sonnet | ~30 | 20 min | - | done (ad51e0e); 5,498 findings, ratchet baseline; review dispatched |
 | 2026-11-21 | v18 F4: method families and DMAIC fix (pm.approach + intro film) | sonnet | ~45 | 20 min | - | done (08099a8); 14 methods in 4 families + hybrid, DMAIC as project structure; review dispatched, render after |
 | 2026-11-21 | v18 F1: question kinds engine (best, all, gap, order, match) | sonnet | ~45 | - | - | done (9b47ec0); 1187 tests; opus review dispatched |
+| 2026-11-21 | Review of v18 F2 (question standard and lint) | sonnet | ~45 | ~30 min | - | done (04fda51); lint moved to scripts/, tuned, new nobody rule; 5,609 findings baseline |
