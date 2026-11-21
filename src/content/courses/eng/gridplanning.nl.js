@@ -3,6 +3,7 @@ export default {
   lessons: [
     {
       id: 'eng.gridplanning.demand',
+      gist: 'Piek van een groep is aantal maal losse piek maal gelijktijdigheidsfactor; de factor zakt naarmate de groep groter wordt en verschilt per apparaat.',
       title: 'Van woning tot station: gelijktijdigheid',
       pre: [
         {
@@ -74,6 +75,7 @@ export default {
     },
     {
       id: 'eng.gridplanning.loadflow',
+      gist: 'Een loadflow rekent stroom per kabel en trafo en spanning per punt uit; een streng kan vol zijn terwijl het station ruimte heeft.',
       film: 'eng.gridplanning.loadflow',
       title: 'Loadflow in gewone woorden',
       pre: [
@@ -148,6 +150,7 @@ export default {
     },
     {
       id: 'eng.gridplanning.forecast',
+      gist: 'Een prognose telt gemeten piek, toegezegde capaciteit maal realisatiefactor, autonome groei en scenariogroei op; het eerste jaar boven de grens is het knelpunt.',
       title: 'Prognose per station: van scenario naar knelpunt',
       pre: [
         {
@@ -221,6 +224,7 @@ export default {
     },
     {
       id: 'eng.gridplanning.timeseries',
+      gist: 'Een tijdreeks rekent alle uren van het jaar door en toont hoe vaak en hoeveel een grens wordt overschreden, niet alleen de piek.',
       title: 'Tijdreeksen en hostingcapaciteit',
       pre: [
         {
@@ -296,6 +300,7 @@ export default {
     },
     {
       id: 'eng.gridplanning.criteria',
+      gist: 'Elk netontwerp moet door vier toetsen: thermisch, spanning, kortsluiting en reserve; de toets die het eerst faalt is maatgevend.',
       title: 'Ontwerpcriteria: vier toetsen voor elk netontwerp',
       pre: [
         {
@@ -368,6 +373,7 @@ export default {
     },
     {
       id: 'eng.gridplanning.structures',
+      gist: 'Een MS-ring heeft volledige reserve als de som van beide strengen onder de belastbaarheid van één streng blijft.',
       title: 'De MS-ring: reserve door omschakelen',
       pre: [
         {
@@ -439,6 +445,7 @@ export default {
     },
     {
       id: 'eng.gridplanning.redundancy',
+      gist: 'N-1 betekent dat het net blijft leveren als één component uitvalt; de vaste capaciteit is wat het station levert zonder het grootste component.',
       film: 'eng.gridplanning.loadflow',
       figure: 'eng.gridplanning.n1',
       title: 'N-1 en redundantie',
@@ -513,6 +520,7 @@ export default {
     },
     {
       id: 'eng.gridplanning.riskdesign',
+      gist: 'Risicogestuurd ontwerpen weegt kans maal niet-geleverde energie maal waarde per MWh tegen de jaarkosten van de maatregel.',
       title: 'Risicogestuurd ontwerpen: wanneer N-1 loslaten',
       pre: [
         {
@@ -588,6 +596,7 @@ export default {
     },
     {
       id: 'eng.gridplanning.plan',
+      gist: 'Netbeheerders maken elke twee jaar een plan voor minstens tien jaar vooruit; de ACM toetst het en meldt onderinvestering aan de minister.',
       title: 'Het investeringsplan',
       pre: [
         {
@@ -658,6 +667,7 @@ export default {
     },
     {
       id: 'eng.gridplanning.investment',
+      gist: 'Netbeheerders plannen tegen scenario\'s en bouwen vóór de vraag zeker is, omdat de doorlooptijd lang is; no-regretstappen betalen zich in elk scenario terug.',
       title: 'Investeringsplanning',
       pre: [
         {
@@ -728,6 +738,7 @@ export default {
     },
     {
       id: 'eng.gridplanning.prioritise',
+      gist: 'Rangschik knelpunten op risico, wachtende klanten en NCW, en kijk ook wat een project oplevert per eenheid schaarste, zoals MW per teamjaar.',
       title: 'Prioriteren: risico, NCW en schaarse mensen',
       pre: [
         {
@@ -802,6 +813,7 @@ export default {
     },
     {
       id: 'eng.gridplanning.execution',
+      gist: 'Een plan gaat zo snel als de smalste stap van de keten; verbeterwerk helpt het meest bij wachten en herstelwerk, niet in het veld.',
       title: 'Van plan naar gebouwd net',
       pre: [
         {
@@ -875,6 +887,7 @@ export default {
     },
     {
       id: 'eng.gridplanning.alternatives',
+      gist: 'Slimmer benutten, zoals aftoppen, cable pooling en alternatieve transportrechten, maakt ruimte zonder bouwen, maar koopt vaak tijd.',
       title: 'Slimmer benutten in plaats van bouwen',
       pre: [
         {
@@ -947,6 +960,7 @@ export default {
     },
     {
       id: 'eng.gridplanning.flex',
+      gist: 'Een congestiestreng zit maar in weinig uren boven zijn grens, dus flexibiliteit in die uren maakt veel capaciteit vrij voor meer klanten.',
       film: 'eng.gridplanning.flex',
       title: 'Flexibiliteit en congestiemanagement',
       pre: [
@@ -1019,6 +1033,7 @@ export default {
     },
     {
       id: 'eng.gridplanning.storage',
+      gist: 'Een batterij verschuift energie in de tijd: MW is vermogen, MWh is energie, en hij helpt vooral als hij op het lokale knelpunt stuurt.',
       film: 'eng.gridplanning.flex',
       title: 'Batterijen in het net',
       pre: [
@@ -1095,6 +1110,7 @@ export default {
     },
     {
       id: 'eng.gridplanning.deferral',
+      gist: 'Flex verschuift de datum van verzwaren; dat loont tot het omslagjaar, waarin flex per jaar meer kost dan het uitstel oplevert.',
       title: 'Flex of verzwaren: de waarde van uitstel',
       pre: [
         {

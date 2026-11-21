@@ -3,6 +3,7 @@ export default {
   lessons: [
     {
       id: 'eng.gridplanning.demand',
+      gist: 'A group\'s peak is number times single peak times the coincidence factor; the factor falls as the group grows and differs per appliance.',
       title: 'From home to station: simultaneity',
       pre: [
         {
@@ -74,6 +75,7 @@ export default {
     },
     {
       id: 'eng.gridplanning.loadflow',
+      gist: 'A load flow gives current per cable and transformer and voltage per point; one feeder can be full while the station has room.',
       film: 'eng.gridplanning.loadflow',
       title: 'Load flow in plain words',
       pre: [
@@ -148,6 +150,7 @@ export default {
     },
     {
       id: 'eng.gridplanning.forecast',
+      gist: 'A forecast adds measured peak, committed capacity times the realisation factor, autonomous growth and scenario growth; the first year over the limit is the bottleneck.',
       title: 'Forecast per station: from scenario to bottleneck',
       pre: [
         {
@@ -221,6 +224,7 @@ export default {
     },
     {
       id: 'eng.gridplanning.timeseries',
+      gist: 'A time series runs every hour of the year and shows how often and by how much a limit is exceeded, not just the peak.',
       title: 'Time series and hosting capacity',
       pre: [
         {
@@ -296,6 +300,7 @@ export default {
     },
     {
       id: 'eng.gridplanning.criteria',
+      gist: 'Every grid design must pass four checks: thermal, voltage, short-circuit and reserve; the check that fails first is the decisive one.',
       title: 'Design criteria: four checks for every grid design',
       pre: [
         {
@@ -368,6 +373,7 @@ export default {
     },
     {
       id: 'eng.gridplanning.structures',
+      gist: 'An MV ring has full reserve when the sum of both feeders stays below the capacity of one feeder.',
       title: 'The MV ring: reserve by switching',
       pre: [
         {
@@ -439,6 +445,7 @@ export default {
     },
     {
       id: 'eng.gridplanning.redundancy',
+      gist: 'N-1 means the grid keeps supplying when one component fails; firm capacity is what the station delivers without its largest component.',
       film: 'eng.gridplanning.loadflow',
       figure: 'eng.gridplanning.n1',
       title: 'N-1 and redundancy',
@@ -513,6 +520,7 @@ export default {
     },
     {
       id: 'eng.gridplanning.riskdesign',
+      gist: 'Risk-based design weighs probability times energy not served times value per MWh against the annual cost of the measure.',
       title: 'Risk-based design: when to relax N-1',
       pre: [
         {
@@ -588,6 +596,7 @@ export default {
     },
     {
       id: 'eng.gridplanning.plan',
+      gist: 'Grid operators publish an investment plan every two years, looking at least ten years ahead; the ACM reviews it and reports under-investment to the minister.',
       title: 'The investment plan',
       pre: [
         {
@@ -658,6 +667,7 @@ export default {
     },
     {
       id: 'eng.gridplanning.investment',
+      gist: 'Grid operators plan against scenarios and build before demand is certain, because lead times are long; no-regret steps pay off in every scenario.',
       title: 'Investment planning',
       pre: [
         {
@@ -728,6 +738,7 @@ export default {
     },
     {
       id: 'eng.gridplanning.prioritise',
+      gist: 'Rank bottlenecks by risk, waiting customers and NPV, and also by what a project delivers per unit of scarcity, such as MW per team-year.',
       title: 'Prioritising: risk, NPV and scarce people',
       pre: [
         {
@@ -802,6 +813,7 @@ export default {
     },
     {
       id: 'eng.gridplanning.execution',
+      gist: 'A plan moves as fast as the narrowest step in the chain; improvement helps most in the waiting and rework, not in the field work.',
       title: 'From plan to built grid',
       pre: [
         {
@@ -875,6 +887,7 @@ export default {
     },
     {
       id: 'eng.gridplanning.alternatives',
+      gist: 'Using the grid smarter, such as clipping, cable pooling and alternative transport rights, frees room without building, but often only buys time.',
       title: 'Using the grid smarter instead of building',
       pre: [
         {
@@ -947,6 +960,7 @@ export default {
     },
     {
       id: 'eng.gridplanning.flex',
+      gist: 'A congested feeder is over its limit in only a few hours, so flexibility in those hours frees a lot of capacity for more customers.',
       film: 'eng.gridplanning.flex',
       title: 'Flexibility and congestion management',
       pre: [
@@ -1019,6 +1033,7 @@ export default {
     },
     {
       id: 'eng.gridplanning.storage',
+      gist: 'A battery shifts energy in time: MW is power, MWh is energy, and it helps mostly when it is steered at the local bottleneck.',
       film: 'eng.gridplanning.flex',
       title: 'Batteries on the grid',
       pre: [
@@ -1095,6 +1110,7 @@ export default {
     },
     {
       id: 'eng.gridplanning.deferral',
+      gist: 'Flex moves the date of reinforcement; that pays off until the break-even year, when flex costs more per year than the deferral earns.',
       title: 'Flex or build: the value of deferral',
       pre: [
         {
