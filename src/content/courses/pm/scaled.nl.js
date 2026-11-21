@@ -171,7 +171,7 @@ export default {
     },
     {
       id: 'pm.scaled.roles',
-      gist: 'De Release Train Engineer coacht de trein en haalt obstakels weg, Product Management ordent de ART Backlog en de Product Owner zit bij één team.',
+      gist: 'De Release Train Engineer is coach, geen projectmanager; Product Management ordent de ART Backlog, de Product Owner de backlog van één team.',
       film: 'pm.scaled.pi',
       title: 'De rollen: wie beslist wat',
       pre: [
@@ -257,7 +257,7 @@ export default {
     },
     {
       id: 'pm.scaled.configs',
-      gist: 'SAFe kent vier configuraties, Essential SAFe is het eenvoudigste startpunt en groter is niet beter; elke PI sluit af met Inspect and Adapt.',
+      gist: 'SAFe kent vier configuraties; Essential SAFe is het eenvoudigste startpunt, groter is niet beter, en elke PI sluit af met Inspect and Adapt.',
       title: 'De vier configuraties, en hoeveel SAFe je nodig hebt',
       pre: [
         {
@@ -425,7 +425,7 @@ export default {
     },
     {
       id: 'pm.scaled.epics',
-      gist: 'Toets een groot epic klein met een MVP; steunt de meting de hypothese niet, dan stuur je bij of stop je.',
+      gist: 'Toets een grote epic klein met een MVP; steunt de meting de hypothese niet, dan stuur je bij of stop je.',
       title: 'Epics: grote initiatieven in kleine stappen',
       pre: [
         {
@@ -1260,7 +1260,7 @@ export default {
     },
     {
       id: 'pm.scaled.hybridgov',
-      gist: 'Een hybride houdt gates voor onomkeerbare beslissingen en sprints binnen de fases; de gate vraagt wat bewezen is, niet of de documenten er zijn.',
+      gist: 'Een hybride werkt als de gate vraagt wat bewezen is, niet of de documenten er zijn; anders wordt het Water-Scrum-Fall.',
       title: 'Een hybride aanpak inrichten en besturen',
       pre: [
         {

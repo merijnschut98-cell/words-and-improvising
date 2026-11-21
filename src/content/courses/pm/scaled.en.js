@@ -171,7 +171,7 @@ export default {
     },
     {
       id: 'pm.scaled.roles',
-      gist: 'The Release Train Engineer coaches the train and removes obstacles, Product Management orders the ART Backlog, and the Product Owner sits with one team.',
+      gist: 'The Release Train Engineer is a coach, not a project manager; Product Management orders the ART Backlog, the Product Owner one team\'s backlog.',
       film: 'pm.scaled.pi',
       title: 'The roles: who decides what',
       pre: [
@@ -257,7 +257,7 @@ export default {
     },
     {
       id: 'pm.scaled.configs',
-      gist: 'SAFe has four configurations, Essential SAFe is the simplest starting point and bigger is not better; every PI ends with Inspect and Adapt.',
+      gist: 'SAFe has four configurations; Essential SAFe is the simplest starting point, bigger is not better, and every PI ends with Inspect and Adapt.',
       title: 'The four configurations, and how much SAFe you need',
       pre: [
         {
@@ -1010,7 +1010,7 @@ export default {
     },
     {
       id: 'pm.scaled.stagegate',
-      gist: 'Changes get dearer as the design advances, so hardware plans more up front: gates for big investments, sprints within the stages.',
+      gist: 'Changes get more expensive as the design advances, so hardware plans more up front: gates for big investments, sprints within the stages.',
       film: 'pm.scaled.hybrid',
       title: 'Stage-gate and agile in manufacturing',
       pre: [
@@ -1260,7 +1260,7 @@ export default {
     },
     {
       id: 'pm.scaled.hybridgov',
-      gist: 'A hybrid keeps gates for irreversible decisions and sprints within the stages; the gate asks what is proven, not whether the documents exist.',
+      gist: 'A hybrid works when the gate asks what is proven, not whether the documents exist; otherwise it becomes Water-Scrum-Fall.',
       title: 'Setting up and steering a hybrid approach',
       pre: [
         {
