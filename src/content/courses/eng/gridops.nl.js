@@ -4,6 +4,7 @@ export default {
     // ── Onderwerp 1: Van aanvraag tot aansluiting ──
     {
       id: 'eng.gridops.request',
+      gist: 'Na een complete aanvraag volgt een offerte, voor kleinverbruik binnen 10 werkdagen; de vaste aansluittermijn van 18 weken is geschrapt.',
       title: 'Een aansluiting aanvragen: offerte en termijnen',
       pre: [
         {
@@ -74,6 +75,7 @@ export default {
     },
     {
       id: 'eng.gridops.chain',
+      gist: 'Doorlooptijd is kalendertijd van aanvraag tot werkende aansluiting; kijk naar het wachten, niet alleen naar het werken.',
       title: 'Van aanvraag tot inbedrijfname',
       pre: [
         {
@@ -144,6 +146,7 @@ export default {
     },
     {
       id: 'eng.gridops.data',
+      gist: 'Fouten in de netregistratie kosten op elke klus dagen; sluit een klus pas als de revisietekeningen verwerkt zijn.',
       title: 'Netdata en digital twins',
       pre: [
         {
@@ -217,6 +220,7 @@ export default {
     },
     {
       id: 'eng.gridops.promise',
+      gist: 'Voor de werkvoorraad geldt doorlooptijd = werkvoorraad / doorstroom; beloof een datum op gemeten doorstroom, niet op hoop.',
       title: 'Werkvoorraad en eerlijke datums',
       pre: [
         {
@@ -291,6 +295,7 @@ export default {
     // ── Onderwerp 2: Werk in het veld ──
     {
       id: 'eng.gridops.workload',
+      gist: 'Als het werk de capaciteit overstijgt, is de vraag niet of werk wacht maar welk: veiligheid en wettelijke plichten gaan voor.',
       title: 'De opgave van de energietransitie',
       pre: [
         {
@@ -362,6 +367,7 @@ export default {
     },
     {
       id: 'eng.gridops.switching',
+      gist: 'Een schakelplan is een stap-voor-stap-script in vaste volgorde, volgens de vijf veiligheidsregels: vrijschakelen, beveiligen, spanningsloosheid vaststellen, aarden en afschermen.',
       film: 'eng.switchgear.fiverules',
       title: 'Schakelplannen',
       pre: [
@@ -434,6 +440,7 @@ export default {
     },
     {
       id: 'eng.gridops.crews',
+      gist: 'Plan veldwerk in lagen tot een bevroren week, meld kleinverbruikers een onderbreking minstens 3 werkdagen vooraf en houd buffer voor spoedwerk.',
       title: 'Ploegen plannen en geplande onderbrekingen',
       pre: [
         {
@@ -506,6 +513,7 @@ export default {
     },
     {
       id: 'eng.gridops.fieldlean',
+      gist: 'Wrench time, het deel van de dienst met echt handwerk, is vaak de helft of minder; de rest is reizen, wachten en zoeken.',
       title: 'Lean in het veldwerk',
       pre: [
         {
@@ -580,6 +588,7 @@ export default {
     // ── Onderwerp 3: Storingen en assetrisico ──
     {
       id: 'eng.gridops.outage',
+      gist: 'Bij een MS-storing schakel je het defecte deel vrij en de rest om, zodat alleen klanten daarbinnen op de reparatie wachten.',
       film: 'eng.gridops.outage',
       figure: 'eng.gridops.switching',
       title: 'Een storing afhandelen',
@@ -653,6 +662,7 @@ export default {
     },
     {
       id: 'eng.gridops.control',
+      gist: 'Bij een storing gaat gevaar voor alles, daarna het aantal klanten; klantminuten zijn klanten zonder stroom maal minuten zonder stroom.',
       title: 'De meldkamer en de storingsdienst',
       pre: [
         {
@@ -723,6 +733,7 @@ export default {
     },
     {
       id: 'eng.gridops.assets',
+      gist: 'Assetmanagement beslist wat je inspecteert, repareert en vervangt op risico = faalkans × effect; twee identieke assets kunnen een ander effect hebben.',
       title: 'Assetmanagement en risico',
       pre: [
         {
@@ -796,6 +807,7 @@ export default {
     },
     {
       id: 'eng.gridops.learn',
+      gist: 'Registreer elke storing met een bruikbare oorzaak en kijk naar klantminuten per oorzaak, niet alleen naar aantallen; gemiddelden verbergen de slechtst bediende klanten.',
       title: 'Leren van storingen',
       pre: [
         {
@@ -870,6 +882,7 @@ export default {
     // ── Onderwerp 4: Congestiemanagement in de bedrijfsvoering ──
     {
       id: 'eng.gridops.cmbasics',
+      gist: 'Congestiemanagement stuurt afname of invoeding op piekmomenten: redispatch via GOPACS, of een contract waarbij de klant onder een afgesproken grens blijft.',
       title: 'Congestiemanagement in de bedrijfsvoering',
       pre: [
         {
@@ -940,6 +953,7 @@ export default {
     },
     {
       id: 'eng.gridops.cmstudy',
+      gist: 'Voor er een wachtrij komt, onderzoekt de netbeheerder of congestiemanagement het tekort oplost, eerst met vrijwillig flexibel vermogen en pas daarna met verplichte deelname.',
       title: 'Het congestieonderzoek',
       pre: [
         {
@@ -1010,6 +1024,7 @@ export default {
     },
     {
       id: 'eng.gridops.cmdesk',
+      gist: 'De congestiedesk maakt een prognose per station, zet flexibiliteit in en controleert achteraf de levering tegen de baseline.',
       title: 'De congestiedesk draaien',
       pre: [
         {
@@ -1082,6 +1097,7 @@ export default {
     },
     {
       id: 'eng.gridops.cmvalue',
+      gist: 'Congestiemanagement is een brug tot de verzwaring klaar is; flexibiliteit werkt het best bij korte pieken en minder bij lange winterpieken.',
       title: 'Flexibiliteit of wachten: de afweging',
       pre: [
         {

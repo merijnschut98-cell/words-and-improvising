@@ -4,6 +4,7 @@ export default {
     // ── Topic 1: From request to connection ──
     {
       id: 'eng.gridops.request',
+      gist: 'After a complete request comes a quote, within 10 working days for small consumers; the fixed 18-week connection deadline has been scrapped.',
       title: 'Requesting a connection: offer and terms',
       pre: [
         {
@@ -74,6 +75,7 @@ export default {
     },
     {
       id: 'eng.gridops.chain',
+      gist: 'Lead time is calendar time from request to working connection; look at the waiting, not only at the work.',
       title: 'From request to commissioning',
       pre: [
         {
@@ -144,6 +146,7 @@ export default {
     },
     {
       id: 'eng.gridops.data',
+      gist: 'Errors in the grid records cost days on every job; close a job only when the as-built drawings are processed.',
       title: 'Asset data and digital twins',
       pre: [
         {
@@ -217,6 +220,7 @@ export default {
     },
     {
       id: 'eng.gridops.promise',
+      gist: 'For the work stock, lead time = work stock / throughput; promise a date on measured throughput, not on hope.',
       title: 'Work stock and honest dates',
       pre: [
         {
@@ -291,6 +295,7 @@ export default {
     // ── Topic 2: Field work ──
     {
       id: 'eng.gridops.workload',
+      gist: 'When the work exceeds capacity, the question is not whether work waits but which: safety and legal duties come first.',
       title: 'The energy-transition workload',
       pre: [
         {
@@ -362,6 +367,7 @@ export default {
     },
     {
       id: 'eng.gridops.switching',
+      gist: 'A switching plan is a step-by-step script in fixed order, following the five safety rules: isolate, secure, verify dead, earth and screen.',
       film: 'eng.switchgear.fiverules',
       title: 'Switching plans',
       pre: [
@@ -434,6 +440,7 @@ export default {
     },
     {
       id: 'eng.gridops.crews',
+      gist: 'Plan field work down to a frozen week, give small consumers at least 3 working days\' notice, and keep a buffer for urgent work.',
       title: 'Planning crews and planned interruptions',
       pre: [
         {
@@ -506,6 +513,7 @@ export default {
     },
     {
       id: 'eng.gridops.fieldlean',
+      gist: 'Wrench time, the part of the shift spent on hands-on work, is often half or less; the rest is travelling, waiting and searching.',
       title: 'Lean in field work',
       pre: [
         {
@@ -580,6 +588,7 @@ export default {
     // ── Topic 3: Outages and asset risk ──
     {
       id: 'eng.gridops.outage',
+      gist: 'In an MV fault you isolate the faulty section and switch the rest over, so only customers inside it wait for the repair.',
       film: 'eng.gridops.outage',
       figure: 'eng.gridops.switching',
       title: 'Handling an outage',
@@ -653,6 +662,7 @@ export default {
     },
     {
       id: 'eng.gridops.control',
+      gist: 'In a fault, danger comes first, then the number of customers; customer minutes are customers without power times minutes without power.',
       title: 'The control room and the fault service',
       pre: [
         {
@@ -723,6 +733,7 @@ export default {
     },
     {
       id: 'eng.gridops.assets',
+      gist: 'Asset management decides what to inspect, repair and replace on risk = failure probability × impact; two identical assets can have a different impact.',
       title: 'Asset management and risk',
       pre: [
         {
@@ -796,6 +807,7 @@ export default {
     },
     {
       id: 'eng.gridops.learn',
+      gist: 'Record every fault with a usable cause and look at customer minutes per cause, not only counts; averages hide the worst-served customers.',
       title: 'Learning from outages',
       pre: [
         {
@@ -870,6 +882,7 @@ export default {
     // ── Topic 4: Congestion management in operations ──
     {
       id: 'eng.gridops.cmbasics',
+      gist: 'Congestion management steers consumption or feed-in at peak moments: redispatch via GOPACS, or a contract where the customer stays under an agreed limit.',
       title: 'Congestion management in operations',
       pre: [
         {
@@ -940,6 +953,7 @@ export default {
     },
     {
       id: 'eng.gridops.cmstudy',
+      gist: 'Before a queue starts, the operator studies whether congestion management can solve the shortfall, first with voluntary flexible capacity and only then with mandatory participation.',
       title: 'The congestion study',
       pre: [
         {
@@ -1010,6 +1024,7 @@ export default {
     },
     {
       id: 'eng.gridops.cmdesk',
+      gist: 'The congestion desk forecasts per station, deploys flexibility and afterwards checks delivery against the baseline.',
       title: 'Running the congestion desk',
       pre: [
         {
@@ -1082,6 +1097,7 @@ export default {
     },
     {
       id: 'eng.gridops.cmvalue',
+      gist: 'Congestion management is a bridge until the reinforcement is done; flexibility works best for short peaks and less for long winter peaks.',
       title: 'Flexibility or waiting: the trade-off',
       pre: [
         {
