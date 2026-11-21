@@ -85,7 +85,7 @@ export default {
     },
     {
       id: 'pm.negotiate.batna',
-      gist: 'Je BATNA, wat je doet als je wegloopt, bepaalt je ondergrens; een bod onder je alternatief sla je af of onderhandel je omhoog.',
+      gist: 'Je BATNA, wat je doet als je wegloopt, bepaalt je ondergrens; bij verder gelijke voorwaarden sla je een bod eronder af.',
       film: 'pm.negotiate.batna',
       title: 'Jouw alternatief en dat van hen',
       pre: [
@@ -333,7 +333,7 @@ export default {
     },
     {
       id: 'pm.negotiate.anchor',
-      gist: 'Ken je de markt, noem dan zelf het eerste getal, ambitieus en onderbouwd; doe geen tegenbod op een getal dat je onredelijk vindt.',
+      gist: 'Noem bij goede marktkennis meestal zelf het eerste getal, ambitieus en onderbouwd; op een onredelijk getal doe je geen tegenbod.',
       film: 'pm.negotiate.batna',
       title: 'Het eerste bod en framing',
       pre: [

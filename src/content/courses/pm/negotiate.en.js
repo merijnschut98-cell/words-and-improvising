@@ -85,7 +85,7 @@ export default {
     },
     {
       id: 'pm.negotiate.batna',
-      gist: 'Your BATNA, what you do if you walk away, sets your walk-away point; an offer below your alternative you turn down or negotiate up.',
+      gist: 'Your BATNA, what you do if you walk away, sets your walk-away point; all else equal, turn down any offer below it.',
       film: 'pm.negotiate.batna',
       title: 'Your alternative and theirs',
       pre: [
@@ -333,7 +333,7 @@ export default {
     },
     {
       id: 'pm.negotiate.anchor',
-      gist: 'If you know the market, name the first number yourself, ambitious and backed by a reason; do not counter a number you find unreasonable.',
+      gist: 'With good market knowledge, usually name the first number yourself, ambitious and backed by a reason; do not counter an unreasonable number.',
       film: 'pm.negotiate.batna',
       title: 'First numbers and framing',
       pre: [
