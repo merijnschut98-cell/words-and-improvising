@@ -3715,28 +3715,28 @@
     "pm.approach.intro": {
       "poster": "src/content/courses/films/pm.approach.intro.jpg",
       "nl": {
-        "dur": 158.6,
-        "bytes": 2963469,
+        "dur": 162.4,
+        "bytes": 3414653,
         "scenes": [
           0,
-          21.55,
-          51.89,
-          76.59,
-          96.95,
-          119.71
+          21.64,
+          51.99,
+          80.03,
+          100.59,
+          123.82
         ],
         "vtt": "src/content/courses/films/pm.approach.intro.nl.vtt"
       },
       "en": {
-        "dur": 168.9,
-        "bytes": 3094182,
+        "dur": 172.8,
+        "bytes": 3593292,
         "scenes": [
           0,
-          25.33,
-          57.56,
-          82.05,
-          104.5,
-          129.14
+          25.1,
+          57.41,
+          85.78,
+          108.04,
+          132.88
         ],
         "vtt": "src/content/courses/films/pm.approach.intro.en.vtt"
       }
