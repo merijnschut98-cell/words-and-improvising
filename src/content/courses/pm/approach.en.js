@@ -291,6 +291,7 @@ export default {
     {
       id: 'pm.approach.families',
       gist: 'Four method families and a mix; DMAIC is a project structure for any improvement, not only for Six Sigma.',
+      pictures: [{ id: 'pm.approach.families.map', after: 3, alt: 'Table of the four method families and the hybrid mix, each with the well-known methods that belong to it.' }],
       title: 'The method families',
       pre: [
         {
