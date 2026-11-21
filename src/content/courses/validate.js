@@ -2,7 +2,7 @@
 // the content tests and by whoever writes content. Returns a list of problems;
 // an empty list means the module is valid. Pure.
 import { containsAnswer } from '../../core/hint.js';
-import { KINDS, kindOf } from '../../core/questionkinds.js';
+import { KINDS, kindOf, gapKey } from '../../core/questionkinds.js';
 
 const MAX_BLOCK_WORDS = 90;
 const MAX_HINT_WORDS = 25;
@@ -28,6 +28,8 @@ export function checkQuestion(qn, where, errs, lang = null) {
   if (!str(qn.why)) errs.push(`${where}: why missing`);
   if ('kind' in qn && !KINDS.includes(qn.kind)) { errs.push(`${where}: unknown kind ${JSON.stringify(qn.kind)}`); return; }
   const kind = kindOf(qn);
+  // the screens and the hint take a question with `number` as numeric, whatever its kind
+  if (kind !== 'num' && 'number' in qn) errs.push(`${where}: a ${kind} question may not have a number field (only numeric questions do)`);
   if (kind === 'num') {
     if (typeof qn.number !== 'number' || !Number.isFinite(qn.number)) errs.push(`${where}: number must be a number`);
     if (!(typeof qn.tolerance === 'number' && qn.tolerance > 0)) errs.push(`${where}: numeric question needs a tolerance > 0`);
@@ -51,9 +53,16 @@ export function checkQuestion(qn, where, errs, lang = null) {
   } else if (kind === 'gap') {
     if (!str(qn.text) || qn.text.split('___').length !== 2) errs.push(`${where}: gap text needs exactly one ___`);
     if (!list(qn.accept, 1, 4)) errs.push(`${where}: gap needs 1–4 accepted words`);
+    else if (!qn.accept.every((a) => gapKey(a))) errs.push(`${where}: every accepted word needs a letter or a digit`);
     if ('choices' in qn && qn.choices !== null) {
       if (!list(qn.choices, 4, 6) || !distinct(qn.choices)) errs.push(`${where}: choices must be 4–6 distinct words`);
       else if (Array.isArray(qn.accept) && !qn.choices.includes(qn.accept[0])) errs.push(`${where}: choices must include the first accepted word`);
+      else if (Array.isArray(qn.accept)) {
+        // a distractor that reads as an accepted word would be judged right
+        const keys = new Set(qn.accept.map(gapKey));
+        const same = qn.choices.filter((c) => !qn.accept.includes(c) && keys.has(gapKey(c)));
+        if (same.length) errs.push(`${where}: choice ${JSON.stringify(same[0])} reads the same as an accepted word; make it a different word or put it in accept`);
+      }
     }
   } else if (kind === 'order') {
     if (!list(qn.items, 3, 6) || !distinct(qn.items)) errs.push(`${where}: order needs 3–6 distinct items`);
@@ -330,7 +339,12 @@ export function validateModule(en, nl, meta) {
     if ((a.pre || []).length !== (b.pre || []).length) errs.push(`${id}: pre counts differ between en and nl`);
     // The Dutch screen pairs terms with their English word by position.
     if ((a.terms || []).length !== (b.terms || []).length) errs.push(`${id}: terms counts differ between en and nl`);
-    (a.pre || []).forEach((qa, i) => checkKindParity(qa, (b.pre || [])[i], `${id} pre ${i}`, errs));
+    (a.pre || []).forEach((qa, i) => {
+      const qb = (b.pre || [])[i];
+      checkKindParity(qa, qb, `${id} pre ${i}`, errs);
+      // best has its key at the same position in both languages, in pre as in recall (design 2.3)
+      if (qb && kindOf(qa) === 'best' && kindOf(qb) === 'best' && qa.options && qb.options && qa.options.indexOf(qa.answer) !== qb.options.indexOf(qb.answer)) errs.push(`${id} pre ${i}: answer position differs between en and nl`);
+    });
     (a.recall || []).forEach((qa, i) => {
       const qb = (b.recall || [])[i];
       if (qb && ('number' in qa) !== ('number' in qb)) errs.push(`${id} recall ${i}: numeric in one language only`);

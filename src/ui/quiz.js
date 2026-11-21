@@ -92,7 +92,7 @@ export function renderQuiz(app, { questions, onDone, onBack = null, termsOf = ()
     // what he guessed is shown and preselected; he keeps it or changes it.
     const hasGuess = 'guess' in q && q.guess != null && q.guess !== '?';
     const guessLine = 'guess' in q ? h('p', { class: 'quiz-guess muted small' }, ico('repeat'), ' ', hasGuess ? t('quizGuessWas', shown(q, q.guess)) : t('quizGuessBack')) : null;
-    if ('number' in q) {
+    if (kindOf(q) === 'num') {
       const input = h('input', { type: 'text', inputmode: 'decimal', class: 'text-input quiz-num', placeholder: t('numericPh'), 'aria-label': t('numericPh') });
       if (prev) input.value = prev;
       else if (hasGuess) input.value = String(q.guess);
@@ -197,7 +197,12 @@ export function renderQuiz(app, { questions, onDone, onBack = null, termsOf = ()
   function draw() {
     // sure is !hinted: the screens pass it on to the scheduling as before.
     if (st.phase === 'done') { onDone(st.firstTry, st.sure || {}); return; }
+    // A keyboard or screen reader user who just answered lands on the next
+    // card's heading, not on the page body (an input still takes focus itself).
+    const had = box.contains(document.activeElement);
     box.replaceChildren(st.phase === 'review' ? reviewCard() : askCard());
+    const head = had ? box.querySelector('.card-title, .quiz-q') : null;
+    if (head) { head.setAttribute('tabindex', '-1'); head.focus({ preventScroll: true }); }
     window.scrollTo(0, 0);
   }
   draw();

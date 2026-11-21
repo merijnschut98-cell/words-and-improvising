@@ -295,3 +295,80 @@ test('renderer parts: match pairs by tapping left then right, undo by tapping a 
   assert.deepEqual(matchTap(s, 'left', 'l1').pairs, s.pairs, 'a locked pair cannot be undone');
   assert.deepEqual(matchTap(s, 'right', 'r1'), s);
 });
+
+// Review F1: edge cases of the judging and the validator.
+test('judge, gap: Dutch ĳ, hyphens and spaces, numbers without a typo allowance', () => {
+  const ij = { kind: 'gap', q: 'q', text: 'Het ___ is rond.', accept: ['ijzer'], why: 'w' };
+  assert.equal(judge(ij, 'ĳzer'), true, 'the ĳ ligature reads as ij');
+  assert.equal(judge(ij, 'IJzer'), true);
+  assert.equal(normalizeWord('ĳ'), 'ij');
+  const pad = { ...gap, accept: ['kritieke pad'] };
+  assert.equal(judge(pad, 'kritieke-pad'), true);
+  assert.equal(judge(pad, 'kritiekepad'), true);
+  const num = { kind: 'gap', q: 'q', text: 'Er zijn ___ stuks.', accept: ['100000'], why: 'w' };
+  assert.equal(judge(num, '100000'), true);
+  assert.equal(judge(num, '100001'), false, 'a digit off is a different number, not a typo');
+  assert.equal(judge({ ...num, accept: ['1,5'] }, '15'), false, 'a decimal comma is not dropped between digits');
+  assert.equal(judge({ ...num, accept: ['1,5'] }, '1.5'), true);
+  assert.equal(judge({ ...gap, accept: ['Six Sigma'] }, 'sixsigma'), true);
+});
+
+test('judge, gap: a word bank has no typo allowance', () => {
+  const bank = { kind: 'gap', q: 'q', text: 'De ___ is groot.', accept: ['variantie'], choices: ['variantie', 'variatie', 'spreiding', 'range'], why: 'w' };
+  assert.equal(judge(bank, 'variantie'), true);
+  assert.equal(judge(bank, 'variatie'), false, 'a near distractor picked from the bank is wrong');
+  const typed = { ...bank, choices: null };
+  assert.equal(judge(typed, 'variatie'), true, 'typed: one letter off is a typo');
+});
+
+test('judge: edge cases of all, best, order and match', () => {
+  assert.equal(judge(all, []), false, 'select-all with nothing ticked');
+  assert.equal(judge(all, null), false);
+  assert.equal(judge(all, ['a', 'c', 'd', 'a']), true, 'a repeated tick counts once');
+  assert.equal(judge(best, 'c'), false, 'the runner-up is not the key');
+  assert.equal(judge(order, ['d', 'm', 'a', 'i']), false, 'short');
+  assert.equal(judge(order, ['d', 'm', 'a', 'i', 'c', 'c']), false, 'too long');
+  assert.equal(judge(order, null), false);
+  assert.equal(judge(match, [['l1', 'r1'], ['l2', 'r2']]), false, 'a pair missing');
+  assert.equal(judge(match, { l1: 'r1', l2: 'r2', l3: 'r3' }), true, 'pairs as an object');
+  assert.equal(judge(match, 'l1'), false);
+});
+
+test('validator: a number field only on a numeric question; puzzle kinds not in pre', async () => {
+  assert.ok(errsOf({ ...gap, number: 3 }).some((e) => /number field/.test(e)));
+  assert.ok(errsOf({ ...best, number: 3 }).some((e) => /number field/.test(e)));
+  assert.deepEqual(errsOf({ kind: 'num', q: 'n', number: 3, tolerance: 0.1, unit: '', why: 'w' }), []);
+  const meta = MODULES.find((m) => m.lessons.length);
+  const en = await loadModule(meta.subject, meta.id, 'en');
+  const nl = await loadModule(meta.subject, meta.id, 'nl');
+  for (const k of [all, gap, order, match]) {
+    const swap = (mod) => ({ ...mod, lessons: mod.lessons.map((l, i) => (i === 0 ? { ...l, pre: [k] } : l)) });
+    const errs = validateModule(swap(en), swap(nl), meta);
+    assert.ok(errs.some((x) => new RegExp(`pre 0: kind ${k.kind} is not supported`).test(x)), k.kind);
+  }
+});
+
+test('validator: gap accept needs a real word, and a bank distractor may not read as an accepted word', () => {
+  assert.ok(errsOf({ ...gap, accept: ['—'] }).some((e) => /letter or a digit/.test(e)));
+  assert.ok(errsOf({ ...gap, choices: ['kritieke', 'Kritieke!', 'lange', 'vrije'] }).some((e) => /reads the same/.test(e)));
+  assert.deepEqual(errsOf({ ...gap, choices: ['kritieke', 'kritiek', 'lange', 'vrije'] }), [], 'two accepted words in the bank are both right');
+});
+
+test('parity: a best pre question keeps its key at the same position in en and nl', async () => {
+  const meta = MODULES.find((m) => m.lessons.length);
+  const en = await loadModule(meta.subject, meta.id, 'en');
+  const nl = await loadModule(meta.subject, meta.id, 'nl');
+  const withPre = (mod, q) => ({ ...mod, lessons: mod.lessons.map((l, i) => (i === 0 ? { ...l, pre: [q] } : l)) });
+  const enBest = { ...best, q: 'What is the best first step?' };
+  const ok = validateModule(withPre(en, enBest), withPre(nl, best), meta);
+  assert.ok(!ok.some((x) => /pre 0: answer position/.test(x)), ok.join('\n'));
+  const errs = validateModule(withPre(en, enBest), withPre(nl, { ...best, options: ['b', 'a', 'c', 'd'] }), meta);
+  assert.ok(errs.some((x) => /pre 0: answer position differs/.test(x)), errs.join('\n'));
+});
+
+test('quiz screen and hint take a question as numeric only by its kind', async () => {
+  const { questionHint } = await import('../src/core/hint.js');
+  assert.equal(questionHint(gap).kind, 'letter');
+  const src = fs.readFileSync(new URL('../src/ui/quiz.js', import.meta.url), 'utf8');
+  assert.ok(!src.includes("'number' in q"), 'quiz.js decides numeric by kindOf');
+});

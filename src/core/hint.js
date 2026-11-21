@@ -49,7 +49,7 @@ function numbersIn(text) {
 // within the question's tolerance.
 export function containsAnswer(question, text) {
   if (!question || text == null) return false;
-  if ('number' in question) {
+  if (kindOf(question) === 'num') {
     const tol = Math.max(question.tolerance || 0, 1e-9);
     return numbersIn(text).some((v) => Math.abs(v - question.number) <= tol + 1e-9);
   }
@@ -93,7 +93,7 @@ function termFor(question, terms) {
 export function questionHint(question, terms = []) {
   if (!question) return null;
   if (typeof question.hint === 'string' && question.hint.trim()) return { kind: 'own', text: question.hint.trim() };
-  if ('number' in question) {
+  if (kindOf(question) === 'num') {
     const step = firstStep(question);
     return { kind: 'number', step, unit: question.unit ? question.unit : null, term: step ? null : termFor(question, terms) };
   }

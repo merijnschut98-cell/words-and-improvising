@@ -23,10 +23,11 @@ export function kindOf(q) {
 // A kind that is a choice between four options with one key.
 export const isChoice = (q) => ['mc', 'best'].includes(kindOf(q));
 
-// lower case, diacritics folded, punctuation dropped, spaces collapsed
+// lower case, diacritics folded, ligatures split (the Dutch ĳ is ij),
+// punctuation dropped, spaces collapsed
 export function normalizeWord(s) {
   return String(s ?? '')
-    .normalize('NFD').replace(/\p{M}+/gu, '')
+    .normalize('NFKD').replace(/\p{M}+/gu, '')
     .toLowerCase()
     .replace(/[^\p{L}\p{N}\s]+/gu, ' ')
     .replace(/\s+/g, ' ')
@@ -43,6 +44,18 @@ export function editDistance(a, b) {
     prev = cur;
   }
   return prev[B.length];
+}
+
+// The key a gap answer is compared on: normalised, without spaces, so
+// "kritieke-pad", "kritieke pad" and "kritiekepad" are the same answer. A space
+// between two digits stays: "1,5" is not "15".
+export const gapKey = (s) => normalizeWord(s).replace(/(?<!\p{N}) | (?!\p{N})/gu, '');
+
+// One typo (edit distance 1) is accepted from TYPO_MIN_LETTERS letters on, and
+// never in a word with a digit: 100000 and 100001 are different answers.
+export function typoOk(accepted, said) {
+  if (/\p{N}/u.test(accepted) || /\p{N}/u.test(said)) return false;
+  return [...accepted].filter((c) => /\p{L}/u.test(c)).length >= TYPO_MIN_LETTERS && editDistance(accepted, said) <= 1;
 }
 
 function hash(s) {
@@ -90,15 +103,14 @@ export function grade(q, answer) {
     return { kind, ok, exact, right, wrong, missed, total: keys.size };
   }
   if (kind === 'gap') {
-    const said = normalizeWord(answer);
+    const said = gapKey(answer);
     const accept = q.accept || [];
     if (!said) return { kind, ok: false, typo: false, spelled: null };
-    const exact = accept.find((a) => normalizeWord(a) === said);
+    const exact = accept.find((a) => gapKey(a) === said);
     if (exact) return { kind, ok: true, typo: false, spelled: exact };
-    const near = accept.find((a) => {
-      const n = normalizeWord(a);
-      return [...n].length >= TYPO_MIN_LETTERS && editDistance(n, said) <= 1;
-    });
+    // A word bank is picked, not typed: no typo allowance, or a near
+    // distractor (variatie / variantie) would count as right.
+    const near = q.choices ? null : accept.find((a) => typoOk(gapKey(a), said));
     return near ? { kind, ok: true, typo: true, spelled: near } : { kind, ok: false, typo: false, spelled: null };
   }
   if (kind === 'order') {
