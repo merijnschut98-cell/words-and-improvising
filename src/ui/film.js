@@ -134,21 +134,22 @@ function filmFrame(app, url) {
 // until the page answers, like a figure. With `video` it opens the Film step
 // (filmStep): the rendered video when the manifest has one, else the HTML film,
 // else text() (v17 review: the field film on the subject home).
-export function filmButton(app, ref, level, { video = false, text = null } = {}) {
+export function filmButton(app, ref, level, { video = false, text = null, labelKey = null } = {}) {
   const t = app.t;
   const film = parseFilmRef(ref);
   const wrap = h('div', { class: 'film-wrap', hidden: true });
   if (!film) return wrap;
   const theme = () => figureTheme(app.state.settings.theme, typeof matchMedia === 'function' && matchMedia('(prefers-color-scheme: dark)').matches);
   const src = () => filmSrc(film.id, theme(), app.lang, { level, scene: film.scene, muted: mutedPref.read() });
-  const label = h('span', {}, t('filmWatch'));
+  const key = labelKey || 'filmWatch';
+  const label = h('span', {}, t(key));
   const btn = h('button', { type: 'button', class: 'btn btn-ghost film-btn', 'aria-expanded': 'false' }, ico('play'), ' ', label);
   let box = null;
   const close = () => {
     if (current) closeFilms();
     if (box) { box.remove(); box = null; }
     btn.setAttribute('aria-expanded', 'false');
-    label.textContent = t('filmWatch');
+    label.textContent = t(key);
   };
   btn.onclick = () => {
     if (box) { close(); return; }

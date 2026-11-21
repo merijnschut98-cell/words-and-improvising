@@ -5,8 +5,9 @@ import { h } from './dom.js';
 import { ico } from './icons.js';
 import { renderQuiz } from './quiz.js';
 import { celebration } from './flairui.js';
-import { applyLesson, markOpened, openerDue, markLevelSeen, openerToShow, openerWithin, lessonEndNext, savePlanDraft, commitPlanDraft, newPlanId, lessonPhases, lessonSteps, lessonQuiz, guessFeedback, lessonBack, paragraphs, linkTerms, glossary } from '../core/course.js';
-import { metaOf, placeOf, loadOpeners } from '../content/courses/index.js';
+import { applyLesson, markOpened, openerDue, markLevelSeen, openerToShow, openerWithin, lessonEndNext, savePlanDraft, commitPlanDraft, newPlanId, lessonPhases, filmAtEnd, picturesAfter, lessonSteps, lessonQuiz, guessFeedback, lessonBack, paragraphs, linkTerms, glossary } from '../core/course.js';
+import { metaOf, placeOf, loadOpeners, loadPictures } from '../content/courses/index.js';
+import { pictureSvg } from './picture.js';
 import { openerCard } from './opener.js';
 import { placeLabel } from './coursehome.js';
 import { runExplain, runExplainBack } from '../core/coursecoach.js';
@@ -95,11 +96,16 @@ export function renderLesson(app, params, root) {
     if (!lesson) { fail(); return; }
     const meta = metaOf(moduleId);
     title.textContent = lesson.title;
-    run(lesson, meta, glossary([{ ...mod, id: moduleId }]), mod);
+    // v18 G1: the pictures load only for a lesson that lists them; without them the reading stands alone
+    const pics = lesson.pictures && lesson.pictures.length ? loadPictures(moduleId).catch(() => ({})) : Promise.resolve({});
+    return pics.then((pictures) => { if (seq === app.navSeq) run(lesson, meta, glossary([{ ...mod, id: moduleId }]), mod, pictures); });
   }).catch(fail);
   return () => { closeFilms(); if (onLeave) onLeave(); };
 
-  function run(lesson, meta, terms = [], mod = { lessons: [] }) {
+  function run(lesson, meta, terms = [], mod = { lessons: [] }, pictures = {}) {
+    // The pictures that sit after a teach block (or 'example'): figure with the drawing, alt text on the svg.
+    const picturesOf = (after) => picturesAfter(lesson, after).filter((p) => pictures[p.id]).map((p) => h('figure', { class: 'picture', html: pictureSvg(pictures[p.id], app.lang, p.alt) }));
+    const filmLink = (level) => (filmAtEnd(lesson) ? h('div', { class: 'film-end' }, filmButton(app, lesson.film, level, { video: true, labelKey: 'filmAlso' })) : null);
     // Remembered, so the course home can bring him back here if he leaves (v16).
     app.setState(markOpened(app.state, subject, lesson.id, Date.now()));
     const phases = lessonPhases(lesson);
@@ -170,8 +176,9 @@ export function renderLesson(app, params, root) {
           h('section', { class: 'card teach-card' }, dots(lesson.teach.length, block),
             // a text-first film (17 Nov): the reading leads, the film is offered on the first block
             block === 0 && lesson.gist ? h('p', { class: 'gist' }, lesson.gist) : null,
-            block === 0 && lesson.film ? filmButton(app, lesson.film, place && place.level, { video: true }) : null,
+            block === 0 && lesson.film && !filmAtEnd(lesson) ? filmButton(app, lesson.film, place && place.level, { video: true }) : null,
             prose('teach-text', lesson.teach[block], terms),
+            picturesOf(block),
             last ? h('p', { class: 'said' }, lesson.said) : null,
             last && lesson.figure ? figureFrame(app, lesson.figure, place && place.level) : null,
             last && app.state.settings.apiKey ? explainBox(lesson) : null),
@@ -188,6 +195,7 @@ export function renderLesson(app, params, root) {
           h('section', { class: 'card film-card' },
             lesson.gist ? h('p', { class: 'gist' }, lesson.gist) : null,
             filmStep(app, lesson, place && place.level, { text: () => prose('teach-text', lesson.teach.join('\n\n'), terms) }),
+            lesson.teach.map((_, i) => picturesOf(i)), picturesOf('example'),
             lesson.said ? h('p', { class: 'said' }, lesson.said) : null,
             lesson.figure ? figureFrame(app, lesson.figure, place && place.level) : null,
             app.state.settings.apiKey ? explainBox(lesson) : null),
@@ -200,10 +208,10 @@ export function renderLesson(app, params, root) {
           const input = h('textarea', { class: 'text-input', rows: 3, placeholder: t('lessonWhatNextPh'), 'aria-label': ex.ask });
           const reveal = h('div', {});
           show(h('section', { class: 'card example-card' },
-            prose('teach-text', ex.text, terms),
+            prose('teach-text', ex.text, terms), picturesOf('example'),
             h('p', { class: 'example-ask' }, h('b', {}, ex.ask)),
             input,
-            reveal,
+            reveal, filmLink(place && place.level),
             h('button', {
               class: 'btn btn-primary reveal-btn',
               onclick: (e) => {
@@ -215,7 +223,7 @@ export function renderLesson(app, params, root) {
           return;
         }
         show(h('section', { class: 'card example-card' },
-          prose('teach-text', ex.text, terms)),
+          prose('teach-text', ex.text, terms), picturesOf('example'), filmLink(place && place.level)),
         h('button', { class: 'btn btn-primary btn-big', onclick: next }, t('quizNext')), backBtn());
         return;
       }

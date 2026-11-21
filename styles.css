@@ -1350,3 +1350,24 @@ button.order-slot.locked { cursor: default; opacity: 0.75; }
 .due-more { margin: 0; text-align: center; }
 .due-quiet { display: flex; flex-direction: column; gap: 4px; align-items: flex-start; }
 .due-quiet-note { margin: 0; display: flex; gap: 6px; align-items: center; }
+
+/* v18 G1: lesson pictures (src/ui/picture.js). Every colour is a token, so light and dark both work. */
+.picture { margin: 14px 0 4px; }
+.pic-svg { display: block; width: 100%; max-width: 440px; height: auto; margin: 0 auto; }
+.pic-box { stroke: color-mix(in srgb, var(--muted) 45%, var(--card)); stroke-width: 1; fill: var(--card); }
+.pic-head { fill: var(--primary); }
+.pic-rowhead { fill: color-mix(in srgb, var(--line) 60%, var(--card)); }
+.pic-node { fill: color-mix(in srgb, var(--accent) 14%, var(--card)); }
+.pic-t0 { fill: color-mix(in srgb, var(--line) 35%, var(--card)); }
+.pic-t1 { fill: color-mix(in srgb, var(--good) 28%, var(--card)); }
+.pic-t2 { fill: color-mix(in srgb, var(--ok) 32%, var(--card)); }
+.pic-t3 { fill: color-mix(in srgb, var(--bad) 32%, var(--card)); }
+.pic-text { fill: var(--ink); font-size: 14px; font-family: inherit; }
+.pic-bold { font-weight: 650; }
+.pic-muted { fill: var(--muted); }
+.pic-onhead { fill: var(--on-primary); }
+.pic-line, .pic-ring { stroke: color-mix(in srgb, var(--muted) 70%, var(--card)); stroke-width: 1.5; fill: none; }
+.pic-bar { fill: var(--ink); stroke: none; }
+.pic-arrow, .pic-dot { fill: var(--accent-dark); stroke: none; }
+.film-end { margin: 14px 0 0; }
+.film-end .film-btn { width: auto; font-size: 0.92rem; }

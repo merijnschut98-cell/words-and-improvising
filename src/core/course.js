@@ -515,6 +515,13 @@ export function glossary(modules) {
 export const filmIsMain = (lesson) => typeof lesson.film === 'string' && !TEXT_FIRST_FILMS.has(lesson.film.split('#')[0]);
 export const lessonPhases = (lesson) => [...((lesson.pre || []).length ? ['pre'] : []), ...(filmIsMain(lesson) ? ['film'] : ['teach', 'example']), 'quiz'];
 
+// v18 G1 (Q9 A): a lesson whose text-first film is replaced by pictures keeps the
+// film as a small link at the end of the reading, not as the button on the first
+// block. Switched per lesson by the lesson itself: it has `pictures` and a text-first film.
+export const filmAtEnd = (lesson) => typeof lesson.film === 'string' && !filmIsMain(lesson) && Array.isArray(lesson.pictures) && lesson.pictures.length > 0;
+// The pictures that sit after teach block `after` (an index) or after the example ('example').
+export const picturesAfter = (lesson, after) => (lesson.pictures || []).filter((p) => p.after === after);
+
 // Recall questions with their stable ids: '<lessonId>#r<n>'.
 export const recallQuestions = (lesson) => (lesson.recall || []).map((q, i) => ({ ...q, id: `${lesson.id}#r${i}` }));
 
