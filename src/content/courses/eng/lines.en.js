@@ -76,7 +76,7 @@ export default {
     },
     {
       id: 'eng.lines.layout',
-      gist: 'A buffer absorbs stops but costs space and stock and hides problems; place buffers and inspection points deliberately.',
+      gist: 'A buffer absorbs stops but costs space and stock and hides problems; inspect above all before a costly or irreversible step.',
       figure: 'eng.lines.buffer',
       film: 'eng.lines.design',
       title: 'Line types, buffers and inspection',
@@ -147,7 +147,7 @@ export default {
     },
     {
       id: 'eng.lines.buffers',
-      gist: 'A buffer needs stop duration divided by cycle time in slots, and only works if it can refill after a stop.',
+      gist: 'A buffer needs stop duration divided by cycle time in slots, enough for most stops, and only works if it can refill after a stop.',
       figure: 'eng.lines.buffer',
       film: 'eng.lines.design',
       title: 'Sizing buffers: blocking, starving and refilling',
@@ -220,7 +220,7 @@ export default {
     },
     {
       id: 'eng.lines.simulation',
-      gist: 'Simulate a coupled line when decisions are costly, trust the model only once it reproduces the present, and check it with Little\'s law.',
+      gist: 'Work in progress equals output times lead time (Little\'s law); simulate a coupled line for costly decisions and validate the model first.',
       figure: 'eng.lines.buffer',
       film: 'eng.lines.design',
       title: 'Line simulation, Little’s law and ramp-up',
@@ -511,7 +511,7 @@ export default {
     },
     {
       id: 'eng.lines.vision',
-      gist: 'Believe a bin-picking demo only with pick rate and cycle on your own parts, and calculate a cobot at the speed it is allowed.',
+      gist: 'Believe a bin-picking demo only with pick rate and cycle on your own parts, and work out a cobot\'s cycle at its permitted speed.',
       film: 'eng.lines.robots',
       figure: 'eng.lines.robotcell',
       title: 'Vision, offline programming and when a cobot fits',
@@ -874,7 +874,7 @@ export default {
     },
     {
       id: 'eng.lines.variants',
-      gist: 'Changeover runs from the last good product to the first good product of the next variant; larger batches cost less changeover time but more stock.',
+      gist: 'Changeover runs from the last good product to the first good product at full speed; larger batches cost less changeover time but more stock.',
       film: 'eng.lines.variants',
       figure: 'eng.lines.mixed',
       title: 'Several products on one line: variants and what they cost',

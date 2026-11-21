@@ -76,7 +76,7 @@ export default {
     },
     {
       id: 'eng.lines.layout',
-      gist: 'Een buffer vangt stops op maar kost ruimte en voorraad en verstopt problemen; leg buffers en inspectiepunten bewust neer.',
+      gist: 'Een buffer vangt stops op maar kost ruimte en voorraad en verstopt problemen; inspecteer vooral vóór een dure of onomkeerbare stap.',
       figure: 'eng.lines.buffer',
       film: 'eng.lines.design',
       title: 'Lijntypes, buffers en inspectie',
@@ -147,7 +147,7 @@ export default {
     },
     {
       id: 'eng.lines.buffers',
-      gist: 'Een buffer moet stopduur gedeeld door de cyclustijd aan plekken hebben, en werkt alleen als hij na een stop weer vol kan lopen.',
+      gist: 'Een buffer heeft stopduur gedeeld door cyclustijd aan plekken nodig, genoeg voor de meeste stops, en werkt alleen als hij weer kan vollopen.',
       figure: 'eng.lines.buffer',
       film: 'eng.lines.design',
       title: 'Buffers dimensioneren: blocked, starved en bijvullen',
@@ -220,7 +220,7 @@ export default {
     },
     {
       id: 'eng.lines.simulation',
-      gist: 'Simuleer een gekoppelde lijn bij dure beslissingen, vertrouw het model pas als het het heden nabootst, en check met de wet van Little.',
+      gist: 'Onderhanden werk is output maal doorlooptijd (wet van Little); simuleer een gekoppelde lijn bij dure beslissingen en valideer het model eerst.',
       figure: 'eng.lines.buffer',
       film: 'eng.lines.design',
       title: 'Lijnsimulatie, de wet van Little en opstarten',
@@ -511,7 +511,7 @@ export default {
     },
     {
       id: 'eng.lines.vision',
-      gist: 'Geloof een bin-picking-demo pas met pakpercentage en cyclus op je eigen onderdelen, en reken een cobot op de toegestane snelheid.',
+      gist: 'Geloof een bin-picking-demo pas met pakpercentage en cyclus op je eigen onderdelen, en reken de cyclus van een cobot op de toegestane snelheid.',
       film: 'eng.lines.robots',
       figure: 'eng.lines.robotcell',
       title: 'Vision, offline programmeren en wanneer een cobot past',
@@ -874,7 +874,7 @@ export default {
     },
     {
       id: 'eng.lines.variants',
-      gist: 'Omstellen loopt van het laatste goede product tot het eerste goede product van de volgende variant; grotere series kosten minder omsteltijd maar meer voorraad.',
+      gist: 'Omstellen loopt van het laatste goede product tot het eerste goede product op volle snelheid; grotere series kosten minder omsteltijd maar meer voorraad.',
       film: 'eng.lines.variants',
       figure: 'eng.lines.mixed',
       title: 'Meerdere producten op één lijn: varianten en wat ze kosten',
@@ -1589,7 +1589,7 @@ export default {
     },
     {
       id: 'eng.lines.business',
-      gist: 'Een businesscase telt alle kosten van de hele cel; automatiseer niet een instabiel proces, want dan automatiseer je de problemen.',
+      gist: 'Een businesscase telt alle kosten van de hele cel; automatiseer geen instabiel proces, want dan automatiseer je de problemen.',
       figure: 'eng.lines.case',
       title: 'De businesscase voor automatisering',
       pre: [
