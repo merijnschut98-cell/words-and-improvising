@@ -4,7 +4,7 @@ export default {
     // ── Topic 1: From request to connection ──
     {
       id: 'eng.gridops.request',
-      gist: 'After a complete request comes a quote, within 10 working days for small consumers; the fixed 18-week connection deadline has been scrapped.',
+      gist: 'After a complete request comes a quote (small consumers: 10 working days); large connections get 26 weeks if simple, 52 if medium, plus regional waiting.',
       title: 'Requesting a connection: offer and terms',
       pre: [
         {
@@ -146,7 +146,7 @@ export default {
     },
     {
       id: 'eng.gridops.data',
-      gist: 'Errors in the grid records cost days on every job; close a job only when the as-built drawings are processed.',
+      gist: 'Every error in the grid records costs days; close a job only when the as-built drawings are processed.',
       title: 'Asset data and digital twins',
       pre: [
         {
@@ -367,7 +367,7 @@ export default {
     },
     {
       id: 'eng.gridops.switching',
-      gist: 'A switching plan is a step-by-step script in fixed order, following the five safety rules: isolate, secure, verify dead, earth and screen.',
+      gist: 'A switching plan is a step-by-step script in fixed order, following the five safety rules: isolate, secure against re-energising, verify dead, earth and short-circuit, screen.',
       film: 'eng.switchgear.fiverules',
       title: 'Switching plans',
       pre: [
@@ -513,7 +513,7 @@ export default {
     },
     {
       id: 'eng.gridops.fieldlean',
-      gist: 'Wrench time, the part of the shift spent on hands-on work, is often half or less; the rest is travelling, waiting and searching.',
+      gist: 'Wrench time, the hands-on part of the shift, is often around half or less; raising it gives more work with the same people.',
       title: 'Lean in field work',
       pre: [
         {

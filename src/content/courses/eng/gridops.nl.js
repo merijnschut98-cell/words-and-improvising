@@ -4,7 +4,7 @@ export default {
     // ── Onderwerp 1: Van aanvraag tot aansluiting ──
     {
       id: 'eng.gridops.request',
-      gist: 'Na een complete aanvraag volgt een offerte, voor kleinverbruik binnen 10 werkdagen; de vaste aansluittermijn van 18 weken is geschrapt.',
+      gist: 'Na een complete aanvraag volgt een offerte (kleinverbruik: 10 werkdagen); eenvoudige en middelzware grote aansluitingen krijgen 26 of 52 weken plus regionale wachttijd.',
       title: 'Een aansluiting aanvragen: offerte en termijnen',
       pre: [
         {
@@ -146,7 +146,7 @@ export default {
     },
     {
       id: 'eng.gridops.data',
-      gist: 'Fouten in de netregistratie kosten op elke klus dagen; sluit een klus pas als de revisietekeningen verwerkt zijn.',
+      gist: 'Elke fout in de netregistratie kost dagen; sluit een klus pas als de revisietekeningen verwerkt zijn.',
       title: 'Netdata en digital twins',
       pre: [
         {
@@ -367,7 +367,7 @@ export default {
     },
     {
       id: 'eng.gridops.switching',
-      gist: 'Een schakelplan is een stap-voor-stap-script in vaste volgorde, volgens de vijf veiligheidsregels: vrijschakelen, beveiligen, spanningsloosheid vaststellen, aarden en afschermen.',
+      gist: 'Een schakelplan is een stap-voor-stap-script in vaste volgorde, volgens de vijf veiligheidsregels: vrijschakelen, beveiligen tegen herinschakelen, spanningsloosheid vaststellen, aarden en kortsluiten, afschermen.',
       film: 'eng.switchgear.fiverules',
       title: 'Schakelplannen',
       pre: [
@@ -513,7 +513,7 @@ export default {
     },
     {
       id: 'eng.gridops.fieldlean',
-      gist: 'Wrench time, het deel van de dienst met echt handwerk, is vaak de helft of minder; de rest is reizen, wachten en zoeken.',
+      gist: 'Wrench time, het deel van de dienst met echt handwerk, is vaak rond de helft of minder; meer handwerk is meer werk met dezelfde mensen.',
       title: 'Lean in het veldwerk',
       pre: [
         {
