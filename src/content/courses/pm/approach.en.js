@@ -290,26 +290,26 @@ export default {
     },
     {
       id: 'pm.approach.families',
-      gist: 'There are four method families and a mixed form; a certificate proves someone passed an exam, not how a project works in practice.',
+      gist: 'Four method families and a mix; DMAIC is a project structure for any improvement, not only for Six Sigma.',
       title: 'The method families',
       pre: [
         {
           q: 'A client says: “We work according to PRINCE2.” What does that tell you about how the project runs?',
-          options: ['That the team works in sprints of two weeks with a review at the end', 'That all project leads have passed an official diploma in the method', 'That there is a fixed method, not how strictly it is followed', 'That the project improves data-driven with DMAIC in five phases'],
+          options: ['That the team works in sprints of two weeks with a review at the end', 'That all project leads have passed an official diploma in the method', 'That there is a fixed method, not how strictly it is followed', 'That the project is improved with DMAIC in five phases'],
           answer: 'That there is a fixed method, not how strictly it is followed',
           why: 'PRINCE2 is a method; how strictly it is applied you must ask.',
         },
       ],
       teach: [
-        'A method family is a group of ways of working with the same basic idea. There are four, plus a blend. Predictive: plan first, then execute and manage deviations; waterfall and PRINCE2 belong here. Agile: short rounds each ending with something working, such as Scrum and Kanban; the lessons Choosing a way of working and The five Scrum events explain those.\n\nHybrid: a mix, for example fixed milestones with short rounds inside.',
-        'Lean improvement: the people who do the work improve it with small experiments. The A3 (an improvement report on one sheet) and the kaizen event (a team improves one area in a few days) belong here. How they work is in the module Engineering problem solving in Engineering.\n\nSix Sigma: improving with data, in fixed steps called DMAIC: Define, Measure, Analyse, Improve, Control.',
-        'What are the well-known names? The PMBOK Guide from PMI and the ICB from IPMA are a body of knowledge: they describe what a project manager must know and be able to do. PMI works with principles and performance domains; IPMA with competences in three areas: people, practice and perspective.\n\nPRINCE2 is different: it is a method, with themes, stages and roles.',
-        'A certificate proves that someone studied and passed an exam. It does not prove how a project works in practice. A client who says “PRINCE2” sometimes means the method, sometimes only the templates.\n\nSo ask further: which parts do you really use, and which decisions are taken through them? That says more than a diploma on the wall.',
-        'What experts discuss: some see agile and PRINCE2 as opposites. PeopleCert, the owner of PRINCE2, writes that the latest PRINCE2 works together with Agile, Lean and ITIL (the IT service management practice).\n\nIn practice most projects contain more than one family. A sharp question: “Which family does the client actually mean when he uses the word agile or Six Sigma?”',
+        'There are four method families and a blend. A method family is a group of ways of working with the same basic idea.\n\nThe four families: predictive, agile, Lean improvement and improving with DMAIC. The blend is called hybrid: for example fixed milestones with short rounds inside. Below, each family lists the well-known methods that belong to it.',
+        'Predictive: plan first, then execute and manage deviations. Waterfall (a fixed order of phases), PRINCE2 (stages, themes and roles) and stage-gate (a decision gate after each phase) belong here.\n\nAgile: short rounds each ending with something working. Scrum (sprints), Kanban (work on a board, with a limit on what runs at once) and SAFe (agile for many teams together) belong here. The lessons Choosing a way of working and The five Scrum events explain this.',
+        'Lean improvement: the people who do the work improve it with small experiments. PDCA (plan, do, check, act: a small cycle), the A3 (an improvement report on one sheet), the kaizen event (a team improves one area in a few days) and value stream analysis (you draw how the work flows and where it waits) belong here.\n\nHow they work is in the module Engineering problem solving in Engineering.',
+        'Improving with DMAIC: a project structure for any improvement, not only for Six Sigma. Five phases: Define, Measure, Analyse, Improve, Control. Each phase delivers something the next one needs; that is how DMAIC holds the project together.\n\nSix Sigma adds statistics. Lean uses the same phases without that statistics, for example with a kaizen event in the Improve phase. Related are 8D (eight steps for one customer complaint) and DMADV (when you design something new).',
+        'The PMBOK Guide from PMI and the ICB from IPMA are not a method but a body of knowledge: they describe what a project manager must know and be able to do. PRINCE2 is a method, with themes, stages and roles.\n\nA certificate proves that someone passed an exam, not how a project works. Ask further: which parts do you really use? PeopleCert, the owner of PRINCE2, writes that the latest PRINCE2 works together with Agile, Lean and ITIL.',
       ],
       example: {
         kind: 'worked',
-        text: 'One problem at a grid operator: of the 100 work orders a week, 30 reach the fitters late.\n\nPredictive: you analyse the process, design a new order process, build it and introduce it; after about six months it is done.\n\nAgile: in rounds of two weeks you test a new weekly cut-off time with one team, see what happens and adjust.\n\nSix Sigma: you measure for four weeks where the orders wait, find that approval is the biggest delay, improve that step and set up a weekly measurement that holds it.',
+        text: 'One problem at a grid operator: of the 100 work orders a week, 30 reach the fitters late. How does each family tackle it?\n\nPredictive: you design a new order process, build it and introduce it; after about six months it is done.\n\nAgile: in rounds of two weeks you test a new weekly cut-off time with one team, see what happens and adjust.\n\nLean improvement: in a three-day kaizen event a team with the planners draws the value stream of an order and removes the first wait.\n\nDMAIC: you fix the goal, measure for four weeks where the orders wait, find that approval is the biggest delay, improve that step and set up a weekly measurement that holds it. With statistics this is called Six Sigma; without, it is a well-structured improvement project.\n\nHybrid: DMAIC as the structure, with short rounds in the Improve phase to test the new cut-off time.',
       },
       said: 'What you hear in projects: “We do PRINCE2, so the templates have to be filled in.”',
       recall: [
@@ -326,10 +326,10 @@ export default {
           why: 'A certificate measures knowledge on one day, not behaviour in a project.',
         },
         {
-          q: 'Which family fits a recurring problem for which you have a lot of data?',
-          options: ['Six Sigma with DMAIC', 'A predictive approach with a fixed design', 'Scrum with sprints of two weeks', 'A kick-off without any further method'],
-          answer: 'Six Sigma with DMAIC',
-          why: 'Data and repetition are the strength of DMAIC.',
+          q: 'What is DMAIC meant for?',
+          options: ['As a project structure for any improvement, also without Six Sigma statistics', 'As an agile way of working in which a team builds new products in sprints', 'As a body of knowledge describing what a project manager must know', 'As a predictive method for projects with a fixed design and end date'],
+          answer: 'As a project structure for any improvement, also without Six Sigma statistics',
+          why: 'DMAIC holds an improvement project together in five phases. Six Sigma adds statistics, but the structure works for Lean too.',
         },
         {
           q: 'Of the 100 work orders a week, 30 are late. After an improvement it is 12 of 100. By how many percentage points does the share of late work orders fall?',
@@ -353,16 +353,16 @@ export default {
       },
       sayIt: 'Explain in 60 seconds which method families exist and what separates PRINCE2, the PMBOK Guide and a certificate.',
       terms: [
-        { term: 'Method family', def: 'A group of ways of working with the same basic idea: predictive, agile, Lean, Six Sigma or a mix.' },
+        { term: 'Method family', def: 'A group of ways of working with the same basic idea: predictive, agile, Lean improvement, improving with DMAIC or a mix.' },
         { term: 'Body of knowledge', def: 'A description of what a professional must know and be able to do, without prescribing one way of working.' },
         { term: 'Method', def: 'A prescribed way of working with steps, roles and products, such as PRINCE2.' },
         { term: 'Certificate', def: 'Proof that someone followed a course and passed an exam.' },
-        { term: 'DMAIC', def: 'The five steps of Six Sigma: define, measure, analyse, improve and control.' },
+        { term: 'DMAIC', def: 'Five phases that structure an improvement project and hold it together: define, measure, analyse, improve and control. Used in Lean, Six Sigma and beyond.' },
       ],
     },
     {
       id: 'pm.approach.dmaic',
-      gist: 'DMAIC is a fixed route for a recurring problem with data: define, measure, analyse, improve and control, with a tollgate review after each phase.',
+      gist: 'DMAIC is a project structure for any improvement: define, measure, analyse, improve and control, with a tollgate review after each phase.',
       title: 'DMAIC on a small problem',
       pre: [
         {
@@ -373,11 +373,11 @@ export default {
         },
       ],
       teach: [
-        'DMAIC is a fixed route for a recurring problem you can get data about. Five phases: define, measure, analyse, improve and control.\n\nEach phase delivers something the next one needs. That makes it dull but reliable: you do not jump to a solution before you know what is going on.',
+        'DMAIC is a project structure for any improvement you can put a number on, not only for Six Sigma. Five phases: define, measure, analyse, improve and control.\n\nEach phase delivers something the next one needs. That is how the structure holds the project together: you do not jump to a solution before you know what is going on.',
         'Define: you write a project charter, the Six Sigma kind: the problem, the goal in numbers, the scope, the team and the date. Measure: you make a baseline of current performance, with a fixed definition, a fixed source and a fixed period.\n\nResult of these two phases: one number everybody agrees on, and a goal you can check later.',
         'Analyse: you look for where the loss is. Simply, that can be done by counting where the work waits. Improve: you test a solution on a small scale and measure whether the number moves. Control: you make sure it keeps working with an owner, a fixed measurement and agreements in daily work.\n\nThe last phase is often skipped. Then the result slips back once the attention is gone.',
         'At the end of each phase there is a tollgate review: a short decision moment with the sponsor. Is what we have right, and do we go on? That way you stop in time if the problem proves smaller or the data is missing.\n\nIt is not an exam but a conversation: what do we know now, what is the number, what is the next step?',
-        'Which improvement road fits which size? As a rule of thumb: an A3 for one owner who tackles one problem in a few weeks. A kaizen event for one area in a few days, often three to five, with the people who do the work. DMAIC for a recurring problem with data over a few months.\n\nHow an A3 or a kaizen event works is in the module Engineering problem solving in Engineering.',
+        'Which improvement road fits which size? As a rule of thumb: an A3 for one owner who tackles one problem in a few weeks. A kaizen event for one area in a few days, often three to five, with the people who do the work. DMAIC for an improvement project with a fixed structure over a few months, with or without Six Sigma statistics.\n\nHow an A3 or a kaizen event works is in the module Engineering problem solving in Engineering.',
       ],
       example: {
         kind: 'worked',
@@ -393,7 +393,7 @@ export default {
         },
         {
           q: 'Why is control a phase of its own?',
-          options: ['Because the result otherwise slips back once attention is gone', 'Because the sponsor wants an extra decision moment at the end of each phase', 'Because otherwise the analysis would not be approved by the tollgate', 'Because Six Sigma always demands exactly five phases'],
+          options: ['Because the result otherwise slips back once attention is gone', 'Because the sponsor wants an extra decision moment at the end of each phase', 'Because otherwise the analysis would not be approved by the tollgate', 'Because the analyse phase would otherwise get too little time'],
           answer: 'Because the result otherwise slips back once attention is gone',
           why: 'An improvement without owner and measurement often disappears again.',
         },

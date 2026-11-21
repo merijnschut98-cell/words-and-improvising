@@ -161,11 +161,11 @@ const STAGE = (() => {
   }
 
   // ---- s3: choosing an approach. The move as the question, the four families and a mix, the move is predictive,
-  // a recurring problem with data goes to Six Sigma.
+  // an improvement project is built on DMAIC.
   const FY = (i) => 156 + i * 34;
   function methodParts(b, p) {
     const ask = rect(334, 94, 284, 56, 'pm-card', 8) + txt(346, 118, tr('Verhuis lijn 3', 'Move line 3', 262), 22, 'start', 'pm-big') + txt(346, 144, tr('welke aanpak?', 'which approach?', 262), 22, 'start', 'pm-mute');
-    const names = [tr('Voorspellend', 'Predictive', 250), tr('Agile', 'Agile', 250), tr('Lean', 'Lean', 250), tr('Six Sigma', 'Six Sigma', 250), tr('Mengvorm', 'Mix', 250)];
+    const names = [tr('Voorspellend', 'Predictive', 250), tr('Agile', 'Agile', 250), tr('Lean', 'Lean', 250), tr('DMAIC-verbeteren', 'DMAIC improvement', 250), tr('Mengvorm', 'Mix', 250)];
     let fams = '';
     names.forEach((n, i) => { fams += op(b === 1 ? span(p, i * 0.1, i * 0.1 + 0.3) : 1, rect(334, FY(i), 284, 30, 'pm-tile', 6) + txt(346, FY(i) + 23, n, 22, 'start', 'pm-txt')); });
     const hit = (i) => rect(334, FY(i), 284, 30, 'pm-crit', 6) + txt(346, FY(i) + 23, names[i], 22, 'start', 'pm-on');

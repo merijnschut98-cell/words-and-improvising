@@ -145,3 +145,59 @@ test('answers: the right answer is not mostly the longest option, nor systematic
     assert.ok(Math.min(...rank) / qs.length >= 0.15, `${lang}: length ranks ${rank}`);
   }
 });
+
+// ---- v18 F4: the method families lesson names every family, at least eight methods, and DMAIC is a project
+// structure for any improvement, not Six Sigma only (Merijn, 21 Nov).
+const lessonOf = async (lang, id) => (await load(lang)).lessons.find((l) => l.id === id);
+const FAMILIES = {
+  nl: ['voorspellend', 'agile', 'Lean-verbeteren', 'DMAIC', 'hybride'],
+  en: ['predictive', 'agile', 'Lean improvement', 'DMAIC', 'hybrid'],
+};
+const METHODS = ['waterfall', 'PRINCE2', 'stage-gate', 'Scrum', 'Kanban', 'SAFe', 'PDCA', 'A3', 'DMAIC', '8D', 'DMADV'];
+
+test('v18 F4: the first block of the method families lesson names all four families and the mix, in a list that reads', async () => {
+  for (const lang of ['nl', 'en']) {
+    const l = await lessonOf(lang, 'pm.approach.families');
+    const first = l.teach[0];
+    for (const f of FAMILIES[lang]) assert.ok(first.toLowerCase().includes(f.toLowerCase()), `${lang}: block 1 names ${f}`);
+    assert.ok(first.split('\n\n').length >= 2, `${lang}: block 1 is not one run-on paragraph`);
+    assert.ok(sentences(first.replace(/\n\n/g, ' ')).every((s) => s.split(/\s+/).length <= 30), `${lang}: no sentence of 30 words or more in block 1`);
+  }
+});
+
+test('v18 F4: at least eight methods are named, each placed in a family', async () => {
+  for (const lang of ['nl', 'en']) {
+    const l = await lessonOf(lang, 'pm.approach.families');
+    const body = l.teach.join('\n\n');
+    const named = METHODS.filter((m) => body.toLowerCase().includes(m.toLowerCase()));
+    assert.ok(named.length >= 8, `${lang}: ${named.length} methods named (${named.join(', ')})`);
+    for (const m of ['waterfall', 'PRINCE2', 'Scrum', 'PDCA', 'DMAIC']) assert.ok(body.toLowerCase().includes(m.toLowerCase()), `${lang}: ${m}`);
+  }
+});
+
+test('v18 F4: DMAIC is a project structure for any improvement, in the teach blocks, the term, the recall question and the example', async () => {
+  const STRUCT = { nl: /projectstructuur/i, en: /project structure/i };
+  const NOT_ONLY = { nl: /niet alleen (?:voor )?Six Sigma/i, en: /not only (?:for )?Six Sigma/i };
+  for (const lang of ['nl', 'en']) {
+    const fam = await lessonOf(lang, 'pm.approach.families');
+    const dm = await lessonOf(lang, 'pm.approach.dmaic');
+    assert.match(fam.teach.join('\n\n'), STRUCT[lang], `${lang}: families teach`);
+    assert.match(fam.teach.join('\n\n'), NOT_ONLY[lang], `${lang}: families teach says not only Six Sigma`);
+    assert.match(dm.teach.join('\n\n'), STRUCT[lang], `${lang}: dmaic teach`);
+    assert.match(dm.gist, STRUCT[lang], `${lang}: dmaic gist`);
+    const term = fam.terms.find((t) => t.term === 'DMAIC');
+    assert.ok(term && !/^(?:De vijf stappen van|The five steps of) Six Sigma/.test(term.def), `${lang}: term not Six Sigma only`);
+    assert.match(term.def, /Lean/, `${lang}: term mentions Lean`);
+    const rec = fam.recall.filter((q) => q.options).map((q) => [q.q, q.answer, ...q.options].join(' '));
+    assert.ok(!rec.some((t) => /Six Sigma (?:met|with) DMAIC/.test(t)), `${lang}: no recall slot teaches DMAIC as Six Sigma only`);
+    assert.ok(rec.some((t) => /DMAIC/.test(t)), `${lang}: a recall question asks about DMAIC`);
+    assert.ok(!dm.recall.some((q) => q.options && q.options.some((o) => /Six Sigma (?:altijd|always)/.test(o))), `${lang}: dmaic recall`);
+    for (const f of FAMILIES[lang]) assert.ok(fam.example.text.toLowerCase().includes(f.toLowerCase()), `${lang}: the example compares ${f}`);
+  }
+});
+
+test('v18 F4: the families lesson keeps its four recall slots (kind and answer position)', async () => {
+  const [en, nl] = [await lessonOf('en', 'pm.approach.families'), await lessonOf('nl', 'pm.approach.families')];
+  for (const l of [en, nl]) assert.deepEqual(l.recall.map((q) => ('number' in q ? 'num' : q.options.indexOf(q.answer))), [2, 3, 0, 'num']);
+  assert.equal(nl.pre[0].options.indexOf(nl.pre[0].answer), 2);
+});
