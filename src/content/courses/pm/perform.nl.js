@@ -929,7 +929,7 @@ export default {
     },
     {
       id: 'pm.perform.coach',
-      gist: 'De eerste reactie van de leidinggevende op rood bepaalt of mensen problemen blijven melden: observeer eerst, en geef dan feedback onder vier ogen.',
+      gist: 'De eerste reactie van de leidinggevende op rood bepaalt of mensen blijven melden; observeer als coach eerst, geef dan onder vier ogen feedback.',
       title: 'De leidinggevende coachen in het overleg',
       pre: [
         {

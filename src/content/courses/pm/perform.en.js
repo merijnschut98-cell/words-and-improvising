@@ -508,7 +508,7 @@ export default {
     },
     {
       id: 'pm.perform.hoshin',
-      gist: 'Pick some three to five breakthrough objectives per plant and let them travel up and down in catchball, so people become owners of them.',
+      gist: 'Pick about three to five breakthrough objectives per plant and let them travel up and down in catchball, so people become owners of them.',
       title: 'Hoshin kanri and catchball',
       pre: [
         {
@@ -929,7 +929,7 @@ export default {
     },
     {
       id: 'pm.perform.coach',
-      gist: 'The leader’s first reaction to red decides whether people keep reporting problems: observe first, then give feedback in private.',
+      gist: 'The leader’s first reaction to red decides whether people keep reporting; as a coach, observe first, then give feedback in private.',
       title: 'Coaching the leader in the review',
       pre: [
         {
