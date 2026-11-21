@@ -2,6 +2,7 @@
 // the content tests and by whoever writes content. Returns a list of problems;
 // an empty list means the module is valid. Pure.
 import { containsAnswer } from '../../core/hint.js';
+import { KINDS, kindOf } from '../../core/questionkinds.js';
 
 const MAX_BLOCK_WORDS = 90;
 const MAX_HINT_WORDS = 25;
@@ -16,17 +17,50 @@ function strings(v, out = []) {
   return out;
 }
 
-function checkQuestion(qn, where, errs) {
+// A question's shape by kind (v18, design 2.3). No `kind` = mc, or num when it
+// has `number`. lang ('en'|'nl') only sharpens the best-answer stem check.
+const BEST_STEM = { nl: /\bbeste\b/i, en: /\bbest\b/i };
+const distinct = (a) => new Set(a).size === a.length;
+const list = (a, lo, hi) => Array.isArray(a) && a.length >= lo && a.length <= hi && a.every(str);
+
+export function checkQuestion(qn, where, errs, lang = null) {
   if (!str(qn.q)) errs.push(`${where}: question text missing`);
   if (!str(qn.why)) errs.push(`${where}: why missing`);
-  if ('number' in qn) {
+  if ('kind' in qn && !KINDS.includes(qn.kind)) { errs.push(`${where}: unknown kind ${JSON.stringify(qn.kind)}`); return; }
+  const kind = kindOf(qn);
+  if (kind === 'num') {
     if (typeof qn.number !== 'number' || !Number.isFinite(qn.number)) errs.push(`${where}: number must be a number`);
     if (!(typeof qn.tolerance === 'number' && qn.tolerance > 0)) errs.push(`${where}: numeric question needs a tolerance > 0`);
     if (typeof qn.unit !== 'string') errs.push(`${where}: numeric question needs a unit (may be empty)`);
-  } else {
+  } else if (kind === 'mc' || kind === 'best') {
     if (!Array.isArray(qn.options) || qn.options.length !== 4 || !qn.options.every(str)) errs.push(`${where}: needs 4 options`);
     else if (new Set(qn.options).size !== 4) errs.push(`${where}: options must be distinct`);
     if (!Array.isArray(qn.options) || !qn.options.includes(qn.answer)) errs.push(`${where}: answer not in options`);
+    if (kind === 'best') {
+      if (!Array.isArray(qn.options) || !qn.options.includes(qn.close)) errs.push(`${where}: best answer needs close (the runner-up) among the options`);
+      else if (qn.close === qn.answer) errs.push(`${where}: close must differ from answer`);
+      const stem = lang ? BEST_STEM[lang] : /\b(beste|best)\b/i;
+      if (str(qn.q) && !stem.test(qn.q)) errs.push(`${where}: a best-answer stem must say "${lang === 'nl' ? 'beste' : lang === 'en' ? 'best' : 'beste/best'}"`);
+    }
+  } else if (kind === 'all') {
+    if (!list(qn.options, 4, 6)) errs.push(`${where}: select-all needs 4–6 options`);
+    else if (!distinct(qn.options)) errs.push(`${where}: options must be distinct`);
+    else if (!Array.isArray(qn.answers) || !qn.answers.length || qn.answers.length >= qn.options.length || !distinct(qn.answers) || !qn.answers.every((a) => qn.options.includes(a))) {
+      errs.push(`${where}: answers must be 1 to ${qn.options.length - 1} distinct options`);
+    }
+  } else if (kind === 'gap') {
+    if (!str(qn.text) || qn.text.split('___').length !== 2) errs.push(`${where}: gap text needs exactly one ___`);
+    if (!list(qn.accept, 1, 4)) errs.push(`${where}: gap needs 1–4 accepted words`);
+    if ('choices' in qn && qn.choices !== null) {
+      if (!list(qn.choices, 4, 6) || !distinct(qn.choices)) errs.push(`${where}: choices must be 4–6 distinct words`);
+      else if (Array.isArray(qn.accept) && !qn.choices.includes(qn.accept[0])) errs.push(`${where}: choices must include the first accepted word`);
+    }
+  } else if (kind === 'order') {
+    if (!list(qn.items, 3, 6) || !distinct(qn.items)) errs.push(`${where}: order needs 3–6 distinct items`);
+  } else if (kind === 'match') {
+    const pairs = qn.pairs;
+    if (!Array.isArray(pairs) || pairs.length < 3 || pairs.length > 5 || !pairs.every((p) => Array.isArray(p) && p.length === 2 && p.every(str))) errs.push(`${where}: match needs 3–5 pairs of two texts`);
+    else if (!distinct(pairs.map((p) => p[0])) || !distinct(pairs.map((p) => p[1]))) errs.push(`${where}: match sides must each be distinct`);
   }
   // Optional: the question's own hint, shown instead of the generated one.
   if ('hint' in qn) {
@@ -53,7 +87,11 @@ function checkLesson(l, meta, lang, errs, tier = meta.level) {
   if (!str(l.title)) errs.push(`${at}: title missing`);
   const pre = l.pre || [];
   if (pre.length < 1 || pre.length > 2) errs.push(`${at}: needs 1–2 pre questions`);
-  pre.forEach((qn, i) => checkQuestion(qn, `${at} pre ${i}`, errs));
+  pre.forEach((qn, i) => {
+    checkQuestion(qn, `${at} pre ${i}`, errs, lang);
+    // the pre card is a single tap or a number; the puzzle kinds belong in recall and the banks
+    if (qn && !['mc', 'num', 'best'].includes(kindOf(qn))) errs.push(`${at} pre ${i}: kind ${kindOf(qn)} is not supported in a pre question`);
+  });
   const teach = l.teach || [];
   if (teach.length < 3 || teach.length > 5) errs.push(`${at}: needs 3–5 teach blocks`);
   teach.forEach((b, i) => {
@@ -71,7 +109,7 @@ function checkLesson(l, meta, lang, errs, tier = meta.level) {
   if ('gist' in l && !(str(l.gist) && words(l.gist) <= 25 && /[.!?]$/.test(l.gist.trim()))) errs.push(`${at}: gist must be one sentence of at most 25 words`);
   const recall = l.recall || [];
   if (recall.length < 3 || recall.length > 5) errs.push(`${at}: needs 3–5 recall questions`);
-  recall.forEach((qn, i) => checkQuestion(qn, `${at} recall ${i}`, errs));
+  recall.forEach((qn, i) => checkQuestion(qn, `${at} recall ${i}`, errs, lang));
   if (meta.questions && meta.questions[l.id] !== recall.length) errs.push(`${at}: recall count ${recall.length} differs from the index count ${meta.questions[l.id]}`);
   const s = l.situation || {};
   if (!(str(s.scene) && str(s.ask) && str(s.model))) errs.push(`${at}: situation needs scene, ask and model`);
@@ -226,6 +264,33 @@ function tiersOf(meta) {
   return tiers;
 }
 
+// en/nl parity of the v18 kinds: the same kind per slot; best has the key and
+// the runner-up at the same positions; all has the same key positions; order
+// the same item count; match the same pair count. gap accept lists are free.
+export function checkKindParity(qa, qb, where, errs) {
+  if (!qa || !qb) return;
+  if (kindOf(qa) !== kindOf(qb)) { errs.push(`${where}: kind differs between en and nl (${kindOf(qa)} / ${kindOf(qb)})`); return; }
+  const kind = kindOf(qa);
+  const at = (q, k) => (Array.isArray(q.options) ? q.options.indexOf(q[k]) : -1);
+  if (kind === 'best' && at(qa, 'close') !== at(qb, 'close')) errs.push(`${where}: runner-up position differs between en and nl`);
+  if (kind === 'all') {
+    const keys = (q) => (Array.isArray(q.options) && Array.isArray(q.answers) ? q.options.map((o, i) => (q.answers.includes(o) ? i : -1)).filter((i) => i >= 0).join() : '');
+    if ((qa.options || []).length !== (qb.options || []).length) errs.push(`${where}: option counts differ between en and nl`);
+    else if (keys(qa) !== keys(qb)) errs.push(`${where}: answer positions differ between en and nl`);
+  }
+  if (kind === 'order' && (qa.items || []).length !== (qb.items || []).length) errs.push(`${where}: item counts differ between en and nl`);
+  if (kind === 'match' && (qa.pairs || []).length !== (qb.pairs || []).length) errs.push(`${where}: pair counts differ between en and nl`);
+  if (kind === 'gap' && !!(qa.choices) !== !!(qb.choices)) errs.push(`${where}: word bank in one language only`);
+}
+
+// Across a module the select-all items may not all have the same number of
+// keys, or "always two" becomes a tell.
+export function checkSelectAllSpread(lessons, lang, errs) {
+  const counts = [];
+  for (const l of lessons) for (const qn of [...(l.pre || []), ...(l.recall || [])]) if (qn && kindOf(qn) === 'all' && Array.isArray(qn.answers)) counts.push(qn.answers.length);
+  if (counts.length >= 2 && new Set(counts).size === 1) errs.push(`${lang}: every select-all question has ${counts[0]} correct answers; vary the number`);
+}
+
 export function validateModule(en, nl, meta) {
   const errs = [];
   const topical = Array.isArray(meta.topics);
@@ -240,6 +305,7 @@ export function validateModule(en, nl, meta) {
     for (const id of ids) if (!meta.lessons.includes(id)) errs.push(`${lang}: lesson ${id} not in the index`);
     if (ids.join() !== meta.lessons.filter((id) => ids.includes(id)).join()) errs.push(`${lang}: lessons out of index order`);
     for (const l of lessons) if (l && meta.lessons.includes(l.id)) checkLesson(l, meta, lang, errs, tiers.get(l.id) ?? meta.level);
+    checkSelectAllSpread(lessons.filter(Boolean), lang, errs);
     // A topic module defines each term once (in the lowest level that uses it);
     // the lesson screen makes every term of the module tappable.
     if (topical) {
@@ -264,11 +330,13 @@ export function validateModule(en, nl, meta) {
     if ((a.pre || []).length !== (b.pre || []).length) errs.push(`${id}: pre counts differ between en and nl`);
     // The Dutch screen pairs terms with their English word by position.
     if ((a.terms || []).length !== (b.terms || []).length) errs.push(`${id}: terms counts differ between en and nl`);
+    (a.pre || []).forEach((qa, i) => checkKindParity(qa, (b.pre || [])[i], `${id} pre ${i}`, errs));
     (a.recall || []).forEach((qa, i) => {
       const qb = (b.recall || [])[i];
       if (qb && ('number' in qa) !== ('number' in qb)) errs.push(`${id} recall ${i}: numeric in one language only`);
       if (qb && 'number' in qa && qa.number !== qb.number) errs.push(`${id} recall ${i}: numbers differ between en and nl`);
       if (qb && qa.options && qb.options && qa.options.indexOf(qa.answer) !== qb.options.indexOf(qb.answer)) errs.push(`${id} recall ${i}: answer position differs between en and nl`);
+      checkKindParity(qa, qb, `${id} recall ${i}`, errs);
     });
   }
   return errs;

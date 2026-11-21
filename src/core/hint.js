@@ -1,8 +1,12 @@
 // One hint for a quiz question, shown when he asks for it. Multiple choice:
 // one clearly wrong option struck, plus the definition of a lesson term the
 // question uses. Number: the first step of the working and the unit, never the
-// answer. A question's own `hint` (from the content) wins. Pure.
+// answer. A question's own `hint` (from the content) wins. v18 kinds: best
+// strikes the weakest option (never the runner-up); all says how many are
+// right; gap gives the first letter; order places the first item; match fixes
+// one pair. Pure.
 import { linkTerms } from './course.js';
+import { kindOf } from './questionkinds.js';
 
 const wordsOf = (s) => new Set(String(s).toLowerCase().match(/[\p{L}\p{N}]+/gu) || []);
 const escapeRe = (s) => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
@@ -49,9 +53,15 @@ export function containsAnswer(question, text) {
     const tol = Math.max(question.tolerance || 0, 1e-9);
     return numbersIn(text).some((v) => Math.abs(v - question.number) <= tol + 1e-9);
   }
-  const ans = String(question.answer || '').trim();
-  if (!ans) return false;
-  return new RegExp(`(?<![\\p{L}\\p{N}])${escapeRe(ans)}(?![\\p{L}\\p{N}])`, 'iu').test(String(text));
+  const has = (ans) => {
+    const a = String(ans || '').trim();
+    return !!a && new RegExp(`(?<![\\p{L}\\p{N}])${escapeRe(a)}(?![\\p{L}\\p{N}])`, 'iu').test(String(text));
+  };
+  const kind = kindOf(question);
+  if (kind === 'gap') return (question.accept || []).some(has);
+  if (kind === 'all') return (question.answers || []).length > 0 && question.answers.every(has);
+  if (kind === 'order' || kind === 'match') return false;
+  return has(question.answer);
 }
 
 // The first step of the working, from the explanation: the first clause with a
@@ -87,7 +97,20 @@ export function questionHint(question, terms = []) {
     const step = firstStep(question);
     return { kind: 'number', step, unit: question.unit ? question.unit : null, term: step ? null : termFor(question, terms) };
   }
-  const wrong = (question.options || []).filter((o) => o !== question.answer);
+  const kind = kindOf(question);
+  if (kind === 'all') return { kind: 'count', count: (question.answers || []).length };
+  if (kind === 'gap') {
+    const first = [...String((question.accept || [])[0] || '')][0];
+    return first ? { kind: 'letter', letter: first } : null;
+  }
+  if (kind === 'order') return (question.items || []).length ? { kind: 'first', item: question.items[0] } : null;
+  if (kind === 'match') {
+    const pairs = question.pairs || [];
+    if (!pairs.length) return null;
+    const [left, right] = pairs[hash(question.id || question.q) % pairs.length];
+    return { kind: 'pair', left, right };
+  }
+  const wrong = (question.options || []).filter((o) => o !== question.answer && !(kind === 'best' && o === question.close));
   if (!wrong.length) return null;
   const seed = question.id || question.q;
   const strike = wrong

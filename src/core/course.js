@@ -9,6 +9,7 @@ import { TEXT_FIRST_FILMS } from '../content/courses/films/textfirst.js';
 import { upcoming } from './realweek.js';
 import { creditXp, isPerfect, goalJustReached } from './xp.js';
 import { awardFlair } from './flair.js';
+import { judge, answerText, valueText } from './questionkinds.js';
 
 const LESSON_XP = 20;
 const SITUATION_XP = 10;
@@ -19,17 +20,9 @@ const PREPPED_CAP = 50;
 const PREP_DAYS = 2;
 const PREP_MIN = 3;
 
-// Numeric answers accept a Dutch decimal comma and always use the tolerance.
-export function judge(question, answer) {
-  if (!question) return false;
-  if ('number' in question) {
-    const s = String(answer ?? '').trim().replace(',', '.');
-    if (!s) return false;
-    const n = Number(s);
-    return Number.isFinite(n) && Math.abs(n - question.number) <= question.tolerance + 1e-9;
-  }
-  return answer === question.answer;
-}
+// Judging lives in questionkinds.js (one rule per kind); numeric answers accept
+// a Dutch decimal comma and always use the tolerance.
+export { judge };
 
 // One pass asks every question; review shows them all; the next pass asks only
 // the misses, until every question has been right once. hints holds the
@@ -548,9 +541,9 @@ export function lessonQuiz(lesson, { level = null, ask = (d) => d, pool = [], ea
 // right answer, each judged, so the gap is visible.
 export function guessCompare(q, now) {
   return {
-    guess: q.guess == null ? '?' : 'number' in q ? withUnit(q, q.guess) : q.guess,
-    now: 'number' in q ? withUnit(q, now) : now,
-    answer: 'number' in q ? withUnit(q, q.number) : q.answer,
+    guess: q.guess == null ? '?' : valueText(q, q.guess),
+    now: valueText(q, now),
+    answer: answerText(q),
     guessOk: q.guess != null && judge(q, q.guess),
     nowOk: judge(q, now),
   };
@@ -591,16 +584,13 @@ export function lessonSteps(phases, current) {
   return phases.map((p, i) => ({ id: STEP_OF[p], state: i < at ? 'done' : i === at ? 'current' : 'todo' }));
 }
 
-const withUnit = (q, v) => (q.unit ? `${v} ${q.unit}` : String(v));
-
 // The guesses from the start of a lesson, each next to the right answer and
 // why: the gap between guess and answer is what makes the lesson stick.
 export function guessFeedback(lesson, guesses) {
   return (lesson.pre || []).flatMap((q, i) => {
     const g = guesses[i];
     if (g == null) return [];
-    const num = 'number' in q;
-    return [{ q: q.q, guess: num ? withUnit(q, g) : g, answer: num ? withUnit(q, q.number) : q.answer, ok: judge(q, g), why: q.why }];
+    return [{ q: q.q, guess: valueText(q, g), answer: answerText(q), ok: judge(q, g), why: q.why }];
   });
 }
 
