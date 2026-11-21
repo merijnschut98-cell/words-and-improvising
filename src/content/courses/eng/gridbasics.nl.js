@@ -150,7 +150,7 @@ export default {
     },
     {
       id: 'eng.gridbasics.voltage',
-      gist: 'Spanningsdaling is stroom × weerstand binnen de band van 230 V ±10%; bij teruglevering stijgt de spanning aan het eind van de kabel.',
+      gist: 'Spanningsdaling is stroom × weerstand en de spanning moet binnen 230 V ±10% blijven; bij teruglevering stijgt de spanning aan het eind van de kabel.',
       title: 'Spanning langs de kabel: daling en stijging',
       pre: [
         {
@@ -297,7 +297,7 @@ export default {
     },
     {
       id: 'eng.gridbasics.levels',
-      gist: 'Tien keer zo hoge spanning betekent tien keer minder stroom en honderd keer minder verlies, dus vermogen reist op hoge spanning.',
+      gist: 'Bij gelijk vermogen betekent tien keer zo hoge spanning tien keer minder stroom en honderd keer minder verlies, dus vermogen reist op hoge spanning.',
       film: 'eng.gridbasics.path',
       figure: 'eng.gridbasics.levels',
       title: 'Spanningsniveaus en wie wat beheert',
@@ -516,7 +516,7 @@ export default {
     },
     {
       id: 'eng.gridbasics.backbone',
-      gist: 'Wind ver op zee komt als gelijkstroom aan land, omdat de laadstroom van een lange wisselstroomkabel te veel ruimte inneemt.',
+      gist: 'Wind ver op zee komt als gelijkstroom aan land: boven ruwweg 80 tot 100 km neemt de laadstroom van een wisselstroomkabel te veel ruimte in.',
       title: 'De ruggengraat: 380 kV, net op zee en het buitenland',
       pre: [
         {
@@ -661,7 +661,7 @@ export default {
     },
     {
       id: 'eng.gridbasics.law',
-      gist: 'Onder de Energiewet krijg je een aansluiting (aansluitplicht), maar de netbeheerder mag transport weigeren als er redelijkerwijs geen capaciteit is.',
+      gist: 'Onder de Energiewet krijg je een aansluiting binnen een redelijke termijn (aansluitplicht), maar de netbeheerder mag transport weigeren als er redelijkerwijs geen capaciteit is.',
       title: 'Wetten, codes en plichten',
       pre: [
         {
@@ -951,7 +951,7 @@ export default {
     },
     {
       id: 'eng.gridbasics.scarcity',
-      gist: 'Transportschaarste is een verwacht tekort: de toekomstige piek, huidige piek plus toegezegde capaciteit, is groter dan de capaciteit; congestie is overbelasting nu.',
+      gist: 'Transportschaarste is een verwacht tekort: huidige piek plus toegezegde capaciteit en groei is groter dan de capaciteit; congestie is overbelasting nu.',
       title: 'Transportschaarste, de capaciteitskaart en de wachtrij',
       pre: [
         {

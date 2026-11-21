@@ -150,7 +150,7 @@ export default {
     },
     {
       id: 'eng.gridbasics.voltage',
-      gist: 'Voltage drop is current × resistance within the 230 V ±10% band; with feed-in the voltage rises at the end of the cable.',
+      gist: 'Voltage drop is current × resistance and the voltage must stay within 230 V ±10%; with feed-in it rises at the end of the cable.',
       title: 'Voltage along the cable: drop and rise',
       pre: [
         {
@@ -297,7 +297,7 @@ export default {
     },
     {
       id: 'eng.gridbasics.levels',
-      gist: 'Ten times the voltage means a tenth of the current and a hundredth of the losses, so power travels at high voltage.',
+      gist: 'At equal power, ten times the voltage means a tenth of the current and a hundredth of the losses, so power travels at high voltage.',
       film: 'eng.gridbasics.path',
       figure: 'eng.gridbasics.levels',
       title: 'Voltage levels and who runs them',
@@ -516,7 +516,7 @@ export default {
     },
     {
       id: 'eng.gridbasics.backbone',
-      gist: 'Wind far offshore comes ashore as direct current, because the charging current of a long AC cable takes up too much capacity.',
+      gist: 'Wind far offshore comes ashore as direct current: beyond roughly 80 to 100 km an AC cable\'s charging current takes up too much capacity.',
       title: 'The backbone: 380 kV, the offshore grid and abroad',
       pre: [
         {
@@ -661,7 +661,7 @@ export default {
     },
     {
       id: 'eng.gridbasics.law',
-      gist: 'Under the Energy Act you get a connection (duty to connect), but the grid operator may refuse transport if there is reasonably no capacity.',
+      gist: 'Under the Energy Act you get a connection within a reasonable time, but the grid operator may refuse transport if there is reasonably no capacity.',
       title: 'Laws, codes and duties',
       pre: [
         {
@@ -951,7 +951,7 @@ export default {
     },
     {
       id: 'eng.gridbasics.scarcity',
-      gist: 'Transport scarcity is an expected shortfall: the future peak, today’s peak plus committed capacity, exceeds capacity; congestion is overload now.',
+      gist: 'Transport scarcity is an expected shortfall: today\'s peak plus committed capacity and growth exceeds capacity; congestion is overload now.',
       title: 'Transport scarcity, the capacity map and the queue',
       pre: [
         {
