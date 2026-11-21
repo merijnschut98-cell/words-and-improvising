@@ -493,3 +493,21 @@ export async function loadOpeners(subject, attempt = 0) {
   const mod = await import(`./openers.${subject}.js${attempt ? `?retry=${attempt}` : ''}`);
   return mod.default;
 }
+
+// v18 T1: the practice-test bank and blueprint of a module (design 3.2). One file per
+// module and language, banks/<moduleId>.<lang>.js, and one blueprint per module.
+// Resolves null when the module has no bank (the banks arrive module by module), so
+// a caller treats null as "no bank". Same retry as loadModule.
+export async function loadBank(moduleId, lang, attempt = 0) {
+  try {
+    const mod = await import(`./banks/${moduleId}.${lang === 'en' ? 'en' : 'nl'}.js${attempt ? `?retry=${attempt}` : ''}`);
+    return mod.default;
+  } catch { return null; }
+}
+
+export async function loadBlueprint(moduleId, attempt = 0) {
+  try {
+    const mod = await import(`./banks/${moduleId}.blueprint.js${attempt ? `?retry=${attempt}` : ''}`);
+    return mod.default;
+  } catch { return null; }
+}
