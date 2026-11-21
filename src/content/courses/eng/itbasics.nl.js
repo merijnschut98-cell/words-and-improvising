@@ -143,7 +143,7 @@ export default {
     },
     {
       id: 'eng.itbasics.segment',
-      gist: 'OT is lastig te patchen, dus bescherm je het door segmentatie: kantoor praat met een DMZ, de DMZ met productie, nooit direct met machines.',
+      gist: 'OT is vaak lastig te patchen, dus bescherm je het vooral door segmentatie: kantoor praat via een DMZ met productie, nooit direct met machines.',
       title: 'Waarom het OT-netwerk apart staat',
       pre: [
         {
@@ -215,7 +215,7 @@ export default {
     },
     {
       id: 'eng.itbasics.netdesign',
-      gist: 'In een plat netwerk bereikt één besmette pc alle machines; beoordeel een netwerk met tekening en assetinventaris, en meet het verkeer voordat je segmenteert.',
+      gist: 'In een plat netwerk kan één besmette pc alle machines bereiken; beoordeel een netwerk met tekening en assetinventaris, en meet het verkeer voordat je segmenteert.',
       title: 'Een fabrieksnetwerk beoordelen',
       pre: [
         {
@@ -649,7 +649,7 @@ export default {
     },
     {
       id: 'eng.itbasics.sql',
-      gist: 'In een SQL-query kiest SELECT de kolommen, FROM de tabel en WHERE de rijen; een JOIN laat rijen zonder match stil verdwijnen.',
+      gist: 'In een SQL-query kiest SELECT de kolommen, FROM de tabel en WHERE de rijen; een JOIN laat standaard rijen zonder match stil verdwijnen.',
       title: 'Een SQL-query lezen',
       pre: [
         {

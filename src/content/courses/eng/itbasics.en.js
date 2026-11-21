@@ -143,7 +143,7 @@ export default {
     },
     {
       id: 'eng.itbasics.segment',
-      gist: 'OT is hard to patch, so protect it by segmentation: the office talks to a DMZ, the DMZ to production, never directly to machines.',
+      gist: 'OT is often hard to patch, so protect it mainly by segmentation: the office talks to production via a DMZ, never directly to machines.',
       title: 'Why the OT network stands apart',
       pre: [
         {
@@ -215,7 +215,7 @@ export default {
     },
     {
       id: 'eng.itbasics.netdesign',
-      gist: 'On a flat network one infected PC reaches every machine; assess a network with a diagram and asset inventory, and measure traffic before you segment.',
+      gist: 'On a flat network one infected PC can reach every machine; assess a network with a diagram and asset inventory, and measure traffic before you segment.',
       title: 'Judging a plant network',
       pre: [
         {
@@ -649,7 +649,7 @@ export default {
     },
     {
       id: 'eng.itbasics.sql',
-      gist: 'In a SQL query SELECT picks the columns, FROM the table and WHERE the rows; a JOIN silently drops rows without a match.',
+      gist: 'In a SQL query SELECT picks the columns, FROM the table and WHERE the rows; a JOIN by default silently drops rows without a match.',
       title: 'Reading a SQL query',
       pre: [
         {
