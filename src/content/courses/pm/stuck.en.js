@@ -3,7 +3,7 @@ export default {
   lessons: [
     {
       id: 'pm.stuck.diagnose',
-      gist: 'Being stuck comes in four kinds: unclear goal, unclear way, people and capacity; start at the first “no” on the four questions.',
+      gist: 'Being stuck comes in four kinds: unclear goal, unclear way, people and capacity; usually start at the first “no” on the four questions.',
       film: 'pm.stuck.diagnose',
       title: 'Naming the problem',
       pre: [
@@ -1159,7 +1159,7 @@ export default {
     },
     {
       id: 'pm.stuck.reset',
-      gist: 'Hoping to catch up is the costliest choice: stop for an honest analysis on one A4 page and make a new agreement.',
+      gist: 'If the goal is out of reach, hoping to catch up is the costliest choice; stop, analyse on one A4 and make a new agreement.',
       film: 'pm.stuck.diagnose',
       title: 'Resetting a failing project',
       pre: [

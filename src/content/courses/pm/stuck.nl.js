@@ -3,7 +3,7 @@ export default {
   lessons: [
     {
       id: 'pm.stuck.diagnose',
-      gist: 'Vastzitten heeft vier soorten: onduidelijk doel, onduidelijke weg, mensen en capaciteit; begin bij het eerste “nee” op de vier vragen.',
+      gist: 'Vastzitten heeft vier soorten: onduidelijk doel, onduidelijke weg, mensen en capaciteit; begin meestal bij het eerste “nee” op de vier vragen.',
       film: 'pm.stuck.diagnose',
       title: 'Het probleem benoemen',
       pre: [
@@ -497,7 +497,7 @@ export default {
     },
     {
       id: 'pm.stuck.experiment',
-      gist: 'Neem een omkeerbaar besluit snel en test het met een klein experiment, met een hypothese en vooraf afgesproken stopcriterium; onomkeerbare besluiten analyseer je zorgvuldig.',
+      gist: 'Neem een omkeerbaar besluit snel en test het met een klein experiment, met een hypothese en een vooraf afgesproken stopcriterium; onomkeerbare besluiten analyseer je zorgvuldig.',
       film: 'pm.stuck.diagnose',
       title: 'Handelen onder onzekerheid',
       pre: [
@@ -1159,7 +1159,7 @@ export default {
     },
     {
       id: 'pm.stuck.reset',
-      gist: 'Hopen het in te halen is de duurste keuze: stop voor een eerlijke analyse op één A4 en maak een nieuwe afspraak.',
+      gist: 'Ligt het doel buiten bereik, dan is hopen het in te halen de duurste keuze; stop, analyseer op één A4 en maak een nieuwe afspraak.',
       film: 'pm.stuck.diagnose',
       title: 'Een vastgelopen project herstarten',
       pre: [
