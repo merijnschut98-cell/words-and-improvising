@@ -6,7 +6,7 @@
       "poster": "src/content/courses/films/eng.machining.turning.jpg",
       "nl": {
         "dur": 227.1,
-        "bytes": 11982881,
+        "bytes": 5271737,
         "scenes": [
           0,
           21.73,
@@ -21,7 +21,7 @@
       },
       "en": {
         "dur": 259.1,
-        "bytes": 13423778,
+        "bytes": 5856733,
         "scenes": [
           0,
           25.24,
@@ -39,7 +39,7 @@
       "poster": "src/content/courses/films/eng.moulding.setting.jpg",
       "nl": {
         "dur": 264.5,
-        "bytes": 10766066,
+        "bytes": 5158461,
         "scenes": [
           0,
           42.38,
@@ -55,7 +55,7 @@
       },
       "en": {
         "dur": 287.1,
-        "bytes": 11574644,
+        "bytes": 5529379,
         "scenes": [
           0,
           47.44,
@@ -74,7 +74,7 @@
       "poster": "src/content/courses/films/eng.machining.overview.jpg",
       "nl": {
         "dur": 213.1,
-        "bytes": 7598958,
+        "bytes": 3693653,
         "scenes": [
           0,
           35.9,
@@ -89,7 +89,7 @@
       },
       "en": {
         "dur": 237.8,
-        "bytes": 8366357,
+        "bytes": 4044947,
         "scenes": [
           0,
           37,
@@ -107,7 +107,7 @@
       "poster": "src/content/courses/films/eng.machining.milling.jpg",
       "nl": {
         "dur": 231.5,
-        "bytes": 11731707,
+        "bytes": 5149075,
         "scenes": [
           0,
           30.62,
@@ -121,7 +121,7 @@
       },
       "en": {
         "dur": 258.9,
-        "bytes": 12904313,
+        "bytes": 5644474,
         "scenes": [
           0,
           35.05,
@@ -138,7 +138,7 @@
       "poster": "src/content/courses/films/eng.machining.drilling.jpg",
       "nl": {
         "dur": 233,
-        "bytes": 8998946,
+        "bytes": 4590412,
         "scenes": [
           0,
           39.86,
@@ -153,7 +153,7 @@
       },
       "en": {
         "dur": 269.9,
-        "bytes": 10236925,
+        "bytes": 5195489,
         "scenes": [
           0,
           46.75,
@@ -171,7 +171,7 @@
       "poster": "src/content/courses/films/eng.machining.tooling.jpg",
       "nl": {
         "dur": 289.3,
-        "bytes": 13723349,
+        "bytes": 6173125,
         "scenes": [
           0,
           23.23,
@@ -187,7 +187,7 @@
       },
       "en": {
         "dur": 311.8,
-        "bytes": 14750869,
+        "bytes": 6598763,
         "scenes": [
           0,
           24.8,
@@ -206,7 +206,7 @@
       "poster": "src/content/courses/films/eng.joining.spot.jpg",
       "nl": {
         "dur": 284.9,
-        "bytes": 9558833,
+        "bytes": 4831371,
         "scenes": [
           0,
           39.68,
@@ -221,7 +221,7 @@
       },
       "en": {
         "dur": 311.2,
-        "bytes": 10381047,
+        "bytes": 5257417,
         "scenes": [
           0,
           42.78,
@@ -239,7 +239,7 @@
       "poster": "src/content/courses/films/eng.joining.defects.jpg",
       "nl": {
         "dur": 356,
-        "bytes": 8841700,
+        "bytes": 5029067,
         "scenes": [
           0,
           20.89,
@@ -255,7 +255,7 @@
       },
       "en": {
         "dur": 354.4,
-        "bytes": 8949136,
+        "bytes": 5027928,
         "scenes": [
           0,
           21.52,
@@ -274,7 +274,7 @@
       "poster": "src/content/courses/films/eng.joining.bolting.jpg",
       "nl": {
         "dur": 339.9,
-        "bytes": 8352338,
+        "bytes": 4733955,
         "scenes": [
           0,
           26.73,
@@ -290,7 +290,7 @@
       },
       "en": {
         "dur": 355.9,
-        "bytes": 8594905,
+        "bytes": 4914082,
         "scenes": [
           0,
           27.16,
@@ -309,7 +309,7 @@
       "poster": "src/content/courses/films/eng.joining.bonding.jpg",
       "nl": {
         "dur": 317.7,
-        "bytes": 7632566,
+        "bytes": 4437122,
         "scenes": [
           0,
           34.55,
@@ -324,7 +324,7 @@
       },
       "en": {
         "dur": 342.4,
-        "bytes": 8309074,
+        "bytes": 4728925,
         "scenes": [
           0,
           40.08,
@@ -342,7 +342,7 @@
       "poster": "src/content/courses/films/eng.moulding.machine.jpg",
       "nl": {
         "dur": 337.8,
-        "bytes": 12393565,
+        "bytes": 5889371,
         "scenes": [
           0,
           39.73,
@@ -357,7 +357,7 @@
       },
       "en": {
         "dur": 358.7,
-        "bytes": 13067028,
+        "bytes": 6241241,
         "scenes": [
           0,
           44.41,
@@ -375,7 +375,7 @@
       "poster": "src/content/courses/films/eng.lines.design.jpg",
       "nl": {
         "dur": 304.1,
-        "bytes": 11662023,
+        "bytes": 5546210,
         "scenes": [
           0,
           31.21,
@@ -391,7 +391,7 @@
       },
       "en": {
         "dur": 329.3,
-        "bytes": 12684600,
+        "bytes": 5928383,
         "scenes": [
           0,
           32.67,
@@ -410,7 +410,7 @@
       "poster": "src/content/courses/films/eng.lines.errorproof.jpg",
       "nl": {
         "dur": 294,
-        "bytes": 11376489,
+        "bytes": 5610993,
         "scenes": [
           0,
           23.52,
@@ -426,7 +426,7 @@
       },
       "en": {
         "dur": 317.7,
-        "bytes": 12217779,
+        "bytes": 6039589,
         "scenes": [
           0,
           26.22,
@@ -445,7 +445,7 @@
       "poster": "src/content/courses/films/eng.lines.robots.jpg",
       "nl": {
         "dur": 312.3,
-        "bytes": 16787927,
+        "bytes": 7092785,
         "scenes": [
           0,
           30.53,
@@ -461,7 +461,7 @@
       },
       "en": {
         "dur": 340.3,
-        "bytes": 18019364,
+        "bytes": 7552424,
         "scenes": [
           0,
           31.18,
@@ -480,7 +480,7 @@
       "poster": "src/content/courses/films/eng.lines.variants.jpg",
       "nl": {
         "dur": 324.9,
-        "bytes": 16288331,
+        "bytes": 7319132,
         "scenes": [
           0,
           41.56,
@@ -495,7 +495,7 @@
       },
       "en": {
         "dur": 345.7,
-        "bytes": 17287502,
+        "bytes": 7746290,
         "scenes": [
           0,
           44.41,
@@ -513,7 +513,7 @@
       "poster": "src/content/courses/films/eng.lines.control.jpg",
       "nl": {
         "dur": 327.3,
-        "bytes": 12039664,
+        "bytes": 5695999,
         "scenes": [
           0,
           36.74,
@@ -529,7 +529,7 @@
       },
       "en": {
         "dur": 345.5,
-        "bytes": 12560038,
+        "bytes": 5961616,
         "scenes": [
           0,
           39.14,
@@ -548,7 +548,7 @@
       "poster": "src/content/courses/films/eng.moulding.defects.jpg",
       "nl": {
         "dur": 316.1,
-        "bytes": 9950731,
+        "bytes": 4990136,
         "scenes": [
           0,
           36.12,
@@ -564,7 +564,7 @@
       },
       "en": {
         "dur": 341.3,
-        "bytes": 10785984,
+        "bytes": 5357016,
         "scenes": [
           0,
           39.1,
@@ -583,7 +583,7 @@
       "poster": "src/content/courses/films/eng.moulding.moulds.jpg",
       "nl": {
         "dur": 312.1,
-        "bytes": 10192000,
+        "bytes": 5309845,
         "scenes": [
           0,
           49.64,
@@ -598,7 +598,7 @@
       },
       "en": {
         "dur": 331.1,
-        "bytes": 10789818,
+        "bytes": 5634147,
         "scenes": [
           0,
           51.3,
@@ -616,7 +616,7 @@
       "poster": "src/content/courses/films/eng.machining.measuring.jpg",
       "nl": {
         "dur": 308,
-        "bytes": 10436118,
+        "bytes": 5272496,
         "scenes": [
           0,
           18.87,
@@ -632,7 +632,7 @@
       },
       "en": {
         "dur": 328.9,
-        "bytes": 11113236,
+        "bytes": 5611546,
         "scenes": [
           0,
           21.08,
@@ -651,7 +651,7 @@
       "poster": "src/content/courses/films/eng.quality.spc.jpg",
       "nl": {
         "dur": 302.9,
-        "bytes": 9618851,
+        "bytes": 4926967,
         "scenes": [
           0,
           33.56,
@@ -667,7 +667,7 @@
       },
       "en": {
         "dur": 334.5,
-        "bytes": 10497922,
+        "bytes": 5351768,
         "scenes": [
           0,
           36.54,
@@ -686,7 +686,7 @@
       "poster": "src/content/courses/films/eng.quality.tolerance.jpg",
       "nl": {
         "dur": 338.5,
-        "bytes": 12007153,
+        "bytes": 5737734,
         "scenes": [
           0,
           40.11,
@@ -702,7 +702,7 @@
       },
       "en": {
         "dur": 359.3,
-        "bytes": 12601398,
+        "bytes": 6021160,
         "scenes": [
           0,
           43.66,
@@ -721,7 +721,7 @@
       "poster": "src/content/courses/films/eng.safety.loto.jpg",
       "nl": {
         "dur": 299,
-        "bytes": 10601956,
+        "bytes": 5165651,
         "scenes": [
           0,
           55.61,
@@ -735,7 +735,7 @@
       },
       "en": {
         "dur": 312,
-        "bytes": 10922594,
+        "bytes": 5321299,
         "scenes": [
           0,
           58.19,
@@ -752,7 +752,7 @@
       "poster": "src/content/courses/films/eng.safety.permit.jpg",
       "nl": {
         "dur": 284.4,
-        "bytes": 11358023,
+        "bytes": 5325411,
         "scenes": [
           0,
           42.32,
@@ -766,7 +766,7 @@
       },
       "en": {
         "dur": 300.5,
-        "bytes": 11840133,
+        "bytes": 5545699,
         "scenes": [
           0,
           44.11,
@@ -783,7 +783,7 @@
       "poster": "src/content/courses/films/eng.maintenance.failure.jpg",
       "nl": {
         "dur": 300.8,
-        "bytes": 7986619,
+        "bytes": 4249608,
         "scenes": [
           0,
           53.6,
@@ -798,7 +798,7 @@
       },
       "en": {
         "dur": 326.1,
-        "bytes": 8514020,
+        "bytes": 4517956,
         "scenes": [
           0,
           58.22,
@@ -816,7 +816,7 @@
       "poster": "src/content/courses/films/eng.maintenance.tpm.jpg",
       "nl": {
         "dur": 268.3,
-        "bytes": 8389668,
+        "bytes": 4198432,
         "scenes": [
           0,
           30.53,
@@ -831,7 +831,7 @@
       },
       "en": {
         "dur": 290.8,
-        "bytes": 8931472,
+        "bytes": 4448238,
         "scenes": [
           0,
           37.94,
@@ -849,7 +849,7 @@
       "poster": "src/content/courses/films/eng.mechanics.tensile.jpg",
       "nl": {
         "dur": 315.3,
-        "bytes": 9178783,
+        "bytes": 4920918,
         "scenes": [
           0,
           55.63,
@@ -862,7 +862,7 @@
       },
       "en": {
         "dur": 352.8,
-        "bytes": 10147849,
+        "bytes": 5458631,
         "scenes": [
           0,
           62.98,
@@ -878,7 +878,7 @@
       "poster": "src/content/courses/films/eng.mechanics.fatigue.jpg",
       "nl": {
         "dur": 265,
-        "bytes": 9462345,
+        "bytes": 5092424,
         "scenes": [
           0,
           52.24,
@@ -891,7 +891,7 @@
       },
       "en": {
         "dur": 298,
-        "bytes": 10556615,
+        "bytes": 5649776,
         "scenes": [
           0,
           62.85,
@@ -907,7 +907,7 @@
       "poster": "src/content/courses/films/eng.mechanics.heattreat.jpg",
       "nl": {
         "dur": 295.9,
-        "bytes": 10313955,
+        "bytes": 5422909,
         "scenes": [
           0,
           55.31,
@@ -921,7 +921,7 @@
       },
       "en": {
         "dur": 322.9,
-        "bytes": 11164069,
+        "bytes": 5808045,
         "scenes": [
           0,
           61.61,
@@ -938,7 +938,7 @@
       "poster": "src/content/courses/films/eng.power.motor.jpg",
       "nl": {
         "dur": 317.5,
-        "bytes": 11434051,
+        "bytes": 5783675,
         "scenes": [
           0,
           39.71,
@@ -954,7 +954,7 @@
       },
       "en": {
         "dur": 350,
-        "bytes": 14078355,
+        "bytes": 6712148,
         "scenes": [
           0,
           39.51,
@@ -973,7 +973,7 @@
       "poster": "src/content/courses/films/eng.power.drives.jpg",
       "nl": {
         "dur": 288.9,
-        "bytes": 9663073,
+        "bytes": 4942947,
         "scenes": [
           0,
           35.95,
@@ -989,7 +989,7 @@
       },
       "en": {
         "dur": 308.6,
-        "bytes": 10228044,
+        "bytes": 5246764,
         "scenes": [
           0,
           37.72,
@@ -1008,7 +1008,7 @@
       "poster": "src/content/courses/films/eng.power.hydraulics.jpg",
       "nl": {
         "dur": 284,
-        "bytes": 8549198,
+        "bytes": 4499526,
         "scenes": [
           0,
           46.87,
@@ -1022,7 +1022,7 @@
       },
       "en": {
         "dur": 314.1,
-        "bytes": 9375278,
+        "bytes": 4883746,
         "scenes": [
           0,
           53.03,
@@ -1039,7 +1039,7 @@
       "poster": "src/content/courses/films/eng.drawings.reading.jpg",
       "nl": {
         "dur": 303.4,
-        "bytes": 8919237,
+        "bytes": 4597198,
         "scenes": [
           0,
           34.5,
@@ -1054,7 +1054,7 @@
       },
       "en": {
         "dur": 319.9,
-        "bytes": 9377389,
+        "bytes": 4798348,
         "scenes": [
           0,
           34.79,
@@ -1072,7 +1072,7 @@
       "poster": "src/content/courses/films/eng.gridbasics.load.jpg",
       "nl": {
         "dur": 323.1,
-        "bytes": 12728434,
+        "bytes": 6099268,
         "scenes": [
           0,
           38.78,
@@ -1088,7 +1088,7 @@
       },
       "en": {
         "dur": 356.1,
-        "bytes": 13754436,
+        "bytes": 6631492,
         "scenes": [
           0,
           42.12,
@@ -1107,7 +1107,7 @@
       "poster": "src/content/courses/films/eng.switchgear.devices.jpg",
       "nl": {
         "dur": 291.1,
-        "bytes": 8070593,
+        "bytes": 4448249,
         "scenes": [
           0,
           36.71,
@@ -1122,7 +1122,7 @@
       },
       "en": {
         "dur": 309.5,
-        "bytes": 8524215,
+        "bytes": 4656330,
         "scenes": [
           0,
           40.48,
@@ -1140,7 +1140,7 @@
       "poster": "src/content/courses/films/eng.process.plant.jpg",
       "nl": {
         "dur": 293.3,
-        "bytes": 12726574,
+        "bytes": 5768880,
         "scenes": [
           0,
           51.36,
@@ -1154,7 +1154,7 @@
       },
       "en": {
         "dur": 312.1,
-        "bytes": 13356297,
+        "bytes": 6068078,
         "scenes": [
           0,
           51.82,
@@ -1171,7 +1171,7 @@
       "poster": "src/content/courses/films/eng.process.measure.jpg",
       "nl": {
         "dur": 269.8,
-        "bytes": 10053653,
+        "bytes": 4891394,
         "scenes": [
           0,
           25.64,
@@ -1185,7 +1185,7 @@
       },
       "en": {
         "dur": 296,
-        "bytes": 11017163,
+        "bytes": 5348157,
         "scenes": [
           0,
           26.26,
@@ -1202,7 +1202,7 @@
       "poster": "src/content/courses/films/eng.process.batch.jpg",
       "nl": {
         "dur": 279.2,
-        "bytes": 8751006,
+        "bytes": 4491831,
         "scenes": [
           0,
           36.28,
@@ -1217,7 +1217,7 @@
       },
       "en": {
         "dur": 299.8,
-        "bytes": 9232891,
+        "bytes": 4748775,
         "scenes": [
           0,
           39.4,
@@ -1235,7 +1235,7 @@
       "poster": "src/content/courses/films/eng.ot.isa95.jpg",
       "nl": {
         "dur": 322.1,
-        "bytes": 13051118,
+        "bytes": 5716388,
         "scenes": [
           0,
           21.63,
@@ -1251,7 +1251,7 @@
       },
       "en": {
         "dur": 345.4,
-        "bytes": 13920723,
+        "bytes": 6091041,
         "scenes": [
           0,
           23.55,
@@ -1270,7 +1270,7 @@
       "poster": "src/content/courses/films/eng.ot.orderflow.jpg",
       "nl": {
         "dur": 233.8,
-        "bytes": 8787723,
+        "bytes": 3895136,
         "scenes": [
           0,
           29.72,
@@ -1285,7 +1285,7 @@
       },
       "en": {
         "dur": 267.2,
-        "bytes": 9938872,
+        "bytes": 4357920,
         "scenes": [
           0,
           31.09,
@@ -1303,7 +1303,7 @@
       "poster": "src/content/courses/films/eng.gridbasics.congestion.jpg",
       "nl": {
         "dur": 338.6,
-        "bytes": 11738359,
+        "bytes": 5764954,
         "scenes": [
           0,
           31.31,
@@ -1319,7 +1319,7 @@
       },
       "en": {
         "dur": 359.4,
-        "bytes": 14417373,
+        "bytes": 6826382,
         "scenes": [
           0,
           33.7,
@@ -1338,7 +1338,7 @@
       "poster": "src/content/courses/films/eng.gridops.outage.jpg",
       "nl": {
         "dur": 296,
-        "bytes": 8353457,
+        "bytes": 4496749,
         "scenes": [
           0,
           49.19,
@@ -1352,7 +1352,7 @@
       },
       "en": {
         "dur": 315.5,
-        "bytes": 8798320,
+        "bytes": 4724281,
         "scenes": [
           0,
           52.6,
@@ -1369,7 +1369,7 @@
       "poster": "src/content/courses/films/eng.switchgear.automation.jpg",
       "nl": {
         "dur": 303.6,
-        "bytes": 7952401,
+        "bytes": 4408163,
         "scenes": [
           0,
           57.03,
@@ -1383,7 +1383,7 @@
       },
       "en": {
         "dur": 323.6,
-        "bytes": 8371671,
+        "bytes": 4647219,
         "scenes": [
           0,
           68.19,
@@ -1400,7 +1400,7 @@
       "poster": "src/content/courses/films/eng.gridplanning.loadflow.jpg",
       "nl": {
         "dur": 346.4,
-        "bytes": 14454322,
+        "bytes": 6790956,
         "scenes": [
           0,
           23.79,
@@ -1416,7 +1416,7 @@
       },
       "en": {
         "dur": 357.2,
-        "bytes": 14974006,
+        "bytes": 7018243,
         "scenes": [
           0,
           27.1,
@@ -1435,7 +1435,7 @@
       "poster": "src/content/courses/films/pm.plan.risk.jpg",
       "nl": {
         "dur": 233,
-        "bytes": 8625795,
+        "bytes": 3975716,
         "scenes": [
           0,
           37.78,
@@ -1448,7 +1448,7 @@
       },
       "en": {
         "dur": 243.2,
-        "bytes": 8797455,
+        "bytes": 4096714,
         "scenes": [
           0,
           42.29,
@@ -1464,7 +1464,7 @@
       "poster": "src/content/courses/films/pm.plan.schedule.jpg",
       "nl": {
         "dur": 290.1,
-        "bytes": 9702983,
+        "bytes": 4492791,
         "scenes": [
           0,
           59.55,
@@ -1477,7 +1477,7 @@
       },
       "en": {
         "dur": 305.2,
-        "bytes": 10212007,
+        "bytes": 4687860,
         "scenes": [
           0,
           61.72,
@@ -1489,81 +1489,11 @@
         "vtt": "src/content/courses/films/pm.plan.schedule.en.vtt"
       }
     },
-    "pm.intake.firsttalk": {
-      "poster": "src/content/courses/films/pm.intake.firsttalk.jpg",
-      "nl": {
-        "dur": 335.9,
-        "bytes": 11796826,
-        "scenes": [
-          0,
-          46.75,
-          86.7,
-          115.85,
-          142.31,
-          180.78,
-          212.55,
-          256.41,
-          299.32
-        ],
-        "vtt": "src/content/courses/films/pm.intake.firsttalk.nl.vtt"
-      },
-      "en": {
-        "dur": 342.6,
-        "bytes": 12018537,
-        "scenes": [
-          0,
-          48.38,
-          87.92,
-          117.49,
-          143.32,
-          182.39,
-          216.02,
-          261,
-          303.44
-        ],
-        "vtt": "src/content/courses/films/pm.intake.firsttalk.en.vtt"
-      }
-    },
-    "pm.run.escalation": {
-      "poster": "src/content/courses/films/pm.run.escalation.jpg",
-      "nl": {
-        "dur": 358.8,
-        "bytes": 12062854,
-        "scenes": [
-          0,
-          36.86,
-          74.43,
-          110.83,
-          133.26,
-          164.78,
-          202.86,
-          256.21,
-          289.61
-        ],
-        "vtt": "src/content/courses/films/pm.run.escalation.nl.vtt"
-      },
-      "en": {
-        "dur": 356.8,
-        "bytes": 11846078,
-        "scenes": [
-          0,
-          35.25,
-          75.39,
-          111.05,
-          134.51,
-          165.62,
-          202.61,
-          254.83,
-          287.88
-        ],
-        "vtt": "src/content/courses/films/pm.run.escalation.en.vtt"
-      }
-    },
     "pm.plan.wbs": {
       "poster": "src/content/courses/films/pm.plan.wbs.jpg",
       "nl": {
         "dur": 338.1,
-        "bytes": 11470287,
+        "bytes": 5414378,
         "scenes": [
           0,
           42.26,
@@ -1579,7 +1509,7 @@
       },
       "en": {
         "dur": 340.6,
-        "bytes": 11507186,
+        "bytes": 5412710,
         "scenes": [
           0,
           42.97,
@@ -1594,112 +1524,11 @@
         "vtt": "src/content/courses/films/pm.plan.wbs.en.vtt"
       }
     },
-    "pm.run.rhythm": {
-      "poster": "src/content/courses/films/pm.run.rhythm.jpg",
-      "nl": {
-        "dur": 337,
-        "bytes": 13282394,
-        "scenes": [
-          0,
-          27.63,
-          63.77,
-          89.77,
-          131.51,
-          159.19,
-          208.91,
-          243.99,
-          283.75
-        ],
-        "vtt": "src/content/courses/films/pm.run.rhythm.nl.vtt"
-      },
-      "en": {
-        "dur": 341.7,
-        "bytes": 13365399,
-        "scenes": [
-          0,
-          28.73,
-          66.17,
-          94.58,
-          134.19,
-          161.78,
-          209.23,
-          246.17,
-          286.31
-        ],
-        "vtt": "src/content/courses/films/pm.run.rhythm.en.vtt"
-      }
-    },
-    "pm.land.adoption": {
-      "poster": "src/content/courses/films/pm.land.adoption.jpg",
-      "nl": {
-        "dur": 346.7,
-        "bytes": 13019264,
-        "scenes": [
-          0,
-          38.45,
-          73.14,
-          125.55,
-          157.89,
-          200.9,
-          241.38,
-          273.67,
-          312.04
-        ],
-        "vtt": "src/content/courses/films/pm.land.adoption.nl.vtt"
-      },
-      "en": {
-        "dur": 350.6,
-        "bytes": 12910591,
-        "scenes": [
-          0,
-          40.75,
-          74.01,
-          126.69,
-          159.11,
-          202.29,
-          244.4,
-          276.05,
-          314.71
-        ],
-        "vtt": "src/content/courses/films/pm.land.adoption.en.vtt"
-      }
-    },
-    "pm.land.training": {
-      "poster": "src/content/courses/films/pm.land.training.jpg",
-      "nl": {
-        "dur": 251.2,
-        "bytes": 8843765,
-        "scenes": [
-          0,
-          21.47,
-          63.79,
-          109.12,
-          136.72,
-          174.28,
-          206.67
-        ],
-        "vtt": "src/content/courses/films/pm.land.training.nl.vtt"
-      },
-      "en": {
-        "dur": 267.7,
-        "bytes": 9241208,
-        "scenes": [
-          0,
-          22.79,
-          72.94,
-          118.61,
-          145.11,
-          186.21,
-          221.94
-        ],
-        "vtt": "src/content/courses/films/pm.land.training.en.vtt"
-      }
-    },
     "pm.close.results": {
       "poster": "src/content/courses/films/pm.close.results.jpg",
       "nl": {
         "dur": 246.3,
-        "bytes": 8327985,
+        "bytes": 3941426,
         "scenes": [
           0,
           37.71,
@@ -1713,7 +1542,7 @@
       },
       "en": {
         "dur": 255.2,
-        "bytes": 8578119,
+        "bytes": 4079478,
         "scenes": [
           0,
           37.33,
@@ -1726,112 +1555,11 @@
         "vtt": "src/content/courses/films/pm.close.results.en.vtt"
       }
     },
-    "pm.lead.feedback": {
-      "poster": "src/content/courses/films/pm.lead.feedback.jpg",
-      "nl": {
-        "dur": 342.6,
-        "bytes": 12398083,
-        "scenes": [
-          0,
-          34.72,
-          75.34,
-          115.54,
-          149.16,
-          189.96,
-          235.83,
-          264.78,
-          299.02
-        ],
-        "vtt": "src/content/courses/films/pm.lead.feedback.nl.vtt"
-      },
-      "en": {
-        "dur": 341.9,
-        "bytes": 12154320,
-        "scenes": [
-          0,
-          33.58,
-          74.87,
-          114.8,
-          152.16,
-          190.66,
-          235.34,
-          264.46,
-          298.25
-        ],
-        "vtt": "src/content/courses/films/pm.lead.feedback.en.vtt"
-      }
-    },
-    "pm.land.handover": {
-      "poster": "src/content/courses/films/pm.land.handover.jpg",
-      "nl": {
-        "dur": 336.2,
-        "bytes": 13588590,
-        "scenes": [
-          0,
-          35.97,
-          73.65,
-          107.01,
-          145.48,
-          188.85,
-          228.05,
-          271,
-          306.26
-        ],
-        "vtt": "src/content/courses/films/pm.land.handover.nl.vtt"
-      },
-      "en": {
-        "dur": 332.4,
-        "bytes": 13270085,
-        "scenes": [
-          0,
-          35.47,
-          73.69,
-          107.21,
-          146.77,
-          190.17,
-          226.18,
-          267.03,
-          304.44
-        ],
-        "vtt": "src/content/courses/films/pm.land.handover.en.vtt"
-      }
-    },
-    "pm.lead.difficult": {
-      "poster": "src/content/courses/films/pm.lead.difficult.jpg",
-      "nl": {
-        "dur": 242.6,
-        "bytes": 8105396,
-        "scenes": [
-          0,
-          39.75,
-          74.45,
-          110.43,
-          140.12,
-          171.03,
-          220.74
-        ],
-        "vtt": "src/content/courses/films/pm.lead.difficult.nl.vtt"
-      },
-      "en": {
-        "dur": 256.9,
-        "bytes": 8465203,
-        "scenes": [
-          0,
-          44.52,
-          83.71,
-          121.62,
-          152.06,
-          183.24,
-          234.4
-        ],
-        "vtt": "src/content/courses/films/pm.lead.difficult.en.vtt"
-      }
-    },
     "pm.intake.stakeholders": {
       "poster": "src/content/courses/films/pm.intake.stakeholders.jpg",
       "nl": {
         "dur": 333.7,
-        "bytes": 11284980,
+        "bytes": 5231008,
         "scenes": [
           0,
           40.2,
@@ -1847,7 +1575,7 @@
       },
       "en": {
         "dur": 333.7,
-        "bytes": 11180795,
+        "bytes": 5194058,
         "scenes": [
           0,
           40.46,
@@ -1866,7 +1594,7 @@
       "poster": "src/content/courses/films/pm.plan.method.jpg",
       "nl": {
         "dur": 219,
-        "bytes": 7556082,
+        "bytes": 3592894,
         "scenes": [
           0,
           33.54,
@@ -1880,7 +1608,7 @@
       },
       "en": {
         "dur": 227.6,
-        "bytes": 7731659,
+        "bytes": 3656794,
         "scenes": [
           0,
           34.7,
@@ -1897,7 +1625,7 @@
       "poster": "src/content/courses/films/pm.run.scope.jpg",
       "nl": {
         "dur": 307.5,
-        "bytes": 10493114,
+        "bytes": 5023386,
         "scenes": [
           0,
           21.28,
@@ -1911,7 +1639,7 @@
       },
       "en": {
         "dur": 314.7,
-        "bytes": 10530089,
+        "bytes": 5086547,
         "scenes": [
           0,
           23.44,
@@ -1924,151 +1652,11 @@
         "vtt": "src/content/courses/films/pm.run.scope.en.vtt"
       }
     },
-    "pm.portfolio.benefits": {
-      "poster": "src/content/courses/films/pm.portfolio.benefits.jpg",
-      "nl": {
-        "dur": 255,
-        "bytes": 8911118,
-        "scenes": [
-          0,
-          27.79,
-          54.01,
-          65.21,
-          90.15,
-          116.76,
-          148.28,
-          180.44,
-          213.58
-        ],
-        "vtt": "src/content/courses/films/pm.portfolio.benefits.nl.vtt"
-      },
-      "en": {
-        "dur": 266.8,
-        "bytes": 9174019,
-        "scenes": [
-          0,
-          28.19,
-          56.92,
-          69.29,
-          94.96,
-          122.75,
-          154.48,
-          189.56,
-          224.14
-        ],
-        "vtt": "src/content/courses/films/pm.portfolio.benefits.en.vtt"
-      }
-    },
-    "pm.stuck.diagnose": {
-      "poster": "src/content/courses/films/pm.stuck.diagnose.jpg",
-      "nl": {
-        "dur": 357.9,
-        "bytes": 12959590,
-        "scenes": [
-          0,
-          36.66,
-          86.09,
-          127.63,
-          157.76,
-          195.52,
-          243.83,
-          280.85,
-          320.38
-        ],
-        "vtt": "src/content/courses/films/pm.stuck.diagnose.nl.vtt"
-      },
-      "en": {
-        "dur": 357.4,
-        "bytes": 12788812,
-        "scenes": [
-          0,
-          36.31,
-          84.99,
-          130.43,
-          160.65,
-          197.14,
-          246.22,
-          281.65,
-          320.25
-        ],
-        "vtt": "src/content/courses/films/pm.stuck.diagnose.en.vtt"
-      }
-    },
-    "pm.outside.questions": {
-      "poster": "src/content/courses/films/pm.outside.questions.jpg",
-      "nl": {
-        "dur": 340.6,
-        "bytes": 12374866,
-        "scenes": [
-          0,
-          27.02,
-          55.27,
-          82.38,
-          129.21,
-          172.24,
-          224.26,
-          253.47,
-          297.96
-        ],
-        "vtt": "src/content/courses/films/pm.outside.questions.nl.vtt"
-      },
-      "en": {
-        "dur": 344.4,
-        "bytes": 12272770,
-        "scenes": [
-          0,
-          27,
-          55.1,
-          81.41,
-          128.71,
-          170.79,
-          223.92,
-          257.35,
-          303.24
-        ],
-        "vtt": "src/content/courses/films/pm.outside.questions.en.vtt"
-      }
-    },
-    "pm.consult.proposal": {
-      "poster": "src/content/courses/films/pm.consult.proposal.jpg",
-      "nl": {
-        "dur": 334.6,
-        "bytes": 12031089,
-        "scenes": [
-          0,
-          21.12,
-          51.57,
-          84.85,
-          109.46,
-          170.17,
-          214.05,
-          260.38,
-          286.1
-        ],
-        "vtt": "src/content/courses/films/pm.consult.proposal.nl.vtt"
-      },
-      "en": {
-        "dur": 343.5,
-        "bytes": 12282475,
-        "scenes": [
-          0,
-          22.4,
-          51.47,
-          86.18,
-          111.77,
-          174.82,
-          220.39,
-          267.57,
-          294.06
-        ],
-        "vtt": "src/content/courses/films/pm.consult.proposal.en.vtt"
-      }
-    },
     "pm.portfolio.prioritise": {
       "poster": "src/content/courses/films/pm.portfolio.prioritise.jpg",
       "nl": {
         "dur": 335.5,
-        "bytes": 13114685,
+        "bytes": 6071162,
         "scenes": [
           0,
           24.37,
@@ -2084,7 +1672,7 @@
       },
       "en": {
         "dur": 343.7,
-        "bytes": 13223166,
+        "bytes": 6088216,
         "scenes": [
           0,
           24.72,
@@ -2099,182 +1687,11 @@
         "vtt": "src/content/courses/films/pm.portfolio.prioritise.en.vtt"
       }
     },
-    "pm.outside.steering": {
-      "poster": "src/content/courses/films/pm.outside.steering.jpg",
-      "nl": {
-        "dur": 339.5,
-        "bytes": 12548881,
-        "scenes": [
-          0,
-          23.57,
-          47.95,
-          82.82,
-          129,
-          167.56,
-          215.83,
-          242.22,
-          286.85
-        ],
-        "vtt": "src/content/courses/films/pm.outside.steering.nl.vtt"
-      },
-      "en": {
-        "dur": 341.2,
-        "bytes": 12401558,
-        "scenes": [
-          0,
-          25.36,
-          51.56,
-          86.41,
-          131.41,
-          169.38,
-          218.75,
-          245.58,
-          291.53
-        ],
-        "vtt": "src/content/courses/films/pm.outside.steering.en.vtt"
-      }
-    },
-    "pm.outside.experts": {
-      "poster": "src/content/courses/films/pm.outside.experts.jpg",
-      "nl": {
-        "dur": 329.9,
-        "bytes": 12705716,
-        "scenes": [
-          0,
-          50.84,
-          75.78,
-          116.26,
-          168.24,
-          210.49,
-          235.74,
-          256.29,
-          279.66
-        ],
-        "vtt": "src/content/courses/films/pm.outside.experts.nl.vtt"
-      },
-      "en": {
-        "dur": 329.5,
-        "bytes": 12466368,
-        "scenes": [
-          0,
-          48.43,
-          71.64,
-          113.61,
-          163.75,
-          206.84,
-          231.72,
-          253.5,
-          277.77
-        ],
-        "vtt": "src/content/courses/films/pm.outside.experts.en.vtt"
-      }
-    },
-    "pm.outside.jargon": {
-      "poster": "src/content/courses/films/pm.outside.jargon.jpg",
-      "nl": {
-        "dur": 323.1,
-        "bytes": 11347430,
-        "scenes": [
-          0,
-          17.12,
-          49.89,
-          76.71,
-          125.26,
-          173.76,
-          195.09,
-          234.45,
-          272.22
-        ],
-        "vtt": "src/content/courses/films/pm.outside.jargon.nl.vtt"
-      },
-      "en": {
-        "dur": 337.5,
-        "bytes": 11630731,
-        "scenes": [
-          0,
-          17.8,
-          54.34,
-          80.74,
-          130.68,
-          180.95,
-          203.02,
-          242.78,
-          283.54
-        ],
-        "vtt": "src/content/courses/films/pm.outside.jargon.en.vtt"
-      }
-    },
-    "pm.run.conflict": {
-      "poster": "src/content/courses/films/pm.run.conflict.jpg",
-      "nl": {
-        "dur": 229.8,
-        "bytes": 8399858,
-        "scenes": [
-          0,
-          35.76,
-          68.78,
-          102.71,
-          138.47,
-          172.18,
-          201.55
-        ],
-        "vtt": "src/content/courses/films/pm.run.conflict.nl.vtt"
-      },
-      "en": {
-        "dur": 241,
-        "bytes": 8779126,
-        "scenes": [
-          0,
-          38.08,
-          73.16,
-          110.75,
-          147.27,
-          181.31,
-          212.53
-        ],
-        "vtt": "src/content/courses/films/pm.run.conflict.en.vtt"
-      }
-    },
-    "pm.outside.disagree": {
-      "poster": "src/content/courses/films/pm.outside.disagree.jpg",
-      "nl": {
-        "dur": 335.2,
-        "bytes": 11803631,
-        "scenes": [
-          0,
-          41.72,
-          65.19,
-          106.44,
-          154.09,
-          184.01,
-          214.62,
-          261.15,
-          284.71
-        ],
-        "vtt": "src/content/courses/films/pm.outside.disagree.nl.vtt"
-      },
-      "en": {
-        "dur": 337.7,
-        "bytes": 11850421,
-        "scenes": [
-          0,
-          40.75,
-          64.14,
-          107.28,
-          155.47,
-          187.37,
-          215.89,
-          262.69,
-          286.92
-        ],
-        "vtt": "src/content/courses/films/pm.outside.disagree.en.vtt"
-      }
-    },
     "pm.negotiate.batna": {
       "poster": "src/content/courses/films/pm.negotiate.batna.jpg",
       "nl": {
         "dur": 344.5,
-        "bytes": 12147303,
+        "bytes": 5865263,
         "scenes": [
           0,
           28.88,
@@ -2290,7 +1707,7 @@
       },
       "en": {
         "dur": 351,
-        "bytes": 12189767,
+        "bytes": 5834625,
         "scenes": [
           0,
           27.86,
@@ -2309,7 +1726,7 @@
       "poster": "src/content/courses/films/pm.perform.tree.jpg",
       "nl": {
         "dur": 348.4,
-        "bytes": 13334509,
+        "bytes": 6325040,
         "scenes": [
           0,
           41.36,
@@ -2324,7 +1741,7 @@
       },
       "en": {
         "dur": 347.7,
-        "bytes": 13106170,
+        "bytes": 6211930,
         "scenes": [
           0,
           40.35,
@@ -2342,7 +1759,7 @@
       "poster": "src/content/courses/films/pm.agile.scrum.jpg",
       "nl": {
         "dur": 333.9,
-        "bytes": 13540496,
+        "bytes": 6236504,
         "scenes": [
           0,
           33.21,
@@ -2358,7 +1775,7 @@
       },
       "en": {
         "dur": 348.6,
-        "bytes": 13993982,
+        "bytes": 6421149,
         "scenes": [
           0,
           34.87,
@@ -2377,7 +1794,7 @@
       "poster": "src/content/courses/films/pm.agile.kanban.jpg",
       "nl": {
         "dur": 339.3,
-        "bytes": 16920090,
+        "bytes": 7632393,
         "scenes": [
           0,
           28.78,
@@ -2393,7 +1810,7 @@
       },
       "en": {
         "dur": 350,
-        "bytes": 17353293,
+        "bytes": 7808380,
         "scenes": [
           0,
           28.75,
@@ -2412,7 +1829,7 @@
       "poster": "src/content/courses/films/pm.agile.backlog.jpg",
       "nl": {
         "dur": 335.9,
-        "bytes": 13950562,
+        "bytes": 6481193,
         "scenes": [
           0,
           38.77,
@@ -2428,7 +1845,7 @@
       },
       "en": {
         "dur": 343.6,
-        "bytes": 14175731,
+        "bytes": 6470291,
         "scenes": [
           0,
           39.98,
@@ -2447,7 +1864,7 @@
       "poster": "src/content/courses/films/pm.scaled.pi.jpg",
       "nl": {
         "dur": 346.3,
-        "bytes": 16416588,
+        "bytes": 7163490,
         "scenes": [
           0,
           38.27,
@@ -2463,7 +1880,7 @@
       },
       "en": {
         "dur": 358.2,
-        "bytes": 16788185,
+        "bytes": 7278667,
         "scenes": [
           0,
           38.33,
@@ -2482,7 +1899,7 @@
       "poster": "src/content/courses/films/pm.scaled.hybrid.jpg",
       "nl": {
         "dur": 335.1,
-        "bytes": 13124541,
+        "bytes": 5990571,
         "scenes": [
           0,
           28.64,
@@ -2498,7 +1915,7 @@
       },
       "en": {
         "dur": 337.3,
-        "bytes": 13189669,
+        "bytes": 6001264,
         "scenes": [
           0,
           28,
@@ -2517,7 +1934,7 @@
       "poster": "src/content/courses/films/pm.devops.pipeline.jpg",
       "nl": {
         "dur": 330.8,
-        "bytes": 13430650,
+        "bytes": 6067668,
         "scenes": [
           0,
           27.74,
@@ -2533,7 +1950,7 @@
       },
       "en": {
         "dur": 334.6,
-        "bytes": 13520497,
+        "bytes": 6125416,
         "scenes": [
           0,
           29.26,
@@ -2552,7 +1969,7 @@
       "poster": "src/content/courses/films/pm.itproject.cutover.jpg",
       "nl": {
         "dur": 255.8,
-        "bytes": 10056610,
+        "bytes": 4637957,
         "scenes": [
           0,
           28.74,
@@ -2567,7 +1984,7 @@
       },
       "en": {
         "dur": 266.9,
-        "bytes": 10406543,
+        "bytes": 4780561,
         "scenes": [
           0,
           28.17,
@@ -2585,7 +2002,7 @@
       "poster": "src/content/courses/films/pm.itproject.mvp.jpg",
       "nl": {
         "dur": 323.2,
-        "bytes": 13576153,
+        "bytes": 6264419,
         "scenes": [
           0,
           26.46,
@@ -2601,7 +2018,7 @@
       },
       "en": {
         "dur": 331.5,
-        "bytes": 13660641,
+        "bytes": 6214346,
         "scenes": [
           0,
           26.19,
@@ -2620,7 +2037,7 @@
       "poster": "src/content/courses/films/pm.devops.incident.jpg",
       "nl": {
         "dur": 191.7,
-        "bytes": 8346177,
+        "bytes": 3705972,
         "scenes": [
           0,
           29.21,
@@ -2633,7 +2050,7 @@
       },
       "en": {
         "dur": 200.6,
-        "bytes": 8515880,
+        "bytes": 3851277,
         "scenes": [
           0,
           29.8,
@@ -2645,42 +2062,11 @@
         "vtt": "src/content/courses/films/pm.devops.incident.en.vtt"
       }
     },
-    "pm.devops.postmortem": {
-      "poster": "src/content/courses/films/pm.devops.postmortem.jpg",
-      "nl": {
-        "dur": 230.3,
-        "bytes": 9543411,
-        "scenes": [
-          0,
-          28.49,
-          55.72,
-          80.8,
-          106.08,
-          134.99,
-          187.71
-        ],
-        "vtt": "src/content/courses/films/pm.devops.postmortem.nl.vtt"
-      },
-      "en": {
-        "dur": 238.2,
-        "bytes": 9644257,
-        "scenes": [
-          0,
-          29.36,
-          56.18,
-          82,
-          107.89,
-          138.01,
-          194.62
-        ],
-        "vtt": "src/content/courses/films/pm.devops.postmortem.en.vtt"
-      }
-    },
     "pm.itproject.uat": {
       "poster": "src/content/courses/films/pm.itproject.uat.jpg",
       "nl": {
         "dur": 329,
-        "bytes": 13316357,
+        "bytes": 6093857,
         "scenes": [
           0,
           35.15,
@@ -2696,7 +2082,7 @@
       },
       "en": {
         "dur": 325.4,
-        "bytes": 12943719,
+        "bytes": 5920809,
         "scenes": [
           0,
           32.17,
@@ -2715,7 +2101,7 @@
       "poster": "src/content/courses/films/pm.itproject.migration.jpg",
       "nl": {
         "dur": 307.3,
-        "bytes": 12915797,
+        "bytes": 5911365,
         "scenes": [
           0,
           32.66,
@@ -2731,7 +2117,7 @@
       },
       "en": {
         "dur": 327.7,
-        "bytes": 13550858,
+        "bytes": 6191448,
         "scenes": [
           0,
           32.23,
@@ -2750,7 +2136,7 @@
       "poster": "src/content/courses/films/pm.agile.forecast.jpg",
       "nl": {
         "dur": 313.6,
-        "bytes": 12948546,
+        "bytes": 5918729,
         "scenes": [
           0,
           28.1,
@@ -2766,7 +2152,7 @@
       },
       "en": {
         "dur": 341.2,
-        "bytes": 13809268,
+        "bytes": 6325985,
         "scenes": [
           0,
           30.65,
@@ -2785,7 +2171,7 @@
       "poster": "src/content/courses/films/pm.plan.intro.jpg",
       "nl": {
         "dur": 244.2,
-        "bytes": 9453573,
+        "bytes": 4493056,
         "scenes": [
           0,
           24.41,
@@ -2799,7 +2185,7 @@
       },
       "en": {
         "dur": 273.1,
-        "bytes": 10400758,
+        "bytes": 4917641,
         "scenes": [
           0,
           28.1,
@@ -2816,7 +2202,7 @@
       "poster": "src/content/courses/films/pm.field.lifecycle.jpg",
       "nl": {
         "dur": 228.2,
-        "bytes": 10091932,
+        "bytes": 4545351,
         "scenes": [
           0,
           16.48,
@@ -2832,7 +2218,7 @@
       },
       "en": {
         "dur": 251.4,
-        "bytes": 10715082,
+        "bytes": 4801210,
         "scenes": [
           0,
           18.92,
@@ -2851,7 +2237,7 @@
       "poster": "src/content/courses/films/eng.power.air.jpg",
       "nl": {
         "dur": 230.6,
-        "bytes": 8523266,
+        "bytes": 4170616,
         "scenes": [
           0,
           19.25,
@@ -2866,7 +2252,7 @@
       },
       "en": {
         "dur": 250.8,
-        "bytes": 9353630,
+        "bytes": 4521363,
         "scenes": [
           0,
           20.1,
@@ -2884,7 +2270,7 @@
       "poster": "src/content/courses/films/pm.field.people.jpg",
       "nl": {
         "dur": 138.1,
-        "bytes": 6952484,
+        "bytes": 3067159,
         "scenes": [
           0,
           17.57,
@@ -2898,7 +2284,7 @@
       },
       "en": {
         "dur": 153.6,
-        "bytes": 7508640,
+        "bytes": 3270008,
         "scenes": [
           0,
           20.2,
@@ -2915,7 +2301,7 @@
       "poster": "src/content/courses/films/pm.field.portfolio.jpg",
       "nl": {
         "dur": 88.4,
-        "bytes": 4374491,
+        "bytes": 1961129,
         "scenes": [
           0,
           17.65,
@@ -2926,7 +2312,7 @@
       },
       "en": {
         "dur": 97.4,
-        "bytes": 4674512,
+        "bytes": 2090098,
         "scenes": [
           0,
           20.29,
@@ -2940,7 +2326,7 @@
       "poster": "src/content/courses/films/pm.field.it.jpg",
       "nl": {
         "dur": 144,
-        "bytes": 6604723,
+        "bytes": 2921600,
         "scenes": [
           0,
           20.71,
@@ -2953,7 +2339,7 @@
       },
       "en": {
         "dur": 159.5,
-        "bytes": 7188113,
+        "bytes": 3208996,
         "scenes": [
           0,
           23.55,
@@ -2969,7 +2355,7 @@
       "poster": "src/content/courses/films/pm.intake.intro.jpg",
       "nl": {
         "dur": 216.1,
-        "bytes": 8162733,
+        "bytes": 3905655,
         "scenes": [
           0,
           25.19,
@@ -2983,7 +2369,7 @@
       },
       "en": {
         "dur": 234.2,
-        "bytes": 8859024,
+        "bytes": 4181828,
         "scenes": [
           0,
           28.91,
@@ -3000,7 +2386,7 @@
       "poster": "src/content/courses/films/pm.run.intro.jpg",
       "nl": {
         "dur": 193.1,
-        "bytes": 7444378,
+        "bytes": 3535118,
         "scenes": [
           0,
           19.08,
@@ -3014,7 +2400,7 @@
       },
       "en": {
         "dur": 213.8,
-        "bytes": 8166554,
+        "bytes": 3807943,
         "scenes": [
           0,
           22.11,
@@ -3031,7 +2417,7 @@
       "poster": "src/content/courses/films/pm.land.intro.jpg",
       "nl": {
         "dur": 205.8,
-        "bytes": 7895962,
+        "bytes": 3726119,
         "scenes": [
           0,
           16.45,
@@ -3045,7 +2431,7 @@
       },
       "en": {
         "dur": 232.1,
-        "bytes": 8834288,
+        "bytes": 4160738,
         "scenes": [
           0,
           19.16,
@@ -3062,7 +2448,7 @@
       "poster": "src/content/courses/films/pm.close.intro.jpg",
       "nl": {
         "dur": 206.5,
-        "bytes": 8197419,
+        "bytes": 3831331,
         "scenes": [
           0,
           20.96,
@@ -3076,7 +2462,7 @@
       },
       "en": {
         "dur": 229.2,
-        "bytes": 8929639,
+        "bytes": 4137706,
         "scenes": [
           0,
           23.82,
@@ -3093,7 +2479,7 @@
       "poster": "src/content/courses/films/pm.agile.intro.jpg",
       "nl": {
         "dur": 202.7,
-        "bytes": 7532573,
+        "bytes": 3530968,
         "scenes": [
           0,
           21.07,
@@ -3107,7 +2493,7 @@
       },
       "en": {
         "dur": 230.7,
-        "bytes": 8335068,
+        "bytes": 3929752,
         "scenes": [
           0,
           23.71,
@@ -3124,7 +2510,7 @@
       "poster": "src/content/courses/films/pm.devops.intro.jpg",
       "nl": {
         "dur": 240.1,
-        "bytes": 8775432,
+        "bytes": 4253330,
         "scenes": [
           0,
           24.26,
@@ -3138,7 +2524,7 @@
       },
       "en": {
         "dur": 261,
-        "bytes": 9402445,
+        "bytes": 4581596,
         "scenes": [
           0,
           26.76,
@@ -3155,7 +2541,7 @@
       "poster": "src/content/courses/films/pm.stuck.intro.jpg",
       "nl": {
         "dur": 199.1,
-        "bytes": 7974936,
+        "bytes": 3701307,
         "scenes": [
           0,
           20.67,
@@ -3169,7 +2555,7 @@
       },
       "en": {
         "dur": 214.8,
-        "bytes": 8525955,
+        "bytes": 3914295,
         "scenes": [
           0,
           24.3,
@@ -3186,7 +2572,7 @@
       "poster": "src/content/courses/films/pm.lead.intro.jpg",
       "nl": {
         "dur": 193.8,
-        "bytes": 8409766,
+        "bytes": 3877728,
         "scenes": [
           0,
           24.73,
@@ -3200,7 +2586,7 @@
       },
       "en": {
         "dur": 211,
-        "bytes": 9102097,
+        "bytes": 4212805,
         "scenes": [
           0,
           26.7,
@@ -3217,7 +2603,7 @@
       "poster": "src/content/courses/films/pm.negotiate.intro.jpg",
       "nl": {
         "dur": 207.3,
-        "bytes": 8225355,
+        "bytes": 3959082,
         "scenes": [
           0,
           18.97,
@@ -3231,7 +2617,7 @@
       },
       "en": {
         "dur": 227.9,
-        "bytes": 8929422,
+        "bytes": 4266346,
         "scenes": [
           0,
           21.8,
@@ -3248,7 +2634,7 @@
       "poster": "src/content/courses/films/pm.outside.intro.jpg",
       "nl": {
         "dur": 212.3,
-        "bytes": 8253400,
+        "bytes": 4010416,
         "scenes": [
           0,
           24.16,
@@ -3262,7 +2648,7 @@
       },
       "en": {
         "dur": 227,
-        "bytes": 8747797,
+        "bytes": 4215932,
         "scenes": [
           0,
           27.35,
@@ -3279,7 +2665,7 @@
       "poster": "src/content/courses/films/pm.portfolio.intro.jpg",
       "nl": {
         "dur": 204.8,
-        "bytes": 8151320,
+        "bytes": 3878448,
         "scenes": [
           0,
           22.69,
@@ -3293,7 +2679,7 @@
       },
       "en": {
         "dur": 222.2,
-        "bytes": 8691166,
+        "bytes": 4193414,
         "scenes": [
           0,
           24.74,
@@ -3310,7 +2696,7 @@
       "poster": "src/content/courses/films/pm.consult.intro.jpg",
       "nl": {
         "dur": 190,
-        "bytes": 7490962,
+        "bytes": 3536559,
         "scenes": [
           0,
           19.6,
@@ -3324,7 +2710,7 @@
       },
       "en": {
         "dur": 205.9,
-        "bytes": 8075137,
+        "bytes": 3834368,
         "scenes": [
           0,
           21.5,
@@ -3341,7 +2727,7 @@
       "poster": "src/content/courses/films/pm.scaled.intro.jpg",
       "en": {
         "dur": 226.1,
-        "bytes": 8927411,
+        "bytes": 4067515,
         "scenes": [
           0,
           20.58,
@@ -3355,7 +2741,7 @@
       },
       "nl": {
         "dur": 207.9,
-        "bytes": 8286747,
+        "bytes": 3785424,
         "scenes": [
           0,
           19.54,
@@ -3372,7 +2758,7 @@
       "poster": "src/content/courses/films/pm.itproject.intro.jpg",
       "nl": {
         "dur": 215.8,
-        "bytes": 7985969,
+        "bytes": 3756433,
         "scenes": [
           0,
           23.39,
@@ -3386,7 +2772,7 @@
       },
       "en": {
         "dur": 230.4,
-        "bytes": 8517007,
+        "bytes": 4029992,
         "scenes": [
           0,
           27.25,
@@ -3403,7 +2789,7 @@
       "poster": "src/content/courses/films/eng.field.making.jpg",
       "nl": {
         "dur": 205.7,
-        "bytes": 8156535,
+        "bytes": 3890896,
         "scenes": [
           0,
           22.07,
@@ -3418,7 +2804,7 @@
       },
       "en": {
         "dur": 227.9,
-        "bytes": 9048976,
+        "bytes": 4306762,
         "scenes": [
           0,
           24.65,
@@ -3436,7 +2822,7 @@
       "poster": "src/content/courses/films/eng.field.digital.jpg",
       "nl": {
         "dur": 179.1,
-        "bytes": 7710389,
+        "bytes": 3583344,
         "scenes": [
           0,
           23.26,
@@ -3450,7 +2836,7 @@
       },
       "en": {
         "dur": 198.2,
-        "bytes": 8352629,
+        "bytes": 3874070,
         "scenes": [
           0,
           27.32,
@@ -3467,7 +2853,7 @@
       "poster": "src/content/courses/films/eng.field.energy.jpg",
       "nl": {
         "dur": 237.9,
-        "bytes": 10998027,
+        "bytes": 4983548,
         "scenes": [
           0,
           21.11,
@@ -3483,7 +2869,7 @@
       },
       "en": {
         "dur": 257.3,
-        "bytes": 11238766,
+        "bytes": 5161105,
         "scenes": [
           0,
           23.34,
@@ -3502,7 +2888,7 @@
       "poster": "src/content/courses/films/eng.machining.intro.jpg",
       "nl": {
         "dur": 210.7,
-        "bytes": 8131832,
+        "bytes": 3946523,
         "scenes": [
           0,
           36.68,
@@ -3517,7 +2903,7 @@
       },
       "en": {
         "dur": 226.8,
-        "bytes": 8674607,
+        "bytes": 4137859,
         "scenes": [
           0,
           39.78,
@@ -3535,7 +2921,7 @@
       "poster": "src/content/courses/films/eng.joining.intro.jpg",
       "nl": {
         "dur": 206.2,
-        "bytes": 8033278,
+        "bytes": 3932289,
         "scenes": [
           0,
           27.83,
@@ -3550,7 +2936,7 @@
       },
       "en": {
         "dur": 222.2,
-        "bytes": 8678550,
+        "bytes": 4189161,
         "scenes": [
           0,
           30.12,
@@ -3568,7 +2954,7 @@
       "poster": "src/content/courses/films/eng.moulding.intro.jpg",
       "en": {
         "dur": 206.6,
-        "bytes": 7496606,
+        "bytes": 3698061,
         "scenes": [
           0,
           27.7,
@@ -3583,7 +2969,7 @@
       },
       "nl": {
         "dur": 189.4,
-        "bytes": 6943440,
+        "bytes": 3463830,
         "scenes": [
           0,
           25.48,
@@ -3601,7 +2987,7 @@
       "poster": "src/content/courses/films/eng.mechanics.intro.jpg",
       "en": {
         "dur": 180.9,
-        "bytes": 6708428,
+        "bytes": 3337145,
         "scenes": [
           0,
           30.42,
@@ -3614,7 +3000,7 @@
       },
       "nl": {
         "dur": 163.7,
-        "bytes": 6220380,
+        "bytes": 3097277,
         "scenes": [
           0,
           26.33,
@@ -3630,7 +3016,7 @@
       "poster": "src/content/courses/films/eng.process.intro.jpg",
       "nl": {
         "dur": 162.2,
-        "bytes": 5988108,
+        "bytes": 3012692,
         "scenes": [
           0,
           23.32,
@@ -3643,7 +3029,7 @@
       },
       "en": {
         "dur": 173,
-        "bytes": 6306933,
+        "bytes": 3166885,
         "scenes": [
           0,
           24.4,
@@ -3659,7 +3045,7 @@
       "poster": "src/content/courses/films/eng.drawings.intro.jpg",
       "nl": {
         "dur": 175.6,
-        "bytes": 7113224,
+        "bytes": 3414147,
         "scenes": [
           0,
           26.59,
@@ -3672,7 +3058,7 @@
       },
       "en": {
         "dur": 187.7,
-        "bytes": 7411910,
+        "bytes": 3563406,
         "scenes": [
           0,
           29.48,
@@ -3688,7 +3074,7 @@
       "poster": "src/content/courses/films/eng.gridbasics.intro.jpg",
       "nl": {
         "dur": 154.2,
-        "bytes": 5431137,
+        "bytes": 2725449,
         "scenes": [
           0,
           21.32,
@@ -3701,7 +3087,7 @@
       },
       "en": {
         "dur": 166.5,
-        "bytes": 5626036,
+        "bytes": 2836470,
         "scenes": [
           0,
           22.13,
@@ -3717,7 +3103,7 @@
       "poster": "src/content/courses/films/eng.transformers.intro.jpg",
       "nl": {
         "dur": 159,
-        "bytes": 6023162,
+        "bytes": 3010220,
         "scenes": [
           0,
           19.18,
@@ -3730,7 +3116,7 @@
       },
       "en": {
         "dur": 172,
-        "bytes": 6336657,
+        "bytes": 3142033,
         "scenes": [
           0,
           20.22,
@@ -3746,7 +3132,7 @@
       "poster": "src/content/courses/films/eng.switchgear.intro.jpg",
       "nl": {
         "dur": 168.2,
-        "bytes": 6374765,
+        "bytes": 3120766,
         "scenes": [
           0,
           25.12,
@@ -3759,7 +3145,7 @@
       },
       "en": {
         "dur": 181,
-        "bytes": 6579304,
+        "bytes": 3296014,
         "scenes": [
           0,
           28.07,
@@ -3775,7 +3161,7 @@
       "poster": "src/content/courses/films/eng.power.intro.jpg",
       "nl": {
         "dur": 167.7,
-        "bytes": 6472930,
+        "bytes": 3168941,
         "scenes": [
           0,
           22.96,
@@ -3788,7 +3174,7 @@
       },
       "en": {
         "dur": 179.6,
-        "bytes": 6763246,
+        "bytes": 3253869,
         "scenes": [
           0,
           24.96,
@@ -3804,7 +3190,7 @@
       "poster": "src/content/courses/films/eng.fluids.intro.jpg",
       "nl": {
         "dur": 155.4,
-        "bytes": 5818202,
+        "bytes": 2842946,
         "scenes": [
           0,
           31.25,
@@ -3817,7 +3203,7 @@
       },
       "en": {
         "dur": 167.4,
-        "bytes": 6077956,
+        "bytes": 2989108,
         "scenes": [
           0,
           33.17,
@@ -3833,7 +3219,7 @@
       "poster": "src/content/courses/films/eng.gridops.intro.jpg",
       "nl": {
         "dur": 157.8,
-        "bytes": 5683808,
+        "bytes": 2891829,
         "scenes": [
           0,
           21.59,
@@ -3846,7 +3232,7 @@
       },
       "en": {
         "dur": 166.1,
-        "bytes": 5713904,
+        "bytes": 2951621,
         "scenes": [
           0,
           23.99,
@@ -3862,7 +3248,7 @@
       "poster": "src/content/courses/films/eng.gridplanning.intro.jpg",
       "en": {
         "dur": 161.1,
-        "bytes": 5483979,
+        "bytes": 2774005,
         "scenes": [
           0,
           25.68,
@@ -3875,7 +3261,7 @@
       },
       "nl": {
         "dur": 149.8,
-        "bytes": 5163665,
+        "bytes": 2633151,
         "scenes": [
           0,
           23.5,
@@ -3891,7 +3277,7 @@
       "poster": "src/content/courses/films/eng.itbasics.intro.jpg",
       "nl": {
         "dur": 143.1,
-        "bytes": 5059028,
+        "bytes": 2555119,
         "scenes": [
           0,
           24.42,
@@ -3904,7 +3290,7 @@
       },
       "en": {
         "dur": 159.6,
-        "bytes": 5511032,
+        "bytes": 2809762,
         "scenes": [
           0,
           27.44,
@@ -3920,7 +3306,7 @@
       "poster": "src/content/courses/films/eng.ot.intro.jpg",
       "en": {
         "dur": 184.9,
-        "bytes": 6544654,
+        "bytes": 3178170,
         "scenes": [
           0,
           32.83,
@@ -3933,7 +3319,7 @@
       },
       "nl": {
         "dur": 168.7,
-        "bytes": 6097126,
+        "bytes": 2945385,
         "scenes": [
           0,
           29.36,
@@ -3949,7 +3335,7 @@
       "poster": "src/content/courses/films/eng.cyber.intro.jpg",
       "nl": {
         "dur": 159.7,
-        "bytes": 5972660,
+        "bytes": 2954652,
         "scenes": [
           0,
           21.7,
@@ -3962,7 +3348,7 @@
       },
       "en": {
         "dur": 178,
-        "bytes": 6442865,
+        "bytes": 3196432,
         "scenes": [
           0,
           24.7,
@@ -3978,7 +3364,7 @@
       "poster": "src/content/courses/films/eng.lines.intro.jpg",
       "nl": {
         "dur": 170.6,
-        "bytes": 6061446,
+        "bytes": 3025449,
         "scenes": [
           0,
           24.26,
@@ -3993,7 +3379,7 @@
       },
       "en": {
         "dur": 180.8,
-        "bytes": 6269384,
+        "bytes": 3136636,
         "scenes": [
           0,
           26.12,
@@ -4011,7 +3397,7 @@
       "poster": "src/content/courses/films/eng.industry40.intro.jpg",
       "en": {
         "dur": 148.7,
-        "bytes": 5128467,
+        "bytes": 2572954,
         "scenes": [
           0,
           27.26,
@@ -4024,7 +3410,7 @@
       },
       "nl": {
         "dur": 137,
-        "bytes": 4842771,
+        "bytes": 2420232,
         "scenes": [
           0,
           23.58,
@@ -4040,7 +3426,7 @@
       "poster": "src/content/courses/films/eng.field.run.jpg",
       "nl": {
         "dur": 158,
-        "bytes": 6460235,
+        "bytes": 3074542,
         "scenes": [
           0,
           24.79,
@@ -4053,7 +3439,7 @@
       },
       "en": {
         "dur": 173.9,
-        "bytes": 6892769,
+        "bytes": 3278706,
         "scenes": [
           0,
           28.76,
@@ -4069,7 +3455,7 @@
       "poster": "src/content/courses/films/eng.field.better.jpg",
       "nl": {
         "dur": 160.1,
-        "bytes": 7308494,
+        "bytes": 3306947,
         "scenes": [
           0,
           23.67,
@@ -4082,7 +3468,7 @@
       },
       "en": {
         "dur": 176.7,
-        "bytes": 7825240,
+        "bytes": 3581939,
         "scenes": [
           0,
           26.1,
@@ -4098,7 +3484,7 @@
       "poster": "src/content/courses/films/eng.flow.intro.jpg",
       "nl": {
         "dur": 147.8,
-        "bytes": 4975781,
+        "bytes": 2514244,
         "scenes": [
           0,
           28.59,
@@ -4111,7 +3497,7 @@
       },
       "en": {
         "dur": 163,
-        "bytes": 5404537,
+        "bytes": 2762040,
         "scenes": [
           0,
           31.99,
@@ -4127,7 +3513,7 @@
       "poster": "src/content/courses/films/eng.quality.intro.jpg",
       "nl": {
         "dur": 147.8,
-        "bytes": 4912315,
+        "bytes": 2466255,
         "scenes": [
           0,
           28.59,
@@ -4140,7 +3526,7 @@
       },
       "en": {
         "dur": 160.5,
-        "bytes": 5159826,
+        "bytes": 2629544,
         "scenes": [
           0,
           31.23,
@@ -4156,7 +3542,7 @@
       "poster": "src/content/courses/films/eng.maintenance.intro.jpg",
       "nl": {
         "dur": 151.7,
-        "bytes": 5165052,
+        "bytes": 2648944,
         "scenes": [
           0,
           26.85,
@@ -4169,7 +3555,7 @@
       },
       "en": {
         "dur": 160.8,
-        "bytes": 5394956,
+        "bytes": 2742339,
         "scenes": [
           0,
           30.42,
@@ -4185,7 +3571,7 @@
       "poster": "src/content/courses/films/eng.safety.intro.jpg",
       "nl": {
         "dur": 156.3,
-        "bytes": 5512320,
+        "bytes": 2813756,
         "scenes": [
           0,
           29.74,
@@ -4198,7 +3584,7 @@
       },
       "en": {
         "dur": 166.9,
-        "bytes": 5662093,
+        "bytes": 2866197,
         "scenes": [
           0,
           32.22,
@@ -4214,7 +3600,7 @@
       "poster": "src/content/courses/films/eng.improve.intro.jpg",
       "nl": {
         "dur": 144.3,
-        "bytes": 5096845,
+        "bytes": 2562029,
         "scenes": [
           0,
           23.42,
@@ -4227,7 +3613,7 @@
       },
       "en": {
         "dur": 159.7,
-        "bytes": 5647632,
+        "bytes": 2785172,
         "scenes": [
           0,
           26.42,
@@ -4243,7 +3629,7 @@
       "poster": "src/content/courses/films/eng.cost.intro.jpg",
       "nl": {
         "dur": 145.2,
-        "bytes": 5236680,
+        "bytes": 2643072,
         "scenes": [
           0,
           25.57,
@@ -4256,7 +3642,7 @@
       },
       "en": {
         "dur": 156.4,
-        "bytes": 5551046,
+        "bytes": 2773995,
         "scenes": [
           0,
           28.47,
@@ -4272,7 +3658,7 @@
       "poster": "src/content/courses/films/eng.spc.intro.jpg",
       "nl": {
         "dur": 148.3,
-        "bytes": 5090555,
+        "bytes": 2568787,
         "scenes": [
           0,
           29.19,
@@ -4285,7 +3671,7 @@
       },
       "en": {
         "dur": 160.7,
-        "bytes": 5572149,
+        "bytes": 2775568,
         "scenes": [
           0,
           33.61,
@@ -4301,7 +3687,7 @@
       "poster": "src/content/courses/films/eng.reliability.intro.jpg",
       "nl": {
         "dur": 153.8,
-        "bytes": 5267977,
+        "bytes": 2671608,
         "scenes": [
           0,
           26.24,
@@ -4314,7 +3700,7 @@
       },
       "en": {
         "dur": 164.7,
-        "bytes": 5574374,
+        "bytes": 2791730,
         "scenes": [
           0,
           29.97,
@@ -4330,7 +3716,7 @@
       "poster": "src/content/courses/films/pm.approach.intro.jpg",
       "nl": {
         "dur": 158.6,
-        "bytes": 6485528,
+        "bytes": 2963469,
         "scenes": [
           0,
           21.55,
@@ -4343,7 +3729,7 @@
       },
       "en": {
         "dur": 168.9,
-        "bytes": 6832168,
+        "bytes": 3094182,
         "scenes": [
           0,
           25.33,
@@ -4359,7 +3745,7 @@
       "poster": "src/content/courses/films/pm.formats.intro.jpg",
       "nl": {
         "dur": 167.1,
-        "bytes": 7317782,
+        "bytes": 3323349,
         "scenes": [
           0,
           16.07,
@@ -4372,7 +3758,7 @@
       },
       "en": {
         "dur": 179,
-        "bytes": 7720176,
+        "bytes": 3523107,
         "scenes": [
           0,
           16.68,
