@@ -1,0 +1,329 @@
+{
+  "eng.flow": {
+    "absolute": 28,
+    "offtopic": 19,
+    "length": 3,
+    "definition": 1,
+    "shortstem": 5
+  },
+  "eng.quality": {
+    "absolute": 36,
+    "offtopic": 36,
+    "shortstem": 20,
+    "length": 7,
+    "echo": 1,
+    "definition": 6,
+    "duplicate": 2
+  },
+  "eng.process": {
+    "absolute": 36,
+    "length": 1,
+    "offtopic": 19,
+    "shortstem": 13,
+    "echo": 2,
+    "definition": 6
+  },
+  "eng.mechanics": {
+    "absolute": 36,
+    "offtopic": 25,
+    "shortstem": 6,
+    "echo": 2,
+    "length": 4,
+    "definition": 3
+  },
+  "eng.maintenance": {
+    "absolute": 32,
+    "offtopic": 24,
+    "shortstem": 9,
+    "definition": 6
+  },
+  "eng.drawings": {
+    "offtopic": 26,
+    "absolute": 28,
+    "length": 5,
+    "echo": 7,
+    "definition": 4,
+    "shortstem": 7
+  },
+  "eng.safety": {
+    "absolute": 52,
+    "offtopic": 56,
+    "shortstem": 25,
+    "echo": 6,
+    "definition": 12
+  },
+  "eng.fluids": {
+    "absolute": 50,
+    "shortstem": 9,
+    "length": 6,
+    "offtopic": 15,
+    "echo": 2
+  },
+  "eng.power": {
+    "absolute": 18,
+    "offtopic": 15,
+    "echo": 4,
+    "definition": 5,
+    "shortstem": 7
+  },
+  "eng.improve": {
+    "absolute": 49,
+    "offtopic": 27,
+    "shortstem": 31,
+    "echo": 3,
+    "definition": 14
+  },
+  "eng.spc": {
+    "echo": 2,
+    "absolute": 41,
+    "length": 4,
+    "offtopic": 19,
+    "definition": 4,
+    "shortstem": 8
+  },
+  "eng.reliability": {
+    "offtopic": 21,
+    "absolute": 40,
+    "definition": 6,
+    "shortstem": 8,
+    "echo": 1
+  },
+  "eng.machining": {
+    "length": 67,
+    "offtopic": 75,
+    "absolute": 36,
+    "definition": 20,
+    "shortstem": 26,
+    "echo": 4
+  },
+  "eng.joining": {
+    "length": 66,
+    "offtopic": 48,
+    "absolute": 32,
+    "shortstem": 15,
+    "definition": 10
+  },
+  "eng.moulding": {
+    "length": 68,
+    "absolute": 27,
+    "definition": 9,
+    "offtopic": 61,
+    "shortstem": 23,
+    "echo": 8
+  },
+  "eng.lines": {
+    "absolute": 44,
+    "offtopic": 63,
+    "length": 58,
+    "echo": 3,
+    "shortstem": 29,
+    "definition": 16
+  },
+  "eng.cost": {
+    "absolute": 44,
+    "offtopic": 14,
+    "shortstem": 12,
+    "definition": 5,
+    "length": 2,
+    "echo": 1
+  },
+  "eng.itbasics": {
+    "absolute": 70,
+    "offtopic": 17,
+    "definition": 21,
+    "shortstem": 18,
+    "echo": 2,
+    "length": 1
+  },
+  "eng.ot": {
+    "offtopic": 48,
+    "absolute": 45,
+    "definition": 24,
+    "shortstem": 29,
+    "echo": 3
+  },
+  "eng.cyber": {
+    "absolute": 71,
+    "offtopic": 29,
+    "length": 1,
+    "definition": 12,
+    "shortstem": 28,
+    "echo": 1
+  },
+  "eng.industry40": {
+    "absolute": 45,
+    "offtopic": 27,
+    "shortstem": 23,
+    "definition": 10,
+    "echo": 1
+  },
+  "eng.gridbasics": {
+    "absolute": 54,
+    "definition": 14,
+    "shortstem": 15,
+    "offtopic": 25
+  },
+  "eng.transformers": {
+    "offtopic": 30,
+    "absolute": 37,
+    "definition": 11,
+    "shortstem": 15
+  },
+  "eng.switchgear": {
+    "absolute": 52,
+    "offtopic": 29,
+    "definition": 15,
+    "shortstem": 25,
+    "echo": 5,
+    "length": 2
+  },
+  "eng.gridops": {
+    "absolute": 39,
+    "echo": 3,
+    "offtopic": 39,
+    "definition": 11,
+    "shortstem": 24
+  },
+  "eng.gridplanning": {
+    "absolute": 49,
+    "offtopic": 32,
+    "shortstem": 13,
+    "echo": 1,
+    "definition": 5,
+    "length": 1
+  },
+  "pm.approach": {
+    "absolute": 55,
+    "offtopic": 28,
+    "shortstem": 26,
+    "definition": 13,
+    "echo": 2,
+    "length": 1
+  },
+  "pm.intake": {
+    "length": 14,
+    "absolute": 49,
+    "offtopic": 47,
+    "shortstem": 28,
+    "definition": 21
+  },
+  "pm.plan": {
+    "length": 24,
+    "offtopic": 40,
+    "absolute": 40,
+    "shortstem": 22,
+    "definition": 18,
+    "echo": 1
+  },
+  "pm.formats": {
+    "absolute": 54,
+    "offtopic": 42,
+    "shortstem": 43,
+    "definition": 23,
+    "echo": 3
+  },
+  "pm.run": {
+    "length": 6,
+    "offtopic": 38,
+    "absolute": 44,
+    "definition": 13,
+    "shortstem": 33,
+    "echo": 1
+  },
+  "pm.land": {
+    "offtopic": 37,
+    "absolute": 45,
+    "definition": 13,
+    "shortstem": 31,
+    "echo": 1
+  },
+  "pm.close": {
+    "length": 25,
+    "absolute": 49,
+    "offtopic": 40,
+    "definition": 11,
+    "shortstem": 24
+  },
+  "pm.stuck": {
+    "offtopic": 49,
+    "absolute": 39,
+    "definition": 11,
+    "shortstem": 31,
+    "length": 2,
+    "echo": 1
+  },
+  "pm.lead": {
+    "absolute": 39,
+    "offtopic": 36,
+    "echo": 3,
+    "definition": 13,
+    "shortstem": 31,
+    "length": 1
+  },
+  "pm.perform": {
+    "absolute": 60,
+    "offtopic": 20,
+    "length": 2,
+    "shortstem": 19,
+    "definition": 9,
+    "echo": 1
+  },
+  "pm.negotiate": {
+    "absolute": 49,
+    "offtopic": 34,
+    "echo": 2,
+    "definition": 27,
+    "shortstem": 36
+  },
+  "pm.outside": {
+    "absolute": 40,
+    "offtopic": 40,
+    "definition": 21,
+    "shortstem": 40,
+    "echo": 3
+  },
+  "pm.portfolio": {
+    "offtopic": 36,
+    "absolute": 53,
+    "length": 5,
+    "definition": 11,
+    "shortstem": 19,
+    "echo": 1
+  },
+  "pm.consult": {
+    "offtopic": 50,
+    "absolute": 59,
+    "definition": 14,
+    "shortstem": 30,
+    "echo": 3
+  },
+  "pm.agile": {
+    "offtopic": 43,
+    "absolute": 25,
+    "definition": 17,
+    "shortstem": 32,
+    "length": 1,
+    "echo": 2
+  },
+  "pm.scaled": {
+    "absolute": 68,
+    "offtopic": 39,
+    "shortstem": 28,
+    "echo": 3,
+    "length": 3,
+    "definition": 20
+  },
+  "pm.devops": {
+    "offtopic": 26,
+    "absolute": 72,
+    "definition": 31,
+    "shortstem": 37
+  },
+  "pm.itproject": {
+    "absolute": 52,
+    "offtopic": 17,
+    "definition": 21,
+    "shortstem": 32,
+    "echo": 1
+  }
+}
