@@ -10,6 +10,7 @@ import { upcoming } from './realweek.js';
 import { creditXp, isPerfect, goalJustReached } from './xp.js';
 import { awardFlair } from './flair.js';
 import { judge, answerText, valueText } from './questionkinds.js';
+import { testPick } from './testrules.js';
 
 const LESSON_XP = 20;
 const SITUATION_XP = 10;
@@ -452,6 +453,9 @@ export function courseTodayPick(state, subject, lang, today, modules = MODULES) 
   if (due >= 5) return { reason: 'due', count: due };
   const rec = nextCourseLesson(state, subject, modules);
   if (rec) return placed({ reason: 'lesson', ...rec }, modules);
+  // v18 T2: every lesson is done; the next step keeps him training with a practice test (one a day).
+  const test = testPick(state, subject, today, modules);
+  if (test) return test;
   const lessons = passedIn(state, subject);
   const all = modules.filter((m) => m.subject === subject).flatMap((m) => m.lessons.map((lessonId) => ({ moduleId: m.id, lessonId })));
   const done = all.filter((x) => lessons[x.lessonId] && lessons[x.lessonId].passed);

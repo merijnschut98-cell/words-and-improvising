@@ -9,12 +9,14 @@ import { guideOn } from './guide.js';
 import { filmButton } from './film.js';
 import { courseTodayPick, moduleMastery, nextLesson, levelsDone, dueNow, dueWaiting, dueSkipped, skipDueToday } from '../core/course.js';
 import { pathModel, topicPath } from './pathmap.js';
-import { medalSeal, metaSeal, moduleEndModel, checkEntry, guideGreeting } from './flairui.js';
+import { medalSeal, metaSeal, moduleEndModel, guideGreeting } from './flairui.js';
+import { testRows, testLabel } from './practicetest.js';
+import { specOf, testStatus, topicTestId } from '../core/practicetest.js';
 import { mapNextModule } from '../core/coursereview.js';
 import { FROM_MODULE } from '../core/moduleexit.js';
 import { moduleTier, trackProgress, openTrack } from '../core/layout.js';
 
-export const COURSE_ICON = { apply: 'pen-line', prep: 'calendar', due: 'repeat', lesson: 'book-open', situation: 'drama', sayIt: 'mic', maintain: 'wrench', done: 'circle-check' };
+export const COURSE_ICON = { test: 'notebook-pen', apply: 'pen-line', prep: 'calendar', due: 'repeat', lesson: 'book-open', situation: 'drama', sayIt: 'mic', maintain: 'wrench', done: 'circle-check' };
 
 // The reason line for a course pick: a lesson for an event says so; prep names the event.
 export const courseWhy = (t, pick) => t(`courseWhy_${pick.why || pick.reason}`, pick.eventText || '');
@@ -28,6 +30,10 @@ export function placeLabel(t, lang, lessonId, modules = MODULES) {
 // The why line of a course pick: a topic lesson names its topic and level, a
 // lesson elsewhere its module.
 export function pickWhy(t, lang, pick, meta, modules = MODULES) {
+  if (pick.reason === 'test' && meta) {
+    const spec = specOf(meta, pick.testId);
+    return spec ? `${courseWhy(t, pick)} · ${testLabel(t, meta, spec, lang)}` : courseWhy(t, pick);
+  }
   const place = pick.topicId && pick.lessonId ? placeLabel(t, lang, pick.lessonId, modules) : '';
   if (place) return `${courseWhy(t, pick)} · ${place}`;
   return meta && pick.lessonId ? `${courseWhy(t, pick)} · ${meta.title[lang] || meta.title.en}` : courseWhy(t, pick);
@@ -44,6 +50,7 @@ export function openPick(app, subject, pick) {
   if (pick.reason === 'lesson') return app.go('lesson', { subject, moduleId: pick.moduleId, lessonId: pick.lessonId });
   if (pick.reason === 'situation') return app.go('situation', { subject, moduleId: pick.moduleId, lessonId: pick.lessonId });
   if (pick.reason === 'sayIt') return app.startSayIt(subject, pick.moduleId, pick.lessonId);
+  if (pick.reason === 'test') return app.go('test', { subject, moduleId: pick.moduleId, testId: pick.testId });
   return null;
 }
 
@@ -106,6 +113,13 @@ export function modSummary(app, meta, tag, attrs, ...bits) {
 
 const openLesson = (app, meta) => (lessonId) => app.go('lesson', { subject: meta.subject, moduleId: meta.id, lessonId, from: FROM_MODULE });
 
+// The topic test's stop under a finished topic's flag (v18 T2); null until the flag shows.
+function topicTest(app, meta, topic) {
+  if (!topic.done) return null;
+  const st = testStatus(app.state, meta, specOf(meta, topicTestId(meta.id, topic.id)));
+  return st.open ? { pct: st.record ? st.record.best : null, passed: st.passed, onOpen: () => app.go('test', { subject: meta.subject, moduleId: meta.id, testId: st.id, from: FROM_MODULE }) } : null;
+}
+
 // A topic module's topics: one row per topic with its path of levels, from the
 // index alone (no module load). A level shows once the one before it is passed
 // (v16, topicRows); every stop shown opens its lesson. Shared by the module
@@ -119,7 +133,7 @@ export function topicsSection(app, meta, model = pathModel(app.state, meta, app.
       h('div', { class: 'topic-head' },
         h('h3', { class: 'topic-title' }, title),
         h('span', { class: 'mono topic-count' }, t('topicCount', topic.passed))),
-      topicPath(t, title, topic, go, onInfo ? (level, btn) => onInfo(topic, level, btn) : null),
+      topicPath(t, title, topic, go, onInfo ? (level, btn) => onInfo(topic, level, btn) : null, topicTest(app, meta, topic)),
       onInfo ? h('div', { class: 'opener-slot', 'data-topic': topic.id }) : null);
   }));
 }
@@ -146,11 +160,16 @@ function topicModuleRow(app, meta) {
 }
 
 // Under the last topic: the module's medal (an empty ring before bronze).
-// The module check joins it once bronze is earned (v16 flair).
+// The level tests join it (v18 T2): the Expert test is the module's final test and
+// replaces the module check (the check screen stays for old links and records).
 export function moduleEnd(app, meta) {
   const end = moduleEndModel(app.state, meta, app.today());
-  return h('div', { class: 'path-end' }, medalSeal(app.t, end.tier, 24),
-    checkEntry(app.t, end, () => app.go('check', { subject: meta.subject, moduleId: meta.id, from: FROM_MODULE })));
+  return h('div', { class: 'path-end' }, medalSeal(app.t, end.tier, 24));
+}
+
+// The row of level tests under the topics of the module screen.
+export function levelTestRows(app, meta) {
+  return testRows(app.t, app.state, meta, (testId) => app.go('test', { subject: meta.subject, moduleId: meta.id, testId, from: FROM_MODULE }), app.lang);
 }
 
 function moduleRow(app, meta) {

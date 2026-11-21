@@ -1105,6 +1105,29 @@ details.rw-topic > summary { cursor: pointer; min-height: 44px; display: flex; a
 .path-stub { margin-top: 13px; padding-left: 4px; font-size: 0.75rem; color: var(--muted); }
 .path-flag { margin-top: 11px; padding-left: 2px; display: inline-flex; align-items: center; color: var(--accent-dark); }
 .path-flag .ico-check { width: 0.9em; height: 0.9em; margin-left: -2px; }
+/* v18 T2: the topic test's stop under the flag, and the level test rows. */
+.path-end-cell { flex: 0 0 auto; display: flex; flex-direction: column; align-items: center; width: 52px; }
+.path-end-cell .path-flag { margin-top: 11px; padding-left: 0; }
+.path-test { min-width: 44px; min-height: 44px; margin-top: -2px; padding: 0 2px; border: 0; background: transparent; color: var(--muted); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0; cursor: pointer; border-radius: var(--radius-sm); font: inherit; }
+.path-test .ico { width: 16px; height: 16px; }
+.path-test.passed { color: var(--accent-dark); }
+.path-test-label { font-size: 0.7rem; line-height: 1.15; }
+.path-test:focus-visible { outline: 2px solid var(--accent); outline-offset: 0; }
+@media (hover: hover) { .path-test:hover { color: var(--accent-dark); } }
+.tests { display: flex; flex-direction: column; gap: 6px; }
+.tests .topic-title { margin: 0; }
+.test-rows { list-style: none; display: flex; flex-wrap: wrap; gap: 8px; margin: 0; padding: 0; }
+.test-chip { display: inline-flex; align-items: center; gap: 4px; min-height: 44px; padding: 0 12px; border-radius: var(--radius-sm); font-size: 0.9rem; }
+.test-chip.passed { color: var(--accent-dark); }
+.test-chip.locked { border: 1px dashed var(--line); color: var(--muted); }
+.tests-note { margin: 0; }
+.test-bars { list-style: none; margin: 4px 0 0; padding: 0; display: flex; flex-direction: column; gap: 8px; }
+.test-bar { display: grid; grid-template-columns: minmax(0, 1fr) 72px 3.2em; align-items: center; gap: 10px; text-align: left; }
+.test-bar-label { overflow-wrap: anywhere; }
+.test-bar-count { text-align: right; }
+.test-bar .pbar { height: 6px; }
+.test-done .check-score { margin: 4px 0; }
+.practice-test .test-intro p { margin: 6px 0; }
 
 /* Medal seal: form tells the tier (ring, double ring, solid disc), the word always beside it. */
 .medal { display: inline-flex; align-items: center; gap: 6px; }
