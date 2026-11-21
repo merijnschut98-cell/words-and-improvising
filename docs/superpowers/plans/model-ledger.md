@@ -234,3 +234,4 @@ Outcome: accepted (merged as delivered), sent back N times, redone.
 | 2026-11-21 | Review of v18 F1 (question kinds engine) | opus | ~40 | 7 min | - | approved (855db1f); 6 fixes: word-bank typo, digits, ij and spacing, number guard, best pre parity, focus |
 | 2026-11-21 | v18 D1: DMAIC proposal (road, pm.measure, pm.analyse) | opus | ~40 | 11 min | - | done (4c3e002); 5 MC questions for Merijn |
 | 2026-11-21 | v18 F3: skip recurring reviews (option A, three controls) | sonnet | ~45 | ~8 min | - | done (0c5339e); opus review dispatched (storage, sync) |
+| 2026-11-21 | v18 T1: bank and blueprint schema and validator | sonnet | ~50 | ~30 min | - | done (3b92ab0); opus review dispatched |
