@@ -19,6 +19,7 @@ function micShareNote(t) {
   return h('p', { class: 'note mic-share-note' }, t(tested === false ? 'micShareAndroid' : 'micShareAndroidTest'));
 }
 import { speechSupported } from '../core/speech.js';
+import { REVIEW_CAPS, reviewCapOf } from '../core/coursereview.js';
 
 export function renderSettings(app, _params, root) {
   const t = app.t;
@@ -187,6 +188,9 @@ export function renderSettings(app, _params, root) {
         goalPicker(app),
         h('label', { class: 'field-label' }, t('planTitle')),
         h('p', { class: 'muted small' }, t('planHelp')),
+        h('label', { class: 'field-label' }, t('reviewCapTitle')),
+        h('p', { class: 'muted small' }, t('reviewCapHelp')),
+        segmented(reviewCapOf(s), REVIEW_CAPS.map((v) => [v, t(`reviewCap_${v}`)]), (v) => set({ reviewCap: v }, true)),
         planPicker(app, flash),
         toggle(s.remind, (e) => toggleReminder(e.target), t('remind'), remindNote),
         toggle(s.sound !== false, (e) => set({ sound: e.target.checked }), t('sound'), h('p', { class: 'muted small' }, t('soundHelp'))),

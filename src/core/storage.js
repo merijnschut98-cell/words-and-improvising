@@ -10,7 +10,7 @@ const HISTORY_CAP = 200;
 export function defaultState() {
   return {
     version: 1,
-    settings: { lang: 'nl', mode: 'speak', apiKey: '', model: 'claude-opus-5-5', record: false, remind: false, theme: 'auto', voiceStats: false, context: '', guide: true, cheer: false }, // guide: the Andon light (v16, device-only); cheer: a sound on a celebration, off by default (Q10) // context: his work, device-only, sent only on a coach tap
+    settings: { lang: 'nl', mode: 'speak', apiKey: '', model: 'claude-opus-5-5', record: false, remind: false, theme: 'auto', voiceStats: false, context: '', guide: true, cheer: false, reviewCap: 20 }, // reviewCap (v18): most reviews a course shows per day, 10/20/40 or 0 = no limit, device-only // guide: the Andon light (v16, device-only); cheer: a sound on a celebration, off by default (Q10) // context: his work, device-only, sent only on a coach tap
     xp: 0,
     streak: { count: 0, lastDay: null },
     days: {}, // 'YYYY-MM-DD' -> rounds completed that day
@@ -103,7 +103,8 @@ export function load(backend) {
   const courses = isObject(parsed.courses) ? parsed.courses : {};
   merged.courses = Object.fromEntries(Object.keys(base.courses).map((k) => {
     const c = isObject(courses[k]) ? courses[k] : {};
-    return [k, { ...c, lessons: isObject(c.lessons) ? c.lessons : {}, sessions: Array.isArray(c.sessions) ? c.sessions : [], plans: cleanPlans(c.plans), prepped: strings(c.prepped), seenIntros: strings(c.seenIntros).slice(-200), seenLevels: strings(c.seenLevels).slice(-1200), medals: cleanMedals(c.medals), checks: cleanChecks(c.checks) }];
+    const { dueSkip, ...rest } = c;
+    return [k, { ...rest, lessons: isObject(c.lessons) ? c.lessons : {}, sessions: Array.isArray(c.sessions) ? c.sessions : [], plans: cleanPlans(c.plans), prepped: strings(c.prepped), seenIntros: strings(c.seenIntros).slice(-200), seenLevels: strings(c.seenLevels).slice(-1200), medals: cleanMedals(c.medals), checks: cleanChecks(c.checks), ...(isDay(dueSkip) ? { dueSkip } : {}) }];
   }));
   merged.xpDays = cleanXpDays(parsed.xpDays);
   merged.dailyGoal = cleanGoal(parsed.dailyGoal);
@@ -111,6 +112,7 @@ export function load(backend) {
   merged.speakMedals = cleanSpeakMedals(parsed.speakMedals);
   if (typeof merged.settings.guide !== 'boolean') merged.settings.guide = true;
   if (typeof merged.settings.cheer !== 'boolean') merged.settings.cheer = false;
+  if (![10, 20, 40, 0].includes(merged.settings.reviewCap)) merged.settings.reviewCap = 20;
   if (!isObject(merged.courseReviews)) merged.courseReviews = {};
   // Boxes run 1–6 since v9; a v8 queue (1–4) loads unchanged.
   for (const [k, r] of Object.entries(merged.courseReviews)) {

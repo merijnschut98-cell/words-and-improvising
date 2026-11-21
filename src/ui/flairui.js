@@ -9,7 +9,7 @@ import { checkOf } from '../core/modulecheck.js';
 import { celebrationOf } from '../core/flair.js';
 import { cheerOn, cueFor, play as playCue } from '../core/sound.js';
 import { guide, guideLine, guideSvg, guideOn, guideFigure, statusModel, andonIntroSeen, markAndonIntroSeen } from './guide.js';
-import { dueCount } from '../core/coursereview.js';
+import { dueNow } from '../core/course.js';
 import { introFilm } from './film.js';
 import { introSeen } from '../core/course.js';
 import { MODULES, placeOf } from '../content/courses/index.js';
@@ -296,7 +296,7 @@ export function guideGreeting(app, { subject = null, goal = false, pick = null }
 // How many reviews wait for this screen: a course home counts its own queue,
 // the speaking home its prompts, the start screen all of them.
 export function dueFor(app, subject) {
-  const course = (sub) => dueCount(app.state.courseReviews || {}, app.today(), sub, app.lang);
+  const course = (sub) => dueNow(app.state, sub, app.lang, app.today());
   const speak = () => (typeof app.dueReviews === 'function' ? app.dueReviews().length : 0);
   if (subject === 'eng' || subject === 'pm') return course(subject);
   if (subject === 'speak') return speak();

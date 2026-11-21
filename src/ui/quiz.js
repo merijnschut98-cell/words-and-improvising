@@ -4,7 +4,7 @@
 // not climb a box (sure = !hinted).
 import { h } from './dom.js';
 import { ico } from './icons.js';
-import { startQuiz, answerQuiz, backQuiz, continueQuiz, hintQuiz, judge, guessCompare } from '../core/course.js';
+import { startQuiz, answerQuiz, backQuiz, continueQuiz, hintQuiz, skipQuiz, judge, guessCompare } from '../core/course.js';
 import { questionHint } from '../core/hint.js';
 import { kindOf, grade, answerText, valueText } from '../core/questionkinds.js';
 import { hasBody, kindBody } from './quizkinds.js';
@@ -17,7 +17,8 @@ const KIND_LABEL = { best: 'kindBest', all: 'kindAll', gap: 'kindGap', order: 'k
 // termsOf(question): the terms of the question's lesson, for the hint.
 // onePass (the module check, v16): one pass, no hint, no back, no retry
 // passes; the review ends the quiz.
-export function renderQuiz(app, { questions, onDone, onBack = null, termsOf = () => [], onePass = false }, box) {
+// skippable (due sessions, v18): an "Overslaan" under each first-pass question; it is not an answer.
+export function renderQuiz(app, { questions, onDone, onBack = null, termsOf = () => [], onePass = false, skippable = false }, box) {
   const t = app.t;
   let st = startQuiz(questions);
   let lastPass = [];
@@ -36,6 +37,11 @@ export function renderQuiz(app, { questions, onDone, onBack = null, termsOf = ()
     lastPass.pop();
     draw();
   };
+
+  // Ghost button: the question goes to the end; skipped again it stays due, unanswered, unpenalised.
+  const skipBtn = () => (skippable && !onePass && st.pass === 1
+    ? h('button', { class: 'btn btn-ghost small quiz-skip', onclick: () => { st = skipQuiz(st, questions); draw(); } }, t('quizSkip'))
+    : null);
 
   // The hint's lines; a struck option is also struck in the list itself.
   const hintLines = (hint) => {
@@ -84,6 +90,7 @@ export function renderQuiz(app, { questions, onDone, onBack = null, termsOf = ()
     const backBtn = onePass ? null : st.i > 0
       ? h('button', { class: 'btn btn-ghost small quiz-back', onclick: back }, ico('chevron-left'), ' ', t('quizBack'))
       : (onBack && st.pass === 1 ? h('button', { class: 'btn btn-ghost small lesson-back', onclick: onBack }, ico('chevron-left'), ' ', t('lessonBack')) : null);
+    const skip = skipBtn();
     const progress = h('p', { class: 'quiz-progress muted small' }, `${st.pass > 1 ? `${t('quizAgain')} · ` : ''}${st.i + 1}/${st.order.length}`);
     // Back on a question he already answered: show what he picked.
     const prev = st.prev && st.prev.id === q.id && st.prev.value != null && !hasBody(kindOf(q)) ? String(st.prev.value) : null;
@@ -106,7 +113,7 @@ export function renderQuiz(app, { questions, onDone, onBack = null, termsOf = ()
         hp.panel,
         h('div', { class: 'quiz-num-row' }, input, q.unit ? h('span', { class: 'quiz-unit' }, q.unit) : null),
         picked,
-        h('div', { class: 'quiz-actions' }, h('button', { class: 'btn btn-primary', onclick: submit }, t('quizNext')), hp.btn, backBtn));
+        h('div', { class: 'quiz-actions' }, h('button', { class: 'btn btn-primary', onclick: submit }, t('quizNext')), hp.btn, backBtn, skip));
     }
     const kind = kindOf(q);
     if (hasBody(kind)) {
@@ -117,7 +124,7 @@ export function renderQuiz(app, { questions, onDone, onBack = null, termsOf = ()
         h('p', { class: 'quiz-kind muted small' }, t(KIND_LABEL[kind])),
         hp.panel,
         body.el,
-        hp.btn || backBtn ? h('div', { class: 'quiz-actions' }, hp.btn, backBtn) : null);
+        hp.btn || backBtn || skip ? h('div', { class: 'quiz-actions' }, hp.btn, backBtn, skip) : null);
     }
     const mark = prev != null ? prev : hasGuess ? String(q.guess) : null;
     const opts = h('div', { class: 'quiz-opts' }, q.options.map((o) => h('button', {
@@ -131,7 +138,7 @@ export function renderQuiz(app, { questions, onDone, onBack = null, termsOf = ()
       hp.panel,
       opts,
       picked,
-      hp.btn || backBtn ? h('div', { class: 'quiz-actions' }, hp.btn, backBtn) : null);
+      hp.btn || backBtn || skip ? h('div', { class: 'quiz-actions' }, hp.btn, backBtn, skip) : null);
   }
 
   // Guess at the start → answer now → the right answer, each marked, so he

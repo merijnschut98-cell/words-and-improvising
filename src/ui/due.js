@@ -3,7 +3,7 @@ import { h } from './dom.js';
 import { ico } from './icons.js';
 import { renderQuiz } from './quiz.js';
 import { celebration } from './flairui.js';
-import { applyDue, questionById } from '../core/course.js';
+import { applyDue, questionById, reviewsLeftToday } from '../core/course.js';
 import { dueSession, isOwned } from '../core/coursereview.js';
 import { moduleOf, subjectOf, lessonOf } from '../content/courses/index.js';
 import { seededRng } from '../core/lesson.js';
@@ -20,7 +20,7 @@ export function renderDue(app, { subject, questionIds = null, maintenance = fals
       h('div', { class: 'round-title' }, ico('repeat'), ' ', t('dueTitle')), h('div', {})),
     main);
 
-  const ids = (questionIds || dueSession(app.state.courseReviews, app.today(), subject, app.lang, seededRng(seedOf(`${app.today()}|${subject}`))))
+  const ids = (questionIds || dueSession(app.state.courseReviews, app.today(), subject, app.lang, seededRng(seedOf(`${app.today()}|${subject}`)), { left: reviewsLeftToday(app.state, subject, app.today()) }))
     .filter((id) => subjectOf(id) === subject);
   if (!ids.length) {
     main.replaceChildren(h('section', { class: 'card' }, h('p', {}, t('dueNone'))),
@@ -44,7 +44,16 @@ export function renderDue(app, { subject, questionIds = null, maintenance = fals
       renderQuiz(app, {
         questions,
         termsOf,
+        skippable: true, // v18: "Overslaan" per question; a skipped one stays due
         onDone: (firstTry, sure) => {
+          const answered = Object.keys(firstTry || {}).length;
+          const skipped = questions.length - answered;
+          // Everything skipped: nothing is scheduled, no round, no XP.
+          if (!answered) {
+            main.replaceChildren(h('section', { class: 'card lesson-done due-done' }, h('p', {}, t('dueAllSkipped'))),
+              h('button', { class: 'btn btn-primary btn-big', onclick: () => app.go('home') }, t('backToCourse')));
+            return;
+          }
           const before = questions.filter((q) => isOwned(app.state.courseReviews, app.lang, q.id)).length;
           const res = applyDue(app.state, { subject, results: firstTry, sure, lang: app.lang, maintenance, prep }, app.today(), Date.now());
           app.setState(res.state);
@@ -55,7 +64,8 @@ export function renderDue(app, { subject, questionIds = null, maintenance = fals
             h('h2', { class: 'card-title' }, t('dueDone')),
             h('p', { class: 'xp-line xp-rise' }, `+${res.xp} XP`),
             ...c.nodes.slice(1),
-            owned > 0 ? h('p', { class: 'muted' }, t('dueOwned', owned)) : null),
+            owned > 0 ? h('p', { class: 'muted' }, t('dueOwned', owned)) : null,
+            skipped > 0 ? h('p', { class: 'muted small' }, t('dueSkippedLeft', skipped)) : null),
           h('button', { class: 'btn btn-primary btn-big', onclick: () => app.go('home') }, t('backToCourse')));
         },
       }, box);
