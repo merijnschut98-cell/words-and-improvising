@@ -22,11 +22,19 @@ const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&l
 const f = (n) => Math.round(n * 10) / 10;
 const say = (l, lang) => (l && typeof l === 'object' ? l[lang] ?? '' : String(l ?? ''));
 
-// Words wrapped to at most `chars` characters a line (a longer word keeps its own line).
+// Words wrapped to at most `chars` characters a line (a longer word is broken with a hyphen).
 export function wrap(s, chars) {
   const out = [];
   let cur = '';
-  for (const w of String(s).split(/\s+/).filter(Boolean)) {
+  const words = String(s).split(/\s+/).filter(Boolean).flatMap((w) => {
+    const max = Math.ceil(chars * 1.25); // `chars` is a generous estimate, so a word breaks only when it is clearly too wide
+    if (w.length <= max) return [w];
+    const parts = []; // a word wider than the box is broken with a hyphen, never clipped
+    let rest = w;
+    while (rest.length > max) { parts.push(`${rest.slice(0, max - 1)}-`); rest = rest.slice(max - 1); }
+    return [...parts, rest];
+  });
+  for (const w of words) {
     if (cur && (cur + ' ' + w).length > chars) { out.push(cur); cur = w; } else cur = cur ? `${cur} ${w}` : w;
   }
   if (cur) out.push(cur);
@@ -81,7 +89,8 @@ function table(pic, lang) {
 function grid(pic, lang) {
   const nc = pic.cols.length;
   const nr = pic.rows.length;
-  const lw = nr > 2 ? 84 : 96; // row labels
+  const longest = Math.max(...pic.rows.map((r) => Math.max(...say(r, lang).split(/\s+/).map((w) => w.length))));
+  const lw = Math.min(Math.round(PIC_W * 0.38), Math.max(nr > 2 ? 84 : 96, Math.ceil(longest * GLYPH * 0.95 + 10))); // row labels: wide enough for the longest word
   const cw = (PIC_W - lw) / nc;
   let out = '';
   let y = 0;
@@ -107,6 +116,8 @@ function grid(pic, lang) {
       const tone = pic.tone ? pic.tone[i][j] : 0;
       out += `<rect class="pic-box pic-cell pic-t${tone}" x="${f(lw + j * cw)}" y="${f(y)}" width="${f(cw)}" height="${h}"/>`;
       out += lines(cl[j], lw + j * cw + cw / 2, y + (h - cl[j].length * LH) / 2, '', 'middle');
+      // the level is also a count of small bars in the corner, so it never rests on colour alone
+      for (let k = 0; k < tone; k++) out += `<rect class="pic-bar" x="${f(lw + (j + 1) * cw - 7 - k * 5)}" y="${f(y + 4)}" width="3" height="8"/>`;
     });
     y += h;
   });
@@ -115,8 +126,8 @@ function grid(pic, lang) {
 
 function cycle(pic, lang) {
   const n = pic.steps.length;
-  const R = n <= 4 ? 100 : 108;
-  const nodeW = n <= 4 ? 112 : 104;
+  const nodeW = n <= 4 ? 112 : n <= 6 ? 100 : 90;
+  const R = n <= 4 ? 100 : Math.floor(PIC_W / 2 - 4 - nodeW / 2); // neighbours stay a node's width apart
   const cx = PIC_W / 2;
   const nodes = pic.steps.map((s, i) => {
     const a = -Math.PI / 2 + (2 * Math.PI * i) / n;

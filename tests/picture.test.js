@@ -42,9 +42,20 @@ test('text stays inside the picture: wrapped lines never run past their box', ()
   for (const m of svg.matchAll(/<text[^>]* x="([\d.]+)"[^>]*>([^<]*)</g)) assert.ok(Number(m[1]) + m[2].length * PIC_FONT * 0.5 <= PIC_W + 1, m[2]);
 });
 
+test('review fixes: a far too wide word is broken, tone is also a bar count, cycle nodes do not overlap', () => {
+  assert.ok(wrap('Onwaarschijnlijkheidsverdeling', 10).length > 1);
+  assert.deepEqual(wrap('Waarschijnlijk', 12), ['Waarschijnlijk']);
+  const svg = pictureSvg(SAMPLES.grid, 'en', 'x');
+  assert.equal((svg.match(/class="pic-bar"/g) || []).length, 1 + 3 + 0 + 2, 'bars = sum of the tones');
+  const eight = { kind: 'cycle', steps: Array.from({ length: 8 }, (_, i) => L(`S${i}`, `S${i}`)) };
+  const xs = [...pictureSvg(eight, 'en', 'x').matchAll(/<rect class="pic-box pic-node"[^>]* x="([\d.-]+)" y="([\d.-]+)" width="([\d.]+)"/g)].map((m) => [Number(m[1]), Number(m[2]), Number(m[3])]);
+  assert.equal(xs.length, 8);
+  for (let i = 0; i < 8; i++) for (let j = i + 1; j < 8; j++) assert.ok(Math.abs(xs[i][0] - xs[j][0]) >= xs[i][2] || Math.abs(xs[i][1] - xs[j][1]) >= 33, `nodes ${i} and ${j} overlap`);
+});
+
 test('the styles carry every picture class, with tokens only', () => {
   const css = readFileSync(new URL('../styles.css', import.meta.url), 'utf8');
-  for (const c of ['pic-svg', 'pic-box', 'pic-head', 'pic-rowhead', 'pic-node', 'pic-t0', 'pic-t3', 'pic-text', 'pic-bold', 'pic-onhead', 'pic-line', 'pic-arrow', 'pic-dot', 'film-end']) assert.ok(css.includes(`.${c}`), c);
+  for (const c of ['pic-svg', 'pic-box', 'pic-head', 'pic-rowhead', 'pic-node', 'pic-t0', 'pic-t3', 'pic-text', 'pic-bold', 'pic-onhead', 'pic-line', 'pic-arrow', 'pic-dot', 'pic-bar', 'film-end']) assert.ok(css.includes(`.${c}`), c);
   const block = css.slice(css.indexOf('v18 G1: lesson pictures'));
   assert.ok(!/#[0-9a-f]{3,6}\b/i.test(block), 'no hard-coded colour in the picture styles');
 });
