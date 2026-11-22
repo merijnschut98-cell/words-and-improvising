@@ -10,6 +10,7 @@ import { upcoming } from './realweek.js';
 import { creditXp, isPerfect, goalJustReached } from './xp.js';
 import { awardFlair } from './flair.js';
 import { judge, answerText, valueText } from './questionkinds.js';
+import { testPick, freshTestPick } from './testrules.js';
 
 const LESSON_XP = 20;
 const SITUATION_XP = 10;
@@ -417,7 +418,9 @@ export function lessonEndNext(state, meta, lessonId, fromModule, modules = MODUL
 }
 
 // Review load (v18 F3). Questions answered in today's due sessions count against
-// the daily limit; a refresh before an event or a weekly keep-sharp question does not.
+// the daily limit; a refresh before an event or a weekly keep-sharp question does not,
+// nor a practice test (v18 T2): it is chosen practice, one a day, and its recall answers
+// already count as reviews (Q5 A), so a 20-question test never hides the due card.
 export function reviewsToday(state, subject, today) {
   const sessions = (((state.courses || {})[subject]) || {}).sessions || [];
   return sessions.filter((x) => x.kind === 'due' && x.day === today && !x.extra).reduce((n, x) => n + (Number(x.total) || 0), 0);
@@ -451,7 +454,19 @@ export function courseTodayPick(state, subject, lang, today, modules = MODULES) 
   const due = dueSignal(state, subject, lang, today);
   if (due >= 5) return { reason: 'due', count: due };
   const rec = nextCourseLesson(state, subject, modules);
-  if (rec) return placed({ reason: 'lesson', ...rec }, modules);
+  // v18 T2 (ruling 1): a practice test he never took, before a lesson that starts on
+  // another module than the one he worked in last (between modules, never mid-round);
+  // at most one test a day. See freshTestPick.
+  if (rec) {
+    const ids = modules.filter((m) => m.subject === subject).flatMap((m) => m.lessons);
+    const last = mostRecent(passedIn(state, subject), ids);
+    const workedIn = last ? moduleOf(last) : null;
+    const fresh = workedIn && workedIn !== rec.moduleId ? freshTestPick(state, subject, today, modules, workedIn) : null;
+    return fresh || placed({ reason: 'lesson', ...rec }, modules);
+  }
+  // v18 T2: every lesson is done; the next step keeps him training with a practice test (one a day).
+  const test = testPick(state, subject, today, modules);
+  if (test) return test;
   const lessons = passedIn(state, subject);
   const all = modules.filter((m) => m.subject === subject).flatMap((m) => m.lessons.map((lessonId) => ({ moduleId: m.id, lessonId })));
   const done = all.filter((x) => lessons[x.lessonId] && lessons[x.lessonId].passed);

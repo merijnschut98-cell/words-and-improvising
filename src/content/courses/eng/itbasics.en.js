@@ -3,6 +3,7 @@ export default {
   lessons: [
     {
       id: 'eng.itbasics.ipaddress',
+      gist: 'A subnet is a block of addresses; traffic to another subnet goes through a router, and DNS translates names into IP addresses.',
       title: 'IP addresses, LAN and DNS',
       pre: [
         {
@@ -73,6 +74,7 @@ export default {
     },
     {
       id: 'eng.itbasics.vlan',
+      gist: 'A VLAN splits one physical network into separate networks; a default-deny firewall allows only what a rule explicitly permits.',
       title: 'VLANs, firewalls and ports',
       pre: [
         {
@@ -141,6 +143,7 @@ export default {
     },
     {
       id: 'eng.itbasics.segment',
+      gist: 'OT is often hard to patch, so protect it mainly by segmentation: the office talks to production via a DMZ, never directly to machines.',
       title: 'Why the OT network stands apart',
       pre: [
         {
@@ -212,6 +215,7 @@ export default {
     },
     {
       id: 'eng.itbasics.netdesign',
+      gist: 'On a flat network one infected PC can reach every machine; assess with a diagram and asset inventory, and measure traffic before you segment.',
       title: 'Judging a plant network',
       pre: [
         {
@@ -283,6 +287,7 @@ export default {
     },
     {
       id: 'eng.itbasics.server',
+      gist: 'Virtualisation lets one server run several VMs, but if that server fails, they all go down together.',
       title: 'Servers, virtualisation and the cloud',
       pre: [
         {
@@ -353,6 +358,7 @@ export default {
     },
     {
       id: 'eng.itbasics.saas',
+      gist: 'IaaS, PaaS and SaaS differ in how much the provider manages; access and data always stay with you.',
       title: 'IaaS, PaaS and SaaS',
       pre: [
         {
@@ -424,6 +430,7 @@ export default {
     },
     {
       id: 'eng.itbasics.backup',
+      gist: 'A backup only counts once you have restored it; RPO is how much data you may lose, RTO how long the system may be down.',
       title: 'Backups, RPO and RTO',
       pre: [
         {
@@ -497,6 +504,7 @@ export default {
     },
     {
       id: 'eng.itbasics.availability',
+      gist: 'Availability of a chain is the product of its links, and every extra 9 costs more; first ask what an hour of downtime costs.',
       title: 'Availability and what an outage costs',
       pre: [
         {
@@ -569,6 +577,7 @@ export default {
     },
     {
       id: 'eng.itbasics.tables',
+      gist: 'Every fact lives in one place: a primary key makes each row unique and a foreign key points to a row in another table.',
       title: 'Tables, rows and keys',
       pre: [
         {
@@ -640,6 +649,7 @@ export default {
     },
     {
       id: 'eng.itbasics.sql',
+      gist: 'In a SQL query SELECT picks the columns, FROM the table and WHERE the rows; a JOIN by default silently drops rows without a match.',
       title: 'Reading a SQL query',
       pre: [
         {
@@ -709,6 +719,7 @@ export default {
     },
     {
       id: 'eng.itbasics.reports',
+      gist: 'Two reports differ because they count something different: another definition, period, refresh moment or filter; fix one source of truth per figure.',
       title: 'Why two reports disagree',
       pre: [
         {
@@ -781,6 +792,7 @@ export default {
     },
     {
       id: 'eng.itbasics.datamodel',
+      gist: 'Joining two tables with many rows per key counts twice (fan-out), and NULL is unknown, not zero; compare row counts before and after the join.',
       title: 'Double counting, empty fields and the data model',
       pre: [
         {
@@ -854,6 +866,7 @@ export default {
     },
     {
       id: 'eng.itbasics.clientserver',
+      gist: 'The client sends a request and the server does the work; if the server goes down, every client stops working.',
       title: 'Client, server and the layers of an application',
       pre: [
         {
@@ -925,6 +938,7 @@ export default {
     },
     {
       id: 'eng.itbasics.api',
+      gist: 'An API is the agreed way programs talk to each other; a status code says how it went, and 4xx usually lies with the sender.',
       title: 'APIs and interfaces',
       pre: [
         {
@@ -996,6 +1010,7 @@ export default {
     },
     {
       id: 'eng.itbasics.integration',
+      gist: 'An asynchronous interface with a queue lets the MES keep working, idempotent processing makes a retry safe, and the error queue shows what fails.',
       title: 'Interfaces that break',
       pre: [
         {
@@ -1068,6 +1083,7 @@ export default {
     },
     {
       id: 'eng.itbasics.releases',
+      gist: 'A version number MAJOR.MINOR.PATCH hints at risk, but the release notes decide; an update goes through acceptance to production, with a rollback plan.',
       title: 'Versions, releases and updates',
       pre: [
         {

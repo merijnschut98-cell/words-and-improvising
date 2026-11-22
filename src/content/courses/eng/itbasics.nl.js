@@ -3,6 +3,7 @@ export default {
   lessons: [
     {
       id: 'eng.itbasics.ipaddress',
+      gist: 'Een subnet is een blok adressen; verkeer naar een ander subnet gaat via een router, en DNS vertaalt namen naar IP-adressen.',
       title: 'IP-adressen, LAN en DNS',
       pre: [
         {
@@ -73,6 +74,7 @@ export default {
     },
     {
       id: 'eng.itbasics.vlan',
+      gist: 'Een VLAN splitst één fysiek netwerk in gescheiden netwerken; een firewall laat met default deny alleen toe wat een regel expliciet toestaat.',
       title: 'VLAN’s, firewalls en poorten',
       pre: [
         {
@@ -141,6 +143,7 @@ export default {
     },
     {
       id: 'eng.itbasics.segment',
+      gist: 'OT is vaak lastig te patchen, dus bescherm je het vooral door segmentatie: kantoor praat via een DMZ met productie, nooit direct met machines.',
       title: 'Waarom het OT-netwerk apart staat',
       pre: [
         {
@@ -212,6 +215,7 @@ export default {
     },
     {
       id: 'eng.itbasics.netdesign',
+      gist: 'In een plat netwerk kan één besmette pc alle machines bereiken; beoordeel een netwerk met tekening en assetinventaris, en meet het verkeer voordat je segmenteert.',
       title: 'Een fabrieksnetwerk beoordelen',
       pre: [
         {
@@ -283,6 +287,7 @@ export default {
     },
     {
       id: 'eng.itbasics.server',
+      gist: 'Virtualisatie laat één server meerdere VM\'s draaien, maar valt die server uit, dan liggen ze allemaal stil.',
       title: 'Servers, virtualisatie en de cloud',
       pre: [
         {
@@ -353,6 +358,7 @@ export default {
     },
     {
       id: 'eng.itbasics.saas',
+      gist: 'IaaS, PaaS en SaaS verschillen in hoeveel de aanbieder beheert; toegang en gegevens blijven altijd bij jou.',
       title: 'IaaS, PaaS en SaaS',
       pre: [
         {
@@ -424,6 +430,7 @@ export default {
     },
     {
       id: 'eng.itbasics.backup',
+      gist: 'Een back-up telt pas als je hem hebt teruggezet; RPO is hoeveel data je mag verliezen, RTO hoe lang het systeem mag uitliggen.',
       title: 'Back-ups, RPO en RTO',
       pre: [
         {
@@ -497,6 +504,7 @@ export default {
     },
     {
       id: 'eng.itbasics.availability',
+      gist: 'Beschikbaarheid van een keten is het product van de schakels, en elke extra 9 kost meer; vraag eerst wat een uur uitval kost.',
       title: 'Beschikbaarheid en wat uitval kost',
       pre: [
         {
@@ -569,6 +577,7 @@ export default {
     },
     {
       id: 'eng.itbasics.tables',
+      gist: 'Elk gegeven staat op één plek: een primaire sleutel maakt elke rij uniek en een vreemde sleutel verwijst naar een andere tabel.',
       title: 'Tabellen, rijen en sleutels',
       pre: [
         {
@@ -640,6 +649,7 @@ export default {
     },
     {
       id: 'eng.itbasics.sql',
+      gist: 'In een SQL-query kiest SELECT de kolommen, FROM de tabel en WHERE de rijen; een JOIN laat standaard rijen zonder match stil verdwijnen.',
       title: 'Een SQL-query lezen',
       pre: [
         {
@@ -709,6 +719,7 @@ export default {
     },
     {
       id: 'eng.itbasics.reports',
+      gist: 'Twee rapporten verschillen doordat ze iets anders tellen: een andere definitie, periode, verversmoment of filter; leg per cijfer één bron van waarheid vast.',
       title: 'Waarom twee rapporten verschillen',
       pre: [
         {
@@ -781,6 +792,7 @@ export default {
     },
     {
       id: 'eng.itbasics.datamodel',
+      gist: 'Twee tabellen met veel rijen per sleutel koppelen telt dubbel (fan-out), en NULL is onbekend, niet nul; vergelijk rijen vóór en na de koppeling.',
       title: 'Dubbeltellingen, lege velden en het datamodel',
       pre: [
         {
@@ -854,6 +866,7 @@ export default {
     },
     {
       id: 'eng.itbasics.clientserver',
+      gist: 'De client stuurt een verzoek en de server doet het werk; valt de server weg, dan werken alle clients niet.',
       title: 'Client, server en de lagen van een applicatie',
       pre: [
         {
@@ -925,6 +938,7 @@ export default {
     },
     {
       id: 'eng.itbasics.api',
+      gist: 'Een API is de afgesproken manier waarop programma\'s met elkaar praten; een statuscode zegt hoe het ging, en 4xx ligt meestal bij de verzender.',
       title: 'API’s en koppelingen',
       pre: [
         {
@@ -996,6 +1010,7 @@ export default {
     },
     {
       id: 'eng.itbasics.integration',
+      gist: 'Een asynchrone koppeling met wachtrij laat het MES doorwerken, idempotente verwerking maakt een retry veilig, en de foutwachtrij laat zien wat niet lukt.',
       title: 'Koppelingen die breken',
       pre: [
         {
@@ -1068,6 +1083,7 @@ export default {
     },
     {
       id: 'eng.itbasics.releases',
+      gist: 'Een versienummer MAJOR.MINOR.PATCH wijst op het risico, maar de release notes beslissen; een update gaat via acceptatie naar productie, met een rollbackplan.',
       title: 'Versies, releases en updates',
       pre: [
         {

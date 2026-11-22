@@ -3,6 +3,7 @@ export default {
   lessons: [
     {
       id: 'eng.improve.whys',
+      gist: '5 keer waarom vraagt door tot een grondoorzaak die het probleem stopt als je hem weghaalt; de daarom-toets achterstevoren controleert de keten.',
       title: '5 keer waarom: voorbij het symptoom',
       pre: [
         {
@@ -73,6 +74,7 @@ export default {
     },
     {
       id: 'eng.improve.fishbone',
+      gist: 'Combineer: de visgraat verbreedt met kandidaat-oorzaken, de feiten versmallen, en 5 keer waarom gaat de diepte in bij wat overblijft.',
       title: 'Ishikawa en de grenzen van 5 keer waarom',
       pre: [
         {
@@ -143,6 +145,7 @@ export default {
     },
     {
       id: 'eng.improve.isisnot',
+      gist: 'Een is/is-niet-tabel beschrijft wat, waar, wanneer en hoeveel; een echte oorzaak verklaart elke "is" en elke "is niet".',
       title: 'Is/is-niet en stratificatie',
       pre: [
         {
@@ -215,6 +218,7 @@ export default {
     },
     {
       id: 'eng.improve.verify',
+      gist: 'Het sterkste bewijs voor een grondoorzaak is het defect aan- en uitzetten; verifieer daarna in productie tegen het verwachte aantal fouten.',
       title: 'De fix verifiëren',
       pre: [
         {
@@ -287,6 +291,7 @@ export default {
     },
     {
       id: 'eng.improve.gemba',
+      gist: 'Ga zelf kijken op de echte plek: het echte deel en de echte feiten laten zien waar het probleem voor het eerst optreedt.',
       title: 'Ga kijken: de gemba',
       pre: [
         {
@@ -356,6 +361,7 @@ export default {
     },
     {
       id: 'eng.improve.breakdown',
+      gist: 'Knip een groot probleem met data op tot één concreet probleem op één plek, het punt van ontstaan, en begin daar met oorzaakonderzoek.',
       title: 'Een groot probleem opknippen',
       pre: [
         {
@@ -425,6 +431,7 @@ export default {
     },
     {
       id: 'eng.improve.data',
+      gist: 'Ken eerst de normale variatie voordat je een wijziging beoordeelt: één goede dag bewijst niks, en zeldzame fouten vragen grote steekproeven.',
       title: 'Meten voordat je concludeert',
       pre: [
         {
@@ -497,6 +504,7 @@ export default {
     },
     {
       id: 'eng.improve.doe',
+      gist: 'Een proefopzet verandert meerdere factoren tegelijk volgens een vast schema, zodat je hoofdeffecten en interacties ziet die één factor tegelijk mist.',
       figure: 'eng.improve.doe',
       title: 'Proefopzetten (DOE) in gewone woorden',
       pre: [
@@ -573,6 +581,7 @@ export default {
     },
     {
       id: 'eng.improve.pdca',
+      gist: 'PDCA is verbeteren als experiment: plan een tegenmaatregel met een voorspelling, doe het klein, check tegen de voorspelling en standaardiseer of stuur bij.',
       title: 'PDCA: verbeteren als experiment',
       pre: [
         {
@@ -642,6 +651,7 @@ export default {
     },
     {
       id: 'eng.improve.a3',
+      gist: 'Een A3 vertelt het probleemoplosverhaal op één vel: links het probleem begrijpen, rechts tegenmaatregelen, plan en opvolging; elk vak volgt uit het vorige.',
       title: 'Het A3-rapport',
       pre: [
         {
@@ -712,6 +722,7 @@ export default {
     },
     {
       id: 'eng.improve.8d',
+      gist: 'In een 8D koopt indammen tijd; de grondoorzaak heeft een ontstaans- en een ontsnappingsoorzaak, en de maatregel moet blijvend zijn.',
       title: '8D: indammen, oorzaak vinden, blijvend oplossen',
       pre: [
         {
@@ -784,6 +795,7 @@ export default {
     },
     {
       id: 'eng.improve.a3review',
+      gist: 'Een mentor bespreekt een A3 vak voor vak met vragen en schrijft niets om; de eigenaar leert de gaten zelf zien.',
       title: 'Een A3 bespreken: begeleiden met vragen',
       pre: [
         {
@@ -855,6 +867,7 @@ export default {
     },
     {
       id: 'eng.improve.kaizen',
+      gist: 'Kaizen is dagelijks klein verbeteren door het team of een event van een paar dagen; events houden hun winst zelden vast zonder opvolging.',
       title: 'Kaizen: elke dag en in events',
       pre: [
         {
@@ -925,6 +938,7 @@ export default {
     },
     {
       id: 'eng.improve.vsm',
+      gist: 'Een waardestroomkaart laat de doorlooptijd naast de bewerkingstijd zien, zodat je kiest welke verbeteringen eerst komen.',
       title: 'Waardestroomanalyse (VSM)',
       pre: [
         {
@@ -995,6 +1009,7 @@ export default {
     },
     {
       id: 'eng.improve.facilitate',
+      gist: 'Een gespreksleider houdt de sessie feitelijk: feiten, theorieën en open vragen apart, en elke theorie eindigt met een test, een eigenaar en een datum.',
       title: 'Een grondoorzaaksessie begeleiden',
       pre: [
         {
@@ -1065,6 +1080,7 @@ export default {
     },
     {
       id: 'eng.improve.system',
+      gist: 'Dagelijks verbeteren vraagt routines, geen helden; meet hoeveel problemen per week boven komen en opgelost worden, niet alleen besparingen.',
       title: 'Van events naar een systeem van dagelijks verbeteren',
       pre: [
         {

@@ -34,7 +34,8 @@ export function pathModel(state, meta, lang) {
 const STOP_ICON = { passed: 'check', owned: 'check-check' };
 
 // One topic's path: stop buttons joined by lines; the stub or the flag at the end.
-export function topicPath(t, topicTitle, topic, go, onInfo = null) {
+// test (v18 T2): { pct, passed, onOpen } puts the topic test's stop under the flag of a finished topic.
+export function topicPath(t, topicTitle, topic, go, onInfo = null, test = null) {
   const cells = [];
   topic.stops.forEach((s, i) => {
     if (i > 0) cells.push(h('span', { class: `path-line${topic.stops[i - 1].state !== 'todo' && s.state !== 'todo' ? ' on' : ''}`, 'aria-hidden': 'true' }));
@@ -59,7 +60,19 @@ export function topicPath(t, topicTitle, topic, go, onInfo = null) {
     cells.push(h('span', { class: 'path-stub mono', role: 'img', 'aria-label': t('pathMore', topic.hidden) }, t('pathMoreShort', topic.hidden)));
   } else if (topic.done) {
     cells.push(h('span', { class: 'path-line on', 'aria-hidden': 'true' }));
-    cells.push(h('span', { class: 'path-flag', role: 'img', 'aria-label': t('pathTopicDone') }, ico('flag'), ico('check')));
+    const flag = h('span', { class: 'path-flag', role: 'img', 'aria-label': t('pathTopicDone') }, ico('flag'), ico('check'));
+    cells.push(test ? h('span', { class: 'path-end-cell' }, flag, testStop(t, topicTitle, test)) : flag);
   }
   return h('div', { class: 'path' }, cells);
+}
+
+// The topic test's stop, under the flag: a small button with its score once tried.
+function testStop(t, topicTitle, test) {
+  const state = test.passed ? t('testStatePassed') : test.pct != null ? t('testStateTried') : t('testStateNew');
+  return h('button', {
+    type: 'button',
+    class: `path-test${test.passed ? ' passed' : ''}`,
+    'aria-label': t('testChipAria', t('testTopicName', topicTitle), test.pct != null ? `${state}, ${test.pct}%` : state),
+    onclick: test.onOpen,
+  }, ico('notebook-pen'), h('span', { class: 'path-test-label' }, test.pct != null ? `${test.pct}%` : t('testStopLabel')));
 }

@@ -36,6 +36,7 @@ import { homeSubject } from './core/today.js';
 import { renderLesson } from './ui/lesson.js';
 import { renderDue } from './ui/due.js';
 import { renderCheck } from './ui/modulecheck.js';
+import { renderTest } from './ui/practicetest.js';
 import { renderSituation } from './ui/situation.js';
 import { renderGlossary } from './ui/glossary.js';
 import { renderApply } from './ui/apply.js';
@@ -58,6 +59,7 @@ const SCREENS = {
   lesson: renderLesson,
   due: renderDue,
   check: renderCheck,
+  test: renderTest,
   situation: renderSituation,
   glossary: renderGlossary,
   apply: renderApply,

@@ -3,6 +3,7 @@ export default {
   lessons: [
     {
       id: 'eng.lines.linebasics',
+      gist: 'The station with the longest cycle time sets the output of the line, and every cycle time must stay at or below takt.',
       figure: 'eng.lines.buffer',
       film: 'eng.lines.design',
       title: 'Reading a line: stations, cycle time and transport',
@@ -75,6 +76,7 @@ export default {
     },
     {
       id: 'eng.lines.layout',
+      gist: 'A buffer absorbs stops but costs space and stock and hides problems; inspect above all before a costly or irreversible step.',
       figure: 'eng.lines.buffer',
       film: 'eng.lines.design',
       title: 'Line types, buffers and inspection',
@@ -145,6 +147,7 @@ export default {
     },
     {
       id: 'eng.lines.buffers',
+      gist: 'A buffer needs stop duration divided by cycle time in slots, enough for most stops, and only works if it can refill after a stop.',
       figure: 'eng.lines.buffer',
       film: 'eng.lines.design',
       title: 'Sizing buffers: blocking, starving and refilling',
@@ -217,6 +220,7 @@ export default {
     },
     {
       id: 'eng.lines.simulation',
+      gist: 'Work in progress equals output times lead time (Little\'s law); simulate a coupled line for costly decisions and validate the model first.',
       figure: 'eng.lines.buffer',
       film: 'eng.lines.design',
       title: 'Line simulation, Little’s law and ramp-up',
@@ -289,6 +293,7 @@ export default {
     },
     {
       id: 'eng.lines.robotbasics',
+      gist: 'A robot arm usually has six axes; the tool on the wrist decides the job, and every taught position is a position of the TCP.',
       film: 'eng.lines.robots',
       figure: 'eng.lines.robotcell',
       title: 'What a robot is: axes, gripper and teach pendant',
@@ -359,6 +364,7 @@ export default {
     },
     {
       id: 'eng.lines.robots',
+      gist: 'Payload is gripper plus product, the real cycle is longer than the movement time in the datasheet, and even a cobot needs a risk assessment.',
       film: 'eng.lines.robots',
       figure: 'eng.lines.robotcell',
       title: 'Robots: types, reach and safety',
@@ -431,6 +437,7 @@ export default {
     },
     {
       id: 'eng.lines.robotcell',
+      gist: 'The machine usually sets the pace of a robot cell, and the safety distance of a light curtain depends on the measured stopping time.',
       film: 'eng.lines.robots',
       figure: 'eng.lines.robotcell',
       title: 'Designing a robot cell: cycle, feeding and safety distance',
@@ -504,6 +511,7 @@ export default {
     },
     {
       id: 'eng.lines.vision',
+      gist: 'Believe a bin-picking demo only with pick rate and cycle on your own parts, and work out a cobot\'s cycle at its permitted speed.',
       film: 'eng.lines.robots',
       figure: 'eng.lines.robotcell',
       title: 'Vision, offline programming and when a cobot fits',
@@ -576,6 +584,7 @@ export default {
     },
     {
       id: 'eng.lines.errors',
+      gist: 'Poka-yoke catches a mistake before it becomes a defect; a stop is stronger than a warning.',
       figure: 'eng.lines.pokayoke',
       film: 'eng.lines.errorproof',
       title: 'Why people make mistakes, and poka-yoke',
@@ -646,6 +655,7 @@ export default {
     },
     {
       id: 'eng.lines.pokayoke',
+      gist: 'Prevention beats detection and detection beats final inspection; a sensor only counts if an interlock in the PLC blocks the next step.',
       figure: 'eng.lines.pokayoke',
       film: 'eng.lines.errorproof',
       title: 'Error-proofing with sensors and fixtures',
@@ -718,6 +728,7 @@ export default {
     },
     {
       id: 'eng.lines.sensors',
+      gist: 'Choose a sensor by what physically separates good from bad, and validate it with reference parts for every failure mode, including the borderline.',
       figure: 'eng.lines.pokayoke',
       film: 'eng.lines.errorproof',
       title: 'Choosing and validating sensors for error-proofing',
@@ -789,6 +800,7 @@ export default {
     },
     {
       id: 'eng.lines.detection',
+      gist: 'Escapes are defects made times the share that is missed; a red rabbit proves every shift that a check still works.',
       figure: 'eng.lines.pokayoke',
       film: 'eng.lines.errorproof',
       title: 'Error-proofing as a strategy: PFMEA, escapes and daily checks',
@@ -862,6 +874,7 @@ export default {
     },
     {
       id: 'eng.lines.variants',
+      gist: 'Changeover runs from the last good product to the first good product at full speed; larger batches cost less changeover time but more stock.',
       film: 'eng.lines.variants',
       figure: 'eng.lines.mixed',
       title: 'Several products on one line: variants and what they cost',
@@ -932,6 +945,7 @@ export default {
     },
     {
       id: 'eng.lines.linechange',
+      gist: 'Automated changeover has a software half, the recipe, and a hardware half, the format parts; SMED moves external work out of the stop.',
       film: 'eng.lines.variants',
       figure: 'eng.lines.mixed',
       title: 'Changeover on an automated line: recipes, change parts and SMED',
@@ -1002,6 +1016,7 @@ export default {
     },
     {
       id: 'eng.lines.mixed',
+      gist: 'You balance a mixed-model line on the weighted average, but the heaviest variant and the sequence decide whether a station really keeps up.',
       film: 'eng.lines.variants',
       figure: 'eng.lines.mixed',
       title: 'Mixed-model lines',
@@ -1075,6 +1090,7 @@ export default {
     },
     {
       id: 'eng.lines.sequencing',
+      gist: 'Heijunka levels mix and volume in a small repeating pattern, but only works if switching costs little or no changeover time.',
       film: 'eng.lines.variants',
       figure: 'eng.lines.mixed',
       title: 'Sequencing and heijunka: levelling the work on a line',
@@ -1147,6 +1163,7 @@ export default {
     },
     {
       id: 'eng.lines.plc',
+      gist: 'A sensor sees, the PLC decides and an actuator acts; when a machine stands still, ask which input the PLC was waiting for.',
       film: 'eng.lines.control',
       figure: 'eng.lines.plc',
       title: 'PLC, sensors and actuators: how a machine thinks',
@@ -1218,6 +1235,7 @@ export default {
     },
     {
       id: 'eng.lines.safety',
+      gist: 'An emergency stop is an extra measure and never replaces guarding; the risk assessment sets the required performance level.',
       film: 'eng.lines.control',
       figure: 'eng.lines.plc',
       title: 'Machine safety: emergency stop, guarding and the rules',
@@ -1287,6 +1305,7 @@ export default {
     },
     {
       id: 'eng.lines.oee_auto',
+      gist: 'On automated lines microstops are the hidden loss; only PLC data shows them, and it also shows where the hidden bottleneck is.',
       film: 'eng.lines.control',
       figure: 'eng.lines.auto',
       title: 'OEE on automated lines',
@@ -1359,6 +1378,7 @@ export default {
     },
     {
       id: 'eng.lines.stoppages',
+      gist: 'Record first-out alarms and put stops in a Pareto, by count and by minutes lost; give every top stop an owner.',
       film: 'eng.lines.control',
       figure: 'eng.lines.plc',
       title: 'Micro-stops and fault data: from alarm log to action',
@@ -1430,6 +1450,7 @@ export default {
     },
     {
       id: 'eng.lines.autobasics',
+      gist: 'Whether to automate depends on labour, volume, variation and quality: high volume and little variation suit a machine.',
       figure: 'eng.lines.case',
       title: 'Automate or not: labour, volume, variation and quality',
       pre: [
@@ -1499,6 +1520,7 @@ export default {
     },
     {
       id: 'eng.lines.payback',
+      gist: 'Payback time is investment divided by annual net saving, and the number of shifts weighs most.',
       figure: 'eng.lines.case',
       title: 'Payback time: investment, yearly saving and shifts',
       pre: [
@@ -1567,6 +1589,7 @@ export default {
     },
     {
       id: 'eng.lines.business',
+      gist: 'A business case counts all costs of the whole cell; do not automate an unstable process, or you automate the problems.',
       figure: 'eng.lines.case',
       title: 'The business case for automation',
       pre: [
@@ -1636,6 +1659,7 @@ export default {
     },
     {
       id: 'eng.lines.risk',
+      gist: 'NPV discounts each year\'s saving to today; start-up loss, residual value and a sensitivity analysis show what an automation case really rests on.',
       figure: 'eng.lines.case',
       title: 'Risk and value: NPV, ramp-up loss and why automation projects fail',
       pre: [

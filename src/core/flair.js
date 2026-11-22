@@ -5,6 +5,7 @@
 import { MODULES } from '../content/courses/index.js';
 import { masteryOf } from './mastery.js';
 import { DRILL_GROUPS } from './layout.js';
+import { finalTestId, GOLD_PCT } from './testrules.js';
 
 export { creditXp, XP_DAYS_KEEP, GOALS, DEFAULT_GOAL, goalOf, goalProgress, goalJustReached, setGoal, isPerfect } from './xp.js';
 
@@ -18,7 +19,8 @@ const courseOf = (state, subject) => ((state && state.courses) || {})[subject] |
 
 // The tier the rules give a course module now, or null. Bronze: every level
 // passed. Silver: bronze and a perfect quiz on ceil(75%) of the levels. Gold:
-// silver and a perfect module check (a perfect check done earlier counts).
+// silver and the final test (the Expert level test) at 90 percent or more (v18),
+// or a perfect module check (one done earlier still counts: nobody loses a medal).
 export function medalFor(state, meta) {
   const c = courseOf(state, meta.subject);
   const lessons = c.lessons || {};
@@ -26,7 +28,8 @@ export function medalFor(state, meta) {
   const perfect = meta.lessons.filter((id) => lessons[id].perfect).length;
   if (perfect < Math.ceil(meta.lessons.length * SILVER_SHARE)) return 'bronze';
   const check = (c.checks || {})[meta.id];
-  return check && check.perfect ? 'gold' : 'silver';
+  const final = (c.tests || {})[finalTestId(meta.id)];
+  return (check && check.perfect) || (final && final.best >= GOLD_PCT) ? 'gold' : 'silver';
 }
 
 // The stored medal of a module (what the screens show), or null.
