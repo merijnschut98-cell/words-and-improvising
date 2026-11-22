@@ -4,6 +4,7 @@ export default {
     // Onderwerp: Krachten, momenten en spanning
     {
       id: 'eng.mechanics.forces',
+      gist: 'Gewicht is massa × 9,81 en een moment is kracht × arm; dynamische en stootbelastingen kunnen een veelvoud van het statische gewicht zijn.',
       film: 'eng.mechanics.load',
       title: 'Kracht, gewicht en moment',
       pre: [
@@ -80,6 +81,7 @@ export default {
     },
     {
       id: 'eng.mechanics.stress',
+      gist: 'Spanning (F / A) bepaalt of een onderdeel bezwijkt; stijfheid is iets anders dan sterkte, want sterker staal heeft dezelfde E.',
       film: 'eng.mechanics.load',
       title: 'Spanning, rek en stijfheid',
       pre: [
@@ -154,6 +156,7 @@ export default {
     },
     {
       id: 'eng.mechanics.bending',
+      gist: 'Buigspanning is moment gedeeld door weerstandsmoment (M / W); doorbuiging van een uitkragende ligger groeit met de lengte tot de derde.',
       title: 'Buiging en torsie in balken en assen',
       pre: [
         {
@@ -229,6 +232,7 @@ export default {
     },
     {
       id: 'eng.mechanics.calccheck',
+      gist: 'Een FEM-plot is zo goed als zijn invoer: vraag naar lasten en opleggingen, controleer met een handberekening, en wantrouw pieken die blijven klimmen.',
       title: 'Een sterkteberekening en een FEM-plot lezen',
       pre: [
         {
@@ -305,6 +309,7 @@ export default {
     // Onderwerp: Materiaalsterkte en beproeving
     {
       id: 'eng.mechanics.strength',
+      gist: 'De veiligheidsfactor is de vloeigrens gedeeld door de werkspanning; vraag altijd: veiligheidsfactor tegen wat, en op welke belasting?',
       film: 'eng.mechanics.tensile',
       title: 'Vloeigrens, treksterkte en veiligheidsfactor',
       pre: [
@@ -379,6 +384,7 @@ export default {
     },
     {
       id: 'eng.mechanics.testing',
+      gist: 'De trekproef geeft treksterkte, vloeigrens en rek van een partij; hardheid is een goedkope screening en een omgerekende sterkte blijft een benadering.',
       title: 'De trekproef en hardheidsmetingen in de praktijk',
       pre: [
         {
@@ -452,6 +458,7 @@ export default {
     },
     {
       id: 'eng.mechanics.toughness',
+      gist: 'Taaiheid is de energie die een materiaal opneemt voor het breekt (kerfslagproef); koolstofstaal wordt bros onder een bepaalde temperatuur.',
       title: 'Taaiheid, brosse breuk en de kerfslagproef',
       pre: [
         {
@@ -527,6 +534,7 @@ export default {
     },
     {
       id: 'eng.mechanics.traceability',
+      gist: 'Een materiaalcertificaat bewijst alleen iets zolang het chargenummer met het onderdeel meegaat; PMI vangt verwisselingen, al ziet XRF koolstof slecht.',
       title: 'Materiaalcertificaten, traceerbaarheid en verwisselingen',
       pre: [
         {
@@ -601,6 +609,7 @@ export default {
     // Onderwerp: Vermoeiing en breuk
     {
       id: 'eng.mechanics.fatigue',
+      gist: 'Vermoeiing breekt een onderdeel door herhaalde spanning onder de vloeigrens, meestal bij een kerf; sterker materiaal helpt weinig, de kerf wegnemen wel.',
       film: 'eng.mechanics.fatigue',
       title: 'Vermoeiing en kerfwerking',
       pre: [
@@ -673,6 +682,7 @@ export default {
     },
     {
       id: 'eng.mechanics.fracture',
+      gist: 'Het breukvlak vertelt hoe een onderdeel bezweek: insnoering wijst op taaie overbelasting, rustlijnen op vermoeiing; houd de helften droog en apart voor het lab.',
       title: 'Een gebroken onderdeel lezen',
       pre: [
         {
@@ -744,6 +754,7 @@ export default {
     },
     {
       id: 'eng.mechanics.snlife',
+      gist: 'Bij gelaste staaldetails (helling 3) geeft 20% minder spanningswijdte ongeveer twee keer de levensduur; Miner telt schade op tot D = 1.',
       title: 'Vermoeiingslevensduur berekenen',
       pre: [
         {
@@ -818,6 +829,7 @@ export default {
     },
     {
       id: 'eng.mechanics.weldfatigue',
+      gist: 'Bij gelaste details telt het detail en de spanningswijdte, niet de staalsoort; met helling 3 is de levensduur 2 miljoen × (FAT / Δσ)³.',
       title: 'Vermoeiing van gelaste constructies',
       pre: [
         {
@@ -893,6 +905,7 @@ export default {
     // Onderwerp: Warmtebehandeling en materiaalkeuze
     {
       id: 'eng.mechanics.materials',
+      gist: 'Kies het materiaal naar de omgeving: rvs 316 weerstaat chloriden beter dan 304, en twee verschillende metalen in nat contact geven galvanische corrosie.',
       title: 'Veelgebruikte constructiematerialen',
       pre: [
         {
@@ -964,6 +977,7 @@ export default {
     },
     {
       id: 'eng.mechanics.heattreat',
+      gist: 'Harden maakt staal hard maar bros, ontlaten ruilt hardheid in voor taaiheid; spanningsarmgloeien na het lassen helpt voorkomen dat een onderdeel later trekt.',
       film: 'eng.mechanics.heattreat',
       title: 'Hardheid en warmtebehandeling',
       pre: [
@@ -1034,6 +1048,7 @@ export default {
     },
     {
       id: 'eng.mechanics.designation',
+      gist: 'Een staalnaam geeft de soort en de samenstelling of vloeigrens; soort, toestand en maat horen alle drie op de order.',
       title: 'Staalnamen lezen: EN 10027 en materiaalnummers',
       pre: [
         {
@@ -1108,6 +1123,7 @@ export default {
     },
     {
       id: 'eng.mechanics.selection',
+      gist: 'Materiaalkeuze weegt functie, proces, levering en kosten per stuk; een vervanging is een ontwerpwijziging, want equivalent uit een andere norm is niet gelijk.',
       title: 'Materialen kiezen en vervangen',
       pre: [
         {

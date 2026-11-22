@@ -4,6 +4,7 @@ export default {
     // Topic: Forces, moments and stress
     {
       id: 'eng.mechanics.forces',
+      gist: 'Weight is mass × 9.81 and a moment is force × arm; dynamic and impact loads can be a multiple of the static weight.',
       film: 'eng.mechanics.load',
       title: 'Force, weight and torque',
       pre: [
@@ -80,6 +81,7 @@ export default {
     },
     {
       id: 'eng.mechanics.stress',
+      gist: 'Stress (F / A) decides whether a part fails; stiffness is not strength, because stronger steel has the same E.',
       film: 'eng.mechanics.load',
       title: 'Stress, strain and stiffness',
       pre: [
@@ -154,6 +156,7 @@ export default {
     },
     {
       id: 'eng.mechanics.bending',
+      gist: 'Bending stress is moment divided by section modulus (M / W); the deflection of a cantilever grows with the length cubed.',
       title: 'Bending and torsion in beams and shafts',
       pre: [
         {
@@ -229,6 +232,7 @@ export default {
     },
     {
       id: 'eng.mechanics.calccheck',
+      gist: 'An FEM plot is only as good as its input: ask about loads and supports, check by hand, and distrust peaks that keep climbing.',
       title: 'Reading a strength calculation and an FEA plot',
       pre: [
         {
@@ -305,6 +309,7 @@ export default {
     // Topic: Material strength and testing
     {
       id: 'eng.mechanics.strength',
+      gist: 'The safety factor is yield strength divided by working stress; always ask: safety factor against what, and on which load?',
       film: 'eng.mechanics.tensile',
       title: 'Yield, tensile strength and safety factor',
       pre: [
@@ -379,6 +384,7 @@ export default {
     },
     {
       id: 'eng.mechanics.testing',
+      gist: 'The tensile test gives a batch\'s tensile strength, yield strength and elongation; hardness is a cheap screen and a converted strength stays an approximation.',
       title: 'The tensile test and hardness tests in practice',
       pre: [
         {
@@ -452,6 +458,7 @@ export default {
     },
     {
       id: 'eng.mechanics.toughness',
+      gist: 'Toughness is the energy a material absorbs before it breaks (impact test); carbon steel turns brittle below a certain temperature.',
       title: 'Toughness, brittle fracture and the Charpy test',
       pre: [
         {
@@ -527,6 +534,7 @@ export default {
     },
     {
       id: 'eng.mechanics.traceability',
+      gist: 'A material certificate only proves something while the heat number travels with the part; PMI catches mix-ups, though XRF sees carbon poorly.',
       title: 'Material certificates, traceability and mix-ups',
       pre: [
         {
@@ -601,6 +609,7 @@ export default {
     // Topic: Fatigue and failure
     {
       id: 'eng.mechanics.fatigue',
+      gist: 'Fatigue breaks a part through repeated stress below yield, usually at a notch; stronger material helps little, removing the notch does.',
       film: 'eng.mechanics.fatigue',
       title: 'Fatigue and stress concentrations',
       pre: [
@@ -673,6 +682,7 @@ export default {
     },
     {
       id: 'eng.mechanics.fracture',
+      gist: 'The fracture surface tells how a part failed: necking points to ductile overload, beach marks to fatigue; keep both halves dry and apart.',
       title: 'Reading a broken part',
       pre: [
         {
@@ -744,6 +754,7 @@ export default {
     },
     {
       id: 'eng.mechanics.snlife',
+      gist: 'For welded steel details (slope 3), 20% less stress range gives about twice the life; Miner adds up damage until D = 1.',
       title: 'Calculating fatigue life',
       pre: [
         {
@@ -818,6 +829,7 @@ export default {
     },
     {
       id: 'eng.mechanics.weldfatigue',
+      gist: 'For welded details the detail and stress range count, not the steel grade; with slope 3 the life is 2 million × (FAT / Δσ)³.',
       title: 'Fatigue of welded structures',
       pre: [
         {
@@ -893,6 +905,7 @@ export default {
     // Topic: Heat treatment and material choice
     {
       id: 'eng.mechanics.materials',
+      gist: 'Choose the material for the environment: 316 stainless resists chlorides better than 304, and two different metals in wet contact cause galvanic corrosion.',
       title: 'Common engineering materials',
       pre: [
         {
@@ -964,6 +977,7 @@ export default {
     },
     {
       id: 'eng.mechanics.heattreat',
+      gist: 'Hardening makes steel hard but brittle, tempering trades hardness for toughness; stress relieving after welding helps stop a part distorting later.',
       film: 'eng.mechanics.heattreat',
       title: 'Hardness and heat treatment',
       pre: [
@@ -1034,6 +1048,7 @@ export default {
     },
     {
       id: 'eng.mechanics.designation',
+      gist: 'A steel name gives the type and the composition or yield strength; type, condition and size must all three be on the order.',
       title: 'Reading steel names: EN 10027 and material numbers',
       pre: [
         {
@@ -1108,6 +1123,7 @@ export default {
     },
     {
       id: 'eng.mechanics.selection',
+      gist: 'Material choice weighs function, process, supply and cost per part; a substitution is a design change, because equivalent from another standard is not identical.',
       title: 'Choosing and substituting materials',
       pre: [
         {
