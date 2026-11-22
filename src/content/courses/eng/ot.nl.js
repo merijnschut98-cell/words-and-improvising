@@ -3,6 +3,7 @@ export default {
   lessons: [
     {
       id: 'eng.ot.levels',
+      gist: 'ISA-95 deelt systemen in vijf niveaus van 0 tot 4, en het handigste kenmerk om er een te plaatsen is de tijdschaal.',
       film: 'eng.ot.isa95',
       title: 'De vijf niveaus van ISA-95',
       pre: [
@@ -73,6 +74,7 @@ export default {
     },
     {
       id: 'eng.ot.purdue',
+      gist: 'ISA-95 is een functiemodel van taken, het Purdue-model wordt vooral gebruikt als netwerkarchitectuur; niveau 3 kan dus een taak of een netwerkdeel bedoelen.',
       film: 'eng.ot.isa95',
       title: 'ISA-95 en het Purdue-model: twee kaarten van dezelfde fabriek',
       pre: [
@@ -142,6 +144,7 @@ export default {
     },
     {
       id: 'eng.ot.hierarchy',
+      gist: 'De apparatuurhiërarchie van ISA-95 wordt een naamgevingsconventie, zodat data van alle sites vergelijkbaar is; MOM heeft vier werkgebieden.',
       title: 'De apparatuurhiërarchie en de vier werkgebieden',
       pre: [
         {
@@ -214,6 +217,7 @@ export default {
     },
     {
       id: 'eng.ot.beyond',
+      gist: 'Kies per taak waar hij hoort: milliseconden horen in de PLC, en een edge-laag met site-autonomie houdt de lijn draaiend als de verbinding wegvalt.',
       title: 'Waar de piramide wringt: cloud, edge en IIoT',
       pre: [
         {
@@ -286,6 +290,7 @@ export default {
     },
     {
       id: 'eng.ot.systems',
+      gist: 'Een productieorder komt met stuklijst en routing uit het ERP; kloppen de stamdata niet, dan klopt alles erna niet.',
       film: 'eng.ot.isa95',
       title: 'Van PLC tot ERP: één order door alle systemen',
       pre: [
@@ -357,6 +362,7 @@ export default {
     },
     {
       id: 'eng.ot.orderflow',
+      gist: 'Orders gaan omlaag van ERP naar MES, terugmeldingen omhoog; backflush boekt materiaal af op de teruggemelde hoeveelheid, dus afkeur moet ook worden teruggemeld.',
       film: 'eng.ot.orderflow',
       title: 'Orders omlaag, terugmeldingen omhoog',
       pre: [
@@ -428,6 +434,7 @@ export default {
     },
     {
       id: 'eng.ot.handshake',
+      gist: 'Een cumulatieve teller overleeft een gemiste uitlezing; de koppeling moet overloop en reset herkennen, en een handshake voorkomt verloren stukken.',
       title: 'De koppeling tussen machine en MES',
       pre: [
         {
@@ -500,6 +507,7 @@ export default {
     },
     {
       id: 'eng.ot.integration',
+      gist: 'Een MES-ERP-koppeling heeft een leidend systeem, een gekozen detailniveau en een eigenaar nodig; regelmatige afstemming laat zien of hij stil faalt.',
       title: 'Een MES-ERP-koppeling beoordelen',
       pre: [
         {
@@ -571,6 +579,7 @@ export default {
     },
     {
       id: 'eng.ot.historian',
+      gist: 'Een historian bewaart per tag waarde, tijdstip en kwaliteit; een deadband scheelt opslag, maar te ruim filteren kan een korte piek wegnemen.',
       title: 'Tags en de historian',
       pre: [
         {
@@ -641,6 +650,7 @@ export default {
     },
     {
       id: 'eng.ot.opcua',
+      gist: 'OPC UA geeft machinedata betekenis via een informatiemodel met namen, eenheden en relaties; een companion specification maakt machines van één soort gelijk.',
       title: 'OPC UA: machinedata met betekenis',
       pre: [
         {
@@ -710,6 +720,7 @@ export default {
     },
     {
       id: 'eng.ot.mqtt',
+      gist: 'MQTT werkt met publish/subscribe via een broker, met topics en wildcards; het zegt niets over de inhoud, daarom legt Sparkplug die vast.',
       title: 'MQTT, de broker en Sparkplug',
       pre: [
         {
@@ -783,6 +794,7 @@ export default {
     },
     {
       id: 'eng.ot.uns',
+      gist: 'Een unified namespace is een hub voor de huidige toestand, zonder officiële definitie; meestal is datagovernance het moeilijkste deel, niet de techniek.',
       title: 'Unified namespace: belofte en grenzen',
       pre: [
         {
@@ -856,6 +868,7 @@ export default {
     },
     {
       id: 'eng.ot.ownership',
+      gist: 'Leg per taak vast wie wat doet in een RACI met precies één A, vooral in grijze gebieden zoals de lijn-pc.',
       title: 'Wie is eigenaar van wat?',
       pre: [
         {
@@ -924,6 +937,7 @@ export default {
     },
     {
       id: 'eng.ot.patching',
+      gist: 'Op de vloer patch je vrijgegeven patches in een patchvenster; kan een systeem niet gepatcht worden, dan neem je een compenserende maatregel.',
       title: 'Patchen en levenscycli op de vloer',
       pre: [
         {
@@ -995,6 +1009,7 @@ export default {
     },
     {
       id: 'eng.ot.change',
+      gist: 'Wijzigingsbeheer beoordeelt en legt elke wijziging vast; wijkt de PLC af van de referentieversie, dan veranderde iemand iets zonder het vast te leggen.',
       title: 'Wijzigingsbeheer op de fabrieksvloer',
       pre: [
         {
@@ -1067,6 +1082,7 @@ export default {
     },
     {
       id: 'eng.ot.governance',
+      gist: 'Welk model voor IT en OT je ook kiest, je hebt governance nodig: een stuurgroep, standaarden en een levenscyclusbudget dat vervangingen spreidt.',
       title: 'IT/OT-convergentie organiseren',
       pre: [
         {
