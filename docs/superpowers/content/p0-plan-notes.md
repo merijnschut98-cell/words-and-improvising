@@ -49,3 +49,31 @@ About 30 minutes of wall time for the whole pass, most of it writing (about 80 m
 - Check that the answer key of each new item is the only defensible answer in the stated situation, in both languages (the `best` items name a runner-up on purpose).
 - Check the numbers: `compress#r1`, bank b9 (tolerance, 1), b18 (lag, 11), b20 (crashing combination, 15,000), b27 (parametric with set-up, 23), b29 (standard deviation of a path, 7), b31 (chain plus buffer, 32.5), b41 (reserve, 8,400).
 - Key position 2 is over-represented (26 of 75 multiple-choice items in nl) because of the pinned slots; the bank was written to spread, the recall slots cannot be.
+
+## Review of P0
+
+Written 22 Nov by the P0 review agent. Every pre, recall and bank item was read against the lesson text, in both languages. Commits on branch `review-p0`. Corrections to the notes above: the bank was not spread (key positions A/B/C/D were 0/4/7/1 in the 12 multiple-choice bank items), the `raci#r3` title-slide option in before/after 3 was still in the file, and the key-length numbers depend on how you count (see below).
+
+### What was found and fixed (nl and en together, counted once)
+
+- **Options nobody would pick: 17.** Bar colour and "fits on one page" (`network#r3`), "both chains equally, to keep it fair" (`schedule#r2`), title slide (`raci#r3`), minutes (`raci#p0`), "the team reports too often" (`compress#r3`), "start without a plan" and "copy another factory" (`method#p0`), "the steering group removes the reserves" (`chain#p0`), "before task 1, so everything starts later" (`chain#r1`), "the project is ahead" (`chain#r2`), an option that contradicts the stem (`network#r2`), "F gets a week of float because the lead is away" (`network#r1`), "start the electrics later" (`compress#r0`), "add Cs until the As disappear" (`raci#r0`), "an outside firm's quote" (`techniques#p0`), "add up the risks outside the project" (`techniques#r2`), "who asked you for this estimate" (b25). Each now carries a nameable misconception: the inside view in another form, crashing instead of fast-tracking, a feeding buffer hidden in the critical task, topping up from the management reserve, picking the A yourself, and so on.
+- **Key not taught by the lesson: 1.** `risk#r3` asked why people write alone first in a pre-mortem; the key ("the loudest doesn't steer") is not in the lesson. Rewritten to ask what the lesson does teach: why imagining failure as a fact works.
+- **Key echoes the stem: 1.** `wbs#r1` named the 8–80 rule in the stem and the key ("packages of 8 to 80 hours"). The key now asks for the consequence (at least three packages, 200 / 80 = 2.5).
+- **`best` whys without the runner-up's winning case: 7** (`wbs#r2`, `scope#r1`, `products#r2`, `method#r3`, `raci#r3`, b7, b32, b39 partly). The standard asks *when* `close` would win, not only that it is also good. `products#r2` also claimed something the lesson does not say (purpose "already in the project product description").
+- **Whys that name options the item does not have: 3** (b4 RACI, b8 hours, b40 Brooks-style option not explained). b40's filler "two people are twice as fast" replaced by the lesson's 20% switching rule.
+- **Stem and options out of step: 1** (b42 options about the night shift, stem did not say which risk).
+- **Length give-aways: about 25 items** lengthened or shortened (`wbs#p0`, `scope#r0`, `scope#r1`, `method#r1`, `method#r3`, `spread#r2`, `spread#r3`, `chain#r3`, `risk#p0`, `risk#r1`, `riskvalue#r1`, `riskvalue#r3`, b3, b14 (key 1.58x the next), b19 (key 1.22x), b32 and others).
+- **Bank key positions:** 0/4/7/1 moved to 4/5/1/2 (b10, b14, b21, b37, b39, b42 reordered), so with the pinned recall positions (15/13/19/16) the module totals 19/18/20/18 of 75.
+- **Bank coverage:** b44 (order, the pre-mortem steps) added so every topic has at least three level-1 items. Three blueprint traps that were jokes or impossible ("zero float means the task is done", "the most modern method", "title slide") replaced with real misconceptions.
+- Truth and numbers: every numeric key was recomputed (lesson slots and b9, b18, b20, b27, b29, b31, b41); all correct. nl and en say the same throughout.
+
+### Lessons for the next module passes
+
+1. **Read every wrong option aloud and ask "who says this?".** The lint caught none of the 17 nobody-options above, because they share lesson words and carry no absolute. This is the reviewer's main job and the writer's main blind spot; budget for it.
+2. **A short neutral-sounding option is not a good distractor.** "Een mijlpaal", "Speling" next to "Een afhankelijkheid" (b14) is a length tell at Basis too.
+3. **`best` why = key wins because X; runner-up wins when Y.** Write the Y as a situation ("als er geen tweede specialist te vinden is"), not as "is ook goed".
+4. **Check the key against the lesson, not against what is true in the field.** `risk#r3`'s key is true but not taught; a learner cannot get it from the lesson.
+5. **Spread bank key positions on purpose**, after the recall positions are known: count the recall positions per module first, then give the bank the complement. Numeric options in ascending order may keep their natural place.
+6. **Key length: measure, but do not overshoot.** "Strictly longest" was 35% nl / 32% en before the review (the writer's 48% / 40% counted differently) and is 3% nl / 8% en after, with the key strictly shortest in 13% / 12% and most options within 1.15x of each other. A tight band is the goal; aim for the key strictly longest in roughly 15–25% of items, because "never the longest" is a tell too.
+7. **Lint words to avoid in options:** "alleen"/"only" also as "then only", "elke"/"any"? (`elke` is flagged, `any` is not), "projectbuffer" in a lesson that never says it trips `offtopic`. Run the lint after every batch of option edits, not at the end.
+8. **Scripted edits:** a small anchor-and-replace script per question (anchor on the stem, replace inside that question up to its `why`) and a field-setter for bank items by id kept nl and en in step and made every change reviewable in the diff. Neither is in the repo.
