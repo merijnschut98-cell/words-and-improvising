@@ -1127,6 +1127,7 @@ details.rw-topic > summary { cursor: pointer; min-height: 44px; display: flex; a
 .test-bar-count { text-align: right; }
 .test-bar .pbar { height: 6px; }
 .test-done .check-score { margin: 4px 0; }
+.test-done .topic-title { margin-top: 14px; }
 .practice-test .test-intro p { margin: 6px 0; }
 
 /* Medal seal: form tells the tier (ring, double ring, solid disc), the word always beside it. */

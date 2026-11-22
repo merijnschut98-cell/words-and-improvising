@@ -137,7 +137,7 @@ export function renderTest(app, params, root) {
     const weak = weakSpec ? testStatus(app.state, meta, weakSpec) : null;
     main.replaceChildren(h('section', { class: `card lesson-done test-done${c.big ? ' celebrate' : ''}` },
       c.nodes[0],
-      h('h2', { class: 'card-title' }, res.passed ? t('testPassed') : t('testFailed')),
+      h('h2', { class: 'card-title', tabindex: '-1' }, res.passed ? t('testPassed') : t('testFailed')),
       h('p', { class: 'check-score' }, t('testScore', res.correct, res.total, res.pct)),
       spec.final ? h('p', { class: 'small' }, res.gold ? t('testGoldReached') : t('testGoldNeeds', GOLD_PCT)) : null,
       res.passed ? null : h('p', { class: 'small muted' }, t('testNeed', PASS_PCT)),
@@ -148,5 +148,10 @@ export function renderTest(app, params, root) {
       weakId ? h('p', { class: 'small' }, t('testWeakest', topicTitleOf(meta, weakId, app.lang))) : null),
     ...(weak && weak.open ? [h('button', { class: 'btn btn-primary btn-big', onclick: () => app.go('test', { subject, moduleId, testId: weak.id, from: params.from === FROM_MODULE ? FROM_MODULE : undefined }) }, t('testWeakestBtn'))] : []),
     h('button', { class: `btn ${weak && weak.open ? 'btn-ghost' : 'btn-primary btn-big'}`, onclick: exit }, t('backToCourse')));
+    // The result starts at the top (the review card above it was long), and a keyboard or
+    // screen reader user lands on its heading instead of the page body.
+    const head = main.querySelector('.test-done .card-title');
+    if (head && head.focus) head.focus({ preventScroll: true });
+    if (typeof window !== 'undefined' && window.scrollTo) window.scrollTo(0, 0);
   }
 }
