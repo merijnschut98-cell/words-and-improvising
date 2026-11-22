@@ -294,7 +294,7 @@ export default {
     },
     {
       id: 'eng.process.variables',
-      gist: 'Ask for every measurement what the meter really shows: gauge or absolute pressure, volume flow or mass flow.',
+      gist: 'Ask for every measurement what the meter really shows, such as gauge or absolute pressure, volume flow or mass flow.',
       film: 'eng.process.measure',
       title: 'Pressure, flow, level and temperature',
       pre: [
@@ -439,7 +439,7 @@ export default {
     },
     {
       id: 'eng.process.strategies',
-      gist: 'A control structure removes a disturbance before the product suffers from it; a cascade with its inner loop in manual does nothing.',
+      gist: 'Cascade and feedforward remove a disturbance before the product suffers from it; a cascade with its inner loop in manual does nothing.',
       title: 'Cascade, ratio and feedforward control',
       pre: [
         {
@@ -514,7 +514,7 @@ export default {
     },
     {
       id: 'eng.process.variability',
-      gist: 'First reduce the variability, then move the setpoint closer to the limit (limit − 3× standard deviation); only the shift earns money.',
+      gist: 'First reduce the variability, then move the setpoint closer to the limit (often limit − 3 × standard deviation); only the shift earns money.',
       title: 'Less variation, closer to the limit',
       pre: [
         {

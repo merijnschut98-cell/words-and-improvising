@@ -294,7 +294,7 @@ export default {
     },
     {
       id: 'eng.process.variables',
-      gist: 'Vraag bij elke meting wat de meter echt toont: overdruk of absolute druk, volumedebiet of massadebiet.',
+      gist: 'Vraag bij elke meting wat de meter echt toont, zoals overdruk of absolute druk, volumedebiet of massadebiet.',
       film: 'eng.process.measure',
       title: 'Druk, debiet, niveau en temperatuur',
       pre: [
@@ -439,7 +439,7 @@ export default {
     },
     {
       id: 'eng.process.strategies',
-      gist: 'Een regelstructuur haalt een verstoring weg voordat het product er last van heeft; een cascade met een binnenkring in handbediening doet niets.',
+      gist: 'Cascade en voorwaartskoppeling halen een verstoring weg voordat het product er last van heeft; een cascade met een binnenkring in handbediening doet niets.',
       title: 'Cascade-, verhoudings- en voorwaartsregeling',
       pre: [
         {
@@ -514,7 +514,7 @@ export default {
     },
     {
       id: 'eng.process.variability',
-      gist: 'Eerst de spreiding verkleinen, dan het setpoint dichter naar de grens schuiven (grens − 3× standaardafwijking); pas het verschuiven levert geld op.',
+      gist: 'Eerst de spreiding verkleinen, dan het setpoint dichter naar de grens schuiven (vaak grens − 3 × standaardafwijking); pas het verschuiven levert geld op.',
       title: 'Minder spreiding, dichter bij de grens',
       pre: [
         {
