@@ -562,7 +562,19 @@ test('the screen (ruling 2): the score is written when the last question is answ
     root.querySelector('.test-start').click();
     await tick();
     await tick();
-    for (let i = 0; i < answers && root.querySelector('.quiz-opts .opt'); i++) root.querySelector('.quiz-opts .opt').click();
+    for (let i = 0; i < answers && root.querySelector('.quiz-card') && !root.querySelector('.quiz-review'); i++) answerOne(root);
+  };
+  // pm.plan has a bank with every kind, so answer whatever kind is shown (not necessarily right).
+  const answerOne = (root) => {
+    if (!root.querySelector('.quiz-check')) { root.querySelector('.quiz-opts .opt').click(); return; }
+    const input = root.querySelector('.gap-input');
+    if (input) { input.value = 'x'; input.dispatch('input'); }
+    const first = root.querySelector('.gap-chip') || root.querySelector('.kind-all .opt');
+    if (first) first.click();
+    for (let n = 0; n < 12 && root.querySelector('.order-pool .order-item'); n++) root.querySelector('.order-pool .order-item').click();
+    const open = (col) => [...(root.querySelectorAll('.match-col')[col]?.querySelectorAll('.match-item') || [])].find((b) => !b.classList.contains('paired'));
+    for (let n = 0; n < 12 && open(0) && open(1); n++) { open(0).click(); open(1).click(); }
+    root.querySelector('.quiz-check').click();
   };
   // Closed one question before the end: nothing stored.
   const early = make();
@@ -575,9 +587,10 @@ test('the screen (ruling 2): the score is written when the last question is answ
   const full = make();
   const r2 = document.createElement('div');
   await run(full.app, r2, 99);
-  assert.ok(r2.querySelector('.quiz-review'), 'the review card');
+  assert.ok(r2.querySelector('.quiz-review'), `the review card: ${r2.textContent.slice(0, 300)}`);
   const rec2 = full.app.state.courses.pm.tests['pm.plan/level/1'];
-  assert.deepEqual([rec2.attempts, rec2.best], [1, 100]);
+  assert.equal(rec2.attempts, 1);
+  assert.ok(Number.isFinite(rec2.best), 'a score is stored');
   r2.querySelector('.quiz-review .btn-primary').click();
   assert.ok(r2.querySelector('.test-done'), 'Finish shows the result');
   assert.equal(full.app.state.courses.pm.tests['pm.plan/level/1'].attempts, 1, 'Finish does not score again');

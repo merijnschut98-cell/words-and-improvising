@@ -123,8 +123,8 @@ export default {
   },
   'pm.plan/breakdown': {
     2: {
-      nl: 'Nu je Werkkennis opent, leg je vast wat erbij hoort en wat niet. Je schrijft op wat buiten de scope valt en formuleert een bruikbaar acceptatiecriterium. Dan kun je beantwoorden waarom je het uitsluit en wat een goed criterium is.',
-      en: 'As you step into Working knowledge, you fix what is in and what is out. You write down what falls outside scope and word a usable acceptance criterion. Then you can answer why to state exclusions and what a good criterion is.',
+      nl: 'Nu je Werkkennis opent, leg je vast wat erbij hoort en wat niet. Je schrijft op wat buiten de scope valt en formuleert een bruikbaar acceptatiecriterium. Dan kun je beantwoorden waarom je het uitsluit en wat een goed criterium is. In DMAIC hoort Plannen bij de fase Improve; bij een opleverproject is het de kern.',
+      en: 'As you step into Working knowledge, you fix what is in and what is out. You write down what falls outside scope and word a usable acceptance criterion. Then you can answer why to state exclusions and what a good criterion is. In DMAIC, Plan belongs to the Improve phase; in a delivery project it is the core.',
     },
     3: {
       nl: 'Op Gevorderd plan je op producten. Je volgt de vier stappen van productgericht plannen en maakt onderscheid tussen eigen en externe producten. Daarna kun je uitleggen in welke volgorde die stappen gaan en waar een productbeschrijving vooral over gaat.',
