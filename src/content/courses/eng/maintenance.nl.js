@@ -4,6 +4,7 @@ export default {
     // Onderwerp: Onderhoudsstrategieën
     {
       id: 'eng.maintenance.strategies',
+      gist: 'Kies per asset de strategie naar wat de storing kost; laten stukgaan is prima als uitval goedkoop, veilig en snel te verhelpen is.',
       film: 'eng.maintenance.failure',
       title: 'Vier onderhoudsstrategieën',
       pre: [
@@ -75,6 +76,7 @@ export default {
     },
     {
       id: 'eng.maintenance.failure',
+      gist: 'Slechts zo\'n 11% van de componenten slijt met de leeftijd; wat willekeurig faalt op schema vervangen vermindert de storingen niet en kan ze verhogen.',
       film: 'eng.maintenance.failure',
       title: 'Hoe machines echt falen',
       pre: [
@@ -147,6 +149,7 @@ export default {
     },
     {
       id: 'eng.maintenance.condition',
+      gist: 'Het P-F-interval loopt van meetbare beginnende storing tot functioneel falen; inspecteer meestal op de helft ervan, anders mis je het venster.',
       film: 'eng.maintenance.failure',
       figure: 'eng.maintenance.pf',
       title: 'Conditiemonitoring',
@@ -221,6 +224,7 @@ export default {
     },
     {
       id: 'eng.maintenance.pmreview',
+      gist: 'Licht je PM-plan taak voor taak door: welke faalwijze pakt de taak aan? Dan houden, schrappen, interval aanpassen of omzetten.',
       title: 'Een PM-plan doorlichten',
       pre: [
         {
@@ -296,6 +300,7 @@ export default {
     // Onderwerp: TPM en autonoom onderhoud
     {
       id: 'eng.maintenance.tpm',
+      gist: 'Bij TPM zijn operators eigenaar van de basiszorg (CILT), zodat monteurs vakwerk doen; blijven labels maanden hangen, dan sterft het.',
       film: 'eng.maintenance.tpm',
       title: 'TPM en autonoom onderhoud',
       pre: [
@@ -367,6 +372,7 @@ export default {
     },
     {
       id: 'eng.maintenance.cilt',
+      gist: 'Een CILT-standaard maakt van basiszorg concrete controles die je in seconden ziet, met het juiste smeermiddel en de juiste hoeveelheid.',
       title: 'Een CILT-standaard schrijven',
       pre: [
         {
@@ -439,6 +445,7 @@ export default {
     },
     {
       id: 'eng.maintenance.amsteps',
+      gist: 'Autonoom onderhoud loopt in zeven stappen; een team gaat pas door na een stapaudit, en stap 2 pakt de bronnen van vuil aan.',
       title: 'De zeven AM-stappen en de stapaudit',
       pre: [
         {
@@ -513,6 +520,7 @@ export default {
     },
     {
       id: 'eng.maintenance.pillars',
+      gist: 'TPM begint bij verliezen, niet bij gereedschappen: elke pijler krijgt een verliesdoel in uren of euro\'s, want activiteiten tellen zegt niets over resultaat.',
       title: 'TPM als programma: pijlers en verliezen',
       pre: [
         {
@@ -588,6 +596,7 @@ export default {
     // Onderwerp: Werkvoorbereiding, planning en reservedelen
     {
       id: 'eng.maintenance.cmms',
+      gist: 'Een backlog van twee tot vier weken is gezond, en je streeft naar PM-compliance van 90% of meer; zonder echte terugkoppeling is de storingshistorie onbruikbaar.',
       title: 'Onderhoudssysteem, werkorders en backlog',
       pre: [
         {
@@ -661,6 +670,7 @@ export default {
     },
     {
       id: 'eng.maintenance.planning',
+      gist: 'Vul de beschikbare uren met voorbereide klussen; volgens Palmer wijst schedule compliance boven de 90% op een planning die te weinig vraagt.',
       title: 'Werkvoorbereiding en weekplanning',
       pre: [
         {
@@ -733,6 +743,7 @@ export default {
     },
     {
       id: 'eng.maintenance.stores',
+      gist: 'Reservedelen werken alleen als je ze kunt vinden en erop kunt vertrouwen: een delenlijst per asset, kitting, een goede servicegraad en kloppende voorraad.',
       title: 'Reservedelen, kitting en het magazijn',
       pre: [
         {
@@ -807,6 +818,7 @@ export default {
     },
     {
       id: 'eng.maintenance.shutdown',
+      gist: 'Bevries de scope op een vaste datum en plan een reserve voor discovery work; het kritiek pad bepaalt de einddatum.',
       title: 'Geplande stilstanden',
       pre: [
         {
@@ -882,6 +894,7 @@ export default {
     // Onderwerp: Onderhoud meten
     {
       id: 'eng.maintenance.metrics',
+      gist: 'MTBF is draaitijd gedeeld door storingen, MTTR reparatietijd gedeeld door storingen; beschikbaarheid is MTBF / (MTBF + MTTR).',
       title: 'MTBF, MTTR en beschikbaarheid',
       pre: [
         {
@@ -954,6 +967,7 @@ export default {
     },
     {
       id: 'eng.maintenance.workmix',
+      gist: 'Splits onderhoudsuren in gepland en ongepland werk, en kijk daarbinnen naar het reactieve aandeel: direct correctieve uren gedeeld door alle uren.',
       title: 'Waar de onderhoudsuren heen gaan',
       pre: [
         {
@@ -1026,6 +1040,7 @@ export default {
     },
     {
       id: 'eng.maintenance.kpiset',
+      gist: 'Kies een kleine set voorlopende en achterlopende KPI\'s, leg de definitie vast, zoals de tolerantie van PM-compliance, en verander hem niet stilletjes.',
       title: 'Een set onderhouds-KPI’s die standhoudt',
       pre: [
         {
@@ -1099,6 +1114,7 @@ export default {
     },
     {
       id: 'eng.maintenance.cost',
+      gist: 'Onderhoudskosten deel je door de vervangingswaarde (RAV) om te vergelijken; een businesscase telt gemiste marge alleen als de output echt verloren is.',
       title: 'Onderhoudskosten en de businesscase',
       pre: [
         {

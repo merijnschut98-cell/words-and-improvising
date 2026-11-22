@@ -4,6 +4,7 @@ export default {
     // Topic: Maintenance strategies
     {
       id: 'eng.maintenance.strategies',
+      gist: 'Choose the strategy per asset by what a failure costs; running to failure is fine when failure is cheap, safe and quick to fix.',
       film: 'eng.maintenance.failure',
       title: 'Four maintenance strategies',
       pre: [
@@ -75,6 +76,7 @@ export default {
     },
     {
       id: 'eng.maintenance.failure',
+      gist: 'Only about 11% of components wear with age; replacing a randomly failing part on schedule does not reduce failures and can raise them.',
       film: 'eng.maintenance.failure',
       title: 'How equipment really fails',
       pre: [
@@ -147,6 +149,7 @@ export default {
     },
     {
       id: 'eng.maintenance.condition',
+      gist: 'The P-F interval runs from a measurable developing fault to functional failure; inspect at about half of it, or you miss the window.',
       film: 'eng.maintenance.failure',
       figure: 'eng.maintenance.pf',
       title: 'Condition monitoring',
@@ -221,6 +224,7 @@ export default {
     },
     {
       id: 'eng.maintenance.pmreview',
+      gist: 'Review your PM plan task by task: which failure mode does the task address? Then keep, drop, change the interval or convert.',
       title: 'Reviewing a PM plan',
       pre: [
         {
@@ -296,6 +300,7 @@ export default {
     // Topic: TPM and autonomous maintenance
     {
       id: 'eng.maintenance.tpm',
+      gist: 'In TPM operators own the basic care (CILT) so mechanics can do skilled work; if tags hang for months, it dies.',
       film: 'eng.maintenance.tpm',
       title: 'TPM and autonomous maintenance',
       pre: [
@@ -367,6 +372,7 @@ export default {
     },
     {
       id: 'eng.maintenance.cilt',
+      gist: 'A CILT standard turns basic care into concrete checks you can see in seconds, with the right lubricant and the right amount.',
       title: 'Writing a CILT standard',
       pre: [
         {
@@ -439,6 +445,7 @@ export default {
     },
     {
       id: 'eng.maintenance.amsteps',
+      gist: 'Autonomous maintenance runs in seven steps; a team moves on only after a step audit, and step 2 tackles the sources of dirt.',
       title: 'The seven AM steps and the step audit',
       pre: [
         {
@@ -513,6 +520,7 @@ export default {
     },
     {
       id: 'eng.maintenance.pillars',
+      gist: 'TPM starts with losses, not tools: every pillar gets a loss target in hours or euros, because counting activities says nothing about results.',
       title: 'TPM as a programme: pillars and losses',
       pre: [
         {
@@ -588,6 +596,7 @@ export default {
     // Topic: Planning, scheduling and spare parts
     {
       id: 'eng.maintenance.cmms',
+      gist: 'A backlog of two to four weeks is healthy, aim for PM compliance of 90% or more; without real feedback the failure history is useless.',
       title: 'CMMS, work orders and backlog',
       pre: [
         {
@@ -661,6 +670,7 @@ export default {
     },
     {
       id: 'eng.maintenance.planning',
+      gist: 'Fill the available hours with prepared jobs; according to Palmer, schedule compliance above 90% points to a schedule that asks too little.',
       title: 'Planning and scheduling the work',
       pre: [
         {
@@ -733,6 +743,7 @@ export default {
     },
     {
       id: 'eng.maintenance.stores',
+      gist: 'Spares only work if you can find them and trust them: a parts list per asset, kitting, a good service level and accurate stock.',
       title: 'Spare parts, kitting and the storeroom',
       pre: [
         {
@@ -807,6 +818,7 @@ export default {
     },
     {
       id: 'eng.maintenance.shutdown',
+      gist: 'Freeze the scope on a fixed date and plan a contingency for discovery work; the critical path sets the end date.',
       title: 'Planned shutdowns',
       pre: [
         {
@@ -882,6 +894,7 @@ export default {
     // Topic: Measuring maintenance
     {
       id: 'eng.maintenance.metrics',
+      gist: 'MTBF is run time divided by failures, MTTR is repair time divided by failures; availability is MTBF / (MTBF + MTTR).',
       title: 'MTBF, MTTR and availability',
       pre: [
         {
@@ -954,6 +967,7 @@ export default {
     },
     {
       id: 'eng.maintenance.workmix',
+      gist: 'Split maintenance hours into planned and unplanned work, and within that watch the reactive share: immediate corrective hours divided by all hours.',
       title: 'Where maintenance hours go',
       pre: [
         {
@@ -1026,6 +1040,7 @@ export default {
     },
     {
       id: 'eng.maintenance.kpiset',
+      gist: 'Choose a small set of leading and lagging KPIs, fix the definition, such as the PM compliance grace period, and do not change it quietly.',
       title: 'A maintenance KPI set that holds',
       pre: [
         {
@@ -1099,6 +1114,7 @@ export default {
     },
     {
       id: 'eng.maintenance.cost',
+      gist: 'Divide maintenance cost by replacement asset value (RAV) to compare; a business case counts lost margin only if the output is really lost.',
       title: 'Maintenance cost and the business case',
       pre: [
         {
