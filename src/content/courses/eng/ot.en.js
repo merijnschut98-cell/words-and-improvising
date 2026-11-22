@@ -144,7 +144,7 @@ export default {
     },
     {
       id: 'eng.ot.hierarchy',
-      gist: 'The ISA-95 equipment hierarchy becomes a naming convention, so data from all sites is comparable; MOM has four work areas.',
+      gist: 'Using the ISA-95 equipment hierarchy as a naming convention makes data from all sites comparable; MOM splits level-3 work into production, quality, maintenance and inventory.',
       title: 'The equipment hierarchy and the four operations areas',
       pre: [
         {
@@ -217,7 +217,7 @@ export default {
     },
     {
       id: 'eng.ot.beyond',
-      gist: 'Choose per task where it belongs: milliseconds belong in the PLC, and an edge layer with site autonomy keeps the line running offline.',
+      gist: 'Choose per task where it belongs: milliseconds in the PLC, and an edge layer with site autonomy runs critical tasks locally when the connection drops.',
       title: 'Where the pyramid creaks: cloud, edge and IIoT',
       pre: [
         {
@@ -507,7 +507,7 @@ export default {
     },
     {
       id: 'eng.ot.integration',
-      gist: 'A MES-ERP interface needs a system of record, a chosen level of detail and an owner; regular reconciliation shows whether it fails silently.',
+      gist: 'A MES-ERP interface needs a system of record, a level of detail, a plan for failures and an owner; reconciliation shows whether it fails silently.',
       title: 'Judging an MES–ERP interface',
       pre: [
         {
@@ -868,7 +868,7 @@ export default {
     },
     {
       id: 'eng.ot.ownership',
-      gist: 'Fix per task who does what in a RACI with exactly one A, especially in grey areas such as the line PC.',
+      gist: 'Fix per task who does what in a RACI with exactly one A (accountable), especially in grey areas such as the line PC.',
       title: 'Who owns what?',
       pre: [
         {
@@ -937,7 +937,7 @@ export default {
     },
     {
       id: 'eng.ot.patching',
-      gist: 'On the floor you install qualified patches in a patch window; if a system cannot be patched, you take a compensating control.',
+      gist: 'On the floor you install patches the builder has qualified, in a patch window; if a system cannot be patched, you take a compensating control.',
       title: 'Patching and lifecycles on the floor',
       pre: [
         {
@@ -1082,7 +1082,7 @@ export default {
     },
     {
       id: 'eng.ot.governance',
-      gist: 'Whichever IT/OT model you choose, you need governance: a steering group, standards and a lifecycle budget that spreads replacements.',
+      gist: 'Whichever IT/OT model you choose, you need governance: who decides, which standards apply, and a lifecycle budget that spreads replacements.',
       title: 'Organising IT/OT convergence',
       pre: [
         {

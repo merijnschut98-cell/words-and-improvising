@@ -144,7 +144,7 @@ export default {
     },
     {
       id: 'eng.ot.hierarchy',
-      gist: 'De apparatuurhiërarchie van ISA-95 wordt een naamgevingsconventie, zodat data van alle sites vergelijkbaar is; MOM heeft vier werkgebieden.',
+      gist: 'Wie de ISA-95-apparatuurhiërarchie als naamgevingsconventie gebruikt, maakt data van alle sites vergelijkbaar; MOM verdeelt het niveau-3-werk in productie, kwaliteit, onderhoud en voorraad.',
       title: 'De apparatuurhiërarchie en de vier werkgebieden',
       pre: [
         {
@@ -217,7 +217,7 @@ export default {
     },
     {
       id: 'eng.ot.beyond',
-      gist: 'Kies per taak waar hij hoort: milliseconden horen in de PLC, en een edge-laag met site-autonomie houdt de lijn draaiend als de verbinding wegvalt.',
+      gist: 'Kies per taak waar hij hoort: milliseconden in de PLC, en een edge-laag met site-autonomie doet kritieke taken lokaal als de verbinding wegvalt.',
       title: 'Waar de piramide wringt: cloud, edge en IIoT',
       pre: [
         {
@@ -507,7 +507,7 @@ export default {
     },
     {
       id: 'eng.ot.integration',
-      gist: 'Een MES-ERP-koppeling heeft een leidend systeem, een gekozen detailniveau en een eigenaar nodig; regelmatige afstemming laat zien of hij stil faalt.',
+      gist: 'Bij een MES-ERP-koppeling hoort een leidend systeem, een detailniveau, een plan voor uitval en een eigenaar; afstemming laat zien of hij stil faalt.',
       title: 'Een MES-ERP-koppeling beoordelen',
       pre: [
         {
@@ -650,7 +650,7 @@ export default {
     },
     {
       id: 'eng.ot.opcua',
-      gist: 'OPC UA geeft machinedata betekenis via een informatiemodel met namen, eenheden en relaties; een companion specification maakt machines van één soort gelijk.',
+      gist: 'OPC UA geeft machinedata betekenis via een informatiemodel met namen, eenheden en relaties; een companion specification laat machines van één soort er hetzelfde uitzien.',
       title: 'OPC UA: machinedata met betekenis',
       pre: [
         {
@@ -868,7 +868,7 @@ export default {
     },
     {
       id: 'eng.ot.ownership',
-      gist: 'Leg per taak vast wie wat doet in een RACI met precies één A, vooral in grijze gebieden zoals de lijn-pc.',
+      gist: 'Leg per taak vast wie wat doet in een RACI met precies één A (eindverantwoordelijke), vooral in grijze gebieden zoals de lijn-pc.',
       title: 'Wie is eigenaar van wat?',
       pre: [
         {
@@ -937,7 +937,7 @@ export default {
     },
     {
       id: 'eng.ot.patching',
-      gist: 'Op de vloer patch je vrijgegeven patches in een patchvenster; kan een systeem niet gepatcht worden, dan neem je een compenserende maatregel.',
+      gist: 'Op de vloer installeer je door de bouwer vrijgegeven patches in een patchvenster; kan een systeem niet gepatcht worden, dan neem je een compenserende maatregel.',
       title: 'Patchen en levenscycli op de vloer',
       pre: [
         {
@@ -1082,7 +1082,7 @@ export default {
     },
     {
       id: 'eng.ot.governance',
-      gist: 'Welk model voor IT en OT je ook kiest, je hebt governance nodig: een stuurgroep, standaarden en een levenscyclusbudget dat vervangingen spreidt.',
+      gist: 'Welk IT/OT-model je ook kiest, je hebt governance nodig: wie beslist, welke standaarden gelden, en een levenscyclusbudget dat vervangingen spreidt.',
       title: 'IT/OT-convergentie organiseren',
       pre: [
         {
