@@ -1103,6 +1103,7 @@ export default {
     },
     {
       id: 'eng.process.debottleneck',
+      gist: 'De laagste stap in het capaciteitsprofiel, utilities meegeteld, is de bottleneck; los je hem op, dan duikt de volgende op.',
       title: 'Een procesfabriek debottlenecken',
       pre: [
         {

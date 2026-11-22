@@ -1103,6 +1103,7 @@ export default {
     },
     {
       id: 'eng.process.debottleneck',
+      gist: 'The lowest step in the capacity profile, utilities included, is the bottleneck; fix it and the next one appears.',
       title: 'Debottlenecking a process plant',
       pre: [
         {
