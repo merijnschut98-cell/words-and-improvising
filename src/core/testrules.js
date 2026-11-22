@@ -88,13 +88,36 @@ export function openTests(state, subject, modules = MODULES) {
   return modules.filter((m) => m.subject === subject).flatMap((m) => testSpecs(m).map((s) => testStatus(state, m, s)).filter((s) => s.open));
 }
 
+// One test a day per subject: any test of the subject finished today (open or not).
+const testedToday = (state, subject, today) => Object.values(courseOf(state, subject).tests || {}).some((r) => r && r.lastDay === today);
+
+// "Your next step" before the lessons are done (integrator ruling 1, from Merijn's
+// "Oefentoetsen zijn de basis om te blijven leren"): an open test he never took. The
+// caller offers it only between modules: when the next lesson is in another module than
+// the lesson he touched last, so a level round in progress is never interrupted; a test
+// opens exactly when such a round (or a topic's last level) is finished. The tests of
+// the module he worked in last come first (just opened), then level tests before topic
+// tests, the higher level first, then the id. At most one test a day, as below.
+export function freshTestPick(state, subject, today, modules = MODULES, workedIn = null) {
+  const open = openTests(state, subject, modules);
+  if (!open.length || testedToday(state, subject, today)) return null;
+  const rank = (s) => [s.moduleId === workedIn ? 0 : 1, s.type === 'level' ? 0 : 1, -(s.level || 0), s.id];
+  const fresh = open.filter((s) => !s.record).map((s) => [rank(s), s]).sort(([x], [y]) => {
+    for (let i = 0; i < x.length; i++) if (x[i] !== y[i]) return x[i] < y[i] ? -1 : 1;
+    return 0;
+  });
+  if (!fresh.length) return null;
+  const pick = fresh[0][1];
+  return { reason: 'test', why: 'testNew', testId: pick.id, moduleId: pick.moduleId, subject };
+}
+
 // "Your next step" (after the lesson steps): the open test that was never tried first,
 // then the lowest last score, then the oldest attempt, then the id. At most one test a day:
 // none once a test of this subject was finished today.
 export function testPick(state, subject, today, modules = MODULES) {
   const open = openTests(state, subject, modules);
   if (!open.length) return null;
-  if (open.some((s) => s.record && s.record.lastDay === today)) return null;
+  if (testedToday(state, subject, today)) return null;
   const key = (s) => (s.record ? [1, s.record.last, s.record.lastDay] : [0, 0, '']);
   const cmp = (a, b) => {
     const x = key(a);

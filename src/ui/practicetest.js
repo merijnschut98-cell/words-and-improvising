@@ -107,14 +107,17 @@ export function renderTest(app, params, root) {
       if (questions.length < MIN_ITEMS) throw new Error('no questions');
       const box = h('div', {});
       main.replaceChildren(box);
+      // The score is written when the last question is answered (onScore), not at Finish:
+      // closing on the review card loses nothing; closing before the last question scores nothing.
+      let res = null;
       renderQuiz(app, {
         questions,
         onePass: true,
-        onDone: (firstTry) => {
-          const res = applyTest(app.state, { subject, testId, questions, results: firstTry, lang: app.lang }, app.today(), Date.now());
+        onScore: (firstTry) => {
+          res = applyTest(app.state, { subject, testId, questions, results: firstTry, lang: app.lang }, app.today(), Date.now());
           app.setState(res.state);
-          showDone(res);
         },
+        onDone: () => { if (res) showDone(res); },
       }, box);
     }).catch(() => {
       bankFails += 1;

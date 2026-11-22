@@ -13,7 +13,7 @@ import {
 import { defaultState, load, cleanTests } from '../src/core/storage.js';
 import { mergeStates, mergeTests, syncable } from '../src/core/sync.js';
 import { medalFor } from '../src/core/flair.js';
-import { courseTodayPick } from '../src/core/course.js';
+import { courseTodayPick, reviewsToday, reviewsLeftToday } from '../src/core/course.js';
 import { bankQuestionId, isBankQuestion, MODULES } from '../src/content/courses/index.js';
 
 const TODAY = '2026-11-21';
@@ -497,4 +497,94 @@ test('i18n: every test string exists in nl and en', () => {
     assert.notEqual(tEn(k), k, `en ${k}`);
   }
   assert.notEqual(tNl('testsTitle'), tEn('testsTitle'));
+});
+
+// ---- review fixes (v18 T2 review) ----
+
+// A second module of the same subject, so "between modules" can happen.
+const M2 = { id: 'tiny.two', subject: 'tiny', level: 1, questions: {}, title: { nl: 'Twee', en: 'Two' }, blurb: { nl: '', en: '' },
+  topics: [{ id: 'gamma', levels: ['tiny.two.g1', 'tiny.two.g2', 'tiny.two.g3', 'tiny.two.g4'] }],
+  lessons: ['tiny.two.g1', 'tiny.two.g2', 'tiny.two.g3', 'tiny.two.g4'] };
+const TWO = [M, M2];
+
+test('the pick (ruling 1): between modules a test that just opened comes before the next lesson; mid-module the lesson stays first', () => {
+  // Basis of both topics of tiny.mod passed: its Basis level test opens; the next lesson is in tiny.two.
+  const basis = withLessons([ALPHA[0], BETA[0]]);
+  const pick = courseTodayPick(basis, 'tiny', 'nl', TODAY, TWO);
+  assert.deepEqual([pick.reason, pick.why, pick.testId, pick.moduleId], ['test', 'testNew', 'tiny.mod/level/1', 'tiny.mod']);
+  // Mid-module (the next lesson is in the module he works in): the lesson first, although a test is open.
+  const mid = withLessons([ALPHA[0]]);
+  assert.equal(courseTodayPick(mid, 'tiny', 'nl', TODAY, TWO).reason, 'lesson');
+  // Alpha's flag shows (its topic test and the Basis test are open); the Werkkennis round of tiny.mod
+  // goes on with beta, and the lesson he did last was in tiny.mod: the lesson first.
+  const flag = withLessons([...ALPHA, BETA[0], 'tiny.two.g1']);
+  flag.courses.tiny.lessons[ALPHA[3]] = { passed: 9 };
+  assert.equal(courseTodayPick(flag, 'tiny', 'nl', TODAY, TWO).lessonId, BETA[1]);
+  // The same state, but his last lesson was in tiny.two: he comes back between modules, a fresh test first.
+  flag.courses.tiny.lessons['tiny.two.g1'] = { passed: 10 };
+  assert.equal(courseTodayPick(flag, 'tiny', 'nl', TODAY, TWO).reason, 'test');
+  // Taken before (any day): no longer fresh, the lesson comes.
+  const taken = withLessons([ALPHA[0], BETA[0]], { tests: { 'tiny.mod/level/1': R(60, 60, 1, '2026-11-01') } });
+  assert.equal(courseTodayPick(taken, 'tiny', 'nl', TODAY, TWO).reason, 'lesson');
+  // At most one test a day: one finished today (any test of the subject) leaves the lesson.
+  const today = withLessons([...ALPHA, ...BETA], { tests: { 'tiny.mod/topic/alpha': R(90, 90, 1, TODAY) } });
+  assert.equal(courseTodayPick(today, 'tiny', 'nl', TODAY, TWO).reason, 'lesson');
+  // Five due reviews still come first.
+  const reviews = Object.fromEntries(Array.from({ length: 6 }, (_, i) => [`nl|tiny.mod.a1#r${i}`, { box: 1, due: TODAY, lesson: 'tiny.mod.a1', subject: 'tiny' }]));
+  assert.equal(courseTodayPick({ ...basis, courseReviews: reviews }, 'tiny', 'nl', TODAY, TWO).reason, 'due');
+  // The tests of the module he worked in last come first, level tests before topic tests, the higher level first.
+  const all = withLessons([...ALPHA, ...BETA]);
+  assert.equal(courseTodayPick(all, 'tiny', 'nl', TODAY, TWO).testId, 'tiny.mod/level/4');
+});
+
+test('sync mergeTests: a full tie (same day, same attempts) merges to the same record in either order', () => {
+  const a = { x: R(70, 70, 2, TODAY, ['p']) };
+  const b = { x: R(80, 50, 2, TODAY, ['q']) };
+  assert.deepEqual(mergeTests(a, b), mergeTests(b, a));
+  assert.deepEqual(mergeTests(a, b).x, R(80, 70, 2, TODAY, ['p']));
+});
+
+test('reviews and the daily limit (F3): test answers are scheduled but do not use up the limit', () => {
+  const spec = specOf(M, 'tiny.mod/level/4');
+  const qs = questionsOf(spec);
+  const st = { ...withLessons(ALL), settings: { ...defaultState().settings, reviewCap: 10 } };
+  const r = applyTest(st, { subject: 'tiny', testId: spec.id, questions: qs, results: {}, lang: 'nl' }, TODAY, NOW);
+  assert.ok(Object.keys(r.state.courseReviews).length > 0, 'the recall answers were scheduled');
+  assert.equal(reviewsToday(r.state, 'tiny', TODAY), 0);
+  assert.equal(reviewsLeftToday(r.state, 'tiny', TODAY), 10);
+});
+
+test('the screen (ruling 2): the score is written when the last question is answered; Finish only shows it; closing earlier stores nothing', async () => {
+  const modLessonsReal = REAL.lessons.map((id) => ({ id, recall: [0, 1, 2, 3, 4].map((i) => ({ q: `${id} ${i}`, options: ['a', 'b', 'c'], answer: 'a', why: 'w' })) }));
+  const make = () => fakeApp({ state: REALPASSED(REAL.lessons), openModule: () => Promise.resolve({ lessons: modLessonsReal }) });
+  const run = async (app, root, answers) => {
+    renderTest(app, { subject: 'pm', moduleId: 'pm.plan', testId: 'pm.plan/level/1', from: 'module' }, root);
+    root.querySelector('.test-start').click();
+    await tick();
+    await tick();
+    for (let i = 0; i < answers && root.querySelector('.quiz-opts .opt'); i++) root.querySelector('.quiz-opts .opt').click();
+  };
+  // Closed one question before the end: nothing stored.
+  const early = make();
+  const r1 = document.createElement('div');
+  await run(early.app, r1, levelSize(1) - 1);
+  assert.ok(r1.querySelector('.quiz-card'), `still asking: ${r1.textContent.slice(0, 300)}`);
+  r1.querySelector('header .icon-btn').click();
+  assert.deepEqual(Object.keys(early.app.state.courses.pm.tests || {}), []);
+  // The last answer: the review card shows and the record is already there; closing now keeps it.
+  const full = make();
+  const r2 = document.createElement('div');
+  await run(full.app, r2, 99);
+  assert.ok(r2.querySelector('.quiz-review'), 'the review card');
+  const rec2 = full.app.state.courses.pm.tests['pm.plan/level/1'];
+  assert.deepEqual([rec2.attempts, rec2.best], [1, 100]);
+  r2.querySelector('.quiz-review .btn-primary').click();
+  assert.ok(r2.querySelector('.test-done'), 'Finish shows the result');
+  assert.equal(full.app.state.courses.pm.tests['pm.plan/level/1'].attempts, 1, 'Finish does not score again');
+});
+
+test('i18n (review): the new-test reason and the gold rule exist in nl and en', () => {
+  for (const k of ['courseWhy_testNew']) { assert.notEqual(tNl(k), k); assert.notEqual(tEn(k), k); }
+  assert.match(tNl('medalHow_gold'), /eindtoets/);
+  assert.match(tEn('medalHow_gold'), /final test/);
 });

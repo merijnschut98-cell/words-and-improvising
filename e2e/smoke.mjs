@@ -409,7 +409,9 @@ await step('Projects home: the map is the first thing; tapping Planning opens it
     const r = g.querySelector('.map-hit').getBoundingClientRect();
     return { role: g.getAttribute('role'), tab: g.getAttribute('tabindex'), label: g.getAttribute('aria-label'), w: r.width, h: r.height };
   }));
-  if (places.length !== 16) throw new Error(`${places.length} places`);
+  // one place per Projects module of the index (18 since pm.approach and pm.formats, 15 Nov)
+  const pmModules = await page.evaluate(async () => (await import('/src/content/courses/index.js')).MODULES.filter((m) => m.subject === 'pm').length);
+  if (places.length !== pmModules) throw new Error(`${places.length} places, ${pmModules} modules`);
   const bad = places.filter((p) => p.role !== 'button' || p.tab !== '0' || !p.label || p.w < 43.5 || p.h < 43.5);
   if (bad.length) throw new Error(`places not buttons of 44 px: ${JSON.stringify(bad.slice(0, 2))}`);
   if (await page.locator('.course-pm .map-place.is-next').count() !== 1) throw new Error('the next module is not marked once');
@@ -4118,6 +4120,8 @@ await step('practice tests: module screen rows, one pass without hints, score an
     else await p.locator('.quiz-opts .opt').first().click();
   }
   await p.locator('.quiz-review').waitFor();
+  // the score is stored once the last question is answered, before Finish (closing on the review loses nothing)
+  if (!(await p.evaluate(() => JSON.parse(localStorage.getItem('spraakwater:v1')).courses.pm.tests['pm.plan/level/1']))) throw new Error('no record on the review card');
   await p.locator('.quiz-review .btn-primary').click();
   await p.locator('.test-done').waitFor();
   await shotP('tests-done-nl');

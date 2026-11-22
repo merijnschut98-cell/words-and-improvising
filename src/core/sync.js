@@ -109,9 +109,12 @@ const mergeChecks = (a, b) => perKey(cleanChecks(a), cleanChecks(b), mergeCheck)
 // v18 T2, practice tests: nothing done on either device is lost. best is the higher,
 // attempts the higher count (both devices count the shared history, so they are not
 // added); the last attempt (its score, day, topics and items) is the one from the later
-// day, on a tie from the record with more attempts.
+// day, on a tie from the record with more attempts, then the higher last score, then the
+// items, so merging in either order gives the same record.
+const testOrder = (x, y) => (x.lastDay !== y.lastDay ? (x.lastDay > y.lastDay ? 1 : -1)
+  : x.attempts - y.attempts || x.last - y.last || (x.items.join() > y.items.join() ? 1 : x.items.join() < y.items.join() ? -1 : 0));
 function mergeTest(x, y) {
-  const later = x.lastDay !== y.lastDay ? (x.lastDay > y.lastDay ? x : y) : (x.attempts >= y.attempts ? x : y);
+  const later = testOrder(x, y) >= 0 ? x : y;
   return { best: Math.max(x.best, y.best), last: later.last, attempts: Math.max(x.attempts, y.attempts), lastDay: later.lastDay, byTopic: later.byTopic, items: later.items };
 }
 export const mergeTests = (a, b) => perKey(cleanTests(a), cleanTests(b), mergeTest);

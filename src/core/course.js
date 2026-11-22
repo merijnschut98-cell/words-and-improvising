@@ -10,7 +10,7 @@ import { upcoming } from './realweek.js';
 import { creditXp, isPerfect, goalJustReached } from './xp.js';
 import { awardFlair } from './flair.js';
 import { judge, answerText, valueText } from './questionkinds.js';
-import { testPick } from './testrules.js';
+import { testPick, freshTestPick } from './testrules.js';
 
 const LESSON_XP = 20;
 const SITUATION_XP = 10;
@@ -452,7 +452,16 @@ export function courseTodayPick(state, subject, lang, today, modules = MODULES) 
   const due = dueSignal(state, subject, lang, today);
   if (due >= 5) return { reason: 'due', count: due };
   const rec = nextCourseLesson(state, subject, modules);
-  if (rec) return placed({ reason: 'lesson', ...rec }, modules);
+  // v18 T2 (ruling 1): a practice test he never took, before a lesson that starts on
+  // another module than the one he worked in last (between modules, never mid-round);
+  // at most one test a day. See freshTestPick.
+  if (rec) {
+    const ids = modules.filter((m) => m.subject === subject).flatMap((m) => m.lessons);
+    const last = mostRecent(passedIn(state, subject), ids);
+    const workedIn = last ? moduleOf(last) : null;
+    const fresh = workedIn && workedIn !== rec.moduleId ? freshTestPick(state, subject, today, modules, workedIn) : null;
+    return fresh || placed({ reason: 'lesson', ...rec }, modules);
+  }
   // v18 T2: every lesson is done; the next step keeps him training with a practice test (one a day).
   const test = testPick(state, subject, today, modules);
   if (test) return test;
