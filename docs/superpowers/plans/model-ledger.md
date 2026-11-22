@@ -247,3 +247,4 @@ Outcome: accepted (merged as delivered), sent back N times, redone.
 | 2026-11-21 | v18 P0: pilot module pass on pm.plan (questions, bank, blueprint) | sonnet | ~85 | 25 min | - | done (7c2df77); 160 questions rewritten, 43-item bank, lint 157 to 0; opus review dispatched |
 | 2026-11-22 | Review of kernzin batch 5 (eng.gridplanning … eng.lines) | sonnet | ~53 | ~45 min | 329k | done (a5bfd33); 17 lessons changed (hedges, wider claims, partial lists, recall focus) |
 | 2026-11-22 | Review of v18 T2 (practice tests) | opus | ~80 | ~1.5 h active (plus usage-limit pause) | - | approved (69ff752); rulings built (test pick between modules, score at last answer, smoke count); fixes: order-independent sync merge, result focus and scroll, gold wording; test answers not counted against the review cap |
+| 2026-11-22 | Kernzin batch 6: eng.maintenance, mechanics, ot, power, process, quality (97 lessons) | sonnet | 71 | 10 min | 330k | done (b229bea); review dispatched |
