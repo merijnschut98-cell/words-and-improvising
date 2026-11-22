@@ -242,3 +242,7 @@ Outcome: accepted (merged as delivered), sent back N times, redone.
 | 2026-11-21 | Review of kernzin batch 4 (eng.cost … eng.gridops) | sonnet | ~60 | two sessions (usage-limit pause) | - | done (8caec5d); 26 of 96 changed (hedges, units, five rules, narrowed claims) |
 | 2026-11-21 | v18 G1: picture kit and lesson pictures field | sonnet | - | two sessions (usage-limit pause) | - | done (52e7cac); families table in pm.approach; review dispatched |
 | 2026-11-21 | Review of v18 G1 (picture kit) | sonnet | - | - | - | approved (912f1e6); 4 fixes (grid labels, cycle overlap, hyphenation, tone bars) |
+| 2026-11-21 | v18 T2: practice test engine and screen | sonnet | ~95 | ~1 h 50 min | - | done (c8c9ba9); opus review dispatched with three rulings (earlier pick, score on last answer, smoke count) |
+| 2026-11-21 | Kernzin batch 5: eng.gridplanning, improve, industry40, itbasics, joining, lines (112 lessons) | sonnet | ~70 | - | - | done (5ee2961); review dispatched |
+| 2026-11-21 | v18 P0: pilot module pass on pm.plan (questions, bank, blueprint) | sonnet | ~85 | 25 min | - | done (7c2df77); 160 questions rewritten, 43-item bank, lint 157 to 0; opus review dispatched |
+| 2026-11-22 | Review of kernzin batch 5 (eng.gridplanning … eng.lines) | sonnet | ~53 | ~45 min | 329k | done (a5bfd33); 17 lessons changed (hedges, wider claims, partial lists, recall focus) |

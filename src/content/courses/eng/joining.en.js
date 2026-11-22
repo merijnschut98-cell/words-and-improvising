@@ -3,6 +3,7 @@ export default {
   lessons: [
     {
       id: 'eng.joining.arc',
+      gist: 'Arc welding melts the edges with an electric arc; MIG/MAG is fast, TIG slower but clean and precise, and shielding gas keeps the air away.',
       film: 'eng.joining.arc',
       figure: 'eng.joining.mig',
       title: 'MIG/MAG and TIG welding',
@@ -75,6 +76,7 @@ export default {
     },
     {
       id: 'eng.joining.weldparams',
+      gist: 'Travel speed is the strongest knob: halve it at the same volts and amps and the heat input doubles.',
       film: 'eng.joining.weldparams',
       figure: 'eng.joining.mig',
       title: 'Weld parameters: wire, voltage and speed',
@@ -146,6 +148,7 @@ export default {
     },
     {
       id: 'eng.joining.wps',
+      gist: 'A WPQR proves a welding method works, the WPS is the recipe at the workstation, and a WPQR only holds within its range.',
       film: 'eng.joining.wps',
       figure: 'eng.joining.mig',
       title: 'Welding on paper: WPS, WPQR and qualified welders',
@@ -219,6 +222,7 @@ export default {
     },
     {
       id: 'eng.joining.metallurgy',
+      gist: 'How fast the HAZ cools decides what you get; a hydrogen crack needs hydrogen, a hard structure and stress at the same time.',
       film: 'eng.joining.metallurgy',
       figure: 'eng.joining.haz',
       title: 'What heat does to the steel: HAZ, preheat and difficult metals',
@@ -291,6 +295,7 @@ export default {
     },
     {
       id: 'eng.joining.spot',
+      gist: 'Spot welding melts a nugget between overlapping sheets; as a rule of thumb it must be at least 4√t, with t the thinnest sheet.',
       film: 'eng.joining.spot',
       figure: 'eng.joining.spot',
       title: 'Resistance spot welding',
@@ -364,6 +369,7 @@ export default {
     },
     {
       id: 'eng.joining.spotwear',
+      gist: 'As the tip face grows, the stepper keeps current density constant by raising the current; after dressing it drops back to the base current.',
       film: 'eng.joining.spot',
       figure: 'eng.joining.spot',
       title: 'Tips, dressing and the stepper in practice',
@@ -435,6 +441,7 @@ export default {
     },
     {
       id: 'eng.joining.spotquality',
+      gist: 'Peel tests and ultrasonic checks verify the nugget; an adaptive control monitors every spot as it is welded, but does not replace inspection.',
       film: 'eng.joining.spot',
       figure: 'eng.joining.spot',
       title: 'Checking spot welds: peel test, ultrasonic and adaptive control',
@@ -508,6 +515,7 @@ export default {
     },
     {
       id: 'eng.joining.spotlobe',
+      gist: 'The weld lobe runs from the current for the minimum nugget up to expulsion; its width is your margin, and galvanised steel makes it narrower.',
       film: 'eng.joining.spot',
       figure: 'eng.joining.spot',
       title: 'The weld lobe and difficult materials',
@@ -580,6 +588,7 @@ export default {
     },
     {
       id: 'eng.joining.defects',
+      gist: 'Porosity comes from lost gas or dirt, lack of fusion from too little heat or too fast welding, and a crack is never accepted.',
       film: 'eng.joining.defects',
       figure: 'eng.joining.ndt',
       title: 'Weld defects and their causes',
@@ -652,6 +661,7 @@ export default {
     },
     {
       id: 'eng.joining.inspection',
+      gist: 'Visual inspection comes first; then pick the method for the flaw you fear: PT or MT for the surface, UT or RT for the inside.',
       film: 'eng.joining.defects',
       figure: 'eng.joining.ndt',
       title: 'Weld inspection, WPS and WPQR',
@@ -723,6 +733,7 @@ export default {
     },
     {
       id: 'eng.joining.ndt',
+      gist: 'The designer or customer picks the quality level; ultrasonic finds flat flaws best, radiography round ones, and the tester must be qualified.',
       film: 'eng.joining.defects',
       figure: 'eng.joining.ndt',
       title: 'NDT in practice and who chooses the quality level',
@@ -795,6 +806,7 @@ export default {
     },
     {
       id: 'eng.joining.weldrca',
+      gist: 'Record every defect and put them in a Pareto; the pattern, such as welder, position, robot or batch, points toward the cause.',
       film: 'eng.joining.defects',
       figure: 'eng.joining.ndt',
       title: 'Recurring weld defects, distortion and residual stress',
@@ -868,6 +880,7 @@ export default {
     },
     {
       id: 'eng.joining.bolts',
+      gist: 'The strength class gives tensile strength (first number times 100) and yield strength; a bolt fails in the thread, so you use the stress area.',
       film: 'eng.joining.bolting',
       title: 'Bolts and nuts: what you see and what the numbers mean',
       pre: [
@@ -937,6 +950,7 @@ export default {
     },
     {
       id: 'eng.joining.bolting',
+      gist: 'Preload holds a joint together, not the torque; roughly 90% of the tightening torque is lost to friction.',
       film: 'eng.joining.bolting',
       figure: 'eng.joining.bolt',
       title: 'Bolted joints: torque and preload',
@@ -1009,6 +1023,7 @@ export default {
     },
     {
       id: 'eng.joining.tightening',
+      gist: 'The more indirect the tightening method, the larger the spread in preload; the tightening factor is the highest preload divided by the lowest.',
       film: 'eng.joining.bolting',
       title: 'Tightening methods and preload scatter',
       pre: [
@@ -1081,6 +1096,7 @@ export default {
     },
     {
       id: 'eng.joining.jointdesign',
+      gist: 'The bolt takes only the fraction Φ of an external force; keep Φ low and residual clamp force above zero against fatigue.',
       film: 'eng.joining.bolting',
       title: 'Designing bolted joints: joint diagram and fatigue',
       pre: [
@@ -1153,6 +1169,7 @@ export default {
     },
     {
       id: 'eng.joining.bonding',
+      gist: 'Adhesive is strong in shear and weak in peel; choose the joint by materials, disassembly and how you check it in production.',
       film: 'eng.joining.bonding',
       figure: 'eng.joining.rivet',
       title: 'Adhesives, rivets and clinching',
@@ -1224,6 +1241,7 @@ export default {
     },
     {
       id: 'eng.joining.adhesives',
+      gist: 'Adhesive only bonds on a clean surface, and with a 2K adhesive the parts must be joined within the open time.',
       film: 'eng.joining.bonding',
       figure: 'eng.joining.rivet',
       title: 'Bonding in production: preparation, dispensing, curing',
@@ -1295,6 +1313,7 @@ export default {
     },
     {
       id: 'eng.joining.rivets',
+      gist: 'Monitor self-piercing rivets and clinch joints in series by force-displacement curve, clinching also by bottom thickness; act on a trend before the limit.',
       film: 'eng.joining.bonding',
       figure: 'eng.joining.rivet',
       title: 'Riveting and clinching in series: process monitoring',
@@ -1367,6 +1386,7 @@ export default {
     },
     {
       id: 'eng.joining.choosejoint',
+      gist: 'Two different metals in a wet environment cause galvanic corrosion; also choose the joint for disassembly and yearly cost.',
       film: 'eng.joining.bonding',
       figure: 'eng.joining.rivet',
       title: 'Choosing a joining method: materials, corrosion, disassembly and cost',
@@ -1439,6 +1459,7 @@ export default {
     },
     {
       id: 'eng.joining.weldcell',
+      gist: 'With two stations the operator loads while the robot welds, and that helps as long as loading takes no longer than welding.',
       film: 'eng.joining.production',
       figure: 'eng.joining.cell',
       title: 'The robot welding cell: what is in it and why',
@@ -1510,6 +1531,7 @@ export default {
     },
     {
       id: 'eng.joining.fixturing',
+      gist: 'A robot welds blind, so the seam must lie within about half a wire diameter; a good fixture is almost always cheaper than seam finding.',
       film: 'eng.joining.production',
       figure: 'eng.joining.cell',
       title: 'Welding fixtures, tacking and sequence against distortion',
@@ -1581,6 +1603,7 @@ export default {
     },
     {
       id: 'eng.joining.arcon',
+      gist: 'Duty factor is arc-on time divided by paid time, and labour is almost always the biggest item in the cost per metre of weld.',
       film: 'eng.joining.production',
       figure: 'eng.joining.cell',
       title: 'Arc-on time and the cost of a metre of weld',
@@ -1654,6 +1677,7 @@ export default {
     },
     {
       id: 'eng.joining.weldsystem',
+      gist: 'A weld can only partly be checked afterwards, so standards demand a controlled process: a welding coordinator and an ISO 3834 level per execution class.',
       film: 'eng.joining.production',
       figure: 'eng.joining.cell',
       title: 'Weld quality as a system: ISO 3834, EN 1090 and the IWE',
