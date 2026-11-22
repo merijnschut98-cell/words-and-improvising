@@ -3,6 +3,7 @@ export default {
   lessons: [
     {
       id: 'eng.quality.tolerance',
+      gist: 'A tolerance bounds a dimension between LSL and USL; tighter costs money, and a defect costs roughly ten times more at each step further on.',
       film: 'eng.quality.tolerance',
       title: 'Nominal, tolerance and spec limits',
       pre: [
@@ -76,6 +77,7 @@ export default {
     },
     {
       id: 'eng.quality.gauges',
+      gist: 'Choose the gauge for the tolerance: its resolution is at most a tenth of the tolerance field, and calibration and temperature (20 °C) count.',
       title: 'Gauges: caliper, micrometer and calibration',
       pre: [
         {
@@ -147,6 +149,7 @@ export default {
     },
     {
       id: 'eng.quality.gdt',
+      gist: 'A ± size does not say everything: GD&T bounds form, orientation and location from datums, and a position tolerance at MMC gives bonus tolerance.',
       title: 'Geometric tolerancing (GD&T)',
       pre: [
         {
@@ -222,6 +225,7 @@ export default {
     },
     {
       id: 'eng.quality.stackup',
+      gist: 'Worst case adds tolerances, RSS takes the root of the sum of squares; RSS suits centred, stable processes with a monitored Cpk.',
       title: 'Tolerance stack-up: worst case and RSS',
       pre: [
         {
@@ -296,6 +300,7 @@ export default {
     },
     {
       id: 'eng.quality.variation',
+      gist: 'Common causes give stable variation that only changes with the system; you track down special causes, and adjusting on noise increases variation.',
       film: 'eng.quality.tolerance',
       title: 'Variation: common and special cause',
       pre: [
@@ -369,6 +374,7 @@ export default {
     },
     {
       id: 'eng.quality.capability',
+      gist: 'Cp compares spread with tolerance, Cpk also counts centring; 1.33 is the usual minimum for running production.',
       film: 'eng.quality.tolerance',
       figure: 'eng.quality.capability',
       title: 'Capability: Cp and Cpk',
@@ -443,6 +449,7 @@ export default {
     },
     {
       id: 'eng.quality.capstudy',
+      gist: 'A machine study (Cmk) measures at least 50 parts in a row, a process study runs over days; first check the gauge and the stability.',
       title: 'Setting up and reading a capability study',
       pre: [
         {
@@ -514,6 +521,7 @@ export default {
     },
     {
       id: 'eng.quality.sigma',
+      gist: 'Short term, sigma level is roughly 3 × Cpk; DPMO counts defects per opportunity, and rolled throughput yield multiplies the FPY of all steps.',
       title: 'Sigma level, DPMO and rolled throughput yield',
       pre: [
         {
@@ -589,6 +597,7 @@ export default {
     },
     {
       id: 'eng.quality.datatools',
+      gist: 'Check sheet, histogram, Pareto and run chart show where defects occur and when; a monthly average hides everything, so look per day or shift.',
       title: 'Seeing the data: check sheet, Pareto and run chart',
       pre: [
         {
@@ -659,6 +668,7 @@ export default {
     },
     {
       id: 'eng.quality.spc',
+      gist: 'A control chart plots a measurement over time with ±3σ limits; these are not spec limits, and a chart without a reaction plan is wallpaper.',
       film: 'eng.quality.spc',
       title: 'Control charts (SPC)',
       pre: [
@@ -730,6 +740,7 @@ export default {
     },
     {
       id: 'eng.quality.chartchoice',
+      gist: 'Choose the chart for your data: measurements or counts, in subgroups or individual; measuring sees a change with far fewer parts than counting.',
       title: 'The right chart: I-MR, p chart and c chart',
       pre: [
         {
@@ -804,6 +815,7 @@ export default {
     },
     {
       id: 'eng.quality.spcpractice',
+      gist: 'Fix the limits from a Phase I study; each extra rule catches small shifts sooner, but gives more false alarms.',
       title: 'SPC in practice: subgroups, limits and false alarms',
       pre: [
         {
@@ -877,6 +889,7 @@ export default {
     },
     {
       id: 'eng.quality.nonconform',
+      gist: 'Quarantine nonconforming product, go back to the last good measurement when containing, and record the decision in a nonconformance report (NCR).',
       title: 'Nonconforming product: quarantine, containment and NCR',
       pre: [
         {
@@ -947,6 +960,7 @@ export default {
     },
     {
       id: 'eng.quality.fmea',
+      gist: 'An FMEA finds risks before the start with scores for severity, occurrence and detection; only a design change lowers the severity.',
       title: 'FMEA: risk before launch',
       pre: [
         {
@@ -1017,6 +1031,7 @@ export default {
     },
     {
       id: 'eng.quality.controlplan',
+      gist: 'The control plan fixes per step what you check and what happens on a deviation; a gauge R&R tests the gauge itself.',
       title: 'Control plan, measurement and PPAP',
       pre: [
         {
@@ -1090,6 +1105,7 @@ export default {
     },
     {
       id: 'eng.quality.eightd',
+      gist: 'A strong 8D finds two causes, why the defect arose and why it escaped, and proves them by switching the defect on and off.',
       title: '8D: the real cause and the escape point',
       pre: [
         {
