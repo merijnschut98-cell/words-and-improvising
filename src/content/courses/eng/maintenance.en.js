@@ -149,7 +149,7 @@ export default {
     },
     {
       id: 'eng.maintenance.condition',
-      gist: 'The P-F interval runs from a measurable developing fault to functional failure; inspect at about half of it, or you miss the window.',
+      gist: 'The P-F interval runs from a measurable developing fault to functional failure; set the inspection interval shorter, usually half, or you miss the window.',
       film: 'eng.maintenance.failure',
       figure: 'eng.maintenance.pf',
       title: 'Condition monitoring',
@@ -224,7 +224,7 @@ export default {
     },
     {
       id: 'eng.maintenance.pmreview',
-      gist: 'Review your PM plan task by task: which failure mode does the task address? Then keep, drop, change the interval or convert.',
+      gist: 'Review your PM plan task by task: which failure mode does the task address? Keep it, drop it, change its interval or convert it.',
       title: 'Reviewing a PM plan',
       pre: [
         {
@@ -300,7 +300,7 @@ export default {
     // Topic: TPM and autonomous maintenance
     {
       id: 'eng.maintenance.tpm',
-      gist: 'In TPM operators own the basic care (CILT) so mechanics can do skilled work; if tags hang for months, it dies.',
+      gist: 'In TPM operators own the basic care (CILT) so mechanics can do skilled work; if tags hang for months, autonomous maintenance dies.',
       film: 'eng.maintenance.tpm',
       title: 'TPM and autonomous maintenance',
       pre: [
@@ -372,7 +372,7 @@ export default {
     },
     {
       id: 'eng.maintenance.cilt',
-      gist: 'A CILT standard turns basic care into concrete checks you can see in seconds, with the right lubricant and the right amount.',
+      gist: 'A CILT standard turns basic care into concrete checks where a deviation shows in seconds, with the right lubricant and the right amount.',
       title: 'Writing a CILT standard',
       pre: [
         {
@@ -596,7 +596,7 @@ export default {
     // Topic: Planning, scheduling and spare parts
     {
       id: 'eng.maintenance.cmms',
-      gist: 'A backlog of two to four weeks is healthy, aim for PM compliance of 90% or more; without real feedback the failure history is useless.',
+      gist: 'A backlog of two to four weeks is healthy, aim for 90% PM compliance or more; without real feedback the failure history is nearly useless.',
       title: 'CMMS, work orders and backlog',
       pre: [
         {

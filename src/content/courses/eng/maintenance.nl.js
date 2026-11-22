@@ -149,7 +149,7 @@ export default {
     },
     {
       id: 'eng.maintenance.condition',
-      gist: 'Het P-F-interval loopt van meetbare beginnende storing tot functioneel falen; inspecteer meestal op de helft ervan, anders mis je het venster.',
+      gist: 'Het P-F-interval loopt van meetbare beginnende storing tot functioneel falen; houd je inspectie-interval korter, meestal de helft ervan, anders mis je het venster.',
       film: 'eng.maintenance.failure',
       figure: 'eng.maintenance.pf',
       title: 'Conditiemonitoring',
@@ -224,7 +224,7 @@ export default {
     },
     {
       id: 'eng.maintenance.pmreview',
-      gist: 'Licht je PM-plan taak voor taak door: welke faalwijze pakt de taak aan? Dan houden, schrappen, interval aanpassen of omzetten.',
+      gist: 'Licht je PM-plan taak voor taak door: welke faalwijze pakt de taak aan? Houd hem, schrap hem, pas het interval aan of zet hem om.',
       title: 'Een PM-plan doorlichten',
       pre: [
         {
@@ -300,7 +300,7 @@ export default {
     // Onderwerp: TPM en autonoom onderhoud
     {
       id: 'eng.maintenance.tpm',
-      gist: 'Bij TPM zijn operators eigenaar van de basiszorg (CILT), zodat monteurs vakwerk doen; blijven labels maanden hangen, dan sterft het.',
+      gist: 'Bij TPM zijn operators eigenaar van de basiszorg (CILT), zodat monteurs vakwerk doen; blijven labels maanden hangen, dan sterft autonoom onderhoud.',
       film: 'eng.maintenance.tpm',
       title: 'TPM en autonoom onderhoud',
       pre: [
@@ -372,7 +372,7 @@ export default {
     },
     {
       id: 'eng.maintenance.cilt',
-      gist: 'Een CILT-standaard maakt van basiszorg concrete controles die je in seconden ziet, met het juiste smeermiddel en de juiste hoeveelheid.',
+      gist: 'Een CILT-standaard maakt van basiszorg concrete controles waarvan je de afwijking in seconden ziet, met het juiste smeermiddel en de juiste hoeveelheid.',
       title: 'Een CILT-standaard schrijven',
       pre: [
         {
@@ -596,7 +596,7 @@ export default {
     // Onderwerp: Werkvoorbereiding, planning en reservedelen
     {
       id: 'eng.maintenance.cmms',
-      gist: 'Een backlog van twee tot vier weken is gezond, en je streeft naar PM-compliance van 90% of meer; zonder echte terugkoppeling is de storingshistorie onbruikbaar.',
+      gist: 'Een backlog van twee tot vier weken is gezond, streef naar 90% PM-compliance of meer; zonder echte terugkoppeling is de storingshistorie bijna onbruikbaar.',
       title: 'Onderhoudssysteem, werkorders en backlog',
       pre: [
         {
