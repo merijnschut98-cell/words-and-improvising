@@ -9,7 +9,7 @@ export default {
       pre: [
         {
           q: 'You start the breakdown of a project with your team. Which question gives the best starting list for the WBS?',
-          options: ['“Which tasks must we carry out next week?”', '“How many hours can everyone give to the work?”', '“When this is done, what exists that doesn’t exist now?”', '“Who on the team has experience with this kind of work?”'],
+          options: ['“Which tasks must we carry out next week?”', '“How many hours a week can everyone give to the work?”', '“When this is done, what exists that doesn’t exist now?”', '“Who on the team has experience with this kind of work?”'],
           answer: '“When this is done, what exists that doesn’t exist now?”',
           why: 'A WBS starts from results: what exists at the end and can be checked. The other questions are about tasks and people; those come underneath.',
         },
@@ -35,9 +35,9 @@ export default {
         },
         {
           q: 'Your WBS contains the work package “Analyse breakdown data”: one analyst, estimated at 200 hours. What do you do according to the 8–80 rule?',
-          options: ['Leave it: one analyst can finish the package', 'Add a second analyst and split the hours', 'Split it into packages of roughly 8 to 80 hours', 'Merge it with the package “Discuss causes”'],
-          answer: 'Split it into packages of roughly 8 to 80 hours',
-          why: 'Above 80 hours a package hides surprises and you can’t track progress. A second analyst doesn’t change that (it stays 100 hours each), and merging makes the package even bigger.',
+          options: ['Leave it: one analyst can finish the package', 'Add a second analyst and split the hours', 'Split it into at least three smaller packages', 'Merge it with the package “Discuss causes”'],
+          answer: 'Split it into at least three smaller packages',
+          why: 'Above roughly 80 hours a package hides surprises and you can’t track progress; 200 hours therefore becomes at least three packages (200 / 80 = 2.5), each with its own “done when”. A second analyst doesn’t change that: it stays one package of 200 hours of work. Merging makes it even bigger.',
         },
         {
           kind: 'best',
@@ -45,7 +45,7 @@ export default {
           options: ['The breakdown is finished sooner, because the team writes out the packages', 'The team estimates the hours itself, so the estimates become more realistic', 'The sponsor no longer has to approve the deliverables afterwards', 'People feel bound to it and see work that you forgot'],
           answer: 'People feel bound to it and see work that you forgot',
           close: 'The team estimates the hours itself, so the estimates become more realistic',
-          why: 'Commitment and completeness: people carry out what they helped break down, and they spot packages such as data access or training the night shift. More realistic estimates is also true, but that comes when you estimate; it isn’t why you build the breakdown together.',
+          why: 'Commitment and completeness: people carry out what they helped break down, and they spot packages such as data access or training the night shift. More realistic estimates is also true, but it belongs to estimating itself; it would be the best reason if the breakdown already existed and you asked the team for hours.',
         },
         {
           kind: 'best',
@@ -114,17 +114,17 @@ export default {
       recall: [
         {
           q: 'Which acceptance criterion for the deliverable “a new weekly plan” can you really check afterwards?',
-          options: ['“The planners and shift leaders find the weekly plan clear and workable”', '“The weekly plan was set up on Lean principles and discussed with the management team”', '“The weekly plan goes into use as soon as possible after the kick-off”', '“The weekly plan is fixed Friday 12:00, used three weeks in a row”'],
+          options: ['“The planners and shift leaders find the new weekly plan clear and workable”', '“The weekly plan was set up on Lean principles and discussed with the management team”', '“The weekly plan goes into use as soon as possible after the kick-off”', '“The weekly plan is fixed Friday 12:00, used three weeks in a row”'],
           answer: '“The weekly plan is fixed Friday 12:00, used three weeks in a row”',
           why: 'An acceptance criterion must be checkable: a time and a number of weeks. “Clear and workable” is an opinion, the Lean principles are a way of working, and “as soon as possible” is no criterion.',
         },
         {
           kind: 'best',
           q: 'In week 5 the director asks: “And the paint line?” Your scope page says nothing about it. Which line on the page would have best prevented the question?',
-          options: ['A sharper goal with a number in it', 'An exclusion: what the project won’t do', 'An acceptance criterion with a date', 'An assumption about the available time'],
+          options: ['A sharper goal, naming the department and a number', 'An exclusion: what the project won’t do', 'An acceptance criterion with a date', 'An assumption about the available time'],
           answer: 'An exclusion: what the project won’t do',
-          close: 'A sharper goal with a number in it',
-          why: 'An exclusion fixes the expectation in advance: the question already has an answer on paper. A sharper goal also helps, but it doesn’t say what you exclude; the director has to infer it.',
+          close: 'A sharper goal, naming the department and a number',
+          why: 'An exclusion fixes the expectation in advance: the question already has an answer on paper. A sharper goal helps too and would win if the confusion were about the goal itself (what “lead time” measures), but it doesn’t say what you exclude; the director has to infer it.',
         },
         {
           q: 'You write the goal on the scope page: the lead time of the CNC department goes from an average of 15 to 8 working days. How many percent shorter is that?',
@@ -136,7 +136,7 @@ export default {
         },
         {
           q: 'The planner says: “The MES data is reliable from January, I’m counting on that.” What do you do with it on the page?',
-          options: ['Write it down as an assumption and put the important ones on the risk register', 'Write it down as a constraint, because data quality can’t be changed', 'Write it down as an acceptance criterion, so the sponsor signs for it', 'Include it as a deliverable and give it an owner in the WBS'],
+          options: ['Write it down as an assumption and put the important ones on the risk register', 'Write it down as a constraint, because data quality can’t be changed by the project', 'Write it down as an acceptance criterion, so the sponsor signs for it', 'Include it as a deliverable and give it an owner in the WBS'],
           answer: 'Write it down as an assumption and put the important ones on the risk register',
           why: 'It isn’t proven yet, so it is an assumption; if it’s wrong it is a risk that has already happened. A constraint is fixed (budget, end date); data quality isn’t.',
         },
@@ -214,10 +214,10 @@ export default {
         {
           kind: 'best',
           q: 'You write the product description of “trained work planners”. Where is it best to put extra time?',
-          options: ['The purpose of the product: why we train them', 'The composition: which parts the training has', 'Who gives the training and what it costs', 'The quality criteria: what the team lead checks'],
+          options: ['The purpose of the product: why we train them', 'The composition: which parts the training consists of', 'Who gives the training and what it costs', 'The quality criteria: what the team lead checks'],
           answer: 'The quality criteria: what the team lead checks',
           close: 'The purpose of the product: why we train them',
-          why: 'A large part of a product description is about quality: without a criterion nobody knows when it is done. The purpose is useful too, but it is already in the project product description.',
+          why: 'A large part of a product description is about quality: without a criterion nobody knows when it is done, and this is where you answer “who says this is good, and how can he tell?”. The purpose is useful too and wins when nobody knows why the product is needed; for trained work planners the purpose is clear, the checkable end point is not.',
         },
         {
           q: 'The pilot (6 weeks) needs two things: the standard way of working and an external template that arrives in week 9. The baseline takes 3 weeks from now and the standard way of working 4 weeks after that. After how many weeks from now is the pilot finished at the earliest?',
@@ -386,9 +386,9 @@ export default {
         },
         {
           q: 'You must finish the project two weeks earlier. The schedule shows two chains: one critical and one with three weeks of slack. Where do you look for gains first?',
-          options: ['In the critical chain, because it sets the end date', 'In the chain with slack, because gains cost least there', 'In the cheapest tasks, whatever the chain', 'In both chains equally, to keep it fair'],
+          options: ['In the critical chain, because it sets the end date', 'In the chain with slack, because gains cost least there', 'In the cheapest tasks, whatever the chain', 'In the chain with the longest task, as it has the most give'],
           answer: 'In the critical chain, because it sets the end date',
-          why: 'Only the critical chain sets the end date: gaining time in the chain with slack doesn’t change the end. The cheapest task only helps if it lies on the critical path.',
+          why: 'Only the critical chain sets the end date: gaining time in the chain with slack doesn’t change the end. The cheapest task only helps if it lies on the critical path, and shortening a long task off the critical path gains nothing either.',
         },
         {
           q: 'You want to find a project’s dependencies at a client. Which question to each owner works best?',
@@ -437,9 +437,9 @@ export default {
       pre: [
         {
           q: 'You are improving how a factory plans its maintenance. Nobody knows yet what the new process should look like, and the plant manager wants certainty about the end date. Which approach fits best?',
-          options: ['Waterfall: design everything first, then implement', 'Short rounds with the team, with fixed milestones on top', 'Start without a plan and see where it goes', 'Copy the process of another factory'],
+          options: ['Waterfall: design everything first, then implement', 'Short rounds with the team, with fixed milestones on top', 'Pure agile in sprints, with no end date up front', 'First a pilot on one line, then draw up the schedule afterwards'],
           answer: 'Short rounds with the team, with fixed milestones on top',
-          why: 'The solution is unknown, so short rounds; the plant manager wants certainty, so milestones and an end date: hybrid. Waterfall designs with knowledge you don’t have yet.',
+          why: 'The solution is unknown, so short rounds; the plant manager wants certainty, so milestones and an end date: hybrid. Waterfall designs with knowledge you don’t have yet; pure agile gives the plant manager no date, and a pilot before the schedule puts the date off.',
         },
       ],
       teach: [
@@ -463,7 +463,7 @@ export default {
         },
         {
           q: 'A team works in two-week rounds on a new dashboard for shift leaders. What must each round deliver?',
-          options: ['A status report for the steering group', 'Something working that users react to', 'A revised milestone plan', 'A signed-off phase with fixed requirements'],
+          options: ['A short progress report for the steering group', 'Something working that users react to', 'A revised milestone plan', 'A signed-off phase with fixed requirements'],
           answer: 'Something working that users react to',
           why: 'A round ends with something working that users react to; that provides the feedback you steer on. Reports and signed-off phases belong to another way of working.',
         },
@@ -476,10 +476,10 @@ export default {
         {
           kind: 'best',
           q: 'You doubt whether a project is better run in phases or in rounds. Which question is the best help with that choice?',
-          options: ['“How sure are we about what the solution looks like?”', '“How many people will work on it?”', '“How long does the project take in total?”', '“What does the sponsor expect from the approach?”'],
+          options: ['“How sure are we about what the solution looks like?”', '“How many people will end up working on the project?”', '“How long does the project take in total?”', '“What does the sponsor expect from the approach?”'],
           answer: '“How sure are we about what the solution looks like?”',
           close: '“What does the sponsor expect from the approach?”',
-          why: 'Certainty about the solution decides whether planning up front works or whether you must learn in rounds. The sponsor’s expectation decides how you report (milestones), but not whether phases or rounds work.',
+          why: 'Certainty about the solution decides whether planning up front works or whether you must learn in rounds. The sponsor’s expectation decides how you report (milestones), but not whether phases or rounds work; that question wins once the choice is made and what remains is how to present the approach.',
         },
       ],
       situation: {
@@ -551,21 +551,21 @@ export default {
         },
         {
           q: 'You calculate the network and see that activity F has zero total float. The planner still wants to start F a week later because the team lead is on holiday. What does that mean for the project?',
-          options: ['The end date stays the same: zero float means F is independent', 'F gets a week of float, because the team lead is away', 'The end date moves a week, unless you gain a week elsewhere', 'It stays with F; F’s successors are not affected'],
+          options: ['The end date stays the same: zero float means F is independent', 'The end date holds unless F also takes longer than planned', 'The end date moves a week, unless you gain a week elsewhere', 'It stays with F; F’s successors are not affected'],
           answer: 'The end date moves a week, unless you gain a week elsewhere',
-          why: 'Zero total float means F is on the critical path: starting a week later moves the end a week, unless you win that week back elsewhere.',
+          why: 'Zero total float means F is on the critical path: starting a week later moves the end a week, unless you win that week back elsewhere. Starting late is enough: with zero float any later start moves the end, even if F itself takes no longer.',
         },
         {
           q: 'Two tasks in a row in the same chain share 3 weeks of total float. The first task runs two weeks late. The owner of the second task thinks he still has three weeks of float. What do you say?',
-          options: ['He is right: float is a property of the task itself', 'He has two weeks left, because the first task uses only one week', 'The end date moves two weeks, because the second task starts late', 'He has only one week left: he shares the float with the first task'],
+          options: ['He is right: float belongs to the task itself, not to the chain', 'He has no float left: the first task has made the chain critical', 'The end date moves two weeks, because the second task now starts late', 'He has only one week left: he shares the float with the first task'],
           answer: 'He has only one week left: he shares the float with the first task',
-          why: 'Total float is shared along the chain: the first task used 2 of the 3 weeks, so 1 is left for the second. The end hasn’t moved yet.',
+          why: 'Total float is shared along the chain: the first task used 2 of the 3 weeks, so 1 is left for the second. The end hasn’t moved yet; the chain becomes critical once the three weeks are used up.',
         },
         {
           q: 'A planner shows a network from MS Project with a critical path of 14 weeks. You suspect the path is wrong. What do you check first?',
-          options: ['Whether the tasks are roughly equal in length, so the path is reasonable', 'Whether it contains tasks without predecessor or successor, and fixed dates', 'Whether the bars are the right colour to show the critical path', 'Whether the network fits on one page, so it stays readable'],
+          options: ['Whether the tasks are roughly equal in length, so the path is reasonable', 'Whether it contains tasks without predecessor or successor, and fixed dates', 'Whether the durations were set with three-point estimates', 'Whether the tasks with the least float have an owner'],
           answer: 'Whether it contains tasks without predecessor or successor, and fixed dates',
-          why: 'The software calculates the path; your job is to check the logic. Tasks without predecessor or successor and fixed dates that override the logic give a critical path that looks nice but is wrong.',
+          why: 'The software calculates the path; your job is to check the logic. Tasks without predecessor or successor and fixed dates that override the logic give a critical path that looks nice but is wrong. Three-point estimates and owners improve the schedule, but they leave an error in the logic in place.',
         },
       ],
       situation: {
@@ -628,9 +628,9 @@ export default {
       recall: [
         {
           q: 'The critical path of your preparation is 20 weeks, the summer shutdown starts in 17. Which of these measures is fast-tracking rather than crashing?',
-          options: ['Ordering the conveyor before the last drawing revision', 'Adding an extra trainer for the line operators', 'Enlarging the installation crew by two extra technicians', 'Starting the electrics a week later than planned'],
+          options: ['Ordering the conveyor before the last drawing revision', 'Adding an extra trainer for the operators of the new line', 'Enlarging the installation crew by two extra technicians', 'Scheduling overtime for the technicians on the critical path'],
           answer: 'Ordering the conveyor before the last drawing revision',
-          why: 'Fast-tracking is doing activities partly at the same time: ordering while the drawing may still change. A trainer and extra technicians are crashing (money), and starting the electrics later gains no time.',
+          why: 'Fast-tracking is doing activities partly at the same time: ordering while the drawing may still change. A trainer, extra technicians and overtime are crashing: they mainly cost money.',
         },
         {
           q: 'The critical path must be 1 week shorter. Options: X (on the critical path) 2 weeks shorter for €10,000; Y (on the critical path) 1 week shorter for €4,000; Z (the electrics, not critical) 1 week shorter for €3,000. How many euros does the cheapest choice cost that really moves the end by a week?',
@@ -648,9 +648,9 @@ export default {
         },
         {
           q: 'In the milestone trend analysis the expected date of “pilot live” rises by a week four reports in a row, while the team reports “green” every week. What does that mean?',
-          options: ['Normal: the date moves with small, expected deviations in the work', 'The baseline adjusts itself, so the trend on the chart stays flat', 'The team reports too often; you lower the frequency', 'An early alarm: the milestone is slipping structurally, even if nobody reports red'],
-          answer: 'An early alarm: the milestone is slipping structurally, even if nobody reports red',
-          why: 'A line that keeps rising is an early alarm, even if nobody reports “red”. You don’t move the baseline at every setback; you show the difference and discuss the cause.',
+          options: ['Normal: the date moves along with small, expected deviations in the work done', 'The baseline adjusts itself, so the trend on the chart stays flat', 'No problem as long as the baseline end date stays achievable', 'An early alarm: the milestone slips structurally, even with nobody reporting red'],
+          answer: 'An early alarm: the milestone slips structurally, even with nobody reporting red',
+          why: 'A line that keeps rising is an early alarm, even if nobody reports “red”. You don’t move the baseline at every setback; you show the difference and discuss the cause. Waiting until the end date is at risk wastes the very time the alarm gives you.',
         },
       ],
       situation: {
@@ -728,9 +728,9 @@ export default {
         },
         {
           q: 'A team member wants to add 20% extra time to every task “to be safe”. You prefer one visible buffer at the end. What is your strongest argument?',
-          options: ['Reserve inside a task usually gets used up, even when it could be done sooner', 'That way you can promise the sponsor a shorter end date without risk', 'Then nobody needs to estimate a range for his task any more', 'That way a task may slip without anyone seeing it happen'],
-          answer: 'Reserve inside a task usually gets used up, even when it could be done sooner',
-          why: 'Hidden reserve disappears into the work (Parkinson’s law, student syndrome). One visible buffer you can track and spend where it is needed.',
+          options: ['Reserve inside a task usually gets used up, even if it could finish sooner', 'That way you can promise the sponsor a shorter end date without taking risk', 'That way nobody needs to estimate a range for his own task any more', 'A buffer at the end doesn’t count towards the duration'],
+          answer: 'Reserve inside a task usually gets used up, even if it could finish sooner',
+          why: 'Hidden reserve disappears into the work (Parkinson’s law, student syndrome). One visible buffer you can track and spend where it is needed. That buffer does count towards the duration; it is visible instead of hidden.',
         },
         {
           q: 'The sponsor asks on day one how long the data analysis takes. You don’t yet know how good the data is. What is the best answer?',
@@ -778,9 +778,9 @@ export default {
       pre: [
         {
           q: 'At the start of a project you have no breakdown yet, but you do have figures from the same kind of project at a sister plant. Which estimating method fits best now?',
-          options: ['Bottom-up estimating per work package', 'Have an outside firm make a quote and use that', 'Analogous estimating with the sister plant’s project', 'Wait until the breakdown is finished and then estimate bottom-up'],
+          options: ['Bottom-up estimating per work package', 'Parametric estimating with a norm figure per work package', 'Analogous estimating with the sister plant’s project', 'Wait until the breakdown is finished and then estimate bottom-up'],
           answer: 'Analogous estimating with the sister plant’s project',
-          why: 'Analogous estimating is quick and useful at the start, provided the earlier project really is similar and you know how long it actually took. Bottom-up only works once the breakdown exists.',
+          why: 'Analogous estimating is quick and useful at the start, provided the earlier project really is similar and you know how long it actually took. Bottom-up only works once the breakdown exists, and a norm figure per work package needs that breakdown too.',
         },
       ],
       teach: [
@@ -806,15 +806,15 @@ export default {
         },
         {
           q: 'Your team estimates a roll-out bottom-up at 120 days. An earlier, comparable roll-out took 170 days. What is the most likely cause of the difference?',
-          options: ['The team members don’t know their own work well enough to estimate it properly', 'Bottom-up estimating turns out too optimistic on larger projects', 'The earlier project had used a different norm figure per work package', 'The sum misses the waiting between packages and everyone estimated the best case'],
+          options: ['The team members don’t yet know their own work well enough to estimate it properly', 'Bottom-up estimating turns out too optimistic on larger projects', 'The earlier project had used a different norm figure per work package', 'The sum misses the waiting between packages and everyone estimated the best case'],
           answer: 'The sum misses the waiting between packages and everyone estimated the best case',
           why: 'Bottom-up often misses the waiting between packages, and everyone estimates the best case. That’s why you put a second method next to it, such as analogous, and discuss the difference.',
         },
         {
           q: 'An expert estimates a changeover project at 10 weeks. You find eight comparable, finished ones: they overran by 40% on average. What do you do according to the outside view?',
-          options: ['Place his estimate in the spread of those projects and plan with an overrun', 'Have him work out his own plan step by step again and explain it', 'Ask an external consultant to make an independent estimate of their own', 'Add up the risks outside the project in a list'],
+          options: ['Place his estimate in the spread of those projects and plan with an overrun', 'Have him work out his own plan step by step again and explain it', 'Ask an external consultant to make an independent estimate of their own', 'Ask him for a three-point estimate and take the PERT average'],
           answer: 'Place his estimate in the spread of those projects and plan with an overrun',
-          why: 'The outside view looks at how comparable projects actually went: you place the estimate in the reference class. Working his plan out step by step again is exactly the inside view.',
+          why: 'The outside view looks at how comparable projects actually went: you place the estimate in the reference class. Working his plan out step by step again is exactly the inside view, and a three-point estimate from him is still his own plan.',
         },
         {
           q: 'An earlier roll-out across 8 clusters actually took 20 days (planned was 15). How many days do you estimate analogously for 12 comparable clusters, if the work grows in proportion?',
@@ -901,13 +901,13 @@ export default {
         },
         {
           q: 'A colleague adds the standard deviations of three critical activities (2 + 2 + 2 = 6 days) and calls that the spread of the path. What is wrong with that sum?',
-          options: ['For independent activities you add variances; that gives about 3.5 days', 'Nothing: you simply add the spreads of a chain, just like the durations', 'He should multiply the spreads by one another instead of adding', 'He should first take the square root of the standard deviations one by one and then add'],
+          options: ['For independent activities you add variances; that gives about 3.5 days', 'Nothing: you simply add the spreads of a chain, just like the durations', 'He should multiply the spreads by one another instead of adding them up together', 'He should first take the square root of the standard deviations one by one and then add'],
           answer: 'For independent activities you add variances; that gives about 3.5 days',
           why: 'Not everything goes wrong at once: you add variances (4 + 4 + 4 = 12) and the square root is about 3.5. This holds only if the activities are independent.',
         },
         {
           q: 'A schedule gives a P80 date of 21 weeks for the project. Which explanation is right?',
-          options: ['80% of the team finds the date achievable for this project', 'On that date 80% of the work of the project is done', 'In about 80% of cases the project is finished by then at the latest', 'In 80% of cases the project overruns that date'],
+          options: ['80% of the team finds the date achievable for this project', 'On that date about 80% of the work of the project has been done', 'In about 80% of cases the project is finished by then at the latest', 'In about 80% of cases the project is still not finished after that date'],
           answer: 'In about 80% of cases the project is finished by then at the latest',
           why: 'P80 is the date you meet in about 80% of cases. A P50 date you miss as often as you meet it.',
         },
@@ -950,9 +950,9 @@ export default {
       pre: [
         {
           q: 'Four tasks in a chain each have two weeks of hidden reserve, but in practice they are not finished earlier than planned. What is the most likely explanation according to Goldratt?',
-          options: ['People use up the room, for example by starting late', 'The reserves are too small to absorb the slippage in the tasks', 'The tasks are independent of one another, so reserves don’t add up', 'The steering group removes the reserves at the next report'],
+          options: ['People use up the room, for example by starting late', 'The reserves are too small to absorb the slippage in the tasks', 'The tasks are independent of one another, so reserves don’t add up', 'The tasks slipped together because of one shared cause'],
           answer: 'People use up the room, for example by starting late',
-          why: 'Hidden reserve gets used up: Parkinson’s law and student syndrome. That’s why you take the reserve out of the tasks and put it at the end as one buffer.',
+          why: 'Hidden reserve gets used up: Parkinson’s law and student syndrome. That’s why you take the reserve out of the tasks and put it at the end as one buffer. A shared cause explains slipping together, not that no task finishes early.',
         },
       ],
       teach: [
@@ -980,19 +980,19 @@ export default {
         },
         {
           q: 'A side chain joins your critical chain after task 3: a 5-week delivery from the supplier. Where do you place buffer, so the critical chain doesn’t have to wait?',
-          options: ['At the end of the whole project, with the project buffer', 'At the end of the side chain, where it joins the critical chain', 'In the supplier order itself, as extra margin on the 5 weeks', 'Before task 1, so everything can start later'],
+          options: ['At the end of the whole project, with the project buffer', 'At the end of the side chain, where it joins the critical chain', 'In the supplier order itself, as extra margin on the five weeks of lead time', 'In task 4, as extra duration for the task that waits for the delivery'],
           answer: 'At the end of the side chain, where it joins the critical chain',
-          why: 'A feeding buffer sits where the side chain joins the critical chain and absorbs delays in the delivery. Extra margin in the order is exactly the hidden reserve you want to avoid.',
+          why: 'A feeding buffer sits where the side chain joins the critical chain and absorbs delays in the delivery. Extra margin in the order is exactly the hidden reserve you want to avoid, and so is extra duration in task 4, even inside the critical chain.',
         },
         {
           q: 'On the fever chart 30% of the critical chain is done and 60% of the project buffer is used. The team lead says: “Buffers get used up, that’s what they are for.” What is your reaction?',
-          options: ['He is right: buffer use is normal during execution', 'The buffer was estimated too large and can be reduced', 'The project is ahead, because the buffer is used for the work', 'The buffer is used faster than the work progresses: act now'],
+          options: ['He is right: buffer use is normal during execution', 'The buffer was estimated too large and can be reduced', 'You top up the buffer from the management reserve and carry on', 'The buffer is used faster than the work progresses: act now'],
           answer: 'The buffer is used faster than the work progresses: act now',
-          why: 'A buffer that runs out faster than the work progresses is the signal. Using buffer is normal, but 60% used at 30% done means you must act now, not when the buffer is empty.',
+          why: 'A buffer that runs out faster than the work progresses is the signal. Using buffer is normal, but 60% used at 30% done means you must act now, not when the buffer is empty. The sponsor holds the management reserve, not you, and topping up doesn’t fix the cause.',
         },
         {
           q: 'Two tasks are unrelated in content, but both need the only senior work planner. In the critical path they run in parallel. How does the critical chain treat them?',
-          options: ['As parallel tasks, the way the critical path shows them', 'As external tasks with a feeding buffer added to them', 'In the same chain, because one specialist can’t do both at once', 'As two chains, with a project buffer of its own per chain'],
+          options: ['As parallel tasks, the way the critical path shows them', 'As external tasks, with a feeding buffer where they join the chain', 'In the same chain, because one specialist can’t do both at once', 'As two chains, with a project buffer of its own per chain'],
           answer: 'In the same chain, because one specialist can’t do both at once',
           why: 'The critical chain takes shared people and machines into account: tasks that need the same specialist belong in the same chain, even if they are unrelated in content.',
         },
@@ -1036,7 +1036,7 @@ export default {
       pre: [
         {
           q: 'You are starting a project and want to find risks early. A colleague proposes a pre-mortem. What do you do in such a session?',
-          options: ['You look back at what went wrong in the previous project', 'You calculate the budget needed for risks', 'You imagine the project has failed and write down why', 'You let the team vote on which risks are the biggest'],
+          options: ['You look back with the team at what went wrong in the previous project', 'You calculate the budget needed for risks', 'You imagine the project has failed and write down why', 'You let the team vote on which risks are the biggest'],
           answer: 'You imagine the project has failed and write down why',
           why: 'In a pre-mortem you assume the project has already failed and write down why; that makes it safe to name things people would not otherwise say. Looking back at a previous project is an evaluation.',
         },
@@ -1062,21 +1062,21 @@ export default {
         },
         {
           q: 'Nobody has looked at your risk register since the kick-off. What is the best way to keep it alive?',
-          options: ['Rescore the whole list once a quarter and send it round', 'Make it as complete as possible at the start and update it when issues arise', 'Email the list to the whole team after a steering group', 'Discuss the top five in the steering group, with the owners speaking'],
+          options: ['Rescore the whole list once a quarter and send it round to the steering group', 'Make it as complete as possible at the start and update it when issues arise', 'Email the list to the whole team after a steering group', 'Discuss the top five in the steering group, with the owners speaking'],
           answer: 'Discuss the top five in the steering group, with the owners speaking',
           why: 'A register stays alive when it has a fixed moment: the top five in the steering group, with the owner telling what has happened since. A quarterly round or an email is too far away, and a complete list at the start goes stale.',
         },
         {
           q: 'A risk on your list: the plant manager doesn’t really believe in the project. The plant manager reads the register. What do you do?',
-          options: ['You write it literally in the register, because it must be honest', 'You leave it out of the register and watch it yourself', 'You list it as a theme and discuss the real point one-on-one', 'You tell the sponsor, so he convinces the plant manager'],
+          options: ['You write it literally in the register, because a register must be honest', 'You leave it out of the register and watch it yourself', 'You list it as a theme and discuss the real point one-on-one', 'You tell the sponsor, so he convinces the plant manager himself'],
           answer: 'You list it as a theme and discuss the real point one-on-one',
-          why: 'Word it as a theme (“sponsorship and visible support”) and discuss the real point one-on-one with whoever can act. Writing it literally costs you his support; leaving it out makes the risk invisible.',
+          why: 'Word it as a theme (“sponsorship and visible support”) and discuss the real point one-on-one with whoever can act. Writing it literally costs you his support; leaving it out makes the risk invisible. Having the sponsor persuade him can be part of that conversation, but then the risk is recorded nowhere.',
         },
         {
-          q: 'In a pre-mortem you have each team member first write down alone why the project failed, before you discuss. What is the reason?',
-          options: ['That way the loudest or the most senior person doesn’t set the direction of the list', 'That way the reasons need not be discussed and it goes faster', 'That way you can score the reasons for likelihood and impact on the list straight away', 'That way you are sure the most important reason ends up at the top of the list'],
-          answer: 'That way the loudest or the most senior person doesn’t set the direction of the list',
-          why: 'Writing alone and then collecting one reason per person per round gives everyone a voice; otherwise the loudest steers the list. Speed and scoring are side issues.',
+          q: 'In a pre-mortem you say: “Imagine it’s six months from now and this project has failed. Write down why.” Why does that yield more than asking what could go wrong?',
+          options: ['Once failure is a fact, people name what they would otherwise keep quiet', 'Looking back is quicker, so the whole list is done in twenty minutes', 'The reasons land on the register with likelihood and impact at once', 'People then mostly name the risks that came true in the previous project'],
+          answer: 'Once failure is a fact, people name what they would otherwise keep quiet',
+          why: 'Because the failure is imagined as fact, people name things they would not say otherwise, such as a sponsor who might leave; by Klein’s account they name 30% more of the right reasons. Speed is a side issue, likelihood and impact are scored afterwards, and a pre-mortem looks ahead at this project, not back at the previous one.',
         },
       ],
       situation: {
@@ -1118,7 +1118,7 @@ export default {
       pre: [
         {
           q: 'You start an improvement project at a client. Which agreement stays vague most often in such projects?',
-          options: ['What the sponsor will concretely do', 'Who does the work on the client side', 'Which shift lead keeps the schedule', 'Who takes the minutes of the steering group'],
+          options: ['What the sponsor will concretely do', 'Who does the work on the client side', 'Which shift lead keeps the schedule', 'How often the steering group meets'],
           answer: 'What the sponsor will concretely do',
           why: 'The sponsor is often named but seldom spelled out: what he does, how fast he decides and how you reach him. That’s why you write that role down with him.',
         },
@@ -1138,15 +1138,15 @@ export default {
       recall: [
         {
           q: 'In your RACI the deliverable “capacity model” has two names under A: the planner and the shift lead. What is the problem, and what do you do?',
-          options: ['No problem: two owners give a back-up', 'Nobody is really accountable; ask who decides and pick one A', 'Too few Cs; add consulted people until the As disappear by themselves', 'The As should become R: ownership belongs to whoever does the work'],
+          options: ['No problem: two owners give a back-up', 'Nobody is really accountable; ask who decides and pick one A', 'Too many As: move the shift lead to C yourself and keep the planner as A', 'The As should become R: ownership belongs to whoever does the work'],
           answer: 'Nobody is really accountable; ask who decides and pick one A',
-          why: 'Two names under A means nobody is accountable: in a disagreement nobody decides. One A per deliverable, from the client side where possible, and the sponsor if they disagree.',
+          why: 'Two names under A means nobody is accountable: in a disagreement nobody decides. One A per deliverable, from the client side where possible, and the sponsor if they disagree. Picking the A yourself looks quick, but then you decide what the client must decide.',
         },
         {
           q: 'In your RACI you, the consultant, are accountable for the new planning process. What is the risk of that?',
-          options: ['As a consultant you may not sign for a client in his organisation', 'The result comes slower, because you decide on the scope', 'Once you leave, nobody runs and guards the process', 'The steering group can no longer approve your deliverable'],
+          options: ['The result gets more expensive, because the client pays your hours for longer', 'The result comes slower, because you decide on the scope', 'Once you leave, nobody runs and guards the process', 'The steering group can no longer approve your deliverable'],
           answer: 'Once you leave, nobody runs and guards the process',
-          why: 'A client person must be accountable because he has to run it after you leave. Otherwise you have a project the client watches instead of does.',
+          why: 'A client person must be accountable because he has to run it after you leave. Otherwise you have a project the client watches instead of does. Paying for longer may play a part, but the real risk is that the process stops once you leave.',
         },
         {
           q: 'While drawing up the RACI, two managers both turn out to think they decide the shift pattern. What do you do?',
@@ -1157,10 +1157,10 @@ export default {
         {
           kind: 'best',
           q: 'You want to make the sponsor’s role explicit. What is the best way?',
-          options: ['Write down with him what he does, such as deciding on scope within a week', 'Invite him to the meetings, so he stays informed about progress', 'Put his name on the title slide, so everyone can clearly see his support', 'Have the team write down what the sponsor should do and put that to him'],
+          options: ['Write down with him what he does, such as deciding on scope within a week', 'Invite him to the meetings, so he stays informed about progress', 'Copy a sponsor’s tasks from the method into the plan and have him read it', 'Have the team write down what the sponsor should do and then put that to him'],
           answer: 'Write down with him what he does, such as deciding on scope within a week',
-          close: 'Have the team write down what the sponsor should do and put that to him',
-          why: 'Concrete tasks with a deadline, written down together with him: then the role is checkable. Having the team write down its expectations is good too, but without his own commitment it stays a wish.',
+          close: 'Have the team write down what the sponsor should do and then put that to him',
+          why: 'Concrete tasks with a deadline, written down together with him: then the role is checkable and he has said yes to it himself. Having the team write down its expectations is good too and wins when you can’t meet him for weeks, but without his own commitment it stays a wish. Having him read a role from the method is generic and asks him to commit to nothing.',
         },
       ],
       situation: {
@@ -1202,7 +1202,7 @@ export default {
       pre: [
         {
           q: 'A shift lead is on your project “for 100%”, but also runs his normal shift. How many project hours a week do you plan with?',
-          options: ['40 hours, because that is what was agreed', 'What he really has free: often 4 to 8 hours', '20 hours, half his week, as a compromise', 'As many as the project needs that week'],
+          options: ['40 hours, because that is what was agreed', 'What he really has free: often 4 to 8 hours', '20 hours, half of his week, as a fair compromise', 'As many as the project needs that week'],
           answer: 'What he really has free: often 4 to 8 hours',
           why: 'Availability is rarely 40 hours: after meetings, breakdowns and normal work often 4 to 8 hours are left. Ask him and plan with that number.',
         },
@@ -1232,9 +1232,9 @@ export default {
         },
         {
           q: 'The histogram shows the engineer has twelve hours too many in week 4. The end date may not move, and the overloaded task has 2 weeks of float. Which approach do you choose?',
-          options: ['Resource leveling: move the task until nobody is overloaded, even if the end moves', 'Add an extra engineer and split the task between them', 'Resource smoothing: move the task within its float to weeks 5 and 6', 'Put the task on the critical path so it gets priority'],
+          options: ['Resource leveling: move the task until nobody is overloaded, even if the end moves', 'Add an extra engineer and split the task between them', 'Resource smoothing: move the task within its float to weeks 5 and 6', 'Agree overtime in week 4 with the engineer himself'],
           answer: 'Resource smoothing: move the task within its float to weeks 5 and 6',
-          why: 'Smoothing moves within the float, so the peaks flatten without changing the end date. Leveling may move the end, which is ruled out here; extra people cost money and learning time.',
+          why: 'Smoothing moves within the float, so the peaks flatten without changing the end date. Leveling may move the end, which is ruled out here; extra people cost money and learning time. Agreeing overtime with the engineer himself bypasses his line manager and doesn’t fix the peak in the plan.',
         },
         {
           q: 'An engineer of 40 hours a week works on two projects. With Weinberg’s rule of thumb of about 20% lost to switching: how many hours a week are left for real work?',
@@ -1319,7 +1319,7 @@ export default {
         },
         {
           q: 'You manage the risk register of a roll-out project at a grid operator. Which of these four risks do you escalate to the sponsor?',
-          options: ['Access that only comes after a board decision of the client, which you can’t influence', 'A supplier who may be a week late, covered by a second supplier', 'A team member who is often ill, which you discuss with his manager and solve together', 'The risk with the highest score on the list, whoever can act on it'],
+          options: ['Access that only comes after a board decision of the client, which you can’t influence', 'A supplier who may be a week late, covered by a second supplier kept in reserve', 'A team member who is often ill, which you discuss with his manager and solve together', 'The risk with the highest score on the list, whoever can act on it'],
           answer: 'Access that only comes after a board decision of the client, which you can’t influence',
           why: 'You escalate a risk outside your authority, where only the sponsor or the programme can act. You can manage the other risks yourself; a high score alone is no reason to escalate.',
         },
@@ -1333,7 +1333,7 @@ export default {
         },
         {
           q: 'The sponsor asks: “Can I use the project’s contingency reserve for unexpected costs we don’t know about yet?” What do you say?',
-          options: ['Yes: the contingency reserve is one pot for the whole project, known or not', 'Yes, provided you record the use of the reserve afterwards', 'No: the contingency reserve is for unknown risks, the management reserve for known ones', 'No: it covers known risks; the unforeseen is the sponsor’s management reserve'],
+          options: ['Yes: the contingency reserve is one pot for the whole project, whether the risk is known or not', 'Yes, provided you record the use of the reserve afterwards', 'No: the contingency reserve is for unknown risks, the management reserve for known ones', 'No: it covers known risks; the unforeseen is the sponsor’s management reserve'],
           answer: 'No: it covers known risks; the unforeseen is the sponsor’s management reserve',
           why: 'The contingency reserve is for known, accepted risks and belongs to the project; the unforeseen falls under the management reserve, which the sponsor holds. Keep them apart, or nobody knows what the margin was for.',
         },

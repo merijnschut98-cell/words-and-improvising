@@ -9,7 +9,7 @@ export default {
       pre: [
         {
           q: 'Je begint de opdeling van een project met je team. Welke vraag levert de beste startlijst voor de WBS op?',
-          options: ['“Welke taken moeten we de komende week uitvoeren?”', '“Hoeveel uur kan iedereen aan het werk besteden?”', '“Als dit klaar is, wat ligt er dan wat er nu niet is?”', '“Wie in het team heeft ervaring met zulk werk?”'],
+          options: ['“Welke taken moeten we de komende week uitvoeren?”', '“Hoeveel uur kan iedereen per week aan het werk besteden?”', '“Als dit klaar is, wat ligt er dan wat er nu niet is?”', '“Wie in het team heeft ervaring met zulk werk?”'],
           answer: '“Als dit klaar is, wat ligt er dan wat er nu niet is?”',
           why: 'Een WBS begint bij resultaten: wat er aan het eind is en wat je kunt controleren. De andere vragen gaan over taken en mensen; die komen eronder.',
         },
@@ -35,9 +35,9 @@ export default {
         },
         {
           q: 'In je WBS staat het werkpakket “Storingsdata analyseren”: één analist, geschat op 200 uur. Wat doe je volgens de 8–80-regel?',
-          options: ['Het laten staan: één analist kan het pakket afmaken', 'Er een tweede analist bij zetten en de uren verdelen', 'Het opknippen in pakketten van ongeveer 8 tot 80 uur', 'Het samenvoegen met het pakket “Oorzaken bespreken”'],
-          answer: 'Het opknippen in pakketten van ongeveer 8 tot 80 uur',
-          why: 'Boven de 80 uur verbergt een pakket verrassingen en kun je de voortgang niet volgen. Een tweede analist verandert dat niet (het blijft 100 uur per persoon), en samenvoegen maakt het pakket nog groter.',
+          options: ['Het laten staan: één analist kan het pakket afmaken', 'Er een tweede analist bij zetten en de uren verdelen', 'Het opknippen in minstens drie kleinere pakketten', 'Het samenvoegen met het pakket “Oorzaken bespreken”'],
+          answer: 'Het opknippen in minstens drie kleinere pakketten',
+          why: 'Boven ongeveer 80 uur verbergt een pakket verrassingen en kun je de voortgang niet volgen; 200 uur wordt dus minstens drie pakketten (200 / 80 = 2,5), elk met een eigen “klaar als”. Een tweede analist verandert dat niet: het blijft één pakket van 200 uur werk. Samenvoegen maakt het nog groter.',
         },
         {
           kind: 'best',
@@ -45,7 +45,7 @@ export default {
           options: ['De opdeling is sneller klaar, want het team schrijft de pakketten uit', 'Het team schat de uren zelf, dus de schattingen worden realistischer', 'De sponsor hoeft de resultaten daarna niet meer goed te keuren', 'Mensen voelen zich eraan gebonden en zien werk dat jij vergat'],
           answer: 'Mensen voelen zich eraan gebonden en zien werk dat jij vergat',
           close: 'Het team schat de uren zelf, dus de schattingen worden realistischer',
-          why: 'Betrokkenheid en volledigheid: mensen voeren uit wat ze zelf hebben helpen opdelen, en zij zien pakketten als toegang tot data of het trainen van de nachtploeg. Realistischer schatten is ook waar, maar dat komt pas bij het schatten zelf; het is niet waarom je de opdeling samen maakt.',
+          why: 'Betrokkenheid en volledigheid: mensen voeren uit wat ze zelf hebben helpen opdelen, en zij zien pakketten als toegang tot data of het trainen van de nachtploeg. Realistischer schatten is ook waar, maar hoort bij het schatten zelf; het zou de beste reden zijn als de opdeling al lag en je het team om uren vroeg.',
         },
         {
           kind: 'best',
@@ -114,17 +114,17 @@ export default {
       recall: [
         {
           q: 'Welk acceptatiecriterium voor de deliverable “een nieuwe weekplanning” kun je na afloop echt controleren?',
-          options: ['“De planners en ploegleiders vinden de weekplanning duidelijk en werkbaar”', '“De weekplanning is volgens de Lean-principes opgezet en in het MT besproken”', '“De weekplanning gaat na de kick-off zo snel mogelijk in gebruik”', '“De weekplanning staat vrijdag 12.00 uur vast, drie weken achter elkaar gebruikt”'],
+          options: ['“De planners en ploegleiders vinden de nieuwe weekplanning duidelijk en werkbaar”', '“De weekplanning is volgens de Lean-principes opgezet en in het MT besproken”', '“De weekplanning gaat na de kick-off zo snel mogelijk in gebruik”', '“De weekplanning staat vrijdag 12.00 uur vast, drie weken achter elkaar gebruikt”'],
           answer: '“De weekplanning staat vrijdag 12.00 uur vast, drie weken achter elkaar gebruikt”',
           why: 'Een acceptatiecriterium moet je kunnen checken: een tijdstip en een aantal weken. “Duidelijk en werkbaar” is een mening, de Lean-principes zijn een werkwijze en “zo snel mogelijk” is geen criterium.',
         },
         {
           kind: 'best',
           q: 'In week 5 vraagt de directeur: “En de lakstraat?” Op je scope-A4 staat daar niets over. Welke regel op de A4 had de vraag het beste voorkomen?',
-          options: ['Een scherper doel met een getal erin', 'Een uitsluiting: wat het project niet doet', 'Een acceptatiecriterium met een datum', 'Een aanname over de beschikbare tijd'],
+          options: ['Een scherper doel, met de afdeling en een getal', 'Een uitsluiting: wat het project niet doet', 'Een acceptatiecriterium met een datum', 'Een aanname over de beschikbare tijd'],
           answer: 'Een uitsluiting: wat het project niet doet',
-          close: 'Een scherper doel met een getal erin',
-          why: 'Een uitsluiting zet de verwachting vooraf vast: de vraag heeft dan al een antwoord op papier. Een scherper doel helpt ook, maar zegt niet wat je uitsluit; de directeur moet het zelf afleiden.',
+          close: 'Een scherper doel, met de afdeling en een getal',
+          why: 'Een uitsluiting zet de verwachting vooraf vast: de vraag heeft dan al een antwoord op papier. Een scherper doel helpt ook en zou winnen als de verwarring over het doel zelf ging (wat “doorlooptijd” meet), maar het zegt niet wat je uitsluit; de directeur moet het zelf afleiden.',
         },
         {
           q: 'Je schrijft het doel op de scope-A4: de doorlooptijd van de CNC-afdeling gaat van gemiddeld 15 naar 8 werkdagen. Hoeveel procent korter is dat?',
@@ -136,7 +136,7 @@ export default {
         },
         {
           q: 'De planner zegt: “De MES-data klopt vanaf januari, daar reken ik op.” Wat doe je ermee op de A4?',
-          options: ['Opschrijven als aanname en de belangrijkste op de risicolijst zetten', 'Opschrijven als randvoorwaarde, want de datakwaliteit is niet te veranderen', 'Opschrijven als acceptatiecriterium, zodat de sponsor ervoor tekent', 'Opnemen als deliverable en in de WBS een eigenaar geven'],
+          options: ['Opschrijven als aanname en de belangrijkste op de risicolijst zetten', 'Opschrijven als randvoorwaarde, want de datakwaliteit is door het project niet te veranderen', 'Opschrijven als acceptatiecriterium, zodat de sponsor ervoor tekent', 'Opnemen als deliverable en in de WBS een eigenaar geven'],
           answer: 'Opschrijven als aanname en de belangrijkste op de risicolijst zetten',
           why: 'Het is nog niet bewezen, dus een aanname; klopt hij niet, dan is het een risico dat al is uitgekomen. Een randvoorwaarde staat vast (budget, einddatum); datakwaliteit staat dat niet.',
         },
@@ -214,10 +214,10 @@ export default {
         {
           kind: 'best',
           q: 'Je schrijft de productbeschrijving van “getrainde werkvoorbereiders”. Waar steek je het beste extra tijd in?',
-          options: ['Het doel van het product: waarom we hen trainen', 'De samenstelling: welke onderdelen de training heeft', 'Wie de training geeft en wat dat kost', 'De kwaliteitscriteria: wat de teamleider controleert'],
+          options: ['Het doel van het product: waarom we hen trainen', 'De samenstelling: uit welke onderdelen de training bestaat', 'Wie de training geeft en wat dat kost', 'De kwaliteitscriteria: wat de teamleider controleert'],
           answer: 'De kwaliteitscriteria: wat de teamleider controleert',
           close: 'Het doel van het product: waarom we hen trainen',
-          why: 'Een groot deel van een productbeschrijving gaat over kwaliteit: zonder criterium weet niemand wanneer het af is. Het doel is ook nuttig, maar dat staat al in de projectproductbeschrijving.',
+          why: 'Een groot deel van een productbeschrijving gaat over kwaliteit: zonder criterium weet niemand wanneer het af is, en de vraag “wie zegt dat dit goed is, en waaraan ziet hij dat?” beantwoord je hier. Het doel is ook nuttig en wint als niemand weet waarom het product er moet komen; bij getrainde werkvoorbereiders is het doel duidelijk, het controleerbare eindpunt niet.',
         },
         {
           q: 'De pilot (6 weken) heeft twee dingen nodig: de standaardwerkwijze en een extern sjabloon dat in week 9 binnenkomt. De nulmeting duurt 3 weken vanaf nu en de standaardwerkwijze 4 weken daarna. Na hoeveel weken vanaf nu is de pilot op zijn vroegst klaar?',
@@ -386,9 +386,9 @@ export default {
         },
         {
           q: 'Je moet het project twee weken eerder afronden. De planning toont twee ketens: één kritiek en één met drie weken speling. Waar zoek je eerst winst?',
-          options: ['In de kritieke keten, want die bepaalt de einddatum', 'In de keten met speling, want daar kost winst het minst', 'In de goedkoopste taken, ongeacht de keten', 'In beide ketens evenveel, om het eerlijk te houden'],
+          options: ['In de kritieke keten, want die bepaalt de einddatum', 'In de keten met speling, want daar kost winst het minst', 'In de goedkoopste taken, ongeacht de keten', 'In de keten met de langste taak, want die heeft de meeste rek'],
           answer: 'In de kritieke keten, want die bepaalt de einddatum',
-          why: 'Alleen de kritieke keten bepaalt de einddatum: tijd winnen in de keten met speling verandert het eind niet. De goedkoopste taak helpt alleen als hij op het kritieke pad ligt.',
+          why: 'Alleen de kritieke keten bepaalt de einddatum: tijd winnen in de keten met speling verandert het eind niet. De goedkoopste taak helpt alleen als hij op het kritieke pad ligt, en een lange taak buiten het kritieke pad inkorten wint ook niets.',
         },
         {
           q: 'Je wilt bij een klant de afhankelijkheden van een project achterhalen. Welke vraag aan elke eigenaar werkt het best?',
@@ -437,9 +437,9 @@ export default {
       pre: [
         {
           q: 'Je verbetert hoe een fabriek zijn onderhoud plant. Niemand weet nog hoe het nieuwe proces eruit moet zien, en de plantmanager wil zekerheid over de einddatum. Welke aanpak past het best?',
-          options: ['Waterval: eerst volledig ontwerpen, dan invoeren', 'Korte rondes met het team, met vaste mijlpalen erboven', 'Zonder plan beginnen en kijken waar het heen gaat', 'Het proces van een andere fabriek overnemen'],
+          options: ['Waterval: eerst volledig ontwerpen, dan invoeren', 'Korte rondes met het team, met vaste mijlpalen erboven', 'Puur agile in sprints, zonder einddatum vooraf', 'Eerst een pilot op één lijn, en pas daarna de planning maken'],
           answer: 'Korte rondes met het team, met vaste mijlpalen erboven',
-          why: 'De oplossing is onbekend, dus korte rondes; de plantmanager wil zekerheid, dus mijlpalen en een einddatum: hybride. Waterval ontwerpt met kennis die je nog niet hebt.',
+          why: 'De oplossing is onbekend, dus korte rondes; de plantmanager wil zekerheid, dus mijlpalen en een einddatum: hybride. Waterval ontwerpt met kennis die je nog niet hebt; puur agile geeft de plantmanager geen datum, en een pilot vóór de planning stelt de datum juist uit.',
         },
       ],
       teach: [
@@ -463,7 +463,7 @@ export default {
         },
         {
           q: 'Een team werkt in rondes van twee weken aan een nieuw dashboard voor ploegleiders. Wat moet elke ronde opleveren?',
-          options: ['Een statusrapport voor de stuurgroep', 'Iets werkends waar gebruikers op reageren', 'Een herziene mijlpalenplanning', 'Een afgetekende fase met vaste eisen'],
+          options: ['Een kort voortgangsrapport voor de stuurgroep', 'Iets werkends waar gebruikers op reageren', 'Een herziene mijlpalenplanning', 'Een afgetekende fase met vaste eisen'],
           answer: 'Iets werkends waar gebruikers op reageren',
           why: 'Een ronde eindigt met iets werkends waar gebruikers op reageren; dat levert de feedback waarop je bijstuurt. Rapporten en afgetekende fases horen bij een andere werkwijze.',
         },
@@ -476,10 +476,10 @@ export default {
         {
           kind: 'best',
           q: 'Je twijfelt of een project beter in fases of in rondes kan. Welke vraag is de beste hulp bij die keuze?',
-          options: ['“Hoe zeker zijn we van hoe de oplossing eruitziet?”', '“Hoeveel mensen werken er straks aan mee?”', '“Hoe lang duurt het project in totaal?”', '“Wat verwacht de sponsor van de aanpak?”'],
+          options: ['“Hoe zeker zijn we van hoe de oplossing eruitziet?”', '“Hoeveel mensen werken er straks aan het project mee?”', '“Hoe lang duurt het project in totaal?”', '“Wat verwacht de sponsor van de aanpak?”'],
           answer: '“Hoe zeker zijn we van hoe de oplossing eruitziet?”',
           close: '“Wat verwacht de sponsor van de aanpak?”',
-          why: 'De zekerheid over de oplossing bepaalt of vooraf plannen werkt of dat je moet leren in rondes. De verwachting van de sponsor bepaalt hoe je rapporteert (mijlpalen), maar niet of fases of rondes werken.',
+          why: 'De zekerheid over de oplossing bepaalt of vooraf plannen werkt of dat je moet leren in rondes. De verwachting van de sponsor bepaalt hoe je rapporteert (mijlpalen), maar niet of fases of rondes werken; die vraag wint als de keuze al vastligt en het nog gaat om hoe je de aanpak verkoopt.',
         },
       ],
       situation: {
@@ -551,21 +551,21 @@ export default {
         },
         {
           q: 'Je rekent het netwerk door en ziet dat activiteit F totale speling 0 heeft. De planner wil F toch een week later starten omdat de teamleider op vakantie is. Wat betekent dat voor het project?',
-          options: ['De einddatum blijft gelijk: speling 0 betekent dat F onafhankelijk is', 'F krijgt een week speling, omdat de teamleider er niet is', 'De einddatum schuift een week op, tenzij je elders een week wint', 'Het blijft bij F; de opvolgers van F worden er niet door geraakt'],
+          options: ['De einddatum blijft gelijk: speling 0 betekent dat F onafhankelijk is', 'De einddatum blijft gelijk, tenzij F ook langer duurt dan gepland', 'De einddatum schuift een week op, tenzij je elders een week wint', 'Het blijft bij F; de opvolgers van F worden er niet door geraakt'],
           answer: 'De einddatum schuift een week op, tenzij je elders een week wint',
-          why: 'Totale speling 0 betekent dat F op het kritieke pad ligt: een week later starten schuift het eind een week, tenzij je die week elders terugwint.',
+          why: 'Totale speling 0 betekent dat F op het kritieke pad ligt: een week later starten schuift het eind een week, tenzij je die week elders terugwint. Later starten is genoeg: met speling 0 schuift elk later begin het eind, ook als F zelf niet langer duurt.',
         },
         {
           q: 'Twee taken achter elkaar in dezelfde keten delen samen 3 weken totale speling. De eerste taak loopt twee weken uit. De eigenaar van de tweede taak denkt nog drie weken speling te hebben. Wat zeg je?',
-          options: ['Hij heeft gelijk: speling is een eigenschap van de taak zelf', 'Hij heeft nog twee weken, want de eerste taak gebruikt maar één week', 'De einddatum schuift twee weken, want de tweede taak start te laat', 'Hij heeft nog maar één week: de speling deelt hij met de eerste taak'],
+          options: ['Hij heeft gelijk: speling is een eigenschap van de taak zelf', 'Hij heeft geen speling meer: de eerste taak heeft de keten kritiek gemaakt', 'De einddatum schuift twee weken, want de tweede taak start nu te laat', 'Hij heeft nog maar één week: de speling deelt hij met de eerste taak'],
           answer: 'Hij heeft nog maar één week: de speling deelt hij met de eerste taak',
-          why: 'Totale speling wordt gedeeld door de keten: de eerste taak gebruikte 2 van de 3 weken, dus voor de tweede blijft er 1 over. Het eind schuift nog niet.',
+          why: 'Totale speling wordt gedeeld door de keten: de eerste taak gebruikte 2 van de 3 weken, dus voor de tweede blijft er 1 over. Het eind schuift nog niet; kritiek wordt de keten pas als de drie weken op zijn.',
         },
         {
           q: 'Een planner laat een netwerk uit MS Project zien met een kritiek pad van 14 weken. Jij vermoedt dat het pad niet klopt. Wat controleer je eerst?',
-          options: ['Of de taken ongeveer even lang zijn, zodat het pad redelijk is', 'Of er taken zonder voorganger of opvolger en vaste datums in zitten', 'Of de balken in de juiste kleur het kritieke pad tonen', 'Of het netwerk op één pagina past, zodat het leesbaar blijft'],
+          options: ['Of de taken ongeveer even lang zijn, zodat het pad redelijk is', 'Of er taken zonder voorganger of opvolger en vaste datums in zitten', 'Of de duur van de taken met driepuntsschattingen is bepaald', 'Of de taken met de minste speling een eigenaar hebben'],
           answer: 'Of er taken zonder voorganger of opvolger en vaste datums in zitten',
-          why: 'De software rekent het pad uit; jouw werk is de logica controleren. Taken zonder voorganger of opvolger en vaste datums die de logica overschrijven geven een kritiek pad dat er mooi uitziet maar niet klopt.',
+          why: 'De software rekent het pad uit; jouw werk is de logica controleren. Taken zonder voorganger of opvolger en vaste datums die de logica overschrijven geven een kritiek pad dat er mooi uitziet maar niet klopt. Driepuntsschattingen en eigenaren maken de planning beter, maar een fout in de logica blijft dan staan.',
         },
       ],
       situation: {
@@ -628,9 +628,9 @@ export default {
       recall: [
         {
           q: 'Het kritieke pad van je voorbereiding is 20 weken, de zomerstop begint over 17. Welke van deze maatregelen is fast-tracking en geen crashing?',
-          options: ['De transportband bestellen vóór de laatste tekeningrevisie', 'Een extra trainer inzetten bij de operators van de lijn', 'De installatieploeg uitbreiden met twee extra monteurs', 'De elektra een week later laten starten dan gepland'],
+          options: ['De transportband bestellen vóór de laatste tekeningrevisie', 'Een extra trainer inzetten bij de operators van de nieuwe lijn', 'De installatieploeg uitbreiden met twee extra monteurs', 'Overwerk inplannen voor de monteurs op het kritieke pad'],
           answer: 'De transportband bestellen vóór de laatste tekeningrevisie',
-          why: 'Fast-tracking is activiteiten deels tegelijk doen: bestellen terwijl de tekening nog wijzigt. Een trainer en extra monteurs zijn crashing (geld), en de elektra later starten wint geen tijd.',
+          why: 'Fast-tracking is activiteiten deels tegelijk doen: bestellen terwijl de tekening nog wijzigt. Een trainer, extra monteurs en overwerk zijn crashing: ze kosten vooral geld.',
         },
         {
           q: 'Het kritieke pad moet 1 week korter. Opties: X (op het kritieke pad) 2 weken korter voor € 10.000; Y (op het kritieke pad) 1 week korter voor € 4.000; Z (de elektra, niet kritiek) 1 week korter voor € 3.000. Hoeveel euro kost de goedkoopste keuze die het einde echt een week verschuift?',
@@ -648,9 +648,9 @@ export default {
         },
         {
           q: 'In de mijlpaaltrendanalyse stijgt de verwachte datum van “pilot live” vier rapportages achter elkaar met een week, terwijl het team elke week “groen” meldt. Wat betekent dat?',
-          options: ['Normaal: de datum beweegt mee met kleine, verwachte afwijkingen in het werk', 'De basisplanning past zich aan, zodat de trend op de grafiek vlak blijft', 'Het team rapporteert te vaak; je verlaagt de frequentie', 'Een vroeg alarm: de mijlpaal schuift structureel, ook al meldt niemand rood'],
+          options: ['Normaal: de datum beweegt mee met kleine, verwachte afwijkingen in het werk', 'De basisplanning past zich aan, zodat de trend op de grafiek vlak blijft', 'Geen probleem zolang de einddatum van de basisplanning haalbaar blijft', 'Een vroeg alarm: de mijlpaal schuift structureel, ook al meldt niemand rood'],
           answer: 'Een vroeg alarm: de mijlpaal schuift structureel, ook al meldt niemand rood',
-          why: 'Een lijn die steeds stijgt is een vroeg alarm, ook als niemand “rood” meldt. De basisplanning verschuif je niet bij elke tegenvaller; je laat het verschil zien en bespreekt de oorzaak.',
+          why: 'Een lijn die steeds stijgt is een vroeg alarm, ook als niemand “rood” meldt. De basisplanning verschuif je niet bij elke tegenvaller; je laat het verschil zien en bespreekt de oorzaak. Wachten tot de einddatum in gevaar is, verspilt juist de tijd die het alarm je geeft.',
         },
       ],
       situation: {
@@ -728,9 +728,9 @@ export default {
         },
         {
           q: 'Een teamlid wil in elke taak 20% extra tijd opnemen “voor de zekerheid”. Jij wilt liever één zichtbare buffer aan het eind. Wat is je sterkste argument?',
-          options: ['Reserve in een taak wordt meestal opgemaakt, ook als het eerder kon', 'Zo kun je de sponsor een kortere einddatum beloven zonder risico', 'Dan hoeft niemand meer een bandbreedte te schatten voor zijn taak', 'Zo mag een taak uitlopen zonder dat iemand het ziet gebeuren'],
+          options: ['Reserve in een taak wordt meestal opgemaakt, ook als het eerder kon', 'Zo kun je de sponsor een kortere einddatum beloven zonder risico', 'Dan hoeft niemand meer een bandbreedte te schatten voor zijn eigen taak', 'Een buffer aan het eind telt niet mee in de doorlooptijd'],
           answer: 'Reserve in een taak wordt meestal opgemaakt, ook als het eerder kon',
-          why: 'Verborgen reserve verdwijnt in het werk (wet van Parkinson, studentensyndroom). Eén zichtbare buffer kun je volgen en opgebruiken waar het nodig is.',
+          why: 'Verborgen reserve verdwijnt in het werk (wet van Parkinson, studentensyndroom). Eén zichtbare buffer kun je volgen en opgebruiken waar het nodig is. Die buffer telt wel mee in de doorlooptijd; hij is zichtbaar in plaats van verstopt.',
         },
         {
           q: 'De sponsor vraagt op dag één hoe lang de data-analyse duurt. Je weet nog niet hoe goed de data is. Wat is het beste antwoord?',
@@ -778,9 +778,9 @@ export default {
       pre: [
         {
           q: 'Aan het begin van een project heb je nog geen opdeling, maar wel cijfers van hetzelfde soort project bij een zusterfabriek. Welke schatmethode past nu het best?',
-          options: ['Bottom-up schatten per werkpakket', 'Een extern bureau een offerte laten maken en die gebruiken', 'Analoog schatten met het project van de zusterfabriek', 'Wachten tot de opdeling af is en dan bottom-up schatten'],
+          options: ['Bottom-up schatten per werkpakket', 'Parametrisch schatten met een normgetal per werkpakket', 'Analoog schatten met het project van de zusterfabriek', 'Wachten tot de opdeling af is en dan bottom-up schatten'],
           answer: 'Analoog schatten met het project van de zusterfabriek',
-          why: 'Analoog schatten is snel en goed bruikbaar aan het begin, mits het eerdere project echt lijkt en je weet hoe lang het echt duurde. Bottom-up kan pas als de opdeling er is.',
+          why: 'Analoog schatten is snel en goed bruikbaar aan het begin, mits het eerdere project echt lijkt en je weet hoe lang het echt duurde. Bottom-up kan pas als de opdeling er is, en een normgetal per werkpakket vraagt die opdeling ook.',
         },
       ],
       teach: [
@@ -806,15 +806,15 @@ export default {
         },
         {
           q: 'Je team schat bottom-up een uitrol op 120 dagen. Een eerdere, vergelijkbare uitrol kostte 170 dagen. Wat is de meest waarschijnlijke oorzaak van het verschil?',
-          options: ['De teamleden kennen hun eigen werk onvoldoende om het goed te schatten', 'Bottom-up schatten blijkt bij grotere projecten te optimistisch uit te pakken', 'Het vorige project had een ander normgetal per werkpakket gebruikt', 'De som mist het wachten tussen pakketten en iedereen schatte het beste geval'],
+          options: ['De teamleden kennen hun eigen werk nog onvoldoende om het goed te schatten', 'Bottom-up schatten blijkt bij grotere projecten te optimistisch uit te pakken', 'Het vorige project had een ander normgetal per werkpakket gebruikt', 'De som mist het wachten tussen pakketten en iedereen schatte het beste geval'],
           answer: 'De som mist het wachten tussen pakketten en iedereen schatte het beste geval',
           why: 'Bottom-up mist vaak het wachten tussen pakketten, en iedereen schat het beste geval. Daarom leg je er een tweede methode naast, zoals analoog, en bespreek je het verschil.',
         },
         {
           q: 'Een expert schat een ombouw op 10 weken. Je vindt acht vergelijkbare, afgeronde ombouwen: die liepen gemiddeld 40% uit. Wat doe je volgens het buitenperspectief?',
-          options: ['Je zet zijn schatting in de spreiding van die projecten en plant met uitloop', 'Je laat hem zijn eigen plan stap voor stap opnieuw uitwerken en toelichten', 'Je vraagt een externe consultant om een eigen, onafhankelijke schatting te maken', 'Je telt de risico’s buiten het project bij elkaar op in een lijst'],
+          options: ['Je zet zijn schatting in de spreiding van die projecten en plant met uitloop', 'Je laat hem zijn eigen plan stap voor stap opnieuw uitwerken en toelichten', 'Je vraagt een externe consultant om een eigen, onafhankelijke schatting te maken', 'Je vraagt hem om een driepuntsschatting en neemt het PERT-gemiddelde'],
           answer: 'Je zet zijn schatting in de spreiding van die projecten en plant met uitloop',
-          why: 'Het buitenperspectief kijkt hoe vergelijkbare projecten echt verliepen: je plaatst de schatting in de referentieklasse. Zijn plan stap voor stap uitwerken is juist het binnenperspectief.',
+          why: 'Het buitenperspectief kijkt hoe vergelijkbare projecten echt verliepen: je plaatst de schatting in de referentieklasse. Zijn plan stap voor stap uitwerken is juist het binnenperspectief, en een driepuntsschatting van hem blijft ook zijn eigen plan.',
         },
         {
           q: 'Een eerdere uitrol over 8 clusters kostte in werkelijkheid 20 dagen (gepland was 15). Hoeveel dagen schat je analoog voor 12 vergelijkbare clusters, als het werk evenredig groeit?',
@@ -901,13 +901,13 @@ export default {
         },
         {
           q: 'Een collega telt de standaarddeviaties van drie kritieke activiteiten op (2 + 2 + 2 = 6 dagen) en noemt dat de spreiding van het pad. Wat is er mis met die rekensom?',
-          options: ['Bij onafhankelijke activiteiten tel je varianties op; dat geeft ongeveer 3,5 dagen', 'Niets: de spreidingen van een keten tel je gewoon op, net als de duren', 'Hij moet de spreidingen met elkaar vermenigvuldigen in plaats van optellen', 'Hij moet eerst van iedere standaarddeviatie de wortel nemen en dan optellen'],
+          options: ['Bij onafhankelijke activiteiten tel je varianties op; dat geeft ongeveer 3,5 dagen', 'Niets: de spreidingen van een keten tel je gewoon op, net als de duren zelf', 'Hij moet de spreidingen met elkaar vermenigvuldigen in plaats van ze bij elkaar op te tellen', 'Hij moet eerst van iedere standaarddeviatie de wortel nemen en dan optellen'],
           answer: 'Bij onafhankelijke activiteiten tel je varianties op; dat geeft ongeveer 3,5 dagen',
           why: 'Niet alles zit tegelijk tegen: varianties tel je op (4 + 4 + 4 = 12) en de wortel is ongeveer 3,5. Dit geldt alleen als de activiteiten onafhankelijk zijn.',
         },
         {
           q: 'Een planning noemt voor het project een P80-datum van 21 weken. Welke uitleg klopt?',
-          options: ['80% van het team vindt de datum haalbaar voor dit project', 'Op die datum is 80% van het werk van het project klaar', 'In ongeveer 80% van de gevallen is het project uiterlijk dan klaar', 'In 80% van de gevallen loopt het project uit tot na die datum'],
+          options: ['80% van het team vindt de datum haalbaar voor dit project', 'Op die datum is 80% van het werk van het project klaar', 'In ongeveer 80% van de gevallen is het project uiterlijk dan klaar', 'In ongeveer 80% van de gevallen is het project na die datum nog niet klaar'],
           answer: 'In ongeveer 80% van de gevallen is het project uiterlijk dan klaar',
           why: 'P80 is de datum die je in ongeveer 80% van de gevallen haalt. Een P50-datum mis je net zo vaak als je hem haalt.',
         },
@@ -950,9 +950,9 @@ export default {
       pre: [
         {
           q: 'Vier taken in een keten hebben elk twee weken verborgen reserve, maar blijken in de praktijk niet eerder klaar dan gepland. Wat is volgens Goldratt de meest waarschijnlijke verklaring?',
-          options: ['Mensen maken de ruimte op, bijvoorbeeld door pas laat te beginnen', 'De reserves zijn te klein om de uitloop in de taken op te vangen', 'De taken zijn onafhankelijk van elkaar, dus reserves tellen niet op', 'De stuurgroep haalt de reserves weg bij de volgende rapportage'],
+          options: ['Mensen maken de ruimte op, bijvoorbeeld door pas laat te beginnen', 'De reserves zijn te klein om de uitloop in de taken op te vangen', 'De taken zijn onafhankelijk van elkaar, dus reserves tellen niet op', 'De taken liepen tegelijk uit door één gedeelde oorzaak'],
           answer: 'Mensen maken de ruimte op, bijvoorbeeld door pas laat te beginnen',
-          why: 'Verborgen reserve wordt opgemaakt: de wet van Parkinson en het studentensyndroom. Daarom haal je de reserve uit de taken en zet je hem als één buffer aan het eind.',
+          why: 'Verborgen reserve wordt opgemaakt: de wet van Parkinson en het studentensyndroom. Daarom haal je de reserve uit de taken en zet je hem als één buffer aan het eind. Een gedeelde oorzaak verklaart samen uitlopen, niet dat geen enkele taak eerder klaar is.',
         },
       ],
       teach: [
@@ -980,19 +980,19 @@ export default {
         },
         {
           q: 'In je kritieke keten komt na taak 3 een zijketen binnen: een levering van de leverancier van 5 weken. Waar plaats je buffer, zodat de kritieke keten niet hoeft te wachten?',
-          options: ['Aan het einde van het hele project, bij de projectbuffer', 'Aan het eind van de zijketen, waar die in de kritieke keten uitkomt', 'In de leveranciersopdracht zelf, als extra marge op de 5 weken', 'Vóór taak 1, zodat het hele project later kan beginnen'],
+          options: ['Aan het einde van het hele project, bij de projectbuffer', 'Aan het eind van de zijketen, waar die in de kritieke keten uitkomt', 'In de leveranciersopdracht zelf, als extra marge op de vijf weken levertijd', 'In taak 4, als extra duur voor de taak die op de levering wacht'],
           answer: 'Aan het eind van de zijketen, waar die in de kritieke keten uitkomt',
-          why: 'Een aanvoerbuffer staat waar de zijketen in de kritieke keten uitkomt en vangt vertraging van de levering op. Extra marge in de opdracht is juist de verborgen reserve die je wilt vermijden.',
+          why: 'Een aanvoerbuffer staat waar de zijketen in de kritieke keten uitkomt en vangt vertraging van de levering op. Extra marge in de opdracht is juist de verborgen reserve die je wilt vermijden, en extra duur in taak 4 ook, dan zelfs in de kritieke keten.',
         },
         {
           q: 'Op de koortsgrafiek is 30% van de kritieke keten af en 60% van de projectbuffer op. De teamleider zegt: “Buffers raken nu eenmaal op.” Wat is je reactie?',
-          options: ['Hij heeft gelijk: bufferverbruik is normaal tijdens de uitvoering', 'De buffer was te groot ingeschat en kan omlaag', 'Het project loopt voor, want de buffer wordt voor het werk gebruikt', 'De buffer raakt sneller op dan het werk vordert: nu ingrijpen'],
+          options: ['Hij heeft gelijk: bufferverbruik is normaal tijdens de uitvoering', 'De buffer was te groot ingeschat en kan omlaag', 'Je vult de buffer aan uit de managementreserve en gaat door', 'De buffer raakt sneller op dan het werk vordert: nu ingrijpen'],
           answer: 'De buffer raakt sneller op dan het werk vordert: nu ingrijpen',
-          why: 'Een buffer die sneller opraakt dan het werk vordert is het signaal. Bufferverbruik is normaal, maar 60% op bij 30% af betekent dat je nu moet ingrijpen, niet pas als de buffer leeg is.',
+          why: 'Een buffer die sneller opraakt dan het werk vordert is het signaal. Bufferverbruik is normaal, maar 60% op bij 30% af betekent dat je nu moet ingrijpen, niet pas als de buffer leeg is. De managementreserve beheert de sponsor, niet jij, en aanvullen lost de oorzaak niet op.',
         },
         {
           q: 'Twee taken staan inhoudelijk los van elkaar, maar hebben allebei de enige senior werkvoorbereider nodig. In het kritieke pad staan ze parallel. Hoe behandelt de kritieke keten ze?',
-          options: ['Als parallelle taken, zoals het kritieke pad ze toont', 'Als externe taken met een aanvoerbuffer erbij', 'In dezelfde keten, want één specialist kan niet beide tegelijk', 'Als twee ketens, met een eigen projectbuffer per keten'],
+          options: ['Als parallelle taken, zoals het kritieke pad ze toont', 'Als externe taken, met een aanvoerbuffer waar ze de keten in komen', 'In dezelfde keten, want één specialist kan niet beide tegelijk', 'Als twee ketens, met een eigen projectbuffer per keten'],
           answer: 'In dezelfde keten, want één specialist kan niet beide tegelijk',
           why: 'De kritieke keten houdt rekening met gedeelde mensen en machines: taken die dezelfde specialist nodig hebben, horen in dezelfde keten, ook als ze inhoudelijk los staan.',
         },
@@ -1036,7 +1036,7 @@ export default {
       pre: [
         {
           q: 'Je start een project en wilt vroeg risico’s vinden. Een collega stelt een pre-mortem voor. Wat doe je in zo’n sessie?',
-          options: ['Je kijkt terug op wat er in het vorige project misging', 'Je berekent het budget dat voor risico’s nodig is', 'Je stelt je voor dat het project is mislukt en schrijft op waarom', 'Je laat het team stemmen welke risico’s het grootst zijn'],
+          options: ['Je kijkt met het team terug op wat er in het vorige project misging', 'Je berekent het budget dat voor risico’s nodig is', 'Je stelt je voor dat het project is mislukt en schrijft op waarom', 'Je laat het team stemmen welke risico’s het grootst zijn'],
           answer: 'Je stelt je voor dat het project is mislukt en schrijft op waarom',
           why: 'Bij een pre-mortem neem je aan dat het project al mislukt is en schrijf je op waarom; dat maakt het veilig om zaken te noemen die mensen anders niet zeggen. Terugkijken op een vorig project is een evaluatie.',
         },
@@ -1062,21 +1062,21 @@ export default {
         },
         {
           q: 'Je risicolijst is na de kick-off niet meer bekeken. Wat is de beste manier om hem levend te houden?',
-          options: ['Per kwartaal de hele lijst opnieuw scoren en rondsturen', 'Aan het begin zo volledig mogelijk maken en bijwerken bij issues', 'Na een stuurgroep de lijst naar het hele team mailen', 'De top vijf in de stuurgroep bespreken, met de eigenaren aan het woord'],
+          options: ['Per kwartaal de hele lijst opnieuw scoren en rondsturen aan de stuurgroep', 'Aan het begin zo volledig mogelijk maken en bijwerken bij issues', 'Na een stuurgroep de lijst naar het hele team mailen', 'De top vijf in de stuurgroep bespreken, met de eigenaren aan het woord'],
           answer: 'De top vijf in de stuurgroep bespreken, met de eigenaren aan het woord',
           why: 'Een lijst blijft leven als hij een vast moment heeft: de top vijf in de stuurgroep, met de eigenaar die vertelt wat er sindsdien gebeurd is. Een kwartaalronde of een mail is te ver weg, en een volledige lijst bij de start veroudert.',
         },
         {
           q: 'Een risico op je lijst: de plantmanager gelooft eigenlijk niet in het project. De plantmanager leest de lijst mee. Wat doe je?',
-          options: ['Je zet het letterlijk in de lijst, want de lijst moet eerlijk zijn', 'Je laat het weg uit de lijst en let er zelf op', 'Je zet het als thema in de lijst en bespreekt het echte punt één op één', 'Je vertelt het de sponsor, zodat hij de plantmanager overtuigt'],
+          options: ['Je zet het letterlijk in de lijst, want een risicolijst moet eerlijk zijn', 'Je laat het weg uit de lijst en let er zelf op', 'Je zet het als thema in de lijst en bespreekt het echte punt één op één', 'Je vertelt het de sponsor, zodat hij de plantmanager zelf overtuigt'],
           answer: 'Je zet het als thema in de lijst en bespreekt het echte punt één op één',
-          why: 'Formuleer het als thema (“sponsorschap en zichtbare steun”) en bespreek het echte punt één op één met wie er iets aan kan doen. Letterlijk opschrijven kost je zijn steun; weglaten maakt het risico onzichtbaar.',
+          why: 'Formuleer het als thema (“sponsorschap en zichtbare steun”) en bespreek het echte punt één op één met wie er iets aan kan doen. Letterlijk opschrijven kost je zijn steun; weglaten maakt het risico onzichtbaar. De sponsor laten overtuigen kan deel zijn van dat gesprek, maar dan staat het risico nergens.',
         },
         {
-          q: 'Bij een pre-mortem laat je ieder teamlid eerst zelfstandig opschrijven waarom het project mislukt is, voordat je ze bespreekt. Wat is de reden?',
-          options: ['Zo bepaalt de luidste of de hoogste in rang niet de richting van de lijst', 'Zo hoeven de redenen niet besproken te worden en gaat het sneller', 'Zo kun je de redenen direct in kans en impact scoren op de lijst', 'Zo weet je zeker dat de belangrijkste reden bovenaan de lijst komt te staan'],
-          answer: 'Zo bepaalt de luidste of de hoogste in rang niet de richting van de lijst',
-          why: 'Alleen opschrijven en dan één reden per persoon per ronde ophalen geeft iedereen een stem; anders stuurt de luidste de lijst. Snelheid en scoren zijn bijzaak.',
+          q: 'Bij een pre-mortem zeg je: “Stel, het is over zes maanden en dit project is mislukt. Schrijf op waarom.” Waarom levert dat meer op dan vragen wat er mis kan gaan?',
+          options: ['Als het mislukken een feit is, noemen mensen wat ze anders verzwijgen', 'Terugkijken gaat sneller, dus de lijst is in twintig minuten klaar', 'De redenen komen dan meteen met kans en impact op de risicolijst', 'Mensen noemen dan vooral risico’s die in het vorige project uitkwamen'],
+          answer: 'Als het mislukken een feit is, noemen mensen wat ze anders verzwijgen',
+          why: 'Omdat het mislukken als feit wordt voorgesteld, noemen mensen dingen die ze anders niet zeggen, zoals een sponsor die misschien vertrekt; volgens Klein noemen ze zo 30% meer juiste redenen. Snelheid is bijzaak, kans en impact scoor je daarna, en een pre-mortem kijkt vooruit naar dit project, niet terug naar het vorige.',
         },
       ],
       situation: {
@@ -1118,7 +1118,7 @@ export default {
       pre: [
         {
           q: 'Je start een verbeterproject bij een klant. Welke afspraak blijft bij zulke projecten het vaakst vaag?',
-          options: ['Wat de sponsor concreet gaat doen', 'Wie het werk voor de klant uitvoert', 'Welke ploegleider de planning bijhoudt', 'Wie de notulen van de stuurgroep maakt'],
+          options: ['Wat de sponsor concreet gaat doen', 'Wie het werk voor de klant uitvoert', 'Welke ploegleider de planning bijhoudt', 'Hoe vaak de stuurgroep bij elkaar komt'],
           answer: 'Wat de sponsor concreet gaat doen',
           why: 'De sponsor wordt vaak genoemd maar zelden uitgeschreven: wat hij doet, binnen welke tijd hij beslist en hoe je hem bereikt. Daarom schrijf je die rol met hem samen op.',
         },
@@ -1138,15 +1138,15 @@ export default {
       recall: [
         {
           q: 'In je RACI staan bij het resultaat “capaciteitsmodel” twee namen onder A: de planner en de ploegleider. Wat is het probleem, en wat doe je?',
-          options: ['Geen probleem: twee eigenaren zorgen voor een back-up', 'Niemand is echt eigenaar; vraag wie beslist en kies één A', 'Te weinig C’s; voeg consultaties toe tot de A’s vanzelf wegvallen', 'De A’s moeten naar R: eigenaarschap hoort bij wie het werk doet'],
+          options: ['Geen probleem: twee eigenaren zorgen voor een back-up', 'Niemand is echt eigenaar; vraag wie beslist en kies één A', 'Te veel A’s: zet zelf de ploegleider op C en laat de planner A', 'De A’s moeten naar R: eigenaarschap hoort bij wie het werk doet'],
           answer: 'Niemand is echt eigenaar; vraag wie beslist en kies één A',
-          why: 'Twee namen onder A betekent dat niemand eigenaar is: bij een meningsverschil beslist niemand. Eén A per resultaat, bij voorkeur van de klant, en bij onenigheid de sponsor.',
+          why: 'Twee namen onder A betekent dat niemand eigenaar is: bij een meningsverschil beslist niemand. Eén A per resultaat, bij voorkeur van de klant, en bij onenigheid de sponsor. Zelf een A kiezen lijkt snel, maar dan beslis jij wat de klant moet beslissen.',
         },
         {
           q: 'In je RACI ben jij, de consultant, accountable voor het nieuwe planningsproces. Wat is daar het risico van?',
-          options: ['Je mag als consultant niets tekenen voor een klant in zijn organisatie', 'Het resultaat komt trager, want jij beslist over de scope', 'Zodra jij weg bent, is er niemand die het proces draait en bewaakt', 'De stuurgroep kan jouw resultaat dan niet meer goedkeuren'],
+          options: ['Het resultaat wordt duurder, want de klant betaalt jouw uren langer', 'Het resultaat komt trager, want jij beslist over de scope', 'Zodra jij weg bent, is er niemand die het proces draait en bewaakt', 'De stuurgroep kan jouw resultaat dan niet meer goedkeuren'],
           answer: 'Zodra jij weg bent, is er niemand die het proces draait en bewaakt',
-          why: 'Een klant moet accountable zijn omdat hij het moet draaien als jij weg bent. Anders heb je een project waar de klant naar kijkt in plaats van dat hij het doet.',
+          why: 'Een klant moet accountable zijn omdat hij het moet draaien als jij weg bent. Anders heb je een project waar de klant naar kijkt in plaats van dat hij het doet. Langer betalen kan meespelen, maar het echte risico is dat het proces na jouw vertrek stilvalt.',
         },
         {
           q: 'Bij het opstellen van de RACI blijken twee managers allebei te denken dat zij over het ploegenrooster beslissen. Wat doe je?',
@@ -1157,10 +1157,10 @@ export default {
         {
           kind: 'best',
           q: 'Je wilt de rol van de sponsor expliciet maken. Wat is de beste manier?',
-          options: ['Samen met hem op papier zetten wat hij doet, zoals binnen een week beslissen over scope', 'Hem uitnodigen voor de overleggen, zodat hij op de hoogte blijft van de voortgang', 'Zijn naam op de titelslide zetten, zodat iedereen zijn steun duidelijk kan zien', 'Het team laten opschrijven wat de sponsor moet doen en dat aan hem voorleggen'],
-          answer: 'Samen met hem op papier zetten wat hij doet, zoals binnen een week beslissen over scope',
+          options: ['Samen met hem opschrijven wat hij doet, zoals binnen een week beslissen over scope', 'Hem uitnodigen voor de overleggen, zodat hij op de hoogte blijft van de voortgang', 'De taken van een sponsor uit de methode overnemen en hem dat laten lezen', 'Het team laten opschrijven wat de sponsor moet doen en dat aan hem voorleggen'],
+          answer: 'Samen met hem opschrijven wat hij doet, zoals binnen een week beslissen over scope',
           close: 'Het team laten opschrijven wat de sponsor moet doen en dat aan hem voorleggen',
-          why: 'Concrete taken met een termijn, samen met hem opgeschreven: dan is de rol controleerbaar. Het team laten opschrijven wat het verwacht is ook goed, maar zonder zijn eigen toezegging blijft het een wens.',
+          why: 'Concrete taken met een termijn, samen met hem opgeschreven: dan is de rol controleerbaar en heeft hij er zelf ja tegen gezegd. Het team laten opschrijven wat het verwacht is ook goed en wint als je hem pas over weken spreekt, maar zonder zijn eigen toezegging blijft het een wens. Een rol uit de methode laten lezen is algemeen en vraagt hem niets toe te zeggen.',
         },
       ],
       situation: {
@@ -1202,7 +1202,7 @@ export default {
       pre: [
         {
           q: 'Een ploegleider staat voor 100% in je project, maar draait ook zijn gewone ploeg. Met hoeveel projecturen per week plan je?',
-          options: ['40 uur, want zo staat het in de afspraak', 'Wat hij echt vrij heeft: vaak 4 tot 8 uur', '20 uur, de helft van zijn week, als compromis', 'Zoveel als het project in die week nodig heeft'],
+          options: ['40 uur, want zo staat het in de afspraak', 'Wat hij echt vrij heeft: vaak 4 tot 8 uur', '20 uur, de helft van zijn week, als redelijk compromis', 'Zoveel als het project in die week nodig heeft'],
           answer: 'Wat hij echt vrij heeft: vaak 4 tot 8 uur',
           why: 'Beschikbaarheid is zelden 40 uur: na overleg, storingen en gewoon werk blijven vaak 4 tot 8 uur over. Vraag het hem en plan met dat getal.',
         },
@@ -1232,9 +1232,9 @@ export default {
         },
         {
           q: 'Het histogram toont dat de engineer in week 4 twaalf uur te veel heeft. De einddatum mag niet schuiven, en de overbelaste taak heeft 2 weken speling. Welke aanpak kies je?',
-          options: ['Resource leveling: de taak verschuiven tot niemand overbelast is, ook al schuift het eind', 'Een extra engineer toevoegen en de taak onderling verdelen', 'Resource smoothing: de taak binnen zijn speling naar week 5 en 6 schuiven', 'De taak op het kritieke pad zetten, zodat hij voorrang krijgt'],
+          options: ['Resource leveling: de taak verschuiven tot niemand overbelast is, ook al schuift het eind', 'Een extra engineer toevoegen en de taak onderling verdelen', 'Resource smoothing: de taak binnen zijn speling naar week 5 en 6 schuiven', 'Met de engineer zelf overwerk in week 4 afspreken'],
           answer: 'Resource smoothing: de taak binnen zijn speling naar week 5 en 6 schuiven',
-          why: 'Smoothing schuift binnen de speling, dus de pieken vlakken af zonder dat de einddatum verandert. Leveling mag het eind laten schuiven, en dat is hier uitgesloten; extra mensen kosten geld en inwerktijd.',
+          why: 'Smoothing schuift binnen de speling, dus de pieken vlakken af zonder dat de einddatum verandert. Leveling mag het eind laten schuiven, en dat is hier uitgesloten; extra mensen kosten geld en inwerktijd. Overwerk met de engineer zelf afspreken gaat langs zijn lijnmanager heen en lost de piek in de planning niet op.',
         },
         {
           q: 'Een engineer van 40 uur per week werkt aan twee projecten. Met Weinbergs vuistregel van zo’n 20% verlies door schakelen: hoeveel uur per week blijft er over voor echt werk?',
@@ -1319,7 +1319,7 @@ export default {
         },
         {
           q: 'Je beheert de risicolijst van een uitrolproject bij een netbeheerder. Welk van deze vier risico’s escaleer je naar de sponsor?',
-          options: ['De toegang die pas na een bestuursbesluit van de klant komt, waar jij niets aan kunt doen', 'Een leverancier die een week te laat kan zijn, op te vangen met een tweede leverancier', 'Een teamlid dat vaak ziek is, wat je met zijn manager bespreekt en samen oplost', 'Het risico met de hoogste score op de lijst, ongeacht wie eraan kan werken'],
+          options: ['De toegang die pas na een bestuursbesluit van de klant komt, waar jij niets aan kunt doen', 'Een leverancier die een week te laat kan zijn, op te vangen met een tweede leverancier achter de hand', 'Een teamlid dat vaak ziek is, wat je met zijn manager bespreekt en samen oplost', 'Het risico met de hoogste score op de lijst, ongeacht wie eraan kan werken'],
           answer: 'De toegang die pas na een bestuursbesluit van de klant komt, waar jij niets aan kunt doen',
           why: 'Escaleren is voor een risico buiten je bevoegdheid, waar alleen de sponsor of het programma iets aan kan doen. De andere risico’s kun je zelf beheersen; een hoge score alleen is geen reden om te escaleren.',
         },
@@ -1333,7 +1333,7 @@ export default {
         },
         {
           q: 'De sponsor vraagt: “Kan ik de risicoreserve van het project gebruiken voor onverwachte kosten die we nu niet kennen?” Wat zeg je?',
-          options: ['Ja: de risicoreserve is een pot voor het hele project, bekend of niet', 'Ja, mits je het gebruik van de reserve achteraf goed vastlegt', 'Nee: de risicoreserve is voor onbekende risico’s, de managementreserve voor bekende', 'Nee: die dekt bekende risico’s; het onvoorziene is de managementreserve van de sponsor'],
+          options: ['Ja: de risicoreserve is één pot voor het hele project, of het risico nu bekend is of niet', 'Ja, mits je het gebruik van de reserve achteraf goed vastlegt', 'Nee: de risicoreserve is voor onbekende risico’s, de managementreserve voor bekende', 'Nee: die dekt bekende risico’s; het onvoorziene is de managementreserve van de sponsor'],
           answer: 'Nee: die dekt bekende risico’s; het onvoorziene is de managementreserve van de sponsor',
           why: 'De risicoreserve is voor bekende, geaccepteerde risico’s en hoort bij het project; het onvoorziene valt onder de managementreserve, die de sponsor beheert. Houd ze apart, anders weet niemand meer waar de marge voor was.',
         },
