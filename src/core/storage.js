@@ -31,7 +31,7 @@ export function defaultState() {
     programme: null,
     friendAsks: {}, // nonce -> { promptId, drill, ts }: links sent to a friend
     friendRatings: {}, // nonce -> { clear, structured, confident, line, ts }
-    courses: { eng: { lessons: {}, sessions: [], plans: [], prepped: [], medals: {}, checks: {}, seenIntros: [], seenLevels: [] }, pm: { lessons: {}, sessions: [], plans: [], prepped: [], medals: {}, checks: {}, seenIntros: [], seenLevels: [] } }, // per subject: lessonId -> progress, session log, plans to use a lesson, events refreshed for
+    courses: { eng: { lessons: {}, sessions: [], plans: [], prepped: [], medals: {}, checks: {}, tests: {}, seenIntros: [], seenLevels: [] }, pm: { lessons: {}, sessions: [], plans: [], prepped: [], medals: {}, checks: {}, tests: {}, seenIntros: [], seenLevels: [] } }, // per subject: lessonId -> progress, session log, plans to use a lesson, events refreshed for
     xpDays: {}, // v16: 'YYYY-MM-DD' -> XP earned that day (last 60 days)
     dailyGoal: { xp: 30, ts: 0 }, // v16: daily goal in XP (20, 30 or 50), synced, later ts wins
     titles: {}, // v16: subject -> { rank 1..4, ts }, never lowered
@@ -63,6 +63,13 @@ export const cleanSpeakMedals = (v) => cleanMedals(v, SPEAK_GROUPS);
 export const cleanTitles = (v) => Object.fromEntries(Object.entries(isObject(v) ? v : {}).filter(([k, t]) => ['eng', 'pm', 'speak'].includes(k) && isObject(t) && Number.isInteger(t.rank) && t.rank >= 1 && t.rank <= 4 && isTs(t.ts)).map(([k, t]) => [k, { rank: t.rank, ts: t.ts }]));
 const validCheck = (c) => isObject(c) && isDay(c.last) && Number.isInteger(c.best) && c.best >= 0 && Number.isInteger(c.total) && c.total >= c.best && (c.perfect === null || c.perfect === undefined || isTs(c.perfect));
 export const cleanChecks = (v) => Object.fromEntries(Object.entries(isObject(v) ? v : {}).filter(([, c]) => validCheck(c)).map(([k, c]) => [k, { last: c.last, best: c.best, total: c.total, perfect: c.perfect ?? null }]));
+
+// v18 T2: practice-test records { best, last, attempts, lastDay, byTopic, items }; best and last are percents.
+const isPct = (v) => Number.isInteger(v) && v >= 0 && v <= 100;
+const validTest = (t) => isObject(t) && isPct(t.best) && isPct(t.last) && t.best >= t.last && Number.isInteger(t.attempts) && t.attempts >= 1 && isDay(t.lastDay);
+const cleanByTopic = (v) => Object.fromEntries(Object.entries(isObject(v) ? v : {}).filter(([, e]) => isObject(e) && Number.isInteger(e.total) && e.total >= 0 && Number.isInteger(e.correct) && e.correct >= 0 && e.correct <= e.total).map(([k, e]) => [k, { correct: e.correct, total: e.total }]));
+export const cleanTests = (v) => Object.fromEntries(Object.entries(isObject(v) ? v : {}).filter(([, t]) => validTest(t))
+  .map(([k, t]) => [k, { best: t.best, last: t.last, attempts: t.attempts, lastDay: t.lastDay, byTopic: cleanByTopic(t.byTopic), items: strings(t.items).slice(0, 20) }]));
 
 export const strings = (v) => (Array.isArray(v) ? v.filter((x) => typeof x === 'string') : []);
 export const cleanPlans = (v) => (Array.isArray(v) ? v.filter(validPlan) : []);
@@ -104,7 +111,7 @@ export function load(backend) {
   merged.courses = Object.fromEntries(Object.keys(base.courses).map((k) => {
     const c = isObject(courses[k]) ? courses[k] : {};
     const { dueSkip, ...rest } = c;
-    return [k, { ...rest, lessons: isObject(c.lessons) ? c.lessons : {}, sessions: Array.isArray(c.sessions) ? c.sessions : [], plans: cleanPlans(c.plans), prepped: strings(c.prepped), seenIntros: strings(c.seenIntros).slice(-200), seenLevels: strings(c.seenLevels).slice(-1200), medals: cleanMedals(c.medals), checks: cleanChecks(c.checks), ...(isDay(dueSkip) ? { dueSkip } : {}) }];
+    return [k, { ...rest, lessons: isObject(c.lessons) ? c.lessons : {}, sessions: Array.isArray(c.sessions) ? c.sessions : [], plans: cleanPlans(c.plans), prepped: strings(c.prepped), seenIntros: strings(c.seenIntros).slice(-200), seenLevels: strings(c.seenLevels).slice(-1200), medals: cleanMedals(c.medals), checks: cleanChecks(c.checks), tests: cleanTests(c.tests), ...(isDay(dueSkip) ? { dueSkip } : {}) }];
   }));
   merged.xpDays = cleanXpDays(parsed.xpDays);
   merged.dailyGoal = cleanGoal(parsed.dailyGoal);

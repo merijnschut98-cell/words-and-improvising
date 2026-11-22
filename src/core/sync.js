@@ -1,7 +1,7 @@
 // Merging progress from another device. Never an overwrite: anything done on
 // either device survives. Device settings (API key, theme, language) and ui
 // state never leave the device. Pure.
-import { cleanPlans, strings, cleanXpDays, cleanGoal, cleanMedals, cleanSpeakMedals, cleanTitles, cleanChecks, MEDAL_TIERS } from './storage.js';
+import { cleanPlans, strings, cleanXpDays, cleanGoal, cleanMedals, cleanSpeakMedals, cleanTitles, cleanChecks, cleanTests, MEDAL_TIERS } from './storage.js';
 
 const HISTORY_CAP = 200;
 const SESSIONS_CAP = 200;
@@ -106,6 +106,18 @@ function mergeCheck(x, y) {
   return { last: x.last > y.last ? x.last : y.last, best: best.best, total: best.total, perfect: minDefined(x.perfect, y.perfect) ?? null };
 }
 const mergeChecks = (a, b) => perKey(cleanChecks(a), cleanChecks(b), mergeCheck);
+// v18 T2, practice tests: nothing done on either device is lost. best is the higher,
+// attempts the higher count (both devices count the shared history, so they are not
+// added); the last attempt (its score, day, topics and items) is the one from the later
+// day, on a tie from the record with more attempts, then the higher last score, then the
+// items, so merging in either order gives the same record.
+const testOrder = (x, y) => (x.lastDay !== y.lastDay ? (x.lastDay > y.lastDay ? 1 : -1)
+  : x.attempts - y.attempts || x.last - y.last || (x.items.join() > y.items.join() ? 1 : x.items.join() < y.items.join() ? -1 : 0));
+function mergeTest(x, y) {
+  const later = testOrder(x, y) >= 0 ? x : y;
+  return { best: Math.max(x.best, y.best), last: later.last, attempts: Math.max(x.attempts, y.attempts), lastDay: later.lastDay, byTopic: later.byTopic, items: later.items };
+}
+export const mergeTests = (a, b) => perKey(cleanTests(a), cleanTests(b), mergeTest);
 const laterGoal = (a, b) => {
   const x = cleanGoal(a);
   const y = cleanGoal(b);
@@ -124,6 +136,7 @@ function mergeCourses(a, b) {
       plans: mergePlans(cx.plans, cy.plans),
       medals: mergeMedals(cx.medals, cy.medals),
       checks: mergeChecks(cx.checks, cy.checks),
+      tests: mergeTests(cx.tests, cy.tests),
       // Event ids grow with time: newest first, capped like on the device.
       prepped: [...new Set([...strings(cx.prepped), ...strings(cy.prepped)])].sort().reverse().slice(0, PREPPED_CAP),
       // v17: module ids whose intro he has watched; sorted so either order gives the same list.
@@ -185,7 +198,7 @@ function clean(r) {
   out.titles = cleanTitles(r.titles);
   out.speakMedals = cleanSpeakMedals(r.speakMedals);
   if (isObj(r.courses)) {
-    out.courses = Object.fromEntries(Object.entries(r.courses).map(([k, c]) => [k, isObj(c) ? { ...c, medals: cleanMedals(c.medals), checks: cleanChecks(c.checks) } : c]));
+    out.courses = Object.fromEntries(Object.entries(r.courses).map(([k, c]) => [k, isObj(c) ? { ...c, medals: cleanMedals(c.medals), checks: cleanChecks(c.checks), tests: cleanTests(c.tests) } : c]));
   }
   return out;
 }

@@ -181,7 +181,7 @@ test('v10: v9 machining progress round-trips through mergeStates unchanged (topi
   const lessons = { 'eng.machining.cutting': { read: 100, passed: 100 }, 'eng.machining.cnc': { read: 50, passed: 50 } };
   const courseReviews = Object.fromEntries([0, 1, 2, 3].map((i) => [`nl|eng.machining.cutting#r${i}`, { box: 4, due: '2026-12-30', lesson: 'eng.machining.cutting', subject: 'eng', lastSure: true }]));
   const b = mergeStates(base(), base()); // the merge normalises unrelated defaults (bests)
-  const s = { ...b, courses: { ...b.courses, eng: { lessons, sessions: [], plans: [], prepped: [], medals: {}, checks: {}, seenIntros: [], seenLevels: [] } }, courseReviews }; // v16: loaded states carry medals and checks
+  const s = { ...b, courses: { ...b.courses, eng: { lessons, sessions: [], plans: [], prepped: [], medals: {}, checks: {}, tests: {}, seenIntros: [], seenLevels: [] } }, courseReviews }; // v16: loaded states carry medals and checks
   assert.deepEqual(mergeStates(s, s), s);
 });
 

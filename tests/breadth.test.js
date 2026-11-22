@@ -9,11 +9,14 @@ import { nextLesson, recommendedModule, courseTodayPick, roadOrder, breadthOrder
 
 const meta = (id) => MODULES.find((m) => m.id === id);
 const levelOf = (m, L) => topicsOf(m).map((t) => t.levels[L]);
+const TODAY = '2026-11-02';
+// v18 T2: between modules the next step may be a practice test that just opened (one a
+// day, tests/practicetest.test.js). These states took one today, so the lesson order shows.
+const TESTED = { 'pm.portfolio/level/1': { best: 80, last: 80, attempts: 1, lastDay: TODAY, byTopic: {}, items: [] } };
 const stateWith = (subject, ids) => ({
   ...defaultState(),
-  courses: { [subject]: { lessons: Object.fromEntries(ids.map((id) => [id, { passed: true, ts: 1 }])) } },
+  courses: { [subject]: { lessons: Object.fromEntries(ids.map((id) => [id, { passed: true, ts: 1 }])), tests: TESTED } },
 });
-const TODAY = '2026-11-02';
 
 test('roadOrder: Projects follows the road (Approach, Intake, Plan, Formats, Run, Land, Close), then the other places by module level (Instap, Verdieping, Specialist), map order within a level', () => {
   const ids = roadOrder('pm').map((m) => m.id);
