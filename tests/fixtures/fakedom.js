@@ -77,8 +77,16 @@ class FakeElement extends FakeNode {
   matches(sel) { return matchOne(this, sel); }
   closest(sel) { let n = this; while (n && n instanceof FakeElement) { if (matchOne(n, sel)) return n; n = n.parentNode; } return null; }
   querySelectorAll(sel) {
-    const parts = sel.trim().split(/\s+/);
     const out = [];
+    // One attribute-value selector, as built with CSS.escape (the quiz kinds use [data-key="..."]).
+    const av = sel.trim().match(/^\[([\w-]+)="((?:[^"\\]|\\.)*)"\]$/);
+    if (av) {
+      const want = av[2].replace(/\\(.)/g, '$1');
+      const find = (n) => { for (const c of n.children) { if (c.getAttribute(av[1]) === want) out.push(c); find(c); } };
+      find(this);
+      return out;
+    }
+    const parts = sel.trim().split(/\s+/);
     const walk = (n) => { for (const c of n.children) { if (matchChain(c, parts, this)) out.push(c); walk(c); } };
     walk(this);
     return out;
@@ -110,6 +118,7 @@ function matchChain(el, parts, root) {
 export function installFakeDom() {
   globalThis.Node = FakeNode;
   globalThis.document = { createElement: (t) => new FakeElement(t), createElementNS: (_ns, t) => new FakeElement(t), createTextNode: (t) => new FakeText(t), documentElement: new FakeElement('html') };
+  if (!globalThis.CSS) globalThis.CSS = { escape: (v) => String(v).replace(/["\\]/g, '\\$&') };
   if (!globalThis.window) globalThis.window = { scrollTo() {}, matchMedia: () => ({ matches: false }) };
   return { FakeElement };
 }

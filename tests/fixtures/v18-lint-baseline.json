@@ -215,15 +215,6 @@
     "shortstem": 28,
     "definition": 16
   },
-  "pm.plan": {
-    "length": 24,
-    "offtopic": 41,
-    "absolute": 40,
-    "shortstem": 22,
-    "definition": 18,
-    "echo": 4,
-    "nobody": 8
-  },
   "pm.formats": {
     "absolute": 54,
     "offtopic": 41,
