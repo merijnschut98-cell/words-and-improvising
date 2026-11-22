@@ -4,7 +4,7 @@ export default {
     // Onderwerp: Krachten, momenten en spanning
     {
       id: 'eng.mechanics.forces',
-      gist: 'Gewicht is massa × 9,81 en een moment is kracht × arm; dynamische en stootbelastingen kunnen een veelvoud van het statische gewicht zijn.',
+      gist: 'Gewicht is massa × 9,81 m/s² en een moment is kracht × arm; dynamische en stootbelastingen kunnen een veelvoud van het statische gewicht zijn.',
       film: 'eng.mechanics.load',
       title: 'Kracht, gewicht en moment',
       pre: [
@@ -81,7 +81,7 @@ export default {
     },
     {
       id: 'eng.mechanics.stress',
-      gist: 'Spanning (F / A) bepaalt of een onderdeel bezwijkt; stijfheid is iets anders dan sterkte, want sterker staal heeft dezelfde E.',
+      gist: 'Spanning (F / A, in MPa) bepaalt of een onderdeel bezwijkt; stijfheid is iets anders dan sterkte, want sterker staal heeft bijna dezelfde E.',
       film: 'eng.mechanics.load',
       title: 'Spanning, rek en stijfheid',
       pre: [
@@ -156,7 +156,7 @@ export default {
     },
     {
       id: 'eng.mechanics.bending',
-      gist: 'Buigspanning is moment gedeeld door weerstandsmoment (M / W); doorbuiging van een uitkragende ligger groeit met de lengte tot de derde.',
+      gist: 'Buigspanning is moment gedeeld door weerstandsmoment (M / W); bij een last op de punt groeit de doorbuiging met de lengte tot de derde.',
       title: 'Buiging en torsie in balken en assen',
       pre: [
         {
@@ -232,7 +232,7 @@ export default {
     },
     {
       id: 'eng.mechanics.calccheck',
-      gist: 'Een FEM-plot is zo goed als zijn invoer: vraag naar lasten en opleggingen, controleer met een handberekening, en wantrouw pieken die blijven klimmen.',
+      gist: 'Een FEM-plot is zo goed als zijn invoer: vraag naar lasten en opleggingen, controleer met een handberekening, en wantrouw pieken die bij verfijnen blijven klimmen.',
       title: 'Een sterkteberekening en een FEM-plot lezen',
       pre: [
         {
@@ -458,7 +458,7 @@ export default {
     },
     {
       id: 'eng.mechanics.toughness',
-      gist: 'Taaiheid is de energie die een materiaal opneemt voor het breekt (kerfslagproef); koolstofstaal wordt bros onder een bepaalde temperatuur.',
+      gist: 'Taaiheid is de energie (J) die een materiaal opneemt voor het breekt (kerfslagproef); koolstofstaal wordt bros onder een bepaalde temperatuur, austenitisch rvs niet.',
       title: 'Taaiheid, brosse breuk en de kerfslagproef',
       pre: [
         {
@@ -534,7 +534,7 @@ export default {
     },
     {
       id: 'eng.mechanics.traceability',
-      gist: 'Een materiaalcertificaat bewijst alleen iets zolang het chargenummer met het onderdeel meegaat; PMI vangt verwisselingen, al ziet XRF koolstof slecht.',
+      gist: 'Een materiaalcertificaat bewijst alleen iets zolang het chargenummer met het onderdeel meegaat; PMI vangt veel verwisselingen, maar XRF ziet koolstof slecht.',
       title: 'Materiaalcertificaten, traceerbaarheid en verwisselingen',
       pre: [
         {
@@ -829,7 +829,7 @@ export default {
     },
     {
       id: 'eng.mechanics.weldfatigue',
-      gist: 'Bij gelaste details telt het detail en de spanningswijdte, niet de staalsoort; met helling 3 is de levensduur 2 miljoen × (FAT / Δσ)³.',
+      gist: 'Bij gelaste details tellen de detailcategorie en de spanningswijdte, niet de staalsoort; met helling 3 is de levensduur 2 miljoen × (FAT / Δσ)³.',
       title: 'Vermoeiing van gelaste constructies',
       pre: [
         {
@@ -977,7 +977,7 @@ export default {
     },
     {
       id: 'eng.mechanics.heattreat',
-      gist: 'Harden maakt staal hard maar bros, ontlaten ruilt hardheid in voor taaiheid; spanningsarmgloeien na het lassen helpt voorkomen dat een onderdeel later trekt.',
+      gist: 'Harden maakt staal met genoeg koolstof hard maar bros, ontlaten ruilt hardheid in voor taaiheid; spanningsarmgloeien na lassen helpt krom trekken achteraf voorkomen.',
       film: 'eng.mechanics.heattreat',
       title: 'Hardheid en warmtebehandeling',
       pre: [
@@ -1123,7 +1123,7 @@ export default {
     },
     {
       id: 'eng.mechanics.selection',
-      gist: 'Materiaalkeuze weegt functie, proces, levering en kosten per stuk; een vervanging is een ontwerpwijziging, want equivalent uit een andere norm is niet gelijk.',
+      gist: 'Materiaalkeuze weegt functie, proces, levering en kosten per stuk; een vervanging is een ontwerpwijziging, want equivalent uit een andere norm is zelden gelijk.',
       title: 'Materialen kiezen en vervangen',
       pre: [
         {

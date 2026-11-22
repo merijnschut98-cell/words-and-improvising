@@ -4,7 +4,7 @@ export default {
     // Topic: Forces, moments and stress
     {
       id: 'eng.mechanics.forces',
-      gist: 'Weight is mass × 9.81 and a moment is force × arm; dynamic and impact loads can be a multiple of the static weight.',
+      gist: 'Weight is mass × 9.81 m/s² and a moment is force × arm; dynamic and impact loads can be a multiple of the static weight.',
       film: 'eng.mechanics.load',
       title: 'Force, weight and torque',
       pre: [
@@ -81,7 +81,7 @@ export default {
     },
     {
       id: 'eng.mechanics.stress',
-      gist: 'Stress (F / A) decides whether a part fails; stiffness is not strength, because stronger steel has the same E.',
+      gist: 'Stress (F / A, in MPa) decides whether a part fails; stiffness is not strength, because stronger steel has nearly the same E.',
       film: 'eng.mechanics.load',
       title: 'Stress, strain and stiffness',
       pre: [
@@ -156,7 +156,7 @@ export default {
     },
     {
       id: 'eng.mechanics.bending',
-      gist: 'Bending stress is moment divided by section modulus (M / W); the deflection of a cantilever grows with the length cubed.',
+      gist: 'Bending stress is moment divided by section modulus (M / W); with a load at the tip, deflection grows with the length cubed.',
       title: 'Bending and torsion in beams and shafts',
       pre: [
         {
@@ -232,7 +232,7 @@ export default {
     },
     {
       id: 'eng.mechanics.calccheck',
-      gist: 'An FEM plot is only as good as its input: ask about loads and supports, check by hand, and distrust peaks that keep climbing.',
+      gist: 'An FEM plot is only as good as its input: ask about loads and supports, check by hand, distrust peaks that keep climbing on refinement.',
       title: 'Reading a strength calculation and an FEA plot',
       pre: [
         {
@@ -458,7 +458,7 @@ export default {
     },
     {
       id: 'eng.mechanics.toughness',
-      gist: 'Toughness is the energy a material absorbs before it breaks (impact test); carbon steel turns brittle below a certain temperature.',
+      gist: 'Toughness is the energy (J) a material absorbs before it breaks (impact test); carbon steel turns brittle below a certain temperature, austenitic stainless does not.',
       title: 'Toughness, brittle fracture and the Charpy test',
       pre: [
         {
@@ -534,7 +534,7 @@ export default {
     },
     {
       id: 'eng.mechanics.traceability',
-      gist: 'A material certificate only proves something while the heat number travels with the part; PMI catches mix-ups, though XRF sees carbon poorly.',
+      gist: 'A material certificate only proves something while the heat number travels with the part; PMI catches many mix-ups, though XRF sees carbon poorly.',
       title: 'Material certificates, traceability and mix-ups',
       pre: [
         {
@@ -977,7 +977,7 @@ export default {
     },
     {
       id: 'eng.mechanics.heattreat',
-      gist: 'Hardening makes steel hard but brittle, tempering trades hardness for toughness; stress relieving after welding helps stop a part distorting later.',
+      gist: 'Hardening makes steel with enough carbon hard but brittle, tempering trades hardness for toughness; stress relieving after welding helps stop a part distorting later.',
       film: 'eng.mechanics.heattreat',
       title: 'Hardness and heat treatment',
       pre: [
@@ -1048,7 +1048,7 @@ export default {
     },
     {
       id: 'eng.mechanics.designation',
-      gist: 'A steel name gives the type and the composition or yield strength; type, condition and size must all three be on the order.',
+      gist: 'A steel name gives the type and the composition or yield strength; all three of type, condition and size must be on the order.',
       title: 'Reading steel names: EN 10027 and material numbers',
       pre: [
         {
@@ -1123,7 +1123,7 @@ export default {
     },
     {
       id: 'eng.mechanics.selection',
-      gist: 'Material choice weighs function, process, supply and cost per part; a substitution is a design change, because equivalent from another standard is not identical.',
+      gist: 'Material choice weighs function, process, supply and cost per part; a substitution is a design change, because equivalent from another standard is rarely identical.',
       title: 'Choosing and substituting materials',
       pre: [
         {
