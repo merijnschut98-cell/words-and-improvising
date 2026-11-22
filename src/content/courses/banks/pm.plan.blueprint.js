@@ -42,14 +42,14 @@ export default {
       2: L(
         ['Een werkwijze kiezen (waterval, agile, hybride) voor een gegeven project en dat uitleggen aan een directie.'],
         ['Choose a way of working (waterfall, agile, hybrid) for a given project and explain it to a board.'],
-        ['Waterval past bij werk waarvan de oplossing nog open is', 'Een agile ronde eindigt met een rapport', 'Agile betekent geen plan en geen einddatum', 'De keuze hangt vooral af van wat het modernst is'],
-        ['Waterfall fits work whose solution is still open', 'An agile round ends with a report', 'Agile means no plan and no end date', 'The choice depends mostly on what is most modern'],
+        ['Waterval past bij werk waarvan de oplossing nog open is', 'Een agile ronde eindigt met een rapport', 'Agile betekent geen plan en geen einddatum', 'Hybride betekent de helft van het project waterval en de helft agile'],
+        ['Waterfall fits work whose solution is still open', 'An agile round ends with a report', 'Agile means no plan and no end date', 'Hybrid means half the project waterfall and half agile'],
       ),
       3: L(
         ['Het netwerk heen en terug doorrekenen met voorgangers, wachttijd en speling.', 'Totale en vrije speling uit elkaar houden.'],
         ['Calculate the network forward and backward with predecessors, lag and float.', 'Keep total and free float apart.'],
-        ['Een taak met meer voorgangers begint na de eerste voorganger', 'De vroegste start is het kleinste eind van de voorgangers', 'Totale speling is een eigenschap van één taak', 'Speling 0 betekent dat de taak al klaar is'],
-        ['A task with several predecessors starts after the first one', 'The early start is the smallest finish of the predecessors', 'Total float is a property of a single task', 'Zero float means the task is already done'],
+        ['Een taak met meer voorgangers begint na de eerste voorganger', 'De vroegste start is het kleinste eind van de voorgangers', 'Totale speling is een eigenschap van één taak', 'Vrije speling en totale speling zijn altijd hetzelfde getal'],
+        ['A task with several predecessors starts after the first one', 'The early start is the smallest finish of the predecessors', 'Total float is a property of a single task', 'Free float and total float are always the same number'],
       ),
       4: L(
         ['Versnellen met crashing of fast-tracking afwegen op prijs en risico, en zien dat een andere keten kritiek kan worden.', 'Een trend in mijlpalen lezen als vroeg alarm.'],
@@ -94,8 +94,8 @@ export default {
       2: L(
         ['Een RACI opstellen en conflicten of ontbrekende rollen erin ontdekken; de rol van de sponsor uitschrijven.'],
         ['Draw up a RACI and spot conflicts or missing roles in it; write out the sponsor’s role.'],
-        ['Twee A’s zijn een back-up voor elkaar', 'Veel C’s versnellen de besluiten', 'De consultant hoort accountable te zijn voor het proces', 'De sponsor noem je op de titelslide en klaar'],
-        ['Two As are a back-up for each other', 'Many Cs speed up decisions', 'The consultant should be accountable for the process', 'You name the sponsor on the title slide and that’s it'],
+        ['Twee A’s zijn een back-up voor elkaar', 'Veel C’s versnellen de besluiten', 'De consultant hoort accountable te zijn voor het proces', 'Het team kan de rol van de sponsor zonder hem opschrijven'],
+        ['Two As are a back-up for each other', 'Many Cs speed up decisions', 'The consultant should be accountable for the process', 'The team can write down the sponsor’s role without him'],
       ),
       3: L(
         ['Capaciteit plannen met echte beschikbare uren en een overbelasting oplossen met smoothing of leveling.'],
