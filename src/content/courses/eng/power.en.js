@@ -4,6 +4,7 @@ export default {
     // Topic: Electricity and energy in the plant
     {
       id: 'eng.power.basics',
+      gist: 'Power (kW) and energy (kWh = kW × time) are not the same; efficiencies in a chain multiply.',
       film: 'eng.power.motor',
       title: 'Power, energy and three-phase',
       pre: [
@@ -80,6 +81,7 @@ export default {
     },
     {
       id: 'eng.power.energy',
+      gist: 'Start with the load profile (base load, peaks) and kWh per product; reduce the demand first and invest only after that.',
       title: 'Energy in the plant: base load, peaks and kWh per product',
       pre: [
         {
@@ -153,6 +155,7 @@ export default {
     },
     {
       id: 'eng.power.reactive',
+      gist: 'Cables and transformers carry kVA, not kW; a low power factor costs capacity, and a capacitor bank near VFDs must be detuned.',
       title: 'Power factor and reactive power',
       pre: [
         {
@@ -227,6 +230,7 @@ export default {
     },
     {
       id: 'eng.power.baseline',
+      gist: 'The saving is baseline prediction (fixed part plus production) minus actual use; kWh per ton misleads when there is a base load.',
       title: 'Energy baselines and proving savings',
       pre: [
         {
@@ -302,6 +306,7 @@ export default {
     // Topic: Electric motors
     {
       id: 'eng.power.motors',
+      gist: 'An induction motor runs slightly slower than synchronous speed, 120 × frequency / poles; the difference is called slip.',
       film: 'eng.power.motor',
       title: 'Induction motors',
       pre: [
@@ -378,6 +383,7 @@ export default {
     },
     {
       id: 'eng.power.sizing',
+      gist: 'Measure motor load; below about 40% a smaller motor is a candidate at replacement, and a higher IE class pays off at many hours.',
       title: 'Motor load, sizing and when a better motor pays',
       pre: [
         {
@@ -449,6 +455,7 @@ export default {
     },
     {
       id: 'eng.power.protect',
+      gist: 'Motor failures sit mostly in bearings and windings; an overload relay protects against overcurrent, and a small voltage unbalance gives a much larger current unbalance.',
       title: 'Motor protection and why motors fail',
       pre: [
         {
@@ -523,6 +530,7 @@ export default {
     },
     {
       id: 'eng.power.motorpolicy',
+      gist: 'For a motor that runs a lot, energy dominates life-cycle cost; decide repair or replace in advance, based on a motor inventory.',
       title: 'A motor repair-or-replace policy',
       pre: [
         {
@@ -597,6 +605,7 @@ export default {
     // Topic: Starting and drives
     {
       id: 'eng.power.drives',
+      gist: 'Choose the drive for the job: direct on line, soft starter, VFD or servo; a soft starter limits inrush current but gives less starting torque.',
       film: 'eng.power.drives',
       title: 'Starting and controlling motors',
       pre: [
@@ -669,6 +678,7 @@ export default {
     },
     {
       id: 'eng.power.vfd',
+      gist: 'A VFD saves on a pump or fan, where power falls with roughly the cube of speed, but hardly at constant torque.',
       title: 'VFDs and energy: where they save',
       pre: [
         {
@@ -740,6 +750,7 @@ export default {
     },
     {
       id: 'eng.power.harmonics',
+      gist: 'VFDs draw current in pulses and put harmonics on the grid; measure voltage THD at the main board before you buy filters.',
       title: 'Harmonics and other side effects of drives',
       pre: [
         {
@@ -815,6 +826,7 @@ export default {
     },
     {
       id: 'eng.power.drivesystem',
+      gist: 'Specify a drive system on torque and duty, not only kW; also consider regenerated energy, STO (not an isolation) and the EMC category.',
       title: 'Specifying a drive system',
       pre: [
         {
@@ -890,6 +902,7 @@ export default {
     // Topic: Compressed air and hydraulics
     {
       id: 'eng.power.air',
+      gist: 'Compressed air is the most expensive utility: without a leak programme often 20 to 30% escapes, and every extra bar costs roughly 7% more energy.',
       film: 'eng.power.air',
       title: 'Compressed air: the expensive utility',
       pre: [
@@ -964,6 +977,7 @@ export default {
     },
     {
       id: 'eng.power.hydraulics',
+      gist: 'In hydraulics force is pressure × piston area and speed is flow / area; also depressurise the accumulator for maintenance.',
       film: 'eng.power.hydraulics',
       title: 'Hydraulics',
       pre: [
@@ -1038,6 +1052,7 @@ export default {
     },
     {
       id: 'eng.power.airsystem',
+      gist: 'Measure a compressed air system\'s specific power (kW per m³/min); unloaded running wastes energy, and drying drier than needed costs energy every hour.',
       title: 'Compressed air: compressors, controls and air quality',
       pre: [
         {
@@ -1112,6 +1127,7 @@ export default {
     },
     {
       id: 'eng.power.fluidsafety',
+      gist: 'In hydraulics and pneumatics stored energy must be gone or blocked after isolation: discharge accumulators, hold loads, prove zero pressure.',
       title: 'Fluid power: safe by design, and choosing the actuator',
       pre: [
         {
