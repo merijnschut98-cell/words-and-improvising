@@ -3,6 +3,7 @@ export default {
   lessons: [
     {
       id: 'eng.improve.whys',
+      gist: '5 whys keeps asking until it reaches a root cause that stops the problem when removed; the therefore test, read backwards, checks the chain.',
       title: '5 whys: asking past the symptom',
       pre: [
         {
@@ -73,6 +74,7 @@ export default {
     },
     {
       id: 'eng.improve.fishbone',
+      gist: 'Combine them: the fishbone widens with candidate causes, the facts narrow them, and 5 whys goes deep on what remains.',
       title: 'Ishikawa and the limits of 5 whys',
       pre: [
         {
@@ -143,6 +145,7 @@ export default {
     },
     {
       id: 'eng.improve.isisnot',
+      gist: 'An is/is-not table describes what, where, when and how much; a real cause explains every "is" and every "is not".',
       title: 'Is/is-not and stratification',
       pre: [
         {
@@ -215,6 +218,7 @@ export default {
     },
     {
       id: 'eng.improve.verify',
+      gist: 'The strongest proof of a root cause is switching the defect on and off; then verify in production against the number of defects you expected.',
       title: 'Verifying the fix',
       pre: [
         {
@@ -287,6 +291,7 @@ export default {
     },
     {
       id: 'eng.improve.gemba',
+      gist: 'Go and see for yourself at the real place: the real part and the real facts show where the problem first occurs.',
       title: 'Go and see: the gemba',
       pre: [
         {
@@ -356,6 +361,7 @@ export default {
     },
     {
       id: 'eng.improve.breakdown',
+      gist: 'Break a big problem down with data to one concrete problem in one place, the point of cause, and start the root-cause work there.',
       title: 'Breaking down a big problem',
       pre: [
         {
@@ -425,6 +431,7 @@ export default {
     },
     {
       id: 'eng.improve.data',
+      gist: 'Know the normal variation before you judge a change: one good day proves nothing, and rare defects need large samples.',
       title: 'Measuring before concluding',
       pre: [
         {
@@ -497,6 +504,7 @@ export default {
     },
     {
       id: 'eng.improve.doe',
+      gist: 'A designed experiment changes several factors at once on a fixed plan, so you see main effects and interactions that one-factor-at-a-time misses.',
       figure: 'eng.improve.doe',
       title: 'Design of experiments in plain words',
       pre: [
@@ -573,6 +581,7 @@ export default {
     },
     {
       id: 'eng.improve.pdca',
+      gist: 'PDCA is improving as an experiment: plan a countermeasure with a prediction, do it small, check against the prediction, then standardise or adjust.',
       title: 'PDCA: improving as an experiment',
       pre: [
         {
@@ -642,6 +651,7 @@ export default {
     },
     {
       id: 'eng.improve.a3',
+      gist: 'An A3 tells the problem-solving story on one sheet: understanding on the left, countermeasures and follow-up on the right, each box following from the last.',
       title: 'The A3 report',
       pre: [
         {
@@ -712,6 +722,7 @@ export default {
     },
     {
       id: 'eng.improve.8d',
+      gist: 'In an 8D, containment only buys time; the root cause has an occurrence cause and an escape cause, and the fix must be lasting.',
       title: '8D: contain, find the cause, fix it for good',
       pre: [
         {
@@ -784,6 +795,7 @@ export default {
     },
     {
       id: 'eng.improve.a3review',
+      gist: 'A mentor reviews an A3 box by box with questions and rewrites nothing; the owner learns to see the gaps themselves.',
       title: 'Reviewing an A3: mentoring with questions',
       pre: [
         {
@@ -855,6 +867,7 @@ export default {
     },
     {
       id: 'eng.improve.kaizen',
+      gist: 'Kaizen is small daily improvement by the team or an event of a few days; events rarely hold their gains without follow-up.',
       title: 'Kaizen: every day and in events',
       pre: [
         {
@@ -925,6 +938,7 @@ export default {
     },
     {
       id: 'eng.improve.vsm',
+      gist: 'A value stream map shows lead time next to processing time, so you choose which improvements come first.',
       title: 'Value stream mapping',
       pre: [
         {
@@ -995,6 +1009,7 @@ export default {
     },
     {
       id: 'eng.improve.facilitate',
+      gist: 'A facilitator keeps the session factual: facts, theories and open questions kept apart, and every theory ends with a test, an owner and a date.',
       title: 'Facilitating a root-cause session',
       pre: [
         {
@@ -1065,6 +1080,7 @@ export default {
     },
     {
       id: 'eng.improve.system',
+      gist: 'Daily improvement needs routines, not heroes; measure how many problems surface and get solved per week, not only the savings.',
       title: 'From events to a system of daily improvement',
       pre: [
         {
