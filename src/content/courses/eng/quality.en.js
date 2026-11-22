@@ -521,7 +521,7 @@ export default {
     },
     {
       id: 'eng.quality.sigma',
-      gist: 'Short term, sigma level is roughly 3 × Cpk; DPMO counts defects per opportunity, and rolled throughput yield multiplies the FPY of all steps.',
+      gist: 'Short term, sigma level is roughly 3 × Cpk; DPMO counts defects per million opportunities; 6σ = 3.4 DPMO assumes a 1.5σ shift.',
       title: 'Sigma level, DPMO and rolled throughput yield',
       pre: [
         {

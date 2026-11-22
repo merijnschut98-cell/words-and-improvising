@@ -521,7 +521,7 @@ export default {
     },
     {
       id: 'eng.quality.sigma',
-      gist: 'Op korte termijn is sigma-niveau ruwweg 3 × Cpk; DPMO telt fouten per kans, en het ketenrendement vermenigvuldigt de FPY van alle stappen.',
+      gist: 'Sigma-niveau is op korte termijn ruwweg 3 × Cpk; DPMO telt fouten per miljoen kansen; 6σ = 3,4 DPMO neemt een verschuiving van 1,5σ aan.',
       title: 'Sigma-niveau, DPMO en ketenrendement',
       pre: [
         {
