@@ -81,7 +81,7 @@ export default {
     },
     {
       id: 'eng.power.energy',
-      gist: 'Begin bij het belastingprofiel (basislast, pieken) en kWh per product; verklein eerst de vraag en investeer pas daarna.',
+      gist: 'Begin bij het belastingprofiel (basislast, pieken) en kWh per product; verklein eerst de vraag en koop pas dan nieuwe installaties.',
       title: 'Energie in de fabriek: basislast, pieken en kWh per product',
       pre: [
         {
@@ -230,7 +230,7 @@ export default {
     },
     {
       id: 'eng.power.baseline',
-      gist: 'De besparing is het voorspelde verbruik uit een baseline met vast deel en productie, min het werkelijke; kWh per ton misleidt bij een basislast.',
+      gist: 'De besparing is wat de baseline (vast deel plus productie) voorspelt min het werkelijke verbruik; kWh per ton misleidt bij een basislast.',
       title: 'Energiebaselines en besparingen aantonen',
       pre: [
         {
@@ -306,7 +306,7 @@ export default {
     // Onderwerp: Elektromotoren
     {
       id: 'eng.power.motors',
-      gist: 'Een asynchrone motor draait iets langzamer dan het synchrone toerental, 120 × frequentie / polen; het verschil heet slip.',
+      gist: 'Een asynchrone motor draait iets langzamer dan het synchrone toerental, 120 × frequentie / polen; het verschil heet slip, meestal 1 tot 5%.',
       film: 'eng.power.motor',
       title: 'Asynchrone motoren',
       pre: [
@@ -455,7 +455,7 @@ export default {
     },
     {
       id: 'eng.power.protect',
-      gist: 'Motorstoringen zitten vooral in lagers en wikkelingen; een thermisch relais beschermt tegen overstroom, en een kleine spanningsonbalans geeft een veel grotere stroomonbalans.',
+      gist: 'Motorstoringen zitten vooral in lagers en wikkelingen; een thermisch relais beschermt tegen aanhoudende overstroom, en een kleine spanningsonbalans geeft een veel grotere stroomonbalans.',
       title: 'Motorbeveiliging en waarom motoren falen',
       pre: [
         {
@@ -678,7 +678,7 @@ export default {
     },
     {
       id: 'eng.power.vfd',
-      gist: 'Een frequentieregelaar bespaart bij een pomp of ventilator, waar het vermogen met ruwweg de derde macht van het toerental daalt, maar nauwelijks bij constant koppel.',
+      gist: 'Een frequentieregelaar bespaart bij een centrifugaalpomp of ventilator, waar het vermogen met ruwweg de derde macht van het toerental daalt, maar nauwelijks bij constant koppel.',
       title: 'Frequentieregelaars en energie: waar ze besparen',
       pre: [
         {
@@ -750,7 +750,7 @@ export default {
     },
     {
       id: 'eng.power.harmonics',
-      gist: 'Frequentieregelaars trekken stroom in pulsen en zetten harmonischen op het net; meet de spannings-THD op de hoofdverdeler voordat je filters koopt.',
+      gist: 'Gewone frequentieregelaars trekken stroom in pulsen en zetten harmonischen op het net; meet de spannings-THD op de hoofdverdeler voordat je filters koopt.',
       title: 'Harmonischen en andere bijwerkingen van regelaars',
       pre: [
         {

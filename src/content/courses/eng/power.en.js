@@ -81,7 +81,7 @@ export default {
     },
     {
       id: 'eng.power.energy',
-      gist: 'Start with the load profile (base load, peaks) and kWh per product; reduce the demand first and invest only after that.',
+      gist: 'Start with the load profile (base load, peaks) and kWh per product; reduce demand first and buy new equipment only after that.',
       title: 'Energy in the plant: base load, peaks and kWh per product',
       pre: [
         {
@@ -230,7 +230,7 @@ export default {
     },
     {
       id: 'eng.power.baseline',
-      gist: 'The saving is baseline prediction (fixed part plus production) minus actual use; kWh per ton misleads when there is a base load.',
+      gist: 'The saving is what the baseline (fixed part plus production) predicts minus actual use; kWh per ton misleads when there is a base load.',
       title: 'Energy baselines and proving savings',
       pre: [
         {
@@ -306,7 +306,7 @@ export default {
     // Topic: Electric motors
     {
       id: 'eng.power.motors',
-      gist: 'An induction motor runs slightly slower than synchronous speed, 120 × frequency / poles; the difference is called slip.',
+      gist: 'An induction motor runs slightly slower than synchronous speed, 120 × frequency / poles; the difference is called slip, usually 1 to 5%.',
       film: 'eng.power.motor',
       title: 'Induction motors',
       pre: [
@@ -455,7 +455,7 @@ export default {
     },
     {
       id: 'eng.power.protect',
-      gist: 'Motor failures sit mostly in bearings and windings; an overload relay protects against overcurrent, and a small voltage unbalance gives a much larger current unbalance.',
+      gist: 'Motor failures sit mostly in bearings and windings; an overload relay trips on sustained overcurrent; a small voltage unbalance gives a much larger current unbalance.',
       title: 'Motor protection and why motors fail',
       pre: [
         {
@@ -678,7 +678,7 @@ export default {
     },
     {
       id: 'eng.power.vfd',
-      gist: 'A VFD saves on a pump or fan, where power falls with roughly the cube of speed, but hardly at constant torque.',
+      gist: 'A VFD saves on a centrifugal pump or fan, where power falls with roughly the cube of speed, but hardly at constant torque.',
       title: 'VFDs and energy: where they save',
       pre: [
         {
@@ -750,7 +750,7 @@ export default {
     },
     {
       id: 'eng.power.harmonics',
-      gist: 'VFDs draw current in pulses and put harmonics on the grid; measure voltage THD at the main board before you buy filters.',
+      gist: 'Ordinary VFDs draw current in pulses and put harmonics on the grid; measure voltage THD at the main board before you buy filters.',
       title: 'Harmonics and other side effects of drives',
       pre: [
         {
