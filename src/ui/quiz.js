@@ -18,9 +18,12 @@ const KIND_LABEL = { best: 'kindBest', all: 'kindAll', gap: 'kindGap', order: 'k
 // onePass (the module check, v16): one pass, no hint, no back, no retry
 // passes; the review ends the quiz.
 // skippable (due sessions, v18): an "Overslaan" under each first-pass question; it is not an answer.
-export function renderQuiz(app, { questions, onDone, onBack = null, termsOf = () => [], onePass = false, skippable = false }, box) {
+// onScore (onePass only, v18 T2): called once, with the first-try results, as soon as the
+// last question is answered, before the review card, so closing on the review loses nothing.
+export function renderQuiz(app, { questions, onDone, onBack = null, termsOf = () => [], onePass = false, skippable = false, onScore = null }, box) {
   const t = app.t;
   let st = startQuiz(questions);
+  let scored = false;
   let lastPass = [];
   let saidWrong = false; // the guide's line on a miss comes once per quiz (v16)
 
@@ -28,6 +31,7 @@ export function renderQuiz(app, { questions, onDone, onBack = null, termsOf = ()
     const q = questions[st.order[st.i]];
     lastPass.push({ q, value, ok: judge(q, value), hinted: !!(st.hints || {})[q.id] });
     st = answerQuiz(st, questions, value);
+    if (onePass && onScore && !scored && st.phase !== 'ask') { scored = true; onScore(st.firstTry, st.sure || {}); }
     draw();
   };
 

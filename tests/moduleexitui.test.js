@@ -6,6 +6,7 @@ import assert from 'node:assert/strict';
 import { installFakeDom } from './fixtures/fakedom.js';
 import { defaultState } from '../src/core/storage.js';
 import { translator } from '../src/i18n.js';
+import { MODULES } from '../src/content/courses/index.js';
 
 installFakeDom();
 const { renderLesson } = await import('../src/ui/lesson.js');
@@ -99,24 +100,27 @@ test('check (locked): close and back return to the module; without from both go 
   assert.deepEqual(b.calls, [['home', undefined], ['home', undefined]]);
 });
 
-test('module screen: continue, every path stop and the check entry pass from: module', () => {
-  const meta = { subject: 'pm', id: 'pm.intake' };
+test('module screen: continue, every path stop, the topic test stop and the level tests pass from: module', () => {
+  const meta = MODULES.find((m) => m.id === 'pm.intake');
   const base = defaultState();
-  const { app, calls } = fakeApp({ state: { ...base, courses: { ...base.courses, pm: { ...base.courses.pm, medals: { 'pm.intake': { tier: 'bronze', ts: 1 } } } } } });
+  const lessons = Object.fromEntries(meta.lessons.map((id) => [id, { passed: 1 }]));
+  const { app, calls } = fakeApp({ state: { ...base, courses: { ...base.courses, pm: { ...base.courses.pm, lessons, medals: { 'pm.intake': { tier: 'bronze', ts: 1 } } } } } });
   const root = document.createElement('div');
   renderModule(app, { subject: 'pm', moduleId: meta.id }, root);
-  root.querySelector('.module-continue').click();
-  const opened = [...root.querySelectorAll('.topics button')];
+  root.querySelector('.module-continue')?.click();
+  const opened = [...root.querySelectorAll('.topics button')].filter((b) => !b.classList.contains('path-info'));
   assert.ok(opened.length > 0, 'at least one path stop');
   for (const b of opened) b.click();
-  const check = root.querySelector('.check-btn');
-  assert.ok(check, 'the check entry shows with bronze');
-  check.click();
+  const tests = [...root.querySelectorAll('.test-chip')].filter((b) => b.tagName === 'BUTTON');
+  assert.equal(tests.length, 4, 'the four level tests are open once every lesson is passed');
+  tests.at(-1).click();
   assert.ok(calls.length >= 3);
   for (const [screen, params] of calls) {
-    assert.ok(screen === 'lesson' || screen === 'check', screen);
+    assert.ok(['lesson', 'test'].includes(screen), screen);
     assert.equal(params.from, 'module');
     assert.equal(params.moduleId, meta.id);
   }
-  assert.equal(calls.at(-1)[0], 'check');
+  assert.deepEqual(calls.at(-1), ['test', { subject: 'pm', moduleId: 'pm.intake', testId: 'pm.intake/level/4', from: 'module' }]);
+  assert.ok(calls.some(([s, p]) => s === 'test' && /\/topic\//.test(p.testId)), 'the topic test stop under the flag');
+  assert.equal(root.querySelector('.check-btn'), null, 'the old module check entry is replaced by the final test');
 });

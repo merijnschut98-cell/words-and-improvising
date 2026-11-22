@@ -310,7 +310,9 @@ test('everything done: Andon says so with the existing done wording, not a point
 test('everything done on the Projects home: the done sentence is said once (Andon), not again in the card under him', () => {
   const lessons = Object.fromEntries(MODULES.filter((m) => m.subject === 'pm').flatMap((m) => m.lessons)
     .map((id) => [id, { passed: 1, situation: { ts: 1 }, sayIt: 1 }]));
-  const st = { ...stOn(), courses: { pm: { lessons, sessions: [] } } };
+  // v18: with every lesson done the next step is a practice test, one a day; one done today leaves nothing.
+  const tested = { 'pm.plan/level/1': { best: 80, last: 80, attempts: 1, lastDay: '2026-11-02', byTopic: {}, items: [] } };
+  const st = { ...stOn(), courses: { pm: { lessons, sessions: [], tests: tested } } };
   const count = (root) => root.textContent.split(tNl('courseWhy_done')).length - 1;
   const root = renderHomeOf('pm', st);
   assert.equal(root.querySelector('.guide-greeting').getAttribute('data-line'), 'done');

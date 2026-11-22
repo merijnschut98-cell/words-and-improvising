@@ -10,7 +10,7 @@ import { openerInline } from './opener.js';
 import { pathModel } from './pathmap.js';
 import { filmStep, introFilm, closeFilms } from './film.js';
 import { guideIntro, guideIntroSeen } from './flairui.js';
-import { topicsSection, moduleEnd, continueButton } from './coursehome.js';
+import { topicsSection, moduleEnd, levelTestRows, continueButton } from './coursehome.js';
 
 // The module of an id, or null (a deep link or a restored session may point at
 // one that no longer exists).
@@ -87,6 +87,7 @@ export function renderModule(app, { subject, moduleId } = {}, root) {
       model.field ? h('p', { class: 'module-field muted small' }, model.field.title[app.lang] || model.field.title.en) : null),
     intro,
     topicsEl,
+    levelTestRows(app, meta),
     moduleEnd(app, meta),
     continueButton(app, meta, model.next, 'btn btn-primary module-continue')));
   // Leaving the screen closes an open film, as in a lesson.

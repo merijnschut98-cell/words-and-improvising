@@ -409,7 +409,9 @@ await step('Projects home: the map is the first thing; tapping Planning opens it
     const r = g.querySelector('.map-hit').getBoundingClientRect();
     return { role: g.getAttribute('role'), tab: g.getAttribute('tabindex'), label: g.getAttribute('aria-label'), w: r.width, h: r.height };
   }));
-  if (places.length !== 16) throw new Error(`${places.length} places`);
+  // one place per Projects module of the index (18 since pm.approach and pm.formats, 15 Nov)
+  const pmModules = await page.evaluate(async () => (await import('/src/content/courses/index.js')).MODULES.filter((m) => m.subject === 'pm').length);
+  if (places.length !== pmModules) throw new Error(`${places.length} places, ${pmModules} modules`);
   const bad = places.filter((p) => p.role !== 'button' || p.tab !== '0' || !p.label || p.w < 43.5 || p.h < 43.5);
   if (bad.length) throw new Error(`places not buttons of 44 px: ${JSON.stringify(bad.slice(0, 2))}`);
   if (await page.locator('.course-pm .map-place.is-next').count() !== 1) throw new Error('the next module is not marked once');
@@ -4095,6 +4097,41 @@ await step('flair: start ring and title, path map with the bronze seal, a perfec
   await c.close();
 });
 
+// v18 T2: practice tests. Every pm.plan lesson passed: the module screen shows the topic test stops and the four
+// level tests; a Basis level test is one pass (no hint, no back), scores, stores its record, and the screen shows the score.
+await step('practice tests: module screen rows, one pass without hints, score and record, the screen shows the result', async () => {
+  const ids = await (async () => { const c = await browser.newContext(); const pg = await c.newPage(); await pg.goto(BASE); const r = await pg.evaluate(async () => (await import('./src/content/courses/index.js')).MODULES.find((m) => m.id === 'pm.plan').lessons); await c.close(); return r; })();
+  const lessons = Object.fromEntries(ids.map((id) => [id, { passed: 1, read: 1 }]));
+  const { c, p, shotP } = await topicContext({ ui: { subject: 'pm' }, courses: { pm: { lessons, sessions: [] }, eng: { lessons: {}, sessions: [] } } });
+  await p.evaluate(() => window.__app.go('module', { subject: 'pm', moduleId: 'pm.plan' }));
+  const ms = p.locator('.module-screen');
+  await ms.waitFor();
+  if ((await ms.locator('.path-test').count()) !== 4) throw new Error('a topic test stop under every flag');
+  if ((await ms.locator('button.test-chip').count()) !== 4) throw new Error('four level tests open');
+  await shotP('tests-module-nl');
+  await ms.locator('button.test-chip').first().click();
+  await p.locator('.test-start').waitFor();
+  await shotP('tests-intro-nl');
+  await p.locator('.test-start').click();
+  await p.locator('.quiz-card').waitFor();
+  if (await p.locator('.quiz-hint-btn, .quiz-back').count()) throw new Error('a test has no hint and no back');
+  for (let i = 0; i < 40 && !(await p.locator('.quiz-review').count()); i++) {
+    if (await p.locator('.quiz-num').count()) { await p.locator('.quiz-num').fill('1'); await p.locator('.quiz-actions .btn-primary').click(); }
+    else await p.locator('.quiz-opts .opt').first().click();
+  }
+  await p.locator('.quiz-review').waitFor();
+  // the score is stored once the last question is answered, before Finish (closing on the review loses nothing)
+  if (!(await p.evaluate(() => JSON.parse(localStorage.getItem('spraakwater:v1')).courses.pm.tests['pm.plan/level/1']))) throw new Error('no record on the review card');
+  await p.locator('.quiz-review .btn-primary').click();
+  await p.locator('.test-done').waitFor();
+  await shotP('tests-done-nl');
+  const rec = await p.evaluate(() => JSON.parse(localStorage.getItem('spraakwater:v1')).courses.pm.tests['pm.plan/level/1']);
+  if (!rec || rec.attempts !== 1 || rec.items.length < 4 || rec.items.some((id) => /#b\d+$/.test(id) && JSON.parse(localStorage.getItem('spraakwater:v1')).courseReviews[`nl|${id}`])) throw new Error(`test record: ${JSON.stringify(rec)}`);
+  await p.locator('.test-done ~ .btn:last-child').click();
+  await ms.waitFor();
+  if (!(await ms.locator('.test-chip').first().innerText()).includes(`${rec.best}%`)) throw new Error('the level test chip shows the score');
+  await c.close();
+});
 await step('offline after first load', async () => {
   await page.goto(BASE);
   await page.waitForFunction(() => navigator.serviceWorker.controller || navigator.serviceWorker.ready, null, { timeout: 5000 });
