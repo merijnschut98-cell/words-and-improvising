@@ -3,6 +3,7 @@ export default {
   lessons: [
     {
       id: 'eng.process.types',
+      gist: 'Batch suits many recipes and small volumes, continuous suits large volumes; residence time is volume divided by flow.',
       film: 'eng.process.plant',
       title: 'Unit operations, batch and continuous',
       pre: [
@@ -73,6 +74,7 @@ export default {
     },
     {
       id: 'eng.process.diagrams',
+      gist: 'Block diagram, PFD and P&ID go from coarse to fine; the stream table is the design promise, and a diagram must be as-built.',
       title: 'Block diagrams, PFDs and P&IDs',
       pre: [
         {
@@ -144,6 +146,7 @@ export default {
     },
     {
       id: 'eng.process.buffers',
+      gist: 'A buffer tank between batch and continuous absorbs the difference: on average supply must at least match draw-off, and the level may swing.',
       title: 'Buffer tanks between batch and continuous',
       pre: [
         {
@@ -217,6 +220,7 @@ export default {
     },
     {
       id: 'eng.process.continuous',
+      gist: 'In continuous processes changeovers and start-ups cost product: the interface is often one to two times the hold-up, and campaigns limit the loss.',
       title: 'Batch or continuous: hold-up, start-ups and changeovers',
       pre: [
         {
@@ -290,6 +294,7 @@ export default {
     },
     {
       id: 'eng.process.variables',
+      gist: 'Ask for every measurement what the meter really shows, such as gauge or absolute pressure, volume flow or mass flow.',
       film: 'eng.process.measure',
       title: 'Pressure, flow, level and temperature',
       pre: [
@@ -361,6 +366,7 @@ export default {
     },
     {
       id: 'eng.process.loops',
+      gist: 'A loop with much dead time reacts too late and swings, so operators put it in manual; find the cause, often hardware.',
       title: 'Control loops: fast, slow and late',
       pre: [
         {
@@ -433,6 +439,7 @@ export default {
     },
     {
       id: 'eng.process.strategies',
+      gist: 'Cascade and feedforward remove a disturbance before the product suffers from it; a cascade with its inner loop in manual does nothing.',
       title: 'Cascade, ratio and feedforward control',
       pre: [
         {
@@ -507,6 +514,7 @@ export default {
     },
     {
       id: 'eng.process.variability',
+      gist: 'First reduce the variability, then move the setpoint closer to the limit (often limit − 3 × standard deviation); only the shift earns money.',
       title: 'Less variation, closer to the limit',
       pre: [
         {
@@ -581,6 +589,7 @@ export default {
     },
     {
       id: 'eng.process.mass',
+      gist: 'Mass is conserved: in = out + accumulation; a balance that does not close is a finding, and you calculate in mass, not volume.',
       title: 'Mass balance and yield',
       pre: [
         {
@@ -651,6 +660,7 @@ export default {
     },
     {
       id: 'eng.process.energy',
+      gist: 'Sensible heat is Q = m × cp × ΔT, evaporating takes far more latent heat; heat recovery usually saves the most.',
       title: 'Energy balance: heating, cooling, evaporating',
       pre: [
         {
@@ -723,6 +733,7 @@ export default {
     },
     {
       id: 'eng.process.blending',
+      gist: 'Blending to a target is a total balance plus a component balance; with recycle the unit receives more than the fresh feed.',
       title: 'Blending, standardising and recycle',
       pre: [
         {
@@ -797,6 +808,7 @@ export default {
     },
     {
       id: 'eng.process.pinch',
+      gist: 'Pinch analysis gives the maximum heat recovery at a chosen ΔTmin: no heat across the pinch, no steam heating below, no cooling water above.',
       title: 'Plant energy: Sankey, pinch and targets',
       pre: [
         {
@@ -871,6 +883,7 @@ export default {
     },
     {
       id: 'eng.process.batch',
+      gist: 'Capacity is batch size / cycle time; the bottleneck is the step with the longest time per batch, after dividing by parallel vessels.',
       film: 'eng.process.batch',
       title: 'Batch cycles and capacity',
       pre: [
@@ -944,6 +957,7 @@ export default {
     },
     {
       id: 'eng.process.scaleup',
+      gist: 'Volume grows with size cubed, area with size squared: scaled up there is less cooling area per kg of product, and mixing takes longer.',
       title: 'From lab to plant: scale-up',
       pre: [
         {
@@ -1014,6 +1028,7 @@ export default {
     },
     {
       id: 'eng.process.scheduling',
+      gist: 'Put allergen-free products first and group allergen products, so fewer full cleans are needed; an order that does not fit the vessel costs capacity.',
       title: 'Scheduling a multi-product batch plant',
       pre: [
         {
@@ -1088,6 +1103,7 @@ export default {
     },
     {
       id: 'eng.process.debottleneck',
+      gist: 'The lowest step in the capacity profile, utilities included, is the bottleneck; fix it and the next one appears.',
       title: 'Debottlenecking a process plant',
       pre: [
         {

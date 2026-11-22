@@ -3,6 +3,7 @@ export default {
   lessons: [
     {
       id: 'eng.process.types',
+      gist: 'Batch past bij veel recepten en kleine volumes, continu bij grote volumes; verblijftijd is volume gedeeld door debiet.',
       film: 'eng.process.plant',
       title: 'Unit operations, batch en continu',
       pre: [
@@ -73,6 +74,7 @@ export default {
     },
     {
       id: 'eng.process.diagrams',
+      gist: 'Blokschema, PFD en P&ID gaan van grof naar fijn; de stroomtabel is de ontwerpbelofte, en een schema klopt alleen als het as-built is.',
       title: 'Blokschema’s, PFD’s en P&ID’s',
       pre: [
         {
@@ -144,6 +146,7 @@ export default {
     },
     {
       id: 'eng.process.buffers',
+      gist: 'Een buffertank tussen batch en continu vangt het verschil op: gemiddeld moet de aanvoer minstens de afname halen, en het niveau mag schommelen.',
       title: 'Buffertanks tussen batch en continu',
       pre: [
         {
@@ -217,6 +220,7 @@ export default {
     },
     {
       id: 'eng.process.continuous',
+      gist: 'Bij continu kosten wissels en opstarten product: de mengfase is vaak één tot twee keer de lijninhoud, en campagnes beperken het verlies.',
       title: 'Batch of continu: lijninhoud, opstarten en omstellen',
       pre: [
         {
@@ -290,6 +294,7 @@ export default {
     },
     {
       id: 'eng.process.variables',
+      gist: 'Vraag bij elke meting wat de meter echt toont, zoals overdruk of absolute druk, volumedebiet of massadebiet.',
       film: 'eng.process.measure',
       title: 'Druk, debiet, niveau en temperatuur',
       pre: [
@@ -361,6 +366,7 @@ export default {
     },
     {
       id: 'eng.process.loops',
+      gist: 'Een regelkring met veel dode tijd reageert te laat en gaat slingeren, en dan zetten operators hem in handbediening; zoek de oorzaak, vaak hardware.',
       title: 'Regelkringen: snel, traag en te laat',
       pre: [
         {
@@ -433,6 +439,7 @@ export default {
     },
     {
       id: 'eng.process.strategies',
+      gist: 'Cascade en voorwaartskoppeling halen een verstoring weg voordat het product er last van heeft; een cascade met een binnenkring in handbediening doet niets.',
       title: 'Cascade-, verhoudings- en voorwaartsregeling',
       pre: [
         {
@@ -507,6 +514,7 @@ export default {
     },
     {
       id: 'eng.process.variability',
+      gist: 'Eerst de spreiding verkleinen, dan het setpoint dichter naar de grens schuiven (vaak grens − 3 × standaardafwijking); pas het verschuiven levert geld op.',
       title: 'Minder spreiding, dichter bij de grens',
       pre: [
         {
@@ -581,6 +589,7 @@ export default {
     },
     {
       id: 'eng.process.mass',
+      gist: 'Massa blijft behouden: in = uit + ophoping; een balans die niet sluit is een bevinding, en je rekent in massa, niet in volume.',
       title: 'Massabalans en opbrengst',
       pre: [
         {
@@ -651,6 +660,7 @@ export default {
     },
     {
       id: 'eng.process.energy',
+      gist: 'Voelbare warmte is Q = m × cp × ΔT, verdampen vraagt veel meer latente warmte; warmteterugwinning bespaart meestal het meest.',
       title: 'Energiebalans: verwarmen, koelen, indampen',
       pre: [
         {
@@ -723,6 +733,7 @@ export default {
     },
     {
       id: 'eng.process.blending',
+      gist: 'Mengen tot een streefwaarde is een totale balans plus een componentbalans; bij terugvoer krijgt de unit meer dan de verse voeding.',
       title: 'Mengen, standaardiseren en terugvoer',
       pre: [
         {
@@ -797,6 +808,7 @@ export default {
     },
     {
       id: 'eng.process.pinch',
+      gist: 'Pinch-analyse berekent hoeveel warmte je maximaal terugwint bij een gekozen ΔTmin: geen warmte over de pinch, geen stoomverwarming eronder, geen koelwater erboven.',
       title: 'Energie in de fabriek: Sankey, pinch en doelen',
       pre: [
         {
@@ -871,6 +883,7 @@ export default {
     },
     {
       id: 'eng.process.batch',
+      gist: 'Capaciteit is batchgrootte / cyclustijd; de bottleneck is de stap met de langste tijd per batch, na deling door het aantal parallelle vaten.',
       film: 'eng.process.batch',
       title: 'Batchcycli en capaciteit',
       pre: [
@@ -944,6 +957,7 @@ export default {
     },
     {
       id: 'eng.process.scaleup',
+      gist: 'Volume groeit met de maat tot de derde, oppervlak met het kwadraat: opgeschaald is er per kg product minder koeloppervlak, en menging duurt langer.',
       title: 'Van lab naar fabriek: opschalen',
       pre: [
         {
@@ -1014,6 +1028,7 @@ export default {
     },
     {
       id: 'eng.process.scheduling',
+      gist: 'Zet allergeenvrije producten eerst en groepeer allergeenproducten, zodat minder volledige reinigingen nodig zijn; een order die niet in het vat past, kost capaciteit.',
       title: 'Een batchfabriek met meerdere producten plannen',
       pre: [
         {
@@ -1088,6 +1103,7 @@ export default {
     },
     {
       id: 'eng.process.debottleneck',
+      gist: 'De laagste stap in het capaciteitsprofiel, utilities meegeteld, is de bottleneck; los je hem op, dan duikt de volgende op.',
       title: 'Een procesfabriek debottlenecken',
       pre: [
         {

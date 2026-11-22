@@ -250,3 +250,4 @@ Outcome: accepted (merged as delivered), sent back N times, redone.
 | 2026-11-22 | Kernzin batch 6: eng.maintenance, mechanics, ot, power, process, quality (97 lessons) | sonnet | 71 | 10 min | 330k | done (b229bea); review dispatched |
 | 2026-11-22 | Review of v18 P0 (pm.plan pilot pass) | opus | ~95 | ~1.5-2 h active (plus usage-limit pause) | - | approved (af0a3ab); 17 nobody-options replaced, 1 untaught key, 8 best whys, ~25 length tells; key-longest 2.7 % nl / 8 % en; screen test made kind-aware |
 | 2026-11-22 | v18 T3: AI extra practice tests | sonnet | ~67 | 12 min | 271k | done (c5fc1a8); lint rules moved to src/core/questionlint.js; opus review dispatched |
+| 2026-11-22 | Review of kernzin batch 6 (eng.maintenance … eng.quality) | sonnet | ~55 | ~35 min | - | done (49e7f83); 32 lessons changed (wider claims, hedges, units, full lists) |

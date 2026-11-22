@@ -4,6 +4,7 @@ export default {
     // Onderwerp: Elektriciteit en energie in de fabriek
     {
       id: 'eng.power.basics',
+      gist: 'Vermogen (kW) en energie (kWh = kW × tijd) zijn niet hetzelfde; rendementen in een keten vermenigvuldigen zich.',
       film: 'eng.power.motor',
       title: 'Vermogen, energie en draaistroom',
       pre: [
@@ -80,6 +81,7 @@ export default {
     },
     {
       id: 'eng.power.energy',
+      gist: 'Begin bij het belastingprofiel (basislast, pieken) en kWh per product; verklein eerst de vraag en koop pas dan nieuwe installaties.',
       title: 'Energie in de fabriek: basislast, pieken en kWh per product',
       pre: [
         {
@@ -153,6 +155,7 @@ export default {
     },
     {
       id: 'eng.power.reactive',
+      gist: 'Kabels en transformatoren dragen kVA, niet kW; een lage arbeidsfactor kost capaciteit, en een condensatorbank bij frequentieregelaars moet gesperd zijn.',
       title: 'Arbeidsfactor en blindvermogen',
       pre: [
         {
@@ -227,6 +230,7 @@ export default {
     },
     {
       id: 'eng.power.baseline',
+      gist: 'De besparing is wat de baseline (vast deel plus productie) voorspelt min het werkelijke verbruik; kWh per ton misleidt bij een basislast.',
       title: 'Energiebaselines en besparingen aantonen',
       pre: [
         {
@@ -302,6 +306,7 @@ export default {
     // Onderwerp: Elektromotoren
     {
       id: 'eng.power.motors',
+      gist: 'Een asynchrone motor draait iets langzamer dan het synchrone toerental, 120 × frequentie / polen; het verschil heet slip, meestal 1 tot 5%.',
       film: 'eng.power.motor',
       title: 'Asynchrone motoren',
       pre: [
@@ -378,6 +383,7 @@ export default {
     },
     {
       id: 'eng.power.sizing',
+      gist: 'Meet de motorbelasting; onder zo\'n 40% belasting is een kleinere motor bij vervanging een kandidaat, en een hogere IE-klasse loont bij veel draaiuren.',
       title: 'Motorbelasting, dimensionering en wanneer een betere motor loont',
       pre: [
         {
@@ -449,6 +455,7 @@ export default {
     },
     {
       id: 'eng.power.protect',
+      gist: 'Motorstoringen zitten vooral in lagers en wikkelingen; een thermisch relais beschermt tegen aanhoudende overstroom, en een kleine spanningsonbalans geeft een veel grotere stroomonbalans.',
       title: 'Motorbeveiliging en waarom motoren falen',
       pre: [
         {
@@ -523,6 +530,7 @@ export default {
     },
     {
       id: 'eng.power.motorpolicy',
+      gist: 'Bij een motor die veel draait domineert energie de levensduurkosten; beslis repareren of vervangen vooraf, op basis van een motorenbestand.',
       title: 'Een beleid voor repareren of vervangen',
       pre: [
         {
@@ -597,6 +605,7 @@ export default {
     // Onderwerp: Aanlopen en aandrijvingen
     {
       id: 'eng.power.drives',
+      gist: 'Kies de aandrijving naar de taak: direct inschakelen, softstarter, frequentieregelaar of servo; een softstarter beperkt de aanloopstroom maar geeft minder aanloopkoppel.',
       film: 'eng.power.drives',
       title: 'Motoren aanlopen en regelen',
       pre: [
@@ -669,6 +678,7 @@ export default {
     },
     {
       id: 'eng.power.vfd',
+      gist: 'Een frequentieregelaar bespaart bij een centrifugaalpomp of ventilator, waar het vermogen met ruwweg de derde macht van het toerental daalt, maar nauwelijks bij constant koppel.',
       title: 'Frequentieregelaars en energie: waar ze besparen',
       pre: [
         {
@@ -740,6 +750,7 @@ export default {
     },
     {
       id: 'eng.power.harmonics',
+      gist: 'Gewone frequentieregelaars trekken stroom in pulsen en zetten harmonischen op het net; meet de spannings-THD op de hoofdverdeler voordat je filters koopt.',
       title: 'Harmonischen en andere bijwerkingen van regelaars',
       pre: [
         {
@@ -815,6 +826,7 @@ export default {
     },
     {
       id: 'eng.power.drivesystem',
+      gist: 'Specificeer een aandrijfsysteem op koppel en bedrijfsvorm, niet alleen op kW; denk ook aan terugstromende energie, STO (geen scheiding) en de EMC-categorie.',
       title: 'Een aandrijfsysteem specificeren',
       pre: [
         {
@@ -890,6 +902,7 @@ export default {
     // Onderwerp: Perslucht en hydrauliek
     {
       id: 'eng.power.air',
+      gist: 'Perslucht is de duurste utility: zonder lekprogramma ontsnapt vaak 20 tot 30%, en elke bar extra kost ruwweg 7% energie.',
       film: 'eng.power.air',
       title: 'Perslucht: de dure utility',
       pre: [
@@ -964,6 +977,7 @@ export default {
     },
     {
       id: 'eng.power.hydraulics',
+      gist: 'In hydrauliek is kracht druk × zuigeroppervlak en snelheid debiet / oppervlak; maak voor onderhoud ook de accumulator drukloos.',
       film: 'eng.power.hydraulics',
       title: 'Hydrauliek',
       pre: [
@@ -1038,6 +1052,7 @@ export default {
     },
     {
       id: 'eng.power.airsystem',
+      gist: 'Meet het specifiek vermogen (kW per m³/min) van een persluchtsysteem; nullast verspilt energie, en droger dan nodig drogen kost elk uur energie.',
       title: 'Perslucht: compressoren, regeling en luchtkwaliteit',
       pre: [
         {
@@ -1112,6 +1127,7 @@ export default {
     },
     {
       id: 'eng.power.fluidsafety',
+      gist: 'Bij hydrauliek en pneumatiek moet opgeslagen energie na het scheiden weg of geblokkeerd zijn: accumulatoren ontladen, lasten vasthouden, nul druk aantonen.',
       title: 'Perslucht en hydrauliek: veilig ontwerpen en de juiste actuator kiezen',
       pre: [
         {

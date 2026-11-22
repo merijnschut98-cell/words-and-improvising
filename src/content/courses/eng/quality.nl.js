@@ -3,6 +3,7 @@ export default {
   lessons: [
     {
       id: 'eng.quality.tolerance',
+      gist: 'Een tolerantie begrenst een maat tussen LSL en USL; nauwer kost geld, en een fout kost grofweg tien keer meer bij elke stap verder.',
       film: 'eng.quality.tolerance',
       title: 'Nominale maat, tolerantie en specgrenzen',
       pre: [
@@ -76,6 +77,7 @@ export default {
     },
     {
       id: 'eng.quality.gauges',
+      gist: 'Kies het meetmiddel bij de tolerantie: de resolutie is hoogstens een tiende van het tolerantieveld, en kalibratie en temperatuur (20 °C) tellen mee.',
       title: 'Meetmiddelen: schuifmaat, micrometer en kalibratie',
       pre: [
         {
@@ -147,6 +149,7 @@ export default {
     },
     {
       id: 'eng.quality.gdt',
+      gist: 'Een ±-maat zegt niet alles: GD&T begrenst vorm, richting en plaats vanaf referenties, en een positietolerantie op MMC geeft bonustolerantie.',
       title: 'Vorm- en plaatstoleranties (GD&T)',
       pre: [
         {
@@ -222,6 +225,7 @@ export default {
     },
     {
       id: 'eng.quality.stackup',
+      gist: 'Worst case telt toleranties op, RSS de wortel uit de som van de kwadraten; RSS past bij gecentreerde, stabiele processen met bewaakte Cpk.',
       title: 'Tolerantiestapeling: worst case en RSS',
       pre: [
         {
@@ -296,6 +300,7 @@ export default {
     },
     {
       id: 'eng.quality.variation',
+      gist: 'Gewone oorzaken geven stabiele spreiding die je alleen met het systeem verandert; speciale oorzaken zoek je op, en bijsturen op ruis vergroot de spreiding.',
       film: 'eng.quality.tolerance',
       title: 'Spreiding: gewone en speciale oorzaken',
       pre: [
@@ -369,6 +374,7 @@ export default {
     },
     {
       id: 'eng.quality.capability',
+      gist: 'Cp vergelijkt spreiding met tolerantie, Cpk telt ook het centreren mee; 1,33 is het gangbare minimum voor lopende productie.',
       film: 'eng.quality.tolerance',
       figure: 'eng.quality.capability',
       title: 'Procesgeschiktheid: Cp en Cpk',
@@ -443,6 +449,7 @@ export default {
     },
     {
       id: 'eng.quality.capstudy',
+      gist: 'Een machinestudie (Cmk) meet minstens 50 delen direct na elkaar, een processtudie over dagen; controleer eerst meetmiddel en stabiliteit.',
       title: 'Een capability-studie opzetten en lezen',
       pre: [
         {
@@ -514,6 +521,7 @@ export default {
     },
     {
       id: 'eng.quality.sigma',
+      gist: 'Sigma-niveau is op korte termijn ruwweg 3 × Cpk; DPMO telt fouten per miljoen kansen; 6σ = 3,4 DPMO neemt een verschuiving van 1,5σ aan.',
       title: 'Sigma-niveau, DPMO en ketenrendement',
       pre: [
         {
@@ -589,6 +597,7 @@ export default {
     },
     {
       id: 'eng.quality.datatools',
+      gist: 'Turflijst, histogram, pareto en verloopgrafiek tonen waar fouten zitten en wanneer; een maandgemiddelde verbergt alles, dus kijk per dag of ploeg.',
       title: 'Data in beeld: turflijst, pareto en verloopgrafiek',
       pre: [
         {
@@ -659,6 +668,7 @@ export default {
     },
     {
       id: 'eng.quality.spc',
+      gist: 'Een regelkaart toont een meting in de tijd met regelgrenzen op ±3σ; regelgrenzen zijn geen specgrenzen, en een kaart zonder reactieplan is behang.',
       film: 'eng.quality.spc',
       title: 'Regelkaarten (SPC)',
       pre: [
@@ -730,6 +740,7 @@ export default {
     },
     {
       id: 'eng.quality.chartchoice',
+      gist: 'Kies de kaart naar je data: meetwaarden of tellingen, in steekproeven of los; meten ziet een verandering met veel minder stuks dan tellen.',
       title: 'De juiste kaart: I-MR, p-kaart en c-kaart',
       pre: [
         {
@@ -804,6 +815,7 @@ export default {
     },
     {
       id: 'eng.quality.spcpractice',
+      gist: 'Zet de grenzen vast uit een fase 1-studie; elke extra regel vangt kleine verschuivingen eerder, maar geeft meer loos alarm.',
       title: 'SPC in de praktijk: steekproeven, grenzen en loos alarm',
       pre: [
         {
@@ -877,6 +889,7 @@ export default {
     },
     {
       id: 'eng.quality.nonconform',
+      gist: 'Zet afwijkend product in quarantaine, ga bij inperking terug tot de laatste goede meting, en leg de beslissing vast in een afwijkingsrapport (NCR).',
       title: 'Afwijkend product: quarantaine, inperking en NCR',
       pre: [
         {
@@ -947,6 +960,7 @@ export default {
     },
     {
       id: 'eng.quality.fmea',
+      gist: 'Een FMEA vindt risico\'s vóór de start met scores voor ernst, kans en detectie; alleen een ontwerpwijziging verlaagt de ernst.',
       title: 'FMEA: risico’s vóór de start',
       pre: [
         {
@@ -1017,6 +1031,7 @@ export default {
     },
     {
       id: 'eng.quality.controlplan',
+      gist: 'Het control plan legt per stap vast wat je controleert en wat bij afwijking gebeurt; een gauge R&R toetst het meetmiddel zelf.',
       title: 'Control plan, meten en PPAP',
       pre: [
         {
@@ -1090,6 +1105,7 @@ export default {
     },
     {
       id: 'eng.quality.eightd',
+      gist: 'Een sterk 8D vindt twee oorzaken, waarom de fout ontstond en waarom hij ontsnapte, en bewijst ze door de fout aan en uit te zetten.',
       title: '8D: de echte oorzaak en het weglekpunt',
       pre: [
         {

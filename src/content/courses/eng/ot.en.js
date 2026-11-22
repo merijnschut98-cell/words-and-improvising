@@ -3,6 +3,7 @@ export default {
   lessons: [
     {
       id: 'eng.ot.levels',
+      gist: 'ISA-95 splits systems into five levels from 0 to 4, and the most useful feature for placing one is its timescale.',
       film: 'eng.ot.isa95',
       title: 'The five levels of ISA-95',
       pre: [
@@ -73,6 +74,7 @@ export default {
     },
     {
       id: 'eng.ot.purdue',
+      gist: 'ISA-95 is a functional model of tasks, Purdue mostly a network architecture; level 3 can mean a task or a network zone.',
       film: 'eng.ot.isa95',
       title: 'ISA-95 and the Purdue model: two maps of the same plant',
       pre: [
@@ -142,6 +144,7 @@ export default {
     },
     {
       id: 'eng.ot.hierarchy',
+      gist: 'Using the ISA-95 equipment hierarchy as a naming convention makes data from all sites comparable; MOM splits level-3 work into production, quality, maintenance and inventory.',
       title: 'The equipment hierarchy and the four operations areas',
       pre: [
         {
@@ -214,6 +217,7 @@ export default {
     },
     {
       id: 'eng.ot.beyond',
+      gist: 'Choose per task where it belongs: milliseconds in the PLC, and an edge layer with site autonomy runs critical tasks locally when the connection drops.',
       title: 'Where the pyramid creaks: cloud, edge and IIoT',
       pre: [
         {
@@ -286,6 +290,7 @@ export default {
     },
     {
       id: 'eng.ot.systems',
+      gist: 'A production order comes from the ERP with its BOM and routing; if the master data is wrong, everything after it is wrong.',
       film: 'eng.ot.isa95',
       title: 'From PLC to ERP: one order through every system',
       pre: [
@@ -357,6 +362,7 @@ export default {
     },
     {
       id: 'eng.ot.orderflow',
+      gist: 'Orders go down from ERP to MES, confirmations go up; backflush books material on the confirmed quantity, so scrap must be confirmed too.',
       film: 'eng.ot.orderflow',
       title: 'Orders down, confirmations up',
       pre: [
@@ -428,6 +434,7 @@ export default {
     },
     {
       id: 'eng.ot.handshake',
+      gist: 'A cumulative counter survives a missed reading; the link must recognise rollover and reset, and a handshake prevents lost parts.',
       title: 'The link between machine and MES',
       pre: [
         {
@@ -500,6 +507,7 @@ export default {
     },
     {
       id: 'eng.ot.integration',
+      gist: 'A MES-ERP interface needs a system of record, a level of detail, a plan for failures and an owner; reconciliation shows whether it fails silently.',
       title: 'Judging an MES–ERP interface',
       pre: [
         {
@@ -571,6 +579,7 @@ export default {
     },
     {
       id: 'eng.ot.historian',
+      gist: 'A historian stores value, timestamp and quality per tag; a deadband saves storage, but filtering too wide can remove a short spike.',
       title: 'Tags and the historian',
       pre: [
         {
@@ -641,6 +650,7 @@ export default {
     },
     {
       id: 'eng.ot.opcua',
+      gist: 'OPC UA gives machine data meaning through an information model of names, units and relations; a companion specification makes machines of one kind look alike.',
       title: 'OPC UA: machine data with meaning',
       pre: [
         {
@@ -710,6 +720,7 @@ export default {
     },
     {
       id: 'eng.ot.mqtt',
+      gist: 'MQTT works with publish/subscribe through a broker, with topics and wildcards; it says nothing about content, so Sparkplug fixes that.',
       title: 'MQTT, the broker and Sparkplug',
       pre: [
         {
@@ -783,6 +794,7 @@ export default {
     },
     {
       id: 'eng.ot.uns',
+      gist: 'A unified namespace is a hub for current state, with no official definition; usually data governance is the hardest part, not the technology.',
       title: 'Unified namespace: promise and limits',
       pre: [
         {
@@ -856,6 +868,7 @@ export default {
     },
     {
       id: 'eng.ot.ownership',
+      gist: 'Fix per task who does what in a RACI with exactly one A (accountable), especially in grey areas such as the line PC.',
       title: 'Who owns what?',
       pre: [
         {
@@ -924,6 +937,7 @@ export default {
     },
     {
       id: 'eng.ot.patching',
+      gist: 'On the floor you install patches the builder has qualified, in a patch window; if a system cannot be patched, you take a compensating control.',
       title: 'Patching and lifecycles on the floor',
       pre: [
         {
@@ -995,6 +1009,7 @@ export default {
     },
     {
       id: 'eng.ot.change',
+      gist: 'Management of change reviews and records every change; if the PLC differs from its baseline, someone changed something without recording it.',
       title: 'Change control on the shop floor',
       pre: [
         {
@@ -1067,6 +1082,7 @@ export default {
     },
     {
       id: 'eng.ot.governance',
+      gist: 'Whichever IT/OT model you choose, you need governance: who decides, which standards apply, and a lifecycle budget that spreads replacements.',
       title: 'Organising IT/OT convergence',
       pre: [
         {
