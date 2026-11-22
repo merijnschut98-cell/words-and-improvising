@@ -418,7 +418,9 @@ export function lessonEndNext(state, meta, lessonId, fromModule, modules = MODUL
 }
 
 // Review load (v18 F3). Questions answered in today's due sessions count against
-// the daily limit; a refresh before an event or a weekly keep-sharp question does not.
+// the daily limit; a refresh before an event or a weekly keep-sharp question does not,
+// nor a practice test (v18 T2): it is chosen practice, one a day, and its recall answers
+// already count as reviews (Q5 A), so a 20-question test never hides the due card.
 export function reviewsToday(state, subject, today) {
   const sessions = (((state.courses || {})[subject]) || {}).sessions || [];
   return sessions.filter((x) => x.kind === 'due' && x.day === today && !x.extra).reduce((n, x) => n + (Number(x.total) || 0), 0);
