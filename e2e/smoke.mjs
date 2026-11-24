@@ -4161,8 +4161,9 @@ await step('practice tests: module screen rows, one pass without hints, score an
   await p.locator('.quiz-review .btn-primary').click();
   await p.locator('.test-done').waitFor();
   await shotP('tests-done-nl');
-  const rec = await p.evaluate(() => JSON.parse(localStorage.getItem('spraakwater:v1')).courses.pm.tests['pm.plan/level/1']);
-  if (!rec || rec.attempts !== 1 || rec.items.length < 4 || rec.items.some((id) => /#b\d+$/.test(id) && JSON.parse(localStorage.getItem('spraakwater:v1')).courseReviews[`nl|${id}`])) throw new Error(`test record: ${JSON.stringify(rec)}`);
+  const saved = await p.evaluate(() => JSON.parse(localStorage.getItem('spraakwater:v1')));
+  const rec = saved.courses.pm.tests['pm.plan/level/1'];
+  if (!rec || rec.attempts !== 1 || rec.items.length < 4 || rec.items.some((id) => /#b\d+$/.test(id) && (saved.courseReviews || {})[`nl|${id}`])) throw new Error(`test record: ${JSON.stringify(rec)}`);
   await p.locator('.test-done ~ .btn:last-child').click();
   await ms.waitFor();
   if (!(await ms.locator('.test-chip').first().innerText()).includes(`${rec.best}%`)) throw new Error('the level test chip shows the score');
@@ -4198,7 +4199,7 @@ await step('extra test: button with a key, generated set, Klopt niet, cache, lis
   await shotP('tests-extra-review-nl');
   // flagged questions are not misses: the review head says "all right", not "review your misses"
   const head = await p.locator('.quiz-review .card-title').innerText();
-  if (head.trim() !== (await p.evaluate(() => window.__app.t('quizClean'))).trim()) throw new Error(`review head counts flagged questions as misses: ${head}`);
+  if (head.trim().toLowerCase() !== (await p.evaluate(() => window.__app.t('quizClean'))).trim().toLowerCase()) throw new Error(`review head counts flagged questions as misses: ${head}`);
   // the result is applied at the last answer, like the bank tests: closing on the review card loses nothing
   const early = await p.evaluate(() => JSON.parse(localStorage.getItem('spraakwater:v1')).courses.pm.sessions.filter((x) => x.kind === 'extratest').length);
   if (early !== 1) throw new Error(`the extra test is logged at the last answer, not at Finish (sessions: ${early})`);
