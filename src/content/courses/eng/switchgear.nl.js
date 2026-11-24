@@ -366,7 +366,7 @@ export default {
     },
     {
       id: 'eng.switchgear.automation',
-      gist: 'Kortsluitverklikkers en afstandsbediende schakelaars op een paar sleutelstations per ring korten de uitval in van een à twee uur tot minuten.',
+      gist: 'Kortsluitverklikkers en afstandsbediende schakelaars op een paar sleutelstations per ring kunnen de uitval voor de meeste klanten van een à twee uur tot minuten inkorten.',
       film: 'eng.switchgear.automation',
       title: 'Distributieautomatisering',
       pre: [
@@ -438,7 +438,7 @@ export default {
     },
     {
       id: 'eng.switchgear.substation',
-      gist: 'Beveiliging hangt aan de stationsbatterij en een heel uitschakelcircuit; zijn die stil kapot, dan legt een fout een hele railsectie plat.',
+      gist: 'Beveiliging hangt aan de stationsbatterij en een ononderbroken uitschakelcircuit; zijn die stil kapot, dan legt een fout een hele railsectie plat.',
       title: 'In het onderstation: rails, koppelingen en de batterij',
       pre: [
         {
@@ -730,7 +730,7 @@ export default {
     },
     {
       id: 'eng.switchgear.shortcircuit',
-      gist: 'De maximale foutstroom bepaalt de waarden van installaties en kabels, de minimale aan het eind van de streng of de beveiliging nog afschakelt.',
+      gist: 'De maximale foutstroom bepaalt de waarden van installaties en kabels; de minimale, aan het eind van de streng, toetst of de beveiliging nog afschakelt.',
       title: 'Kortsluitstroom berekenen',
       pre: [
         {
@@ -949,7 +949,7 @@ export default {
     },
     {
       id: 'eng.switchgear.earthing',
-      gist: 'Op MS toon je spanningsloosheid aan met een eerst gecontroleerde aanwijzer of spanningzoeker, en aard je met een garnituur dat het kortsluitvermogen aankan.',
+      gist: 'Op MS toon je spanningsloosheid aan met een vooraf gecontroleerde aanwijzer of spanningzoeker; aard met een aardingsschakelaar of een aardgarnituur dat het kortsluitvermogen aankan.',
       title: 'Spanningsloos aantonen en aarden op MS',
       pre: [
         {
@@ -1090,7 +1090,7 @@ export default {
     },
     {
       id: 'eng.switchgear.customer',
-      gist: 'Achter de eigendomsgrens is de klant verantwoordelijk, met een eigen IV en een hoofdbeveiliging die selectief is met de netbeheerder.',
+      gist: 'Achter de eigendomsgrens is de klant verantwoordelijk: met een IV, een periodieke inspectie en een hoofdbeveiliging die selectief moet zijn met die van de netbeheerder.',
       title: 'De eigen MS-installatie van de klant',
       pre: [
         {

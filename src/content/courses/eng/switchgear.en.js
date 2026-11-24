@@ -366,7 +366,7 @@ export default {
     },
     {
       id: 'eng.switchgear.automation',
-      gist: 'Fault indicators and remote-controlled switches at a few key stations per ring cut the outage from one to two hours to minutes.',
+      gist: 'Fault indicators and remote-controlled switches at a few key stations per ring can cut outages for most customers from one to two hours to minutes.',
       film: 'eng.switchgear.automation',
       title: 'Distribution automation',
       pre: [
@@ -949,7 +949,7 @@ export default {
     },
     {
       id: 'eng.switchgear.earthing',
-      gist: 'On MV you prove dead with a pre-checked indicator or voltage detector, and earth with a set rated for the fault level.',
+      gist: 'On MV, prove dead with a pre-checked indicator or detector; earth with an earthing switch or a set rated for the fault level.',
       title: 'Proving dead and earthing on MV',
       pre: [
         {
@@ -1090,7 +1090,7 @@ export default {
     },
     {
       id: 'eng.switchgear.customer',
-      gist: 'Beyond the ownership boundary the customer is responsible, with its own IV and a main protection that is selective with the grid operator’s.',
+      gist: 'Beyond the ownership boundary the customer is responsible: it needs an IV, periodic inspection and a main protection that is selective with the grid operator’s.',
       title: 'The customer’s own MV installation',
       pre: [
         {
