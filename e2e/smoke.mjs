@@ -4108,6 +4108,34 @@ await step('flair: start ring and title, path map with the bronze seal, a perfec
   await c.close();
 });
 
+// Gives some answer (right or wrong) to the visible question, whatever its kind: choice, number, select all, fill in
+// the word, order, match. The tests draw from the bank, which holds every kind.
+async function answerAnyKind(p) {
+  const card = p.locator('.quiz-card');
+  if (await card.locator('.quiz-num').count()) { await card.locator('.quiz-num').fill('1'); await card.locator('.quiz-actions .btn-primary').click(); return; }
+  if (await card.locator('.kind-all').count()) { await card.locator('.opt-tick').first().click(); await card.locator('.quiz-check').click(); return; }
+  if (await card.locator('.kind-gap').count()) {
+    if (await card.locator('.gap-chip').count()) await card.locator('.gap-chip').first().click();
+    else await card.locator('.gap-input').fill('x');
+    await card.locator('.quiz-check').click();
+    return;
+  }
+  if (await card.locator('.kind-order').count()) {
+    while (await card.locator('.order-item').count()) await card.locator('.order-item').first().click();
+    await card.locator('.quiz-check').click();
+    return;
+  }
+  if (await card.locator('.kind-match').count()) {
+    while (await card.locator('.match-col').first().locator('.match-item:not(.paired)').count()) {
+      await card.locator('.match-col').first().locator('.match-item:not(.paired)').first().click();
+      await card.locator('.match-col').last().locator('.match-item:not(.paired)').first().click();
+    }
+    await card.locator('.quiz-check').click();
+    return;
+  }
+  await card.locator('.quiz-opts .opt').first().click();
+}
+
 // v18 T2: practice tests. Every pm.plan lesson passed: the module screen shows the topic test stops and the four
 // level tests; a Basis level test is one pass (no hint, no back), scores, stores its record, and the screen shows the score.
 await step('practice tests: module screen rows, one pass without hints, score and record, the screen shows the result', async () => {
@@ -4126,10 +4154,7 @@ await step('practice tests: module screen rows, one pass without hints, score an
   await p.locator('.test-start').click();
   await p.locator('.quiz-card').waitFor();
   if (await p.locator('.quiz-hint-btn, .quiz-back').count()) throw new Error('a test has no hint and no back');
-  for (let i = 0; i < 40 && !(await p.locator('.quiz-review').count()); i++) {
-    if (await p.locator('.quiz-num').count()) { await p.locator('.quiz-num').fill('1'); await p.locator('.quiz-actions .btn-primary').click(); }
-    else await p.locator('.quiz-opts .opt').first().click();
-  }
+  for (let i = 0; i < 40 && !(await p.locator('.quiz-review').count()); i++) await answerAnyKind(p);
   await p.locator('.quiz-review').waitFor();
   // the score is stored once the last question is answered, before Finish (closing on the review loses nothing)
   if (!(await p.evaluate(() => JSON.parse(localStorage.getItem('spraakwater:v1')).courses.pm.tests['pm.plan/level/1']))) throw new Error('no record on the review card');
@@ -4171,13 +4196,20 @@ await step('extra test: button with a key, generated set, Klopt niet, cache, lis
   for (let i = 0; i < 12 && !(await p.locator('.quiz-review').count()); i++) await p.locator('.quiz-flag').first().click();
   await p.locator('.quiz-review').waitFor();
   await shotP('tests-extra-review-nl');
+  // flagged questions are not misses: the review head says "all right", not "review your misses"
+  const head = await p.locator('.quiz-review .card-title').innerText();
+  if (head.trim() !== (await p.evaluate(() => window.__app.t('quizClean'))).trim()) throw new Error(`review head counts flagged questions as misses: ${head}`);
+  // the result is applied at the last answer, like the bank tests: closing on the review card loses nothing
+  const early = await p.evaluate(() => JSON.parse(localStorage.getItem('spraakwater:v1')).courses.pm.sessions.filter((x) => x.kind === 'extratest').length);
+  if (early !== 1) throw new Error(`the extra test is logged at the last answer, not at Finish (sessions: ${early})`);
   await p.locator('.quiz-review .btn-primary').click();
   await p.locator('.test-extra-done').waitFor();
   const done = await p.locator('.test-extra-done').innerText();
   if (!/6 gemeld/.test(done)) throw new Error(`done screen: ${done}`);
   const st = await p.evaluate(() => ({ sets: JSON.parse(localStorage.getItem('vp:testgen:v1')), flags: JSON.parse(localStorage.getItem('vp:testgen:flags:v1')), app: JSON.parse(localStorage.getItem('spraakwater:v1')) }));
   if (Object.values(st.sets)[0].length !== 1 || st.flags.length !== 6) throw new Error('cache and flag list');
-  if (JSON.stringify(st).includes('sk-test') && JSON.stringify([st.sets, st.flags]).includes('sk-test')) throw new Error('the key is in the cache');
+  if (JSON.stringify([st.sets, st.flags]).includes('sk-test')) throw new Error('the key is in the cache');
+  if (st.app.courses.pm.sessions.filter((x) => x.kind === 'extratest').length !== 1) throw new Error('Finish logs no second session');
   if (Object.keys(st.app.courseReviews || {}).some((k) => /#g\d+$/.test(k))) throw new Error('generated questions in the reviews');
   await p.evaluate(() => window.__app.go('settings'));
   await p.locator('.flag-item').first().waitFor();

@@ -11,7 +11,7 @@ import { grade } from '../src/core/questionkinds.js';
 import {
   EXTRA_SIZE, MIN_SURVIVORS, CACHE_SETS, extraAvailable, topicLessons, buildGenRequest, parseGenerated, normalizeItem, stemOf, nearDuplicate,
   checkLocal, localFilter, buildVerifyRequest, parseVerdicts, mergeVerdicts, assembleSet, generateExtra, setKey, readSets, saveSet,
-  readFlags, addFlag, removeFlag, clearFlags, flagKey, flagText, applyExtra, extraScore,
+  readFlags, addFlag, removeFlag, clearFlags, flagKey, flagText, applyExtra, extraScore, CACHE_CHARS, MAX_GENERATED, MAX_TEXT,
 } from '../src/core/testgen.js';
 
 const META = MODULES.find((m) => m.id === 'pm.plan');
@@ -446,37 +446,88 @@ test('generateExtra: no key, a bad key, offline, a rate limit and malformed outp
 });
 
 // ---- offline cache ----
+// A cached set as generateExtra makes it: items in the bank shape, at least one generated.
+const aiQ = (n, over = {}) => ({ ...mcItem(over), id: `pm.plan.wbs#g${n}`, src: 'ai' });
+const cachedSet = (id, ts, items = [aiQ(1)]) => ({ id, ts, items, toppedUp: 0 });
+
 test('offline cache: the last five generated sets per topic, per language, in localStorage', () => {
   const st = fakeStorage();
   const key = setKey('en', 'pm.plan', 'breakdown');
   assert.notEqual(key, setKey('nl', 'pm.plan', 'breakdown'));
   assert.notEqual(key, setKey('en', 'pm.plan', 'schedule'));
   assert.deepEqual(readSets(st, key), []);
-  for (let i = 1; i <= 7; i++) saveSet(st, key, { id: `s${i}`, ts: i, items: [{ id: `x#g${i}`, q: `q${i}` }], toppedUp: 0 });
+  for (let i = 1; i <= 7; i++) saveSet(st, key, cachedSet(`s${i}`, i));
   const sets = readSets(st, key);
   assert.equal(CACHE_SETS, 5);
   assert.deepEqual(sets.map((s) => s.id), ['s7', 's6', 's5', 's4', 's3'], 'newest first, five kept');
-  saveSet(st, setKey('en', 'pm.plan', 'schedule'), { id: 'other', ts: 1, items: [], toppedUp: 0 });
+  saveSet(st, setKey('en', 'pm.plan', 'schedule'), cachedSet('other', 1));
   assert.equal(readSets(st, key).length, 5, 'another topic does not push these out');
   assert.equal(readSets(st, setKey('en', 'pm.plan', 'schedule')).length, 1);
   assert.ok([...st._m.keys()].every((k) => !/sk-|apiKey/.test(k) && !/sk-ant/.test(st._m.get(k))), 'no key stored');
-  saveSet(st, key, { id: 's7', ts: 99, items: [], toppedUp: 0 });
+  saveSet(st, key, cachedSet('s7', 99));
   assert.equal(readSets(st, key).filter((s) => s.id === 's7').length, 1, 'the same set twice is one set');
+});
+
+test('offline cache: a set without a generated item is not cached (the bank test already offers it)', () => {
+  const st = fakeStorage();
+  const key = setKey('en', 'pm.plan', 'breakdown');
+  saveSet(st, key, cachedSet('bankonly', 1, [{ ...mcItem(), id: 'pm.plan.wbs#b1', src: 'bank' }]));
+  assert.deepEqual(readSets(st, key), []);
+});
+
+test('offline cache: a cached item that no longer passes the question rules drops its set, so a retake never breaks the quiz', () => {
+  const st = fakeStorage();
+  const key = setKey('en', 'pm.plan', 'breakdown');
+  st.setItem('vp:testgen:v1', JSON.stringify({ [key]: [cachedSet('good', 2), cachedSet('bad', 1, [{ ...aiQ(1), options: ['a', 'b'] }]), cachedSet('noid', 0, [{ ...aiQ(1), id: 5 }])] }));
+  assert.deepEqual(readSets(st, key).map((s) => s.id), ['good']);
+});
+
+test('offline cache: a total budget across all topics keeps localStorage free for the app state; the oldest sets go first', () => {
+  const st = fakeStorage();
+  const why = (n) => `${'A package bigger than about 80 hours hides surprises. '.repeat(8)}${n}`;
+  const big = (n) => [aiQ(1, { why: why(n) }), aiQ(2, { why: why(n + 1) })];
+  for (let i = 0; i < 400; i++) saveSet(st, setKey('en', 'pm.plan', `t${i % 80}`), cachedSet(`s${i}`, 1000 + i, big(i)));
+  const raw = st.getItem('vp:testgen:v1');
+  assert.ok(raw.length <= CACHE_CHARS, `cache is ${raw.length} chars`);
+  assert.equal(readSets(st, setKey('en', 'pm.plan', 't79'))[0].id, 's399', 'the newest set is kept');
+  const left = Object.values(JSON.parse(raw)).flat().map((s) => s.ts);
+  assert.ok(left.length > 20 && left.length < 400);
+  assert.equal(Math.min(...left), 1400 - left.length, 'exactly the oldest sets went');
 });
 
 test('offline cache: broken storage never throws', () => {
   const key = setKey('en', 'pm.plan', 'breakdown');
   const boom = { getItem: () => { throw new Error('denied'); }, setItem: () => { throw new Error('quota'); } };
   assert.deepEqual(readSets(boom, key), []);
-  assert.doesNotThrow(() => saveSet(boom, key, { id: 'a', ts: 1, items: [], toppedUp: 0 }));
+  assert.doesNotThrow(() => saveSet(boom, key, cachedSet('a', 1)));
   assert.deepEqual(readSets(null, key), []);
   const junk = fakeStorage();
   junk.setItem('vp:testgen:v1', '{{{');
   assert.deepEqual(readSets(junk, key), []);
   junk.setItem('vp:testgen:v1', JSON.stringify({ [key]: 'nope' }));
   assert.deepEqual(readSets(junk, key), []);
-  junk.setItem('vp:testgen:v1', JSON.stringify({ [key]: [{ id: 'ok', ts: 1, items: [{ id: 'a#g1' }] }, { nope: 1 }, null] }));
+  junk.setItem('vp:testgen:v1', JSON.stringify({ [key]: [cachedSet('ok', 1), { nope: 1 }, null] }));
   assert.deepEqual(readSets(junk, key).map((s) => s.id), ['ok'], 'bad entries are skipped');
+});
+
+test('oversized output: at most twenty generated items are read, and the verifier gets at most the set size', async () => {
+  const many = Array.from({ length: 30 }, () => mcItem());
+  assert.equal(MAX_GENERATED, 20);
+  assert.equal(parseGenerated(genMsg(many), 'breakdown').items.length, MAX_GENERATED);
+  assert.equal(localFilter(FIVE(), { ...ctxOf('en') }, 3).kept.length, 3, 'localFilter stops at max kept');
+  const seen = [];
+  await generateExtra({ apiKey: 'sk-test', ...ctxOf('en'), size: 4 }, fakeSdk([() => genMsg(FIVE()), () => msg('x')], seen));
+  assert.equal(JSON.parse(seen.filter((s) => s.call)[1].call.messages[0].content).items.length, 4);
+});
+
+test('oversized output: an over-long question, option or why is rejected locally', () => {
+  const long = 'The team discusses the work package for a long time and then '.repeat(12);
+  assert.ok(long.length > MAX_TEXT);
+  assert.ok(checkLocal(mcItem({ q: long }), ctxOf('en')).some((r) => /too long/.test(r)));
+  assert.ok(checkLocal(mcItem({ why: long }), ctxOf('en')).some((r) => /too long/.test(r)));
+  const opts = mcItem().options.map((o, i) => (i === 3 ? long : o));
+  assert.ok(checkLocal(mcItem({ options: opts }), ctxOf('en')).some((r) => /too long/.test(r)));
+  assert.deepEqual(checkLocal(mcItem(), ctxOf('en')), []);
 });
 
 test('a cached set can be retaken: the items come back as they were', async () => {

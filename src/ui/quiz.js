@@ -186,7 +186,8 @@ export function renderQuiz(app, { questions, onDone, onBack = null, termsOf = ()
   }
 
   function reviewCard() {
-    const misses = lastPass.filter((x) => !x.ok).length;
+    // a flagged question ("Klopt niet") is not a miss: it is left out of the score
+    const misses = lastPass.filter((x) => !x.ok && !(flag && flag.isFlagged(x.q))).length;
     // The guide reacts here, not per tap: all right lights the top (no line),
     // a miss lights the middle ochre with one line, once per quiz.
     const g = guide(app.state, { mood: misses ? 'wrong' : 'right', size: 32 });

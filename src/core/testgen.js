@@ -14,6 +14,7 @@
 import { callClaude, withFallbacks, lastJson } from './claude.js';
 import { grade, kindOf, shuffled } from './questionkinds.js';
 import { checkBankItem, normText } from '../content/courses/validatebank.js';
+import { checkQuestion } from '../content/courses/validate.js';
 import { lintQuestion } from './questionlint.js';
 import { levelQuotas } from './practicetest.js';
 import { recallQuestions, countRound } from './course.js';
@@ -23,6 +24,12 @@ export const EXTRA_SIZE = 10;
 export const MIN_SURVIVORS = 6;
 export const CACHE_SETS = 5;
 export const MAX_FLAGS = 100;
+// Model output is untrusted: at most MAX_GENERATED items are read from one answer, no text field may be longer than
+// MAX_TEXT characters (the longest bank text is about 440), and the device cache has one budget for all topics, so it
+// can never crowd the app's own state out of localStorage.
+export const MAX_GENERATED = 20;
+export const MAX_TEXT = 600;
+export const CACHE_CHARS = 400000;
 const SETS_KEY = 'vp:testgen:v1';
 const FLAGS_KEY = 'vp:testgen:flags:v1';
 const SESSIONS_CAP = 200;
@@ -153,7 +160,7 @@ export function parseGenerated(message, topicId) {
   if (t.error) return { ok: false, error: t.error };
   const v = parseLoose(t.text);
   const list = Array.isArray(v) ? v : v && Array.isArray(v.items) ? v.items : null;
-  const items = (list || []).filter(isObj).map((x) => normalizeItem(x, topicId));
+  const items = (list || []).slice(0, MAX_GENERATED).filter(isObj).map((x) => normalizeItem(x, topicId));
   return items.length ? { ok: true, items } : { ok: false, error: 'parse' };
 }
 
@@ -184,6 +191,11 @@ export function checkLocal(item, ctx) {
   const lang = ctx.lang === 'en' ? 'en' : 'nl';
   const schema = checkBankItem(item, ctx.meta, ctx.lessons, lang, 'item').map((e) => `schema: ${e.replace(/^item: /, '')}`);
   if (ctx.topicId && item && item.topic !== ctx.topicId) schema.push(`schema: topic must be ${ctx.topicId}`);
+  for (const k of [...KEEP_FIELDS, 'source']) {
+    const v = item && item[k];
+    const texts = typeof v === 'string' ? [v] : Array.isArray(v) ? v.flat() : isObj(v) ? Object.values(v) : [];
+    if (texts.some((x) => typeof x === 'string' && x.length > MAX_TEXT)) schema.push(`schema: ${k} is too long (over ${MAX_TEXT} characters)`);
+  }
   if (schema.length) return schema;
   const reasons = [];
   const lesson = (ctx.lessons || []).find((l) => l.id === item.source.lesson) || {};
@@ -201,12 +213,13 @@ export function checkLocal(item, ctx) {
   return reasons;
 }
 
-// -> { kept: [item], rejected: [{ item, reasons }] }. Entries that are not objects are ignored.
-export function localFilter(rawItems, ctx) {
+// -> { kept: [item], rejected: [{ item, reasons }] }. Entries that are not objects are ignored; it stops once `max` are kept.
+export function localFilter(rawItems, ctx, max = Infinity) {
   const kept = [];
   const rejected = [];
   const accepted = [];
   for (const raw of rawItems || []) {
+    if (kept.length >= max) break;
     if (!isObj(raw)) continue;
     const item = normalizeItem(raw, ctx.topicId);
     const reasons = checkLocal(item, { ...ctx, accepted });
@@ -337,19 +350,21 @@ export function assembleSet({ kept, meta, topicId, bank, size = EXTRA_SIZE, min 
   return { items: out, toppedUp: out.length - ai.length };
 }
 
-// The whole run: generate, check, verify, assemble. args: { apiKey, meta, topicId, lessons, blueprint, bank, lang, model, now? }
+// The whole run: generate, check, verify, assemble. args: { apiKey, meta, topicId, lessons, blueprint, bank, lang, model, now?, size? }
+// At most `size` items go to the verifier: one set, never more than can be shown.
 // -> { ok:true, id, ts, items, toppedUp, stats:{ generated, local, verified } } | { ok:false, error, detail? }
 export async function generateExtra(args, loadSdk) {
   const { apiKey, meta, topicId, lessons, bank, lang } = args;
+  const size = args.size || EXTRA_SIZE;
   if (!apiKey || !String(apiKey).trim()) return { ok: false, error: 'nokey' };
   const ts = args.now || Date.now();
   let first;
-  try { first = await callClaude(apiKey, buildGenRequest(args), loadSdk); } catch { return { ok: false, error: 'unknown' }; }
+  try { first = await callClaude(apiKey, buildGenRequest({ ...args, count: size }), loadSdk); } catch { return { ok: false, error: 'unknown' }; }
   if (!first.ok) return first;
   const parsed = parseGenerated(first.message, topicId);
   if (!parsed.ok) return parsed;
   const ctx = { meta, lessons, bank, lang, topicId };
-  const local = localFilter(parsed.items, ctx);
+  const local = localFilter(parsed.items, ctx, size);
   let kept = [];
   if (local.kept.length) {
     // An item that was not checked independently is not shown: a failed check tops up from the bank.
@@ -359,7 +374,7 @@ export async function generateExtra(args, loadSdk) {
       if (verdicts && verdicts.ok) kept = mergeVerdicts(local.kept, verdicts.verdicts).kept;
     } catch { kept = []; }
   }
-  const set = assembleSet({ kept, meta, topicId, bank, seed: String(ts) });
+  const set = assembleSet({ kept, meta, topicId, bank, size, seed: String(ts) });
   return { ok: true, id: `g${ts.toString(36)}`, ts, items: set.items, toppedUp: set.toppedUp, stats: { generated: parsed.items.length, local: local.kept.length, verified: kept.length } };
 }
 
@@ -378,7 +393,14 @@ function writeJson(storage, key, value) {
   try { if (storage) storage.setItem(key, JSON.stringify(value)); } catch { /* full or blocked: the cache is a convenience */ }
 }
 
-const validSet = (s) => isObj(s) && typeof s.id === 'string' && typeof s.ts === 'number' && Array.isArray(s.items) && s.items.every(isObj);
+// A cached item must still pass the question rules: a cache from an older version, or edited by hand, never breaks the quiz.
+function validCachedItem(q) {
+  if (!isObj(q) || typeof q.id !== 'string') return false;
+  const errs = [];
+  try { checkQuestion(q, 'cached', errs); } catch { return false; }
+  return !errs.length;
+}
+const validSet = (s) => isObj(s) && typeof s.id === 'string' && typeof s.ts === 'number' && Array.isArray(s.items) && s.items.length > 0 && s.items.every(validCachedItem);
 
 export function readSets(storage, key) {
   const all = readJson(storage, SETS_KEY, {});
@@ -386,12 +408,25 @@ export function readSets(storage, key) {
   return Array.isArray(list) ? list.filter(validSet) : [];
 }
 
-// Newest first, five kept; the same set id twice is one set.
+// Newest first, five kept per topic; the same set id twice is one set. A set without a generated item is not kept (the
+// bank test offers those questions already). Over the budget of CACHE_CHARS for all topics together, the oldest sets go.
 export function saveSet(storage, key, set) {
+  const entry = { id: set && set.id, ts: set && set.ts, items: set && set.items, toppedUp: (set && set.toppedUp) || 0 };
+  if (!validSet(entry) || !entry.items.some((q) => q.src === 'ai')) return;
   const all = readJson(storage, SETS_KEY, {});
   const base = isObj(all) ? all : {};
-  const rest = (Array.isArray(base[key]) ? base[key] : []).filter((s) => validSet(s) && s.id !== set.id);
-  writeJson(storage, SETS_KEY, { ...base, [key]: [{ id: set.id, ts: set.ts, items: set.items, toppedUp: set.toppedUp || 0 }, ...rest].slice(0, CACHE_SETS) });
+  const rest = (Array.isArray(base[key]) ? base[key] : []).filter((s) => validSet(s) && s.id !== entry.id);
+  const next = { ...base, [key]: [entry, ...rest].slice(0, CACHE_SETS) };
+  const flat = Object.entries(next).flatMap(([k, list]) => (Array.isArray(list) ? list : []).filter(validSet).map((s) => ({ k, s, n: JSON.stringify(s).length + k.length + 8 })));
+  flat.sort((a, b) => (a.s === entry ? -1 : b.s === entry ? 1 : b.s.ts - a.s.ts));
+  const out = {};
+  let used = 2;
+  for (const x of flat) {
+    if (used + x.n > CACHE_CHARS) break;
+    used += x.n;
+    (out[x.k] ||= []).push(x.s);
+  }
+  writeJson(storage, SETS_KEY, out);
 }
 
 // ---- "Klopt niet": flagged questions, kept locally with their text ----

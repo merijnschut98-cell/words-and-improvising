@@ -10,7 +10,7 @@ import { celebration } from './flairui.js';
 import { progressBar } from './home.js';
 import { MODULES, topicsOf, loadBank, loadBlueprint, hasBank } from '../content/courses/index.js';
 import {
-  EXTRA_SIZE, extraAvailable, generateExtra, readSets, saveSet, setKey, addFlag, applyExtra,
+  EXTRA_SIZE, extraAvailable, generateExtra, readSets, saveSet, setKey, addFlag, applyExtra, extraScore,
 } from '../core/testgen.js';
 import {
   specOf, testOpen, testRecord, testStatus, levelTests, testPool, composeTest, applyTest, weakestTopic, topicTitleOf, PASS_PCT, GOLD_PCT,
@@ -141,12 +141,15 @@ export function renderTest(app, params, root) {
   }
 
   // One pass through a generated set. A flagged question is left out of the score and goes on the local list
-  // (Settings, "Gemelde vragen"). The result is applied when the review is finished (Finish).
+  // (Settings, "Gemelde vragen"). The result is applied when the last question is answered (onScore), like the bank
+  // tests: closing on the review card loses nothing. A question flagged later, in the review, still leaves the score
+  // shown at Finish; the lesson it pointed at may already be due today, which costs one extra review at most.
   function beginExtra(set, lessons) {
     const questions = set.items;
     const flagged = new Set();
     const box = h('div', {});
     main.replaceChildren(...(set.toppedUp ? [h('p', { class: 'muted small extra-note' }, t('testExtraToppedUp', set.toppedUp, EXTRA_SIZE))] : []), box);
+    let results = null;
     renderQuiz(app, {
       questions,
       onePass: true,
@@ -155,11 +158,12 @@ export function renderTest(app, params, root) {
         isFlagged: (q) => flagged.has(q.id),
         onFlag: (q) => { flagged.add(q.id); addFlag(storage(), { item: q, moduleId, topicId: spec.topicId, lang: app.lang, ts: Date.now() }); },
       },
-      onDone: (firstTry) => {
-        const res = applyExtra(app.state, { subject, moduleId, topicId: spec.topicId, questions, results: firstTry, flagged: [...flagged], lang: app.lang, lessons }, app.today(), Date.now());
+      onScore: (firstTry) => {
+        results = firstTry;
+        const res = applyExtra(app.state, { subject, moduleId, topicId: spec.topicId, questions, results, flagged: [...flagged], lang: app.lang, lessons }, app.today(), Date.now());
         app.setState(res.state);
-        showExtraDone(res, set);
       },
+      onDone: () => { if (results) showExtraDone(extraScore(questions, results, flagged), set); },
     }, box);
   }
 
