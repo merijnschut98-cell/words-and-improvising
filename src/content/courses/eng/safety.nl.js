@@ -3,6 +3,7 @@ export default {
   lessons: [
     {
       id: 'eng.safety.risk',
+      gist: 'Pak risico’s aan bij de bron: weghalen, vervangen en technische maatregelen gaan vóór procedures en PBM, en een risicoscore rangschikt maar bewijst geen veiligheid.',
       title: 'Gevaar, risico en de arbeidshygiënische strategie',
       pre: [
         {
@@ -80,6 +81,7 @@ export default {
     },
     {
       id: 'eng.safety.lmra',
+      gist: 'Check vlak voor de start op de werkplek wat er sinds de planning veranderd is; bij een nee of onduidelijk antwoord begin je niet.',
       film: 'eng.safety.permit',
       title: 'De LMRA en werk stilleggen',
       pre: [
@@ -149,6 +151,7 @@ export default {
     },
     {
       id: 'eng.safety.bowtie',
+      gist: 'Een goede barrière is onder meer onafhankelijk, te testen en heeft een eigenaar; een bowtie legt per oorzaak en gevolg vast welke barrières er staan.',
       title: 'Barrières, de bowtie en het gatenkaasmodel',
       pre: [
         {
@@ -221,6 +224,7 @@ export default {
     },
     {
       id: 'eng.safety.change',
+      gist: 'Elke verbetering verandert de risico’s, dus beoordeel een wijziging vóór de livegang; tijdelijke wijzigingen zijn de gevaarlijkste.',
       title: 'Lean-veranderingen en veiligheid: wijzigingsbeheer',
       pre: [
         {
@@ -290,6 +294,7 @@ export default {
     },
     {
       id: 'eng.safety.loto',
+      gist: 'Stoppen is geen scheiden: sluit elke energiebron af met je eigen slot, ontlaad opgeslagen energie en controleer dat alles energieloos is voor je begint.',
       film: 'eng.safety.loto',
       title: 'Vergrendelen en labelen: energie scheiden',
       pre: [
@@ -360,6 +365,7 @@ export default {
     },
     {
       id: 'eng.safety.nen3140',
+      gist: 'Spanning zie je niet: alleen wie schriftelijk is aangewezen werkt aan een installatie, en als consultant ben je leek en raak je niets aan.',
       film: 'eng.switchgear.fiverules',
       title: 'Elektrisch werk: rollen, en waarom jij nergens aankomt',
       pre: [
@@ -430,6 +436,7 @@ export default {
     },
     {
       id: 'eng.safety.permit',
+      gist: 'Een werkvergunning legt het plan voor risicovol, niet-routinematig werk vast; fouten ontstaan bij overdracht en afsluiten, en hij vervangt de LMRA niet.',
       film: 'eng.safety.permit',
       title: 'De werkvergunning',
       pre: [
@@ -502,6 +509,7 @@ export default {
     },
     {
       id: 'eng.safety.arcflash',
+      gist: 'Volgens het model van IEEE 1584 is vlamboogenergie ruwweg evenredig met de boogduur, dus snellere beveiliging helpt; spanningsloos werken gaat vóór vlamboogkleding (PBM).',
       title: 'Vlambogen en werken bij spanningvoerende delen in het station',
       pre: [
         {
@@ -574,6 +582,7 @@ export default {
     },
     {
       id: 'eng.safety.guarding',
+      gist: 'Gebruik een vaste afscherming waar niemand in hoeft en een beveiligde waar mensen er regelmatig in moeten; omzeilen is niet alleen een kwestie van discipline.',
       title: 'Afschermingen en beveiligingen op machines',
       pre: [
         {
@@ -642,6 +651,7 @@ export default {
     },
     {
       id: 'eng.safety.machinerisk',
+      gist: 'Beoordeel een machine per levensfase en per taak, en plaats een beveiliging op een gemeten stoptijd, want die ligt niet vast.',
       title: 'Risicobeoordeling van machines: ISO 12100 en stoptijden',
       pre: [
         {
@@ -712,6 +722,7 @@ export default {
     },
     {
       id: 'eng.safety.safetyfunction',
+      gist: 'Het vereiste PL is niet genoeg: het behaalde PL volgt uit categorie, MTTFd, diagnostische dekking en maatregelen tegen gemeenschappelijke oorzaken, en validatie toont het aan.',
       title: 'Veiligheidsfuncties die houden: categorieën, PL en validatie',
       pre: [
         {
@@ -783,6 +794,7 @@ export default {
     },
     {
       id: 'eng.safety.modify',
+      gist: 'Volgens de Machineverordening kan wie een machine substantieel wijzigt of machines tot een samenstel koppelt zelf fabrikant worden, met alle plichten van dien.',
       title: 'Oude machines, nieuwe lijnen en de Machineverordening van 2027',
       pre: [
         {
@@ -853,6 +865,7 @@ export default {
     },
     {
       id: 'eng.safety.incidents',
+      gist: 'Meld bijna-ongevallen en reageer zonder schuldvraag, want straf stopt de meldingen; kijk apart naar ernstig letsel, want cijfers over licht letsel zeggen daar weinig over.',
       title: 'Bijna-ongevallen en leren zonder schuld',
       pre: [
         {
@@ -922,6 +935,7 @@ export default {
     },
     {
       id: 'eng.safety.investigate',
+      gist: 'Vraag niet wie schuld heeft maar waarom het voor de betrokkenen logisch was; “menselijke fout” is waar een onderzoek begint, niet waar het eindigt.',
       title: 'Een incident onderzoeken: verder dan “menselijke fout”',
       pre: [
         {
@@ -990,6 +1004,7 @@ export default {
     },
     {
       id: 'eng.safety.indicators',
+      gist: 'De LTIF meet achteraf en springt bij kleine aantallen; kijk naar voorlopende indicatoren bij ernstige risico’s en koppel geen bonus aan de LTIF.',
       title: 'Veiligheidsindicatoren: LTIF, voorlopende indicatoren en de wet van Campbell',
       pre: [
         {
@@ -1064,6 +1079,7 @@ export default {
     },
     {
       id: 'eng.safety.culture',
+      gist: 'Safety-II bestudeert hoe normaal werk meestal slaagt, naast Safety-I; leer van het verschil tussen de procedure en hoe de klus echt gaat.',
       title: 'Veiligheidscultuur: Safety-II, werk zoals het gaat en de cultuurladder',
       pre: [
         {
