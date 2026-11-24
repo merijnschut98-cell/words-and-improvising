@@ -1120,6 +1120,15 @@ details.rw-topic > summary { cursor: pointer; min-height: 44px; display: flex; a
 .test-chip { display: inline-flex; align-items: center; gap: 4px; min-height: 44px; padding: 0 12px; border-radius: var(--radius-sm); font-size: 0.9rem; }
 .test-chip.passed { color: var(--accent-dark); }
 .test-chip.locked { border: 1px dashed var(--line); color: var(--muted); }
+.test-extra { margin-top: 12px; }
+.test-extra .test-extra-btn { margin: 8px 0; }
+.test-extra-sets { margin-top: 8px; }
+.extra-note { margin: 0 0 8px; }
+.quiz-flag { margin-left: auto; }
+.review-row.flagged { opacity: 0.7; }
+.flag-list { list-style: none; margin: 8px 0; padding: 0; }
+.flag-item { border-top: 1px solid var(--line); padding: 8px 0; }
+.flag-text { white-space: pre-wrap; overflow-wrap: anywhere; margin: 0 0 6px; }
 .tests-note { margin: 0; }
 .test-bars { list-style: none; margin: 4px 0 0; padding: 0; display: flex; flex-direction: column; gap: 8px; }
 .test-bar { display: grid; grid-template-columns: minmax(0, 1fr) 72px 3.2em; align-items: center; gap: 10px; text-align: left; }

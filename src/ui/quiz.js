@@ -20,7 +20,10 @@ const KIND_LABEL = { best: 'kindBest', all: 'kindAll', gap: 'kindGap', order: 'k
 // skippable (due sessions, v18): an "Overslaan" under each first-pass question; it is not an answer.
 // onScore (onePass only, v18 T2): called once, with the first-try results, as soon as the
 // last question is answered, before the review card, so closing on the review loses nothing.
-export function renderQuiz(app, { questions, onDone, onBack = null, termsOf = () => [], onePass = false, skippable = false, onScore = null }, box) {
+// flag (onePass, v18 T3, the AI extra tests): { canFlag(q), isFlagged(q), onFlag(q) }. A "Klopt niet" button under the
+// questions it applies to; flagged before answering it moves on (unanswered, the caller leaves it out of the score), in the
+// review it marks the row. The caller keeps the list.
+export function renderQuiz(app, { questions, onDone, onBack = null, termsOf = () => [], onePass = false, skippable = false, onScore = null, flag = null }, box) {
   const t = app.t;
   let st = startQuiz(questions);
   let scored = false;
@@ -45,6 +48,10 @@ export function renderQuiz(app, { questions, onDone, onBack = null, termsOf = ()
   // Ghost button: the question goes to the end; skipped again it stays due, unanswered, unpenalised.
   const skipBtn = () => (skippable && !onePass && st.pass === 1
     ? h('button', { class: 'btn btn-ghost small quiz-skip', onclick: () => { st = skipQuiz(st, questions); draw(); } }, t('quizSkip'))
+    : null);
+
+  const flagBtn = (q, inReview = false) => (flag && flag.canFlag(q) && !flag.isFlagged(q)
+    ? h('button', { class: 'btn btn-ghost small quiz-flag', onclick: () => { flag.onFlag(q); if (inReview) draw(); else answer(null); } }, t('testFlag'))
     : null);
 
   // The hint's lines; a struck option is also struck in the list itself.
@@ -117,7 +124,7 @@ export function renderQuiz(app, { questions, onDone, onBack = null, termsOf = ()
         hp.panel,
         h('div', { class: 'quiz-num-row' }, input, q.unit ? h('span', { class: 'quiz-unit' }, q.unit) : null),
         picked,
-        h('div', { class: 'quiz-actions' }, h('button', { class: 'btn btn-primary', onclick: submit }, t('quizNext')), hp.btn, backBtn, skip));
+        h('div', { class: 'quiz-actions' }, h('button', { class: 'btn btn-primary', onclick: submit }, t('quizNext')), hp.btn, backBtn, skip, flagBtn(q)));
     }
     const kind = kindOf(q);
     if (hasBody(kind)) {
@@ -128,7 +135,7 @@ export function renderQuiz(app, { questions, onDone, onBack = null, termsOf = ()
         h('p', { class: 'quiz-kind muted small' }, t(KIND_LABEL[kind])),
         hp.panel,
         body.el,
-        hp.btn || backBtn || skip ? h('div', { class: 'quiz-actions' }, hp.btn, backBtn, skip) : null);
+        hp.btn || backBtn || skip || flagBtn(q) ? h('div', { class: 'quiz-actions' }, hp.btn, backBtn, skip, flagBtn(q)) : null);
     }
     const mark = prev != null ? prev : hasGuess ? String(q.guess) : null;
     const opts = h('div', { class: 'quiz-opts' }, q.options.map((o) => h('button', {
@@ -142,7 +149,7 @@ export function renderQuiz(app, { questions, onDone, onBack = null, termsOf = ()
       hp.panel,
       opts,
       picked,
-      hp.btn || backBtn || skip ? h('div', { class: 'quiz-actions' }, hp.btn, backBtn, skip) : null);
+      hp.btn || backBtn || skip || flagBtn(q) ? h('div', { class: 'quiz-actions' }, hp.btn, backBtn, skip, flagBtn(q)) : null);
   }
 
   // Guess at the start → answer now → the right answer, each marked, so he
@@ -189,14 +196,17 @@ export function renderQuiz(app, { questions, onDone, onBack = null, termsOf = ()
       h('div', { class: 'review-head' }, g, h('h2', { class: 'card-title' }, misses ? t('quizReview') : t('quizClean'))),
       say ? h('p', { class: 'guide-say small muted' }, say) : null,
       // Where he used a hint: marked, so he sees what is not really his yet.
-      lastPass.map(({ q, value, ok, hinted }) => h('div', { class: `review-row${ok ? ' ok' : ' miss'}${hinted ? ' hinted' : ''}${'guess' in q ? ' guess-row-back' : ''}` },
+      lastPass.map(({ q, value, ok, hinted }) => (flag && flag.isFlagged(q) ? h('div', { class: 'review-row flagged' },
+        h('p', { class: 'quiz-q' }, q.q),
+        h('p', { class: 'muted small' }, t('testFlagged'))) : h('div', { class: `review-row${ok ? ' ok' : ' miss'}${hinted ? ' hinted' : ''}${'guess' in q ? ' guess-row-back' : ''}` },
         h('p', { class: 'quiz-q' }, h('span', { class: 'mark' }, ico(ok ? 'check' : 'x')), ' ', q.q),
         hinted ? h('p', { class: 'hint-mark small' }, t('hintUsed')) : null,
         'guess' in q ? guessSteps(q, value) : [
           ok ? null : h('p', { class: 'small' }, t('quizYours', shown(q, value))),
           kindDetail(q, value, ok),
           answerNode(q)],
-        h('p', { class: 'muted small' }, q.why))),
+        h('p', { class: 'muted small' }, q.why),
+        flagBtn(q, true)))),
       onePass
         ? h('button', { class: 'btn btn-primary', onclick: () => onDone(st.firstTry, st.sure || {}) }, t('quizFinish'))
         : h('button', {
