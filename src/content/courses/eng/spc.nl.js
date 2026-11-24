@@ -75,7 +75,7 @@ export default {
     },
     {
       id: 'eng.spc.msa',
-      gist: 'Een gauge R&R beantwoordt twee vragen: % van de tolerantie of je goed van fout scheidt, % van de studievariatie of je onderdelen onderscheidt.',
+      gist: 'Een gauge R&R geeft twee uitkomsten: % van de tolerantie zegt of je goed van fout scheidt, % van de studievariatie of je onderdelen onderscheidt.',
       title: 'Meetsysteemanalyse voorbij het kopgetal',
       pre: [
         {
@@ -145,7 +145,7 @@ export default {
     },
     {
       id: 'eng.spc.attribute',
-      gist: 'Ook visuele goed-fout-controles hebben een meetstudie nodig: zijn inspecteurs het eens met zichzelf, elkaar en de expert, en tel ontsnappingen en onterechte afkeur apart.',
+      gist: 'Ook visuele goed-fout-controles hebben een meetstudie nodig: check of inspecteurs overeenstemmen met zichzelf, elkaar en de expert, en tel ontsnappingen en onterechte afkeur apart.',
       title: 'Visuele inspectie en attributieve overeenstemming',
       pre: [
         {
@@ -219,7 +219,7 @@ export default {
     },
     {
       id: 'eng.spc.uncertainty',
-      gist: 'Een type-1-studie toetst het meetmiddel alleen; bij destructief meten bepaalt de keuze van proefstukken of de studie iets zegt, en %GRR wordt bekritiseerd.',
+      gist: 'Een type-1-studie toetst het meetmiddel alleen; bij destructief meten bepaalt de keuze van proefstukken of de studie iets zegt, en Wheeler bekritiseert %GRR.',
       title: 'Type-1-studie, destructief meten en de discussie over %GRR',
       pre: [
         {
@@ -514,7 +514,7 @@ export default {
     },
     {
       id: 'eng.spc.shortrun',
-      gist: 'Bij kleine series volg je het proces, niet het artikel, bijvoorbeeld met een DNOM-kaart; bij automatische data geven gewone grenzen de hele dag alarm.',
+      gist: 'Bij kleine series volg je het proces, niet het artikel, bijvoorbeeld met een DNOM-kaart; bij samenhangende automatische data geven gewone grenzen loos alarm.',
       title: 'Kleine series, veel artikelen en automatische data',
       pre: [
         {

@@ -75,7 +75,7 @@ export default {
     },
     {
       id: 'eng.spc.msa',
-      gist: 'A gauge R&R answers two questions: % of tolerance, whether you separate good from bad; % of study variation, whether you can tell parts apart.',
+      gist: 'A gauge R&R gives two figures: % of tolerance shows whether it separates good from bad, % of study variation whether it tells parts apart.',
       title: 'Gauge studies beyond the headline number',
       pre: [
         {
@@ -145,7 +145,7 @@ export default {
     },
     {
       id: 'eng.spc.attribute',
-      gist: 'Pass-fail inspection needs a measurement study too: do inspectors agree with themselves, each other and the expert, and count escapes and false rejects separately.',
+      gist: 'Pass-fail inspection needs a measurement study too: check whether inspectors agree with themselves, each other and the expert, and count escapes and false rejects separately.',
       title: 'Visual inspection and attribute agreement',
       pre: [
         {
@@ -219,7 +219,7 @@ export default {
     },
     {
       id: 'eng.spc.uncertainty',
-      gist: 'A type-1 study checks the gauge alone; in destructive testing the choice of test pieces decides whether the study means anything, and %GRR is criticised.',
+      gist: 'A type-1 study checks the gauge alone; in destructive testing the choice of test pieces decides whether the study means anything, and Wheeler criticises %GRR.',
       title: 'Type-1 studies, destructive tests and the %GRR debate',
       pre: [
         {
@@ -514,7 +514,7 @@ export default {
     },
     {
       id: 'eng.spc.shortrun',
-      gist: 'With short runs, follow the process rather than the part number, for example with a DNOM chart; with automatic data, ordinary limits alarm all day.',
+      gist: 'With short runs, follow the process, not the part number, for example with a DNOM chart; with correlated automatic data, ordinary limits give false alarms.',
       title: 'Short runs, many part numbers and automatic data',
       pre: [
         {
