@@ -3,7 +3,7 @@ export default {
   lessons: [
     {
       id: 'eng.safety.risk',
-      gist: 'Tackle risk at the source: removing, replacing or guarding come before procedures and PPE, and a risk score ranks hazards but proves nothing about safety.',
+      gist: 'Tackle risk at the source: elimination, substitution and engineering controls come before procedures and PPE, and a risk score ranks but does not prove safety.',
       title: 'Hazard, risk and the hierarchy of controls',
       pre: [
         {
@@ -151,7 +151,7 @@ export default {
     },
     {
       id: 'eng.safety.bowtie',
-      gist: 'A good barrier is independent, testable and has an owner; a bowtie records, per cause and consequence, which barriers stand in the way.',
+      gist: 'A good barrier is, among other things, independent, testable and owned; a bowtie records, per cause and consequence, which barriers stand in the way.',
       title: 'Barriers, the bow-tie and the Swiss cheese model',
       pre: [
         {
@@ -509,7 +509,7 @@ export default {
     },
     {
       id: 'eng.safety.arcflash',
-      gist: 'In the IEEE 1584 model arc flash energy grows roughly in proportion to arc duration, so faster protection and de-energised work come before arc-rated clothing.',
+      gist: 'In IEEE 1584, arc flash energy is roughly proportional to arc duration, so faster protection helps; de-energised work comes before arc-rated clothing (PPE).',
       title: 'Arc flash and working near live parts in the station',
       pre: [
         {
@@ -582,7 +582,7 @@ export default {
     },
     {
       id: 'eng.safety.guarding',
-      gist: 'Choose a fixed guard where nobody needs access and an interlocked guard where people do, and fix why people defeat a safeguard.',
+      gist: 'Use a fixed guard where nobody needs access and an interlocked guard where people regularly do; defeating a safeguard is not only a discipline issue.',
       title: 'Guards and safety devices on machines',
       pre: [
         {
@@ -722,7 +722,7 @@ export default {
     },
     {
       id: 'eng.safety.safetyfunction',
-      gist: 'The required PL is not enough: the achieved PL follows from category, MTTFd, diagnostic coverage and common cause failure, and validation proves it.',
+      gist: 'The required PL is not enough: the achieved PL follows from category, MTTFd, diagnostic coverage and measures against common cause failure, and validation proves it.',
       title: 'Safety functions that hold: categories, PL and validation',
       pre: [
         {
@@ -794,7 +794,7 @@ export default {
     },
     {
       id: 'eng.safety.modify',
-      gist: 'Anyone who substantially modifies a machine or couples machines into an assembly can become the manufacturer, with all the duties that brings.',
+      gist: 'Under the Machinery Regulation, whoever substantially modifies a machine or couples machines into an assembly can become the manufacturer, with all the duties that brings.',
       title: 'Old machines, new lines and the 2027 Machinery Regulation',
       pre: [
         {

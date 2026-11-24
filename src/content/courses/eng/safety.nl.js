@@ -3,7 +3,7 @@ export default {
   lessons: [
     {
       id: 'eng.safety.risk',
-      gist: 'Pak risico’s aan bij de bron: weghalen, vervangen of afschermen gaan vóór procedures en PBM, en een risicoscore rangschikt maar bewijst geen veiligheid.',
+      gist: 'Pak risico’s aan bij de bron: weghalen, vervangen en technische maatregelen gaan vóór procedures en PBM, en een risicoscore rangschikt maar bewijst geen veiligheid.',
       title: 'Gevaar, risico en de arbeidshygiënische strategie',
       pre: [
         {
@@ -151,7 +151,7 @@ export default {
     },
     {
       id: 'eng.safety.bowtie',
-      gist: 'Een goede barrière is onafhankelijk, te testen en heeft een eigenaar; een bowtie legt per oorzaak en gevolg vast welke barrières er staan.',
+      gist: 'Een goede barrière is onder meer onafhankelijk, te testen en heeft een eigenaar; een bowtie legt per oorzaak en gevolg vast welke barrières er staan.',
       title: 'Barrières, de bowtie en het gatenkaasmodel',
       pre: [
         {
@@ -509,7 +509,7 @@ export default {
     },
     {
       id: 'eng.safety.arcflash',
-      gist: 'Volgens het model van IEEE 1584 groeit de vlamboogenergie ruwweg evenredig met de boogduur, dus snellere beveiliging en spanningsloos werken gaan vóór vlamboogkleding.',
+      gist: 'Volgens het model van IEEE 1584 is vlamboogenergie ruwweg evenredig met de boogduur, dus snellere beveiliging helpt; spanningsloos werken gaat vóór vlamboogkleding (PBM).',
       title: 'Vlambogen en werken bij spanningvoerende delen in het station',
       pre: [
         {
@@ -582,7 +582,7 @@ export default {
     },
     {
       id: 'eng.safety.guarding',
-      gist: 'Kies een vaste afscherming waar niemand in hoeft en een beveiligde waar wel, en los op waarom mensen een beveiliging omzeilen.',
+      gist: 'Gebruik een vaste afscherming waar niemand in hoeft en een beveiligde waar mensen er regelmatig in moeten; omzeilen is niet alleen een kwestie van discipline.',
       title: 'Afschermingen en beveiligingen op machines',
       pre: [
         {
@@ -722,7 +722,7 @@ export default {
     },
     {
       id: 'eng.safety.safetyfunction',
-      gist: 'Het vereiste PL is niet genoeg: het behaalde PL volgt uit categorie, MTTFd, diagnostische dekking en gemeenschappelijke oorzaken, en validatie toont het aan.',
+      gist: 'Het vereiste PL is niet genoeg: het behaalde PL volgt uit categorie, MTTFd, diagnostische dekking en maatregelen tegen gemeenschappelijke oorzaken, en validatie toont het aan.',
       title: 'Veiligheidsfuncties die houden: categorieën, PL en validatie',
       pre: [
         {
@@ -794,7 +794,7 @@ export default {
     },
     {
       id: 'eng.safety.modify',
-      gist: 'Wie een machine substantieel wijzigt of machines tot een samenstel koppelt, kan zelf de fabrikant worden, met alle plichten van dien.',
+      gist: 'Volgens de Machineverordening kan wie een machine substantieel wijzigt of machines tot een samenstel koppelt zelf fabrikant worden, met alle plichten van dien.',
       title: 'Oude machines, nieuwe lijnen en de Machineverordening van 2027',
       pre: [
         {
@@ -865,7 +865,7 @@ export default {
     },
     {
       id: 'eng.safety.incidents',
-      gist: 'Meld bijna-ongevallen en reageer zonder schuldvraag, want straf stopt de meldingen; kijk apart naar ernstig letsel, want lichte cijfers zeggen daar weinig over.',
+      gist: 'Meld bijna-ongevallen en reageer zonder schuldvraag, want straf stopt de meldingen; kijk apart naar ernstig letsel, want cijfers over licht letsel zeggen daar weinig over.',
       title: 'Bijna-ongevallen en leren zonder schuld',
       pre: [
         {
