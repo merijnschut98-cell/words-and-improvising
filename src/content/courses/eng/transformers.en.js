@@ -373,7 +373,7 @@ export default {
     },
     {
       id: 'eng.transformers.loading',
-      gist: 'Loading above nameplate is possible if you track temperature and loss of life per IEC 60076-7; the cool night pays for the hot evening.',
+      gist: 'Loading above nameplate is possible within IEC 60076-7 limits if you track temperature and loss of life; the cool night pays for the hot evening.',
       title: 'How far can you load a transformer?',
       pre: [
         {
@@ -444,7 +444,7 @@ export default {
     },
     {
       id: 'eng.transformers.dga',
-      gist: 'Each key gas points to a different kind of fault, but one value says little: look at levels, ratios and rate of change.',
+      gist: 'Key gases point to certain kinds of fault, but one value says little: look at levels, ratios and rate of change.',
       title: 'Reading the oil: DGA and paper tests',
       pre: [
         {
@@ -594,7 +594,7 @@ export default {
     // Topic: Cables and cable faults
     {
       id: 'eng.transformers.cables',
-      gist: 'In the Netherlands almost all MV and LV power runs underground, in MV through GPLK or XLPE cable, and hand-made joints are the weak point.',
+      gist: 'In the Netherlands almost all MV and LV power runs underground, in MV mostly as GPLK or XLPE, and hand-made joints are the weak point.',
       title: 'MV and LV cables',
       pre: [
         {
@@ -1032,7 +1032,7 @@ export default {
     },
     {
       id: 'eng.transformers.procurement',
-      gist: 'Buying transformers weighs more than price, among others losses, supply chain and total cost of ownership, and several suppliers spread the delivery risk.',
+      gist: 'Grid operators like Enexis weigh more than price when buying transformers, including losses, supply chain and total cost of ownership, and spread risk across suppliers.',
       title: 'Buying transformers: specification, tender and delivery',
       pre: [
         {

@@ -373,7 +373,7 @@ export default {
     },
     {
       id: 'eng.transformers.loading',
-      gist: 'Boven het typeplaatvermogen belasten kan, zolang je met de belastingsgids IEC 60076-7 temperatuur en levensduurverbruik bijhoudt; de koele nacht betaalt de hete avond.',
+      gist: 'Boven het typeplaatvermogen belasten kan binnen de grenzen van IEC 60076-7, als je temperatuur en levensduurverbruik bijhoudt; de koele nacht betaalt de hete avond.',
       title: 'Hoe ver kun je een transformator belasten?',
       pre: [
         {
@@ -444,7 +444,7 @@ export default {
     },
     {
       id: 'eng.transformers.dga',
-      gist: 'Elk sleutelgas wijst op een ander soort fout, maar één waarde zegt weinig: kijk naar niveaus, verhoudingen en toenamesnelheid.',
+      gist: 'Sleutelgassen wijzen op bepaalde soorten fout, maar één waarde zegt weinig: kijk naar niveaus, verhoudingen en toenamesnelheid.',
       title: 'De olie lezen: DGA en papiertests',
       pre: [
         {
@@ -594,7 +594,7 @@ export default {
     // Onderwerp: Kabels en kabelstoringen
     {
       id: 'eng.transformers.cables',
-      gist: 'In Nederland loopt bijna alle MS- en LS-stroom ondergronds, bij MS door GPLK of XLPE, en de handgemaakte moffen zijn het zwakke punt.',
+      gist: 'In Nederland loopt bijna alle MS- en LS-stroom ondergronds, bij MS vooral door GPLK of XLPE, en de handgemaakte moffen zijn het zwakke punt.',
       title: 'MS- en LS-kabels',
       pre: [
         {
@@ -1032,7 +1032,7 @@ export default {
     },
     {
       id: 'eng.transformers.procurement',
-      gist: 'Bij het inkopen van transformatoren telt meer dan prijs, onder meer verliezen, leveringsketen en total cost of ownership, en meerdere leveranciers spreiden het leverrisico.',
+      gist: 'Netbeheerders als Enexis wegen bij transformatorinkoop meer dan prijs, onder meer verliezen, leveringsketen en total cost of ownership, en spreiden leverrisico over meerdere leveranciers.',
       title: 'Transformatoren inkopen: specificatie, aanbesteding en levering',
       pre: [
         {
