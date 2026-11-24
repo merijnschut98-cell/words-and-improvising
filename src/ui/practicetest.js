@@ -2,13 +2,16 @@
 // level tests on the module screen, the chip of one test, and the screen itself:
 // an intro, one pass of questions (no hints, no going back), then the result.
 import { exitTarget, FROM_MODULE } from '../core/moduleexit.js';
-import { h } from './dom.js';
+import { h, aiErrorText } from './dom.js';
 import { ico } from './icons.js';
 import { renderQuiz } from './quiz.js';
 import { guide, guideOn } from './guide.js';
 import { celebration } from './flairui.js';
 import { progressBar } from './home.js';
-import { MODULES, topicsOf, loadBank, hasBank } from '../content/courses/index.js';
+import { MODULES, topicsOf, loadBank, loadBlueprint, hasBank } from '../content/courses/index.js';
+import {
+  EXTRA_SIZE, extraAvailable, generateExtra, readSets, saveSet, setKey, addFlag, applyExtra, extraScore,
+} from '../core/testgen.js';
 import {
   specOf, testOpen, testRecord, testStatus, levelTests, testPool, composeTest, applyTest, weakestTopic, topicTitleOf, PASS_PCT, GOLD_PCT,
 } from '../core/practicetest.js';
@@ -91,7 +94,93 @@ export function renderTest(app, params, root) {
       h('p', {}, intro),
       h('p', { class: 'small muted' }, spec.final ? t('testRulesFinal', PASS_PCT, GOLD_PCT) : t('testRules', PASS_PCT)),
       rec ? h('p', { class: 'small test-best' }, t('testBest', rec.best, rec.attempts)) : null),
-    note, start, back());
+    note, start, extraBox(), back());
+
+  // The AI extra test (v18 T3, design 3.3): only on a topic test, with a key and a bank. The sets of the last
+  // generations stay on this device for offline use. Nothing here shows or logs the key.
+  function storage() { try { return localStorage; } catch { return null; } }
+  function extraBox() {
+    if (spec.type !== 'topic' || !extraAvailable(app.state.settings, moduleId, hasBank)) return null;
+    const key = setKey(app.lang, moduleId, spec.topicId);
+    const sets = readSets(storage(), key);
+    const offline = typeof navigator !== 'undefined' && navigator.onLine === false;
+    const msg = h('div', { 'aria-live': 'polite' });
+    const go = h('button', { class: 'btn btn-ghost test-extra-btn', disabled: offline, onclick: () => make() }, ico('brain'), ' ', t('testExtraBtn'));
+    const when = (ts) => new Date(ts).toLocaleString(app.lang === 'en' ? 'en-GB' : 'nl-NL', { day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' });
+    async function make() {
+      go.disabled = true;
+      msg.replaceChildren(h('p', { class: 'muted small' }, t('testExtraBusy')));
+      try {
+        const [mod, bank, blueprint] = await Promise.all([app.openModule(subject, moduleId), loadBank(moduleId, app.lang), loadBlueprint(moduleId)]);
+        const res = await generateExtra({
+          apiKey: app.state.settings.apiKey, model: app.state.settings.model, meta, topicId: spec.topicId, lessons: mod.lessons, blueprint, bank, lang: app.lang,
+        });
+        if (!res.ok) throw res;
+        saveSet(storage(), key, res);
+        beginExtra(res, mod.lessons);
+      } catch (res) {
+        go.disabled = false;
+        const code = res && res.error;
+        msg.replaceChildren(h('p', { class: 'note' }, code === 'offline' ? t('testExtraOffline') : code ? aiErrorText(t, res) : t('testLoadError')));
+      }
+    }
+    async function retake(set) {
+      const mod = await app.openModule(subject, moduleId).catch(() => null);
+      if (mod) beginExtra(set, mod.lessons);
+      else msg.replaceChildren(h('p', { class: 'note' }, t('testLoadError')));
+    }
+    return h('section', { class: 'card test-extra' },
+      h('h2', { class: 'card-title' }, t('testExtraTitle')),
+      h('p', { class: 'small muted' }, t('testExtraHelp')),
+      offline ? h('p', { class: 'note' }, t('testExtraOffline')) : null,
+      go, msg,
+      sets.length ? h('div', { class: 'test-extra-sets' },
+        h('h3', { class: 'topic-title' }, t('testExtraSets')),
+        h('ul', { class: 'test-rows' }, sets.map((set) => h('li', {},
+          h('button', { class: 'btn btn-ghost small', onclick: () => retake(set) }, t('testExtraRetake'), ' · ', t('testExtraSetLabel', when(set.ts), set.items.length)))))) : null);
+  }
+
+  // One pass through a generated set. A flagged question is left out of the score and goes on the local list
+  // (Settings, "Gemelde vragen"). The result is applied when the last question is answered (onScore), like the bank
+  // tests: closing on the review card loses nothing. A question flagged later, in the review, still leaves the score
+  // shown at Finish; the lesson it pointed at may already be due today, which costs one extra review at most.
+  function beginExtra(set, lessons) {
+    const questions = set.items;
+    const flagged = new Set();
+    const box = h('div', {});
+    main.replaceChildren(...(set.toppedUp ? [h('p', { class: 'muted small extra-note' }, t('testExtraToppedUp', set.toppedUp, EXTRA_SIZE))] : []), box);
+    let results = null;
+    renderQuiz(app, {
+      questions,
+      onePass: true,
+      flag: {
+        canFlag: (q) => q.src === 'ai',
+        isFlagged: (q) => flagged.has(q.id),
+        onFlag: (q) => { flagged.add(q.id); addFlag(storage(), { item: q, moduleId, topicId: spec.topicId, lang: app.lang, ts: Date.now() }); },
+      },
+      onScore: (firstTry) => {
+        results = firstTry;
+        const res = applyExtra(app.state, { subject, moduleId, topicId: spec.topicId, questions, results, flagged: [...flagged], lang: app.lang, lessons }, app.today(), Date.now());
+        app.setState(res.state);
+      },
+      onDone: () => { if (results) showExtraDone(extraScore(questions, results, flagged), set); },
+    }, box);
+  }
+
+  function showExtraDone(res, set) {
+    main.replaceChildren(h('section', { class: 'card lesson-done test-done test-extra-done' },
+      h('h2', { class: 'card-title', tabindex: '-1' }, t('testExtraDone')),
+      res.total ? h('p', { class: 'check-score' }, t('testScore', res.correct, res.total, res.pct)) : null,
+      set.toppedUp ? h('p', { class: 'small muted' }, t('testExtraToppedUp', set.toppedUp, EXTRA_SIZE)) : null,
+      res.flagged ? h('p', { class: 'small' }, t('testExtraFlagged', res.flagged)) : null,
+      res.missed.some((id) => /#g\d+$/.test(id)) ? h('p', { class: 'small' }, t('testExtraMissed')) : null,
+      h('p', { class: 'small muted' }, t('testExtraNoRecord'))),
+    h('button', { class: 'btn btn-primary btn-big', onclick: () => app.go('test', params) }, t('testExtraAgain')),
+    h('button', { class: 'btn btn-ghost', onclick: exit }, t('backToCourse')));
+    const head = main.querySelector('.test-done .card-title');
+    if (head && head.focus) head.focus({ preventScroll: true });
+    if (typeof window !== 'undefined' && window.scrollTo) window.scrollTo(0, 0);
+  }
 
   // A module with a bank must load it: a failed load shows the error and a retry, never a test without it.
   let bankFails = 0;

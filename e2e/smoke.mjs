@@ -58,6 +58,17 @@ const FAKE_SDK = `
     static APIConnectionError = class extends APIError {};
     constructor(o) { window.__coachOpts = o; this.models = { retrieve: async (m) => ({ id: m }) }; this.beta = { messages: { create: async (req) => {
       await new Promise((r) => setTimeout(r, 200));
+      // v18 T3: the AI extra test. The generator answers with the items the test put on window.__extraItems; the checker
+      // answers each of them correctly, from the same list (it is blind in the real app; the fake only knows the keys).
+      if (req.output_config.format.schema.properties.items && req.output_config.format.schema.required.includes('items')) {
+        window.__genReq = req;
+        return { stop_reason: 'end_turn', content: [{ type: 'text', text: JSON.stringify({ items: window.__extraItems || [] }) }] };
+      }
+      if (req.output_config.format.schema.properties.verdicts) {
+        window.__verifyReq = req;
+        const keyOf = (it) => it.kind === 'all' ? { picks: it.answers } : it.kind === 'gap' ? { text: it.accept[0] } : it.kind === 'num' ? { number: it.number } : it.kind === 'order' ? { order: it.items } : it.kind === 'match' ? { pairs: it.pairs } : { pick: it.answer };
+        return { stop_reason: 'end_turn', content: [{ type: 'text', text: JSON.stringify({ verdicts: (window.__extraItems || []).map((it, n) => ({ n, unambiguous: true, nonsenseOption: false, ...keyOf(it) })) }) }] };
+      }
       if (req.output_config.format.schema.properties.drill) {
         return { stop_reason: 'end_turn', content: [{ type: 'text', text: JSON.stringify({ drill: 'bridge', focus: 'Minder eh, meer pauze', body: 'Je laatste teamuitje', audience: '', words: ['anker', 'fiets', 'storm'], setting: '' }) }] };
       }
@@ -4097,6 +4108,34 @@ await step('flair: start ring and title, path map with the bronze seal, a perfec
   await c.close();
 });
 
+// Gives some answer (right or wrong) to the visible question, whatever its kind: choice, number, select all, fill in
+// the word, order, match. The tests draw from the bank, which holds every kind.
+async function answerAnyKind(p) {
+  const card = p.locator('.quiz-card');
+  if (await card.locator('.quiz-num').count()) { await card.locator('.quiz-num').fill('1'); await card.locator('.quiz-actions .btn-primary').click(); return; }
+  if (await card.locator('.kind-all').count()) { await card.locator('.opt-tick').first().click(); await card.locator('.quiz-check').click(); return; }
+  if (await card.locator('.kind-gap').count()) {
+    if (await card.locator('.gap-chip').count()) await card.locator('.gap-chip').first().click();
+    else await card.locator('.gap-input').fill('x');
+    await card.locator('.quiz-check').click();
+    return;
+  }
+  if (await card.locator('.kind-order').count()) {
+    while (await card.locator('.order-item').count()) await card.locator('.order-item').first().click();
+    await card.locator('.quiz-check').click();
+    return;
+  }
+  if (await card.locator('.kind-match').count()) {
+    while (await card.locator('.match-col').first().locator('.match-item:not(.paired)').count()) {
+      await card.locator('.match-col').first().locator('.match-item:not(.paired)').first().click();
+      await card.locator('.match-col').last().locator('.match-item:not(.paired)').first().click();
+    }
+    await card.locator('.quiz-check').click();
+    return;
+  }
+  await card.locator('.quiz-opts .opt').first().click();
+}
+
 // v18 T2: practice tests. Every pm.plan lesson passed: the module screen shows the topic test stops and the four
 // level tests; a Basis level test is one pass (no hint, no back), scores, stores its record, and the screen shows the score.
 await step('practice tests: module screen rows, one pass without hints, score and record, the screen shows the result', async () => {
@@ -4115,21 +4154,68 @@ await step('practice tests: module screen rows, one pass without hints, score an
   await p.locator('.test-start').click();
   await p.locator('.quiz-card').waitFor();
   if (await p.locator('.quiz-hint-btn, .quiz-back').count()) throw new Error('a test has no hint and no back');
-  for (let i = 0; i < 40 && !(await p.locator('.quiz-review').count()); i++) {
-    if (await p.locator('.quiz-num').count()) { await p.locator('.quiz-num').fill('1'); await p.locator('.quiz-actions .btn-primary').click(); }
-    else await p.locator('.quiz-opts .opt').first().click();
-  }
+  for (let i = 0; i < 40 && !(await p.locator('.quiz-review').count()); i++) await answerAnyKind(p);
   await p.locator('.quiz-review').waitFor();
   // the score is stored once the last question is answered, before Finish (closing on the review loses nothing)
   if (!(await p.evaluate(() => JSON.parse(localStorage.getItem('spraakwater:v1')).courses.pm.tests['pm.plan/level/1']))) throw new Error('no record on the review card');
   await p.locator('.quiz-review .btn-primary').click();
   await p.locator('.test-done').waitFor();
   await shotP('tests-done-nl');
-  const rec = await p.evaluate(() => JSON.parse(localStorage.getItem('spraakwater:v1')).courses.pm.tests['pm.plan/level/1']);
-  if (!rec || rec.attempts !== 1 || rec.items.length < 4 || rec.items.some((id) => /#b\d+$/.test(id) && JSON.parse(localStorage.getItem('spraakwater:v1')).courseReviews[`nl|${id}`])) throw new Error(`test record: ${JSON.stringify(rec)}`);
+  const saved = await p.evaluate(() => JSON.parse(localStorage.getItem('spraakwater:v1')));
+  const rec = saved.courses.pm.tests['pm.plan/level/1'];
+  if (!rec || rec.attempts !== 1 || rec.items.length < 4 || rec.items.some((id) => /#b\d+$/.test(id) && (saved.courseReviews || {})[`nl|${id}`])) throw new Error(`test record: ${JSON.stringify(rec)}`);
   await p.locator('.test-done ~ .btn:last-child').click();
   await ms.waitFor();
   if (!(await ms.locator('.test-chip').first().innerText()).includes(`${rec.best}%`)) throw new Error('the level test chip shows the score');
+  await c.close();
+});
+// v18 T3: the AI extra test on a topic test. With a key: the button, a generated set that passed the checks, "Klopt niet"
+// leaves a question out and puts it on the local list (Settings), the set is cached on the device. Without a key: no button.
+const EXTRA_ITEMS_NL = [{"topic":"breakdown","level":1,"kind":"mc","source":{"lesson":"pm.plan.wbs","quote":"groter dan ongeveer 80 uur verbergt verrassingen en kun je niet volgen"},"q":"Je plant een werkpakket van 150 uur voor één analist. Wat is het probleem hiervan?","options":["Het is te groot om te volgen en verbergt verrassingen","Het is te klein om te managen en kost te veel overleg","Het heeft geen werkwoord in de naam van het pakket","Het heeft een tweede analist nodig om te beginnen"],"answer":"Het is te groot om te volgen en verbergt verrassingen","why":"Een pakket groter dan ongeveer 80 uur verbergt verrassingen en kun je niet volgen."},{"topic":"breakdown","level":1,"kind":"all","source":{"lesson":"pm.plan.wbs","quote":"Elk pakket krijgt een werkwoord, een eigenaar en een definition of done"},"q":"Wat krijgt elk werkpakket? Kies alles wat past.","options":["Een werkwoord","Een eigenaar","Een definition of done","Een eigen resultaat","Een tweede pakket als reserve"],"answers":["Een werkwoord","Een eigenaar","Een definition of done"],"why":"Elk pakket krijgt een werkwoord, een eigenaar en een definition of done."},{"topic":"breakdown","level":1,"kind":"gap","source":{"lesson":"pm.plan.wbs","quote":"Mensen committeren zich aan wat ze zelf hebben helpen opdelen"},"q":"Vul het ontbrekende woord in.","text":"Mensen ___ zich aan wat ze zelf hebben helpen opdelen.","accept":["committeren"],"choices":["committeren","verzetten","onderwerpen","verontschuldigen"],"why":"Mensen committeren zich aan wat ze zelf hebben helpen opdelen."},{"topic":"breakdown","level":1,"kind":"num","source":{"lesson":"pm.plan.wbs","quote":"groter dan ongeveer 80 uur verbergt verrassingen en kun je niet volgen"},"q":"Een teamleider verdeelt een pakket van 240 uur in gelijke pakketten van 60 uur. Hoeveel pakketten krijgt hij?","number":4,"tolerance":0.1,"unit":"pakketten","why":"240 gedeeld door 60 is 4."},{"topic":"breakdown","level":1,"kind":"order","source":{"lesson":"pm.plan.wbs","quote":"Schrijf er vier tot zeven op. Activiteiten komen later, eronder"},"q":"Zet de stappen van een opdeling in de juiste volgorde.","items":["Vraag wat er is als het project klaar is","Schrijf vier tot zeven resultaten op","Deel elk resultaat op in werkpakketten","Geef elk pakket een eigenaar"],"why":"Eerst de resultaten, de activiteiten komen later, eronder."},{"topic":"breakdown","level":1,"kind":"match","source":{"lesson":"pm.plan.wbs","quote":"Samen dekken de takken al het werk, en niets buiten het project"},"q":"Koppel elke situatie aan wat die zegt over de opdeling.","pairs":[["Niemand regelt de toegang tot data","Er mist werk in de boom"],["Een pakket van 500 uur","Te groot om te volgen"],["Een pakket van 2 uur","Micromanagement"]],"why":"De takken dekken al het werk; de grootte van een pakket is aan twee kanten begrensd."}];
+await step('extra test: button with a key, generated set, Klopt niet, cache, list in Settings; no button without a key', async () => {
+  const ids = await (async () => { const c = await browser.newContext(); const pg = await c.newPage(); await pg.goto(BASE); const r = await pg.evaluate(async () => (await import('./src/content/courses/index.js')).MODULES.find((m) => m.id === 'pm.plan').lessons); await c.close(); return r; })();
+  const lessons = Object.fromEntries(ids.map((id) => [id, { passed: 1, read: 1 }]));
+  const seed = (settings) => ({ settings, ui: { subject: 'pm' }, courses: { pm: { lessons, sessions: [] }, eng: { lessons: {}, sessions: [] } } });
+  const open = (p) => p.evaluate(() => window.__app.go('test', { subject: 'pm', moduleId: 'pm.plan', testId: 'pm.plan/topic/breakdown' }));
+  const bare = await topicContext(seed({}));
+  await open(bare.p);
+  await bare.p.locator('.test-start').waitFor();
+  if (await bare.p.locator('.test-extra').count()) throw new Error('no key: no extra test button');
+  await bare.c.close();
+  const { c, p, shotP } = await topicContext(seed({ apiKey: 'sk-test' }), { setup: (cx) => cx.route('https://esm.sh/**', (route) => route.fulfill({ contentType: 'application/javascript', body: FAKE_SDK })) });
+  await p.evaluate((items) => { window.__extraItems = items; }, EXTRA_ITEMS_NL);
+  await open(p);
+  await p.locator('.test-extra-btn').waitFor();
+  await shotP('tests-extra-intro-nl');
+  await p.locator('.test-extra-btn').click();
+  await p.locator('.quiz-card').waitFor();
+  const gen = await p.evaluate(() => JSON.stringify(window.__genReq));
+  if (/sk-test/.test(gen) || !gen.includes('pm.plan.wbs')) throw new Error('the request holds the lesson text and no key');
+  if ((await p.evaluate(() => window.__coachOpts.apiKey)) !== 'sk-test') throw new Error('the key reaches the SDK');
+  if (await p.locator('.quiz-hint-btn, .quiz-back').count()) throw new Error('an extra test has no hint and no back');
+  // flag every generated question: each is left out and listed
+  for (let i = 0; i < 12 && !(await p.locator('.quiz-review').count()); i++) await p.locator('.quiz-flag').first().click();
+  await p.locator('.quiz-review').waitFor();
+  await shotP('tests-extra-review-nl');
+  // flagged questions are not misses: the review head says "all right", not "review your misses"
+  const head = await p.locator('.quiz-review .card-title').innerText();
+  if (head.trim().toLowerCase() !== (await p.evaluate(() => window.__app.t('quizClean'))).trim().toLowerCase()) throw new Error(`review head counts flagged questions as misses: ${head}`);
+  // the result is applied at the last answer, like the bank tests: closing on the review card loses nothing
+  const early = await p.evaluate(() => JSON.parse(localStorage.getItem('spraakwater:v1')).courses.pm.sessions.filter((x) => x.kind === 'extratest').length);
+  if (early !== 1) throw new Error(`the extra test is logged at the last answer, not at Finish (sessions: ${early})`);
+  await p.locator('.quiz-review .btn-primary').click();
+  await p.locator('.test-extra-done').waitFor();
+  const done = await p.locator('.test-extra-done').innerText();
+  if (!/6 gemeld/.test(done)) throw new Error(`done screen: ${done}`);
+  const st = await p.evaluate(() => ({ sets: JSON.parse(localStorage.getItem('vp:testgen:v1')), flags: JSON.parse(localStorage.getItem('vp:testgen:flags:v1')), app: JSON.parse(localStorage.getItem('spraakwater:v1')) }));
+  if (Object.values(st.sets)[0].length !== 1 || st.flags.length !== 6) throw new Error('cache and flag list');
+  if (JSON.stringify([st.sets, st.flags]).includes('sk-test')) throw new Error('the key is in the cache');
+  if (st.app.courses.pm.sessions.filter((x) => x.kind === 'extratest').length !== 1) throw new Error('Finish logs no second session');
+  if (Object.keys(st.app.courseReviews || {}).some((k) => /#g\d+$/.test(k))) throw new Error('generated questions in the reviews');
+  await p.evaluate(() => window.__app.go('settings'));
+  await p.locator('.flag-item').first().waitFor();
+  if ((await p.locator('.flag-item').count()) !== 6) throw new Error('six reported questions in Settings');
+  await shotP('settings-flagged-nl');
   await c.close();
 });
 await step('offline after first load', async () => {

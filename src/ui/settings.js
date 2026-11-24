@@ -20,6 +20,7 @@ function micShareNote(t) {
 }
 import { speechSupported } from '../core/speech.js';
 import { REVIEW_CAPS, reviewCapOf } from '../core/coursereview.js';
+import { readFlags, removeFlag, clearFlags, flagKey, flagText } from '../core/testgen.js';
 
 export function renderSettings(app, _params, root) {
   const t = app.t;
@@ -152,6 +153,26 @@ export function renderSettings(app, _params, root) {
     return row;
   }
 
+  // "Gemelde vragen" (v18 T3): the AI test questions he flagged, on this device only, to copy and pass on.
+  const flagStore = () => { try { return localStorage; } catch { return null; } };
+  function flaggedGroup() {
+    const list = readFlags(flagStore());
+    if (!list.length) return null;
+    const copy = async (text) => {
+      try { await navigator.clipboard.writeText(text); app.toast(t('flagCopied')); } catch { /* clipboard blocked: the text is on screen */ }
+    };
+    return group('flagged',
+      h('p', { class: 'muted small' }, t('flagHelp')),
+      h('ul', { class: 'flag-list' }, list.map((f) => h('li', { class: 'flag-item' },
+        h('p', { class: 'flag-text small' }, flagText(f)),
+        h('div', { class: 'row' },
+          h('button', { class: 'btn btn-ghost small', onclick: () => copy(flagText(f)) }, t('flagCopy')),
+          h('button', { class: 'btn btn-ghost small', onclick: () => { removeFlag(flagStore(), flagKey(f)); app.go('settings'); } }, t('flagRemove')))))),
+      h('div', { class: 'row' },
+        h('button', { class: 'btn btn-ghost small', onclick: () => copy(list.map(flagText).join('\n\n')) }, t('flagCopy'), ' (', list.length, ')'),
+        h('button', { class: 'btn btn-danger small', onclick: () => { if (window.confirm(t('flagClearConfirm'))) { clearFlags(flagStore()); app.go('settings'); } } }, t('flagClear'))));
+  }
+
   // One labelled group per topic; rarely used options sit lower down.
   const group = (id, ...children) => h('section', { class: 'settings-group', 'data-section': id },
     h('h2', { class: 'group-title' }, t(`set_${id}`)),
@@ -206,6 +227,7 @@ export function renderSettings(app, _params, root) {
         segmented(THEMES.includes(s.theme) ? s.theme : 'auto', THEMES.map((th) => [th, t(`theme_${th}`)]), (v) => set({ theme: v }, true)),
         h('p', { class: 'muted small' }, t('themeHelp')),
         toggle(s.guide !== false, (e) => set({ guide: e.target.checked }), t('guideShow'), h('p', { class: 'muted small' }, t('guideHelp')))),
+      flaggedGroup(),
       group('data',
         app.installPrompt
           ? h('button', {

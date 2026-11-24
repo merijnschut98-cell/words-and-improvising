@@ -5,3 +5,6 @@ node_modules
 
 # v14b rendered films (videos, narration audio, voices): uploaded, never committed
 films-out/
+
+# e2e screenshots: written by every run, never committed
+e2e/out/
