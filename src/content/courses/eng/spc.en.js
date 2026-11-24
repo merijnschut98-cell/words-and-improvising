@@ -3,6 +3,7 @@ export default {
   lessons: [
     {
       id: 'eng.spc.measerror',
+      gist: 'Every measurement carries error, in location and in spread, and because variances add, a noisy gauge makes the process look wider than it is.',
       title: 'Measurement error: what every reading carries',
       pre: [
         {
@@ -74,6 +75,7 @@ export default {
     },
     {
       id: 'eng.spc.msa',
+      gist: 'A gauge R&R answers two questions: % of tolerance, whether you separate good from bad; % of study variation, whether you can tell parts apart.',
       title: 'Gauge studies beyond the headline number',
       pre: [
         {
@@ -143,6 +145,7 @@ export default {
     },
     {
       id: 'eng.spc.attribute',
+      gist: 'Pass-fail inspection needs a measurement study too: do inspectors agree with themselves, each other and the expert, and count escapes and false rejects separately.',
       title: 'Visual inspection and attribute agreement',
       pre: [
         {
@@ -216,6 +219,7 @@ export default {
     },
     {
       id: 'eng.spc.uncertainty',
+      gist: 'A type-1 study checks the gauge alone; in destructive testing the choice of test pieces decides whether the study means anything, and %GRR is criticised.',
       title: 'Type-1 studies, destructive tests and the %GRR debate',
       pre: [
         {
@@ -291,6 +295,7 @@ export default {
     },
     {
       id: 'eng.spc.limits',
+      gist: 'Control limits are the voice of the process, calculated from short-term variation, not from all the data and not from the spec.',
       title: 'Where control limits come from',
       pre: [
         {
@@ -363,6 +368,7 @@ export default {
     },
     {
       id: 'eng.spc.charts',
+      gist: 'Pick the control chart by data type, measurement or count, and build subgroups from parts made right after each other from a single stream.',
       film: 'eng.quality.spc',
       title: 'Choosing the right control chart',
       pre: [
@@ -434,6 +440,7 @@ export default {
     },
     {
       id: 'eng.spc.smallshift',
+      gist: 'A Shewhart chart is slow on small shifts; CUSUM and EWMA have memory and catch them sooner, but react more slowly to big jumps.',
       title: 'Small shifts: CUSUM and EWMA',
       pre: [
         {
@@ -507,6 +514,7 @@ export default {
     },
     {
       id: 'eng.spc.shortrun',
+      gist: 'With short runs, follow the process rather than the part number, for example with a DNOM chart; with automatic data, ordinary limits alarm all day.',
       title: 'Short runs, many part numbers and automatic data',
       pre: [
         {
@@ -580,6 +588,7 @@ export default {
     },
     {
       id: 'eng.spc.capread',
+      gist: 'Zero out of spec in a small sample proves little; read the capability report with expected ppm, the two curves and the histogram alongside.',
       title: 'Reading a capability report',
       pre: [
         {
@@ -650,6 +659,7 @@ export default {
     },
     {
       id: 'eng.spc.ppk',
+      gist: 'Cpk uses within-subgroup spread, Ppk overall spread; a big gap is the finding, and capability only means something for a stable process.',
       title: 'Cpk versus Ppk, and stable before capable',
       pre: [
         {
@@ -721,6 +731,7 @@ export default {
     },
     {
       id: 'eng.spc.nonnormal',
+      gist: 'Capability formulas assume a normal distribution; with skewed data such as runout, look at the probability plot first and choose a method that fits.',
       title: 'Non-normal data and one-sided specs',
       pre: [
         {
@@ -793,6 +804,7 @@ export default {
     },
     {
       id: 'eng.spc.capspec',
+      gist: 'A capability requirement names the characteristics, the index, the sample and period, and the consequence of missing the target; a sigma label hides a convention.',
       title: 'Capability requirements: what to ask and what to believe',
       pre: [
         {
@@ -866,6 +878,7 @@ export default {
     },
     {
       id: 'eng.spc.floor',
+      gist: 'After a signal, everything since the last good check is suspect, so weigh sampling frequency against the parts at risk.',
       title: 'SPC at the machine: what, who and how often',
       pre: [
         {
@@ -935,6 +948,7 @@ export default {
     },
     {
       id: 'eng.spc.tampering',
+      gist: 'Adjusting on random variation makes a stable process worse; adjust only on a signal, plan for known drift and record a reaction plan.',
       film: 'eng.quality.spc',
       title: 'Over-adjustment and reaction plans',
       pre: [
@@ -1006,6 +1020,7 @@ export default {
     },
     {
       id: 'eng.spc.patterns',
+      gist: 'Patterns on the chart, such as a shift, trend or cycle, hint at the cause; split the data and keep a process log.',
       title: 'Reading patterns and finding the cause',
       pre: [
         {
@@ -1077,6 +1092,7 @@ export default {
     },
     {
       id: 'eng.spc.programme',
+      gist: 'A chart nobody reacts to wastes time and teaches people to ignore charts; choose charts for high risks and measure the reaction rate.',
       title: 'Running an SPC programme',
       pre: [
         {
