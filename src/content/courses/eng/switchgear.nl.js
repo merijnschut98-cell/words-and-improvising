@@ -3,6 +3,7 @@ export default {
   lessons: [
     {
       id: 'eng.switchgear.devices',
+      gist: 'Een vermogensschakelaar kan een kortsluiting onderbreken, een lastscheider niet, en een scheider bedien je alleen stroomloos.',
       film: 'eng.switchgear.devices',
       title: 'Vermogensschakelaars, lastscheiders, scheiders en zekeringen',
       pre: [
@@ -75,6 +76,7 @@ export default {
     },
     {
       id: 'eng.switchgear.ratings',
+      gist: 'Elke toegekende waarde op de typeplaat moet minstens de belasting op die plek zijn, en het kortsluitvermogen kan groeien na de bouw.',
       title: 'De typeplaat lezen: wat een installatie aankan',
       pre: [
         {
@@ -146,6 +148,7 @@ export default {
     },
     {
       id: 'eng.switchgear.interruption',
+      gist: 'Een vermogensschakelaar dooft de boog bij de stroomnuldoorgang en moet dan sneller isoleren dan de wederkerende spanning stijgt; schakelaars slijten ook.',
       title: 'Hoe een vermogensschakelaar stroom onderbreekt',
       pre: [
         {
@@ -218,6 +221,7 @@ export default {
     },
     {
       id: 'eng.switchgear.faultlevel',
+      gist: 'Het kortsluitvermogen kan stijgen terwijl de installatie gelijk blijft; reken bij elke netwijziging in de buurt opnieuw na en vergelijk met de typeplaat.',
       title: 'Als het kortsluitvermogen de installatie ontgroeit',
       pre: [
         {
@@ -289,6 +293,7 @@ export default {
     },
     {
       id: 'eng.switchgear.installations',
+      gist: 'SF6 isoleert uitstekend maar is een sterk broeikasgas, dus nieuwe MS-installaties tot 24 kV mogen er vanaf 2026 geen meer gebruiken.',
       film: 'eng.switchgear.devices',
       title: 'MS-installaties en RMU’s',
       pre: [
@@ -361,6 +366,7 @@ export default {
     },
     {
       id: 'eng.switchgear.automation',
+      gist: 'Kortsluitverklikkers en afstandsbediende schakelaars op een paar sleutelstations per ring korten de uitval in van een à twee uur tot minuten.',
       film: 'eng.switchgear.automation',
       title: 'Distributieautomatisering',
       pre: [
@@ -432,6 +438,7 @@ export default {
     },
     {
       id: 'eng.switchgear.substation',
+      gist: 'Beveiliging hangt aan de stationsbatterij en een heel uitschakelcircuit; zijn die stil kapot, dan legt een fout een hele railsectie plat.',
       title: 'In het onderstation: rails, koppelingen en de batterij',
       pre: [
         {
@@ -504,6 +511,7 @@ export default {
     },
     {
       id: 'eng.switchgear.sf6',
+      gist: 'De F-gassenverordening stelt per spanning een datum voor nieuwe installaties zonder F-gas; wat er staat mag blijven, dus je beheert een gemengd bestand.',
       title: 'SF6 uitfaseren in een heel bestand',
       pre: [
         {
@@ -576,6 +584,7 @@ export default {
     },
     {
       id: 'eng.switchgear.protection',
+      gist: 'Een beveiliging bestaat uit meettransformatoren, relais en schakelaar; de instellingen zijn een engineeringproduct dat bij netwijzigingen opnieuw gecontroleerd moet worden.',
       film: 'eng.switchgear.protection',
       title: 'Beveiligingsrelais, stroom- en spanningstransformatoren',
       pre: [
@@ -648,6 +657,7 @@ export default {
     },
     {
       id: 'eng.switchgear.selectivity',
+      gist: 'Selectiviteit betekent dat alleen de beveiliging het dichtst bij de fout afschakelt, zodat zo min mogelijk klanten zonder stroom komen.',
       film: 'eng.switchgear.protection',
       figure: 'eng.switchgear.selectivity',
       title: 'Selectiviteit',
@@ -720,6 +730,7 @@ export default {
     },
     {
       id: 'eng.switchgear.shortcircuit',
+      gist: 'De maximale foutstroom bepaalt de waarden van installaties en kabels, de minimale aan het eind van de streng of de beveiliging nog afschakelt.',
       title: 'Kortsluitstroom berekenen',
       pre: [
         {
@@ -792,6 +803,7 @@ export default {
     },
     {
       id: 'eng.switchgear.studies',
+      gist: 'Zonneparken en andere opwekkers op MS-strengen kunnen verblinding, onterecht afschakelen en eilandbedrijf veroorzaken, dus doe de beveiligingsstudie opnieuw als een grote opwekker aansluit.',
       title: 'Beveiliging in een net vol zonneparken',
       pre: [
         {
@@ -864,6 +876,7 @@ export default {
     },
     {
       id: 'eng.switchgear.safety',
+      gist: 'Spanningsloos werken volgt de vijf veiligheidsregels altijd in volgorde; wie een stap overslaat omdat “hij echt uit is”, riskeert een ernstig ongeval.',
       film: 'eng.switchgear.fiverules',
       title: 'Veilig werken: de vijf veiligheidsregels en NEN 3140',
       pre: [
@@ -936,6 +949,7 @@ export default {
     },
     {
       id: 'eng.switchgear.earthing',
+      gist: 'Op MS toon je spanningsloosheid aan met een eerst gecontroleerde aanwijzer of spanningzoeker, en aard je met een garnituur dat het kortsluitvermogen aankan.',
       title: 'Spanningsloos aantonen en aarden op MS',
       pre: [
         {
@@ -1005,6 +1019,7 @@ export default {
     },
     {
       id: 'eng.switchgear.bei',
+      gist: 'Gevaarlijke schakelhandelingen vragen een aanwijzing; de IV draagt de werkplek schriftelijk over aan de WV, en pas na terugmelding mag er weer worden ingeschakeld.',
       title: 'Wie mag schakelen: aanwijzing, overdracht en BEI',
       pre: [
         {
@@ -1075,6 +1090,7 @@ export default {
     },
     {
       id: 'eng.switchgear.customer',
+      gist: 'Achter de eigendomsgrens is de klant verantwoordelijk, met een eigen IV en een hoofdbeveiliging die selectief is met de netbeheerder.',
       title: 'De eigen MS-installatie van de klant',
       pre: [
         {

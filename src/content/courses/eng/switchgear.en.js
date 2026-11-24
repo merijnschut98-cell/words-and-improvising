@@ -3,6 +3,7 @@ export default {
   lessons: [
     {
       id: 'eng.switchgear.devices',
+      gist: 'A circuit breaker can interrupt a short circuit, a load-break switch cannot, and a disconnector may only be operated without current.',
       film: 'eng.switchgear.devices',
       title: 'Breakers, switches, disconnectors and fuses',
       pre: [
@@ -75,6 +76,7 @@ export default {
     },
     {
       id: 'eng.switchgear.ratings',
+      gist: 'Every nameplate rating must be at least the load at that spot, and the fault level can grow after the installation is built.',
       title: 'Reading the nameplate: what switchgear can take',
       pre: [
         {
@@ -146,6 +148,7 @@ export default {
     },
     {
       id: 'eng.switchgear.interruption',
+      gist: 'A circuit breaker extinguishes the arc at current zero and must then insulate faster than the recovery voltage rises; breakers also wear out.',
       title: 'How a breaker breaks a current',
       pre: [
         {
@@ -218,6 +221,7 @@ export default {
     },
     {
       id: 'eng.switchgear.faultlevel',
+      gist: 'Fault levels can rise while the installation stays the same; recalculate after every nearby network change and compare with the nameplate.',
       title: 'When the fault level outgrows the switchgear',
       pre: [
         {
@@ -289,6 +293,7 @@ export default {
     },
     {
       id: 'eng.switchgear.installations',
+      gist: 'SF6 insulates excellently but is a very strong greenhouse gas, so new MV switchgear up to 24 kV may no longer use it from 2026.',
       film: 'eng.switchgear.devices',
       title: 'MV switchgear and ring main units',
       pre: [
@@ -361,6 +366,7 @@ export default {
     },
     {
       id: 'eng.switchgear.automation',
+      gist: 'Fault indicators and remote-controlled switches at a few key stations per ring cut the outage from one to two hours to minutes.',
       film: 'eng.switchgear.automation',
       title: 'Distribution automation',
       pre: [
@@ -432,6 +438,7 @@ export default {
     },
     {
       id: 'eng.switchgear.substation',
+      gist: 'Protection depends on the station battery and an intact trip circuit; if those have failed silently, a fault takes down a whole busbar section.',
       title: 'Inside the substation: busbars, couplers and the battery',
       pre: [
         {
@@ -504,6 +511,7 @@ export default {
     },
     {
       id: 'eng.switchgear.sf6',
+      gist: 'The F-gas regulation sets a date per voltage for new switchgear without F-gases; what is installed may stay, so you manage a mixed fleet.',
       title: 'Phasing out SF6 across a fleet',
       pre: [
         {
@@ -576,6 +584,7 @@ export default {
     },
     {
       id: 'eng.switchgear.protection',
+      gist: 'Protection is instrument transformers, a relay and a breaker; its settings are an engineering product that must be rechecked when the network changes.',
       film: 'eng.switchgear.protection',
       title: 'Protection relays, CTs and VTs',
       pre: [
@@ -648,6 +657,7 @@ export default {
     },
     {
       id: 'eng.switchgear.selectivity',
+      gist: 'Selectivity means only the protection closest to the fault trips, so as few customers as possible lose power.',
       film: 'eng.switchgear.protection',
       figure: 'eng.switchgear.selectivity',
       title: 'Selectivity',
@@ -720,6 +730,7 @@ export default {
     },
     {
       id: 'eng.switchgear.shortcircuit',
+      gist: 'The maximum fault current sets the ratings of switchgear and cables; the minimum, at the end of the feeder, checks that protection still trips.',
       title: 'Calculating short-circuit current',
       pre: [
         {
@@ -792,6 +803,7 @@ export default {
     },
     {
       id: 'eng.switchgear.studies',
+      gist: 'Solar parks and other generators on MV feeders can cause blinding, sympathetic tripping and islanding, so redo the protection study when a large generator connects.',
       title: 'Protection in a grid full of solar parks',
       pre: [
         {
@@ -864,6 +876,7 @@ export default {
     },
     {
       id: 'eng.switchgear.safety',
+      gist: 'De-energised work follows the five safety rules, always in order; whoever skips a step because it is “really off” risks a serious accident.',
       film: 'eng.switchgear.fiverules',
       title: 'Working safely: the five rules and NEN 3140',
       pre: [
@@ -936,6 +949,7 @@ export default {
     },
     {
       id: 'eng.switchgear.earthing',
+      gist: 'On MV you prove dead with a pre-checked indicator or voltage detector, and earth with a set rated for the fault level.',
       title: 'Proving dead and earthing on MV',
       pre: [
         {
@@ -1005,6 +1019,7 @@ export default {
     },
     {
       id: 'eng.switchgear.bei',
+      gist: 'Hazardous switching actions need an appointment; the IV hands the work site to the WV in writing, and re-energising only follows the WV’s handback.',
       title: 'Who may switch: appointments, handover and BEI',
       pre: [
         {
@@ -1075,6 +1090,7 @@ export default {
     },
     {
       id: 'eng.switchgear.customer',
+      gist: 'Beyond the ownership boundary the customer is responsible, with its own IV and a main protection that is selective with the grid operator’s.',
       title: 'The customer’s own MV installation',
       pre: [
         {
