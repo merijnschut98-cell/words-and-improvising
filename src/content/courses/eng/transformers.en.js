@@ -4,6 +4,7 @@ export default {
     // Topic: The transformer
     {
       id: 'eng.transformers.principle',
+      gist: 'A transformer converts voltage through its winding ratio; power stays almost the same, so a lower voltage carries proportionally more current.',
       figure: 'eng.transformers.load',
       film: 'eng.transformers.principle',
       title: 'How a transformer works',
@@ -79,6 +80,7 @@ export default {
     },
     {
       id: 'eng.transformers.station',
+      gist: 'A secondary substation has MV switchgear, a transformer and an LV rack; size it on the diversified evening peak, not the sum of main fuses.',
       title: 'Inside a secondary substation',
       pre: [
         {
@@ -150,6 +152,7 @@ export default {
     },
     {
       id: 'eng.transformers.losses',
+      gist: 'No-load losses run 8,760 hours a year, so total cost including loss capitalisation can justify a pricier, more efficient core.',
       title: 'Losses, Ecodesign and what a loss is worth',
       pre: [
         {
@@ -223,6 +226,7 @@ export default {
     },
     {
       id: 'eng.transformers.voltage',
+      gist: 'Voltage must stay within 230 V ±10% while it sags in winter and rises in summer; each remedy solves a different part.',
       title: 'Keeping the voltage in the band',
       pre: [
         {
@@ -298,6 +302,7 @@ export default {
     // Topic: Loading, ageing and condition
     {
       id: 'eng.transformers.ageing',
+      gist: 'Heat ages the paper: above a hotspot of 98 °C the ageing rate roughly doubles per 6 °C, so look at the whole load profile.',
       title: 'Loading, temperature and ageing',
       pre: [
         {
@@ -368,6 +373,7 @@ export default {
     },
     {
       id: 'eng.transformers.loading',
+      gist: 'Loading above nameplate is possible within IEC 60076-7 limits if you track temperature and loss of life; the cool night pays for the hot evening.',
       title: 'How far can you load a transformer?',
       pre: [
         {
@@ -438,6 +444,7 @@ export default {
     },
     {
       id: 'eng.transformers.dga',
+      gist: 'Key gases point to certain kinds of fault, but one value says little: look at levels, ratios and rate of change.',
       title: 'Reading the oil: DGA and paper tests',
       pre: [
         {
@@ -512,6 +519,7 @@ export default {
     },
     {
       id: 'eng.transformers.health',
+      gist: 'A health index says which transformers are likely to fail first, but without calibration it is an opinion with decimals.',
       title: 'A fleet view: health index and replacement choices',
       pre: [
         {
@@ -586,6 +594,7 @@ export default {
     // Topic: Cables and cable faults
     {
       id: 'eng.transformers.cables',
+      gist: 'In the Netherlands almost all MV and LV power runs underground, in MV mostly as GPLK or XLPE, and hand-made joints are the weak point.',
       title: 'MV and LV cables',
       pre: [
         {
@@ -657,6 +666,7 @@ export default {
     },
     {
       id: 'eng.transformers.faults',
+      gist: 'After a cable fault you first restore power to the rest by isolating the faulty section; only then do you pinpoint the exact spot.',
       title: 'Cable faults and repair',
       pre: [
         {
@@ -728,6 +738,7 @@ export default {
     },
     {
       id: 'eng.transformers.diagnostics',
+      gist: 'Partial discharge often reveals weak spots months to years before breakdown; PD finds individual weak spots, tan delta judges the whole cable.',
       title: 'Testing cables before they fail',
       pre: [
         {
@@ -801,6 +812,7 @@ export default {
     },
     {
       id: 'eng.transformers.rating',
+      gist: 'A cable’s current rating is not a property of the cable alone: it depends on depth, soil, neighbouring cables and the load pattern.',
       title: 'How much current a cable can carry',
       pre: [
         {
@@ -877,6 +889,7 @@ export default {
     // Topic: Connections, standards and supply
     {
       id: 'eng.transformers.connections',
+      gist: 'A new connection takes five steps, and lead time is mostly waiting, not the work itself, often just one or two days on site.',
       title: 'What a new connection takes',
       pre: [
         {
@@ -948,6 +961,7 @@ export default {
     },
     {
       id: 'eng.transformers.standard',
+      gist: 'Grid operators standardise stations, connections and procurement to do more jobs with less engineering; the price is sometimes oversizing.',
       title: 'Standardisation',
       pre: [
         {
@@ -1018,6 +1032,7 @@ export default {
     },
     {
       id: 'eng.transformers.procurement',
+      gist: 'Grid operators like Enexis weigh more than price when buying transformers, including losses, supply chain and total cost of ownership, and spread risk across suppliers.',
       title: 'Buying transformers: specification, tender and delivery',
       pre: [
         {
@@ -1090,6 +1105,7 @@ export default {
     },
     {
       id: 'eng.transformers.wave',
+      gist: 'The replacement wave and the expansion arrive together; spread work by risk rather than age alone, and bundle where one job solves both.',
       title: 'The replacement wave and the build-out',
       pre: [
         {

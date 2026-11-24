@@ -3,6 +3,7 @@ export default {
   lessons: [
     {
       id: 'eng.safety.risk',
+      gist: 'Tackle risk at the source: elimination, substitution and engineering controls come before procedures and PPE, and a risk score ranks but does not prove safety.',
       title: 'Hazard, risk and the hierarchy of controls',
       pre: [
         {
@@ -80,6 +81,7 @@ export default {
     },
     {
       id: 'eng.safety.lmra',
+      gist: 'Just before starting, check on site what has changed since the planning; if an answer is no or unclear, you do not start.',
       film: 'eng.safety.permit',
       title: 'The LMRA and stopping work',
       pre: [
@@ -149,6 +151,7 @@ export default {
     },
     {
       id: 'eng.safety.bowtie',
+      gist: 'A good barrier is, among other things, independent, testable and owned; a bowtie records, per cause and consequence, which barriers stand in the way.',
       title: 'Barriers, the bow-tie and the Swiss cheese model',
       pre: [
         {
@@ -221,6 +224,7 @@ export default {
     },
     {
       id: 'eng.safety.change',
+      gist: 'Every improvement changes the risks, so assess a change before it goes live; temporary changes are the most dangerous.',
       title: 'Lean changes and safety: management of change',
       pre: [
         {
@@ -290,6 +294,7 @@ export default {
     },
     {
       id: 'eng.safety.loto',
+      gist: 'Stopping is not isolating: lock out every energy source with your own lock, release stored energy and verify it is all de-energised before you start.',
       film: 'eng.safety.loto',
       title: 'Lockout-tagout: isolating energy',
       pre: [
@@ -360,6 +365,7 @@ export default {
     },
     {
       id: 'eng.safety.nen3140',
+      gist: 'You cannot see voltage: only someone with a written appointment works on an installation, and as a consultant you are a layperson who touches nothing.',
       film: 'eng.switchgear.fiverules',
       title: 'Electrical work: roles and why you don’t touch',
       pre: [
@@ -430,6 +436,7 @@ export default {
     },
     {
       id: 'eng.safety.permit',
+      gist: 'A work permit records the plan for high-risk, non-routine work; it goes wrong at handover and close-out, and it does not replace the LMRA.',
       film: 'eng.safety.permit',
       title: 'Permit to work',
       pre: [
@@ -502,6 +509,7 @@ export default {
     },
     {
       id: 'eng.safety.arcflash',
+      gist: 'In IEEE 1584, arc flash energy is roughly proportional to arc duration, so faster protection helps; de-energised work comes before arc-rated clothing (PPE).',
       title: 'Arc flash and working near live parts in the station',
       pre: [
         {
@@ -574,6 +582,7 @@ export default {
     },
     {
       id: 'eng.safety.guarding',
+      gist: 'Use a fixed guard where nobody needs access and an interlocked guard where people regularly do; defeating a safeguard is not only a discipline issue.',
       title: 'Guards and safety devices on machines',
       pre: [
         {
@@ -642,6 +651,7 @@ export default {
     },
     {
       id: 'eng.safety.machinerisk',
+      gist: 'Assess a machine per life phase and per task, and place a safeguard on a measured stopping time, because that time is not fixed.',
       title: 'Risk assessment for machines: ISO 12100 and stopping times',
       pre: [
         {
@@ -712,6 +722,7 @@ export default {
     },
     {
       id: 'eng.safety.safetyfunction',
+      gist: 'The required PL is not enough: the achieved PL follows from category, MTTFd, diagnostic coverage and measures against common cause failure, and validation proves it.',
       title: 'Safety functions that hold: categories, PL and validation',
       pre: [
         {
@@ -783,6 +794,7 @@ export default {
     },
     {
       id: 'eng.safety.modify',
+      gist: 'Under the Machinery Regulation, whoever substantially modifies a machine or couples machines into an assembly can become the manufacturer, with all the duties that brings.',
       title: 'Old machines, new lines and the 2027 Machinery Regulation',
       pre: [
         {
@@ -853,6 +865,7 @@ export default {
     },
     {
       id: 'eng.safety.incidents',
+      gist: 'Report near misses and respond without blame, because punishing reports stops them; look at serious injuries separately, as minor-injury figures say little about them.',
       title: 'Near misses and learning without blame',
       pre: [
         {
@@ -922,6 +935,7 @@ export default {
     },
     {
       id: 'eng.safety.investigate',
+      gist: 'Don’t ask who is to blame but why it made sense to those involved; “human error” is where an investigation starts, not where it ends.',
       title: 'Investigating an incident: beyond “human error”',
       pre: [
         {
@@ -990,6 +1004,7 @@ export default {
     },
     {
       id: 'eng.safety.indicators',
+      gist: 'LTIF looks backward and jumps around at small numbers; use leading indicators tied to serious risks, and do not tie a bonus to the LTIF.',
       title: 'Safety indicators: LTIF, leading indicators and Campbell’s law',
       pre: [
         {
@@ -1064,6 +1079,7 @@ export default {
     },
     {
       id: 'eng.safety.culture',
+      gist: 'Safety-II studies how normal work usually succeeds, alongside Safety-I; learn from the gap between the procedure and how the job really goes.',
       title: 'Safety culture: Safety-II, work as done and the culture ladder',
       pre: [
         {

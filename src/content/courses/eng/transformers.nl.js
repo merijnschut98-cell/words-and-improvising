@@ -4,6 +4,7 @@ export default {
     // Onderwerp: De transformator
     {
       id: 'eng.transformers.principle',
+      gist: 'Een transformator zet spanning om via de wikkelverhouding; het vermogen blijft bijna gelijk, dus bij lagere spanning loopt evenredig meer stroom.',
       figure: 'eng.transformers.load',
       film: 'eng.transformers.principle',
       title: 'Hoe een transformator werkt',
@@ -79,6 +80,7 @@ export default {
     },
     {
       id: 'eng.transformers.station',
+      gist: 'Een netstation bestaat uit MS-installatie, transformator en LS-rek, en je dimensioneert op de avondpiek met gelijktijdigheid, niet op de som van alle hoofdzekeringen.',
       title: 'Binnen in een netstation',
       pre: [
         {
@@ -150,6 +152,7 @@ export default {
     },
     {
       id: 'eng.transformers.losses',
+      gist: 'Nullastverliezen lopen 8.760 uur per jaar, dus de totale kosten van een transformator, met verlieskapitalisatie, kunnen een duurdere, zuinigere kern rechtvaardigen.',
       title: 'Verliezen, Ecodesign en wat een verlies waard is',
       pre: [
         {
@@ -223,6 +226,7 @@ export default {
     },
     {
       id: 'eng.transformers.voltage',
+      gist: 'De spanning moet binnen 230 V ±10% blijven terwijl hij ’s winters zakt en ’s zomers stijgt; elk middel lost een ander deel op.',
       title: 'De spanning binnen de band houden',
       pre: [
         {
@@ -298,6 +302,7 @@ export default {
     // Onderwerp: Belasting, veroudering en conditie
     {
       id: 'eng.transformers.ageing',
+      gist: 'Warmte laat het papier verouderen: boven een hotspot van 98 °C verdubbelt het tempo ruwweg per 6 °C, dus kijk naar het hele belastingprofiel.',
       title: 'Belasting, temperatuur en veroudering',
       pre: [
         {
@@ -368,6 +373,7 @@ export default {
     },
     {
       id: 'eng.transformers.loading',
+      gist: 'Boven het typeplaatvermogen belasten kan binnen de grenzen van IEC 60076-7, als je temperatuur en levensduurverbruik bijhoudt; de koele nacht betaalt de hete avond.',
       title: 'Hoe ver kun je een transformator belasten?',
       pre: [
         {
@@ -438,6 +444,7 @@ export default {
     },
     {
       id: 'eng.transformers.dga',
+      gist: 'Sleutelgassen wijzen op bepaalde soorten fout, maar één waarde zegt weinig: kijk naar niveaus, verhoudingen en toenamesnelheid.',
       title: 'De olie lezen: DGA en papiertests',
       pre: [
         {
@@ -512,6 +519,7 @@ export default {
     },
     {
       id: 'eng.transformers.health',
+      gist: 'Een health index zegt welke transformatoren waarschijnlijk het eerst falen, maar zonder kalibratie is hij een mening met decimalen.',
       title: 'Het hele bestand: health index en vervangingskeuzes',
       pre: [
         {
@@ -586,6 +594,7 @@ export default {
     // Onderwerp: Kabels en kabelstoringen
     {
       id: 'eng.transformers.cables',
+      gist: 'In Nederland loopt bijna alle MS- en LS-stroom ondergronds, bij MS vooral door GPLK of XLPE, en de handgemaakte moffen zijn het zwakke punt.',
       title: 'MS- en LS-kabels',
       pre: [
         {
@@ -657,6 +666,7 @@ export default {
     },
     {
       id: 'eng.transformers.faults',
+      gist: 'Bij een kabelfout herstel je eerst de stroom voor de rest door het defecte stuk vrij te schakelen; pas daarna zoek je de precieze plek.',
       title: 'Kabelstoringen en herstel',
       pre: [
         {
@@ -728,6 +738,7 @@ export default {
     },
     {
       id: 'eng.transformers.diagnostics',
+      gist: 'Partiële ontlading verraadt zwakke plekken vaak maanden tot jaren voor een doorslag; PD vindt losse zwakke plekken, tan delta beoordeelt de hele kabel.',
       title: 'Kabels testen voordat ze falen',
       pre: [
         {
@@ -801,6 +812,7 @@ export default {
     },
     {
       id: 'eng.transformers.rating',
+      gist: 'De belastbaarheid van een kabel is geen eigenschap van de kabel alleen: ze hangt af van diepte, grond, naburige kabels en belastingpatroon.',
       title: 'Hoeveel stroom een kabel aankan',
       pre: [
         {
@@ -877,6 +889,7 @@ export default {
     // Onderwerp: Aansluitingen, standaarden en levering
     {
       id: 'eng.transformers.connections',
+      gist: 'Een nieuwe aansluiting kent vijf stappen en de doorlooptijd is vooral wachten, niet het werk zelf, vaak maar één of twee dagen op locatie.',
       title: 'Wat een nieuwe aansluiting vraagt',
       pre: [
         {
@@ -948,6 +961,7 @@ export default {
     },
     {
       id: 'eng.transformers.standard',
+      gist: 'Netbeheerders standaardiseren stations, aansluitingen en inkoop om met minder engineering meer klussen te doen; de prijs is soms overdimensionering.',
       title: 'Standaardisatie',
       pre: [
         {
@@ -1018,6 +1032,7 @@ export default {
     },
     {
       id: 'eng.transformers.procurement',
+      gist: 'Netbeheerders als Enexis wegen bij transformatorinkoop meer dan prijs, onder meer verliezen, leveringsketen en total cost of ownership, en spreiden leverrisico over meerdere leveranciers.',
       title: 'Transformatoren inkopen: specificatie, aanbesteding en levering',
       pre: [
         {
@@ -1090,6 +1105,7 @@ export default {
     },
     {
       id: 'eng.transformers.wave',
+      gist: 'Vervangingsgolf en uitbreiding komen tegelijk; spreid het werk op risico in plaats van alleen leeftijd, en bundel waar één klus beide oplost.',
       title: 'De vervangingsgolf en de uitbreiding',
       pre: [
         {

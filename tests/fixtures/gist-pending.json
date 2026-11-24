@@ -1,9 +1,5 @@
 [
 "eng.machining",
 "eng.moulding",
-"eng.reliability",
-"eng.safety",
-"eng.spc",
-"eng.switchgear",
-"eng.transformers"
+"eng.reliability"
 ]

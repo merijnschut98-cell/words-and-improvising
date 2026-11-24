@@ -3,6 +3,7 @@ export default {
   lessons: [
     {
       id: 'eng.spc.measerror',
+      gist: 'Elke meting bevat meetfout, in ligging en in breedte, en omdat varianties optellen laat een ruizig meetmiddel het proces breder lijken dan het is.',
       title: 'Meetfout: wat elke meting meedraagt',
       pre: [
         {
@@ -74,6 +75,7 @@ export default {
     },
     {
       id: 'eng.spc.msa',
+      gist: 'Een gauge R&R geeft twee uitkomsten: % van de tolerantie zegt of je goed van fout scheidt, % van de studievariatie of je onderdelen onderscheidt.',
       title: 'Meetsysteemanalyse voorbij het kopgetal',
       pre: [
         {
@@ -143,6 +145,7 @@ export default {
     },
     {
       id: 'eng.spc.attribute',
+      gist: 'Ook visuele goed-fout-controles hebben een meetstudie nodig: check of inspecteurs overeenstemmen met zichzelf, elkaar en de expert, en tel ontsnappingen en onterechte afkeur apart.',
       title: 'Visuele inspectie en attributieve overeenstemming',
       pre: [
         {
@@ -216,6 +219,7 @@ export default {
     },
     {
       id: 'eng.spc.uncertainty',
+      gist: 'Een type-1-studie toetst het meetmiddel alleen; bij destructief meten bepaalt de keuze van proefstukken of de studie iets zegt, en Wheeler bekritiseert %GRR.',
       title: 'Type-1-studie, destructief meten en de discussie over %GRR',
       pre: [
         {
@@ -291,6 +295,7 @@ export default {
     },
     {
       id: 'eng.spc.limits',
+      gist: 'Regelgrenzen zijn de stem van het proces, berekend uit de kortetermijnvariatie, niet uit alle data en niet uit de spec.',
       title: 'Waar regelgrenzen vandaan komen',
       pre: [
         {
@@ -363,6 +368,7 @@ export default {
     },
     {
       id: 'eng.spc.charts',
+      gist: 'Kies de regelkaart naar de soort data, meetwaarde of telling, en maak subgroepen van stuks vlak na elkaar uit één stroom.',
       film: 'eng.quality.spc',
       title: 'De juiste regelkaart kiezen',
       pre: [
@@ -434,6 +440,7 @@ export default {
     },
     {
       id: 'eng.spc.smallshift',
+      gist: 'Een Shewhart-kaart is traag bij kleine verschuivingen; CUSUM en EWMA hebben geheugen en vangen ze eerder, maar reageren trager op grote sprongen.',
       title: 'Kleine verschuivingen: CUSUM en EWMA',
       pre: [
         {
@@ -507,6 +514,7 @@ export default {
     },
     {
       id: 'eng.spc.shortrun',
+      gist: 'Bij kleine series volg je het proces, niet het artikel, bijvoorbeeld met een DNOM-kaart; bij samenhangende automatische data geven gewone grenzen loos alarm.',
       title: 'Kleine series, veel artikelen en automatische data',
       pre: [
         {
@@ -580,6 +588,7 @@ export default {
     },
     {
       id: 'eng.spc.capread',
+      gist: 'Nul buiten spec in een kleine steekproef bewijst weinig; lees het capability-rapport met de verwachte ppm, de twee krommes en het histogram erbij.',
       title: 'Een capability-rapport lezen',
       pre: [
         {
@@ -650,6 +659,7 @@ export default {
     },
     {
       id: 'eng.spc.ppk',
+      gist: 'Cpk gebruikt de spreiding binnen subgroepen, Ppk de totale; een groot gat is de bevinding, en geschiktheid zegt alleen iets bij een stabiel proces.',
       title: 'Cpk tegen Ppk, en eerst stabiel dan capabel',
       pre: [
         {
@@ -721,6 +731,7 @@ export default {
     },
     {
       id: 'eng.spc.nonnormal',
+      gist: 'Capability-formules nemen een normale verdeling aan; bij scheve data zoals slag kijk je eerst naar de kansplot en kies je een passende methode.',
       title: 'Niet-normale data en eenzijdige specs',
       pre: [
         {
@@ -793,6 +804,7 @@ export default {
     },
     {
       id: 'eng.spc.capspec',
+      gist: 'Een capability-eis noemt de kenmerken, de index, de steekproef en periode en het gevolg bij niet halen; een sigmalabel verbergt een afspraak.',
       title: 'Capability-eisen: wat vraag je en wat geloof je',
       pre: [
         {
@@ -866,6 +878,7 @@ export default {
     },
     {
       id: 'eng.spc.floor',
+      gist: 'Bij een signaal is alles sinds de laatste goede controle verdacht, dus weeg de meetfrequentie af tegen het aantal stuks dat risico loopt.',
       title: 'SPC aan de machine: wat, wie en hoe vaak',
       pre: [
         {
@@ -935,6 +948,7 @@ export default {
     },
     {
       id: 'eng.spc.tampering',
+      gist: 'Bijstellen op toevallige variatie maakt een stabiel proces slechter; stel alleen bij op een signaal, plan bekend verloop in en leg een reactieplan vast.',
       film: 'eng.quality.spc',
       title: 'Overbijsturen en reactieplannen',
       pre: [
@@ -1006,6 +1020,7 @@ export default {
     },
     {
       id: 'eng.spc.patterns',
+      gist: 'Patronen op de kaart, zoals verschuiving, trend en cyclus, geven een hint naar de oorzaak; splits de data en houd een proceslogboek bij.',
       title: 'Patronen lezen en de oorzaak vinden',
       pre: [
         {
@@ -1077,6 +1092,7 @@ export default {
     },
     {
       id: 'eng.spc.programme',
+      gist: 'Een kaart waar niemand op reageert kost tijd en leert mensen kaarten te negeren; kies kaarten bij hoge risico’s en meet de reactiegraad.',
       title: 'Een SPC-programma leiden',
       pre: [
         {

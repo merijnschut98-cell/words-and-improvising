@@ -251,3 +251,7 @@ Outcome: accepted (merged as delivered), sent back N times, redone.
 | 2026-11-22 | Review of v18 P0 (pm.plan pilot pass) | opus | ~95 | ~1.5-2 h active (plus usage-limit pause) | - | approved (af0a3ab); 17 nobody-options replaced, 1 untaught key, 8 best whys, ~25 length tells; key-longest 2.7 % nl / 8 % en; screen test made kind-aware |
 | 2026-11-22 | v18 T3: AI extra practice tests | sonnet | ~67 | 12 min | 271k | done (c5fc1a8); lint rules moved to src/core/questionlint.js; opus review dispatched |
 | 2026-11-22 | Review of kernzin batch 6 (eng.maintenance … eng.quality) | sonnet | ~55 | ~35 min | - | done (49e7f83); 32 lessons changed (wider claims, hedges, units, full lists) |
+| 2026-11-24 | Kernzin batch 8: eng.safety, spc, switchgear, transformers (64 lessons) | sonnet | 37 | 7 min | 217k | done (7565318); worktree started stale, reset to head; review dispatched |
+| 2026-11-24 | Review of kernzin batch 8 (eng.safety … eng.transformers) | sonnet | 26 | 5 min | 222k | approved with fixes (3fd8d03); 21 lessons changed (wider claims, hedges, missing limits, a false DGA claim, grammar) |
+| 2026-11-24 | Kernzin batch 7: eng.machining, moulding, reliability (64 lessons) | sonnet | 57 | 6.5 min | 214k | partly committed (3e16094 reliability); machining and moulding commits refused by the permission check, waiting on Merijn |
+| 2026-11-24 | v18 T3 rebuild: AI extra practice tests (first build lost, never pushed) | sonnet | 67 | 25 min | 252k | done (2be0867); 39 new tests; opus review dispatched with seven rulings |
