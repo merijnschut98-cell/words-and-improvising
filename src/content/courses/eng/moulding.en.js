@@ -3,6 +3,7 @@ export default {
   lessons: [
     {
       id: 'eng.moulding.machine',
+      gist: 'An injection moulding machine has an injection unit that melts and a clamp unit that holds the mould shut; too little clamp force gives flash.',
       film: 'eng.moulding.machine',
       figure: 'eng.moulding.screw',
       title: 'The moulding machine',
@@ -75,6 +76,7 @@ export default {
     },
     {
       id: 'eng.moulding.screw',
+      gist: 'The screw melts mainly through friction and meters one shot; too long a residence time in the barrel degrades heat-sensitive plastics.',
       film: 'eng.moulding.machine',
       figure: 'eng.moulding.screw',
       title: 'The screw: melting and dosing',
@@ -145,6 +147,7 @@ export default {
     },
     {
       id: 'eng.moulding.clamp',
+      gist: 'A press must pass four checks: clamp force, shot volume, mould fit and opening stroke; a bigger press is not safer.',
       film: 'eng.moulding.machine',
       figure: 'eng.moulding.screw',
       title: 'Choosing the right press',
@@ -218,6 +221,7 @@ export default {
     },
     {
       id: 'eng.moulding.electric',
+      gist: 'All-electric presses use less energy per kg than hydraulic ones, but studies differ; measure kWh per kg on your own parts and weigh price too.',
       film: 'eng.moulding.machine',
       figure: 'eng.moulding.screw',
       title: 'Hydraulic, electric and special presses',
@@ -292,6 +296,7 @@ export default {
     },
     {
       id: 'eng.moulding.cycle',
+      gist: 'Cooling is often 50 to 80% of the cycle and grows with the square of wall thickness; cavities and cycle time set the hourly output.',
       film: 'eng.moulding.cycle',
       figure: 'eng.moulding.cycle',
       title: 'Cycle time and output',
@@ -364,6 +369,7 @@ export default {
     },
     {
       id: 'eng.moulding.cooling',
+      gist: 'Besides wall thickness, mould temperature and turbulent water flow set the cooling; find the true minimum by lowering cooling time stepwise and measuring.',
       film: 'eng.moulding.cooling',
       title: 'Cooling: what the setter can change',
       pre: [
@@ -433,6 +439,7 @@ export default {
     },
     {
       id: 'eng.moulding.cavities',
+      gist: 'More cavities raise output but need a costlier mould and larger press; compare on cost per part and watch the fill balance.',
       film: 'eng.moulding.cavities',
       title: 'More cavities or a faster cycle',
       pre: [
@@ -503,6 +510,7 @@ export default {
     },
     {
       id: 'eng.moulding.partcost',
+      gist: 'Part cost is material, machine, mould and other costs; for small parts the machine usually dominates, for large heavy ones the material.',
       film: 'eng.moulding.partcost',
       title: 'What a moulded part costs',
       pre: [
@@ -573,6 +581,7 @@ export default {
     },
     {
       id: 'eng.moulding.materials',
+      gist: 'A mould is made for the shrinkage of one plastic; hygroscopic types such as PA and PC must be dried first, and regrind weakens plastic.',
       film: 'eng.moulding.materials',
       figure: 'eng.moulding.dryer',
       title: 'Plastics, drying and regrind',
@@ -645,6 +654,7 @@ export default {
     },
     {
       id: 'eng.moulding.polymers',
+      gist: 'Amorphous plastics shrink little and evenly; semi-crystalline ones shrink more, depending on mould temperature, so a material change needs a trial.',
       film: 'eng.moulding.materials',
       figure: 'eng.moulding.dryer',
       title: 'Amorphous and semi-crystalline plastics',
@@ -715,6 +725,7 @@ export default {
     },
     {
       id: 'eng.moulding.drying',
+      gist: 'Too much residual moisture (typically PC at most 0.02%) makes PC, PET and PBT brittle without showing; measure the moisture and log the dew point.',
       film: 'eng.moulding.materials',
       figure: 'eng.moulding.dryer',
       title: 'Drying in detail',
@@ -789,6 +800,7 @@ export default {
     },
     {
       id: 'eng.moulding.fillers',
+      gist: 'Glass fibre stiffens plastic but wears the equipment and causes warpage through fibre orientation; compare materials on price per part, not per kilo.',
       film: 'eng.moulding.materials',
       figure: 'eng.moulding.dryer',
       title: 'Glass fibre, fillers and recyclate',
@@ -862,6 +874,7 @@ export default {
     },
     {
       id: 'eng.moulding.defects',
+      gist: 'Each defect points to a few causes, and warpage often shows only hours later; first ask which cavity, where, and since when.',
       film: 'eng.moulding.defects',
       figure: 'eng.moulding.part',
       title: 'Defects and their causes',
@@ -934,6 +947,7 @@ export default {
     },
     {
       id: 'eng.moulding.diagnose',
+      gist: 'Find the cause with four questions: which cavity, where on the part, every shot or occasionally, since when; then change one thing at a time.',
       film: 'eng.moulding.defects',
       figure: 'eng.moulding.part',
       title: 'Finding the cause of a defect',
@@ -1004,6 +1018,7 @@ export default {
     },
     {
       id: 'eng.moulding.warpage',
+      gist: 'Warpage is uneven shrinkage from thickness, temperature difference and fibre orientation; the process fixes it only partly, a steel change lasts but costs.',
       film: 'eng.moulding.defects',
       figure: 'eng.moulding.part',
       title: 'Warpage and dimensional drift',
@@ -1075,6 +1090,7 @@ export default {
     },
     {
       id: 'eng.moulding.defectdata',
+      gist: 'Solving a defect for good needs a root cause proven by data, a known process window and monitoring; a DOE and cavity pressure sensor help.',
       film: 'eng.moulding.defects',
       figure: 'eng.moulding.part',
       title: 'Solving defects for good',
@@ -1149,6 +1165,7 @@ export default {
     },
     {
       id: 'eng.moulding.setup',
+      gist: 'Five groups of settings shape the part: temperatures, injection speed, switchover point, hold pressure and time, cooling time; they interact, so the sheet stays fixed.',
       film: 'eng.moulding.setting',
       figure: 'eng.moulding.window',
       title: 'The five settings',
@@ -1220,6 +1237,7 @@ export default {
     },
     {
       id: 'eng.moulding.process',
+      gist: 'The process window is the range where every part is good; set up in its middle and find what has changed before you start tweaking.',
       film: 'eng.moulding.setting',
       figure: 'eng.moulding.window',
       title: 'The process window',
@@ -1291,6 +1309,7 @@ export default {
     },
     {
       id: 'eng.moulding.scientific',
+      gist: 'Scientific moulding backs settings with studies; the three core ones: viscosity curve for speed, pressure-drop study for pressure reserve, gate-freeze study for hold time.',
       film: 'eng.moulding.setting',
       figure: 'eng.moulding.window',
       title: 'Scientific moulding: three studies',
@@ -1364,6 +1383,7 @@ export default {
     },
     {
       id: 'eng.moulding.validation',
+      gist: 'Validation proves with recorded evidence that a process keeps making good parts: IQ, OQ and PQ first, then monitoring and revalidation after changes.',
       film: 'eng.moulding.setting',
       figure: 'eng.moulding.window',
       title: 'Validating and monitoring a process',
@@ -1436,6 +1456,7 @@ export default {
     },
     {
       id: 'eng.moulding.tooling',
+      gist: 'A mould is a big investment: plan preventive maintenance by the shot counter, usually every 50,000 to 100,000 shots, and shorten changes with SMED.',
       film: 'eng.moulding.moulds',
       figure: 'eng.moulding.mould',
       title: 'Moulds, changes and maintenance',
@@ -1508,6 +1529,7 @@ export default {
     },
     {
       id: 'eng.moulding.mouldparts',
+      gist: 'The plastic enters the cavity via sprue, runners and gate; every wall in the opening direction needs draft and an undercut usually costs a slide.',
       film: 'eng.moulding.moulds',
       figure: 'eng.moulding.mould',
       title: 'Inside a mould',
@@ -1579,6 +1601,7 @@ export default {
     },
     {
       id: 'eng.moulding.mouldcare',
+      gist: 'Turn the shot counter into a maintenance calendar; read the mould log for repeat faults, which may be design problems; shorten changes with SMED.',
       film: 'eng.moulding.moulds',
       figure: 'eng.moulding.mould',
       title: 'Planning mould maintenance and changes',
@@ -1651,6 +1674,7 @@ export default {
     },
     {
       id: 'eng.moulding.newmould',
+      gist: 'A new mould usually takes 10 to 16 weeks to the first trial; costly mistakes arise early, so review the design (DFM) first.',
       film: 'eng.moulding.moulds',
       figure: 'eng.moulding.mould',
       title: 'A new mould: from design to release',

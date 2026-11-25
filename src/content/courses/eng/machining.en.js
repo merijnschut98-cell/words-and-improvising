@@ -3,6 +3,7 @@ export default {
   lessons: [
     {
       id: 'eng.machining.processes',
+      gist: 'Turning makes round parts, milling flats and slots, drilling holes; grinding reaches ±0.005 mm or better, but is slow and only used where needed.',
       film: 'eng.machining.overview',
       title: 'Turning, milling, drilling, grinding',
       pre: [
@@ -74,6 +75,7 @@ export default {
     },
     {
       id: 'eng.machining.cutting',
+      gist: 'Cutting speed drives most of the heat and tool wear, so engineers raise feed and depth of cut first and cutting speed last.',
       film: 'eng.machining.turning',
       figure: 'eng.machining.lathe',
       title: 'Cutting speed, feed and depth of cut',
@@ -147,6 +149,7 @@ export default {
     },
     {
       id: 'eng.machining.turnfinish',
+      gist: 'Theoretical roughness follows feed² over nose radius; overhang beyond about 3 × D needs a tailstock, beyond about 6 × D also a steady rest.',
       film: 'eng.machining.turning',
       title: 'Finish turning: roughness, chips and slender parts',
       pre: [
@@ -219,6 +222,7 @@ export default {
     },
     {
       id: 'eng.machining.turncell',
+      gist: 'A turn-mill centre makes a part complete in one machine and beats two machines when second-setup scrap, lead time or unmanned hours matter.',
       film: 'eng.machining.turning',
       title: 'Turn-mill centres: everything in one setup',
       pre: [
@@ -292,6 +296,7 @@ export default {
     },
     {
       id: 'eng.machining.mill',
+      gist: 'A machining centre changes its own tools, and a round cutter leaves an inside corner with at least the radius of the cutter.',
       film: 'eng.machining.milling',
       figure: 'eng.machining.mill',
       title: 'Milling: the machining centre',
@@ -362,6 +367,7 @@ export default {
     },
     {
       id: 'eng.machining.millfeeds',
+      gist: 'In milling, think in cutting speed and feed per tooth, not S and F: raise the speed and leave F alone, and the cutter rubs.',
       film: 'eng.machining.milling',
       figure: 'eng.machining.mill',
       title: 'Cutting data in milling',
@@ -432,6 +438,7 @@ export default {
     },
     {
       id: 'eng.machining.millstrategy',
+      gist: 'Climb milling is standard on modern CNC machines; at small width of cut, correct feed per tooth for chip thinning; trochoidal milling often removes more.',
       film: 'eng.machining.milling',
       figure: 'eng.machining.mill',
       title: 'Milling strategy: climb, chip thinning, trochoidal',
@@ -503,6 +510,7 @@ export default {
     },
     {
       id: 'eng.machining.fiveaxis',
+      gist: 'A five-axis machine saves setups; most suppliers use 3+2, and simultaneous motion is needed for free-form shapes such as impellers and turbine blades.',
       film: 'eng.machining.milling',
       figure: 'eng.machining.fiveaxis',
       title: 'Five-axis milling: 3+2 or simultaneous',
@@ -573,6 +581,7 @@ export default {
     },
     {
       id: 'eng.machining.drill',
+      gist: 'A twist drill makes cheap but imprecise holes, a few hundredths oversize; read the drawing for what kind of hole is wanted.',
       film: 'eng.machining.drilling',
       figure: 'eng.machining.drill',
       title: 'Drilling: the basics',
@@ -644,6 +653,7 @@ export default {
     },
     {
       id: 'eng.machining.holes',
+      gist: 'A fitted hole gets an ISO 286 code such as H7 (at Ø10: 0 to +0.015 mm); drill slightly undersize, then ream or bore.',
       film: 'eng.machining.drilling',
       figure: 'eng.machining.drill',
       title: 'Holes to size: reaming, tapping, boring',
@@ -715,6 +725,7 @@ export default {
     },
     {
       id: 'eng.machining.deephole',
+      gist: 'Beyond about 3 to 5 × D, deep drilling is about chip evacuation; among others, peck drilling, through-spindle coolant and a gun drill solve it.',
       film: 'eng.machining.drilling',
       figure: 'eng.machining.drill',
       title: 'Deep-hole drilling: getting the chips out',
@@ -786,6 +797,7 @@ export default {
     },
     {
       id: 'eng.machining.holequality',
+      gist: 'A hole of the right size can sit in the wrong place; position is a diameter, so check whether the CMM reports diameter or radius.',
       film: 'eng.machining.drilling',
       figure: 'eng.machining.drill',
       title: 'Hole quality: position and perpendicularity',
@@ -857,6 +869,7 @@ export default {
     },
     {
       id: 'eng.machining.cnc',
+      gist: 'CNC runs a G-code program; most crashes and rejected first parts come from wrong offsets, so measure the first part fully.',
       film: 'eng.machining.cnc',
       figure: 'eng.machining.gcode',
       title: 'CNC basics',
@@ -929,6 +942,7 @@ export default {
     },
     {
       id: 'eng.machining.gcode',
+      gist: 'Read G-code line by line, asking where the tool is and where it goes next; watch for modal codes, G90 versus G91, and rapid moves.',
       film: 'eng.machining.gcode',
       figure: 'eng.machining.gcode',
       title: 'Reading a G-code program',
@@ -999,6 +1013,7 @@ export default {
     },
     {
       id: 'eng.machining.offsets',
+      gist: 'The program describes the part, the offsets describe the tool; crashes usually come from a table that is wrong, not from the program.',
       film: 'eng.machining.offsets',
       figure: 'eng.machining.gcode',
       title: 'Offsets and compensation: why crashes happen',
@@ -1070,6 +1085,7 @@ export default {
     },
     {
       id: 'eng.machining.cam',
+      gist: 'CAM makes the toolpath and a postprocessor turns it into G-code per machine; simulation catches collisions, but is only as good as its models.',
       film: 'eng.machining.cam',
       figure: 'eng.machining.gcode',
       title: 'CAM, simulation and prove-out',
@@ -1142,6 +1158,7 @@ export default {
     },
     {
       id: 'eng.machining.toolbasics',
+      gist: 'A cutting tool must stay hard when hot: carbide cuts about three to four times faster than HSS but is brittle.',
       film: 'eng.machining.tooling',
       figure: 'eng.machining.insert',
       title: 'Cutting tools: materials, inserts and holders',
@@ -1214,6 +1231,7 @@ export default {
     },
     {
       id: 'eng.machining.tools',
+      gist: 'Wear shows in, among others, size drift and spindle load; set a tool life per edge: too late costs scrap, too early wastes cheap edges.',
       film: 'eng.machining.tooling',
       figure: 'eng.machining.insert',
       title: 'Tool wear, tool life and coolant',
@@ -1286,6 +1304,7 @@ export default {
     },
     {
       id: 'eng.machining.toollife',
+      gist: 'The Taylor equation shows how fast tool life falls with speed: at n = 0.25, 25% more speed leaves less than half the life.',
       film: 'eng.machining.tooling',
       figure: 'eng.machining.insert',
       title: 'Tool life: Taylor, wear limits and tool management',
@@ -1357,6 +1376,7 @@ export default {
     },
     {
       id: 'eng.machining.toolcost',
+      gist: 'Cutting cost per part is machine time, tool changes and tool cost; faster cutting shrinks only machine time, so the total has a minimum.',
       film: 'eng.machining.tooling',
       figure: 'eng.machining.insert',
       title: 'Tool cost per part: the economic cutting speed',
@@ -1428,6 +1448,7 @@ export default {
     },
     {
       id: 'eng.machining.fixtures',
+      gist: 'Workholding holds the part in the same place every time, firmly and without distortion; the 3-2-1 principle fixes all six degrees of freedom.',
       film: 'eng.machining.workholding',
       figure: 'eng.machining.fixture',
       title: 'Fixtures, clamping and setup',
@@ -1501,6 +1522,7 @@ export default {
     },
     {
       id: 'eng.machining.quality',
+      gist: 'Measure to a resolution of about a tenth of the tolerance, at 20 °C: 200 mm of steel is 0.023 mm longer at 30 °C.',
       film: 'eng.machining.measuring',
       figure: 'eng.machining.fixture',
       title: 'Surface finish, measuring and defects',
@@ -1573,6 +1595,7 @@ export default {
     },
     {
       id: 'eng.machining.metrology',
+      gist: 'Resolution does not say how good a measurement is; gauge R&R tests the whole system, and by AIAG rules over 30% of tolerance is unacceptable.',
       film: 'eng.machining.measuring',
       figure: 'eng.machining.cmm',
       title: 'Measuring you can trust: uncertainty and gauge R&R',
@@ -1645,6 +1668,7 @@ export default {
     },
     {
       id: 'eng.machining.capable',
+      gist: 'A capable machining process keeps its Cpk high all day despite wear and thermal growth; among others, a warm-up program helps.',
       film: 'eng.machining.measuring',
       figure: 'eng.machining.cmm',
       title: 'A capable machining process',

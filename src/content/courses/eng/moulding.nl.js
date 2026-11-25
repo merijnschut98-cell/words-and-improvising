@@ -3,6 +3,7 @@ export default {
   lessons: [
     {
       id: 'eng.moulding.machine',
+      gist: 'Een spuitgietmachine heeft een spuitunit die smelt en een sluitunit die de matrijs dichthoudt; te weinig sluitkracht geeft braam.',
       film: 'eng.moulding.machine',
       figure: 'eng.moulding.screw',
       title: 'De spuitgietmachine',
@@ -75,6 +76,7 @@ export default {
     },
     {
       id: 'eng.moulding.screw',
+      gist: 'De schroef smelt vooral door wrijving en doseert één shot; te lange verblijftijd in de cilinder laat warmtegevoelige kunststoffen degraderen.',
       film: 'eng.moulding.machine',
       figure: 'eng.moulding.screw',
       title: 'De schroef: smelten en doseren',
@@ -145,6 +147,7 @@ export default {
     },
     {
       id: 'eng.moulding.clamp',
+      gist: 'Een pers moet vier checks halen: sluitkracht, shotvolume, inbouw en openingsslag; een grotere pers is niet veiliger.',
       film: 'eng.moulding.machine',
       figure: 'eng.moulding.screw',
       title: 'De juiste pers kiezen',
@@ -218,6 +221,7 @@ export default {
     },
     {
       id: 'eng.moulding.electric',
+      gist: 'Elektrische persen verbruiken minder kWh per kg dan hydraulische, maar studies verschillen; meet het op je eigen producten en weeg ook de prijs mee.',
       film: 'eng.moulding.machine',
       figure: 'eng.moulding.screw',
       title: 'Hydraulisch, elektrisch en speciale persen',
@@ -292,6 +296,7 @@ export default {
     },
     {
       id: 'eng.moulding.cycle',
+      gist: 'Koelen is vaak 50 tot 80% van de cyclustijd en groeit met het kwadraat van de wanddikte; holtes en cyclustijd bepalen de output per uur.',
       film: 'eng.moulding.cycle',
       figure: 'eng.moulding.cycle',
       title: 'Cyclustijd en output',
@@ -364,6 +369,7 @@ export default {
     },
     {
       id: 'eng.moulding.cooling',
+      gist: 'Naast de wanddikte bepalen matrijstemperatuur en turbulente waterstroming de koeling; vind het echte minimum door de koeltijd stapsgewijs te verlagen en te meten.',
       film: 'eng.moulding.cooling',
       title: 'Koelen: wat de insteller kan veranderen',
       pre: [
@@ -433,6 +439,7 @@ export default {
     },
     {
       id: 'eng.moulding.cavities',
+      gist: 'Meer holtes verhogen de output maar vragen een duurdere matrijs en grotere pers; vergelijk op kosten per stuk en let op de vulbalans.',
       film: 'eng.moulding.cavities',
       title: 'Meer holtes of een snellere cyclus',
       pre: [
@@ -503,6 +510,7 @@ export default {
     },
     {
       id: 'eng.moulding.partcost',
+      gist: 'De kostprijs bestaat uit materiaal, machine, matrijs en overig; bij kleine producten domineert meestal de machinepost, bij grote zware het materiaal.',
       film: 'eng.moulding.partcost',
       title: 'Wat een spuitgietproduct kost',
       pre: [
@@ -573,6 +581,7 @@ export default {
     },
     {
       id: 'eng.moulding.materials',
+      gist: 'Een matrijs is gemaakt voor de krimp van één kunststof; hygroscopische typen zoals PA en PC moeten eerst gedroogd, en maalgoed maakt kunststof zwakker.',
       film: 'eng.moulding.materials',
       figure: 'eng.moulding.dryer',
       title: 'Kunststoffen, drogen en maalgoed',
@@ -645,6 +654,7 @@ export default {
     },
     {
       id: 'eng.moulding.polymers',
+      gist: 'Amorfe kunststoffen krimpen weinig en gelijkmatig; semi-kristallijne krimpen meer, afhankelijk van de matrijstemperatuur, dus een materiaalwissel vraagt een proef.',
       film: 'eng.moulding.materials',
       figure: 'eng.moulding.dryer',
       title: 'Amorfe en semi-kristallijne kunststoffen',
@@ -715,6 +725,7 @@ export default {
     },
     {
       id: 'eng.moulding.drying',
+      gist: 'Te veel restvocht (typisch PC maximaal 0,02%) maakt PC, PET en PBT bros zonder dat je het ziet; meet het vocht en log het dauwpunt.',
       film: 'eng.moulding.materials',
       figure: 'eng.moulding.dryer',
       title: 'Drogen tot in detail',
@@ -789,6 +800,7 @@ export default {
     },
     {
       id: 'eng.moulding.fillers',
+      gist: 'Glasvezel maakt kunststof stijver maar slijt de apparatuur en geeft kromtrekken door vezeloriëntatie; vergelijk materialen op prijs per stuk, niet per kilo.',
       film: 'eng.moulding.materials',
       figure: 'eng.moulding.dryer',
       title: 'Glasvezel, vulstoffen en recyclaat',
@@ -862,6 +874,7 @@ export default {
     },
     {
       id: 'eng.moulding.defects',
+      gist: 'Elke fout wijst naar een paar oorzaken, en kromtrekken zie je vaak pas uren later; vraag eerst welke holte, waar en sinds wanneer.',
       film: 'eng.moulding.defects',
       figure: 'eng.moulding.part',
       title: 'Fouten en hun oorzaken',
@@ -934,6 +947,7 @@ export default {
     },
     {
       id: 'eng.moulding.diagnose',
+      gist: 'Zoek de oorzaak met vier vragen: welke holte, waar op het product, elk shot of af en toe, sinds wanneer; verander dan één ding tegelijk.',
       film: 'eng.moulding.defects',
       figure: 'eng.moulding.part',
       title: 'De oorzaak van een fout vinden',
@@ -1004,6 +1018,7 @@ export default {
     },
     {
       id: 'eng.moulding.warpage',
+      gist: 'Kromtrekken is ongelijke krimp door dikte, temperatuurverschil en vezeloriëntatie; het proces lost het maar beperkt op, een staalwijziging is blijvend maar duur.',
       film: 'eng.moulding.defects',
       figure: 'eng.moulding.part',
       title: 'Kromtrekken en maatverloop',
@@ -1075,6 +1090,7 @@ export default {
     },
     {
       id: 'eng.moulding.defectdata',
+      gist: 'Een fout blijvend oplossen vraagt een grondoorzaak die met data is bewezen, een bekend procesvenster en bewaking; een DOE en holtedruksensor helpen daarbij.',
       film: 'eng.moulding.defects',
       figure: 'eng.moulding.part',
       title: 'Fouten blijvend oplossen',
@@ -1149,6 +1165,7 @@ export default {
     },
     {
       id: 'eng.moulding.setup',
+      gist: 'Vijf groepen instellingen bepalen het product: temperaturen, inspuitsnelheid, omschakelpunt, nadruk en nadruktijd, en koeltijd; ze beïnvloeden elkaar, dus de instelkaart ligt vast.',
       film: 'eng.moulding.setting',
       figure: 'eng.moulding.window',
       title: 'De vijf instellingen',
@@ -1220,6 +1237,7 @@ export default {
     },
     {
       id: 'eng.moulding.process',
+      gist: 'Het procesvenster is het bereik waarin elk product goed is; stel in het midden in en zoek eerst wat er veranderd is.',
       film: 'eng.moulding.setting',
       figure: 'eng.moulding.window',
       title: 'Het procesvenster',
@@ -1291,6 +1309,7 @@ export default {
     },
     {
       id: 'eng.moulding.scientific',
+      gist: 'Scientific moulding onderbouwt instellingen met studies; de drie kernstudies zijn een viscositeitscurve voor de snelheid, een drukvalstudie voor de drukreserve, een gate-freeze-studie voor de nadruktijd.',
       film: 'eng.moulding.setting',
       figure: 'eng.moulding.window',
       title: 'Scientific moulding: drie studies',
@@ -1364,6 +1383,7 @@ export default {
     },
     {
       id: 'eng.moulding.validation',
+      gist: 'Validatie bewijst met vastgelegd bewijs dat een proces steeds goede producten maakt: IQ, OQ en PQ vooraf, daarna bewaking en hervalidatie bij wijzigingen.',
       film: 'eng.moulding.setting',
       figure: 'eng.moulding.window',
       title: 'Een proces valideren en bewaken',
@@ -1436,6 +1456,7 @@ export default {
     },
     {
       id: 'eng.moulding.tooling',
+      gist: 'Een matrijs is een grote investering: plan preventief onderhoud op de shotteller, meestal elke 50.000 tot 100.000 shots, en kort wissels in met SMED.',
       film: 'eng.moulding.moulds',
       figure: 'eng.moulding.mould',
       title: 'Matrijzen, wissels en onderhoud',
@@ -1508,6 +1529,7 @@ export default {
     },
     {
       id: 'eng.moulding.mouldparts',
+      gist: 'De kunststof gaat via aanspuitkegel, verdeelkanalen en aanspuitpunt de holte in; wanden in openingsrichting hebben lossingshoek nodig, een ondersnijding kost meestal een schuif.',
       film: 'eng.moulding.moulds',
       figure: 'eng.moulding.mould',
       title: 'Binnen in een matrijs',
@@ -1579,6 +1601,7 @@ export default {
     },
     {
       id: 'eng.moulding.mouldcare',
+      gist: 'Maak van de shotteller een onderhoudskalender en lees in het matrijslogboek of een terugkerende fout een ontwerpprobleem is; kort wissels in met SMED.',
       film: 'eng.moulding.moulds',
       figure: 'eng.moulding.mould',
       title: 'Matrijsonderhoud en wissels plannen',
@@ -1651,6 +1674,7 @@ export default {
     },
     {
       id: 'eng.moulding.newmould',
+      gist: 'Een nieuwe matrijs duurt tot de eerste proef meestal 10 tot 16 weken; de dure fouten ontstaan vroeg, dus review het ontwerp (DFM) eerst.',
       film: 'eng.moulding.moulds',
       figure: 'eng.moulding.mould',
       title: 'Een nieuwe matrijs: van ontwerp tot vrijgave',

@@ -3,6 +3,7 @@ export default {
   lessons: [
     {
       id: 'eng.machining.processes',
+      gist: 'Draaien maakt ronde delen, frezen vlakken en sleuven, boren gaten; slijpen haalt ±0,005 mm of beter, maar is traag en alleen voor waar het moet.',
       film: 'eng.machining.overview',
       title: 'Draaien, frezen, boren, slijpen',
       pre: [
@@ -74,6 +75,7 @@ export default {
     },
     {
       id: 'eng.machining.cutting',
+      gist: 'Snijsnelheid bepaalt het grootste deel van de warmte en slijtage, dus verhoog eerst voeding en snedediepte en pas daarna de snijsnelheid.',
       film: 'eng.machining.turning',
       figure: 'eng.machining.lathe',
       title: 'Snijsnelheid, voeding en snedediepte',
@@ -147,6 +149,7 @@ export default {
     },
     {
       id: 'eng.machining.turnfinish',
+      gist: 'Theoretische ruwheid is voeding² gedeeld door hoekradius; overhang boven zo’n 3 × D vraagt de losse kop, boven zo’n 6 × D ook een bril.',
       film: 'eng.machining.turning',
       title: 'Nadraaien: ruwheid, spanen en slanke delen',
       pre: [
@@ -219,6 +222,7 @@ export default {
     },
     {
       id: 'eng.machining.turncell',
+      gist: 'Een draaifreescentrum maakt een deel compleet in één machine en wint van twee machines wanneer afkeur door een tweede opspanning, doorlooptijd of onbemande uren meetellen.',
       film: 'eng.machining.turning',
       title: 'Draaifreescentra: alles in één opspanning',
       pre: [
@@ -292,6 +296,7 @@ export default {
     },
     {
       id: 'eng.machining.mill',
+      gist: 'Een bewerkingscentrum wisselt zelf gereedschap, en een ronde frees laat een binnenhoek achter met minstens de straal van de frees.',
       film: 'eng.machining.milling',
       figure: 'eng.machining.mill',
       title: 'Frezen: het bewerkingscentrum',
@@ -362,6 +367,7 @@ export default {
     },
     {
       id: 'eng.machining.millfeeds',
+      gist: 'Reken bij frezen in snijsnelheid en voeding per tand, niet in S en F: toerental omhoog met F gelijk laat de frees schrapen.',
       film: 'eng.machining.milling',
       figure: 'eng.machining.mill',
       title: 'Snijwaarden bij frezen',
@@ -432,6 +438,7 @@ export default {
     },
     {
       id: 'eng.machining.millstrategy',
+      gist: 'Meelopend frezen is standaard op moderne CNC-machines; bij kleine snedebreedte corrigeer je de voeding per tand voor spaanverdunning, en trochoïdaal frezen haalt vaak meer volume.',
       film: 'eng.machining.milling',
       figure: 'eng.machining.mill',
       title: 'Freesstrategie: meelopend, spaanverdunning, trochoïdaal',
@@ -503,6 +510,7 @@ export default {
     },
     {
       id: 'eng.machining.fiveaxis',
+      gist: 'Een vijfassige machine bespaart opspanningen; 3+2 doen de meeste toeleveranciers, simultaan bewegen is nodig voor vrije vormen zoals pompwaaiers en turbinebladen.',
       film: 'eng.machining.milling',
       figure: 'eng.machining.fiveaxis',
       title: 'Vijfassig frezen: 3+2 of simultaan',
@@ -573,6 +581,7 @@ export default {
     },
     {
       id: 'eng.machining.drill',
+      gist: 'Een spiraalboor maakt goedkope maar onnauwkeurige gaten, een paar honderdsten te groot; lees op de tekening welk gat het moet zijn.',
       film: 'eng.machining.drilling',
       figure: 'eng.machining.drill',
       title: 'Boren: de basis',
@@ -644,6 +653,7 @@ export default {
     },
     {
       id: 'eng.machining.holes',
+      gist: 'Een passend gat krijgt een ISO 286-code zoals H7 (bij Ø10: 0 tot +0,015 mm); boor iets te klein en ruim of kotter op maat.',
       film: 'eng.machining.drilling',
       figure: 'eng.machining.drill',
       title: 'Gaten op maat: ruimen, tappen, kotteren',
@@ -715,6 +725,7 @@ export default {
     },
     {
       id: 'eng.machining.deephole',
+      gist: 'Boven zo’n 3 tot 5 × D draait diep boren om spaanafvoer; onder meer pikken, koeling door de spil en een kanonboor lossen dat op.',
       film: 'eng.machining.drilling',
       figure: 'eng.machining.drill',
       title: 'Diep boren: spanen eruit krijgen',
@@ -786,6 +797,7 @@ export default {
     },
     {
       id: 'eng.machining.holequality',
+      gist: 'Een gat met de goede maat kan op de verkeerde plek zitten; positie is een diameter, dus check of de CMM diameter of straal rapporteert.',
       film: 'eng.machining.drilling',
       figure: 'eng.machining.drill',
       title: 'Gatkwaliteit: positie en haaksheid',
@@ -857,6 +869,7 @@ export default {
     },
     {
       id: 'eng.machining.cnc',
+      gist: 'CNC voert een G-code-programma uit; de meeste crashes en afgekeurde eerste stukken komen door verkeerde offsets, dus meet het eerste stuk volledig.',
       film: 'eng.machining.cnc',
       figure: 'eng.machining.gcode',
       title: 'CNC: de basis',
@@ -929,6 +942,7 @@ export default {
     },
     {
       id: 'eng.machining.gcode',
+      gist: 'Lees G-code regel voor regel met de vraag waar het gereedschap nu staat en heen gaat; let op modale codes, G90 tegenover G91 en ijlgangen.',
       film: 'eng.machining.gcode',
       figure: 'eng.machining.gcode',
       title: 'Een G-code-programma lezen',
@@ -999,6 +1013,7 @@ export default {
     },
     {
       id: 'eng.machining.offsets',
+      gist: 'Het programma beschrijft het werkstuk, de offsets het gereedschap; crashes komen meestal door een tabel die niet klopt, niet door het programma.',
       film: 'eng.machining.offsets',
       figure: 'eng.machining.gcode',
       title: 'Correcties en offsets: waarom crashes gebeuren',
@@ -1070,6 +1085,7 @@ export default {
     },
     {
       id: 'eng.machining.cam',
+      gist: 'CAM maakt de gereedschapsbaan en een postprocessor vertaalt die per machine naar G-code; simulatie vangt botsingen, maar is zo goed als zijn modellen.',
       film: 'eng.machining.cam',
       figure: 'eng.machining.gcode',
       title: 'CAM, simulatie en proefdraaien',
@@ -1142,6 +1158,7 @@ export default {
     },
     {
       id: 'eng.machining.toolbasics',
+      gist: 'Snijgereedschap moet hard blijven als het heet is: hardmetaal snijdt zo’n drie tot vier keer sneller dan HSS maar is bros.',
       film: 'eng.machining.tooling',
       figure: 'eng.machining.insert',
       title: 'Snijgereedschap: materialen, wisselplaten en houders',
@@ -1214,6 +1231,7 @@ export default {
     },
     {
       id: 'eng.machining.tools',
+      gist: 'Slijtage laat zich onder meer zien aan maatverloop en spilbelasting; stel de standtijd per snijkant in: te laat kost afkeur, te vroeg verspilt goedkope snijkanten.',
       film: 'eng.machining.tooling',
       figure: 'eng.machining.insert',
       title: 'Slijtage, standtijd en koeling',
@@ -1286,6 +1304,7 @@ export default {
     },
     {
       id: 'eng.machining.toollife',
+      gist: 'De Taylorvergelijking toont hoe de standtijd met de snelheid daalt: bij n = 0,25 laat 25 % meer snelheid minder dan de helft over.',
       film: 'eng.machining.tooling',
       figure: 'eng.machining.insert',
       title: 'Standtijd: Taylor, slijtagegrenzen en gereedschapsbeheer',
@@ -1357,6 +1376,7 @@ export default {
     },
     {
       id: 'eng.machining.toolcost',
+      gist: 'Snijkosten per stuk zijn machinetijd, gereedschapswissels en gereedschapskosten; sneller snijden verkleint alleen de machinetijd, dus het totaal heeft een minimum.',
       film: 'eng.machining.tooling',
       figure: 'eng.machining.insert',
       title: 'Gereedschapskosten per stuk: de economische snijsnelheid',
@@ -1428,6 +1448,7 @@ export default {
     },
     {
       id: 'eng.machining.fixtures',
+      gist: 'Opspanning houdt het werkstuk elke keer op dezelfde plek en stevig vast zonder te vervormen; het 3-2-1-principe zet de zes vrijheidsgraden vast.',
       film: 'eng.machining.workholding',
       figure: 'eng.machining.fixture',
       title: 'Opspanning en omstellen',
@@ -1501,6 +1522,7 @@ export default {
     },
     {
       id: 'eng.machining.quality',
+      gist: 'Meet met een resolutie van zo’n tiende van de tolerantie, bij 20 °C: 200 mm staal is bij 30 °C 0,023 mm langer.',
       film: 'eng.machining.measuring',
       figure: 'eng.machining.fixture',
       title: 'Ruwheid, meten en fouten',
@@ -1573,6 +1595,7 @@ export default {
     },
     {
       id: 'eng.machining.metrology',
+      gist: 'Resolutie zegt niet hoe goed een meting is; gauge R&R test het hele meetsysteem, en volgens AIAG is boven 30 % van de tolerantie onaanvaardbaar.',
       film: 'eng.machining.measuring',
       figure: 'eng.machining.cmm',
       title: 'Meten waar je op kunt bouwen: meetonzekerheid en gauge R&R',
@@ -1645,6 +1668,7 @@ export default {
     },
     {
       id: 'eng.machining.capable',
+      gist: 'Een capabel verspaningsproces houdt de Cpk de hele dag hoog ondanks slijtage en thermische groei; onder meer een opwarmprogramma helpt daarbij.',
       film: 'eng.machining.measuring',
       figure: 'eng.machining.cmm',
       title: 'Een capabel verspaningsproces',

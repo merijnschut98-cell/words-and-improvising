@@ -4,6 +4,7 @@ export default {
     // Topic: Falen en faalpatronen
     {
       id: 'eng.reliability.mechanisms',
+      gist: 'Faalwijze, faalmechanisme en grondoorzaak zijn drie verschillende dingen, en het mechanisme bepaalt de taak: degradatie geeft meestal een waarschuwing, overbelasting niet.',
       title: 'Hoe onderdelen fysiek falen',
       pre: [
         {
@@ -77,6 +78,7 @@ export default {
     },
     {
       id: 'eng.reliability.weibull',
+      gist: 'Een Weibull-fit beschrijft met èta en bèta hoe een onderdeel uitvalt; bèta onder 1, rond 1 of boven 1 vraagt elk een andere strategie.',
       figure: 'eng.reliability.weibull',
       title: 'Storingsdata en Weibull in gewone taal',
       pre: [
@@ -149,6 +151,7 @@ export default {
     },
     {
       id: 'eng.reliability.rca',
+      gist: 'Een grondoorzaakanalyse bewaart eerst het bewijs en zoekt dan de fysieke, menselijke en latente oorzaak; de latente oplossen stopt de storing op vergelijkbare assets.',
       title: 'Grondoorzaakanalyse van storingen',
       pre: [
         {
@@ -223,6 +226,7 @@ export default {
     },
     {
       id: 'eng.reliability.lifedata',
+      gist: 'Op een Weibull-plot krijgt elke storing een mediaanrang en passen suspensies die aan; rapporteer bèta met zijn betrouwbaarheidsinterval en beslis op een B-levensduur, niet èta.',
       title: 'Zelf een Weibull fitten',
       pre: [
         {
@@ -298,6 +302,7 @@ export default {
     // Topic: FMEA en kritikaliteit
     {
       id: 'eng.reliability.criticality',
+      gist: 'Een kritikaliteitsranking geeft focus en telt pas als hij verandert wat mensen doen; het productiegevolg hangt af van redundantie, buffer en bottleneck.',
       title: 'Kritikaliteit: waar richt je je op',
       pre: [
         {
@@ -369,6 +374,7 @@ export default {
     },
     {
       id: 'eng.reliability.fmeca',
+      gist: 'Een FMECA zet per onderdeel faalwijzen met effect en oorzaak op een rij en voegt kritikaliteit toe; ga meestal omlaag tot de onderhoudbare eenheid.',
       title: 'FMEA en FMECA op installaties',
       pre: [
         {
@@ -442,6 +448,7 @@ export default {
     },
     {
       id: 'eng.reliability.redundancy',
+      gist: 'In serie vermenigvuldigen beschikbaarheden, parallel verbetert redundantie ze, maar een common-cause-storing die beide units raakt, begrenst de winst.',
       title: 'Redundantie, reserve-units en gemeenschappelijke oorzaken',
       pre: [
         {
@@ -517,6 +524,7 @@ export default {
     },
     {
       id: 'eng.reliability.riskbased',
+      gist: 'Risico in euro’s is kans per jaar maal gevolg: grijp in als het weggenomen risico de jaarkosten overtreft; veiligheidsrisico boven de grens gaat altijd omlaag.',
       title: 'Risico in euro’s: risicogestuurde assetbesluiten',
       pre: [
         {
@@ -592,6 +600,7 @@ export default {
     // Topic: RCM en assetstrategie
     {
       id: 'eng.reliability.functions',
+      gist: 'Begin bij de functie met een getal: de eis van de gebruikers, niet wat de machine kan; de asset faalt zodra hij die niet haalt.',
       title: 'Functies: wat moet de asset doen?',
       pre: [
         {
@@ -665,6 +674,7 @@ export default {
     },
     {
       id: 'eng.reliability.rcm',
+      gist: 'RCM stelt per asset zeven vragen en kiest taken op gevolg: een verborgen storing vraagt een failure-finding-taak, en elke taak moet kunnen en lonen.',
       title: 'Reliability-centred maintenance (RCM)',
       pre: [
         {
@@ -743,6 +753,7 @@ export default {
     },
     {
       id: 'eng.reliability.program',
+      gist: 'Een betrouwbaarheidsprogramma is een kringloop van data, analyse, aanpassing en meting; begin met bruikbare storingscodes en snelle winst, zoals een bad-actorlijst.',
       title: 'Een betrouwbaarheidsprogramma opzetten',
       pre: [
         {
@@ -816,6 +827,7 @@ export default {
     },
     {
       id: 'eng.reliability.assetmgmt',
+      gist: 'Assetmanagement haalt waarde uit assets over hun hele levensduur; line of sight verbindt doelen met werkorders, en ISO 55001 vraagt criteria voor besluiten.',
       title: 'Assetmanagement en ISO 55001',
       pre: [
         {
@@ -892,6 +904,7 @@ export default {
     // Topic: Betrouwbaarheidsdata en besluiten
     {
       id: 'eng.reliability.mtbf',
+      gist: 'MTBF is geen levensduur maar de inverse van de faalkans; bij een constante faalkans haalt maar ongeveer een derde van de units de MTBF.',
       title: 'Betrouwbaarheid in getallen: kans, faalkans en MTBF',
       pre: [
         {
@@ -964,6 +977,7 @@ export default {
     },
     {
       id: 'eng.reliability.availability',
+      gist: 'Operationele beschikbaarheid telt ook het wachten, vaak het grootste deel van de stilstand; meld hoe vaak en hoe lang, niet alleen het percentage.',
       title: 'Beschikbaarheid en waar de stilstand blijft',
       pre: [
         {
@@ -1036,6 +1050,7 @@ export default {
     },
     {
       id: 'eng.reliability.spares',
+      gist: 'Houd een reservedeel aan als de verwachte kosten van het niet hebben hoger zijn dan die van aanhouden; levertijd is de grote hefboom.',
       title: 'Reservedelen: voorraad tegenover risico',
       pre: [
         {
@@ -1109,6 +1124,7 @@ export default {
     },
     {
       id: 'eng.reliability.lcc',
+      gist: 'Levensduurkosten tellen alles op wat een asset kost, gedisconteerd naar vandaag; bij repareren of vervangen tellen alleen toekomstige kosten, niet sunk cost.',
       title: 'Levensduurkosten en repareren of vervangen',
       pre: [
         {

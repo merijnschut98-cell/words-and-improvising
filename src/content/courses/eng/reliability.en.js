@@ -4,6 +4,7 @@ export default {
     // Topic: Failure and its patterns
     {
       id: 'eng.reliability.mechanisms',
+      gist: 'Failure mode, failure mechanism and root cause are three different things, and the mechanism decides the task: degradation usually warns, overload does not.',
       title: 'How parts physically fail',
       pre: [
         {
@@ -77,6 +78,7 @@ export default {
     },
     {
       id: 'eng.reliability.weibull',
+      gist: 'A Weibull fit describes with eta and beta how a part fails; a beta below 1, around 1 or above 1 calls for different strategies.',
       figure: 'eng.reliability.weibull',
       title: 'Failure data and Weibull in words',
       pre: [
@@ -149,6 +151,7 @@ export default {
     },
     {
       id: 'eng.reliability.rca',
+      gist: 'A root cause analysis first keeps the evidence, then seeks the physical, human and latent cause; fixing the latent one stops it on similar assets.',
       title: 'Root cause failure analysis',
       pre: [
         {
@@ -223,6 +226,7 @@ export default {
     },
     {
       id: 'eng.reliability.lifedata',
+      gist: 'On a Weibull plot, failures get median ranks and suspensions adjust them; report beta with its confidence interval and decide on a B-life, not eta.',
       title: 'Fitting Weibull yourself',
       pre: [
         {
@@ -298,6 +302,7 @@ export default {
     // Topic: FMEA and criticality
     {
       id: 'eng.reliability.criticality',
+      gist: 'A criticality ranking gives focus and counts only if it changes what people do; the production consequence depends on redundancy, buffer and bottleneck.',
       title: 'Criticality: where to focus',
       pre: [
         {
@@ -369,6 +374,7 @@ export default {
     },
     {
       id: 'eng.reliability.fmeca',
+      gist: 'An FMECA lists failure modes per item with effect and cause and adds criticality; usually go down to the maintainable item.',
       title: 'FMEA and FMECA on equipment',
       pre: [
         {
@@ -442,6 +448,7 @@ export default {
     },
     {
       id: 'eng.reliability.redundancy',
+      gist: 'In series, availabilities multiply; in parallel, redundancy improves them, but a common-cause failure that hits both units limits the gain.',
       title: 'Redundancy, standby units and common causes',
       pre: [
         {
@@ -517,6 +524,7 @@ export default {
     },
     {
       id: 'eng.reliability.riskbased',
+      gist: 'Risk in euros is annual probability times consequence: act when the risk removed exceeds the annual cost; safety risk above the limit always comes down.',
       title: 'Risk in euros: risk-based asset decisions',
       pre: [
         {
@@ -592,6 +600,7 @@ export default {
     // Topic: RCM and asset strategy
     {
       id: 'eng.reliability.functions',
+      gist: 'Start from the function with a number: the standard users need, not what the machine can do; the asset has failed once it misses it.',
       title: 'Functions: what must the asset do?',
       pre: [
         {
@@ -665,6 +674,7 @@ export default {
     },
     {
       id: 'eng.reliability.rcm',
+      gist: 'RCM asks seven questions per asset and picks tasks by consequence: hidden failures need a failure-finding task, and every task must be feasible and worthwhile.',
       title: 'Reliability-centred maintenance',
       pre: [
         {
@@ -743,6 +753,7 @@ export default {
     },
     {
       id: 'eng.reliability.program',
+      gist: 'A reliability program is a loop of data, analysis, adjustment and measurement; start with usable failure codes and quick wins, such as a bad-actor list.',
       title: 'Building a reliability programme',
       pre: [
         {
@@ -816,6 +827,7 @@ export default {
     },
     {
       id: 'eng.reliability.assetmgmt',
+      gist: 'Asset management gets value from assets over their whole life; line of sight links objectives to work orders, and ISO 55001 asks for decision criteria.',
       title: 'Asset management and ISO 55001',
       pre: [
         {
@@ -892,6 +904,7 @@ export default {
     // Topic: Reliability data and decisions
     {
       id: 'eng.reliability.mtbf',
+      gist: 'MTBF is not a lifetime but the inverse of the failure rate; at a constant failure rate only about a third of units reach it.',
       title: 'Reliability in numbers: chance, failure rate and MTBF',
       pre: [
         {
@@ -964,6 +977,7 @@ export default {
     },
     {
       id: 'eng.reliability.availability',
+      gist: 'Operational availability also counts waiting, often the largest part of downtime; and report how often and how long, not only the percentage.',
       title: 'Availability and where downtime goes',
       pre: [
         {
@@ -1036,6 +1050,7 @@ export default {
     },
     {
       id: 'eng.reliability.spares',
+      gist: 'Stock a spare when the expected cost of not having it exceeds the cost of holding it; lead time is the big lever.',
       title: 'Spare parts: stock versus risk',
       pre: [
         {
@@ -1109,6 +1124,7 @@ export default {
     },
     {
       id: 'eng.reliability.lcc',
+      gist: 'Life-cycle cost adds up everything an asset costs, discounted to today; when repairing or replacing, only future costs count, not sunk cost.',
       title: 'Life-cycle cost and repair or replace',
       pre: [
         {
