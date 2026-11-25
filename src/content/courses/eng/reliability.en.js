@@ -226,7 +226,7 @@ export default {
     },
     {
       id: 'eng.reliability.lifedata',
-      gist: 'A Weibull fit uses median ranks and suspensions; report beta with its confidence interval and use a B-life for decisions, not eta.',
+      gist: 'On a Weibull plot, failures get median ranks and suspensions adjust them; report beta with its confidence interval and decide on a B-life, not eta.',
       title: 'Fitting Weibull yourself',
       pre: [
         {
@@ -374,7 +374,7 @@ export default {
     },
     {
       id: 'eng.reliability.fmeca',
-      gist: 'A FMECA lists failure modes per item with effect and cause and adds criticality; go down to the maintainable item.',
+      gist: 'An FMECA lists failure modes per item with effect and cause and adds criticality; usually go down to the maintainable item.',
       title: 'FMEA and FMECA on equipment',
       pre: [
         {
@@ -827,7 +827,7 @@ export default {
     },
     {
       id: 'eng.reliability.assetmgmt',
-      gist: 'Asset management gets value from assets over their whole life; ISO 55001 asks for line of sight from goals to work orders and decision criteria.',
+      gist: 'Asset management gets value from assets over their whole life; line of sight links objectives to work orders, and ISO 55001 asks for decision criteria.',
       title: 'Asset management and ISO 55001',
       pre: [
         {
@@ -977,7 +977,7 @@ export default {
     },
     {
       id: 'eng.reliability.availability',
-      gist: 'Operational availability also counts waiting, often the largest part of downtime; so report how often and how long, not only the percentage.',
+      gist: 'Operational availability also counts waiting, often the largest part of downtime; and report how often and how long, not only the percentage.',
       title: 'Availability and where downtime goes',
       pre: [
         {

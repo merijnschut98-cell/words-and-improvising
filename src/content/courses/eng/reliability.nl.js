@@ -226,7 +226,7 @@ export default {
     },
     {
       id: 'eng.reliability.lifedata',
-      gist: 'Een Weibull-fit gebruikt mediaanrangen en suspensies; rapporteer bèta met zijn betrouwbaarheidsinterval en gebruik voor besluiten een B-levensduur, niet èta.',
+      gist: 'Op een Weibull-plot krijgt elke storing een mediaanrang en passen suspensies die aan; rapporteer bèta met zijn betrouwbaarheidsinterval en beslis op een B-levensduur, niet èta.',
       title: 'Zelf een Weibull fitten',
       pre: [
         {
@@ -374,7 +374,7 @@ export default {
     },
     {
       id: 'eng.reliability.fmeca',
-      gist: 'Een FMECA zet per onderdeel faalwijzen met effect en oorzaak op een rij en voegt kritikaliteit toe; ga omlaag tot de onderhoudbare eenheid.',
+      gist: 'Een FMECA zet per onderdeel faalwijzen met effect en oorzaak op een rij en voegt kritikaliteit toe; ga meestal omlaag tot de onderhoudbare eenheid.',
       title: 'FMEA en FMECA op installaties',
       pre: [
         {
@@ -827,7 +827,7 @@ export default {
     },
     {
       id: 'eng.reliability.assetmgmt',
-      gist: 'Assetmanagement haalt waarde uit assets over hun hele levensduur; ISO 55001 vraagt line of sight van doelen naar werkorders en criteria voor besluiten.',
+      gist: 'Assetmanagement haalt waarde uit assets over hun hele levensduur; line of sight verbindt doelen met werkorders, en ISO 55001 vraagt criteria voor besluiten.',
       title: 'Assetmanagement en ISO 55001',
       pre: [
         {
