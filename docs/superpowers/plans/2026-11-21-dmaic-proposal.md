@@ -337,6 +337,16 @@ Five questions; the recommended option is first. Points I decided myself, which 
 - B. All 21 plus the two new ones. *Everything matches; about twice the render time.*
 - C. Only the two named in the design (field film and approach intro) plus the two new ones. *Cheapest; five road intro films end on an old map.*
 
+
+**Answered by Merijn on 25 Nov; the proposal is approved with these answers.**
+- **Q1: mostly A, with an addition.** Plannen sits under Improve, because you cannot plan without knowing which way to go. But Define must already hold a short plan for what will be delivered in the Measure phase (Merijn: "wel belangrijk om onder define ook al een korte planning te maken voor de onderdelen die je gaat opleveren in de measure-fase"). That goes into `pm.intake` (charter) and the `pm.plan` DMAIC sentences.
+- **Q2: A.** `pm.formats` leaves the road as a toolbox place, "Alle fasen".
+- **Q3: A.** Lean first, no formal statistical tests.
+- **Q4: B.** A whole Gevorderd lesson in each module: "Meten bij een opleverproject" and "Analyseren bij een opleverproject", in place of `pm.measure.enough` and `pm.analyse.depth`; their content moves to the neighbouring lessons. Section 2 must be updated before D3.
+- **Q5: B, at low priority.** In the end all 21 films plus the two new ones are re-rendered, but not now: rebuild films and text only where the change is already relevant, and leave the other modules for later in the plan.
+- **The points decided in this proposal** (Start band, both new modules at Verdieping, two rows, gemba preview stays in Intake, English phase names): approved.
+- **Building does not start until Merijn says so.**
+
 ---
 
 ## 6. The task cut for D2 to D4

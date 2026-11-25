@@ -34,3 +34,10 @@ Three agents stopped on the 5-hour usage limit on 17 Nov (reset 21:50 UTC); thei
 - kernzin batch 4 (`eng.cost`, `cyber`, `drawings`, `fluids`, `gridbasics`, `gridops`), partly written;
 - review of kernzin batch 3 (`pm.itproject` … `pm.stuck`, commit 36fabb2), in progress.
 Live: v374 (kernzin for eng.flow and all Projects modules except batch 3, which waits on its review).
+
+## Priorities (Merijn, 25 Nov)
+
+- **Higher:** the SAFe module (`pm.scaled`): Merijn looked at it recently and finds the explanation very unclear. It needs a content pass before the other module passes. The practice exams also have more priority; Merijn has not yet played the pm.plan pilot (checkpoint P0) and will do so later.
+- **Lower:** the DMAIC film re-renders (Q5 B in the DMAIC proposal): plan them only where they are already relevant.
+- **State:** kernzin is on every lesson (batches 7 and 8 merged 25 Nov). T3 (AI extra tests) was rebuilt and merged after its opus review (v389). DMAIC proposal approved 25 Nov. Nothing new is built until Merijn says start.
+- **Known e2e failures, also on the baseline:** three Today-card steps ("topics: where you are (fixture)", "module return… Today card", "breadth-first…") and the flair step (waits for `.check-btn`, probably the module-check button T2 replaced).
