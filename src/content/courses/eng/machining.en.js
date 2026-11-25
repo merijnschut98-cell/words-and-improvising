@@ -75,7 +75,7 @@ export default {
     },
     {
       id: 'eng.machining.cutting',
-      gist: 'Cutting speed sets the spindle speed and mostly the wear, so raise feed and depth of cut first and cutting speed only after.',
+      gist: 'Cutting speed drives most of the heat and tool wear, so engineers raise feed and depth of cut first and cutting speed last.',
       film: 'eng.machining.turning',
       figure: 'eng.machining.lathe',
       title: 'Cutting speed, feed and depth of cut',
@@ -149,7 +149,7 @@ export default {
     },
     {
       id: 'eng.machining.turnfinish',
-      gist: 'In finish turning, roughness follows from feed (squared) and nose radius; a slender part (L/D above about 3) needs the tailstock.',
+      gist: 'Theoretical roughness follows feed² over nose radius; overhang beyond about 3 × D needs a tailstock, beyond about 6 × D also a steady rest.',
       film: 'eng.machining.turning',
       title: 'Finish turning: roughness, chips and slender parts',
       pre: [
@@ -222,7 +222,7 @@ export default {
     },
     {
       id: 'eng.machining.turncell',
-      gist: 'A turn-mill centre finishes a part in one setup; it beats two simple machines on scrap from a second setup, lead time, or unmanned hours.',
+      gist: 'A turn-mill centre makes a part complete in one machine and beats two machines when second-setup scrap, lead time or unmanned hours matter.',
       film: 'eng.machining.turning',
       title: 'Turn-mill centres: everything in one setup',
       pre: [
@@ -942,7 +942,7 @@ export default {
     },
     {
       id: 'eng.machining.gcode',
-      gist: 'Read G-code line by line, asking where the tool is now and going next; watch for modal codes, G90 versus G91, and rapid moves.',
+      gist: 'Read G-code line by line, asking where the tool is and where it goes next; watch for modal codes, G90 versus G91, and rapid moves.',
       film: 'eng.machining.gcode',
       figure: 'eng.machining.gcode',
       title: 'Reading a G-code program',
@@ -1376,7 +1376,7 @@ export default {
     },
     {
       id: 'eng.machining.toolcost',
-      gist: 'Cost per part is machine time, tool changes and tooling; cutting faster shrinks only machine time, so the total is lowest at an economic speed.',
+      gist: 'Cutting cost per part is machine time, tool changes and tool cost; faster cutting shrinks only machine time, so the total has a minimum.',
       film: 'eng.machining.tooling',
       figure: 'eng.machining.insert',
       title: 'Tool cost per part: the economic cutting speed',
@@ -1522,7 +1522,7 @@ export default {
     },
     {
       id: 'eng.machining.quality',
-      gist: 'Measure with a resolution of about a tenth of the tolerance and at 20 °C: 200 mm of steel grows 0.023 mm at 30 °C.',
+      gist: 'Measure to a resolution of about a tenth of the tolerance, at 20 °C: 200 mm of steel is 0.023 mm longer at 30 °C.',
       film: 'eng.machining.measuring',
       figure: 'eng.machining.fixture',
       title: 'Surface finish, measuring and defects',
@@ -1595,7 +1595,7 @@ export default {
     },
     {
       id: 'eng.machining.metrology',
-      gist: 'Resolution does not say how good a measurement is; a gauge R&R tests the whole system, and above 30% of tolerance it is not acceptable.',
+      gist: 'Resolution does not say how good a measurement is; gauge R&R tests the whole system, and by AIAG rules over 30% of tolerance is unacceptable.',
       film: 'eng.machining.measuring',
       figure: 'eng.machining.cmm',
       title: 'Measuring you can trust: uncertainty and gauge R&R',

@@ -75,7 +75,7 @@ export default {
     },
     {
       id: 'eng.machining.cutting',
-      gist: 'Snijsnelheid bepaalt het toerental en vooral de slijtage, dus verhoog eerst voeding en snedediepte en pas daarna de snijsnelheid.',
+      gist: 'Snijsnelheid bepaalt het grootste deel van de warmte en slijtage, dus verhoog eerst voeding en snedediepte en pas daarna de snijsnelheid.',
       film: 'eng.machining.turning',
       figure: 'eng.machining.lathe',
       title: 'Snijsnelheid, voeding en snedediepte',
@@ -149,7 +149,7 @@ export default {
     },
     {
       id: 'eng.machining.turnfinish',
-      gist: 'Bij nadraaien volgt de ruwheid uit voeding (in het kwadraat) en hoekradius; een slank deel (L/D boven zo’n 3) vraagt de losse kop.',
+      gist: 'Theoretische ruwheid is voeding² gedeeld door hoekradius; overhang boven zo’n 3 × D vraagt de losse kop, boven zo’n 6 × D ook een bril.',
       film: 'eng.machining.turning',
       title: 'Nadraaien: ruwheid, spanen en slanke delen',
       pre: [
@@ -222,7 +222,7 @@ export default {
     },
     {
       id: 'eng.machining.turncell',
-      gist: 'Een draaifreescentrum maakt een deel in één opspanning af; het wint van twee eenvoudige machines bij afkeur door een tweede opspanning, doorlooptijd of onbemande uren.',
+      gist: 'Een draaifreescentrum maakt een deel compleet in één machine en wint van twee machines wanneer afkeur door een tweede opspanning, doorlooptijd of onbemande uren meetellen.',
       film: 'eng.machining.turning',
       title: 'Draaifreescentra: alles in één opspanning',
       pre: [
@@ -581,7 +581,7 @@ export default {
     },
     {
       id: 'eng.machining.drill',
-      gist: 'Een spiraalboor maakt goedkope maar onnauwkeurige gaten, een paar honderdsten te groot; lees op tekening welk gat het moet zijn.',
+      gist: 'Een spiraalboor maakt goedkope maar onnauwkeurige gaten, een paar honderdsten te groot; lees op de tekening welk gat het moet zijn.',
       film: 'eng.machining.drilling',
       figure: 'eng.machining.drill',
       title: 'Boren: de basis',
@@ -1304,7 +1304,7 @@ export default {
     },
     {
       id: 'eng.machining.toollife',
-      gist: 'De Taylorvergelijking laat zien hoe snel de standtijd met de snelheid daalt: bij n = 0,25 geeft 25 % meer snelheid minder dan de helft.',
+      gist: 'De Taylorvergelijking toont hoe de standtijd met de snelheid daalt: bij n = 0,25 laat 25 % meer snelheid minder dan de helft over.',
       film: 'eng.machining.tooling',
       figure: 'eng.machining.insert',
       title: 'Standtijd: Taylor, slijtagegrenzen en gereedschapsbeheer',
@@ -1376,7 +1376,7 @@ export default {
     },
     {
       id: 'eng.machining.toolcost',
-      gist: 'Kosten per stuk zijn machinetijd, wissels en gereedschap; sneller snijden verkleint alleen de machinetijd, dus het totaal heeft een minimum bij de economische snijsnelheid.',
+      gist: 'Snijkosten per stuk zijn machinetijd, gereedschapswissels en gereedschapskosten; sneller snijden verkleint alleen de machinetijd, dus het totaal heeft een minimum.',
       film: 'eng.machining.tooling',
       figure: 'eng.machining.insert',
       title: 'Gereedschapskosten per stuk: de economische snijsnelheid',
@@ -1522,7 +1522,7 @@ export default {
     },
     {
       id: 'eng.machining.quality',
-      gist: 'Meet met een resolutie van zo’n tiende van de tolerantie en op 20 °C: 200 mm staal groeit 0,023 mm op 30 °C.',
+      gist: 'Meet met een resolutie van zo’n tiende van de tolerantie, bij 20 °C: 200 mm staal is bij 30 °C 0,023 mm langer.',
       film: 'eng.machining.measuring',
       figure: 'eng.machining.fixture',
       title: 'Ruwheid, meten en fouten',
@@ -1595,7 +1595,7 @@ export default {
     },
     {
       id: 'eng.machining.metrology',
-      gist: 'Resolutie zegt niet hoe goed een meting is; een gauge R&R test het hele meetsysteem, boven 30 % van de tolerantie is niet acceptabel.',
+      gist: 'Resolutie zegt niet hoe goed een meting is; gauge R&R test het hele meetsysteem, en volgens AIAG is boven 30 % van de tolerantie onaanvaardbaar.',
       film: 'eng.machining.measuring',
       figure: 'eng.machining.cmm',
       title: 'Meten waar je op kunt bouwen: meetonzekerheid en gauge R&R',
