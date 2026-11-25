@@ -221,7 +221,7 @@ export default {
     },
     {
       id: 'eng.moulding.electric',
-      gist: 'Volelektrische persen verbruiken veel minder kWh per kg dan hydraulische; meet dat op je eigen producten, want aanschafprijs en persgrootte tellen ook.',
+      gist: 'Elektrische persen verbruiken minder kWh per kg dan hydraulische, maar studies verschillen; meet het op je eigen producten en weeg ook de prijs mee.',
       film: 'eng.moulding.machine',
       figure: 'eng.moulding.screw',
       title: 'Hydraulisch, elektrisch en speciale persen',
@@ -369,7 +369,7 @@ export default {
     },
     {
       id: 'eng.moulding.cooling',
-      gist: 'Matrijstemperatuur en turbulente waterstroming bepalen hoe snel het product koelt; vind het echte minimum door de koeltijd stapsgewijs te verlagen en te meten.',
+      gist: 'Naast de wanddikte bepalen matrijstemperatuur en turbulente waterstroming de koeling; vind het echte minimum door de koeltijd stapsgewijs te verlagen en te meten.',
       film: 'eng.moulding.cooling',
       title: 'Koelen: wat de insteller kan veranderen',
       pre: [
@@ -654,7 +654,7 @@ export default {
     },
     {
       id: 'eng.moulding.polymers',
-      gist: 'Amorfe kunststoffen krimpen weinig en gelijkmatig, semi-kristallijne meer en met de matrijstemperatuur; een materiaalwissel vraagt daarom een proef.',
+      gist: 'Amorfe kunststoffen krimpen weinig en gelijkmatig; semi-kristallijne krimpen meer, afhankelijk van de matrijstemperatuur, dus een materiaalwissel vraagt een proef.',
       film: 'eng.moulding.materials',
       figure: 'eng.moulding.dryer',
       title: 'Amorfe en semi-kristallijne kunststoffen',
@@ -725,7 +725,7 @@ export default {
     },
     {
       id: 'eng.moulding.drying',
-      gist: 'Te veel restvocht (PC maximaal 0,02%) maakt PC, PET en PBT bros zonder dat je het ziet; meet het vocht en log het dauwpunt.',
+      gist: 'Te veel restvocht (typisch PC maximaal 0,02%) maakt PC, PET en PBT bros zonder dat je het ziet; meet het vocht en log het dauwpunt.',
       film: 'eng.moulding.materials',
       figure: 'eng.moulding.dryer',
       title: 'Drogen tot in detail',
@@ -1090,7 +1090,7 @@ export default {
     },
     {
       id: 'eng.moulding.defectdata',
-      gist: 'Een fout is blijvend opgelost met een grondoorzaak bewezen met data, een bekend procesvenster en bewaking; een DOE en holtedruksensor helpen daarbij.',
+      gist: 'Een fout blijvend oplossen vraagt een grondoorzaak die met data is bewezen, een bekend procesvenster en bewaking; een DOE en holtedruksensor helpen daarbij.',
       film: 'eng.moulding.defects',
       figure: 'eng.moulding.part',
       title: 'Fouten blijvend oplossen',
@@ -1309,7 +1309,7 @@ export default {
     },
     {
       id: 'eng.moulding.scientific',
-      gist: 'Scientific moulding onderbouwt elke instelling met studies: een viscositeitscurve voor de snelheid, drukvalstudie voor de drukreserve, gate-freeze-studie voor de nadruktijd.',
+      gist: 'Scientific moulding onderbouwt instellingen met studies; de drie kernstudies zijn een viscositeitscurve voor de snelheid, een drukvalstudie voor de drukreserve, een gate-freeze-studie voor de nadruktijd.',
       film: 'eng.moulding.setting',
       figure: 'eng.moulding.window',
       title: 'Scientific moulding: drie studies',
@@ -1529,7 +1529,7 @@ export default {
     },
     {
       id: 'eng.moulding.mouldparts',
-      gist: 'De kunststof gaat via aanspuitkegel, verdeelkanalen en aanspuitpunt de holte in; elke wand heeft lossingshoek nodig en een ondersnijding kost meestal een schuif.',
+      gist: 'De kunststof gaat via aanspuitkegel, verdeelkanalen en aanspuitpunt de holte in; wanden in openingsrichting hebben lossingshoek nodig, een ondersnijding kost meestal een schuif.',
       film: 'eng.moulding.moulds',
       figure: 'eng.moulding.mould',
       title: 'Binnen in een matrijs',

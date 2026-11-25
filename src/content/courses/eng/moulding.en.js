@@ -221,7 +221,7 @@ export default {
     },
     {
       id: 'eng.moulding.electric',
-      gist: 'Fully electric presses use far fewer kWh per kg than hydraulic ones; measure it on your own products, as purchase price and size count too.',
+      gist: 'All-electric presses use less energy per kg than hydraulic ones, but studies differ; measure kWh per kg on your own parts and weigh price too.',
       film: 'eng.moulding.machine',
       figure: 'eng.moulding.screw',
       title: 'Hydraulic, electric and special presses',
@@ -369,7 +369,7 @@ export default {
     },
     {
       id: 'eng.moulding.cooling',
-      gist: 'Mould temperature and turbulent water flow set how fast the part cools; find the true minimum by lowering cooling time stepwise and measuring.',
+      gist: 'Besides wall thickness, mould temperature and turbulent water flow set the cooling; find the true minimum by lowering cooling time stepwise and measuring.',
       film: 'eng.moulding.cooling',
       title: 'Cooling: what the setter can change',
       pre: [
@@ -654,7 +654,7 @@ export default {
     },
     {
       id: 'eng.moulding.polymers',
-      gist: 'Amorphous plastics shrink little and evenly, semi-crystalline ones more and with mould temperature; a material change therefore needs a trial.',
+      gist: 'Amorphous plastics shrink little and evenly; semi-crystalline ones shrink more, depending on mould temperature, so a material change needs a trial.',
       film: 'eng.moulding.materials',
       figure: 'eng.moulding.dryer',
       title: 'Amorphous and semi-crystalline plastics',
@@ -725,7 +725,7 @@ export default {
     },
     {
       id: 'eng.moulding.drying',
-      gist: 'Too much residual moisture (PC at most 0.02%) makes PC, PET and PBT brittle without showing; measure the moisture and log the dew point.',
+      gist: 'Too much residual moisture (typically PC at most 0.02%) makes PC, PET and PBT brittle without showing; measure the moisture and log the dew point.',
       film: 'eng.moulding.materials',
       figure: 'eng.moulding.dryer',
       title: 'Drying in detail',
@@ -1309,7 +1309,7 @@ export default {
     },
     {
       id: 'eng.moulding.scientific',
-      gist: 'Scientific moulding backs each setting with studies: a viscosity curve for speed, a pressure-drop study for pressure reserve, a gate-freeze study for hold time.',
+      gist: 'Scientific moulding backs settings with studies; the three core ones: viscosity curve for speed, pressure-drop study for pressure reserve, gate-freeze study for hold time.',
       film: 'eng.moulding.setting',
       figure: 'eng.moulding.window',
       title: 'Scientific moulding: three studies',
@@ -1529,7 +1529,7 @@ export default {
     },
     {
       id: 'eng.moulding.mouldparts',
-      gist: 'The plastic enters the cavity via sprue, runners and gate; every wall needs draft and an undercut usually costs a slide.',
+      gist: 'The plastic enters the cavity via sprue, runners and gate; every wall in the opening direction needs draft and an undercut usually costs a slide.',
       film: 'eng.moulding.moulds',
       figure: 'eng.moulding.mould',
       title: 'Inside a mould',
@@ -1601,7 +1601,7 @@ export default {
     },
     {
       id: 'eng.moulding.mouldcare',
-      gist: 'Turn the shot counter into a maintenance calendar and read the mould log for repeat faults that are design problems; shorten changes with SMED.',
+      gist: 'Turn the shot counter into a maintenance calendar; read the mould log for repeat faults, which may be design problems; shorten changes with SMED.',
       film: 'eng.moulding.moulds',
       figure: 'eng.moulding.mould',
       title: 'Planning mould maintenance and changes',
