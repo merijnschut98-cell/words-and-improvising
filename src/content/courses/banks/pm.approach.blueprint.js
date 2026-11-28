@@ -23,8 +23,8 @@ export default {
       3: L(
         ['Kiezen hoeveel route een project krijgt en afwegen wat samenvoegen wel en niet toestaat.'],
         ['Choose how much route a project gets and weigh what merging does and does not allow.'],
-        ['Klein werk heeft geen beslisser of doel nodig', 'Samenvoegen van fasen laat een faseproduct vervallen', 'Een enthousiaste teamleider kan de sponsor vervangen', 'Elk project krijgt dezelfde route, dat is eerlijk'],
-        ['Small work needs no decider or goal', 'Merging stages makes a stage product lapse', 'A keen team leader can replace the sponsor', 'Every project gets the same route, which is fair'],
+        ['Klein werk heeft geen beslisser of doel nodig', 'Samenvoegen van fasen laat een faseproduct vervallen', 'Een enthousiaste teamleider kan de sponsor vervangen', 'Een klein project heeft dezelfde governance nodig als een programma, voor de zekerheid'],
+        ['Small work needs no decider or goal', 'Merging stages makes a stage product lapse', 'A keen team leader can replace the sponsor', 'A small project needs the same governance as a programme, to be safe'],
       ),
       4: L(
         ['Een route voorstellen die in het PMO en het gatemodel van de klant past, en zien wanneer niet starten het eerlijke antwoord is.', 'Wegen wat verplicht is, wat wordt gelezen en wat je mag verkorten.'],
@@ -63,8 +63,8 @@ export default {
       1: L(
         ['Een toolfamilie herkennen bij een soort werk en weten wanneer een spreadsheet genoeg is.'],
         ['Recognise the tool family for a kind of work and know when a spreadsheet is enough.'],
-        ['Een tool kiezen op merk is veiliger dan op familie', 'Een spreadsheet is nooit genoeg voor een projectlijst', 'Hoe meer tools, hoe beter het overzicht', 'Een samenwerkingsbord bewaakt taken met afhankelijkheden'],
-        ['Picking a tool by brand is safer than by family', 'A spreadsheet is never enough for a project list', 'The more tools, the better the overview', 'A whiteboard tracks tasks with dependencies'],
+        ['Een tool kiezen op merk is veiliger dan op familie', 'Een spreadsheet is nooit genoeg voor een projectlijst', 'Een tool loont vanaf de eerste lijst van tien regels', 'Een samenwerkingsbord bewaakt taken met afhankelijkheden'],
+        ['Picking a tool by brand is safer than by family', 'A spreadsheet is never enough for a project list', 'A tool pays off from the first list of ten rows', 'A whiteboard tracks tasks with dependencies'],
       ),
       2: L(
         ['Een takenbord inrichten met buckets op werk, kaarten met eigenaar, datum en klaar-criterium, en rekenen met het filter op achterstand.'],
@@ -107,8 +107,8 @@ export default {
       4: L(
         ['Het toollandschap als senior wegen: data-eigenaar, het PMO vroeg onderhandelen, leveranciersrisico en technische wijzigingen, ook met getallen.'],
         ['Weigh the tool landscape as a senior: data owner, negotiating early with the PMO, vendor risk and engineering changes, also with numbers.'],
-        ['Een geschil over een getal los je op met een stemming', 'Wachten op de leverancier is genoeg bij een uitfasering', 'Technische wijzigingen merk je vanzelf op tijd', 'Het PMO bepaalt pas na de eerste rode status hoe je wordt gemeten'],
-        ['A dispute over a figure is settled by a vote', 'Waiting for the supplier is enough when a tool is retired', 'You notice engineering changes in time by yourself', 'The PMO only sets how you are measured after the first red status'],
+        ['Wie het rapport heeft gebouwd, bepaalt wat een getal betekent', 'Wachten op de leverancier is genoeg bij een uitfasering', 'Technische wijzigingen merk je vanzelf op tijd', 'Het PMO bepaalt pas na de eerste rode status hoe je wordt gemeten'],
+        ['Whoever built the report decides what a figure means', 'Waiting for the supplier is enough when a tool is retired', 'You notice engineering changes in time by yourself', 'The PMO only sets how you are measured after the first red status'],
       ),
     },
   },
