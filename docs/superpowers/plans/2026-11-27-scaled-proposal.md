@@ -215,4 +215,9 @@ One module pass in the v18 sense (P-n scope: questions to the standard, `best` s
 - A. Retire `lpm`, `nexus` and `spotify`, and add `backlog`, `options` and `descale`. *Ids match their content; your progress on those three lessons is dropped (the rest keeps its ids).*
 - B. Keep all 16 ids and put the new content under the old ids. *No progress lost; ids such as `pm.scaled.lpm` then hold a lesson about the backlog for good.*
 
-**Building does not start until Merijn says so.**
+**Answered by Merijn on 28 Nov; building may start.**
+- **Q1: A.** All four topics are rewritten.
+- **Q2: A.** LeSS, Nexus and Spotify become one topic that builds (map, in practice, choosing and descaling, critique).
+- **Q3: B, a grid operator.** The running example is not Hoogveld but an invented Dutch grid operator's digital programme (for example a software train that builds the grid-management / OT data platform and the customer connection portal). For the hybrid topic, where software runs beside a hardware track on stage-gate, the grid operator's own hardware is used: a new type of smart MV substation or connection cabinet with a supplier, type testing and a roll-out plan (Merijn had no preference; integrator's choice, the recommended one). Section 2.2 is to be read with this example in place of Hoogveld.
+- **Q4: A.** Rebuild the intro and the PI film (PI Planning only, shorter); keep the hybrid film for now.
+- **Q5: A** (no preference; the recommended one). Retire `lpm`, `nexus`, `spotify`; add `backlog`, `options`, `descale`.
