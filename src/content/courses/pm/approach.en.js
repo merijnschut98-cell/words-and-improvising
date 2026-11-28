@@ -368,6 +368,7 @@ export default {
     {
       id: 'pm.approach.dmaic',
       gist: 'DMAIC is a project structure for any improvement: define, measure, analyse, improve and control, with a tollgate review after each phase.',
+      pictures: [{ id: 'pm.approach.dmaic.flow', after: 2, alt: 'Flow of the five DMAIC phases, each with the result the next phase needs.' }],
       title: 'DMAIC on a small problem',
       pre: [
         {
@@ -439,6 +440,7 @@ export default {
     {
       id: 'pm.approach.choose',
       gist: 'Choose the method with five questions about solution, requirements, data, team and contract; often a hybrid form is the answer.',
+      pictures: [{ id: 'pm.approach.choose.map', after: 1, alt: 'Table linking answers to the five selection questions to the approach they point to.' }],
       title: 'Choosing the method for this project',
       pre: [
         {
@@ -581,6 +583,7 @@ export default {
     {
       id: 'pm.approach.toolfamilies',
       gist: 'A tool is worth it when it returns more than it costs; think in tool families per kind of work and pick the smallest set.',
+      pictures: [{ id: 'pm.approach.toolfamilies.map', after: 2, alt: 'Table of the seven tool families, the kind of work each does and example tools.' }],
       title: 'Tool families and when a tool pays off',
       pre: [
         {
@@ -876,6 +879,7 @@ export default {
     {
       id: 'pm.approach.systems',
       gist: 'In a large company each system has one job; the system of record has the last word when sources disagree.',
+      pictures: [{ id: 'pm.approach.systems.map', after: 1, alt: 'Table of a large client’s systems and the job of each: ERP, planning, PPM, PLM, ITSM and reporting.' }],
       title: 'A large client’s systems',
       pre: [
         {

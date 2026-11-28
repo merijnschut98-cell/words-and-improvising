@@ -368,6 +368,7 @@ export default {
     {
       id: 'pm.approach.dmaic',
       gist: 'DMAIC is een projectstructuur voor elke verbetering: definiëren, meten, analyseren, verbeteren en borgen, met na elke fase een fasepoort.',
+      pictures: [{ id: 'pm.approach.dmaic.flow', after: 2, alt: 'Stroomschema van de vijf DMAIC-fasen, elk met het resultaat dat de volgende fase nodig heeft.' }],
       title: 'DMAIC op een klein probleem',
       pre: [
         {
@@ -439,6 +440,7 @@ export default {
     {
       id: 'pm.approach.choose',
       gist: 'Kies de methode met vijf vragen over oplossing, eisen, data, team en contract; vaak is een hybride vorm het antwoord.',
+      pictures: [{ id: 'pm.approach.choose.map', after: 1, alt: 'Tabel die antwoorden op de vijf keuzevragen koppelt aan de aanpak waar ze naar wijzen.' }],
       title: 'De methode kiezen voor dit project',
       pre: [
         {
@@ -581,6 +583,7 @@ export default {
     {
       id: 'pm.approach.toolfamilies',
       gist: 'Een tool loont als hij meer oplevert dan hij kost; denk in toolfamilies per soort werk en kies de kleinste set.',
+      pictures: [{ id: 'pm.approach.toolfamilies.map', after: 2, alt: 'Tabel met de zeven toolfamilies, het soort werk dat elke familie doet en voorbeeldtools erbij.' }],
       title: 'Toolfamilies en wanneer een tool loont',
       pre: [
         {
@@ -876,6 +879,7 @@ export default {
     {
       id: 'pm.approach.systems',
       gist: 'In een groot bedrijf heeft elk systeem één taak; bij tegenspraak heeft het systeem van vastlegging het laatste woord.',
+      pictures: [{ id: 'pm.approach.systems.map', after: 1, alt: 'Tabel met de systemen van een grote klant en de taak van elk: ERP, planning, PPM, PLM, ITSM en rapportage.' }],
       title: 'De systemen van een grote klant',
       pre: [
         {
