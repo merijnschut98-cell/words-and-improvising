@@ -1,0 +1,273 @@
+WEBVTT
+
+1
+00:00:00.823 --> 00:00:05.525
+CNC means that a computer drives the machine’s motors, following a program.
+
+2
+00:00:06.244 --> 00:00:08.799
+This is such a machine, a machining centre.
+
+3
+00:00:09.811 --> 00:00:11.704
+The spindle is the spinning shaft.
+
+4
+00:00:12.471 --> 00:00:15.200
+On a lathe it holds the part, on a mill the tool.
+
+5
+00:00:15.890 --> 00:00:19.245
+A motor of typically 10 to 40 kilowatts drives it.
+
+6
+00:00:20.587 --> 00:00:24.535
+On a lathe, X sets the diameter and Z runs along the spindle.
+
+7
+00:00:25.537 --> 00:00:30.297
+On a mill, X and Y move the table, and Z moves the spindle up and down.
+
+8
+00:00:31.372 --> 00:00:35.273
+A fourth and fifth axis rotate the part or the spindle head.
+
+9
+00:00:36.612 --> 00:00:38.737
+The program itself is G-code.
+
+10
+00:00:39.576 --> 00:00:41.561
+That is a list of short commands.
+
+11
+00:00:42.570 --> 00:00:46.355
+G00 is a rapid move, fast and not cutting.
+
+12
+00:00:47.041 --> 00:00:49.119
+G01 is a straight cut.
+
+13
+00:00:49.876 --> 00:00:52.906
+G02 and G03 are arcs.
+
+14
+00:00:53.904 --> 00:00:55.994
+M03 starts the spindle.
+
+15
+00:00:56.720 --> 00:01:00.191
+M08 switches on the coolant, the cooling liquid.
+
+16
+00:01:00.930 --> 00:01:03.031
+M06 changes the tool.
+
+17
+00:01:04.018 --> 00:01:07.199
+F sets the feed, how fast the tool advances.
+
+18
+00:01:07.934 --> 00:01:09.467
+S is the spindle speed.
+
+19
+00:01:10.219 --> 00:01:11.159
+T is the tool.
+
+20
+00:01:12.467 --> 00:01:15.323
+Most programs are written in CAM software.
+
+21
+00:01:16.059 --> 00:01:19.414
+It turns the 3D model of the part into G-code.
+
+22
+00:01:20.498 --> 00:01:24.202
+That G-code goes to the control, the computer on the machine.
+
+23
+00:01:24.905 --> 00:01:27.889
+Well-known makes are Fanuc, Siemens and Heidenhain.
+
+24
+00:01:29.246 --> 00:01:30.709
+Now the zero points.
+
+25
+00:01:31.435 --> 00:01:34.895
+Machine zero is a fixed home position of the machine.
+
+26
+00:01:35.895 --> 00:01:38.786
+A setter starts a job of 200 flanges.
+
+27
+00:01:39.488 --> 00:01:43.064
+He sets G54 by touching the jaw of the vice.
+
+28
+00:01:43.790 --> 00:01:45.961
+A vice is a clamp with two jaws.
+
+29
+00:01:46.692 --> 00:01:49.478
+The probe is a measuring pin held in the spindle.
+
+30
+00:01:50.472 --> 00:01:55.209
+The work offset G54 tells the machine where the part sits on the table.
+
+31
+00:01:56.547 --> 00:01:58.997
+Every tool sticks out a different amount.
+
+32
+00:01:59.753 --> 00:02:03.050
+So a tool offset stores the length and the radius of a tool.
+
+33
+00:02:04.032 --> 00:02:07.468
+The setter measures tool 5, a drill, on the tool setter.
+
+34
+00:02:08.336 --> 00:02:12.202
+It is 121.43 millimetres long.
+
+35
+00:02:13.197 --> 00:02:16.053
+The setter measures these numbers and types them in.
+
+36
+00:02:16.748 --> 00:02:18.675
+Together they are called the offsets.
+
+37
+00:02:19.707 --> 00:02:23.701
+Most crashes come from wrong offsets, not from wrong programs.
+
+38
+00:02:24.426 --> 00:02:27.177
+In a crash the tool hits the part or the clamps.
+
+39
+00:02:27.892 --> 00:02:31.537
+Most scrapped first parts also come from wrong offsets.
+
+40
+00:02:32.809 --> 00:02:38.834
+But for tool 5 he types a length of 112.43 millimetres in the table,
+
+41
+00:02:38.997 --> 00:02:42.004
+instead of 121.43.
+
+42
+00:02:42.967 --> 00:02:46.833
+The machine thinks the drill is 9 millimetres shorter than it is.
+
+43
+00:02:47.567 --> 00:02:49.819
+So it drills 9 millimetres deeper.
+
+44
+00:02:51.156 --> 00:02:55.753
+Before the first cut, a careful setter runs a new program in single block.
+
+45
+00:02:56.507 --> 00:02:58.632
+That is one line per button press.
+
+46
+00:02:59.712 --> 00:03:01.430
+Rapid moves are slowed down.
+
+47
+00:03:02.126 --> 00:03:04.274
+And a hand rests on the stop button.
+
+48
+00:03:05.690 --> 00:03:07.373
+Then comes the first-off check.
+
+49
+00:03:08.114 --> 00:03:13.037
+After every setup, program change or tool change you measure the first part fully,
+
+50
+00:03:13.199 --> 00:03:14.488
+before the batch runs.
+
+51
+00:03:15.505 --> 00:03:17.990
+Many shops also check the last part.
+
+52
+00:03:18.783 --> 00:03:23.648
+It costs 10 to 20 minutes and can save a batch of 200 wrong parts.
+
+53
+00:03:24.645 --> 00:03:29.544
+In the example the first-off check finds a hole that is 9 millimetres too deep.
+
+54
+00:03:30.318 --> 00:03:33.023
+One part is scrapped, 35 euros.
+
+55
+00:03:34.062 --> 00:03:40.018
+Without that check it is 200 times 35 euros, so 7,000 euros of scrap.
+
+56
+00:03:41.021 --> 00:03:43.726
+If the hole should stop just above a thin floor,
+
+57
+00:03:43.865 --> 00:03:46.593
+a drill may break and the fixture be damaged.
+
+58
+00:03:47.320 --> 00:03:49.387
+That is the holder made for this part.
+
+59
+00:03:50.783 --> 00:03:53.929
+What engineers argue about are edits at the machine.
+
+60
+00:03:54.668 --> 00:03:57.176
+A setter fixes a program on the control.
+
+61
+00:03:58.175 --> 00:04:01.310
+If the fix never goes back into the CAM file,
+
+62
+00:04:01.449 --> 00:04:04.375
+the old error returns at the next repeat order.
+
+63
+00:04:05.375 --> 00:04:06.431
+Good questions.
+
+64
+00:04:07.162 --> 00:04:11.075
+Is this program proven, meaning it has run before without problems?
+
+65
+00:04:11.771 --> 00:04:13.094
+Where is the master version?
+
+66
+00:04:14.103 --> 00:04:17.517
+How many crashes were there last year, and what did they cost?
+
+67
+00:04:18.594 --> 00:04:23.470
+A spindle crash can cost 5,000 to 30,000 euros in repairs.
+
+68
+00:04:24.185 --> 00:04:26.507
+On top come days to weeks of downtime.

@@ -1,0 +1,165 @@
+WEBVTT
+
+1
+00:00:00.847 --> 00:00:03.622
+Every carton that leaves line 3 must be good.
+
+2
+00:00:04.670 --> 00:00:08.815
+The module Quality is about how engineers talk about good parts.
+
+3
+00:00:09.817 --> 00:00:11.059
+You are the engineer.
+
+4
+00:00:11.784 --> 00:00:15.290
+With the team lead you keep every carton good for a whole shift.
+
+5
+00:00:16.323 --> 00:00:18.645
+First what is good and how you measure it,
+
+6
+00:00:18.819 --> 00:00:22.766
+with tolerances and measuring and with variation and capability.
+
+7
+00:00:23.809 --> 00:00:26.375
+Then watching the process and catching a fault,
+
+8
+00:00:26.491 --> 00:00:30.380
+with SPC and control charts and with risk and control.
+
+9
+00:00:31.664 --> 00:00:34.288
+The first topic is Tolerances and measuring.
+
+10
+00:00:34.998 --> 00:00:39.294
+The tolerance is how far a dimension may deviate and still work.
+
+11
+00:00:40.324 --> 00:00:43.737
+The spec limits are the edges of what the customer accepts.
+
+12
+00:00:44.438 --> 00:00:46.690
+Outside them a carton is nonconforming.
+
+13
+00:00:47.698 --> 00:00:49.904
+You measure the dimension with a caliper.
+
+14
+00:00:51.201 --> 00:00:54.289
+The second topic is Variation and capability.
+
+15
+00:00:54.996 --> 00:00:57.481
+No two cartons are exactly alike.
+
+16
+00:00:58.508 --> 00:01:02.362
+Capability says whether line 3 can stay within the tolerance.
+
+17
+00:01:03.383 --> 00:01:05.345
+You express that as the Cpk.
+
+18
+00:01:06.631 --> 00:01:09.859
+The third topic is SPC and control charts.
+
+19
+00:01:10.577 --> 00:01:13.120
+You see a change before bad cartons appear.
+
+20
+00:01:14.126 --> 00:01:16.878
+A control chart plots measurements over time,
+
+21
+00:01:17.052 --> 00:01:19.664
+with a centre line and two control limits.
+
+22
+00:01:20.688 --> 00:01:25.367
+At the table at the end of the belt you measure a few cartons and write them down.
+
+23
+00:01:26.411 --> 00:01:31.206
+You plot the average and the range of those cartons on an X-bar and R chart.
+
+24
+00:01:32.572 --> 00:01:34.929
+The fourth topic is Risk and control.
+
+25
+00:01:35.633 --> 00:01:38.884
+It starts with a bad carton, which must stop moving.
+
+26
+00:01:39.932 --> 00:01:42.242
+You set it aside in a marked place.
+
+27
+00:01:42.938 --> 00:01:44.482
+That is called quarantine.
+
+28
+00:01:45.507 --> 00:01:48.375
+What is wrong you write in a nonconformance report.
+
+29
+00:01:49.406 --> 00:01:53.469
+That is how you and the team lead keep every carton good, all shift.
+
+30
+00:01:54.799 --> 00:01:55.623
+The whole map.
+
+31
+00:01:56.367 --> 00:01:59.792
+The second station is Quality, in Keeping the plant running.
+
+32
+00:02:00.808 --> 00:02:03.002
+Each of the four topics has four levels.
+
+33
+00:02:04.034 --> 00:02:08.550
+Start at Basics level with nominal size, tolerance and spec limits.
+
+34
+00:02:09.272 --> 00:02:11.014
+They are the yardstick for the rest.
+
+35
+00:02:12.087 --> 00:02:16.104
+At Working knowledge level come calibration, spread against tolerance,
+
+36
+00:02:16.301 --> 00:02:18.797
+control charts and risks before launch.
+
+37
+00:02:19.828 --> 00:02:24.124
+At Advanced level come geometric tolerancing, a capability study,
+
+38
+00:02:24.425 --> 00:02:26.608
+the right chart and the control plan.
+
+39
+00:02:27.634 --> 00:02:31.326
+At Expert level come tolerance stack-up, the sigma level,
+
+40
+00:02:31.466 --> 00:02:33.660
+false alarms and the real cause.
+
+41
+00:02:34.742 --> 00:02:38.794
+Every lesson and every film in this module has a place on this map.

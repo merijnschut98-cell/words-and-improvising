@@ -1,0 +1,173 @@
+WEBVTT
+
+1
+00:00:00.852 --> 00:00:02.930
+De vuleenheid van lijn 3 valt soms uit.
+
+2
+00:00:03.659 --> 00:00:04.878
+Dan staat de hele lijn stil.
+
+3
+00:00:05.897 --> 00:00:08.567
+De module Betrouwbaarheid en assetstrategie gaat
+
+4
+00:00:08.625 --> 00:00:11.087
+over hoe onderdelen falen en wat je daaraan doet.
+
+5
+00:00:12.103 --> 00:00:13.183
+Jij bent de engineer.
+
+6
+00:00:13.878 --> 00:00:16.711
+Na de dienst maak je met de teamleider de unit betrouwbaarder.
+
+7
+00:00:17.651 --> 00:00:21.099
+Eerst weet je hoe onderdelen falen en welk onderdeel het zwaarst weegt.
+
+8
+00:00:22.190 --> 00:00:25.371
+Dan kies je welk onderhoud past en laat je de cijfers besluiten.
+
+9
+00:00:26.646 --> 00:00:29.293
+Het eerste onderwerp is Falen en faalpatronen.
+
+10
+00:00:29.976 --> 00:00:32.205
+Je kijkt eerst hoe een onderdeel van de unit faalt.
+
+11
+00:00:33.267 --> 00:00:35.288
+Een handig beeld is dat een onderdeel faalt
+
+12
+00:00:35.311 --> 00:00:37.412
+als de belasting hoger is dan de sterkte.
+
+13
+00:00:38.442 --> 00:00:40.636
+Slijtage geeft meestal een waarschuwing.
+
+14
+00:00:41.370 --> 00:00:43.204
+Een plotselinge overbelasting niet.
+
+15
+00:00:44.236 --> 00:00:47.765
+Het patroon in de storingsdata lees je af aan de vormparameter (shape parameter).
+
+16
+00:00:49.035 --> 00:00:52.263
+Het tweede onderwerp is F M E A en kritikaliteit.
+
+17
+00:00:52.972 --> 00:00:54.795
+Niet elk onderdeel telt even zwaar.
+
+18
+00:00:55.758 --> 00:00:59.090
+Je kijkt wat er gebeurt als het uitvalt, en hoe waarschijnlijk dat is.
+
+19
+00:01:00.136 --> 00:01:03.979
+Je zet de onderdelen in een risicomatrix (risk matrix) en maakt een FMECA.
+
+20
+00:01:04.920 --> 00:01:08.438
+Het gemarkeerde vak staat voor een groot gevolg en een grote kans.
+
+21
+00:01:09.178 --> 00:01:10.711
+Dat onderdeel pak je eerst aan.
+
+22
+00:01:11.994 --> 00:01:14.641
+Het derde onderwerp is RCM en assetstrategie.
+
+23
+00:01:15.324 --> 00:01:18.215
+Je kiest welk onderhoud elk onderdeel echt nodig heeft.
+
+24
+00:01:19.195 --> 00:01:21.888
+Je begint bij wat de unit moet doen, met een eis erbij.
+
+25
+00:01:22.886 --> 00:01:25.707
+Een beveiliging kan uitvallen zonder dat iemand het merkt.
+
+26
+00:01:26.790 --> 00:01:28.822
+Daarvoor plan je een feeljer-fainding-taak.
+
+27
+00:01:30.077 --> 00:01:33.119
+Het vierde onderwerp is Betrouwbaarheidsdata en besluiten.
+
+28
+00:01:33.819 --> 00:01:35.351
+Je laat de cijfers zeggen wat loont.
+
+29
+00:01:36.365 --> 00:01:39.349
+Je telt hoe vaak de unit uitvalt en hoe lang hij dan stilstaat.
+
+30
+00:01:40.387 --> 00:01:44.833
+In veel fabrieken is wachten het grootste deel van de stilstand, niet de reparatie.
+
+31
+00:01:45.839 --> 00:01:48.289
+Je rekent de operationele beschikbaarheid (operational availability) uit.
+
+32
+00:01:49.350 --> 00:01:51.811
+Zo maak je de unit betrouwbaarder, waar het telt.
+
+33
+00:01:53.171 --> 00:01:53.937
+De hele kaart.
+
+34
+00:01:54.611 --> 00:01:59.209
+Het vierde station is Betrouwbaarheid en assetstrategie, in De fabriek beter maken.
+
+35
+00:02:00.199 --> 00:02:01.824
+Elk onderwerp heeft vier niveaus.
+
+36
+00:02:02.875 --> 00:02:05.928
+Begin op niveau Basis met hoe onderdelen fysiek falen.
+
+37
+00:02:06.613 --> 00:02:08.273
+Zo weet je wat er stukgaat en waarom.
+
+38
+00:02:09.291 --> 00:02:14.237
+Op niveau Werkkennis komen storingsdata lezen, F M E A op installaties,
+
+39
+00:02:14.573 --> 00:02:16.698
+RCM en waar de stilstand blijft.
+
+40
+00:02:17.709 --> 00:02:20.217
+Op niveau Gevorderd komen grondoorzaken,
+
+41
+00:02:20.449 --> 00:02:24.060
+reserve-units, een betrouwbaarheidsprogramma en reservedelen.
+
+42
+00:02:25.066 --> 00:02:29.560
+Op niveau Expert komen levensduurdata fitten, risico in euro’s,
+
+43
+00:02:29.896 --> 00:02:32.160
+assetmanagement en levensduurkosten.

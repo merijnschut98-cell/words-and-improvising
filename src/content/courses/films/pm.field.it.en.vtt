@@ -1,0 +1,165 @@
+WEBVTT
+
+1
+00:00:00.874 --> 00:00:02.917
+Line 3 runs in hall B.
+
+2
+00:00:03.597 --> 00:00:08.346
+Now a new MES is coming, the system that runs the orders on the floor.
+
+3
+00:00:09.363 --> 00:00:11.836
+You lead that IT project for the plant manager.
+
+4
+00:00:12.566 --> 00:00:15.109
+The IT team builds the MES.
+
+5
+00:00:16.192 --> 00:00:17.887
+That takes four stations.
+
+6
+00:00:18.621 --> 00:00:22.662
+Short cycles, many teams, safe delivery and leading the project.
+
+7
+00:00:23.989 --> 00:00:26.497
+The first station is Agile and Scrum.
+
+8
+00:00:27.196 --> 00:00:31.816
+The IT team builds the MES in short rounds, called sprints.
+
+9
+00:00:32.815 --> 00:00:35.311
+After each round users try it out.
+
+10
+00:00:36.148 --> 00:00:37.588
+Then the team adjusts.
+
+11
+00:00:38.586 --> 00:00:41.117
+You use a Kanban board and planning poker.
+
+12
+00:00:42.150 --> 00:00:46.214
+Without this you only find out after months that you built the wrong thing.
+
+13
+00:00:47.511 --> 00:00:50.623
+The second station is Scaling, SAFe and beyond.
+
+14
+00:00:51.397 --> 00:00:54.392
+One team is too small for the whole MES.
+
+15
+00:00:55.456 --> 00:00:59.182
+Then the teams plan together and work to one rhythm, like a train.
+
+16
+00:01:00.193 --> 00:01:03.003
+You use PI Planning and WSJF.
+
+17
+00:01:04.032 --> 00:01:07.944
+Without this the whole gets stuck, because one team waits for another.
+
+18
+00:01:09.267 --> 00:01:11.995
+The third station is DevOps and delivery.
+
+19
+00:01:12.673 --> 00:01:16.040
+Whoever builds the MES also keeps it running.
+
+20
+00:01:17.036 --> 00:01:20.403
+A new version goes through test and acceptance first.
+
+21
+00:01:21.162 --> 00:01:23.147
+Only then does it go to the floor.
+
+22
+00:01:24.187 --> 00:01:26.590
+You use a pipeline and a feature flag.
+
+23
+00:01:27.591 --> 00:01:32.501
+Without this every step stays manual, and that is where errors and waiting arise.
+
+24
+00:01:33.812 --> 00:01:36.773
+The fourth station is Leading IT projects.
+
+25
+00:01:37.458 --> 00:01:39.826
+From requirements and vendor to go-live.
+
+26
+00:01:40.913 --> 00:01:43.641
+Then real users test the MES.
+
+27
+00:01:44.442 --> 00:01:46.230
+Then comes the cutover weekend.
+
+28
+00:01:47.266 --> 00:01:49.437
+You use MoSCoW and a cutover plan.
+
+29
+00:01:50.491 --> 00:01:55.367
+Without this it is unclear what belongs in, and the switchover is improvised.
+
+30
+00:01:56.726 --> 00:01:58.398
+This is the map of Projects.
+
+31
+00:01:59.123 --> 00:02:02.768
+The four stations of IT and agile lie side by side.
+
+32
+00:02:03.777 --> 00:02:05.356
+First Agile and Scrum.
+
+33
+00:02:06.080 --> 00:02:09.691
+It covers the agile mindset, Scrum, backlog and Kanban.
+
+34
+00:02:10.726 --> 00:02:12.909
+Then Scaling, SAFe and beyond.
+
+35
+00:02:13.682 --> 00:02:17.700
+It covers SAFe, portfolio, alternatives and hybrid working.
+
+36
+00:02:18.795 --> 00:02:20.594
+Then DevOps and delivery.
+
+37
+00:02:21.300 --> 00:02:24.864
+It covers the pipeline, DORA, releases and incidents.
+
+38
+00:02:25.865 --> 00:02:27.920
+Finally Leading IT projects.
+
+39
+00:02:28.609 --> 00:02:31.987
+It covers requirements, vendor, go-live and testing.
+
+40
+00:02:33.120 --> 00:02:35.848
+Each station is a module with four topics.
+
+41
+00:02:36.541 --> 00:02:37.853
+Start where it hurts.

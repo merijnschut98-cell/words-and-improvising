@@ -1,0 +1,349 @@
+WEBVTT
+
+1
+00:00:00.852 --> 00:00:05.531
+Outside your field you can't look at the work and judge how far along it is.
+
+2
+00:00:06.516 --> 00:00:09.872
+So measure what is done or not done, with evidence you can see.
+
+3
+00:00:10.858 --> 00:00:14.248
+A milestone is a point where a clear result has to exist.
+
+4
+00:00:15.302 --> 00:00:18.471
+For example: interface tested with real orders.
+
+5
+00:00:19.168 --> 00:00:20.817
+Or: switchgear energised.
+
+6
+00:00:21.871 --> 00:00:24.495
+It's a yes or a no, not a percentage.
+
+7
+00:00:25.787 --> 00:00:28.527
+Percent complete, the share said to be finished,
+
+8
+00:00:28.701 --> 00:00:31.093
+is the weakest measure outside your field.
+
+9
+00:00:32.183 --> 00:00:35.829
+It's an opinion, and it tends to stall near 90 percent.
+
+10
+00:00:36.873 --> 00:00:40.286
+Budget spent tells you about money, not about progress.
+
+11
+00:00:41.290 --> 00:00:46.143
+So count finished milestones, and only count one when its evidence exists.
+
+12
+00:00:47.287 --> 00:00:50.665
+A signed test report, a demo, an approved drawing.
+
+13
+00:00:52.043 --> 00:00:55.398
+Acceptance criteria are the conditions to be accepted,
+
+14
+00:00:55.561 --> 00:00:57.384
+written before the work starts.
+
+15
+00:00:58.366 --> 00:01:04.171
+For example: the label prints in under 3 seconds, and all 12 fields match the order.
+
+16
+00:01:05.241 --> 00:01:07.540
+Agree them with the expert and the user.
+
+17
+00:01:08.341 --> 00:01:10.535
+Then done isn't argued about later.
+
+18
+00:01:11.553 --> 00:01:16.290
+The definition of done is the shared quality standard to count as finished: tested,
+
+19
+00:01:16.406 --> 00:01:17.788
+documented, reviewed.
+
+20
+00:01:18.810 --> 00:01:20.459
+It comes from the Scrum Guide.
+
+21
+00:01:21.253 --> 00:01:25.514
+Most teams keep it as a short checklist; it works on any project.
+
+22
+00:01:26.847 --> 00:01:30.690
+Automation and electrical work have two formal milestones.
+
+23
+00:01:31.462 --> 00:01:35.769
+The factory acceptance test, the FAT, tests a machine at the supplier,
+
+24
+00:01:35.874 --> 00:01:36.640
+before shipping.
+
+25
+00:01:37.649 --> 00:01:42.699
+The site acceptance test, the SAT, follows after installation at the client.
+
+26
+00:01:43.754 --> 00:01:46.459
+A FAT passed with open points is common.
+
+27
+00:01:47.165 --> 00:01:49.835
+Give that list owners and dates before you ship.
+
+28
+00:01:50.897 --> 00:01:54.531
+Demos are your best meter: regular, short, real data.
+
+29
+00:01:55.279 --> 00:01:58.890
+One every two weeks shows more than ten status reports.
+
+30
+00:01:59.929 --> 00:02:02.495
+A typical failure: months without a milestone.
+
+31
+00:02:03.201 --> 00:02:07.206
+A rough rule: something to check at least every two to four weeks.
+
+32
+00:02:08.208 --> 00:02:10.553
+So ask: what can you show me in two weeks?
+
+33
+00:02:11.859 --> 00:02:13.566
+An MES project.
+
+34
+00:02:14.291 --> 00:02:16.985
+The supplier reports 70 percent complete.
+
+35
+00:02:17.744 --> 00:02:19.369
+You rebuild the progress view.
+
+36
+00:02:20.368 --> 00:02:25.209
+Step one: list the six milestones, from design approved to the go-live rehearsal.
+
+37
+00:02:26.230 --> 00:02:31.141
+Step two: the evidence for each, from a signed design to a rehearsal report.
+
+38
+00:02:32.241 --> 00:02:34.307
+Step three: count what has evidence.
+
+39
+00:02:35.029 --> 00:02:36.434
+Only 1 and 2.
+
+40
+00:02:37.182 --> 00:02:40.247
+Milestone 3 is almost done, without a check.
+
+41
+00:02:41.302 --> 00:02:45.563
+Step four: report 2 of 6 with evidence, the third in two weeks.
+
+42
+00:02:46.278 --> 00:02:48.437
+The 70 percent was effort spent.
+
+43
+00:02:49.821 --> 00:02:51.249
+You rarely have certainty.
+
+44
+00:02:51.933 --> 00:02:55.706
+Decide well with what you have, and know when it isn't your decision.
+
+45
+00:02:56.801 --> 00:03:00.063
+Is it a reversible decision, one you can undo at low cost?
+
+46
+00:03:01.110 --> 00:03:03.571
+In his letter for 2015,
+
+47
+00:03:03.757 --> 00:03:08.146
+Jeff Bezos called irreversible decisions one-way doors: no way back.
+
+48
+00:03:08.896 --> 00:03:11.032
+Reversible ones are two-way doors.
+
+49
+00:03:12.041 --> 00:03:14.769
+Take two-way doors fairly fast, and learn.
+
+50
+00:03:15.464 --> 00:03:21.826
+His letter for 2016: about 70 percent of the information you want usually suffices;
+
+51
+00:03:21.954 --> 00:03:24.009
+waiting for 90 is too slow.
+
+52
+00:03:25.014 --> 00:03:29.948
+A one-way door: ordering switchgear with a long lead time, the time until delivery,
+
+53
+00:03:30.076 --> 00:03:31.841
+or shutting down the old system.
+
+54
+00:03:32.958 --> 00:03:37.892
+There you slow down: more evidence, a second opinion, and the sponsor decides.
+
+55
+00:03:39.190 --> 00:03:43.486
+Escalation is taking a decision or problem to someone with more authority,
+
+56
+00:03:43.637 --> 00:03:45.448
+because it is beyond yours.
+
+57
+00:03:46.462 --> 00:03:47.530
+It is not failure.
+
+58
+00:03:48.258 --> 00:03:49.593
+It is the system working.
+
+59
+00:03:50.640 --> 00:03:55.156
+Escalate when it's outside your mandate, when experts are stuck, or when goal,
+
+60
+00:03:55.284 --> 00:03:56.898
+budget or date is at risk.
+
+61
+00:03:57.925 --> 00:04:03.231
+Escalate early, with options, not just a problem: two options, what each costs,
+
+62
+00:04:03.393 --> 00:04:04.682
+and my recommendation.
+
+63
+00:04:06.049 --> 00:04:09.695
+A decision memo makes it concrete: one page with question,
+
+64
+00:04:09.869 --> 00:04:14.466
+options, criteria, expert advice, your recommendation and deadline.
+
+65
+00:04:15.466 --> 00:04:19.471
+It forces you to translate the technical part into consequences.
+
+66
+00:04:20.610 --> 00:04:23.698
+Then state the decision clearly, without apology.
+
+67
+00:04:24.377 --> 00:04:27.651
+In Jeffrey Pfeffer's words: show up in powerful fashion.
+
+68
+00:04:28.624 --> 00:04:32.618
+Say it calmly and firmly, and don't undercut it with sorry, maybe.
+
+69
+00:04:33.572 --> 00:04:36.138
+Typical failures: escalating too late,
+
+70
+00:04:36.301 --> 00:04:39.180
+with no options left; without a recommendation,
+
+71
+00:04:39.273 --> 00:04:43.069
+so the sponsor does your thinking; reopening decisions every week.
+
+72
+00:04:44.106 --> 00:04:47.740
+Ask: if we can't undo this, who decides, and by when?
+
+73
+00:04:48.453 --> 00:04:50.613
+If we can, what does a week's wait cost?
+
+74
+00:04:51.972 --> 00:04:53.063
+A grid project.
+
+75
+00:04:53.763 --> 00:04:59.173
+The switchgear has a 26-week lead time; the final load figures come in 4 weeks.
+
+76
+00:04:59.898 --> 00:05:02.580
+Waiting slips energising by about a month.
+
+77
+00:05:03.633 --> 00:05:05.909
+Step one: ordering is a one-way door.
+
+78
+00:05:06.662 --> 00:05:08.136
+Cancelling costs a lot.
+
+79
+00:05:09.245 --> 00:05:11.137
+Step two, the grid engineer:
+
+80
+00:05:11.335 --> 00:05:16.118
+the figures only change the switchgear if the load rises by more than 30 percent.
+
+81
+00:05:17.150 --> 00:05:20.331
+Step three, ask the factory: how likely is that?
+
+82
+00:05:21.095 --> 00:05:22.152
+Very unlikely.
+
+83
+00:05:23.165 --> 00:05:27.600
+Step four, a decision memo to the sponsor: order now on the current sizing,
+
+84
+00:05:27.774 --> 00:05:30.897
+risk named, or wait 4 weeks and slip a month.
+
+85
+00:05:31.622 --> 00:05:33.294
+Recommendation: order now.
+
+86
+00:05:34.373 --> 00:05:36.637
+Step five: the sponsor decides.
+
+87
+00:05:37.352 --> 00:05:39.546
+You record it and announce it plainly.

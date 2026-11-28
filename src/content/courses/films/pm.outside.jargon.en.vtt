@@ -1,0 +1,377 @@
+WEBVTT
+
+1
+00:00:00.846 --> 00:00:02.460
+If you can't judge the content,
+
+2
+00:00:02.564 --> 00:00:05.757
+two questions do the most work: what would make this fail?
+
+3
+00:00:06.502 --> 00:00:07.477
+And: how do you know?
+
+4
+00:00:08.490 --> 00:00:10.034
+The first finds risks.
+
+5
+00:00:10.741 --> 00:00:12.483
+The second checks the claims.
+
+6
+00:00:13.492 --> 00:00:16.940
+Together they test a plan without understanding every detail.
+
+7
+00:00:18.253 --> 00:00:21.922
+A premortem: the team imagines the project has already failed.
+
+8
+00:00:22.696 --> 00:00:26.224
+Each person writes down why, before anyone speaks.
+
+9
+00:00:27.210 --> 00:00:31.970
+Gary Klein described it in Harvard Business Review, in 2007.
+
+10
+00:00:32.981 --> 00:00:36.870
+He cites 1989 research: by his account,
+
+11
+00:00:36.987 --> 00:00:41.573
+imagined hindsight makes people 30 percent better at the right reasons.
+
+12
+00:00:42.583 --> 00:00:46.762
+The study counted about 30 percent more reasons, not their quality,
+
+13
+00:00:46.890 --> 00:00:48.945
+but more candidates is what you want.
+
+14
+00:00:50.045 --> 00:00:53.447
+Writing first stops the senior voice from setting the tone.
+
+15
+00:00:54.787 --> 00:00:57.504
+Watch for a single point of failure: one part,
+
+16
+00:00:57.655 --> 00:01:01.045
+person or supplier that stops everything if it fails.
+
+17
+00:01:02.070 --> 00:01:05.855
+One server with no backup, one programmer who knows the code,
+
+18
+00:01:06.029 --> 00:01:08.235
+one cable feeding the whole factory.
+
+19
+00:01:09.200 --> 00:01:10.628
+For each serious risk,
+
+20
+00:01:10.791 --> 00:01:15.272
+ask for the mitigation: what makes it less likely or less bad, and who owns it?
+
+21
+00:01:16.326 --> 00:01:19.913
+A risk without a mitigation and an owner is just a worry.
+
+22
+00:01:21.178 --> 00:01:25.880
+The second question asks for evidence: something you can see, test or check.
+
+23
+00:01:26.616 --> 00:01:27.533
+Not an opinion.
+
+24
+00:01:28.522 --> 00:01:30.589
+From weak to strong: I think so.
+
+25
+00:01:31.309 --> 00:01:32.342
+It worked before.
+
+26
+00:01:33.112 --> 00:01:34.238
+We tested it here.
+
+27
+00:01:34.942 --> 00:01:36.219
+Here is the test report.
+
+28
+00:01:37.270 --> 00:01:38.977
+Ask calmly, about the claim,
+
+29
+00:01:39.128 --> 00:01:42.495
+not the person: how do we know the network can carry the data?
+
+30
+00:01:43.265 --> 00:01:44.310
+Not: are you sure?
+
+31
+00:01:45.339 --> 00:01:48.241
+The typical failure: accepting the first answer.
+
+32
+00:01:48.958 --> 00:01:52.836
+That's the comfortable one; the useful one comes after a pause.
+
+33
+00:01:53.879 --> 00:01:58.790
+That is Silence and Inquiry from MORE PIES: stay quiet, then go deeper.
+
+34
+00:01:59.538 --> 00:02:01.698
+If that happened, what would we see first?
+
+35
+00:02:02.763 --> 00:02:06.931
+A rough rule many project leaders use: no risk that surprises you?
+
+36
+00:02:07.696 --> 00:02:09.751
+Then people haven't been honest yet.
+
+37
+00:02:11.107 --> 00:02:16.192
+Two months before an MES go-live: a 30 minute premortem with eight people.
+
+38
+00:02:17.206 --> 00:02:20.062
+Step one: it's September, the go-live failed.
+
+39
+00:02:20.858 --> 00:02:23.737
+Write down why, alone, for 5 minutes.
+
+40
+00:02:24.740 --> 00:02:26.412
+Step two: read them out.
+
+41
+00:02:27.164 --> 00:02:29.916
+The barcode scanners on line 2 didn't connect.
+
+42
+00:02:30.649 --> 00:02:32.391
+The night shift wasn't trained.
+
+43
+00:02:33.137 --> 00:02:35.389
+Only Ahmed knows the interface.
+
+44
+00:02:36.449 --> 00:02:39.874
+Step three: group them and pick the three most serious.
+
+45
+00:02:41.013 --> 00:02:43.103
+Step four: how do we know it won't happen?
+
+46
+00:02:43.834 --> 00:02:47.084
+The scanners were tested in the office, not on the line.
+
+47
+00:02:47.776 --> 00:02:48.844
+Weak evidence.
+
+48
+00:02:49.858 --> 00:02:54.735
+Step five: a scanner test on line 2 next week, with the IT lead as owner.
+
+49
+00:02:55.754 --> 00:03:00.003
+And Ahmed, the single point of failure, gets a second person trained.
+
+50
+00:03:01.389 --> 00:03:05.534
+Jargon is the specialist language of a field: precise for insiders,
+
+51
+00:03:05.731 --> 00:03:07.240
+opaque for everyone else.
+
+52
+00:03:08.266 --> 00:03:09.868
+Not a problem in itself.
+
+53
+00:03:10.585 --> 00:03:15.299
+It is when decisions get made in it that nobody outside the field understands.
+
+54
+00:03:16.342 --> 00:03:19.953
+Your job: translate back into goal, cost, time and risk,
+
+55
+00:03:20.057 --> 00:03:22.089
+so the sponsor and the floor can follow.
+
+56
+00:03:23.476 --> 00:03:28.143
+MORE PIES is a checklist for active listening: to understand, not to reply.
+
+57
+00:03:29.125 --> 00:03:29.961
+Eight letters.
+
+58
+00:03:30.718 --> 00:03:33.272
+Two matter most here: the P and the I.
+
+59
+00:03:34.283 --> 00:03:37.255
+The P: paraphrasing, in your own words.
+
+60
+00:03:37.951 --> 00:03:40.587
+So what you're saying is, then plain words.
+
+61
+00:03:41.314 --> 00:03:42.440
+Have I got that right?
+
+62
+00:03:43.455 --> 00:03:47.158
+Experts usually correct you, and the correction is where you learn.
+
+63
+00:03:48.198 --> 00:03:51.891
+The I: inquiry, one level deeper, to the consequence.
+
+64
+00:03:52.604 --> 00:03:54.160
+What does that mean for the date?
+
+65
+00:03:54.908 --> 00:03:55.581
+For the cost?
+
+66
+00:03:56.303 --> 00:03:56.976
+For the risk?
+
+67
+00:03:57.983 --> 00:04:01.919
+Silence helps too: after the paraphrase, wait for the correction.
+
+68
+00:04:03.219 --> 00:04:05.053
+Teach-back comes from health care:
+
+69
+00:04:05.216 --> 00:04:10.150
+the doctor asks the patient to explain the instructions back in their own words.
+
+70
+00:04:11.255 --> 00:04:14.959
+Do it the other way round: tell his point back as to the sponsor,
+
+71
+00:04:15.133 --> 00:04:16.329
+and let him fix it.
+
+72
+00:04:17.415 --> 00:04:21.408
+Then you have a sentence for the steering meeting, without misquoting anyone.
+
+73
+00:04:22.403 --> 00:04:26.188
+Typical failures: translating so loosely the meaning changes.
+
+74
+00:04:26.878 --> 00:04:28.248
+So it's basically fine?
+
+75
+00:04:29.274 --> 00:04:32.316
+Or letting the expert present to the board in jargon.
+
+76
+00:04:33.059 --> 00:04:34.290
+Or pretending to follow.
+
+77
+00:04:35.340 --> 00:04:36.873
+An expert about to present?
+
+78
+00:04:37.598 --> 00:04:42.532
+First agree with him the one sentence the sponsor must remember, in plain words.
+
+79
+00:04:43.987 --> 00:04:46.019
+An MES design meeting.
+
+80
+00:04:46.705 --> 00:04:49.921
+The specialist: the ERP interface is batch,
+
+81
+00:04:50.060 --> 00:04:53.427
+not real-time, so up to 15 minutes latency.
+
+82
+00:04:54.412 --> 00:04:57.036
+And no idempotency on retries.
+
+83
+00:04:57.759 --> 00:05:02.856
+You paraphrase the first part: orders reach the floor up to 15 minutes late.
+
+84
+00:05:03.634 --> 00:05:04.284
+He nods.
+
+85
+00:05:05.294 --> 00:05:09.636
+The second part, you ask honestly: what does that mean in plain words,
+
+86
+00:05:09.810 --> 00:05:11.308
+and what's the consequence?
+
+87
+00:05:12.328 --> 00:05:15.358
+Answer: a message sent twice can double an order.
+
+88
+00:05:16.115 --> 00:05:18.774
+You inquire: what would that cost, and how often?
+
+89
+00:05:19.877 --> 00:05:24.556
+Then teach-back, as to the sponsor: orders arrive up to 15 minutes late,
+
+90
+00:05:24.753 --> 00:05:26.576
+and doubled if the link hiccups.
+
+91
+00:05:27.257 --> 00:05:28.836
+So, a check for doubles.
+
+92
+00:05:29.575 --> 00:05:30.388
+Is that fair?
+
+93
+00:05:31.388 --> 00:05:32.770
+He adjusts one word.
+
+94
+00:05:33.509 --> 00:05:35.843
+That sentence goes to the steering meeting.

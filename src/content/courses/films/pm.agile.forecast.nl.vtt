@@ -1,0 +1,381 @@
+WEBVTT
+
+1
+00:00:00.833 --> 00:00:02.169
+De onzekerheidskegel (cone of uncertainty)
+
+2
+00:00:02.261 --> 00:00:05.303
+is een model van Barry Boehm uit negentienhonderdeenentachtig,
+
+3
+00:00:05.501 --> 00:00:07.417
+later uitgewerkt door Steve McConnell.
+
+4
+00:00:08.070 --> 00:00:10.838
+Hoe vroeger in een project, hoe breder de bandbreedte.
+
+5
+00:00:11.890 --> 00:00:13.910
+Bij het eerste idee ligt het tussen nul komma
+
+6
+00:00:13.968 --> 00:00:16.081
+vijfentwintig en vier keer de schatting.
+
+7
+00:00:16.842 --> 00:00:19.919
+Grotendeels ervaringsoordeel, geen harde meting.
+
+8
+00:00:20.974 --> 00:00:25.572
+De kegel smalt alleen als je echt onzekerheid wegneemt, zoals met werkende stukken.
+
+9
+00:00:26.248 --> 00:00:27.200
+Tijd alleen helpt niet.
+
+10
+00:00:28.551 --> 00:00:30.130
+Een probabilistische voorspelling (probabilistic forecast)
+
+11
+00:00:30.188 --> 00:00:31.698
+geeft geen datum maar een kans,
+
+12
+00:00:31.907 --> 00:00:35.181
+zoals vijfentachtig procent kans dat het voor één maart af is.
+
+13
+00:00:36.199 --> 00:00:40.030
+Dat is eerlijker, en de opdrachtgever kiest zelf hoeveel zekerheid hij wil.
+
+14
+00:00:41.013 --> 00:00:44.089
+De basis is historische data, vaak de throughput,
+
+15
+00:00:44.449 --> 00:00:46.411
+de items die het team per week afmaakt.
+
+16
+00:00:47.508 --> 00:00:51.432
+Vier tot acht per week bij zestig open geeft zevenenhalf tot vijftien weken.
+
+17
+00:00:52.733 --> 00:00:54.115
+Een Monte Carlo-simulatie (Monte Carlo simulation)
+
+18
+00:00:54.150 --> 00:00:57.377
+trekt duizenden keren willekeurig weken uit de echte historie,
+
+19
+00:00:57.726 --> 00:00:59.235
+tot zestig items af zijn.
+
+20
+00:01:00.230 --> 00:01:02.076
+Zo ontstaan duizenden einddata.
+
+21
+00:01:02.764 --> 00:01:07.372
+Je leest af wanneer vijftig procent van de runs klaar is, en wanneer vijfentachtig.
+
+22
+00:01:08.409 --> 00:01:12.635
+Daniel Vacanti en Troy Magennis maakten dit populair in agile teams.
+
+23
+00:01:13.295 --> 00:01:16.264
+Het werkt alleen als de manier van werken ongeveer gelijk blijft.
+
+24
+00:01:17.567 --> 00:01:20.121
+NoEstimates kwam rond tweeduizend twaalf op gang.
+
+25
+00:01:20.862 --> 00:01:25.065
+Stop met schatten per item, knip werk klein en voorspel met het aantal items.
+
+26
+00:01:26.105 --> 00:01:30.273
+Critici zeggen dat je voor investeringsbeslissingen wel een grootte moet weten.
+
+27
+00:01:31.276 --> 00:01:33.540
+Een terugkerend probleem is de wet van Goodhart (Goodhart’s law).
+
+28
+00:01:34.361 --> 00:01:37.263
+Zodra een maat een doel wordt, is het geen goede maat meer.
+
+29
+00:01:38.209 --> 00:01:40.159
+Maak je velocity of punten een doel,
+
+30
+00:01:40.391 --> 00:01:42.458
+dan bedienen mensen de maat in plaats van het werk.
+
+31
+00:01:43.423 --> 00:01:46.871
+Dit sluit aan op schatten met bandbreedten, maar dan uit eigen teamdata,
+
+32
+00:01:47.184 --> 00:01:47.962
+niet op gevoel.
+
+33
+00:01:48.970 --> 00:01:52.743
+Vraag in de stuurgroep op welke data de datum rust en hoe zeker hij is.
+
+34
+00:01:53.478 --> 00:01:55.219
+En wat doet twintig procent meer backlog?
+
+35
+00:01:56.492 --> 00:02:00.161
+Een team bij een maker van verpakkingsfolie vervangt het labelsysteem.
+
+36
+00:02:00.845 --> 00:02:05.453
+Nog achtenveertig kleine items staan open, en de stuurgroep wil een livegangdatum.
+
+37
+00:02:06.450 --> 00:02:10.280
+In tien weken maakte het team vijftig items af, gemiddeld vijf per week.
+
+38
+00:02:11.311 --> 00:02:13.819
+Tienduizend runs geven drie op de vier klaar binnen
+
+39
+00:02:13.900 --> 00:02:16.396
+tien weken en achtennegentig procent binnen elf.
+
+40
+00:02:17.124 --> 00:02:18.459
+Vrijwel alle binnen twaalf.
+
+41
+00:02:19.529 --> 00:02:20.853
+Welke datum adviseer je?
+
+42
+00:02:21.551 --> 00:02:22.445
+Eerst een snelle som.
+
+43
+00:02:23.196 --> 00:02:27.144
+Achtenveertig gedeeld door vijf is negen komma zes, rond tien weken,
+
+44
+00:02:27.480 --> 00:02:28.629
+zoals de simulatie.
+
+45
+00:02:29.605 --> 00:02:33.065
+De traagste week, drie items, geeft zestien weken,
+
+46
+00:02:33.262 --> 00:02:35.363
+maar alle weken zo traag is onwaarschijnlijk.
+
+47
+00:02:36.382 --> 00:02:39.168
+Binnen tien weken is maar zo'n vijfenzeventig procent.
+
+48
+00:02:39.961 --> 00:02:44.082
+Voor vijfentachtig procent zekerheid adviseer je elf weken als toezegging.
+
+49
+00:02:45.076 --> 00:02:47.537
+Zeg erbij dat tien weken historie weinig is,
+
+50
+00:02:47.793 --> 00:02:49.755
+dus de spreiding is waarschijnlijk groter.
+
+51
+00:02:50.461 --> 00:02:52.574
+Groeit de lijst, dan schuift de datum.
+
+52
+00:02:53.269 --> 00:02:54.477
+Die werken we elke week bij.
+
+53
+00:02:55.779 --> 00:02:59.506
+Een service level expectation is volgens de Kanban Guide een verwachting.
+
+54
+00:03:00.192 --> 00:03:02.909
+Die zegt hoe lang een item duurt, met een kans erbij,
+
+55
+00:03:03.211 --> 00:03:05.742
+zoals vijfentachtig procent binnen acht dagen.
+
+56
+00:03:06.733 --> 00:03:09.055
+Je haalt hem uit je eigen data met een percentiel (percentile).
+
+57
+00:03:09.727 --> 00:03:12.711
+Het vijfentachtigste percentiel van de cycle times is
+
+58
+00:03:12.781 --> 00:03:15.532
+de tijd waarbinnen vijfentachtig procent klaar was.
+
+59
+00:03:16.536 --> 00:03:18.301
+Dat zegt een klant meer dan een gemiddelde.
+
+60
+00:03:19.635 --> 00:03:22.375
+Met de SLE stuur je dagelijks op work item age.
+
+61
+00:03:23.094 --> 00:03:27.308
+Nadert een item de grens, zoals zeven van acht dagen, bespreek het dan nu.
+
+62
+00:03:28.270 --> 00:03:29.663
+Dat lijkt op een regelkaart,
+
+63
+00:03:29.977 --> 00:03:33.588
+waarop je ingrijpt voordat het product buiten de specificatie valt.
+
+64
+00:03:34.636 --> 00:03:36.284
+Een cumulatief stroomdiagram (cumulative flow diagram)
+
+65
+00:03:36.366 --> 00:03:39.141
+toont per dag de items per stap als gestapelde banden.
+
+66
+00:03:39.865 --> 00:03:42.245
+Wordt een band dikker, dan zit daar je bottleneck.
+
+67
+00:03:43.274 --> 00:03:47.036
+Lopen binnenkomst en klaar uit elkaar, dan groeit het onderhanden werk.
+
+68
+00:03:48.071 --> 00:03:49.464
+Dat raakt aan behoud van flow (conservation of flow).
+
+69
+00:03:50.132 --> 00:03:53.963
+Wat begint moet gemiddeld ook afkomen, een voorwaarde voor de wet van Little.
+
+70
+00:03:55.280 --> 00:03:56.243
+De bezettingsgraad (utilisation)
+
+71
+00:03:56.290 --> 00:03:59.169
+is het deel van de tijd dat mensen of machines bezig zijn.
+
+72
+00:03:59.867 --> 00:04:02.305
+In het eenvoudigste wachtrijmodel groeit de wachttijd
+
+73
+00:04:02.352 --> 00:04:04.465
+met bezetting gedeeld door één min bezetting.
+
+74
+00:04:05.155 --> 00:04:09.521
+Bij tachtig procent vier, bij negentig negen en bij vijfennegentig negentien.
+
+75
+00:04:10.550 --> 00:04:12.512
+Die getallen gelden alleen voor dat model,
+
+76
+00:04:12.884 --> 00:04:15.542
+maar Donald Reinertsen liet zien dat productontwikkeling
+
+77
+00:04:15.566 --> 00:04:17.818
+bij hoge bezetting vastloopt in wachtrijen.
+
+78
+00:04:18.786 --> 00:04:21.897
+Een team op honderd procent heeft geen ruimte voor het onverwachte.
+
+79
+00:04:22.905 --> 00:04:26.504
+Als Lean-consultant ken je dit als de reden voor buffers en heijunka,
+
+80
+00:04:26.899 --> 00:04:29.093
+al varieert kenniswerk veel meer dan op een lijn.
+
+81
+00:04:30.055 --> 00:04:32.853
+Experts twisten of je ver onder honderd procent plant,
+
+82
+00:04:33.097 --> 00:04:35.105
+of variatie verkleint met kleiner werk.
+
+83
+00:04:36.433 --> 00:04:38.453
+Een team voor machinesoftware bij een maker
+
+84
+00:04:38.535 --> 00:04:41.147
+van sorteermachines rondde twintig items af,
+
+85
+00:04:41.344 --> 00:04:42.923
+gemiddeld in acht werkdagen.
+
+86
+00:04:43.605 --> 00:04:44.859
+Maar waar kan de klant op rekenen?
+
+87
+00:04:45.904 --> 00:04:48.818
+Vijfentachtig procent van twintig is zeventien.
+
+88
+00:04:49.522 --> 00:04:53.040
+Het zeventiende item in de gesorteerde rij duurde elf dagen,
+
+89
+00:04:53.213 --> 00:04:56.777
+dus de SLE wordt vijfentachtig procent binnen elf werkdagen.
+
+90
+00:04:57.780 --> 00:05:01.832
+Één item staat al negen dagen in testen op de machine en nadert die grens.
+
+91
+00:05:02.569 --> 00:05:03.625
+Bespreek het vandaag.
+
+92
+00:05:04.353 --> 00:05:05.967
+Wat houdt het op, kan iemand helpen?
+
+93
+00:05:06.958 --> 00:05:07.898
+Kijk ook naar de staart.
+
+94
+00:05:08.578 --> 00:05:09.437
+Wat hadden die gemeen?
+
+95
+00:05:10.137 --> 00:05:11.925
+Daar zit vaak de echte verbetering.

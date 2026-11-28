@@ -1,0 +1,189 @@
+WEBVTT
+
+1
+00:00:00.839 --> 00:00:03.472
+De nieuwe vuleenheid op lijn 3 in hal B staat klaar.
+
+2
+00:00:04.106 --> 00:00:05.987
+Hij vult dozen met product uit de tank.
+
+3
+00:00:07.007 --> 00:00:11.047
+Het nieuwe MES van het IT-team stuurt hem orders en krijgt tellingen terug.
+
+4
+00:00:12.038 --> 00:00:13.060
+Jij bent de engineer.
+
+5
+00:00:13.716 --> 00:00:15.516
+Je sluit de eenheid stap voor stap aan.
+
+6
+00:00:16.505 --> 00:00:17.794
+Dat zijn vijf stations.
+
+7
+00:00:18.555 --> 00:00:22.386
+Van netwerk en OT tot beveiliging, de lijn zelf en data.
+
+8
+00:00:23.666 --> 00:00:26.104
+Het eerste station is IT-fundamenten.
+
+9
+00:00:26.796 --> 00:00:30.906
+De besturingskast van de eenheid moet via de netwerkkast op het fabrieksnetwerk.
+
+10
+00:00:31.946 --> 00:00:34.581
+Elk apparaat heeft een adres, als een huisnummer.
+
+11
+00:00:35.259 --> 00:00:36.873
+Berichten gaan naar dat adres.
+
+12
+00:00:37.877 --> 00:00:39.526
+Je gebruikt een switch en een VLAN.
+
+13
+00:00:40.549 --> 00:00:44.264
+Zonder dit vindt een order de eenheid niet, of zit de lijn op het kantoornetwerk.
+
+14
+00:00:45.547 --> 00:00:49.053
+Het tweede station is IT en OT op de fabrieksvloer.
+
+15
+00:00:49.738 --> 00:00:52.641
+De PLC in de besturingskast stuurt de eenheid aan.
+
+16
+00:00:53.657 --> 00:00:55.687
+Orders gaan omlaag naar de PLC.
+
+17
+00:00:56.326 --> 00:00:58.764
+Terugmeldingen gaan omhoog naar het MES.
+
+18
+00:00:59.815 --> 00:01:01.975
+Je richt een OPC-server (OPC server) en tags in.
+
+19
+00:01:02.968 --> 00:01:05.058
+Zonder dit weet het MES niet wat de lijn maakt.
+
+20
+00:01:06.340 --> 00:01:08.461
+Het derde station is Cybersecurity.
+
+21
+00:01:09.174 --> 00:01:11.531
+Een aanval op kantoor mag lijn 3 niet stilzetten.
+
+22
+00:01:12.542 --> 00:01:16.187
+Lijn 3 krijgt een eigen zone, met één bewaakte verbinding naar de rest.
+
+23
+00:01:17.207 --> 00:01:19.192
+Je legt zones en conduits vast.
+
+24
+00:01:20.235 --> 00:01:23.033
+Zonder dit kan een besmetting van kantoor de lijn stilleggen.
+
+25
+00:01:24.313 --> 00:01:27.158
+Het vierde station is Lijnen en automatisering.
+
+26
+00:01:27.847 --> 00:01:31.133
+Dat is de lijn zelf, waar dozen aankomen en worden gevuld.
+
+27
+00:01:32.158 --> 00:01:35.502
+De eenheid mag alleen vullen als een sensor een doos onder de plaat ziet.
+
+28
+00:01:36.502 --> 00:01:38.557
+Je gebruikt poka-yoke en een interlock.
+
+29
+00:01:39.551 --> 00:01:42.198
+Zonder dit loopt product de band op als er geen doos staat.
+
+30
+00:01:43.554 --> 00:01:46.468
+Het vijfde station is Data en digitale productie.
+
+31
+00:01:47.191 --> 00:01:50.024
+Wat lijn 3 maakt, moet iedereen op de vloer kunnen zien.
+
+32
+00:01:51.005 --> 00:01:54.523
+De cijfers van de eenheid gaan naar het MES en naar een scherm bij de lijn.
+
+33
+00:01:55.486 --> 00:01:57.599
+Je gebruikt een edge gateway en een dashboard.
+
+34
+00:01:58.587 --> 00:02:01.536
+Zonder dit komen de cijfers te laat, of ze kloppen niet.
+
+35
+00:02:02.984 --> 00:02:04.087
+Dit is de hele kaart.
+
+36
+00:02:04.809 --> 00:02:08.489
+De vijf stations van Automatisering en IT liggen in één gebied.
+
+37
+00:02:09.521 --> 00:02:13.921
+Eerst IT-fundamenten, van netwerken en cloud tot databases en software.
+
+38
+00:02:14.994 --> 00:02:20.184
+Dan IT en OT op de fabrieksvloer, van ISA-95 tot wie wat beheert.
+
+39
+00:02:21.251 --> 00:02:25.524
+Dan Cybersecurity, van de basis tot de wet en incidentrespons.
+
+40
+00:02:26.514 --> 00:02:31.935
+Dan Lijnen en automatisering, met robots, foutvrij maken en de businesscase.
+
+41
+00:02:32.923 --> 00:02:37.138
+Tot slot Data en digitale productie, van datakwaliteit tot AI.
+
+42
+00:02:38.134 --> 00:02:39.132
+Zo hangen ze samen.
+
+43
+00:02:39.775 --> 00:02:43.990
+Het netwerk verbindt de systemen, en de lijn praat daarover met het MES.
+
+44
+00:02:44.990 --> 00:02:47.057
+Cybersecurity bewaakt die verbinding.
+
+45
+00:02:47.768 --> 00:02:50.927
+De lijn maakt de producten, en data laat zien hoe dat gaat.
+
+46
+00:02:51.975 --> 00:02:54.854
+Elk station is een module met vier niveaus per onderwerp.
+
+47
+00:02:55.529 --> 00:02:57.398
+Begin bij wat jouw lijn nu nodig heeft.

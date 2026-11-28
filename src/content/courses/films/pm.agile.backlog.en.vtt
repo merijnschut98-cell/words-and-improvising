@@ -1,0 +1,333 @@
+WEBVTT
+
+1
+00:00:00.855 --> 00:00:04.674
+A user story says what a user wants, in their own words.
+
+2
+00:00:05.680 --> 00:00:11.880
+The template is Connextra's, around 2001: as a who, I want what, so that why.
+
+3
+00:00:12.869 --> 00:00:17.200
+As an operator on line three, I want to pick a cause in two taps,
+
+4
+00:00:17.327 --> 00:00:19.870
+so the shift leader knows where the time went.
+
+5
+00:00:20.913 --> 00:00:23.432
+That so that matters most: it says why.
+
+6
+00:00:24.488 --> 00:00:30.003
+Ron Jeffries of Extreme Programming described the three Cs in 2001: Card,
+
+7
+00:00:30.165 --> 00:00:32.081
+Conversation and Confirmation.
+
+8
+00:00:33.074 --> 00:00:37.857
+A card as a reminder, details from a conversation, agreed checks: a promise,
+
+9
+00:00:38.020 --> 00:00:39.053
+not a contract.
+
+10
+00:00:40.458 --> 00:00:44.044
+Acceptance criteria are concrete, testable conditions.
+
+11
+00:00:45.073 --> 00:00:48.301
+Here: at most eight causes, with work gloves on,
+
+12
+00:00:48.533 --> 00:00:50.275
+at the shift leader within a minute.
+
+13
+00:00:51.346 --> 00:00:55.073
+Without criteria, the argument only starts at delivery.
+
+14
+00:00:56.084 --> 00:01:00.078
+An epic is too big for one sprint, like OEE per line.
+
+15
+00:01:00.780 --> 00:01:01.836
+You cut it later.
+
+16
+00:01:02.897 --> 00:01:08.261
+Stories and epics are Product Backlog items; the Scrum Guide prescribes no format.
+
+17
+00:01:09.328 --> 00:01:13.728
+Mistakes: a task as a story, no so that, or the user as the role.
+
+18
+00:01:14.734 --> 00:01:18.322
+Ask of every story: who notices when this is done, and how?
+
+19
+00:01:19.641 --> 00:01:24.064
+A planner at a steel-door maker hands in thirty pages of requirements.
+
+20
+00:01:25.073 --> 00:01:27.720
+Page four: show the load on all machines.
+
+21
+00:01:28.416 --> 00:01:30.030
+Who needs that, and what for?
+
+22
+00:01:31.052 --> 00:01:32.178
+After ten minutes:
+
+23
+00:01:32.329 --> 00:01:36.718
+as a planner I want each welding robot's load for five working days,
+
+24
+00:01:36.880 --> 00:01:39.841
+so I can put rush orders on a robot with room.
+
+25
+00:01:40.833 --> 00:01:46.371
+Criteria: hours per day, red above ninety percent, refreshed every fifteen minutes.
+
+26
+00:01:47.372 --> 00:01:52.678
+Thirty pages become about twenty-five stories; six pages deliver nothing to anyone.
+
+27
+00:01:54.037 --> 00:01:58.031
+Refinement is ongoing work on the Product Backlog: cutting items,
+
+28
+00:01:58.205 --> 00:02:00.806
+adding details and criteria, sizing.
+
+29
+00:02:01.863 --> 00:02:05.671
+Not a separate event; often a fixed slot of an hour or two a week.
+
+30
+00:02:06.691 --> 00:02:11.579
+The Developers who do the work size it; the Product Owner explains what and why.
+
+31
+00:02:12.609 --> 00:02:16.789
+A known checklist is INVEST, by Bill Wake, 2003.
+
+32
+00:02:17.767 --> 00:02:21.842
+Independent, negotiable, valuable, estimable, small, testable.
+
+33
+00:02:22.872 --> 00:02:25.623
+A weak letter tells you what to do in refinement.
+
+34
+00:02:26.960 --> 00:02:29.038
+The hardest part is story splitting:
+
+35
+00:02:29.177 --> 00:02:31.987
+smaller stories that each deliver something working.
+
+36
+00:02:33.023 --> 00:02:38.747
+Not horizontally into layers, database, logic, screen: then the user gets nothing.
+
+37
+00:02:39.789 --> 00:02:44.572
+Vertically, like slices of cake: by step, rule, line or product type.
+
+38
+00:02:45.292 --> 00:02:46.604
+The simplest first.
+
+39
+00:02:47.675 --> 00:02:51.471
+A Definition of Ready says when a story is ready for a sprint.
+
+40
+00:02:52.215 --> 00:02:55.083
+It is not in the Scrum Guide; don't make it a gate.
+
+41
+00:02:56.142 --> 00:03:00.565
+Ordering is the Product Owner's job: by value, risk and dependencies.
+
+42
+00:03:01.865 --> 00:03:06.672
+For you as a Lean consultant: refinement is work preparation; without criteria,
+
+43
+00:03:06.834 --> 00:03:08.053
+a story gets stuck.
+
+44
+00:03:09.151 --> 00:03:14.155
+Mistakes: refining far ahead, or not at all, so Sprint Planning takes hours.
+
+45
+00:03:15.220 --> 00:03:17.020
+Example: window frames.
+
+46
+00:03:17.720 --> 00:03:21.261
+As a planner I want orders spread over the saws automatically,
+
+47
+00:03:21.377 --> 00:03:23.176
+so I don't puzzle an hour a day.
+
+48
+00:03:24.164 --> 00:03:26.242
+The team estimates three sprints.
+
+49
+00:03:26.967 --> 00:03:28.221
+So you cut vertically.
+
+50
+00:03:29.198 --> 00:03:35.085
+First one saw, standard profiles only; then all three, rush orders, changeover time.
+
+51
+00:03:36.104 --> 00:03:39.332
+Story one fits a sprint: in use after two weeks,
+
+52
+00:03:39.506 --> 00:03:42.083
+and the team learns whether the rules are right.
+
+53
+00:03:43.437 --> 00:03:46.177
+People are bad at hours but fair at comparing.
+
+54
+00:03:46.935 --> 00:03:48.793
+That is relative estimation.
+
+55
+00:03:49.838 --> 00:03:54.308
+Story points give the size: work, complexity and uncertainty together.
+
+56
+00:03:55.042 --> 00:03:57.341
+An eight is about four times a two.
+
+57
+00:03:58.370 --> 00:04:01.516
+Points are per team: A's five is not B's five.
+
+58
+00:04:02.496 --> 00:04:06.560
+Teams pick from a modified Fibonacci sequence: the gaps grow.
+
+59
+00:04:07.558 --> 00:04:09.358
+Torn between eight and thirteen?
+
+60
+00:04:10.023 --> 00:04:12.182
+Big and uncertain: maybe cut it.
+
+61
+00:04:13.250 --> 00:04:15.351
+Points began as ideal days.
+
+62
+00:04:16.122 --> 00:04:18.955
+Ron Jeffries wrote in 2019,
+
+63
+00:04:19.106 --> 00:04:22.473
+half joking, that he may have invented them and is sorry.
+
+64
+00:04:23.740 --> 00:04:29.835
+Planning poker, described by James Grenning in 2002: estimating together with cards.
+
+65
+00:04:30.823 --> 00:04:35.537
+The Product Owner reads a story; all pick silently and turn over at once.
+
+66
+00:04:36.529 --> 00:04:37.574
+Three and thirteen?
+
+67
+00:04:38.281 --> 00:04:42.368
+Highest and lowest explain why: that conversation is the value.
+
+68
+00:04:43.061 --> 00:04:44.129
+Then another round.
+
+69
+00:04:45.167 --> 00:04:49.777
+Velocity is the points a team finishes per sprint, by the Definition of Done.
+
+70
+00:04:50.795 --> 00:04:54.986
+Use the spread: a team doing eighteen to thirty is not planned at thirty.
+
+71
+00:04:55.985 --> 00:05:00.003
+Not a productivity measure: make it a target, and estimates grow.
+
+72
+00:05:00.998 --> 00:05:02.542
+Some just count items.
+
+73
+00:05:03.275 --> 00:05:04.900
+Ask: what are these points for?
+
+74
+00:05:06.238 --> 00:05:09.384
+Tow bars: six sprints of eighteen to thirty points,
+
+75
+00:05:09.524 --> 00:05:11.776
+twenty-three point three on average.
+
+76
+00:05:12.815 --> 00:05:15.021
+A hundred and twenty points left.
+
+77
+00:05:15.775 --> 00:05:18.085
+The sales director asks: when is it done?
+
+78
+00:05:19.084 --> 00:05:22.393
+Six sprints, says the average: a false certainty.
+
+79
+00:05:23.396 --> 00:05:25.788
+At the fastest sprint: four sprints.
+
+80
+00:05:26.513 --> 00:05:29.230
+At the slowest: six point seven, so seven.
+
+81
+00:05:30.255 --> 00:05:34.388
+Four to seven sprints: eight to fourteen weeks, most likely twelve.
+
+82
+00:05:35.393 --> 00:05:39.201
+Only if the list doesn't grow, and it nearly always does.
+
+83
+00:05:39.924 --> 00:05:41.828
+Update the range every sprint.

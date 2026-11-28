@@ -1,0 +1,345 @@
+WEBVTT
+
+1
+00:00:00.854 --> 00:00:04.743
+A street with a distribution substation, a cable to every home,
+
+2
+00:00:04.975 --> 00:00:08.005
+and a cold store at the end: all on the same grid.
+
+3
+00:00:09.030 --> 00:00:11.573
+Grid congestion means that at peak moments,
+
+4
+00:00:11.816 --> 00:00:16.205
+the demand for transport is higher than what part of the grid can safely carry.
+
+5
+00:00:17.207 --> 00:00:21.061
+That part can be a cable, a transformer or a whole substation.
+
+6
+00:00:22.074 --> 00:00:27.449
+It can be on the consumption side, like an industrial area, or on the feed-in side,
+
+7
+00:00:27.647 --> 00:00:28.901
+like solar parks.
+
+8
+00:00:29.614 --> 00:00:32.818
+Large parts of the Netherlands are full for one or both.
+
+9
+00:00:34.127 --> 00:00:39.154
+This cold store is a large consumer: a connection above 3 times 80 amps,
+
+10
+00:00:39.270 --> 00:00:41.801
+about 55 kilovolt amperes.
+
+11
+00:00:42.515 --> 00:00:45.696
+So is a supermarket, a factory or a charging hub.
+
+12
+00:00:46.751 --> 00:00:51.755
+In a congested area, new large consumers, and existing ones that want more,
+
+13
+00:00:51.894 --> 00:00:53.217
+go on a waiting list.
+
+14
+00:00:54.080 --> 00:00:55.996
+Thousands of companies are waiting.
+
+15
+00:00:56.992 --> 00:00:59.918
+Homes and small shops had capacity set aside.
+
+16
+00:01:00.669 --> 00:01:07.333
+Since July 2026 they follow the same priority rules, so sometimes they wait too.
+
+17
+00:01:08.317 --> 00:01:11.649
+The public capacity map shows where there is still room,
+
+18
+00:01:11.765 --> 00:01:13.657
+for consumption and for feed-in.
+
+19
+00:01:14.957 --> 00:01:16.060
+Why not build more?
+
+20
+00:01:16.817 --> 00:01:22.413
+A new substation often takes 5 to 10 years: permits, land, space for cables.
+
+21
+00:01:23.185 --> 00:01:26.564
+Reinforcing medium voltage takes months to years.
+
+22
+00:01:27.610 --> 00:01:31.523
+Technicians, transformers and space underground are scarce.
+
+23
+00:01:32.330 --> 00:01:37.346
+Building alone will not solve it for now: the existing grid has to be used better.
+
+24
+00:01:38.342 --> 00:01:43.323
+An example: a 30 megavolt ampere substation, with a peak of 29.
+
+25
+00:01:44.078 --> 00:01:47.375
+Three companies together want 6 megavolt amperes more.
+
+26
+00:01:48.376 --> 00:01:49.537
+That does not fit.
+
+27
+00:01:50.276 --> 00:01:56.046
+The first answer: a waiting list, until a new substation is ready in about 7 years.
+
+28
+00:01:57.339 --> 00:02:03.608
+But the grid operator looks closer: all 8,760 hours of the year in a row,
+
+29
+00:02:03.759 --> 00:02:04.757
+from high to low.
+
+30
+00:02:05.734 --> 00:02:11.214
+The load is above 24 megavolt amperes for only 180 hours a year.
+
+31
+00:02:11.965 --> 00:02:14.217
+That is about 2 percent of the time.
+
+32
+00:02:15.191 --> 00:02:16.027
+That is typical:
+
+33
+00:02:16.167 --> 00:02:21.275
+a full station is usually only overloaded for tens to a few hundred hours a year.
+
+34
+00:02:22.564 --> 00:02:26.802
+Congestion management means paying or contracting customers to use less,
+
+35
+00:02:26.976 --> 00:02:29.310
+or feed in less, at peak moments.
+
+36
+00:02:30.289 --> 00:02:34.957
+Grid operators often buy that flexibility through GOPACS, their joint platform,
+
+37
+00:02:35.084 --> 00:02:36.686
+where companies offer to shift.
+
+38
+00:02:37.741 --> 00:02:40.632
+Here the cold store shifts 4 megavolt amperes
+
+39
+00:02:40.667 --> 00:02:43.012
+of cooling out of those hours for a fee,
+
+40
+00:02:43.187 --> 00:02:45.254
+for example by cooling earlier.
+
+41
+00:02:46.273 --> 00:02:50.197
+A flexible contract gives capacity except at peak hours,
+
+42
+00:02:50.336 --> 00:02:53.820
+or for a set share of the year, usually at a lower tariff.
+
+43
+00:02:54.804 --> 00:02:56.975
+One company takes such a contract.
+
+44
+00:02:57.724 --> 00:03:02.519
+So two of the three connect within a year: a little flexibility frees a lot of room.
+
+45
+00:03:03.807 --> 00:03:05.769
+Who gets scarce capacity first?
+
+46
+00:03:06.511 --> 00:03:08.636
+By default: whoever comes first.
+
+47
+00:03:09.664 --> 00:03:13.809
+Since 2024 the regulator has let grid operators
+
+48
+00:03:13.867 --> 00:03:16.247
+put projects with social value first:
+
+49
+00:03:16.421 --> 00:03:17.942
+congestion relief first,
+
+50
+00:03:18.139 --> 00:03:23.677
+then safety, such as hospitals, then basic needs, such as new housing and schools.
+
+51
+00:03:24.378 --> 00:03:30.566
+A court annulled that first framework in 2025; the new one keeps the same order.
+
+52
+00:03:31.571 --> 00:03:34.961
+Companies further down the queue wait longer as a result.
+
+53
+00:03:36.001 --> 00:03:40.715
+A sharp question: for how many hours is this station really over its limit,
+
+54
+00:03:40.866 --> 00:03:41.922
+and by how much?
+
+55
+00:03:43.229 --> 00:03:44.135
+Who runs this?
+
+56
+00:03:44.819 --> 00:03:47.907
+The regional grid operator: it connects customers,
+
+57
+00:03:48.081 --> 00:03:51.982
+transports electricity and often gas, keeps the grid safe,
+
+58
+00:03:52.214 --> 00:03:56.371
+restores outages, day and night, and builds the grid of the future.
+
+59
+00:03:57.423 --> 00:04:01.405
+Every two years it publishes an investment plan: its bottlenecks,
+
+60
+00:04:01.591 --> 00:04:02.752
+and what it will build.
+
+61
+00:04:03.847 --> 00:04:05.438
+It does not sell energy.
+
+62
+00:04:06.136 --> 00:04:10.687
+An energy supplier does, such as Eneco or Vattenfall, and you choose your own.
+
+63
+00:04:12.027 --> 00:04:16.787
+Most outages are in the medium and low voltage grid: a cable hit by digging,
+
+64
+00:04:16.973 --> 00:04:19.005
+an old joint, a blown fuse.
+
+65
+00:04:20.018 --> 00:04:23.246
+Operators track the outage minutes per customer per year.
+
+66
+00:04:23.965 --> 00:04:29.236
+In 2025 that was about 23 minutes from unplanned outages,
+
+67
+00:04:29.387 --> 00:04:32.139
+plus about 27 minutes of planned work.
+
+68
+00:04:32.892 --> 00:04:35.411
+One of the most reliable grids in Europe.
+
+69
+00:04:36.449 --> 00:04:41.766
+Example: 2.8 million customers and 70 million customer minutes in a year,
+
+70
+00:04:41.952 --> 00:04:44.657
+mostly from medium-voltage cable faults.
+
+71
+00:04:45.449 --> 00:04:47.852
+That is 25 minutes per customer.
+
+72
+00:04:48.866 --> 00:04:52.245
+One fault that cuts 3,000 customers for 90
+
+73
+00:04:52.315 --> 00:04:56.378
+minutes is already 270,000 customer minutes.
+
+74
+00:04:57.356 --> 00:04:59.632
+So switch most customers back first,
+
+75
+00:04:59.969 --> 00:05:05.031
+for example through the normally open point in the ring, and repair the cable after.
+
+76
+00:05:06.341 --> 00:05:10.521
+A grid operator is a regulated monopoly: each has its own area,
+
+77
+00:05:10.741 --> 00:05:12.459
+and customers cannot choose.
+
+78
+00:05:13.466 --> 00:05:17.495
+So the ACM, the regulator, sets its income through the tariffs,
+
+79
+00:05:17.623 --> 00:05:20.780
+fixes the rules in the codes, and checks quality.
+
+80
+00:05:21.748 --> 00:05:30.189
+Since 1 January 2026 the Energy Act sets the framework, replacing the act of 1998.
+
+81
+00:05:30.921 --> 00:05:35.809
+Provinces and municipalities own the operators, and selling them is not allowed.
+
+82
+00:05:36.585 --> 00:05:40.451
+The state puts in capital, as in Stedin, and owns TenneT.
+
+83
+00:05:41.211 --> 00:05:43.939
+Tariffs and waiting lists are national news.
+
+84
+00:05:45.025 --> 00:05:49.901
+Meanwhile the work grows, and the sector is short of thousands of technicians,
+
+85
+00:05:50.122 --> 00:05:53.361
+so operators standardise and plan bigger packages.
+
+86
+00:05:54.067 --> 00:05:57.701
+The sharp question: where does a technician’s day actually go?

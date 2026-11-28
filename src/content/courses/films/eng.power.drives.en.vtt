@@ -1,0 +1,321 @@
+WEBVTT
+
+1
+00:00:00.847 --> 00:00:02.031
+Our pump set again.
+
+2
+00:00:02.754 --> 00:00:07.282
+To start, the motor has to go onto the grid, and that happens in the cabinet.
+
+3
+00:00:08.418 --> 00:00:09.823
+In it sits a contactor,
+
+4
+00:00:09.986 --> 00:00:12.145
+a heavy switch you operate electrically:
+
+5
+00:00:12.284 --> 00:00:15.674
+current through its coil pulls three contacts shut at once,
+
+6
+00:00:15.849 --> 00:00:16.871
+one per phase.
+
+7
+00:00:17.906 --> 00:00:21.749
+That puts the motor straight onto the full grid: direct on line.
+
+8
+00:00:22.423 --> 00:00:27.543
+Simple and cheap, but at the start it draws 6 to 8 times its rated current.
+
+9
+00:00:28.633 --> 00:00:31.536
+And the full torque gives a jolt on coupling and pump.
+
+10
+00:00:32.287 --> 00:00:36.826
+With a big motor the voltage dips, and belts, couplings and gearboxes wear.
+
+11
+00:00:38.145 --> 00:00:39.074
+Why that surge?
+
+12
+00:00:39.817 --> 00:00:41.860
+At the start the rotor stands still,
+
+13
+00:00:42.035 --> 00:00:46.145
+but the rotating field turns at synchronous speed straight away.
+
+14
+00:00:47.133 --> 00:00:48.886
+The slip is at its maximum:
+
+15
+00:00:49.060 --> 00:00:53.843
+the field cuts through the bars at full speed and induces big currents in them,
+
+16
+00:00:53.936 --> 00:00:56.084
+which come from the grid through the stator.
+
+17
+00:00:56.838 --> 00:00:59.172
+Almost a short-circuited transformer.
+
+18
+00:01:00.192 --> 00:01:03.687
+As the rotor speeds up, the slip drops to a few percent,
+
+19
+00:01:03.872 --> 00:01:05.509
+and the current with it to rated.
+
+20
+00:01:06.577 --> 00:01:10.768
+With a heavy load that takes longer, and all that time the current stays high.
+
+21
+00:01:12.087 --> 00:01:14.734
+Older and cheaper is the star-delta starter.
+
+22
+00:01:15.461 --> 00:01:17.887
+The motor starts with its windings in star.
+
+23
+00:01:18.946 --> 00:01:23.927
+That gives each winding less voltage: about a third of the direct-on-line current,
+
+24
+00:01:24.147 --> 00:01:25.819
+but also a third of the torque.
+
+25
+00:01:26.909 --> 00:01:30.555
+Near full speed it switches to delta, with the full voltage.
+
+26
+00:01:31.251 --> 00:01:34.386
+The switch-over usually gives one more short surge.
+
+27
+00:01:35.364 --> 00:01:38.080
+Good for motors that start light, like a fan.
+
+28
+00:01:38.786 --> 00:01:41.769
+Under heavy load, a third of the torque is too little.
+
+29
+00:01:43.057 --> 00:01:48.119
+A soft starter uses electronics to ramp up the voltage over a few seconds.
+
+30
+00:01:49.149 --> 00:01:53.653
+That keeps the inrush current down, usually to 3 to 4 times rated,
+
+31
+00:01:53.816 --> 00:01:55.975
+and the jolt becomes a gentle start.
+
+32
+00:01:57.061 --> 00:01:57.851
+Up to speed,
+
+33
+00:01:58.037 --> 00:02:02.890
+the motor simply runs at its fixed speed: a soft starter helps with starting,
+
+34
+00:02:03.122 --> 00:02:04.550
+not with speed control.
+
+35
+00:02:05.581 --> 00:02:08.785
+And less voltage gives much less torque: half the voltage,
+
+36
+00:02:08.937 --> 00:02:10.516
+roughly a quarter of the torque.
+
+37
+00:02:11.280 --> 00:02:14.171
+A machine that starts under heavy load may stall.
+
+38
+00:02:15.472 --> 00:02:21.091
+The variable frequency drive, the VFD or inverter, first turns the grid into DC,
+
+39
+00:02:21.393 --> 00:02:24.969
+then uses fast switches to make a new three-phase supply,
+
+40
+00:02:25.143 --> 00:02:26.896
+at a frequency of your choice.
+
+41
+00:02:27.895 --> 00:02:31.784
+The rotating field follows that frequency: half the frequency,
+
+42
+00:02:31.924 --> 00:02:33.491
+half the synchronous speed.
+
+43
+00:02:34.202 --> 00:02:36.408
+That is how you control speed smoothly.
+
+44
+00:02:37.404 --> 00:02:41.468
+When starting, it raises the frequency calmly to 50 hertz.
+
+45
+00:02:42.159 --> 00:02:46.083
+The motor runs with little slip, and the current stays near rated.
+
+46
+00:02:47.128 --> 00:02:49.671
+Because the voltage rises with the frequency,
+
+47
+00:02:49.845 --> 00:02:52.562
+the motor still gives full torque from low speed.
+
+48
+00:02:53.906 --> 00:02:56.518
+An example: a crusher for stone or scrap.
+
+49
+00:02:57.259 --> 00:03:03.378
+Its 90 kilowatt motor draws about 160 amps rated, at 400 volts.
+
+50
+00:03:04.383 --> 00:03:06.032
+Started direct on line,
+
+51
+00:03:06.206 --> 00:03:12.197
+it draws roughly 1,000 to 1,300 amps for a few seconds at every start.
+
+52
+00:03:13.268 --> 00:03:15.671
+The plant voltage dips: lights flicker,
+
+53
+00:03:15.857 --> 00:03:18.783
+and two drives elsewhere trip on undervoltage.
+
+54
+00:03:19.797 --> 00:03:23.570
+A soft starter cuts the surge to 3 to 4 times rated,
+
+55
+00:03:23.756 --> 00:03:26.310
+but with that lower torque a full crusher may stall.
+
+56
+00:03:26.992 --> 00:03:32.135
+The drive gives full torque at rated current: here the more expensive device fits.
+
+57
+00:03:33.422 --> 00:03:38.473
+The gain is in pumps and fans: if the pump has to deliver less, you run it slower.
+
+58
+00:03:39.574 --> 00:03:43.602
+By the affinity laws, flow goes with speed, pressure with its square,
+
+59
+00:03:43.846 --> 00:03:45.599
+and power roughly with its cube.
+
+60
+00:03:46.686 --> 00:03:49.531
+At 80 percent speed that is about half the power.
+
+61
+00:03:50.301 --> 00:03:52.333
+In practice the saving is smaller.
+
+62
+00:03:53.343 --> 00:03:57.058
+A common mistake: a drive left at 50 hertz all year.
+
+63
+00:03:57.765 --> 00:04:01.085
+It saves nothing and only adds a few percent of losses.
+
+64
+00:04:02.412 --> 00:04:04.653
+A drive also has side effects.
+
+65
+00:04:05.363 --> 00:04:07.244
+It draws current in pulses,
+
+66
+00:04:07.476 --> 00:04:08.695
+and that gives harmonics:
+
+67
+00:04:08.857 --> 00:04:13.072
+currents at multiples of 50 hertz that distort the wave on the supply.
+
+68
+00:04:14.063 --> 00:04:16.014
+The fast switching causes noise,
+
+69
+00:04:16.257 --> 00:04:20.924
+and can build up a voltage on the motor shaft that discharges through the bearings.
+
+70
+00:04:21.949 --> 00:04:24.840
+Each tiny spark through the grease pits the raceway,
+
+71
+00:04:25.096 --> 00:04:27.116
+and the bearing fails much earlier.
+
+72
+00:04:28.142 --> 00:04:32.972
+Shielded cables, filters and good earthing handle this, if they are designed in.
+
+73
+00:04:34.237 --> 00:04:37.163
+The servo drive has an encoder on the motor shaft:
+
+74
+00:04:37.326 --> 00:04:41.029
+a sensor that reports many times a second where the shaft is.
+
+75
+00:04:41.752 --> 00:04:45.026
+That way it controls position and speed precisely.
+
+76
+00:04:46.014 --> 00:04:51.088
+Think of robots, cut-to-length and packaging: it is about precision, not energy.
+
+77
+00:04:52.052 --> 00:04:54.676
+So choosing starts with what the drive must do.
+
+78
+00:04:55.362 --> 00:04:58.950
+Just starting: direct on line, or a soft starter.
+
+79
+00:04:59.684 --> 00:05:02.691
+Varying speed: a variable frequency drive.
+
+80
+00:05:03.743 --> 00:05:06.959
+And positioning to a tenth of a millimetre: a servo.

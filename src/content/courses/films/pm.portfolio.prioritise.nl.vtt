@@ -1,0 +1,357 @@
+WEBVTT
+
+1
+00:00:00.840 --> 00:00:05.113
+Een project levert een output: een gereedheidscheck, een omgebouwde lijn,
+
+2
+00:00:05.426 --> 00:00:06.134
+een planningstool.
+
+3
+00:00:07.133 --> 00:00:07.760
+Een programma (programme)
+
+4
+00:00:07.795 --> 00:00:11.637
+stuurt projecten samen die één uitkomst leveren die geen van hen alleen haalt:
+
+5
+00:00:11.997 --> 00:00:14.621
+afgezegde klussen van 14 naar 8 procent.
+
+6
+00:00:15.601 --> 00:00:17.865
+Kun je er één schrappen en blijft het doel staan,
+
+7
+00:00:18.179 --> 00:00:19.618
+dan hoort het in het portfolio:
+
+8
+00:00:19.990 --> 00:00:23.531
+alle projecten die om hetzelfde geld en dezelfde mensen strijden.
+
+9
+00:00:24.813 --> 00:00:29.004
+Een afhankelijkheid (dependency): B heeft in week 10 de datadefinitie van A nodig,
+
+10
+00:00:29.190 --> 00:00:31.628
+en C wil in het tweede kwartaal de planners van B.
+
+11
+00:00:32.593 --> 00:00:37.202
+Houd één lijst bij: eigenaar, datum, en wat er gebeurt als het uitloopt.
+
+12
+00:00:38.245 --> 00:00:41.287
+Vier onafhankelijke projecten van elk 90 procent
+
+13
+00:00:41.345 --> 00:00:44.108
+op tijd halen het samen maar in 66 procent.
+
+14
+00:00:45.088 --> 00:00:47.410
+De check leest data die team B herontwerpt.
+
+15
+00:00:48.148 --> 00:00:53.929
+Op één A4: B bevriest de definitie in week 6, het IT-team test vóór de livegang.
+
+16
+00:00:55.231 --> 00:00:59.178
+De programmaraad (programme board): de sponsor, de eigenaren van de projecten,
+
+17
+00:00:59.515 --> 00:01:01.036
+de eigenaar van de uitkomst,
+
+18
+00:01:01.292 --> 00:01:04.229
+en de financiële kant als er geld tussen projecten schuift.
+
+19
+00:01:05.209 --> 00:01:10.201
+Maandelijks beslist de raad over de naden: volgorde, gedeelde mensen, scope.
+
+20
+00:01:10.897 --> 00:01:13.347
+Besluiten binnen een project blijven in de stuurgroep.
+
+21
+00:01:14.326 --> 00:01:17.774
+Het watermeloeneffect (watermelon reporting): groen buiten, rood vanbinnen.
+
+22
+00:01:18.474 --> 00:01:22.294
+Alle drie staan op groen, de afzeggingen zitten nog op 14 procent.
+
+23
+00:01:23.331 --> 00:01:27.255
+Rapporteer elke maand het uitkomstgetal zelf, met ieders bijdrage.
+
+24
+00:01:28.250 --> 00:01:31.629
+Jij bezit het verhaal, de lijst en het ritme, niet de projecten.
+
+25
+00:01:32.322 --> 00:01:36.722
+Vraag: welk getal beweegt, hoeveel, en welk project beweegt welk deel?
+
+26
+00:01:38.021 --> 00:01:43.536
+Scoor grof, van 1 tot 5, op waarde, inspanning, risico en strategie.
+
+27
+00:01:44.249 --> 00:01:46.641
+Wie de gewichten kiest, kiest de uitkomst.
+
+28
+00:01:47.682 --> 00:01:52.059
+De bottleneck bepaalt hoeveel er af komt: meestal een paar schaarse experts,
+
+29
+00:01:52.268 --> 00:01:52.895
+niet geld.
+
+30
+00:01:53.919 --> 00:01:55.649
+Tel dus in waarde per schaarse dag (value per scarce day).
+
+31
+00:01:56.366 --> 00:01:59.756
+A haalt tweeënhalfduizend euro per dag, B vijfduizend.
+
+32
+00:02:00.547 --> 00:02:02.683
+B gaat eerst, al lijkt A groter.
+
+33
+00:02:03.683 --> 00:02:05.494
+De risicogecorrigeerde waarde (risk-adjusted value):
+
+34
+00:02:05.796 --> 00:02:10.080
+300 duizend bij 50 procent vertrouwen telt als 150 duizend.
+
+35
+00:02:11.431 --> 00:02:16.528
+Tel de schaarse mensen: twee experts met elk 120 dagen geven 240.
+
+36
+00:02:17.552 --> 00:02:19.386
+Een voedingsbedrijf wil alle vijf.
+
+37
+00:02:20.115 --> 00:02:25.641
+Per dag van een expert: B vierenhalfduizend euro, D drie, A tweeënhalf.
+
+38
+00:02:26.382 --> 00:02:31.276
+C is een nieuw MES voor de orders op de vloer: één na 50 procent risico.
+
+39
+00:02:32.256 --> 00:02:32.837
+Rangschik,
+
+40
+00:02:33.232 --> 00:02:37.342
+en trek de capaciteitsstreep (capacity line) waar het lopende totaal 240 bereikt.
+
+41
+00:02:38.049 --> 00:02:39.140
+Alles eronder wacht.
+
+42
+00:02:40.204 --> 00:02:43.141
+B, D en A: 150 dagen.
+
+43
+00:02:43.838 --> 00:02:47.727
+C krijgt eerst een fase van 60 dagen die de grote aanname test.
+
+44
+00:02:48.431 --> 00:02:50.695
+Samen 210, met 30 buffer.
+
+45
+00:02:51.691 --> 00:02:53.688
+Voor E vraag je de directeur een getal:
+
+46
+00:02:54.025 --> 00:02:56.428
+boven tweeënhalfduizend per dag gaat het vóór A.
+
+47
+00:02:57.075 --> 00:02:58.074
+Het team kiest.
+
+48
+00:02:58.778 --> 00:03:01.367
+Valkuil: in maart is de streep vergeten.
+
+49
+00:03:02.661 --> 00:03:05.564
+Onderhanden werk (work in progress) is alles wat gestart en nog niet af is.
+
+50
+00:03:06.614 --> 00:03:07.473
+De wet van Little,
+
+51
+00:03:07.694 --> 00:03:12.733
+1961: de doorlooptijd (lead time) is onderhanden werk gedeeld door doorzet.
+
+52
+00:03:13.483 --> 00:03:18.139
+Bij drie af per kwartaal duren twaalf open projecten vier kwartalen, zes er twee.
+
+53
+00:03:19.180 --> 00:03:21.398
+Schakelen en wachten kosten ook doorzet:
+
+54
+00:03:21.677 --> 00:03:24.869
+twaalf projecten op halve snelheid leveren minder dan zes op volle.
+
+55
+00:03:25.907 --> 00:03:30.272
+Geen kaal nee, maar: dan stopt project B, of schuift drie maanden.
+
+56
+00:03:30.949 --> 00:03:31.820
+Wat heeft je voorkeur?
+
+57
+00:03:32.848 --> 00:03:34.810
+Wie over allebei gaat, kiest.
+
+58
+00:03:35.495 --> 00:03:37.225
+Houd een zichtbare wachtlijst bij.
+
+59
+00:03:37.978 --> 00:03:40.892
+Vraag: wat stoppen we om hier ruimte voor te maken?
+
+60
+00:03:42.198 --> 00:03:44.288
+Meestal zijn het dezelfde vijf mensen.
+
+61
+00:03:44.988 --> 00:03:47.531
+Een capaciteitsmatrix (capacity matrix) zet namen verticaal,
+
+62
+00:03:47.879 --> 00:03:51.606
+projecten horizontaal, dagen per maand, en hun echte dagen.
+
+63
+00:03:52.598 --> 00:03:55.257
+Overboekte rijen zijn capaciteitsconflicten (resource conflict):
+
+64
+00:03:55.547 --> 00:03:57.114
+meer dagen beloofd dan er zijn.
+
+65
+00:03:57.766 --> 00:04:00.866
+Twee of drie rode rijen verklaren de meeste vertraging.
+
+66
+00:04:01.874 --> 00:04:04.056
+Echte beschikbaarheid (real availability) is lager dan je denkt:
+
+67
+00:04:04.277 --> 00:04:07.412
+van 260 werkdagen gaan er 50 af aan vrij,
+
+68
+00:04:07.667 --> 00:04:10.396
+ziekte en opleiding, en 20 aan overleg.
+
+69
+00:04:11.118 --> 00:04:12.894
+Er blijven er 190 over.
+
+70
+00:04:13.871 --> 00:04:19.734
+Bij 70 procent eigen werk blijven er 57 dagen voor projecten over, vijf per maand.
+
+71
+00:04:21.063 --> 00:04:22.665
+Elke contextswitch (context switching) kost tijd.
+
+72
+00:04:23.377 --> 00:04:28.903
+Gerald Weinberg schatte in 1992: twee projecten 20 procent verlies,
+
+73
+00:04:29.228 --> 00:04:31.376
+drie 40, vijf 75.
+
+74
+00:04:32.173 --> 00:04:33.764
+Een schatting, maar herkenbaar.
+
+75
+00:04:34.768 --> 00:04:39.992
+Beter: minder tegelijk, met echte blokken, zoals dinsdag en donderdag voor A.
+
+76
+00:04:40.966 --> 00:04:46.190
+De eigenaar kiest: Jan doet A en B en C start in mei, of een externe doet C,
+
+77
+00:04:46.446 --> 00:04:47.584
+voor 40 duizend.
+
+78
+00:04:48.644 --> 00:04:51.906
+Los het niet stil op met avondwerk: dat verstopt de kosten.
+
+79
+00:04:52.916 --> 00:04:56.620
+Sommigen plannen tot 80 procent, anderen één kwartaal vooruit.
+
+80
+00:04:57.346 --> 00:04:59.864
+Op wiens dagen rekenen we, en heeft zij het plan gezien?
+
+81
+00:05:01.154 --> 00:05:03.998
+Planner Fatima staat op vier projecten, ook het jouwe.
+
+82
+00:05:04.706 --> 00:05:08.549
+Elk rekent op één dag per week: 16 tot 17 dagen per maand.
+
+83
+00:05:09.284 --> 00:05:09.969
+Ze heeft er 4.
+
+84
+00:05:10.991 --> 00:05:15.520
+Jouw pilot heeft haar in maart 8 dagen nodig, en twee anderen rekenen ook op maart.
+
+85
+00:05:16.498 --> 00:05:19.911
+Maak de matrix, vraag Fatima eerst wat realistisch is,
+
+86
+00:05:20.340 --> 00:05:22.836
+en ga naar wie over alle vier gaat, niet naar haar.
+
+87
+00:05:23.783 --> 00:05:29.333
+Opties: de rest naar april en mei, een planner van het regiokantoor voor 10 dagen,
+
+88
+00:05:29.612 --> 00:05:30.680
+of de pilot later.
+
+89
+00:05:31.368 --> 00:05:33.805
+Dan plant iedereen op het besluit, niet op hoop.

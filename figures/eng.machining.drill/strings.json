@@ -1,0 +1,186 @@
+{
+  "nl": {
+    "title": "Boren",
+    "titles": {
+      "1": "Boren: toerental en tijd per gat",
+      "2": "Gaten op maat: ruimen en tappen",
+      "3": "Diep boren: pikken of koeling door de spil",
+      "4": "Gatkwaliteit: opwarmen en positie"
+    },
+    "hints": {
+      "1": "Tik een onderdeel of een knop",
+      "2": "Keuzeknop: boren, ruimen, tappen",
+      "3": "Keuzeknop: pikken of door de spil",
+      "4": "Keuzeknop: uren warm"
+    },
+    "knobs": "D · Vc · f · L · keuze",
+    "models": {
+      "1": "n = Vc × 1.000 / (π × D), vf = f × n, tijd = L / vf. Boven L/D ≈ 3 pikken: stap 1 × D, 2 s per keer.",
+      "2": "H7 volgens ISO 286. Ruimen: voorboren 0,2 mm kleiner. Kerngat = maat − spoed (metrisch grof).",
+      "3": "Pikken: HSS, Vc 25, stap 1 × D, 2 s per keer. Door de spil: hardmetaal, Vc 100, niet pikken tot zo’n 30 × D.",
+      "4": "Model: de machine warmt op en alle gaten schuiven dezelfde kant op (dx : dy = 3 : 4), tot 0,065 mm, τ ≈ 4,2 u."
+    },
+    "sel": {
+      "1": [
+        "HSS",
+        "hardmetaal"
+      ],
+      "2": [
+        "boren",
+        "ruimen",
+        "tappen"
+      ],
+      "3": [
+        "pikken",
+        "door de spil"
+      ]
+    },
+    "rpm": "omw/min",
+    "perHole": "per gat",
+    "s": "s",
+    "cut": "snijden",
+    "once": "in één keer",
+    "peckNeed": "pikken nodig (> 3 × D)",
+    "pecks": "terugtrekken à 2 s",
+    "noPeck": "koeling door de spil: niet pikken",
+    "gun": "> 30 × D: denk aan een kanonboor",
+    "drillOver": "geboord: een paar honderdsten te groot",
+    "forH7": "voor H7 ({lo} – {hi}): ruimen",
+    "pre": "voorboren Ø{d} · ruimer haalt {a} mm weg",
+    "drillWith": "boor {d}",
+    "gauge": "controle: gaat/gaat-niet-pen Ø{d} H7",
+    "pitch": "spoed",
+    "core": "kerngat {d} − {p} = {c} → boor Ø{b}",
+    "tapFeed": "tap voedt {p} mm per omw (de spoed)",
+    "thread": "controle: draadkaliber M{d}",
+    "with": "met pikken",
+    "after": "na {h} u",
+    "dist": "afstand √(dx² + dy²)",
+    "pos": "positie 2 ×",
+    "ofTol": "van tolerantie Ø0,1",
+    "ok": "goed",
+    "nok": "afkeur",
+    "parts": {
+      "bench": "Werkbank",
+      "bed": "Machinebed met schaal",
+      "ways": "Geleidebanen",
+      "saddle": "Slede: voedt de spil naar het werkstuk",
+      "housing": "Spilhuis van de booreenheid",
+      "motor": "Spilmotor",
+      "spindle": "Spil",
+      "chuck": "Spantang met moer: klemt het gereedschap",
+      "plate": "Opspanplaat met T-sleuven",
+      "vice": "Machineklem",
+      "block": "Werkstuk, doorgesneden langs het gat",
+      "hose": "Koelvloeistofslang",
+      "nozzle": "Spuitmond: koelt de punt en spoelt spanen weg",
+      "console": "Bedieningspaneel",
+      "screen": "Scherm"
+    },
+    "tools": {
+      "drill": "Spiraalboor: twee snijkanten, twee spaangroeven, tophoek 118°",
+      "reamer": "Ruimer: haalt de laatste 0,2 mm weg, tot H7",
+      "tap": "Tap: snijdt de schroefdraad"
+    },
+    "aria": "Vijf knoppen: diameter D, snijsnelheid Vc, voeding f, diepte L en een keuzeknop. Pijl links en rechts kiest de knop, pijl omhoog en omlaag verandert de waarde (Shift: grotere stap), Home en End gaan naar het minimum en maximum.",
+    "names": [
+      "Diameter",
+      "Snijsnelheid",
+      "Voeding",
+      "Diepte",
+      "Keuze"
+    ]
+  },
+  "en": {
+    "title": "Drilling",
+    "titles": {
+      "1": "Drilling: spindle speed and time per hole",
+      "2": "Holes to size: reaming and tapping",
+      "3": "Deep holes: pecking or through-spindle coolant",
+      "4": "Hole quality: warm-up and position"
+    },
+    "hints": {
+      "1": "Tap a part or a knob",
+      "2": "Selector: drill, ream, tap",
+      "3": "Selector: peck or through spindle",
+      "4": "Selector: hours warm"
+    },
+    "knobs": "D · Vc · f · L · selector",
+    "models": {
+      "1": "n = Vc × 1,000 / (π × D), vf = f × n, time = L / vf. Above L/D ≈ 3, peck: step 1 × D, 2 s each.",
+      "2": "H7 per ISO 286. Reaming: pre-drill 0.2 mm smaller. Tap drill = size − pitch (ISO metric coarse).",
+      "3": "Pecking: HSS, Vc 25, step 1 × D, 2 s each. Through the spindle: carbide, Vc 100, no pecking up to about 30 × D.",
+      "4": "Model: the machine warms up and every hole shifts the same way (dx : dy = 3 : 4), up to 0.065 mm, τ ≈ 4.2 h."
+    },
+    "sel": {
+      "1": [
+        "HSS",
+        "carbide"
+      ],
+      "2": [
+        "drill",
+        "ream",
+        "tap"
+      ],
+      "3": [
+        "peck",
+        "through spindle"
+      ]
+    },
+    "rpm": "rpm",
+    "perHole": "per hole",
+    "s": "s",
+    "cut": "cutting",
+    "once": "in one go",
+    "peckNeed": "pecking needed (> 3 × D)",
+    "pecks": "retracts of 2 s",
+    "noPeck": "through-spindle coolant: no pecking",
+    "gun": "> 30 × D: think of a gun drill",
+    "drillOver": "drilled: a few hundredths oversize",
+    "forH7": "for H7 ({lo} – {hi}): ream",
+    "pre": "pre-drill Ø{d} · reamer takes {a} mm",
+    "drillWith": "drill {d}",
+    "gauge": "check: go/no-go pin Ø{d} H7",
+    "pitch": "pitch",
+    "core": "tap drill {d} − {p} = {c} → drill Ø{b}",
+    "tapFeed": "tap feeds {p} mm per rev (the pitch)",
+    "thread": "check: thread gauge M{d}",
+    "with": "with pecking",
+    "after": "after {h} h",
+    "dist": "distance √(dx² + dy²)",
+    "pos": "position 2 ×",
+    "ofTol": "of tolerance Ø0.1",
+    "ok": "good",
+    "nok": "reject",
+    "parts": {
+      "bench": "Bench",
+      "bed": "Machine bed with scale",
+      "ways": "Ways",
+      "saddle": "Slide: feeds the spindle to the part",
+      "housing": "Spindle housing of the drilling unit",
+      "motor": "Spindle motor",
+      "spindle": "Spindle",
+      "chuck": "Collet chuck and nut: clamps the tool",
+      "plate": "Fixture plate with T-slots",
+      "vice": "Machine vice",
+      "block": "Workpiece, cut open along the hole",
+      "hose": "Coolant hose",
+      "nozzle": "Coolant nozzle: cools the point and flushes the chips",
+      "console": "Control panel",
+      "screen": "Screen"
+    },
+    "tools": {
+      "drill": "Twist drill: two cutting edges, two flutes, 118° point",
+      "reamer": "Reamer: takes the last 0.2 mm, to H7",
+      "tap": "Tap: cuts the thread"
+    },
+    "aria": "Five knobs: diameter D, cutting speed Vc, feed f, depth L and a selector. Left and right arrows pick a knob, up and down change its value (Shift: bigger step), Home and End go to the minimum and maximum.",
+    "names": [
+      "Diameter",
+      "Cutting speed",
+      "Feed",
+      "Depth",
+      "Selector"
+    ]
+  }
+}

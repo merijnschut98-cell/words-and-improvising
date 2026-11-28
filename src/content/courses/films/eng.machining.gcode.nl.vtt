@@ -1,0 +1,297 @@
+WEBVTT
+
+1
+00:00:00.847 --> 00:00:03.378
+Een nieuw programma ligt klaar voor het bewerkingscentrum.
+
+2
+00:00:04.086 --> 00:00:07.081
+De insteller leest het eerst, voordat de machine het ziet.
+
+3
+00:00:08.075 --> 00:00:10.014
+Een programma is een lijst regels.
+
+4
+00:00:10.764 --> 00:00:12.448
+Elke regel heet een programmaregel (block).
+
+5
+00:00:13.141 --> 00:00:16.728
+De besturing leest ze van boven naar beneden, één regel tegelijk.
+
+6
+00:00:17.752 --> 00:00:21.432
+Een regel begint met een regelnummer, zoals N10 of N20.
+
+7
+00:00:22.163 --> 00:00:23.382
+Dan volgen een paar woorden.
+
+8
+00:00:24.098 --> 00:00:25.840
+Een woord is een letter plus een getal.
+
+9
+00:00:26.914 --> 00:00:28.609
+G-woorden zeggen hoe er bewogen wordt.
+
+10
+00:00:29.398 --> 00:00:31.267
+X, Y en Z zeggen waarheen.
+
+11
+00:00:32.242 --> 00:00:35.678
+F is de voeding, op een freesmachine in millimeter per minuut.
+
+12
+00:00:36.414 --> 00:00:38.748
+S is het toerental in omwentelingen per minuut.
+
+13
+00:00:39.496 --> 00:00:40.970
+T is het gereedschapsnummer.
+
+14
+00:00:42.277 --> 00:00:43.740
+De meeste codes zijn modaal (modal).
+
+15
+00:00:44.471 --> 00:00:47.919
+Ze blijven actief tot een andere code uit dezelfde groep ze vervangt.
+
+16
+00:00:49.029 --> 00:00:50.457
+Schrijf je één keer G01,
+
+17
+00:00:50.805 --> 00:00:54.474
+dan is elke volgende regel met alleen coördinaten ook een rechte snede.
+
+18
+00:00:55.181 --> 00:00:56.214
+Met dezelfde F.
+
+19
+00:00:57.212 --> 00:00:58.524
+Dat houdt programma’s kort.
+
+20
+00:00:59.245 --> 00:01:01.973
+Maar je moet terug omhoog lezen om te weten wat een regel doet.
+
+21
+00:01:03.061 --> 00:01:05.488
+G90 zet absoluut programmeren (absolute programming) aan.
+
+22
+00:01:06.198 --> 00:01:10.842
+X20 betekent dan 20 millimeter vanaf het nulpunt, G54.
+
+23
+00:01:11.853 --> 00:01:15.115
+G91 zet incrementeel programmeren (incremental programming) aan.
+
+24
+00:01:15.809 --> 00:01:19.745
+X20 betekent dan 20 millimeter verder dan waar het gereedschap nu is.
+
+25
+00:01:20.486 --> 00:01:22.460
+Die twee verwarren is een klassieke crash.
+
+26
+00:01:23.851 --> 00:01:25.209
+Dan de bewegingscodes.
+
+27
+00:01:25.911 --> 00:01:30.370
+G00 is een ijlgang, zo snel als de machine kan en nooit in het materiaal.
+
+28
+00:01:31.385 --> 00:01:33.788
+G01 is een rechte snede op voeding F.
+
+29
+00:01:34.586 --> 00:01:38.580
+G02 is een cirkelboog met de klok mee en G03 tegen de klok in.
+
+30
+00:01:39.268 --> 00:01:40.081
+R is de straal.
+
+31
+00:01:41.119 --> 00:01:43.453
+Een M-functie (M-code) is een schakelaar van de machine.
+
+32
+00:01:44.136 --> 00:01:46.679
+M03 zet de spil aan, met de klok mee.
+
+33
+00:01:47.425 --> 00:01:50.606
+M05 is spil stop en M06 is gereedschapswissel.
+
+34
+00:01:51.606 --> 00:01:54.648
+M08 zet de koeling aan en M09 zet de koeling uit.
+
+35
+00:01:55.370 --> 00:01:57.344
+M30 is het einde van het programma.
+
+36
+00:01:58.317 --> 00:02:00.058
+Elke besturing heeft extra’s.
+
+37
+00:02:00.805 --> 00:02:05.960
+Maar deze basis volgt ISO 6983 en is bijna overal gelijk.
+
+38
+00:02:07.313 --> 00:02:09.322
+Zo leest een insteller een nieuw programma.
+
+39
+00:02:10.017 --> 00:02:13.965
+Eerst de kop, met het nulpunt, de gereedschappen en de toerentallen.
+
+40
+00:02:14.972 --> 00:02:17.352
+Dan de eerste bewegingen van elk gereedschap.
+
+41
+00:02:18.044 --> 00:02:19.414
+Steeds met dezelfde vraag.
+
+42
+00:02:20.111 --> 00:02:22.352
+Waar staat het gereedschap nu, en waar gaat het heen?
+
+43
+00:02:23.335 --> 00:02:26.005
+De gevaarlijke regels zijn ijlgangen vlak bij het werkstuk.
+
+44
+00:02:26.710 --> 00:02:30.831
+Een G00 naar Z2, 2 millimeter boven het werkstuk, is prima.
+
+45
+00:02:31.534 --> 00:02:34.738
+Een G00 naar Z min 3 gaat op volle snelheid het materiaal in.
+
+46
+00:02:35.774 --> 00:02:38.514
+Daarom kijkt de insteller bij de eerste run naar de restweg.
+
+47
+00:02:39.229 --> 00:02:41.133
+Dat is hoe ver de huidige beweging nog moet.
+
+48
+00:02:42.460 --> 00:02:45.885
+Het voorbeeld is een sleuf in een stalen plaat, 3 millimeter diep.
+
+49
+00:02:46.548 --> 00:02:50.484
+Hij wordt gefreesd met een vingerfrees van 10 millimeter, gereedschap 3.
+
+50
+00:02:51.232 --> 00:02:52.161
+Dit is het programma.
+
+51
+00:02:53.137 --> 00:02:56.736
+N10 zet absoluut aan, vanaf nulpunt G54.
+
+52
+00:02:57.510 --> 00:02:59.460
+N20 haalt gereedschap 3 erin.
+
+53
+00:03:00.501 --> 00:03:04.634
+N30 geeft 3.200 omwentelingen per minuut, met de klok mee.
+
+54
+00:03:05.321 --> 00:03:09.187
+N40 gaat in ijlgang naar 25 millimeter boven het werkstuk.
+
+55
+00:03:09.886 --> 00:03:14.077
+De gereedschapslengte staat aan, maar die code legt het volgende niveau uit.
+
+56
+00:03:14.797 --> 00:03:15.761
+De koeling gaat aan.
+
+57
+00:03:16.766 --> 00:03:19.285
+N50 is een ijlgang boven het startpunt.
+
+58
+00:03:19.984 --> 00:03:24.988
+N60 gaat op voeding naar 3 millimeter diep, met 150 millimeter per minuut.
+
+59
+00:03:25.971 --> 00:03:32.357
+N70 is nog steeds G01, een rechte snede van 50 millimeter, van Y min 10 naar Y40.
+
+60
+00:03:33.086 --> 00:03:35.211
+Op 640 millimeter per minuut.
+
+61
+00:03:35.915 --> 00:03:39.735
+Dat komt uit 0,05 millimeter per tand, maal 4 tanden,
+
+62
+00:03:39.944 --> 00:03:42.382
+maal 3.200 omwentelingen per minuut.
+
+63
+00:03:43.131 --> 00:03:44.048
+Dat is een aanname.
+
+64
+00:03:45.088 --> 00:03:48.989
+N80 is een kwart cirkel met straal 20 millimeter, met de klok mee.
+
+65
+00:03:49.683 --> 00:03:52.121
+N90 gaat omhoog en zet de koeling uit.
+
+66
+00:03:52.806 --> 00:03:53.886
+N100 is het einde.
+
+67
+00:03:55.159 --> 00:03:56.134
+Eén verbeterpunt.
+
+68
+00:03:56.880 --> 00:04:01.931
+N60 gaat 28 millimeter op voeding, van Z25 naar Z min 3,
+
+69
+00:04:02.198 --> 00:04:04.241
+met 150 millimeter per minuut.
+
+70
+00:04:04.935 --> 00:04:07.814
+Dat duurt 11 seconden, grotendeels door de lucht.
+
+71
+00:04:08.845 --> 00:04:12.084
+Eerst een G00 naar Z2 laat nog 5 millimeter op voeding over.
+
+72
+00:04:12.758 --> 00:04:13.952
+Dat is 2 seconden.
+
+73
+00:04:14.912 --> 00:04:18.906
+Op 2.000 stuks scheelt dat 9 keer 2.000 is 18.000 seconden.
+
+74
+00:04:19.586 --> 00:04:20.561
+Dat is 5 uur.

@@ -1,0 +1,289 @@
+WEBVTT
+
+1
+00:00:00.858 --> 00:00:05.735
+A pump set, as in every plant: an electric motor turns a pump through a coupling.
+
+2
+00:00:06.467 --> 00:00:08.383
+The energy comes in through a cable.
+
+3
+00:00:09.409 --> 00:00:13.646
+The meter in the cabinet shows two things, and they are often mixed up.
+
+4
+00:00:14.707 --> 00:00:19.525
+The first is power, in kilowatts: how fast the motor uses energy right now.
+
+5
+00:00:20.301 --> 00:00:22.402
+A snapshot, like a speedometer.
+
+6
+00:00:23.420 --> 00:00:27.913
+The second is energy, in kilowatt hours: power times time, added up.
+
+7
+00:00:28.623 --> 00:00:33.255
+8 hours at 15 kilowatts is 120 kilowatt hours.
+
+8
+00:00:34.000 --> 00:00:38.632
+The bill counts kilowatt hours; the connection and the peak are about kilowatts.
+
+9
+00:00:39.957 --> 00:00:45.345
+This cooling-water pump must put 11 kilowatts into the water, 6,000 hours a year.
+
+10
+00:00:46.377 --> 00:00:51.393
+Efficiency is the useful output divided by the input; the rest becomes heat.
+
+11
+00:00:52.109 --> 00:00:55.452
+The pump reaches 70 percent, the motor 92.
+
+12
+00:00:56.486 --> 00:01:03.766
+Along a chain the losses multiply: 11 divided by 0.70, and again by 0.92,
+
+13
+00:01:03.916 --> 00:01:06.702
+gives 17.1 kilowatts from the grid.
+
+14
+00:01:07.752 --> 00:01:11.676
+That is 102,600 kilowatt hours a year,
+
+15
+00:01:11.874 --> 00:01:16.669
+about 15,400 euros: probably more than the pump cost.
+
+16
+00:01:18.011 --> 00:01:21.157
+Industry runs on three-phase power: three wires,
+
+17
+00:01:21.320 --> 00:01:26.533
+each with a voltage that swings back and forth 50 times a second: 50 hertz.
+
+18
+00:01:27.525 --> 00:01:31.136
+Each phase comes a third of a cycle after the one before.
+
+19
+00:01:32.160 --> 00:01:38.081
+Between two phases there are 400 volts, between a phase and neutral 230.
+
+20
+00:01:38.775 --> 00:01:40.934
+A motor uses all three phases.
+
+21
+00:01:41.953 --> 00:01:42.893
+In the windings,
+
+22
+00:01:43.114 --> 00:01:47.270
+those three shifted currents together make a magnetic field that turns.
+
+23
+00:01:48.606 --> 00:01:53.146
+Not all the current does work: part of it only builds up the magnetic field.
+
+24
+00:01:54.251 --> 00:02:00.892
+The power factor, or cos phi, is the useful share: fully loaded about 0.8 to 0.9.
+
+25
+00:02:01.879 --> 00:02:06.105
+The power is root three times voltage, current and power factor.
+
+26
+00:02:06.853 --> 00:02:13.969
+At 400 volts, 30 amps and 0.85, that is about 17.7 kilowatts.
+
+27
+00:02:15.012 --> 00:02:19.482
+Lightly loaded, the power factor drops far: more current for the same work,
+
+28
+00:02:19.621 --> 00:02:20.794
+so thicker cables.
+
+29
+00:02:22.105 --> 00:02:26.110
+Almost every pump, fan and conveyor runs on an induction motor,
+
+30
+00:02:26.296 --> 00:02:30.301
+or squirrel-cage motor: robust, cheap and low on maintenance.
+
+31
+00:02:31.302 --> 00:02:34.402
+In cross-section: the fixed outer part is the stator,
+
+32
+00:02:34.553 --> 00:02:38.060
+with copper windings in its slots, one set per phase.
+
+33
+00:02:39.088 --> 00:02:41.236
+The three phase currents peak in turn,
+
+34
+00:02:41.317 --> 00:02:44.626
+so the magnetic field keeps shifting and turns round.
+
+35
+00:02:45.431 --> 00:02:48.183
+Nothing moves, and yet the field turns.
+
+36
+00:02:49.248 --> 00:02:54.821
+How fast depends on the grid frequency and the number of poles: 2, 4, 6 or more.
+
+37
+00:02:56.140 --> 00:03:00.738
+Inside, the rotor turns on the shaft: steel sheets with bars through them,
+
+38
+00:03:00.958 --> 00:03:03.442
+joined at the ends by rings: a cage.
+
+39
+00:03:04.463 --> 00:03:08.631
+The rotating field cuts through the bars and induces a current in them.
+
+40
+00:03:09.323 --> 00:03:13.711
+That current makes a field of its own, and so the rotor is dragged along.
+
+41
+00:03:14.701 --> 00:03:16.361
+But it never catches the field.
+
+42
+00:03:17.106 --> 00:03:20.821
+The difference is called the slip, typically 1 to 5 percent.
+
+43
+00:03:21.561 --> 00:03:24.173
+That is why the motor is called asynchronous.
+
+44
+00:03:25.173 --> 00:03:28.273
+Without slip, no current in the bars and no torque.
+
+45
+00:03:29.057 --> 00:03:31.147
+The heavier the load, the more slip.
+
+46
+00:03:32.502 --> 00:03:37.727
+The field turns at the synchronous speed: 120 times the frequency,
+
+47
+00:03:37.912 --> 00:03:39.955
+divided by the number of poles.
+
+48
+00:03:40.665 --> 00:03:46.075
+At 50 hertz and 4 poles: 1,500 revolutions per minute.
+
+49
+00:03:47.142 --> 00:03:52.111
+Two poles give 3,000 rpm, six poles 1,000.
+
+50
+00:03:53.163 --> 00:03:56.994
+The plate of this motor says 1,470.
+
+51
+00:03:57.662 --> 00:04:02.608
+The difference, divided by 1,500, is a slip of 2 percent.
+
+52
+00:04:03.656 --> 00:04:14.047
+The torque: 30 kilowatts times 9,550, divided by 1,470, is 195 newton metres.
+
+53
+00:04:14.741 --> 00:04:19.292
+If a motor runs clearly slower than its plate, it is probably overloaded.
+
+54
+00:04:20.637 --> 00:04:24.747
+The nameplate on the housing tells you almost everything about the motor.
+
+55
+00:04:25.733 --> 00:04:29.751
+First the rated power, 30 kilowatts: the power at the shaft,
+
+56
+00:04:29.936 --> 00:04:31.701
+not what it draws from the grid.
+
+57
+00:04:32.808 --> 00:04:36.824
+Then voltage, current, speed, power factor and efficiency.
+
+58
+00:04:37.508 --> 00:04:40.829
+A clamp meter round one cable gives the real current.
+
+59
+00:04:41.898 --> 00:04:42.595
+At the bottom,
+
+60
+00:04:42.873 --> 00:04:47.157
+the insulation class: the highest temperature for the winding insulation.
+
+61
+00:04:47.897 --> 00:04:51.403
+Class F stands for 155 degrees.
+
+62
+00:04:52.438 --> 00:04:57.210
+As a rule of thumb, every 10 degrees too hot roughly halves the life of the winding.
+
+63
+00:04:58.517 --> 00:05:04.508
+The plate also shows the IE class: efficiency in classes, from IE1 to IE5.
+
+64
+00:05:05.521 --> 00:05:06.345
+In the EU,
+
+65
+00:05:06.473 --> 00:05:14.809
+most new motors from 0.75 to 1,000 kilowatts must be at least IE3 since 2021;
+
+66
+00:05:14.914 --> 00:05:18.815
+from 75 to 200 kilowatts mostly IE4.
+
+67
+00:05:19.848 --> 00:05:25.282
+An old IE1 at about 90 percent, delivering 25 kilowatts at the shaft,
+
+68
+00:05:25.421 --> 00:05:27.882
+draws 27.8 kilowatts.
+
+69
+00:05:28.620 --> 00:05:33.461
+An IE3 at 93.6 percent draws 26.7.
+
+70
+00:05:34.465 --> 00:05:36.752
+That saves 1.1 kilowatts,
+
+71
+00:05:36.880 --> 00:05:43.602
+over 6,000 hours about 6,400 kilowatt hours: 960 euros a year.
+
+72
+00:05:44.307 --> 00:05:48.255
+Worth it when the old one fails, rarely to replace a healthy one.

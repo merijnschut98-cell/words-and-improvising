@@ -1,0 +1,165 @@
+WEBVTT
+
+1
+00:00:00.844 --> 00:00:04.919
+On line 3 too-light cartons keep coming out of the filling unit.
+
+2
+00:00:05.992 --> 00:00:10.230
+The module Measurement and SPC in depth goes beyond the basics.
+
+3
+00:00:10.936 --> 00:00:13.107
+You read the fill weight with statistics.
+
+4
+00:00:14.134 --> 00:00:15.341
+You are the engineer.
+
+5
+00:00:16.053 --> 00:00:19.315
+After the shift you and the team lead follow the fill weight.
+
+6
+00:00:20.360 --> 00:00:23.193
+First the measuring itself and what the process does,
+
+7
+00:00:23.344 --> 00:00:26.200
+with measurement systems and with control charts.
+
+8
+00:00:27.248 --> 00:00:29.767
+Then what the process can do and how you hold it,
+
+9
+00:00:29.907 --> 00:00:32.740
+with capability and SPC on the shop floor.
+
+10
+00:00:34.051 --> 00:00:36.431
+The first topic is Measurement systems.
+
+11
+00:00:37.151 --> 00:00:40.355
+Every reading is the true value plus a measurement error.
+
+12
+00:00:41.385 --> 00:00:43.893
+You weigh the cartons at the end of the belt.
+
+13
+00:00:44.666 --> 00:00:47.789
+A noisy scale makes the spread look larger than it is.
+
+14
+00:00:48.832 --> 00:00:51.317
+You study the weighing with a gauge R and R.
+
+15
+00:00:52.044 --> 00:00:54.749
+Two people weigh the same carton a few times.
+
+16
+00:00:56.069 --> 00:00:58.391
+The second topic is Control charts.
+
+17
+00:00:59.105 --> 00:01:01.822
+A control chart plots a result over time.
+
+18
+00:01:02.776 --> 00:01:06.990
+The centre line and two limits show what line 3 does by itself.
+
+19
+00:01:08.039 --> 00:01:11.801
+A point outside a limit is a signal to look for what has changed.
+
+20
+00:01:12.850 --> 00:01:16.101
+You weigh equal batches and count the too-light cartons.
+
+21
+00:01:16.824 --> 00:01:19.158
+You plot that count on an np chart.
+
+22
+00:01:20.529 --> 00:01:22.468
+The third topic is Capability.
+
+23
+00:01:23.151 --> 00:01:26.379
+It compares the spread of weighed values with the tolerance.
+
+24
+00:01:27.372 --> 00:01:30.925
+First you make the process stable, then you measure capability.
+
+25
+00:01:31.915 --> 00:01:34.980
+You read that in a capability report from the software.
+
+26
+00:01:36.270 --> 00:01:39.103
+The fourth topic is SPC on the shop floor.
+
+27
+00:01:39.899 --> 00:01:41.780
+There SPC is a routine.
+
+28
+00:01:42.798 --> 00:01:47.779
+Measure more often where things change, such as after a changeover of line 3.
+
+29
+00:01:48.740 --> 00:01:51.979
+You do a first-off check and weigh one carton first.
+
+30
+00:01:53.046 --> 00:01:57.609
+That is how you and the team lead follow the fill weight with data, not by feel.
+
+31
+00:01:58.902 --> 00:01:59.703
+The whole map.
+
+32
+00:02:00.448 --> 00:02:05.568
+The second station is Measurement and SPC in depth, in Making the plant better.
+
+33
+00:02:06.596 --> 00:02:08.790
+Each of the four topics has four levels.
+
+34
+00:02:09.857 --> 00:02:12.272
+Start at Basics level with measurement error.
+
+35
+00:02:13.008 --> 00:02:15.748
+Every number you use later comes from a reading.
+
+36
+00:02:16.774 --> 00:02:21.024
+At Working knowledge level come gauge studies, the right control chart,
+
+37
+00:02:21.163 --> 00:02:24.205
+Cpk versus Ppk and over-adjustment.
+
+38
+00:02:25.270 --> 00:02:27.836
+At Advanced level come visual inspection,
+
+39
+00:02:27.928 --> 00:02:31.341
+small shifts, non-normal data and reading patterns.
+
+40
+00:02:32.370 --> 00:02:34.959
+At Expert level come destructive tests,
+
+41
+00:02:35.145 --> 00:02:39.046
+short runs, capability requirements and an SPC programme.

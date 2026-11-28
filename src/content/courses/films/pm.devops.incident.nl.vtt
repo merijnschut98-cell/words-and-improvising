@@ -1,0 +1,225 @@
+WEBVTT
+
+1
+00:00:00.847 --> 00:00:05.026
+ITIL is de bekendste verzameling goede praktijken voor IT-servicemanagement:
+
+2
+00:00:05.537 --> 00:00:08.846
+IT zo organiseren dat gebruikers betrouwbaar kunnen werken.
+
+3
+00:00:09.802 --> 00:00:12.623
+Het begon eind jaren tachtig bij de Britse overheid.
+
+4
+00:00:13.322 --> 00:00:14.344
+De huidige versie,
+
+5
+00:00:14.658 --> 00:00:19.360
+ITIL vier, verscheen in tweeduizend negentien en is nu van het bedrijf PeopleCert.
+
+6
+00:00:20.395 --> 00:00:22.032
+Je hoeft het niet uit je hoofd te kennen.
+
+7
+00:00:22.707 --> 00:00:25.029
+Wel moet je drie woorden scherp uit elkaar houden.
+
+8
+00:00:25.683 --> 00:00:28.342
+Dat zijn incident, probleem en wijziging.
+
+9
+00:00:29.667 --> 00:00:32.651
+Een incident is een onverwachte onderbreking van een dienst,
+
+10
+00:00:32.883 --> 00:00:35.008
+of een dienst die slechter werkt dan zou moeten.
+
+11
+00:00:35.672 --> 00:00:38.958
+Het MES reageert niet, de etiketprinter print niet.
+
+12
+00:00:39.991 --> 00:00:43.126
+Het doel bij een incident: zo snel mogelijk weer werken,
+
+13
+00:00:43.416 --> 00:00:45.227
+ook als je de oorzaak nog niet kent.
+
+14
+00:00:46.255 --> 00:00:48.472
+Incidenten komen binnen bij de servicedesk (service desk):
+
+15
+00:00:48.785 --> 00:00:52.431
+het centrale meldpunt waar gebruikers storingen en vragen melden,
+
+16
+00:00:52.617 --> 00:00:54.428
+per telefoon, mail of portaal.
+
+17
+00:00:55.729 --> 00:00:59.049
+Een probleem (problem) is in ITIL de oorzaak, of mogelijke oorzaak,
+
+18
+00:00:59.339 --> 00:01:00.709
+van een of meer incidenten.
+
+19
+00:01:01.698 --> 00:01:05.146
+Bij een probleem is het doel anders: begrijpen waarom het gebeurt,
+
+20
+00:01:05.437 --> 00:01:06.563
+zodat het niet terugkomt.
+
+21
+00:01:07.654 --> 00:01:12.043
+De printer die elke week uitvalt: dat zijn tweeënvijftig incidenten per jaar,
+
+22
+00:01:12.380 --> 00:01:13.622
+maar misschien maar één probleem,
+
+23
+00:01:13.819 --> 00:01:17.139
+zoals een stroomvoorziening die even inzakt als de pers opstart.
+
+24
+00:01:17.864 --> 00:01:19.466
+Probleembeheer zoekt die oorzaak.
+
+25
+00:01:20.755 --> 00:01:22.450
+Een wijziging (change) is iets toevoegen,
+
+26
+00:01:22.810 --> 00:01:27.640
+aanpassen of weghalen dat invloed kan hebben op een dienst: een nieuwe MES-versie,
+
+27
+00:01:27.930 --> 00:01:31.390
+een andere printerdriver, een aangepaste firewall-regel.
+
+28
+00:01:32.403 --> 00:01:34.841
+Veel incidenten worden veroorzaakt door een wijziging.
+
+29
+00:01:35.606 --> 00:01:39.716
+Daarom is de eerste vraag bij een storing vaak: wat is er recent veranderd?
+
+30
+00:01:40.762 --> 00:01:43.885
+ITIL vier noemt het beheren van wijzigingen nu change enablement,
+
+31
+00:01:44.222 --> 00:01:48.471
+eerst heette het change control: wijzigingen mogelijk maken, niet tegenhouden.
+
+32
+00:01:49.776 --> 00:01:51.424
+Voor jou als Lean-consultant:
+
+33
+00:01:51.726 --> 00:01:55.151
+een incident afhandelen lijkt op een storing op de lijn snel verhelpen.
+
+34
+00:01:56.118 --> 00:01:59.822
+Probleembeheer lijkt op een oorzaakanalyse, zodat de storing niet terugkomt.
+
+35
+00:02:00.560 --> 00:02:04.071
+Het verschil zit in het doel: weer werken, versus nooit meer.
+
+36
+00:02:05.036 --> 00:02:08.554
+Wat je vaak ziet: een servicedesk die goed is in incidenten,
+
+37
+00:02:08.832 --> 00:02:10.643
+terwijl niemand tijd heeft voor problemen.
+
+38
+00:02:11.620 --> 00:02:16.009
+Een scherpe vraag: welke vijf storingen kwamen vorige maand het vaakst terug,
+
+39
+00:02:16.380 --> 00:02:17.564
+en wie zoekt de oorzaak?
+
+40
+00:02:18.849 --> 00:02:19.545
+Een voorbeeld:
+
+41
+00:02:19.835 --> 00:02:23.516
+bij een vleeswarenfabriek komen deze meldingen binnen op de servicedesk.
+
+42
+00:02:24.248 --> 00:02:25.188
+Zo deel je ze in.
+
+43
+00:02:26.181 --> 00:02:27.574
+Maandag tien over zes:
+
+44
+00:02:27.934 --> 00:02:31.197
+de weegschaal op lijn twee stuurt geen gewichten naar het MES.
+
+45
+00:02:31.907 --> 00:02:34.670
+Een incident: de dienst is onderbroken.
+
+46
+00:02:35.675 --> 00:02:40.097
+De servicedesk herstart de koppeling, en om vijfentwintig over zes werkt het weer.
+
+47
+00:02:41.044 --> 00:02:45.491
+Dinsdag vijf over zes en woensdag twaalf over zes: dezelfde melding.
+
+48
+00:02:46.228 --> 00:02:47.517
+Weer twee incidenten.
+
+49
+00:02:48.569 --> 00:02:52.458
+Woensdagmiddag ziet de IT-beheerder het patroon: drie incidenten,
+
+50
+00:02:52.771 --> 00:02:53.955
+steeds rond zes uur.
+
+51
+00:02:54.648 --> 00:02:55.728
+Dat wordt één probleem.
+
+52
+00:02:56.416 --> 00:02:59.121
+Koppeling weegschaal lijn twee valt uit bij ploegstart.
+
+53
+00:03:00.141 --> 00:03:02.927
+Donderdag blijkt de oorzaak een geplande back-up om zes uur,
+
+54
+00:03:03.183 --> 00:03:04.286
+die de koppeling blokkeert.
+
+55
+00:03:05.077 --> 00:03:07.805
+De back-up naar vier uur verplaatsen is een wijziging,
+
+56
+00:03:08.131 --> 00:03:10.023
+die eerst wordt besproken en gepland.

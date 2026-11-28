@@ -1,0 +1,173 @@
+WEBVTT
+
+1
+00:00:00.868 --> 00:00:02.876
+Jij sluit de vuleenheid van lijn 3 aan.
+
+2
+00:00:03.601 --> 00:00:05.935
+Een aanval op kantoor mag die lijn niet stilzetten.
+
+3
+00:00:06.961 --> 00:00:10.943
+Cybersecurity leert je wat een fabriek moet regelen en hoe je erover praat.
+
+4
+00:00:12.022 --> 00:00:13.868
+Vier onderwerpen volgen de aanval.
+
+5
+00:00:14.558 --> 00:00:17.066
+Eerst hoe hij binnenkomt en hoe de lijn zich verdedigt.
+
+6
+00:00:18.046 --> 00:00:20.821
+Daarna wat de wet vraagt en wat je doet als het toch gebeurt.
+
+7
+00:00:22.116 --> 00:00:24.043
+Het eerste onderwerp is De basis.
+
+8
+00:00:24.778 --> 00:00:27.146
+Op kantoor staat vertrouwelijkheid vaak voorop.
+
+9
+00:00:28.124 --> 00:00:30.736
+In de fabriek gaan beschikbaarheid en veiligheid voor.
+
+10
+00:00:31.715 --> 00:00:33.933
+Een nepmail is de meest gebruikte weg naar binnen.
+
+11
+00:00:34.628 --> 00:00:35.383
+Dat heet phishing.
+
+12
+00:00:36.372 --> 00:00:39.704
+Met een meldknop (report button) stuur je een verdachte mail met één klik naar IT.
+
+13
+00:00:40.969 --> 00:00:45.776
+Het tweede onderwerp is OT-beveiliging met IEC 62443.
+
+14
+00:00:46.494 --> 00:00:49.820
+Een norm voor fabriek, integrator en leverancier.
+
+15
+00:00:50.758 --> 00:00:52.418
+Lijn 3 krijgt een eigen stuk vloer.
+
+16
+00:00:53.093 --> 00:00:56.750
+Eén bewaakte verbinding loopt van de netwerkkast naar de besturingskast.
+
+17
+00:00:57.814 --> 00:01:00.647
+Zo komt een infectie van kantoor niet zomaar de lijn op.
+
+18
+00:01:01.632 --> 00:01:03.942
+Je deelt de fabriek in met zones en conduits.
+
+19
+00:01:05.237 --> 00:01:07.594
+Het derde onderwerp is NIS2 en de wet.
+
+20
+00:01:08.387 --> 00:01:10.906
+In Nederland heet die wet de Cyberbeveiligingswet.
+
+21
+00:01:11.929 --> 00:01:15.725
+De wet kent een zorgplicht, een meldplicht en een registratieplicht.
+
+22
+00:01:16.716 --> 00:01:19.712
+Een aanval die lijn 3 stilzet, kan een melding vragen.
+
+23
+00:01:20.706 --> 00:01:23.864
+Of de fabriek eronder valt, hangt af van sector en omvang.
+
+24
+00:01:24.891 --> 00:01:27.910
+Je zoekt je sector op in bijlage I (Annex I) en bijlage II (Annex II).
+
+25
+00:01:29.161 --> 00:01:31.738
+Het vierde onderwerp is Incidentrespons.
+
+26
+00:01:32.443 --> 00:01:34.974
+Dat is de vaste manier om een incident aan te pakken.
+
+27
+00:01:35.964 --> 00:01:40.841
+Eerst voorbereiding en detectie, dan indamming, herstel en evaluatie.
+
+28
+00:01:41.895 --> 00:01:45.529
+Bij indamming zet je bijvoorbeeld de verbinding tussen kantoor en fabriek dicht.
+
+29
+00:01:46.569 --> 00:01:49.936
+Voor als het MES uitvalt, schrijf je een noodprocedure (manual fallback procedure).
+
+30
+00:01:50.988 --> 00:01:53.879
+Zo kan lijn 3 blijven draaien als kantoor wordt aangevallen.
+
+31
+00:01:54.553 --> 00:01:56.306
+Daarna ga jij verder met de lijn zelf.
+
+32
+00:01:57.657 --> 00:01:58.458
+De hele kaart.
+
+33
+00:01:59.185 --> 00:02:03.086
+Cybersecurity is het derde station van Automatisering en IT.
+
+34
+00:02:04.040 --> 00:02:05.747
+Elk onderwerp heeft vier niveaus.
+
+35
+00:02:06.752 --> 00:02:11.140
+Begin op niveau Basis bij vertrouwelijkheid, integriteit en beschikbaarheid.
+
+36
+00:02:11.855 --> 00:02:12.946
+Dat is wat je beschermt.
+
+37
+00:02:13.983 --> 00:02:17.512
+Op niveau Werkkennis komen phishing, het indelen van de fabriek,
+
+38
+00:02:17.849 --> 00:02:19.498
+wie eronder valt en voorbereiden.
+
+39
+00:02:20.467 --> 00:02:23.997
+Op niveau Gevorderd gaat het om MFA, hoe streng je beveiligt,
+
+40
+00:02:24.322 --> 00:02:26.423
+de zorgplicht in de praktijk en indammen.
+
+41
+00:02:27.398 --> 00:02:31.449
+Op niveau Expert gaat het om minimale rechten, patchen in OT,
+
+42
+00:02:31.891 --> 00:02:33.656
+incidenten melden en herstellen.
+
+43
+00:02:34.639 --> 00:02:38.052
+Elke les en elke film van deze module heeft een plek op deze kaart.

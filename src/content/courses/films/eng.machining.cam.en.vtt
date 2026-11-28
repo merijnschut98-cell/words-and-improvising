@@ -1,0 +1,257 @@
+WEBVTT
+
+1
+00:00:00.835 --> 00:00:04.515
+CAM software turns the 3D model into a toolpath.
+
+2
+00:00:05.236 --> 00:00:08.348
+That is the route of the tool, with feeds and speeds.
+
+3
+00:00:09.367 --> 00:00:12.246
+The programmer chooses the path feature by feature.
+
+4
+00:00:12.996 --> 00:00:15.492
+A pocket gets an adaptive roughing path.
+
+5
+00:00:16.206 --> 00:00:17.959
+A hole gets a drilling cycle.
+
+6
+00:00:18.671 --> 00:00:20.668
+A face gets a finishing pass.
+
+7
+00:00:21.705 --> 00:00:24.805
+Then a post-processor translates that toolpath into the
+
+8
+00:00:24.863 --> 00:00:28.288
+G-code dialect of one specific machine and control.
+
+9
+00:00:29.283 --> 00:00:31.059
+Same part, two machines.
+
+10
+00:00:31.796 --> 00:00:34.350
+That means two posts and two programs.
+
+11
+00:00:35.380 --> 00:00:39.606
+A bad post is a hidden crash risk in every program it writes.
+
+12
+00:00:40.907 --> 00:00:45.296
+A simulation runs the posted G-code on a digital copy of the machine,
+
+13
+00:00:45.493 --> 00:00:48.256
+with the fixture, the holders and the raw part.
+
+14
+00:00:49.319 --> 00:00:53.592
+You see collisions, cuts into clamps and material left behind.
+
+15
+00:00:54.372 --> 00:00:57.530
+That happens before the real machine sees the program.
+
+16
+00:00:58.529 --> 00:01:00.851
+It is only as good as its models.
+
+17
+00:01:01.548 --> 00:01:06.726
+A fixture drawn 10 mm too low gives a clean simulation and a real crash.
+
+18
+00:01:07.738 --> 00:01:11.894
+Ask whether the simulation runs the real G-code after the post,
+
+19
+00:01:12.033 --> 00:01:13.740
+or only the CAM path.
+
+20
+00:01:15.030 --> 00:01:18.037
+Prove-out is the first real run of a new program.
+
+21
+00:01:18.716 --> 00:01:22.907
+The machine runs in single block, so it stops after every line.
+
+22
+00:01:23.952 --> 00:01:25.752
+Rapid moves are slowed down.
+
+23
+00:01:26.453 --> 00:01:28.729
+Sometimes the machine cuts air first.
+
+24
+00:01:29.837 --> 00:01:32.554
+Then comes the release after the first-off check.
+
+25
+00:01:33.270 --> 00:01:37.485
+The first part is fully measured, and the program is released as proven.
+
+26
+00:01:38.494 --> 00:01:41.838
+Edits made at the machine must go back into CAM.
+
+27
+00:01:42.549 --> 00:01:45.858
+Otherwise the next repeat order starts with the old error.
+
+28
+00:01:46.880 --> 00:01:51.501
+Good shops track how many hours prove-out takes per new program, and why.
+
+29
+00:01:52.515 --> 00:01:56.265
+That shows whether the bottleneck is the programming or the trust in it.
+
+30
+00:01:57.625 --> 00:01:58.902
+What a manager weighs.
+
+31
+00:01:59.628 --> 00:02:03.831
+Programming time grows with complexity and with the number of new parts.
+
+32
+00:02:04.817 --> 00:02:08.689
+For small batches the programming time can exceed the machine time.
+
+33
+00:02:09.678 --> 00:02:10.688
+There are levers.
+
+34
+00:02:11.440 --> 00:02:13.321
+Templates for recurring features.
+
+35
+00:02:14.055 --> 00:02:16.180
+And a validated post per machine.
+
+36
+00:02:17.137 --> 00:02:18.681
+Full-machine simulation.
+
+37
+00:02:19.418 --> 00:02:23.412
+And a tool library in CAM that matches the real tool rack.
+
+38
+00:02:24.449 --> 00:02:25.738
+Credible questions.
+
+39
+00:02:26.460 --> 00:02:30.419
+How many hours of prove-out does each new program take on the machine?
+
+40
+00:02:31.411 --> 00:02:34.999
+How many programs are edited at the machine and never fed back?
+
+41
+00:02:36.033 --> 00:02:38.448
+Which machine has a post nobody trusts?
+
+42
+00:02:39.764 --> 00:02:43.967
+A job shop writes about 150 new programs a year.
+
+43
+00:02:44.983 --> 00:02:47.642
+Today CAM takes 4 hours per program.
+
+44
+00:02:48.331 --> 00:02:51.141
+The programmer costs 70 euros an hour.
+
+45
+00:02:52.152 --> 00:02:55.263
+Prove-out takes 2.5 hours on the machine.
+
+46
+00:02:55.964 --> 00:02:59.853
+Machine and setter together cost 110 euros an hour.
+
+47
+00:03:00.644 --> 00:03:04.093
+These are the shop’s own figures, stated as assumptions.
+
+48
+00:03:05.115 --> 00:03:08.343
+The proposal is full-machine simulation software.
+
+49
+00:03:09.062 --> 00:03:12.859
+An assumed 20,000 euros a year, including support.
+
+50
+00:03:13.918 --> 00:03:16.855
+The shop expects prove-out to drop to 1 hour.
+
+51
+00:03:17.543 --> 00:03:22.535
+CAM time then rises by 0.25 hours to run the simulation.
+
+52
+00:03:23.528 --> 00:03:27.058
+What does it save a year, net of the extra programming time?
+
+53
+00:03:27.756 --> 00:03:30.136
+And is it worth the 20,000 euros?
+
+54
+00:03:31.445 --> 00:03:37.703
+The machine saves 1.5 hours times 150 times 110 euros.
+
+55
+00:03:38.440 --> 00:03:41.911
+That is 24,750 euros.
+
+56
+00:03:42.909 --> 00:03:49.503
+The programmer costs 0.25 hours times 150 times 70 euros extra.
+
+57
+00:03:50.257 --> 00:03:53.659
+That is 2,625 euros.
+
+58
+00:03:54.674 --> 00:04:01.327
+Net that is 22,125 euros a year, against 20,000 euros.
+
+59
+00:04:02.029 --> 00:04:07.370
+On hours alone that is only 2,125 euros ahead.
+
+60
+00:04:08.404 --> 00:04:10.877
+So the case rests on two other things.
+
+61
+00:04:11.591 --> 00:04:13.147
+The crashes it prevents.
+
+62
+00:04:13.868 --> 00:04:20.126
+And the 225 machine hours it frees, 1.5 times 150.
+
+63
+00:04:21.110 --> 00:04:23.850
+Those hours only count if there is work for them.
+
+64
+00:04:24.545 --> 00:04:27.436
+Ask for last year’s crash cost before deciding.

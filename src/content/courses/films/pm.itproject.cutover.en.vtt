@@ -1,0 +1,261 @@
+WEBVTT
+
+1
+00:00:00.833 --> 00:00:05.442
+The cutover is the planned switch from the old system to the new one: stop the old,
+
+2
+00:00:05.547 --> 00:00:07.974
+move the last data, and start the new.
+
+3
+00:00:08.961 --> 00:00:12.873
+It usually happens over a weekend, or during a planned shutdown.
+
+4
+00:00:13.903 --> 00:00:18.395
+Its script is the cutover plan, hour by hour: every task with an owner,
+
+5
+00:00:18.617 --> 00:00:21.113
+a start time, a duration and a check.
+
+6
+00:00:22.168 --> 00:00:27.230
+Often that is two hundred to four hundred lines, and nothing in it is improvised.
+
+7
+00:00:28.620 --> 00:00:33.752
+It starts with a freeze: from a fixed moment, here Friday at six in the evening,
+
+8
+00:00:33.926 --> 00:00:36.747
+nobody enters anything new in the old system.
+
+9
+00:00:37.748 --> 00:00:42.078
+First the last orders and goods movements, then a final stock count.
+
+10
+00:00:43.162 --> 00:00:45.589
+If production carries on over the weekend,
+
+11
+00:00:45.752 --> 00:00:50.082
+it is recorded on paper and entered into the new system afterwards.
+
+12
+00:00:51.110 --> 00:00:54.291
+And weeks before, there is already a freeze on settings,
+
+13
+00:00:54.384 --> 00:00:57.844
+so nobody changes the configuration at the last moment.
+
+14
+00:00:59.250 --> 00:01:03.813
+At fixed points there is a go/no-go: the decision to go ahead or stop,
+
+15
+00:01:04.045 --> 00:01:06.634
+against criteria agreed in advance.
+
+16
+00:01:07.615 --> 00:01:12.526
+For example: the reconciliation of stock and open orders is within tolerance,
+
+17
+00:01:12.724 --> 00:01:14.558
+and the key interfaces work.
+
+18
+00:01:15.655 --> 00:01:19.591
+There are no open blocking defects, and the key users are ready.
+
+19
+00:01:20.582 --> 00:01:24.680
+A named person decides, usually the sponsor or plant manager.
+
+20
+00:01:25.460 --> 00:01:28.374
+Not the partner, who has an interest in going ahead.
+
+21
+00:01:29.690 --> 00:01:32.255
+The rollback point is the last moment you can
+
+22
+00:01:32.290 --> 00:01:35.135
+go back to the old system without losing work.
+
+23
+00:01:36.161 --> 00:01:38.460
+Before it, a rollback plan is ready.
+
+24
+00:01:39.152 --> 00:01:43.865
+After it, problems are fixed in the new system, because going back would cost more.
+
+25
+00:01:44.900 --> 00:01:49.300
+Place it so that a restore would still be finished well before the first shift.
+
+26
+00:01:50.365 --> 00:01:53.454
+And rehearse the whole weekend once in a dress rehearsal:
+
+27
+00:01:53.535 --> 00:01:55.172
+a full trial of the cutover,
+
+28
+00:01:55.323 --> 00:01:56.356
+with a stopwatch.
+
+29
+00:01:57.699 --> 00:02:02.424
+In a factory, Monday morning sets the clock: the first shift needs orders,
+
+30
+00:02:02.610 --> 00:02:04.839
+labels and the scales at six.
+
+31
+00:02:05.544 --> 00:02:07.111
+Work back from that time.
+
+32
+00:02:08.117 --> 00:02:10.903
+What often goes wrong: there is no dress rehearsal,
+
+33
+00:02:10.997 --> 00:02:14.445
+so the data load takes fourteen hours instead of nine.
+
+34
+00:02:15.454 --> 00:02:19.378
+And the go/no-go turns into: we are too far in to stop now.
+
+35
+00:02:20.390 --> 00:02:23.885
+A sharp question: if the go/no-go on Saturday says no,
+
+36
+00:02:24.001 --> 00:02:25.777
+what do the lines do on Monday?
+
+37
+00:02:27.070 --> 00:02:27.999
+An example.
+
+38
+00:02:28.719 --> 00:02:33.259
+A snack maker switches to a new ERP and MES over one weekend,
+
+39
+00:02:33.386 --> 00:02:35.546
+with a plan timed in the dress rehearsal.
+
+40
+00:02:36.525 --> 00:02:41.308
+Friday at six in the evening the freeze, the final stock count until nine,
+
+41
+00:02:41.459 --> 00:02:46.382
+and from nine at night to six in the morning the migration of open orders and stock.
+
+42
+00:02:47.418 --> 00:02:50.831
+The load took seven and a half hours in the dress rehearsal.
+
+43
+00:02:51.550 --> 00:02:54.789
+With a twenty percent margin, you plan nine hours.
+
+44
+00:02:55.823 --> 00:03:00.746
+Saturday from six to noon the reconciliation, at noon the first go/no-go,
+
+45
+00:03:00.967 --> 00:03:05.819
+and until eight in the evening interfaces on, test orders and test labels.
+
+46
+00:03:06.891 --> 00:03:11.454
+Then until eight on Sunday morning the key users run the main scenarios,
+
+47
+00:03:11.651 --> 00:03:13.567
+and the team fixes defects.
+
+48
+00:03:14.270 --> 00:03:16.545
+At eight, the second go/no-go,
+
+49
+00:03:16.661 --> 00:03:20.759
+also the rollback point: restoring the old system takes ten hours.
+
+50
+00:03:21.781 --> 00:03:25.728
+On Monday at six, the first shift starts on the new system.
+
+51
+00:03:27.041 --> 00:03:31.581
+Saturday, half past eleven: the stock difference is zero point two percent,
+
+52
+00:03:31.708 --> 00:03:35.017
+within the agreed tolerance of zero point five percent.
+
+53
+00:03:36.052 --> 00:03:38.722
+But the interface with the checkweighers fails.
+
+54
+00:03:39.733 --> 00:03:42.345
+What do you advise at the first go/no-go?
+
+55
+00:03:43.059 --> 00:03:44.394
+Go, with a condition.
+
+56
+00:03:45.395 --> 00:03:49.017
+The checkweigher interface is only needed from Monday at six,
+
+57
+00:03:49.110 --> 00:03:52.430
+so there is a window until Sunday at eight to fix it.
+
+58
+00:03:53.783 --> 00:03:55.838
+What has to be true by Sunday at eight?
+
+59
+00:03:56.589 --> 00:04:00.664
+The interface works, or a manual workaround has been tested.
+
+60
+00:04:01.709 --> 00:04:06.480
+The workaround: operators enter the weights by hand, checked by a second person.
+
+61
+00:04:07.511 --> 00:04:09.183
+If neither is true at eight,
+
+62
+00:04:09.368 --> 00:04:13.954
+it is no-go: the old system is restored by about six on Sunday evening,
+
+63
+00:04:14.059 --> 00:04:15.998
+well before Monday's first shift.
+
+64
+00:04:17.028 --> 00:04:20.151
+The decision, with the reason, goes in the cutover log.
+
+65
+00:04:20.951 --> 00:04:25.165
+And after Monday comes hypercare: the extra support after go-live.

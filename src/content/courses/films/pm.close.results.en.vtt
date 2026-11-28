@@ -1,0 +1,257 @@
+WEBVTT
+
+1
+00:00:00.852 --> 00:00:04.961
+Your project is done, and the sponsor wants to know: is it really better?
+
+2
+00:00:05.699 --> 00:00:10.308
+Anyone who claims a result needs a baseline: the performance before the change,
+
+3
+00:00:10.482 --> 00:00:12.235
+measured the same way as after.
+
+4
+00:00:13.225 --> 00:00:17.625
+So the same definition, the same data source, the same period length,
+
+5
+00:00:17.800 --> 00:00:19.228
+and similar conditions.
+
+6
+00:00:20.392 --> 00:00:23.480
+If the baseline counted stops over 5 minutes,
+
+7
+00:00:23.666 --> 00:00:28.089
+and the after-data counts stops over 2, the comparison is worthless.
+
+8
+00:00:29.112 --> 00:00:33.651
+Agree the definition at the start, write it down, and keep the raw data.
+
+9
+00:00:34.467 --> 00:00:36.475
+Then anyone can redo the sum.
+
+10
+00:00:37.782 --> 00:00:38.734
+An example.
+
+11
+00:00:39.481 --> 00:00:43.602
+At a bottling plant you measure downtime on line 3 for 12 weeks:
+
+12
+00:00:43.730 --> 00:00:46.354
+the share of planned hours the line stands still.
+
+13
+00:00:47.046 --> 00:00:49.205
+On average it is 14 percent.
+
+14
+00:00:50.238 --> 00:00:54.406
+But every week is different: between 11 and 17 percent.
+
+15
+00:00:55.159 --> 00:00:59.234
+That is noise: the normal week-to-week swing that has nothing to do with you.
+
+16
+00:01:00.224 --> 00:01:05.495
+If downtime drops 2 points after four weeks, that still falls inside the band.
+
+17
+00:01:06.291 --> 00:01:07.278
+It proves little.
+
+18
+00:01:08.287 --> 00:01:11.236
+So measure roughly as many weeks after as before.
+
+19
+00:01:11.986 --> 00:01:14.714
+A common rule of thumb is 8 to 12 weeks.
+
+20
+00:01:16.026 --> 00:01:20.636
+Also check what else changed: volume, product mix, season, new staff.
+
+21
+00:01:21.618 --> 00:01:24.382
+The strongest evidence is a comparison group:
+
+22
+00:01:24.602 --> 00:01:27.969
+a similar line or region that did not get the change.
+
+23
+00:01:28.673 --> 00:01:30.124
+Here that is line 4.
+
+24
+00:01:31.135 --> 00:01:33.654
+After the changes you measure for 10 weeks.
+
+25
+00:01:34.422 --> 00:01:38.880
+Line 3 is now at 9 percent, with weeks between 7 and 11.
+
+26
+00:01:39.604 --> 00:01:43.482
+Line 4, where nothing changed, stays at 13 percent.
+
+27
+00:01:44.522 --> 00:01:48.760
+The two bands barely overlap, and the comparison line did not move.
+
+28
+00:01:49.450 --> 00:01:51.633
+So the effect is very likely real.
+
+29
+00:01:52.917 --> 00:01:54.624
+Experts argue about this.
+
+30
+00:01:55.311 --> 00:01:57.563
+Some want a formal statistical test.
+
+31
+00:01:58.326 --> 00:02:03.203
+Most practitioners settle for a run chart, weekly values plotted over time,
+
+32
+00:02:03.319 --> 00:02:04.793
+plus a comparison group.
+
+33
+00:02:05.829 --> 00:02:07.489
+Watch for regression to the mean.
+
+34
+00:02:08.168 --> 00:02:10.780
+Projects often start after a bad spell,
+
+35
+00:02:10.978 --> 00:02:14.043
+and then the numbers drift back toward normal anyway.
+
+36
+00:02:15.069 --> 00:02:17.101
+Part of your gain may be just that.
+
+37
+00:02:18.165 --> 00:02:21.950
+And a result that fades once you leave is another warning sign.
+
+38
+00:02:22.661 --> 00:02:25.204
+Measure again three months after closing.
+
+39
+00:02:26.582 --> 00:02:28.905
+Then the money, in the client's terms.
+
+40
+00:02:29.637 --> 00:02:34.293
+Freed hours are only money if something changes on the books: overtime cut,
+
+41
+00:02:34.444 --> 00:02:38.101
+a shift dropped, more product sold, or an investment avoided.
+
+42
+00:02:39.162 --> 00:02:42.250
+At a grid operator it may be customers connected sooner,
+
+43
+00:02:42.401 --> 00:02:47.394
+or fewer customer minutes lost: minutes without power, added up over all customers.
+
+44
+00:02:48.421 --> 00:02:50.441
+If extra output can be sold,
+
+45
+00:02:50.592 --> 00:02:55.491
+value it at contribution margin: the sales price minus variable costs,
+
+46
+00:02:55.619 --> 00:02:57.558
+such as material and energy.
+
+47
+00:02:58.527 --> 00:03:00.443
+And let the controller check the sum:
+
+48
+00:03:00.547 --> 00:03:03.485
+the finance person who owns the client's numbers.
+
+49
+00:03:04.783 --> 00:03:06.258
+Back to the bottling plant.
+
+50
+00:03:07.038 --> 00:03:10.300
+Line 3 is planned for 6,000 hours a year.
+
+51
+00:03:10.993 --> 00:03:17.460
+From 14 to 9 percent is 5 percentage points less downtime: 300 extra running hours.
+
+52
+00:03:18.446 --> 00:03:22.208
+The plant is sold out, so those hours become extra product.
+
+53
+00:03:23.251 --> 00:03:28.220
+The controller values an hour at 450 euro of contribution margin.
+
+54
+00:03:28.912 --> 00:03:36.006
+That is 300 hours times 450 euro: about 135,000 euro a year.
+
+55
+00:03:37.018 --> 00:03:39.933
+You present it together with the controller, who checked it.
+
+56
+00:03:41.357 --> 00:03:43.691
+Then the people side: don't overclaim.
+
+57
+00:03:44.404 --> 00:03:46.447
+Say what you know, and what you don't.
+
+58
+00:03:47.475 --> 00:03:50.784
+For example: downtime went from 12 to 8 percent.
+
+59
+00:03:51.555 --> 00:03:54.481
+About one point is likely the lower summer volume.
+
+60
+00:03:55.159 --> 00:03:57.469
+The rest we attribute to the changes.
+
+61
+00:03:58.511 --> 00:04:02.784
+Welcome a sceptical controller: their approval is worth more than your slide.
+
+62
+00:04:03.545 --> 00:04:06.146
+And give the credit to the team that did the work.
+
+63
+00:04:07.204 --> 00:04:11.558
+Ask yourself one sharp question: if a board member challenges this number,
+
+64
+00:04:11.720 --> 00:04:13.427
+who besides me will defend it?

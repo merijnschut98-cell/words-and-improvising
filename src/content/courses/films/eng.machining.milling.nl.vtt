@@ -1,0 +1,257 @@
+WEBVTT
+
+1
+00:00:00.935 --> 00:00:02.387
+Dit is een bewerkingscentrum (machining centre):
+
+2
+00:00:02.619 --> 00:00:05.777
+een CNC-freesmachine die zelf van gereedschap wisselt.
+
+3
+00:00:06.525 --> 00:00:09.892
+Opzij hangt het magazijn, met tientallen frezen en boren.
+
+4
+00:00:10.594 --> 00:00:12.150
+Het programma roept er een op,
+
+5
+00:00:12.521 --> 00:00:15.098
+en de wisselaar zet hem in een paar seconden in de spil.
+
+6
+00:00:16.065 --> 00:00:19.141
+Bij frezen draait het gereedschap, en staat het werkstuk vast.
+
+7
+00:00:19.824 --> 00:00:24.724
+Hier een blok aluminium van 100 bij 80 bij 25 millimeter, in een bankschroef.
+
+8
+00:00:25.393 --> 00:00:29.816
+Meestal schuift de tafel links-rechts en voor-achter, en gaat de spil op en neer.
+
+9
+00:00:31.034 --> 00:00:32.404
+Het eerste gereedschap,
+
+10
+00:00:32.694 --> 00:00:37.013
+T1, is de vlakfrees (face mill): een brede schijf met wisselplaten rondom.
+
+11
+00:00:38.049 --> 00:00:41.022
+In twee banen maakt hij de bovenkant vlak, in 1 minuut.
+
+12
+00:00:41.755 --> 00:00:43.996
+Vanaf dat vlak tellen de maten die nog komen.
+
+13
+00:00:45.302 --> 00:00:48.391
+Dan T2, een vingerfrees (end mill) van 10 millimeter:
+
+14
+00:00:48.635 --> 00:00:50.353
+een smalle staaf van hardmetaal,
+
+15
+00:00:50.608 --> 00:00:52.756
+met snijkanten op de zijkant en de punt.
+
+16
+00:00:53.749 --> 00:00:58.009
+Hij freest een kamer (pocket) van 60 bij 40 millimeter, 8 millimeter diep.
+
+17
+00:00:58.671 --> 00:01:01.352
+Dat is een uitsparing met een bodem, als een bakje.
+
+18
+00:01:02.352 --> 00:01:07.983
+T3, een frees van 8 millimeter, loopt met zijn zijkant langs de vorm: de contour.
+
+19
+00:01:08.665 --> 00:01:10.917
+Een ronde frees maakt nooit een scherpe binnenhoek.
+
+20
+00:01:11.658 --> 00:01:15.605
+De hoek wordt minstens zo rond als de straal van de frees: hier 4 millimeter.
+
+21
+00:01:16.908 --> 00:01:20.810
+Nu een stalen blok, met een vingerfrees van 12 millimeter en 3 tanden.
+
+22
+00:01:21.500 --> 00:01:25.587
+Een gangbare start voor hardmetaal in staal is 150 meter per minuut.
+
+23
+00:01:26.344 --> 00:01:31.360
+Net als bij draaien geeft de diameter dan het toerental: 3.980 toeren.
+
+24
+00:01:32.343 --> 00:01:34.352
+Elke tand neemt per omwenteling een hapje.
+
+25
+00:01:35.031 --> 00:01:39.431
+Hoe dik dat is, heet de voeding per tand (feed per tooth): hier 0,05 millimeter.
+
+26
+00:01:40.409 --> 00:01:42.371
+Voeding per tand, maal de tanden,
+
+27
+00:01:42.707 --> 00:01:45.168
+maal het toerental: dat is de tafelvoeding (table feed).
+
+28
+00:01:45.835 --> 00:01:50.491
+Hier staat 597 millimeter per minuut als F in het programma.
+
+29
+00:01:51.500 --> 00:01:53.358
+De frees snijdt 10 millimeter diep,
+
+30
+00:01:53.671 --> 00:01:57.433
+en zit 3 millimeter opzij in het materiaal: de snedebreedte (width of cut).
+
+31
+00:01:58.503 --> 00:02:03.449
+Diepte maal breedte maal tafelvoeding geeft 17,9 kubieke centimeter per minuut.
+
+32
+00:02:04.216 --> 00:02:05.609
+Dat is het verspaningsvolume (metal removal rate),
+
+33
+00:02:05.946 --> 00:02:07.989
+waarmee je twee aanpakken eerlijk vergelijkt.
+
+34
+00:02:09.283 --> 00:02:10.084
+Kijk naar één tand.
+
+35
+00:02:10.852 --> 00:02:11.897
+Bij meelopend frezen (climb milling)
+
+36
+00:02:11.944 --> 00:02:14.266
+gaat hij dik het materiaal in en komt hij er dun uit.
+
+37
+00:02:15.339 --> 00:02:17.545
+Bij tegenlopend frezen (conventional milling) begint hij op nul,
+
+38
+00:02:17.905 --> 00:02:18.973
+en schuurt hij eerst.
+
+39
+00:02:19.660 --> 00:02:21.483
+Dat geeft warmte en slijtage.
+
+40
+00:02:22.248 --> 00:02:25.510
+Op een moderne CNC-machine is meelopend dus de standaard.
+
+41
+00:02:26.209 --> 00:02:29.158
+Alleen op een oude machine met speling kies je tegenlopend,
+
+42
+00:02:29.401 --> 00:02:31.793
+omdat meelopend de tafel naar voren kan trekken.
+
+43
+00:02:33.105 --> 00:02:35.648
+Zit een frees van 10 maar 1 millimeter opzij,
+
+44
+00:02:36.066 --> 00:02:39.874
+dan wordt de spaan dunner dan de voeding per tand: maar 0,6 keer zo dik.
+
+45
+00:02:40.571 --> 00:02:41.604
+Dat is spaanverdunning (chip thinning).
+
+46
+00:02:42.291 --> 00:02:44.834
+De frees schraapt dan, in plaats van te snijden.
+
+47
+00:02:45.834 --> 00:02:49.956
+Dus verhoog je de voeding per tand, van 0,05 naar 0,083.
+
+48
+00:02:50.647 --> 00:02:54.571
+De tafelvoeding gaat van 1.200 naar 2.000 millimeter per minuut,
+
+49
+00:02:54.942 --> 00:02:56.533
+en de frees gaat juist langer mee.
+
+50
+00:02:57.538 --> 00:03:00.464
+Daarop draait trochoïdaal frezen (trochoidal milling): kleine rondjes,
+
+51
+00:03:00.650 --> 00:03:05.804
+met maar zo’n 5 tot 15 procent van de diameter opzij, over bijna de hele snijlengte.
+
+52
+00:03:06.467 --> 00:03:09.624
+Warmte en kracht blijven laag, bij een veel hogere voeding.
+
+53
+00:03:10.906 --> 00:03:13.472
+Een vijfassige machine heeft nog twee draaiassen.
+
+54
+00:03:14.141 --> 00:03:16.416
+Hier zit het werkstuk op een draai-kanteltafel (trunnion table),
+
+55
+00:03:16.811 --> 00:03:17.821
+die kantelt en draait.
+
+56
+00:03:18.578 --> 00:03:21.121
+Zo bereikt de frees vijf kanten in één opspanning.
+
+57
+00:03:22.121 --> 00:03:25.523
+Bij 3+2-bewerking (3+2 machining) kantelt hij het werkstuk naar een vaste hoek,
+
+58
+00:03:25.802 --> 00:03:29.586
+zet de draaiassen vast, en freest gewoon met X, Y en Z.
+
+59
+00:03:30.351 --> 00:03:31.895
+Zo blijft de machine stijf.
+
+60
+00:03:32.881 --> 00:03:34.634
+Van 4 opspanningen naar 1.
+
+61
+00:03:35.344 --> 00:03:40.708
+Elke opspanning die wegvalt, scheelt zo’n 30 minuten ombouwen: 90 minuten per serie.
+
+62
+00:03:41.735 --> 00:03:44.382
+Bij simultaan vijfassig (simultaneous 5-axis) bewegen alle assen tegelijk.
+
+63
+00:03:45.129 --> 00:03:47.857
+Zo houdt de frees steeds dezelfde stand op het bolle vlak,
+
+64
+00:03:48.020 --> 00:03:49.878
+zoals bij de schoepen van een pompwaaier.

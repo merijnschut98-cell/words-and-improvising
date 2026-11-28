@@ -1,0 +1,333 @@
+WEBVTT
+
+1
+00:00:00.853 --> 00:00:05.659
+When you can't judge the answers, the quality of your questions is your expertise.
+
+2
+00:00:06.679 --> 00:00:10.650
+A question set is a short, fixed list of questions per phase,
+
+3
+00:00:10.813 --> 00:00:14.179
+whatever the field: a database, a cable or a robot.
+
+4
+00:00:15.228 --> 00:00:21.068
+Five areas cover most of it: scope, assumptions, risks, estimates and dependencies.
+
+5
+00:00:22.080 --> 00:00:23.473
+Ask them in that order.
+
+6
+00:00:24.199 --> 00:00:26.126
+Each builds on the one before.
+
+7
+00:00:27.473 --> 00:00:29.911
+Scope: what exactly will we have at the end?
+
+8
+00:00:30.976 --> 00:00:32.938
+And what is explicitly not included?
+
+9
+00:00:33.686 --> 00:00:37.018
+That half matters most: misunderstandings live there.
+
+10
+00:00:38.038 --> 00:00:40.685
+An assumption: true for now, without proof.
+
+11
+00:00:41.395 --> 00:00:44.692
+Ask: what are we assuming that, if wrong, changes the plan?
+
+12
+00:00:45.698 --> 00:00:49.367
+For example: the factory's network can carry the new data.
+
+13
+00:00:50.099 --> 00:00:54.197
+Write assumptions down: each one is a risk until it is checked.
+
+14
+00:00:55.548 --> 00:00:57.568
+A risk may happen and hurt the goal.
+
+15
+00:00:58.267 --> 00:00:59.823
+Ask: what worries you most?
+
+16
+00:01:00.575 --> 00:01:02.398
+What went wrong on similar jobs?
+
+17
+00:01:03.446 --> 00:01:05.234
+Ask each expert separately.
+
+18
+00:01:05.923 --> 00:01:08.873
+In a group, the most senior voice sets the tone.
+
+19
+00:01:09.910 --> 00:01:13.648
+An estimate is a forecast of time or cost, not a promise.
+
+20
+00:01:14.354 --> 00:01:16.943
+Ask: how sure are you, and what is it based on?
+
+21
+00:01:17.963 --> 00:01:20.540
+And ask for a range rather than one number.
+
+22
+00:01:21.857 --> 00:01:25.526
+A dependency: your work waits on something from someone else.
+
+23
+00:01:26.232 --> 00:01:28.762
+Ask: what do you need from others, and by when?
+
+24
+00:01:29.779 --> 00:01:33.877
+The grid operator needs the load data before it can size the cable.
+
+25
+00:01:34.605 --> 00:01:38.947
+The MES supplier waits for an interface from the ERP team.
+
+26
+00:01:39.992 --> 00:01:43.127
+Most delays outside your field are not technical.
+
+27
+00:01:43.905 --> 00:01:45.995
+They are dependencies that nobody owned.
+
+28
+00:01:47.078 --> 00:01:51.815
+Use the sets at the start, at every change and before each go/no-go.
+
+29
+00:01:52.517 --> 00:01:56.871
+The same questions every time: then experts prepare the answers.
+
+30
+00:01:57.908 --> 00:02:02.772
+The typical failure: asking once, in a kick-off, and filing the answers.
+
+31
+00:02:03.514 --> 00:02:07.810
+End every planning session with: what did we assume today that nobody checked?
+
+32
+00:02:09.167 --> 00:02:14.217
+A kick-off for an MES at a metal parts maker, with the supplier and the IT lead.
+
+33
+00:02:15.294 --> 00:02:18.695
+Scope: at go-live, which lines are on the MES?
+
+34
+00:02:19.412 --> 00:02:22.071
+Lines 1 and 2, not line 3.
+
+35
+00:02:23.090 --> 00:02:26.979
+Assumption: machine data comes in through the existing network.
+
+36
+00:02:27.703 --> 00:02:29.050
+You write: unchecked.
+
+37
+00:02:30.162 --> 00:02:34.876
+Risk: elsewhere the master data was dirty: products and the sequence of steps.
+
+38
+00:02:35.608 --> 00:02:39.602
+Estimate: clean-up takes four to eight weeks, depending on the state.
+
+39
+00:02:40.644 --> 00:02:45.659
+Dependency: an ERP interface from the client's IT, by 1 March.
+
+40
+00:02:46.381 --> 00:02:49.911
+Five questions, three new risks, one owner each.
+
+41
+00:02:51.222 --> 00:02:55.634
+You can't check an estimate by judging the work, only by how it was made.
+
+42
+00:02:56.438 --> 00:03:00.513
+Three tools: a range, a reference class and a second estimate.
+
+43
+00:03:01.557 --> 00:03:06.480
+Kahneman and Tversky named the planning fallacy in 1979:
+
+44
+00:03:06.666 --> 00:03:08.616
+you underestimate your own task,
+
+45
+00:03:08.790 --> 00:03:11.414
+even when you know similar tasks ran late.
+
+46
+00:03:12.168 --> 00:03:13.085
+Experts too.
+
+47
+00:03:14.096 --> 00:03:18.520
+A range is a low and a high estimate, between 3 and 6 weeks.
+
+48
+00:03:19.222 --> 00:03:21.358
+It shows how uncertain someone is.
+
+49
+00:03:22.378 --> 00:03:27.150
+A three-point estimate adds a most likely value to optimistic and pessimistic.
+
+50
+00:03:28.187 --> 00:03:34.317
+PERT, from 1958, for the US Navy's Polaris programme, weights them: optimistic,
+
+51
+00:03:34.456 --> 00:03:38.717
+plus four times most likely, plus pessimistic, divided by six.
+
+52
+00:03:39.426 --> 00:03:43.037
+A convention, not a law: it pulls towards the long tail.
+
+53
+00:03:44.361 --> 00:03:47.937
+A reference class: similar past projects as a yardstick.
+
+54
+00:03:48.659 --> 00:03:51.016
+Kahneman and Flyvbjerg recommend it.
+
+55
+00:03:52.087 --> 00:03:53.886
+Instead of reasoning from the plan,
+
+56
+00:03:54.072 --> 00:03:57.683
+ask: how long did the last five interfaces like this take?
+
+57
+00:03:58.730 --> 00:04:05.998
+Flyvbjerg and Gardner report in 2023: of about 16,000 mostly large projects,
+
+58
+00:04:06.137 --> 00:04:12.662
+only 8.5 percent hit budget and schedule, and only 0.5 percent the benefits too.
+
+59
+00:04:13.668 --> 00:04:16.501
+A base rate like that beats a confident plan.
+
+60
+00:04:17.823 --> 00:04:22.316
+A second estimate: ask another expert, without showing the first number,
+
+61
+00:04:22.513 --> 00:04:23.186
+and compare.
+
+62
+00:04:24.280 --> 00:04:24.721
+Close?
+
+63
+00:04:25.422 --> 00:04:25.736
+Good.
+
+64
+00:04:26.484 --> 00:04:27.215
+Far apart?
+
+65
+00:04:28.003 --> 00:04:31.544
+Then the gap is the conversation: what do you see that makes it longer?
+
+66
+00:04:32.576 --> 00:04:36.883
+Watch the language: three weeks if nothing goes wrong is the best case.
+
+67
+00:04:37.602 --> 00:04:41.352
+An estimate unchanged for months is often not being updated.
+
+68
+00:04:42.407 --> 00:04:43.614
+Experts argue.
+
+69
+00:04:44.292 --> 00:04:47.554
+Some agile teams only forecast from their track record;
+
+70
+00:04:47.705 --> 00:04:50.120
+others want a firm number for the contract.
+
+71
+00:04:50.898 --> 00:04:54.416
+Your question: a forecast with its uncertainty, or a hope?
+
+72
+00:04:55.503 --> 00:04:58.568
+A sharp question: what would make it take twice as long?
+
+73
+00:04:59.292 --> 00:05:02.369
+If the answer comes instantly, put that in the range.
+
+74
+00:05:03.679 --> 00:05:09.171
+The automation supplier estimates the PLC work for a robot cell: optimistic 6 weeks,
+
+75
+00:05:09.241 --> 00:05:11.714
+most likely 8, pessimistic 16.
+
+76
+00:05:12.773 --> 00:05:17.649
+The three-point estimate: 6, plus four times 8, plus 16 is 54.
+
+77
+00:05:18.369 --> 00:05:20.517
+Divided by six: 9 weeks.
+
+78
+00:05:21.563 --> 00:05:25.266
+Their last three cells took 9, 11 and 10 weeks.
+
+79
+00:05:26.022 --> 00:05:29.505
+That reference class says 9 is at the optimistic end.
+
+80
+00:05:30.567 --> 00:05:34.944
+So plan around 10 to 11 weeks, and ask: what makes this one faster?
+
+81
+00:05:35.999 --> 00:05:38.321
+A real reason, such as reusing code?
+
+82
+00:05:39.088 --> 00:05:39.506
+Fine.
+
+83
+00:05:40.203 --> 00:05:42.687
+If not, put the longer figure in the plan.

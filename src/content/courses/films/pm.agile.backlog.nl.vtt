@@ -1,0 +1,349 @@
+WEBVTT
+
+1
+00:00:00.845 --> 00:00:04.200
+Een user story zegt wat een gebruiker wil, in eigen woorden.
+
+2
+00:00:05.165 --> 00:00:09.948
+Het sjabloon is van Connextra, rond tweeduizend een: als wie, wil ik wat,
+
+3
+00:00:10.157 --> 00:00:10.865
+zodat waarom.
+
+4
+00:00:11.900 --> 00:00:15.337
+Als operator van lijn drie wil ik met twee tikken een oorzaak kiezen,
+
+5
+00:00:15.569 --> 00:00:17.845
+zodat de ploegleider weet waar de tijd heen ging.
+
+6
+00:00:18.839 --> 00:00:21.533
+Dat zodat is het belangrijkste: het zegt waarom.
+
+7
+00:00:22.615 --> 00:00:24.960
+Ron Jeffries van Extreme Programming beschreef
+
+8
+00:00:24.983 --> 00:00:26.736
+in tweeduizend een de drie C’s (Three Cs).
+
+9
+00:00:27.424 --> 00:00:29.990
+Card, Conversation en Confirmation.
+
+10
+00:00:30.973 --> 00:00:33.922
+Een kaartje als geheugensteun, details uit een gesprek,
+
+11
+00:00:34.258 --> 00:00:37.857
+afspraken over de controle: een belofte, geen contract.
+
+12
+00:00:39.207 --> 00:00:42.922
+Acceptatiecriteria (acceptance criteria) zijn concrete, toetsbare voorwaarden.
+
+13
+00:00:43.906 --> 00:00:45.706
+Hier zijn dat hooguit acht oorzaken,
+
+14
+00:00:46.054 --> 00:00:49.061
+met werkhandschoenen, binnen een minuut bij de ploegleider.
+
+15
+00:00:50.023 --> 00:00:53.413
+Zonder criteria begint de discussie pas bij de oplevering.
+
+16
+00:00:54.432 --> 00:00:58.333
+Een epic is te groot voor één sprint, zoals OEE per lijn.
+
+17
+00:00:59.064 --> 00:00:59.969
+Die knip je later.
+
+18
+00:01:01.016 --> 00:01:05.474
+Stories en epics zijn Product Backlog-items; de Scrum Guide schrijft geen vorm voor.
+
+19
+00:01:06.488 --> 00:01:10.679
+Fouten: een taak als story, geen zodat, of de gebruiker als rol.
+
+20
+00:01:11.715 --> 00:01:15.732
+Vraag bij elke story: wie merkt het als dit af is, en waaraan?
+
+21
+00:01:17.034 --> 00:01:21.005
+Een planner bij een fabrikant van stalen deuren levert dertig pagina's eisen.
+
+22
+00:01:21.970 --> 00:01:25.116
+Pagina vier: toon de bezetting van alle machines.
+
+23
+00:01:25.814 --> 00:01:27.776
+Wie heeft dat nodig, en waarvoor?
+
+24
+00:01:28.757 --> 00:01:29.779
+Na tien minuten:
+
+25
+00:01:30.034 --> 00:01:33.494
+als planner wil ik per lasrobot de bezetting voor vijf werkdagen zien,
+
+26
+00:01:33.703 --> 00:01:36.280
+zodat ik spoedorders op een robot met ruimte zet.
+
+27
+00:01:37.339 --> 00:01:42.831
+Criteria: uren per dag, rood boven negentig procent, elk kwartier ververst.
+
+28
+00:01:43.842 --> 00:01:47.313
+Van dertig pagina's blijven zo'n vijfentwintig stories over;
+
+29
+00:01:47.557 --> 00:01:49.681
+zes pagina's leveren niemand iets op.
+
+30
+00:01:50.997 --> 00:01:54.573
+Refinement is de Product Backlog doorlopend verfijnen: knippen,
+
+31
+00:01:54.898 --> 00:01:58.171
+details en criteria toevoegen, grootte inschatten.
+
+32
+00:01:59.124 --> 00:02:03.013
+Het is geen event; vaak een vast moment van een of twee uur per week.
+
+33
+00:02:04.087 --> 00:02:08.766
+De Developers schatten de grootte; de Product Owner legt uit wat nodig is en waarom.
+
+34
+00:02:09.846 --> 00:02:13.214
+Een bekende checklist is INVEST, van Bill Wake uit tweeduizend drie.
+
+35
+00:02:14.249 --> 00:02:19.845
+Los van andere stories, bespreekbaar, waardevol, te schatten, klein en testbaar.
+
+36
+00:02:20.826 --> 00:02:23.868
+Scoort een story slecht op een letter, dan weet je wat je moet doen.
+
+37
+00:02:25.153 --> 00:02:26.941
+Het lastigste is story splitsen (story splitting):
+
+38
+00:02:27.197 --> 00:02:30.053
+kleinere stories die elk iets werkends opleveren.
+
+39
+00:02:31.040 --> 00:02:36.880
+Niet horizontaal in lagen, database, logica, scherm: dan heeft de gebruiker niets.
+
+40
+00:02:37.902 --> 00:02:43.336
+Wel verticaal, als plakjes taart: per stap, regel, lijn of soort product.
+
+41
+00:02:44.029 --> 00:02:45.132
+Eerst het eenvoudigste.
+
+42
+00:02:46.167 --> 00:02:49.453
+Een Definition of Ready zegt wanneer een story klaar is voor een sprint.
+
+43
+00:02:50.121 --> 00:02:52.780
+De Scrum Guide noemt hem niet; maak er geen poort van.
+
+44
+00:02:53.773 --> 00:02:58.440
+Ordenen (ordering) doet de Product Owner: op waarde, risico en afhankelijkheden.
+
+45
+00:02:59.727 --> 00:03:03.535
+Voor jou als Lean-consultant: refinement is werkvoorbereiding;
+
+46
+00:03:03.825 --> 00:03:06.159
+zonder criteria loopt een story vast.
+
+47
+00:03:07.176 --> 00:03:11.948
+Fouten: ver vooruit verfijnen, of niet, zodat de Sprint Planning uren duurt.
+
+48
+00:03:13.012 --> 00:03:14.649
+Voorbeeld: kozijnen.
+
+49
+00:03:15.335 --> 00:03:18.667
+Als planner wil ik dat het systeem de orders over de zaagmachines verdeelt,
+
+50
+00:03:18.922 --> 00:03:20.478
+zodat ik geen uur per dag puzzel.
+
+51
+00:03:21.446 --> 00:03:22.921
+Het team schat drie sprints.
+
+52
+00:03:23.649 --> 00:03:24.729
+Dus knip je verticaal.
+
+53
+00:03:25.736 --> 00:03:31.076
+Eerst één zaag, alleen standaardprofielen; dan alle drie, spoedorders en omsteltijd.
+
+54
+00:03:32.078 --> 00:03:35.944
+Story één past in één sprint: na twee weken werkt de planner ermee,
+
+55
+00:03:36.234 --> 00:03:37.964
+en leert het team of de regels kloppen.
+
+56
+00:03:39.226 --> 00:03:42.256
+Mensen schatten slecht in uren, maar vergelijken redelijk.
+
+57
+00:03:42.983 --> 00:03:44.330
+Dat is relatief schatten (relative estimation).
+
+58
+00:03:45.343 --> 00:03:50.242
+Story points geven de grootte: werk, complexiteit en onzekerheid samen.
+
+59
+00:03:50.956 --> 00:03:52.500
+Een acht is zo'n vier keer een twee.
+
+60
+00:03:53.463 --> 00:03:56.772
+Punten zijn per team: de vijf van A is niet de vijf van B.
+
+61
+00:03:57.765 --> 00:04:00.424
+Teams kiezen uit een aangepaste Fibonacci-reeks (Fibonacci sequence):
+
+62
+00:04:00.784 --> 00:04:01.829
+de gaten groeien mee.
+
+63
+00:04:02.854 --> 00:04:04.270
+Twijfel tussen acht en dertien?
+
+64
+00:04:05.098 --> 00:04:07.420
+Groot en onzeker: knip hem misschien.
+
+65
+00:04:08.366 --> 00:04:10.282
+Punten waren eerst ideale dagen.
+
+66
+00:04:10.990 --> 00:04:14.299
+Ron Jeffries schreef in tweeduizend negentien, half als grap,
+
+67
+00:04:14.542 --> 00:04:16.922
+dat hij ze misschien bedacht, en dat het hem spijt.
+
+68
+00:04:18.193 --> 00:04:23.232
+Planning poker, van James Grenning uit tweeduizend twee: samen schatten met kaarten.
+
+69
+00:04:24.237 --> 00:04:28.544
+De Product Owner leest een story voor; iedereen kiest stil en draait tegelijk om.
+
+70
+00:04:29.694 --> 00:04:30.611
+Drie en dertien?
+
+71
+00:04:31.280 --> 00:04:34.763
+Hoogste en laagste leggen uit waarom: dat gesprek is de waarde.
+
+72
+00:04:35.503 --> 00:04:36.350
+Dan nog een ronde.
+
+73
+00:04:37.424 --> 00:04:41.522
+Velocity is wat een team per sprint afmaakt, volgens de Definition of Done.
+
+74
+00:04:42.602 --> 00:04:46.933
+Gebruik de spreiding: haalt een team achttien tot dertig, plan dan niet op dertig.
+
+75
+00:04:48.029 --> 00:04:52.603
+Geen productiviteitsmaat: maak je er een doel van, dan schatten teams ruimer.
+
+76
+00:04:53.618 --> 00:04:55.301
+Sommigen tellen liever items.
+
+77
+00:04:56.096 --> 00:04:58.314
+Vraag: waarvoor zijn deze punten?
+
+78
+00:04:59.570 --> 00:05:02.763
+Trekhaken: zes sprints van achttien tot dertig punten,
+
+79
+00:05:03.018 --> 00:05:04.783
+gemiddeld drieëntwintig komma drie.
+
+80
+00:05:05.792 --> 00:05:07.139
+Nog honderdtwintig punten.
+
+81
+00:05:07.848 --> 00:05:10.681
+De verkoopdirecteur vraagt: wanneer is het klaar?
+
+82
+00:05:11.683 --> 00:05:14.957
+Zes sprints, zegt het gemiddelde: schijnzekerheid.
+
+83
+00:05:15.962 --> 00:05:18.331
+Met de snelste sprint: vier sprints.
+
+84
+00:05:19.059 --> 00:05:22.264
+Met de traagste: zes komma zeven, dus zeven.
+
+85
+00:05:23.267 --> 00:05:27.609
+Vier tot zeven sprints: acht tot veertien weken, waarschijnlijk twaalf.
+
+86
+00:05:28.630 --> 00:05:31.846
+Alleen als de lijst niet groeit, en die groeit bijna altijd.
+
+87
+00:05:32.516 --> 00:05:34.246
+Werk de bandbreedte elke sprint bij.

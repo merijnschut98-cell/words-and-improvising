@@ -1,0 +1,361 @@
+WEBVTT
+
+1
+00:00:00.857 --> 00:00:04.259
+Een pompset: pomp, koppeling en elektromotor.
+
+2
+00:00:04.973 --> 00:00:08.606
+In de motor draait de as op lagers, en elk lager gaat ooit stuk.
+
+3
+00:00:09.330 --> 00:00:10.143
+Wanneer grijp je in?
+
+4
+00:00:10.835 --> 00:00:12.333
+Er zijn vier strategieën.
+
+5
+00:00:13.368 --> 00:00:15.760
+Bij correctief onderhoud (reactive maintenance) draait hij tot hij stuk gaat,
+
+6
+00:00:16.050 --> 00:00:16.770
+en dan repareer je.
+
+7
+00:00:17.447 --> 00:00:19.723
+Prima als dat goedkoop en veilig is.
+
+8
+00:00:20.441 --> 00:00:21.752
+Als standaard is het duur:
+
+9
+00:00:22.054 --> 00:00:26.408
+volgens de vuistregel kost een ongeplande reparatie drie tot vijf keer een geplande.
+
+10
+00:00:27.471 --> 00:00:30.257
+Bij preventief onderhoud (preventive maintenance) vervang je met een vast interval,
+
+11
+00:00:30.559 --> 00:00:31.929
+hoe goed het onderdeel ook is.
+
+12
+00:00:32.691 --> 00:00:34.955
+Dat werkt voor onderdelen die duidelijk slijten.
+
+13
+00:00:35.993 --> 00:00:37.711
+Bij toestandsafhankelijk onderhoud (condition-based maintenance)
+
+14
+00:00:37.746 --> 00:00:38.709
+meet je de conditie,
+
+15
+00:00:39.000 --> 00:00:43.481
+zoals de trilling op het lagerhuis, en grijp je in boven een afgesproken grens.
+
+16
+00:00:44.450 --> 00:00:46.261
+Predictief onderhoud (predictive maintenance) gaat verder:
+
+17
+00:00:46.668 --> 00:00:49.199
+uit de trend voorspel je wanneer de grens bereikt wordt,
+
+18
+00:00:49.640 --> 00:00:52.728
+en plan je de reparatie in een stop waarin de lijn toch stilstaat.
+
+19
+00:00:54.049 --> 00:00:57.451
+Welke strategie past, hangt af van wat de storing kost.
+
+20
+00:00:58.167 --> 00:01:01.963
+Neem de tandwielkast van de pers die het tempo van een stansbedrijf bepaalt:
+
+21
+00:01:02.230 --> 00:01:03.809
+60.000 euro nieuw,
+
+22
+00:01:04.181 --> 00:01:05.261
+10 weken levertijd.
+
+23
+00:01:06.305 --> 00:01:08.523
+Stukdraaien legt de fabriek wekenlang stil;
+
+24
+00:01:08.836 --> 00:01:11.983
+een maandelijkse trillingsronde ziet lagerschade maanden vooraf.
+
+25
+00:01:12.742 --> 00:01:14.565
+Dus: toestandsafhankelijk.
+
+26
+00:01:15.623 --> 00:01:18.711
+De bandmotoren op de inpaklijn kosten 400 euro,
+
+27
+00:01:19.106 --> 00:01:22.159
+liggen op voorraad en zijn in 15 minuten gewisseld.
+
+28
+00:01:22.983 --> 00:01:24.132
+Die laat je stukdraaien.
+
+29
+00:01:25.121 --> 00:01:29.649
+Zo kiezen, per asset en faalwijze, op de gevolgen, heet RCM.
+
+30
+00:01:30.338 --> 00:01:34.460
+Goede fabrieken plannen 85 procent of meer van hun onderhoudsuren.
+
+31
+00:01:35.734 --> 00:01:37.266
+Hoe falen onderdelen eigenlijk?
+
+32
+00:01:37.937 --> 00:01:39.806
+Het schoolboek toont de badkuipkromme (bathtub curve):
+
+33
+00:01:40.131 --> 00:01:41.826
+de faalkans tegen de leeftijd.
+
+34
+00:01:42.880 --> 00:01:43.960
+Eerst vroege uitval (infant mortality),
+
+35
+00:01:44.320 --> 00:01:47.339
+ook wel kindersterfte: storingen kort na montage,
+
+36
+00:01:47.698 --> 00:01:49.962
+door montagefouten of slechte onderdelen.
+
+37
+00:01:50.905 --> 00:01:53.552
+Dan een lange vlakke periode met willekeurig falen (random failure),
+
+38
+00:01:53.784 --> 00:01:55.688
+een gelijke kans op elke leeftijd.
+
+39
+00:01:56.425 --> 00:01:57.783
+En aan het eind slijtage (wear-out).
+
+40
+00:01:58.806 --> 00:02:01.209
+Maar in een bekende luchtvaartstudie sleet maar
+
+41
+00:02:01.255 --> 00:02:03.612
+11 procent van de onderdelen met de leeftijd;
+
+42
+00:02:03.984 --> 00:02:06.317
+68 procent faalde juist vroeg.
+
+43
+00:02:07.028 --> 00:02:09.954
+Slijten doet vooral wat schuurt, snijdt of last draagt.
+
+44
+00:02:11.254 --> 00:02:16.362
+Een verpakkingsbedrijf vervangt elke 12 maanden de lagers in alle 24 servo-assen.
+
+45
+00:02:17.016 --> 00:02:19.129
+Dat kost 18.000 euro per jaar.
+
+46
+00:02:20.114 --> 00:02:22.958
+Vóór dat programma waren er 6 lagerstoringen per jaar.
+
+47
+00:02:23.625 --> 00:02:25.633
+Erna niet minder maar meer: 9.
+
+48
+00:02:26.610 --> 00:02:29.281
+En 5 daarvan kwamen binnen twee weken na een wissel:
+
+49
+00:02:29.571 --> 00:02:30.871
+storing door onderhoud (maintenance-induced failure).
+
+50
+00:02:31.606 --> 00:02:33.272
+Het werk zelf veroorzaakt de storing.
+
+51
+00:02:34.258 --> 00:02:38.542
+Wie een machine openmaakt, kan vuil binnenlaten of een afdichting slecht monteren.
+
+52
+00:02:39.199 --> 00:02:41.788
+Je ziet dan een cluster storingen vlak na het onderhoud.
+
+53
+00:02:43.110 --> 00:02:46.221
+Het patroon toets je met een Weibull-analyse van de faalleeftijden.
+
+54
+00:02:46.879 --> 00:02:49.921
+De uitkomst is de Weibull-bèta, de vormfactor.
+
+55
+00:02:50.895 --> 00:02:54.448
+Bèta onder 1: vroege uitval, pak de montage aan.
+
+56
+00:02:55.155 --> 00:02:56.746
+Rond 1: willekeurig.
+
+57
+00:02:57.555 --> 00:03:02.385
+Boven 1, en zeker boven 3: slijtage; dan heeft vervangen op tijd zin.
+
+58
+00:03:03.443 --> 00:03:08.261
+Voor de servolagers geeft de fit bèta 1,0: willekeurig falen, geen slijtage.
+
+59
+00:03:08.953 --> 00:03:10.869
+Jaarlijks wisselen kon dus nooit helpen.
+
+60
+00:03:11.821 --> 00:03:13.214
+Het bedrijf stopt de wissel,
+
+61
+00:03:13.481 --> 00:03:17.092
+meet de 6 kritische assen maandelijks op trilling en traint de monteurs.
+
+62
+00:03:17.884 --> 00:03:19.846
+Volgend jaar: 3 storingen.
+
+63
+00:03:21.154 --> 00:03:23.766
+Een lagerdefect begint als een putje in de loopbaan.
+
+64
+00:03:24.484 --> 00:03:28.385
+Bij punt P wordt het meetbaar; bij punt F doet de pomp zijn werk niet meer.
+
+65
+00:03:29.321 --> 00:03:31.330
+De tijd daartussen is het P-F-interval (P-F interval):
+
+66
+00:03:31.666 --> 00:03:34.836
+je venster om het defect te zien en de reparatie te plannen.
+
+67
+00:03:35.827 --> 00:03:38.520
+Meet daarom als vuistregel op de helft van het venster:
+
+68
+00:03:38.845 --> 00:03:40.958
+bij 8 weken minstens elke 4 weken.
+
+69
+00:03:41.947 --> 00:03:44.617
+Met een venster van 10 weken en een ronde om de 12
+
+70
+00:03:44.641 --> 00:03:47.659
+weken ben je maar 83 procent van de keren op tijd.
+
+71
+00:03:48.986 --> 00:03:51.517
+Elke methode ziet het defect op een eigen moment.
+
+72
+00:03:52.236 --> 00:03:55.916
+Ultrasoon (ultrasound) luistert boven ons gehoor en hoort een droog lager het eerst:
+
+73
+00:03:56.137 --> 00:03:57.518
+zo’n 12 weken voor F.
+
+74
+00:03:58.577 --> 00:03:59.529
+Trillingsanalyse (vibration analysis)
+
+75
+00:03:59.575 --> 00:04:01.978
+op het lagerhuis ziet het zo’n 10 weken vooraf;
+
+76
+00:04:02.385 --> 00:04:04.440
+elke fout heeft een eigen frequentie.
+
+77
+00:04:05.462 --> 00:04:09.340
+Bij olieanalyse (oil analysis) zoekt een lab slijtagemetalen in een oliemonster:
+
+78
+00:04:09.618 --> 00:04:10.965
+zo’n 6 weken voor F.
+
+79
+00:04:11.949 --> 00:04:14.538
+Thermografie (thermography) ziet het pas als het lager warm wordt,
+
+80
+00:04:14.736 --> 00:04:17.871
+zo’n 4 weken vooraf; een hand op het lagerhuis 1 week.
+
+81
+00:04:18.587 --> 00:04:20.932
+Het P-F-interval hangt dus af van de methode.
+
+82
+00:04:22.274 --> 00:04:26.697
+De maandelijkse ronde op een koelwaterpomp meet 1,8 millimeter per seconde,
+
+83
+00:04:26.918 --> 00:04:30.717
+dan 1,9, 2,6 en in april 3,4.
+
+84
+00:04:31.361 --> 00:04:33.764
+In het spectrum verschijnt een lagerfrequentie.
+
+85
+00:04:34.744 --> 00:04:36.671
+Dat is zo’n 0,8 per maand erbij.
+
+86
+00:04:37.409 --> 00:04:39.534
+De actiegrens ligt op 4,5.
+
+87
+00:04:40.522 --> 00:04:46.013
+Het verschil met de grens, gedeeld door 0,8, is 1,4 maand: zo’n zes weken.
+
+88
+00:04:46.720 --> 00:04:51.596
+Een nieuw lager kost 350 euro; de volgende geplande stop is half mei.
+
+89
+00:04:52.647 --> 00:04:56.339
+Dus bestelt de planner het lager nu en reserveert vier uur in die stop.
+
+90
+00:04:57.050 --> 00:04:59.070
+Geen pomp die op vrijdagnacht stilvalt.

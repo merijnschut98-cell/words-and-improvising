@@ -1,0 +1,357 @@
+WEBVTT
+
+1
+00:00:00.913 --> 00:00:03.746
+Dit is een hydraulische pers bij een onderdelenfabrikant.
+
+2
+00:00:04.505 --> 00:00:08.336
+Vandaag krijgt hij een matrijswissel: het gereedschap dat de delen vormt,
+
+3
+00:00:08.499 --> 00:00:09.242
+gaat eruit.
+
+4
+00:00:10.281 --> 00:00:11.767
+Kijk eerst waar de energie zit.
+
+5
+00:00:12.540 --> 00:00:15.210
+Stroom uit de kast, voor de motor en de besturing.
+
+6
+00:00:15.892 --> 00:00:17.436
+Perslucht, voor de klemmen.
+
+7
+00:00:18.106 --> 00:00:20.997
+Olie onder druk in de accumulator, naast de pomp.
+
+8
+00:00:21.667 --> 00:00:25.569
+En de zware stoter: hij staat opgetild, dus hij kan vallen.
+
+9
+00:00:26.517 --> 00:00:31.451
+Twee daarvan blijven er ook als alles uit staat: de oliedruk en de opgetilde stoter.
+
+10
+00:00:32.189 --> 00:00:33.872
+Dat is opgeslagen energie (stored energy).
+
+11
+00:00:34.606 --> 00:00:38.867
+Die moet je ontladen of blokkeren, anders kan er na het uitzetten nog iets bewegen.
+
+12
+00:00:39.911 --> 00:00:42.058
+En de noodstop (emergency stop), de rode knop op geel?
+
+13
+00:00:42.835 --> 00:00:45.018
+Die stopt de pers, maar scheidt niets.
+
+14
+00:00:45.727 --> 00:00:50.778
+Iemand kan hem terugzetten, de besturing kan falen, en de opgeslagen energie blijft.
+
+15
+00:00:51.484 --> 00:00:54.758
+Een noodstop is een veiligheidsfunctie, geen vergrendeling.
+
+16
+00:00:56.101 --> 00:00:59.178
+Daarom werk je met vergrendelen en labelen (LOTO), kort LOTO.
+
+17
+00:00:59.848 --> 00:01:03.784
+Je sluit elke bron van energie af, en hangt er je eigen hangslot op,
+
+18
+00:01:04.040 --> 00:01:05.271
+met een label met je naam.
+
+19
+00:01:06.298 --> 00:01:08.910
+Begin bij de LOTO-procedure van deze pers:
+
+20
+00:01:09.212 --> 00:01:12.706
+vaak één blad met een foto van elk punt waar je een bron afsluit,
+
+21
+00:01:12.973 --> 00:01:14.076
+in de juiste volgorde.
+
+22
+00:01:15.035 --> 00:01:17.787
+Dan laat de monteur de operators weten wat hij gaat doen,
+
+23
+00:01:18.123 --> 00:01:20.619
+zodat niemand de pers straks verbaasd weer aanzet.
+
+24
+00:01:21.674 --> 00:01:24.693
+Daarna stopt hij de pers op de normale manier met de stopknop.
+
+25
+00:01:25.347 --> 00:01:27.158
+Dan parkeert hij de stoter bovenin.
+
+26
+00:01:28.464 --> 00:01:29.079
+Nu scheiden.
+
+27
+00:01:29.773 --> 00:01:32.199
+Eerst de hoofdschakelaar op de kast: uit.
+
+28
+00:01:32.953 --> 00:01:36.181
+De motor van de pomp en de besturing krijgen geen stroom meer.
+
+29
+00:01:37.148 --> 00:01:39.098
+Dan de persluchtkraan: dicht.
+
+30
+00:01:39.784 --> 00:01:43.824
+Een vergrendelbare kraan met ontluchting laat de lucht achter de kraan weglopen,
+
+31
+00:01:44.126 --> 00:01:46.239
+zodat de leiding naar de pers drukloos wordt.
+
+32
+00:01:47.228 --> 00:01:49.724
+De schakelaar en de kraan zijn de scheidingspunten (isolation point):
+
+33
+00:01:50.003 --> 00:01:52.778
+de plekken waar je een bron afsluit en een slot kunt hangen.
+
+34
+00:01:53.479 --> 00:01:56.695
+Op allebei hangt hij zijn eigen slot, met een label met zijn naam.
+
+35
+00:01:57.693 --> 00:02:01.756
+Het slot houdt de schakelaar echt op uit, het label vertelt wie er bezig is.
+
+36
+00:02:02.491 --> 00:02:04.000
+Een label zonder slot telt niet.
+
+37
+00:02:05.338 --> 00:02:09.041
+Werken er meer mensen aan de pers, zoals bij een grote matrijswissel?
+
+38
+00:02:09.769 --> 00:02:11.662
+Dan gaan de sleutels van de sloten op de
+
+39
+00:02:11.720 --> 00:02:13.682
+scheidingspunten in een groepsslotkast (group lockbox).
+
+40
+00:02:14.743 --> 00:02:18.052
+Elke werker hangt zijn eigen, persoonlijke slot op die kast.
+
+41
+00:02:18.759 --> 00:02:22.265
+Niet alleen de teamleider namens de ploeg: iedereen die erin grijpt,
+
+42
+00:02:22.567 --> 00:02:23.658
+heeft zijn eigen slot.
+
+43
+00:02:24.716 --> 00:02:28.872
+Zo komen de sleutels pas vrij als de laatste werker zijn slot eraf heeft gehaald.
+
+44
+00:02:29.654 --> 00:02:32.498
+Zolang er nog één iemand bezig is, kan de pers niet aan.
+
+45
+00:02:33.823 --> 00:02:35.530
+Nu de opgeslagen energie.
+
+46
+00:02:36.263 --> 00:02:40.292
+Stap één: een mechanisch veiligheidsblok onder de opgetilde stoter.
+
+47
+00:02:40.971 --> 00:02:44.175
+Zakt hij, dan komt hij op het blok te staan, en niet op een hand.
+
+48
+00:02:45.290 --> 00:02:50.027
+Stap twee, en pas daarna: de hydraulische accumulator leeg laten lopen.
+
+49
+00:02:50.696 --> 00:02:52.728
+Dat is een vat dat olie onder druk opslaat.
+
+50
+00:02:53.406 --> 00:02:56.076
+Hij blijft onder druk, ook als de pomp stilstaat.
+
+51
+00:02:57.119 --> 00:03:00.207
+Hij draait het aftapventiel open en kijkt naar de manometer.
+
+52
+00:03:00.876 --> 00:03:02.954
+De naald zakt, tot hij 0 bar aangeeft.
+
+53
+00:03:03.984 --> 00:03:05.099
+Waarom deze volgorde?
+
+54
+00:03:05.813 --> 00:03:09.749
+Laat je eerst de druk weg, dan kan de stoter zakken voordat het blok eronder staat.
+
+55
+00:03:10.512 --> 00:03:14.378
+Oliedruk alleen houdt een last niet betrouwbaar omhoog: een klep kan lekken.
+
+56
+00:03:15.720 --> 00:03:18.483
+Alles is gescheiden, vergrendeld en ontladen.
+
+57
+00:03:19.139 --> 00:03:20.079
+Toch neemt hij het niet aan.
+
+58
+00:03:20.807 --> 00:03:23.570
+Eerst doet hij de afscherming dicht: staat die open,
+
+59
+00:03:23.907 --> 00:03:26.937
+dan houdt de beveiliging de pers vaak ook zonder slot tegen,
+
+60
+00:03:27.262 --> 00:03:28.562
+en bewijst de proef niets.
+
+61
+00:03:29.247 --> 00:03:30.617
+Dan drukt hij op de startknop.
+
+62
+00:03:31.291 --> 00:03:32.208
+Er gebeurt niks.
+
+63
+00:03:33.246 --> 00:03:37.263
+Die startpoging, met de manometer op nul en het blok onder de stoter,
+
+64
+00:03:37.519 --> 00:03:39.562
+bewijst dat de pers energieloos (zero energy) is.
+
+65
+00:03:40.253 --> 00:03:43.121
+Bij elektrisch werk meet je ook dat er geen spanning meer op staat.
+
+66
+00:03:44.237 --> 00:03:46.141
+Daarna zet hij de bediening terug op uit,
+
+67
+00:03:46.443 --> 00:03:48.730
+zodat er niets gebeurt als de energie terugkomt.
+
+68
+00:03:49.471 --> 00:03:52.339
+Pas dan doet hij de afscherming open en grijpt hij naar binnen.
+
+69
+00:03:53.354 --> 00:03:54.875
+Beweegt er bij de test toch iets?
+
+70
+00:03:55.563 --> 00:03:58.779
+Dan is er een bron vergeten, zoals een tweede persluchtvat,
+
+71
+00:03:59.081 --> 00:04:01.055
+of is de verkeerde schakelaar gescheiden.
+
+72
+00:04:01.753 --> 00:04:03.181
+Beter nu dan met je hand erin.
+
+73
+00:04:04.506 --> 00:04:05.876
+De nieuwe matrijs zit erin.
+
+74
+00:04:06.578 --> 00:04:10.734
+Voor het opnieuw starten: gereedschap eruit, ook het veiligheidsblok,
+
+75
+00:04:10.967 --> 00:04:14.345
+dan de afschermingen dicht, en iedereen uit de buurt van de pers.
+
+76
+00:04:15.096 --> 00:04:16.431
+Rust de stoter op het blok,
+
+77
+00:04:16.756 --> 00:04:20.309
+dan staat in de LOTO-procedure van de pers hoe het blok er veilig uit gaat.
+
+78
+00:04:21.387 --> 00:04:22.200
+Dan de sloten.
+
+79
+00:04:22.879 --> 00:04:25.247
+Alleen wie een slot heeft gehangen, haalt het eraf.
+
+80
+00:04:25.970 --> 00:04:28.187
+De monteur haalt zijn eigen sloten weg en meldt
+
+81
+00:04:28.222 --> 00:04:30.497
+de operators dat de pers weer kan draaien.
+
+82
+00:04:31.497 --> 00:04:33.227
+Is iemand naar huis met zijn slot er nog op?
+
+83
+00:04:33.890 --> 00:04:36.200
+Dan gaat dat slot er alleen af volgens een strenge,
+
+84
+00:04:36.444 --> 00:04:39.846
+schriftelijke procedure: die persoon proberen te bereiken,
+
+85
+00:04:40.125 --> 00:04:44.339
+controleren dat de machine veilig is, en een leidinggevende laten beslissen.
+
+86
+00:04:45.017 --> 00:04:46.120
+Nooit zomaar doorknippen.
+
+87
+00:04:47.150 --> 00:04:49.414
+Werk je aan de elektrische installatie zelf,
+
+88
+00:04:49.600 --> 00:04:52.711
+dan gelden daarnaast de vijf veiligheidsregels voor elektrisch werk.
+
+89
+00:04:53.395 --> 00:04:57.354
+En vraag op elke vloer: mag ik de LOTO-procedure van deze machine zien?

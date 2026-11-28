@@ -1,0 +1,313 @@
+WEBVTT
+
+1
+00:00:00.858 --> 00:00:05.444
+This is a paced assembly line: five stations over a roller conveyor.
+
+2
+00:00:06.171 --> 00:00:09.828
+Every takt, all carriers move on one station together,
+
+3
+00:00:09.967 --> 00:00:12.382
+and each station does its share of the work.
+
+4
+00:00:13.392 --> 00:00:16.678
+Customers want choice: another colour, a bigger motor.
+
+5
+00:00:17.402 --> 00:00:22.348
+A variant is a version of the same product that differs in a few parts or steps.
+
+6
+00:00:23.066 --> 00:00:25.249
+Here: small, medium and large.
+
+7
+00:00:26.275 --> 00:00:30.373
+A mixed-model line builds them in a mixed order, product by product.
+
+8
+00:00:31.094 --> 00:00:35.808
+That only works if the stations need no other parts or settings per variant.
+
+9
+00:00:36.902 --> 00:00:40.873
+One line for all variants saves floor space and investment.
+
+10
+00:00:41.601 --> 00:00:43.540
+But variants cost something too.
+
+11
+00:00:44.865 --> 00:00:48.161
+If the stations do have to change, you build in batches,
+
+12
+00:00:48.336 --> 00:00:49.950
+with a changeover in between:
+
+13
+00:00:50.124 --> 00:00:54.454
+from the last good product of one variant to the first good one of the next.
+
+14
+00:00:55.224 --> 00:00:57.140
+Meanwhile the line makes nothing.
+
+15
+00:00:58.166 --> 00:01:03.228
+A shift has 420 minutes, and the line makes one product a minute.
+
+16
+00:01:03.977 --> 00:01:10.943
+4 changeovers of 20 minutes cost 80 minutes: 340 products instead of 420,
+
+17
+00:01:11.071 --> 00:01:12.546
+19 percent fewer.
+
+18
+00:01:13.553 --> 00:01:18.661
+The batch size is the number of products of one variant between two changeovers.
+
+19
+00:01:19.657 --> 00:01:23.952
+Bigger batches, 2 changeovers, give 380 products.
+
+20
+00:01:24.662 --> 00:01:29.271
+The price: more stock, and a customer who wants another variant waits longer.
+
+21
+00:01:30.611 --> 00:01:33.711
+On an automated line a changeover has two halves.
+
+22
+00:01:34.423 --> 00:01:39.613
+The software half is the recipe: a stored set of settings per variant in the PLC,
+
+23
+00:01:39.694 --> 00:01:43.050
+such as speeds, positions and robot programs.
+
+24
+00:01:44.073 --> 00:01:46.407
+A wrong recipe is a classic mistake.
+
+25
+00:01:47.125 --> 00:01:51.084
+So the operator scans the order, and the machine loads the right one.
+
+26
+00:01:52.113 --> 00:01:56.200
+The hardware half is the change parts: parts that differ per variant,
+
+27
+00:01:56.280 --> 00:01:58.010
+such as these grip fingers.
+
+28
+00:01:58.998 --> 00:02:03.492
+Good change parts are marked, sit on locating pins so they fit without adjusting,
+
+29
+00:02:03.631 --> 00:02:07.218
+use quick clamps instead of bolts, and wait on a cart.
+
+30
+00:02:08.586 --> 00:02:12.092
+Film a changeover of 50 minutes: 15 minutes searching,
+
+31
+00:02:12.197 --> 00:02:17.862
+20 minutes swapping 6 change parts, and 15 minutes adjusting and running trials.
+
+32
+00:02:18.884 --> 00:02:23.818
+With SMED, Shingo’s method, you split internal work, which needs the line stopped,
+
+33
+00:02:24.016 --> 00:02:27.546
+from external work, which can happen while it still runs.
+
+34
+00:02:28.564 --> 00:02:30.282
+Searching is external work.
+
+35
+00:02:31.052 --> 00:02:35.197
+Set the parts out on the cart before the stop: 35 minutes left.
+
+36
+00:02:36.238 --> 00:02:40.383
+Locating pins and quick clamps bring swapping down to 10 minutes,
+
+37
+00:02:40.580 --> 00:02:41.892
+and adjusting to 5.
+
+38
+00:02:42.617 --> 00:02:43.662
+15 in all.
+
+39
+00:02:44.361 --> 00:02:48.204
+With two changeovers a shift, the line gains 70 minutes.
+
+40
+00:02:49.517 --> 00:02:54.068
+On a mixed line each variant has its own work content at each station:
+
+41
+00:02:54.242 --> 00:02:56.193
+the seconds of work on that product.
+
+42
+00:02:56.961 --> 00:03:03.660
+At station 5: small 100, medium 120, large 160 seconds.
+
+43
+00:03:04.758 --> 00:03:11.167
+The takt is 120 seconds, the mix 50 percent small, 30 medium and 20 large.
+
+44
+00:03:11.932 --> 00:03:16.797
+A weighted average of 118 seconds: on paper it fits.
+
+45
+00:03:17.774 --> 00:03:21.129
+But the operator handles each cycle as it comes.
+
+46
+00:03:21.867 --> 00:03:27.451
+A large one is 40 seconds over takt; two in a row put him 80 seconds behind.
+
+47
+00:03:28.490 --> 00:03:30.824
+A small one gives back only 20.
+
+48
+00:03:31.543 --> 00:03:34.864
+He drifts into the next station, and calls for help.
+
+49
+00:03:36.282 --> 00:03:38.697
+So the order matters as much as the mix.
+
+50
+00:03:39.443 --> 00:03:43.949
+A sequencing rule: after every large one, at least two small ones.
+
+51
+00:03:44.718 --> 00:03:46.901
+Then it stays at 40 seconds.
+
+52
+00:03:47.950 --> 00:03:52.455
+A floater, an extra operator, helps wherever a heavy cycle runs over.
+
+53
+00:03:53.475 --> 00:03:58.943
+In time, variant work moves to a sub-assembly: a side station that builds a module,
+
+54
+00:03:59.071 --> 00:04:01.358
+which goes onto the line in one go.
+
+55
+00:04:02.366 --> 00:04:05.396
+And there is no room at the line for every variant.
+
+56
+00:04:06.166 --> 00:04:10.740
+So kits, or sequenced supply: parts in the same order as the products.
+
+57
+00:04:12.046 --> 00:04:16.307
+Heijunka is levelling: building the mix and volume evenly over the day,
+
+58
+00:04:16.539 --> 00:04:19.755
+in a small repeating pattern, instead of big blocks.
+
+59
+00:04:20.753 --> 00:04:24.793
+The lesson’s example is a welding station for e-bike frames.
+
+60
+00:04:25.513 --> 00:04:30.424
+Day demand is 180 A, 120 B and 60 C,
+
+61
+00:04:30.586 --> 00:04:34.568
+with a takt of 70 seconds: a ratio of 3 to 2 to 1.
+
+62
+00:04:35.301 --> 00:04:38.679
+On the line here they stand for small, medium and large.
+
+63
+00:04:39.688 --> 00:04:43.867
+So: A, B, A, C, A, B, 60 times a day.
+
+64
+00:04:44.591 --> 00:04:49.363
+A heijunka box fixes the pattern with kanban cards, a slot per time interval.
+
+65
+00:04:50.374 --> 00:04:52.975
+If all the heavy C come at the end of the day,
+
+66
+00:04:53.195 --> 00:04:56.992
+the welder falls 30 minutes behind: the daily overtime.
+
+67
+00:04:57.682 --> 00:05:01.862
+With the pattern he runs at most 30 seconds over after one C,
+
+68
+00:05:02.036 --> 00:05:04.834
+and the three A-frames after it win that back.
+
+69
+00:05:05.540 --> 00:05:08.628
+But only if switching costs no changeover time.
+
+70
+00:05:09.934 --> 00:05:13.000
+Once the order is fixed, suppliers deliver in it.
+
+71
+00:05:13.787 --> 00:05:19.104
+That needs a frozen sequence: the last stretch before the line, often several hours,
+
+72
+00:05:19.290 --> 00:05:20.730
+that no longer changes.
+
+73
+00:05:21.763 --> 00:05:25.803
+A rush order pushed in breaks the supply, and gives missing parts.
+
+74
+00:05:26.795 --> 00:05:30.731
+Flexible automation handles every variant without a changeover:
+
+75
+00:05:30.847 --> 00:05:32.971
+servo axes that follow the recipe,
+
+76
+00:05:33.134 --> 00:05:34.562
+grippers that fit everything.
+
+77
+00:05:35.585 --> 00:05:40.776
+It costs more up front, but then every station builds every variant in any order.
+
+78
+00:05:41.522 --> 00:05:44.041
+So ask first: what does switching cost here?

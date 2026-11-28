@@ -1,0 +1,341 @@
+WEBVTT
+
+1
+00:00:00.845 --> 00:00:04.479
+IT used to have two camps: developers built software,
+
+2
+00:00:04.653 --> 00:00:06.627
+operators kept the systems running.
+
+3
+00:00:07.713 --> 00:00:10.882
+One side wanted fast change, the other calm.
+
+4
+00:00:11.584 --> 00:00:13.442
+Code was thrown over the wall.
+
+5
+00:00:14.426 --> 00:00:17.816
+DevOps removes that wall: one team builds and runs,
+
+6
+00:00:18.013 --> 00:00:20.231
+and automates everything that recurs.
+
+7
+00:00:21.261 --> 00:00:24.140
+The word appeared around two thousand and nine,
+
+8
+00:00:24.303 --> 00:00:28.355
+when Patrick Debois organised the first DevOpsDays in Ghent.
+
+9
+00:00:29.685 --> 00:00:33.307
+The heart of DevOps is the pipeline: an automated conveyor,
+
+10
+00:00:33.446 --> 00:00:36.836
+the same steps for every change, from developer to user.
+
+11
+00:00:37.886 --> 00:00:42.751
+It starts with version control, usually Git: every version of the code kept,
+
+12
+00:00:42.960 --> 00:00:44.156
+and who changed what.
+
+13
+00:00:45.214 --> 00:00:50.241
+Saving a change is a commit: a small package of changes with a short explanation.
+
+14
+00:00:51.556 --> 00:00:54.308
+After a commit the pipeline starts itself.
+
+15
+00:00:55.004 --> 00:00:58.743
+Step one, the build: the code becomes something a computer can run.
+
+16
+00:00:59.767 --> 00:01:03.761
+Step two: automated tests check that everything still works.
+
+17
+00:01:04.769 --> 00:01:07.904
+Step three: the result is stored as an artefact,
+
+18
+00:01:08.032 --> 00:01:10.563
+a fixed package that no longer changes.
+
+19
+00:01:11.636 --> 00:01:16.745
+Step four: installing on a test environment, and later on the real systems.
+
+20
+00:01:17.770 --> 00:01:23.378
+If a step fails, like a red test, the conveyor stops and the team is told at once.
+
+21
+00:01:24.662 --> 00:01:29.585
+For a Lean consultant, familiar: a pipeline works like standard work for software,
+
+22
+00:01:29.805 --> 00:01:32.058
+the same route, a predictable outcome.
+
+23
+00:01:33.085 --> 00:01:35.001
+Stopping at a fault is jidoka.
+
+24
+00:01:35.709 --> 00:01:39.982
+That is the Toyota idea that a machine stops as soon as something goes wrong:
+
+25
+00:01:40.109 --> 00:01:41.433
+no faults passed on.
+
+26
+00:01:42.416 --> 00:01:47.362
+Small commits are like small batches: less work in between, faults seen sooner.
+
+27
+00:01:48.394 --> 00:01:51.575
+In proposals this is often called CI/CD:
+
+28
+00:01:51.691 --> 00:01:54.895
+continuous integration and continuous delivery.
+
+29
+00:01:55.569 --> 00:01:56.591
+Both come later.
+
+30
+00:01:57.597 --> 00:02:01.928
+Factories say: we are no software company, DevOps is not for us.
+
+31
+00:02:02.629 --> 00:02:07.865
+Yet the MES, label software and ERP links change ever more often.
+
+32
+00:02:08.882 --> 00:02:13.084
+Ask: how does a change reach the floor today, and which steps are manual?
+
+33
+00:02:13.784 --> 00:02:16.443
+Each manual step means errors and waiting.
+
+34
+00:02:17.766 --> 00:02:18.579
+An example:
+
+35
+00:02:18.684 --> 00:02:23.095
+a dairy plant has its supplier make the best-before date on the label larger.
+
+36
+00:02:24.098 --> 00:02:27.198
+At nine o'clock the commit: larger date on label.
+
+37
+00:02:27.953 --> 00:02:31.924
+A minute later the pipeline starts; the build takes three minutes.
+
+38
+00:02:32.941 --> 00:02:34.857
+At four past nine the tests,
+
+39
+00:02:35.054 --> 00:02:39.477
+eight minutes, checking among other things that the date format is still right.
+
+40
+00:02:40.539 --> 00:02:44.625
+At twelve past nine artefact four point seven point one is stored;
+
+41
+00:02:44.811 --> 00:02:49.304
+at quarter past it is on the test environment; quality prints a test label.
+
+42
+00:02:50.297 --> 00:02:53.594
+Total: fifteen minutes from commit to test environment,
+
+43
+00:02:53.757 --> 00:02:55.673
+without a single manual step.
+
+44
+00:02:57.032 --> 00:02:58.495
+How well does a team deliver?
+
+45
+00:02:59.224 --> 00:03:02.278
+DORA measures it: DevOps Research and Assessment,
+
+46
+00:03:02.405 --> 00:03:06.619
+surveying thousands of IT professionals yearly since twenty fourteen.
+
+47
+00:03:07.656 --> 00:03:08.724
+Nicole Forsgren,
+
+48
+00:03:08.886 --> 00:03:13.345
+Jez Humble and Gene Kim summed up the first years in the book Accelerate,
+
+49
+00:03:13.507 --> 00:03:17.211
+twenty eighteen; late that year DORA joined Google Cloud.
+
+50
+00:03:17.993 --> 00:03:21.430
+The State of DevOps report is known for a few metrics.
+
+51
+00:03:22.436 --> 00:03:23.678
+Two are about speed.
+
+52
+00:03:24.406 --> 00:03:28.063
+Deployment frequency: how often a new version goes live,
+
+53
+00:03:28.237 --> 00:03:30.547
+from three times a day to once a month.
+
+54
+00:03:31.562 --> 00:03:35.417
+Live means in production: the real systems that users use.
+
+55
+00:03:36.422 --> 00:03:39.011
+Change lead time: from commit to production,
+
+56
+00:03:39.255 --> 00:03:41.449
+the part of the chain the team controls.
+
+57
+00:03:42.761 --> 00:03:44.201
+Two are about stability.
+
+58
+00:03:44.908 --> 00:03:49.564
+Change fail rate: the share of deployments that need immediate intervention.
+
+59
+00:03:50.548 --> 00:03:53.450
+For example a rollback, or an urgent fix.
+
+60
+00:03:54.432 --> 00:03:56.406
+Failed deployment recovery time:
+
+61
+00:03:56.603 --> 00:03:59.506
+how long recovery takes when a deployment goes wrong.
+
+62
+00:04:00.564 --> 00:04:05.127
+Until twenty twenty-three it was called MTTR, mean time to restore.
+
+63
+00:04:05.927 --> 00:04:08.899
+Now only a failure from the team's own change counts,
+
+64
+00:04:09.038 --> 00:04:11.244
+not a power cut in the data centre.
+
+65
+00:04:12.270 --> 00:04:13.721
+Together, the four keys.
+
+66
+00:04:14.586 --> 00:04:18.812
+The best teams score well on all four: speed and stability go together,
+
+67
+00:04:18.986 --> 00:04:21.935
+as small changes are easier to test and recover.
+
+68
+00:04:23.256 --> 00:04:27.018
+The Lean view: lead time is like lead time in a value stream,
+
+69
+00:04:27.191 --> 00:04:32.183
+change fail rate like first pass yield, the share right first time, but reversed.
+
+70
+00:04:33.236 --> 00:04:36.603
+You hear: we deploy once a quarter, so less goes wrong.
+
+71
+00:04:37.321 --> 00:04:39.388
+DORA often shows the reverse: rare,
+
+72
+00:04:39.655 --> 00:04:43.080
+big deployments fail more often and recover more slowly.
+
+73
+00:04:44.079 --> 00:04:45.275
+Ask an IT team.
+
+74
+00:04:45.976 --> 00:04:47.985
+How often do you deploy to production,
+
+75
+00:04:48.217 --> 00:04:50.736
+and how often must you step in straight after?
+
+76
+00:04:51.467 --> 00:04:53.986
+If nobody knows, nothing is measured yet.
+
+77
+00:04:55.329 --> 00:05:00.902
+An example: a confectionery plant's IT team builds ERP and MES links;
+
+78
+00:05:01.076 --> 00:05:02.922
+you collect four weeks of numbers.
+
+79
+00:05:03.921 --> 00:05:08.159
+Deployment frequency: eight deployments in four weeks, so two a week.
+
+80
+00:05:09.195 --> 00:05:12.852
+Change lead time: six working days from commit to production,
+
+81
+00:05:13.003 --> 00:05:15.313
+mainly waiting for a weekly test slot.
+
+82
+00:05:16.386 --> 00:05:21.030
+Change fail rate: two of the eight rolled back at once, twenty-five percent.
+
+83
+00:05:21.791 --> 00:05:24.484
+Recovered after one and after three hours.
+
+84
+00:05:25.511 --> 00:05:30.260
+The conclusion is that delivery is fairly frequent, but one in four goes wrong.
+
+85
+00:05:31.021 --> 00:05:32.890
+That is where to improve first.

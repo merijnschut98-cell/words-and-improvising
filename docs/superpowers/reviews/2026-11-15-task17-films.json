@@ -1,0 +1,5551 @@
+{
+ "made": "2026-11-15",
+ "scripts": "scratchpad task17/inventory.mjs, plan.mjs, split.mjs, export.mjs (see the plan)",
+ "calibration": {
+  "k": 0.381,
+  "wpsNl": 2.27,
+  "wpsEn": 2.26
+ },
+ "films": [
+  {
+   "film": "eng.machining.cnc",
+   "action": "split",
+   "lessons": [
+    {
+     "id": "eng.machining.cnc",
+     "level": 1,
+     "wired": true,
+     "points": 13,
+     "missing": 4,
+     "partial": 7
+    },
+    {
+     "id": "eng.machining.gcode",
+     "level": 2,
+     "wired": true,
+     "points": 12,
+     "missing": 1,
+     "partial": 6
+    },
+    {
+     "id": "eng.machining.offsets",
+     "level": 3,
+     "wired": true,
+     "points": 13,
+     "missing": 3,
+     "partial": 8
+    },
+    {
+     "id": "eng.machining.cam",
+     "level": 4,
+     "wired": true,
+     "points": 13,
+     "missing": 3,
+     "partial": 10
+    }
+   ],
+   "rendered": true,
+   "nlS": 244,
+   "enS": 271,
+   "plannedS": 150,
+   "scenes": 7,
+   "kb": 319,
+   "wordsNl": 532,
+   "wordsEn": 577,
+   "terms": 20,
+   "termsWithoutCue": [],
+   "points": 51,
+   "pointsMissing": 11,
+   "pointsPartial": 31,
+   "sentencesMissing": 64,
+   "sentencesTotal": 119,
+   "reviewPoints": 31,
+   "estPoints": 31,
+   "addWords": 310,
+   "projEnS": 417,
+   "trimPct": 3,
+   "projEnSAfterTrim": 409,
+   "scenesAfter": 11,
+   "splitPerLesson": [
+    {
+     "id": "eng.machining.cnc",
+     "level": 1,
+     "estEnS": 142
+    },
+    {
+     "id": "eng.machining.gcode",
+     "level": 2,
+     "estEnS": 88
+    },
+    {
+     "id": "eng.machining.offsets",
+     "level": 3,
+     "estEnS": 119
+    },
+    {
+     "id": "eng.machining.cam",
+     "level": 4,
+     "estEnS": 90
+    }
+   ],
+   "splitPairs": [
+    {
+     "lessons": [
+      "eng.machining.cnc",
+      "eng.machining.gcode"
+     ],
+     "estEnS": 217
+    },
+    {
+     "lessons": [
+      "eng.machining.offsets",
+      "eng.machining.cam"
+     ],
+     "estEnS": 195
+    }
+   ]
+  },
+  {
+   "film": "eng.joining.arc",
+   "action": "split",
+   "lessons": [
+    {
+     "id": "eng.joining.arc",
+     "level": 1,
+     "wired": true,
+     "points": 13,
+     "missing": 3,
+     "partial": 5
+    },
+    {
+     "id": "eng.joining.weldparams",
+     "level": 2,
+     "wired": true,
+     "points": 11,
+     "missing": 5,
+     "partial": 6
+    },
+    {
+     "id": "eng.joining.wps",
+     "level": 3,
+     "wired": true,
+     "points": 13,
+     "missing": 6,
+     "partial": 3
+    },
+    {
+     "id": "eng.joining.metallurgy",
+     "level": 4,
+     "wired": true,
+     "points": 12,
+     "missing": 5,
+     "partial": 5
+    }
+   ],
+   "rendered": true,
+   "nlS": 271,
+   "enS": 301,
+   "plannedS": 180,
+   "scenes": 9,
+   "kb": 325,
+   "wordsNl": 584,
+   "wordsEn": 658,
+   "terms": 21,
+   "termsWithoutCue": [],
+   "points": 49,
+   "pointsMissing": 19,
+   "pointsPartial": 19,
+   "sentencesMissing": 72,
+   "sentencesTotal": 112,
+   "reviewPoints": 30,
+   "estPoints": 30,
+   "addWords": 300,
+   "projEnS": 438,
+   "trimPct": 3,
+   "projEnSAfterTrim": 429,
+   "scenesAfter": 13,
+   "splitPerLesson": [
+    {
+     "id": "eng.joining.arc",
+     "level": 1,
+     "estEnS": 177
+    },
+    {
+     "id": "eng.joining.weldparams",
+     "level": 2,
+     "estEnS": 105
+    },
+    {
+     "id": "eng.joining.wps",
+     "level": 3,
+     "estEnS": 103
+    },
+    {
+     "id": "eng.joining.metallurgy",
+     "level": 4,
+     "estEnS": 98
+    }
+   ],
+   "splitPairs": [
+    {
+     "lessons": [
+      "eng.joining.arc",
+      "eng.joining.weldparams"
+     ],
+     "estEnS": 269
+    },
+    {
+     "lessons": [
+      "eng.joining.wps",
+      "eng.joining.metallurgy"
+     ],
+     "estEnS": 188
+    }
+   ]
+  },
+  {
+   "film": "eng.joining.defects",
+   "action": "split",
+   "lessons": [
+    {
+     "id": "eng.joining.defects",
+     "level": 1,
+     "wired": true,
+     "points": 13,
+     "missing": 4,
+     "partial": 4
+    },
+    {
+     "id": "eng.joining.inspection",
+     "level": 2,
+     "wired": true,
+     "points": 13,
+     "missing": 5,
+     "partial": 5
+    },
+    {
+     "id": "eng.joining.ndt",
+     "level": 3,
+     "wired": true,
+     "points": 11,
+     "missing": 1,
+     "partial": 3
+    },
+    {
+     "id": "eng.joining.weldrca",
+     "level": 4,
+     "wired": true,
+     "points": 12,
+     "missing": 2,
+     "partial": 2
+    }
+   ],
+   "rendered": true,
+   "nlS": 356,
+   "enS": 354,
+   "plannedS": 268,
+   "scenes": 9,
+   "kb": 279,
+   "wordsNl": 767,
+   "wordsEn": 804,
+   "terms": 21,
+   "termsWithoutCue": [],
+   "points": 49,
+   "pointsMissing": 12,
+   "pointsPartial": 14,
+   "sentencesMissing": 43,
+   "sentencesTotal": 102,
+   "reviewPoints": 24,
+   "estPoints": 24,
+   "addWords": 240,
+   "projEnS": 460,
+   "trimPct": 4,
+   "projEnSAfterTrim": 446,
+   "scenesAfter": 13,
+   "splitPerLesson": [
+    {
+     "id": "eng.joining.defects",
+     "level": 1,
+     "estEnS": 155
+    },
+    {
+     "id": "eng.joining.inspection",
+     "level": 2,
+     "estEnS": 108
+    },
+    {
+     "id": "eng.joining.ndt",
+     "level": 3,
+     "estEnS": 113
+    },
+    {
+     "id": "eng.joining.weldrca",
+     "level": 4,
+     "estEnS": 96
+    }
+   ],
+   "splitPairs": [
+    {
+     "lessons": [
+      "eng.joining.defects",
+      "eng.joining.inspection"
+     ],
+     "estEnS": 251
+    },
+    {
+     "lessons": [
+      "eng.joining.ndt",
+      "eng.joining.weldrca"
+     ],
+     "estEnS": 196
+    }
+   ]
+  },
+  {
+   "film": "eng.machining.drilling",
+   "action": "split",
+   "lessons": [
+    {
+     "id": "eng.machining.drill",
+     "level": 1,
+     "wired": true,
+     "points": 11,
+     "missing": 5,
+     "partial": 2
+    },
+    {
+     "id": "eng.machining.holes",
+     "level": 2,
+     "wired": true,
+     "points": 11,
+     "missing": 2,
+     "partial": 8
+    },
+    {
+     "id": "eng.machining.deephole",
+     "level": 3,
+     "wired": true,
+     "points": 13,
+     "missing": 3,
+     "partial": 7
+    },
+    {
+     "id": "eng.machining.holequality",
+     "level": 4,
+     "wired": true,
+     "points": 13,
+     "missing": 5,
+     "partial": 5
+    }
+   ],
+   "rendered": true,
+   "nlS": 233,
+   "enS": 270,
+   "plannedS": 150,
+   "scenes": 8,
+   "kb": 314,
+   "wordsNl": 529,
+   "wordsEn": 598,
+   "terms": 19,
+   "termsWithoutCue": [],
+   "points": 48,
+   "pointsMissing": 15,
+   "pointsPartial": 22,
+   "sentencesMissing": 55,
+   "sentencesTotal": 106,
+   "reviewPoints": 22,
+   "estPoints": 22,
+   "addWords": 220,
+   "projEnS": 369,
+   "trimPct": 2,
+   "projEnSAfterTrim": 364,
+   "scenesAfter": 12,
+   "splitPerLesson": [
+    {
+     "id": "eng.machining.drill",
+     "level": 1,
+     "estEnS": 100
+    },
+    {
+     "id": "eng.machining.holes",
+     "level": 2,
+     "estEnS": 107
+    },
+    {
+     "id": "eng.machining.deephole",
+     "level": 3,
+     "estEnS": 102
+    },
+    {
+     "id": "eng.machining.holequality",
+     "level": 4,
+     "estEnS": 106
+    }
+   ],
+   "splitPairs": [
+    {
+     "lessons": [
+      "eng.machining.drill",
+      "eng.machining.holes"
+     ],
+     "estEnS": 193
+    },
+    {
+     "lessons": [
+      "eng.machining.deephole",
+      "eng.machining.holequality"
+     ],
+     "estEnS": 195
+    }
+   ]
+  },
+  {
+   "film": "eng.joining.spot",
+   "action": "split",
+   "lessons": [
+    {
+     "id": "eng.joining.spot",
+     "level": 1,
+     "wired": true,
+     "points": 13,
+     "missing": 2,
+     "partial": 2
+    },
+    {
+     "id": "eng.joining.spotwear",
+     "level": 2,
+     "wired": true,
+     "points": 11,
+     "missing": 0,
+     "partial": 6
+    },
+    {
+     "id": "eng.joining.spotquality",
+     "level": 3,
+     "wired": true,
+     "points": 12,
+     "missing": 4,
+     "partial": 4
+    },
+    {
+     "id": "eng.joining.spotlobe",
+     "level": 4,
+     "wired": true,
+     "points": 12,
+     "missing": 3,
+     "partial": 4
+    }
+   ],
+   "rendered": true,
+   "nlS": 285,
+   "enS": 311,
+   "plannedS": 212,
+   "scenes": 8,
+   "kb": 319,
+   "wordsNl": 612,
+   "wordsEn": 685,
+   "terms": 20,
+   "termsWithoutCue": [],
+   "points": 48,
+   "pointsMissing": 9,
+   "pointsPartial": 16,
+   "sentencesMissing": 38,
+   "sentencesTotal": 107,
+   "reviewPoints": 20,
+   "estPoints": 20,
+   "addWords": 200,
+   "projEnS": 402,
+   "trimPct": 2,
+   "projEnSAfterTrim": 396,
+   "scenesAfter": 12,
+   "splitPerLesson": [
+    {
+     "id": "eng.joining.spot",
+     "level": 1,
+     "estEnS": 183
+    },
+    {
+     "id": "eng.joining.spotwear",
+     "level": 2,
+     "estEnS": 74
+    },
+    {
+     "id": "eng.joining.spotquality",
+     "level": 3,
+     "estEnS": 93
+    },
+    {
+     "id": "eng.joining.spotlobe",
+     "level": 4,
+     "estEnS": 84
+    }
+   ],
+   "splitPairs": [
+    {
+     "lessons": [
+      "eng.joining.spot",
+      "eng.joining.spotwear"
+     ],
+     "estEnS": 243
+    },
+    {
+     "lessons": [
+      "eng.joining.spotquality",
+      "eng.joining.spotlobe"
+     ],
+     "estEnS": 163
+    }
+   ]
+  },
+  {
+   "film": "eng.joining.bolting",
+   "action": "split",
+   "lessons": [
+    {
+     "id": "eng.joining.bolts",
+     "level": 1,
+     "wired": true,
+     "points": 11,
+     "missing": 1,
+     "partial": 5
+    },
+    {
+     "id": "eng.joining.bolting",
+     "level": 2,
+     "wired": true,
+     "points": 13,
+     "missing": 3,
+     "partial": 2
+    },
+    {
+     "id": "eng.joining.tightening",
+     "level": 3,
+     "wired": true,
+     "points": 12,
+     "missing": 1,
+     "partial": 4
+    },
+    {
+     "id": "eng.joining.jointdesign",
+     "level": 4,
+     "wired": true,
+     "points": 11,
+     "missing": 0,
+     "partial": 5
+    }
+   ],
+   "rendered": true,
+   "nlS": 340,
+   "enS": 356,
+   "plannedS": 282,
+   "scenes": 9,
+   "kb": 260,
+   "wordsNl": 715,
+   "wordsEn": 768,
+   "terms": 21,
+   "termsWithoutCue": [],
+   "points": 47,
+   "pointsMissing": 5,
+   "pointsPartial": 16,
+   "sentencesMissing": 25,
+   "sentencesTotal": 109,
+   "reviewPoints": 19,
+   "estPoints": 19,
+   "addWords": 190,
+   "projEnS": 444,
+   "trimPct": 3,
+   "projEnSAfterTrim": 433,
+   "scenesAfter": 13,
+   "splitPerLesson": [
+    {
+     "id": "eng.joining.bolts",
+     "level": 1,
+     "estEnS": 114
+    },
+    {
+     "id": "eng.joining.bolting",
+     "level": 2,
+     "estEnS": 160
+    },
+    {
+     "id": "eng.joining.tightening",
+     "level": 3,
+     "estEnS": 91
+    },
+    {
+     "id": "eng.joining.jointdesign",
+     "level": 4,
+     "estEnS": 88
+    }
+   ],
+   "splitPairs": [
+    {
+     "lessons": [
+      "eng.joining.bolts",
+      "eng.joining.bolting"
+     ],
+     "estEnS": 261
+    },
+    {
+     "lessons": [
+      "eng.joining.tightening",
+      "eng.joining.jointdesign"
+     ],
+     "estEnS": 165
+    }
+   ]
+  },
+  {
+   "film": "eng.lines.robots",
+   "action": "split",
+   "lessons": [
+    {
+     "id": "eng.lines.robotbasics",
+     "level": 1,
+     "wired": true,
+     "points": 11,
+     "missing": 1,
+     "partial": 2
+    },
+    {
+     "id": "eng.lines.robots",
+     "level": 2,
+     "wired": true,
+     "points": 14,
+     "missing": 3,
+     "partial": 5
+    },
+    {
+     "id": "eng.lines.robotcell",
+     "level": 3,
+     "wired": true,
+     "points": 13,
+     "missing": 2,
+     "partial": 5
+    },
+    {
+     "id": "eng.lines.vision",
+     "level": 4,
+     "wired": true,
+     "points": 14,
+     "missing": 1,
+     "partial": 4
+    }
+   ],
+   "rendered": true,
+   "nlS": 312,
+   "enS": 340,
+   "plannedS": 281,
+   "scenes": 9,
+   "kb": 277,
+   "wordsNl": 736,
+   "wordsEn": 815,
+   "terms": 21,
+   "termsWithoutCue": [],
+   "points": 52,
+   "pointsMissing": 7,
+   "pointsPartial": 16,
+   "sentencesMissing": 29,
+   "sentencesTotal": 104,
+   "reviewPoints": 18,
+   "estPoints": 18,
+   "addWords": 180,
+   "projEnS": 415,
+   "trimPct": 5,
+   "projEnSAfterTrim": 398,
+   "scenesAfter": 13,
+   "splitPerLesson": [
+    {
+     "id": "eng.lines.robotbasics",
+     "level": 1,
+     "estEnS": 129
+    },
+    {
+     "id": "eng.lines.robots",
+     "level": 2,
+     "estEnS": 101
+    },
+    {
+     "id": "eng.lines.robotcell",
+     "level": 3,
+     "estEnS": 110
+    },
+    {
+     "id": "eng.lines.vision",
+     "level": 4,
+     "estEnS": 92
+    }
+   ],
+   "splitPairs": [
+    {
+     "lessons": [
+      "eng.lines.robotbasics",
+      "eng.lines.robots"
+     ],
+     "estEnS": 217
+    },
+    {
+     "lessons": [
+      "eng.lines.robotcell",
+      "eng.lines.vision"
+     ],
+     "estEnS": 189
+    }
+   ]
+  },
+  {
+   "film": "eng.joining.bonding",
+   "action": "split",
+   "lessons": [
+    {
+     "id": "eng.joining.bonding",
+     "level": 1,
+     "wired": true,
+     "points": 13,
+     "missing": 2,
+     "partial": 7
+    },
+    {
+     "id": "eng.joining.adhesives",
+     "level": 2,
+     "wired": true,
+     "points": 11,
+     "missing": 0,
+     "partial": 3
+    },
+    {
+     "id": "eng.joining.rivets",
+     "level": 3,
+     "wired": true,
+     "points": 11,
+     "missing": 2,
+     "partial": 5
+    },
+    {
+     "id": "eng.joining.choosejoint",
+     "level": 4,
+     "wired": true,
+     "points": 11,
+     "missing": 2,
+     "partial": 6
+    }
+   ],
+   "rendered": true,
+   "nlS": 318,
+   "enS": 342,
+   "plannedS": 226,
+   "scenes": 8,
+   "kb": 269,
+   "wordsNl": 736,
+   "wordsEn": 785,
+   "terms": 20,
+   "termsWithoutCue": [],
+   "points": 46,
+   "pointsMissing": 6,
+   "pointsPartial": 21,
+   "sentencesMissing": 34,
+   "sentencesTotal": 113,
+   "reviewPoints": 17,
+   "estPoints": 17,
+   "addWords": 170,
+   "projEnS": 416,
+   "trimPct": 5,
+   "projEnSAfterTrim": 399,
+   "scenesAfter": 12,
+   "splitPerLesson": [
+    {
+     "id": "eng.joining.bonding",
+     "level": 1,
+     "estEnS": 152
+    },
+    {
+     "id": "eng.joining.adhesives",
+     "level": 2,
+     "estEnS": 110
+    },
+    {
+     "id": "eng.joining.rivets",
+     "level": 3,
+     "estEnS": 101
+    },
+    {
+     "id": "eng.joining.choosejoint",
+     "level": 4,
+     "estEnS": 92
+    }
+   ],
+   "splitPairs": [
+    {
+     "lessons": [
+      "eng.joining.bonding",
+      "eng.joining.adhesives"
+     ],
+     "estEnS": 249
+    },
+    {
+     "lessons": [
+      "eng.joining.rivets",
+      "eng.joining.choosejoint"
+     ],
+     "estEnS": 180
+    }
+   ]
+  },
+  {
+   "film": "eng.lines.design",
+   "action": "split",
+   "lessons": [
+    {
+     "id": "eng.lines.linebasics",
+     "level": 1,
+     "wired": true,
+     "points": 11,
+     "missing": 2,
+     "partial": 2
+    },
+    {
+     "id": "eng.lines.layout",
+     "level": 2,
+     "wired": true,
+     "points": 14,
+     "missing": 2,
+     "partial": 4
+    },
+    {
+     "id": "eng.lines.buffers",
+     "level": 3,
+     "wired": true,
+     "points": 13,
+     "missing": 2,
+     "partial": 6
+    },
+    {
+     "id": "eng.lines.simulation",
+     "level": 4,
+     "wired": true,
+     "points": 13,
+     "missing": 5,
+     "partial": 4
+    }
+   ],
+   "rendered": true,
+   "nlS": 304,
+   "enS": 329,
+   "plannedS": 275,
+   "scenes": 9,
+   "kb": 292,
+   "wordsNl": 692,
+   "wordsEn": 751,
+   "terms": 18,
+   "termsWithoutCue": [],
+   "points": 51,
+   "pointsMissing": 11,
+   "pointsPartial": 16,
+   "sentencesMissing": 36,
+   "sentencesTotal": 107,
+   "reviewPoints": 16,
+   "estPoints": 16,
+   "addWords": 160,
+   "projEnS": 399,
+   "trimPct": 3,
+   "projEnSAfterTrim": 389,
+   "scenesAfter": 13,
+   "splitPerLesson": [
+    {
+     "id": "eng.lines.linebasics",
+     "level": 1,
+     "estEnS": 131
+    },
+    {
+     "id": "eng.lines.layout",
+     "level": 2,
+     "estEnS": 99
+    },
+    {
+     "id": "eng.lines.buffers",
+     "level": 3,
+     "estEnS": 99
+    },
+    {
+     "id": "eng.lines.simulation",
+     "level": 4,
+     "estEnS": 110
+    }
+   ],
+   "splitPairs": [
+    {
+     "lessons": [
+      "eng.lines.linebasics",
+      "eng.lines.layout"
+     ],
+     "estEnS": 217
+    },
+    {
+     "lessons": [
+      "eng.lines.buffers",
+      "eng.lines.simulation"
+     ],
+     "estEnS": 195
+    }
+   ]
+  },
+  {
+   "film": "eng.lines.errorproof",
+   "action": "split",
+   "lessons": [
+    {
+     "id": "eng.lines.errors",
+     "level": 1,
+     "wired": true,
+     "points": 11,
+     "missing": 3,
+     "partial": 4
+    },
+    {
+     "id": "eng.lines.pokayoke",
+     "level": 2,
+     "wired": true,
+     "points": 14,
+     "missing": 3,
+     "partial": 4
+    },
+    {
+     "id": "eng.lines.sensors",
+     "level": 3,
+     "wired": true,
+     "points": 13,
+     "missing": 0,
+     "partial": 5
+    },
+    {
+     "id": "eng.lines.detection",
+     "level": 4,
+     "wired": true,
+     "points": 14,
+     "missing": 1,
+     "partial": 4
+    }
+   ],
+   "rendered": true,
+   "nlS": 294,
+   "enS": 318,
+   "plannedS": 285,
+   "scenes": 9,
+   "kb": 249,
+   "wordsNl": 705,
+   "wordsEn": 738,
+   "terms": 20,
+   "termsWithoutCue": [],
+   "points": 52,
+   "pointsMissing": 7,
+   "pointsPartial": 17,
+   "sentencesMissing": 30,
+   "sentencesTotal": 106,
+   "reviewPoints": 16,
+   "estPoints": 16,
+   "addWords": 160,
+   "projEnS": 387,
+   "trimPct": 5,
+   "projEnSAfterTrim": 371,
+   "scenesAfter": 13,
+   "splitPerLesson": [
+    {
+     "id": "eng.lines.errors",
+     "level": 1,
+     "estEnS": 145
+    },
+    {
+     "id": "eng.lines.pokayoke",
+     "level": 2,
+     "estEnS": 100
+    },
+    {
+     "id": "eng.lines.sensors",
+     "level": 3,
+     "estEnS": 75
+    },
+    {
+     "id": "eng.lines.detection",
+     "level": 4,
+     "estEnS": 102
+    }
+   ],
+   "splitPairs": [
+    {
+     "lessons": [
+      "eng.lines.errors",
+      "eng.lines.pokayoke"
+     ],
+     "estEnS": 231
+    },
+    {
+     "lessons": [
+      "eng.lines.sensors",
+      "eng.lines.detection"
+     ],
+     "estEnS": 164
+    }
+   ]
+  },
+  {
+   "film": "eng.machining.turning",
+   "action": "extend",
+   "lessons": [
+    {
+     "id": "eng.machining.cutting",
+     "level": 2,
+     "wired": true,
+     "points": 13,
+     "missing": 2,
+     "partial": 8
+    },
+    {
+     "id": "eng.machining.turnfinish",
+     "level": 3,
+     "wired": true,
+     "points": 14,
+     "missing": 1,
+     "partial": 9
+    },
+    {
+     "id": "eng.machining.turncell",
+     "level": 4,
+     "wired": true,
+     "points": 13,
+     "missing": 6,
+     "partial": 6
+    }
+   ],
+   "rendered": true,
+   "nlS": 227,
+   "enS": 259,
+   "plannedS": 145,
+   "scenes": 8,
+   "kb": 289,
+   "wordsNl": 521,
+   "wordsEn": 572,
+   "terms": 18,
+   "termsWithoutCue": [],
+   "points": 40,
+   "pointsMissing": 9,
+   "pointsPartial": 23,
+   "sentencesMissing": 46,
+   "sentencesTotal": 96,
+   "reviewPoints": 15,
+   "estPoints": 15,
+   "addWords": 150,
+   "projEnS": 327,
+   "trimPct": 0,
+   "projEnSAfterTrim": 327,
+   "scenesAfter": 11
+  },
+  {
+   "film": "eng.lines.control",
+   "action": "split",
+   "lessons": [
+    {
+     "id": "eng.lines.plc",
+     "level": 1,
+     "wired": true,
+     "points": 11,
+     "missing": 0,
+     "partial": 4
+    },
+    {
+     "id": "eng.lines.safety",
+     "level": 2,
+     "wired": true,
+     "points": 11,
+     "missing": 3,
+     "partial": 6
+    },
+    {
+     "id": "eng.lines.oee_auto",
+     "level": 3,
+     "wired": true,
+     "points": 15,
+     "missing": 3,
+     "partial": 2
+    },
+    {
+     "id": "eng.lines.stoppages",
+     "level": 4,
+     "wired": true,
+     "points": 13,
+     "missing": 4,
+     "partial": 3
+    }
+   ],
+   "rendered": true,
+   "nlS": 327,
+   "enS": 346,
+   "plannedS": 298,
+   "scenes": 9,
+   "kb": 289,
+   "wordsNl": 709,
+   "wordsEn": 769,
+   "terms": 19,
+   "termsWithoutCue": [],
+   "points": 50,
+   "pointsMissing": 10,
+   "pointsPartial": 15,
+   "sentencesMissing": 38,
+   "sentencesTotal": 106,
+   "reviewPoints": 14,
+   "estPoints": 14,
+   "addWords": 140,
+   "projEnS": 409,
+   "trimPct": 3,
+   "projEnSAfterTrim": 399,
+   "scenesAfter": 13,
+   "splitPerLesson": [
+    {
+     "id": "eng.lines.plc",
+     "level": 1,
+     "estEnS": 146
+    },
+    {
+     "id": "eng.lines.safety",
+     "level": 2,
+     "estEnS": 122
+    },
+    {
+     "id": "eng.lines.oee_auto",
+     "level": 3,
+     "estEnS": 89
+    },
+    {
+     "id": "eng.lines.stoppages",
+     "level": 4,
+     "estEnS": 107
+    }
+   ],
+   "splitPairs": [
+    {
+     "lessons": [
+      "eng.lines.plc",
+      "eng.lines.safety"
+     ],
+     "estEnS": 254
+    },
+    {
+     "lessons": [
+      "eng.lines.oee_auto",
+      "eng.lines.stoppages"
+     ],
+     "estEnS": 182
+    }
+   ]
+  },
+  {
+   "film": "eng.machining.measuring",
+   "action": "split",
+   "lessons": [
+    {
+     "id": "eng.machining.quality",
+     "level": 2,
+     "wired": true,
+     "points": 13,
+     "missing": 2,
+     "partial": 4
+    },
+    {
+     "id": "eng.machining.metrology",
+     "level": 3,
+     "wired": true,
+     "points": 13,
+     "missing": 4,
+     "partial": 4
+    },
+    {
+     "id": "eng.machining.capable",
+     "level": 4,
+     "wired": true,
+     "points": 13,
+     "missing": 1,
+     "partial": 4
+    }
+   ],
+   "rendered": true,
+   "nlS": 308,
+   "enS": 329,
+   "plannedS": 296,
+   "scenes": 9,
+   "kb": 295,
+   "wordsNl": 678,
+   "wordsEn": 750,
+   "terms": 15,
+   "termsWithoutCue": [],
+   "points": 39,
+   "pointsMissing": 7,
+   "pointsPartial": 12,
+   "sentencesMissing": 27,
+   "sentencesTotal": 80,
+   "reviewPoints": 14,
+   "estPoints": 14,
+   "addWords": 140,
+   "projEnS": 390,
+   "trimPct": 6,
+   "projEnSAfterTrim": 370,
+   "scenesAfter": 12,
+   "splitPerLesson": [
+    {
+     "id": "eng.machining.quality",
+     "level": 2,
+     "estEnS": 190
+    },
+    {
+     "id": "eng.machining.metrology",
+     "level": 3,
+     "estEnS": 116
+    },
+    {
+     "id": "eng.machining.capable",
+     "level": 4,
+     "estEnS": 107
+    }
+   ],
+   "splitPairs": [
+    {
+     "lessons": [
+      "eng.machining.quality",
+      "eng.machining.metrology"
+     ],
+     "estEnS": 293
+    },
+    {
+     "lessons": [
+      "eng.machining.capable"
+     ],
+     "estEnS": 107
+    }
+   ]
+  },
+  {
+   "film": "eng.machining.tooling",
+   "action": "split",
+   "lessons": [
+    {
+     "id": "eng.machining.toolbasics",
+     "level": 1,
+     "wired": true,
+     "points": 12,
+     "missing": 2,
+     "partial": 5
+    },
+    {
+     "id": "eng.machining.tools",
+     "level": 2,
+     "wired": true,
+     "points": 12,
+     "missing": 1,
+     "partial": 8
+    },
+    {
+     "id": "eng.machining.toollife",
+     "level": 3,
+     "wired": true,
+     "points": 13,
+     "missing": 3,
+     "partial": 6
+    },
+    {
+     "id": "eng.machining.toolcost",
+     "level": 4,
+     "wired": true,
+     "points": 13,
+     "missing": 1,
+     "partial": 7
+    }
+   ],
+   "rendered": true,
+   "nlS": 289,
+   "enS": 312,
+   "plannedS": 288,
+   "scenes": 9,
+   "kb": 303,
+   "wordsNl": 613,
+   "wordsEn": 687,
+   "terms": 20,
+   "termsWithoutCue": [],
+   "points": 50,
+   "pointsMissing": 7,
+   "pointsPartial": 26,
+   "sentencesMissing": 46,
+   "sentencesTotal": 130,
+   "reviewPoints": 14,
+   "estPoints": 14,
+   "addWords": 140,
+   "projEnS": 376,
+   "trimPct": 3,
+   "projEnSAfterTrim": 366,
+   "scenesAfter": 13,
+   "splitPerLesson": [
+    {
+     "id": "eng.machining.toolbasics",
+     "level": 1,
+     "estEnS": 163
+    },
+    {
+     "id": "eng.machining.tools",
+     "level": 2,
+     "estEnS": 101
+    },
+    {
+     "id": "eng.machining.toollife",
+     "level": 3,
+     "estEnS": 76
+    },
+    {
+     "id": "eng.machining.toolcost",
+     "level": 4,
+     "estEnS": 103
+    }
+   ],
+   "splitPairs": [
+    {
+     "lessons": [
+      "eng.machining.toolbasics",
+      "eng.machining.tools"
+     ],
+     "estEnS": 251
+    },
+    {
+     "lessons": [
+      "eng.machining.toollife",
+      "eng.machining.toolcost"
+     ],
+     "estEnS": 166
+    }
+   ]
+  },
+  {
+   "film": "eng.machining.milling",
+   "action": "extend",
+   "lessons": [
+    {
+     "id": "eng.machining.mill",
+     "level": 1,
+     "wired": true,
+     "points": 11,
+     "missing": 1,
+     "partial": 6
+    },
+    {
+     "id": "eng.machining.millfeeds",
+     "level": 2,
+     "wired": true,
+     "points": 11,
+     "missing": 1,
+     "partial": 5
+    },
+    {
+     "id": "eng.machining.millstrategy",
+     "level": 3,
+     "wired": true,
+     "points": 13,
+     "missing": 0,
+     "partial": 6
+    },
+    {
+     "id": "eng.machining.fiveaxis",
+     "level": 4,
+     "wired": true,
+     "points": 13,
+     "missing": 4,
+     "partial": 5
+    }
+   ],
+   "rendered": true,
+   "nlS": 232,
+   "enS": 259,
+   "plannedS": 150,
+   "scenes": 7,
+   "kb": 317,
+   "wordsNl": 534,
+   "wordsEn": 597,
+   "terms": 16,
+   "termsWithoutCue": [],
+   "points": 48,
+   "pointsMissing": 6,
+   "pointsPartial": 22,
+   "sentencesMissing": 39,
+   "sentencesTotal": 112,
+   "reviewPoints": 14,
+   "estPoints": 14,
+   "addWords": 140,
+   "projEnS": 320,
+   "trimPct": 0,
+   "projEnSAfterTrim": 320,
+   "scenesAfter": 11
+  },
+  {
+   "film": "eng.moulding.defects",
+   "action": "split",
+   "lessons": [
+    {
+     "id": "eng.moulding.defects",
+     "level": 1,
+     "wired": true,
+     "points": 12,
+     "missing": 0,
+     "partial": 4
+    },
+    {
+     "id": "eng.moulding.diagnose",
+     "level": 2,
+     "wired": true,
+     "points": 12,
+     "missing": 0,
+     "partial": 6
+    },
+    {
+     "id": "eng.moulding.warpage",
+     "level": 3,
+     "wired": true,
+     "points": 12,
+     "missing": 2,
+     "partial": 6
+    },
+    {
+     "id": "eng.moulding.defectdata",
+     "level": 4,
+     "wired": true,
+     "points": 14,
+     "missing": 3,
+     "partial": 7
+    }
+   ],
+   "rendered": true,
+   "nlS": 316,
+   "enS": 341,
+   "plannedS": 285,
+   "scenes": 9,
+   "kb": 254,
+   "wordsNl": 722,
+   "wordsEn": 791,
+   "terms": 19,
+   "termsWithoutCue": [],
+   "points": 50,
+   "pointsMissing": 5,
+   "pointsPartial": 23,
+   "sentencesMissing": 39,
+   "sentencesTotal": 116,
+   "reviewPoints": 12,
+   "estPoints": 12,
+   "addWords": 120,
+   "projEnS": 393,
+   "trimPct": 6,
+   "projEnSAfterTrim": 373,
+   "scenesAfter": 13,
+   "splitPerLesson": [
+    {
+     "id": "eng.moulding.defects",
+     "level": 1,
+     "estEnS": 148
+    },
+    {
+     "id": "eng.moulding.diagnose",
+     "level": 2,
+     "estEnS": 132
+    },
+    {
+     "id": "eng.moulding.warpage",
+     "level": 3,
+     "estEnS": 75
+    },
+    {
+     "id": "eng.moulding.defectdata",
+     "level": 4,
+     "estEnS": 102
+    }
+   ],
+   "splitPairs": [
+    {
+     "lessons": [
+      "eng.moulding.defects",
+      "eng.moulding.diagnose"
+     ],
+     "estEnS": 267
+    },
+    {
+     "lessons": [
+      "eng.moulding.warpage",
+      "eng.moulding.defectdata"
+     ],
+     "estEnS": 164
+    }
+   ]
+  },
+  {
+   "film": "eng.moulding.cycle",
+   "action": "split",
+   "lessons": [
+    {
+     "id": "eng.moulding.cycle",
+     "level": 1,
+     "wired": true,
+     "points": 12,
+     "missing": 4,
+     "partial": 3
+    },
+    {
+     "id": "eng.moulding.cooling",
+     "level": 2,
+     "wired": true,
+     "points": 10,
+     "missing": 4,
+     "partial": 5
+    },
+    {
+     "id": "eng.moulding.cavities",
+     "level": 3,
+     "wired": true,
+     "points": 12,
+     "missing": 3,
+     "partial": 5
+    },
+    {
+     "id": "eng.moulding.partcost",
+     "level": 4,
+     "wired": true,
+     "points": 12,
+     "missing": 3,
+     "partial": 6
+    }
+   ],
+   "rendered": true,
+   "nlS": 250,
+   "enS": 277,
+   "plannedS": 176,
+   "scenes": 8,
+   "kb": 324,
+   "wordsNl": 569,
+   "wordsEn": 625,
+   "terms": 15,
+   "termsWithoutCue": [],
+   "points": 46,
+   "pointsMissing": 14,
+   "pointsPartial": 19,
+   "sentencesMissing": 49,
+   "sentencesTotal": 101,
+   "reviewPoints": 12,
+   "estPoints": 12,
+   "addWords": 120,
+   "projEnS": 330,
+   "trimPct": 7,
+   "projEnSAfterTrim": 310,
+   "scenesAfter": 12
+  },
+  {
+   "film": "eng.joining.production",
+   "action": "split",
+   "lessons": [
+    {
+     "id": "eng.joining.weldcell",
+     "level": 1,
+     "wired": true,
+     "points": 11,
+     "missing": 0,
+     "partial": 1
+    },
+    {
+     "id": "eng.joining.fixturing",
+     "level": 2,
+     "wired": true,
+     "points": 11,
+     "missing": 2,
+     "partial": 4
+    },
+    {
+     "id": "eng.joining.arcon",
+     "level": 3,
+     "wired": true,
+     "points": 11,
+     "missing": 3,
+     "partial": 4
+    },
+    {
+     "id": "eng.joining.weldsystem",
+     "level": 4,
+     "wired": true,
+     "points": 11,
+     "missing": 3,
+     "partial": 6
+    }
+   ],
+   "rendered": false,
+   "nlS": 311,
+   "enS": 350,
+   "plannedS": 266,
+   "scenes": 8,
+   "kb": 319,
+   "wordsNl": 707,
+   "wordsEn": 789,
+   "terms": 20,
+   "termsWithoutCue": [],
+   "points": 44,
+   "pointsMissing": 8,
+   "pointsPartial": 15,
+   "sentencesMissing": 31,
+   "sentencesTotal": 102,
+   "reviewPoints": 11,
+   "estPoints": 11,
+   "addWords": 110,
+   "projEnS": 399,
+   "trimPct": 3,
+   "projEnSAfterTrim": 388,
+   "scenesAfter": 12,
+   "splitPerLesson": [
+    {
+     "id": "eng.joining.weldcell",
+     "level": 1,
+     "estEnS": 132
+    },
+    {
+     "id": "eng.joining.fixturing",
+     "level": 2,
+     "estEnS": 114
+    },
+    {
+     "id": "eng.joining.arcon",
+     "level": 3,
+     "estEnS": 122
+    },
+    {
+     "id": "eng.joining.weldsystem",
+     "level": 4,
+     "estEnS": 84
+    }
+   ],
+   "splitPairs": [
+    {
+     "lessons": [
+      "eng.joining.weldcell",
+      "eng.joining.fixturing"
+     ],
+     "estEnS": 233
+    },
+    {
+     "lessons": [
+      "eng.joining.arcon",
+      "eng.joining.weldsystem"
+     ],
+     "estEnS": 193
+    }
+   ]
+  },
+  {
+   "film": "eng.lines.variants",
+   "action": "split",
+   "lessons": [
+    {
+     "id": "eng.lines.variants",
+     "level": 1,
+     "wired": true,
+     "points": 11,
+     "missing": 1,
+     "partial": 3
+    },
+    {
+     "id": "eng.lines.linechange",
+     "level": 2,
+     "wired": true,
+     "points": 12,
+     "missing": 0,
+     "partial": 4
+    },
+    {
+     "id": "eng.lines.mixed",
+     "level": 3,
+     "wired": true,
+     "points": 15,
+     "missing": 2,
+     "partial": 7
+    },
+    {
+     "id": "eng.lines.sequencing",
+     "level": 4,
+     "wired": true,
+     "points": 13,
+     "missing": 1,
+     "partial": 4
+    }
+   ],
+   "rendered": true,
+   "nlS": 325,
+   "enS": 346,
+   "plannedS": 279,
+   "scenes": 8,
+   "kb": 276,
+   "wordsNl": 732,
+   "wordsEn": 792,
+   "terms": 18,
+   "termsWithoutCue": [],
+   "points": 51,
+   "pointsMissing": 4,
+   "pointsPartial": 18,
+   "sentencesMissing": 26,
+   "sentencesTotal": 105,
+   "reviewPoints": 11,
+   "estPoints": 11,
+   "addWords": 110,
+   "projEnS": 394,
+   "trimPct": 4,
+   "projEnSAfterTrim": 380,
+   "scenesAfter": 12,
+   "splitPerLesson": [
+    {
+     "id": "eng.lines.variants",
+     "level": 1,
+     "estEnS": 110
+    },
+    {
+     "id": "eng.lines.linechange",
+     "level": 2,
+     "estEnS": 102
+    },
+    {
+     "id": "eng.lines.mixed",
+     "level": 3,
+     "estEnS": 116
+    },
+    {
+     "id": "eng.lines.sequencing",
+     "level": 4,
+     "estEnS": 119
+    }
+   ],
+   "splitPairs": [
+    {
+     "lessons": [
+      "eng.lines.variants",
+      "eng.lines.linechange"
+     ],
+     "estEnS": 199
+    },
+    {
+     "lessons": [
+      "eng.lines.mixed",
+      "eng.lines.sequencing"
+     ],
+     "estEnS": 221
+    }
+   ]
+  },
+  {
+   "film": "eng.maintenance.failure",
+   "action": "split",
+   "lessons": [
+    {
+     "id": "eng.maintenance.strategies",
+     "level": 1,
+     "wired": true,
+     "points": 13,
+     "missing": 3,
+     "partial": 6
+    },
+    {
+     "id": "eng.maintenance.failure",
+     "level": 2,
+     "wired": true,
+     "points": 12,
+     "missing": 4,
+     "partial": 2
+    },
+    {
+     "id": "eng.maintenance.condition",
+     "level": 3,
+     "wired": true,
+     "points": 14,
+     "missing": 4,
+     "partial": 6
+    }
+   ],
+   "rendered": true,
+   "nlS": 301,
+   "enS": 326,
+   "plannedS": 244,
+   "scenes": 8,
+   "kb": 284,
+   "wordsNl": 671,
+   "wordsEn": 756,
+   "terms": 16,
+   "termsWithoutCue": [],
+   "points": 39,
+   "pointsMissing": 11,
+   "pointsPartial": 14,
+   "sentencesMissing": 37,
+   "sentencesTotal": 84,
+   "reviewPoints": 11,
+   "estPoints": 11,
+   "addWords": 110,
+   "projEnS": 373,
+   "trimPct": 5,
+   "projEnSAfterTrim": 357,
+   "scenesAfter": 11,
+   "splitPerLesson": [
+    {
+     "id": "eng.maintenance.strategies",
+     "level": 1,
+     "estEnS": 141
+    },
+    {
+     "id": "eng.maintenance.failure",
+     "level": 2,
+     "estEnS": 132
+    },
+    {
+     "id": "eng.maintenance.condition",
+     "level": 3,
+     "estEnS": 147
+    }
+   ],
+   "splitPairs": [
+    {
+     "lessons": [
+      "eng.maintenance.strategies",
+      "eng.maintenance.failure"
+     ],
+     "estEnS": 261
+    },
+    {
+     "lessons": [
+      "eng.maintenance.condition"
+     ],
+     "estEnS": 147
+    }
+   ]
+  },
+  {
+   "film": "eng.moulding.setting",
+   "action": "split",
+   "lessons": [
+    {
+     "id": "eng.moulding.setup",
+     "level": 1,
+     "wired": true,
+     "points": 13,
+     "missing": 3,
+     "partial": 4
+    },
+    {
+     "id": "eng.moulding.process",
+     "level": 2,
+     "wired": true,
+     "points": 12,
+     "missing": 5,
+     "partial": 6
+    },
+    {
+     "id": "eng.moulding.scientific",
+     "level": 3,
+     "wired": true,
+     "points": 11,
+     "missing": 2,
+     "partial": 4
+    },
+    {
+     "id": "eng.moulding.validation",
+     "level": 4,
+     "wired": true,
+     "points": 11,
+     "missing": 6,
+     "partial": 5
+    }
+   ],
+   "rendered": true,
+   "nlS": 265,
+   "enS": 287,
+   "plannedS": 184,
+   "scenes": 9,
+   "kb": 293,
+   "wordsNl": 599,
+   "wordsEn": 656,
+   "terms": 19,
+   "termsWithoutCue": [],
+   "points": 47,
+   "pointsMissing": 16,
+   "pointsPartial": 19,
+   "sentencesMissing": 51,
+   "sentencesTotal": 101,
+   "reviewPoints": 10,
+   "estPoints": 10,
+   "addWords": 100,
+   "projEnS": 331,
+   "trimPct": 9,
+   "projEnSAfterTrim": 305,
+   "scenesAfter": 13,
+   "splitPerLesson": [
+    {
+     "id": "eng.moulding.setup",
+     "level": 1,
+     "estEnS": 181
+    },
+    {
+     "id": "eng.moulding.process",
+     "level": 2,
+     "estEnS": 85
+    },
+    {
+     "id": "eng.moulding.scientific",
+     "level": 3,
+     "estEnS": 77
+    },
+    {
+     "id": "eng.moulding.validation",
+     "level": 4,
+     "estEnS": 80
+    }
+   ],
+   "splitPairs": [
+    {
+     "lessons": [
+      "eng.moulding.setup",
+      "eng.moulding.process"
+     ],
+     "estEnS": 253
+    },
+    {
+     "lessons": [
+      "eng.moulding.scientific",
+      "eng.moulding.validation"
+     ],
+     "estEnS": 144
+    }
+   ]
+  },
+  {
+   "film": "eng.moulding.materials",
+   "action": "split",
+   "lessons": [
+    {
+     "id": "eng.moulding.materials",
+     "level": 1,
+     "wired": true,
+     "points": 12,
+     "missing": 2,
+     "partial": 5
+    },
+    {
+     "id": "eng.moulding.polymers",
+     "level": 2,
+     "wired": true,
+     "points": 10,
+     "missing": 2,
+     "partial": 5
+    },
+    {
+     "id": "eng.moulding.drying",
+     "level": 3,
+     "wired": true,
+     "points": 11,
+     "missing": 1,
+     "partial": 4
+    },
+    {
+     "id": "eng.moulding.fillers",
+     "level": 4,
+     "wired": true,
+     "points": 12,
+     "missing": 3,
+     "partial": 7
+    }
+   ],
+   "rendered": false,
+   "nlS": 306,
+   "enS": 340,
+   "plannedS": 250,
+   "scenes": 9,
+   "kb": 272,
+   "wordsNl": 696,
+   "wordsEn": 767,
+   "terms": 22,
+   "termsWithoutCue": [],
+   "points": 45,
+   "pointsMissing": 8,
+   "pointsPartial": 21,
+   "sentencesMissing": 43,
+   "sentencesTotal": 103,
+   "reviewPoints": 9,
+   "estPoints": 9,
+   "addWords": 90,
+   "projEnS": 380,
+   "trimPct": 8,
+   "projEnSAfterTrim": 353,
+   "scenesAfter": 13,
+   "splitPerLesson": [
+    {
+     "id": "eng.moulding.materials",
+     "level": 1,
+     "estEnS": 169
+    },
+    {
+     "id": "eng.moulding.polymers",
+     "level": 2,
+     "estEnS": 102
+    },
+    {
+     "id": "eng.moulding.drying",
+     "level": 3,
+     "estEnS": 97
+    },
+    {
+     "id": "eng.moulding.fillers",
+     "level": 4,
+     "estEnS": 96
+    }
+   ],
+   "splitPairs": [
+    {
+     "lessons": [
+      "eng.moulding.materials",
+      "eng.moulding.polymers"
+     ],
+     "estEnS": 258
+    },
+    {
+     "lessons": [
+      "eng.moulding.drying",
+      "eng.moulding.fillers"
+     ],
+     "estEnS": 180
+    }
+   ]
+  },
+  {
+   "film": "eng.moulding.moulds",
+   "action": "split",
+   "lessons": [
+    {
+     "id": "eng.moulding.tooling",
+     "level": 1,
+     "wired": true,
+     "points": 12,
+     "missing": 2,
+     "partial": 5
+    },
+    {
+     "id": "eng.moulding.mouldparts",
+     "level": 2,
+     "wired": true,
+     "points": 11,
+     "missing": 0,
+     "partial": 5
+    },
+    {
+     "id": "eng.moulding.mouldcare",
+     "level": 3,
+     "wired": true,
+     "points": 12,
+     "missing": 3,
+     "partial": 3
+    },
+    {
+     "id": "eng.moulding.newmould",
+     "level": 4,
+     "wired": true,
+     "points": 13,
+     "missing": 3,
+     "partial": 3
+    }
+   ],
+   "rendered": true,
+   "nlS": 312,
+   "enS": 331,
+   "plannedS": 266,
+   "scenes": 8,
+   "kb": 229,
+   "wordsNl": 694,
+   "wordsEn": 780,
+   "terms": 22,
+   "termsWithoutCue": [],
+   "points": 48,
+   "pointsMissing": 8,
+   "pointsPartial": 16,
+   "sentencesMissing": 29,
+   "sentencesTotal": 102,
+   "reviewPoints": 9,
+   "estPoints": 9,
+   "addWords": 90,
+   "projEnS": 369,
+   "trimPct": 4,
+   "projEnSAfterTrim": 356,
+   "scenesAfter": 12,
+   "splitPerLesson": [
+    {
+     "id": "eng.moulding.tooling",
+     "level": 1,
+     "estEnS": 104
+    },
+    {
+     "id": "eng.moulding.mouldparts",
+     "level": 2,
+     "estEnS": 158
+    },
+    {
+     "id": "eng.moulding.mouldcare",
+     "level": 3,
+     "estEnS": 90
+    },
+    {
+     "id": "eng.moulding.newmould",
+     "level": 4,
+     "estEnS": 72
+    }
+   ],
+   "splitPairs": [
+    {
+     "lessons": [
+      "eng.moulding.tooling",
+      "eng.moulding.mouldparts"
+     ],
+     "estEnS": 249
+    },
+    {
+     "lessons": [
+      "eng.moulding.mouldcare",
+      "eng.moulding.newmould"
+     ],
+     "estEnS": 150
+    }
+   ]
+  },
+  {
+   "film": "eng.quality.tolerance",
+   "action": "split",
+   "lessons": [
+    {
+     "id": "eng.quality.tolerance",
+     "level": 1,
+     "wired": true,
+     "points": 12,
+     "missing": 2,
+     "partial": 3
+    },
+    {
+     "id": "eng.quality.variation",
+     "level": 1,
+     "wired": true,
+     "points": 12,
+     "missing": 2,
+     "partial": 3
+    },
+    {
+     "id": "eng.quality.capability",
+     "level": 2,
+     "wired": true,
+     "points": 12,
+     "missing": 0,
+     "partial": 6
+    }
+   ],
+   "rendered": true,
+   "nlS": 339,
+   "enS": 359,
+   "plannedS": 268,
+   "scenes": 9,
+   "kb": 233,
+   "wordsNl": 639,
+   "wordsEn": 728,
+   "terms": 17,
+   "termsWithoutCue": [],
+   "points": 36,
+   "pointsMissing": 4,
+   "pointsPartial": 12,
+   "sentencesMissing": 18,
+   "sentencesTotal": 78,
+   "reviewPoints": 8,
+   "estPoints": 8,
+   "addWords": 80,
+   "projEnS": 398,
+   "trimPct": 5,
+   "projEnSAfterTrim": 380,
+   "scenesAfter": 12,
+   "splitPerLesson": [
+    {
+     "id": "eng.quality.tolerance",
+     "level": 1,
+     "estEnS": 158
+    },
+    {
+     "id": "eng.quality.variation",
+     "level": 1,
+     "estEnS": 135
+    },
+    {
+     "id": "eng.quality.capability",
+     "level": 2,
+     "estEnS": 140
+    }
+   ],
+   "splitPairs": [
+    {
+     "lessons": [
+      "eng.quality.tolerance",
+      "eng.quality.variation"
+     ],
+     "estEnS": 278
+    },
+    {
+     "lessons": [
+      "eng.quality.capability"
+     ],
+     "estEnS": 140
+    }
+   ]
+  },
+  {
+   "film": "eng.moulding.machine",
+   "action": "split",
+   "lessons": [
+    {
+     "id": "eng.moulding.machine",
+     "level": 1,
+     "wired": true,
+     "points": 12,
+     "missing": 2,
+     "partial": 4
+    },
+    {
+     "id": "eng.moulding.screw",
+     "level": 2,
+     "wired": true,
+     "points": 10,
+     "missing": 0,
+     "partial": 4
+    },
+    {
+     "id": "eng.moulding.clamp",
+     "level": 3,
+     "wired": true,
+     "points": 12,
+     "missing": 0,
+     "partial": 6
+    },
+    {
+     "id": "eng.moulding.electric",
+     "level": 4,
+     "wired": true,
+     "points": 11,
+     "missing": 5,
+     "partial": 3
+    }
+   ],
+   "rendered": true,
+   "nlS": 338,
+   "enS": 359,
+   "plannedS": 273,
+   "scenes": 8,
+   "kb": 290,
+   "wordsNl": 720,
+   "wordsEn": 815,
+   "terms": 22,
+   "termsWithoutCue": [],
+   "points": 45,
+   "pointsMissing": 7,
+   "pointsPartial": 17,
+   "sentencesMissing": 34,
+   "sentencesTotal": 108,
+   "reviewPoints": 8,
+   "estPoints": 8,
+   "addWords": 80,
+   "projEnS": 394,
+   "trimPct": 4,
+   "projEnSAfterTrim": 379,
+   "scenesAfter": 12,
+   "splitPerLesson": [
+    {
+     "id": "eng.moulding.machine",
+     "level": 1,
+     "estEnS": 165
+    },
+    {
+     "id": "eng.moulding.screw",
+     "level": 2,
+     "estEnS": 105
+    },
+    {
+     "id": "eng.moulding.clamp",
+     "level": 3,
+     "estEnS": 94
+    },
+    {
+     "id": "eng.moulding.electric",
+     "level": 4,
+     "estEnS": 105
+    }
+   ],
+   "splitPairs": [
+    {
+     "lessons": [
+      "eng.moulding.machine",
+      "eng.moulding.screw"
+     ],
+     "estEnS": 257
+    },
+    {
+     "lessons": [
+      "eng.moulding.clamp",
+      "eng.moulding.electric"
+     ],
+     "estEnS": 185
+    }
+   ]
+  },
+  {
+   "film": "eng.power.motor",
+   "action": "split",
+   "lessons": [
+    {
+     "id": "eng.power.basics",
+     "level": 1,
+     "wired": true,
+     "points": 13,
+     "missing": 2,
+     "partial": 4
+    },
+    {
+     "id": "eng.power.motors",
+     "level": 1,
+     "wired": true,
+     "points": 13,
+     "missing": 1,
+     "partial": 5
+    }
+   ],
+   "rendered": true,
+   "nlS": 318,
+   "enS": 350,
+   "plannedS": 286,
+   "scenes": 9,
+   "kb": 283,
+   "wordsNl": 666,
+   "wordsEn": 723,
+   "terms": 12,
+   "termsWithoutCue": [],
+   "points": 26,
+   "pointsMissing": 3,
+   "pointsPartial": 9,
+   "sentencesMissing": 16,
+   "sentencesTotal": 59,
+   "reviewPoints": 8,
+   "estPoints": 8,
+   "addWords": 80,
+   "projEnS": 389,
+   "trimPct": 10,
+   "projEnSAfterTrim": 354,
+   "scenesAfter": 11,
+   "splitPerLesson": [
+    {
+     "id": "eng.power.basics",
+     "level": 1,
+     "estEnS": 214
+    },
+    {
+     "id": "eng.power.motors",
+     "level": 1,
+     "estEnS": 194
+    }
+   ],
+   "splitPairs": [
+    {
+     "lessons": [
+      "eng.power.basics",
+      "eng.power.motors"
+     ],
+     "estEnS": 394
+    }
+   ]
+  },
+  {
+   "film": "pm.perform.tree",
+   "action": "split",
+   "lessons": [
+    {
+     "id": "pm.perform.kpis",
+     "level": 1,
+     "wired": true,
+     "points": 16,
+     "missing": 0,
+     "partial": 3
+    },
+    {
+     "id": "pm.perform.tree",
+     "level": 2,
+     "wired": true,
+     "points": 15,
+     "missing": 1,
+     "partial": 1
+    },
+    {
+     "id": "pm.perform.targets",
+     "level": 2,
+     "wired": true,
+     "points": 15,
+     "missing": 2,
+     "partial": 5
+    },
+    {
+     "id": "pm.perform.gaming",
+     "level": 2,
+     "wired": true,
+     "points": 14,
+     "missing": 0,
+     "partial": 5
+    }
+   ],
+   "rendered": true,
+   "nlS": 348,
+   "enS": 348,
+   "plannedS": 300,
+   "scenes": 8,
+   "kb": 249,
+   "wordsNl": 731,
+   "wordsEn": 741,
+   "terms": 20,
+   "termsWithoutCue": [],
+   "points": 60,
+   "pointsMissing": 3,
+   "pointsPartial": 14,
+   "sentencesMissing": 18,
+   "sentencesTotal": 112,
+   "reviewPoints": 8,
+   "estPoints": 8,
+   "addWords": 80,
+   "projEnS": 386,
+   "trimPct": 0,
+   "projEnSAfterTrim": 386,
+   "scenesAfter": 12,
+   "splitPerLesson": [
+    {
+     "id": "pm.perform.kpis",
+     "level": 1,
+     "estEnS": 108
+    },
+    {
+     "id": "pm.perform.tree",
+     "level": 2,
+     "estEnS": 116
+    },
+    {
+     "id": "pm.perform.targets",
+     "level": 2,
+     "estEnS": 102
+    },
+    {
+     "id": "pm.perform.gaming",
+     "level": 2,
+     "estEnS": 111
+    }
+   ],
+   "splitPairs": [
+    {
+     "lessons": [
+      "pm.perform.kpis",
+      "pm.perform.tree"
+     ],
+     "estEnS": 210
+    },
+    {
+     "lessons": [
+      "pm.perform.targets",
+      "pm.perform.gaming"
+     ],
+     "estEnS": 199
+    }
+   ]
+  },
+  {
+   "film": "eng.quality.spc",
+   "action": "split",
+   "lessons": [
+    {
+     "id": "eng.quality.spc",
+     "level": 2,
+     "wired": true,
+     "points": 13,
+     "missing": 1,
+     "partial": 2
+    },
+    {
+     "id": "eng.spc.tampering",
+     "level": 2,
+     "wired": true,
+     "points": 13,
+     "missing": 2,
+     "partial": 6
+    },
+    {
+     "id": "eng.spc.charts",
+     "level": 2,
+     "wired": true,
+     "points": 13,
+     "missing": 3,
+     "partial": 6
+    }
+   ],
+   "rendered": true,
+   "nlS": 303,
+   "enS": 335,
+   "plannedS": 270,
+   "scenes": 9,
+   "kb": 279,
+   "wordsNl": 698,
+   "wordsEn": 729,
+   "terms": 16,
+   "termsWithoutCue": [
+    "eng.spc.tampering#3 Reactieplan (skipped: Same term and meaning as Reactieplan of eng.quality.spc, which scene 4 names with its cue (the pinned plan on the board); the build resolves a shared term name to the first served lesson, and scene 4 also shows what the tampering lesson adds (the suspect parts set apart).)"
+   ],
+   "points": 39,
+   "pointsMissing": 6,
+   "pointsPartial": 14,
+   "sentencesMissing": 24,
+   "sentencesTotal": 78,
+   "reviewPoints": 8,
+   "estPoints": 8,
+   "addWords": 80,
+   "projEnS": 372,
+   "trimPct": 5,
+   "projEnSAfterTrim": 355,
+   "scenesAfter": 12,
+   "splitPerLesson": [
+    {
+     "id": "eng.quality.spc",
+     "level": 2,
+     "estEnS": 183
+    },
+    {
+     "id": "eng.spc.tampering",
+     "level": 2,
+     "estEnS": 122
+    },
+    {
+     "id": "eng.spc.charts",
+     "level": 2,
+     "estEnS": 113
+    }
+   ],
+   "splitPairs": [
+    {
+     "lessons": [
+      "eng.quality.spc",
+      "eng.spc.tampering"
+     ],
+     "estEnS": 291
+    },
+    {
+     "lessons": [
+      "eng.spc.charts"
+     ],
+     "estEnS": 113
+    }
+   ]
+  },
+  {
+   "film": "eng.drawings.reading",
+   "action": "extend",
+   "lessons": [
+    {
+     "id": "eng.drawings.views",
+     "level": 1,
+     "wired": true,
+     "points": 13,
+     "missing": 1,
+     "partial": 3
+    },
+    {
+     "id": "eng.drawings.gdt",
+     "level": 2,
+     "wired": true,
+     "points": 13,
+     "missing": 1,
+     "partial": 7
+    }
+   ],
+   "rendered": true,
+   "nlS": 303,
+   "enS": 320,
+   "plannedS": 276,
+   "scenes": 8,
+   "kb": 224,
+   "wordsNl": 681,
+   "wordsEn": 753,
+   "terms": 12,
+   "termsWithoutCue": [],
+   "points": 26,
+   "pointsMissing": 2,
+   "pointsPartial": 10,
+   "sentencesMissing": 19,
+   "sentencesTotal": 56,
+   "reviewPoints": 7,
+   "estPoints": 7,
+   "addWords": 70,
+   "projEnS": 350,
+   "trimPct": 6,
+   "projEnSAfterTrim": 331,
+   "scenesAfter": 10
+  },
+  {
+   "film": "pm.negotiate.batna",
+   "action": "split",
+   "lessons": [
+    {
+     "id": "pm.negotiate.interests",
+     "level": 1,
+     "wired": true,
+     "points": 12,
+     "missing": 0,
+     "partial": 3
+    },
+    {
+     "id": "pm.negotiate.batna",
+     "level": 2,
+     "wired": true,
+     "points": 12,
+     "missing": 0,
+     "partial": 1
+    },
+    {
+     "id": "pm.negotiate.anchor",
+     "level": 1,
+     "wired": true,
+     "points": 10,
+     "missing": 0,
+     "partial": 3
+    },
+    {
+     "id": "pm.negotiate.no",
+     "level": 1,
+     "wired": true,
+     "points": 14,
+     "missing": 4,
+     "partial": 5
+    }
+   ],
+   "rendered": true,
+   "nlS": 345,
+   "enS": 351,
+   "plannedS": 300,
+   "scenes": 9,
+   "kb": 272,
+   "wordsNl": 721,
+   "wordsEn": 748,
+   "terms": 18,
+   "termsWithoutCue": [],
+   "points": 48,
+   "pointsMissing": 4,
+   "pointsPartial": 12,
+   "sentencesMissing": 19,
+   "sentencesTotal": 102,
+   "reviewPoints": 6,
+   "estPoints": 6,
+   "addWords": 60,
+   "projEnS": 379,
+   "trimPct": 0,
+   "projEnSAfterTrim": 379,
+   "scenesAfter": 13,
+   "splitPerLesson": [
+    {
+     "id": "pm.negotiate.interests",
+     "level": 1,
+     "estEnS": 122
+    },
+    {
+     "id": "pm.negotiate.batna",
+     "level": 2,
+     "estEnS": 119
+    },
+    {
+     "id": "pm.negotiate.anchor",
+     "level": 1,
+     "estEnS": 103
+    },
+    {
+     "id": "pm.negotiate.no",
+     "level": 1,
+     "estEnS": 96
+    }
+   ],
+   "splitPairs": [
+    {
+     "lessons": [
+      "pm.negotiate.interests",
+      "pm.negotiate.batna"
+     ],
+     "estEnS": 228
+    },
+    {
+     "lessons": [
+      "pm.negotiate.anchor",
+      "pm.negotiate.no"
+     ],
+     "estEnS": 184
+    }
+   ]
+  },
+  {
+   "film": "pm.intake.firsttalk",
+   "action": "split",
+   "lessons": [
+    {
+     "id": "pm.intake.ask",
+     "level": 1,
+     "wired": true,
+     "points": 17,
+     "missing": 0,
+     "partial": 3
+    },
+    {
+     "id": "pm.intake.firsttalk",
+     "level": 2,
+     "wired": true,
+     "points": 16,
+     "missing": 0,
+     "partial": 2
+    },
+    {
+     "id": "pm.lead.listen",
+     "level": 1,
+     "wired": false,
+     "points": 17,
+     "missing": 3,
+     "partial": 6
+    }
+   ],
+   "rendered": true,
+   "nlS": 337,
+   "enS": 343,
+   "plannedS": 292,
+   "scenes": 9,
+   "kb": 266,
+   "wordsNl": 745,
+   "wordsEn": 754,
+   "terms": 15,
+   "termsWithoutCue": [
+    "pm.lead.listen#1 MORE PIES (skipped: Same term and meaning as MORE PIES of pm.intake.firsttalk, which scene 5 names with its cue (the letters card) and builds letter by letter; the build resolves a shared term name to the first served lesson.)",
+    "pm.lead.listen#3 Reflecteren (skipped: Same term and meaning as Reflecteren of pm.intake.firsttalk, named with its cue in scene 5 (the R row); scene 8 shows it under pressure.)",
+    "pm.lead.listen#4 Parafraseren (skipped: Same term and meaning as Parafraseren of pm.intake.firsttalk, named with its cue in scene 5 (the P row); scene 6 and scene 8 show a paraphrase corrected and confirmed.)"
+   ],
+   "points": 50,
+   "pointsMissing": 3,
+   "pointsPartial": 11,
+   "sentencesMissing": 16,
+   "sentencesTotal": 102,
+   "reviewPoints": null,
+   "estPoints": 6,
+   "addWords": 60,
+   "projEnS": 370,
+   "trimPct": 3,
+   "projEnSAfterTrim": 360,
+   "scenesAfter": 12,
+   "splitPerLesson": [
+    {
+     "id": "pm.intake.ask",
+     "level": 1,
+     "estEnS": 143
+    },
+    {
+     "id": "pm.intake.firsttalk",
+     "level": 2,
+     "estEnS": 154
+    },
+    {
+     "id": "pm.lead.listen",
+     "level": 1,
+     "estEnS": 114
+    }
+   ],
+   "splitPairs": [
+    {
+     "lessons": [
+      "pm.intake.ask",
+      "pm.intake.firsttalk"
+     ],
+     "estEnS": 283
+    },
+    {
+     "lessons": [
+      "pm.lead.listen"
+     ],
+     "estEnS": 114
+    }
+   ]
+  },
+  {
+   "film": "eng.ot.isa95",
+   "action": "extend+room",
+   "lessons": [
+    {
+     "id": "eng.ot.levels",
+     "level": 1,
+     "wired": true,
+     "points": 12,
+     "missing": 1,
+     "partial": 5
+    },
+    {
+     "id": "eng.ot.systems",
+     "level": 1,
+     "wired": true,
+     "points": 11,
+     "missing": 1,
+     "partial": 4
+    },
+    {
+     "id": "eng.ot.purdue",
+     "level": 2,
+     "wired": true,
+     "points": 12,
+     "missing": 0,
+     "partial": 4
+    }
+   ],
+   "rendered": true,
+   "nlS": 322,
+   "enS": 345,
+   "plannedS": 287,
+   "scenes": 9,
+   "kb": 276,
+   "wordsNl": 753,
+   "wordsEn": 804,
+   "terms": 16,
+   "termsWithoutCue": [],
+   "points": 35,
+   "pointsMissing": 2,
+   "pointsPartial": 13,
+   "sentencesMissing": 16,
+   "sentencesTotal": 87,
+   "reviewPoints": 5,
+   "estPoints": 5,
+   "addWords": 50,
+   "projEnS": 366,
+   "trimPct": 6,
+   "projEnSAfterTrim": 345,
+   "scenesAfter": 12
+  },
+  {
+   "film": "eng.safety.loto",
+   "action": "extend",
+   "lessons": [
+    {
+     "id": "eng.safety.loto",
+     "level": 1,
+     "wired": true,
+     "points": 14,
+     "missing": 2,
+     "partial": 2
+    }
+   ],
+   "rendered": true,
+   "nlS": 299,
+   "enS": 312,
+   "plannedS": 246,
+   "scenes": 7,
+   "kb": 286,
+   "wordsNl": 784,
+   "wordsEn": 801,
+   "terms": 6,
+   "termsWithoutCue": [],
+   "points": 14,
+   "pointsMissing": 2,
+   "pointsPartial": 2,
+   "sentencesMissing": 5,
+   "sentencesTotal": 29,
+   "reviewPoints": 5,
+   "estPoints": 5,
+   "addWords": 50,
+   "projEnS": 331,
+   "trimPct": 12,
+   "projEnSAfterTrim": 294,
+   "scenesAfter": 8
+  },
+  {
+   "film": "eng.safety.permit",
+   "action": "extend",
+   "lessons": [
+    {
+     "id": "eng.safety.permit",
+     "level": 3,
+     "wired": true,
+     "points": 16,
+     "missing": 3,
+     "partial": 3
+    },
+    {
+     "id": "eng.safety.lmra",
+     "level": 2,
+     "wired": true,
+     "points": 16,
+     "missing": 4,
+     "partial": 3
+    }
+   ],
+   "rendered": true,
+   "nlS": 284,
+   "enS": 301,
+   "plannedS": 260,
+   "scenes": 7,
+   "kb": 269,
+   "wordsNl": 733,
+   "wordsEn": 734,
+   "terms": 11,
+   "termsWithoutCue": [],
+   "points": 32,
+   "pointsMissing": 7,
+   "pointsPartial": 6,
+   "sentencesMissing": 16,
+   "sentencesTotal": 58,
+   "reviewPoints": 5,
+   "estPoints": 5,
+   "addWords": 50,
+   "projEnS": 322,
+   "trimPct": 9,
+   "projEnSAfterTrim": 295,
+   "scenesAfter": 9
+  },
+  {
+   "film": "pm.portfolio.prioritise",
+   "action": "extend+room",
+   "lessons": [
+    {
+     "id": "pm.portfolio.programme",
+     "level": 1,
+     "wired": true,
+     "points": 12,
+     "missing": 0,
+     "partial": 2
+    },
+    {
+     "id": "pm.portfolio.prioritise",
+     "level": 1,
+     "wired": true,
+     "points": 12,
+     "missing": 1,
+     "partial": 6
+    },
+    {
+     "id": "pm.portfolio.capacity",
+     "level": 2,
+     "wired": true,
+     "points": 12,
+     "missing": 0,
+     "partial": 4
+    }
+   ],
+   "rendered": true,
+   "nlS": 336,
+   "enS": 344,
+   "plannedS": 300,
+   "scenes": 9,
+   "kb": 249,
+   "wordsNl": 719,
+   "wordsEn": 757,
+   "terms": 15,
+   "termsWithoutCue": [],
+   "points": 36,
+   "pointsMissing": 1,
+   "pointsPartial": 12,
+   "sentencesMissing": 15,
+   "sentencesTotal": 95,
+   "reviewPoints": 4,
+   "estPoints": 4,
+   "addWords": 40,
+   "projEnS": 362,
+   "trimPct": 0,
+   "projEnSAfterTrim": 362,
+   "scenesAfter": 12
+  },
+  {
+   "film": "eng.machining.overview",
+   "action": "extend",
+   "lessons": [
+    {
+     "id": "eng.machining.processes",
+     "level": 1,
+     "wired": true,
+     "points": 13,
+     "missing": 1,
+     "partial": 6
+    }
+   ],
+   "rendered": true,
+   "nlS": 213,
+   "enS": 238,
+   "plannedS": 150,
+   "scenes": 8,
+   "kb": 345,
+   "wordsNl": 491,
+   "wordsEn": 522,
+   "terms": 6,
+   "termsWithoutCue": [],
+   "points": 13,
+   "pointsMissing": 1,
+   "pointsPartial": 6,
+   "sentencesMissing": 10,
+   "sentencesTotal": 30,
+   "reviewPoints": null,
+   "estPoints": 4,
+   "addWords": 40,
+   "projEnS": 256,
+   "trimPct": 7,
+   "projEnSAfterTrim": 239,
+   "scenesAfter": 9
+  },
+  {
+   "film": "eng.switchgear.fiverules",
+   "action": "extend+room",
+   "lessons": [
+    {
+     "id": "eng.switchgear.safety",
+     "level": 1,
+     "wired": true,
+     "points": 14,
+     "missing": 0,
+     "partial": 1
+    },
+    {
+     "id": "eng.gridops.switching",
+     "level": 2,
+     "wired": true,
+     "points": 13,
+     "missing": 0,
+     "partial": 2
+    },
+    {
+     "id": "eng.safety.nen3140",
+     "level": 2,
+     "wired": true,
+     "points": 13,
+     "missing": 0,
+     "partial": 7
+    }
+   ],
+   "rendered": false,
+   "nlS": 349,
+   "enS": 365,
+   "plannedS": 298,
+   "scenes": 9,
+   "kb": 238,
+   "wordsNl": 794,
+   "wordsEn": 823,
+   "terms": 18,
+   "termsWithoutCue": [
+    "eng.gridops.switching#1 Vijf veiligheidsregels (skipped: Same term and definition as Vijf veiligheidsregels of eng.switchgear.safety, which scene 1 names with its cue (the rules card) and scenes 4 to 6 show rule by rule; the build resolves a shared term name to the first served lesson.)",
+    "eng.gridops.switching#3 IV (skipped: Same term and definition as IV of eng.switchgear.safety, which scene 2 names with its cue (the IV badge); scene 3 shows the IV making the switching plan with the control room.)",
+    "eng.gridops.switching#4 WV (skipped: Same term and definition as WV of eng.switchgear.safety, which scene 2 names with its cue (the WV badge); scene 7 shows the WV releasing the cable.)",
+    "eng.safety.nen3140#0 IV (skipped: Same term and definition as IV of eng.switchgear.safety, named with its cue in scene 2 (the IV badge).)",
+    "eng.safety.nen3140#1 WV (skipped: Same term and definition as WV of eng.switchgear.safety, named with its cue in scene 2 (the WV badge); scene 9 shows the consultant asking for the WV.)",
+    "eng.safety.nen3140#5 Aanwijzing (skipped: Same term and definition as Aanwijzing of eng.switchgear.safety, named with its cue in scene 2 (the written appointment on the roles card).)"
+   ],
+   "points": 40,
+   "pointsMissing": 0,
+   "pointsPartial": 10,
+   "sentencesMissing": 10,
+   "sentencesTotal": 86,
+   "reviewPoints": 3,
+   "estPoints": 3,
+   "addWords": 30,
+   "projEnS": 378,
+   "trimPct": 6,
+   "projEnSAfterTrim": 356,
+   "scenesAfter": 12
+  },
+  {
+   "film": "pm.scaled.pi",
+   "action": "extend+room",
+   "lessons": [
+    {
+     "id": "pm.scaled.why",
+     "level": 1,
+     "wired": true,
+     "points": 14,
+     "missing": 0,
+     "partial": 2
+    },
+    {
+     "id": "pm.scaled.piplanning",
+     "level": 2,
+     "wired": true,
+     "points": 14,
+     "missing": 0,
+     "partial": 3
+    },
+    {
+     "id": "pm.scaled.roles",
+     "level": 3,
+     "wired": true,
+     "points": 16,
+     "missing": 1,
+     "partial": 3
+    }
+   ],
+   "rendered": true,
+   "nlS": 346,
+   "enS": 358,
+   "plannedS": 300,
+   "scenes": 9,
+   "kb": 271,
+   "wordsNl": 760,
+   "wordsEn": 759,
+   "terms": 18,
+   "termsWithoutCue": [],
+   "points": 44,
+   "pointsMissing": 1,
+   "pointsPartial": 8,
+   "sentencesMissing": 10,
+   "sentencesTotal": 88,
+   "reviewPoints": 3,
+   "estPoints": 3,
+   "addWords": 30,
+   "projEnS": 372,
+   "trimPct": 0,
+   "projEnSAfterTrim": 372,
+   "scenesAfter": 12
+  },
+  {
+   "film": "pm.stuck.diagnose",
+   "action": "extend+room",
+   "lessons": [
+    {
+     "id": "pm.stuck.diagnose",
+     "level": 1,
+     "wired": true,
+     "points": 16,
+     "missing": 1,
+     "partial": 2
+    },
+    {
+     "id": "pm.stuck.experiment",
+     "level": 3,
+     "wired": true,
+     "points": 15,
+     "missing": 1,
+     "partial": 2
+    },
+    {
+     "id": "pm.stuck.reset",
+     "level": 3,
+     "wired": true,
+     "points": 17,
+     "missing": 0,
+     "partial": 3
+    }
+   ],
+   "rendered": true,
+   "nlS": 358,
+   "enS": 357,
+   "plannedS": 295,
+   "scenes": 9,
+   "kb": 252,
+   "wordsNl": 712,
+   "wordsEn": 730,
+   "terms": 16,
+   "termsWithoutCue": [],
+   "points": 48,
+   "pointsMissing": 2,
+   "pointsPartial": 7,
+   "sentencesMissing": 9,
+   "sentencesTotal": 101,
+   "reviewPoints": 3,
+   "estPoints": 3,
+   "addWords": 30,
+   "projEnS": 372,
+   "trimPct": 0,
+   "projEnSAfterTrim": 372,
+   "scenesAfter": 12
+  },
+  {
+   "film": "eng.gridbasics.load",
+   "action": "extend+room",
+   "lessons": [
+    {
+     "id": "eng.gridbasics.basics",
+     "level": 1,
+     "wired": true,
+     "points": 12,
+     "missing": 0,
+     "partial": 3
+    },
+    {
+     "id": "eng.gridbasics.load",
+     "level": 2,
+     "wired": true,
+     "points": 13,
+     "missing": 0,
+     "partial": 2
+    }
+   ],
+   "rendered": true,
+   "nlS": 323,
+   "enS": 356,
+   "plannedS": 296,
+   "scenes": 9,
+   "kb": 248,
+   "wordsNl": 682,
+   "wordsEn": 762,
+   "terms": 11,
+   "termsWithoutCue": [],
+   "points": 25,
+   "pointsMissing": 0,
+   "pointsPartial": 5,
+   "sentencesMissing": 6,
+   "sentencesTotal": 50,
+   "reviewPoints": 3,
+   "estPoints": 3,
+   "addWords": 30,
+   "projEnS": 370,
+   "trimPct": 8,
+   "projEnSAfterTrim": 342,
+   "scenesAfter": 11
+  },
+  {
+   "film": "pm.land.adoption",
+   "action": "extend+room",
+   "lessons": [
+    {
+     "id": "pm.land.change",
+     "level": 1,
+     "wired": true,
+     "points": 13,
+     "missing": 2,
+     "partial": 0
+    },
+    {
+     "id": "pm.land.resistance",
+     "level": 2,
+     "wired": true,
+     "points": 14,
+     "missing": 1,
+     "partial": 3
+    },
+    {
+     "id": "pm.land.communication",
+     "level": 3,
+     "wired": true,
+     "points": 15,
+     "missing": 2,
+     "partial": 2
+    }
+   ],
+   "rendered": true,
+   "nlS": 347,
+   "enS": 351,
+   "plannedS": 300,
+   "scenes": 9,
+   "kb": 283,
+   "wordsNl": 732,
+   "wordsEn": 750,
+   "terms": 16,
+   "termsWithoutCue": [],
+   "points": 42,
+   "pointsMissing": 5,
+   "pointsPartial": 5,
+   "sentencesMissing": 10,
+   "sentencesTotal": 85,
+   "reviewPoints": 3,
+   "estPoints": 3,
+   "addWords": 30,
+   "projEnS": 365,
+   "trimPct": 0,
+   "projEnSAfterTrim": 365,
+   "scenesAfter": 12
+  },
+  {
+   "film": "pm.agile.backlog",
+   "action": "extend+room",
+   "lessons": [
+    {
+     "id": "pm.agile.stories",
+     "level": 1,
+     "wired": true,
+     "points": 13,
+     "missing": 0,
+     "partial": 0
+    },
+    {
+     "id": "pm.agile.refine",
+     "level": 2,
+     "wired": true,
+     "points": 13,
+     "missing": 0,
+     "partial": 3
+    },
+    {
+     "id": "pm.agile.points",
+     "level": 3,
+     "wired": true,
+     "points": 15,
+     "missing": 1,
+     "partial": 2
+    }
+   ],
+   "rendered": true,
+   "nlS": 336,
+   "enS": 344,
+   "plannedS": 300,
+   "scenes": 9,
+   "kb": 264,
+   "wordsNl": 750,
+   "wordsEn": 744,
+   "terms": 14,
+   "termsWithoutCue": [],
+   "points": 41,
+   "pointsMissing": 1,
+   "pointsPartial": 5,
+   "sentencesMissing": 7,
+   "sentencesTotal": 94,
+   "reviewPoints": 3,
+   "estPoints": 3,
+   "addWords": 30,
+   "projEnS": 358,
+   "trimPct": 3,
+   "projEnSAfterTrim": 348,
+   "scenesAfter": 11
+  },
+  {
+   "film": "pm.lead.feedback",
+   "action": "extend+room",
+   "lessons": [
+    {
+     "id": "pm.lead.feedback",
+     "level": 1,
+     "wired": true,
+     "points": 15,
+     "missing": 0,
+     "partial": 1
+    },
+    {
+     "id": "pm.perform.dialogue",
+     "level": 1,
+     "wired": true,
+     "points": 15,
+     "missing": 0,
+     "partial": 2
+    },
+    {
+     "id": "pm.negotiate.senior",
+     "level": 3,
+     "wired": true,
+     "points": 17,
+     "missing": 1,
+     "partial": 1
+    }
+   ],
+   "rendered": true,
+   "nlS": 343,
+   "enS": 342,
+   "plannedS": 299,
+   "scenes": 9,
+   "kb": 243,
+   "wordsNl": 749,
+   "wordsEn": 735,
+   "terms": 14,
+   "termsWithoutCue": [],
+   "points": 47,
+   "pointsMissing": 1,
+   "pointsPartial": 4,
+   "sentencesMissing": 7,
+   "sentencesTotal": 89,
+   "reviewPoints": 3,
+   "estPoints": 3,
+   "addWords": 30,
+   "projEnS": 356,
+   "trimPct": 0,
+   "projEnSAfterTrim": 356,
+   "scenesAfter": 12
+  },
+  {
+   "film": "pm.plan.wbs",
+   "action": "extend+room",
+   "lessons": [
+    {
+     "id": "pm.intake.done",
+     "level": 1,
+     "wired": true,
+     "points": 13,
+     "missing": 0,
+     "partial": 6
+    },
+    {
+     "id": "pm.plan.wbs",
+     "level": 1,
+     "wired": true,
+     "points": 12,
+     "missing": 0,
+     "partial": 6
+    },
+    {
+     "id": "pm.plan.estimate",
+     "level": 1,
+     "wired": true,
+     "points": 13,
+     "missing": 0,
+     "partial": 4
+    }
+   ],
+   "rendered": true,
+   "nlS": 338,
+   "enS": 341,
+   "plannedS": 295,
+   "scenes": 9,
+   "kb": 241,
+   "wordsNl": 727,
+   "wordsEn": 760,
+   "terms": 16,
+   "termsWithoutCue": [],
+   "points": 38,
+   "pointsMissing": 0,
+   "pointsPartial": 16,
+   "sentencesMissing": 17,
+   "sentencesTotal": 85,
+   "reviewPoints": 3,
+   "estPoints": 3,
+   "addWords": 30,
+   "projEnS": 354,
+   "trimPct": 0,
+   "projEnSAfterTrim": 354,
+   "scenesAfter": 12
+  },
+  {
+   "film": "pm.intake.stakeholders",
+   "action": "extend",
+   "lessons": [
+    {
+     "id": "pm.intake.stakeholders",
+     "level": 1,
+     "wired": true,
+     "points": 16,
+     "missing": 0,
+     "partial": 0
+    },
+    {
+     "id": "pm.lead.influence",
+     "level": 3,
+     "wired": true,
+     "points": 17,
+     "missing": 0,
+     "partial": 3
+    },
+    {
+     "id": "pm.plan.raci",
+     "level": 2,
+     "wired": true,
+     "points": 14,
+     "missing": 1,
+     "partial": 3
+    }
+   ],
+   "rendered": true,
+   "nlS": 334,
+   "enS": 334,
+   "plannedS": 300,
+   "scenes": 9,
+   "kb": 238,
+   "wordsNl": 760,
+   "wordsEn": 759,
+   "terms": 16,
+   "termsWithoutCue": [
+    "pm.plan.raci#5 Sponsor (skipped: Same name as the term Sponsor of pm.intake.stakeholders, which scene 1 names with its cue (the sponsor in the room); the build resolves a shared term name to the first served lesson. Scene 9 beat 1 says the RACI lesson's own definition in caption and narration (the senior client person who backs the project, decides and removes obstacles) and shows the role agreed in writing (steering group every four weeks, scope within a week, the talk with sales, explaining why).)"
+   ],
+   "points": 47,
+   "pointsMissing": 1,
+   "pointsPartial": 6,
+   "sentencesMissing": 7,
+   "sentencesTotal": 96,
+   "reviewPoints": null,
+   "estPoints": 3,
+   "addWords": 30,
+   "projEnS": 347,
+   "trimPct": 3,
+   "projEnSAfterTrim": 337,
+   "scenesAfter": 11
+  },
+  {
+   "film": "pm.itproject.migration",
+   "action": "extend",
+   "lessons": [
+    {
+     "id": "pm.itproject.rollout",
+     "level": 1,
+     "wired": true,
+     "points": 13,
+     "missing": 0,
+     "partial": 1
+    },
+    {
+     "id": "pm.itproject.migration",
+     "level": 2,
+     "wired": true,
+     "points": 13,
+     "missing": 0,
+     "partial": 1
+    }
+   ],
+   "rendered": true,
+   "nlS": 307,
+   "enS": 328,
+   "plannedS": 300,
+   "scenes": 9,
+   "kb": 247,
+   "wordsNl": 753,
+   "wordsEn": 754,
+   "terms": 10,
+   "termsWithoutCue": [],
+   "points": 26,
+   "pointsMissing": 0,
+   "pointsPartial": 2,
+   "sentencesMissing": 2,
+   "sentencesTotal": 66,
+   "reviewPoints": 3,
+   "estPoints": 3,
+   "addWords": 30,
+   "projEnS": 341,
+   "trimPct": 0,
+   "projEnSAfterTrim": 341,
+   "scenesAfter": 11
+  },
+  {
+   "film": "eng.gridplanning.loadflow",
+   "action": "extend+room",
+   "lessons": [
+    {
+     "id": "eng.gridplanning.loadflow",
+     "level": 2,
+     "wired": true,
+     "points": 12,
+     "missing": 0,
+     "partial": 4
+    },
+    {
+     "id": "eng.gridplanning.redundancy",
+     "level": 3,
+     "wired": true,
+     "points": 15,
+     "missing": 1,
+     "partial": 3
+    }
+   ],
+   "rendered": true,
+   "nlS": 346,
+   "enS": 357,
+   "plannedS": 294,
+   "scenes": 9,
+   "kb": 271,
+   "wordsNl": 743,
+   "wordsEn": 787,
+   "terms": 11,
+   "termsWithoutCue": [],
+   "points": 27,
+   "pointsMissing": 1,
+   "pointsPartial": 7,
+   "sentencesMissing": 11,
+   "sentencesTotal": 62,
+   "reviewPoints": 2,
+   "estPoints": 2,
+   "addWords": 20,
+   "projEnS": 366,
+   "trimPct": 3,
+   "projEnSAfterTrim": 355,
+   "scenesAfter": 11
+  },
+  {
+   "film": "pm.run.escalation",
+   "action": "extend+room",
+   "lessons": [
+    {
+     "id": "pm.run.status",
+     "level": 1,
+     "wired": true,
+     "points": 14,
+     "missing": 0,
+     "partial": 0
+    },
+    {
+     "id": "pm.run.decisions",
+     "level": 2,
+     "wired": true,
+     "points": 13,
+     "missing": 1,
+     "partial": 3
+    },
+    {
+     "id": "pm.portfolio.governance",
+     "level": 1,
+     "wired": true,
+     "points": 12,
+     "missing": 0,
+     "partial": 1
+    }
+   ],
+   "rendered": true,
+   "nlS": 359,
+   "enS": 357,
+   "plannedS": 296,
+   "scenes": 9,
+   "kb": 239,
+   "wordsNl": 761,
+   "wordsEn": 779,
+   "terms": 16,
+   "termsWithoutCue": [
+    "pm.portfolio.governance#3 Besluitenlijst (skipped: Same term as Besluitenlijst of pm.run.decisions, which scene 6 names with its cue (the decision log card and the sheet on the table); scene 9 shows the steering group's minutes as that same list, with owners and dates. The build resolves a shared term name to the first served lesson.)",
+    "pm.portfolio.governance#4 Escalatie (skipped: Same term as Escalatie of pm.run.status, which scene 5 names with its cue (the call to the IT manager); scene 3 shows the governance side, the level allowed to decide and the two-week rule, and scene 6 that escalating is the system working. The build resolves a shared term name to the first served lesson.)"
+   ],
+   "points": 39,
+   "pointsMissing": 1,
+   "pointsPartial": 4,
+   "sentencesMissing": 7,
+   "sentencesTotal": 93,
+   "reviewPoints": 2,
+   "estPoints": 2,
+   "addWords": 20,
+   "projEnS": 366,
+   "trimPct": 0,
+   "projEnSAfterTrim": 366,
+   "scenesAfter": 11
+  },
+  {
+   "film": "eng.mechanics.tensile",
+   "action": "extend+room",
+   "lessons": [
+    {
+     "id": "eng.mechanics.strength",
+     "level": 1,
+     "wired": true,
+     "points": 12,
+     "missing": 0,
+     "partial": 3
+    }
+   ],
+   "rendered": true,
+   "nlS": 315,
+   "enS": 353,
+   "plannedS": 184,
+   "scenes": 6,
+   "kb": 208,
+   "wordsNl": 744,
+   "wordsEn": 800,
+   "terms": 6,
+   "termsWithoutCue": [],
+   "points": 12,
+   "pointsMissing": 0,
+   "pointsPartial": 3,
+   "sentencesMissing": 4,
+   "sentencesTotal": 31,
+   "reviewPoints": null,
+   "estPoints": 2,
+   "addWords": 20,
+   "projEnS": 362,
+   "trimPct": 13,
+   "projEnSAfterTrim": 316,
+   "scenesAfter": 7
+  },
+  {
+   "film": "pm.agile.kanban",
+   "action": "extend+room",
+   "lessons": [
+    {
+     "id": "pm.agile.board",
+     "level": 1,
+     "wired": true,
+     "points": 13,
+     "missing": 0,
+     "partial": 1
+    },
+    {
+     "id": "pm.agile.wip",
+     "level": 2,
+     "wired": true,
+     "points": 13,
+     "missing": 0,
+     "partial": 1
+    },
+    {
+     "id": "pm.agile.flowmetrics",
+     "level": 3,
+     "wired": true,
+     "points": 15,
+     "missing": 0,
+     "partial": 2
+    }
+   ],
+   "rendered": true,
+   "nlS": 343,
+   "enS": 350,
+   "plannedS": 300,
+   "scenes": 9,
+   "kb": 218,
+   "wordsNl": 761,
+   "wordsEn": 761,
+   "terms": 14,
+   "termsWithoutCue": [],
+   "points": 41,
+   "pointsMissing": 0,
+   "pointsPartial": 4,
+   "sentencesMissing": 4,
+   "sentencesTotal": 95,
+   "reviewPoints": null,
+   "estPoints": 2,
+   "addWords": 20,
+   "projEnS": 359,
+   "trimPct": 4,
+   "projEnSAfterTrim": 345,
+   "scenesAfter": 12
+  },
+  {
+   "film": "pm.agile.scrum",
+   "action": "extend+room",
+   "lessons": [
+    {
+     "id": "pm.agile.scrumbasics",
+     "level": 1,
+     "wired": true,
+     "points": 13,
+     "missing": 0,
+     "partial": 0
+    },
+    {
+     "id": "pm.agile.events",
+     "level": 2,
+     "wired": true,
+     "points": 13,
+     "missing": 0,
+     "partial": 2
+    },
+    {
+     "id": "pm.agile.artefacts",
+     "level": 3,
+     "wired": true,
+     "points": 15,
+     "missing": 0,
+     "partial": 3
+    }
+   ],
+   "rendered": true,
+   "nlS": 333,
+   "enS": 349,
+   "plannedS": 300,
+   "scenes": 9,
+   "kb": 264,
+   "wordsNl": 748,
+   "wordsEn": 751,
+   "terms": 17,
+   "termsWithoutCue": [],
+   "points": 41,
+   "pointsMissing": 0,
+   "pointsPartial": 5,
+   "sentencesMissing": 5,
+   "sentencesTotal": 97,
+   "reviewPoints": null,
+   "estPoints": 2,
+   "addWords": 20,
+   "projEnS": 358,
+   "trimPct": 3,
+   "projEnSAfterTrim": 347,
+   "scenesAfter": 11
+  },
+  {
+   "film": "pm.consult.proposal",
+   "action": "extend+room",
+   "lessons": [
+    {
+     "id": "pm.consult.proposal",
+     "level": 1,
+     "wired": true,
+     "points": 16,
+     "missing": 0,
+     "partial": 4
+    },
+    {
+     "id": "pm.consult.pricing",
+     "level": 2,
+     "wired": true,
+     "points": 17,
+     "missing": 0,
+     "partial": 2
+    }
+   ],
+   "rendered": true,
+   "nlS": 335,
+   "enS": 344,
+   "plannedS": 300,
+   "scenes": 9,
+   "kb": 251,
+   "wordsNl": 728,
+   "wordsEn": 753,
+   "terms": 11,
+   "termsWithoutCue": [],
+   "points": 33,
+   "pointsMissing": 0,
+   "pointsPartial": 6,
+   "sentencesMissing": 6,
+   "sentencesTotal": 72,
+   "reviewPoints": null,
+   "estPoints": 2,
+   "addWords": 20,
+   "projEnS": 353,
+   "trimPct": 2,
+   "projEnSAfterTrim": 346,
+   "scenesAfter": 11
+  },
+  {
+   "film": "pm.run.rhythm",
+   "action": "extend+room",
+   "lessons": [
+    {
+     "id": "pm.run.rhythm",
+     "level": 1,
+     "wired": true,
+     "points": 13,
+     "missing": 0,
+     "partial": 1
+    },
+    {
+     "id": "pm.intake.start",
+     "level": 2,
+     "wired": true,
+     "points": 14,
+     "missing": 1,
+     "partial": 2
+    },
+    {
+     "id": "pm.perform.rhythm",
+     "level": 2,
+     "wired": true,
+     "points": 15,
+     "missing": 1,
+     "partial": 4
+    }
+   ],
+   "rendered": true,
+   "nlS": 338,
+   "enS": 342,
+   "plannedS": 300,
+   "scenes": 9,
+   "kb": 276,
+   "wordsNl": 737,
+   "wordsEn": 759,
+   "terms": 15,
+   "termsWithoutCue": [
+    "pm.intake.start#3 Stuurgroep (skipped: Same term as Stuurgroep of pm.run.rhythm, which scene 4 names with its cue (the steering group card and its weeks on the calendar strip); scene 4 also says the monthly steering group where the sponsor checks progress and decides, as this lesson defines it. The build resolves a shared term name to the first served lesson.)"
+   ],
+   "points": 42,
+   "pointsMissing": 2,
+   "pointsPartial": 7,
+   "sentencesMissing": 9,
+   "sentencesTotal": 86,
+   "reviewPoints": 2,
+   "estPoints": 2,
+   "addWords": 20,
+   "projEnS": 351,
+   "trimPct": 0,
+   "projEnSAfterTrim": 351,
+   "scenesAfter": 12
+  },
+  {
+   "film": "pm.land.handover",
+   "action": "extend",
+   "lessons": [
+    {
+     "id": "pm.land.handover",
+     "level": 4,
+     "wired": true,
+     "points": 15,
+     "missing": 0,
+     "partial": 2
+    },
+    {
+     "id": "pm.close.acceptance",
+     "level": 1,
+     "wired": true,
+     "points": 13,
+     "missing": 0,
+     "partial": 0
+    },
+    {
+     "id": "pm.land.sustain",
+     "level": 1,
+     "wired": true,
+     "points": 13,
+     "missing": 0,
+     "partial": 2
+    }
+   ],
+   "rendered": true,
+   "nlS": 336,
+   "enS": 332,
+   "plannedS": 300,
+   "scenes": 9,
+   "kb": 248,
+   "wordsNl": 743,
+   "wordsEn": 758,
+   "terms": 16,
+   "termsWithoutCue": [
+    "pm.close.acceptance#4 Lijnorganisatie (skipped: Same term as Lijnorganisatie of pm.land.handover, which scene 1 names with its cue (the line organisation card); scene 5 beat 2 says this lesson's own definition (the line, the normal hierarchy, not the temporary team) and shows the owner in the line on the card. The build resolves a shared term name to the first served lesson.)"
+   ],
+   "points": 41,
+   "pointsMissing": 0,
+   "pointsPartial": 4,
+   "sentencesMissing": 5,
+   "sentencesTotal": 87,
+   "reviewPoints": 2,
+   "estPoints": 2,
+   "addWords": 20,
+   "projEnS": 341,
+   "trimPct": 0,
+   "projEnSAfterTrim": 341,
+   "scenesAfter": 11
+  },
+  {
+   "film": "eng.switchgear.devices",
+   "action": "extend",
+   "lessons": [
+    {
+     "id": "eng.switchgear.devices",
+     "level": 1,
+     "wired": true,
+     "points": 12,
+     "missing": 0,
+     "partial": 2
+    },
+    {
+     "id": "eng.switchgear.installations",
+     "level": 1,
+     "wired": true,
+     "points": 12,
+     "missing": 2,
+     "partial": 3
+    }
+   ],
+   "rendered": true,
+   "nlS": 291,
+   "enS": 310,
+   "plannedS": 257,
+   "scenes": 8,
+   "kb": 221,
+   "wordsNl": 673,
+   "wordsEn": 686,
+   "terms": 12,
+   "termsWithoutCue": [],
+   "points": 24,
+   "pointsMissing": 2,
+   "pointsPartial": 5,
+   "sentencesMissing": 10,
+   "sentencesTotal": 49,
+   "reviewPoints": 2,
+   "estPoints": 2,
+   "addWords": 20,
+   "projEnS": 319,
+   "trimPct": 0,
+   "projEnSAfterTrim": 319,
+   "scenesAfter": 10
+  },
+  {
+   "film": "eng.gridplanning.flex",
+   "action": "extend+room",
+   "lessons": [
+    {
+     "id": "eng.gridplanning.flex",
+     "level": 2,
+     "wired": true,
+     "points": 12,
+     "missing": 0,
+     "partial": 3
+    },
+    {
+     "id": "eng.gridplanning.storage",
+     "level": 3,
+     "wired": true,
+     "points": 16,
+     "missing": 0,
+     "partial": 4
+    }
+   ],
+   "rendered": false,
+   "nlS": 317,
+   "enS": 348,
+   "plannedS": 296,
+   "scenes": 9,
+   "kb": 282,
+   "wordsNl": 721,
+   "wordsEn": 786,
+   "terms": 12,
+   "termsWithoutCue": [],
+   "points": 28,
+   "pointsMissing": 0,
+   "pointsPartial": 7,
+   "sentencesMissing": 7,
+   "sentencesTotal": 57,
+   "reviewPoints": 1,
+   "estPoints": 1,
+   "addWords": 10,
+   "projEnS": 352,
+   "trimPct": 3,
+   "projEnSAfterTrim": 341,
+   "scenesAfter": 11
+  },
+  {
+   "film": "pm.outside.steering",
+   "action": "extend",
+   "lessons": [
+    {
+     "id": "pm.outside.progress",
+     "level": 1,
+     "wired": true,
+     "points": 13,
+     "missing": 0,
+     "partial": 0
+    },
+    {
+     "id": "pm.outside.decide",
+     "level": 2,
+     "wired": true,
+     "points": 12,
+     "missing": 0,
+     "partial": 0
+    }
+   ],
+   "rendered": true,
+   "nlS": 340,
+   "enS": 341,
+   "plannedS": 300,
+   "scenes": 9,
+   "kb": 244,
+   "wordsNl": 744,
+   "wordsEn": 748,
+   "terms": 10,
+   "termsWithoutCue": [],
+   "points": 25,
+   "pointsMissing": 0,
+   "pointsPartial": 0,
+   "sentencesMissing": 0,
+   "sentencesTotal": 51,
+   "reviewPoints": 1,
+   "estPoints": 1,
+   "addWords": 10,
+   "projEnS": 346,
+   "trimPct": 0,
+   "projEnSAfterTrim": 346,
+   "scenesAfter": 9
+  },
+  {
+   "film": "pm.outside.jargon",
+   "action": "extend",
+   "lessons": [
+    {
+     "id": "pm.outside.fail",
+     "level": 2,
+     "wired": true,
+     "points": 13,
+     "missing": 0,
+     "partial": 1
+    },
+    {
+     "id": "pm.outside.jargon",
+     "level": 4,
+     "wired": true,
+     "points": 15,
+     "missing": 0,
+     "partial": 1
+    }
+   ],
+   "rendered": true,
+   "nlS": 324,
+   "enS": 338,
+   "plannedS": 300,
+   "scenes": 9,
+   "kb": 240,
+   "wordsNl": 746,
+   "wordsEn": 756,
+   "terms": 10,
+   "termsWithoutCue": [],
+   "points": 28,
+   "pointsMissing": 0,
+   "pointsPartial": 2,
+   "sentencesMissing": 2,
+   "sentencesTotal": 49,
+   "reviewPoints": 1,
+   "estPoints": 1,
+   "addWords": 10,
+   "projEnS": 342,
+   "trimPct": 4,
+   "projEnSAfterTrim": 329,
+   "scenesAfter": 11
+  },
+  {
+   "film": "pm.itproject.mvp",
+   "action": "extend",
+   "lessons": [
+    {
+     "id": "pm.itproject.requirements",
+     "level": 1,
+     "wired": true,
+     "points": 13,
+     "missing": 0,
+     "partial": 2
+    },
+    {
+     "id": "pm.itproject.mvp",
+     "level": 2,
+     "wired": true,
+     "points": 13,
+     "missing": 0,
+     "partial": 1
+    }
+   ],
+   "rendered": true,
+   "nlS": 323,
+   "enS": 332,
+   "plannedS": 300,
+   "scenes": 9,
+   "kb": 247,
+   "wordsNl": 754,
+   "wordsEn": 751,
+   "terms": 11,
+   "termsWithoutCue": [],
+   "points": 26,
+   "pointsMissing": 0,
+   "pointsPartial": 3,
+   "sentencesMissing": 3,
+   "sentencesTotal": 63,
+   "reviewPoints": 1,
+   "estPoints": 1,
+   "addWords": 10,
+   "projEnS": 336,
+   "trimPct": 0,
+   "projEnSAfterTrim": 336,
+   "scenesAfter": 11
+  },
+  {
+   "film": "eng.gridops.outage",
+   "action": "extend",
+   "lessons": [
+    {
+     "id": "eng.gridops.outage",
+     "level": 1,
+     "wired": true,
+     "points": 13,
+     "missing": 0,
+     "partial": 2
+    }
+   ],
+   "rendered": true,
+   "nlS": 296,
+   "enS": 316,
+   "plannedS": 296,
+   "scenes": 7,
+   "kb": 275,
+   "wordsNl": 698,
+   "wordsEn": 713,
+   "terms": 6,
+   "termsWithoutCue": [],
+   "points": 13,
+   "pointsMissing": 0,
+   "pointsPartial": 2,
+   "sentencesMissing": 2,
+   "sentencesTotal": 34,
+   "reviewPoints": null,
+   "estPoints": 1,
+   "addWords": 10,
+   "projEnS": 320,
+   "trimPct": 11,
+   "projEnSAfterTrim": 285,
+   "scenesAfter": 8
+  },
+  {
+   "film": "eng.power.hydraulics",
+   "action": "extend",
+   "lessons": [
+    {
+     "id": "eng.power.hydraulics",
+     "level": 2,
+     "wired": true,
+     "points": 13,
+     "missing": 0,
+     "partial": 3
+    }
+   ],
+   "rendered": true,
+   "nlS": 284,
+   "enS": 314,
+   "plannedS": 288,
+   "scenes": 7,
+   "kb": 215,
+   "wordsNl": 676,
+   "wordsEn": 730,
+   "terms": 6,
+   "termsWithoutCue": [],
+   "points": 13,
+   "pointsMissing": 0,
+   "pointsPartial": 3,
+   "sentencesMissing": 3,
+   "sentencesTotal": 32,
+   "reviewPoints": null,
+   "estPoints": 1,
+   "addWords": 10,
+   "projEnS": 318,
+   "trimPct": 6,
+   "projEnSAfterTrim": 299,
+   "scenesAfter": 8
+  },
+  {
+   "film": "eng.power.drives",
+   "action": "extend",
+   "lessons": [
+    {
+     "id": "eng.power.drives",
+     "level": 1,
+     "wired": true,
+     "points": 12,
+     "missing": 0,
+     "partial": 2
+    }
+   ],
+   "rendered": true,
+   "nlS": 289,
+   "enS": 309,
+   "plannedS": 298,
+   "scenes": 9,
+   "kb": 282,
+   "wordsNl": 719,
+   "wordsEn": 738,
+   "terms": 6,
+   "termsWithoutCue": [],
+   "points": 12,
+   "pointsMissing": 0,
+   "pointsPartial": 2,
+   "sentencesMissing": 2,
+   "sentencesTotal": 27,
+   "reviewPoints": null,
+   "estPoints": 1,
+   "addWords": 10,
+   "projEnS": 313,
+   "trimPct": 13,
+   "projEnSAfterTrim": 273,
+   "scenesAfter": 10
+  },
+  {
+   "film": "eng.mechanics.fatigue",
+   "action": "extend",
+   "lessons": [
+    {
+     "id": "eng.mechanics.fatigue",
+     "level": 1,
+     "wired": true,
+     "points": 12,
+     "missing": 0,
+     "partial": 2
+    }
+   ],
+   "rendered": true,
+   "nlS": 265,
+   "enS": 298,
+   "plannedS": 264,
+   "scenes": 6,
+   "kb": 198,
+   "wordsNl": 709,
+   "wordsEn": 735,
+   "terms": 6,
+   "termsWithoutCue": [],
+   "points": 12,
+   "pointsMissing": 0,
+   "pointsPartial": 2,
+   "sentencesMissing": 2,
+   "sentencesTotal": 28,
+   "reviewPoints": null,
+   "estPoints": 1,
+   "addWords": 10,
+   "projEnS": 302,
+   "trimPct": 12,
+   "projEnSAfterTrim": 266,
+   "scenesAfter": 7
+  },
+  {
+   "film": "eng.maintenance.tpm",
+   "action": "extend",
+   "lessons": [
+    {
+     "id": "eng.maintenance.tpm",
+     "level": 1,
+     "wired": true,
+     "points": 12,
+     "missing": 0,
+     "partial": 2
+    }
+   ],
+   "rendered": true,
+   "nlS": 268,
+   "enS": 291,
+   "plannedS": 256,
+   "scenes": 8,
+   "kb": 275,
+   "wordsNl": 647,
+   "wordsEn": 665,
+   "terms": 5,
+   "termsWithoutCue": [],
+   "points": 12,
+   "pointsMissing": 0,
+   "pointsPartial": 2,
+   "sentencesMissing": 2,
+   "sentencesTotal": 25,
+   "reviewPoints": 1,
+   "estPoints": 1,
+   "addWords": 10,
+   "projEnS": 295,
+   "trimPct": 0,
+   "projEnSAfterTrim": 295,
+   "scenesAfter": 9
+  },
+  {
+   "film": "eng.gridbasics.congestion",
+   "action": "none",
+   "lessons": [
+    {
+     "id": "eng.gridbasics.congestion",
+     "level": 1,
+     "wired": true,
+     "points": 12,
+     "missing": 0,
+     "partial": 0
+    },
+    {
+     "id": "eng.gridbasics.roles",
+     "level": 1,
+     "wired": true,
+     "points": 12,
+     "missing": 1,
+     "partial": 3
+    }
+   ],
+   "rendered": true,
+   "nlS": 339,
+   "enS": 359,
+   "plannedS": 298,
+   "scenes": 9,
+   "kb": 252,
+   "wordsNl": 721,
+   "wordsEn": 797,
+   "terms": 11,
+   "termsWithoutCue": [],
+   "points": 24,
+   "pointsMissing": 1,
+   "pointsPartial": 3,
+   "sentencesMissing": 4,
+   "sentencesTotal": 47,
+   "reviewPoints": 0,
+   "estPoints": 0,
+   "addWords": 0,
+   "projEnS": 359,
+   "trimPct": 9,
+   "projEnSAfterTrim": 327,
+   "scenesAfter": 9
+  },
+  {
+   "film": "pm.outside.questions",
+   "action": "none",
+   "lessons": [
+    {
+     "id": "pm.outside.phasequestions",
+     "level": 1,
+     "wired": true,
+     "points": 13,
+     "missing": 0,
+     "partial": 1
+    },
+    {
+     "id": "pm.outside.estimates",
+     "level": 3,
+     "wired": true,
+     "points": 14,
+     "missing": 0,
+     "partial": 0
+    }
+   ],
+   "rendered": true,
+   "nlS": 342,
+   "enS": 344,
+   "plannedS": 300,
+   "scenes": 9,
+   "kb": 242,
+   "wordsNl": 738,
+   "wordsEn": 759,
+   "terms": 10,
+   "termsWithoutCue": [],
+   "points": 27,
+   "pointsMissing": 0,
+   "pointsPartial": 1,
+   "sentencesMissing": 1,
+   "sentencesTotal": 56,
+   "reviewPoints": 0,
+   "estPoints": 0,
+   "addWords": 0,
+   "projEnS": 344,
+   "trimPct": 0,
+   "projEnSAfterTrim": 344,
+   "scenesAfter": 9
+  },
+  {
+   "film": "eng.switchgear.protection",
+   "action": "none",
+   "lessons": [
+    {
+     "id": "eng.switchgear.protection",
+     "level": 1,
+     "wired": true,
+     "points": 12,
+     "missing": 0,
+     "partial": 2
+    },
+    {
+     "id": "eng.switchgear.selectivity",
+     "level": 2,
+     "wired": true,
+     "points": 12,
+     "missing": 0,
+     "partial": 0
+    }
+   ],
+   "rendered": false,
+   "nlS": 321,
+   "enS": 341,
+   "plannedS": 290,
+   "scenes": 9,
+   "kb": 273,
+   "wordsNl": 729,
+   "wordsEn": 770,
+   "terms": 11,
+   "termsWithoutCue": [],
+   "points": 24,
+   "pointsMissing": 0,
+   "pointsPartial": 2,
+   "sentencesMissing": 2,
+   "sentencesTotal": 48,
+   "reviewPoints": 0,
+   "estPoints": 0,
+   "addWords": 0,
+   "projEnS": 341,
+   "trimPct": 5,
+   "projEnSAfterTrim": 324,
+   "scenesAfter": 9
+  },
+  {
+   "film": "pm.agile.forecast",
+   "action": "none",
+   "lessons": [
+    {
+     "id": "pm.agile.forecast",
+     "level": 4,
+     "wired": true,
+     "points": 15,
+     "missing": 0,
+     "partial": 1
+    },
+    {
+     "id": "pm.agile.flowsteer",
+     "level": 4,
+     "wired": true,
+     "points": 15,
+     "missing": 0,
+     "partial": 0
+    }
+   ],
+   "rendered": true,
+   "nlS": 313,
+   "enS": 341,
+   "plannedS": 300,
+   "scenes": 9,
+   "kb": 240,
+   "wordsNl": 771,
+   "wordsEn": 774,
+   "terms": 10,
+   "termsWithoutCue": [],
+   "points": 30,
+   "pointsMissing": 0,
+   "pointsPartial": 1,
+   "sentencesMissing": 1,
+   "sentencesTotal": 63,
+   "reviewPoints": null,
+   "estPoints": 0,
+   "addWords": 0,
+   "projEnS": 341,
+   "trimPct": 3,
+   "projEnSAfterTrim": 331,
+   "scenesAfter": 9
+  },
+  {
+   "film": "eng.gridbasics.path",
+   "action": "none",
+   "lessons": [
+    {
+     "id": "eng.gridbasics.levels",
+     "level": 1,
+     "wired": true,
+     "points": 12,
+     "missing": 0,
+     "partial": 1
+    },
+    {
+     "id": "eng.gridbasics.path",
+     "level": 2,
+     "wired": true,
+     "points": 13,
+     "missing": 0,
+     "partial": 0
+    }
+   ],
+   "rendered": false,
+   "nlS": 315,
+   "enS": 338,
+   "plannedS": 294,
+   "scenes": 9,
+   "kb": 279,
+   "wordsNl": 717,
+   "wordsEn": 764,
+   "terms": 10,
+   "termsWithoutCue": [],
+   "points": 25,
+   "pointsMissing": 0,
+   "pointsPartial": 1,
+   "sentencesMissing": 1,
+   "sentencesTotal": 43,
+   "reviewPoints": 0,
+   "estPoints": 0,
+   "addWords": 0,
+   "projEnS": 338,
+   "trimPct": 6,
+   "projEnSAfterTrim": 318,
+   "scenesAfter": 9
+  },
+  {
+   "film": "eng.transformers.principle",
+   "action": "none",
+   "lessons": [
+    {
+     "id": "eng.transformers.principle",
+     "level": 1,
+     "wired": true,
+     "points": 12,
+     "missing": 0,
+     "partial": 2
+    }
+   ],
+   "rendered": false,
+   "nlS": 302,
+   "enS": 338,
+   "plannedS": 300,
+   "scenes": 9,
+   "kb": 256,
+   "wordsNl": 686,
+   "wordsEn": 764,
+   "terms": 6,
+   "termsWithoutCue": [],
+   "points": 12,
+   "pointsMissing": 0,
+   "pointsPartial": 2,
+   "sentencesMissing": 2,
+   "sentencesTotal": 30,
+   "reviewPoints": 0,
+   "estPoints": 0,
+   "addWords": 0,
+   "projEnS": 338,
+   "trimPct": 7,
+   "projEnSAfterTrim": 315,
+   "scenesAfter": 9
+  },
+  {
+   "film": "pm.outside.disagree",
+   "action": "none",
+   "lessons": [
+    {
+     "id": "pm.outside.disagree",
+     "level": 2,
+     "wired": true,
+     "points": 13,
+     "missing": 0,
+     "partial": 0
+    },
+    {
+     "id": "pm.outside.time",
+     "level": 3,
+     "wired": true,
+     "points": 16,
+     "missing": 0,
+     "partial": 1
+    }
+   ],
+   "rendered": true,
+   "nlS": 335,
+   "enS": 338,
+   "plannedS": 300,
+   "scenes": 9,
+   "kb": 246,
+   "wordsNl": 719,
+   "wordsEn": 731,
+   "terms": 9,
+   "termsWithoutCue": [],
+   "points": 29,
+   "pointsMissing": 0,
+   "pointsPartial": 1,
+   "sentencesMissing": 1,
+   "sentencesTotal": 58,
+   "reviewPoints": 0,
+   "estPoints": 0,
+   "addWords": 0,
+   "projEnS": 338,
+   "trimPct": 0,
+   "projEnSAfterTrim": 338,
+   "scenesAfter": 9
+  },
+  {
+   "film": "eng.mechanics.load",
+   "action": "none",
+   "lessons": [
+    {
+     "id": "eng.mechanics.forces",
+     "level": 1,
+     "wired": true,
+     "points": 12,
+     "missing": 0,
+     "partial": 3
+    },
+    {
+     "id": "eng.mechanics.stress",
+     "level": 2,
+     "wired": true,
+     "points": 13,
+     "missing": 0,
+     "partial": 2
+    }
+   ],
+   "rendered": false,
+   "nlS": 305,
+   "enS": 337,
+   "plannedS": 294,
+   "scenes": 7,
+   "kb": 255,
+   "wordsNl": 693,
+   "wordsEn": 760,
+   "terms": 12,
+   "termsWithoutCue": [],
+   "points": 25,
+   "pointsMissing": 0,
+   "pointsPartial": 5,
+   "sentencesMissing": 5,
+   "sentencesTotal": 63,
+   "reviewPoints": 0,
+   "estPoints": 0,
+   "addWords": 0,
+   "projEnS": 337,
+   "trimPct": 5,
+   "projEnSAfterTrim": 320,
+   "scenesAfter": 7
+  },
+  {
+   "film": "pm.scaled.hybrid",
+   "action": "none",
+   "lessons": [
+    {
+     "id": "pm.scaled.stagegate",
+     "level": 1,
+     "wired": true,
+     "points": 15,
+     "missing": 0,
+     "partial": 0
+    },
+    {
+     "id": "pm.scaled.longlead",
+     "level": 2,
+     "wired": true,
+     "points": 13,
+     "missing": 0,
+     "partial": 1
+    }
+   ],
+   "rendered": true,
+   "nlS": 334,
+   "enS": 337,
+   "plannedS": 300,
+   "scenes": 9,
+   "kb": 250,
+   "wordsNl": 758,
+   "wordsEn": 755,
+   "terms": 10,
+   "termsWithoutCue": [],
+   "points": 28,
+   "pointsMissing": 0,
+   "pointsPartial": 1,
+   "sentencesMissing": 1,
+   "sentencesTotal": 53,
+   "reviewPoints": 0,
+   "estPoints": 0,
+   "addWords": 0,
+   "projEnS": 337,
+   "trimPct": 0,
+   "projEnSAfterTrim": 337,
+   "scenesAfter": 9
+  },
+  {
+   "film": "eng.machining.workholding",
+   "action": "none",
+   "lessons": [
+    {
+     "id": "eng.machining.fixtures",
+     "level": 1,
+     "wired": true,
+     "points": 13,
+     "missing": 0,
+     "partial": 1
+    }
+   ],
+   "rendered": false,
+   "nlS": 310,
+   "enS": 335,
+   "plannedS": 268,
+   "scenes": 8,
+   "kb": 280,
+   "wordsNl": 705,
+   "wordsEn": 756,
+   "terms": 6,
+   "termsWithoutCue": [],
+   "points": 13,
+   "pointsMissing": 0,
+   "pointsPartial": 1,
+   "sentencesMissing": 1,
+   "sentencesTotal": 21,
+   "reviewPoints": null,
+   "estPoints": 0,
+   "addWords": 0,
+   "projEnS": 335,
+   "trimPct": 8,
+   "projEnSAfterTrim": 308,
+   "scenesAfter": 8
+  },
+  {
+   "film": "pm.devops.pipeline",
+   "action": "none",
+   "lessons": [
+    {
+     "id": "pm.devops.pipeline",
+     "level": 1,
+     "wired": true,
+     "points": 13,
+     "missing": 0,
+     "partial": 1
+    },
+    {
+     "id": "pm.devops.fourkeys",
+     "level": 1,
+     "wired": true,
+     "points": 13,
+     "missing": 0,
+     "partial": 0
+    }
+   ],
+   "rendered": true,
+   "nlS": 329,
+   "enS": 333,
+   "plannedS": 300,
+   "scenes": 9,
+   "kb": 229,
+   "wordsNl": 763,
+   "wordsEn": 764,
+   "terms": 12,
+   "termsWithoutCue": [],
+   "points": 26,
+   "pointsMissing": 0,
+   "pointsPartial": 1,
+   "sentencesMissing": 1,
+   "sentencesTotal": 56,
+   "reviewPoints": null,
+   "estPoints": 0,
+   "addWords": 0,
+   "projEnS": 333,
+   "trimPct": 5,
+   "projEnSAfterTrim": 316,
+   "scenesAfter": 9
+  },
+  {
+   "film": "pm.outside.experts",
+   "action": "none",
+   "lessons": [
+    {
+     "id": "pm.outside.trust",
+     "level": 1,
+     "wired": true,
+     "points": 13,
+     "missing": 0,
+     "partial": 0
+    },
+    {
+     "id": "pm.outside.redflags",
+     "level": 4,
+     "wired": true,
+     "points": 14,
+     "missing": 0,
+     "partial": 0
+    }
+   ],
+   "rendered": true,
+   "nlS": 330,
+   "enS": 330,
+   "plannedS": 300,
+   "scenes": 9,
+   "kb": 242,
+   "wordsNl": 727,
+   "wordsEn": 740,
+   "terms": 8,
+   "termsWithoutCue": [],
+   "points": 27,
+   "pointsMissing": 0,
+   "pointsPartial": 0,
+   "sentencesMissing": 0,
+   "sentencesTotal": 56,
+   "reviewPoints": 0,
+   "estPoints": 0,
+   "addWords": 0,
+   "projEnS": 330,
+   "trimPct": 0,
+   "projEnSAfterTrim": 330,
+   "scenesAfter": 9
+  },
+  {
+   "film": "pm.itproject.uat",
+   "action": "none",
+   "lessons": [
+    {
+     "id": "pm.itproject.uat",
+     "level": 1,
+     "wired": true,
+     "points": 13,
+     "missing": 0,
+     "partial": 1
+    },
+    {
+     "id": "pm.itproject.defects",
+     "level": 2,
+     "wired": true,
+     "points": 13,
+     "missing": 0,
+     "partial": 0
+    }
+   ],
+   "rendered": true,
+   "nlS": 329,
+   "enS": 325,
+   "plannedS": 300,
+   "scenes": 9,
+   "kb": 240,
+   "wordsNl": 768,
+   "wordsEn": 766,
+   "terms": 12,
+   "termsWithoutCue": [],
+   "points": 26,
+   "pointsMissing": 0,
+   "pointsPartial": 1,
+   "sentencesMissing": 1,
+   "sentencesTotal": 58,
+   "reviewPoints": 0,
+   "estPoints": 0,
+   "addWords": 0,
+   "projEnS": 325,
+   "trimPct": 0,
+   "projEnSAfterTrim": 325,
+   "scenesAfter": 9
+  },
+  {
+   "film": "eng.switchgear.automation",
+   "action": "none",
+   "lessons": [
+    {
+     "id": "eng.switchgear.automation",
+     "level": 2,
+     "wired": true,
+     "points": 12,
+     "missing": 0,
+     "partial": 0
+    }
+   ],
+   "rendered": true,
+   "nlS": 304,
+   "enS": 324,
+   "plannedS": 300,
+   "scenes": 7,
+   "kb": 241,
+   "wordsNl": 692,
+   "wordsEn": 732,
+   "terms": 5,
+   "termsWithoutCue": [],
+   "points": 12,
+   "pointsMissing": 0,
+   "pointsPartial": 0,
+   "sentencesMissing": 0,
+   "sentencesTotal": 23,
+   "reviewPoints": 0,
+   "estPoints": 0,
+   "addWords": 0,
+   "projEnS": 324,
+   "trimPct": 5,
+   "projEnSAfterTrim": 308,
+   "scenesAfter": 7
+  },
+  {
+   "film": "eng.mechanics.heattreat",
+   "action": "none",
+   "lessons": [
+    {
+     "id": "eng.mechanics.heattreat",
+     "level": 2,
+     "wired": true,
+     "points": 12,
+     "missing": 0,
+     "partial": 1
+    }
+   ],
+   "rendered": true,
+   "nlS": 296,
+   "enS": 323,
+   "plannedS": 250,
+   "scenes": 7,
+   "kb": 272,
+   "wordsNl": 698,
+   "wordsEn": 732,
+   "terms": 6,
+   "termsWithoutCue": [],
+   "points": 12,
+   "pointsMissing": 0,
+   "pointsPartial": 1,
+   "sentencesMissing": 1,
+   "sentencesTotal": 26,
+   "reviewPoints": null,
+   "estPoints": 0,
+   "addWords": 0,
+   "projEnS": 323,
+   "trimPct": 11,
+   "projEnSAfterTrim": 287,
+   "scenesAfter": 7
+  },
+  {
+   "film": "pm.run.scope",
+   "action": "none",
+   "lessons": [
+    {
+     "id": "pm.run.scope",
+     "level": 1,
+     "wired": true,
+     "points": 13,
+     "missing": 0,
+     "partial": 1
+    },
+    {
+     "id": "pm.negotiate.scope",
+     "level": 1,
+     "wired": true,
+     "points": 11,
+     "missing": 0,
+     "partial": 0
+    }
+   ],
+   "rendered": true,
+   "nlS": 308,
+   "enS": 315,
+   "plannedS": 294,
+   "scenes": 7,
+   "kb": 232,
+   "wordsNl": 750,
+   "wordsEn": 757,
+   "terms": 12,
+   "termsWithoutCue": [
+    "pm.negotiate.scope#0 Scope creep (skipped: Same term and meaning as Scope creep of pm.run.scope, which scene 2 names with its cue (ten extra days on the budget bar while the plan stays green); scene 6 says it hurts most on a fixed price. The build resolves a shared term name to the first served lesson.)",
+    "pm.negotiate.scope#4 Wijzigingsverzoek (skipped: Same term as Wijzigingsverzoek of pm.run.scope, which scenes 3 and 7 name with its cue; scene 7 shows this lesson's version, a short document with the extra work, days and price that the client signs. The build resolves a shared term name to the first served lesson.)"
+   ],
+   "points": 24,
+   "pointsMissing": 0,
+   "pointsPartial": 1,
+   "sentencesMissing": 1,
+   "sentencesTotal": 56,
+   "reviewPoints": 0,
+   "estPoints": 0,
+   "addWords": 0,
+   "projEnS": 315,
+   "trimPct": 0,
+   "projEnSAfterTrim": 315,
+   "scenesAfter": 7
+  },
+  {
+   "film": "eng.process.plant",
+   "action": "none",
+   "lessons": [
+    {
+     "id": "eng.process.types",
+     "level": 1,
+     "wired": true,
+     "points": 13,
+     "missing": 0,
+     "partial": 1
+    }
+   ],
+   "rendered": true,
+   "nlS": 293,
+   "enS": 312,
+   "plannedS": 280,
+   "scenes": 7,
+   "kb": 263,
+   "wordsNl": 714,
+   "wordsEn": 761,
+   "terms": 5,
+   "termsWithoutCue": [],
+   "points": 13,
+   "pointsMissing": 0,
+   "pointsPartial": 1,
+   "sentencesMissing": 1,
+   "sentencesTotal": 33,
+   "reviewPoints": 0,
+   "estPoints": 0,
+   "addWords": 0,
+   "projEnS": 312,
+   "trimPct": 6,
+   "projEnSAfterTrim": 293,
+   "scenesAfter": 7
+  },
+  {
+   "film": "pm.plan.schedule",
+   "action": "none",
+   "lessons": [
+    {
+     "id": "pm.plan.schedule",
+     "level": 1,
+     "wired": true,
+     "points": 14,
+     "missing": 0,
+     "partial": 0
+    }
+   ],
+   "rendered": true,
+   "nlS": 290,
+   "enS": 305,
+   "plannedS": 298,
+   "scenes": 6,
+   "kb": 216,
+   "wordsNl": 702,
+   "wordsEn": 726,
+   "terms": 6,
+   "termsWithoutCue": [],
+   "points": 14,
+   "pointsMissing": 0,
+   "pointsPartial": 0,
+   "sentencesMissing": 0,
+   "sentencesTotal": 30,
+   "reviewPoints": 0,
+   "estPoints": 0,
+   "addWords": 0,
+   "projEnS": 305,
+   "trimPct": 7,
+   "projEnSAfterTrim": 284,
+   "scenesAfter": 6
+  },
+  {
+   "film": "eng.process.batch",
+   "action": "none",
+   "lessons": [
+    {
+     "id": "eng.process.batch",
+     "level": 1,
+     "wired": true,
+     "points": 12,
+     "missing": 0,
+     "partial": 0
+    }
+   ],
+   "rendered": true,
+   "nlS": 279,
+   "enS": 300,
+   "plannedS": 300,
+   "scenes": 8,
+   "kb": 265,
+   "wordsNl": 682,
+   "wordsEn": 724,
+   "terms": 5,
+   "termsWithoutCue": [],
+   "points": 12,
+   "pointsMissing": 0,
+   "pointsPartial": 0,
+   "sentencesMissing": 0,
+   "sentencesTotal": 25,
+   "reviewPoints": null,
+   "estPoints": 0,
+   "addWords": 0,
+   "projEnS": 300,
+   "trimPct": 9,
+   "projEnSAfterTrim": 273,
+   "scenesAfter": 8
+  },
+  {
+   "film": "eng.process.measure",
+   "action": "none",
+   "lessons": [
+    {
+     "id": "eng.process.variables",
+     "level": 1,
+     "wired": true,
+     "points": 13,
+     "missing": 0,
+     "partial": 1
+    }
+   ],
+   "rendered": true,
+   "nlS": 270,
+   "enS": 296,
+   "plannedS": 276,
+   "scenes": 7,
+   "kb": 260,
+   "wordsNl": 662,
+   "wordsEn": 692,
+   "terms": 5,
+   "termsWithoutCue": [],
+   "points": 13,
+   "pointsMissing": 0,
+   "pointsPartial": 1,
+   "sentencesMissing": 1,
+   "sentencesTotal": 30,
+   "reviewPoints": null,
+   "estPoints": 0,
+   "addWords": 0,
+   "projEnS": 296,
+   "trimPct": 5,
+   "projEnSAfterTrim": 281,
+   "scenesAfter": 7
+  },
+  {
+   "film": "pm.land.training",
+   "action": "none",
+   "lessons": [
+    {
+     "id": "pm.land.training",
+     "level": 1,
+     "wired": true,
+     "points": 13,
+     "missing": 0,
+     "partial": 0
+    }
+   ],
+   "rendered": true,
+   "nlS": 251,
+   "enS": 268,
+   "plannedS": 261,
+   "scenes": 7,
+   "kb": 215,
+   "wordsNl": 616,
+   "wordsEn": 608,
+   "terms": 5,
+   "termsWithoutCue": [],
+   "points": 13,
+   "pointsMissing": 0,
+   "pointsPartial": 0,
+   "sentencesMissing": 0,
+   "sentencesTotal": 29,
+   "reviewPoints": 0,
+   "estPoints": 0,
+   "addWords": 0,
+   "projEnS": 268,
+   "trimPct": 7,
+   "projEnSAfterTrim": 249,
+   "scenesAfter": 7
+  },
+  {
+   "film": "eng.ot.orderflow",
+   "action": "none",
+   "lessons": [
+    {
+     "id": "eng.ot.orderflow",
+     "level": 2,
+     "wired": true,
+     "points": 12,
+     "missing": 0,
+     "partial": 0
+    }
+   ],
+   "rendered": true,
+   "nlS": 234,
+   "enS": 267,
+   "plannedS": 226,
+   "scenes": 8,
+   "kb": 262,
+   "wordsNl": 585,
+   "wordsEn": 625,
+   "terms": 5,
+   "termsWithoutCue": [],
+   "points": 12,
+   "pointsMissing": 0,
+   "pointsPartial": 0,
+   "sentencesMissing": 0,
+   "sentencesTotal": 30,
+   "reviewPoints": null,
+   "estPoints": 0,
+   "addWords": 0,
+   "projEnS": 267,
+   "trimPct": 0,
+   "projEnSAfterTrim": 267,
+   "scenesAfter": 8
+  },
+  {
+   "film": "pm.itproject.cutover",
+   "action": "none",
+   "lessons": [
+    {
+     "id": "pm.itproject.cutover",
+     "level": 3,
+     "wired": true,
+     "points": 15,
+     "missing": 0,
+     "partial": 0
+    }
+   ],
+   "rendered": true,
+   "nlS": 256,
+   "enS": 267,
+   "plannedS": 264,
+   "scenes": 8,
+   "kb": 223,
+   "wordsNl": 662,
+   "wordsEn": 655,
+   "terms": 6,
+   "termsWithoutCue": [],
+   "points": 15,
+   "pointsMissing": 0,
+   "pointsPartial": 0,
+   "sentencesMissing": 0,
+   "sentencesTotal": 40,
+   "reviewPoints": 0,
+   "estPoints": 0,
+   "addWords": 0,
+   "projEnS": 267,
+   "trimPct": 3,
+   "projEnSAfterTrim": 259,
+   "scenesAfter": 8
+  },
+  {
+   "film": "pm.portfolio.benefits",
+   "action": "none",
+   "lessons": [
+    {
+     "id": "pm.portfolio.benefits",
+     "level": 1,
+     "wired": true,
+     "points": 12,
+     "missing": 0,
+     "partial": 0
+    }
+   ],
+   "rendered": true,
+   "nlS": 255,
+   "enS": 267,
+   "plannedS": 247,
+   "scenes": 9,
+   "kb": 226,
+   "wordsNl": 601,
+   "wordsEn": 599,
+   "terms": 6,
+   "termsWithoutCue": [],
+   "points": 12,
+   "pointsMissing": 0,
+   "pointsPartial": 0,
+   "sentencesMissing": 0,
+   "sentencesTotal": 31,
+   "reviewPoints": 0,
+   "estPoints": 0,
+   "addWords": 0,
+   "projEnS": 267,
+   "trimPct": 6,
+   "projEnSAfterTrim": 251,
+   "scenesAfter": 9
+  },
+  {
+   "film": "pm.lead.difficult",
+   "action": "none",
+   "lessons": [
+    {
+     "id": "pm.lead.difficult",
+     "level": 3,
+     "wired": true,
+     "points": 19,
+     "missing": 0,
+     "partial": 0
+    }
+   ],
+   "rendered": true,
+   "nlS": 243,
+   "enS": 257,
+   "plannedS": 240,
+   "scenes": 7,
+   "kb": 191,
+   "wordsNl": 586,
+   "wordsEn": 590,
+   "terms": 5,
+   "termsWithoutCue": [],
+   "points": 19,
+   "pointsMissing": 0,
+   "pointsPartial": 0,
+   "sentencesMissing": 0,
+   "sentencesTotal": 36,
+   "reviewPoints": 0,
+   "estPoints": 0,
+   "addWords": 0,
+   "projEnS": 257,
+   "trimPct": 2,
+   "projEnSAfterTrim": 252,
+   "scenesAfter": 7
+  },
+  {
+   "film": "pm.close.results",
+   "action": "none",
+   "lessons": [
+    {
+     "id": "pm.close.results",
+     "level": 1,
+     "wired": true,
+     "points": 12,
+     "missing": 0,
+     "partial": 1
+    }
+   ],
+   "rendered": true,
+   "nlS": 246,
+   "enS": 255,
+   "plannedS": 237,
+   "scenes": 7,
+   "kb": 248,
+   "wordsNl": 558,
+   "wordsEn": 577,
+   "terms": 6,
+   "termsWithoutCue": [],
+   "points": 12,
+   "pointsMissing": 0,
+   "pointsPartial": 1,
+   "sentencesMissing": 1,
+   "sentencesTotal": 29,
+   "reviewPoints": null,
+   "estPoints": 0,
+   "addWords": 0,
+   "projEnS": 255,
+   "trimPct": 3,
+   "projEnSAfterTrim": 247,
+   "scenesAfter": 7
+  },
+  {
+   "film": "eng.power.air",
+   "action": "none",
+   "lessons": [
+    {
+     "id": "eng.power.air",
+     "level": 1,
+     "wired": true,
+     "points": 13,
+     "missing": 0,
+     "partial": 0
+    }
+   ],
+   "rendered": true,
+   "nlS": 231,
+   "enS": 251,
+   "plannedS": 235,
+   "scenes": 8,
+   "kb": 245,
+   "wordsNl": 553,
+   "wordsEn": 585,
+   "terms": 6,
+   "termsWithoutCue": [],
+   "points": 13,
+   "pointsMissing": 0,
+   "pointsPartial": 0,
+   "sentencesMissing": 0,
+   "sentencesTotal": 30,
+   "reviewPoints": null,
+   "estPoints": 0,
+   "addWords": 0,
+   "projEnS": 251,
+   "trimPct": 0,
+   "projEnSAfterTrim": 251,
+   "scenesAfter": 8
+  },
+  {
+   "film": "pm.plan.risk",
+   "action": "none",
+   "lessons": [
+    {
+     "id": "pm.plan.risk",
+     "level": 1,
+     "wired": true,
+     "points": 12,
+     "missing": 0,
+     "partial": 1
+    }
+   ],
+   "rendered": true,
+   "nlS": 233,
+   "enS": 243,
+   "plannedS": 237,
+   "scenes": 6,
+   "kb": 247,
+   "wordsNl": 557,
+   "wordsEn": 566,
+   "terms": 5,
+   "termsWithoutCue": [],
+   "points": 12,
+   "pointsMissing": 0,
+   "pointsPartial": 1,
+   "sentencesMissing": 1,
+   "sentencesTotal": 28,
+   "reviewPoints": 0,
+   "estPoints": 0,
+   "addWords": 0,
+   "projEnS": 243,
+   "trimPct": 3,
+   "projEnSAfterTrim": 236,
+   "scenesAfter": 6
+  },
+  {
+   "film": "pm.run.conflict",
+   "action": "none",
+   "lessons": [
+    {
+     "id": "pm.run.conflict",
+     "level": 3,
+     "wired": true,
+     "points": 16,
+     "missing": 0,
+     "partial": 0
+    }
+   ],
+   "rendered": true,
+   "nlS": 230,
+   "enS": 241,
+   "plannedS": 224,
+   "scenes": 7,
+   "kb": 221,
+   "wordsNl": 558,
+   "wordsEn": 531,
+   "terms": 5,
+   "termsWithoutCue": [],
+   "points": 16,
+   "pointsMissing": 0,
+   "pointsPartial": 0,
+   "sentencesMissing": 0,
+   "sentencesTotal": 33,
+   "reviewPoints": 0,
+   "estPoints": 0,
+   "addWords": 0,
+   "projEnS": 241,
+   "trimPct": 4,
+   "projEnSAfterTrim": 231,
+   "scenesAfter": 7
+  },
+  {
+   "film": "pm.devops.postmortem",
+   "action": "none",
+   "lessons": [
+    {
+     "id": "pm.devops.postmortem",
+     "level": 3,
+     "wired": true,
+     "points": 15,
+     "missing": 0,
+     "partial": 0
+    }
+   ],
+   "rendered": true,
+   "nlS": 230,
+   "enS": 238,
+   "plannedS": 226,
+   "scenes": 7,
+   "kb": 236,
+   "wordsNl": 549,
+   "wordsEn": 563,
+   "terms": 5,
+   "termsWithoutCue": [],
+   "points": 15,
+   "pointsMissing": 0,
+   "pointsPartial": 0,
+   "sentencesMissing": 0,
+   "sentencesTotal": 37,
+   "reviewPoints": null,
+   "estPoints": 0,
+   "addWords": 0,
+   "projEnS": 238,
+   "trimPct": 6,
+   "projEnSAfterTrim": 224,
+   "scenesAfter": 7
+  },
+  {
+   "film": "pm.plan.method",
+   "action": "none",
+   "lessons": [
+    {
+     "id": "pm.plan.method",
+     "level": 2,
+     "wired": true,
+     "points": 14,
+     "missing": 0,
+     "partial": 0
+    }
+   ],
+   "rendered": true,
+   "nlS": 219,
+   "enS": 228,
+   "plannedS": 236,
+   "scenes": 7,
+   "kb": 218,
+   "wordsNl": 543,
+   "wordsEn": 535,
+   "terms": 6,
+   "termsWithoutCue": [],
+   "points": 14,
+   "pointsMissing": 0,
+   "pointsPartial": 0,
+   "sentencesMissing": 0,
+   "sentencesTotal": 30,
+   "reviewPoints": 0,
+   "estPoints": 0,
+   "addWords": 0,
+   "projEnS": 228,
+   "trimPct": 1,
+   "projEnSAfterTrim": 226,
+   "scenesAfter": 7
+  },
+  {
+   "film": "pm.devops.incident",
+   "action": "none",
+   "lessons": [
+    {
+     "id": "pm.devops.incident",
+     "level": 1,
+     "wired": true,
+     "points": 12,
+     "missing": 0,
+     "partial": 0
+    }
+   ],
+   "rendered": true,
+   "nlS": 192,
+   "enS": 201,
+   "plannedS": 190,
+   "scenes": 6,
+   "kb": 214,
+   "wordsNl": 452,
+   "wordsEn": 481,
+   "terms": 5,
+   "termsWithoutCue": [],
+   "points": 12,
+   "pointsMissing": 0,
+   "pointsPartial": 0,
+   "sentencesMissing": 0,
+   "sentencesTotal": 29,
+   "reviewPoints": null,
+   "estPoints": 0,
+   "addWords": 0,
+   "projEnS": 201,
+   "trimPct": 4,
+   "projEnSAfterTrim": 193,
+   "scenesAfter": 6
+  }
+ ]
+}

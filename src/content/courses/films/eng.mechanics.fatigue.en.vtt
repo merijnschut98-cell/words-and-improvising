@@ -1,0 +1,301 @@
+WEBVTT
+
+1
+00:00:00.835 --> 00:00:03.645
+This is an agitator, a mixer in a tank.
+
+2
+00:00:04.407 --> 00:00:06.799
+On the bridge sit a motor and a gearbox.
+
+3
+00:00:07.506 --> 00:00:09.770
+Below them the shaft hangs from a coupling,
+
+4
+00:00:09.921 --> 00:00:12.824
+with the impeller at the bottom: the mixing blades.
+
+5
+00:00:13.863 --> 00:00:17.810
+A shaft like this rarely breaks from one blow that is too heavy.
+
+6
+00:00:18.470 --> 00:00:20.200
+Far more often it is fatigue:
+
+7
+00:00:20.328 --> 00:00:25.634
+a load that comes back millions of times grows a small crack until the shaft snaps,
+
+8
+00:00:25.773 --> 00:00:28.652
+while the stress stays well below the yield strength.
+
+9
+00:00:29.660 --> 00:00:34.280
+The liquid keeps pushing the impeller to one side, so the shaft bends a little.
+
+10
+00:00:35.011 --> 00:00:35.893
+As it turns,
+
+11
+00:00:36.114 --> 00:00:38.750
+every point of its surface comes in turn to the
+
+12
+00:00:38.831 --> 00:00:41.687
+side that stretches and the side that is squeezed.
+
+13
+00:00:42.426 --> 00:00:45.816
+Follow the dot: tension, compression, and tension again.
+
+14
+00:00:46.590 --> 00:00:48.831
+One revolution is one load cycle.
+
+15
+00:00:49.838 --> 00:00:56.595
+A shaft at 1,500 revolutions per minute sees more than 2 million load cycles a day.
+
+16
+00:00:57.327 --> 00:01:01.971
+An agitator turns slower, but still sees many millions within a few years.
+
+17
+00:01:03.285 --> 00:01:08.172
+This shaft broke twice in 18 months, each time at the end of the keyway.
+
+18
+00:01:08.850 --> 00:01:13.367
+That is the slot for the key, the steel block that locks the coupling to the shaft.
+
+19
+00:01:14.387 --> 00:01:16.790
+That is where the stress concentration sits:
+
+20
+00:01:16.930 --> 00:01:19.333
+the shape makes the stress pile up locally.
+
+21
+00:01:20.013 --> 00:01:22.149
+The force has to flow around the slot,
+
+22
+00:01:22.358 --> 00:01:25.040
+and in the sharp corner it all crowds together.
+
+23
+00:01:26.054 --> 00:01:29.410
+Take a small round hole in a wide plate that you pull on:
+
+24
+00:01:29.596 --> 00:01:33.264
+at the edge of the hole the stress is about three times as high.
+
+25
+00:01:33.997 --> 00:01:36.029
+A sharp corner can be worse still.
+
+26
+00:01:37.030 --> 00:01:42.394
+That is why cracks start at sharp corners, holes, keyways, threads and the weld toe,
+
+27
+00:01:42.545 --> 00:01:47.363
+where weld metal meets the plate, and also at scratches and corrosion pits.
+
+28
+00:01:48.664 --> 00:01:51.833
+In that corner a small crack starts, too small to see.
+
+29
+00:01:52.536 --> 00:01:56.565
+In each period of running it grows a little further into the shaft.
+
+30
+00:01:57.603 --> 00:02:01.527
+Each stop or change of load leaves a ring on the fracture surface.
+
+31
+00:02:02.232 --> 00:02:07.132
+Those are beach marks: curved lines, like the lines a wave leaves on the sand.
+
+32
+00:02:08.258 --> 00:02:10.209
+They spread out from the start point,
+
+33
+00:02:10.325 --> 00:02:13.796
+so the fracture surface tells you where the crack began: here,
+
+34
+00:02:14.005 --> 00:02:15.445
+in the corner of the keyway.
+
+35
+00:02:16.435 --> 00:02:17.968
+That zone is fairly smooth,
+
+36
+00:02:18.131 --> 00:02:22.276
+sometimes even shiny: the crack faces rubbed against each other.
+
+37
+00:02:23.620 --> 00:02:27.091
+Meanwhile the metal that is still whole gets smaller and smaller.
+
+38
+00:02:27.818 --> 00:02:32.532
+The same load rests on a smaller cross-section, so the stress in it rises.
+
+39
+00:02:33.551 --> 00:02:36.976
+One day the rest is too small, and it breaks at once.
+
+40
+00:02:37.715 --> 00:02:41.244
+That part is rough and grainy: the final fracture zone.
+
+41
+00:02:42.246 --> 00:02:45.032
+If the final zone is small, the stress was low,
+
+42
+00:02:45.253 --> 00:02:48.608
+and the crack had time to grow almost right through the shaft.
+
+43
+00:02:49.381 --> 00:02:52.237
+A large final zone points to a high stress.
+
+44
+00:02:53.248 --> 00:02:54.885
+It need not get that far.
+
+45
+00:02:55.652 --> 00:03:01.039
+On site, you find cracks with dye penetrant: a red liquid that seeps into the crack,
+
+46
+00:03:01.202 --> 00:03:03.141
+and shows it on a white coating.
+
+47
+00:03:04.470 --> 00:03:06.037
+How long does a part last?
+
+48
+00:03:06.803 --> 00:03:10.890
+The S-N curve plots stress against the number of cycles to failure.
+
+49
+00:03:11.617 --> 00:03:14.832
+The lower the stress, the more cycles it survives.
+
+50
+00:03:15.847 --> 00:03:18.239
+Many steels show an endurance limit.
+
+51
+00:03:18.953 --> 00:03:21.298
+Below roughly half their tensile strength,
+
+52
+00:03:21.426 --> 00:03:26.988
+polished test samples survive 10 million cycles, and are taken to last indefinitely.
+
+53
+00:03:27.655 --> 00:03:32.276
+The curve usually levels off somewhere between one and ten million cycles.
+
+54
+00:03:33.285 --> 00:03:37.743
+Aluminium has no real limit: a design states a life in cycles.
+
+55
+00:03:38.440 --> 00:03:42.736
+And steels too sometimes fail far beyond 10 million cycles.
+
+56
+00:03:43.431 --> 00:03:46.798
+Infinite life is a useful approximation, not a law.
+
+57
+00:03:47.797 --> 00:03:52.999
+A real part sits lower than that smooth sample: a rough surface, a larger size,
+
+58
+00:03:53.161 --> 00:03:58.281
+corrosion, welds and a constant tensile stress on top all take something off.
+
+59
+00:03:58.965 --> 00:04:02.831
+So a static calculation proves nothing for a vibrating part.
+
+60
+00:04:04.184 --> 00:04:05.600
+Back to the agitator.
+
+61
+00:04:06.336 --> 00:04:09.366
+After the first failure a stronger steel went in,
+
+62
+00:04:09.575 --> 00:04:11.653
+and it broke again in the same place.
+
+63
+00:04:12.456 --> 00:04:15.951
+High-strength steels are often more sensitive to notches.
+
+64
+00:04:16.962 --> 00:04:22.105
+First the notch: the keyway gets a rounded end, and where the shaft steps down,
+
+65
+00:04:22.279 --> 00:04:23.626
+a generous radius.
+
+66
+00:04:24.347 --> 00:04:28.375
+A smooth surface and shot peening, which puts the skin under compression,
+
+67
+00:04:28.515 --> 00:04:29.223
+help further.
+
+68
+00:04:30.264 --> 00:04:31.112
+Then the bending.
+
+69
+00:04:31.851 --> 00:04:35.903
+A misaligned coupling bends the shaft extra on every revolution:
+
+70
+00:04:36.019 --> 00:04:37.273
+check the alignment.
+
+71
+00:04:38.034 --> 00:04:42.143
+And balance the impeller, because unbalance makes the shaft vibrate.
+
+72
+00:04:42.915 --> 00:04:44.773
+Less bending, much longer life.
+
+73
+00:04:45.805 --> 00:04:48.510
+Stronger steel did not help, a radius did.
+
+74
+00:04:49.283 --> 00:04:53.974
+When a stronger part breaks again, think of fatigue: ask about the cycles,
+
+75
+00:04:54.148 --> 00:04:56.377
+the vibration and the corner radius.

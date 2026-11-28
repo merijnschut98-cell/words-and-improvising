@@ -1,0 +1,333 @@
+WEBVTT
+
+1
+00:00:00.838 --> 00:00:04.333
+ISA-95 is the international standard that
+
+2
+00:00:04.356 --> 00:00:07.073
+describes how a plant’s systems fit together.
+
+3
+00:00:07.794 --> 00:00:10.406
+Its first part appeared in 2000.
+
+4
+00:00:11.461 --> 00:00:13.992
+Its levels give you one language with IT,
+
+5
+00:00:14.085 --> 00:00:18.624
+with OT, the technology that controls machines, and with suppliers.
+
+6
+00:00:19.375 --> 00:00:22.603
+Five, from zero to four: the floors of this plant.
+
+7
+00:00:24.045 --> 00:00:28.805
+Level zero is the process itself: the plastic that becomes a cap in the mould.
+
+8
+00:00:29.881 --> 00:00:33.875
+Level one measures and moves: sensors such as the temperature sensor,
+
+9
+00:00:34.061 --> 00:00:36.441
+actuators such as the cooling-water valve.
+
+10
+00:00:37.504 --> 00:00:40.708
+Level two monitors and controls: the PLC,
+
+11
+00:00:40.976 --> 00:00:43.588
+the industrial computer that runs the machine.
+
+12
+00:00:44.301 --> 00:00:46.333
+Some drawings put it at level one.
+
+13
+00:00:47.352 --> 00:00:49.326
+SCADA belongs here too: with it,
+
+14
+00:00:49.477 --> 00:00:53.123
+operators watch and run the whole installation on screens.
+
+15
+00:00:54.492 --> 00:00:59.891
+Level three runs production, usually with an MES: which order on which machine,
+
+16
+00:01:00.053 --> 00:01:02.177
+what was used, made and scrapped.
+
+17
+00:01:03.220 --> 00:01:07.238
+The quality system for inspection reports works per order and shift:
+
+18
+00:01:07.388 --> 00:01:08.515
+level three too.
+
+19
+00:01:09.543 --> 00:01:14.396
+Level four is business planning in the ERP, such as SAP: customer orders,
+
+20
+00:01:14.547 --> 00:01:16.393
+purchasing, stock and cost.
+
+21
+00:01:17.420 --> 00:01:21.112
+The standard is mostly about the boundary between three and four:
+
+22
+00:01:21.216 --> 00:01:23.968
+which information goes back and forth there.
+
+23
+00:01:25.256 --> 00:01:27.915
+The most useful distinction is the timescale:
+
+24
+00:01:28.008 --> 00:01:30.434
+how fast decisions are made at a level.
+
+25
+00:01:31.469 --> 00:01:35.973
+Level four thinks in months to days, level three in days to seconds,
+
+26
+00:01:36.171 --> 00:01:41.152
+levels one and two in seconds and faster; the sensor even in milliseconds.
+
+27
+00:01:42.175 --> 00:01:43.452
+A system down for an hour?
+
+28
+00:01:44.188 --> 00:01:49.470
+Without the PLC the machine stops; without the ERP the line usually runs on.
+
+29
+00:01:50.474 --> 00:01:53.597
+Typical mistake: we take OEE from SAP.
+
+30
+00:01:54.280 --> 00:01:58.541
+The ERP knows what was booked, not what the machine did each minute.
+
+31
+00:01:59.291 --> 00:02:03.401
+So ask: at which level does this number arise, and where do we use it?
+
+32
+00:02:04.763 --> 00:02:05.796
+Follow one order.
+
+33
+00:02:06.547 --> 00:02:12.317
+The ERP creates a production order: 2,000 caps of type A, ready on Thursday.
+
+34
+00:02:13.268 --> 00:02:16.542
+The bill of materials lists the materials and how much:
+
+35
+00:02:16.635 --> 00:02:19.282
+25 grams of granulate per cap.
+
+36
+00:02:20.017 --> 00:02:23.976
+2,000 times 25 grams is 50 kilos.
+
+37
+00:02:24.992 --> 00:02:27.964
+The routing says which operations, in which order,
+
+38
+00:02:28.057 --> 00:02:32.852
+where and how long: injection moulding on machine 4, 12 seconds per cycle.
+
+39
+00:02:34.143 --> 00:02:39.182
+Bill of materials and routing are master data: fixed information for many orders,
+
+40
+00:02:39.332 --> 00:02:42.769
+kept in the ERP, with a copy in the MES.
+
+41
+00:02:43.795 --> 00:02:49.078
+If it says 10 seconds while the machine manages 12, every shift looks too slow.
+
+42
+00:02:49.767 --> 00:02:54.574
+Often master data were copied once at MES go-live and never kept up.
+
+43
+00:02:55.321 --> 00:02:58.282
+So ask who changes a cycle time, and where.
+
+44
+00:02:59.274 --> 00:03:04.382
+The MES spreads the work over lines and shifts: this order on Tuesday,
+
+45
+00:03:04.533 --> 00:03:06.356
+early shift, machine 4.
+
+46
+00:03:07.361 --> 00:03:11.668
+The operator starts it on the HMI, the touch screen on the machine.
+
+47
+00:03:12.423 --> 00:03:15.012
+The PLC loads the settings for type A.
+
+48
+00:03:16.294 --> 00:03:19.904
+The PLC counts every cycle, SCADA shows the progress,
+
+49
+00:03:20.137 --> 00:03:22.180
+the historian stores the temperatures.
+
+50
+00:03:23.188 --> 00:03:30.491
+At the end the MES reports 1,960 good and 40 scrap back to the ERP.
+
+51
+00:03:31.182 --> 00:03:33.331
+Orders go down, data comes up.
+
+52
+00:03:34.376 --> 00:03:36.350
+Usually the ERP has the order,
+
+53
+00:03:36.501 --> 00:03:40.565
+bill of materials and stock; the MES the actual times,
+
+54
+00:03:40.750 --> 00:03:45.231
+scrap with reasons and batches; the PLC the settings and counter.
+
+55
+00:03:46.224 --> 00:03:51.228
+So that is in SAP and that is in the machine can both be true about the same number.
+
+56
+00:03:52.549 --> 00:03:57.019
+Network security people draw almost the same layers: the Purdue model,
+
+57
+00:03:57.112 --> 00:04:01.744
+from the early nineties, now mainly a network map: which system sits where,
+
+58
+00:04:01.907 --> 00:04:03.637
+and which traffic may pass.
+
+59
+00:04:04.643 --> 00:04:06.849
+ISA-95 built on it,
+
+60
+00:04:06.941 --> 00:04:08.590
+but it is a functional model:
+
+61
+00:04:08.706 --> 00:04:12.712
+which tasks exist and which information passes between them.
+
+62
+00:04:13.394 --> 00:04:16.192
+It says nothing about cables or firewalls.
+
+63
+00:04:17.160 --> 00:04:23.418
+Such a fixed exchange is an information flow, like the schedule from ERP to MES.
+
+64
+00:04:24.457 --> 00:04:28.660
+In Purdue, zero to three are the plant, four the site’s office network,
+
+65
+00:04:28.846 --> 00:04:33.327
+and five the enterprise network, with the central systems and the internet.
+
+66
+00:04:34.685 --> 00:04:37.274
+Between three and four, at three point five,
+
+67
+00:04:37.483 --> 00:04:41.454
+sits the industrial DMZ: a buffer network, added later.
+
+68
+00:04:42.164 --> 00:04:45.381
+Office and plant both talk to it, not to each other.
+
+69
+00:04:46.463 --> 00:04:49.574
+Level three is a task to an MES supplier,
+
+70
+00:04:49.714 --> 00:04:52.988
+a place below the DMZ to a network administrator.
+
+71
+00:04:53.720 --> 00:04:56.530
+So ask: what the system does, or where it sits?
+
+72
+00:04:57.228 --> 00:04:59.284
+The numbering is a habit, not a law.
+
+73
+00:05:00.315 --> 00:05:05.667
+A cloud MES that sends orders and gets counts back is functionally level three,
+
+74
+00:05:05.806 --> 00:05:07.652
+but sits beyond level five.
+
+75
+00:05:08.348 --> 00:05:09.683
+Does Purdue still fit?
+
+76
+00:05:10.501 --> 00:05:15.680
+Most experts say yes, as a way of thinking, with new traffic through the DMZ.
+
+77
+00:05:16.746 --> 00:05:19.869
+No connection started outside may reach the plant:
+
+78
+00:05:20.055 --> 00:05:22.784
+a connector at level three calls out itself,
+
+79
+00:05:22.981 --> 00:05:27.718
+to a relay in the DMZ that talks to the cloud; orders come in over that link.
+
+80
+00:05:28.756 --> 00:05:32.216
+The security standard speaks of zones and conduits:
+
+81
+00:05:32.309 --> 00:05:35.850
+groups of devices and the controlled connections between them.
+
+82
+00:05:36.520 --> 00:05:39.468
+Record both maps, and behind neat layers,
+
+83
+00:05:39.666 --> 00:05:43.718
+ask for the firewall rules: often everything hangs in one network.

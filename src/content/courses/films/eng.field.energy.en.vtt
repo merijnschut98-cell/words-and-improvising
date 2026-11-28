@@ -1,0 +1,257 @@
+WEBVTT
+
+1
+00:00:00.872 --> 00:00:03.171
+Line 3 in hall B is moving.
+
+2
+00:00:03.888 --> 00:00:06.129
+At its new place it needs more power.
+
+3
+00:00:07.146 --> 00:00:08.632
+The grid supplies the power.
+
+4
+00:00:09.339 --> 00:00:13.286
+Through cabinet, transformer and switchboard it reaches the machines.
+
+5
+00:00:14.322 --> 00:00:15.495
+You are the engineer.
+
+6
+00:00:16.220 --> 00:00:18.600
+You follow the power from the grid to the line.
+
+7
+00:00:19.595 --> 00:00:22.451
+That makes seven stations, from the grid to planning.
+
+8
+00:00:23.774 --> 00:00:26.351
+The first station is the electricity grid.
+
+9
+00:00:27.092 --> 00:00:30.041
+It brings the power from high voltage into the hall.
+
+10
+00:00:31.045 --> 00:00:32.949
+At high voltage little is lost.
+
+11
+00:00:33.736 --> 00:00:36.743
+Only close to the plant does the voltage step down.
+
+12
+00:00:37.805 --> 00:00:41.799
+You check the capacity map and sign a flexible contract if needed.
+
+13
+00:00:42.797 --> 00:00:45.955
+Without this you wait in a queue for power in a full area.
+
+14
+00:00:47.253 --> 00:00:50.028
+The second station is switchgear and protection.
+
+15
+00:00:50.730 --> 00:00:53.075
+The cabinet switches and guards the power.
+
+16
+00:00:54.111 --> 00:00:57.838
+In a short circuit only the breaker closest to the fault trips.
+
+17
+00:00:58.843 --> 00:01:03.069
+The installer sets a protection relay and works with an earthing set.
+
+18
+00:01:04.142 --> 00:01:06.685
+Without this one fault shuts down the whole hall,
+
+19
+00:01:06.847 --> 00:01:08.925
+or work on the cabinet is not safe.
+
+20
+00:01:10.227 --> 00:01:13.222
+The third station is transformers and cables.
+
+21
+00:01:13.924 --> 00:01:16.943
+The transformer converts the voltage for the machines.
+
+22
+00:01:18.003 --> 00:01:20.824
+Heat ages it faster, so ribs cool it.
+
+23
+00:01:21.575 --> 00:01:23.793
+A cable runs on to the switchboard.
+
+24
+00:01:24.834 --> 00:01:29.652
+You test the oil with a DGA and find cable faults with a reflectometer.
+
+25
+00:01:30.696 --> 00:01:33.657
+Without this the transformer fails unexpectedly,
+
+26
+00:01:33.842 --> 00:01:35.909
+or you search long for a cable fault.
+
+27
+00:01:37.279 --> 00:01:40.193
+The fourth station is motors and fluid power.
+
+28
+00:01:40.915 --> 00:01:43.330
+The motor drives the belt of line 3.
+
+29
+00:01:44.309 --> 00:01:46.399
+The compressor compresses air for the line.
+
+30
+00:01:47.142 --> 00:01:50.033
+That is costly energy, and leaks waste power.
+
+31
+00:01:51.051 --> 00:01:54.940
+You measure the motor current with a clamp meter and run a leak test.
+
+32
+00:01:55.953 --> 00:02:00.481
+Without this the air leaks away and an oversized motor runs at half load.
+
+33
+00:02:01.856 --> 00:02:04.688
+The fifth station is pumps, flow and heat.
+
+34
+00:02:05.444 --> 00:02:08.672
+A pump feeds the product from the tank to the filling unit.
+
+35
+00:02:09.715 --> 00:02:11.909
+Pump and pipe together fix the flow.
+
+36
+00:02:12.661 --> 00:02:15.772
+A heat exchanger passes on heat without mixing.
+
+37
+00:02:16.793 --> 00:02:19.928
+You read the pump curve and pick a plate heat exchanger.
+
+38
+00:02:20.967 --> 00:02:24.868
+Without this the pump runs at the wrong point and energy is lost.
+
+39
+00:02:26.228 --> 00:02:29.688
+The sixth station is grid operations and assets.
+
+40
+00:02:30.395 --> 00:02:33.565
+The grid operator upgrades the connection of the plant.
+
+41
+00:02:34.630 --> 00:02:39.169
+After that it watches the grid, fixes outages and steers when it is full.
+
+42
+00:02:40.178 --> 00:02:43.696
+It runs a readiness check and switches by a switching plan.
+
+43
+00:02:44.696 --> 00:02:47.018
+Without this the connection takes longer and
+
+44
+00:02:47.065 --> 00:02:49.770
+the power drops unexpectedly during work.
+
+45
+00:02:51.119 --> 00:02:54.312
+The seventh station is grid planning and the transition.
+
+46
+00:02:55.032 --> 00:02:58.167
+The planner looks at how much power is needed later.
+
+47
+00:02:59.193 --> 00:03:03.164
+Demand grows, so he works out where and when the grid fills up.
+
+48
+00:03:04.193 --> 00:03:06.887
+He runs a load flow for each scenario.
+
+49
+00:03:07.868 --> 00:03:12.315
+Without this the upgrade comes too late and the next line waits for power.
+
+50
+00:03:13.685 --> 00:03:14.811
+This is the whole map.
+
+51
+00:03:15.588 --> 00:03:18.003
+The seven stations lie in one zone.
+
+52
+00:03:18.998 --> 00:03:22.353
+First the electricity grid, from power to congestion.
+
+53
+00:03:23.451 --> 00:03:27.700
+Then switchgear and protection, from switching devices to safe switching.
+
+54
+00:03:28.788 --> 00:03:32.875
+Then transformers and cables, from the transformer to connections.
+
+55
+00:03:33.966 --> 00:03:37.936
+Then motors and fluid power, from plant energy to hydraulics.
+
+56
+00:03:39.006 --> 00:03:42.245
+Then pumps, flow and heat, from pipes to steam.
+
+57
+00:03:43.355 --> 00:03:47.882
+Then grid operations and assets, from request to congestion management.
+
+58
+00:03:48.928 --> 00:03:52.968
+Finally grid planning and the transition, from load to flexibility.
+
+59
+00:03:53.979 --> 00:03:55.384
+That is how they connect.
+
+60
+00:03:56.114 --> 00:04:01.187
+The grid supplies, the switchgear protects and the transformer converts the voltage.
+
+61
+00:04:02.240 --> 00:04:04.109
+Motors and pumps use the power.
+
+62
+00:04:04.830 --> 00:04:08.301
+Operations and planning keep the grid able to supply it.
+
+63
+00:04:09.349 --> 00:04:12.611
+Each station is a module with four levels per topic.
+
+64
+00:04:13.400 --> 00:04:15.618
+Start with what touches your line most.
