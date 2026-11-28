@@ -260,3 +260,4 @@ Outcome: accepted (merged as delivered), sent back N times, redone.
 | 2026-11-28 | pm.scaled clarity audit and rewrite proposal | opus | - | - | - | done (d6f9b7d); five worst problems, Hoogveld running example, build cut S1a-S4, five questions for Merijn |
 | 2026-11-27 | v18 P-n: module pass pm.approach (questions, bank, blueprint, DMAIC, pictures) | sonnet | - | - | - | done (ea45476); 160 questions, 40-item bank, lint 131 to 0, 4 pictures; review dispatched (results recovered after a container restart) |
 | 2026-11-27 | v18 P-n: module pass pm.intake (questions, bank, blueprint, DMAIC, Measure plan in charter, pictures) | sonnet | - | - | - | done (a834fcc); 160 questions, 44-item bank, lint 156 to 0, 4 pictures; review dispatched |
+| 2026-11-28 | Review of module pass pm.intake | sonnet | 48 | 9 min | 297k | approved with fixes (b6f5e3b); ~45 edits: key-longest 41 % to 17 %, 6 weak options, 6 stem/key mismatches, b28 level |
