@@ -28,9 +28,9 @@ export default {
       recall: [
         {
           q: 'Which stage product belongs to Intake?',
-          options: ['A baseline schedule you measure against later', 'A closure decision with proven results', 'An agreed problem and a project assignment', 'A working rhythm of status and decisions'],
-          answer: 'An agreed problem and a project assignment',
-          why: 'Intake delivers what the project is: an agreed problem and an assignment. The other three are the products of Planning, Close and Run; each builds on Intake.',
+          options: ['A baseline schedule you measure against later', 'A closure decision with proven results', 'An agreed problem and a project mandate document', 'A working rhythm of status and decisions'],
+          answer: 'An agreed problem and a project mandate document',
+          why: 'Intake delivers what the project is: an agreed problem and a project mandate document. The other three are the products of Planning, Close and Run; each builds on Intake.',
         },
         {
           q: 'Why do you not draw up a schedule before the problem is agreed?',
@@ -80,8 +80,8 @@ export default {
       pre: [
         {
           q: 'On Tuesday you take over a running project from a colleague who has left. The sponsor says: “Everything is going fine.” What is the best first step?',
-          options: ['Rewrite the plan so that it is yours and you understand it well', 'Hold a new kick-off to have the team commit again to the plan', 'Ask the team for a new status report with the actions listed in one place', 'Read the assignment, the plan and the latest status reports and talk to the team'],
-          answer: 'Read the assignment, the plan and the latest status reports and talk to the team',
+          options: ['Rewrite the project plan so that it is yours and you understand it well', 'Hold a new kick-off to have the team commit again to the plan', 'Ask the team for a new status report with the actions listed in one place', 'Read the project mandate, the plan and the latest status reports and talk to the team'],
+          answer: 'Read the project mandate, the plan and the latest status reports and talk to the team',
           why: 'First see what is really there: reading and talking, two days spent on understanding and not on changing. Rewriting or starting over throws away good agreements before you know them.',
         },
       ],
@@ -101,10 +101,10 @@ export default {
         {
           kind: 'best',
           q: 'You want to know what has really happened in a running project. Which document shows that best?',
-          options: ['The plan as the sponsor and the client approved it', 'The steering group’s decision log since the start', 'The last three status reports, next to the assignment', 'The risk register as the previous project manager kept it'],
-          answer: 'The last three status reports, next to the assignment',
+          options: ['The plan as the sponsor and the client approved it', 'The steering group’s decision log since the start', 'The last three status reports, next to the project mandate', 'The risk register as the previous project manager kept it'],
+          answer: 'The last three status reports, next to the project mandate',
           close: 'The steering group’s decision log since the start',
-          why: 'The assignment shows what was intended, the status reports what happened; the difference is your work. The decision log is defensible and wins when you want to know who decided what, but it does not show progress.',
+          why: 'The project mandate shows what was intended, the status reports what happened; the difference is your work. The decision log is defensible and wins when you want to know who decided what, but it does not show progress.',
         },
         {
           q: 'The team works with its own schedule in Excel that is newer than the schedule in the project file. Against which do you measure progress?',
@@ -121,10 +121,10 @@ export default {
           hint: 'Divide the number of old actions by the total number of open actions.',
         },
         {
-          q: 'You see there is a schedule but no written project assignment. What do you do?',
-          options: ['Keep working with the schedule; an assignment is merely a formality', 'First have the sponsor establish the assignment', 'Hold a kick-off in which the team confirms the assignment verbally', 'Have the team write an assignment itself and treat it as established'],
-          answer: 'First have the sponsor establish the assignment',
-          why: 'Without an assignment nobody knows what the plan is checked against, and the sponsor has to stand behind it. A verbal confirmation or an assignment written by the team does not carry his signature.',
+          q: 'You see there is a schedule but no written project mandate. What do you do?',
+          options: ['Keep working with the schedule; a mandate document is merely a formality', 'First have the sponsor establish the mandate', 'Hold a kick-off in which the team confirms the mandate verbally', 'Have the team write a mandate itself and treat it as established'],
+          answer: 'First have the sponsor establish the mandate',
+          why: 'Without a mandate nobody knows what the plan is checked against, and the sponsor has to stand behind it. A verbal confirmation or a mandate written by the team does not carry his signature.',
         },
       ],
       situation: {
@@ -186,7 +186,7 @@ export default {
           why: 'Merging shortens the paper, not the questions you answer: the agreed problem and the plan with its baseline both remain. The sponsor’s approval stays too.',
         },
         {
-          q: 'You are asked to lead a ten-week improvement project. The team leader is keen, but nobody can say who gave the assignment and who holds the budget. What do you do first?',
+          q: 'You are asked to lead a ten-week improvement project. The team leader is keen, but nobody can say who gave the mandate and who holds the budget. What do you do first?',
           options: ['Appoint the team leader as sponsor because he wants the project most', 'Start with intake and look for the sponsor once there is something to show', 'Write the plan in advance and have the sponsor sign it when it is ready', 'Find a sponsor who gives the mandate; if that fails, you do not continue'],
           answer: 'Find a sponsor who gives the mandate; if that fails, you do not continue',
           why: 'Without a decider you can only guess what is allowed; a keen team leader has no budget and no mandate. First a sponsor, otherwise you stop. Only then do you plan.',
