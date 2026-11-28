@@ -67,8 +67,8 @@ export default {
   },
   'pm.intake/problem': {
     2: {
-      nl: 'Op Werkkennis voer je het eerste gesprek. Je geeft het verhaal van de opdrachtgever terug in eigen woorden en vraagt door als iemand kort antwoordt. Straks kun je beantwoorden waarom je parafraseert en wat je doet als alles in het rapport zou staan.',
-      en: 'At Working knowledge you hold the first conversation. You give the client’s story back in your own words and ask further when someone answers shortly. By the end you can answer why you paraphrase and what to do when everything is supposedly in the report.',
+      nl: 'Op Werkkennis voer je het eerste gesprek. Je geeft het verhaal van de opdrachtgever terug in eigen woorden en vraagt door als iemand kort antwoordt. Straks kun je beantwoorden waarom je parafraseert en wat je doet als alles in het rapport zou staan. In DMAIC is dit nog steeds Define.',
+      en: 'At Working knowledge you hold the first conversation. You give the client’s story back in your own words and ask further when someone answers shortly. By the end you can answer why you paraphrase and what to do when everything is supposedly in the report. In DMAIC this is still Define.',
     },
     3: {
       nl: 'Met Gevorderd formuleer je een scherp probleem. Je beslist wat er wel en niet in een probleemstelling thuishoort en hoeveel de norm wordt overschreden. Aan het eind kun je uitleggen wat een goede probleemstelling is en wat je er niet in zet.',
@@ -81,8 +81,8 @@ export default {
   },
   'pm.intake/people': {
     2: {
-      nl: 'Bij Werkkennis ga je de eerste weken in. Je laat snelle winst en een stevig fundament naast elkaar lopen. Daarna kun je beantwoorden waarom beide tegelijk moeten en hoe je reageert op iemand die zegt dat het al eens is mislukt.',
-      en: 'With Working knowledge you enter the first weeks. You run quick wins and a solid foundation side by side. Afterwards you can answer why both are needed at once and how to respond to someone who says it failed once before.',
+      nl: 'Bij Werkkennis ga je de eerste weken in. Je laat snelle winst en een stevig fundament naast elkaar lopen. Daarna kun je beantwoorden waarom beide tegelijk moeten en hoe je reageert op iemand die zegt dat het al eens is mislukt. De stakeholdermap maak je in Define.',
+      en: 'With Working knowledge you enter the first weeks. You run quick wins and a solid foundation side by side. Afterwards you can answer why both are needed at once and how to respond to someone who says it failed once before. You draw the stakeholder map in Define.',
     },
     3: {
       nl: 'Vanaf Gevorderd maak je afspraken met de sponsor. Je beslist wat je vraagt, wat je biedt en wat je niet accepteert. Als je klaar bent, kun je uitleggen wat vragen en bieden bij Block betekenen en hoeveel uren een vraag aan mensen werkelijk is.',
@@ -95,8 +95,8 @@ export default {
   },
   'pm.intake/scope': {
     2: {
-      nl: 'Op Werkkennis schrijf je het charter op één blad. Je zet doel, mijlpalen en kosten op papier en rekent mee met de uren van de adviseur. Daarna kun je beantwoorden waarom je aannames opschrijft en hoe je toetst of de opdracht gedragen wordt.',
-      en: 'At Working knowledge you write the charter on one page. You put the goal, milestones and costs on paper and count the consultant’s hours. Afterwards you can answer why you write down assumptions and how you test whether the charter is supported.',
+      nl: 'Op Werkkennis schrijf je het charter op één blad. Je zet doel, mijlpalen en kosten op papier en rekent mee met de uren van de adviseur. Daarna kun je beantwoorden waarom je aannames opschrijft en hoe je toetst of de opdracht gedragen wordt. De projectopdracht is het faseproduct van Define.',
+      en: 'At Working knowledge you write the charter on one page. You put the goal, milestones and costs on paper and count the consultant’s hours. Afterwards you can answer why you write down assumptions and how you test whether the charter is supported. The charter is the phase product of Define.',
     },
     3: {
       nl: 'Nu je Gevorderd opent, trek je grenzen met SIPOC. Je beslist waar een proces begint en eindigt en waar problemen in de praktijk ontstaan. Dan kun je uitleggen waar de P voor staat en waar je het probleem zoekt.',
@@ -117,8 +117,8 @@ export default {
       en: 'When you reach Advanced, you decide whether to say yes. You recognise a red flag at intake and know what to do first with a project that seems doomed. After this you can explain which pushback works best.',
     },
     4: {
-      nl: 'Bij Expert bouwt een senior een business case die standhoudt. Het gaat om wat er gebeurt als de baten tegenvallen en om gevoeligheden. Daarna kun je een case toetsen op wat er gebeurt bij een lagere opbrengst.',
-      en: 'With Expert a senior builds a business case that holds. It is about what happens when benefits fall short and about sensitivities. Afterwards you can test a case against a lower return.',
+      nl: 'Bij Expert bouwt een senior een business case die standhoudt. Het gaat om wat er gebeurt als de baten tegenvallen en om gevoeligheden. Daarna kun je een case toetsen op wat er gebeurt bij een lagere opbrengst. In DMAIC reken je hem bij de fasepoort van Analyse opnieuw door.',
+      en: 'With Expert a senior builds a business case that holds. It is about what happens when benefits fall short and about sensitivities. Afterwards you can test a case against a lower return. In DMAIC you recalculate it at the Analyse tollgate.',
     },
   },
   'pm.plan/breakdown': {
