@@ -36,9 +36,9 @@ export default {
         {
           kind: 'best',
           q: 'A team lead asks for a better dashboard for the work orders. What is the best first question?',
-          options: ['“Walk me through an order from last week that got stuck.”', '“What have you already tried to fix this?”', '“Which figures should go on the dashboard?”', '“When does the dashboard need to be ready?”'],
+          options: ['“Walk me through an order from last week that got stuck.”', '“What have you already tried to fix this, and what did it cost?”', '“Which figures should go on the dashboard?”', '“When does the dashboard need to be ready?”'],
           answer: '“Walk me through an order from last week that got stuck.”',
-          close: '“What have you already tried to fix this?”',
+          close: '“What have you already tried to fix this, and what did it cost?”',
           why: 'A concrete recent case shows the real mechanism, not the opinion. “What have you tried” is also good and wins when you already know the mechanism but not the history; the two dashboard questions already follow his chosen solution.',
         },
         {
@@ -49,7 +49,7 @@ export default {
         },
         {
           q: 'A sponsor finds late orders annoying but cannot say what they cost. Why do you ask about the cost of inaction?',
-          options: ['To work out a fair day rate for the project', 'To know the size and weigh the problem against the effort', 'To establish which department causes the problem', 'To convince the sponsor that a project is needed'],
+          options: ['To work out a fair day rate for the project and defend it to procurement', 'To know the size and weigh the problem against the effort', 'To establish which department causes the problem', 'To convince the sponsor that a project is needed'],
           answer: 'To know the size and weigh the problem against the effort',
           why: 'A problem without a size cannot be prioritised or weighed against a project. It is not about your rate, blame or persuading: it is a sum that shows whether it is worth it.',
         },
@@ -212,14 +212,14 @@ export default {
         {
           kind: 'best',
           q: 'On line 4 scrap occurs only in the night shift and only since May. What is the best first step to make the problem smaller?',
-          options: ['Start 5 Whys at the scrap itself', 'An issue tree with scrap, speed and breakdowns as branches', 'A gemba walk in the night shift to see what is different', 'An is/is-not analysis of the scrap data per line, shift and week'],
+          options: ['Start 5 Whys at the scrap itself', 'An issue tree with scrap, speed and breakdowns as branches', 'A gemba walk in the night shift to see for yourself what is different', 'An is/is-not analysis of the scrap data per line, shift and week'],
           answer: 'An is/is-not analysis of the scrap data per line, shift and week',
-          close: 'A gemba walk in the night shift to see what is different',
+          close: 'A gemba walk in the night shift to see for yourself what is different',
           why: 'An is/is-not analysis sets side by side where it does and does not happen, using data that already exists; the difference is your clue. A night-shift gemba walk is also good and wins when no data per shift exists; 5 Whys already seeks a cause before the problem is small.',
         },
         {
           q: 'A shift lead runs 5 Whys on a scrap problem and ends at “the operator did not follow the instruction”. He wants to put that in the problem statement. What do you say?',
-          options: ['Five is too few; keep asking until you reach management and record that', 'Fine: the operator is the cause the team can act on, so record it', 'One chain of possible causes: check the steps with data and keep it out of the problem statement', 'The method comes from the car industry and so does not fit a scrap problem in your factory'],
+          options: ['Five is too few; keep asking until you reach management and record that', 'Fine: the operator is the cause the team can act on, so record it', 'One chain of possible causes: check the steps with data and keep it out of the problem statement', 'The method comes from the car industry and so does not really fit a scrap problem in your own factory'],
           answer: 'One chain of possible causes: check the steps with data and keep it out of the problem statement',
           why: 'The critique of 5 Whys is that it often gives one cause chain while several are at play. Use it as a conversation technique, not as proof, and keep a cause out of the problem statement.',
         },
@@ -301,10 +301,10 @@ export default {
           why: 'Confirmation bias: you mostly see what supports your suspicion. Writing down beforehand what would disprove it forces you to seek counter-evidence. Making hypotheses afterwards is explaining, not testing.',
         },
         {
-          q: 'You want to know whether the downtime hours sit with two presses. Which request to IT gets a usable answer fastest?',
-          options: ['An export of the full system data of the past year, to be safe', 'A request to send the line 3 breakdown data for your diagnosis of the presses', 'Your expected conclusion, so IT knows what you are after and what you expect', 'Stop log line 3, 8 weeks, per press, needed Friday; below 15% waiting for material we drop the branch'],
-          answer: 'Stop log line 3, 8 weeks, per press, needed Friday; below 15% waiting for material we drop the branch',
-          why: 'A good data request says which data, from whom, over which period, by when and what would disprove your suspicion. The others are too broad, too vague or steer with your conclusion.',
+          q: 'You suspect most downtime on line 3 comes from waiting for material. Which request to IT gets a usable answer fastest?',
+          options: ['An export of the full system data of the past year, to be safe, so you miss nothing', 'A request to send over the line 3 breakdown data, so that you can make a diagnosis from it in time', 'Your expected conclusion, so IT knows what you are after and what you expect to find in it', 'Stop log line 3, 8 weeks, needed Friday; below 15% waiting for material we drop the branch'],
+          answer: 'Stop log line 3, 8 weeks, needed Friday; below 15% waiting for material we drop the branch',
+          why: 'A good data request says which data, over which period, by when and what would disprove your suspicion. The others are too broad, too vague or steer with your conclusion.',
         },
       ],
       situation: {
@@ -347,7 +347,7 @@ export default {
         {
           kind: 'best',
           q: 'A shift lead does not free up operators for the workshops and says: “interesting, let’s discuss it in the MT.” Which role fits best with what he is doing now?',
-          options: ['Sponsor, because he decides about the people on his shift', 'Process owner, because he runs the process with his shift', 'User, because his work changes through the project', 'Blocker, because he can slow the project without saying no'],
+          options: ['Sponsor, because he decides about the people on his shift and how they use their time', 'Process owner, because he runs the process with his shift', 'User, because his work changes through the project', 'Blocker, because he can slow the project without saying no'],
           answer: 'Blocker, because he can slow the project without saying no',
           close: 'User, because his work changes through the project',
           why: 'What he does holds the project up: that is blocker behaviour, and resistance rarely sounds like “no”. User is also true (his work changes) and fits better if the question were whose daily work changes; one person can hold two roles.',
@@ -431,7 +431,7 @@ export default {
       pre: [
         {
           q: 'You have spent a week at a pump assembly plant. What builds trust with the operators fastest?',
-          options: ['A clear presentation of the project plan in the canteen', 'Fixing a nuisance they named themselves, such as a missing wrench', 'A kick-off by the plant manager with the goals on one slide', 'Presenting the baseline and the roles to the team leads'],
+          options: ['A clear presentation of the project plan and the timeline to the shifts together', 'Fixing a nuisance they named themselves, such as a missing wrench', 'A kick-off by the plant manager with the goals on one slide', 'Presenting the baseline and the roles to the team leads'],
           answer: 'Fixing a nuisance they named themselves, such as a missing wrench',
           why: 'A quick win that comes from the people themselves shows you do what you say. Plans, kick-offs and benchmarks are useful, but they fix nothing the operators feel daily.',
         },
@@ -548,13 +548,13 @@ export default {
         },
         {
           q: 'You had agreed two operators, but after week 3 there are none. The sponsor says the project must simply carry on. What do you do?',
-          options: ['Do the analysis yourself, without operators, and say nothing', 'Wait for the steering group next month and raise it there', 'Keep the end date and point out it was his agreement', 'Recontract: discuss what zero operators means for the goal and the date'],
-          answer: 'Recontract: discuss what zero operators means for the goal and the date',
+          options: ['Do the analysis yourself, without operators, and say nothing', 'Wait for next month’s steering group and raise it there as an agenda item', 'Keep the end date and point out it was his agreement', 'Recontract: discuss what zero operators means for goal and date'],
+          answer: 'Recontract: discuss what zero operators means for goal and date',
           why: 'When circumstances change, recontracting is normal: renew the agreement with the consequences for goal and date. Holding the end date and assigning blame does not close the gap.',
         },
         {
           q: 'A fellow consultant says: “I’ll just take it all on myself, then the client doesn’t need to do anything.” Which risk do you name?',
-          options: ['What the consultant changes by himself disappears when he leaves', 'The client gets a lower invoice than he would expect', 'The consultant then carries the full legal liability', 'The project takes longer because the consultant has to do everything himself'],
+          options: ['What the consultant changes by himself disappears when he leaves', 'The consultant loses his independence and can no longer contradict the sponsor', 'The consultant then carries the full legal liability', 'The project takes longer because the consultant has to do everything himself'],
           answer: 'What the consultant changes by himself disappears when he leaves',
           why: 'Responsibility is fifty-fifty: the change has to be carried by the client’s own people. If the consultant does it alone, nothing changes when he leaves.',
         },
@@ -624,13 +624,13 @@ export default {
         },
         {
           q: 'The plant manager wants to take a decision on a major organisational change in the MT in three weeks. When do you ask the works council for advice under the WOR?',
-          options: ['Now, as an intended decision, while the advice can still materially influence the decision', 'After the MT decision, so the council can explain it to its constituents', 'At a change of working and rest times, because that is where consent applies', 'When the council itself asks for it, because then it is motivated'],
-          answer: 'Now, as an intended decision, while the advice can still materially influence the decision',
+          options: ['Now, as an intended decision, while the advice can still materially influence it', 'After the MT decision, so the council can explain it to its constituents', 'At a change of working and rest times, because that is where the right of consent applies', 'When the council itself asks for it, because then it is motivated'],
+          answer: 'Now, as an intended decision, while the advice can still materially influence it',
           why: 'The advice must be asked while it can still have a material influence on the decision (art. 25 para 2). An MT decision as an intended decision leaves that room; asking afterwards does not.',
         },
         {
           q: 'Your map holds only people from the org chart, but on the floor decisions fall differently. How do you find the informal network?',
-          options: ['Through HR, which knows everyone’s appraisals', 'By asking on the floor who people go to when something really does not work', 'By looking at who has the most years of service', 'By rereading the job descriptions and the org chart'],
+          options: ['Through HR, which knows everyone’s appraisals', 'By asking on the floor who people go to when something really does not work', 'By looking at who has the most years of service', 'By rereading the job descriptions and the org chart for reporting lines and responsibilities'],
           answer: 'By asking on the floor who people go to when something really does not work',
           why: 'The informal network is who goes to whom for advice; the same two or three names keep coming back. Appraisals, years of service and the org chart show the official lines, not the real ones.',
         },
@@ -679,14 +679,14 @@ export default {
       pre: [
         {
           q: 'Which of these project goals is usable?',
-          options: ['Bring downtime on line 3 down considerably and keep the shifts happy', 'Introduce a new MES that records the downtime on line 3', 'Bring unplanned downtime on line 3 down from 14 to 8 hours a week by 1 April', 'Map the stop log of line 3 and improve the downtime'],
+          options: ['Bring downtime on line 3 down considerably and keep the shifts happy, so the plan stays achievable', 'Introduce a new MES that records the downtime on line 3', 'Bring unplanned downtime on line 3 down from 14 to 8 hours a week by 1 April', 'Map the stop log of line 3 and improve the downtime'],
           answer: 'Bring unplanned downtime on line 3 down from 14 to 8 hours a week by 1 April',
           why: 'A usable goal goes from X to Y by a date. The others are a wish (considerably), a solution (a tool) or an activity (mapping), with no measurable difference.',
         },
       ],
       teach: [
         'Write a one-sentence goal: from X to Y by when, measured how. “Reduce unplanned stops on line 3 from 14 to 8 hours a week by 1 April, measured in the MES stop log.” (MES: the manufacturing execution system, the software on the floor that logs every stop.)\n\nIf you can’t write that sentence, you don’t have a project yet, you have a wish. Write it with the client, in their words, and read it back to them.',
-        'Baseline first: the measured starting value you compare against later. Without it nobody can say you succeeded, and every result gets disputed. In Define you fix how you measure; you measure the starting figure itself in Measure.\n\nIf the data doesn’t exist, measuring for two weeks is your first deliverable. Say it plainly: “I don’t know the current number yet. Let’s measure before we promise anything.” Two weeks catches a normal weekly pattern; a seasonal business may need longer.',
+        'Baseline first: the measured starting value you compare against later. Without it nobody can say you succeeded, and every result gets disputed. In Define you fix how you measure; you measure the starting figure itself in Measure.\n\nIf the data doesn’t exist, measuring for two weeks is your first deliverable (something you hand over). Say it plainly: “I don’t know the current number yet. Let’s measure before we promise anything.” Two weeks catches a normal weekly pattern; a seasonal business may need longer.',
         'Scope is what the project covers. Write down in scope and out of scope. Out matters more: “Line 3 only, not lines 1 and 2. Process and planning, not a new ERP system (the company-wide software for orders, stock and finance). No changes to shift patterns.”\n\nList the out-of-scope items people are likely to raise. When they come up later, you point to the list instead of having the argument again.',
         'Scope creep is the slow widening of a project, one reasonable request at a time: “while you’re at it, could you also look at line 2?” Each one sounds small; together they eat your weeks.\n\nDon’t just say no. Say: “Good idea. It’s out of scope now, so either we swap it for something, or the sponsor adds time.” A sharp question when someone adds work: “What do we drop to make room?”',
         'Acceptance criteria: who signs off, on what evidence, and when. “The plant manager accepts when the average over four consecutive weeks is 8 hours or less.” Four weeks guards against one lucky week.\n\nAgree this at the start. By the end the mood in the room will be different and everyone will remember the promise differently. Experts argue about stretch targets; an ambitious number motivates some teams, but a target nobody believes gets quietly ignored.\n\nIn DMAIC the charter is the phase product of Define; the tollgate approves it.',
@@ -698,14 +698,14 @@ export default {
       said: 'What you hear in projects: “Let’s not pin ourselves down on a number yet.” Sometimes that’s fair caution; often it’s a way to never be measured.',
       recall: [
         {
-          q: 'A food plant discusses three goal sentences. Which is the strongest?',
-          options: ['Bring scrap on the two filling lines from 3.2% to 2.0% by the end of Q2, measured in the scrap report', 'Push scrap on the two filling lines down considerably, so customers become and stay more satisfied', 'Bring scrap on the two filling lines to zero, an ambitious target that motivates the team', 'Build a dashboard that makes scrap on the two filling lines visible weekly'],
+          q: 'A food plant discusses four goal sentences. Which is the strongest?',
+          options: ['Bring scrap on the two filling lines from 3.2% to 2.0% by the end of Q2, measured in the scrap report', 'Push scrap on the two filling lines down considerably, so customers become and stay more satisfied from next quarter', 'Bring scrap on the two filling lines to zero, an ambitious target that motivates the team', 'Build a dashboard that makes scrap on the two filling lines visible weekly'],
           answer: 'Bring scrap on the two filling lines from 3.2% to 2.0% by the end of Q2, measured in the scrap report',
           why: 'A strong goal sentence has a baseline (3.2%), a target (2.0%), a date and a measure. “Considerably” is a wish, a target of zero may motivate but is not believed, and a dashboard is a solution.',
         },
         {
           q: 'Midway through the project the plant manager asks: “While you are at it, could you also look at line 2?” Why was it good that you had written down what is out of scope?',
-          options: ['The contract forbids you to do extra work, even when it is small', 'It makes the charter shorter, so the scope stays small by itself', 'You point to the list and ask to swap or add time, without reopening the discussion', 'It lowers your rate because the work stays limited, since scope costs money'],
+          options: ['The contract forbids you to do extra work, even when it is small', 'It makes the charter shorter, so the scope stays small by itself', 'You point to the list and ask to swap or add time, without reopening the discussion', 'You can turn the request down, because the list was signed by the sponsor and is therefore binding'],
           answer: 'You point to the list and ask to swap or add time, without reopening the discussion',
           why: 'If it comes up later you point to the list: “Good idea, it is out of scope, so we swap it or the sponsor adds time.” That prevents scope creep, one reasonable request at a time.',
         },
@@ -802,7 +802,7 @@ export default {
         {
           kind: 'best',
           q: 'You have finished the charter and want to know whether it is carried. What is the best test?',
-          options: ['Have the sponsor sign and date it', 'Put it in the client’s project management system', 'Describe the tasks in it down to the day', 'Have the process owner retell it in his own words'],
+          options: ['Have the sponsor sign and date it', 'Put it in the client’s project management system for everyone involved', 'Describe the tasks in it down to the day', 'Have the process owner retell it in his own words'],
           answer: 'Have the process owner retell it in his own words',
           close: 'Have the sponsor sign and date it',
           why: 'If the process owner can retell it, it is clear and carried. A signature wins if the question is whether the project is formally authorised, but it does not show that the people who must live with it understand it.',
@@ -848,7 +848,7 @@ export default {
       pre: [
         {
           q: 'A team has been arguing for an hour about where “the order process” starts. What helps most?',
-          options: ['Agree the start and end, with who supplies into it and who receives the result', 'First map the processes of the whole company in detail before you continue', 'Let the sponsor decide where it starts without consultation', 'Park the topic until the pilot shows where it really sits'],
+          options: ['Agree the start and end, with who supplies into it and who receives the result', 'First map the processes of the whole company in detail, before you continue with anything else', 'Let the sponsor decide where it starts without consultation', 'Park the topic until the pilot shows where it really sits'],
           answer: 'Agree the start and end, with who supplies into it and who receives the result',
           why: 'The gain of a SIPOC is that everyone talks about the same boundaries: where the process starts and ends, who supplies and who receives. Drawing everything in detail takes weeks and does not settle the argument.',
         },
@@ -875,9 +875,9 @@ export default {
           why: 'A SIPOC with twenty steps is a common mistake: the aim is to agree where the process starts and ends. The detailed map with times you make later, in Measure.',
         },
         {
-          q: 'At a grid operator work sits for days between work preparation and planning. Which first measurement point does the SIPOC point to?',
-          options: ['The first step of the process, because the lead time starts there', 'The last step, because the customer measures delivery there', 'The handover between work preparation and planning', 'The IT systems both departments work in'],
-          answer: 'The handover between work preparation and planning',
+          q: 'At a grid operator work sits for days, but nobody knows where exactly. Which first measurement point does the SIPOC point to?',
+          options: ['The first step of the process, because the lead time starts there', 'The last step, because the customer measures delivery there', 'The handovers between the departments in the process', 'The IT systems the departments work in'],
+          answer: 'The handovers between the departments in the process',
           why: 'Many problems sit at handovers: information gets lost, work waits in a queue, nobody owns it. A SIPOC shows them at once and they are often your first measurement points.',
         },
         {
@@ -955,7 +955,7 @@ export default {
       recall: [
         {
           q: 'At the end of the diagnosis the sponsor says: “You have prepared everything already, we just carry on with the pilot.” What is missing?',
-          options: ['An invoice for the completed phase before the pilot starts, with the hours of the diagnosis', 'An extra checkpoint with the team before the pilot starts, to go through the planning', 'A deliberate decision where the sponsor weighs what we know, what it costs and what it yields', 'An extension of scope with what the diagnosis found, so the pilot fixes more'],
+          options: ['An invoice for the completed phase before the pilot starts, with the hours of the diagnosis attached', 'An extra checkpoint with the team before the pilot starts, to go through the planning', 'A deliberate decision where the sponsor weighs what we know, what it costs and what it yields', 'An extension of scope with what the diagnosis found, so the pilot fixes more'],
           answer: 'A deliberate decision where the sponsor weighs what we know, what it costs and what it yields',
           why: 'A go/no-go is more than a checkpoint: the sponsor chooses again whether continuing is worth the money and time, with three things attached: what we know, what the next step costs and what it yields.',
         },
@@ -974,7 +974,7 @@ export default {
         },
         {
           q: 'In week 6 the team is already building the pilot, but the diagnosis was not formally closed and the sponsor has decided nothing yet. What is the risk?',
-          options: ['The diagnosis data becomes outdated before the pilot is ready', 'Nobody has deliberately decided whether the pilot is worth the money and time', 'The works council must advise again on the whole project', 'The consultant cannot invoice the pilot separately'],
+          options: ['The diagnosis data becomes outdated before the pilot is ready and has to be collected again', 'Nobody has deliberately decided whether the pilot is worth the money and time', 'The diagnosis hours are no longer tracked separately, so pilot costs blur into them', 'The consultant cannot invoice the pilot separately'],
           answer: 'Nobody has deliberately decided whether the pilot is worth the money and time',
           why: 'A diagnosis that quietly flows into execution is a common mistake: there is no go/no-go, so the sponsor has not chosen and a hopeless project can run on endlessly.',
         },
@@ -1046,7 +1046,7 @@ export default {
           q: 'A project saves 4 hours of downtime a week. The sponsor books that straight away as a saving of 4 × €350. When is that right?',
           options: ['When downtime ends below five percent of production time afterwards', 'When the factory can also sell the extra production hours', 'When the project has paid back within a year', 'When the controller puts the hours on the profit and loss account'],
           answer: 'When the factory can also sell the extra production hours',
-          why: 'Fewer hours of downtime only earn money if you can sell those hours; otherwise it is capacity, not euros. A high OEE or a fast payback says nothing about that.',
+          why: 'Less downtime only earns money if you can sell the hours it frees up; otherwise it is capacity, not euros. Whether downtime ends below five percent, whether it pays back fast or whether the controller books the hours says nothing about that.',
         },
         {
           q: 'A project saves 4 hours of downtime a week. The factory can sell the extra output. An hour of production yields €350 contribution margin, at revenue of €1,100 an hour. What are the benefits over 46 production weeks?',
@@ -1119,7 +1119,7 @@ export default {
       recall: [
         {
           q: 'Which opening of a proposal is an SCQ?',
-          options: ['“We are a firm with twenty years of experience in improvement projects in industry.”', '“We propose to work in three phases, with a fixed price per phase and a go/no-go at the end.”', '“You deliver 92% on time, customers demand 98% and two threaten to leave. How do you reach 98% in a year?”', '“You asked for a proposal; here we send our approach and a price quote for the first quarter.”'],
+          options: ['“We are a firm with twenty years of experience in improvement projects in industry.”', '“We propose to work in three phases, with a fixed price per phase and a go/no-go at the end.”', '“You deliver 92% on time, customers demand 98% and two threaten to leave. How do you reach 98% in a year?”', '“You asked for a proposal; here we send our approach and a price quote for the first quarter of the project.”'],
           answer: '“You deliver 92% on time, customers demand 98% and two threaten to leave. How do you reach 98% in a year?”',
           why: 'SCQ is situation, complication, question: 92% on time, customers demanding 98%, and the question of how to get there. The other openings are about the firm, the approach or the price.',
         },
@@ -1202,7 +1202,7 @@ export default {
       recall: [
         {
           q: 'You do an intake at a machine builder and see four signals. Which signal is the strongest red flag for the project?',
-          options: ['The client is sceptical about consultants and wants a trial period first', 'Nobody on the client side can decide whether people are freed up', 'The data is spread over three Excel files and an old system', 'The deadline is six months away and is already in the annual plan'],
+          options: ['The client is sceptical about consultants and wants a trial period first', 'Nobody on the client side can decide whether people are freed up', 'The data is spread over three Excel files and an old system', 'The deadline is six months away and was set after a first look at the data'],
           answer: 'Nobody on the client side can decide whether people are freed up',
           why: 'Without someone who can decide on people and resources the project stalls, however good the plan. Scepticism, Excel data and a deadline are awkward but workable; a missing sponsor is not.',
         },
@@ -1299,9 +1299,9 @@ export default {
         },
         {
           q: 'The controller discounts the year 3 benefits at 8%: €50,000 / 1.08³. A colleague says that makes the benefits look smaller than they are. What do you answer?',
-          options: ['It spreads the investment evenly over the years, so the costs per year are equal', 'A euro in three years is worth less than a euro now, so you convert back to now', 'The tax authority prescribes that correction for investments above a certain amount', 'It allows for the chance that the benefits fall short and so are less certain'],
+          options: ['It spreads the investment evenly over the years, so the costs per year are equal', 'A euro in three years is worth less than a euro now, so you convert back to now', 'The tax authority prescribes that correction for investments above a certain amount', 'It deducts the costs that stay, such as the licence, from the benefits so that the net benefits remain'],
           answer: 'A euro in three years is worth less than a euro now, so you convert back to now',
-          why: 'Net present value converts future euros back to today, because you can invest a euro now or because borrowing costs money. You correct optimism differently: with a reference class of real projects.',
+          why: 'Net present value converts future euros back to today, because you can invest a euro now or because borrowing costs money. Costs that stay are already deducted in the net benefits, and you correct optimism with a reference class of real projects.',
         },
         {
           q: 'Your sponsor estimates the benefits at €40,000 a year. Two earlier projects in the plant achieved only 70% of their estimated benefits. What do you do with his estimate?',

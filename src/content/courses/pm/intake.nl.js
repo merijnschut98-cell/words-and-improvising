@@ -36,9 +36,9 @@ export default {
         {
           kind: 'best',
           q: 'Een teamleider vraagt om een beter dashboard voor de werkorders. Wat is de beste eerste vraag?',
-          options: ['“Neem me eens mee in een order van vorige week die vastliep.”', '“Wat hebben jullie al geprobeerd om dit op te lossen?”', '“Welke cijfers moeten er op het dashboard komen?”', '“Wanneer moet het dashboard klaar zijn?”'],
+          options: ['“Neem me eens mee in een order van vorige week die vastliep.”', '“Wat hebben jullie al geprobeerd om dit op te lossen, en wat kostte dat?”', '“Welke cijfers moeten er op het dashboard komen?”', '“Wanneer moet het dashboard klaar zijn?”'],
           answer: '“Neem me eens mee in een order van vorige week die vastliep.”',
-          close: '“Wat hebben jullie al geprobeerd om dit op te lossen?”',
+          close: '“Wat hebben jullie al geprobeerd om dit op te lossen, en wat kostte dat?”',
           why: 'Een concreet recent geval laat het echte mechanisme zien, niet de mening. “Wat is er al geprobeerd” is ook goed en wint als je het mechanisme al kent maar de geschiedenis niet; de twee vragen over het dashboard gaan al in op zijn gekozen oplossing.',
         },
         {
@@ -49,7 +49,7 @@ export default {
         },
         {
           q: 'Een sponsor vindt late orders vervelend maar kan niet zeggen wat het kost. Waarom vraag je naar de kosten van niksdoen?',
-          options: ['Om een eerlijk uurtarief voor het project te kunnen bepalen', 'Om de omvang te kennen en het probleem tegen de inspanning af te wegen', 'Om vast te stellen welke afdeling het probleem veroorzaakt', 'Om de sponsor te overtuigen dat een project nodig is'],
+          options: ['Om een eerlijk uurtarief voor het project te kunnen bepalen en bij de inkoper te verdedigen', 'Om de omvang te kennen en het probleem tegen de inspanning af te wegen', 'Om vast te stellen welke afdeling het probleem veroorzaakt', 'Om de sponsor te overtuigen dat een project nodig is'],
           answer: 'Om de omvang te kennen en het probleem tegen de inspanning af te wegen',
           why: 'Een probleem zonder omvang kun je niet prioriteren of afwegen tegen een project. Het gaat niet om je tarief, schuld of overtuigen: het is een som die laat zien of het de moeite waard is.',
         },
@@ -119,7 +119,7 @@ export default {
         },
         {
           q: 'Je zit een kwartier in het gesprek. De assetmanager geeft korte antwoorden, zijn telefoon ligt op tafel en hij zegt: “het staat allemaal in het rapport”. Wat doe je?',
-          options: ['Samen het rapport pagina voor pagina doorlopen', 'Overstappen op ja/nee-vragen om snel de feiten te krijgen', 'Het gesprek afronden en een nieuw moment prikken', 'Het luchtig benoemen en vragen hoe het de vorige keer ging'],
+          options: ['Samen het rapport pagina voor pagina doorlopen', 'Overstappen op ja/nee-vragen om snel de feiten van hem te krijgen', 'Het gesprek afronden en een nieuw moment prikken', 'Het luchtig benoemen en vragen hoe het de vorige keer ging'],
           answer: 'Het luchtig benoemen en vragen hoe het de vorige keer ging',
           why: 'Stille weerstand komt vaak voort uit een eerder project dat op niets uitliep. Het benoemen laat hem dat verhaal vertellen; het rapport doorlopen of gesloten vragen verstevigt het verhoor-gevoel.',
         },
@@ -212,14 +212,14 @@ export default {
         {
           kind: 'best',
           q: 'Op lijn 4 komt afkeur alleen voor in de nachtdienst en pas sinds mei. Wat is de beste eerste stap om het probleem kleiner te maken?',
-          options: ['5 keer waarom beginnen bij de afkeur zelf', 'Een vragenboom met afkeur, snelheid en storingen als takken', 'Een gemba-ronde in de nachtdienst om te zien wat er anders gaat', 'Een is/is-niet-analyse op de afkeurdata per lijn, dienst en week'],
+          options: ['5 keer waarom beginnen bij de afkeur zelf', 'Een vragenboom met afkeur, snelheid en storingen als takken', 'Een gemba-ronde in de nachtdienst om zelf te zien wat er anders gaat', 'Een is/is-niet-analyse op de afkeurdata per lijn, dienst en week'],
           answer: 'Een is/is-niet-analyse op de afkeurdata per lijn, dienst en week',
-          close: 'Een gemba-ronde in de nachtdienst om te zien wat er anders gaat',
+          close: 'Een gemba-ronde in de nachtdienst om zelf te zien wat er anders gaat',
           why: 'Een is/is-niet-analyse zet naast elkaar waar het wel en niet speelt, met data die er al is; het verschil is je aanwijzing. Een gemba-ronde in de nacht is ook goed en wint als er geen data per dienst bestaat; 5 keer waarom zoekt al een oorzaak voordat het probleem klein is.',
         },
         {
           q: 'Een ploegleider doet 5 keer waarom op een afkeurprobleem en komt uit op “de operator volgde de instructie niet”. Hij wil dat in de probleemstelling zetten. Wat zeg je?',
-          options: ['Vijf keer is te weinig; vraag door tot je bij het management uitkomt en neem dat op', 'Prima: de operator is de oorzaak waar het team zelf iets aan kan doen, dus leg dat vast', 'Eén keten van mogelijke oorzaken: check de stappen met data en houd het buiten de probleemstelling', 'De methode komt uit de auto-industrie en past daarom niet op een afkeurprobleem in jouw fabriek'],
+          options: ['Vijf keer is te weinig; vraag door tot je bij het management uitkomt en neem dat op', 'Prima: de operator is de oorzaak waar het team zelf iets aan kan doen, dus leg dat vast', 'Eén keten van mogelijke oorzaken: check de stappen met data en houd het buiten de probleemstelling', 'De methode komt uit de auto-industrie en past daarom niet goed op een afkeurprobleem in jouw eigen fabriek'],
           answer: 'Eén keten van mogelijke oorzaken: check de stappen met data en houd het buiten de probleemstelling',
           why: 'De kritiek op 5 keer waarom is dat het vaak één oorzakenketen geeft terwijl er meer spelen. Gebruik het als gesprekstechniek, niet als bewijs, en houd een oorzaak buiten de probleemstelling.',
         },
@@ -301,10 +301,10 @@ export default {
           why: 'Bevestigingsvooroordeel: je ziet vooral wat je vermoeden steunt. Vooraf opschrijven wat hem zou weerleggen dwingt je tegenbewijs te zoeken. Hypotheses pas achteraf maken is verklaren, niet toetsen.',
         },
         {
-          q: 'Je wilt weten of de storingsuren bij twee persen zitten. Welk verzoek aan IT levert het snelst een bruikbaar antwoord?',
-          options: ['Een export van de volledige systeemdata van het afgelopen jaar, voor de zekerheid', 'Het verzoek om de storingsdata van lijn 3 te sturen voor je diagnose van de persen', 'Je verwachte conclusie, zodat IT weet waar je naar zoekt en wat je verwacht', 'Stoplog lijn 3, 8 weken, per pers, vrijdag nodig; onder 15% materiaalwachten laten we de tak vallen'],
-          answer: 'Stoplog lijn 3, 8 weken, per pers, vrijdag nodig; onder 15% materiaalwachten laten we de tak vallen',
-          why: 'Een goede datavraag noemt welke data, van wie, over welke periode, wanneer je hem nodig hebt en wat je vermoeden zou weerleggen. De andere verzoeken zijn te breed, te vaag of sturen met je conclusie.',
+          q: 'Je vermoedt dat de meeste stilstand op lijn 3 door wachten op materiaal komt. Welk verzoek aan IT levert het snelst een bruikbaar antwoord?',
+          options: ['Een export van de volledige systeemdata van het afgelopen jaar, voor de zekerheid, zodat je niets mist', 'Het verzoek om de storingsdata van lijn 3 te sturen, zodat je daarmee je diagnose kunt stellen', 'Je verwachte conclusie, zodat IT weet waar je naar zoekt en wat je daarin verwacht te vinden', 'Stoplog lijn 3, 8 weken, vrijdag nodig; onder 15% materiaalwachten laten we de tak vallen'],
+          answer: 'Stoplog lijn 3, 8 weken, vrijdag nodig; onder 15% materiaalwachten laten we de tak vallen',
+          why: 'Een goede datavraag noemt welke data, over welke periode, wanneer je hem nodig hebt en wat je vermoeden zou weerleggen. De andere verzoeken zijn te breed, te vaag of sturen met je conclusie.',
         },
       ],
       situation: {
@@ -347,7 +347,7 @@ export default {
         {
           kind: 'best',
           q: 'Een ploegleider maakt voor de workshops geen operators vrij en zegt: “interessant, laten we het in het MT bespreken.” Welke rol past het beste bij wat hij nu doet?',
-          options: ['Sponsor, want hij beslist over de mensen van zijn ploeg', 'Proceseigenaar, want hij draait het proces met zijn ploeg', 'Gebruiker, want zijn werk verandert door het project', 'Blokkeerder, want hij kan het project vertragen zonder nee te zeggen'],
+          options: ['Sponsor, want hij beslist over de mensen van zijn ploeg en over wat zij doen', 'Proceseigenaar, want hij draait het proces met zijn ploeg', 'Gebruiker, want zijn werk verandert door het project', 'Blokkeerder, want hij kan het project vertragen zonder nee te zeggen'],
           answer: 'Blokkeerder, want hij kan het project vertragen zonder nee te zeggen',
           close: 'Gebruiker, want zijn werk verandert door het project',
           why: 'Wat hij doet, houdt het project op: dat is het gedrag van een blokkeerder, en weerstand klinkt zelden als “nee”. Gebruiker is ook waar (zijn werk verandert) en past beter als de vraag was wiens dagelijkse werk verandert; één persoon kan twee rollen hebben.',
@@ -355,7 +355,7 @@ export default {
       ],
       teach: [
         'Een stakeholder is iedereen die invloed heeft op het project of er last of baat van heeft. Vier rollen tellen het meest.\n\nSponsor: eigenaar van budget en resultaat, en kan beslissen. Proceseigenaar: de manager die het proces runt en met de verandering moet leven. Gebruikers: de operators, planners of monteurs van wie het werk verandert.\n\nBlokkeerders: iedereen wiens belang, macht of tijd geraakt wordt, vaak IT, de OR (ondernemingsraad, works council) of een ploegleider met twintig dienstjaren. Eén persoon kan twee rollen hebben.',
-        'Een stakeholdermap heeft twee assen: invloed (kunnen ze het stoppen of versnellen?) en belang (verandert hun werk?). Het idee wordt meestal aan Mendelow toegeschreven (1981, vaak aangehaald als 1991).\n\nHoog op allebei: wekelijks betrekken. Veel invloed, weinig belang: tevreden houden, met korte updates in hun taal. Weinig invloed, veel belang: goed informeren en laten meedoen, zij kennen de details. Weinig op allebei: in de gaten houden.\n\nTeken hem na de intake in een kwartier op papier en werk hem elke maand bij. ',
+        'Een stakeholdermap heeft twee assen: invloed (kunnen ze het stoppen of versnellen?) en belang (verandert hun werk?). Het idee wordt meestal aan Mendelow toegeschreven (1981, vaak aangehaald als 1991).\n\nHoog op allebei: wekelijks betrekken. Veel invloed, weinig belang: tevreden houden, met korte updates in hun taal. Weinig invloed, veel belang: goed informeren en laten meedoen, zij kennen de details. Weinig op allebei: in de gaten houden.\n\nTeken hem na de intake in een kwartier op papier en werk hem elke maand bij.',
         'Vraag het gewoon: “Wie beslist of dit doorgaat?”, “Wie kan het tegenhouden, ook zonder het hardop te zeggen?” en “Wie heeft zo’n project al eens meegemaakt?”\n\nOp de tweede vraag krijg je vaak een lachje en een naam. Schrijf die naam op. Die spreek je deze week nog één op één.\n\nCheck vroeg of de OR erbij moet. Volgens de Wet op de ondernemingsraden (WOR, art. 27) heeft de OR instemmingsrecht bij een wijziging van de werktijdenregeling, zoals ploegenroosters; sla je dat over, dan kan een project maanden stilliggen.',
         'Weerstand klinkt zelden als “nee”. Het ziet eruit als gemiste afspraken, mensen die niet vrijgemaakt worden, of “interessant, laten we het in het MT bespreken” (het managementteam).\n\nEscaleer niet als eerste stap. Escalatie betekent een vastgelopen punt voorleggen aan iemand hoger die kan beslissen. Ga eerst erheen en vraag: “Hoe zou dit eruit moeten zien om voor jouw team te werken?” Escaleer pas naar de sponsor als een besluit echt vastzit, en zeg het de persoon vooraf.\n\nIn Define maak je de kaart; tot Control houd je hem bij.',
         'Een bekende valkuil: op de map staan alleen namen uit het organogram (het schema van wie onder wie valt). De echte macht zit vaak bij een planner die iedereen om raad vraagt, of bij de vakbondsman.\n\nExperts verschillen over of je de map aan de klant laat zien. Velen houden een neutrale versie voor het team en hun eigen notities privé: “weinig steun” op een slide die iemand ziet, doet schade. Scherpe vraag aan de sponsor: “Wiens steun hebben we nodig die we nog niet hebben?”',
@@ -431,7 +431,7 @@ export default {
       pre: [
         {
           q: 'Je bent een week bezig bij een pompenassemblage. Wat bouwt het snelst vertrouwen op bij de operators?',
-          options: ['Een heldere presentatie van het projectplan voor de ploegen', 'Een ergernis oplossen die zij zelf noemden, zoals een ontbrekende sleutel', 'Een kick-off door de plantmanager met de doelen op één slide', 'De nulmeting en de rollen presenteren aan de teamleiders'],
+          options: ['Een heldere presentatie van het projectplan en de planning voor de ploegen tegelijk', 'Een ergernis oplossen die zij zelf noemden, zoals een ontbrekende sleutel', 'Een kick-off door de plantmanager met de doelen op één slide', 'De nulmeting en de rollen presenteren aan de teamleiders'],
           answer: 'Een ergernis oplossen die zij zelf noemden, zoals een ontbrekende sleutel',
           why: 'Een quick win die van de mensen zelf komt, laat zien dat je doet wat je zegt. Plannen, kick-offs en benchmarks zijn nuttig, maar ze lossen niets op dat de operators dagelijks voelen.',
         },
@@ -548,13 +548,13 @@ export default {
         },
         {
           q: 'Je had twee operators afgesproken, maar na week 3 zijn het er nul. De sponsor zegt dat het project gewoon moet doorgaan. Wat doe je?',
-          options: ['De analyse zelf doen, zonder operators, en niets zeggen', 'Wachten tot de stuurgroep van volgende maand en het daar bespreken', 'De einddatum laten staan en hem erop wijzen dat het zijn afspraak was', 'Hercontracteren: bespreken wat nul operators betekent voor het doel en de datum'],
-          answer: 'Hercontracteren: bespreken wat nul operators betekent voor het doel en de datum',
+          options: ['De analyse zelf doen, zonder operators, en niets zeggen', 'Wachten tot de stuurgroep van volgende maand en het daar bespreken', 'De einddatum laten staan en hem erop wijzen dat de afspraak over de operators van hem kwam', 'Hercontracteren: bespreken wat nul operators voor doel en datum betekent'],
+          answer: 'Hercontracteren: bespreken wat nul operators voor doel en datum betekent',
           why: 'Veranderen de omstandigheden, dan is hercontracteren normaal: de afspraken opnieuw maken met de gevolgen voor doel en datum. De einddatum vasthouden en schuld toewijzen lost het gat niet op.',
         },
         {
           q: 'Een collega-consultant zegt: “Ik neem het gewoon helemaal op me, dan hoeft de klant niets te doen.” Welk risico noem je?',
-          options: ['Wat alleen de consultant verandert, verdwijnt als hij weggaat', 'De klant krijgt een lagere factuur dan hij zou verwachten', 'De consultant draagt dan juridisch de volledige aansprakelijkheid', 'Het project duurt langer omdat de consultant alles zelf moet doen'],
+          options: ['Wat alleen de consultant verandert, verdwijnt als hij weggaat', 'De consultant raakt zijn onafhankelijkheid kwijt en kan de sponsor niet meer tegenspreken', 'De consultant draagt dan juridisch de volledige aansprakelijkheid', 'Het project duurt langer omdat de consultant alles zelf moet doen'],
           answer: 'Wat alleen de consultant verandert, verdwijnt als hij weggaat',
           why: 'De verantwoordelijkheid is vijftig-vijftig: de verandering moet door de mensen van de klant gedragen worden. Doet de consultant het alleen, dan verandert er niets als hij vertrekt.',
         },
@@ -630,7 +630,7 @@ export default {
         },
         {
           q: 'Op je map staan alleen mensen uit het organogram, maar op de vloer vallen besluiten anders. Hoe vind je het informele netwerk?',
-          options: ['Via HR, die de beoordelingen van iedereen kent', 'Door op de vloer te vragen bij wie mensen langsgaan als iets echt niet werkt', 'Door te kijken wie het langst in dienst is', 'Door de functiebeschrijvingen en het organogram nog eens te lezen'],
+          options: ['Via HR, die de beoordelingen van iedereen kent', 'Door op de vloer te vragen bij wie mensen langsgaan als iets echt niet werkt', 'Door te kijken wie het langst in dienst is', 'Door de functiebeschrijvingen en het organogram nog eens goed te lezen op onderlinge verhoudingen'],
           answer: 'Door op de vloer te vragen bij wie mensen langsgaan als iets echt niet werkt',
           why: 'Het informele netwerk is wie bij wie om raad gaat; dezelfde twee of drie namen komen steeds terug. Beoordelingen, dienstjaren en het organogram laten de officiële lijnen zien, niet de echte.',
         },
@@ -679,14 +679,14 @@ export default {
       pre: [
         {
           q: 'Welke van deze projectdoelen is bruikbaar?',
-          options: ['De stilstand op lijn 3 flink terugbrengen en de ploegen tevreden houden', 'Een nieuw MES invoeren dat de stilstand op lijn 3 vastlegt', 'De ongeplande stilstand op lijn 3 voor 1 april terugbrengen van 14 naar 8 uur per week', 'Het stoplog van lijn 3 in kaart brengen en de stilstand verbeteren'],
+          options: ['De stilstand op lijn 3 flink terugbrengen en de ploegen tevreden houden, zodat de planning haalbaar blijft', 'Een nieuw MES invoeren dat de stilstand op lijn 3 vastlegt', 'De ongeplande stilstand op lijn 3 voor 1 april terugbrengen van 14 naar 8 uur per week', 'Het stoplog van lijn 3 in kaart brengen en de stilstand verbeteren'],
           answer: 'De ongeplande stilstand op lijn 3 voor 1 april terugbrengen van 14 naar 8 uur per week',
           why: 'Een bruikbaar doel gaat van X naar Y voor een datum. De andere zijn een wens (flink verkorten), een oplossing (een tool) of een activiteit (in kaart brengen), zonder meetbaar verschil.',
         },
       ],
       teach: [
         'Schrijf een doel in één zin: van X naar Y voor wanneer, gemeten hoe. “Ongeplande stilstand op lijn 3 terugbrengen van 14 naar 8 uur per week voor 1 april, gemeten in het stoplog van het MES.” (MES: manufacturing execution system, de software op de vloer die elke stilstand vastlegt.)\n\nKrijg je die zin niet op papier, dan heb je nog geen project maar een wens. Schrijf hem samen met de klant, in hun woorden, en lees hem hardop terug.',
-        'Eerst een nulmeting (baseline): de gemeten beginwaarde waar je later tegen vergelijkt. Zonder die meting kan niemand zeggen dat het gelukt is, en wordt elk resultaat betwist. In Define leg je vast hoe je meet; het startgetal meet je in Measure.\n\nIs de data er niet, dan is twee weken meten je eerste deliverable. Zeg het gewoon: “Ik weet het huidige getal nog niet. Laten we eerst meten.” Twee weken vangt een normaal weekpatroon; een seizoensbedrijf heeft soms langer nodig.',
+        'Eerst een nulmeting (baseline): de gemeten beginwaarde waar je later tegen vergelijkt. Zonder die meting kan niemand zeggen dat het gelukt is, en wordt elk resultaat betwist. In Define leg je vast hoe je meet; het startgetal meet je in Measure.\n\nIs de data er niet, dan is twee weken meten je eerste deliverable (wat je oplevert). Zeg het gewoon: “Ik weet het huidige getal nog niet. Laten we eerst meten.” Twee weken vangt een normaal weekpatroon; een seizoensbedrijf heeft soms langer nodig.',
         'Scope is wat het project omvat. Schrijf op wat erbinnen en wat buiten scope valt. Buiten is belangrijker: “Alleen lijn 3, niet lijn 1 en 2. Proces en planning, geen nieuw ERP-systeem (de bedrijfsbrede software voor orders, voorraad en financiën). Niet aan de ploegendiensten komen.”\n\nZet erbij wat mensen waarschijnlijk gaan inbrengen. Komt het later op tafel, dan wijs je naar de lijst in plaats van de discussie opnieuw te voeren.',
         'Scope creep is het langzaam uitdijen van een project, één redelijk verzoek tegelijk: “als je toch bezig bent, kun je ook even naar lijn 2 kijken?” Elk verzoek klinkt klein; samen vreten ze je weken op.\n\nZeg niet alleen nee. Zeg: “Goed idee. Het valt nu buiten de scope, dus of we ruilen het ergens voor, of de sponsor geeft er tijd bij.” Scherpe vraag als iemand werk toevoegt: “Wat laten we vallen om ruimte te maken?”',
         'Acceptatiecriteria: wie tekent af, op basis van welk bewijs, en wanneer. “De plantmanager accepteert als het gemiddelde over vier weken achter elkaar 8 uur of minder is.” Vier weken beschermt tegen één toevallig goede week.\n\nSpreek dit aan het begin af. Aan het eind is de sfeer anders en herinnert iedereen zich de belofte anders. Over stretch targets verschillen experts: een ambitieus getal motiveert sommige teams, maar een target waar niemand in gelooft, wordt stilletjes genegeerd.\n\nDe projectopdracht is het faseproduct van Define; de fasepoort (tollgate) keurt haar goed.',
@@ -698,14 +698,14 @@ export default {
       said: 'Wat je hoort in projecten: “Laten we ons nog niet vastpinnen op een getal.” Soms is dat terechte voorzichtigheid; vaak is het een manier om nooit gemeten te worden.',
       recall: [
         {
-          q: 'Een voedingsfabriek bespreekt drie doelzinnen. Welke is het sterkst?',
-          options: ['Afkeur op de twee afvullijnen terugbrengen van 3,2% naar 2,0% voor eind Q2, gemeten in de afkeurrapportage', 'Afkeur op de twee afvullijnen flink terugdringen, zodat de klanten tevredener worden en blijven', 'Afkeur op de twee afvullijnen naar nul brengen, een ambitieus target dat het team motiveert', 'Een dashboard bouwen dat de afkeur op de twee afvullijnen wekelijks zichtbaar maakt'],
+          q: 'Een voedingsfabriek bespreekt vier doelzinnen. Welke is het sterkst?',
+          options: ['Afkeur op de twee afvullijnen terugbrengen van 3,2% naar 2,0% voor eind Q2, gemeten in de afkeurrapportage', 'Afkeur op de twee afvullijnen flink terugdringen, zodat de klanten tevredener worden en dat ook blijven, vanaf volgend kwartaal', 'Afkeur op de twee afvullijnen naar nul brengen, een ambitieus target dat het team motiveert', 'Een dashboard bouwen dat de afkeur op de twee afvullijnen wekelijks zichtbaar maakt'],
           answer: 'Afkeur op de twee afvullijnen terugbrengen van 3,2% naar 2,0% voor eind Q2, gemeten in de afkeurrapportage',
           why: 'Een sterke doelzin heeft een nulmeting (3,2%), een target (2,0%), een datum en een meting. “Flink terugdringen” is een wens, een target van nul motiveert misschien maar is niet gedragen, en een dashboard is een oplossing.',
         },
         {
           q: 'Midden in het project vraagt de plantmanager: “Als je toch bezig bent, kijk je ook even naar lijn 2?” Waarom was het goed dat je had opgeschreven wat buiten scope valt?',
-          options: ['Het contract verbiedt je om extra werk te doen, ook als het klein is', 'Het maakt de projectopdracht korter, zodat de scope vanzelf klein blijft', 'Je wijst naar de lijst en vraagt te ruilen of extra tijd, zonder nieuwe discussie', 'Het verlaagt je tarief doordat het werk beperkt blijft, want scope kost geld'],
+          options: ['Het contract verbiedt je om extra werk te doen, ook als het klein is', 'Het maakt de projectopdracht korter, zodat de scope vanzelf klein blijft', 'Je wijst naar de lijst en vraagt te ruilen of extra tijd, zonder nieuwe discussie', 'Je kunt het verzoek afwijzen, want de lijst is door de sponsor getekend en dus bindend'],
           answer: 'Je wijst naar de lijst en vraagt te ruilen of extra tijd, zonder nieuwe discussie',
           why: 'Komt het later op tafel, dan wijs je naar de lijst: “Goed idee, het valt buiten scope, dus we ruilen het of de sponsor geeft er tijd bij.” Dat voorkomt scope creep, één redelijk verzoek tegelijk.',
         },
@@ -802,7 +802,7 @@ export default {
         {
           kind: 'best',
           q: 'Je hebt de projectopdracht af en wilt weten of hij gedragen wordt. Wat is de beste test?',
-          options: ['De sponsor hem laten ondertekenen en dateren', 'Hem in het projectmanagementsysteem van de klant zetten', 'De taken tot op de dag nauwkeurig erin beschrijven', 'De proceseigenaar hem in eigen woorden laten navertellen'],
+          options: ['De sponsor hem laten ondertekenen en dateren', 'Hem in het projectmanagementsysteem van de klant zetten voor de betrokkenen', 'De taken tot op de dag nauwkeurig erin beschrijven', 'De proceseigenaar hem in eigen woorden laten navertellen'],
           answer: 'De proceseigenaar hem in eigen woorden laten navertellen',
           close: 'De sponsor hem laten ondertekenen en dateren',
           why: 'Kan de proceseigenaar hem navertellen, dan is hij helder en gedragen. Een handtekening wint als de vraag is of het project formeel is geautoriseerd, maar zegt niet dat de mensen die ermee moeten leven hem begrijpen.',
@@ -875,9 +875,9 @@ export default {
           why: 'Een SIPOC met twintig stappen is een veelgemaakte fout: het doel is afspreken waar het proces begint en eindigt. De gedetailleerde kaart met tijden maak je later, in Measure.',
         },
         {
-          q: 'Bij een netbeheerder blijft werk dagenlang liggen tussen werkvoorbereiding en planning. Welk eerste meetpunt wijst de SIPOC aan?',
-          options: ['De eerste stap van het proces, want daar begint de doorlooptijd', 'De laatste stap, want de klant meet daar de levering', 'De overdracht tussen werkvoorbereiding en planning', 'De IT-systemen waarin beide afdelingen werken'],
-          answer: 'De overdracht tussen werkvoorbereiding en planning',
+          q: 'Bij een netbeheerder blijft werk dagenlang liggen, maar niemand weet waar precies. Welk eerste meetpunt wijst de SIPOC aan?',
+          options: ['De eerste stap van het proces, want daar begint de doorlooptijd', 'De laatste stap, want de klant meet daar de levering', 'De overdrachten tussen de afdelingen in het proces', 'De IT-systemen waarin de afdelingen werken'],
+          answer: 'De overdrachten tussen de afdelingen in het proces',
           why: 'Veel problemen zitten bij overdrachten: informatie raakt kwijt, werk wacht in een bak, niemand is eigenaar. Een SIPOC laat ze meteen zien en ze zijn vaak je eerste meetpunten.',
         },
         {
@@ -974,7 +974,7 @@ export default {
         },
         {
           q: 'In week 6 bouwt het team al aan de pilot, maar de diagnose is niet formeel afgesloten en de sponsor heeft nog niets besloten. Wat is het risico?',
-          options: ['De data uit de diagnose veroudert voordat de pilot klaar is', 'Niemand heeft bewust besloten of de pilot het geld en de tijd waard is', 'De OR moet opnieuw advies geven over het hele project', 'De consultant kan de pilot niet apart factureren'],
+          options: ['De data uit de diagnose veroudert voordat de pilot klaar is en moet opnieuw worden verzameld', 'Niemand heeft bewust besloten of de pilot het geld en de tijd waard is', 'De diagnose-uren worden niet meer apart bijgehouden, dus de pilotkosten lopen erdoorheen', 'De consultant kan de pilot niet apart factureren'],
           answer: 'Niemand heeft bewust besloten of de pilot het geld en de tijd waard is',
           why: 'Een diagnose die stilletjes overloopt in uitvoering is een veelgemaakte fout: er is geen go/no-go, dus de sponsor heeft niet gekozen en een kansloos project kan eindeloos doorlopen.',
         },
@@ -1046,7 +1046,7 @@ export default {
           q: 'Een project bespaart 4 uur stilstand per week. De sponsor boekt dat direct als besparing van 4 × €350. Wanneer klopt dat?',
           options: ['Als de stilstand daarna onder de vijf procent van de productietijd uitkomt', 'Als de fabriek de extra uren productie ook kan verkopen', 'Als het project binnen een jaar is terugverdiend', 'Als de controller de uren op de resultatenrekening zet'],
           answer: 'Als de fabriek de extra uren productie ook kan verkopen',
-          why: 'Twee uur minder stilstand levert alleen geld op als je die uren ook kunt verkopen; anders is het capaciteit, geen euro’s. Dat de OEE hoog is of dat het snel is terugverdiend, zegt daar niets over.',
+          why: 'Minder stilstand levert alleen geld op als je de vrijgekomen uren ook kunt verkopen; anders is het capaciteit, geen euro’s. Of de stilstand onder de vijf procent komt, het snel is terugverdiend of de controller de uren boekt, zegt daar niets over.',
         },
         {
           q: 'Een project bespaart 4 uur stilstand per week. De fabriek kan de extra output verkopen. Een uur productie levert €350 dekkingsbijdrage op, bij een omzet van €1.100 per uur. Wat zijn de baten over 46 productieweken?',
@@ -1119,7 +1119,7 @@ export default {
       recall: [
         {
           q: 'Welke opening van een voorstel is een SCQ?',
-          options: ['“Wij zijn een bureau met twintig jaar ervaring in verbeterprojecten in de industrie.”', '“Wij stellen voor in drie fasen te werken, met een vaste prijs per fase en een go/no-go aan het eind.”', '“Jullie leveren 92% op tijd, klanten eisen 98% en twee dreigen weg te gaan. Hoe halen jullie in een jaar 98%?”', '“Jullie vroegen om een voorstel; hierbij sturen wij onze aanpak en een prijsopgave voor het eerste kwartaal.”'],
+          options: ['“Wij zijn een bureau met twintig jaar ervaring in verbeterprojecten in de industrie.”', '“Wij stellen voor in drie fasen te werken, met een vaste prijs per fase en een go/no-go aan het eind.”', '“Jullie leveren 92% op tijd, klanten eisen 98% en twee dreigen weg te gaan. Hoe halen jullie in een jaar 98%?”', '“Jullie vroegen om een voorstel; hierbij sturen wij onze aanpak en een prijsopgave voor het eerste kwartaal van het project.”'],
           answer: '“Jullie leveren 92% op tijd, klanten eisen 98% en twee dreigen weg te gaan. Hoe halen jullie in een jaar 98%?”',
           why: 'SCQ is situatie, complicatie, vraag: 92% op tijd, klanten die 98% eisen, en de vraag hoe je daar komt. De andere openingen gaan over het bureau, de aanpak of de prijs.',
         },
@@ -1202,7 +1202,7 @@ export default {
       recall: [
         {
           q: 'Je doet een intake bij een machinebouwer en ziet vier signalen. Welk signaal is de sterkste rode vlag voor het project?',
-          options: ['De klant staat sceptisch tegenover consultants en wil eerst een proefperiode', 'Niemand aan klantzijde kan beslissen of mensen worden vrijgemaakt', 'De data staat verspreid over drie Excel-bestanden en een oud systeem', 'De deadline ligt over zes maanden en staat al in het jaarplan'],
+          options: ['De klant staat sceptisch tegenover consultants en wil eerst een proefperiode', 'Niemand aan klantzijde kan beslissen of mensen worden vrijgemaakt', 'De data staat verspreid over drie Excel-bestanden en een oud systeem', 'De deadline ligt over zes maanden en is vastgesteld na een eerste blik op de data'],
           answer: 'Niemand aan klantzijde kan beslissen of mensen worden vrijgemaakt',
           why: 'Zonder iemand die kan beslissen over mensen en middelen strandt het project, hoe goed het plan ook is. Scepsis, Excel-data en een deadline zijn lastig maar te hanteren; een ontbrekende sponsor niet.',
         },
@@ -1299,9 +1299,9 @@ export default {
         },
         {
           q: 'De controller rekent de baten van jaar 3 terug met 8%: €50.000 / 1,08³. Een collega zegt dat dat de baten kleiner laat lijken dan ze zijn. Wat antwoord je?',
-          options: ['Het spreidt de investering gelijk over de jaren, zodat de kosten per jaar gelijk zijn', 'Een euro over drie jaar is minder waard dan een euro nu, dus je rekent terug naar nu', 'De Belastingdienst schrijft die correctie voor bij investeringen vanaf een bepaald bedrag', 'Het houdt rekening met de kans dat de baten tegenvallen en dus minder zeker zijn'],
+          options: ['Het spreidt de investering gelijk over de jaren, zodat de kosten per jaar gelijk zijn', 'Een euro over drie jaar is minder waard dan een euro nu, dus je rekent terug naar nu', 'De Belastingdienst schrijft die correctie voor bij investeringen vanaf een bepaald bedrag', 'Het trekt de kosten die blijven, zoals de licentie, van de baten af, zodat de netto baten overblijven'],
           answer: 'Een euro over drie jaar is minder waard dan een euro nu, dus je rekent terug naar nu',
-          why: 'Netto contante waarde rekent toekomstige euro’s terug naar nu, omdat je een euro nu kunt beleggen of omdat lenen geld kost. Optimisme corrigeer je anders: met een referentieklasse van echte projecten.',
+          why: 'Netto contante waarde rekent toekomstige euro’s terug naar nu, omdat je een euro nu kunt beleggen of omdat lenen geld kost. Kosten die blijven trek je al af bij de netto baten, en optimisme corrigeer je met een referentieklasse van echte projecten.',
         },
         {
           q: 'Je sponsor schat de baten op €40.000 per jaar. Twee eerdere projecten in de fabriek haalden maar 70% van hun geschatte baten. Wat doe je met zijn schatting?',
