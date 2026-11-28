@@ -7,10 +7,10 @@ export default {
       title: 'The whole route in one picture',
       pre: [
         {
-          q: 'A director at a grid operator tells you: “Make work preparation faster.” What do you do first?',
-          options: ['Immediately draw up a detailed plan for the whole of the coming year, with dates', 'Call the team together and hand out the tasks right away', 'Find out what exactly the problem is and who is giving this mandate', 'Look for a new software package that speeds the work up'],
-          answer: 'Find out what exactly the problem is and who is giving this mandate',
-          why: 'Problem and sponsor come first, otherwise you plan on a guess.',
+          q: 'A director at a grid operator tells you: “Make the job preparation faster.” What do you do first?',
+          options: ['Draw up a baseline schedule with the tasks and dates for the coming year', 'Set up a weekly rhythm of status and decisions with the team', 'Get the problem agreed and ask who gives the mandate for it', 'Prepare the handover to the owner of the job preparation'],
+          answer: 'Get the problem agreed and ask who gives the mandate for it',
+          why: 'Intake comes first: an agreed problem and a mandate. A baseline schedule, a working rhythm and a handover are the stage products of later stages; without an agreed problem they stand on loose sand.',
         },
       ],
       teach: [
@@ -28,15 +28,15 @@ export default {
       recall: [
         {
           q: 'Which stage product belongs to Intake?',
-          options: ['A baseline plan with all tasks and dates', 'A handover to the maintenance owner', 'An agreed problem and a project mandate document', 'A final report on the result'],
+          options: ['A baseline schedule you measure against later', 'A closure decision with proven results', 'An agreed problem and a project mandate document', 'A working rhythm of status and decisions'],
           answer: 'An agreed problem and a project mandate document',
-          why: 'Intake delivers what the project is; plan, run, land and close build on it.',
+          why: 'Intake delivers what the project is: an agreed problem and a project mandate document. The other three are the products of Planning, Close and Run; each builds on Intake.',
         },
         {
-          q: 'Why do you not make a plan before the problem is agreed?',
-          options: ['Rules say a plan may only be made after the kick-off meeting has ended', 'You may plan the wrong thing and notice only late', 'A plan costs too much time at the start', 'The sponsor can then no longer change anything about the scope afterwards'],
-          answer: 'You may plan the wrong thing and notice only late',
-          why: 'A plan is only as good as the problem it is built on.',
+          q: 'Why do you not draw up a schedule before the problem is agreed?',
+          options: ['A schedule takes too much time at the start and the data are not there yet', 'You may plan the wrong thing and notice it late', 'After a schedule the sponsor can no longer change the scope', 'A schedule is approved once the first stage is finished'],
+          answer: 'You may plan the wrong thing and notice it late',
+          why: 'A plan is only as good as the problem it is built on: the grid operator planned software while the problem sat in permits. Missing data or a frozen scope do not come into it.',
         },
         {
           q: 'Work preparation took 15 working days and had to come down to 10. After closing it averages 11 working days. What percentage of the wanted gain of 5 working days was achieved?',
@@ -48,9 +48,9 @@ export default {
         },
         {
           q: 'What is a mandate?',
-          options: ['The overview of all the risks the project runs', 'The list of people who are in the team and their roles', 'The assignment and authority to start', 'The minutes of the last steering group with all decisions'],
-          answer: 'The assignment and authority to start',
-          why: 'Without a mandate nobody knows whether you may decide or spend.',
+          options: ['The plan with the baseline you measure against later', 'The manager who owns the budget and takes the big decisions', 'The assignment and the authority to start', 'The agreed problem with the goal in numbers'],
+          answer: 'The assignment and the authority to start',
+          why: 'A mandate is the assignment plus the authority to start. The manager who gives it is the sponsor; the plan and the problem are other things.',
         },
       ],
       situation: {
@@ -79,10 +79,10 @@ export default {
       title: 'Taking over a running project',
       pre: [
         {
-          q: 'You take over a running project. The sponsor says: “Everything is going fine.” What is the best first step?',
-          options: ['Rewrite the whole plan from scratch so that it is really yours and you understand it', 'Believe the sponsor and start new actions at once', 'Hold a new kick-off and start everything again', 'Read the documents yourself and talk with the team to see if that is true'],
-          answer: 'Read the documents yourself and talk with the team to see if that is true',
-          why: 'First see what is really there; only then do you decide what changes.',
+          q: 'On Tuesday you take over a running project from a colleague who has left. The sponsor says: “Everything is going fine.” What is the best first step?',
+          options: ['Rewrite the project plan so that it is yours and you understand it well', 'Hold a new kick-off to have the team commit again to the plan', 'Ask the team for a new status report with the actions listed in one place', 'Read the project mandate, the plan and the latest status reports and talk to the team'],
+          answer: 'Read the project mandate, the plan and the latest status reports and talk to the team',
+          why: 'First see what is really there: reading and talking, two days spent on understanding and not on changing. Rewriting or starting over throws away good agreements before you know them.',
         },
       ],
       teach: [
@@ -99,16 +99,18 @@ export default {
       said: 'What you hear in projects: “The previous project lead had it all under control. He said everything was on schedule.”',
       recall: [
         {
-          q: 'Which document best shows what really happened in the project?',
-          options: ['The presentation of the kick-off a year ago', 'The adviser’s original proposal', 'The last three status reports, laid next to the mandate', 'The organisation chart of the department'],
-          answer: 'The last three status reports, laid next to the mandate',
-          why: 'The mandate shows what was intended, the reports what happened; the difference is your job.',
+          kind: 'best',
+          q: 'You want to know what has really happened in a running project. Which document shows that best?',
+          options: ['The plan as the sponsor and the client approved it', 'The steering group’s decision log since the start', 'The last three status reports, next to the project mandate', 'The risk register as the previous project manager kept it'],
+          answer: 'The last three status reports, next to the project mandate',
+          close: 'The steering group’s decision log since the start',
+          why: 'The project mandate shows what was intended, the status reports what happened; the difference is your work. The decision log is defensible and wins when you want to know who decided what, but it does not show progress.',
         },
         {
-          q: 'What is the plan of record?',
-          options: ['The plan the sponsor and client formally agreed to', 'The most recently saved file on the team’s shared drive', 'The schedule the team likes best', 'The plan the previous lead had in his head and never wrote down'],
-          answer: 'The plan the sponsor and client formally agreed to',
-          why: 'The parties agree on the plan of record; that is what you measure against.',
+          q: 'The team works with its own schedule in Excel that is newer than the schedule in the project file. Against which do you measure progress?',
+          options: ['Against the plan the sponsor and client formally approved', 'Against the schedule the team now finds most realistic', 'Against the version of the plan that was saved last', 'Against the plan the previous project manager last explained'],
+          answer: 'Against the plan the sponsor and client formally approved',
+          why: 'You measure against the plan of record: the parties agreed on it. A newer or more realistic schedule only becomes the project’s plan once the sponsor and the client have approved it.',
         },
         {
           q: 'A project has 14 open actions, of which 9 are older than four weeks. What percentage of the open actions is older than four weeks? Round to a whole number.',
@@ -119,10 +121,10 @@ export default {
           hint: 'Divide the number of old actions by the total number of open actions.',
         },
         {
-          q: 'You see there is a plan but no written project mandate. What do you do?',
-          options: ['Carry on with the plan, a mandate is a formality', 'First have the sponsor confirm the mandate', 'Stop the project and send the whole team home', 'Let the team write a mandate itself, without the sponsor'],
-          answer: 'First have the sponsor confirm the mandate',
-          why: 'Without a mandate nobody knows what the plan fits; the sponsor must stand behind it.',
+          q: 'You see there is a schedule but no written project mandate. What do you do?',
+          options: ['Keep working with the schedule; a mandate document is merely a formality', 'First have the sponsor establish the mandate', 'Hold a kick-off in which the team confirms the mandate verbally', 'Have the team write a mandate itself and treat it as established'],
+          answer: 'First have the sponsor establish the mandate',
+          why: 'Without a mandate nobody knows what the plan is checked against, and the sponsor has to stand behind it. A verbal confirmation or a mandate written by the team does not carry his signature.',
         },
       ],
       situation: {
@@ -150,10 +152,10 @@ export default {
       title: 'How much route: tailoring',
       pre: [
         {
-          q: 'A plant wants to reorganise a label printer set-up within two weeks. What fits the route?',
-          options: ['All five stages with separate documents, a steering group and an approval per stage', 'Problem, goal and plan together on one page, with a named decider', 'No route: it is too small for agreements', 'Three months of research first, then start'],
-          answer: 'Problem, goal and plan together on one page, with a named decider',
-          why: 'Small work gets a short route, but never without a decider and a goal.',
+          q: 'A plant wants to reorganise the label printer on line 2 within two weeks: three people, no external parties, low risk. What fits the route?',
+          options: ['The five stages with separate documents, a steering group and an approval per stage', 'Intake and plan together on one page, with a named decider and a goal', 'A task list will do; a decider and a goal are not needed for such small work', 'The plan on one page, with landing and closing skipped'],
+          answer: 'Intake and plan together on one page, with a named decider and a goal',
+          why: 'Small work gets a short route, but the minimum governance stays: a decider, a written goal, a rhythm and a closure. The full route is too much, a task list or a plan without closure too little.',
         },
       ],
       teach: [
@@ -172,28 +174,28 @@ export default {
       said: 'What you hear in projects: “This is only a small thing, we do not need a mandate for that.”',
       recall: [
         {
-          q: 'What belongs to the minimum governance you never drop?',
-          options: ['A steering group of at least six managers that meets every week', 'A full risk register with likelihoods, impacts and measures per risk', 'A decider, a goal, a rhythm and a closure', 'A formal PMO approval at every stage'],
-          answer: 'A decider, a goal, a rhythm and a closure',
-          why: 'Four things that cost a few hours; the rest you justify per project.',
+          q: 'A sponsor wants to cut the governance of a three-week project to save time. Which set do you keep despite the rush?',
+          options: ['A steering group with a fixed agenda, a risk register and a final report', 'A decider, a schedule per stage, a status report and a final report', 'A decider, a written goal, a fixed rhythm and a closure', 'A sponsor, a detailed baseline schedule, a PMO sign-off and an evaluation'],
+          answer: 'A decider, a written goal, a fixed rhythm and a closure',
+          why: 'The minimum governance is four things that together cost a few hours. The other sets are heavier (steering group, risk register, PMO sign-off) or look similar but lack the rhythm or the goal; anything above that you justify per project.',
         },
         {
-          q: 'You merge intake and plan. What remains?',
-          options: ['Only the plan, because the intake is then superfluous', 'Only the problem, because the plan follows by itself', 'Neither; the sponsor will decide afterwards', 'Both stage products, in a shorter document'],
-          answer: 'Both stage products, in a shorter document',
-          why: 'Merging shortens the paper, not the questions you answer.',
+          q: 'In a three-week project you merge intake and plan onto one page. The sponsor asks what disappears with that. What is the right answer?',
+          options: ['The question about the problem, because the plan decides what is needed', 'The sponsor’s approval, because one page is enough', 'The baseline schedule, because the project is too short to measure anything', 'Neither of the two stage products; only the document gets shorter'],
+          answer: 'Neither of the two stage products; only the document gets shorter',
+          why: 'Merging shortens the paper, not the questions you answer: the agreed problem and the plan with its baseline both remain. The sponsor’s approval stays too.',
         },
         {
-          q: 'A project has no sponsor. What do you do first?',
-          options: ['Appoint the project lead himself as sponsor so the project can start', 'Start anyway and look for a sponsor later', 'Let the steering group decide without a sponsor', 'Find a sponsor who gives the mandate, otherwise do not go on'],
-          answer: 'Find a sponsor who gives the mandate, otherwise do not go on',
-          why: 'Without a decider you can only guess what is allowed and what is not.',
+          q: 'You are asked to lead a ten-week improvement project. The team leader is keen, but nobody can say who gave the mandate and who holds the budget. What do you do first?',
+          options: ['Appoint the team leader as sponsor because he wants the project most', 'Start with intake and look for the sponsor once there is something to show', 'Write the plan in advance and have the sponsor sign it when it is ready', 'Find a sponsor who gives the mandate; if that fails, you do not continue'],
+          answer: 'Find a sponsor who gives the mandate; if that fails, you do not continue',
+          why: 'Without a decider you can only guess what is allowed; a keen team leader has no budget and no mandate. First a sponsor, otherwise you stop. Only then do you plan.',
         },
         {
-          q: 'Which four things decide how much route a project needs?',
-          options: ['Duration, money, number of parties and consequences if it goes wrong', 'Team size, status colour and location', 'The brand of the planning tool and the size of the office', 'The sponsor’s age and the year of the assignment'],
-          answer: 'Duration, money, number of parties and consequences if it goes wrong',
-          why: 'The bigger and riskier, the more route and decision points.',
+          q: 'Two projects at the same client: one of two weeks with three people and one of six months with three suppliers. What do you look at to decide how much route each gets?',
+          options: ['Duration, money, number of parties involved and consequences if it goes wrong', 'Duration, money, number of team members and the project manager’s experience', 'Duration, money, the sponsor’s wishes and the pace of the team', 'Duration, number of stages in the client’s method, money and the size of the office'],
+          answer: 'Duration, money, number of parties involved and consequences if it goes wrong',
+          why: 'The route grows with size and risk (proportionality): duration, money, parties and consequences if it goes wrong. Team size and experience say something about the work, but not how many decision points the project needs.',
         },
       ],
       situation: {
@@ -221,10 +223,10 @@ export default {
       title: 'The client’s route: gates, PMO and not starting',
       pre: [
         {
-          q: 'A client has a PMO with mandatory templates. You have designed a leaner route yourself. What do you do first?',
-          options: ['Introduce your own route; the client pays for your approach', 'Ask what the PMO requires and what is really read', 'Fill in all templates without asking questions', 'Skip the PMO and go straight to the sponsor with a plan of your own'],
-          answer: 'Ask what the PMO requires and what is really read',
-          why: 'Whoever does not know the rules cannot negotiate with them cleverly.',
+          q: 'A client has a PMO with mandatory templates. You have designed a leaner route yourself and would like to use it. What do you do first?',
+          options: ['Propose your leaner route and show how many hours it saves', 'Ask which templates are mandatory and which are really read', 'Fill in the templates first and then see what you can shorten', 'Ask the sponsor whether the PMO may skip your leaner route'],
+          answer: 'Ask which templates are mandatory and which are really read',
+          why: 'Whoever does not know the rules cannot negotiate cleverly with them. First find out what is mandatory and what is read; then propose a route that fits inside their frame.',
         },
       ],
       teach: [
@@ -251,22 +253,24 @@ export default {
           hint: 'First work out total capacity in hours, then the hours for templates.',
         },
         {
-          q: 'What does the answer to “What happens if I shorten a template?” tell you?',
-          options: ['How much the PMO personally thinks of you', 'How strict the rules really are', 'What the next gate will cost the project', 'How large the sponsor’s budget is'],
-          answer: 'How strict the rules really are',
-          why: 'Rules on paper and rules in practice often differ.',
+          kind: 'best',
+          q: 'You want to know how strictly the PMO enforces its templates in practice. Which question gives the best answer?',
+          options: ['“Which templates does the PMO really read?”', '“What happens if I shorten a template?”', '“How many templates are mandatory?”', '“Who sets the project’s tolerances?”'],
+          answer: '“What happens if I shorten a template?”',
+          close: '“Which templates does the PMO really read?”',
+          why: 'The answer to the shortening question shows how strict the rules are in practice. “Which are read?” is also good and wins when you mainly want to know where you can save time, but it says nothing about what happens on deviation.',
         },
         {
-          q: 'A client wants a fixed price and a plan before the scope is clear. What is a sensible way out?',
-          options: ['Build a generous margin into the price and just go on with the plan as agreed', 'Leave the scope to the team to decide later', 'Keep the plan so vague that it can never be wrong', 'The first stage as a short, separate assignment with a re-decision after it'],
-          answer: 'The first stage as a short, separate assignment with a re-decision after it',
-          why: 'That way you buy insight first and only then fix the rest.',
+          q: 'A grid operator wants a fixed price and a full plan for an improvement project, while nobody yet knows where the loss sits. What is a sensible way out?',
+          options: ['A fixed price with a generous margin for unknown work and a plan in outline', 'A fixed price per stage, with the stage prices agreed in advance', 'Write the plan in outline and let the team fill in the scope during execution', 'The first stage as a short, separate assignment with a re-decision afterwards'],
+          answer: 'The first stage as a short, separate assignment with a re-decision afterwards',
+          why: 'This way you buy insight first and only then fix the rest, with a re-decision as a real decision point. A generous margin or stage prices fixed in advance pass the unknown on instead of investigating it.',
         },
         {
-          q: 'What is a no-go decision?',
-          options: ['The outcome of a first stage that the project had better not begin', 'A project postponed for lack of budget until the next financial year', 'A steering group that waits until the sponsor is back', 'The ban on starting a project without the prior permission of the PMO'],
-          answer: 'The outcome of a first stage that the project had better not begin',
-          why: 'Advising honestly can mean the answer is “do not do it”.',
+          q: 'After the first stage of four weeks it turns out that a client’s problem is smaller than thought and that the solution costs more than it returns. What do you put to the sponsor?',
+          options: ['A no-go decision, with the figures that show why', 'Carry on with a smaller scope so that the first stage was not in vain', 'Postpone the project to next financial year so that the budget is kept', 'Start the second stage and prove the saving later'],
+          answer: 'A no-go decision, with the figures that show why',
+          why: 'The honest answer from stage one can be that the project should not start; make that easy for the sponsor with figures. Carrying on because the first stage is already paid for is the well-known sunk-cost trap: the money is spent either way.',
         },
       ],
       situation: {
@@ -296,9 +300,9 @@ export default {
       pre: [
         {
           q: 'A client says: “We work according to PRINCE2.” What does that tell you about how the project runs?',
-          options: ['That the team works in sprints of two weeks with a review at the end', 'That all project leads have passed an official diploma in the method', 'That there is a fixed method, not how strictly it is followed', 'That the project is improved with DMAIC in five phases'],
-          answer: 'That there is a fixed method, not how strictly it is followed',
-          why: 'PRINCE2 is a method; how strictly it is applied you must ask.',
+          options: ['That the team works in two-week sprints with a review at the end', 'That the project managers have earned a diploma in the method', 'That there is a method, not how strictly it is followed', 'That the project is improved with DMAIC in five phases'],
+          answer: 'That there is a method, not how strictly it is followed',
+          why: 'PRINCE2 is a method; how strictly it is applied, you have to ask. Sprints belong to agile, a diploma proves knowledge and DMAIC is another family.',
         },
       ],
       teach: [
@@ -316,21 +320,21 @@ export default {
       recall: [
         {
           q: 'What is PRINCE2?',
-          options: ['A body of knowledge from PMI with performance domains', 'An agile framework for small teams working in sprints', 'A method with themes, stages and roles', 'An exam that all project leads must take before they start'],
+          options: ['A body of knowledge from PMI with performance domains', 'An agile framework for small teams working in sprints', 'A method with themes, stages and roles', 'A certificate that project managers get after an exam'],
           answer: 'A method with themes, stages and roles',
-          why: 'PRINCE2 prescribes a way of working; the PMBOK Guide describes knowledge.',
+          why: 'PRINCE2 prescribes a way of working; the PMBOK Guide describes knowledge. It is neither an agile framework nor a certificate, even though an exam is attached to it.',
         },
         {
-          q: 'What does a certificate prove?',
-          options: ['That the holder’s projects succeed more often than average', 'That the holder’s client applies a recognised method', 'That the holder can combine agile and predictive well', 'That someone passed an exam, not how his projects work'],
-          answer: 'That someone passed an exam, not how his projects work',
-          why: 'A certificate measures knowledge on one day, not behaviour in a project.',
+          q: 'A candidate shows a certificate. What does that tell you?',
+          options: ['That the candidate’s projects succeed more often than those of others', 'That the candidate can combine the method well with agile', 'That the candidate’s clients apply the method strictly', 'That the candidate passed an exam, not how the projects work'],
+          answer: 'That the candidate passed an exam, not how the projects work',
+          why: 'A certificate measures knowledge on one day, not behaviour in a project. Ask which parts the candidate really uses.',
         },
         {
-          q: 'What is DMAIC meant for?',
-          options: ['As a project structure for any improvement, also without Six Sigma statistics', 'As an agile way of working in which a team builds new products in sprints', 'As a body of knowledge describing what a project manager must know', 'As a predictive method for projects with a fixed design and end date'],
-          answer: 'As a project structure for any improvement, also without Six Sigma statistics',
-          why: 'DMAIC holds an improvement project together in five phases. Six Sigma adds statistics, but the structure works for Lean too.',
+          q: 'A grid operator wants to improve the share of late work orders and has no statistician. A colleague says DMAIC then does not fit. What is right?',
+          options: ['DMAIC is a project structure for an improvement; statistics are an extra, not a requirement', 'DMAIC belongs to Six Sigma and needs statistical tests throughout the project', 'DMAIC is an agile way of working with which a team builds new products', 'DMAIC is a body of knowledge that describes what a project manager must know'],
+          answer: 'DMAIC is a project structure for an improvement; statistics are an extra, not a requirement',
+          why: 'DMAIC holds an improvement project together in five phases. Six Sigma adds statistics, but Lean uses the same phases without them; it is not an agile way of working or a body of knowledge either.',
         },
         {
           q: 'Of the 100 work orders a week, 30 are late. After an improvement it is 12 of 100. By how many percentage points does the share of late work orders fall?',
@@ -364,13 +368,14 @@ export default {
     {
       id: 'pm.approach.dmaic',
       gist: 'DMAIC is a project structure for any improvement: define, measure, analyse, improve and control, with a tollgate review after each phase.',
+      pictures: [{ id: 'pm.approach.dmaic.flow', after: 2, alt: 'Flow of the five DMAIC phases, each with the result the next phase needs.' }],
       title: 'DMAIC on a small problem',
       pre: [
         {
-          q: 'A quote takes 6 working days on average and the client wants 3. What do you do first in DMAIC?',
-          options: ['Buy a new quoting system at once and have all employees trained on it', 'Plan a kaizen event for next week', 'Ask the employees to work faster', 'Fix the problem and goal in numbers, then measure where the time goes'],
-          answer: 'Fix the problem and goal in numbers, then measure where the time goes',
-          why: 'DMAIC starts with defining and measuring, before you think of a solution.',
+          q: 'A supplier takes 6 working days on average over a quote and the client wants 3. You lead a DMAIC project. What do you do first?',
+          options: ['Go through a month of quotes and tackle the slowest step straight away', 'Look into a new quoting system and see what it would save', 'Plan a three-day kaizen event to speed up the quote', 'Fix the goal in numbers and measure the current duration'],
+          answer: 'Fix the goal in numbers and measure the current duration',
+          why: 'DMAIC starts with define and measure: a goal in numbers and a baseline. Whoever tackles the slowest step or picks a system straight away jumps to a solution before knowing what is going on.',
         },
       ],
       teach: [
@@ -387,16 +392,16 @@ export default {
       said: 'What you hear in projects: “We know what the problem is, let us just start on the solution.”',
       recall: [
         {
-          q: 'What does the measure phase deliver?',
-          options: ['The solution you are going to test on a small scale', 'The root cause of the problem, found by counting', 'The plan with owner and checks that keeps the result', 'A baseline of current performance with a fixed definition'],
-          answer: 'A baseline of current performance with a fixed definition',
-          why: 'Without a baseline you cannot say later whether anything has improved.',
+          q: 'Which result must the measure phase deliver before the tollgate review is passed?',
+          options: ['A list of causes showing where the loss sits, the largest at the top', 'A goal in numbers and an agreed scope', 'A small-scale test that shows the figure moves', 'A baseline with a fixed definition, source and period'],
+          answer: 'A baseline with a fixed definition, source and period',
+          why: 'Measure delivers the baseline; without it you cannot say later whether anything improved. The cause list belongs to analyse, the goal to define and the test to improve.',
         },
         {
-          q: 'Why is control a phase of its own?',
-          options: ['Because the result otherwise slips back once attention is gone', 'Because the sponsor wants an extra decision moment at the end of each phase', 'Because otherwise the analysis would not be approved by the tollgate', 'Because the analyse phase would otherwise get too little time'],
-          answer: 'Because the result otherwise slips back once attention is gone',
-          why: 'An improvement without owner and measurement often disappears again.',
+          q: 'A team has brought the quote time from 6 to 3.4 days and wants to close. The team leader says: “It works, control is unnecessary.” What is your answer?',
+          options: ['Without an owner and a fixed measurement the figure slides back once attention fades', 'The three-week test is too short; control is extra time to prove the solution', 'Control is extra time to push the improvement down towards 3 days', 'Control is needed so that the sponsor gets an extra decision point on the budget'],
+          answer: 'Without an owner and a fixed measurement the figure slides back once attention fades',
+          why: 'An improvement without an owner and measurement often disappears again; that is why control is a phase of its own. The test belongs to improve, and an extra decision point or further gain is not its purpose.',
         },
         {
           q: 'A quote takes 6 working days on average, of which 4 waiting for the technical check. After the improvement it waits 1 day for that check; the rest stays the same. How many working days does a quote now take on average?',
@@ -407,10 +412,10 @@ export default {
           hint: 'Only the waiting for the check changes. First find how many days were not waiting.',
         },
         {
-          q: 'Which improvement road fits one area in a few days with the people who do the work?',
-          options: ['A DMAIC project of a few months', 'An A3 by one owner over weeks', 'A PRINCE2 project with five gates', 'A kaizen event with the team'],
-          answer: 'A kaizen event with the team',
-          why: 'Size and duration decide the road: a few days and one area is an event, months and data is DMAIC.',
+          q: 'A manager wants one department improved within a single working week, with the people who work there. Which improvement route fits that size?',
+          options: ['A DMAIC project of several months with a four-week baseline', 'An A3 by one owner who takes a few weeks', 'A PRINCE2 project with five gates and a steering group', 'A three-day kaizen event with the team'],
+          answer: 'A three-day kaizen event with the team',
+          why: 'Size and duration decide the route: a few days and one area is a kaizen event; an A3 is for one owner over weeks, DMAIC for a fixed structure over months.',
         },
       ],
       situation: {
@@ -435,17 +440,18 @@ export default {
     {
       id: 'pm.approach.choose',
       gist: 'Choose the method with five questions about solution, requirements, data, team and contract; often a hybrid form is the answer.',
+      pictures: [{ id: 'pm.approach.choose.map', after: 1, alt: 'Table linking answers to the five selection questions to the approach they point to.' }],
       title: 'Choosing the method for this project',
       pre: [
         {
-          q: 'A grid operator wants a new app for fitters, but nobody knows exactly what the fitters need. Which approach fits?',
-          options: ['A complete design up front, approved first, and only then start building', 'Short rounds with fitters, each time something working to react to', 'A DMAIC project with four weeks of measurements first and a full analysis after', 'A kaizen event in the workshop'],
-          answer: 'Short rounds with fitters, each time something working to react to',
-          why: 'When the solution is unknown, fast feedback beats a design on paper.',
+          q: 'A grid operator wants an app for scheduling fitters. Users do not know exactly what they need, the team is fixed and the contract is a framework agreement without fixed scope. Which approach fits?',
+          options: ['Make a full design up front, have it approved and then build with a fixed end date', 'Short rounds in which fitters judge something that works every time', 'A stage-gate with the design up front and short rounds only during the build', 'A DMAIC project with four weeks of measuring the fitters’ current planning'],
+          answer: 'Short rounds in which fitters judge something that works every time',
+          why: 'Unknown solution, moving requirements and a contract without fixed scope point to short rounds. A design up front suits a known solution; the hybrid stage-gate settles the unknown too late.',
         },
       ],
       teach: [
-        'Five questions decide the choice, the selection criteria. How clear is the solution? How clear are the requirements? Is there data about the problem? Is the team permanent or borrowed, so only partly available? What does the contract fix, such as scope and price?\n\nYou ask them of the sponsor and the team, and you write the answers down.',
+        'DMAIC is the spine; the choice in this lesson is about how you work inside Improve: predictively, in sprints or hybrid.\n\nFive questions decide the choice, the selection criteria. How clear is the solution? How clear are the requirements? Is there data about the problem? Is the team permanent or borrowed, so only partly available? What does the contract fix, such as scope and price?\n\nYou ask them of the sponsor and the team, and you write the answers down.',
         'Read the answers together. An unclear solution and requirements that still move point to short rounds; see also the lesson When agile fits, and when it doesn’t. A known solution, fixed requirements and a fixed contract point to predictive.\n\nAn improvement project with a number you can measure points to DMAIC; with a lot of data, Six Sigma statistics come on top. One owner, one area and a few weeks point to an A3 or kaizen event. A borrowed team asks for few fixed meetings and clear weekly agreements.',
         'Often the answer is a hybrid form. Examples: a stage-gate with sprints inside, as the lesson Stage-gate and agile in manufacturing shows for hardware; or a DMAIC project with a kaizen event in the Improve phase.\n\nHybrid is not a half-hearted compromise. You give each part of the project the approach that fits it, and you make clear where the boundary runs.',
         'The exception: the client has already chosen the method, an imposed method. Do not fight it. Ask what is fixed, such as gates and templates, and what is free, namely how the team works within the frame.\n\nIf you doubt whether the problem is simple, complicated or complex, the lesson Which kind of problem is this? Cynefin helps; no need to repeat that here.',
@@ -460,28 +466,30 @@ export default {
       said: 'What you hear in projects: “We always do the same thing, so this project too.”',
       recall: [
         {
-          q: 'Which combination of answers points to a predictive approach?',
-          options: ['Known solution, fixed requirements and a fixed contract', 'Unknown solution and requirements that still move', 'A recurring problem about which a lot of data exists in the system', 'A borrowed team that works only two days a week'],
-          answer: 'Known solution, fixed requirements and a fixed contract',
-          why: 'When there is little to learn and much is fixed, a plan made up front pays off.',
+          q: 'You go through the five selection questions for a project at a manufacturer. Which combination of answers argues for a predictive approach?',
+          options: ['Known solution, fixed requirements and a contract with fixed scope', 'Known solution, requirements that still move and a borrowed team', 'Unknown solution, plenty of data about the problem and a fixed team', 'Known solution, fixed requirements and a contract without fixed scope'],
+          answer: 'Known solution, fixed requirements and a contract with fixed scope',
+          why: 'When there is little to learn and much is fixed, a plan made up front pays. Moving requirements or a contract without fixed scope take away the certainty predictive working rests on.',
         },
         {
-          q: 'Why is a hybrid form not a half-hearted compromise?',
-          options: ['It is always cheaper for the client than any single method on its own', 'You give each part of the project the approach that fits it', 'Both families demand that you combine them', 'It avoids you ever having to fix anything for the steering group'],
-          answer: 'You give each part of the project the approach that fits it',
-          why: 'Hybrid is about fit per part, not about finding the middle.',
+          q: 'A manufacturer builds hardware with fixed deliveries from suppliers, but the software around it is not yet worked out. A sponsor calls mixing half-hearted. What is your answer?',
+          options: ['A mixed form is cheaper for the client than one approach on its own', 'Each part gets the approach that fits it and you make clear where the boundary runs', 'You take the average of both approaches, so that the risk is spread', 'You fix only the milestones and leave the rest to the team'],
+          answer: 'Each part gets the approach that fits it and you make clear where the boundary runs',
+          why: 'Hybrid is about fitting each part, not about finding the middle: fixed deliveries predictive, the uncertain software in short rounds. An average or only milestones leaves the team without an approach for the uncertain part.',
         },
         {
-          q: 'The client has already chosen the method. What do you ask?',
-          options: ['Whether the client is willing to replace the method for this project', 'Which certificates the PMO employees and project leads hold', 'What is fixed and what is free in how the team works within the frame', 'How much the method cost the previous time it was used'],
-          answer: 'What is fixed and what is free in how the team works within the frame',
-          why: 'Within an imposed method you look for the room that does exist.',
+          kind: 'best',
+          q: 'A client has imposed PRINCE2, but your team needs short feedback rounds. What is the best first question?',
+          options: ['Whether the client is willing to replace the method for this project', 'Which parts of the method they really use and which you can drop', 'What is fixed, such as gates and templates, and what is free for the team', 'Who in the organisation introduced the method and why'],
+          answer: 'What is fixed, such as gates and templates, and what is free for the team',
+          close: 'Which parts of the method they really use and which you can drop',
+          why: 'Within an imposed method you first look for the room there is: what is fixed and what is free. “Which parts do you really use?” is also strong and wins when the client already says it applies the method loosely.',
         },
         {
-          q: 'Which question does not belong to the five selection criteria?',
-          options: ['Is data available about the problem?', 'Is the team permanent or borrowed from other departments?', 'Which method looks the most modern?', 'What does the contract fix in scope and price?'],
-          answer: 'Which method looks the most modern?',
-          why: 'The choice follows from the project, not from how a method presents itself.',
+          q: 'You prepare an explanation for a sponsor about your method choice. Which of these questions does not belong to the five selection criteria?',
+          options: ['How clear are the requirements at this moment?', 'Is the team fixed or borrowed from other departments?', 'How well do you know the method yourself?', 'What does the contract fix in scope and price?'],
+          answer: 'How well do you know the method yourself?',
+          why: 'The five criteria are solution, requirements, data, team and contract. The choice follows from the project, not from how well you know a method.',
         },
       ],
       situation: {
@@ -509,9 +517,9 @@ export default {
       pre: [
         {
           q: 'The client demands a “PRINCE2 project” for work that needs short feedback rounds. What is a good first reaction?',
-          options: ['Ask which parts are mandatory and show how the rounds fit within them', 'Explain that PRINCE2 does not fit this work', 'Follow PRINCE2 completely as prescribed and drop the short feedback rounds with the operators', 'Use your own method in secret'],
-          answer: 'Ask which parts are mandatory and show how the rounds fit within them',
-          why: 'You translate between their method and what the work needs, without fighting.',
+          options: ['Ask what is mandatory and show how the rounds fit in the stages as work packages', 'Propose running the rounds as a separate agile approach alongside the PRINCE2 project', 'Follow PRINCE2 as prescribed and keep the operators’ feedback until the close', 'Explain why PRINCE2 does not fit and propose a lighter method'],
+          answer: 'Ask what is mandatory and show how the rounds fit in the stages as work packages',
+          why: 'You translate between their method and what the work needs, without fighting: each stage becomes a series of rounds with the PMO’s gate on top. A parallel approach or postponed feedback lets the method and the work drift apart.',
         },
       ],
       teach: [
@@ -530,28 +538,28 @@ export default {
       said: 'What you hear in projects: “We filled in all templates and passed all gates, so the project is healthy.”',
       recall: [
         {
-          q: 'What is method theatre?',
-          options: ['A training in which a method is acted out', 'A project that combines several methods', 'Templates and gates are ticked off, but no decisions are taken', 'A steering group that sends the agenda far in advance'],
-          answer: 'Templates and gates are ticked off, but no decisions are taken',
-          why: 'It is form without content: the method is performed, not used.',
+          q: 'At a client all templates are filled in and the gates passed, but the status report has not changed for months and nobody reads the risk register. What is going on?',
+          options: ['A project running well: the gates are passed and the templates filled in', 'A project staying within tolerance and so not needing to steer', 'Method theatre: the form is completed, but no decisions are taken', 'A PMO asking for too few templates for the size of the project'],
+          answer: 'Method theatre: the form is completed, but no decisions are taken',
+          why: 'Completed templates and passed gates without decisions is method theatre. Staying within tolerance is something else: decisions are then not needed, but you would still see the report change.',
         },
         {
-          q: 'Which question helps expose method theatre?',
-          options: ['How many pages does the document have and who has written it?', 'Who signed the document first, and on what date did that happen?', 'Which template was the document made in?', 'Which decision was taken or prevented by this document?'],
-          answer: 'Which decision was taken or prevented by this document?',
-          why: 'Documents exist to make decisions possible.',
+          q: 'In a steering group folder of twelve documents you want to show which exist only for the form. Which question do you ask of each document?',
+          options: ['Who approved the document last and when?', 'Does the document fit the PMO’s template?', 'Is the document read by the steering group before the meeting?', 'Which decision did this take or prevent?'],
+          answer: 'Which decision did this take or prevent?',
+          why: 'Documents exist to make decisions possible; if there is no decision, it is theatre. Being read is not yet taking a decision, and approval or template say nothing about what the document did.',
         },
         {
-          q: 'What does a PMO that asks for certificates say about you?',
-          options: ['That the PMO does not trust your work', 'That results do not matter', 'That you are also judged on their language and rules, besides results', 'That you always have to bring a method of your own with templates for the PMO'],
-          answer: 'That you are also judged on their language and rules, besides results',
-          why: 'It is information on how the organisation reads you.',
+          q: 'A PMO asks for your certificates and an overview of the methods you know when you start. How do you read that?',
+          options: ['As distrust: they do not believe your experience is enough', 'As proof that results count for less to them than the diploma', 'As information: they judge you on their language as well', 'As a formality with no effect on how they judge your work'],
+          answer: 'As information: they judge you on their language as well',
+          why: 'It is not an insult but information about how the organisation reads you: also on language and compliance. Show your craft in their words and show results alongside.',
         },
         {
-          q: 'Why is “the framework itself asks for adaptation” a strong argument?',
-          options: ['Because a framework always allows an exception to its rules', 'Because the auditor then no longer has to check anything', 'Because it makes the sponsor feel that he has won the argument', 'Because PMI and PeopleCert ask for it themselves'],
-          answer: 'Because PMI and PeopleCert ask for it themselves',
-          why: 'You appeal to the client’s own source, not to your own preference.',
+          q: 'A PMO member says your tailored route is “no longer real PRINCE2.” Which argument is strongest?',
+          options: ['That the client hired you to do better than the method', 'That your route is faster and therefore returns more for the budget', 'That other clients of the consultancy accept the same adaptation', 'That PMI and PeopleCert themselves ask for adaptation to the project'],
+          answer: 'That PMI and PeopleCert themselves ask for adaptation to the project',
+          why: 'You appeal to the client’s own source instead of your preference: PMI and PeopleCert ask for adaptation to the project. Faster or accepted by others are arguments about you, not about the framework.',
         },
       ],
       situation: {
@@ -575,18 +583,19 @@ export default {
     {
       id: 'pm.approach.toolfamilies',
       gist: 'A tool is worth it when it returns more than it costs; think in tool families per kind of work and pick the smallest set.',
+      pictures: [{ id: 'pm.approach.toolfamilies.map', after: 2, alt: 'Table of the seven tool families, the kind of work each does and example tools.' }],
       title: 'Tool families and when a tool pays off',
       pre: [
         {
-          q: 'A project team of five keeps its task list in Excel and emails a new version every week. What is the first sign that a tool would pay off?',
-          options: ['Nobody is sure which version is the latest', 'The team thinks Excel does not look modern enough', 'The sponsor saw a nice tool at a trade fair', 'The list has more than ten rows'],
-          answer: 'Nobody is sure which version is the latest',
-          why: 'Version chaos and double work are the real costs of a spreadsheet.',
+          q: 'A project team of five keeps its task list in Excel and mails round a new version every week. What is the first sign that a tool would pay off?',
+          options: ['Two people have improved the same version and nobody knows which one counts', 'The list has grown beyond ten lines and is less pleasant to read', 'The sponsor wants a nicer overview of the task list for the steering group', 'A colleague recommends a well-known brand and finds the Excel version outdated'],
+          answer: 'Two people have improved the same version and nobody knows which one counts',
+          why: 'Version chaos and double work are the real costs of a spreadsheet. Length, looks and a brand say nothing about what the tool returns.',
         },
       ],
       teach: [
         'A tool is worth it when it delivers more than it costs. A spreadsheet is enough as long as you keep a list with one or two people. Once tasks depend on each other, many people update at once, or you must be able to show afterwards who did what and when (an audit trail), it gets hard.\n\nEvery tool costs time to set up and maintain. Start small.',
-        'Think in terms of a tool family: one kind of tool for one kind of work. Spreadsheet, for example Excel: lists and calculations. Scheduling tool, for example Microsoft Project or Smartsheet: tasks with dependencies and dates. Task board, for example Planner or Trello: cards in columns for who does what.\n\nThe names are examples, not a recommendation.',
+        'Think in terms of a tool family: one kind of tool for one kind of work. Spreadsheet, for example Excel: lists and calculations. Scheduling tool, for example Microsoft Project or Smartsheet: tasks with dependencies and dates. Task board, for example Planner or Trello: cards in columns for who does what.\n\nThe names are examples, not a recommendation.\n\nTools serve every phase: a board in each phase, a spreadsheet or Power BI for the baseline in Measure, a statistics package only if the project needs Six Sigma statistics.',
         'Backlog: an ordered list of work still to be done, for example in Jira or Azure DevOps Boards; mostly for software and many small items, see the lesson User stories. Documentation and knowledge: SharePoint, Teams, Loop or Confluence for decisions and agreements.\n\nWhiteboard: a digital board for sessions, for example Miro or Mural. Reporting: Power BI shows figures that come from other systems.',
         'Why families and not brands? Products change names, merge and disappear; the work they do stays. Whoever knows the family can place any new tool in a minute: what is its job, who enters data, who reads along?\n\nThat also lets you quickly see, at a client who uses something quite different, what the thing does for the project.',
         'The human side. Every extra tool is an extra place to keep up to date, and people only fill in what gives them something back. Choose the smallest set that carries the work.\n\nA sharp question before you propose a tool: “Which two things get better because of it, and who has to put something in it every week?” If you cannot answer that, the spreadsheet is still enough.',
@@ -599,15 +608,15 @@ export default {
       recall: [
         {
           q: 'When is a spreadsheet still enough for your project list?',
-          options: ['As long as there are no dependencies or many simultaneous editors', 'As long as the project lasts less than a year and the team stays small', 'As long as the sponsor does not use it himself', 'As long as the team sits in one building'],
-          answer: 'As long as there are no dependencies or many simultaneous editors',
-          why: 'Duration and location say little; dependencies and simultaneous work are the signals.',
+          options: ['As long as there are no dependencies or many people updating at the same time', 'As long as the project lasts under a year and the team stays small', 'As long as the numbers in it are checked by one person once a month', 'As long as the team sits in one building and talks face to face'],
+          answer: 'As long as there are no dependencies or many people updating at the same time',
+          why: 'Duration, sponsor and location say little; dependencies, simultaneous updating and an auditable history are the signs that a tool will pay off.',
         },
         {
-          q: 'Of which tool family is Miro an example?',
-          options: ['Scheduling tool with dependencies', 'Task board with columns and cards', 'Reporting', 'Whiteboard'],
-          answer: 'Whiteboard',
-          why: 'Miro and Mural are digital boards for sessions.',
+          q: 'On Friday you want to run a session in which eight people place sticky notes and draw at the same time. Which tool family fits?',
+          options: ['A scheduling tool with dependencies, such as Microsoft Project', 'A task board with columns and cards, such as Planner', 'A backlog with ordered items, such as Jira', 'A whiteboard, such as Miro or Mural'],
+          answer: 'A whiteboard, such as Miro or Mural',
+          why: 'A whiteboard is a digital board on which several people write, draw and stick notes at the same time. The other three track tasks, dependencies and work still to be done.',
         },
         {
           q: 'Five people spend 12 minutes every week reading and updating the new Excel version. How many hours a week is that together?',
@@ -618,10 +627,10 @@ export default {
           hint: 'Multiply the number of people by the minutes and convert to hours.',
         },
         {
-          q: 'Why do you name tools as an example of a family?',
-          options: ['Products change, the work they do stays', 'Suppliers require it in their terms and conditions', 'Every family has exactly one product that is meant for it', 'The client prefers hearing brands to tasks in a proposal'],
-          answer: 'Products change, the work they do stays',
-          why: 'Whoever knows the family places any new tool quickly.',
+          q: 'A colleague says: “Just learn the brands: Planner, Trello, Jira.” Why does thinking in tool families work better?',
+          options: ['Products change name or disappear, the work they do stays', 'One product per family is what the client expects as the standard', 'Brands differ so strongly that you cannot compare them', 'A client picks its tool on the brand the adviser names anyway'],
+          answer: 'Products change name or disappear, the work they do stays',
+          why: 'Whoever knows the family places any new tool in a minute: what is its job, who enters, who reads along. The brand names in the lesson are examples, not a recommendation or a standard.',
         },
       ],
       situation: {
@@ -650,10 +659,10 @@ export default {
       title: 'Setting up a task board in the first hour',
       pre: [
         {
-          q: 'You set up a task board for a team of five. What do you base the columns on?',
-          options: ['On the team members, a column per person so everyone sees their own work', 'On the months of the project, from start to handover', 'On the size of the budget per task, from large to small', 'On the work, such as prepare, execute and waiting for the client'],
-          answer: 'On the work, such as prepare, execute and waiting for the client',
-          why: 'Columns by work show where it is stuck; columns by people hide overload.',
+          q: 'In the first hour you set up a task board for a team of five with 24 tasks. What do you base the columns on?',
+          options: ['The team members, one column per person so that everyone sees his own work', 'The months of the project, from start to handover', 'The priority of the tasks, from high to low', 'The work, such as prepare, execute and waiting for client'],
+          answer: 'The work, such as prepare, execute and waiting for client',
+          why: 'Columns based on work show where it gets stuck, for instance in Waiting for client. Columns per person hide overload; months and priority say nothing about the flow of the work.',
         },
       ],
       teach: [
@@ -670,16 +679,16 @@ export default {
       said: 'What you hear in projects: “I did do that, I just did not put it on the board.”',
       recall: [
         {
-          q: 'How do you set up the buckets of a task board?',
-          options: ['One bucket per team member, with his tasks below', 'One bucket per sponsor priority', 'One bucket per week of the project', 'By the work, such as Prepare, Execute and Waiting for client'],
-          answer: 'By the work, such as Prepare, Execute and Waiting for client',
-          why: 'Buckets by work show where it is stuck.',
+          q: 'A team member is away for two weeks. On the board nine cards sit in his bucket. What does that say about the set-up?',
+          options: ['The board is well set up, because everyone sees whose card it is', 'There are too many labels, so nobody filters on the bucket or the label any more', 'The cards lack a date, so there is no alert about the absence', 'The buckets follow people instead of work, so his work becomes a black hole'],
+          answer: 'The buckets follow people instead of work, so his work becomes a black hole',
+          why: 'Buckets per person hide overload and turn an absent colleague into a black hole; the owner is already on the card. Labels and dates are a different matter.',
         },
         {
-          q: 'Which three things does every card have?',
-          options: ['Priority, colour and estimate in hours', 'Owner, date and done criterion', 'Owner, cost and risk', 'Date, department and sponsor'],
-          answer: 'Owner, date and done criterion',
-          why: 'Owner, date and done criterion turn a card into an agreement.',
+          q: 'A card on the board has an owner and a date, but the team argues about when it is finished. What is missing?',
+          options: ['A label for the workstream the card belongs to', 'A done criterion: how we see it is finished', 'An estimate in hours from the owner', 'A second owner who looks along'],
+          answer: 'A done criterion: how we see it is finished',
+          why: 'Without a done criterion there is discussion about what done means. A label or an estimate does not help with that, and a card has one owner.',
         },
         {
           q: 'The weekly reads out all 24 cards, 2 minutes per card. With a filter on overdue, 5 cards are discussed, 4 minutes per card. How many minutes does the filter save per week?',
@@ -690,10 +699,10 @@ export default {
           hint: 'Work out the duration of both ways separately and subtract.',
         },
         {
-          q: 'Where do you record the project’s decisions and agreements?',
-          options: ['As a card in the bucket called done, so the whole team sees it', 'In the documentation tool next to the board, with a link from the board', 'In the minutes the project lead emails after each weekly meeting', 'As a comment under the card the decision is about'],
-          answer: 'In the documentation tool next to the board, with a link from the board',
-          why: 'Decisions must be findable for everyone, also after the project.',
+          q: 'In the weekly meeting the team decides to move the delivery back by a week. Where do you record that decision?',
+          options: ['As a card in the Done bucket, so the team can see it', 'In the documentation tool next to the board, with a link', 'As a comment under the delivery card', 'In the minutes the project manager mails after the meeting'],
+          answer: 'In the documentation tool next to the board, with a link',
+          why: 'Decisions do not belong on cards but in the documentation tool next to the board, so they can be found, even after the project. A mail or a comment under a card gets lost.',
         },
       ],
       situation: {
@@ -723,10 +732,12 @@ export default {
       title: 'Choosing the tool for this project',
       pre: [
         {
-          q: 'A client does not allow external tools for project data. What is the wisest choice?',
-          options: ['Use your own tool anyway and say nothing', 'Create a private account to get round the client’s rules', 'Send the data round as an email attachment', 'Use the client’s tool, even if it is less pleasant'],
-          answer: 'Use the client’s tool, even if it is less pleasant',
-          why: 'Rules on client data come before convenience.',
+          kind: 'best',
+          q: 'A client allows no external tools for project data, while your team works comfortably in Trello. What is the best choice?',
+          options: ['Ask the sponsor whether the rule can be lifted for this project', 'Use Trello for tasks without client data and the rest in the client’s tool', 'Anonymise the data and then put it in your own tool', 'Use the client’s tool and set up your work in it'],
+          answer: 'Use the client’s tool and set up your work in it',
+          close: 'Use Trello for tasks without client data and the rest in the client’s tool',
+          why: 'Rules about client data come before convenience: use the client’s tool. Trello for tasks without client data is defensible and wins when the security officer approves, but it creates a second source and a second place to maintain.',
         },
       ],
       teach: [
@@ -745,28 +756,30 @@ export default {
       said: 'What you hear in projects: “We work with our own tool here; yours is not allowed.”',
       recall: [
         {
-          q: 'What decides the tool in a project with many dependencies, such as steel with a long lead time?',
-          options: ['Only a board, because it is the simplest for the whole team', 'Only a spreadsheet with colours', 'A scheduling tool for the plan and a board for the tasks', 'A whiteboard for the whole project, from plan to individual task'],
-          answer: 'A scheduling tool for the plan and a board for the tasks',
-          why: 'A board does not carry dependencies; a scheduling tool does.',
+          kind: 'best',
+          q: 'A project with twenty people, three suppliers and steel with a 14-week lead time on which much depends. Which tool set-up is the best?',
+          options: ['A board for the plan and the tasks, because that is simplest for the team', 'A spreadsheet with colours for dependencies and owners', 'A scheduling tool for the plan and a board for the daily tasks', 'Everything in one scheduling tool, including the team’s daily tasks'],
+          answer: 'A scheduling tool for the plan and a board for the daily tasks',
+          close: 'Everything in one scheduling tool, including the team’s daily tasks',
+          why: 'A board does not carry dependencies; a scheduling tool does, such as the steel lead time. One scheduling tool for everything is also defensible and wins when the team is small and everyone already works in it, because every fact then sits in one place.',
         },
         {
-          q: 'What does “every fact lives in exactly one place” mean?',
-          options: ['One place per date or decision, the rest refer to it', 'All information of the project sits in one tool for everyone', 'Every team member gets a file of their own with all project data', 'Decisions are no longer written down because everybody knows them anyway'],
-          answer: 'One place per date or decision, the rest refer to it',
-          why: 'One source prevents two versions from drifting apart.',
+          q: 'A milestone date sits in the board and in the schedule and the two drift apart. Which rule would have prevented this?',
+          options: ['One place per date or decision; the rest refers to it', 'Keep the whole project in one package, documents and plan included', 'Have two people enter the same date and compare the differences', 'Make the schedule leading and update the board by hand once a month'],
+          answer: 'One place per date or decision; the rest refers to it',
+          why: 'One place per fact prevents two versions drifting apart; the other system shows or exports it. Everything in one tool does not enforce it, and entering twice is precisely double entry. Updating the board by hand keeps two places, so they drift apart again. Updating the board by hand keeps two places, so they drift apart again.',
         },
         {
-          q: 'What do you ask first before choosing a tool at a client?',
-          options: ['Which tool has the nicest dashboards', 'Which rules apply to guests and client data', 'Which tool is cheapest over the whole project', 'Which tool the team uses privately'],
-          answer: 'Which rules apply to guests and client data',
-          why: 'What is not allowed you need not compare.',
+          q: 'In a week you start at a grid operator and want to prepare your tool. Which question do you ask their IT or security first?',
+          options: ['Which tool has the best dashboards for the sponsor?', 'May outsiders enter and may client data sit there?', 'Which tool is the cheapest for the whole project?', 'Which tools do their other projects already use?'],
+          answer: 'May outsiders enter and may client data sit there?',
+          why: 'The client’s rules come first: what is not allowed, you need not compare. Dashboards, price and what other projects use come after.',
         },
         {
-          q: 'Half of your team already works in another tool. What do you do?',
-          options: ['Have the whole team move in the middle of the project', 'Maintain two complete administrations side by side', 'Follow the larger half or build a bridge with a weekly export', 'Ask the other half to forget their tool'],
-          answer: 'Follow the larger half or build a bridge with a weekly export',
-          why: 'A move in the middle of a project costs more than it yields.',
+          q: 'Six of the twelve team members already work in Jira, the other six in your board. The project is halfway. What do you do?',
+          options: ['Move the whole team to one of the two tools this week', 'Keep both administrations side by side, with a weekly check', 'Follow the larger group or bridge with a weekly export', 'Pick a third tool and have both groups move to it together'],
+          answer: 'Follow the larger group or bridge with a weekly export',
+          why: 'A move in the middle of a project costs more than it returns; follow the larger group or build a bridge with a weekly export. Two administrations or a third tool only make it worse.',
         },
       ],
       situation: {
@@ -794,10 +807,12 @@ export default {
       title: 'What a tool really costs',
       pre: [
         {
-          q: 'A client asks you: “Just bring your own Miro and Trello.” What is the first question you ask?',
-          options: ['Who pays for the subscriptions and how long do those contracts still run?', 'Which colours do we use?', 'May client data sit in those tools according to their security rules?', 'How many users fit in, and what do extra users cost the client over the project?'],
-          answer: 'May client data sit in those tools according to their security rules?',
-          why: 'First the question whether it is allowed; only then whether it is handy.',
+          kind: 'best',
+          q: 'A client says: “Just bring your own Miro and Trello.” What is the best first question?',
+          options: ['Who maintains and pays for the tools once your assignment is done?', 'Which of the client’s teams will work in which tool later?', 'May client data sit in those tools under their security rules?', 'Can the tools be linked to their system of record?'],
+          answer: 'May client data sit in those tools under their security rules?',
+          close: 'Who maintains and pays for the tools once your assignment is done?',
+          why: 'First the question whether it is allowed; the other three questions are good and come afterwards. Who maintains after your departure only wins once the tools may be used at all.',
         },
       ],
       teach: [
@@ -824,22 +839,22 @@ export default {
           hint: 'Multiply the number of team leads, the hours per month and the number of months.',
         },
         {
-          q: 'Which three questions are the credible questions about a tool landscape?',
-          options: ['Who bought the tool, who uses it the most and what it costs the client', 'Which system is the source, who feeds it and what the cut-off is', 'Which colours, which labels and which order of columns', 'How many users, how much storage and how many backups'],
-          answer: 'Which system is the source, who feeds it and what the cut-off is',
-          why: 'Most disagreements are about truth, feeding and cut-off.',
+          q: 'In a client’s department three people each name a different system as the place of the project budget. Which three questions do you ask to find out?',
+          options: ['Who bought the tool, who uses it most and what does it cost per user?', 'Which system is the source, who feeds it and what is the cut-off?', 'Which links exist, which figures are fed and who manages the logins?', 'Which system is fastest, which cheapest and which is used most?'],
+          answer: 'Which system is the source, who feeds it and what is the cut-off?',
+          why: 'In a dispute about where the truth sits, source, feeding and cut-off are what matter. Costs, links and usage are useful facts, but do not settle which system counts.',
         },
         {
-          q: 'Why does ownership after you leave belong to the cost of a tool?',
-          options: ['A tool without an administrator leaves a gap or dependency after you leave', 'The subscription then expires automatically and the client has to set everything up again', 'The client always wants to take over your tool, even without the time for it', 'Consultancies may not own tools according to the rules'],
-          answer: 'A tool without an administrator leaves a gap or dependency after you leave',
-          why: 'What remains after you must have an owner.',
+          q: 'For a six-month project you set up a board the team uses well. How do you weigh the cost of this board after you leave?',
+          options: ['Someone at the client must maintain and pay for it, or it leaves an empty spot', 'The subscription is the cost that counts, and the client pays it by default', 'The client takes the board over by itself because the team is used to it', 'A board is free to copy, so after you leave it costs nothing'],
+          answer: 'Someone at the client must maintain and pay for it, or it leaves an empty spot',
+          why: 'What remains after you must have an owner who maintains and pays. The subscription is only part of the cost, and that the team is used to it is adoption, not yet maintenance.',
         },
         {
-          q: 'What is the wisest use of an AI assistant in a project tool?',
-          options: ['For a first draft that you check yourself', 'As the source of truth for the status of the project', 'To take decisions in the place of the sponsor or steering group', 'To process client data unseen and without any check'],
-          answer: 'For a first draft that you check yourself',
-          why: 'The assistant summarises what is there; quality and rules remain yours.',
+          q: 'A team member suggests having an AI assistant in the project board summarise the weekly status. Many cards have not been updated for months. What is the wisest use?',
+          options: ['Have it write a first draft and check it yourself', 'Send the summary straight to the sponsor to save time', 'Use the summary as the source of truth for progress', 'Let the assistant decide which outdated cards can be closed'],
+          answer: 'Have it write a first draft and check it yourself',
+          why: 'The assistant summarises what is there; if outdated cards are in, the summary is outdated too. Quality and confidentiality stay with you, so a draft you check yourself.',
         },
       ],
       situation: {
@@ -864,19 +879,20 @@ export default {
     {
       id: 'pm.approach.systems',
       gist: 'In a large company each system has one job; the system of record has the last word when sources disagree.',
+      pictures: [{ id: 'pm.approach.systems.map', after: 1, alt: 'Table of a large client’s systems and the job of each: ERP, planning, PPM, PLM, ITSM and reporting.' }],
       title: 'A large client’s systems',
       pre: [
         {
           q: 'You want to know how many hours have been booked on your project so far. In which kind of client system do you look?',
-          options: ['The ITSM system, where incidents and changes are registered', 'The PLM system, where drawings and parts are managed', 'The ERP system, where hours and costs sit per project number', 'The team’s digital whiteboard from the last session'],
-          answer: 'The ERP system, where hours and costs sit per project number',
-          why: 'Booked hours and costs belong in the ERP, under a project number.',
+          options: ['The ITSM system, where incidents and changes sit', 'The PLM system, where drawings and parts are managed', 'The ERP system, where hours and costs sit', 'The PPM system, where projects and capacity are shown'],
+          answer: 'The ERP system, where hours and costs sit',
+          why: 'Booked hours and costs belong in the ERP, under a project number. ITSM, PLM and PPM keep other facts: changes, drawings and the portfolio list.',
         },
       ],
       teach: [
         'A large client has many systems, and each has one job. ERP (enterprise resource planning): money, hours and materials, per project number. Planning for large projects: big schedules with many dependencies. PPM (project and portfolio management): which projects exist, what they ask for and who has capacity for them.\n\nThey are families, as with your own tools: learn the job, not the brand name.',
         'PLM (product lifecycle management): product data such as drawings, parts and engineering changes. ITSM (IT service management): incidents, changes and requests in IT, see the lesson Incident, problem, change. Reporting: tools such as Power BI that show figures from other systems.\n\nIn the sector you often meet Primavera P6 for large schedules, Clarity for PPM and Polarion for requirements and traceability. That is what is common, not what every client has.',
-        'A system of record is the system in which an official fact sits and that counts when sources contradict each other. Hours officially sit in the ERP, a change in the ITSM, a drawing in the PLM.\n\nYour own board is handy for daily work, but it is rarely where a controller or auditor looks. So always ask: “In which system does this figure officially sit?”',
+        'A system of record is the system in which an official fact sits and that counts when sources contradict each other. Hours officially sit in the ERP, a change in the ITSM, a drawing in the PLM.\n\nYour own board is handy for daily work, but it is rarely where a controller or auditor looks. So always ask: “In which system does this figure officially sit?”\n\nIn Measure the client’s systems are your data source: the baseline comes from the system of record, not from your board.',
         'One project has several keys. The project code or WBS code ties hours and costs in the ERP to your project; the WBS is the breakdown of the work from the lesson Breaking the work down.\n\nIf someone books hours on the wrong code, your project looks cheaper than it is and the bill lands elsewhere. In the first week, ask for your codes and pass them on to the team.',
         'Which companies use what? Only where a source shows it. According to a Siemens case study, ASML uses Teamcenter for lifecycle management and NX for design. According to SAP, Enexis was preparing for SAP S/4HANA in 2020; according to Enexis itself, ServiceNow is the platform for employee workflows; according to Mendix, Enexis built more than a hundred apps in Mendix, including a project management app linked to SAP.\n\nSuppliers’ sources are advertising: read them as a pointer, not as proof.',
       ],
@@ -888,27 +904,27 @@ export default {
       recall: [
         {
           q: 'What is a system of record?',
-          options: ['The system that has the last word when sources disagree', 'The system that is used most often by the whole team and the sponsor', 'The system the consultant brought along to the client’s office', 'The system with the newest data of the past week of the project'],
-          answer: 'The system that has the last word when sources disagree',
-          why: 'In a disagreement the system of record counts, not your own board.',
+          options: ['The system with the last word when sources disagree', 'The system the team uses most during the working day', 'The system the consultant brought along to the client', 'The system with the newest data of the past week'],
+          answer: 'The system with the last word when sources disagree',
+          why: 'When there is disagreement, the system of record counts, not your own board and not the system opened most often or most up to date.',
         },
         {
-          q: 'According to a Siemens case study, ASML uses Teamcenter for lifecycle management. Which family does that belong to?',
+          q: 'An engineering change on a pump must be recorded so that the drawing and the parts stay in step. Which family of system officially holds it?',
           options: ['ERP', 'PLM', 'ITSM', 'PPM'],
           answer: 'PLM',
-          why: 'PLM manages product data such as drawings and parts.',
+          why: 'PLM holds product data such as drawings, parts and engineering changes. ITSM also has changes, but those are changes in IT; ERP is money and hours and PPM the project portfolio.',
         },
         {
-          q: 'Someone books hours on the wrong project code. What is the result?',
-          options: ['Your project looks cheaper than it is and the costs land elsewhere', 'The ERP refuses the hours and sends them back to the employee', 'The sponsor automatically gets a notification and corrects it', 'Nothing, because the controller moves the hours at month end'],
+          q: 'Someone books hours on the wrong project code. What is the consequence?',
+          options: ['Your project looks cheaper than it is and the costs land elsewhere', 'The hours vanish from the ERP until the controller puts them back', 'The sponsor gets an alert and the hours are moved automatically', 'Nothing, because the ERP converts the hours at the end of the month'],
           answer: 'Your project looks cheaper than it is and the costs land elsewhere',
-          why: 'The code ties hours to a project; a wrong code moves the cost.',
+          why: 'The code links hours to a project; a wrong code moves the costs. The ERP does not correct that by itself and does not tell the sponsor.',
         },
         {
           q: 'Why do you read a supplier’s source about a client as a pointer and not as proof?',
-          options: ['Suppliers never tell the truth about their clients, not even in case studies', 'Clients keep their systems secret', 'Only the PMO may confirm that', 'The supplier has an interest, and it is sometimes old or incomplete'],
-          answer: 'The supplier has an interest, and it is sometimes old or incomplete',
-          why: 'Such a source is often a sales text; check it with the client itself.',
+          options: ['Suppliers are not allowed under the rules to name clients', 'A case study describes another client, so it says nothing here', 'Information about a client is valid once the PMO has confirmed it', 'The supplier has an interest: such a source is advertising'],
+          answer: 'The supplier has an interest: such a source is advertising',
+          why: 'Such a source is advertising: the supplier has an interest in how the client looks, so check it with the client itself.',
         },
       ],
       situation: {
@@ -939,9 +955,9 @@ export default {
       pre: [
         {
           q: 'As an outsider you may look into the client’s systems. What do you ask first?',
-          options: ['Admin rights, so that you can change yourself what you think is wrong', 'A board of your own next to theirs', 'A list of all users and their rights in the whole system of the client', 'Read access and the project code under which your project sits'],
-          answer: 'Read access and the project code under which your project sits',
-          why: 'As a guest you start with reading and with the key that makes your project findable.',
+          options: ['Write rights, so you can change cards yourself when the team is slow', 'A board of your own next to the backlog board to keep your own plan', 'Access to the change calendar to schedule your changes straight away', 'Read access and the project code your project sits under'],
+          answer: 'Read access and the project code your project sits under',
+          why: 'As a guest you start with reading and with the key that makes your project findable. Write rights, a second board and the change calendar come later or are not needed.',
         },
       ],
       teach: [
@@ -958,10 +974,10 @@ export default {
       said: 'What you hear in projects: “It is yellow in Jira, but it runs differently in the ERP.”',
       recall: [
         {
-          q: 'What is an epic on a backlog board?',
-          options: ['A large piece of work made up of several features and stories', 'A defect found in testing that must be repaired', 'A short need of a single user, written as a story', 'The review meeting at the end of a sprint'],
-          answer: 'A large piece of work made up of several features and stories',
-          why: 'An epic bundles many smaller items into one large result.',
+          q: 'On a backlog board the item “Faster job preparation” has 31 items under it. What kind of work item is that?',
+          options: ['An epic: a large piece of work made up of features and stories', 'A story: a small need of a user, written in one sentence', 'A bug: an error that a user has reported and that must be fixed', 'A feature: a part of an epic with a date of its own'],
+          answer: 'An epic: a large piece of work made up of features and stories',
+          why: 'An epic bundles many smaller items into one large result. A story is small, a bug is an error and a feature is a part of an epic.',
         },
         {
           q: 'Your epic has 31 items, of which 12 are done. What percentage is done? Round to a whole number.',
@@ -972,16 +988,16 @@ export default {
           hint: 'Divide the number of done items by the total.',
         },
         {
-          q: '310 of the 400 planned hours are booked while 40% of the work is done. What does that say?',
-          options: ['The project is ahead of schedule because so many hours are already booked', 'Hours run ahead of progress; find the cause and re-plan', 'The project is exactly on budget', 'The hours are certainly booked wrongly'],
-          answer: 'Hours run ahead of progress; find the cause and re-plan',
-          why: '78% of the hours for 40% of the work means the budget goes faster than the work is done.',
+          q: 'As a guest you read in the ERP that 310 of the 400 planned hours are booked, while the backlog board shows 40% of the work done. What does that say?',
+          options: ['The project is ahead of schedule because so many hours are already booked', 'The hours are ahead of the progress; look for the cause and re-plan', 'The budget is still ample, because the booked hours are below the 400 planned', 'Probably wrong bookings; wait until the controller has corrected the hours'],
+          answer: 'The hours are ahead of the progress; look for the cause and re-plan',
+          why: '78% of the hours for 40% of the work means the budget is going faster than the work is finishing. Many hours is not progress. Wrong bookings are one possible cause, but you look for the cause and re-plan rather than wait.',
         },
         {
           q: 'Four blocked items wait on the same test environment. How do you read that?',
-          options: ['As four separate problems that each need an owner and a solution of their own', 'As one problem with one cause, which you can solve in a focused way', 'As proof that the team works too slowly and needs more people to catch up', 'As a reason to delete the items'],
-          answer: 'As one problem with one cause, which you can solve in a focused way',
-          why: 'One cause behind several blocks is the quickest gain.',
+          options: ['As four problems that need a solution of their own', 'As one problem with one cause that you can solve', 'As a sign that the team works too slowly and needs reinforcement', 'As four reports that you put to the sponsor separately'],
+          answer: 'As one problem with one cause that you can solve',
+          why: 'One cause behind several blockages is the quickest win. Four separate solutions or reports leave the shared cause intact, and slow people are not the problem.',
         },
       ],
       situation: {
@@ -1010,10 +1026,10 @@ export default {
       title: 'What lives where: working tool and system of record',
       pre: [
         {
-          q: 'Your board says green, the PMO report says red. What do you do first?',
-          options: ['Check where each figure comes from', 'Set your board to red to agree', 'Ask the PMO to ignore the report for now', 'Build a new dashboard that shows green instead'],
-          answer: 'Check where each figure comes from',
-          why: 'First find out why they differ; only then decide who is right.',
+          q: 'Your board says green, the PMO report says red and the steering group meets the day after tomorrow. What do you do first?',
+          options: ['Find out which system each figure comes from and how it is counted there', 'Adopt the PMO report and adjust your board to it to avoid discussion', 'Ask the sponsor which of the two figures he believes', 'Wait a week until the report has refreshed again and then compare once more'],
+          answer: 'Find out which system each figure comes from and how it is counted there',
+          why: 'First find out why they differ: source, moment and definition. Only then do you decide which figure counts officially; adopting red or choosing on belief does not answer that.',
         },
       ],
       teach: [
@@ -1032,10 +1048,10 @@ export default {
       said: 'What you hear in projects: “My board says green, that report is wrong.”',
       recall: [
         {
-          q: 'How do you prevent double entry?',
-          options: ['Put everything in one tool and abolish the other', 'Have two people enter the same thing to be safe and compare it later', 'Leave the figure only in the report', 'Give each fact one home and link or export it elsewhere'],
-          answer: 'Give each fact one home and link or export it elsewhere',
-          why: 'One home per fact prevents figures from drifting apart.',
+          q: 'Four team leaders retype their figures from the board into the PMO system every month. What is the first step to remove that double entry?',
+          options: ['Abolish the board and have the team work in the PMO system', 'Add an extra check in which two people compare the entry', 'Ask the PMO to take over the figures from the board from now on', 'Determine which system is the source, who feeds it and what the cut-off is'],
+          answer: 'Determine which system is the source, who feeds it and what the cut-off is',
+          why: 'Each fact gets one home; for that you fix source, feeding and cut-off. Abolishing the board or checking just moves the problem, and the PMO cannot take over figures without an agreement.',
         },
         {
           q: 'A report refreshes every Monday morning. You read it on Thursday afternoon. About how many days old is the data?',
@@ -1046,16 +1062,16 @@ export default {
           hint: 'Count the days between the refresh time and the moment you read.',
         },
         {
-          q: 'Which question belongs to reading a Power BI report as a source?',
-          options: ['Which colours and chart types make the page easiest to read?', 'Which system does this figure come from, when was it refreshed and what counts?', 'How many pages and filters should a good report have at most?', 'Who built the report first and who has edited it since?'],
-          answer: 'Which system does this figure come from, when was it refreshed and what counts?',
-          why: 'You read a report as a source, so you trace each figure to its origin.',
+          q: 'You open a PMO Power BI report in which your project is red. Which question do you ask first about the figure?',
+          options: ['Who built the report and in which tool was it made?', 'Which system is it from, when was it refreshed and what counts?', 'Which colours and thresholds does the report use for green and red?', 'Who owns the report and who can change it?'],
+          answer: 'Which system is it from, when was it refreshed and what counts?',
+          why: 'You read the report as a source, so you trace each figure to its origin, refresh time and definition. Builder, colour thresholds and owner are useful facts, but do not explain why the figure is red.',
         },
         {
-          q: 'What is cheapest to check first when board and report differ?',
-          options: ['Whether the whole report has to be rebuilt', 'Whether somebody has committed fraud', 'The refresh time of the report', 'Whether the team must be replaced'],
-          answer: 'The refresh time of the report',
-          why: 'An outdated report is the simplest cause and costs one glance.',
+          q: 'Board and report differ: 18 of 20 tasks done against 60% in the report. You want to rule out the cheapest explanation first. Which is it?',
+          options: ['Whether the report counts “done” differently from your board', 'Whether hours were booked on another project code', 'The refresh time of the report: how old is the data?', 'Whether tasks on the board were ticked off as done by mistake'],
+          answer: 'The refresh time of the report: how old is the data?',
+          why: 'An outdated report is the simplest cause and costs one glance; the definition of done and the project code follow. You check your own ticking errors only when the other three give no explanation.',
         },
       ],
       situation: {
@@ -1084,10 +1100,10 @@ export default {
       title: 'The tool landscape as a senior',
       pre: [
         {
-          q: 'Two managers clash over a figure in a report. What helps most to resolve it?',
-          options: ['Find out who the data owner is and who sets the definition', 'Have the report rebuilt in another colour', 'Hold a vote in the team', 'Use the higher of the two figures'],
+          q: 'Two client managers quote a different figure for “hours on project X” from the same report. The steering group meets the day after tomorrow. What helps most to resolve this?',
+          options: ['Find out who the data owner is and who sets the definition', 'Have the report rebuilt with a shared filter setting for both managers', 'Have the figure confirmed by the person who built the report', 'Put the two figures side by side in the report with an explanation'],
           answer: 'Find out who the data owner is and who sets the definition',
-          why: 'A dispute about a figure almost always concerns who owns the definition.',
+          why: 'A dispute over a figure is almost always about the definition; whoever owns it decides. Rebuilding, asking the builder or showing both figures leaves the definition untouched.',
         },
       ],
       teach: [
@@ -1106,22 +1122,22 @@ export default {
       said: 'What you hear in projects: “IT will sort out that link, you need not worry about it.”',
       recall: [
         {
-          q: 'Why do you look for the data owner before a dispute about a figure arises?',
-          options: ['The data owner pays for the tool and therefore decides what happens to the data', 'They can make the report look nicer and refresh faster than IT can', 'The data owner sets the definition and can settle the dispute', 'The PMO only talks to owners'],
-          answer: 'The data owner sets the definition and can settle the dispute',
-          why: 'Whoever owns the definition decides what a figure means.',
+          q: 'In week two of a project you notice that “done” is counted differently in three client systems. It is not yet a dispute. Why do you look for the data owner now?',
+          options: ['They pay for the tool and therefore decide about the data', 'They can make the report refresh faster than IT can', 'The data owner sets the definition and can settle a dispute', 'The PMO talks to data owners first about the measuring method'],
+          answer: 'The data owner sets the definition and can settle a dispute',
+          why: 'A dispute is almost always about the definition; find the owner before the dispute and record the definition. Whoever pays or refreshes does not decide what a figure means.',
         },
         {
-          q: 'Your plan depends on a tool the supplier is going to retire. What do you do?',
-          options: ['Do nothing, because the supplier will solve it by itself', 'Include a plan B and a moment to move', 'Immediately pull all data into a spreadsheet', 'Ask the sponsor to have the supplier changed'],
-          answer: 'Include a plan B and a moment to move',
-          why: 'A planned move is cheaper than an emergency move.',
+          q: 'Your 26-week project uses a scheduling tool the supplier will retire in four months. What do you do?',
+          options: ['Wait for the supplier’s announcement about the successor', 'Write down the function you need and plan a date to move', 'Move the data to a spreadsheet already now', 'Ask the sponsor to lobby the supplier for an extension'],
+          answer: 'Write down the function you need and plan a date to move',
+          why: 'A planned move is cheaper than an emergency move; fix the function you need and the moving date. Waiting or lobbying leaves your plan hanging on one product.',
         },
         {
-          q: 'What do you ask when an engineering change in the PLM can shift your plan?',
-          options: ['Whether drawings may ever be changed', 'How, by whom and with what lead time changes reach you', 'How many drawings are in the system and who made all of them', 'Which colour the revisions have'],
-          answer: 'How, by whom and with what lead time changes reach you',
-          why: 'A change that reaches you late shifts your plan without you knowing.',
+          q: 'In a factory an engineering change in the PLM regularly shifts the lead time of parts. What do you ask to protect your plan against that?',
+          options: ['Which engineering changes were made last year and what they cost', 'How changes reach you: who reports them, how early, and where you subscribe', 'Who has the rights in the PLM to approve a change of revision', 'Which drawings have already been agreed with suppliers'],
+          answer: 'How changes reach you: who reports them, how early, and where you subscribe',
+          why: 'Without a reporting route you only hear about a change when the fitter notices; ask who reports, with what lead time and where you subscribe. History, rights and agreement do not say how changes reach you.',
         },
         {
           q: 'The new portfolio system goes live at the start of week 15; the project ends at the end of week 26. How many project weeks run on the new system?',
