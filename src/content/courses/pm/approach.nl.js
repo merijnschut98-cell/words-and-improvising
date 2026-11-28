@@ -8,9 +8,9 @@ export default {
       pre: [
         {
           q: 'Een directeur van een netbeheerder zegt tegen je: “Zorg dat de werkvoorbereiding sneller wordt.” Wat doe je als eerste?',
-          options: ['Direct een gedetailleerde planning maken voor het hele komende jaar', 'Het team bijeenroepen en de taken meteen verdelen', 'Navragen wat het probleem precies is en wie dit mandaat geeft', 'Een nieuw softwarepakket zoeken dat het werk versnelt'],
-          answer: 'Navragen wat het probleem precies is en wie dit mandaat geeft',
-          why: 'Eerst het probleem en de opdrachtgever, anders plan je op een gok.',
+          options: ['Een basisplanning maken met de taken en data voor het komende jaar', 'Een wekelijks ritme van status en besluiten opzetten met het team', 'Het probleem laten afspreken en vragen wie het mandaat geeft', 'De overdracht voorbereiden aan de beheerder van de werkvoorbereiding'],
+          answer: 'Het probleem laten afspreken en vragen wie het mandaat geeft',
+          why: 'Intake komt eerst: een afgesproken probleem en een mandaat. Een basisplanning, een werkend ritme en een overdracht zijn de faseproducten van latere fasen; zonder afgesproken probleem staan ze op los zand.',
         },
       ],
       teach: [
@@ -28,15 +28,15 @@ export default {
       recall: [
         {
           q: 'Welk faseproduct hoort bij Intake?',
-          options: ['Een basisplanning met alle taken en data', 'Een overdracht aan de beheerder', 'Een afgesproken probleem en een projectopdracht', 'Een eindrapport over het resultaat'],
-          answer: 'Een afgesproken probleem en een projectopdracht',
-          why: 'Intake levert op wat het project is; plannen, uitvoeren, landen en afsluiten bouwen daarop.',
+          options: ['Een basisplanning waartegen je later meet', 'Een sluitingsbesluit met bewezen resultaat', 'Een afgesproken probleem en een opdracht', 'Een werkend ritme van status en besluiten'],
+          answer: 'Een afgesproken probleem en een opdracht',
+          why: 'Intake levert op wat het project is: een afgesproken probleem en een opdracht. De andere drie zijn de producten van Plannen, Afsluiten en Uitvoeren; elk bouwt op Intake voort.',
         },
         {
           q: 'Waarom maak je geen planning vóór het probleem is afgesproken?',
-          options: ['Een planning mag volgens de regels pas na afloop van de kick-off', 'Je plant dan mogelijk het verkeerde en merkt dat pas laat', 'Een planning kost aan het begin te veel tijd', 'De sponsor kan dan achteraf niets meer aan de scope veranderen'],
+          options: ['Een planning kost in het begin te veel tijd en de data ontbreken nog', 'Je plant dan mogelijk het verkeerde en merkt dat pas laat', 'De sponsor kan na een planning de scope niet meer wijzigen', 'Een planning wordt pas goedgekeurd als de eerste fase klaar is'],
           answer: 'Je plant dan mogelijk het verkeerde en merkt dat pas laat',
-          why: 'Een plan is zo goed als het probleem waarop het gebouwd is.',
+          why: 'Een plan is zo goed als het probleem waarop het gebouwd is: de netbeheerder maakte een planning voor software terwijl het probleem in vergunningen zat. Dat de data ontbreken of de scope vastligt, speelt hier geen rol.',
         },
         {
           q: 'De werkvoorbereiding duurde 15 werkdagen en moest naar 10. Na afsluiting is het gemiddeld 11 werkdagen. Hoeveel procent van de gewenste winst van 5 werkdagen is gehaald?',
@@ -48,9 +48,9 @@ export default {
         },
         {
           q: 'Wat is een mandaat?',
-          options: ['Het overzicht van alle risico’s die het project loopt', 'De lijst met mensen die in het team zitten en hun rollen', 'De opdracht en bevoegdheid om te mogen starten', 'Het verslag van de laatste stuurgroep met alle besluiten'],
+          options: ['Het plan met de basisplanning waartegen je later meet', 'De manager die het budget heeft en de grote besluiten neemt', 'De opdracht en bevoegdheid om te mogen starten', 'Het afgesproken probleem met het doel in getallen'],
           answer: 'De opdracht en bevoegdheid om te mogen starten',
-          why: 'Zonder mandaat weet niemand of jij mag besluiten of uitgeven.',
+          why: 'Een mandaat is de opdracht plus de bevoegdheid om te starten. De manager die het geeft is de sponsor; het plan en het probleem zijn andere dingen.',
         },
       ],
       situation: {
@@ -79,10 +79,10 @@ export default {
       title: 'Een lopend project overnemen',
       pre: [
         {
-          q: 'Je neemt een lopend project over. De sponsor zegt: “Alles loopt prima.” Wat is de beste eerste stap?',
-          options: ['Het hele plan opnieuw schrijven zodat het echt van jou is en jij het begrijpt', 'De sponsor geloven en meteen nieuwe acties uitzetten', 'Een nieuwe kick-off houden en alles opnieuw beginnen', 'Zelf de documenten lezen en met het team praten om te zien of dat klopt'],
-          answer: 'Zelf de documenten lezen en met het team praten om te zien of dat klopt',
-          why: 'Eerst zien wat er werkelijk ligt; daarna pas besluit je wat er verandert.',
+          q: 'Je neemt op dinsdag een lopend project over van een collega die is vertrokken. De sponsor zegt: “Alles loopt prima.” Wat is de beste eerste stap?',
+          options: ['Het plan herschrijven zodat het van jou is en jij het goed begrijpt', 'Een nieuwe kick-off houden waarin het team opnieuw toezegt aan het plan', 'Het team vragen om een nieuw statusrapport met de acties op een rij', 'De opdracht, het plan en de laatste statusrapporten lezen en met het team praten'],
+          answer: 'De opdracht, het plan en de laatste statusrapporten lezen en met het team praten',
+          why: 'Eerst zien wat er werkelijk ligt: lezen en praten, twee dagen over begrijpen en niet over veranderen. Herschrijven of opnieuw beginnen gooit goede afspraken weg voordat je ze kent.',
         },
       ],
       teach: [
@@ -99,16 +99,18 @@ export default {
       said: 'Wat je hoort in projecten: “De vorige projectleider had het allemaal onder controle. Hij zei dat alles op schema lag.”',
       recall: [
         {
-          q: 'Welk document laat het best zien wat er in het project werkelijk is gebeurd?',
-          options: ['De presentatie van de kick-off van een jaar geleden', 'Het oorspronkelijke voorstel van de adviseur', 'De laatste drie statusrapporten, naast de opdracht gelegd', 'De organisatiekaart van de afdeling'],
+          kind: 'best',
+          q: 'Je wilt weten wat er in een lopend project werkelijk is gebeurd. Welk stuk laat dat het beste zien?',
+          options: ['Het plan zoals sponsor en klant het hebben goedgekeurd', 'De besluitenlijst van de stuurgroep sinds de start', 'De laatste drie statusrapporten, naast de opdracht gelegd', 'De risicolijst zoals de vorige projectleider die bijhield'],
           answer: 'De laatste drie statusrapporten, naast de opdracht gelegd',
-          why: 'De opdracht laat zien wat bedoeld was, de rapporten wat er gebeurde; het verschil is je werk.',
+          close: 'De besluitenlijst van de stuurgroep sinds de start',
+          why: 'De opdracht laat zien wat bedoeld was, de statusrapporten wat er gebeurde; het verschil is je werk. De besluitenlijst is verdedigbaar en wint als je wilt weten wie wat heeft besloten, maar zij toont de voortgang niet.',
         },
         {
-          q: 'Wat is het vastgesteld plan (plan of record)?',
-          options: ['Het plan waarmee sponsor en klant formeel akkoord zijn gegaan', 'Het meest recent opgeslagen bestand op de gedeelde schijf van het team', 'De planning die het team zelf het fijnst vindt', 'Het plan dat de vorige projectleider in zijn hoofd had en nooit opschreef'],
-          answer: 'Het plan waarmee sponsor en klant formeel akkoord zijn gegaan',
-          why: 'Over het vastgesteld plan zijn de partijen het eens; dáártegen meet je.',
+          q: 'Het team werkt met een eigen planning in Excel die nieuwer is dan de planning in het projectdossier. Waartegen meet je de voortgang?',
+          options: ['Tegen het plan waarmee sponsor en klant formeel akkoord zijn gegaan', 'Tegen de planning die het team nu het realistischst vindt', 'Tegen de versie van het plan die het laatst is opgeslagen', 'Tegen het plan dat de vorige projectleider het laatst heeft toegelicht'],
+          answer: 'Tegen het plan waarmee sponsor en klant formeel akkoord zijn gegaan',
+          why: 'Je meet tegen het vastgesteld plan (plan of record): daarover zijn de partijen het eens. Een nieuwere of realistischer planning is pas het plan van het project als sponsor en klant haar hebben goedgekeurd.',
         },
         {
           q: 'Een project heeft 14 open acties, waarvan 9 ouder zijn dan vier weken. Hoeveel procent van de open acties is ouder dan vier weken? Rond af op een geheel getal.',
@@ -119,10 +121,10 @@ export default {
           hint: 'Deel het aantal oude acties door het totaal aantal open acties.',
         },
         {
-          q: 'Je ziet dat er een planning is maar geen opgeschreven projectopdracht. Wat doe je?',
-          options: ['Doorwerken met de planning, een opdracht is een formaliteit', 'Eerst de opdracht door de sponsor laten vaststellen', 'Het project stilleggen en het hele team naar huis sturen', 'Het team zelf een opdracht laten schrijven, zonder de sponsor'],
+          q: 'Je ziet dat er een planning is, maar geen opgeschreven projectopdracht. Wat doe je?',
+          options: ['Doorwerken met de planning; een opdracht is hooguit een formaliteit', 'Eerst de opdracht door de sponsor laten vaststellen', 'Een kick-off houden waarin het team de opdracht mondeling bevestigt', 'Het team zelf een opdracht laten schrijven en die als vastgesteld beschouwen'],
           answer: 'Eerst de opdracht door de sponsor laten vaststellen',
-          why: 'Zonder opdracht weet niemand waartegen het plan klopt; de sponsor moet erachter staan.',
+          why: 'Zonder opdracht weet niemand waartegen het plan klopt, en de sponsor moet erachter staan. Een mondelinge bevestiging of een door het team geschreven opdracht heeft zijn handtekening niet.',
         },
       ],
       situation: {
@@ -150,10 +152,10 @@ export default {
       title: 'Hoeveel route: op maat maken',
       pre: [
         {
-          q: 'Een fabriek wil in twee weken een etiketprinter anders inrichten. Wat past bij de route?',
-          options: ['Alle vijf fasen met losse documenten, een stuurgroep en een goedkeuring per fase', 'Probleem, doel en plan samen op één pagina, met een benoemde beslisser', 'Geen route: het is te klein voor afspraken', 'Eerst drie maanden onderzoek, dan pas starten'],
-          answer: 'Probleem, doel en plan samen op één pagina, met een benoemde beslisser',
-          why: 'Klein werk krijgt een korte route, maar nooit zonder beslisser en doel.',
+          q: 'Een fabriek wil de etiketprinter van lijn 2 in twee weken anders inrichten: drie mensen, geen externe partijen, laag risico. Wat past bij de route?',
+          options: ['De vijf fasen met losse documenten, een stuurgroep en een goedkeuring per fase', 'Intake en plan samen op één pagina, met een benoemde beslisser en een doel', 'Een takenlijst volstaat; beslisser en doel zijn bij zo klein werk niet nodig', 'Het plan op één pagina, met landen en afsluiten overgeslagen'],
+          answer: 'Intake en plan samen op één pagina, met een benoemde beslisser en een doel',
+          why: 'Klein werk krijgt een korte route, maar de minimale governance blijft: een beslisser, een opgeschreven doel, een ritme en een afsluiting. De volle route is te veel, een takenlijst of een plan zonder afsluiting te weinig.',
         },
       ],
       teach: [
@@ -172,28 +174,28 @@ export default {
       said: 'Wat je hoort in projecten: “Dit is maar een klein dingetje, daar hoeven we geen opdracht voor.”',
       recall: [
         {
-          q: 'Wat hoort bij de minimale governance die je nooit laat vallen?',
-          options: ['Een stuurgroep van minstens zes managers die elke week bijeenkomt', 'Een volledig risicoregister met kansen, impact en maatregelen per risico', 'Een beslisser, een doel, een ritme en een afsluiting', 'Een formele goedkeuring door het PMO bij elke fase'],
-          answer: 'Een beslisser, een doel, een ritme en een afsluiting',
-          why: 'Vier dingen die een paar uur kosten; de rest onderbouw je per project.',
+          q: 'Een sponsor wil bij een project van drie weken de governance schrappen om tijd te winnen. Welke set laat je ondanks de haast staan?',
+          options: ['Een stuurgroep met een vast ritme, een risicoregister en een eindrapport', 'Een beslisser, een planning per fase, een statusrapport en een eindrapport', 'Een beslisser, een opgeschreven doel, een vast ritme en een afsluiting', 'Een sponsor, een uitgewerkte basisplanning, een PMO-akkoord en een evaluatie'],
+          answer: 'Een beslisser, een opgeschreven doel, een vast ritme en een afsluiting',
+          why: 'De minimale governance is vier dingen die samen een paar uur kosten. De andere sets zijn zwaarder (stuurgroep, risicoregister, PMO-akkoord) of lijken erop maar missen het ritme of het doel; alles daarboven onderbouw je per project.',
         },
         {
-          q: 'Je voegt intake en plan samen. Wat blijft?',
-          options: ['Alleen het plan, want de intake is dan overbodig', 'Alleen het probleem, want het plan volgt vanzelf', 'Geen van beide; de sponsor beslist achteraf wel', 'Beide faseproducten, in een korter document'],
-          answer: 'Beide faseproducten, in een korter document',
-          why: 'Samenvoegen verkort het papier, niet de vragen die je beantwoordt.',
+          q: 'Bij een project van drie weken voeg je intake en plan samen op één pagina. De sponsor vraagt wat daarmee verdwijnt. Wat is het juiste antwoord?',
+          options: ['De vraag naar het probleem, want het plan bepaalt wat nodig is', 'De goedkeuring van de sponsor, want één pagina is genoeg', 'De basisplanning, want het project is te kort om iets te meten', 'Beide faseproducten blijven; alleen het document wordt korter'],
+          answer: 'Beide faseproducten blijven; alleen het document wordt korter',
+          why: 'Samenvoegen verkort het papier, niet de vragen die je beantwoordt: het afgesproken probleem en het plan met basisplanning blijven beide bestaan. Ook de goedkeuring van de sponsor blijft.',
         },
         {
-          q: 'Een project heeft geen sponsor. Wat doe je als eerste?',
-          options: ['De projectleider zelf tot sponsor benoemen zodat het project kan starten', 'Toch beginnen en later een sponsor zoeken', 'De stuurgroep laten besluiten zonder sponsor', 'Een sponsor zoeken die het mandaat geeft, anders niet verder gaan'],
-          answer: 'Een sponsor zoeken die het mandaat geeft, anders niet verder gaan',
-          why: 'Zonder beslisser kun je alleen raden wat er mag en wat niet.',
+          q: 'Je bent gevraagd een verbeterproject van tien weken te leiden. De teamleider is enthousiast, maar niemand kan zeggen wie de opdracht gaf en het budget beheert. Wat doe je als eerste?',
+          options: ['De teamleider tot sponsor benoemen omdat hij het project het meest wil', 'Beginnen met intake en de sponsor zoeken zodra er iets te laten zien is', 'Het plan alvast schrijven en de sponsor laten tekenen als het klaar is', 'Een sponsor zoeken die het mandaat geeft; lukt dat niet, dan ga je niet verder'],
+          answer: 'Een sponsor zoeken die het mandaat geeft; lukt dat niet, dan ga je niet verder',
+          why: 'Zonder beslisser kun je alleen raden wat mag; een enthousiaste teamleider heeft geen budget en geen mandaat. Eerst een sponsor, anders stop je. Pas daarna plan je.',
         },
         {
-          q: 'Welke vier dingen bepalen hoeveel route een project nodig heeft?',
-          options: ['Duur, geld, aantal betrokken partijen en gevolgen als het misgaat', 'Het aantal teamleden, de kleur van de status en de plek', 'Het merk van de planningstool en de grootte van het kantoor', 'De leeftijd van de sponsor en het jaar van de opdracht'],
+          q: 'Twee projecten bij dezelfde klant: een van twee weken met drie mensen en een van zes maanden met drie leveranciers. Waar kijk je naar om te bepalen hoeveel route elk krijgt?',
+          options: ['Duur, geld, aantal betrokken partijen en gevolgen als het misgaat', 'Duur, geld, aantal teamleden en de ervaring van de projectleider', 'Duur, geld, de wens van de sponsor en het tempo van het team', 'Duur, aantal fasen in de klantmethode, geld en de grootte van het kantoor'],
           answer: 'Duur, geld, aantal betrokken partijen en gevolgen als het misgaat',
-          why: 'Hoe groter en riskanter, hoe meer route en besluitmomenten.',
+          why: 'De route groeit mee met omvang en risico (proportionaliteit): duur, geld, partijen en gevolgen als het misgaat. Teamgrootte en ervaring zeggen iets over het werk, maar bepalen niet hoeveel besluitmomenten het project nodig heeft.',
         },
       ],
       situation: {
@@ -221,10 +223,10 @@ export default {
       title: 'De route van de klant: gates, PMO en niet beginnen',
       pre: [
         {
-          q: 'Een klant heeft een PMO met verplichte sjablonen. Je hebt zelf een slankere route bedacht. Wat doe je eerst?',
-          options: ['Je eigen route invoeren; de klant betaalt voor jouw aanpak', 'Vragen wat het PMO verplicht en wat er echt gelezen wordt', 'Alle sjablonen zonder vragen invullen', 'Het PMO overslaan en rechtstreeks naar de sponsor gaan met je eigen plan'],
-          answer: 'Vragen wat het PMO verplicht en wat er echt gelezen wordt',
-          why: 'Wie de regels niet kent, kan er niet slim mee onderhandelen.',
+          q: 'Een klant heeft een PMO met verplichte sjablonen. Je hebt zelf een slankere route bedacht en wilt die graag gebruiken. Wat doe je eerst?',
+          options: ['Je slankere route voorstellen en laten zien hoeveel uren dat scheelt', 'Vragen welke sjablonen verplicht zijn en welke echt worden gelezen', 'De sjablonen invullen en pas daarna kijken wat je kunt inkorten', 'Via de sponsor vragen of het PMO je slankere route mag overslaan'],
+          answer: 'Vragen welke sjablonen verplicht zijn en welke echt worden gelezen',
+          why: 'Wie de regels niet kent, kan er niet slim mee onderhandelen. Eerst weten wat verplicht is en wat wordt gelezen; daarna stel je een route voor die binnen hun kaders past.',
         },
       ],
       teach: [
@@ -251,22 +253,24 @@ export default {
           hint: 'Reken eerst de totale capaciteit in uren uit en daarna de uren voor sjablonen.',
         },
         {
-          q: 'Wat vertelt het antwoord op “Wat gebeurt er als ik een sjabloon verkort?” je?',
-          options: ['Hoeveel het PMO van jou persoonlijk vindt', 'Hoe streng de regels echt zijn', 'Wat de volgende gate het project gaat kosten', 'Hoe groot het budget van de sponsor is'],
-          answer: 'Hoe streng de regels echt zijn',
-          why: 'Regels op papier en regels in de praktijk verschillen vaak.',
+          kind: 'best',
+          q: 'Je wilt weten hoe streng het PMO zijn sjablonen in de praktijk handhaaft. Welke vraag levert daar het beste antwoord op?',
+          options: ['“Welke sjablonen worden echt gelezen?”', '“Wat gebeurt er als ik een sjabloon verkort?”', '“Hoeveel sjablonen zijn er verplicht?”', '“Wie bepaalt de toleranties van het project?”'],
+          answer: '“Wat gebeurt er als ik een sjabloon verkort?”',
+          close: '“Welke sjablonen worden echt gelezen?”',
+          why: 'Het antwoord op de verkort-vraag laat zien hoe streng de regels in de praktijk zijn. “Welke worden gelezen?” is ook goed en wint als je vooral wilt weten waar je tijd kunt besparen, maar zij zegt niets over wat er gebeurt bij afwijken.',
         },
         {
-          q: 'Een klant wil een vaste prijs en een plan voordat de scope duidelijk is. Wat is een verstandige uitweg?',
-          options: ['Een ruime marge in de prijs opnemen en gewoon doorgaan met het plan', 'De scope later laten bepalen door het team', 'Het plan zo vaag houden dat het nooit fout kan zijn', 'De eerste fase als korte, aparte opdracht met een herbesluit erna'],
+          q: 'Een netbeheerder wil een vaste prijs en een volledig plan voor een verbeterproject, terwijl nog niemand weet waar het verlies zit. Wat is een verstandige uitweg?',
+          options: ['Een vaste prijs met een ruime marge voor onbekend werk en een plan op hoofdlijnen', 'Een tijd-en-materiaalcontract met maandelijkse facturering en een stuurgroep per kwartaal', 'Het plan op hoofdlijnen schrijven en de scope door het team laten invullen tijdens de uitvoering', 'De eerste fase als korte, aparte opdracht met een herbesluit erna'],
           answer: 'De eerste fase als korte, aparte opdracht met een herbesluit erna',
-          why: 'Zo koop je eerst inzicht en leg je daarna pas de rest vast.',
+          why: 'Zo koop je eerst inzicht en leg je daarna pas de rest vast, met een herbesluit als echt besluitmoment. Een ruime marge of een open contract schuift het onbekende door in plaats van het te onderzoeken.',
         },
         {
-          q: 'Wat is een niet-starten-besluit?',
-          options: ['De uitkomst van een eerste fase dat het project beter niet kan beginnen', 'Een project dat bij gebrek aan budget wordt uitgesteld tot het volgende boekjaar', 'Een stuurgroep die wacht tot de sponsor terug is', 'Het verbod om met een project te starten zonder voorafgaande toestemming van het PMO'],
-          answer: 'De uitkomst van een eerste fase dat het project beter niet kan beginnen',
-          why: 'Eerlijk adviseren kan betekenen dat het antwoord “niet doen” is.',
+          q: 'Na de eerste fase van tien weken blijkt dat het probleem bij een klant kleiner is dan gedacht en dat de oplossing meer kost dan ze oplevert. Wat leg je de sponsor voor?',
+          options: ['Een niet-starten-besluit, met de cijfers die laten zien waarom', 'Doorzetten met een kleinere scope, zodat de eerste fase niet voor niets was', 'Het project uitstellen tot het volgende boekjaar zodat het budget behouden blijft', 'De tweede fase starten en de besparing later aantonen'],
+          answer: 'Een niet-starten-besluit, met de cijfers die laten zien waarom',
+          why: 'Het eerlijke antwoord van fase één kan zijn dat het project niet moet beginnen; maak dat voor de sponsor makkelijk met cijfers. Doorzetten omdat de eerste fase al is betaald, is de bekende denkfout: het geld is dan toch al uitgegeven.',
         },
       ],
       situation: {
@@ -296,9 +300,9 @@ export default {
       pre: [
         {
           q: 'Een klant zegt: “Wij werken volgens PRINCE2.” Wat weet je daarmee over hoe het project verloopt?',
-          options: ['Dat het team werkt in sprints van twee weken met een review aan het eind', 'Dat alle projectleiders een bepaald diploma in de methode hebben gehaald', 'Dat er een vaste methode is, niet hoe strak die wordt gevolgd', 'Dat het project met DMAIC in vijf fasen wordt verbeterd'],
-          answer: 'Dat er een vaste methode is, niet hoe strak die wordt gevolgd',
-          why: 'PRINCE2 is een methode; hoe streng ze wordt toegepast, moet je navragen.',
+          options: ['Dat het team werkt in sprints van twee weken met een review aan het eind', 'Dat de projectleiders een diploma in de methode hebben gehaald', 'Dat er een methode is, niet hoe strak die wordt gevolgd', 'Dat het project met DMAIC in vijf fasen wordt verbeterd'],
+          answer: 'Dat er een methode is, niet hoe strak die wordt gevolgd',
+          why: 'PRINCE2 is een methode; hoe streng ze wordt toegepast, moet je navragen. Sprints horen bij agile, een diploma bewijst kennis en DMAIC is een andere familie.',
         },
       ],
       teach: [
@@ -316,21 +320,21 @@ export default {
       recall: [
         {
           q: 'Wat is PRINCE2?',
-          options: ['Een kennisraamwerk van PMI met prestatiedomeinen', 'Een agile raamwerk voor kleine teams in sprints', 'Een methode met thema’s, fasen en rollen', 'Een examen dat alle projectleiders moeten afleggen voordat ze beginnen'],
+          options: ['Een kennisraamwerk van PMI met prestatiedomeinen', 'Een agile raamwerk voor kleine teams die in sprints werken', 'Een methode met thema’s, fasen en rollen', 'Een certificaat dat projectleiders na een examen krijgen'],
           answer: 'Een methode met thema’s, fasen en rollen',
-          why: 'PRINCE2 schrijft een manier van werken voor; de PMBOK Guide beschrijft kennis.',
+          why: 'PRINCE2 schrijft een manier van werken voor; de PMBOK Guide beschrijft kennis. Het is geen agile raamwerk en geen certificaat, ook al is er een examen aan verbonden.',
         },
         {
-          q: 'Wat bewijst een certificaat?',
-          options: ['Dat de projecten van de houder vaker slagen dan gemiddeld', 'Dat de klant van de houder een erkende methode toepast', 'Dat de houder agile en voorspellend goed kan combineren', 'Dat iemand een examen heeft gehaald, niet hoe zijn projecten werken'],
-          answer: 'Dat iemand een examen heeft gehaald, niet hoe zijn projecten werken',
-          why: 'Een certificaat meet kennis op een dag, niet gedrag in een project.',
+          q: 'Een kandidaat laat een certificaat zien. Wat weet je daarmee?',
+          options: ['Dat de projecten van de kandidaat vaker slagen dan die van anderen', 'Dat de kandidaat de methode goed met agile kan combineren', 'Dat de klanten van de kandidaat de methode strak toepassen', 'Dat hij een examen heeft gehaald, niet hoe zijn projecten werken'],
+          answer: 'Dat hij een examen heeft gehaald, niet hoe zijn projecten werken',
+          why: 'Een certificaat meet kennis op één dag, niet gedrag in een project. Vraag door naar welke onderdelen hij echt gebruikt.',
         },
         {
-          q: 'Waar is DMAIC voor bedoeld?',
-          options: ['Als projectstructuur voor elke verbetering, ook zonder Six Sigma-statistiek', 'Als agile werkwijze waarmee een team nieuwe producten in sprints bouwt', 'Als kennisraamwerk dat beschrijft wat een projectmanager moet weten', 'Als voorspellende methode voor projecten met een vast ontwerp en einddatum'],
-          answer: 'Als projectstructuur voor elke verbetering, ook zonder Six Sigma-statistiek',
-          why: 'DMAIC houdt een verbeterproject bij elkaar in vijf fasen. Six Sigma voegt statistiek toe, maar de structuur werkt ook voor Lean.',
+          q: 'Een netbeheerder wil het aandeel te late werkorders verbeteren en heeft geen statisticus. Een collega zegt dat DMAIC dan niet past. Wat klopt?',
+          options: ['DMAIC is een projectstructuur voor een verbetering; statistiek is een extra en geen eis', 'DMAIC hoort bij Six Sigma en vraagt statistische tests in het hele project', 'DMAIC is een agile werkwijze waarmee een team nieuwe producten bouwt', 'DMAIC is een kennisraamwerk dat beschrijft wat een projectleider moet weten'],
+          answer: 'DMAIC is een projectstructuur voor een verbetering; statistiek is een extra en geen eis',
+          why: 'DMAIC houdt een verbeterproject bij elkaar in vijf fasen. Six Sigma voegt statistiek toe, maar Lean gebruikt dezelfde fasen zonder; het is ook geen agile werkwijze of kennisraamwerk.',
         },
         {
           q: 'Van de 100 werkorders per week komen er 30 te laat. Na een verbetering zijn dat er 12 van de 100. Met hoeveel procentpunt daalt het aandeel te late werkorders?',
@@ -367,10 +371,10 @@ export default {
       title: 'DMAIC op een klein probleem',
       pre: [
         {
-          q: 'Een offerte duurt gemiddeld 6 werkdagen en de klant wil er 3. Wat doe je in DMAIC eerst?',
-          options: ['Meteen een nieuw offertesysteem kopen en alle medewerkers daarop laten trainen', 'Een kaizenevent plannen voor volgende week', 'De medewerkers vragen sneller te werken', 'Probleem en doel in getallen vastleggen, dan meten waar de tijd blijft'],
-          answer: 'Probleem en doel in getallen vastleggen, dan meten waar de tijd blijft',
-          why: 'DMAIC begint met definiëren en meten, nog voor je aan een oplossing denkt.',
+          q: 'Een toeleverancier doet er gemiddeld 6 werkdagen over een offerte en de klant wil 3. Je leidt een DMAIC-project. Wat doe je als eerste?',
+          options: ['De offertes van een maand doorlopen en meteen de langzaamste stap aanpakken', 'Een nieuw systeem voor de offerte uitzoeken en kijken wat het zou schelen', 'Een kaizenevent van drie dagen plannen om de offerte te versnellen', 'Het doel in getallen vastleggen en de huidige duur over vier weken meten'],
+          answer: 'Het doel in getallen vastleggen en de huidige duur over vier weken meten',
+          why: 'DMAIC begint met definiëren en meten: een doel in getallen en een nulmeting. Wie meteen de langzaamste stap aanpakt of een systeem kiest, springt naar een oplossing voordat hij weet wat er aan de hand is.',
         },
       ],
       teach: [
@@ -387,16 +391,16 @@ export default {
       said: 'Wat je hoort in projecten: “We weten wat het probleem is, laten we gewoon aan de oplossing beginnen.”',
       recall: [
         {
-          q: 'Wat levert de fase meten op?',
-          options: ['De oplossing die je op kleine schaal gaat testen', 'De grondoorzaak van het probleem, gevonden door te tellen', 'Het plan met eigenaar en controles dat het resultaat vasthoudt', 'Een nulmeting van de huidige prestatie met een vaste definitie'],
-          answer: 'Een nulmeting van de huidige prestatie met een vaste definitie',
-          why: 'Zonder nulmeting kun je later niet zeggen of iets is verbeterd.',
+          q: 'Welk resultaat moet de fase meten opleveren voordat de fasepoort wordt gepasseerd?',
+          options: ['Een lijst met oorzaken waar het verlies zit, de grootste bovenaan', 'Een doel in getallen en een afgesproken scope', 'Een test op kleine schaal die laat zien dat het getal beweegt', 'Een nulmeting met een vaste definitie, bron en periode'],
+          answer: 'Een nulmeting met een vaste definitie, bron en periode',
+          why: 'Meten levert de nulmeting; zonder haar kun je later niet zeggen of iets is verbeterd. De oorzakenlijst hoort bij analyseren, het doel bij definiëren en de test bij verbeteren.',
         },
         {
-          q: 'Waarom is borgen een eigen fase?',
-          options: ['Omdat het resultaat anders terugzakt zodra de aandacht weg is', 'Omdat de sponsor aan het eind van elke fase een extra besluitmoment wil', 'Omdat de analyse anders niet wordt goedgekeurd door de fasepoort', 'Omdat de fase analyseren anders te weinig tijd krijgt'],
-          answer: 'Omdat het resultaat anders terugzakt zodra de aandacht weg is',
-          why: 'Een verbetering zonder eigenaar en meting verdwijnt vaak weer.',
+          q: 'Een team heeft de offertetijd van 6 naar 3,4 dagen gebracht en wil sluiten. De teamleider zegt: “Het werkt, borgen is overbodig.” Wat is je antwoord?',
+          options: ['Zonder eigenaar, vaste meting en afspraken zakt het getal terug zodra de aandacht weg is', 'De test van drie weken is te kort; borgen is extra tijd om de oplossing te bewijzen', 'Borgen is extra tijd om de verbetering nog verder naar 3 dagen te brengen', 'Borgen is nodig zodat de sponsor een extra besluitmoment over het budget krijgt'],
+          answer: 'Zonder eigenaar, vaste meting en afspraken zakt het getal terug zodra de aandacht weg is',
+          why: 'Een verbetering zonder eigenaar en meting verdwijnt vaak weer; dat is waarom borgen een eigen fase is. De test hoort bij verbeteren en een extra besluitmoment of verdere winst is niet het doel.',
         },
         {
           q: 'Een offerte duurt gemiddeld 6 werkdagen, waarvan 4 wachten op de technische controle. Na de verbetering wacht ze nog 1 dag op die controle; de rest blijft gelijk. Hoeveel werkdagen duurt de offerte nu gemiddeld?',
@@ -407,10 +411,10 @@ export default {
           hint: 'Alleen het wachten op de controle verandert. Bepaal eerst hoeveel dagen niet uit wachten bestond.',
         },
         {
-          q: 'Welke verbeterweg past bij één gebied in een paar dagen met de mensen die het werk doen?',
-          options: ['Een DMAIC-project van enkele maanden', 'Een A3 van één eigenaar over weken', 'Een PRINCE2-project met vijf gates', 'Een kaizenevent met het team'],
-          answer: 'Een kaizenevent met het team',
-          why: 'Maat en duur bepalen de weg: een paar dagen en één gebied is een event, maanden en data is DMAIC.',
+          q: 'Een manager wil één afdeling in drie dagen laten verbeteren, met de mensen die er werken. Welke verbeterweg past bij die maat?',
+          options: ['Een DMAIC-project van enkele maanden met een nulmeting van vier weken', 'Een A3 van één eigenaar die er enkele weken over doet', 'Een PRINCE2-project met vijf gates en een stuurgroep', 'Een kaizenevent van drie dagen met het team'],
+          answer: 'Een kaizenevent van drie dagen met het team',
+          why: 'Maat en duur bepalen de weg: een paar dagen en één gebied is een kaizenevent; een A3 is voor één eigenaar in weken, DMAIC voor een vaste structuur over maanden.',
         },
       ],
       situation: {
@@ -438,10 +442,10 @@ export default {
       title: 'De methode kiezen voor dit project',
       pre: [
         {
-          q: 'Een netbeheerder wil een nieuwe app voor monteurs, maar niemand weet precies wat de monteurs nodig hebben. Welke aanpak past?',
-          options: ['Een compleet ontwerp vooraf maken, goedkeuren en pas daarna beginnen met bouwen', 'Korte rondes met monteurs, elke keer iets werkends om op te reageren', 'Een DMAIC-project met eerst vier weken metingen en daarna een volledige analyse', 'Een kaizenevent in de werkplaats'],
-          answer: 'Korte rondes met monteurs, elke keer iets werkends om op te reageren',
-          why: 'Als de oplossing onbekend is, werkt snelle feedback beter dan een ontwerp op papier.',
+          q: 'Een netbeheerder wil een app voor de planning van monteurs. Gebruikers weten niet precies wat ze nodig hebben, het team is vast en het contract is een raamovereenkomst zonder vaste scope. Welke aanpak past?',
+          options: ['Een volledig ontwerp vooraf maken, goedkeuren en daarna bouwen met een vaste einddatum', 'Korte rondes waarin monteurs elke keer iets werkends beoordelen', 'Een stage-gate met het ontwerp vooraf en korte rondes pas bij de bouw', 'Een DMAIC-project met vier weken meting van de huidige planning van monteurs'],
+          answer: 'Korte rondes waarin monteurs elke keer iets werkends beoordelen',
+          why: 'Onbekende oplossing, bewegende eisen en een contract zonder vaste scope wijzen naar korte rondes. Een ontwerp vooraf past bij een bekende oplossing; de hybride stage-gate lost het onbekende te laat op.',
         },
       ],
       teach: [
@@ -460,28 +464,30 @@ export default {
       said: 'Wat je hoort in projecten: “We doen altijd hetzelfde, dus dit project ook.”',
       recall: [
         {
-          q: 'Welke combinatie van antwoorden wijst naar een voorspellende aanpak?',
-          options: ['Bekende oplossing, vaste eisen en een vast contract', 'Onbekende oplossing en eisen die nog bewegen', 'Een terugkerend probleem waarover veel data bestaat in het systeem', 'Een geleend team dat twee dagen per week werkt'],
-          answer: 'Bekende oplossing, vaste eisen en een vast contract',
-          why: 'Als er weinig te leren valt en veel vastligt, loont een vooraf gemaakt plan.',
+          q: 'Je loopt de vijf keuzevragen langs voor een project bij een maakbedrijf. Welke combinatie van antwoorden pleit voor een voorspellende aanpak?',
+          options: ['Bekende oplossing, vaste eisen en een contract met vaste scope', 'Bekende oplossing, eisen die nog bewegen en een geleend team', 'Onbekende oplossing, veel data over het probleem en een vast team', 'Bekende oplossing, vaste eisen en een contract zonder vaste scope'],
+          answer: 'Bekende oplossing, vaste eisen en een contract met vaste scope',
+          why: 'Als er weinig te leren valt en veel vastligt, loont een vooraf gemaakt plan. Bewegende eisen of een contract zonder vaste scope halen de zekerheid weg waarop voorspellend werken rust.',
         },
         {
-          q: 'Waarom is een hybride vorm geen halfslachtig compromis?',
-          options: ['Het is voor de klant altijd goedkoper dan elke enkele methode alleen', 'Je geeft elk deel van het project de aanpak die erbij past', 'Beide families eisen dat je ze combineert', 'Het vermijdt dat je ooit iets moet vastleggen voor de stuurgroep'],
-          answer: 'Je geeft elk deel van het project de aanpak die erbij past',
-          why: 'Hybride gaat om passen per onderdeel, niet om het midden zoeken.',
+          q: 'Een fabrikant bouwt hardware met vaste leveringen van leveranciers, maar de software eromheen is nog niet uitgedacht. Een sponsor noemt mengen halfslachtig. Wat is je antwoord?',
+          options: ['Een mengvorm is voor de klant goedkoper dan één aanpak afzonderlijk', 'Elk deel krijgt de aanpak die erbij past en je maakt duidelijk waar de grens loopt', 'Je neemt het gemiddelde van beide aanpakken, zodat het risico wordt verdeeld', 'Je legt alleen de mijlpalen vast en laat de rest aan het team over'],
+          answer: 'Elk deel krijgt de aanpak die erbij past en je maakt duidelijk waar de grens loopt',
+          why: 'Hybride gaat om passen per onderdeel, niet om het midden zoeken: vaste leveringen voorspellend, de onzekere software in korte rondes. Een gemiddelde of alleen mijlpalen laat het team zonder aanpak voor het onzekere deel.',
         },
         {
-          q: 'De klant heeft de methode al gekozen. Wat vraag je?',
-          options: ['Of de klant bereid is de methode voor dit project te vervangen', 'Welke certificaten de PMO-medewerkers en projectleiders hebben', 'Wat ligt vast en wat is vrij voor hoe het team binnen de kaders werkt', 'Hoeveel de methode de vorige keer dat ze werd gebruikt heeft gekost'],
-          answer: 'Wat ligt vast en wat is vrij voor hoe het team binnen de kaders werkt',
-          why: 'Binnen een opgelegde methode zoek je de ruimte die er wél is.',
+          kind: 'best',
+          q: 'Een klant heeft PRINCE2 opgelegd, maar jouw team heeft korte feedbackrondes nodig. Wat is de beste eerste vraag?',
+          options: ['Of de klant bereid is de methode voor dit project te vervangen', 'Welke onderdelen van de methode ze echt gebruiken en welke je kunt weglaten', 'Wat ligt vast, zoals gates en sjablonen, en wat is vrij voor hoe het team binnen de kaders werkt', 'Wie in de organisatie de methode heeft ingevoerd en waarom'],
+          answer: 'Wat ligt vast, zoals gates en sjablonen, en wat is vrij voor hoe het team binnen de kaders werkt',
+          close: 'Welke onderdelen van de methode ze echt gebruiken en welke je kunt weglaten',
+          why: 'Binnen een opgelegde methode zoek je eerst de ruimte die er wél is: wat vastligt en wat vrij is. “Welke onderdelen gebruiken jullie echt?” is ook sterk en wint als de klant zelf al zegt dat ze de methode losjes toepast.',
         },
         {
-          q: 'Welke vraag hoort níét bij de vijf keuzecriteria?',
-          options: ['Is er data beschikbaar over het probleem?', 'Is het team vast of geleend van andere afdelingen?', 'Welke methode ziet er het modernst uit?', 'Wat legt het contract allemaal vast aan scope en prijs?'],
-          answer: 'Welke methode ziet er het modernst uit?',
-          why: 'De keuze volgt uit het project, niet uit hoe een methode zich laat presenteren.',
+          q: 'Je bereidt een uitleg voor een sponsor voor over je methodekeuze. Welke van deze vragen hoort níét bij de vijf keuzecriteria?',
+          options: ['Hoe duidelijk zijn de eisen op dit moment?', 'Is het team vast of geleend van andere afdelingen?', 'Welke methode gebruiken de concurrenten?', 'Wat legt het contract vast aan scope en prijs?'],
+          answer: 'Welke methode gebruiken de concurrenten?',
+          why: 'De vijf criteria zijn oplossing, eisen, data, team en contract. De keuze volgt uit het project, niet uit wat anderen doen.',
         },
       ],
       situation: {
@@ -509,9 +515,9 @@ export default {
       pre: [
         {
           q: 'De klant eist een “PRINCE2-project” voor werk dat korte feedbackrondes nodig heeft. Wat is een goede eerste reactie?',
-          options: ['Vragen welke onderdelen verplicht zijn en laten zien hoe de rondes daarbinnen passen', 'Uitleggen dat PRINCE2 niet bij dit werk past', 'PRINCE2 volledig volgen zoals voorgeschreven en de korte feedbackrondes met de operators laten vallen', 'In het geheim je eigen methode gebruiken'],
-          answer: 'Vragen welke onderdelen verplicht zijn en laten zien hoe de rondes daarbinnen passen',
-          why: 'Je vertaalt tussen hun methode en wat het werk nodig heeft, zonder te vechten.',
+          options: ['Vragen wat verplicht is en laten zien hoe de rondes als werkpakketten in de fasen passen', 'Voorstellen de rondes als aparte agile aanpak naast het PRINCE2-project te laten lopen', 'PRINCE2 volgen zoals voorgeschreven en de feedback van de operators bewaren tot de sluiting', 'Uitleggen waarom PRINCE2 niet past en een lichtere methode voorstellen'],
+          answer: 'Vragen wat verplicht is en laten zien hoe de rondes als werkpakketten in de fasen passen',
+          why: 'Je vertaalt tussen hun methode en wat het werk nodig heeft, zonder te vechten: elke fase wordt een reeks rondes met de gate van het PMO erbovenop. Een parallelle aanpak of een uitgestelde feedback laat de methode en het werk uit elkaar lopen.',
         },
       ],
       teach: [
@@ -530,28 +536,28 @@ export default {
       said: 'Wat je hoort in projecten: “We hebben alle sjablonen ingevuld en alle gates gehaald, dus het project is gezond.”',
       recall: [
         {
-          q: 'Wat is methodetheater?',
-          options: ['Een training waarin een methode wordt nagespeeld', 'Een project dat meerdere methoden combineert', 'Sjablonen en gates zijn afgevinkt, maar er worden geen besluiten genomen', 'Een stuurgroep die de agenda ver vooraf rondstuurt'],
-          answer: 'Sjablonen en gates zijn afgevinkt, maar er worden geen besluiten genomen',
-          why: 'Het gaat om vorm zonder inhoud: de methode wordt gespeeld, niet gebruikt.',
+          q: 'Bij een klant zijn alle sjablonen ingevuld en de gates gehaald, maar het statusrapport verandert al maanden niet en niemand leest de risicolijst. Wat is hier aan de hand?',
+          options: ['Een goed lopend project: de gates zijn gehaald en de sjablonen ingevuld', 'Een project dat binnen de tolerantie blijft en dus niet hoeft bij te sturen', 'Methodetheater: de vorm wordt afgewerkt zonder dat besluiten vallen', 'Een PMO dat te weinig sjablonen vraagt voor de omvang van het project'],
+          answer: 'Methodetheater: de vorm wordt afgewerkt zonder dat besluiten vallen',
+          why: 'Ingevulde sjablonen en gehaalde gates zonder besluiten is methodetheater. Binnen tolerantie blijven is iets anders: dan zijn de besluiten er niet nodig, maar zie je wel dat het rapport verandert.',
         },
         {
-          q: 'Welke vraag helpt methodetheater te ontmaskeren?',
-          options: ['Hoeveel pagina’s heeft het document en wie heeft het geschreven?', 'Wie heeft het document als eerste ondertekend en wanneer is dat gebeurd?', 'In welk sjabloon is het document gemaakt?', 'Welk besluit is door dit document genomen of voorkomen?'],
-          answer: 'Welk besluit is door dit document genomen of voorkomen?',
-          why: 'Documenten bestaan om besluiten mogelijk te maken.',
+          q: 'Je wilt in een stuurgroepmap van twaalf documenten laten zien welke alleen voor de vorm bestaan. Welke vraag stel je bij ieder document?',
+          options: ['Wie heeft het document als laatste goedgekeurd en wanneer?', 'Past het document in het sjabloon van het PMO?', 'Wordt het document door de stuurgroep gelezen vóór de vergadering?', 'Welk besluit is hierdoor genomen of voorkomen?'],
+          answer: 'Welk besluit is hierdoor genomen of voorkomen?',
+          why: 'Documenten bestaan om besluiten mogelijk te maken; is er geen besluit, dan is het theater. Gelezen worden is nog geen besluit nemen, en goedkeuring of sjabloon zeggen niets over wat het document deed.',
         },
         {
-          q: 'Wat zegt een PMO dat om certificaten vraagt over jou?',
-          options: ['Dat het PMO jouw werk niet vertrouwt', 'Dat resultaten er niet toe doen', 'Dat je ook wordt beoordeeld op hun taal en regels, naast resultaat', 'Dat je voor het PMO altijd een eigen methode met sjablonen moet meebrengen'],
-          answer: 'Dat je ook wordt beoordeeld op hun taal en regels, naast resultaat',
-          why: 'Het is informatie over hoe de organisatie je leest.',
+          q: 'Een PMO vraagt bij je start om je certificaten en een overzicht van de methoden die je kent. Hoe lees je dat?',
+          options: ['Als wantrouwen: ze geloven niet dat je werk in een andere methode goed genoeg is', 'Als bewijs dat resultaten voor hen minder tellen dan het diploma', 'Als informatie: ze beoordelen je ook op hun taal en regels, naast je resultaten', 'Als formaliteit die geen gevolg heeft voor hoe ze je werk beoordelen'],
+          answer: 'Als informatie: ze beoordelen je ook op hun taal en regels, naast je resultaten',
+          why: 'Het is geen belediging maar informatie over hoe de organisatie je leest: ook op taal en naleving. Toon je vakmanschap in hun woorden en laat daarnaast resultaten zien.',
         },
         {
-          q: 'Waarom is “het raamwerk vraagt zelf om aanpassing” een sterk argument?',
-          options: ['Omdat een raamwerk altijd een uitzondering toestaat', 'Omdat de auditor dan niets meer hoeft te controleren', 'Omdat het de sponsor het gevoel geeft te winnen', 'Omdat PMI en PeopleCert er zelf om vragen'],
-          answer: 'Omdat PMI en PeopleCert er zelf om vragen',
-          why: 'Je beroept je op de bron van de klant zelf, niet op je eigen voorkeur.',
+          q: 'Een PMO-medewerker zegt dat jouw aangepaste route “geen echte PRINCE2” meer is. Welk argument is het sterkst?',
+          options: ['Dat de klant jou heeft ingehuurd om het beter te doen dan de methode', 'Dat jouw route sneller is en daarom meer oplevert voor het budget', 'Dat andere klanten van het adviesbureau dezelfde aanpassing accepteren', 'Dat PMI en PeopleCert zelf vragen om aanpassing aan het project'],
+          answer: 'Dat PMI en PeopleCert zelf vragen om aanpassing aan het project',
+          why: 'Je beroept je op de bron van de klant zelf in plaats van op je voorkeur: PMI en PeopleCert vragen om afstemming op het project. Sneller of door anderen geaccepteerd zijn argumenten over jou, niet over het raamwerk.',
         },
       ],
       situation: {
@@ -579,9 +585,9 @@ export default {
       pre: [
         {
           q: 'Een projectteam van vijf mensen houdt de takenlijst bij in Excel en mailt elke week een nieuwe versie rond. Wat is het eerste teken dat een tool zou lonen?',
-          options: ['Niemand weet zeker welke versie de laatste is', 'Het team vindt Excel er niet modern genoeg uit zien', 'De sponsor heeft op een beurs een mooie tool gezien', 'De lijst heeft meer dan tien regels'],
-          answer: 'Niemand weet zeker welke versie de laatste is',
-          why: 'Versiechaos en dubbel werk zijn de echte kosten van een spreadsheet.',
+          options: ['Twee mensen hebben dezelfde versie verbeterd en niemand weet welke geldt', 'De lijst is langer dan tien regels geworden en leest minder prettig', 'De sponsor wil een mooier overzicht van de takenlijst voor de stuurgroep', 'Een collega raadt een bekend merk aan en vindt de versie in Excel verouderd'],
+          answer: 'Twee mensen hebben dezelfde versie verbeterd en niemand weet welke geldt',
+          why: 'Versiechaos en dubbel werk zijn de echte kosten van een spreadsheet. Lengte, uiterlijk en een merk zeggen niets over wat de tool oplevert.',
         },
       ],
       teach: [
@@ -599,15 +605,15 @@ export default {
       recall: [
         {
           q: 'Wanneer is een spreadsheet voor je projectlijst nog genoeg?',
-          options: ['Zolang er geen afhankelijkheden of veel gelijktijdige bijwerkers zijn', 'Zolang het project minder dan een jaar duurt en het team klein blijft', 'Zolang de sponsor het zelf niet gebruikt', 'Zolang het team in één gebouw zit'],
+          options: ['Zolang er geen afhankelijkheden of veel gelijktijdige bijwerkers zijn', 'Zolang het project korter dan een jaar duurt en het team klein blijft', 'Zolang de sponsor de lijst zelf niet gebruikt of bekijkt', 'Zolang het team in één gebouw zit en elkaar spreekt'],
           answer: 'Zolang er geen afhankelijkheden of veel gelijktijdige bijwerkers zijn',
-          why: 'Duur en locatie zeggen weinig; afhankelijkheden en gelijktijdig werk zijn de signalen.',
+          why: 'Duur, sponsor en locatie zeggen weinig; afhankelijkheden, gelijktijdig bijwerken en een controleerbare geschiedenis zijn de signalen dat een tool gaat lonen.',
         },
         {
-          q: 'Van welke toolfamilie is Miro een voorbeeld?',
-          options: ['Planningstool met afhankelijkheden', 'Takenbord met kolommen en kaarten', 'Rapportage', 'Samenwerkingsbord'],
-          answer: 'Samenwerkingsbord',
-          why: 'Miro en Mural zijn digitale borden voor sessies.',
+          q: 'Je wilt vrijdag met acht mensen een sessie houden waarin ze tegelijk plakbriefjes plaatsen en tekenen. Welke toolfamilie past?',
+          options: ['Een planningstool met afhankelijkheden, zoals Microsoft Project', 'Een takenbord met kolommen en kaarten, zoals Planner', 'Een backlog met geordende items, zoals Jira', 'Een samenwerkingsbord, zoals Miro of Mural'],
+          answer: 'Een samenwerkingsbord, zoals Miro of Mural',
+          why: 'Een samenwerkingsbord is een digitaal bord waarop meerdere mensen tegelijk schrijven, tekenen en plakken. De andere drie bewaken taken, afhankelijkheden en werk dat nog moet gebeuren.',
         },
         {
           q: 'Vijf mensen besteden elke week 12 minuten aan het lezen en bijwerken van de nieuwe Excel-versie. Hoeveel uur per week is dat samen?',
@@ -618,10 +624,10 @@ export default {
           hint: 'Vermenigvuldig het aantal mensen met de minuten en reken om naar uren.',
         },
         {
-          q: 'Waarom noem je tools als voorbeeld van een familie?',
-          options: ['Producten veranderen, het werk dat ze doen blijft', 'Leveranciers stellen dat verplicht in hun voorwaarden', 'Elke familie heeft precies één product dat ervoor bedoeld is', 'De klant hoort liever merken dan taken in een voorstel'],
-          answer: 'Producten veranderen, het werk dat ze doen blijft',
-          why: 'Wie de familie kent, plaatst elke nieuwe tool snel.',
+          q: 'Een collega zegt: “Leer gewoon de merken: Planner, Trello, Jira.” Waarom werkt denken in toolfamilies beter?',
+          options: ['Producten veranderen van naam of verdwijnen, het werk dat ze doen blijft', 'Per familie hoort één product dat de klant als standaard verwacht', 'Merken verschillen zo sterk dat je ze niet kunt vergelijken', 'Een klant kiest zijn tool toch op basis van het merk dat de adviseur noemt'],
+          answer: 'Producten veranderen van naam of verdwijnen, het werk dat ze doen blijft',
+          why: 'Wie de familie kent, plaatst elke nieuwe tool in een minuut: wat is zijn taak, wie voert in, wie leest mee. De merknamen in de les zijn voorbeelden, geen aanbeveling en geen standaard.',
         },
       ],
       situation: {
@@ -650,10 +656,10 @@ export default {
       title: 'Een takenbord inrichten in het eerste uur',
       pre: [
         {
-          q: 'Je richt een takenbord in voor een team van vijf. Waar maak je de kolommen naar?',
-          options: ['Naar de teamleden, een kolom per persoon zodat ieder zijn eigen werk ziet', 'Naar de maanden van het project, van start tot overdracht', 'Naar de hoogte van het budget per taak, van groot naar klein', 'Naar het werk, zoals voorbereiden, uitvoeren en wachten op de klant'],
+          q: 'Je richt in het eerste uur een takenbord in voor een team van vijf met 24 taken. Waarnaar maak je de kolommen?',
+          options: ['Naar de teamleden, een kolom per persoon zodat ieder zijn eigen werk ziet', 'Naar de maanden van het project, van start tot overdracht', 'Naar de prioriteit van de taken, van hoog naar laag', 'Naar het werk, zoals voorbereiden, uitvoeren en wachten op de klant'],
           answer: 'Naar het werk, zoals voorbereiden, uitvoeren en wachten op de klant',
-          why: 'Kolommen op werk tonen waar het vastzit; kolommen op mensen verbergen overbelasting.',
+          why: 'Kolommen op werk tonen waar het vastzit, bijvoorbeeld in Wachten op klant. Kolommen op mensen verbergen overbelasting; maanden en prioriteit zeggen niets over de stroom van het werk.',
         },
       ],
       teach: [
@@ -670,16 +676,16 @@ export default {
       said: 'Wat je hoort in projecten: “Ik heb dat al wel gedaan, ik heb het alleen niet in het bord gezet.”',
       recall: [
         {
-          q: 'Hoe richt je de buckets van een takenbord in?',
-          options: ['Een bucket per teamlid, met zijn taken eronder', 'Een bucket per prioriteit van de sponsor', 'Een bucket per week van het project', 'Naar het werk, zoals Voorbereiden, Uitvoeren en Wachten op klant'],
-          answer: 'Naar het werk, zoals Voorbereiden, Uitvoeren en Wachten op klant',
-          why: 'Buckets op werk tonen waar het vastzit.',
+          q: 'Een teamlid is twee weken afwezig. Op het bord staan negen kaarten in zijn bucket. Wat zegt dat over de inrichting?',
+          options: ['Het bord is goed ingericht, want iedereen ziet bij wie een kaart ligt', 'Er zijn te veel labels, waardoor niemand nog op de bucket filtert', 'De kaarten missen een datum, daarom komt er geen melding van de afwezigheid', 'De buckets volgen mensen in plaats van werk, waardoor het werk van de afwezige een zwart gat wordt'],
+          answer: 'De buckets volgen mensen in plaats van werk, waardoor het werk van de afwezige een zwart gat wordt',
+          why: 'Buckets per persoon verbergen overbelasting en maken van een afwezige collega een zwart gat; de eigenaar staat al op de kaart. Labels en datums zijn een ander onderwerp.',
         },
         {
-          q: 'Welke drie dingen heeft elke kaart?',
-          options: ['Prioriteit, kleur en schatting in uren', 'Eigenaar, datum en klaar-criterium', 'Eigenaar, kosten en risico', 'Datum, afdeling en sponsor'],
-          answer: 'Eigenaar, datum en klaar-criterium',
-          why: 'Eigenaar, datum en klaar-criterium maken van een kaart een afspraak.',
+          q: 'Een kaart op het bord heeft een eigenaar en een datum, maar het team ruziet over wanneer ze af is. Wat ontbreekt?',
+          options: ['Een label voor de werkstroom waartoe de kaart hoort', 'Een klaar-criterium: hoe zien we dat het af is', 'Een schatting in uren van de eigenaar', 'Een tweede eigenaar die meekijkt'],
+          answer: 'Een klaar-criterium: hoe zien we dat het af is',
+          why: 'Zonder klaar-criterium ontstaat discussie over wat klaar betekent. Een label of schatting helpt daar niet bij, en een kaart heeft één eigenaar.',
         },
         {
           q: 'Het weekoverleg leest alle 24 kaarten voor, 2 minuten per kaart. Met een filter op achterstand worden 5 kaarten besproken, 4 minuten per kaart. Hoeveel minuten bespaart het filter per week?',
@@ -690,10 +696,10 @@ export default {
           hint: 'Reken de duur van beide manieren apart uit en trek ze van elkaar af.',
         },
         {
-          q: 'Waar leg je besluiten en afspraken van het project vast?',
-          options: ['Als kaart in de bucket die klaar heet, zodat het hele team het ziet', 'In de documentatietool naast het bord, met een link vanuit het bord', 'In het verslag dat de projectleider na elk weekoverleg mailt', 'Als opmerking onder de kaart waar het besluit over gaat'],
-          answer: 'In de documentatietool naast het bord, met een link vanuit het bord',
-          why: 'Besluiten moeten vindbaar zijn voor iedereen, ook na het project.',
+          q: 'Het team besluit in het weekoverleg dat de oplevering een week opschuift. Waar leg je dat besluit vast?',
+          options: ['Als kaart in de bucket Klaar, zodat het team het ziet', 'In de documentatietool naast het bord, met een link', 'Als opmerking onder de kaart van de oplevering', 'In het verslag dat de projectleider na het overleg mailt'],
+          answer: 'In de documentatietool naast het bord, met een link',
+          why: 'Besluiten horen niet op kaarten maar in de documentatietool ernaast, zodat ze vindbaar zijn, ook na het project. Een mail of een opmerking onder een kaart raakt zoek.',
         },
       ],
       situation: {
@@ -723,10 +729,12 @@ export default {
       title: 'De tool kiezen voor dit project',
       pre: [
         {
-          q: 'Een klant staat externe tools niet toe voor projectdata. Wat is de verstandigste keuze?',
-          options: ['Toch je eigen tool gebruiken en niets zeggen', 'Een privé-account aanmaken om de regels van de klant te omzeilen', 'De data in een mailbijlage rondsturen', 'De tool van de klant gebruiken, ook als die minder prettig is'],
-          answer: 'De tool van de klant gebruiken, ook als die minder prettig is',
-          why: 'Regels over klantdata gaan voor gemak.',
+          kind: 'best',
+          q: 'Een klant staat geen externe tools toe voor projectdata, terwijl jouw team prettig werkt in Trello. Wat is de beste keuze?',
+          options: ['Via de sponsor vragen of de regel voor dit project wordt opgeheven', 'Trello gebruiken voor taken zonder klantdata en de rest in de tool van de klant', 'De data anonimiseren en daarna in jouw eigen tool zetten', 'De tool van de klant gebruiken en je werk daarin opzetten'],
+          answer: 'De tool van de klant gebruiken en je werk daarin opzetten',
+          close: 'Trello gebruiken voor taken zonder klantdata en de rest in de tool van de klant',
+          why: 'Regels over klantdata gaan voor gemak: gebruik de tool van de klant. Trello voor taken zonder klantdata is verdedigbaar en wint als de beveiligingsfunctionaris het goedkeurt, maar het maakt een tweede bron en een tweede plek om bij te houden.',
         },
       ],
       teach: [
@@ -745,28 +753,30 @@ export default {
       said: 'Wat je hoort in projecten: “Wij werken hier met onze eigen tool; die van jou mag niet.”',
       recall: [
         {
-          q: 'Wat beslist de tool in een project met veel afhankelijkheden, zoals staal met lange levertijd?',
-          options: ['Alleen een bord, want dat is het eenvoudigst voor het hele team', 'Alleen een spreadsheet met kleuren', 'Een planningstool voor het plan en een bord voor de taken', 'Een samenwerkingsbord voor het hele project, van plan tot taak'],
-          answer: 'Een planningstool voor het plan en een bord voor de taken',
-          why: 'Een bord draagt afhankelijkheden niet; een planningstool wel.',
+          kind: 'best',
+          q: 'Een project met twintig mensen, drie leveranciers en staal met 14 weken levertijd waar veel van afhangt. Welke inrichting van tools is de beste?',
+          options: ['Een bord voor het plan en de taken, want dat is voor het team het eenvoudigst', 'Een spreadsheet met kleuren voor afhankelijkheden en eigenaren', 'Een planningstool voor het plan en een bord voor de dagelijkse taken', 'Het hele project in de planningstool, ook de dagelijkse taken van het team'],
+          answer: 'Een planningstool voor het plan en een bord voor de dagelijkse taken',
+          close: 'Het hele project in de planningstool, ook de dagelijkse taken van het team',
+          why: 'Een bord draagt afhankelijkheden niet; een planningstool wel, zoals de levertijd van het staal. Eén planningstool voor alles is ook verdedigbaar en wint als het team klein is en iedereen er al in werkt, omdat elk feit dan op één plek staat.',
         },
         {
-          q: 'Wat betekent “elk feit staat op precies één plek”?',
-          options: ['Eén plek per datum of besluit, de rest verwijst ernaar', 'Alle informatie van het project staat in één tool voor iedereen', 'Elk teamlid krijgt een eigen bestand met alle gegevens van het project', 'Besluiten worden niet meer opgeschreven omdat iedereen ze toch weet'],
-          answer: 'Eén plek per datum of besluit, de rest verwijst ernaar',
-          why: 'Eén bron voorkomt dat twee versies uit elkaar lopen.',
+          q: 'De datum van een mijlpaal staat in het bord én in de planning en de twee lopen uit elkaar. Welke regel had dit voorkomen?',
+          options: ['Eén plek per datum of besluit; de rest verwijst ernaar', 'Het hele project in één pakket houden, ook de documenten en het plan', 'Twee mensen dezelfde datum laten invoeren en de afwijkingen vergelijken', 'De planning als enige bron nemen en het bord afschaffen'],
+          answer: 'Eén plek per datum of besluit; de rest verwijst ernaar',
+          why: 'Eén plek per feit voorkomt dat twee versies uit elkaar lopen; het andere systeem toont of exporteert. Alles in één tool dwingt het niet af en twee keer invoeren is juist dubbele invoer.',
         },
         {
-          q: 'Wat vraag je eerst voordat je een tool kiest bij een klant?',
-          options: ['Welke tool de mooiste dashboards heeft', 'Welke regels gelden voor gasten en klantdata', 'Welke tool het goedkoopst is voor het hele project', 'Welke tool het team zelf privé gebruikt'],
-          answer: 'Welke regels gelden voor gasten en klantdata',
-          why: 'Wat niet mag, hoef je niet te vergelijken.',
+          q: 'Je start over een week bij een netbeheerder en wilt je tool voorbereiden. Welke vraag stel je als eerste aan hun IT of beveiliging?',
+          options: ['Welke tool heeft de beste dashboards voor de sponsor?', 'Mag een externe erin en mag klantdata daar staan?', 'Welke tool is voor het hele project het goedkoopst?', 'Welke tool gebruikt het team van de klant privé?'],
+          answer: 'Mag een externe erin en mag klantdata daar staan?',
+          why: 'De regels van de klant komen eerst: wat niet mag, hoef je niet te vergelijken. Dashboards, prijs en privévoorkeur komen daarna.',
         },
         {
-          q: 'De helft van je team werkt al in een andere tool. Wat doe je?',
-          options: ['Het hele team midden in het project laten verhuizen', 'Twee volledige administraties naast elkaar bijhouden', 'De grotere helft volgen of een brug met een wekelijkse export maken', 'De andere helft vragen hun tool te vergeten'],
-          answer: 'De grotere helft volgen of een brug met een wekelijkse export maken',
-          why: 'Een verhuizing midden in een project kost meer dan ze oplevert.',
+          q: 'Zes van de twaalf teamleden werken al in Jira, de andere zes in jouw bord. Het project is halverwege. Wat doe je?',
+          options: ['Het hele team deze week naar één van de twee tools laten verhuizen', 'De twee administraties naast elkaar bijhouden, met een controle per week', 'De grotere groep volgen, of een brug bouwen met een wekelijkse export', 'Een derde tool kiezen waar beide groepen naartoe verhuizen'],
+          answer: 'De grotere groep volgen, of een brug bouwen met een wekelijkse export',
+          why: 'Een verhuizing midden in een project kost meer dan ze oplevert; volg de grotere groep of bouw een brug met een wekelijkse export. Twee administraties of een derde tool maken het alleen erger.',
         },
       ],
       situation: {
@@ -794,10 +804,12 @@ export default {
       title: 'Wat een tool echt kost',
       pre: [
         {
-          q: 'Een klant vraagt je: “Neem gewoon je eigen Miro en Trello mee.” Wat is de eerste vraag die je stelt?',
-          options: ['Wie betaalt de abonnementen en hoe lang lopen die contracten nog door?', 'Welke kleuren gebruiken we?', 'Mag klantdata volgens hun beveiligingsregels in die tools staan?', 'Hoeveel gebruikers passen erin en wat kosten extra gebruikers de klant tijdens het project?'],
+          kind: 'best',
+          q: 'Een klant zegt: “Neem gewoon je eigen Miro en Trello mee.” Wat is de beste eerste vraag?',
+          options: ['Wie beheert en betaalt de tools zodra jouw opdracht klaar is?', 'Welke teams van de klant straks in welke tool werken?', 'Mag klantdata volgens hun beveiligingsregels in die tools staan?', 'Kunnen de tools worden gekoppeld aan hun systeem van vastlegging?'],
           answer: 'Mag klantdata volgens hun beveiligingsregels in die tools staan?',
-          why: 'Eerst de vraag of het mag; daarna pas of het handig is.',
+          close: 'Wie beheert en betaalt de tools zodra jouw opdracht klaar is?',
+          why: 'Eerst de vraag of het mag; de andere drie vragen zijn goed en komen daarna. Wie beheert na je vertrek wint pas als de tools mogen worden gebruikt.',
         },
       ],
       teach: [
@@ -824,22 +836,22 @@ export default {
           hint: 'Vermenigvuldig het aantal teamleiders, de uren per maand en het aantal maanden.',
         },
         {
-          q: 'Welke drie vragen zijn de geloofwaardige vragen bij een toollandschap?',
-          options: ['Wie de tool heeft gekocht, wie hem het meest gebruikt en wat hij kost', 'Welk systeem de bron is, wie het voedt en wat het afsluitmoment is', 'Welke kleuren, welke labels en welke volgorde van kolommen', 'Hoeveel gebruikers, hoeveel opslag en hoeveel back-ups'],
-          answer: 'Welk systeem de bron is, wie het voedt en wat het afsluitmoment is',
-          why: 'Over waarheid, voeding en afsluiting bestaan de meeste meningsverschillen.',
+          q: 'Op de afdeling van een klant noemen drie mensen elk een ander systeem als plek van het projectbudget. Welke drie vragen stel je om dat uit te zoeken?',
+          options: ['Wie heeft de tool gekocht, wie gebruikt hem het meest en wat kost hij per gebruiker?', 'Welk systeem is de bron, wie voedt het en wat is het afsluitmoment?', 'Welke koppelingen er zijn tussen de systemen, welke cijfers worden gevoed en wie de logins beheert?', 'Welk systeem het snelst is, welk het goedkoopst en welk het meest wordt gebruikt?'],
+          answer: 'Welk systeem is de bron, wie voedt het en wat is het afsluitmoment?',
+          why: 'Bij een geschil over waar de waarheid staat gaat het om bron, voeding en afsluitmoment. Kosten, koppelingen en gebruik zijn nuttige feiten, maar beslechten niet welk systeem telt.',
         },
         {
-          q: 'Waarom hoort eigenaarschap na vertrek bij de kosten van een tool?',
-          options: ['Een tool zonder beheerder laat na je vertrek een gat of afhankelijkheid achter', 'Het abonnement loopt dan automatisch af en de klant moet alles opnieuw inrichten', 'De klant wil jouw tool altijd overnemen, ook als hij daar geen tijd voor heeft', 'Adviesbureaus mogen volgens de regels geen tools in bezit hebben'],
-          answer: 'Een tool zonder beheerder laat na je vertrek een gat of afhankelijkheid achter',
-          why: 'Wat blijft na jou, moet een eigenaar hebben.',
+          q: 'Je hebt voor een project van zes maanden een bord opgezet dat het team goed gebruikt. Hoe weeg je de kosten van dit bord na jouw vertrek?',
+          options: ['Een bord zonder beheerder bij de klant laat na je vertrek een lege plek of afhankelijkheid achter', 'Het abonnement loopt na jouw vertrek door en dat moet in de begroting', 'De klant neemt het bord vanzelf over omdat het team eraan gewend is', 'Een bord is gratis te kopiëren, dus na je vertrek kost het niets'],
+          answer: 'Een bord zonder beheerder bij de klant laat na je vertrek een lege plek of afhankelijkheid achter',
+          why: 'Wat blijft na jou, moet een eigenaar hebben die beheert en betaalt. Dat het team eraan gewend is, is adoptie en nog geen beheer.',
         },
         {
-          q: 'Waarvoor gebruik je een AI-assistent in een projecttool het verstandigst?',
-          options: ['Voor een eerste concept dat je zelf controleert', 'Als bron van waarheid voor de status van het project', 'Om besluiten te nemen in de plaats van de sponsor of stuurgroep', 'Om klantdata ongezien en zonder controle te verwerken'],
-          answer: 'Voor een eerste concept dat je zelf controleert',
-          why: 'De assistent vat samen wat er staat; kwaliteit en regels blijven van jou.',
+          q: 'Een teamlid stelt voor een AI-assistent in het projectbord de wekelijkse status te laten samenvatten. Veel kaarten zijn maanden niet bijgewerkt. Wat is het verstandigste gebruik?',
+          options: ['Een eerste concept laten schrijven en dat zelf controleren', 'De samenvatting direct naar de sponsor sturen om tijd te besparen', 'De samenvatting als bron van waarheid voor de voortgang gebruiken', 'De assistent laten bepalen welke verouderde kaarten gesloten kunnen worden'],
+          answer: 'Een eerste concept laten schrijven en dat zelf controleren',
+          why: 'De assistent vat samen wat er staat; staan er verouderde kaarten in, dan is de samenvatting ook verouderd. Kwaliteit en vertrouwelijkheid blijven van jou, dus een concept dat je zelf controleert.',
         },
       ],
       situation: {
@@ -868,9 +880,9 @@ export default {
       pre: [
         {
           q: 'Je wilt weten hoeveel uren er tot nu toe op jouw project zijn geboekt. In welk soort systeem van de klant kijk je?',
-          options: ['Het ITSM-systeem, waar incidenten en wijzigingen staan', 'Het PLM-systeem, waar tekeningen en onderdelen worden beheerd', 'Het ERP-systeem, waar uren en kosten per projectnummer staan', 'Het digitale whiteboard van de laatste sessie'],
+          options: ['Het ITSM-systeem, waar incidenten en wijzigingen staan', 'Het PLM-systeem, waar tekeningen en onderdelen worden beheerd', 'Het ERP-systeem, waar uren en kosten per projectnummer staan', 'Het PPM-systeem, waar projecten en capaciteit worden getoond'],
           answer: 'Het ERP-systeem, waar uren en kosten per projectnummer staan',
-          why: 'Geboekte uren en kosten horen thuis in het ERP, onder een projectnummer.',
+          why: 'Geboekte uren en kosten horen thuis in het ERP, onder een projectnummer. ITSM, PLM en PPM bewaren andere feiten: wijzigingen, tekeningen en de portfoliolijst.',
         },
       ],
       teach: [
@@ -888,27 +900,27 @@ export default {
       recall: [
         {
           q: 'Wat is een systeem van vastlegging?',
-          options: ['Het systeem dat bij tegenspraak het laatste woord heeft', 'Het systeem dat het meeste wordt gebruikt door het team', 'Het systeem dat de consultant zelf heeft meegebracht naar de klant', 'Het systeem met de nieuwste gegevens van de afgelopen week'],
+          options: ['Het systeem dat bij tegenspraak het laatste woord heeft', 'Het systeem dat het team dagelijks het meest gebruikt', 'Het systeem dat de consultant zelf heeft meegebracht naar de klant', 'Het systeem met de nieuwste gegevens van de afgelopen week'],
           answer: 'Het systeem dat bij tegenspraak het laatste woord heeft',
-          why: 'Bij een meningsverschil telt het systeem van vastlegging, niet je eigen bord.',
+          why: 'Bij een meningsverschil telt het systeem van vastlegging, niet je eigen bord en niet het systeem dat het vaakst wordt geopend of het meest actueel is.',
         },
         {
           q: 'Volgens een Siemens-casus gebruikt ASML Teamcenter voor lifecycle management. Tot welke familie hoort dat?',
           options: ['ERP', 'PLM', 'ITSM', 'PPM'],
           answer: 'PLM',
-          why: 'PLM beheert productgegevens zoals tekeningen en onderdelen.',
+          why: 'PLM beheert productgegevens zoals tekeningen en onderdelen; ERP is geld en uren, ITSM IT-wijzigingen en PPM de projectportfolio.',
         },
         {
           q: 'Iemand boekt uren op de verkeerde projectcode. Wat is het gevolg?',
-          options: ['Jouw project ziet er goedkoper uit dan het is en de kosten landen elders', 'Het ERP weigert de uren en stuurt ze terug naar de medewerker', 'De sponsor krijgt automatisch een melding en corrigeert het', 'Niets, want de controller zet de uren aan het eind van de maand om'],
-          answer: 'Jouw project ziet er goedkoper uit dan het is en de kosten landen elders',
-          why: 'De code koppelt uren aan een project; een verkeerde code verplaatst de kosten.',
+          options: ['Jouw project lijkt goedkoper dan het is en de kosten landen elders', 'De uren verdwijnen uit het ERP tot de controller ze terugzet', 'De sponsor krijgt een melding en de uren worden vanzelf verplaatst', 'Niets, want het ERP telt de uren aan het eind van de maand om'],
+          answer: 'Jouw project lijkt goedkoper dan het is en de kosten landen elders',
+          why: 'De code koppelt uren aan een project; een verkeerde code verplaatst de kosten. Het ERP corrigeert dat niet vanzelf en meldt het niet aan de sponsor.',
         },
         {
           q: 'Waarom lees je een bron van een leverancier over een klant als aanwijzing en niet als bewijs?',
-          options: ['Leveranciers vertellen nooit de waarheid over hun klanten, ook niet in casussen', 'Klanten houden hun systemen geheim', 'Alleen het PMO mag dat bevestigen', 'De leverancier heeft er belang bij, en het is soms oud of onvolledig'],
-          answer: 'De leverancier heeft er belang bij, en het is soms oud of onvolledig',
-          why: 'Zo’n bron is vaak een verkooptekst; controleer het bij de klant zelf.',
+          options: ['Leveranciers mogen volgens de regels geen klantnamen noemen', 'Een casus gaat meestal over één afdeling, niet over de hele klant', 'Informatie over een klant is pas geldig als het PMO haar heeft bevestigd', 'De leverancier heeft er belang bij, en het kan oud of onvolledig zijn'],
+          answer: 'De leverancier heeft er belang bij, en het kan oud of onvolledig zijn',
+          why: 'Zo’n bron is vaak een verkooptekst: controleer het bij de klant zelf. Dat ze over één afdeling kan gaan is waar, maar is niet de reden van de les.',
         },
       ],
       situation: {
@@ -939,9 +951,9 @@ export default {
       pre: [
         {
           q: 'Je mag als externe meekijken in de systemen van de klant. Wat vraag je als eerste?',
-          options: ['Beheerrechten, zodat je zelf kunt aanpassen wat in jouw ogen niet klopt', 'Een eigen bord naast hun bord', 'Een lijst met alle gebruikers en hun rechten in het hele systeem', 'Leestoegang en de projectcode waaronder jouw project staat'],
+          options: ['Schrijfrechten, zodat je zelf kaarten kunt aanpassen als het team traag is', 'Een eigen bord naast het backlogbord om je eigen plan bij te houden', 'Toegang tot de wijzigingskalender om je wijzigingen direct in te plannen', 'Leestoegang en de projectcode waaronder jouw project staat'],
           answer: 'Leestoegang en de projectcode waaronder jouw project staat',
-          why: 'Als gast begin je met lezen en met de sleutel die jouw project vindbaar maakt.',
+          why: 'Als gast begin je met lezen en met de sleutel die jouw project vindbaar maakt. Schrijfrechten, een tweede bord en de wijzigingskalender komen later of zijn niet nodig.',
         },
       ],
       teach: [
@@ -958,10 +970,10 @@ export default {
       said: 'Wat je hoort in projecten: “Het staat op geel in Jira, maar in het ERP loopt het anders.”',
       recall: [
         {
-          q: 'Wat is een epic op een backlogbord?',
-          options: ['Een groot stuk werk dat uit meerdere features en stories bestaat', 'Een fout uit de test die moet worden hersteld', 'Een korte behoefte van één gebruiker, als story geschreven', 'Het reviewoverleg aan het eind van een sprint'],
-          answer: 'Een groot stuk werk dat uit meerdere features en stories bestaat',
-          why: 'Een epic bundelt veel kleinere items tot één groot resultaat.',
+          q: 'Op een backlogbord staat het item “Snellere werkvoorbereiding” met 31 onderliggende items. Wat voor soort werkitem is dat?',
+          options: ['Een epic: een groot stuk werk dat uit features en stories bestaat', 'Een story: een kleine behoefte van een gebruiker', 'Een bug: een fout die hersteld moet worden', 'Een feature: een deel van een epic met een eigen datum'],
+          answer: 'Een epic: een groot stuk werk dat uit features en stories bestaat',
+          why: 'Een epic bundelt veel kleinere items tot één groot resultaat. Een story is klein, een bug is een fout en een feature is een deel van een epic.',
         },
         {
           q: 'Jouw epic heeft 31 items, waarvan er 12 gedaan zijn. Hoeveel procent is gedaan? Rond af op een geheel getal.',
@@ -972,16 +984,16 @@ export default {
           hint: 'Deel het aantal gedane items door het totaal.',
         },
         {
-          q: '310 van de 400 geplande uren zijn geboekt, terwijl 40% van het werk klaar is. Wat zegt dat?',
-          options: ['Het project ligt voor op schema omdat er al zoveel uren zijn geboekt', 'De uren lopen voor op de voortgang; zoek de oorzaak en herplan', 'Het project zit precies op budget', 'De uren zijn zeker verkeerd geboekt'],
+          q: 'Je leest als gast in het ERP dat 310 van de 400 geplande uren zijn geboekt, terwijl het backlogbord 40% van het werk klaar laat zien. Wat zegt dat?',
+          options: ['Het project ligt voor op schema omdat er al zoveel uren zijn geboekt', 'De uren lopen voor op de voortgang; zoek de oorzaak en herplan', 'Het budget is nog ruim, want de geboekte uren liggen onder de 400 geplande uren', 'De geboekte uren kloppen niet; pas de voortgang aan tot hij bij de uren past'],
           answer: 'De uren lopen voor op de voortgang; zoek de oorzaak en herplan',
-          why: '78% van de uren voor 40% werk betekent dat het budget sneller opgaat dan het werk klaar komt.',
+          why: '78% van de uren voor 40% werk betekent dat het budget sneller opgaat dan het werk klaar komt. Veel uren is geen voortgang, en de uren aanpassen aan de voortgang andersom is geen oplossing.',
         },
         {
           q: 'Vier geblokkeerde items wachten op dezelfde testomgeving. Hoe lees je dat?',
-          options: ['Als vier aparte problemen die elk een eigen eigenaar en oplossing nodig hebben', 'Als één probleem met één oorzaak, dat je gericht kunt oplossen', 'Als bewijs dat het team te traag werkt en meer mensen nodig heeft', 'Als reden om de items te schrappen'],
+          options: ['Als vier problemen die ieder een eigen oplossing nodig hebben', 'Als één probleem met één oorzaak, dat je gericht kunt oplossen', 'Als teken dat het team te traag werkt en versterking nodig heeft', 'Als vier meldingen die je afzonderlijk bij de sponsor neerlegt'],
           answer: 'Als één probleem met één oorzaak, dat je gericht kunt oplossen',
-          why: 'Eén oorzaak achter meerdere blokkades is de snelste winst.',
+          why: 'Eén oorzaak achter meerdere blokkades is de snelste winst. Vier aparte oplossingen of meldingen laten de gedeelde oorzaak intact, en trage mensen zijn het probleem niet.',
         },
       ],
       situation: {
@@ -1010,10 +1022,10 @@ export default {
       title: 'Wat leeft waar: werktool en systeem van vastlegging',
       pre: [
         {
-          q: 'Jouw bord zegt groen, het PMO-rapport zegt rood. Wat doe je als eerste?',
-          options: ['Nagaan waar elk getal vandaan komt', 'Je bord op rood zetten om het eens te zijn', 'Het PMO vragen het rapport voorlopig te negeren', 'Een nieuw dashboard bouwen dat groen toont'],
-          answer: 'Nagaan waar elk getal vandaan komt',
-          why: 'Eerst uitzoeken waarom ze verschillen; pas dan beslis je wie gelijk heeft.',
+          q: 'Jouw bord zegt groen, het PMO-rapport zegt rood en de stuurgroep is overmorgen. Wat doe je als eerste?',
+          options: ['Nagaan uit welk systeem elk getal komt en hoe het daar wordt geteld', 'Het PMO-rapport overnemen en je bord daaraan aanpassen om discussie te voorkomen', 'De sponsor vragen welk van de twee getallen hij gelooft', 'Een week wachten tot het rapport weer ververst is en dan opnieuw vergelijken'],
+          answer: 'Nagaan uit welk systeem elk getal komt en hoe het daar wordt geteld',
+          why: 'Eerst uitzoeken waarom ze verschillen: bron, moment en definitie. Pas dan beslis je welk getal officieel telt; het overnemen van rood of kiezen op geloof beantwoordt dat niet.',
         },
       ],
       teach: [
@@ -1032,10 +1044,10 @@ export default {
       said: 'Wat je hoort in projecten: “Mijn bord zegt groen, dat rapport klopt niet.”',
       recall: [
         {
-          q: 'Hoe voorkom je dubbele invoer?',
-          options: ['Alles in één tool zetten en de andere afschaffen', 'Twee mensen hetzelfde laten invoeren voor de zekerheid en later vergelijken', 'Het getal alleen in het rapport laten staan', 'Elk feit één thuis geven en elders koppelen of exporteren'],
-          answer: 'Elk feit één thuis geven en elders koppelen of exporteren',
-          why: 'Eén thuis per feit voorkomt dat getallen uit elkaar lopen.',
+          q: 'Vier teamleiders typen elke maand hun cijfers uit het bord over in het PMO-systeem. Wat is de eerste stap om die dubbele invoer weg te nemen?',
+          options: ['Het bord afschaffen en het team in het PMO-systeem laten werken', 'Een extra controle toevoegen waarbij twee mensen de invoer vergelijken', 'Het PMO vragen de cijfers voortaan uit het bord over te nemen', 'Vaststellen welk systeem de bron is, wie het voedt en wat het afsluitmoment is'],
+          answer: 'Vaststellen welk systeem de bron is, wie het voedt en wat het afsluitmoment is',
+          why: 'Elk feit krijgt één thuis; daarvoor stel je bron, voeding en afsluitmoment vast. Het bord afschaffen of controleren verplaatst het probleem, en het PMO kan geen cijfers overnemen zonder afspraak.',
         },
         {
           q: 'Een rapport ververst elke maandagochtend. Je leest het donderdagmiddag. Hoeveel dagen oud zijn de gegevens ongeveer?',
@@ -1046,16 +1058,16 @@ export default {
           hint: 'Tel de dagen tussen het verversmoment en het moment waarop je leest.',
         },
         {
-          q: 'Welke vraag hoort bij het lezen van een Power BI-rapport als bron?',
-          options: ['Welke kleuren en grafiektypen maken de pagina het best leesbaar?', 'Uit welk systeem komt dit getal, wanneer is het ververst en wat telt mee?', 'Hoeveel pagina’s en filters mag een goed rapport hooguit hebben?', 'Wie heeft het rapport het eerst gebouwd en wie heeft het sindsdien aangepast?'],
-          answer: 'Uit welk systeem komt dit getal, wanneer is het ververst en wat telt mee?',
-          why: 'Je leest een rapport als bron, dus je volgt elk getal naar zijn herkomst.',
+          q: 'Je opent een Power BI-rapport van het PMO waarin jouw project op rood staat. Welke vraag stel je als eerste over het getal?',
+          options: ['Welke pagina’s en filters heeft het rapport en wie heeft het gebouwd?', 'Uit welk systeem komt het, wanneer is het ververst en wat telt mee?', 'Welke kleuren en grenzen gebruikt het rapport voor groen en rood?', 'Wie is de eigenaar van het rapport en wie kan het aanpassen?'],
+          answer: 'Uit welk systeem komt het, wanneer is het ververst en wat telt mee?',
+          why: 'Je leest het rapport als bron, dus je volgt elk getal naar herkomst, verversmoment en definitie. Bouwer, kleurgrenzen en eigenaar zijn nuttige feiten, maar verklaren niet waarom het getal rood is.',
         },
         {
-          q: 'Wat is het goedkoopst om als eerste te controleren als bord en rapport verschillen?',
-          options: ['Of het hele rapport opnieuw gebouwd moet worden', 'Of iemand fraude heeft gepleegd in het team', 'Het verversmoment van het rapport', 'Of het hele team moet worden vervangen'],
-          answer: 'Het verversmoment van het rapport',
-          why: 'Een verouderd rapport is de eenvoudigste oorzaak en kost één blik.',
+          q: 'Bord en rapport verschillen: 18 van 20 taken klaar tegenover 60% in het rapport. Je wilt eerst de goedkoopste verklaring uitsluiten. Welke is dat?',
+          options: ['Of het rapport “klaar” anders telt dan jouw bord', 'Of er uren op een andere projectcode zijn geboekt', 'Het verversmoment van het rapport: hoe oud zijn de gegevens?', 'Of er taken ten onrechte als klaar zijn aangevinkt op het bord'],
+          answer: 'Het verversmoment van het rapport: hoe oud zijn de gegevens?',
+          why: 'Een verouderd rapport is de eenvoudigste oorzaak en kost één blik; daarna volgen de definitie van klaar en de projectcode. Je eigen aanvinkfouten controleer je pas als de andere drie geen verklaring geven.',
         },
       ],
       situation: {
@@ -1084,10 +1096,10 @@ export default {
       title: 'Het toollandschap als senior',
       pre: [
         {
-          q: 'Twee managers botsen over een getal in een rapport. Wat helpt het meest om het op te lossen?',
-          options: ['Uitzoeken wie de data-eigenaar is en wie de definitie bepaalt', 'Het rapport laten herbouwen met een andere kleur', 'Een stemming in het team houden', 'De hoogste van de twee getallen gebruiken'],
+          q: 'Twee managers van de klant noemen elk een ander getal voor “uren op project X” uit hetzelfde rapport. De stuurgroep is overmorgen. Wat helpt het meest om dit op te lossen?',
+          options: ['Uitzoeken wie de data-eigenaar is en wie de definitie bepaalt', 'Het rapport laten herbouwen met een gedeelde filterinstelling voor beide managers', 'Het getal laten bevestigen door degene die het rapport heeft gebouwd', 'De twee getallen naast elkaar in het rapport zetten met een toelichting'],
           answer: 'Uitzoeken wie de data-eigenaar is en wie de definitie bepaalt',
-          why: 'Een geschil over een getal gaat vrijwel altijd over wie de definitie bezit.',
+          why: 'Een geschil over een getal gaat vrijwel altijd over de definitie; wie die bezit, beslist. Herbouwen, de bouwer vragen of beide getallen tonen laat de definitie ongemoeid.',
         },
       ],
       teach: [
@@ -1106,22 +1118,22 @@ export default {
       said: 'Wat je hoort in projecten: “Die koppeling regelt IT wel, daar hoef jij je niet druk over te maken.”',
       recall: [
         {
-          q: 'Waarom zoek je de data-eigenaar voordat er een geschil over een getal ontstaat?',
-          options: ['De data-eigenaar betaalt de tool en bepaalt daarom wat er met de gegevens gebeurt', 'Zij kunnen het rapport mooier maken en sneller laten verversen dan IT', 'De data-eigenaar bepaalt de definitie en kan het geschil beslechten', 'Het PMO praat alleen met eigenaren'],
-          answer: 'De data-eigenaar bepaalt de definitie en kan het geschil beslechten',
-          why: 'Wie de definitie bezit, beslist wat een getal betekent.',
+          q: 'In week twee van een project merk je dat “klaar” bij de klant in drie systemen anders wordt geteld. Het is nog geen geschil. Waarom zoek je nu al de data-eigenaar?',
+          options: ['Zij betalen de tool en zijn daarom eigenaar van de gegevens', 'Zij kunnen een getal sneller laten verversen in het systeem dan de IT-eigenaar', 'De data-eigenaar bepaalt de definitie en kan een geschil beslechten', 'Het PMO overlegt bij voorkeur met data-eigenaren over de meetmethode'],
+          answer: 'De data-eigenaar bepaalt de definitie en kan een geschil beslechten',
+          why: 'Een geschil gaat bijna altijd over de definitie; zoek de eigenaar vóór het geschil en leg de definitie vast. Wie betaalt of ververst, bepaalt niet wat een getal betekent.',
         },
         {
-          q: 'Je plan hangt af van een tool die de leverancier gaat uitfaseren. Wat doe je?',
-          options: ['Niets doen, want de leverancier lost het vanzelf op', 'Een plan B en een verhuismoment opnemen', 'Meteen alle gegevens naar een spreadsheet halen', 'De sponsor vragen de leverancier te laten veranderen'],
-          answer: 'Een plan B en een verhuismoment opnemen',
-          why: 'Een geplande verhuizing is goedkoper dan een noodverhuizing.',
+          q: 'Je project van 26 weken gebruikt een planningstool die de leverancier over vier maanden gaat uitfaseren. Wat doe je?',
+          options: ['Wachten op de aankondiging van de leverancier over de opvolger', 'Opschrijven welke functie je nodig hebt en een plan B met verhuismoment opnemen', 'Nu al de gegevens naar een spreadsheet halen', 'De sponsor vragen bij de leverancier te lobbyen voor verlenging'],
+          answer: 'Opschrijven welke functie je nodig hebt en een plan B met verhuismoment opnemen',
+          why: 'Een geplande verhuizing is goedkoper dan een noodverhuizing; leg de benodigde functie en het verhuismoment vast. Wachten of lobbyen laat je plan van één product afhangen.',
         },
         {
-          q: 'Wat vraag je als een technische wijziging in het PLM je plan kan verschuiven?',
-          options: ['Of tekeningen ooit mogen worden aangepast', 'Hoe, door wie en met welke doorlooptijd wijzigingen jou bereiken', 'Hoeveel tekeningen er in het systeem staan en wie ze allemaal heeft gemaakt', 'Welke kleur de revisies hebben'],
-          answer: 'Hoe, door wie en met welke doorlooptijd wijzigingen jou bereiken',
-          why: 'Een wijziging die jou laat bereikt, verschuift je plan zonder dat je het weet.',
+          q: 'In een fabriek verschuift een technische wijziging in het PLM regelmatig de levertijd van onderdelen. Wat vraag je om je plan daartegen te beschermen?',
+          options: ['Welke technische wijzigingen vorig jaar zijn doorgevoerd en wat ze kostten', 'Hoe wijzigingen jou bereiken: wie meldt ze, met welke doorlooptijd en waar abonneer je je', 'Wie in het PLM de rechten heeft om een technische wijziging goed te keuren', 'Welke tekeningen al met leveranciers zijn afgestemd'],
+          answer: 'Hoe wijzigingen jou bereiken: wie meldt ze, met welke doorlooptijd en waar abonneer je je',
+          why: 'Zonder meldroute hoor je een wijziging pas als de monteur het merkt; vraag wie meldt, met welke doorlooptijd en waar je je abonneert. Geschiedenis, rechten en afstemming zeggen niet hoe wijzigingen jou bereiken.',
         },
         {
           q: 'Het nieuwe portfoliosysteem gaat live aan het begin van week 15; het project eindigt aan het eind van week 26. Hoeveel projectweken lopen op het nieuwe systeem?',
