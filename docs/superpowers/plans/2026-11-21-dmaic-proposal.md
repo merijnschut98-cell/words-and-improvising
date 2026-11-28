@@ -367,3 +367,7 @@ Five questions; the recommended option is first. Points I decided myself, which 
 **What the module passes (P-n) take from this.** The DMAIC sentences and phase moves of section 3 go into each road module's pass. Two dependencies: the pass for `pm.plan` (P0, the pilot) should write its DMAIC sentence only after Merijn's answer to Q1. The pass for `pm.formats` should wait for Q2. Any road module whose pass is already merged when this proposal is approved gets its sentences in a small follow-up task (S, sonnet, with the validator and the openers test as the check).
 
 **Ledger.** One line per finished D-task in `docs/superpowers/plans/model-ledger.md`, as CLAUDE.md asks.
+
+## 7. Notes for D2b from the pm.approach pass review (28 Nov)
+
+When the route topic moves to the DMAIC road: the `route` lesson (gist, blocks 0, 1 and 4, the example, terms "Stage" and "Stage product", sayIt); `route#r0` and `#p0` distractors become the Measure, Improve and Control phase products (answer positions stay); `tailor` p0 and r1 and its text and the route level-3 opener ("merge stages") become "how much Measure and Analyse"; `takeover` r3 and block 4 "stage product" becomes "phase product"; `clientroute` gates become the governance layer over the phase ends; bank b1, b2, b3's why, b6 and the blueprint route aims and traps. The v13 fixture keeps kinds, positions and numbers. No route picture yet.
